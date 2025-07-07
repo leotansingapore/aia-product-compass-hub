@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, XCircle, RotateCcw } from "lucide-react";
+import { useGamification } from "@/hooks/useGamification";
+import { useAuth } from "@/hooks/useAuth";
 
 interface QuizQuestion {
   question: string;
@@ -13,9 +15,12 @@ interface QuizQuestion {
 
 interface ProductQuizProps {
   questions: QuizQuestion[];
+  productId: string;
 }
 
-export function ProductQuiz({ questions }: ProductQuizProps) {
+export function ProductQuiz({ questions, productId }: ProductQuizProps) {
+  const { user } = useAuth();
+  const { recordQuizCompletion } = useGamification();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
@@ -44,6 +49,15 @@ export function ProductQuiz({ questions }: ProductQuizProps) {
       setCurrentQuestion(prev => prev + 1);
       setSelectedAnswer(null);
       setShowResult(false);
+    } else if (showResult && user) {
+      // Quiz completed - record gamification data
+      const isPerfectScore = score === questions.length;
+      recordQuizCompletion({
+        productId,
+        score,
+        totalQuestions: questions.length,
+        isPerfectScore
+      });
     }
   };
 
@@ -201,9 +215,14 @@ export function ProductQuiz({ questions }: ProductQuizProps) {
                 </Button>
               ) : (
                 showResult && (
-                  <Badge variant={score >= questions.length * 0.7 ? "default" : "secondary"} className="px-4 py-2">
-                    Quiz Complete! Score: {score}/{questions.length}
-                  </Badge>
+                  <Button 
+                    onClick={handleNext}
+                    disabled={!user}
+                    variant="hero"
+                    className="px-6"
+                  >
+                    {user ? `Complete Quiz (+${20 + Math.floor((score / questions.length) * 50)} XP)` : 'Sign in to earn XP'}
+                  </Button>
                 )
               )}
             </div>

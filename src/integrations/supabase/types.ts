@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      achievements: {
+        Row: {
+          badge_color: string | null
+          category: string
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          name: string
+          requirement_type: string
+          requirement_value: number
+          xp_reward: number | null
+        }
+        Insert: {
+          badge_color?: string | null
+          category: string
+          created_at?: string
+          description: string
+          icon: string
+          id?: string
+          name: string
+          requirement_type: string
+          requirement_value: number
+          xp_reward?: number | null
+        }
+        Update: {
+          badge_color?: string | null
+          category?: string
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          name?: string
+          requirement_type?: string
+          requirement_value?: number
+          xp_reward?: number | null
+        }
+        Relationships: []
+      }
       categories: {
         Row: {
           created_at: string
@@ -107,6 +146,137 @@ export type Database = {
             columns: ["category_id"]
             isOneToOne: false
             referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_progress: {
+        Row: {
+          category_id: string
+          completed_at: string
+          id: string
+          product_id: string | null
+          progress_type: string
+          user_id: string
+          xp_earned: number | null
+        }
+        Insert: {
+          category_id: string
+          completed_at?: string
+          id?: string
+          product_id?: string | null
+          progress_type: string
+          user_id: string
+          xp_earned?: number | null
+        }
+        Update: {
+          category_id?: string
+          completed_at?: string
+          id?: string
+          product_id?: string | null
+          progress_type?: string
+          user_id?: string
+          xp_earned?: number | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          current_level: number | null
+          display_name: string | null
+          email: string | null
+          id: string
+          last_active_date: string | null
+          streak_days: number | null
+          total_xp: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          current_level?: number | null
+          display_name?: string | null
+          email?: string | null
+          id?: string
+          last_active_date?: string | null
+          streak_days?: number | null
+          total_xp?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          current_level?: number | null
+          display_name?: string | null
+          email?: string | null
+          id?: string
+          last_active_date?: string | null
+          streak_days?: number | null
+          total_xp?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      quiz_attempts: {
+        Row: {
+          completed_at: string
+          id: string
+          product_id: string
+          score: number
+          total_questions: number
+          user_id: string
+          xp_earned: number | null
+        }
+        Insert: {
+          completed_at?: string
+          id?: string
+          product_id: string
+          score: number
+          total_questions: number
+          user_id: string
+          xp_earned?: number | null
+        }
+        Update: {
+          completed_at?: string
+          id?: string
+          product_id?: string
+          score?: number
+          total_questions?: number
+          user_id?: string
+          xp_earned?: number | null
+        }
+        Relationships: []
+      }
+      user_achievements: {
+        Row: {
+          achievement_id: string
+          earned_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          achievement_id: string
+          earned_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          achievement_id?: string
+          earned_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_achievements_achievement_id_fkey"
+            columns: ["achievement_id"]
+            isOneToOne: false
+            referencedRelation: "achievements"
             referencedColumns: ["id"]
           },
         ]

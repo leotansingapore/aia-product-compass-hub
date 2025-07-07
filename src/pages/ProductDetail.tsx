@@ -395,7 +395,7 @@ export default function ProductDetail() {
         </Card>
 
         {/* Knowledge Quiz */}
-        {product.quiz && <ProductQuiz questions={product.quiz} />}
+        {product.quiz && <ProductQuiz questions={product.quiz} productId={productId!} />}
 
         {/* Common Misconceptions */}
         <Card>

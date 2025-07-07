@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { SearchBar } from "@/components/SearchBar";
 import { CategoryCard } from "@/components/CategoryCard";
+import { UserStats } from "@/components/UserStats";
+import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -72,6 +74,7 @@ const quickActions = [
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (query: string) => {
@@ -92,6 +95,31 @@ export default function Dashboard() {
       />
       
       <div className="max-w-7xl mx-auto px-6 py-8">
+        
+        {/* User Stats - Only show if logged in */}
+        {user && <UserStats />}
+        
+        {/* Authentication Prompt - Only show if not logged in */}
+        {!user && (
+          <Card className="mb-8 border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50">
+            <CardContent className="p-6">
+              <div className="text-center">
+                <h3 className="text-xl font-semibold mb-2">🚀 Unlock Your Learning Journey</h3>
+                <p className="text-muted-foreground mb-4">
+                  Sign in to track your progress, earn achievements, and level up your expertise!
+                </p>
+                <Button 
+                  variant="hero" 
+                  onClick={() => navigate('/auth')}
+                  className="px-8"
+                >
+                  Sign In to Get Started
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Search Section */}
         <div className="text-center mb-12">
           <h2 className="text-2xl font-bold mb-4">Find What You Need</h2>
