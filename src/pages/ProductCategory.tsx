@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { SearchBar } from "@/components/SearchBar";
 import { ProductCard } from "@/components/ProductCard";
@@ -10,8 +10,8 @@ import { Badge } from "@/components/ui/badge";
 const sampleProducts = {
   investment: [
     {
-      id: 'inv-1',
-      title: 'AIA Investment-Linked Plan',
+      id: 'pro-achiever',
+      title: 'Pro Achiever',
       description: 'Flexible investment plan with multiple fund options for long-term wealth building',
       category: 'Investment',
       tags: ['Flexible Premium', 'Multiple Funds', 'Long-term Growth'],
@@ -23,16 +23,29 @@ const sampleProducts = {
       ]
     },
     {
-      id: 'inv-2', 
-      title: 'AIA Capital Guaranteed Plan',
-      description: 'Capital protection with guaranteed returns and potential bonuses',
+      id: 'pro-lifetime-protector', 
+      title: 'Pro Lifetime Protector',
+      description: 'Investment-linked plan with built-in life protection coverage',
       category: 'Investment',
-      tags: ['Capital Guaranteed', 'Bonus Potential', 'Conservative'],
+      tags: ['Life Protection', 'Investment Growth', 'Premium Flexibility'],
       highlights: [
-        '100% capital protection',
-        'Guaranteed minimum returns',
-        'Annual bonus declarations',
-        'Suitable for conservative investors'
+        'Combined investment and protection',
+        'Flexible premium payment terms',
+        'Multiple fund options available',
+        'Death benefit protection included'
+      ]
+    },
+    {
+      id: 'platinum-wealth-venture',
+      title: 'Platinum Wealth Venture',
+      description: 'Premium investment solution for high net worth individuals',
+      category: 'Investment',
+      tags: ['High Net Worth', 'Premium Funds', 'Exclusive'],
+      highlights: [
+        'Access to exclusive investment funds',
+        'Dedicated relationship management',
+        'Advanced portfolio strategies',
+        'Global investment opportunities'
       ]
     }
   ],
@@ -128,6 +141,7 @@ const categoryInfo = {
 
 export default function ProductCategory() {
   const { categoryId } = useParams<{ categoryId: string }>();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
@@ -161,8 +175,7 @@ export default function ProductCategory() {
   });
 
   const handleProductClick = (productId: string) => {
-    // TODO: Navigate to product detail page
-    console.log('Navigate to product:', productId);
+    navigate(`/product/${productId}`);
   };
 
   if (!category) {

@@ -53,17 +53,20 @@ const quickActions = [
   {
     title: 'How to Use This Portal',
     description: 'Get started with the learning platform',
-    action: 'Learn More'
+    action: 'Learn More',
+    route: '/how-to-use'
   },
   {
     title: 'Search by Client Profile',
     description: 'Find products for specific client needs',
-    action: 'Search Now'
+    action: 'Search Now',
+    route: '/search-by-profile'
   },
   {
     title: 'Sales Tools & Objection Handling',
     description: 'Access training materials and responses',
-    action: 'Access Tools'
+    action: 'Access Tools',
+    route: '/sales-tools'
   }
 ];
 
@@ -106,7 +109,11 @@ export default function Dashboard() {
                   <CardDescription>{action.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button variant="outline" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => navigate(action.route)}
+                  >
                     {action.action}
                   </Button>
                 </CardContent>
