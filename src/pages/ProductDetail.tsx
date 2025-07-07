@@ -31,7 +31,23 @@ const productData = {
       presentationSlides: "#"
     },
     customGPT: "#",
-    videoEmbed: "https://www.loom.com/embed/placeholder",
+    videos: [
+      {
+        title: "Product Overview",
+        description: "Comprehensive introduction to Pro Achiever features and benefits",
+        embed: "https://www.loom.com/embed/placeholder-overview"
+      },
+      {
+        title: "Sales Presentation",
+        description: "How to present Pro Achiever to high net worth clients",
+        embed: "https://www.loom.com/embed/placeholder-sales"
+      },
+      {
+        title: "Objection Handling",
+        description: "Common objections and how to address them effectively",
+        embed: "https://www.loom.com/embed/placeholder-objections"
+      }
+    ],
     misconceptions: [
       {
         misconception: "\"ILPs are too risky and complicated for conservative clients\"",
@@ -71,7 +87,18 @@ const productData = {
       presentationSlides: "#"
     },
     customGPT: "#",
-    videoEmbed: "https://www.loom.com/embed/placeholder",
+    videos: [
+      {
+        title: "Product Overview",
+        description: "Introduction to Smart Wealth Builder's guaranteed returns",
+        embed: "https://www.loom.com/embed/placeholder-overview"
+      },
+      {
+        title: "Client Presentation",
+        description: "How to explain endowment benefits to conservative clients",
+        embed: "https://www.loom.com/embed/placeholder-presentation"
+      }
+    ],
     misconceptions: [
       {
         misconception: "\"Endowment returns are too low compared to investments\"",
@@ -111,7 +138,18 @@ const productData = {
       presentationSlides: "#"
     },
     customGPT: "#",
-    videoEmbed: "https://www.loom.com/embed/placeholder",
+    videos: [
+      {
+        title: "Product Overview",
+        description: "Complete guide to Guaranteed Protect Plus whole life benefits",
+        embed: "https://www.loom.com/embed/placeholder-overview"
+      },
+      {
+        title: "Estate Planning Focus",
+        description: "How to position whole life for estate planning clients",
+        embed: "https://www.loom.com/embed/placeholder-estate"
+      }
+    ],
     misconceptions: [
       {
         misconception: "\"Whole life is too expensive compared to term insurance\"",
@@ -265,20 +303,44 @@ export default function ProductDetail() {
           </CardContent>
         </Card>
 
-        {/* Explainer Video */}
+        {/* Training Videos */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <span>🎥</span> Explainer Video
+              <span>🎥</span> Training Videos
             </CardTitle>
+            <CardDescription>
+              Comprehensive video library for different learning purposes
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-4xl mb-4">🎬</div>
-                <p className="text-muted-foreground">Video will be embedded here</p>
-                <p className="text-sm text-muted-foreground mt-2">Loom-style explainer video</p>
-              </div>
+            <div className="space-y-6">
+              {product.videos ? product.videos.map((video, index) => (
+                <div key={index} className="border rounded-lg p-4">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h4 className="font-semibold">{video.title}</h4>
+                      <p className="text-sm text-muted-foreground">{video.description}</p>
+                    </div>
+                    <Badge variant="outline">{index + 1}</Badge>
+                  </div>
+                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-3xl mb-2">🎬</div>
+                      <p className="text-muted-foreground text-sm">Video will be embedded here</p>
+                      <p className="text-xs text-muted-foreground mt-1">{video.title}</p>
+                    </div>
+                  </div>
+                </div>
+              )) : (
+                <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-4xl mb-4">🎬</div>
+                    <p className="text-muted-foreground">Video will be embedded here</p>
+                    <p className="text-sm text-muted-foreground mt-2">Loom-style explainer video</p>
+                  </div>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
