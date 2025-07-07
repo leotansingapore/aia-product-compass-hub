@@ -3,6 +3,7 @@ import { NavigationHeader } from "@/components/NavigationHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ProductQuiz } from "@/components/ProductQuiz";
 
 const productData = {
   'pro-achiever': {
@@ -46,6 +47,26 @@ const productData = {
         title: "Objection Handling",
         description: "Common objections and how to address them effectively",
         embed: "https://www.loom.com/embed/placeholder-objections"
+      }
+    ],
+    quiz: [
+      {
+        question: "What is the lock-in period for Pro Achiever?",
+        options: ["1 year", "2 years", "3 years", "5 years"],
+        correct: 2,
+        explanation: "Pro Achiever has a 3-year lock-in period, after which penalty-free partial withdrawals are allowed."
+      },
+      {
+        question: "How many free fund switches are allowed per year?",
+        options: ["6 times", "12 times", "24 times", "Unlimited"],
+        correct: 1,
+        explanation: "Pro Achiever allows up to 12 free fund switches per year to optimize portfolio performance."
+      },
+      {
+        question: "Which type of clients is Pro Achiever most suitable for?",
+        options: ["Conservative retirees", "Young professionals", "Affluent individuals", "Corporate entities"],
+        correct: 2,
+        explanation: "Pro Achiever is designed for affluent individuals seeking wealth accumulation with premium payment flexibility."
       }
     ],
     misconceptions: [
@@ -99,6 +120,20 @@ const productData = {
         embed: "https://www.loom.com/embed/placeholder-presentation"
       }
     ],
+    quiz: [
+      {
+        question: "What type of returns does Smart Wealth Builder provide?",
+        options: ["Market-linked returns", "Guaranteed + bonus returns", "Variable returns only", "Fixed deposit rates"],
+        correct: 1,
+        explanation: "Smart Wealth Builder provides guaranteed returns plus potential annual and terminal bonuses."
+      },
+      {
+        question: "When is the policy loan facility available?",
+        options: ["Immediately", "After 1st year", "After 2nd year", "At maturity only"],
+        correct: 2,
+        explanation: "Policy loans are available against cash value after the 2nd year for liquidity needs."
+      }
+    ],
     misconceptions: [
       {
         misconception: "\"Endowment returns are too low compared to investments\"",
@@ -148,6 +183,20 @@ const productData = {
         title: "Estate Planning Focus",
         description: "How to position whole life for estate planning clients",
         embed: "https://www.loom.com/embed/placeholder-estate"
+      }
+    ],
+    quiz: [
+      {
+        question: "What is the main benefit of Guaranteed Protect Plus?",
+        options: ["Term protection", "Lifelong protection + cash value", "Investment returns", "Medical coverage"],
+        correct: 1,
+        explanation: "Guaranteed Protect Plus provides lifelong protection with guaranteed cash value growth and dividend potential."
+      },
+      {
+        question: "What happens when sufficient cash value accumulates?",
+        options: ["Policy expires", "Premiums increase", "Paid-up insurance option", "Cash value resets"],
+        correct: 2,
+        explanation: "After sufficient cash value accumulation, the policy can become paid-up, requiring no further premiums."
       }
     ],
     misconceptions: [
@@ -344,6 +393,9 @@ export default function ProductDetail() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Knowledge Quiz */}
+        {product.quiz && <ProductQuiz questions={product.quiz} />}
 
         {/* Common Misconceptions */}
         <Card>
