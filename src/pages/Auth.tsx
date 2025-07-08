@@ -155,14 +155,25 @@ const Auth = () => {
       const demoEmail = "admin@demo.com";
       const demoPassword = "demo123456";
 
-      const { data, error } = await supabase.auth.signInWithPassword({
+      // Try to sign in first
+      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
         email: demoEmail,
         password: demoPassword,
       });
 
-      if (error) {
-        // If demo account doesn't exist, create it
-        if (error.message.includes('Invalid login credentials')) {
+      if (signInData?.user && signInData?.session) {
+        toast({
+          title: "Welcome to Demo Mode!",
+          description: "You now have admin access to edit content",
+        });
+        window.location.href = '/';
+        return;
+      }
+
+      // If sign in failed due to unconfirmed email, try creating account
+      if (signInError) {
+        if (signInError.message.includes('Invalid login credentials')) {
+          // Account doesn't exist, create it
           const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
             email: demoEmail,
             password: demoPassword,
@@ -176,32 +187,47 @@ const Auth = () => {
 
           if (signUpError) throw signUpError;
 
-          if (signUpData.user) {
-            // Create profile for demo user
-            await supabase
-              .from('profiles')
-              .insert({
-                user_id: signUpData.user.id,
-                display_name: "Demo Admin",
-                email: demoEmail,
-              });
+          // If account was created but needs confirmation
+          if (signUpData.user && !signUpData.session) {
+            toast({
+              title: "Demo Account Created", 
+              description: "Account needs email confirmation. Please ask admin to disable email confirmation in Supabase Auth settings for easier testing.",
+              variant: "default",
+            });
+            return;
           }
 
+          // If we got a session immediately, create profile
+          if (signUpData.user && signUpData.session) {
+            try {
+              await supabase
+                .from('profiles')
+                .insert({
+                  user_id: signUpData.user.id,
+                  display_name: "Demo Admin",
+                  email: demoEmail,
+                });
+            } catch (profileError) {
+              console.error('Profile creation error:', profileError);
+              // Don't fail the whole process for profile creation
+            }
+
+            toast({
+              title: "Demo Account Created!",
+              description: "You can now use the admin features",
+            });
+            window.location.href = '/';
+          }
+        } else if (signInError.message.includes('Email not confirmed')) {
           toast({
-            title: "Demo Account Created!",
-            description: "You can now use the admin features",
+            title: "Email Confirmation Required",
+            description: "Demo account exists but needs email confirmation. Please ask admin to disable email confirmation in Supabase Auth settings.",
+            variant: "default",
           });
         } else {
-          throw error;
+          throw signInError;
         }
-      } else {
-        toast({
-          title: "Welcome to Demo Mode!",
-          description: "You now have admin access to edit content",
-        });
       }
-
-      window.location.href = '/';
     } catch (error: any) {
       toast({
         title: "Demo Login Failed",
