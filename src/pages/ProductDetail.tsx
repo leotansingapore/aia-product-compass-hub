@@ -1,45 +1,37 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { NavigationHeader } from "@/components/NavigationHeader";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ProductQuiz } from "@/components/ProductQuiz";
 import { useProductById, getCategoryIdFromName } from "@/hooks/useProducts";
-import { CheckCircle } from "lucide-react";
-import { EditableText } from "@/components/EditableText";
+import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { EditableTags } from "@/components/EditableTags";
-import { EditableLinks } from "@/components/EditableLinks";
-import { EditableVideos } from "@/components/EditableVideos";
-import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
-
+import { ProductHeader } from "@/components/product-detail/ProductHeader";
+import { ProductSummary } from "@/components/product-detail/ProductSummary";
+import { ProductHighlights } from "@/components/product-detail/ProductHighlights";
+import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLinks";
+import { ProductAIAssistant } from "@/components/product-detail/ProductAIAssistant";
+import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
 
 export default function ProductDetail() {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
   const { product, loading } = useProductById(productId || '');
-  const { toast } = useToast();
+  const { updateProduct } = useProductUpdate();
 
-  const updateProduct = async (field: string, value: any) => {
+  const handleUpdate = async (field: string, value: any) => {
     if (!product) return;
-    
-    const { error } = await supabase
-      .from('products')
-      .update({ [field]: value })
-      .eq('id', product.id);
+    await updateProduct(product.id, field, value);
+  };
 
-    if (error) {
-      throw new Error(error.message);
-    }
+  const handleBack = () => {
+    const categoryId = getCategoryIdFromName((product as any).categories?.name || '');
+    navigate(`/category/${categoryId}`);
   };
 
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
-        <NavigationHeader 
-          title="Loading..."
-          subtitle="Fetching product details..."
-          showBackButton
+        <ProductHeader
+          productTitle="Loading..."
+          categoryName="Fetching product details..."
           onBack={() => window.history.back()}
         />
         <div className="max-w-4xl mx-auto px-6 py-8">
@@ -66,22 +58,10 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-background">
-      <NavigationHeader 
-        title={`🧾 ${product.title}`}
-        subtitle={(product as any).categories?.name || 'Product Details'}
-        showBackButton
-        onBack={() => {
-          const categoryId = getCategoryIdFromName((product as any).categories?.name || '');
-          navigate(`/category/${categoryId}`);
-        }}
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { 
-            label: (product as any).categories?.name || 'Products', 
-            href: `/category/${getCategoryIdFromName((product as any).categories?.name || '')}`
-          },
-          { label: product.title }
-        ]}
+      <ProductHeader
+        productTitle={product.title}
+        categoryName={(product as any).categories?.name || ''}
+        onBack={handleBack}
       />
       
       <div className="max-w-4xl mx-auto px-6 py-8 space-y-8">
@@ -90,112 +70,36 @@ export default function ProductDetail() {
         <div className="space-y-2">
           <EditableTags
             tags={product.tags || []}
-            onSave={(newTags) => updateProduct('tags', newTags)}
+            onSave={(newTags) => handleUpdate('tags', newTags)}
           />
         </div>
 
         {/* Summary */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <span>🗂️</span> Summary
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <EditableText
-              value={product.description || ''}
-              onSave={(newValue) => updateProduct('description', newValue)}
-              multiline
-              className="text-muted-foreground leading-relaxed"
-              placeholder="Add product description..."
-            />
-          </CardContent>
-        </Card>
+        <ProductSummary
+          description={product.description || ''}
+          onUpdate={handleUpdate}
+        />
 
         {/* Key Highlights */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <span>📊</span> Key Highlights
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-3">
-              {product.highlights?.map((highlight, index) => (
-                <div key={index} className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
-                  <EditableText
-                    value={highlight}
-                    onSave={async (newValue) => {
-                      const updatedHighlights = [...(product.highlights || [])];
-                      updatedHighlights[index] = newValue;
-                      await updateProduct('highlights', updatedHighlights);
-                    }}
-                    className="text-sm flex-1"
-                    placeholder="Enter highlight..."
-                  />
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        <ProductHighlights
+          highlights={product.highlights || []}
+          onUpdate={handleUpdate}
+        />
 
         {/* Useful Links */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <span>🔗</span> Useful Links
-            </CardTitle>
-            <CardDescription>
-              Additional resources and materials for this product
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <EditableLinks
-              links={product.useful_links || []}
-              onSave={(newLinks) => updateProduct('useful_links', newLinks)}
-            />
-          </CardContent>
-        </Card>
+        <ProductUsefulLinks
+          links={product.useful_links || []}
+          onUpdate={handleUpdate}
+        />
 
-        {/* AI Assistant - Placeholder */}
-        <Card className="border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <span>🤖</span> Ask the AI (Custom GPT)
-            </CardTitle>
-            <CardDescription>
-              Get instant answers about this product's features, benefits, and objection handling
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button variant="hero" size="lg" disabled>
-              ➡️ AI Assistant (Coming Soon)
-            </Button>
-          </CardContent>
-        </Card>
+        {/* AI Assistant */}
+        <ProductAIAssistant />
 
         {/* Training Videos */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <span>🎥</span> Training Videos
-            </CardTitle>
-            <CardDescription>
-              Comprehensive video library for different learning purposes
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <EditableVideos
-              videos={product.training_videos || []}
-              onSave={(newVideos) => updateProduct('training_videos', newVideos)}
-            />
-          </CardContent>
-        </Card>
-
-        {/* Knowledge Quiz */}
-        {/* Knowledge Quiz - Disabled for now since we don't have quiz data in database yet */}
-        {/* <ProductQuiz questions={[]} productId={product.id} /> */}
+        <ProductTrainingVideos
+          videos={product.training_videos || []}
+          onUpdate={handleUpdate}
+        />
 
       </div>
     </div>
