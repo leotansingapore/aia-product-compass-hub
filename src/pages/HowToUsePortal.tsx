@@ -48,6 +48,10 @@ export default function HowToUsePortal() {
         subtitle="Your comprehensive guide to mastering the AIA Product Learning Platform"
         showBackButton
         onBack={() => navigate('/')}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "How to Use Portal" }
+        ]}
       />
       
       <div className="max-w-4xl mx-auto px-6 py-8">

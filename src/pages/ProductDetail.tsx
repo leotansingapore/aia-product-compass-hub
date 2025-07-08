@@ -54,6 +54,14 @@ export default function ProductDetail() {
           const categoryId = getCategoryIdFromName((product as any).categories?.name || '');
           navigate(`/category/${categoryId}`);
         }}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { 
+            label: (product as any).categories?.name || 'Products', 
+            href: `/category/${getCategoryIdFromName((product as any).categories?.name || '')}`
+          },
+          { label: product.title }
+        ]}
       />
       
       <div className="max-w-4xl mx-auto px-6 py-8 space-y-8">

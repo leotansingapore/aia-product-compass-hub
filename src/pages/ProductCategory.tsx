@@ -110,6 +110,10 @@ export default function ProductCategory() {
         subtitle={category.description}
         showBackButton
         onBack={() => window.history.back()}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: category.title }
+        ]}
       />
       
       <div className="max-w-7xl mx-auto px-6 py-8">
