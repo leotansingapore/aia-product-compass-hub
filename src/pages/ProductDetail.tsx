@@ -122,7 +122,16 @@ export default function ProductDetail() {
               {product.highlights?.map((highlight, index) => (
                 <div key={index} className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">{highlight}</span>
+                  <EditableText
+                    value={highlight}
+                    onSave={async (newValue) => {
+                      const updatedHighlights = [...(product.highlights || [])];
+                      updatedHighlights[index] = newValue;
+                      await updateProduct('highlights', updatedHighlights);
+                    }}
+                    className="text-sm flex-1"
+                    placeholder="Enter highlight..."
+                  />
                 </div>
               ))}
             </div>
