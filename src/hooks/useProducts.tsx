@@ -115,7 +115,7 @@ export function useProductById(productId: string) {
             )
           `)
           .eq('id', productId)
-          .single();
+          .maybeSingle();
 
         if (error) throw error;
         setProduct(data);
