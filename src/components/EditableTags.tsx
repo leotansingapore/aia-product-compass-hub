@@ -113,9 +113,9 @@ export function EditableTags({ tags, onSave, className = "" }: EditableTagsProps
 
   return (
     <div 
-      className={`flex flex-wrap gap-2 ${className} cursor-pointer hover:bg-blue-50 hover:border-blue-200 border-2 border-transparent p-3 rounded transition-all duration-200`}
+      className={`flex flex-wrap gap-2 ${className} cursor-pointer hover:bg-primary/10 hover:border-primary/20 border-2 border-dashed border-primary/30 p-3 rounded transition-all duration-200 bg-primary/5`}
       onClick={() => setIsEditing(true)}
-      title="Click to edit tags"
+      title="🔧 ADMIN MODE: Click to edit tags"
     >
       {tags.map((tag, index) => (
         <Badge key={index} variant="secondary">{tag}</Badge>

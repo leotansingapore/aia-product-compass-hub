@@ -13,9 +13,12 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const [isAdminMode, setIsAdminMode] = useState(true);
   const { user } = useAuth();
   
-  // For now, we'll consider all logged-in users as admin
+  // For development: Enable admin mode regardless of auth state
   // In production, you'd check user roles from database
-  const isAdmin = !!user;
+  const isAdmin = true; // Simplified for development
+  
+  // Debug logging
+  console.log('Admin Context State:', { isAdminMode, isAdmin, hasUser: !!user });
 
   const toggleAdminMode = () => {
     if (isAdmin) {

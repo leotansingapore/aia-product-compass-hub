@@ -28,6 +28,9 @@ export function EditableText({
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
 
+  // Debug logging
+  console.log('EditableText State:', { isAdminMode, value, isEditing });
+
   const handleSave = async () => {
     if (editValue === value) {
       setIsEditing(false);
@@ -98,15 +101,18 @@ export function EditableText({
 
   return (
     <div 
-      className={`${className} cursor-pointer hover:bg-blue-50 hover:border-blue-200 border-2 border-transparent p-2 rounded group transition-all duration-200`}
-      onClick={() => setIsEditing(true)}
-      title="Click to edit this content"
+      className={`${className} cursor-pointer hover:bg-primary/10 hover:border-primary/20 border-2 border-dashed border-primary/30 p-2 rounded group transition-all duration-200 bg-primary/5`}
+      onClick={() => {
+        console.log('EditableText clicked, setting editing to true');
+        setIsEditing(true);
+      }}
+      title="🔧 ADMIN MODE: Click to edit this content"
     >
       <div className="flex items-center justify-between">
         <span className={value ? "" : "text-muted-foreground italic"}>
           {value || placeholder}
         </span>
-        <Edit className="h-4 w-4 opacity-0 group-hover:opacity-100 text-blue-600 transition-opacity" />
+        <Edit className="h-4 w-4 opacity-60 group-hover:opacity-100 text-primary transition-opacity" />
       </div>
     </div>
   );
