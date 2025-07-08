@@ -98,11 +98,16 @@ export function EditableText({
 
   return (
     <div 
-      className={`${className} cursor-pointer hover:bg-muted/50 p-1 rounded group transition-colors`}
+      className={`${className} cursor-pointer hover:bg-blue-50 hover:border-blue-200 border-2 border-transparent p-2 rounded group transition-all duration-200`}
       onClick={() => setIsEditing(true)}
+      title="Click to edit this content"
     >
-      {value || placeholder}
-      <Edit className="h-3 w-3 inline-block ml-2 opacity-0 group-hover:opacity-50" />
+      <div className="flex items-center justify-between">
+        <span className={value ? "" : "text-muted-foreground italic"}>
+          {value || placeholder}
+        </span>
+        <Edit className="h-4 w-4 opacity-0 group-hover:opacity-100 text-blue-600 transition-opacity" />
+      </div>
     </div>
   );
 }

@@ -81,10 +81,13 @@ export function NavigationHeader({ title, subtitle, showBackButton, onBack, brea
                   variant={isAdminMode ? "default" : "ghost"}
                   size="sm"
                   onClick={toggleAdminMode}
-                  className={isAdminMode ? "bg-orange-600 hover:bg-orange-700" : "text-white hover:bg-white/20"}
+                  className={isAdminMode 
+                    ? "bg-orange-600 hover:bg-orange-700 shadow-lg animate-pulse" 
+                    : "text-white hover:bg-white/20 border border-white/30"
+                  }
                 >
                   <Settings className="h-4 w-4 mr-2" />
-                  {isAdminMode ? "Exit Admin" : "Admin Mode"}
+                  {isAdminMode ? "🔧 Exit Admin Mode" : "⚡ Enable Admin Mode"}
                 </Button>
               )}
               {actions}

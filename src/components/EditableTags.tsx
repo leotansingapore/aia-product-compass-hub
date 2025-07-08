@@ -113,14 +113,16 @@ export function EditableTags({ tags, onSave, className = "" }: EditableTagsProps
 
   return (
     <div 
-      className={`flex flex-wrap gap-2 ${className} cursor-pointer hover:bg-muted/50 p-2 rounded transition-colors`}
+      className={`flex flex-wrap gap-2 ${className} cursor-pointer hover:bg-blue-50 hover:border-blue-200 border-2 border-transparent p-3 rounded transition-all duration-200`}
       onClick={() => setIsEditing(true)}
+      title="Click to edit tags"
     >
       {tags.map((tag, index) => (
         <Badge key={index} variant="secondary">{tag}</Badge>
       ))}
-      <Badge variant="outline" className="opacity-50">
-        <Plus className="h-3 w-3" />
+      <Badge variant="outline" className="opacity-60 hover:opacity-100 border-blue-300 text-blue-600">
+        <Plus className="h-3 w-3 mr-1" />
+        Add Tag
       </Badge>
     </div>
   );
