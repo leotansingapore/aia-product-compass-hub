@@ -8,6 +8,7 @@ import { useProductById, getCategoryIdFromName } from "@/hooks/useProducts";
 import { CheckCircle } from "lucide-react";
 import { EditableText } from "@/components/EditableText";
 import { EditableTags } from "@/components/EditableTags";
+import { EditableLinks } from "@/components/EditableLinks";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -138,31 +139,21 @@ export default function ProductDetail() {
           </CardContent>
         </Card>
 
-        {/* Useful Links - Placeholder for future enhancement */}
+        {/* Useful Links */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <span>🔗</span> Useful Links
             </CardTitle>
             <CardDescription>
-              Additional resources and materials (coming soon)
+              Additional resources and materials for this product
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-2 gap-3">
-              <Button variant="outline" className="justify-start" disabled>
-                📄 Benefit Illustration (PDF)
-              </Button>
-              <Button variant="outline" className="justify-start" disabled>
-                📋 Product Summary (PDF)
-              </Button>
-              <Button variant="outline" className="justify-start" disabled>
-                🌐 AIA Website
-              </Button>
-              <Button variant="outline" className="justify-start" disabled>
-                📚 Supplementary Materials
-              </Button>
-            </div>
+            <EditableLinks
+              links={product.useful_links || []}
+              onSave={(newLinks) => updateProduct('useful_links', newLinks)}
+            />
           </CardContent>
         </Card>
 

@@ -190,6 +190,7 @@ export type Database = {
           tags: string[] | null
           title: string
           updated_at: string
+          useful_links: Json | null
         }
         Insert: {
           category_id: string
@@ -200,6 +201,7 @@ export type Database = {
           tags?: string[] | null
           title: string
           updated_at?: string
+          useful_links?: Json | null
         }
         Update: {
           category_id?: string
@@ -210,6 +212,7 @@ export type Database = {
           tags?: string[] | null
           title?: string
           updated_at?: string
+          useful_links?: Json | null
         }
         Relationships: [
           {

@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
+export interface UsefulLink {
+  name: string;
+  url: string;
+  icon: string;
+}
+
 export interface Product {
   id: string;
   title: string;
@@ -8,6 +14,7 @@ export interface Product {
   category_id: string;
   tags: string[];
   highlights: string[];
+  useful_links?: UsefulLink[];
   created_at: string;
   updated_at: string;
 }
@@ -83,7 +90,12 @@ export function useProducts(categoryId?: string) {
         const { data, error } = await query;
 
         if (error) throw error;
-        setProducts(data || []);
+        // Transform the data to ensure useful_links is properly typed
+        const transformedData = (data || []).map(product => ({
+          ...product,
+          useful_links: Array.isArray(product.useful_links) ? product.useful_links as unknown as UsefulLink[] : []
+        }));
+        setProducts(transformedData);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch products');
       } finally {
@@ -118,7 +130,16 @@ export function useProductById(productId: string) {
           .maybeSingle();
 
         if (error) throw error;
-        setProduct(data);
+        // Transform the data to ensure useful_links is properly typed
+        if (data) {
+          const transformedData = {
+            ...data,
+            useful_links: Array.isArray(data.useful_links) ? data.useful_links as unknown as UsefulLink[] : []
+          };
+          setProduct(transformedData);
+        } else {
+          setProduct(null);
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch product');
       } finally {
