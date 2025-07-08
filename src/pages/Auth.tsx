@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Trophy, Award } from "lucide-react";
+import { Loader2, Trophy, Award, Zap } from "lucide-react";
 
 const Auth = () => {
   const [loading, setLoading] = useState(false);
@@ -141,6 +141,78 @@ const Auth = () => {
     }
   };
 
+  const handleDemoLogin = async () => {
+    setLoading(true);
+    try {
+      cleanupAuthState();
+      try {
+        await supabase.auth.signOut({ scope: 'global' });
+      } catch (err) {
+        // Continue even if this fails
+      }
+
+      // Demo credentials
+      const demoEmail = "admin@demo.com";
+      const demoPassword = "demo123456";
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: demoEmail,
+        password: demoPassword,
+      });
+
+      if (error) {
+        // If demo account doesn't exist, create it
+        if (error.message.includes('Invalid login credentials')) {
+          const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+            email: demoEmail,
+            password: demoPassword,
+            options: {
+              emailRedirectTo: `${window.location.origin}/`,
+              data: {
+                display_name: "Demo Admin",
+              }
+            }
+          });
+
+          if (signUpError) throw signUpError;
+
+          if (signUpData.user) {
+            // Create profile for demo user
+            await supabase
+              .from('profiles')
+              .insert({
+                user_id: signUpData.user.id,
+                display_name: "Demo Admin",
+                email: demoEmail,
+              });
+          }
+
+          toast({
+            title: "Demo Account Created!",
+            description: "You can now use the admin features",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "Welcome to Demo Mode!",
+          description: "You now have admin access to edit content",
+        });
+      }
+
+      window.location.href = '/';
+    } catch (error: any) {
+      toast({
+        title: "Demo Login Failed",
+        description: error.message || "An error occurred",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-subtle flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -258,6 +330,28 @@ const Auth = () => {
                 </form>
               </TabsContent>
             </Tabs>
+
+            {/* Demo Login Section */}
+            <div className="mt-6 pt-6 border-t">
+              <div className="text-center space-y-3">
+                <h4 className="text-sm font-medium text-muted-foreground flex items-center justify-center gap-2">
+                  <Zap className="h-4 w-4" />
+                  Quick Demo Access
+                </h4>
+                <Button 
+                  onClick={handleDemoLogin}
+                  disabled={loading}
+                  variant="outline"
+                  className="w-full border-primary/30 hover:bg-primary/5"
+                >
+                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  🚀 Try Admin Demo (No Sign-up Required)
+                </Button>
+                <p className="text-xs text-muted-foreground">
+                  Instantly sign in with admin privileges to test content editing
+                </p>
+              </div>
+            </div>
           </CardContent>
         </Card>
 
