@@ -163,7 +163,8 @@ export default function ProductDetail() {
         </Card>
 
         {/* Knowledge Quiz */}
-        <ProductQuiz questions={[]} productId={product.id} />
+        {/* Knowledge Quiz - Disabled for now since we don't have quiz data in database yet */}
+        {/* <ProductQuiz questions={[]} productId={product.id} /> */}
 
       </div>
     </div>
