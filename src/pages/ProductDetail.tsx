@@ -9,6 +9,7 @@ import { CheckCircle } from "lucide-react";
 import { EditableText } from "@/components/EditableText";
 import { EditableTags } from "@/components/EditableTags";
 import { EditableLinks } from "@/components/EditableLinks";
+import { EditableVideos } from "@/components/EditableVideos";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -174,7 +175,7 @@ export default function ProductDetail() {
           </CardContent>
         </Card>
 
-        {/* Training Videos - Placeholder */}
+        {/* Training Videos */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -185,13 +186,10 @@ export default function ProductDetail() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-4xl mb-4">🎬</div>
-                <p className="text-muted-foreground">Training videos coming soon</p>
-                <p className="text-sm text-muted-foreground mt-2">Loom-style explainer videos</p>
-              </div>
-            </div>
+            <EditableVideos
+              videos={product.training_videos || []}
+              onSave={(newVideos) => updateProduct('training_videos', newVideos)}
+            />
           </CardContent>
         </Card>
 

@@ -189,6 +189,7 @@ export type Database = {
           id: string
           tags: string[] | null
           title: string
+          training_videos: Json | null
           updated_at: string
           useful_links: Json | null
         }
@@ -200,6 +201,7 @@ export type Database = {
           id: string
           tags?: string[] | null
           title: string
+          training_videos?: Json | null
           updated_at?: string
           useful_links?: Json | null
         }
@@ -211,6 +213,7 @@ export type Database = {
           id?: string
           tags?: string[] | null
           title?: string
+          training_videos?: Json | null
           updated_at?: string
           useful_links?: Json | null
         }

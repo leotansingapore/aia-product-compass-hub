@@ -7,6 +7,12 @@ export interface UsefulLink {
   icon: string;
 }
 
+export interface TrainingVideo {
+  title: string;
+  url: string;
+  description?: string;
+}
+
 export interface Product {
   id: string;
   title: string;
@@ -15,6 +21,7 @@ export interface Product {
   tags: string[];
   highlights: string[];
   useful_links?: UsefulLink[];
+  training_videos?: TrainingVideo[];
   created_at: string;
   updated_at: string;
 }
@@ -93,7 +100,8 @@ export function useProducts(categoryId?: string) {
         // Transform the data to ensure useful_links is properly typed
         const transformedData = (data || []).map(product => ({
           ...product,
-          useful_links: Array.isArray(product.useful_links) ? product.useful_links as unknown as UsefulLink[] : []
+          useful_links: Array.isArray(product.useful_links) ? product.useful_links as unknown as UsefulLink[] : [],
+          training_videos: Array.isArray(product.training_videos) ? product.training_videos as unknown as TrainingVideo[] : []
         }));
         setProducts(transformedData);
       } catch (err) {
@@ -134,7 +142,8 @@ export function useProductById(productId: string) {
         if (data) {
           const transformedData = {
             ...data,
-            useful_links: Array.isArray(data.useful_links) ? data.useful_links as unknown as UsefulLink[] : []
+            useful_links: Array.isArray(data.useful_links) ? data.useful_links as unknown as UsefulLink[] : [],
+            training_videos: Array.isArray(data.training_videos) ? data.training_videos as unknown as TrainingVideo[] : []
           };
           setProduct(transformedData);
         } else {
