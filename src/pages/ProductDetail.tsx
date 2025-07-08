@@ -104,7 +104,10 @@ export default function ProductDetail() {
         />
 
         {/* AI Assistant */}
-        <ProductAIAssistant />
+        <ProductAIAssistant 
+          customGptLink={product.custom_gpt_link}
+          onUpdate={handleUpdate}
+        />
 
         {/* Training Videos */}
         <ProductTrainingVideos

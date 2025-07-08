@@ -27,6 +27,7 @@ export interface Product {
   highlights: string[];
   useful_links?: UsefulLink[];
   training_videos?: TrainingVideo[];
+  custom_gpt_link?: string;
   created_at: string;
   updated_at: string;
 }

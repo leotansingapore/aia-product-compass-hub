@@ -184,6 +184,7 @@ export type Database = {
         Row: {
           category_id: string
           created_at: string
+          custom_gpt_link: string | null
           description: string | null
           highlights: string[] | null
           id: string
@@ -196,6 +197,7 @@ export type Database = {
         Insert: {
           category_id: string
           created_at?: string
+          custom_gpt_link?: string | null
           description?: string | null
           highlights?: string[] | null
           id: string
@@ -208,6 +210,7 @@ export type Database = {
         Update: {
           category_id?: string
           created_at?: string
+          custom_gpt_link?: string | null
           description?: string | null
           highlights?: string[] | null
           id?: string
