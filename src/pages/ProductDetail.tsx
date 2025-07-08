@@ -18,7 +18,18 @@ export default function ProductDetail() {
 
   const handleUpdate = async (field: string, value: any) => {
     if (!product) return;
-    await updateProduct(product.id, field, value);
+    
+    console.log('🎯 ProductDetail handleUpdate called:', { field, value, productId: product.id });
+    
+    try {
+      await updateProduct(product.id, field, value);
+      console.log('✅ ProductDetail update successful');
+      
+      // Force a refresh by calling the product fetch again
+      window.location.reload();
+    } catch (error) {
+      console.error('❌ ProductDetail update failed:', error);
+    }
   };
 
   const handleBack = () => {

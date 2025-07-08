@@ -25,15 +25,19 @@ export function EditableLinks({ links, onSave, className = "" }: EditableLinksPr
 
   const handleSave = async () => {
     setSaving(true);
+    console.log('🔗 EditableLinks handleSave called with:', editLinks);
+    
     try {
       await onSave(editLinks);
       setIsEditing(false);
       setEditingIndex(null);
+      console.log('✅ EditableLinks save successful');
       toast({
         title: "Saved",
         description: "Useful links updated successfully",
       });
     } catch (error) {
+      console.error('❌ EditableLinks save failed:', error);
       toast({
         title: "Error",
         description: "Failed to save links",

@@ -36,15 +36,19 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
 
   const handleSave = async () => {
     setSaving(true);
+    console.log('🎥 EditableVideos handleSave called with:', editVideos);
+    
     try {
       await onSave(editVideos);
       setIsEditing(false);
       setEditingIndex(null);
+      console.log('✅ EditableVideos save successful');
       toast({
         title: "Saved",
         description: "Training videos updated successfully",
       });
     } catch (error) {
+      console.error('❌ EditableVideos save failed:', error);
       toast({
         title: "Error",
         description: "Failed to save videos",
