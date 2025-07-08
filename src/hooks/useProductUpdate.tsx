@@ -71,7 +71,7 @@ export function useProductUpdate() {
         productId,
         field,
         value,
-        userId: user.id
+        userId: user?.id
       });
       
       if (!err.message.includes('Supabase error:')) {
