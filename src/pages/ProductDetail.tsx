@@ -22,10 +22,10 @@ export default function ProductDetail() {
     console.log('🎯 ProductDetail handleUpdate called:', { field, value, productId: product.id });
     
     try {
-      await updateProduct(product.id, field, value);
-      console.log('✅ ProductDetail update successful');
+      const updatedData = await updateProduct(product.id, field, value);
+      console.log('✅ ProductDetail update successful:', updatedData);
       
-      // Force a refresh by calling the product fetch again
+      // Force a page refresh to show the updated data
       window.location.reload();
     } catch (error) {
       console.error('❌ ProductDetail update failed:', error);

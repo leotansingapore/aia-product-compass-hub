@@ -9,7 +9,8 @@ export function useProductUpdate() {
         .from('products')
         .update({ [field]: value })
         .eq('id', productId)
-        .select();
+        .select('*')
+        .single();
 
       if (error) {
         console.error('❌ Update error:', error);
