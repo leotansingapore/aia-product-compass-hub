@@ -6,12 +6,30 @@ import { Badge } from "@/components/ui/badge";
 import { ProductQuiz } from "@/components/ProductQuiz";
 import { useProductById, getCategoryIdFromName } from "@/hooks/useProducts";
 import { CheckCircle } from "lucide-react";
+import { EditableText } from "@/components/EditableText";
+import { EditableTags } from "@/components/EditableTags";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 
 export default function ProductDetail() {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
   const { product, loading } = useProductById(productId || '');
+  const { toast } = useToast();
+
+  const updateProduct = async (field: string, value: any) => {
+    if (!product) return;
+    
+    const { error } = await supabase
+      .from('products')
+      .update({ [field]: value })
+      .eq('id', product.id);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+  };
 
   if (loading) {
     return (
@@ -67,10 +85,11 @@ export default function ProductDetail() {
       <div className="max-w-4xl mx-auto px-6 py-8 space-y-8">
         
         {/* Tags */}
-        <div className="flex flex-wrap gap-2">
-          {product.tags?.map((tag, index) => (
-            <Badge key={index} variant="secondary">{tag}</Badge>
-          ))}
+        <div className="space-y-2">
+          <EditableTags
+            tags={product.tags || []}
+            onSave={(newTags) => updateProduct('tags', newTags)}
+          />
         </div>
 
         {/* Summary */}
@@ -81,7 +100,13 @@ export default function ProductDetail() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground leading-relaxed">{product.description}</p>
+            <EditableText
+              value={product.description || ''}
+              onSave={(newValue) => updateProduct('description', newValue)}
+              multiline
+              className="text-muted-foreground leading-relaxed"
+              placeholder="Add product description..."
+            />
           </CardContent>
         </Card>
 

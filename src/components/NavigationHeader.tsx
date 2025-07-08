@@ -9,6 +9,8 @@ import {
   BreadcrumbSeparator 
 } from "@/components/ui/breadcrumb";
 import { Link } from "react-router-dom";
+import { useAdmin } from "@/hooks/useAdmin";
+import { Settings } from "lucide-react";
 
 export interface BreadcrumbItem {
   label: string;
@@ -25,6 +27,7 @@ interface NavigationHeaderProps {
 }
 
 export function NavigationHeader({ title, subtitle, showBackButton, onBack, breadcrumbs, actions }: NavigationHeaderProps) {
+  const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
   return (
     <div className="bg-gradient-hero text-white py-8 px-6">
       <div className="max-w-7xl mx-auto">
@@ -71,8 +74,19 @@ export function NavigationHeader({ title, subtitle, showBackButton, onBack, brea
               )}
             </div>
           </div>
-          {actions && (
+          {(actions || isAdmin) && (
             <div className="flex items-center space-x-2">
+              {isAdmin && (
+                <Button
+                  variant={isAdminMode ? "default" : "ghost"}
+                  size="sm"
+                  onClick={toggleAdminMode}
+                  className={isAdminMode ? "bg-orange-600 hover:bg-orange-700" : "text-white hover:bg-white/20"}
+                >
+                  <Settings className="h-4 w-4 mr-2" />
+                  {isAdminMode ? "Exit Admin" : "Admin Mode"}
+                </Button>
+              )}
               {actions}
             </div>
           )}
