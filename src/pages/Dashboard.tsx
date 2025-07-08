@@ -14,7 +14,7 @@ const categories = [
     title: 'Investment Products',
     description: 'Growth-focused solutions for wealth building',
     icon: '📈',
-    productCount: 8,
+    productCount: 3,
     gradient: 'bg-gradient-to-r from-blue-500 to-blue-600'
   },
   {
@@ -22,7 +22,7 @@ const categories = [
     title: 'Endowment Products', 
     description: 'Balanced savings and protection plans',
     icon: '💰',
-    productCount: 6,
+    productCount: 1,
     gradient: 'bg-gradient-to-r from-green-500 to-green-600'
   },
   {
@@ -30,7 +30,7 @@ const categories = [
     title: 'Whole Life Products',
     description: 'Lifelong protection with cash value',
     icon: '🛡️',
-    productCount: 5,
+    productCount: 1,
     gradient: 'bg-gradient-to-r from-purple-500 to-purple-600'
   },
   {
@@ -38,7 +38,7 @@ const categories = [
     title: 'Term Products',
     description: 'Affordable protection for specific periods',
     icon: '⏳',
-    productCount: 4,
+    productCount: 1,
     gradient: 'bg-gradient-to-r from-orange-500 to-orange-600'
   },
   {
@@ -46,7 +46,7 @@ const categories = [
     title: 'Medical Insurance Products',
     description: 'Comprehensive health protection',
     icon: '🏥',
-    productCount: 7,
+    productCount: 1,
     gradient: 'bg-gradient-to-r from-red-500 to-red-600'
   }
 ];
