@@ -3,153 +3,54 @@ import { useParams, useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { SearchBar } from "@/components/SearchBar";
 import { ProductCard } from "@/components/ProductCard";
+import { useProducts, getCategoryIdFromName } from "@/hooks/useProducts";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-// Sample product data
-const sampleProducts = {
-  investment: [
-    {
-      id: 'pro-achiever',
-      title: 'Pro Achiever',
-      description: 'Flexible investment plan with multiple fund options for long-term wealth building',
-      category: 'Investment',
-      tags: ['Flexible Premium', 'Multiple Funds', 'Long-term Growth'],
-      highlights: [
-        'Choice of over 20 investment funds',
-        'Flexible premium payment options',
-        'Potential for higher returns',
-        'Free fund switching'
-      ]
+// Helper function to get category info for backward compatibility
+function getCategoryInfo(categoryId: string) {
+  const categoryInfo = {
+    investment: {
+      title: 'Investment Products',
+      description: 'Grow your wealth with our range of investment-linked and guaranteed products',
+      icon: '📈'
     },
-    {
-      id: 'pro-lifetime-protector', 
-      title: 'Pro Lifetime Protector',
-      description: 'Investment-linked plan with built-in life protection coverage',
-      category: 'Investment',
-      tags: ['Life Protection', 'Investment Growth', 'Premium Flexibility'],
-      highlights: [
-        'Combined investment and protection',
-        'Flexible premium payment terms',
-        'Multiple fund options available',
-        'Death benefit protection included'
-      ]
+    endowment: {
+      title: 'Endowment Products', 
+      description: 'Balanced solutions combining savings and protection for your financial goals',
+      icon: '💰'
     },
-    {
-      id: 'platinum-wealth-venture',
-      title: 'Platinum Wealth Venture',
-      description: 'Premium investment solution for high net worth individuals',
-      category: 'Investment',
-      tags: ['High Net Worth', 'Premium Funds', 'Exclusive'],
-      highlights: [
-        'Access to exclusive investment funds',
-        'Dedicated relationship management',
-        'Advanced portfolio strategies',
-        'Global investment opportunities'
-      ]
+    'whole-life': {
+      title: 'Whole Life Products',
+      description: 'Lifelong protection with cash value accumulation and estate planning benefits',
+      icon: '🛡️'
+    },
+    term: {
+      title: 'Term Products',
+      description: 'Affordable life protection for specific periods and life stages',
+      icon: '⏳'
+    },
+    medical: {
+      title: 'Medical Insurance Products',
+      description: 'Comprehensive health protection for you and your family',
+      icon: '🏥'
     }
-  ],
-  endowment: [
-    {
-      id: 'end-1',
-      title: 'AIA Smart Saver Plan',
-      description: 'Balanced endowment plan combining savings and protection',
-      category: 'Endowment',
-      tags: ['Savings', 'Protection', 'Maturity Benefit'],
-      highlights: [
-        'Guaranteed cash value growth',
-        'Life protection coverage',
-        'Maturity benefit payout',
-        'Loan facility available'
-      ]
-    }
-  ],
-  'whole-life': [
-    {
-      id: 'wl-1',
-      title: 'AIA Whole Life Protection',
-      description: 'Lifelong protection with increasing cash value',
-      category: 'Whole Life',
-      tags: ['Lifelong Coverage', 'Cash Value', 'Dividends'],
-      highlights: [
-        'Lifetime protection coverage',
-        'Participating policy with dividends',
-        'Increasing cash value',
-        'Estate planning benefits'
-      ]
-    }
-  ],
-  term: [
-    {
-      id: 'term-1',
-      title: 'AIA Term Life Insurance',
-      description: 'Affordable protection for specific term periods',
-      category: 'Term',
-      tags: ['Affordable', 'High Coverage', 'Renewable'],
-      highlights: [
-        'High coverage at low premiums',
-        'Renewable and convertible options',
-        'Various term periods available',
-        'No medical exam for qualifying amounts'
-      ]
-    }
-  ],
-  medical: [
-    {
-      id: 'med-1',
-      title: 'AIA HealthShield Plus',
-      description: 'Comprehensive medical insurance with extended coverage',
-      category: 'Medical',
-      tags: ['Comprehensive', 'Cashless', 'Worldwide Coverage'],
-      highlights: [
-        'Cashless treatment at panel hospitals',
-        'Worldwide emergency coverage',
-        'No claim bonus benefits',
-        'Pre and post hospitalization coverage'
-      ]
-    }
-  ]
-};
-
-const categoryInfo = {
-  investment: {
-    title: 'Investment Products',
-    description: 'Grow your wealth with our range of investment-linked and guaranteed products',
-    icon: '📈'
-  },
-  endowment: {
-    title: 'Endowment Products', 
-    description: 'Balanced solutions combining savings and protection for your financial goals',
-    icon: '💰'
-  },
-  'whole-life': {
-    title: 'Whole Life Products',
-    description: 'Lifelong protection with cash value accumulation and estate planning benefits',
-    icon: '🛡️'
-  },
-  term: {
-    title: 'Term Products',
-    description: 'Affordable life protection for specific periods and life stages',
-    icon: '⏳'
-  },
-  medical: {
-    title: 'Medical Insurance Products',
-    description: 'Comprehensive health protection for you and your family',
-    icon: '🏥'
-  }
-};
+  };
+  
+  return categoryInfo[categoryId as keyof typeof categoryInfo];
+}
 
 export default function ProductCategory() {
   const { categoryId } = useParams<{ categoryId: string }>();
   const navigate = useNavigate();
+  const { products, loading } = useProducts(categoryId);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const category = categoryInfo[categoryId as keyof typeof categoryInfo];
-  const products = sampleProducts[categoryId as keyof typeof sampleProducts] || [];
+  const category = getCategoryInfo(categoryId || '');
 
   // Get all unique tags from products
-  const allTags = Array.from(new Set(products.flatMap(product => product.tags)));
+  const allTags = Array.from(new Set(products.flatMap(product => product.tags || [])));
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -166,10 +67,10 @@ export default function ProductCategory() {
   const filteredProducts = products.filter(product => {
     const matchesSearch = !searchQuery || 
       product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchQuery.toLowerCase());
+      product.description?.toLowerCase().includes(searchQuery.toLowerCase());
     
     const matchesTags = selectedTags.length === 0 || 
-      selectedTags.some(tag => product.tags.includes(tag));
+      selectedTags.some(tag => product.tags?.includes(tag));
     
     return matchesSearch && matchesTags;
   });
@@ -180,6 +81,26 @@ export default function ProductCategory() {
 
   if (!category) {
     return <div>Category not found</div>;
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <NavigationHeader 
+          title="Loading..."
+          subtitle="Fetching products..."
+          showBackButton
+          onBack={() => window.history.back()}
+        />
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="h-64 bg-muted animate-pulse rounded-lg" />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -233,10 +154,10 @@ export default function ProductCategory() {
             <ProductCard
               key={product.id}
               title={product.title}
-              description={product.description}
-              category={product.category}
-              tags={product.tags}
-              highlights={product.highlights}
+              description={product.description || ''}
+              category={category.title}
+              tags={product.tags || []}
+              highlights={product.highlights || []}
               onClick={() => handleProductClick(product.id)}
             />
           ))}

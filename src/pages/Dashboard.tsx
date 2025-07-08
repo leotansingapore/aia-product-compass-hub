@@ -5,51 +5,46 @@ import { SearchBar } from "@/components/SearchBar";
 import { CategoryCard } from "@/components/CategoryCard";
 import { UserStats } from "@/components/UserStats";
 import { useAuth } from "@/hooks/useAuth";
+import { useCategories, getCategoryIdFromName } from "@/hooks/useProducts";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-const categories = [
-  {
-    id: 'investment',
-    title: 'Investment Products',
-    description: 'Growth-focused solutions for wealth building',
-    icon: '📈',
-    productCount: 3,
-    gradient: 'bg-gradient-to-r from-blue-500 to-blue-600'
-  },
-  {
-    id: 'endowment',
-    title: 'Endowment Products', 
-    description: 'Balanced savings and protection plans',
-    icon: '💰',
-    productCount: 1,
-    gradient: 'bg-gradient-to-r from-green-500 to-green-600'
-  },
-  {
-    id: 'whole-life',
-    title: 'Whole Life Products',
-    description: 'Lifelong protection with cash value',
-    icon: '🛡️',
-    productCount: 1,
-    gradient: 'bg-gradient-to-r from-purple-500 to-purple-600'
-  },
-  {
-    id: 'term',
-    title: 'Term Products',
-    description: 'Affordable protection for specific periods',
-    icon: '⏳',
-    productCount: 1,
-    gradient: 'bg-gradient-to-r from-orange-500 to-orange-600'
-  },
-  {
-    id: 'medical',
-    title: 'Medical Insurance Products',
-    description: 'Comprehensive health protection',
-    icon: '🏥',
-    productCount: 1,
-    gradient: 'bg-gradient-to-r from-red-500 to-red-600'
-  }
-];
+// Configuration for category display (icons, gradients, etc.)
+function getCategoryConfig(categoryName: string) {
+  const configs: Record<string, { icon: string; gradient: string; productCount: number }> = {
+    'Investment Products': {
+      icon: '📈',
+      gradient: 'bg-gradient-to-r from-blue-500 to-blue-600',
+      productCount: 3
+    },
+    'Endowment Products': {
+      icon: '💰',
+      gradient: 'bg-gradient-to-r from-green-500 to-green-600',
+      productCount: 2
+    },
+    'Whole Life Products': {
+      icon: '🛡️',
+      gradient: 'bg-gradient-to-r from-purple-500 to-purple-600',
+      productCount: 1
+    },
+    'Term Products': {
+      icon: '⏳',
+      gradient: 'bg-gradient-to-r from-orange-500 to-orange-600',
+      productCount: 2
+    },
+    'Medical Insurance Products': {
+      icon: '🏥',
+      gradient: 'bg-gradient-to-r from-red-500 to-red-600',
+      productCount: 2
+    }
+  };
+  
+  return configs[categoryName] || {
+    icon: '📄',
+    gradient: 'bg-gradient-to-r from-gray-500 to-gray-600',
+    productCount: 0
+  };
+}
 
 const quickActions = [
   {
@@ -75,6 +70,7 @@ const quickActions = [
 export default function Dashboard() {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { categories, loading: categoriesLoading } = useCategories();
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (query: string) => {
@@ -83,7 +79,8 @@ export default function Dashboard() {
     console.log('Searching for:', query);
   };
 
-  const handleCategoryClick = (categoryId: string) => {
+  const handleCategoryClick = (categoryName: string) => {
+    const categoryId = getCategoryIdFromName(categoryName);
     navigate(`/category/${categoryId}`);
   };
 
@@ -153,19 +150,30 @@ export default function Dashboard() {
         {/* Product Categories */}
         <div className="mb-12">
           <h3 className="text-xl font-semibold mb-6">Product Categories</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => (
-              <CategoryCard
-                key={category.id}
-                title={category.title}
-                description={category.description}
-                icon={category.icon}
-                productCount={category.productCount}
-                gradient={category.gradient}
-                onClick={() => handleCategoryClick(category.id)}
-              />
-            ))}
-          </div>
+          {categoriesLoading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="h-48 bg-muted animate-pulse rounded-lg" />
+              ))}
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {categories.map((category) => {
+                const categoryConfig = getCategoryConfig(category.name);
+                return (
+                  <CategoryCard
+                    key={category.id}
+                    title={category.name}
+                    description={category.description || ''}
+                    icon={categoryConfig.icon}
+                    productCount={categoryConfig.productCount}
+                    gradient={categoryConfig.gradient}
+                    onClick={() => handleCategoryClick(category.name)}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* Recent Updates */}
