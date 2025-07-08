@@ -328,6 +328,45 @@ export type Database = {
           },
         ]
       }
+      video_progress: {
+        Row: {
+          completed: boolean
+          completed_at: string | null
+          completion_percentage: number | null
+          created_at: string
+          id: string
+          product_id: string
+          updated_at: string
+          user_id: string
+          video_id: string
+          watch_time_seconds: number | null
+        }
+        Insert: {
+          completed?: boolean
+          completed_at?: string | null
+          completion_percentage?: number | null
+          created_at?: string
+          id?: string
+          product_id: string
+          updated_at?: string
+          user_id: string
+          video_id: string
+          watch_time_seconds?: number | null
+        }
+        Update: {
+          completed?: boolean
+          completed_at?: string | null
+          completion_percentage?: number | null
+          created_at?: string
+          id?: string
+          product_id?: string
+          updated_at?: string
+          user_id?: string
+          video_id?: string
+          watch_time_seconds?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

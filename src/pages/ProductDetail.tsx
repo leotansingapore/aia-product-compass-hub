@@ -98,6 +98,7 @@ export default function ProductDetail() {
         {/* Training Videos */}
         <ProductTrainingVideos
           videos={product.training_videos || []}
+          productId={product.id}
           onUpdate={handleUpdate}
         />
 

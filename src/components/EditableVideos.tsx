@@ -3,7 +3,9 @@ import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Check, X, Plus, Edit, Trash2, Play } from 'lucide-react';
+import { Label } from '@/components/ui/label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Check, X, Plus, Edit, Trash2, Play, GraduationCap, ArrowUp, ArrowDown } from 'lucide-react';
 import { useAdmin } from '@/hooks/useAdmin';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
@@ -61,7 +63,16 @@ function getVideoEmbedInfo(url: string) {
 export function EditableVideos({ videos, onSave, className = "" }: EditableVideosProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editVideos, setEditVideos] = useState<TrainingVideo[]>(videos);
-  const [newVideo, setNewVideo] = useState<TrainingVideo>({ title: '', url: '', description: '' });
+  const [newVideo, setNewVideo] = useState<TrainingVideo>({ 
+    id: '', 
+    title: '', 
+    url: '', 
+    description: '', 
+    notes: '',
+    transcript: '',
+    duration: undefined,
+    order: editVideos.length
+  });
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
   const { isAdminMode } = useAdmin();
@@ -91,7 +102,16 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
 
   const handleCancel = () => {
     setEditVideos(videos);
-    setNewVideo({ title: '', url: '', description: '' });
+    setNewVideo({ 
+      id: '', 
+      title: '', 
+      url: '', 
+      description: '', 
+      notes: '',
+      transcript: '',
+      duration: undefined,
+      order: videos.length
+    });
     setEditingIndex(null);
     setIsEditing(false);
   };
@@ -100,8 +120,22 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
     if (newVideo.title.trim() && newVideo.url.trim()) {
       const videoInfo = getVideoEmbedInfo(newVideo.url);
       if (videoInfo) {
-        setEditVideos([...editVideos, { ...newVideo }]);
-        setNewVideo({ title: '', url: '', description: '' });
+        const videoWithId = {
+          ...newVideo,
+          id: `video-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          order: editVideos.length
+        };
+        setEditVideos([...editVideos, videoWithId]);
+        setNewVideo({ 
+          id: '', 
+          title: '', 
+          url: '', 
+          description: '', 
+          notes: '',
+          transcript: '',
+          duration: undefined,
+          order: editVideos.length + 1
+        });
       } else {
         toast({
           title: "Invalid URL",
@@ -120,7 +154,22 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
   };
 
   const removeVideo = (index: number) => {
-    setEditVideos(editVideos.filter((_, i) => i !== index));
+    const updated = editVideos.filter((_, i) => i !== index);
+    // Reorder remaining videos
+    const reordered = updated.map((video, i) => ({ ...video, order: i }));
+    setEditVideos(reordered);
+  };
+
+  const moveVideo = (index: number, direction: 'up' | 'down') => {
+    const newIndex = direction === 'up' ? index - 1 : index + 1;
+    if (newIndex < 0 || newIndex >= editVideos.length) return;
+
+    const updated = [...editVideos];
+    [updated[index], updated[newIndex]] = [updated[newIndex], updated[index]];
+    
+    // Update order numbers
+    const reordered = updated.map((video, i) => ({ ...video, order: i }));
+    setEditVideos(reordered);
   };
 
   if (!isAdminMode) {
@@ -176,27 +225,83 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
         {editVideos.map((video, index) => (
           <div key={index} className="border rounded-lg p-4 space-y-3">
             {editingIndex === index ? (
-              <>
-                <Input
-                  value={video.title}
-                  onChange={(e) => updateVideo(index, { ...video, title: e.target.value })}
-                  placeholder="Video title"
-                />
-                <Input
-                  value={video.url}
-                  onChange={(e) => updateVideo(index, { ...video, url: e.target.value })}
-                  placeholder="YouTube, Loom, Vimeo, or Wistia link"
-                />
-                <Textarea
-                  value={video.description || ''}
-                  onChange={(e) => updateVideo(index, { ...video, description: e.target.value })}
-                  placeholder="Optional description"
-                  rows={2}
-                />
-                <Button size="sm" onClick={() => setEditingIndex(null)}>
-                  <Check className="h-4 w-4" />
-                </Button>
-              </>
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label>Video Title</Label>
+                    <Input
+                      value={video.title}
+                      onChange={(e) => updateVideo(index, { ...video, title: e.target.value })}
+                      placeholder="Video title"
+                    />
+                  </div>
+                  <div>
+                    <Label>Duration (seconds)</Label>
+                    <Input
+                      type="number"
+                      value={video.duration || ''}
+                      onChange={(e) => updateVideo(index, { ...video, duration: e.target.value ? parseInt(e.target.value) : undefined })}
+                      placeholder="Optional duration"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <Label>Video URL</Label>
+                  <Input
+                    value={video.url}
+                    onChange={(e) => updateVideo(index, { ...video, url: e.target.value })}
+                    placeholder="YouTube, Loom, Vimeo, or Wistia link"
+                  />
+                </div>
+                
+                <div>
+                  <Label>Description</Label>
+                  <Textarea
+                    value={video.description || ''}
+                    onChange={(e) => updateVideo(index, { ...video, description: e.target.value })}
+                    placeholder="Optional description"
+                    rows={2}
+                  />
+                </div>
+
+                <Tabs defaultValue="notes" className="w-full">
+                  <TabsList>
+                    <TabsTrigger value="notes">Learning Notes</TabsTrigger>
+                    <TabsTrigger value="transcript">Transcript</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="notes" className="space-y-2">
+                    <Label>Learning Notes</Label>
+                    <Textarea
+                      value={video.notes || ''}
+                      onChange={(e) => updateVideo(index, { ...video, notes: e.target.value })}
+                      placeholder="Add learning notes, key points, or additional context for learners..."
+                      rows={4}
+                    />
+                  </TabsContent>
+                  
+                  <TabsContent value="transcript" className="space-y-2">
+                    <Label>Video Transcript</Label>
+                    <Textarea
+                      value={video.transcript || ''}
+                      onChange={(e) => updateVideo(index, { ...video, transcript: e.target.value })}
+                      placeholder="Paste the full video transcript here..."
+                      rows={6}
+                    />
+                  </TabsContent>
+                </Tabs>
+
+                <div className="flex gap-2">
+                  <Button size="sm" onClick={() => setEditingIndex(null)}>
+                    <Check className="h-4 w-4 mr-1" />
+                    Save
+                  </Button>
+                  <Button size="sm" variant="outline" onClick={() => setEditingIndex(null)}>
+                    Cancel
+                  </Button>
+                </div>
+              </div>
             ) : (
               <>
                 <div className="flex items-center justify-between">
@@ -208,6 +313,12 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
                     <p className="text-xs text-muted-foreground truncate max-w-[300px]">{video.url}</p>
                   </div>
                   <div className="flex gap-2">
+                    <Button size="sm" variant="ghost" onClick={() => moveVideo(index, 'up')} disabled={index === 0}>
+                      <ArrowUp className="h-3 w-3" />
+                    </Button>
+                    <Button size="sm" variant="ghost" onClick={() => moveVideo(index, 'down')} disabled={index === editVideos.length - 1}>
+                      <ArrowDown className="h-3 w-3" />
+                    </Button>
                     <Button size="sm" variant="ghost" onClick={() => setEditingIndex(index)}>
                       <Edit className="h-3 w-3" />
                     </Button>
@@ -232,25 +343,76 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
           </div>
         ))}
 
-        <div className="border-2 border-dashed border-primary/30 rounded-lg p-4 space-y-3">
+        <div className="border-2 border-dashed border-primary/30 rounded-lg p-4 space-y-4">
           <h4 className="font-medium">Add New Video</h4>
-          <Input
-            value={newVideo.title}
-            onChange={(e) => setNewVideo({ ...newVideo, title: e.target.value })}
-            placeholder="Video title"
-          />
-          <Input
-            value={newVideo.url}
-            onChange={(e) => setNewVideo({ ...newVideo, url: e.target.value })}
-            placeholder="🔗 YouTube, Loom, Vimeo, or Wistia link"
-            onKeyPress={(e) => e.key === 'Enter' && addVideo()}
-          />
-          <Textarea
-            value={newVideo.description || ''}
-            onChange={(e) => setNewVideo({ ...newVideo, description: e.target.value })}
-            placeholder="Optional description"
-            rows={2}
-          />
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Label>Video Title</Label>
+              <Input
+                value={newVideo.title}
+                onChange={(e) => setNewVideo({ ...newVideo, title: e.target.value })}
+                placeholder="Video title"
+              />
+            </div>
+            <div>
+              <Label>Duration (seconds)</Label>
+              <Input
+                type="number"
+                value={newVideo.duration || ''}
+                onChange={(e) => setNewVideo({ ...newVideo, duration: e.target.value ? parseInt(e.target.value) : undefined })}
+                placeholder="Optional duration"
+              />
+            </div>
+          </div>
+
+          <div>
+            <Label>Video URL</Label>
+            <Input
+              value={newVideo.url}
+              onChange={(e) => setNewVideo({ ...newVideo, url: e.target.value })}
+              placeholder="🔗 YouTube, Loom, Vimeo, or Wistia link"
+              onKeyPress={(e) => e.key === 'Enter' && addVideo()}
+            />
+          </div>
+
+          <div>
+            <Label>Description</Label>
+            <Textarea
+              value={newVideo.description || ''}
+              onChange={(e) => setNewVideo({ ...newVideo, description: e.target.value })}
+              placeholder="Optional description"
+              rows={2}
+            />
+          </div>
+
+          <Tabs defaultValue="notes" className="w-full">
+            <TabsList>
+              <TabsTrigger value="notes">Learning Notes</TabsTrigger>
+              <TabsTrigger value="transcript">Transcript</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="notes" className="space-y-2">
+              <Label>Learning Notes</Label>
+              <Textarea
+                value={newVideo.notes || ''}
+                onChange={(e) => setNewVideo({ ...newVideo, notes: e.target.value })}
+                placeholder="Add learning notes, key points, or additional context..."
+                rows={3}
+              />
+            </TabsContent>
+            
+            <TabsContent value="transcript" className="space-y-2">
+              <Label>Video Transcript</Label>
+              <Textarea
+                value={newVideo.transcript || ''}
+                onChange={(e) => setNewVideo({ ...newVideo, transcript: e.target.value })}
+                placeholder="Paste the full video transcript here..."
+                rows={4}
+              />
+            </TabsContent>
+          </Tabs>
+
           <Button 
             size="sm" 
             onClick={addVideo} 

@@ -8,9 +8,14 @@ export interface UsefulLink {
 }
 
 export interface TrainingVideo {
+  id: string;
   title: string;
   url: string;
   description?: string;
+  notes?: string;
+  transcript?: string;
+  duration?: number; // in seconds
+  order: number;
 }
 
 export interface Product {
