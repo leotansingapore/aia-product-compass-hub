@@ -44,6 +44,8 @@ export function VideoEditingInterface({
   const [folderDialogOpen, setFolderDialogOpen] = useState(false);
   const [folderDialogMode, setFolderDialogMode] = useState<'create' | 'edit'>('create');
   const [editingFolderName, setEditingFolderName] = useState('');
+  const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
+  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set());
   const { toast } = useToast();
 
   console.log('🎬 VideoEditingInterface: Rendering editing interface');
@@ -75,6 +77,15 @@ export function VideoEditingInterface({
       }
     });
 
+    // Remove from empty folders list
+    setEmptyFolders(prev => prev.filter(folder => folder !== folderName));
+    // Remove from expanded folders
+    setExpandedFolders(prev => {
+      const newExpanded = new Set(prev);
+      newExpanded.delete(folderName);
+      return newExpanded;
+    });
+
     toast({
       title: "Folder Deleted",
       description: `"${folderName}" folder deleted. Videos moved to Uncategorized.`,
@@ -103,6 +114,10 @@ export function VideoEditingInterface({
 
   const handleFolderSave = (folderName: string) => {
     if (folderDialogMode === 'create') {
+      // Add to empty folders list immediately
+      setEmptyFolders(prev => [...prev, folderName]);
+      // Auto-expand the new folder
+      setExpandedFolders(prev => new Set([...prev, folderName]));
       onCreateCategory(folderName);
       toast({
         title: "Folder Created",
@@ -122,6 +137,11 @@ export function VideoEditingInterface({
         }
       });
 
+      // Update empty folders list if this was an empty folder
+      setEmptyFolders(prev => 
+        prev.map(folder => folder === editingFolderName ? folderName : folder)
+      );
+
       toast({
         title: "Folder Renamed",
         description: `Folder renamed to "${folderName}".`,
@@ -137,6 +157,9 @@ export function VideoEditingInterface({
           <h3 className="font-semibold mb-4">Course Structure</h3>
           <FolderTreeView
             videos={editVideos}
+            emptyFolders={emptyFolders}
+            expandedFolders={expandedFolders}
+            onExpandedChange={setExpandedFolders}
             onVideoSelect={(index) => onEditingIndexChange(index)}
             onCreateFolder={handleCreateFolder}
             onEditFolder={handleEditFolder}

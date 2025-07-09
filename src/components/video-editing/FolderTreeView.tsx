@@ -7,6 +7,9 @@ import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface FolderTreeViewProps {
   videos: TrainingVideo[];
+  emptyFolders: string[];
+  expandedFolders: Set<string>;
+  onExpandedChange: (expanded: Set<string>) => void;
   onVideoSelect: (index: number) => void;
   onCreateFolder: () => void;
   onEditFolder: (folderName: string) => void;
@@ -19,6 +22,9 @@ interface FolderTreeViewProps {
 
 export function FolderTreeView({
   videos,
+  emptyFolders,
+  expandedFolders,
+  onExpandedChange,
   onVideoSelect,
   onCreateFolder,
   onEditFolder,
@@ -28,7 +34,6 @@ export function FolderTreeView({
   onDeleteVideo,
   onAddVideoToFolder
 }: FolderTreeViewProps) {
-  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set());
   const [draggedVideo, setDraggedVideo] = useState<number | null>(null);
 
   // Group videos by category/folder
@@ -41,6 +46,14 @@ export function FolderTreeView({
     return acc;
   }, {} as Record<string, Array<{ video: TrainingVideo; index: number }>>);
 
+  // Add empty folders to the display
+  const allFolders: Record<string, Array<{ video: TrainingVideo; index: number }>> = { ...videosByFolder };
+  emptyFolders.forEach(folder => {
+    if (!allFolders[folder]) {
+      allFolders[folder] = [];
+    }
+  });
+
   const toggleFolder = (folderName: string) => {
     const newExpanded = new Set(expandedFolders);
     if (newExpanded.has(folderName)) {
@@ -48,7 +61,7 @@ export function FolderTreeView({
     } else {
       newExpanded.add(folderName);
     }
-    setExpandedFolders(newExpanded);
+    onExpandedChange(newExpanded);
   };
 
   const handleDragStart = (videoIndex: number) => {
@@ -82,7 +95,7 @@ export function FolderTreeView({
 
       {/* Folder Tree */}
       <div className="space-y-1">
-        {Object.entries(videosByFolder).map(([folderName, folderVideos]) => {
+        {Object.entries(allFolders).map(([folderName, folderVideos]) => {
           const isExpanded = expandedFolders.has(folderName);
           
           return (
