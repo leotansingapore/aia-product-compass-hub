@@ -8,11 +8,23 @@ interface AdminVideoPreviewProps {
 }
 
 export function AdminVideoPreview({ videos, className = "", onClick }: AdminVideoPreviewProps) {
-  if (videos.length === 0) {
+  console.log('🎞️ AdminVideoPreview render:', { 
+    videosCount: videos?.length || 0, 
+    className 
+  });
+
+  // Ensure videos is always an array
+  const safeVideos = Array.isArray(videos) ? videos : [];
+
+  if (safeVideos.length === 0) {
+    console.log('🎞️ AdminVideoPreview: No videos, showing empty state');
     return (
       <div 
         className={`${className} cursor-pointer hover:bg-primary/10 hover:border-primary/20 border-2 border-dashed border-primary/30 p-4 rounded transition-all duration-200 bg-primary/5`}
-        onClick={onClick}
+        onClick={() => {
+          console.log('🎞️ AdminVideoPreview: Empty state clicked');
+          onClick();
+        }}
         title="🔧 ADMIN MODE: Click to add/edit training videos"
       >
         <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
@@ -26,24 +38,37 @@ export function AdminVideoPreview({ videos, className = "", onClick }: AdminVide
     );
   }
 
+  console.log('🎞️ AdminVideoPreview: Rendering video list with', safeVideos.length, 'videos');
+  
   return (
     <div 
       className={`${className} cursor-pointer hover:bg-primary/10 hover:border-primary/20 border-2 border-dashed border-primary/30 p-4 rounded transition-all duration-200 bg-primary/5`}
-      onClick={onClick}
+      onClick={() => {
+        console.log('🎞️ AdminVideoPreview: Video list clicked');
+        onClick();
+      }}
       title="🔧 ADMIN MODE: Click to add/edit training videos"
     >
       <div className="space-y-4">
-        {videos.map((video, index) => (
-          <div key={index} className="flex items-center gap-3 p-3 bg-background rounded border">
-            <Play className="h-5 w-5 text-primary" />
-            <div>
-              <p className="font-medium">{video.title}</p>
-              {video.description && (
-                <p className="text-sm text-muted-foreground">{video.description}</p>
-              )}
+        {safeVideos.map((video, index) => {
+          // Ensure video object is valid
+          if (!video || typeof video !== 'object') {
+            console.warn('🎞️ AdminVideoPreview: Invalid video object at index', index, video);
+            return null;
+          }
+
+          return (
+            <div key={video.id || index} className="flex items-center gap-3 p-3 bg-background rounded border">
+              <Play className="h-5 w-5 text-primary" />
+              <div>
+                <p className="font-medium">{video.title || 'Untitled Video'}</p>
+                {video.description && (
+                  <p className="text-sm text-muted-foreground">{video.description}</p>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ interface EditableVideosProps {
 
 export function EditableVideos({ videos, onSave, className = "" }: EditableVideosProps) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editVideos, setEditVideos] = useState<TrainingVideo[]>(videos);
+  const [editVideos, setEditVideos] = useState<TrainingVideo[]>(videos || []);
   const [newVideo, setNewVideo] = useState<TrainingVideo>({ 
     id: '', 
     title: '', 
@@ -34,6 +34,15 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
   const [saving, setSaving] = useState(false);
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
+
+  // Debug logging
+  console.log('🎬 EditableVideos render:', {
+    videosCount: videos?.length || 0,
+    isAdminMode,
+    isEditing,
+    className,
+    editVideosCount: editVideos.length
+  });
 
   const handleSave = async () => {
     setSaving(true);
@@ -154,8 +163,11 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
 
   // Non-admin view
   if (!isAdminMode) {
-    return <VideoDisplay videos={videos} className={className} />;
+    console.log('🎬 EditableVideos: Rendering VideoDisplay (non-admin)');
+    return <VideoDisplay videos={videos || []} className={className} />;
   }
+
+  console.log('🎬 EditableVideos: Admin mode detected, rendering admin interface');
 
   // Get existing categories from videos
   const existingCategories = Array.from(new Set(
@@ -178,6 +190,7 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
 
   // Admin editing mode
   if (isEditing) {
+    console.log('🎬 EditableVideos: Rendering editing interface');
     return (
       <div className="space-y-6">
         {Object.entries(videosByCategory).map(([category, videoItems]) => (
@@ -232,11 +245,15 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
   }
 
   // Admin preview mode
+  console.log('🎬 EditableVideos: Rendering AdminVideoPreview');
   return (
     <AdminVideoPreview
-      videos={videos}
+      videos={videos || []}
       className={className}
-      onClick={() => setIsEditing(true)}
+      onClick={() => {
+        console.log('🎬 EditableVideos: AdminVideoPreview clicked, entering edit mode');
+        setIsEditing(true);
+      }}
     />
   );
 }

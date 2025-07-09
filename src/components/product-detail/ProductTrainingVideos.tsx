@@ -8,6 +8,7 @@ import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { useAdmin } from "@/hooks/useAdmin";
 import { formatDuration } from "@/components/video-editing/videoUtils";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { GraduationCap, Play, Check, Clock } from "lucide-react";
 import type { TrainingVideo } from "@/hooks/useProducts";
 
@@ -22,6 +23,14 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
   const { isAdminMode } = useAdmin();
   const { getCourseProgress, getVideoProgress } = useVideoProgress(productId);
+
+  // Debug logging
+  console.log('🎥 ProductTrainingVideos render:', {
+    videosCount: videos?.length || 0,
+    isAdminMode,
+    productId,
+    showLearningInterface
+  });
 
   // Ensure videos have IDs and are sorted by order
   const processedVideos = (videos || []).map((video, index) => ({
@@ -108,10 +117,19 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
             />
           </div>
         ) : (
-          <EditableVideos
-            videos={processedVideos}
-            onSave={(newVideos) => onUpdate('training_videos', newVideos)}
-          />
+          <ErrorBoundary 
+            fallback={
+              <div className="p-4 text-center text-muted-foreground">
+                <p>Unable to load video editing interface</p>
+                <p className="text-sm mt-2">Please refresh the page and try again</p>
+              </div>
+            }
+          >
+            <EditableVideos
+              videos={processedVideos}
+              onSave={(newVideos) => onUpdate('training_videos', newVideos)}
+            />
+          </ErrorBoundary>
         )}
       </CardContent>
     </Card>

@@ -18,7 +18,7 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const isAdmin = true; // Simplified for development
   
   // Debug logging
-  console.log('Admin Context State:', { isAdminMode, isAdmin, hasUser: !!user });
+  console.log('🔧 Admin Context State:', { isAdminMode, isAdmin, hasUser: !!user });
 
   const toggleAdminMode = () => {
     if (isAdmin) {
