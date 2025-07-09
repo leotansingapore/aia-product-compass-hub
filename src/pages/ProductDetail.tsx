@@ -33,8 +33,13 @@ export default function ProductDetail() {
   };
 
   const handleBack = () => {
-    const categoryId = getCategoryIdFromName((product as any).categories?.name || '');
-    navigate(`/category/${categoryId}`);
+    // Use browser history to go back to the actual previous page
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      // Fallback to home if no history
+      navigate('/');
+    }
   };
 
   if (loading) {
