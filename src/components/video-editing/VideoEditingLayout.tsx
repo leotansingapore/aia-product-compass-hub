@@ -1,6 +1,5 @@
-import { VideoEditForm } from './VideoEditForm';
-import { AddVideoForm } from './AddVideoForm';
-import { FolderTreeView } from './FolderTreeView';
+import { CourseStructurePanel } from './CourseStructurePanel';
+import { VideoEditorPanel } from './VideoEditorPanel';
 import { FolderManagementDialog } from './FolderManagementDialog';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
@@ -59,54 +58,32 @@ export function VideoEditingLayout({
 }: VideoEditingLayoutProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      {/* Left Panel - Folder Tree */}
-      <div className="lg:col-span-1 space-y-4">
-        <div className="border rounded-lg p-4">
-          <h3 className="font-semibold mb-4">Course Structure</h3>
-          <FolderTreeView
-            videos={editVideos}
-            emptyFolders={emptyFolders}
-            expandedFolders={expandedFolders}
-            onExpandedChange={onExpandedChange}
-            onVideoSelect={(index) => onEditingIndexChange(index)}
-            onCreateFolder={onCreateFolder}
-            onEditFolder={onEditFolder}
-            onDeleteFolder={onDeleteFolder}
-            onMoveVideo={onMoveVideoToFolder}
-            onEditVideo={(index) => onEditingIndexChange(index)}
-            onDeleteVideo={onRemoveVideo}
-            onAddVideoToFolder={onAddVideoToFolder}
-          />
-        </div>
-      </div>
+      <CourseStructurePanel
+        videos={editVideos}
+        emptyFolders={emptyFolders}
+        expandedFolders={expandedFolders}
+        onExpandedChange={onExpandedChange}
+        onVideoSelect={(index) => onEditingIndexChange(index)}
+        onCreateFolder={onCreateFolder}
+        onEditFolder={onEditFolder}
+        onDeleteFolder={onDeleteFolder}
+        onMoveVideoToFolder={onMoveVideoToFolder}
+        onEditVideo={(index) => onEditingIndexChange(index)}
+        onDeleteVideo={onRemoveVideo}
+        onAddVideoToFolder={onAddVideoToFolder}
+      />
 
-      {/* Right Panel - Video Editor */}
-      <div className="lg:col-span-2 space-y-6">
-        {editingIndex !== null && (
-          <div className="border rounded-lg p-4">
-            <h3 className="font-semibold mb-4">Edit Video</h3>
-            <VideoEditForm
-              video={editVideos[editingIndex]}
-              onUpdate={(updatedVideo) => onUpdateVideo(editingIndex, updatedVideo)}
-              onSave={() => onEditingIndexChange(null)}
-              onCancel={() => onEditingIndexChange(null)}
-              existingCategories={existingCategories}
-            />
-          </div>
-        )}
-
-        <div className="border rounded-lg p-4">
-          <h3 className="font-semibold mb-4">Add New Video</h3>
-          <AddVideoForm
-            newVideo={newVideo}
-            onUpdate={onNewVideoChange}
-            onAdd={onAddVideo}
-            disabled={!newVideo.title.trim() || !newVideo.url.trim()}
-            existingCategories={existingCategories}
-            onCreateCategory={onCreateCategory}
-          />
-        </div>
-      </div>
+      <VideoEditorPanel
+        editVideos={editVideos}
+        editingIndex={editingIndex}
+        newVideo={newVideo}
+        existingCategories={existingCategories}
+        onEditingIndexChange={onEditingIndexChange}
+        onUpdateVideo={onUpdateVideo}
+        onNewVideoChange={onNewVideoChange}
+        onAddVideo={onAddVideo}
+        onCreateCategory={onCreateCategory}
+      />
 
       {/* Folder Management Dialog */}
       <FolderManagementDialog
