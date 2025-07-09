@@ -34,12 +34,7 @@ export default function ProductDetail() {
 
   const handleBack = () => {
     // Use browser history to go back to the actual previous page
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      // Fallback to home if no history
-      navigate('/');
-    }
+    window.history.back();
   };
 
   if (loading) {
