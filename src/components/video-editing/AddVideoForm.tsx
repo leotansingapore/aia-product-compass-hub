@@ -91,10 +91,12 @@ export function AddVideoForm({ newVideo, onUpdate, onAdd, disabled, existingCate
         <Label>Category</Label>
         <div className="space-y-2">
           <Select
-            value={newVideo.category || ''}
+            value={newVideo.category || 'no-category'}
             onValueChange={(value) => {
               if (value === 'create-new') {
                 setShowNewCategoryInput(true);
+              } else if (value === 'no-category') {
+                onUpdate({ ...newVideo, category: '' });
               } else {
                 onUpdate({ ...newVideo, category: value });
               }
@@ -104,7 +106,7 @@ export function AddVideoForm({ newVideo, onUpdate, onAdd, disabled, existingCate
               <SelectValue placeholder="Select or create category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">No Category</SelectItem>
+              <SelectItem value="no-category">No Category</SelectItem>
               {existingCategories.map((category) => (
                 <SelectItem key={category} value={category}>
                   {category}

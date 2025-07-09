@@ -29,6 +29,8 @@ export function CategorySelector({
   const handleSelectChange = (value: string) => {
     if (value === 'create-new') {
       onShowNewCategoryInput(true);
+    } else if (value === 'no-category') {
+      onCategoryChange('');
     } else {
       onCategoryChange(value);
     }
@@ -53,14 +55,14 @@ export function CategorySelector({
       <Label>Category</Label>
       <div className="space-y-2">
         <Select
-          value={video.category || ''}
+          value={video.category || 'no-category'}
           onValueChange={handleSelectChange}
         >
           <SelectTrigger>
             <SelectValue placeholder="Select or create category" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="">No Category</SelectItem>
+            <SelectContent>
+              <SelectItem value="no-category">No Category</SelectItem>
             {existingCategories.map((category) => (
               <SelectItem key={category} value={category}>
                 {category}
