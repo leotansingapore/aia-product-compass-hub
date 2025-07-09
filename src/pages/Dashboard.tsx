@@ -1,14 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
-import { SearchBar } from "@/components/SearchBar";
+import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { CategoryCard } from "@/components/CategoryCard";
 import { ContinueLearningCard } from "@/components/ContinueLearningCard";
 import { UserStats } from "@/components/UserStats";
+import { QuickActions } from "@/components/QuickActions";
+import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { useAuth } from "@/hooks/useAuth";
 import { useCategories, getCategoryIdFromName, useAllProducts } from "@/hooks/useProducts";
+import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Clock } from "lucide-react";
 
 // Configuration for category display (icons, gradients, etc.)
 function getCategoryConfig(categoryName: string) {
@@ -47,32 +52,14 @@ function getCategoryConfig(categoryName: string) {
   };
 }
 
-const quickActions = [
-  {
-    title: 'How to Use This Portal',
-    description: 'Get started with the learning platform',
-    action: 'Learn More',
-    route: '/how-to-use'
-  },
-  {
-    title: 'Search by Client Profile',
-    description: 'Find products for specific client needs',
-    action: 'Search Now',
-    route: '/search-by-profile'
-  },
-  {
-    title: 'Sales Tools & Objection Handling',
-    description: 'Access training materials and responses',
-    action: 'Access Tools',
-    route: '/sales-tools'
-  }
-];
+// Moved to QuickActions component
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { categories, loading: categoriesLoading } = useCategories();
-  const { allProducts } = useAllProducts();
+  const { allProducts, loading: productsLoading } = useAllProducts();
+  const { getRecentProducts } = useRecentlyViewed();
   const [searchQuery, setSearchQuery] = useState("");
 
   // Get products with training videos for "Continue Learning" section
@@ -80,9 +67,12 @@ export default function Dashboard() {
     product.training_videos && Array.isArray(product.training_videos) && product.training_videos.length > 0
   ).slice(0, 3);
 
+  // Get recently viewed products
+  const recentProducts = getRecentProducts();
+
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    // TODO: Implement search functionality
+    // Navigate to search results or implement inline search
     console.log('Searching for:', query);
   };
 
@@ -101,7 +91,13 @@ export default function Dashboard() {
       <div className="max-w-7xl mx-auto px-6 py-8">
         
         {/* User Stats - Only show if logged in */}
-        {user && <UserStats />}
+        {user && (
+          productsLoading ? (
+            <SkeletonLoader type="stats" />
+          ) : (
+            <UserStats />
+          )
+        )}
         
         {/* Authentication Prompt - Only show if not logged in */}
         {!user && (
@@ -127,58 +123,76 @@ export default function Dashboard() {
         {/* Search Section */}
         <div className="text-center mb-12">
           <h2 className="text-2xl font-bold mb-4">Find What You Need</h2>
-          <SearchBar onSearch={handleSearch} />
+          <EnhancedSearchBar onSearch={handleSearch} />
         </div>
 
-        {/* Continue Learning Section */}
-        {productsWithVideos.length > 0 && (
+        {/* Recently Viewed Section */}
+        {recentProducts.length > 0 && (
           <div className="mb-12">
-            <h3 className="text-xl font-semibold mb-6">Continue Learning</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              {productsWithVideos.map((product) => (
-                <ContinueLearningCard 
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-semibold">Recently Viewed</h3>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Clock className="h-4 w-4" />
+                <span>Quick access to your history</span>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-4 gap-4">
+              {recentProducts.map((product) => (
+                <Card 
                   key={product.id} 
-                  product={product} 
-                  onNavigate={() => navigate(`/product/${product.id}`)}
-                />
+                  className="hover:shadow-card transition-all cursor-pointer group"
+                  onClick={() => navigate(`/product/${product.id}`)}
+                >
+                  <CardContent className="p-4">
+                    <h4 className="font-medium truncate group-hover:text-primary transition-colors">
+                      {product.title}
+                    </h4>
+                    <p className="text-sm text-muted-foreground truncate mt-1">
+                      {product.description}
+                    </p>
+                    <div className="flex items-center justify-between mt-3">
+                      <Badge variant="outline" className="text-xs">
+                        {product.categoryName}
+                      </Badge>
+                      <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
         )}
 
+        {/* Continue Learning Section */}
+        {productsWithVideos.length > 0 && (
+          <div className="mb-12">
+            <h3 className="text-xl font-semibold mb-6">Continue Learning</h3>
+            {productsLoading ? (
+              <SkeletonLoader type="card" count={3} />
+            ) : (
+              <div className="grid md:grid-cols-3 gap-6">
+                {productsWithVideos.map((product) => (
+                  <ContinueLearningCard 
+                    key={product.id} 
+                    product={product} 
+                    onNavigate={() => navigate(`/product/${product.id}`)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Quick Actions */}
         <div className="mb-12">
-          <h3 className="text-xl font-semibold mb-6">Quick Actions</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            {quickActions.map((action, index) => (
-              <Card key={index} className="hover:shadow-card transition-all duration-300">
-                <CardHeader>
-                  <CardTitle className="text-lg">{action.title}</CardTitle>
-                  <CardDescription>{action.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button 
-                    variant="outline" 
-                    className="w-full"
-                    onClick={() => navigate(action.route)}
-                  >
-                    {action.action}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <QuickActions />
         </div>
 
         {/* Product Categories */}
         <div className="mb-12">
           <h3 className="text-xl font-semibold mb-6">Product Categories</h3>
           {categoriesLoading ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[...Array(5)].map((_, i) => (
-                <div key={i} className="h-48 bg-muted animate-pulse rounded-lg" />
-              ))}
-            </div>
+            <SkeletonLoader type="card" count={6} />
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {categories.map((category) => {

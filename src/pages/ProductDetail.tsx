@@ -1,7 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useProductById, getCategoryIdFromName } from "@/hooks/useProducts";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
+import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
+import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { EditableTags } from "@/components/EditableTags";
 import { ProductHeader } from "@/components/product-detail/ProductHeader";
 import { ProductSummary } from "@/components/product-detail/ProductSummary";
@@ -15,6 +18,14 @@ export default function ProductDetail() {
   const navigate = useNavigate();
   const { product, loading } = useProductById(productId || '');
   const { updateProduct } = useProductUpdate();
+  const { addToRecent } = useRecentlyViewed();
+
+  // Track product view
+  useEffect(() => {
+    if (product) {
+      addToRecent(product.id, 'product');
+    }
+  }, [product, addToRecent]);
 
   const handleUpdate = async (field: string, value: any) => {
     if (!product) return;
@@ -38,22 +49,7 @@ export default function ProductDetail() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-background">
-        <ProductHeader
-          productTitle="Loading..."
-          categoryName="Fetching product details..."
-          onBack={() => window.history.back()}
-        />
-        <div className="max-w-4xl mx-auto px-6 py-8">
-          <div className="space-y-6">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="h-32 bg-muted animate-pulse rounded-lg" />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
+    return <SkeletonLoader type="product" />;
   }
 
   if (!product) {
@@ -67,15 +63,24 @@ export default function ProductDetail() {
     );
   }
 
+  // Enhanced breadcrumbs
+  const categoryName = (product as any).categories?.name || '';
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: categoryName, href: `/category/${product.category_id}` },
+    { label: product.title }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <ProductHeader
         productTitle={product.title}
-        categoryName={(product as any).categories?.name || ''}
+        categoryName={categoryName}
         onBack={handleBack}
+        breadcrumbs={breadcrumbs}
       />
       
-      <div className="max-w-4xl mx-auto px-6 py-8 space-y-8">
+      <div className="max-w-4xl mx-auto px-6 py-8 space-y-8 animate-fade-in">
         
         {/* Tags */}
         <div className="space-y-2">

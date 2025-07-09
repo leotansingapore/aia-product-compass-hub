@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
-import { SearchBar } from "@/components/SearchBar";
+import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { ProductCard } from "@/components/ProductCard";
+import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { useProducts, getCategoryIdFromName } from "@/hooks/useProducts";
+import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -44,10 +46,18 @@ export default function ProductCategory() {
   const { categoryId } = useParams<{ categoryId: string }>();
   const navigate = useNavigate();
   const { products, loading } = useProducts(categoryId);
+  const { addToRecent } = useRecentlyViewed();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const category = getCategoryInfo(categoryId || '');
+
+  // Track category view
+  useEffect(() => {
+    if (categoryId) {
+      addToRecent(categoryId, 'category');
+    }
+  }, [categoryId, addToRecent]);
 
   // Get all unique tags from products
   const allTags = Array.from(new Set(products.flatMap(product => product.tags || [])));
@@ -84,23 +94,7 @@ export default function ProductCategory() {
   }
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-background">
-        <NavigationHeader 
-          title="Loading..."
-          subtitle="Fetching products..."
-          showBackButton
-          onBack={() => window.history.back()}
-        />
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="h-64 bg-muted animate-pulse rounded-lg" />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
+    return <SkeletonLoader type="category" />;
   }
 
   return (
@@ -120,7 +114,7 @@ export default function ProductCategory() {
         {/* Search and Filters */}
         <div className="mb-8">
           <div className="mb-6">
-            <SearchBar 
+            <EnhancedSearchBar 
               onSearch={handleSearch} 
               placeholder={`Search ${category.title.toLowerCase()}...`}
             />
@@ -153,17 +147,18 @@ export default function ProductCategory() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProducts.map(product => (
-            <ProductCard
-              key={product.id}
-              title={product.title}
-              description={product.description || ''}
-              category={category.title}
-              tags={product.tags || []}
-              highlights={product.highlights || []}
-              onClick={() => handleProductClick(product.id)}
-            />
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
+          {filteredProducts.map((product, index) => (
+            <div key={product.id} style={{ animationDelay: `${index * 0.1}s` }} className="animate-fade-in">
+              <ProductCard
+                title={product.title}
+                description={product.description || ''}
+                category={category.title}
+                tags={product.tags || []}
+                highlights={product.highlights || []}
+                onClick={() => handleProductClick(product.id)}
+              />
+            </div>
           ))}
         </div>
 
