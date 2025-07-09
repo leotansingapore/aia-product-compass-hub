@@ -37,6 +37,7 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
   const handleSave = async () => {
     setSaving(true);
     console.log('🎥 EditableVideos handleSave called with:', editVideos);
+    console.log('🎥 Number of videos to save:', editVideos.length);
     
     try {
       await onSave(editVideos);
@@ -49,9 +50,14 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
       });
     } catch (error) {
       console.error('❌ EditableVideos save failed:', error);
+      console.error('❌ Error details:', {
+        message: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined,
+        editVideos: editVideos
+      });
       toast({
-        title: "Error",
-        description: "Failed to save videos",
+        title: "Error", 
+        description: `Failed to save videos: ${error instanceof Error ? error.message : 'Unknown error'}`,
         variant: "destructive",
       });
       setEditVideos(videos);
@@ -79,12 +85,14 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
   const addVideo = () => {
     if (newVideo.title.trim() && newVideo.url.trim()) {
       const videoInfo = getVideoEmbedInfo(newVideo.url);
+      console.log('🎥 Video info for URL:', newVideo.url, videoInfo);
       if (videoInfo) {
         const videoWithId = {
           ...newVideo,
           id: `video-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
           order: editVideos.length
         };
+        console.log('🎥 Adding video:', videoWithId);
         setEditVideos([...editVideos, videoWithId]);
         setNewVideo({ 
           id: '', 
@@ -96,6 +104,10 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
           duration: undefined,
           order: editVideos.length + 1
         });
+        toast({
+          title: "Video Added",
+          description: `"${videoWithId.title}" has been added. Don't forget to save!`,
+        });
       } else {
         toast({
           title: "Invalid URL",
@@ -103,6 +115,12 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
           variant: "destructive",
         });
       }
+    } else {
+      toast({
+        title: "Missing Information",
+        description: "Please enter both title and URL for the video",
+        variant: "destructive",
+      });
     }
   };
 
