@@ -10,6 +10,9 @@ import { RecentlyViewedSection } from "@/components/dashboard/RecentlyViewedSect
 import { ContinueLearningSection } from "@/components/dashboard/ContinueLearningSection";
 import { ProductCategoriesSection } from "@/components/dashboard/ProductCategoriesSection";
 import { RecentUpdatesSection } from "@/components/dashboard/RecentUpdatesSection";
+import { LearningAnalyticsDashboard } from "@/components/dashboard/LearningAnalyticsDashboard";
+import { RecommendationsSection } from "@/components/recommendations/RecommendationsSection";
+import { OfflineLearningPanel } from "@/components/offline/OfflineLearningPanel";
 import { useAuth } from "@/hooks/useAuth";
 import { useCategories, getCategoryIdFromName, useAllProducts } from "@/hooks/useProducts";
 
@@ -61,6 +64,26 @@ export default function Dashboard() {
         <div className="text-center mb-12">
           <h2 className="text-2xl font-bold mb-4">Find What You Need</h2>
           <EnhancedSearchBar onSearch={handleSearch} />
+        </div>
+
+        {/* Analytics Dashboard - Only show if logged in */}
+        {user && (
+          <div className="mb-12">
+            <LearningAnalyticsDashboard />
+          </div>
+        )}
+
+        {/* Personalized Recommendations */}
+        <div className="mb-12">
+          <RecommendationsSection limit={6} />
+        </div>
+
+        {/* Offline Learning Panel */}
+        <div className="mb-12">
+          <div className="flex items-center gap-2 mb-6">
+            <h2 className="text-2xl font-bold">Offline Learning</h2>
+          </div>
+          <OfflineLearningPanel />
         </div>
 
         {/* Recently Viewed Section */}
