@@ -7,7 +7,7 @@ import { VideoDisplay } from './video-editing/VideoDisplay';
 import { VideoListItem } from './video-editing/VideoListItem';
 import { AddVideoForm } from './video-editing/AddVideoForm';
 import { AdminVideoPreview } from './video-editing/AdminVideoPreview';
-import { getVideoEmbedInfo } from './video-editing/videoUtils';
+import { getVideoEmbedInfo, fetchVideoDuration } from './video-editing/videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface EditableVideosProps {

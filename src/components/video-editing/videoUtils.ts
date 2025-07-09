@@ -2,6 +2,7 @@ export interface VideoEmbedInfo {
   embedUrl: string;
   type: 'youtube' | 'vimeo' | 'loom' | 'wistia';
   thumbnail?: string | null;
+  duration?: number | null;
 }
 
 // Function to get video embed URL and type
@@ -47,4 +48,80 @@ export function getVideoEmbedInfo(url: string): VideoEmbedInfo | null {
   }
 
   return null;
+}
+
+// Auto-detect video duration from various platforms
+export async function fetchVideoDuration(url: string): Promise<number | null> {
+  const videoInfo = getVideoEmbedInfo(url);
+  if (!videoInfo) return null;
+
+  try {
+    switch (videoInfo.type) {
+      case 'youtube':
+        return await fetchYouTubeDuration(url);
+      case 'vimeo':
+        return await fetchVimeoDuration(url);
+      case 'wistia':
+        return await fetchWistiaDuration(url);
+      case 'loom':
+        // Loom doesn't provide public API for duration
+        return null;
+      default:
+        return null;
+    }
+  } catch (error) {
+    console.warn('Failed to fetch video duration:', error);
+    return null;
+  }
+}
+
+// Fetch YouTube video duration using oEmbed API
+async function fetchYouTubeDuration(url: string): Promise<number | null> {
+  try {
+    const response = await fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`);
+    if (!response.ok) return null;
+    
+    // YouTube oEmbed doesn't provide duration, but we can try to get it from the video ID
+    const youtubeMatch = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+    if (!youtubeMatch) return null;
+    
+    // For now, return null since we don't have API key for YouTube Data API
+    // In production, you'd use: https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY}
+    return null;
+  } catch (error) {
+    return null;
+  }
+}
+
+// Fetch Vimeo video duration using oEmbed API
+async function fetchVimeoDuration(url: string): Promise<number | null> {
+  try {
+    const response = await fetch(`https://vimeo.com/api/oembed.json?url=${encodeURIComponent(url)}`);
+    if (!response.ok) return null;
+    
+    const data = await response.json();
+    return data.duration || null;
+  } catch (error) {
+    return null;
+  }
+}
+
+// Fetch Wistia video duration using oEmbed API
+async function fetchWistiaDuration(url: string): Promise<number | null> {
+  try {
+    const response = await fetch(`https://fast.wistia.com/oembed?url=${encodeURIComponent(url)}`);
+    if (!response.ok) return null;
+    
+    const data = await response.json();
+    return data.duration || null;
+  } catch (error) {
+    return null;
+  }
+}
+
+// Format duration in seconds to human readable format (MM:SS)
+export function formatDuration(seconds: number): string {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins}:${secs.toString().padStart(2, '0')}`;
 }

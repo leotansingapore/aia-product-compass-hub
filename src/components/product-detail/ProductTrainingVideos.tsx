@@ -6,7 +6,8 @@ import { EditableVideos } from "@/components/EditableVideos";
 import { VideoLearningInterface } from "@/components/video-learning/VideoLearningInterface";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { useAdmin } from "@/hooks/useAdmin";
-import { GraduationCap, Play, Check } from "lucide-react";
+import { formatDuration } from "@/components/video-editing/videoUtils";
+import { GraduationCap, Play, Check, Clock } from "lucide-react";
 import type { TrainingVideo } from "@/hooks/useProducts";
 
 interface ProductTrainingVideosProps {
@@ -33,6 +34,11 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
     getVideoProgress(video.id)?.completed
   ).length;
 
+  // Calculate total course duration
+  const totalDuration = processedVideos.reduce((sum, video) => 
+    sum + (video.duration || 0), 0
+  );
+
   if (showLearningInterface) {
     return (
       <VideoLearningInterface
@@ -58,12 +64,20 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
         </CardTitle>
         <CardDescription>
           {processedVideos.length > 0 ? (
-            <div className="flex items-center justify-between">
-              <span>Interactive video learning course</span>
-              {courseProgress > 0 && (
-                <span className="text-sm font-medium text-primary">
-                  {courseProgress}% Complete
-                </span>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span>Interactive video learning course</span>
+                {courseProgress > 0 && (
+                  <span className="text-sm font-medium text-primary">
+                    {courseProgress}% Complete
+                  </span>
+                )}
+              </div>
+              {totalDuration > 0 && (
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <Clock className="h-3 w-3" />
+                  Total duration: {formatDuration(totalDuration)}
+                </div>
               )}
             </div>
           ) : (
@@ -103,7 +117,15 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-medium truncate">{video.title}</h4>
+                      <div className="flex items-center gap-2 mb-1">
+                        <h4 className="font-medium truncate">{video.title}</h4>
+                        {video.duration && (
+                          <Badge variant="outline" className="text-xs">
+                            <Clock className="h-3 w-3 mr-1" />
+                            {formatDuration(video.duration)}
+                          </Badge>
+                        )}
+                      </div>
                       {video.description && (
                         <p className="text-sm text-muted-foreground truncate">
                           {video.description}

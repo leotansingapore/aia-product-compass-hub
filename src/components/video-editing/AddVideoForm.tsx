@@ -1,9 +1,12 @@
+import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Plus, Clock, Loader2 } from 'lucide-react';
+import { fetchVideoDuration, formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface AddVideoFormProps {
@@ -14,38 +17,69 @@ interface AddVideoFormProps {
 }
 
 export function AddVideoForm({ newVideo, onUpdate, onAdd, disabled }: AddVideoFormProps) {
+  const [isDetectingDuration, setIsDetectingDuration] = useState(false);
+
+  // Auto-detect duration when URL changes
+  useEffect(() => {
+    const detectDuration = async () => {
+      if (newVideo.url.trim()) {
+        setIsDetectingDuration(true);
+        try {
+          const duration = await fetchVideoDuration(newVideo.url);
+          if (duration) {
+            onUpdate({ ...newVideo, duration });
+          }
+        } catch (error) {
+          console.warn('Failed to detect video duration:', error);
+        } finally {
+          setIsDetectingDuration(false);
+        }
+      }
+    };
+
+    const timeoutId = setTimeout(detectDuration, 500); // Debounce URL changes
+    return () => clearTimeout(timeoutId);
+  }, [newVideo.url, onUpdate]);
+
   return (
     <div className="border-2 border-dashed border-primary/30 rounded-lg p-4 space-y-4">
       <h4 className="font-medium">Add New Video</h4>
       
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <Label>Video Title</Label>
-          <Input
-            value={newVideo.title}
-            onChange={(e) => onUpdate({ ...newVideo, title: e.target.value })}
-            placeholder="Video title"
-          />
-        </div>
-        <div>
-          <Label>Duration (seconds)</Label>
-          <Input
-            type="number"
-            value={newVideo.duration || ''}
-            onChange={(e) => onUpdate({ ...newVideo, duration: e.target.value ? parseInt(e.target.value) : undefined })}
-            placeholder="Optional duration"
-          />
-        </div>
+      <div>
+        <Label>Video Title</Label>
+        <Input
+          value={newVideo.title}
+          onChange={(e) => onUpdate({ ...newVideo, title: e.target.value })}
+          placeholder="Video title"
+        />
       </div>
 
       <div>
         <Label>Video URL</Label>
-        <Input
-          value={newVideo.url}
-          onChange={(e) => onUpdate({ ...newVideo, url: e.target.value })}
-          placeholder="🔗 YouTube, Loom, Vimeo, or Wistia link"
-          onKeyPress={(e) => e.key === 'Enter' && onAdd()}
-        />
+        <div className="space-y-2">
+          <Input
+            value={newVideo.url}
+            onChange={(e) => onUpdate({ ...newVideo, url: e.target.value })}
+            placeholder="🔗 YouTube, Loom, Vimeo, or Wistia link"
+            onKeyPress={(e) => e.key === 'Enter' && onAdd()}
+          />
+          {/* Duration Display */}
+          {(newVideo.duration || isDetectingDuration) && (
+            <div className="flex items-center gap-2">
+              {isDetectingDuration ? (
+                <Badge variant="secondary" className="text-xs">
+                  <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+                  Detecting duration...
+                </Badge>
+              ) : newVideo.duration ? (
+                <Badge variant="outline" className="text-xs">
+                  <Clock className="h-3 w-3 mr-1" />
+                  {formatDuration(newVideo.duration)}
+                </Badge>
+              ) : null}
+            </div>
+          )}
+        </div>
       </div>
 
       <div>

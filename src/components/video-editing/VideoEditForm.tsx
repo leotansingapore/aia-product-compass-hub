@@ -1,9 +1,12 @@
+import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Check } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Check, X, Clock, Loader2 } from 'lucide-react';
+import { fetchVideoDuration, formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoEditFormProps {
@@ -14,42 +17,92 @@ interface VideoEditFormProps {
 }
 
 export function VideoEditForm({ video, onUpdate, onSave, onCancel }: VideoEditFormProps) {
+  const [editVideo, setEditVideo] = useState<TrainingVideo>(video);
+  const [isDetectingDuration, setIsDetectingDuration] = useState(false);
+
+  // Auto-detect duration when URL changes
+  useEffect(() => {
+    const detectDuration = async () => {
+      if (editVideo.url.trim() && editVideo.url !== video.url) {
+        setIsDetectingDuration(true);
+        try {
+          const duration = await fetchVideoDuration(editVideo.url);
+          if (duration) {
+            const updated = { ...editVideo, duration };
+            setEditVideo(updated);
+            onUpdate(updated);
+          }
+        } catch (error) {
+          console.warn('Failed to detect video duration:', error);
+        } finally {
+          setIsDetectingDuration(false);
+        }
+      }
+    };
+
+    const timeoutId = setTimeout(detectDuration, 500); // Debounce URL changes
+    return () => clearTimeout(timeoutId);
+  }, [editVideo.url, video.url, onUpdate]);
+
+  const handleChange = (field: keyof TrainingVideo, value: any) => {
+    const updated = { ...editVideo, [field]: value };
+    setEditVideo(updated);
+    onUpdate(updated);
+  };
+
+  const handleSave = () => {
+    onUpdate(editVideo);
+    onSave();
+  };
+
+  const handleCancel = () => {
+    setEditVideo(video);
+    onCancel();
+  };
+
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <Label>Video Title</Label>
-          <Input
-            value={video.title}
-            onChange={(e) => onUpdate({ ...video, title: e.target.value })}
-            placeholder="Video title"
-          />
-        </div>
-        <div>
-          <Label>Duration (seconds)</Label>
-          <Input
-            type="number"
-            value={video.duration || ''}
-            onChange={(e) => onUpdate({ ...video, duration: e.target.value ? parseInt(e.target.value) : undefined })}
-            placeholder="Optional duration"
-          />
-        </div>
-      </div>
-      
       <div>
-        <Label>Video URL</Label>
+        <Label>Video Title</Label>
         <Input
-          value={video.url}
-          onChange={(e) => onUpdate({ ...video, url: e.target.value })}
-          placeholder="YouTube, Loom, Vimeo, or Wistia link"
+          value={editVideo.title}
+          onChange={(e) => handleChange('title', e.target.value)}
+          placeholder="Video title"
         />
       </div>
-      
+
+      <div>
+        <Label>Video URL</Label>
+        <div className="space-y-2">
+          <Input
+            value={editVideo.url}
+            onChange={(e) => handleChange('url', e.target.value)}
+            placeholder="🔗 YouTube, Loom, Vimeo, or Wistia link"
+          />
+          {/* Duration Display */}
+          {(editVideo.duration || isDetectingDuration) && (
+            <div className="flex items-center gap-2">
+              {isDetectingDuration ? (
+                <Badge variant="secondary" className="text-xs">
+                  <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+                  Updating duration...
+                </Badge>
+              ) : editVideo.duration ? (
+                <Badge variant="outline" className="text-xs">
+                  <Clock className="h-3 w-3 mr-1" />
+                  {formatDuration(editVideo.duration)}
+                </Badge>
+              ) : null}
+            </div>
+          )}
+        </div>
+      </div>
+
       <div>
         <Label>Description</Label>
         <Textarea
-          value={video.description || ''}
-          onChange={(e) => onUpdate({ ...video, description: e.target.value })}
+          value={editVideo.description || ''}
+          onChange={(e) => handleChange('description', e.target.value)}
           placeholder="Optional description"
           rows={2}
         />
@@ -64,30 +117,31 @@ export function VideoEditForm({ video, onUpdate, onSave, onCancel }: VideoEditFo
         <TabsContent value="notes" className="space-y-2">
           <Label>Learning Notes</Label>
           <Textarea
-            value={video.notes || ''}
-            onChange={(e) => onUpdate({ ...video, notes: e.target.value })}
-            placeholder="Add learning notes, key points, or additional context for learners..."
-            rows={4}
+            value={editVideo.notes || ''}
+            onChange={(e) => handleChange('notes', e.target.value)}
+            placeholder="Add learning notes, key points, or additional context..."
+            rows={3}
           />
         </TabsContent>
         
         <TabsContent value="transcript" className="space-y-2">
           <Label>Video Transcript</Label>
           <Textarea
-            value={video.transcript || ''}
-            onChange={(e) => onUpdate({ ...video, transcript: e.target.value })}
+            value={editVideo.transcript || ''}
+            onChange={(e) => handleChange('transcript', e.target.value)}
             placeholder="Paste the full video transcript here..."
-            rows={6}
+            rows={4}
           />
         </TabsContent>
       </Tabs>
 
       <div className="flex gap-2">
-        <Button size="sm" onClick={onSave}>
+        <Button size="sm" onClick={handleSave}>
           <Check className="h-4 w-4 mr-1" />
-          Save
+          Save Changes
         </Button>
-        <Button size="sm" variant="outline" onClick={onCancel}>
+        <Button size="sm" variant="outline" onClick={handleCancel}>
+          <X className="h-4 w-4 mr-1" />
           Cancel
         </Button>
       </div>
