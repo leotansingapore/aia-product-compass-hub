@@ -27,7 +27,8 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
     notes: '',
     transcript: '',
     duration: undefined,
-    order: editVideos.length
+    order: editVideos.length,
+    category: ''
   });
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
@@ -76,7 +77,8 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
       notes: '',
       transcript: '',
       duration: undefined,
-      order: videos.length
+      order: videos.length,
+      category: ''
     });
     setEditingIndex(null);
     setIsEditing(false);
@@ -102,7 +104,8 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
           notes: '',
           transcript: '',
           duration: undefined,
-          order: editVideos.length + 1
+          order: editVideos.length + 1,
+          category: ''
         });
         toast({
           title: "Video Added",
@@ -154,26 +157,55 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
     return <VideoDisplay videos={videos} className={className} />;
   }
 
+  // Get existing categories from videos
+  const existingCategories = Array.from(new Set(
+    editVideos.map(video => video.category).filter(Boolean)
+  )).sort();
+
+  const handleCreateCategory = (categoryName: string) => {
+    // Category will be added when video is saved
+  };
+
+  // Group videos by category for display
+  const videosByCategory = editVideos.reduce((acc, video, index) => {
+    const category = video.category || 'Uncategorized';
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push({ video, index });
+    return acc;
+  }, {} as Record<string, Array<{ video: TrainingVideo; index: number }>>);
+
   // Admin editing mode
   if (isEditing) {
     return (
       <div className="space-y-6">
-        {editVideos.map((video, index) => (
-          <VideoListItem
-            key={index}
-            video={video}
-            index={index}
-            isEditing={editingIndex === index}
-            canMoveUp={index > 0}
-            canMoveDown={index < editVideos.length - 1}
-            onEdit={() => setEditingIndex(index)}
-            onUpdate={(updatedVideo) => updateVideo(index, updatedVideo)}
-            onSave={() => setEditingIndex(null)}
-            onCancel={() => setEditingIndex(null)}
-            onDelete={() => removeVideo(index)}
-            onMoveUp={() => moveVideo(index, 'up')}
-            onMoveDown={() => moveVideo(index, 'down')}
-          />
+        {Object.entries(videosByCategory).map(([category, videoItems]) => (
+          <div key={category} className="space-y-3">
+            <h4 className="font-medium text-sm text-muted-foreground border-b pb-1">
+              {category} ({videoItems.length} video{videoItems.length !== 1 ? 's' : ''})
+            </h4>
+            <div className="space-y-3 pl-4 border-l-2 border-muted">
+              {videoItems.map(({ video, index }) => (
+                <VideoListItem
+                  key={index}
+                  video={video}
+                  index={index}
+                  isEditing={editingIndex === index}
+                  canMoveUp={index > 0}
+                  canMoveDown={index < editVideos.length - 1}
+                  onEdit={() => setEditingIndex(index)}
+                  onUpdate={(updatedVideo) => updateVideo(index, updatedVideo)}
+                  onSave={() => setEditingIndex(null)}
+                  onCancel={() => setEditingIndex(null)}
+                  onDelete={() => removeVideo(index)}
+                  onMoveUp={() => moveVideo(index, 'up')}
+                  onMoveDown={() => moveVideo(index, 'down')}
+                  existingCategories={existingCategories}
+                />
+              ))}
+            </div>
+          </div>
         ))}
 
         <AddVideoForm
@@ -181,6 +213,8 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
           onUpdate={setNewVideo}
           onAdd={addVideo}
           disabled={!newVideo.title.trim() || !newVideo.url.trim()}
+          existingCategories={existingCategories}
+          onCreateCategory={handleCreateCategory}
         />
 
         <div className="flex gap-2">

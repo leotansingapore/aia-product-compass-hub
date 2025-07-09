@@ -16,6 +16,7 @@ export interface TrainingVideo {
   transcript?: string;
   duration?: number; // in seconds
   order: number;
+  category?: string; // folder/category name
 }
 
 export interface Product {

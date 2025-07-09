@@ -18,6 +18,7 @@ interface VideoListItemProps {
   onDelete: () => void;
   onMoveUp: () => void;
   onMoveDown: () => void;
+  existingCategories?: string[];
 }
 
 export function VideoListItem({
@@ -32,7 +33,8 @@ export function VideoListItem({
   onCancel,
   onDelete,
   onMoveUp,
-  onMoveDown
+  onMoveDown,
+  existingCategories = []
 }: VideoListItemProps) {
   if (isEditing) {
     return (
@@ -42,6 +44,7 @@ export function VideoListItem({
           onUpdate={onUpdate}
           onSave={onSave}
           onCancel={onCancel}
+          existingCategories={existingCategories}
         />
       </div>
     );

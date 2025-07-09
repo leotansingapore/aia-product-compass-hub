@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { Check, X, Clock, Loader2 } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Check, X, Clock, Loader2, FolderPlus } from 'lucide-react';
 import { fetchVideoDuration, formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
@@ -14,11 +15,14 @@ interface VideoEditFormProps {
   onUpdate: (updatedVideo: TrainingVideo) => void;
   onSave: () => void;
   onCancel: () => void;
+  existingCategories?: string[];
 }
 
-export function VideoEditForm({ video, onUpdate, onSave, onCancel }: VideoEditFormProps) {
+export function VideoEditForm({ video, onUpdate, onSave, onCancel, existingCategories = [] }: VideoEditFormProps) {
   const [editVideo, setEditVideo] = useState<TrainingVideo>(video);
   const [isDetectingDuration, setIsDetectingDuration] = useState(false);
+  const [newCategoryName, setNewCategoryName] = useState('');
+  const [showNewCategoryInput, setShowNewCategoryInput] = useState(false);
 
   // Auto-detect duration when URL changes
   useEffect(() => {
@@ -93,6 +97,80 @@ export function VideoEditForm({ video, onUpdate, onSave, onCancel }: VideoEditFo
                   {formatDuration(editVideo.duration)}
                 </Badge>
               ) : null}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div>
+        <Label>Category</Label>
+        <div className="space-y-2">
+          <Select
+            value={editVideo.category || ''}
+            onValueChange={(value) => {
+              if (value === 'create-new') {
+                setShowNewCategoryInput(true);
+              } else {
+                handleChange('category', value);
+              }
+            }}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select or create category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="">No Category</SelectItem>
+              {existingCategories.map((category) => (
+                <SelectItem key={category} value={category}>
+                  {category}
+                </SelectItem>
+              ))}
+              <SelectItem value="create-new">
+                <div className="flex items-center gap-2">
+                  <FolderPlus className="h-4 w-4" />
+                  Create New Category
+                </div>
+              </SelectItem>
+            </SelectContent>
+          </Select>
+          
+          {showNewCategoryInput && (
+            <div className="flex gap-2">
+              <Input
+                value={newCategoryName}
+                onChange={(e) => setNewCategoryName(e.target.value)}
+                placeholder="Enter category name"
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter' && newCategoryName.trim()) {
+                    handleChange('category', newCategoryName.trim());
+                    setNewCategoryName('');
+                    setShowNewCategoryInput(false);
+                  }
+                }}
+              />
+              <Button
+                size="sm"
+                onClick={() => {
+                  if (newCategoryName.trim()) {
+                    handleChange('category', newCategoryName.trim());
+                    setNewCategoryName('');
+                    setShowNewCategoryInput(false);
+                  }
+                }}
+                disabled={!newCategoryName.trim()}
+              >
+                Create
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => {
+                  setNewCategoryName('');
+                  setShowNewCategoryInput(false);
+                }}
+              >
+                Cancel
+              </Button>
             </div>
           )}
         </div>

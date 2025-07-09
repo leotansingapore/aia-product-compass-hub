@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Clock, Loader2 } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Plus, Clock, Loader2, FolderPlus } from 'lucide-react';
 import { fetchVideoDuration, formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
@@ -14,10 +15,14 @@ interface AddVideoFormProps {
   onUpdate: (updatedVideo: TrainingVideo) => void;
   onAdd: () => void;
   disabled: boolean;
+  existingCategories: string[];
+  onCreateCategory: (categoryName: string) => void;
 }
 
-export function AddVideoForm({ newVideo, onUpdate, onAdd, disabled }: AddVideoFormProps) {
+export function AddVideoForm({ newVideo, onUpdate, onAdd, disabled, existingCategories, onCreateCategory }: AddVideoFormProps) {
   const [isDetectingDuration, setIsDetectingDuration] = useState(false);
+  const [newCategoryName, setNewCategoryName] = useState('');
+  const [showNewCategoryInput, setShowNewCategoryInput] = useState(false);
 
   // Auto-detect duration when URL changes
   useEffect(() => {
@@ -77,6 +82,82 @@ export function AddVideoForm({ newVideo, onUpdate, onAdd, disabled }: AddVideoFo
                   {formatDuration(newVideo.duration)}
                 </Badge>
               ) : null}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div>
+        <Label>Category</Label>
+        <div className="space-y-2">
+          <Select
+            value={newVideo.category || ''}
+            onValueChange={(value) => {
+              if (value === 'create-new') {
+                setShowNewCategoryInput(true);
+              } else {
+                onUpdate({ ...newVideo, category: value });
+              }
+            }}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select or create category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="">No Category</SelectItem>
+              {existingCategories.map((category) => (
+                <SelectItem key={category} value={category}>
+                  {category}
+                </SelectItem>
+              ))}
+              <SelectItem value="create-new">
+                <div className="flex items-center gap-2">
+                  <FolderPlus className="h-4 w-4" />
+                  Create New Category
+                </div>
+              </SelectItem>
+            </SelectContent>
+          </Select>
+          
+          {showNewCategoryInput && (
+            <div className="flex gap-2">
+              <Input
+                value={newCategoryName}
+                onChange={(e) => setNewCategoryName(e.target.value)}
+                placeholder="Enter category name"
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter' && newCategoryName.trim()) {
+                    onCreateCategory(newCategoryName.trim());
+                    onUpdate({ ...newVideo, category: newCategoryName.trim() });
+                    setNewCategoryName('');
+                    setShowNewCategoryInput(false);
+                  }
+                }}
+              />
+              <Button
+                size="sm"
+                onClick={() => {
+                  if (newCategoryName.trim()) {
+                    onCreateCategory(newCategoryName.trim());
+                    onUpdate({ ...newVideo, category: newCategoryName.trim() });
+                    setNewCategoryName('');
+                    setShowNewCategoryInput(false);
+                  }
+                }}
+                disabled={!newCategoryName.trim()}
+              >
+                Create
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => {
+                  setNewCategoryName('');
+                  setShowNewCategoryInput(false);
+                }}
+              >
+                Cancel
+              </Button>
             </div>
           )}
         </div>

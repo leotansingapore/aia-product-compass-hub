@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { EditableVideos } from "@/components/EditableVideos";
 import { VideoLearningInterface } from "@/components/video-learning/VideoLearningInterface";
+import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { useAdmin } from "@/hooks/useAdmin";
 import { formatDuration } from "@/components/video-editing/videoUtils";
@@ -97,60 +98,14 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
               Start Learning Course
             </Button>
             
-            <div className="grid gap-3">
-              {processedVideos.slice(0, 3).map((video, index) => {
-                const progress = getVideoProgress(video.id);
-                return (
-                  <div 
-                    key={video.id}
-                    className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
-                    onClick={() => {
-                      setSelectedVideoIndex(index);
-                      setShowLearningInterface(true);
-                    }}
-                  >
-                    <div className="flex-shrink-0">
-                      {progress?.completed ? (
-                        <Check className="h-5 w-5 text-green-600" />
-                      ) : (
-                        <Play className="h-5 w-5 text-primary" />
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-medium truncate">{video.title}</h4>
-                        {video.duration && (
-                          <Badge variant="outline" className="text-xs">
-                            <Clock className="h-3 w-3 mr-1" />
-                            {formatDuration(video.duration)}
-                          </Badge>
-                        )}
-                      </div>
-                      {video.description && (
-                        <p className="text-sm text-muted-foreground truncate">
-                          {video.description}
-                        </p>
-                      )}
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      {index + 1}/{processedVideos.length}
-                    </div>
-                  </div>
-                );
-              })}
-              
-              {processedVideos.length > 3 && (
-                <div className="text-center">
-                  <Button 
-                    variant="ghost" 
-                    onClick={() => setShowLearningInterface(true)}
-                    className="text-sm"
-                  >
-                    View all {processedVideos.length} videos
-                  </Button>
-                </div>
-              )}
-            </div>
+            <VideosByCategory
+              videos={processedVideos}
+              onVideoSelect={(index) => {
+                setSelectedVideoIndex(index);
+                setShowLearningInterface(true);
+              }}
+              getVideoProgress={getVideoProgress}
+            />
           </div>
         ) : (
           <EditableVideos
