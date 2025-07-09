@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { VideoEditingLayout } from './VideoEditingLayout';
 import { VideoEditingActions } from './VideoEditingActions';
 import { useFolderManagement } from '@/hooks/useFolderManagement';
@@ -39,10 +40,15 @@ export function VideoEditingInterface({
 }: VideoEditingInterfaceProps) {
   console.log('🎬 VideoEditingInterface: Rendering editing interface');
 
+  // Use empty arrays as default since this interface manages its own state
+  const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
+  
   const folderManagement = useFolderManagement({
     editVideos,
     onUpdateVideo,
-    onCreateCategory
+    onCreateCategory,
+    emptyFolders,
+    setEmptyFolders
   });
 
   const videoActions = useVideoActions({
@@ -57,7 +63,7 @@ export function VideoEditingInterface({
         editingIndex={editingIndex}
         newVideo={newVideo}
         existingCategories={existingCategories}
-        emptyFolders={folderManagement.emptyFolders}
+        emptyFolders={emptyFolders}
         expandedFolders={folderManagement.expandedFolders}
         folderDialogOpen={folderManagement.folderDialogOpen}
         folderDialogMode={folderManagement.folderDialogMode}

@@ -24,6 +24,7 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
   });
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
+  const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
   const { toast } = useToast();
 
   const resetNewVideo = () => {
@@ -138,6 +139,16 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
     setEditVideos(reordered);
   };
 
+  const addEmptyFolder = (folderName: string) => {
+    if (!emptyFolders.includes(folderName)) {
+      setEmptyFolders(prev => [...prev, folderName]);
+    }
+  };
+
+  const removeEmptyFolder = (folderName: string) => {
+    setEmptyFolders(prev => prev.filter(f => f !== folderName));
+  };
+
   return {
     // State
     isEditing,
@@ -145,6 +156,7 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
     newVideo,
     editingIndex,
     saving,
+    emptyFolders,
     
     // Actions
     setIsEditing,
@@ -155,6 +167,8 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
     addVideo,
     updateVideo,
     removeVideo,
-    moveVideo
+    moveVideo,
+    addEmptyFolder,
+    removeEmptyFolder
   };
 }

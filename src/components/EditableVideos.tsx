@@ -3,6 +3,8 @@ import { useVideoManagement } from '@/hooks/useVideoManagement';
 import { VideoDisplay } from './video-editing/VideoDisplay';
 import { VideoEditingInterface } from './video-editing/VideoEditingInterface';
 import { AdminVideoPreview } from './video-editing/AdminVideoPreview';
+import { useFolderManagement } from '@/hooks/useFolderManagement';
+import { useVideoActions } from '@/hooks/useVideoActions';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface EditableVideosProps {
@@ -35,34 +37,57 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
 
   console.log('🎬 EditableVideos: Admin mode detected, rendering admin interface');
 
-  // Get existing categories from videos
-  const existingCategories = Array.from(new Set(
+  // Get existing categories from videos and empty folders
+  const videoCategoriesSet = new Set(
     videoManagement.editVideos.map(video => video.category).filter(Boolean)
-  )).sort();
+  );
+  const existingCategories = Array.from(new Set([
+    ...videoCategoriesSet,
+    ...videoManagement.emptyFolders
+  ])).sort();
 
   const handleCreateCategory = (categoryName: string) => {
-    // Category will be added when video is saved
+    // Add to empty folders immediately so it appears in the UI
+    videoManagement.addEmptyFolder(categoryName);
+    console.log('🗂️ Created new category:', categoryName);
   };
+
+  const folderManagement = useFolderManagement({
+    editVideos: videoManagement.editVideos,
+    onUpdateVideo: videoManagement.updateVideo,
+    onCreateCategory: handleCreateCategory,
+    emptyFolders: videoManagement.emptyFolders,
+    setEmptyFolders: (folders: string[]) => {
+      // This will be handled through the individual add/remove methods
+    }
+  });
+
+  const videoActions = useVideoActions({
+    newVideo: videoManagement.newVideo,
+    onNewVideoChange: videoManagement.setNewVideo
+  });
 
   // Admin editing mode
   if (videoManagement.isEditing) {
     return (
-      <VideoEditingInterface
-        editVideos={videoManagement.editVideos}
-        editingIndex={videoManagement.editingIndex}
-        newVideo={videoManagement.newVideo}
-        saving={videoManagement.saving}
-        existingCategories={existingCategories}
-        onEditingIndexChange={videoManagement.setEditingIndex}
-        onUpdateVideo={videoManagement.updateVideo}
-        onRemoveVideo={videoManagement.removeVideo}
-        onMoveVideo={videoManagement.moveVideo}
-        onNewVideoChange={videoManagement.setNewVideo}
-        onAddVideo={videoManagement.addVideo}
-        onSave={videoManagement.handleSave}
-        onCancel={videoManagement.handleCancel}
-        onCreateCategory={handleCreateCategory}
-      />
+      <>
+        <VideoEditingInterface
+          editVideos={videoManagement.editVideos}
+          editingIndex={videoManagement.editingIndex}
+          newVideo={videoManagement.newVideo}
+          saving={videoManagement.saving}
+          existingCategories={existingCategories}
+          onEditingIndexChange={videoManagement.setEditingIndex}
+          onUpdateVideo={videoManagement.updateVideo}
+          onRemoveVideo={videoManagement.removeVideo}
+          onMoveVideo={videoManagement.moveVideo}
+          onNewVideoChange={videoManagement.setNewVideo}
+          onAddVideo={videoManagement.addVideo}
+          onSave={videoManagement.handleSave}
+          onCancel={videoManagement.handleCancel}
+          onCreateCategory={handleCreateCategory}
+        />
+      </>
     );
   }
 

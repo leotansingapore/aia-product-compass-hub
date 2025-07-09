@@ -6,17 +6,20 @@ interface UseFolderManagementProps {
   editVideos: TrainingVideo[];
   onUpdateVideo: (index: number, updatedVideo: TrainingVideo) => void;
   onCreateCategory: (categoryName: string) => void;
+  emptyFolders: string[];
+  setEmptyFolders: (folders: string[]) => void;
 }
 
 export function useFolderManagement({ 
   editVideos, 
   onUpdateVideo, 
-  onCreateCategory 
+  onCreateCategory,
+  emptyFolders,
+  setEmptyFolders
 }: UseFolderManagementProps) {
   const [folderDialogOpen, setFolderDialogOpen] = useState(false);
   const [folderDialogMode, setFolderDialogMode] = useState<'create' | 'edit'>('create');
   const [editingFolderName, setEditingFolderName] = useState('');
-  const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set());
   const { toast } = useToast();
 
@@ -48,7 +51,7 @@ export function useFolderManagement({
     });
 
     // Remove from empty folders list
-    setEmptyFolders(prev => prev.filter(folder => folder !== folderName));
+    setEmptyFolders(emptyFolders.filter(folder => folder !== folderName));
     // Remove from expanded folders
     setExpandedFolders(prev => {
       const newExpanded = new Set(prev);
@@ -75,7 +78,7 @@ export function useFolderManagement({
   const handleFolderSave = (folderName: string) => {
     if (folderDialogMode === 'create') {
       // Add to empty folders list immediately
-      setEmptyFolders(prev => [...prev, folderName]);
+      setEmptyFolders([...emptyFolders, folderName]);
       // Auto-expand the new folder
       setExpandedFolders(prev => new Set([...prev, folderName]));
       onCreateCategory(folderName);
@@ -98,8 +101,8 @@ export function useFolderManagement({
       });
 
       // Update empty folders list if this was an empty folder
-      setEmptyFolders(prev => 
-        prev.map(folder => folder === editingFolderName ? folderName : folder)
+      setEmptyFolders(
+        emptyFolders.map(folder => folder === editingFolderName ? folderName : folder)
       );
 
       toast({
