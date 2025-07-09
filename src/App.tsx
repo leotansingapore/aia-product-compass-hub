@@ -11,6 +11,7 @@ import ProductDetail from "./pages/ProductDetail";
 import HowToUsePortal from "./pages/HowToUsePortal";
 import SearchByProfile from "./pages/SearchByProfile";
 import SalesTools from "./pages/SalesTools";
+import Bookmarks from "./pages/Bookmarks";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/how-to-use" element={<HowToUsePortal />} />
             <Route path="/search-by-profile" element={<SearchByProfile />} />
             <Route path="/sales-tools" element={<SalesTools />} />
+            <Route path="/bookmarks" element={<Bookmarks />} />
             <Route path="/category/:categoryId" element={<ProductCategory />} />
             <Route path="/product/:productId" element={<ProductDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

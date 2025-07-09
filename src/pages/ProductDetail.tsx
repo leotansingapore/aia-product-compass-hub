@@ -12,6 +12,8 @@ import { ProductHighlights } from "@/components/product-detail/ProductHighlights
 import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLinks";
 import { ProductAIAssistant } from "@/components/product-detail/ProductAIAssistant";
 import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
+import { BookmarkButton } from "@/components/BookmarkButton";
+import { PersonalNotes } from "@/components/PersonalNotes";
 
 export default function ProductDetail() {
   const { productId } = useParams<{ productId: string }>();
@@ -82,12 +84,15 @@ export default function ProductDetail() {
       
       <div className="max-w-4xl mx-auto px-6 py-8 space-y-8 animate-fade-in">
         
-        {/* Tags */}
-        <div className="space-y-2">
-          <EditableTags
-            tags={product.tags || []}
-            onSave={(newTags) => handleUpdate('tags', newTags)}
-          />
+        {/* Tags and Bookmark Button */}
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1">
+            <EditableTags
+              tags={product.tags || []}
+              onSave={(newTags) => handleUpdate('tags', newTags)}
+            />
+          </div>
+          <BookmarkButton productId={product.id} />
         </div>
 
         {/* Summary */}
@@ -120,6 +125,9 @@ export default function ProductDetail() {
           productId={product.id}
           onUpdate={handleUpdate}
         />
+
+        {/* Personal Notes */}
+        <PersonalNotes productId={product.id} />
 
       </div>
     </div>

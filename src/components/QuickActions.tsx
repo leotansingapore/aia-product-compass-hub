@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, Search, Wrench, ArrowRight, Clock, TrendingUp } from "lucide-react";
+import { BookOpen, Search, Wrench, ArrowRight, Clock, TrendingUp, Bookmark } from "lucide-react";
 
 interface QuickAction {
   title: string;
@@ -41,6 +41,14 @@ const quickActions: QuickAction[] = [
     icon: Wrench,
     badge: 'Popular',
     priority: 3
+  },
+  {
+    title: 'My Bookmarks',
+    description: 'View your saved products and important resources',
+    action: 'View Bookmarks',
+    route: '/bookmarks',
+    icon: Bookmark,
+    priority: 4
   }
 ];
 
