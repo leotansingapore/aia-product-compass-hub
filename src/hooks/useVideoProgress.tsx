@@ -24,15 +24,17 @@ export function useVideoProgress(productId: string) {
 
   // Fetch user's video progress for this product
   useEffect(() => {
-    if (!user || !productId) return;
+    const isDevelopment = import.meta.env.DEV;
+    if ((!user && !isDevelopment) || !productId) return;
 
     async function fetchVideoProgress() {
       try {
+        const userId = user?.id || '00000000-0000-0000-0000-000000000000';
         const { data, error } = await supabase
           .from('video_progress')
           .select('*')
           .eq('product_id', productId)
-          .eq('user_id', user.id);
+          .eq('user_id', userId);
 
         if (error) throw error;
         setVideoProgress(data || []);
@@ -51,13 +53,15 @@ export function useVideoProgress(productId: string) {
     videoId: string,
     updates: Partial<Pick<VideoProgress, 'completed' | 'watch_time_seconds' | 'completion_percentage'>>
   ) => {
-    if (!user) return;
+    // Allow anonymous users in development mode
+    const isDevelopment = import.meta.env.DEV;
+    if (!user && !isDevelopment) return;
 
     try {
       const existingProgress = videoProgress.find(p => p.video_id === videoId);
       
       const progressData = {
-        user_id: user.id,
+        user_id: user?.id || '00000000-0000-0000-0000-000000000000', // Use dummy ID for development
         product_id: productId,
         video_id: videoId,
         ...updates,
@@ -88,8 +92,8 @@ export function useVideoProgress(productId: string) {
         setVideoProgress(prev => [...prev, data]);
       }
 
-      // Award XP for completion
-      if (updates.completed) {
+      // Award XP for completion (only if user is authenticated)
+      if (updates.completed && user) {
         await supabase.from('learning_progress').insert({
           user_id: user.id,
           category_id: productId,
@@ -101,6 +105,11 @@ export function useVideoProgress(productId: string) {
         toast({
           title: "Video Completed! 🎉",
           description: "+10 XP earned",
+        });
+      } else if (updates.completed) {
+        toast({
+          title: "Video Completed! 🎉",
+          description: "Great job on finishing this video!",
         });
       }
     } catch (error) {

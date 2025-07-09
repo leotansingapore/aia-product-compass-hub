@@ -123,6 +123,46 @@ export function useProducts(categoryId?: string) {
   return { products, loading, error };
 }
 
+export function useAllProducts() {
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchAllProducts() {
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select(`
+            *,
+            categories:category_id (
+              id,
+              name
+            )
+          `)
+          .order('title');
+
+        if (error) throw error;
+        // Transform the data to ensure useful_links is properly typed
+        const transformedData = (data || []).map(product => ({
+          ...product,
+          useful_links: Array.isArray(product.useful_links) ? product.useful_links as unknown as UsefulLink[] : [],
+          training_videos: Array.isArray(product.training_videos) ? product.training_videos as unknown as TrainingVideo[] : []
+        }));
+        setAllProducts(transformedData);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch products');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchAllProducts();
+  }, []);
+
+  return { allProducts, loading, error };
+}
+
 export function useProductById(productId: string) {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);

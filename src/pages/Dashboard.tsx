@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { SearchBar } from "@/components/SearchBar";
 import { CategoryCard } from "@/components/CategoryCard";
+import { ContinueLearningCard } from "@/components/ContinueLearningCard";
 import { UserStats } from "@/components/UserStats";
 import { useAuth } from "@/hooks/useAuth";
-import { useCategories, getCategoryIdFromName } from "@/hooks/useProducts";
+import { useCategories, getCategoryIdFromName, useAllProducts } from "@/hooks/useProducts";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -71,7 +72,13 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { categories, loading: categoriesLoading } = useCategories();
+  const { allProducts } = useAllProducts();
   const [searchQuery, setSearchQuery] = useState("");
+
+  // Get products with training videos for "Continue Learning" section
+  const productsWithVideos = allProducts.filter(product => 
+    product.training_videos && Array.isArray(product.training_videos) && product.training_videos.length > 0
+  ).slice(0, 3);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -122,6 +129,22 @@ export default function Dashboard() {
           <h2 className="text-2xl font-bold mb-4">Find What You Need</h2>
           <SearchBar onSearch={handleSearch} />
         </div>
+
+        {/* Continue Learning Section */}
+        {productsWithVideos.length > 0 && (
+          <div className="mb-12">
+            <h3 className="text-xl font-semibold mb-6">Continue Learning</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              {productsWithVideos.map((product) => (
+                <ContinueLearningCard 
+                  key={product.id} 
+                  product={product} 
+                  onNavigate={() => navigate(`/product/${product.id}`)}
+                />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Quick Actions */}
         <div className="mb-12">
