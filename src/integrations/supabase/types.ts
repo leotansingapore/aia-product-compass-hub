@@ -53,6 +53,131 @@ export type Database = {
         }
         Relationships: []
       }
+      booking_audit_log: {
+        Row: {
+          action: string
+          booking_id: string | null
+          client_ip: unknown | null
+          created_at: string
+          id: string
+          new_values: Json | null
+          old_values: Json | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          booking_id?: string | null
+          client_ip?: unknown | null
+          created_at?: string
+          id?: string
+          new_values?: Json | null
+          old_values?: Json | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          booking_id?: string | null
+          client_ip?: unknown | null
+          created_at?: string
+          id?: string
+          new_values?: Json | null
+          old_values?: Json | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_audit_log_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bookings: {
+        Row: {
+          amount_cents: number | null
+          bathrooms: string | null
+          bedrooms: string | null
+          booking_source: string | null
+          cleaning_date: string
+          client_ip: unknown | null
+          completed_at: string | null
+          created_at: string
+          currency: string | null
+          duration: string
+          frequency: string
+          has_pet: boolean | null
+          help_needed: boolean | null
+          id: string
+          language: string
+          need_decluttering: boolean | null
+          need_ironing: boolean | null
+          payment_status: string | null
+          selected_plan: string
+          start_time: string
+          stripe_payment_intent_id: string | null
+          updated_at: string
+          user_agent: string | null
+          user_id: string
+        }
+        Insert: {
+          amount_cents?: number | null
+          bathrooms?: string | null
+          bedrooms?: string | null
+          booking_source?: string | null
+          cleaning_date: string
+          client_ip?: unknown | null
+          completed_at?: string | null
+          created_at?: string
+          currency?: string | null
+          duration: string
+          frequency: string
+          has_pet?: boolean | null
+          help_needed?: boolean | null
+          id?: string
+          language?: string
+          need_decluttering?: boolean | null
+          need_ironing?: boolean | null
+          payment_status?: string | null
+          selected_plan: string
+          start_time: string
+          stripe_payment_intent_id?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          user_id: string
+        }
+        Update: {
+          amount_cents?: number | null
+          bathrooms?: string | null
+          bedrooms?: string | null
+          booking_source?: string | null
+          cleaning_date?: string
+          client_ip?: unknown | null
+          completed_at?: string | null
+          created_at?: string
+          currency?: string | null
+          duration?: string
+          frequency?: string
+          has_pet?: boolean | null
+          help_needed?: boolean | null
+          id?: string
+          language?: string
+          need_decluttering?: boolean | null
+          need_ironing?: boolean | null
+          payment_status?: string | null
+          selected_plan?: string
+          start_time?: string
+          stripe_payment_intent_id?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       categories: {
         Row: {
           created_at: string

@@ -170,7 +170,7 @@ const Auth = () => {
         return;
       }
 
-      // If sign in failed due to unconfirmed email, try creating account
+      // Handle sign in errors
       if (signInError) {
         if (signInError.message.includes('Invalid login credentials')) {
           // Account doesn't exist, create it
@@ -190,8 +190,8 @@ const Auth = () => {
           // If account was created but needs confirmation
           if (signUpData.user && !signUpData.session) {
             toast({
-              title: "Demo Account Created", 
-              description: "Account needs email confirmation. Please ask admin to disable email confirmation in Supabase Auth settings for easier testing.",
+              title: "Demo Account Setup Required",
+              description: "Demo account created but requires email confirmation. To use demo mode immediately, please disable email confirmations in your Supabase Auth settings.",
               variant: "default",
             });
             return;
@@ -213,15 +213,15 @@ const Auth = () => {
             }
 
             toast({
-              title: "Demo Account Created!",
-              description: "You can now use the admin features",
+              title: "Demo Account Ready!",
+              description: "You can now use all admin features",
             });
             window.location.href = '/';
           }
-        } else if (signInError.message.includes('Email not confirmed')) {
+        } else if (signInError.message.includes('Email not confirmed') || signInError.message.includes('email_not_confirmed')) {
           toast({
-            title: "Email Confirmation Required",
-            description: "Demo account exists but needs email confirmation. Please ask admin to disable email confirmation in Supabase Auth settings.",
+            title: "Demo Account Needs Setup",
+            description: "Your demo account exists but requires email confirmation. To enable instant demo access, please disable 'Confirm email' in your Supabase Auth settings.",
             variant: "default",
           });
         } else {
@@ -229,9 +229,10 @@ const Auth = () => {
         }
       }
     } catch (error: any) {
+      console.error('Demo login error:', error);
       toast({
         title: "Demo Login Failed",
-        description: error.message || "An error occurred",
+        description: error.message || "An error occurred during demo login",
         variant: "destructive",
       });
     } finally {
