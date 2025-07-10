@@ -18,21 +18,11 @@ export function AppLayout({ children }: AppLayoutProps) {
           {/* Top Bar with Sidebar Toggle */}
           <header className="flex h-12 items-center gap-2 border-b bg-background px-4">
             <SidebarTrigger asChild>
-              <Button variant="ghost" size="sm" className="md:hidden">
+              <Button variant="ghost" size="sm">
                 <Menu className="h-4 w-4" />
                 <span className="sr-only">Toggle Sidebar</span>
               </Button>
             </SidebarTrigger>
-            
-            {/* Desktop Sidebar Toggle */}
-            <div className="hidden md:block">
-              <SidebarTrigger asChild>
-                <Button variant="ghost" size="sm">
-                  <Menu className="h-4 w-4" />
-                  <span className="sr-only">Toggle Sidebar</span>
-                </Button>
-              </SidebarTrigger>
-            </div>
           </header>
 
           {/* Main Content */}

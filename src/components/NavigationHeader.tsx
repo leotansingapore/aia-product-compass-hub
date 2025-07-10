@@ -37,22 +37,22 @@ export function NavigationHeader({ title, subtitle, showBackButton, onBack, brea
           <div className="mb-4">
             <Breadcrumb>
               <BreadcrumbList>
-                {breadcrumbs.map((item, index) => (
-                  <div key={index} className="flex items-center">
-                    <BreadcrumbItem>
-                      {item.href ? (
-                        <BreadcrumbLink asChild>
-                          <Link to={item.href} className="text-white/70 hover:text-white">
-                            {item.label}
-                          </Link>
-                        </BreadcrumbLink>
-                      ) : (
-                        <BreadcrumbPage className="text-white">{item.label}</BreadcrumbPage>
-                      )}
-                    </BreadcrumbItem>
-                    {index < breadcrumbs.length - 1 && <BreadcrumbSeparator className="text-white/50" />}
-                  </div>
-                ))}
+                {breadcrumbs.map((item, index) => [
+                  <BreadcrumbItem key={`item-${index}`}>
+                    {item.href ? (
+                      <BreadcrumbLink asChild>
+                        <Link to={item.href} className="text-white/70 hover:text-white">
+                          {item.label}
+                        </Link>
+                      </BreadcrumbLink>
+                    ) : (
+                      <BreadcrumbPage className="text-white">{item.label}</BreadcrumbPage>
+                    )}
+                  </BreadcrumbItem>,
+                  index < breadcrumbs.length - 1 && (
+                    <BreadcrumbSeparator key={`sep-${index}`} className="text-white/50" />
+                  )
+                ]).flat().filter(Boolean)}
               </BreadcrumbList>
             </Breadcrumb>
           </div>
