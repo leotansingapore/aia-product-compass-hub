@@ -12,7 +12,6 @@ import { ProductCategoriesSection } from "@/components/dashboard/ProductCategori
 import { RecentUpdatesSection } from "@/components/dashboard/RecentUpdatesSection";
 import { LearningAnalyticsDashboard } from "@/components/dashboard/LearningAnalyticsDashboard";
 import { RecommendationsSection } from "@/components/recommendations/RecommendationsSection";
-import { OfflineLearningPanel } from "@/components/offline/OfflineLearningPanel";
 import { useAuth } from "@/hooks/useAuth";
 import { useCategories, getCategoryIdFromName, useAllProducts } from "@/hooks/useProducts";
 
@@ -78,13 +77,6 @@ export default function Dashboard() {
           <RecommendationsSection limit={6} />
         </div>
 
-        {/* Offline Learning Panel */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-6">
-            <h2 className="text-2xl font-bold">Offline Learning</h2>
-          </div>
-          <OfflineLearningPanel />
-        </div>
 
         {/* Recently Viewed Section */}
         <RecentlyViewedSection />
