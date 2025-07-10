@@ -357,39 +357,57 @@ export type Database = {
       }
       profiles: {
         Row: {
+          address_line_1: string | null
+          address_line_2: string | null
           avatar_url: string | null
+          city: string | null
           created_at: string
           current_level: number | null
           display_name: string | null
           email: string | null
+          first_name: string | null
           id: string
           last_active_date: string | null
+          last_name: string | null
+          postcode: string | null
           streak_days: number | null
           total_xp: number | null
           updated_at: string
           user_id: string
         }
         Insert: {
+          address_line_1?: string | null
+          address_line_2?: string | null
           avatar_url?: string | null
+          city?: string | null
           created_at?: string
           current_level?: number | null
           display_name?: string | null
           email?: string | null
+          first_name?: string | null
           id?: string
           last_active_date?: string | null
+          last_name?: string | null
+          postcode?: string | null
           streak_days?: number | null
           total_xp?: number | null
           updated_at?: string
           user_id: string
         }
         Update: {
+          address_line_1?: string | null
+          address_line_2?: string | null
           avatar_url?: string | null
+          city?: string | null
           created_at?: string
           current_level?: number | null
           display_name?: string | null
           email?: string | null
+          first_name?: string | null
           id?: string
           last_active_date?: string | null
+          last_name?: string | null
+          postcode?: string | null
           streak_days?: number | null
           total_xp?: number | null
           updated_at?: string
