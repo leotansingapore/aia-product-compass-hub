@@ -17,12 +17,7 @@ export function AppLayout({ children }: AppLayoutProps) {
         <SidebarInset className="flex-1">
           {/* Top Bar with Sidebar Toggle */}
           <header className="flex h-12 items-center gap-2 border-b bg-background px-4">
-            <SidebarTrigger asChild>
-              <Button variant="ghost" size="sm">
-                <Menu className="h-4 w-4" />
-                <span className="sr-only">Toggle Sidebar</span>
-              </Button>
-            </SidebarTrigger>
+            <SidebarTrigger />
           </header>
 
           {/* Main Content */}
