@@ -56,10 +56,10 @@ export default function ProductCategory() {
 
   // Track category view
   useEffect(() => {
-    if (categoryId) {
+    if (categoryId && category) {
       addToRecent(categoryId, 'category');
     }
-  }, [categoryId, addToRecent]);
+  }, [categoryId, category?.id, addToRecent]);
 
   // Get all unique tags from products
   const allTags = Array.from(new Set(products.flatMap(product => product.tags || [])));
@@ -91,12 +91,25 @@ export default function ProductCategory() {
     navigate(`/product/${productId}`);
   };
 
-  if (!category) {
-    return <div>Category not found</div>;
-  }
-
   if (loading) {
     return <SkeletonLoader type="category" />;
+  }
+
+  if (!category) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-2">Category not found</h1>
+          <p className="text-muted-foreground mb-4">The category you're looking for doesn't exist.</p>
+          <button 
+            onClick={() => navigate('/')}
+            className="text-primary hover:underline"
+          >
+            Go back to home
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
