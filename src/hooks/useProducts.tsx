@@ -89,16 +89,8 @@ export function useProducts(categoryId?: string) {
           .order('title');
 
         if (categoryId) {
-          // We need to find the category by name to get its UUID
-          const { data: category } = await supabase
-            .from('categories')
-            .select('id')
-            .eq('name', getCategoryNameFromId(categoryId))
-            .single();
-
-          if (category) {
-            query = query.eq('category_id', category.id);
-          }
+          // Use the categoryId directly as it's now a UUID
+          query = query.eq('category_id', categoryId);
         }
 
         const { data, error } = await query;

@@ -4,7 +4,7 @@ import { NavigationHeader } from "@/components/NavigationHeader";
 import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { ProductCard } from "@/components/ProductCard";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
-import { useProducts, getCategoryIdFromName } from "@/hooks/useProducts";
+import { useProducts, useCategories } from "@/hooks/useProducts";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -45,12 +45,14 @@ function getCategoryInfo(categoryId: string) {
 export default function ProductCategory() {
   const { categoryId } = useParams<{ categoryId: string }>();
   const navigate = useNavigate();
+  const { categories } = useCategories();
   const { products, loading } = useProducts(categoryId);
   const { addToRecent } = useRecentlyViewed();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const category = getCategoryInfo(categoryId || '');
+  // Find the category by ID from the database
+  const category = categories.find(cat => cat.id === categoryId);
 
   // Track category view
   useEffect(() => {
@@ -100,13 +102,13 @@ export default function ProductCategory() {
   return (
     <div className="min-h-screen bg-background">
       <NavigationHeader 
-        title={category.title}
-        subtitle={category.description}
+        title={category.name}
+        subtitle={category.description || ''}
         showBackButton
         onBack={() => window.history.back()}
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: category.title }
+          { label: category.name }
         ]}
       />
       
@@ -116,7 +118,7 @@ export default function ProductCategory() {
           <div className="mb-6">
             <EnhancedSearchBar 
               onSearch={handleSearch} 
-              placeholder={`Search ${category.title.toLowerCase()}...`}
+              placeholder={`Search ${category.name.toLowerCase()}...`}
             />
           </div>
           
@@ -153,7 +155,7 @@ export default function ProductCategory() {
               <ProductCard
                 title={product.title}
                 description={product.description || ''}
-                category={category.title}
+                category={category.name}
                 tags={product.tags || []}
                 highlights={product.highlights || []}
                 onClick={() => handleProductClick(product.id)}
