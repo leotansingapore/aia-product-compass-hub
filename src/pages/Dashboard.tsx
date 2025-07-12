@@ -5,7 +5,6 @@ import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { UserStats } from "@/components/UserStats";
 import { QuickActions } from "@/components/QuickActions";
 import { AuthPrompt } from "@/components/dashboard/AuthPrompt";
-import { GettingStartedChecklist } from "@/components/onboarding/GettingStartedChecklist";
 
 import { RecentlyViewedSection } from "@/components/dashboard/RecentlyViewedSection";
 import { RecommendationsSection } from "@/components/recommendations/RecommendationsSection";
@@ -49,8 +48,6 @@ export default function Dashboard() {
           <QuickActions />
         </div>
 
-        {/* Onboarding - Only show if logged in */}
-        {user && <GettingStartedChecklist />}
 
         {/* Product Categories */}
         <div data-onboarding="categories">
