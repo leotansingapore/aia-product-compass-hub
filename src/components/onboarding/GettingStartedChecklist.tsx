@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useOnboarding } from '@/hooks/useOnboarding';
+import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { 
   CheckCircle, 
@@ -32,6 +33,7 @@ interface ChecklistItem {
 
 export function GettingStartedChecklist() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const { completeStep, isStepCompleted, getProgress, startOnboarding } = useOnboarding();
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -149,6 +151,14 @@ export function GettingStartedChecklist() {
     }
   };
 
+  console.log('GettingStartedChecklist - user:', user, 'completedItems:', completedItems.length, 'totalItems:', checklistItems.length);
+  
+  // Don't render if user is not authenticated
+  if (!user) {
+    console.log('GettingStartedChecklist - No user, not rendering');
+    return null;
+  }
+
   return (
     <Card className="mb-8">
       <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
@@ -254,7 +264,7 @@ export function GettingStartedChecklist() {
                   <p className="text-muted-foreground mb-3">
                     You've completed all the getting started tasks. You're ready to become a product expert!
                   </p>
-                  <Button variant="hero" onClick={() => navigate('/category/investment')}>
+                  <Button variant="default" onClick={() => navigate('/category/investment')}>
                     Start Learning Products
                   </Button>
                 </div>
