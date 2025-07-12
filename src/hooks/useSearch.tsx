@@ -121,7 +121,7 @@ export function useSearch() {
 
     setResults(searchResults);
     setIsSearching(false);
-  }, [query, filters, allProducts, loading, performSemanticSearch, addToSearchHistory]);
+  }, [query, filters, allProducts, loading]);
 
   const hasActiveFilters = () => {
     return filters.category || 
