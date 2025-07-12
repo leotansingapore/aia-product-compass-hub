@@ -31,10 +31,10 @@ import { useCategories } from "@/hooks/useProducts";
 import { Badge } from "@/components/ui/badge";
 
 const mainNavItems = [
-  { title: "Dashboard", url: "/", icon: Home },
-  { title: "Search", url: "/search", icon: Search },
-  { title: "Bookmarks", url: "/bookmarks", icon: Bookmark },
-  { title: "Sales Tools", url: "/sales-tools", icon: TrendingUp },
+  { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined },
+  { title: "Search", url: "/search", icon: Search, dataAttr: undefined },
+  { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks" },
+  { title: "Sales Tools", url: "/sales-tools", icon: TrendingUp, dataAttr: undefined },
 ];
 
 const resourceItems = [
@@ -90,7 +90,11 @@ export function AppSidebar() {
               {mainNavItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
-                    <NavLink to={item.url} className={getNavClassName(item.url)}>
+                    <NavLink 
+                      to={item.url} 
+                      className={getNavClassName(item.url)}
+                      {...(item.dataAttr && { 'data-onboarding': item.dataAttr })}
+                    >
                       <item.icon className="h-4 w-4" />
                       {!isCollapsed && <span>{item.title}</span>}
                     </NavLink>

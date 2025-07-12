@@ -3,6 +3,9 @@ import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/s
 import { AppSidebar } from "./AppSidebar";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
+import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
+import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -17,7 +20,7 @@ export function AppLayout({ children }: AppLayoutProps) {
         <SidebarInset className="flex-1">
           {/* Top Bar with Sidebar Toggle */}
           <header className="flex h-12 items-center gap-2 border-b bg-background px-4">
-            <SidebarTrigger />
+            <SidebarTrigger data-onboarding="sidebar-trigger" />
           </header>
 
           {/* Main Content */}
@@ -26,6 +29,11 @@ export function AppLayout({ children }: AppLayoutProps) {
           </main>
         </SidebarInset>
       </div>
+      
+      {/* Onboarding Components */}
+      <WelcomeModal />
+      <OnboardingTutorial />
+      <OnboardingHelpButton />
     </SidebarProvider>
   );
 }

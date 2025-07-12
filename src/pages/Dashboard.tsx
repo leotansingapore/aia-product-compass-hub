@@ -7,6 +7,8 @@ import { QuickActions } from "@/components/QuickActions";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { AuthPrompt } from "@/components/dashboard/AuthPrompt";
 import { DragDropDashboard } from "@/components/dashboard/DragDropDashboard";
+import { GettingStartedChecklist } from "@/components/onboarding/GettingStartedChecklist";
+import { ProgressiveDisclosure } from "@/components/onboarding/ProgressiveDisclosure";
 import { useAuth } from "@/hooks/useAuth";
 import { getCategoryIdFromName } from "@/hooks/useProducts";
 
@@ -43,19 +45,29 @@ export default function Dashboard() {
         )}
 
         {/* Search Section */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12" data-onboarding="search">
           <h2 className="text-2xl font-bold mb-4">Find What You Need</h2>
           <EnhancedSearchBar onSearch={handleSearch} />
         </div>
 
         {/* Quick Actions */}
-        <div className="mb-12">
+        <div className="mb-12" data-onboarding="profile-search">
           <QuickActions />
         </div>
 
+        {/* Onboarding Components - Only show if logged in */}
+        {user && (
+          <>
+            <GettingStartedChecklist />
+            <ProgressiveDisclosure />
+          </>
+        )}
+
         {/* Drag & Drop Dashboard - Only show if logged in */}
         {user ? (
-          <DragDropDashboard onCategoryClick={handleCategoryClick} />
+          <div data-onboarding="categories">
+            <DragDropDashboard onCategoryClick={handleCategoryClick} />
+          </div>
         ) : (
           <div className="text-center py-12">
             <p className="text-muted-foreground">Sign in to access personalized dashboard features</p>
