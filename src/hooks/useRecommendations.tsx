@@ -45,7 +45,7 @@ export function useRecommendations() {
     });
 
     setUserInterests(Array.from(interests));
-  }, [allProducts, getRecentProducts, bookmarks]);
+  }, [allProducts, bookmarks]);
 
   const getRecommendations = (excludeIds: string[] = [], limit: number = 10): Recommendation[] => {
     if (loading) return [];
