@@ -99,39 +99,22 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
   const [steps, setSteps] = useState<OnboardingStep[]>(ONBOARDING_STEPS);
   const [showWelcome, setShowWelcome] = useState(false);
 
-  // Check if user is new and should see onboarding
+  // Check if user should see onboarding - simplified
   useEffect(() => {
     if (user) {
-      const hasCompletedOnboarding = localStorage.getItem(`onboarding-completed-${user.id}`);
       const hasSeenWelcome = localStorage.getItem(`welcome-seen-${user.id}`);
-      
       if (!hasSeenWelcome) {
         setShowWelcome(true);
-      }
-      
-      if (!hasCompletedOnboarding) {
-        // Load saved progress
-        const savedProgress = localStorage.getItem(`onboarding-progress-${user.id}`);
-        if (savedProgress) {
-          const progress = JSON.parse(savedProgress);
-          setSteps(progress.steps || ONBOARDING_STEPS);
-          setCurrentStep(progress.currentStep || 0);
-        }
       }
     }
   }, [user]);
 
-  // Save progress whenever steps change
+  // Simplified progress saving
   useEffect(() => {
     if (user) {
-      const progress = {
-        steps,
-        currentStep,
-        timestamp: new Date().toISOString(),
-      };
-      localStorage.setItem(`onboarding-progress-${user.id}`, JSON.stringify(progress));
+      localStorage.setItem(`onboarding-progress-${user.id}`, JSON.stringify(steps.map(s => s.completed)));
     }
-  }, [steps, currentStep, user]);
+  }, [steps, user]);
 
   const startOnboarding = () => {
     setIsOnboardingActive(true);
