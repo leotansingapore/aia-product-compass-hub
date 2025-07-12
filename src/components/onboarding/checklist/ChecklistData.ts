@@ -37,7 +37,7 @@ export const getCategoryLabel = (category: string) => {
 };
 
 export const createChecklistItems = (
-  completeStep: (stepId: string) => void,
+  completeItem: (itemId: string) => void,
   navigate: (path: string) => void,
   startOnboarding: () => void
 ): ChecklistItem[] => [
@@ -56,7 +56,7 @@ export const createChecklistItems = (
     description: 'Search for a product or topic to see how our enhanced search works',
     icon: Search,
     action: () => {
-      completeStep('search-product');
+      completeItem('search-product');
       navigate('/');
       // Focus search after navigation
       setTimeout(() => {
@@ -75,8 +75,8 @@ export const createChecklistItems = (
     description: 'Explore one of our product categories to see detailed information',
     icon: BookOpen,
     action: () => {
-      completeStep('browse-category');
-      navigate('/category/investment');
+      completeItem('browse-category');
+      navigate('/category/c7cde8f4-12d4-4ddc-9150-7b32008a4e19');
     },
     points: 15,
     category: 'essential'
@@ -87,7 +87,7 @@ export const createChecklistItems = (
     description: 'Find products based on client demographics and needs',
     icon: Users,
     action: () => {
-      completeStep('client-profile');
+      completeItem('client-profile');
       navigate('/search-by-profile');
     },
     points: 20,
@@ -99,8 +99,8 @@ export const createChecklistItems = (
     description: 'Save a product or resource for quick access later',
     icon: Bookmark,
     action: () => {
-      completeStep('bookmark-item');
-      navigate('/category/investment');
+      completeItem('bookmark-item');
+      navigate('/category/c7cde8f4-12d4-4ddc-9150-7b32008a4e19');
     },
     points: 10,
     category: 'explore'
@@ -111,8 +111,8 @@ export const createChecklistItems = (
     description: 'View a product explainer video to see our learning materials',
     icon: Video,
     action: () => {
-      completeStep('watch-video');
-      navigate('/category/investment');
+      completeItem('watch-video');
+      navigate('/category/c7cde8f4-12d4-4ddc-9150-7b32008a4e19');
     },
     points: 15,
     category: 'explore'
@@ -123,7 +123,7 @@ export const createChecklistItems = (
     description: 'Check out objection handling guides and presentation materials',
     icon: Target,
     action: () => {
-      completeStep('sales-tools');
+      completeItem('sales-tools');
       navigate('/sales-tools');
     },
     points: 15,
