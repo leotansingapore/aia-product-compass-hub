@@ -216,11 +216,11 @@ function getCategoryNameFromId(categoryId: string): string {
 // Helper function to map category names to IDs for backward compatibility
 export function getCategoryIdFromName(categoryName: string): string {
   const nameMap: Record<string, string> = {
-    'Investment Products': 'investment',
-    'Endowment Products': 'endowment',
-    'Whole Life Products': 'whole-life',
-    'Term Products': 'term',
-    'Medical Insurance Products': 'medical'
+    'Investment Products': 'c7cde8f4-12d4-4ddc-9150-7b32008a4e19',
+    'Endowment Products': '3adb6155-c158-408d-b910-9b3db532d435',
+    'Whole Life Products': '19b8c528-f36e-4731-827c-0cdb1de25059',
+    'Term Products': '291cf475-d918-40c0-b37d-33794534d469',
+    'Medical Insurance Products': 'b1024527-481f-4d85-9192-b43633e9be4a'
   };
-  return nameMap[categoryName] || categoryName.toLowerCase().replace(/\s+/g, '-');
+  return nameMap[categoryName] || categoryName;
 }
