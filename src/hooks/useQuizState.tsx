@@ -44,27 +44,43 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
   }, [showResult, questions, currentQuestion, answeredQuestions]);
 
   const handleNext = useCallback(async () => {
+    console.log('handleNext called', { 
+      currentQuestion, 
+      totalQuestions: questions.length, 
+      showResult, 
+      user: !!user,
+      isComplete: answeredQuestions.every(answered => answered)
+    });
+    
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(prev => prev + 1);
       setSelectedAnswer(null);
       setShowResult(false);
     } else if (showResult && user) {
+      console.log('Quiz completion triggered', { score, totalQuestions: questions.length });
       // Quiz completed - record gamification data
       const isPerfectScore = score === questions.length;
-      await recordQuizCompletion({
-        productId,
-        score,
-        totalQuestions: questions.length,
-        isPerfectScore
-      });
-      // Reset quiz state after completion
-      setCurrentQuestion(0);
-      setSelectedAnswer(null);
-      setShowResult(false);
-      setScore(0);
-      setAnsweredQuestions(new Array(questions.length).fill(false));
+      try {
+        await recordQuizCompletion({
+          productId,
+          score,
+          totalQuestions: questions.length,
+          isPerfectScore
+        });
+        console.log('Quiz completion recorded successfully');
+        // Reset quiz state after completion
+        setCurrentQuestion(0);
+        setSelectedAnswer(null);
+        setShowResult(false);
+        setScore(0);
+        setAnsweredQuestions(new Array(questions.length).fill(false));
+      } catch (error) {
+        console.error('Failed to record quiz completion:', error);
+      }
+    } else {
+      console.log('Quiz completion conditions not met', { showResult, user: !!user });
     }
-  }, [currentQuestion, questions.length, showResult, user, score, productId, recordQuizCompletion, questions]);
+  }, [currentQuestion, questions.length, showResult, user, score, productId, recordQuizCompletion, questions, answeredQuestions]);
 
   const handlePrevious = useCallback(() => {
     if (currentQuestion > 0) {
