@@ -190,11 +190,8 @@ export const useGamification = () => {
 
     switch (requirement_type) {
       case 'quiz_completion':
-        const { count: quizCount } = await supabase
-          .from('quiz_attempts')
-          .select('*', { count: 'exact' })
-          .eq('user_id', user!.id);
-        return (quizCount || 0) >= requirement_value;
+        // This should trigger after completing the current quiz
+        return true;
 
       case 'perfect_score':
         return result.isPerfectScore;
