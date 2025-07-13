@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useProductById, getCategoryIdFromName } from "@/hooks/useProducts";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
@@ -15,6 +15,9 @@ import { ProductAIAssistant } from "@/components/product-detail/ProductAIAssista
 import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { PersonalNotes } from "@/components/PersonalNotes";
+import { ProductQuiz } from "@/components/ProductQuiz";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { BookOpen } from "lucide-react";
 
 export default function ProductDetail() {
   const { productId } = useParams<{ productId: string }>();
@@ -23,6 +26,29 @@ export default function ProductDetail() {
   const { updateProduct } = useProductUpdate();
   const { addToRecent } = useRecentlyViewed();
   const { recordPageVisit } = useGamification();
+  const [showQuiz, setShowQuiz] = useState(false);
+
+  // Sample quiz questions - in a real app, these would come from the database
+  const sampleQuizQuestions = [
+    {
+      question: "What is the main benefit of this product?",
+      options: ["Low cost", "High returns", "Flexibility", "Guaranteed protection"],
+      correct: 3,
+      explanation: "This product provides guaranteed protection as its main benefit, offering peace of mind to policyholders."
+    },
+    {
+      question: "Who is the target audience for this product?",
+      options: ["Young professionals", "Families", "Retirees", "All age groups"],
+      correct: 1,
+      explanation: "This product is designed primarily for families who need comprehensive protection and savings solutions."
+    },
+    {
+      question: "What makes this product unique in the market?",
+      options: ["Lowest premium", "Highest coverage", "Flexible features", "Quick approval"],
+      correct: 2,
+      explanation: "The flexible features of this product allow customers to adapt their coverage to changing life circumstances."
+    }
+  ];
 
   // Track product view and award XP
   useEffect(() => {
@@ -129,6 +155,32 @@ export default function ProductDetail() {
           productId={product.id}
           onUpdate={handleUpdate}
         />
+
+        {/* Quiz Section */}
+        <Card className="border-accent/20 bg-gradient-card">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle className="flex items-center gap-2">
+                <BookOpen className="h-5 w-5" />
+                Product Knowledge Quiz
+              </CardTitle>
+              <Button 
+                onClick={() => setShowQuiz(!showQuiz)}
+                variant={showQuiz ? "secondary" : "default"}
+              >
+                {showQuiz ? "Hide Quiz" : "Take Quiz"}
+              </Button>
+            </div>
+          </CardHeader>
+          {showQuiz && (
+            <CardContent>
+              <ProductQuiz 
+                questions={sampleQuizQuestions}
+                productId={product.id}
+              />
+            </CardContent>
+          )}
+        </Card>
 
         {/* Personal Notes */}
         <PersonalNotes productId={product.id} />
