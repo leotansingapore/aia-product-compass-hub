@@ -43,7 +43,7 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
     setAnsweredQuestions(newAnswered);
   }, [showResult, questions, currentQuestion, answeredQuestions]);
 
-  const handleNext = useCallback(() => {
+  const handleNext = useCallback(async () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(prev => prev + 1);
       setSelectedAnswer(null);
@@ -51,14 +51,20 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
     } else if (showResult && user) {
       // Quiz completed - record gamification data
       const isPerfectScore = score === questions.length;
-      recordQuizCompletion({
+      await recordQuizCompletion({
         productId,
         score,
         totalQuestions: questions.length,
         isPerfectScore
       });
+      // Reset quiz state after completion
+      setCurrentQuestion(0);
+      setSelectedAnswer(null);
+      setShowResult(false);
+      setScore(0);
+      setAnsweredQuestions(new Array(questions.length).fill(false));
     }
-  }, [currentQuestion, questions.length, showResult, user, score, productId, recordQuizCompletion]);
+  }, [currentQuestion, questions.length, showResult, user, score, productId, recordQuizCompletion, questions]);
 
   const handlePrevious = useCallback(() => {
     if (currentQuestion > 0) {
