@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { FlashcardStudyInterface } from "@/components/FlashcardStudyInterface";
+import { TrainingModuleInterface } from "@/components/TrainingModuleInterface";
 
 const salesTools = [
   {
@@ -145,6 +146,11 @@ export default function SalesTools() {
     setName: string;
     category: string;
     totalCards: number;
+  } | null>(null);
+  const [studyingModule, setStudyingModule] = useState<{
+    moduleName: string;
+    duration: string;
+    category: string;
   } | null>(null);
 
   return (
@@ -300,6 +306,15 @@ export default function SalesTools() {
                           size="sm" 
                           variant={module.status === 'available' ? 'default' : 'outline'}
                           disabled={module.status !== 'available'}
+                          onClick={() => {
+                            if (module.status === 'available') {
+                              setStudyingModule({
+                                moduleName: module.name,
+                                duration: module.duration,
+                                category: moduleGroup.title
+                              });
+                            }
+                          }}
                         >
                           {module.status === 'available' ? 'Start' : 'Soon'}
                         </Button>
@@ -381,6 +396,16 @@ export default function SalesTools() {
           category={studyingFlashcard.category}
           totalCards={studyingFlashcard.totalCards}
           onClose={() => setStudyingFlashcard(null)}
+        />
+      )}
+
+      {/* Training Module Interface */}
+      {studyingModule && (
+        <TrainingModuleInterface
+          moduleName={studyingModule.moduleName}
+          duration={studyingModule.duration}
+          category={studyingModule.category}
+          onClose={() => setStudyingModule(null)}
         />
       )}
     </div>
