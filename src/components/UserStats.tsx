@@ -35,6 +35,45 @@ export function UserStats() {
     }
   }, [user]);
 
+  // Listen for real-time updates to user achievements and profiles
+  useEffect(() => {
+    if (!user) return;
+
+    const channel = supabase
+      .channel('user-stats-updates')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'user_achievements',
+          filter: `user_id=eq.${user.id}`
+        },
+        () => {
+          console.log('New achievement detected, refreshing user stats');
+          fetchUserData();
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'profiles',
+          filter: `user_id=eq.${user.id}`
+        },
+        () => {
+          console.log('Profile updated, refreshing user stats');
+          fetchUserData();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user]);
+
   const fetchUserData = async () => {
     if (!user) return;
 
