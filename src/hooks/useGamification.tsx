@@ -92,6 +92,7 @@ export const useGamification = () => {
     if (!profile) return;
 
     const newTotalXP = profile.total_xp + xpEarned;
+    // Level calculation: Level 1 needs 0-199 XP, Level 2 needs 200-399 XP, etc.
     const newLevel = Math.floor(newTotalXP / 200) + 1;
     
     // Calculate streak
