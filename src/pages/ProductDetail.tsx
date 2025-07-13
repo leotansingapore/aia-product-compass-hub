@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useProductById, getCategoryIdFromName } from "@/hooks/useProducts";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
+import { useGamification } from "@/hooks/useGamification";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { EditableTags } from "@/components/EditableTags";
 import { ProductHeader } from "@/components/product-detail/ProductHeader";
@@ -21,13 +22,16 @@ export default function ProductDetail() {
   const { product, loading } = useProductById(productId || '');
   const { updateProduct } = useProductUpdate();
   const { addToRecent } = useRecentlyViewed();
+  const { recordPageVisit } = useGamification();
 
-  // Track product view
+  // Track product view and award XP
   useEffect(() => {
     if (product) {
       addToRecent(product.id, 'product');
+      // Award XP for visiting the product page
+      recordPageVisit(product.category_id, product.id);
     }
-  }, [product, addToRecent]);
+  }, [product, addToRecent, recordPageVisit]);
 
   const handleUpdate = async (field: string, value: any) => {
     if (!product) return;

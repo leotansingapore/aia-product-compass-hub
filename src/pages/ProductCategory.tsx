@@ -6,6 +6,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { useProducts, useCategories } from "@/hooks/useProducts";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
+import { useGamification } from "@/hooks/useGamification";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -48,18 +49,21 @@ export default function ProductCategory() {
   const { categories } = useCategories();
   const { products, loading } = useProducts(categoryId);
   const { addToRecent } = useRecentlyViewed();
+  const { recordPageVisit } = useGamification();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   // Find the category by ID from the database
   const category = categories.find(cat => cat.id === categoryId);
 
-  // Track category view
+  // Track category view and award XP
   useEffect(() => {
     if (categoryId && category) {
       addToRecent(categoryId, 'category');
+      // Award XP for visiting the category page
+      recordPageVisit(categoryId);
     }
-  }, [categoryId, category?.id, addToRecent]);
+  }, [categoryId, category?.id, addToRecent, recordPageVisit]);
 
   // Get all unique tags from products
   const allTags = Array.from(new Set(products.flatMap(product => product.tags || [])));
