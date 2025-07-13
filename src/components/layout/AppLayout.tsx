@@ -21,8 +21,9 @@ export function AppLayout({ children }: AppLayoutProps) {
         
         <SidebarInset className="flex-1">
           {/* Top Bar with Sidebar Toggle */}
-          <header className="flex h-12 items-center gap-2 border-b bg-background px-4">
+          <header className="flex h-12 items-center gap-2 border-b bg-card px-4 sticky top-0 z-10">
             <SidebarTrigger data-onboarding="sidebar-trigger" />
+            <h1 className="text-lg font-semibold">AIA Learning Platform</h1>
           </header>
 
           {/* Main Content */}
