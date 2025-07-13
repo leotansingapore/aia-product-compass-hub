@@ -86,10 +86,19 @@ export function UserStats() {
     return null;
   }
 
-  // Level calculation: Each level requires 200 XP
-  const getXPForNextLevel = (level: number) => 200;
-  const currentLevelXP = profile ? profile.total_xp % 200 : 0;
-  const nextLevelXP = 200;
+  // Progressive level calculation helper functions
+  const getXPForLevel = (level: number) => {
+    let totalXP = 0;
+    for (let i = 1; i < level; i++) {
+      totalXP += i * 200;
+    }
+    return totalXP;
+  };
+  
+  const getXPForNextLevel = (level: number) => level * 200;
+  const xpForCurrentLevel = profile ? getXPForLevel(profile.current_level) : 0;
+  const currentLevelXP = profile ? profile.total_xp - xpForCurrentLevel : 0;
+  const nextLevelXP = profile ? getXPForNextLevel(profile.current_level) : 200;
   const progressPercentage = profile ? (currentLevelXP / nextLevelXP) * 100 : 0;
 
   return (

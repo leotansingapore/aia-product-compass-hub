@@ -92,8 +92,16 @@ export const useGamification = () => {
     if (!profile) return;
 
     const newTotalXP = profile.total_xp + xpEarned;
-    // Level calculation: Level 1 needs 0-199 XP, Level 2 needs 200-399 XP, etc.
-    const newLevel = Math.floor(newTotalXP / 200) + 1;
+    
+    // Progressive level calculation: Level 1 = 200 XP, Level 2 = 600 XP, Level 3 = 1200 XP, etc.
+    // Each level requires (level * 200) XP total
+    let newLevel = 1;
+    let totalXPNeeded = 0;
+    while (totalXPNeeded <= newTotalXP) {
+      totalXPNeeded += newLevel * 200;
+      if (totalXPNeeded > newTotalXP) break;
+      newLevel++;
+    }
     
     // Calculate streak
     const today = new Date().toISOString().split('T')[0];
