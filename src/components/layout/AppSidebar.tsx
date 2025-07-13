@@ -43,6 +43,7 @@ const resourceItems = [
 ];
 
 export function AppSidebar() {
+  console.log("AppSidebar rendering");
   const { state } = useSidebar();
   const location = useLocation();
   const { categories } = useCategories();

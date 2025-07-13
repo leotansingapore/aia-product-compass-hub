@@ -12,6 +12,8 @@ interface AppLayoutProps {
 }
 
 export function AppLayout({ children }: AppLayoutProps) {
+  console.log("AppLayout rendering");
+  
   return (
     <SidebarProvider defaultOpen={true}>
       <div className="min-h-screen flex w-full">
