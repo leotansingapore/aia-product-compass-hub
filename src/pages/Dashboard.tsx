@@ -10,6 +10,8 @@ import { RecentlyViewedSection } from "@/components/dashboard/RecentlyViewedSect
 import { RecommendationsSection } from "@/components/recommendations/RecommendationsSection";
 import { useNavigate } from "react-router-dom";
 import { getCategoryIdFromName } from "@/hooks/useProducts";
+import { CategoryCard } from "@/components/CategoryCard";
+import { getCategoryConfig } from "@/utils/categoryConfig";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -60,16 +62,20 @@ export default function Dashboard() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {categories.map((category) => (
-                <div
-                  key={category.id}
-                  onClick={() => handleCategoryClick(category.name)}
-                  className="p-6 bg-card border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer"
-                >
-                  <h3 className="text-lg font-semibold mb-2">{category.name}</h3>
-                  <p className="text-muted-foreground text-sm">{category.description || 'Explore products in this category'}</p>
-                </div>
-              ))}
+              {categories.map((category) => {
+                const categoryConfig = getCategoryConfig(category.name);
+                return (
+                  <CategoryCard
+                    key={category.id}
+                    title={category.name}
+                    description={category.description || 'Explore products in this category'}
+                    icon={categoryConfig.icon}
+                    productCount={categoryConfig.productCount}
+                    gradient={categoryConfig.gradient}
+                    onClick={() => handleCategoryClick(category.name)}
+                  />
+                );
+              })}
             </div>
           )}
         </div>

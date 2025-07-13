@@ -146,8 +146,11 @@ export default function ProductCategory() {
               <Badge
                 key={tag}
                 variant={selectedTags.includes(tag) ? "default" : "outline"}
-                className="cursor-pointer"
-                onClick={() => handleTagClick(tag)}
+                className="cursor-pointer hover:bg-accent/50 transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleTagClick(tag);
+                }}
               >
                 {tag}
               </Badge>
