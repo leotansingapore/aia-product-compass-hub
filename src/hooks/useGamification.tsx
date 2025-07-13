@@ -25,11 +25,14 @@ export const useGamification = () => {
   const recordQuizCompletion = useCallback(async (result: QuizResult) => {
     if (!user || isProcessing) return;
 
+    console.log('🎯 Starting quiz completion recording for user:', user.id, 'result:', result);
     setIsProcessing(true);
     try {
       const xpEarned = calculateXP(result.score, result.totalQuestions);
+      console.log('💎 Calculated XP:', xpEarned);
       
       // Record quiz attempt
+      console.log('📝 Recording quiz attempt...');
       const { error: quizError } = await supabase
         .from('quiz_attempts')
         .insert({
@@ -40,9 +43,14 @@ export const useGamification = () => {
           xp_earned: xpEarned
         });
 
-      if (quizError) throw quizError;
+      if (quizError) {
+        console.error('❌ Quiz attempt error:', quizError);
+        throw quizError;
+      }
+      console.log('✅ Quiz attempt recorded successfully');
 
       // Record learning progress
+      console.log('📊 Recording learning progress...');
       const { error: progressError } = await supabase
         .from('learning_progress')
         .insert({
@@ -53,13 +61,21 @@ export const useGamification = () => {
           xp_earned: xpEarned
         });
 
-      if (progressError) throw progressError;
+      if (progressError) {
+        console.error('❌ Learning progress error:', progressError);
+        throw progressError;
+      }
+      console.log('✅ Learning progress recorded successfully');
 
       // Update user profile with new XP and level
+      console.log('🔄 Updating user profile...');
       await updateUserProfile(xpEarned);
+      console.log('✅ User profile updated successfully');
 
       // Check for new achievements
+      console.log('🏆 Checking for achievements...');
       await checkAchievements(result);
+      console.log('✅ Achievements checked successfully');
 
       // Show XP toast
       toast({
@@ -68,7 +84,7 @@ export const useGamification = () => {
       });
 
     } catch (error) {
-      console.error('Error recording quiz completion:', error);
+      console.error('💥 Error recording quiz completion:', error);
       toast({
         title: "Error",
         description: "Failed to record quiz completion",
