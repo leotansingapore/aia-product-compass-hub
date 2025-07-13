@@ -98,60 +98,77 @@ export const useGamification = () => {
   const updateUserProfile = async (xpEarned: number) => {
     if (!user) return;
 
-    // Get current profile
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('total_xp, current_level, last_active_date, streak_days')
-      .eq('user_id', user.id)
-      .single();
-
-    if (!profile) return;
-
-    const newTotalXP = profile.total_xp + xpEarned;
+    // Throttle profile updates - only allow one update per 5 seconds
+    const updateKey = `profile_update_${user.id}`;
+    const lastUpdate = sessionStorage.getItem(updateKey);
+    const now = Date.now();
     
-    // Progressive level calculation: Level 1 = 200 XP, Level 2 = 600 XP, Level 3 = 1200 XP, etc.
-    // Each level requires (level * 200) XP total
-    let newLevel = 1;
-    let totalXPNeeded = 0;
-    while (totalXPNeeded <= newTotalXP) {
-      totalXPNeeded += newLevel * 200;
-      if (totalXPNeeded > newTotalXP) break;
-      newLevel++;
-    }
-    
-    // Calculate streak
-    const today = new Date().toISOString().split('T')[0];
-    const lastActive = profile.last_active_date;
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStr = yesterday.toISOString().split('T')[0];
-
-    let newStreak = profile.streak_days;
-    if (lastActive === yesterdayStr) {
-      newStreak += 1;
-    } else if (lastActive !== today) {
-      newStreak = 1;
+    if (lastUpdate && (now - parseInt(lastUpdate)) < 5000) {
+      console.log('⏳ Profile update throttled, too frequent');
+      return;
     }
 
-    // Update profile
-    const { error } = await supabase
-      .from('profiles')
-      .update({
-        total_xp: newTotalXP,
-        current_level: newLevel,
-        last_active_date: today,
-        streak_days: newStreak
-      })
-      .eq('user_id', user.id);
+    try {
+      // Get current profile
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('total_xp, current_level, last_active_date, streak_days')
+        .eq('user_id', user.id)
+        .single();
 
-    if (error) throw error;
+      if (!profile) return;
 
-    // Check for level up
-    if (newLevel > profile.current_level) {
-      toast({
-        title: "Level Up! 🚀",
-        description: `Congratulations! You've reached Level ${newLevel}!`,
-      });
+      const newTotalXP = profile.total_xp + xpEarned;
+      
+      // Progressive level calculation: Level 1 = 200 XP, Level 2 = 600 XP, Level 3 = 1200 XP, etc.
+      // Each level requires (level * 200) XP total
+      let newLevel = 1;
+      let totalXPNeeded = 0;
+      while (totalXPNeeded <= newTotalXP) {
+        totalXPNeeded += newLevel * 200;
+        if (totalXPNeeded > newTotalXP) break;
+        newLevel++;
+      }
+      
+      // Calculate streak
+      const today = new Date().toISOString().split('T')[0];
+      const lastActive = profile.last_active_date;
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+      let newStreak = profile.streak_days;
+      if (lastActive === yesterdayStr) {
+        newStreak += 1;
+      } else if (lastActive !== today) {
+        newStreak = 1;
+      }
+
+      // Update profile
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          total_xp: newTotalXP,
+          current_level: newLevel,
+          last_active_date: today,
+          streak_days: newStreak
+        })
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+
+      // Mark this update in session storage
+      sessionStorage.setItem(updateKey, now.toString());
+
+      // Check for level up
+      if (newLevel > profile.current_level) {
+        toast({
+          title: "Level Up! 🚀",
+          description: `Congratulations! You've reached Level ${newLevel}!`,
+        });
+      }
+    } catch (error) {
+      console.error('Error updating user profile:', error);
     }
   };
 

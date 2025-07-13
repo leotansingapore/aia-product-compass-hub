@@ -35,9 +35,19 @@ export function UserStats() {
     }
   }, [user]);
 
-  // Listen for real-time updates to user achievements and profiles
+  // Listen for real-time updates to user achievements and profiles with throttling
   useEffect(() => {
     if (!user) return;
+
+    let timeoutId: NodeJS.Timeout;
+
+    const debouncedFetch = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        console.log('🔄 Debounced fetch triggered');
+        fetchUserData();
+      }, 1000); // Wait 1 second before fetching
+    };
 
     const channel = supabase
       .channel('user-stats-updates')
@@ -50,8 +60,8 @@ export function UserStats() {
           filter: `user_id=eq.${user.id}`
         },
         () => {
-          console.log('New achievement detected, refreshing user stats');
-          fetchUserData();
+          console.log('New achievement detected, scheduling refresh');
+          debouncedFetch();
         }
       )
       .on(
@@ -63,13 +73,14 @@ export function UserStats() {
           filter: `user_id=eq.${user.id}`
         },
         () => {
-          console.log('Profile updated, refreshing user stats');
-          fetchUserData();
+          console.log('Profile updated, scheduling refresh');
+          debouncedFetch();
         }
       )
       .subscribe();
 
     return () => {
+      clearTimeout(timeoutId);
       supabase.removeChannel(channel);
     };
   }, [user]);
