@@ -51,17 +51,17 @@ const salesTools = [
       {
         name: 'Need Analysis Worksheet',
         description: 'Structured approach to identify client needs',
-        link: '#'
+        action: 'worksheet'
       },
       {
         name: 'Comparison Charts',
         description: 'Side-by-side product comparisons',
-        link: '#'
+        action: 'comparison'
       },
       {
         name: 'Benefit Illustrations',
         description: 'Customizable benefit projections',
-        link: '#'
+        action: 'illustrations'
       }
     ]
   },
@@ -228,6 +228,23 @@ export default function SalesTools() {
                               <a href={tool.link} target="_blank" rel="noopener noreferrer">
                                 Access Tool
                               </a>
+                            </Button>
+                          )}
+                          {tool.action && (
+                            <Button 
+                              variant="outline" 
+                              className="mt-3"
+                              onClick={() => {
+                                if (tool.action === 'worksheet') {
+                                  alert('Need Analysis Worksheet: This would open a customizable worksheet template for conducting comprehensive client needs assessments.');
+                                } else if (tool.action === 'comparison') {
+                                  alert('Comparison Charts: This would open interactive comparison tools to help clients visualize product differences side-by-side.');
+                                } else if (tool.action === 'illustrations') {
+                                  alert('Benefit Illustrations: This would open customizable projection tools to show potential policy benefits and returns.');
+                                }
+                              }}
+                            >
+                              Access Tool
                             </Button>
                           )}
                         </CardContent>
