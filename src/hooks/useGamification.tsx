@@ -142,25 +142,42 @@ export const useGamification = () => {
   const checkAchievements = async (result: QuizResult) => {
     if (!user) return;
 
+    console.log('🏆 Checking achievements for user:', user.id);
+
     // Get all achievements and user's current achievements
     const [{ data: allAchievements }, { data: userAchievements }] = await Promise.all([
       supabase.from('achievements').select('*'),
       supabase.from('user_achievements').select('achievement_id').eq('user_id', user.id)
     ]);
 
-    if (!allAchievements || !userAchievements) return;
+    if (!allAchievements || !userAchievements) {
+      console.log('❌ Missing achievements or user achievements data');
+      return;
+    }
+
+    console.log('🎯 Found achievements:', allAchievements.length);
+    console.log('🏅 User already has:', userAchievements.length, 'achievements');
 
     const earnedAchievementIds = new Set(userAchievements.map(ua => ua.achievement_id));
     const newAchievements = [];
 
     for (const achievement of allAchievements) {
-      if (earnedAchievementIds.has(achievement.id)) continue;
+      if (earnedAchievementIds.has(achievement.id)) {
+        console.log('⏭️ Already earned:', achievement.name);
+        continue;
+      }
 
+      console.log('🔍 Checking achievement:', achievement.name, achievement.requirement_type, achievement.requirement_value);
       const shouldEarn = await checkAchievementRequirement(achievement, result);
+      console.log('✅ Should earn?', shouldEarn);
+      
       if (shouldEarn) {
+        console.log('🎉 New achievement earned:', achievement.name);
         newAchievements.push(achievement);
       }
     }
+
+    console.log('🆕 Total new achievements:', newAchievements.length);
 
     // Award new achievements
     for (const achievement of newAchievements) {
