@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { FlashcardStudyInterface } from "@/components/FlashcardStudyInterface";
 
 const salesTools = [
   {
@@ -140,6 +141,11 @@ const trainingModules = [
 export default function SalesTools() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('objection-handling');
+  const [studyingFlashcard, setStudyingFlashcard] = useState<{
+    setName: string;
+    category: string;
+    totalCards: number;
+  } | null>(null);
 
   return (
     <div className="min-h-screen bg-background">
@@ -245,7 +251,17 @@ export default function SalesTools() {
                           <p className="font-medium text-sm">{set.name}</p>
                           <p className="text-xs text-muted-foreground">{set.cards} cards</p>
                         </div>
-                        <Button size="sm" variant="outline">Study</Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => setStudyingFlashcard({
+                            setName: set.name,
+                            category: category.category,
+                            totalCards: set.cards
+                          })}
+                        >
+                          Study
+                        </Button>
                       </div>
                     ))}
                   </div>
@@ -357,6 +373,16 @@ export default function SalesTools() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Flashcard Study Interface */}
+      {studyingFlashcard && (
+        <FlashcardStudyInterface
+          setName={studyingFlashcard.setName}
+          category={studyingFlashcard.category}
+          totalCards={studyingFlashcard.totalCards}
+          onClose={() => setStudyingFlashcard(null)}
+        />
+      )}
     </div>
   );
 }
