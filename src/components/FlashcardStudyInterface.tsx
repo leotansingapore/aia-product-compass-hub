@@ -108,8 +108,8 @@ export function FlashcardStudyInterface({ setName, category, totalCards, onClose
 
   if (!currentCard) {
     return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-        <Card className="w-full max-w-md mx-4">
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 overflow-y-auto p-4">
+        <Card className="w-full max-w-md mx-4 my-8">
           <CardHeader>
             <CardTitle>No Flashcards Available</CardTitle>
           </CardHeader>
@@ -125,8 +125,8 @@ export function FlashcardStudyInterface({ setName, category, totalCards, onClose
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <Card className="w-full max-w-2xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black/50 flex items-start justify-center z-50 overflow-y-auto p-4">
+      <Card className="w-full max-w-2xl mx-4 my-8">
         <CardHeader className="border-b">
           <div className="flex justify-between items-start">
             <div>

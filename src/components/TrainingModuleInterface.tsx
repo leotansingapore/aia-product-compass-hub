@@ -145,8 +145,8 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
 
   if (!currentSection) {
     return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-        <Card className="w-full max-w-md mx-4">
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 overflow-y-auto p-4">
+        <Card className="w-full max-w-md mx-4 my-8">
           <CardHeader>
             <CardTitle>Module Not Available</CardTitle>
           </CardHeader>
@@ -165,8 +165,8 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
   const isCurrentSectionCompleted = completedSections.has(currentSectionIndex);
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <Card className="w-full max-w-4xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black/50 flex items-start justify-center z-50 overflow-y-auto p-4">
+      <Card className="w-full max-w-4xl mx-4 my-8">
         <CardHeader className="border-b">
           <div className="flex justify-between items-start">
             <div>
@@ -206,8 +206,8 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
               <Progress value={sectionProgress} className="h-1 mt-2" />
             </div>
 
-            <div className="bg-accent/20 rounded-lg p-6 min-h-[300px]">
-              <div className="prose prose-sm max-w-none">
+            <div className="bg-accent/20 rounded-lg p-6 max-h-[400px] overflow-y-auto">
+              <div className="prose prose-sm max-w-none text-foreground">
                 {currentSection.content.split('\n').map((paragraph, index) => (
                   <p key={index} className="mb-3 leading-relaxed">
                     {paragraph}
