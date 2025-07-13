@@ -50,14 +50,14 @@ export default function ProductDetail() {
     }
   ];
 
-  // Track product view and award XP
+  // Track product view and award XP - only run once per product
   useEffect(() => {
     if (product) {
       addToRecent(product.id, 'product');
       // Award XP for visiting the product page
       recordPageVisit(product.category_id, product.id);
     }
-  }, [product, addToRecent, recordPageVisit]);
+  }, [product?.id, addToRecent, recordPageVisit]);
 
   const handleUpdate = async (field: string, value: any) => {
     if (!product) return;

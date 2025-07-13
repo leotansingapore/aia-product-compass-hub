@@ -265,6 +265,16 @@ export const useGamification = () => {
   const recordPageVisit = useCallback(async (categoryId: string, productId?: string) => {
     if (!user) return;
 
+    // Throttle page visits - only record once per product per session
+    const visitKey = `page_visit_${productId || categoryId}`;
+    const lastVisit = sessionStorage.getItem(visitKey);
+    const now = Date.now();
+    
+    // Only record if not visited in the last 30 seconds
+    if (lastVisit && (now - parseInt(lastVisit)) < 30000) {
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from('learning_progress')
@@ -277,6 +287,10 @@ export const useGamification = () => {
         });
 
       if (error) throw error;
+      
+      // Update session storage to prevent duplicate calls
+      sessionStorage.setItem(visitKey, now.toString());
+      
       await updateUserProfile(5);
     } catch (error) {
       console.error('Error recording page visit:', error);
