@@ -45,9 +45,14 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
     setSaving(true);
     console.log('🎥 VideoManagement handleSave called with:', editVideos);
     console.log('🎥 Number of videos to save:', editVideos.length);
+    console.log('🎥 onSave function:', onSave);
+    console.log('🎥 editVideos data:', JSON.stringify(editVideos, null, 2));
     
     try {
-      await onSave(editVideos);
+      console.log('🎥 Calling onSave function...');
+      const result = await onSave(editVideos);
+      console.log('🎥 onSave returned:', result);
+      
       setIsEditing(false);
       setEditingIndex(null);
       console.log('✅ VideoManagement save successful');
@@ -60,7 +65,8 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
       console.error('❌ Error details:', {
         message: error instanceof Error ? error.message : 'Unknown error',
         stack: error instanceof Error ? error.stack : undefined,
-        editVideos: editVideos
+        editVideos: editVideos,
+        onSaveFunction: onSave.toString()
       });
       toast({
         title: "Error", 
