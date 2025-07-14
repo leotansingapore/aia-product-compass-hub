@@ -22,38 +22,11 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
     onSave: typeof onSave 
   });
   
+  // All hooks must be called at the top level, before any conditional logic
   const videoManagement = useVideoManagement({ 
     initialVideos: videos, 
     onSave 
   });
-
-  // Debug logging
-  console.log('🎬 EditableVideos render:', {
-    videosCount: videos?.length || 0,
-    isAdminMode,
-    isEditing: videoManagement.isEditing,
-    className,
-    editVideosCount: videoManagement.editVideos.length,
-    videoManagementInitialized: !!videoManagement
-  });
-
-  if (!videoManagement) {
-    console.error('🎬 EditableVideos: videoManagement is null/undefined');
-    return (
-      <div className="p-4 text-center text-muted-foreground">
-        <p>Unable to initialize video management</p>
-        <p className="text-sm mt-2">Please refresh the page and try again</p>
-      </div>
-    );
-  }
-
-  // Non-admin view
-  if (!isAdminMode) {
-    console.log('🎬 EditableVideos: Rendering VideoDisplay (non-admin)');
-    return <VideoDisplay videos={videos || []} className={className} />;
-  }
-
-  console.log('🎬 EditableVideos: Admin mode detected, rendering admin interface');
 
   // Get existing categories from videos and empty folders
   const videoCategoriesSet = new Set(
@@ -84,6 +57,24 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
     newVideo: videoManagement.newVideo,
     onNewVideoChange: videoManagement.setNewVideo
   });
+
+  // Debug logging
+  console.log('🎬 EditableVideos render:', {
+    videosCount: videos?.length || 0,
+    isAdminMode,
+    isEditing: videoManagement.isEditing,
+    className,
+    editVideosCount: videoManagement.editVideos.length,
+    videoManagementInitialized: !!videoManagement
+  });
+
+  // Non-admin view
+  if (!isAdminMode) {
+    console.log('🎬 EditableVideos: Rendering VideoDisplay (non-admin)');
+    return <VideoDisplay videos={videos || []} className={className} />;
+  }
+
+  console.log('🎬 EditableVideos: Admin mode detected, rendering admin interface');
 
   // Admin editing mode
   if (videoManagement.isEditing) {
