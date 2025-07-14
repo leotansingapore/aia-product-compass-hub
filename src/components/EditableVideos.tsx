@@ -15,6 +15,13 @@ interface EditableVideosProps {
 
 export function EditableVideos({ videos, onSave, className = "" }: EditableVideosProps) {
   const { isAdminMode } = useAdmin();
+  
+  console.log('🎬 EditableVideos: Starting initialization...', { 
+    videosCount: videos?.length || 0, 
+    isAdminMode,
+    onSave: typeof onSave 
+  });
+  
   const videoManagement = useVideoManagement({ 
     initialVideos: videos, 
     onSave 
@@ -26,8 +33,19 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
     isAdminMode,
     isEditing: videoManagement.isEditing,
     className,
-    editVideosCount: videoManagement.editVideos.length
+    editVideosCount: videoManagement.editVideos.length,
+    videoManagementInitialized: !!videoManagement
   });
+
+  if (!videoManagement) {
+    console.error('🎬 EditableVideos: videoManagement is null/undefined');
+    return (
+      <div className="p-4 text-center text-muted-foreground">
+        <p>Unable to initialize video management</p>
+        <p className="text-sm mt-2">Please refresh the page and try again</p>
+      </div>
+    );
+  }
 
   // Non-admin view
   if (!isAdminMode) {
@@ -69,6 +87,7 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
 
   // Admin editing mode
   if (videoManagement.isEditing) {
+    console.log('🎬 EditableVideos: Rendering VideoEditingInterface');
     return (
       <>
         <VideoEditingInterface

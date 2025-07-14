@@ -38,7 +38,12 @@ export function VideoEditingInterface({
   onCancel,
   onCreateCategory
 }: VideoEditingInterfaceProps) {
-  console.log('🎬 VideoEditingInterface: Rendering editing interface');
+  console.log('🎬 VideoEditingInterface: Rendering editing interface', {
+    editVideosCount: editVideos?.length || 0,
+    editingIndex,
+    saving,
+    existingCategoriesCount: existingCategories?.length || 0
+  });
 
   // Use empty arrays as default since this interface manages its own state
   const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
@@ -56,39 +61,58 @@ export function VideoEditingInterface({
     onNewVideoChange
   });
 
-  return (
-    <>
-      <VideoEditingLayout
-        editVideos={editVideos}
-        editingIndex={editingIndex}
-        newVideo={newVideo}
-        existingCategories={existingCategories}
-        emptyFolders={emptyFolders}
-        expandedFolders={folderManagement.expandedFolders}
-        folderDialogOpen={folderManagement.folderDialogOpen}
-        folderDialogMode={folderManagement.folderDialogMode}
-        editingFolderName={folderManagement.editingFolderName}
-        onEditingIndexChange={onEditingIndexChange}
-        onUpdateVideo={onUpdateVideo}
-        onRemoveVideo={onRemoveVideo}
-        onMoveVideo={onMoveVideo}
-        onNewVideoChange={onNewVideoChange}
-        onAddVideo={onAddVideo}
-        onCreateCategory={onCreateCategory}
-        onCreateFolder={folderManagement.handleCreateFolder}
-        onEditFolder={folderManagement.handleEditFolder}
-        onDeleteFolder={folderManagement.handleDeleteFolder}
-        onMoveVideoToFolder={folderManagement.handleMoveVideoToFolder}
-        onAddVideoToFolder={videoActions.handleAddVideoToFolder}
-        onExpandedChange={folderManagement.setExpandedFolders}
-        onFolderDialogOpenChange={folderManagement.setFolderDialogOpen}
-        onFolderSave={folderManagement.handleFolderSave}
-      />
-      <VideoEditingActions
-        saving={saving}
-        onSave={onSave}
-        onCancel={onCancel}
-      />
-    </>
-  );
+  try {
+    console.log('🎬 VideoEditingInterface: About to render components...');
+    
+    if (!folderManagement) {
+      console.error('🎬 VideoEditingInterface: folderManagement is null');
+      throw new Error('Failed to initialize folder management');
+    }
+    
+    if (!videoActions) {
+      console.error('🎬 VideoEditingInterface: videoActions is null');
+      throw new Error('Failed to initialize video actions');
+    }
+
+    console.log('🎬 VideoEditingInterface: All hooks initialized successfully');
+
+    return (
+      <>
+        <VideoEditingLayout
+          editVideos={editVideos}
+          editingIndex={editingIndex}
+          newVideo={newVideo}
+          existingCategories={existingCategories}
+          emptyFolders={emptyFolders}
+          expandedFolders={folderManagement.expandedFolders}
+          folderDialogOpen={folderManagement.folderDialogOpen}
+          folderDialogMode={folderManagement.folderDialogMode}
+          editingFolderName={folderManagement.editingFolderName}
+          onEditingIndexChange={onEditingIndexChange}
+          onUpdateVideo={onUpdateVideo}
+          onRemoveVideo={onRemoveVideo}
+          onMoveVideo={onMoveVideo}
+          onNewVideoChange={onNewVideoChange}
+          onAddVideo={onAddVideo}
+          onCreateCategory={onCreateCategory}
+          onCreateFolder={folderManagement.handleCreateFolder}
+          onEditFolder={folderManagement.handleEditFolder}
+          onDeleteFolder={folderManagement.handleDeleteFolder}
+          onMoveVideoToFolder={folderManagement.handleMoveVideoToFolder}
+          onAddVideoToFolder={videoActions.handleAddVideoToFolder}
+          onExpandedChange={folderManagement.setExpandedFolders}
+          onFolderDialogOpenChange={folderManagement.setFolderDialogOpen}
+          onFolderSave={folderManagement.handleFolderSave}
+        />
+        <VideoEditingActions
+          saving={saving}
+          onSave={onSave}
+          onCancel={onCancel}
+        />
+      </>
+    );
+  } catch (error) {
+    console.error('🎬 VideoEditingInterface: Error during render:', error);
+    throw error; // Re-throw to trigger ErrorBoundary
+  }
 }
