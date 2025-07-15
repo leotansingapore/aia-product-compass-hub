@@ -19,6 +19,7 @@ import SalesTools from "./pages/SalesTools";
 import Bookmarks from "./pages/Bookmarks";
 import Auth from "./pages/Auth";
 import ConsultantLanding from "./pages/ConsultantLanding";
+import CMFASExams from "./pages/CMFASExams";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
                 <Route path="/search-by-profile" element={<SearchByProfile />} />
                 <Route path="/sales-tools" element={<SalesTools />} />
                 <Route path="/bookmarks" element={<Bookmarks />} />
+                <Route path="/cmfas-exams" element={<CMFASExams />} />
                 <Route path="/category/:categoryId" element={<ProductCategory />} />
                 <Route path="/product/:productId" element={<ProductDetail />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
