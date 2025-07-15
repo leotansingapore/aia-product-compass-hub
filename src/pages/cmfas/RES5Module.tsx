@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
+import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
+import { CMFASAIAssistant } from "@/components/cmfas/CMFASAIAssistant";
 import { useState } from "react";
 
 export default function RES5Module() {
@@ -70,9 +72,32 @@ export default function RES5Module() {
     }
   ]);
 
-  const handleLectureUpdate = async (field: string, value: any) => {
+  const [usefulLinks, setUsefulLinks] = useState([
+    {
+      id: 'res5-study-guide',
+      name: 'Official RES5 Study Guide',
+      url: 'https://example.com/res5-study-guide',
+      description: 'Comprehensive study guide for RES5 exam',
+      icon: 'Scale'
+    },
+    {
+      id: 'res5-mas-notices',
+      name: 'MAS Notices & Guidelines',
+      url: 'https://mas.gov.sg/regulation/notices',
+      description: 'Latest MAS notices and guidelines',
+      icon: 'FileText'
+    }
+  ]);
+
+  const [customGptLink, setCustomGptLink] = useState<string>("https://chatgpt.com/g/g-example-res5");
+
+  const handleUpdate = async (field: string, value: any) => {
     if (field === 'tutorial_lectures') {
       setTutorialLectures(value);
+    } else if (field === 'useful_links') {
+      setUsefulLinks(value);
+    } else if (field === 'custom_gpt_link') {
+      setCustomGptLink(value);
     }
   };
   return (
@@ -207,7 +232,23 @@ export default function RES5Module() {
             videos={tutorialLectures}
             moduleId="res5"
             moduleName="RES5 Module"
-            onUpdate={handleLectureUpdate}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
+        {/* Useful Links Section */}
+        <div className="mt-8">
+          <CMFASUsefulLinks
+            links={usefulLinks}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
+        {/* AI Assistant Section */}
+        <div className="mt-8">
+          <CMFASAIAssistant
+            customGptLink={customGptLink}
+            onUpdate={handleUpdate}
           />
         </div>
     </div>

@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
+import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
+import { CMFASAIAssistant } from "@/components/cmfas/CMFASAIAssistant";
 import { useState } from "react";
 
 export default function HIModule() {
@@ -61,9 +63,32 @@ export default function HIModule() {
     }
   ]);
 
-  const handleLectureUpdate = async (field: string, value: any) => {
+  const [usefulLinks, setUsefulLinks] = useState([
+    {
+      id: 'hi-study-guide',
+      name: 'Official HI Study Guide',
+      url: 'https://example.com/hi-study-guide',
+      description: 'Comprehensive study guide for HI exam',
+      icon: 'Heart'
+    },
+    {
+      id: 'hi-healthcare-system',
+      name: 'Singapore Healthcare System',
+      url: 'https://www.moh.gov.sg',
+      description: 'MOH healthcare system overview',
+      icon: 'Building'
+    }
+  ]);
+
+  const [customGptLink, setCustomGptLink] = useState<string>("https://chatgpt.com/g/g-example-hi");
+
+  const handleUpdate = async (field: string, value: any) => {
     if (field === 'tutorial_lectures') {
       setTutorialLectures(value);
+    } else if (field === 'useful_links') {
+      setUsefulLinks(value);
+    } else if (field === 'custom_gpt_link') {
+      setCustomGptLink(value);
     }
   };
   return (
@@ -225,7 +250,23 @@ export default function HIModule() {
             videos={tutorialLectures}
             moduleId="hi"
             moduleName="HI Module"
-            onUpdate={handleLectureUpdate}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
+        {/* Useful Links Section */}
+        <div className="mt-8">
+          <CMFASUsefulLinks
+            links={usefulLinks}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
+        {/* AI Assistant Section */}
+        <div className="mt-8">
+          <CMFASAIAssistant
+            customGptLink={customGptLink}
+            onUpdate={handleUpdate}
           />
         </div>
     </div>

@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
+import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
+import { CMFASAIAssistant } from "@/components/cmfas/CMFASAIAssistant";
 import { useState } from "react";
 
 export default function M9Module() {
@@ -52,9 +54,39 @@ export default function M9Module() {
     }
   ]);
 
-  const handleLectureUpdate = async (field: string, value: any) => {
+  const [usefulLinks, setUsefulLinks] = useState([
+    {
+      id: 'm9-study-guide',
+      name: 'Official M9 Study Guide',
+      url: 'https://example.com/m9-study-guide',
+      description: 'Comprehensive study guide for M9 exam',
+      icon: 'Book'
+    },
+    {
+      id: 'm9-practice-questions',
+      name: 'M9 Practice Questions',
+      url: 'https://example.com/m9-practice',
+      description: 'Practice questions and mock exams',
+      icon: 'FileQuestion'
+    },
+    {
+      id: 'm9-regulations',
+      name: 'MAS Life Insurance Regulations',
+      url: 'https://mas.gov.sg',
+      description: 'Latest regulations and guidelines',
+      icon: 'Scale'
+    }
+  ]);
+
+  const [customGptLink, setCustomGptLink] = useState<string>("https://chatgpt.com/g/g-example-m9");
+
+  const handleUpdate = async (field: string, value: any) => {
     if (field === 'tutorial_lectures') {
       setTutorialLectures(value);
+    } else if (field === 'useful_links') {
+      setUsefulLinks(value);
+    } else if (field === 'custom_gpt_link') {
+      setCustomGptLink(value);
     }
   };
   return (
@@ -218,7 +250,23 @@ export default function M9Module() {
             videos={tutorialLectures}
             moduleId="m9"
             moduleName="M9 Module"
-            onUpdate={handleLectureUpdate}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
+        {/* Useful Links Section */}
+        <div className="mt-8">
+          <CMFASUsefulLinks
+            links={usefulLinks}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
+        {/* AI Assistant Section */}
+        <div className="mt-8">
+          <CMFASAIAssistant
+            customGptLink={customGptLink}
+            onUpdate={handleUpdate}
           />
         </div>
     </div>

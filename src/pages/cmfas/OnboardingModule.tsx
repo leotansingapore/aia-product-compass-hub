@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
+import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
+import { CMFASAIAssistant } from "@/components/cmfas/CMFASAIAssistant";
 import { useState } from "react";
 
 const OnboardingModule = () => {
@@ -52,9 +54,32 @@ const OnboardingModule = () => {
     }
   ]);
 
-  const handleLectureUpdate = async (field: string, value: any) => {
+  const [usefulLinks, setUsefulLinks] = useState([
+    {
+      id: 'onboarding-scicollege',
+      name: 'SCI College Registration',
+      url: 'https://www.scicollege.org.sg/Account/Register',
+      description: 'Create your student account here',
+      icon: 'UserPlus'
+    },
+    {
+      id: 'onboarding-exam-booking',
+      name: 'Exam Booking Portal',
+      url: 'https://example.com/exam-booking',
+      description: 'Book your CMFAS exams',
+      icon: 'Calendar'
+    }
+  ]);
+
+  const [customGptLink, setCustomGptLink] = useState<string>("https://chatgpt.com/g/g-example-onboarding");
+
+  const handleUpdate = async (field: string, value: any) => {
     if (field === 'tutorial_lectures') {
       setTutorialLectures(value);
+    } else if (field === 'useful_links') {
+      setUsefulLinks(value);
+    } else if (field === 'custom_gpt_link') {
+      setCustomGptLink(value);
     }
   };
   return (
@@ -225,7 +250,23 @@ const OnboardingModule = () => {
             videos={tutorialLectures}
             moduleId="onboarding"
             moduleName="CMFAS Onboarding"
-            onUpdate={handleLectureUpdate}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
+        {/* Useful Links Section */}
+        <div className="mt-8">
+          <CMFASUsefulLinks
+            links={usefulLinks}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
+        {/* AI Assistant Section */}
+        <div className="mt-8">
+          <CMFASAIAssistant
+            customGptLink={customGptLink}
+            onUpdate={handleUpdate}
           />
         </div>
       </div>
