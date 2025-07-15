@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { VideoContentTabs } from './VideoContentTabs';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Plus, Clock, Loader2, FolderPlus } from 'lucide-react';
@@ -175,32 +175,10 @@ export function AddVideoForm({ newVideo, onUpdate, onAdd, disabled, existingCate
         />
       </div>
 
-      <Tabs defaultValue="notes" className="w-full">
-        <TabsList>
-          <TabsTrigger value="notes">Learning Notes</TabsTrigger>
-          <TabsTrigger value="transcript">Transcript</TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="notes" className="space-y-2">
-          <Label>Learning Notes</Label>
-          <Textarea
-            value={newVideo.notes || ''}
-            onChange={(e) => onUpdate({ ...newVideo, notes: e.target.value })}
-            placeholder="Add learning notes, key points, or additional context..."
-            rows={3}
-          />
-        </TabsContent>
-        
-        <TabsContent value="transcript" className="space-y-2">
-          <Label>Video Transcript</Label>
-          <Textarea
-            value={newVideo.transcript || ''}
-            onChange={(e) => onUpdate({ ...newVideo, transcript: e.target.value })}
-            placeholder="Paste the full video transcript here..."
-            rows={4}
-          />
-        </TabsContent>
-      </Tabs>
+      <VideoContentTabs
+        video={newVideo}
+        onChange={(field, value) => onUpdate({ ...newVideo, [field]: value })}
+      />
 
       <Button 
         size="sm" 
