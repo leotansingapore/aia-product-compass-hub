@@ -17,6 +17,7 @@ import SearchResults from "./pages/SearchResults";
 import SalesTools from "./pages/SalesTools";
 import Bookmarks from "./pages/Bookmarks";
 import Auth from "./pages/Auth";
+import ConsultantLanding from "./pages/ConsultantLanding";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/consultant-landing" element={<ConsultantLanding />} />
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="/how-to-use" element={<HowToUsePortal />} />
                 <Route path="/search-by-profile" element={<SearchByProfile />} />
