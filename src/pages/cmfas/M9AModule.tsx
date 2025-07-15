@@ -1,7 +1,62 @@
 import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
+import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
+import { useState } from "react";
 
 export default function M9AModule() {
+  const [tutorialLectures, setTutorialLectures] = useState([
+    {
+      id: 'm9a-intro',
+      title: 'M9A Introduction & Overview',
+      description: 'Introduction to structured products and investment-linked policies',
+      url: '/lectures/m9a-intro.mp4',
+      duration: 1800, // 30 minutes
+      order: 0,
+      category: 'Introduction'
+    },
+    {
+      id: 'm9a-structured-products',
+      title: 'Introduction to Structured Products',
+      description: 'Understanding structured products and their features',
+      url: '/lectures/m9a-structured-products.mp4',
+      duration: 2400, // 40 minutes
+      order: 1,
+      category: 'Core Concepts'
+    },
+    {
+      id: 'm9a-derivatives',
+      title: 'Understanding Derivatives',
+      description: 'Derivatives in structured products',
+      url: '/lectures/m9a-derivatives.mp4',
+      duration: 2700, // 45 minutes
+      order: 2,
+      category: 'Core Concepts'
+    },
+    {
+      id: 'm9a-structured-ilps',
+      title: 'Introduction to Structured ILPs',
+      description: 'Structured investment-linked policies',
+      url: '/lectures/m9a-structured-ilps.mp4',
+      duration: 3000, // 50 minutes
+      order: 3,
+      category: 'Products'
+    },
+    {
+      id: 'm9a-case-studies',
+      title: 'Case Studies & Applications',
+      description: 'Real-world applications and case studies',
+      url: '/lectures/m9a-case-studies.mp4',
+      duration: 2100, // 35 minutes
+      order: 4,
+      category: 'Applications'
+    }
+  ]);
+
+  const handleLectureUpdate = async (field: string, value: any) => {
+    if (field === 'tutorial_lectures') {
+      setTutorialLectures(value);
+    }
+  };
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -109,9 +164,19 @@ export default function M9AModule() {
                 <li>• Self-study for closed-book examination</li>
               </ul>
             </div>
+            </div>
           </div>
         </div>
-      </div>
+
+        {/* Tutorial Lectures Section */}
+        <div className="mt-8">
+          <CMFASTutorialLectures
+            videos={tutorialLectures}
+            moduleId="m9a"
+            moduleName="M9A Module"
+            onUpdate={handleLectureUpdate}
+          />
+        </div>
     </div>
   );
 }

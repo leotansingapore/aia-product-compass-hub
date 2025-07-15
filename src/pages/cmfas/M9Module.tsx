@@ -1,7 +1,62 @@
 import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
+import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
+import { useState } from "react";
 
 export default function M9Module() {
+  const [tutorialLectures, setTutorialLectures] = useState([
+    {
+      id: 'm9-intro',
+      title: 'M9 Introduction & Overview',
+      description: 'Introduction to life insurance and exam structure',
+      url: '/lectures/m9-intro.mp4',
+      duration: 1800, // 30 minutes
+      order: 0,
+      category: 'Introduction'
+    },
+    {
+      id: 'm9-risk-insurance',
+      title: 'Risk and Life Insurance',
+      description: 'Understanding risk concepts and life insurance fundamentals',
+      url: '/lectures/m9-risk-insurance.mp4',
+      duration: 2400, // 40 minutes
+      order: 1,
+      category: 'Core Concepts'
+    },
+    {
+      id: 'm9-premium-setting',
+      title: 'Setting Life Insurance Premium',
+      description: 'Premium calculation methods and factors',
+      url: '/lectures/m9-premium-setting.mp4',
+      duration: 2100, // 35 minutes
+      order: 2,
+      category: 'Core Concepts'
+    },
+    {
+      id: 'm9-traditional-products',
+      title: 'Traditional Life Insurance Products',
+      description: 'Overview of traditional life insurance products',
+      url: '/lectures/m9-traditional-products.mp4',
+      duration: 2700, // 45 minutes
+      order: 3,
+      category: 'Products'
+    },
+    {
+      id: 'm9-investment-linked',
+      title: 'Investment-Linked Policies',
+      description: 'Understanding ILPs and their features',
+      url: '/lectures/m9-investment-linked.mp4',
+      duration: 3000, // 50 minutes
+      order: 4,
+      category: 'Products'
+    }
+  ]);
+
+  const handleLectureUpdate = async (field: string, value: any) => {
+    if (field === 'tutorial_lectures') {
+      setTutorialLectures(value);
+    }
+  };
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -153,9 +208,19 @@ export default function M9Module() {
                 <li>• Only Result Slip will be issued, no certificate</li>
               </ul>
             </div>
+            </div>
           </div>
         </div>
-      </div>
+
+        {/* Tutorial Lectures Section */}
+        <div className="mt-8">
+          <CMFASTutorialLectures
+            videos={tutorialLectures}
+            moduleId="m9"
+            moduleName="M9 Module"
+            onUpdate={handleLectureUpdate}
+          />
+        </div>
     </div>
   );
 }

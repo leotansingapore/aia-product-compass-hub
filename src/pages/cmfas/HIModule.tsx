@@ -1,7 +1,71 @@
 import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
+import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
+import { useState } from "react";
 
 export default function HIModule() {
+  const [tutorialLectures, setTutorialLectures] = useState([
+    {
+      id: 'hi-intro',
+      title: 'HI Introduction & Overview',
+      description: 'Introduction to health insurance and Singapore healthcare system',
+      url: '/lectures/hi-intro.mp4',
+      duration: 1800, // 30 minutes
+      order: 0,
+      category: 'Introduction'
+    },
+    {
+      id: 'hi-medical-expense',
+      title: 'Medical Expense Insurance',
+      description: 'Understanding medical expense insurance products',
+      url: '/lectures/hi-medical-expense.mp4',
+      duration: 2400, // 40 minutes
+      order: 1,
+      category: 'Core Products'
+    },
+    {
+      id: 'hi-disability-income',
+      title: 'Disability Income Insurance',
+      description: 'Disability income insurance concepts and applications',
+      url: '/lectures/hi-disability-income.mp4',
+      duration: 2100, // 35 minutes
+      order: 2,
+      category: 'Core Products'
+    },
+    {
+      id: 'hi-critical-illness',
+      title: 'Critical Illness Insurance',
+      description: 'Critical illness insurance features and benefits',
+      url: '/lectures/hi-critical-illness.mp4',
+      duration: 2700, // 45 minutes
+      order: 3,
+      category: 'Core Products'
+    },
+    {
+      id: 'hi-underwriting',
+      title: 'Health Insurance Underwriting',
+      description: 'Underwriting principles and processes',
+      url: '/lectures/hi-underwriting.mp4',
+      duration: 2400, // 40 minutes
+      order: 4,
+      category: 'Technical'
+    },
+    {
+      id: 'hi-case-studies',
+      title: 'Case Studies & Financial Needs Analysis',
+      description: 'Practical applications and case studies',
+      url: '/lectures/hi-case-studies.mp4',
+      duration: 3000, // 50 minutes
+      order: 5,
+      category: 'Applications'
+    }
+  ]);
+
+  const handleLectureUpdate = async (field: string, value: any) => {
+    if (field === 'tutorial_lectures') {
+      setTutorialLectures(value);
+    }
+  };
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -151,9 +215,19 @@ export default function HIModule() {
                 <li>• Self-study for closed-book examination</li>
               </ul>
             </div>
+            </div>
           </div>
         </div>
-      </div>
+
+        {/* Tutorial Lectures Section */}
+        <div className="mt-8">
+          <CMFASTutorialLectures
+            videos={tutorialLectures}
+            moduleId="hi"
+            moduleName="HI Module"
+            onUpdate={handleLectureUpdate}
+          />
+        </div>
     </div>
   );
 }

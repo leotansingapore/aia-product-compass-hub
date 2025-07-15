@@ -1,7 +1,80 @@
 import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
+import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
+import { useState } from "react";
 
 export default function RES5Module() {
+  const [tutorialLectures, setTutorialLectures] = useState([
+    {
+      id: 'res5-intro',
+      title: 'RES5 Introduction & Overview',
+      description: 'Introduction to financial advisory rules and regulations',
+      url: '/lectures/res5-intro.mp4',
+      duration: 1800, // 30 minutes
+      order: 0,
+      category: 'Introduction'
+    },
+    {
+      id: 'res5-faa-regulations',
+      title: 'Financial Advisers Act & Regulations',
+      description: 'Understanding the Financial Advisers Act and key regulations',
+      url: '/lectures/res5-faa-regulations.mp4',
+      duration: 3000, // 50 minutes
+      order: 1,
+      category: 'Regulations'
+    },
+    {
+      id: 'res5-mas-notices',
+      title: 'MAS Notices Overview',
+      description: 'Key MAS notices and their applications',
+      url: '/lectures/res5-mas-notices.mp4',
+      duration: 2700, // 45 minutes
+      order: 2,
+      category: 'Regulations'
+    },
+    {
+      id: 'res5-conduct-business',
+      title: 'Conduct of Business Rules',
+      description: 'Business conduct requirements and compliance',
+      url: '/lectures/res5-conduct-business.mp4',
+      duration: 2400, // 40 minutes
+      order: 3,
+      category: 'Regulations'
+    },
+    {
+      id: 'res5-ethics',
+      title: 'Professional Ethics',
+      description: 'Ethics, professionalism, and conflict of interest',
+      url: '/lectures/res5-ethics.mp4',
+      duration: 2100, // 35 minutes
+      order: 4,
+      category: 'Ethics'
+    },
+    {
+      id: 'res5-client-relations',
+      title: 'Client Relations & Advisory Process',
+      description: 'Client relationships and advisory best practices',
+      url: '/lectures/res5-client-relations.mp4',
+      duration: 2400, // 40 minutes
+      order: 5,
+      category: 'Skills'
+    },
+    {
+      id: 'res5-financial-planning',
+      title: 'Financial Planning & Needs Analysis',
+      description: 'Financial planning process and needs analysis',
+      url: '/lectures/res5-financial-planning.mp4',
+      duration: 3000, // 50 minutes
+      order: 6,
+      category: 'Skills'
+    }
+  ]);
+
+  const handleLectureUpdate = async (field: string, value: any) => {
+    if (field === 'tutorial_lectures') {
+      setTutorialLectures(value);
+    }
+  };
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -124,9 +197,19 @@ export default function RES5Module() {
                 <li>• Self-study for closed-book examination</li>
               </ul>
             </div>
+            </div>
           </div>
         </div>
-      </div>
+
+        {/* Tutorial Lectures Section */}
+        <div className="mt-8">
+          <CMFASTutorialLectures
+            videos={tutorialLectures}
+            moduleId="res5"
+            moduleName="RES5 Module"
+            onUpdate={handleLectureUpdate}
+          />
+        </div>
     </div>
   );
 }
