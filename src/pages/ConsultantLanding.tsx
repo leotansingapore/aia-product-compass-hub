@@ -125,7 +125,7 @@ const ConsultantLanding = () => {
               Accelerate Your Success with
               <span className="block text-accent-glow">AIA Product Compass</span>
             </h1>
-            <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+            <p className="text-xl mb-8 text-white max-w-2xl mx-auto">
               Join hundreds of successful consultants who use our comprehensive platform to master AIA products, 
               serve clients better, and accelerate their career growth.
             </p>
@@ -149,7 +149,7 @@ const ConsultantLanding = () => {
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                <div className="text-muted-foreground">{stat.label}</div>
+                <div className="text-foreground">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -161,7 +161,7 @@ const ConsultantLanding = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Everything You Need to Excel</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-foreground max-w-2xl mx-auto">
               Our platform provides comprehensive tools and resources designed specifically for AIA consultants
             </p>
           </div>
@@ -174,7 +174,7 @@ const ConsultantLanding = () => {
                     <feature.icon className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
+                  <p className="text-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -187,7 +187,7 @@ const ConsultantLanding = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">See It In Action</h2>
-            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
+            <p className="text-xl text-foreground max-w-2xl mx-auto">
               Experience the power of our platform with these interactive demonstrations
             </p>
           </div>
@@ -197,10 +197,10 @@ const ConsultantLanding = () => {
               <Card key={index} className="border-2 border-primary/20 hover:border-primary/40 transition-all duration-300">
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
-                  <p className="text-foreground/70 mb-4">{feature.description}</p>
+                  <p className="text-foreground mb-4">{feature.description}</p>
                   <div className="bg-muted/50 p-4 rounded-lg">
                     <p className="text-sm font-medium text-primary mb-2">Try this:</p>
-                    <p className="text-sm text-foreground/80 italic">{feature.demo}</p>
+                    <p className="text-sm text-foreground italic">{feature.demo}</p>
                   </div>
                   <Link to="/">
                     <Button className="w-full mt-4" variant="outline">
@@ -220,7 +220,7 @@ const ConsultantLanding = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-foreground">What Our Consultants Say</h2>
-            <p className="text-xl text-foreground/70">
+            <p className="text-xl text-foreground">
               Real feedback from consultants who transformed their practice with our platform
             </p>
           </div>
@@ -235,7 +235,7 @@ const ConsultantLanding = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
-                      <p className="text-sm text-foreground/60">{testimonial.role}</p>
+                      <p className="text-sm text-foreground">{testimonial.role}</p>
                     </div>
                   </div>
                   <div className="flex mb-3">
@@ -243,7 +243,7 @@ const ConsultantLanding = () => {
                       <Star key={i} className="h-4 w-4 text-warning fill-current" />
                     ))}
                   </div>
-                  <blockquote className="text-foreground/80 italic">
+                  <blockquote className="text-foreground italic">
                     "{testimonial.quote}"
                   </blockquote>
                 </CardContent>
@@ -259,7 +259,7 @@ const ConsultantLanding = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4">Why Consultants Choose Us</h2>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl text-foreground">
                 Join the ranks of top-performing consultants who leverage our platform for success
               </p>
             </div>
@@ -294,7 +294,7 @@ const ConsultantLanding = () => {
                   helps me provide instant, accurate answers, and the training videos keep me 
                   updated on all product features."
                 </blockquote>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-sm text-foreground">
                   — Sarah Chen, Senior Financial Consultant
                 </div>
               </div>
@@ -307,7 +307,7 @@ const ConsultantLanding = () => {
       <section className="py-20 bg-gradient-primary text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Accelerate Your Success?</h2>
-          <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 text-white max-w-2xl mx-auto">
             Join our platform today and start leveraging the tools that top consultants use to excel
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
