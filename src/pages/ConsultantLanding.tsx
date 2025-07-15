@@ -55,11 +55,53 @@ const ConsultantLanding = () => {
 
   const benefits = [
     "Reduce onboarding time by 60%",
-    "Access 24/7 learning resources",
+    "Access 24/7 learning resources", 
     "Personalized learning paths",
     "Instant product expertise",
     "Client-ready presentations",
     "Continuous skill development"
+  ];
+
+  const testimonials = [
+    {
+      name: "Sarah Chen",
+      role: "Senior Financial Consultant", 
+      avatar: "SC",
+      rating: 5,
+      quote: "This platform transformed how I approach client consultations. The AI assistant helps me provide instant, accurate answers, and the training videos keep me updated on all product features."
+    },
+    {
+      name: "Marcus Tan",
+      role: "Financial Advisor",
+      avatar: "MT", 
+      rating: 5,
+      quote: "The gamified learning system made product training actually enjoyable. I've earned 2,500 XP points and unlocked 8 achievements while mastering AIA's investment products."
+    },
+    {
+      name: "Jennifer Wong",
+      role: "Insurance Specialist",
+      avatar: "JW",
+      rating: 5, 
+      quote: "The search functionality is incredible. I can find specific product information in seconds, and the client profile matching feature helps me recommend the perfect solutions."
+    }
+  ];
+
+  const demoFeatures = [
+    {
+      title: "Interactive Product Catalog",
+      description: "Browse 50+ AIA products with detailed specifications, highlights, and real-world applications",
+      demo: "Try searching 'high net worth investment' or 'medical coverage for families'"
+    },
+    {
+      title: "AI-Powered Learning Assistant", 
+      description: "Get instant answers to complex product questions and client scenarios",
+      demo: "Ask: 'What's the difference between Pro Achiever and Platinum Wealth Venture?'"
+    },
+    {
+      title: "Progress Tracking Dashboard",
+      description: "Monitor your learning journey with detailed analytics and achievement badges",
+      demo: "View your XP progress, completion rates, and unlock new learning paths"
+    }
   ];
 
   const stats = [
@@ -133,6 +175,77 @@ const ConsultantLanding = () => {
                   </div>
                   <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
                   <p className="text-muted-foreground">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Demo Features Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">See It In Action</h2>
+            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
+              Experience the power of our platform with these interactive demonstrations
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-3 gap-8">
+            {demoFeatures.map((feature, index) => (
+              <Card key={index} className="border-2 border-primary/20 hover:border-primary/40 transition-all duration-300">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
+                  <p className="text-foreground/70 mb-4">{feature.description}</p>
+                  <div className="bg-muted/50 p-4 rounded-lg">
+                    <p className="text-sm font-medium text-primary mb-2">Try this:</p>
+                    <p className="text-sm text-foreground/80 italic">{feature.demo}</p>
+                  </div>
+                  <Link to="/">
+                    <Button className="w-full mt-4" variant="outline">
+                      Try Demo
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 text-foreground">What Our Consultants Say</h2>
+            <p className="text-xl text-foreground/70">
+              Real feedback from consultants who transformed their practice with our platform
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="bg-white shadow-card hover:shadow-elegant transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                      <span className="font-semibold text-primary">{testimonial.avatar}</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
+                      <p className="text-sm text-foreground/60">{testimonial.role}</p>
+                    </div>
+                  </div>
+                  <div className="flex mb-3">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 text-warning fill-current" />
+                    ))}
+                  </div>
+                  <blockquote className="text-foreground/80 italic">
+                    "{testimonial.quote}"
+                  </blockquote>
                 </CardContent>
               </Card>
             ))}
