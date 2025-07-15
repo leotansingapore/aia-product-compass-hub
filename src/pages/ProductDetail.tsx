@@ -76,8 +76,12 @@ export default function ProductDetail() {
   };
 
   const handleBack = () => {
-    // Use browser history to go back to the actual previous page
-    window.history.back();
+    // Navigate back to the category page
+    if (product) {
+      navigate(`/category/${product.category_id}`);
+    } else {
+      navigate('/');
+    }
   };
 
   if (loading) {
