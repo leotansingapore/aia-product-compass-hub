@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 
-export default function OnboardingModule() {
+const OnboardingModule = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -166,4 +166,6 @@ export default function OnboardingModule() {
       </div>
     </div>
   );
-}
+};
+
+export default OnboardingModule;
