@@ -18,6 +18,9 @@ export default function Dashboard() {
   const { user } = useAuth();
   const { categories, loading } = useCategories();
 
+  // Debug logging
+  console.log('Dashboard - Categories:', categories.length, 'Loading:', loading);
+
   const handleSearch = (query: string) => {
     navigate(`/search?q=${encodeURIComponent(query)}`);
   };
