@@ -92,14 +92,89 @@ export default function CMFASExams() {
           ))}
         </div>
 
+        {/* Getting Started Section */}
         <div className="mt-12 bg-card rounded-lg p-6 border">
+          <h2 className="text-xl font-semibold mb-4">🚀 Getting Started - Required Setup</h2>
+          <div className="space-y-6">
+            <div className="border-l-4 border-primary pl-4">
+              <h3 className="font-semibold text-lg mb-2">Step 1: Create Student Account</h3>
+              <p className="text-muted-foreground mb-3">
+                Create your student account at <a href="https://www.scicollege.org.sg/Account/Register" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">SCI College Registration</a>
+              </p>
+              <div className="bg-muted p-3 rounded-md">
+                <p className="text-sm font-medium mb-2">Fill in the form with these details:</p>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• Training Co-ordinator: <span className="font-mono">NA</span></li>
+                  <li>• Email: <span className="font-mono">NA</span></li>
+                  <li>• Agency: <span className="font-mono">NA</span></li>
+                </ul>
+              </div>
+              <p className="text-sm text-muted-foreground mt-2">
+                📧 <strong>Important:</strong> Send us a screenshot of your email confirmation once your student account is created.
+              </p>
+            </div>
+
+            <div className="border-l-4 border-primary pl-4">
+              <h3 className="font-semibold text-lg mb-2">Step 2: Register for M9 Exam</h3>
+              <p className="text-muted-foreground mb-2">
+                Book your M9 exam first to create a study deadline. Aim to pass 1-2 exams per month starting with M9.
+              </p>
+              <div className="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-md border border-amber-200 dark:border-amber-800">
+                <p className="text-sm font-medium">💡 Pro Tip: Book your exam before you start studying to create accountability!</p>
+              </div>
+            </div>
+
+            <div className="border-l-4 border-primary pl-4">
+              <h3 className="font-semibold text-lg mb-2">📚 Study Timeline & Costs</h3>
+              <p className="text-muted-foreground mb-3">
+                Each exam requires approximately <strong>20-30 hours</strong> of dedicated study time.
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <h4 className="font-medium mb-2">Exam Costs (First Attempt - Subsidized)</h4>
+                  <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-md border border-green-200 dark:border-green-800">
+                    <ul className="text-sm space-y-1">
+                      <li>• M9: <strong>S$109.00</strong></li>
+                      <li>• M9A: <strong>S$109.00</strong></li>
+                      <li>• HI: <strong>S$76.30</strong></li>
+                      <li>• RES5: <strong>S$185.30</strong></li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="font-medium mb-2">Our Support Package</h4>
+                  <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-md border border-blue-200 dark:border-blue-800">
+                    <ul className="text-sm space-y-1">
+                      <li>• 📚 Comprehensive Flashcards</li>
+                      <li>• 👨‍🏫 Personal Tutoring</li>
+                      <li>• ❓ Extensive Question Bank</li>
+                      <li>• 🤖 AI Chatbot Support</li>
+                      <li>• 🔑 Key Concepts Summary</li>
+                      <li>• 💡 Expert Study Tips</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-4 bg-red-50 dark:bg-red-900/20 p-3 rounded-md border border-red-200 dark:border-red-800">
+                <p className="text-sm font-medium text-red-800 dark:text-red-200">
+                  ⚠️ Important: We subsidize only the first attempt of each exam. Subsequent attempts will be at your own cost.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 bg-card rounded-lg p-6 border">
           <h2 className="text-xl font-semibold mb-4">About CMFAS Certification</h2>
           <div className="space-y-4 text-muted-foreground">
             <p>
               The Capital Markets Financial Advisory Services (CMFAS) certification is required for financial advisors in Singapore to provide investment advice on capital market products.
             </p>
             <p>
-              Our comprehensive preparation materials cover all essential modules with practice questions, study guides, and expert insights to help you succeed in your certification journey.
+              With our comprehensive support package, passing on your first attempt should be highly achievable. Our materials are designed to maximize your success rate and minimize study time.
             </p>
           </div>
         </div>
