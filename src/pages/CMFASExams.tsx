@@ -215,6 +215,275 @@ export default function CMFASExams() {
           </div>
         </div>
 
+        {/* Detailed Exam Information */}
+        <div className="mt-12 space-y-8">
+          {/* M9 Exam */}
+          <div className="bg-card rounded-lg p-6 border">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              📘 M9 Exam
+              <span className="text-sm bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Life Insurance & Investment-Linked Policies</span>
+            </h2>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-semibold mb-2">For Whom</h3>
+                <p className="text-muted-foreground">
+                  The M9 exam is intended for those who are looking to provide advice on and/or arrange life insurance policies (whether or not including investment-linked policies). 
+                  You are required to pass this module, together with Module 5 on Rules And Regulations For Financial Advisory Services, in compliance with the requirements as laid down by the Monetary Authority of Singapore (MAS).
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2">Objectives</h3>
+                <p className="text-muted-foreground mb-3">The objective of this course is to test candidates on their knowledge and understanding of:</p>
+                <ul className="text-muted-foreground space-y-1 list-disc list-inside">
+                  <li>Life insurance and life insurance concepts, including setting life insurance premiums and classification of life insurance products</li>
+                  <li>Different types of traditional life insurance products</li>
+                  <li>Various types of riders; investment-linked policies; and annuities</li>
+                  <li>Industry practices including the application and underwriting process; policy services and claims practices</li>
+                  <li>Contractual provisions and legal issues such as the law of agency and other relevant aspects such as income tax, insurance nomination, wills, and trust</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2">Course Contents</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-1 text-sm">
+                    <p>Chapter 1 – Risk And Life Insurance</p>
+                    <p>Chapter 2 – Setting Life Insurance Premium</p>
+                    <p>Chapter 3 – Classification Of Life Insurance Products</p>
+                    <p>Chapter 4 – Traditional Life Insurance Products</p>
+                    <p>Chapter 5 – Riders (Or Supplementary Benefits)</p>
+                    <p>Chapter 6 – Participating Life Insurance Policies</p>
+                    <p>Chapter 7 – Investment-linked Life Insurance Policies (ILPS)</p>
+                    <p>Chapter 8 – Investment-linked Sub-Funds</p>
+                    <p>Chapter 9 – Investment-linked Life Insurance Products: Computational Aspects</p>
+                  </div>
+                  <div className="space-y-1 text-sm">
+                    <p>Chapter 10 – Annuities</p>
+                    <p>Chapter 11 – Application And Underwriting</p>
+                    <p>Chapter 12 – Policy Services</p>
+                    <p>Chapter 13 – Life Insurance Claims</p>
+                    <p>Chapter 14 – The Insurance Contract</p>
+                    <p>Chapter 15 – Law Of Agency</p>
+                    <p>Chapter 16 – Income Tax And Life Insurance</p>
+                    <p>Chapter 17 – Insurance Nomination, Wills And Trusts</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Format</h4>
+                  <p className="text-sm">100 multiple-choice questions</p>
+                </div>
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Duration</h4>
+                  <p className="text-sm">2 hours</p>
+                </div>
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Passing Grade</h4>
+                  <p className="text-sm">70%</p>
+                </div>
+              </div>
+
+              <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded border border-amber-200 dark:border-amber-800">
+                <p className="text-sm"><strong>Note:</strong> Computer Screen Examination (CSE) in English. Use eBook for preparation - no hard-copy texts issued.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* M9A Exam */}
+          <div className="bg-card rounded-lg p-6 border">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              📘 M9A Exam
+              <span className="text-sm bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-200 px-2 py-1 rounded">Life Insurance & Investment-Linked Policies II</span>
+            </h2>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-semibold mb-2">For Whom</h3>
+                <p className="text-muted-foreground">
+                  The M9A is intended for new or existing representatives of financial advisers who need to comply with the MAS requirement to possess the requisite knowledge to advise others and/or arrange Investment-linked Life Insurance Policies (ILPs).
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2">Objectives</h3>
+                <p className="text-muted-foreground mb-3">The objective of this course is to test candidates on their knowledge and understanding of:</p>
+                <ul className="text-muted-foreground space-y-1 list-disc list-inside">
+                  <li>Features, types, advantages, and disadvantages of structured products, comparison with other investment options, governance structure</li>
+                  <li>Documentation and risks associated with the investment of structured products, particularly Structured ILPs</li>
+                  <li>Structured ILPs on product features, inherent risks, and performance under various market conditions</li>
+                  <li>Various types of derivatives in the market, both on-the-exchange and over-the-counter</li>
+                  <li>Applications of structured funds relating to product features, inherent risks, and performance</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2">Course Contents</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-1 text-sm">
+                    <p>Chapter 1 – Introduction To Structured Products</p>
+                    <p>Chapter 2 – Risk Considerations Of Structured Products</p>
+                    <p>Chapter 3 – Understanding Derivatives</p>
+                  </div>
+                  <div className="space-y-1 text-sm">
+                    <p>Chapter 4 – Introduction To Structured ILPs</p>
+                    <p>Chapter 5 – Portfolio Of Investments With An Insurance</p>
+                    <p>Chapter 6 – Case Studies</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Format</h4>
+                  <p className="text-sm">50 multiple-choice questions</p>
+                </div>
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Duration</h4>
+                  <p className="text-sm">1 hour</p>
+                </div>
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Passing Grade</h4>
+                  <p className="text-sm">70%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* HI Exam */}
+          <div className="bg-card rounded-lg p-6 border">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              📘 HI Exam
+              <span className="text-sm bg-purple-100 dark:bg-purple-900/20 text-purple-800 dark:text-purple-200 px-2 py-1 rounded">Health Insurance</span>
+            </h2>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-semibold mb-2">For Whom</h3>
+                <p className="text-muted-foreground mb-3">
+                  The HI exam is intended for all life and general insurance intermediaries and company staff members who are involved in advising and/or selling any Health Insurance products including:
+                </p>
+                <ul className="text-muted-foreground space-y-1 list-disc list-inside">
+                  <li>Medical Expense Insurance</li>
+                  <li>Disability Income Insurance</li>
+                  <li>Long-Term Care Insurance</li>
+                  <li>Critical Illness Insurance</li>
+                  <li>Managed Healthcare Insurance</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2">Course Contents</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-1 text-sm">
+                    <p>Chapter 1 – Overview Of Healthcare Environment In Singapore</p>
+                    <p>Chapter 2 – Medical Expense Insurance</p>
+                    <p>Chapter 3 – Group Medical Expense Insurance</p>
+                    <p>Chapter 4 – Disability Income Insurance</p>
+                    <p>Chapter 5 – Long-Term Care Insurance</p>
+                    <p>Chapter 6 – Critical Illness Insurance</p>
+                    <p>Chapter 7 – Other Types of Health Insurance</p>
+                    <p>Chapter 8 – Managed Healthcare</p>
+                  </div>
+                  <div className="space-y-1 text-sm">
+                    <p>Chapter 9 – Healthcare Financing</p>
+                    <p>Chapter 10 – Common Policy Provisions</p>
+                    <p>Chapter 11 – Health Insurance Pricing</p>
+                    <p>Chapter 12 – Health Insurance Underwriting</p>
+                    <p>Chapter 13 – MAS 120 – Disclosure And Advisory Process</p>
+                    <p>Chapter 14 – Financial Needs Analysis</p>
+                    <p>Chapter 15 – Case Studies</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Format</h4>
+                  <p className="text-sm">50 multiple-choice questions</p>
+                </div>
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Duration</h4>
+                  <p className="text-sm">1 hour 15 minutes</p>
+                </div>
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Passing Grade</h4>
+                  <p className="text-sm">70%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* RES5 Exam */}
+          <div className="bg-card rounded-lg p-6 border">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              📘 RES5 Exam
+              <span className="text-sm bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-200 px-2 py-1 rounded">Rules, Ethics & Skills for Financial Advisory Services</span>
+            </h2>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-semibold mb-2">For Whom</h3>
+                <p className="text-muted-foreground mb-3">
+                  Those intending to advise others concerning securities, collective investment schemes, derivatives contracts, foreign exchange trading, or provide advice on life insurance policies.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2">Course Structure</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="bg-muted p-4 rounded">
+                    <h4 className="font-medium mb-2">Part I - Regulations (110 Questions)</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Financial Advisers Act & Regulations</li>
+                      <li>• MAS Notices (FAA-N16, FAA-N03, FAA-N11, etc.)</li>
+                      <li>• Money Laundering Prevention</li>
+                      <li>• Investment-linked Policies (ILPs)</li>
+                      <li>• Collective Investment Schemes</li>
+                      <li>• Securities Dealing & Market Conduct</li>
+                      <li>• Central Provident Fund</li>
+                    </ul>
+                  </div>
+                  <div className="bg-muted p-4 rounded">
+                    <h4 className="font-medium mb-2">Part II - Ethics & Skills (40 Questions)</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Professional Ethics</li>
+                      <li>• Ethical Behavior & Conflicts of Interest</li>
+                      <li>• Fair Dealing</li>
+                      <li>• Client Relationships</li>
+                      <li>• Fact Finding & Needs Analysis</li>
+                      <li>• Financial Planning</li>
+                      <li>• Portfolio Review</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Format</h4>
+                  <p className="text-sm">150 multiple-choice questions</p>
+                </div>
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Duration</h4>
+                  <p className="text-sm">3 hours</p>
+                </div>
+                <div className="bg-muted p-4 rounded">
+                  <h4 className="font-medium mb-2">Passing Grade</h4>
+                  <p className="text-sm">Part I: 75% | Part II: 80%</p>
+                </div>
+              </div>
+
+              <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded border border-red-200 dark:border-red-800">
+                <p className="text-sm font-medium"><strong>Important:</strong> You must achieve at least 75% for Part I AND at least 80% for Part II to pass.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="mt-8 bg-card rounded-lg p-6 border">
           <h2 className="text-xl font-semibold mb-4">About CMFAS Certification</h2>
           <div className="space-y-4 text-muted-foreground">
