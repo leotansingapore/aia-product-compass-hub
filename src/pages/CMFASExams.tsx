@@ -9,52 +9,44 @@ export default function CMFASExams() {
 
   const cmfasModules = [
     {
-      title: "CMFAS Module 1",
-      description: "Rules and Regulations - Essential foundations for capital markets",
+      title: "Getting Started",
+      description: "Essential onboarding steps and setup guide",
       icon: BookOpen,
-      productCount: 25,
-      gradient: "from-blue-500 to-blue-600",
-      route: "/cmfas/module-1"
+      productCount: 4,
+      gradient: "from-cyan-500 to-cyan-600",
+      route: "/cmfas/onboarding"
     },
     {
-      title: "CMFAS Module 5", 
-      description: "Securities & Futures Act - Legal framework and compliance",
+      title: "M9 Module",
+      description: "Life Insurance And Investment-Linked Policies",
       icon: Scale,
-      productCount: 30,
-      gradient: "from-green-500 to-green-600",
-      route: "/cmfas/module-5"
+      productCount: 17,
+      gradient: "from-blue-500 to-blue-600",
+      route: "/cmfas/m9"
     },
     {
-      title: "CMFAS Module 6",
-      description: "Investment Analysis - Fundamental and technical analysis", 
+      title: "M9A Module", 
+      description: "Life Insurance And Investment-Linked Policies II",
       icon: TrendingUp,
-      productCount: 35,
-      gradient: "from-purple-500 to-purple-600",
-      route: "/cmfas/module-6"
+      productCount: 6,
+      gradient: "from-green-500 to-green-600",
+      route: "/cmfas/m9a"
     },
     {
-      title: "CMFAS Module 8",
-      description: "Collective Investment Schemes - Unit trusts and funds",
+      title: "HI Module",
+      description: "Health Insurance", 
       icon: PieChart,
-      productCount: 28,
-      gradient: "from-orange-500 to-orange-600",
-      route: "/cmfas/module-8"
+      productCount: 15,
+      gradient: "from-purple-500 to-purple-600",
+      route: "/cmfas/hi"
     },
     {
-      title: "Practice Tests",
-      description: "Comprehensive mock exams and practice questions",
+      title: "RES5 Module",
+      description: "Rules, Ethics And Skills For Financial Advisory Services",
       icon: FileText,
-      productCount: 150,
+      productCount: 28,
       gradient: "from-red-500 to-red-600",
-      route: "/cmfas/practice-tests"
-    },
-    {
-      title: "Study Materials",
-      description: "Downloadable guides, flashcards, and reference materials",
-      icon: Download,
-      productCount: 45,
-      gradient: "from-teal-500 to-teal-600",
-      route: "/cmfas/study-materials"
+      route: "/cmfas/res5"
     }
   ];
 
