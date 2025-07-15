@@ -17,6 +17,16 @@ export interface TrainingVideo {
   duration?: number; // in seconds
   order: number;
   category?: string; // folder/category name
+  useful_links?: UsefulLink[];
+  attachments?: VideoAttachment[];
+}
+
+export interface VideoAttachment {
+  id: string;
+  name: string;
+  url: string;
+  file_size?: number;
+  file_type?: string;
 }
 
 export interface Product {

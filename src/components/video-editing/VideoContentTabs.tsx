@@ -1,6 +1,8 @@
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { EditableLinks } from '@/components/EditableLinks';
+import { VideoAttachments } from './VideoAttachments';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoContentTabsProps {
@@ -14,6 +16,8 @@ export function VideoContentTabs({ video, onChange }: VideoContentTabsProps) {
       <TabsList>
         <TabsTrigger value="notes">Learning Notes</TabsTrigger>
         <TabsTrigger value="transcript">Transcript</TabsTrigger>
+        <TabsTrigger value="links">Useful Links</TabsTrigger>
+        <TabsTrigger value="attachments">Attachments</TabsTrigger>
       </TabsList>
       
       <TabsContent value="notes" className="space-y-2">
@@ -33,6 +37,22 @@ export function VideoContentTabs({ video, onChange }: VideoContentTabsProps) {
           onChange={(e) => onChange('transcript', e.target.value)}
           placeholder="Paste the full video transcript here..."
           rows={4}
+        />
+      </TabsContent>
+      
+      <TabsContent value="links" className="space-y-2">
+        <Label>Useful Links</Label>
+        <EditableLinks
+          links={video.useful_links || []}
+          onSave={async (newLinks) => onChange('useful_links', newLinks)}
+        />
+      </TabsContent>
+      
+      <TabsContent value="attachments" className="space-y-2">
+        <Label>Attachments</Label>
+        <VideoAttachments
+          attachments={video.attachments || []}
+          onAttachmentsChange={(attachments) => onChange('attachments', attachments)}
         />
       </TabsContent>
     </Tabs>

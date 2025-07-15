@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ChevronLeft, ChevronRight, Check, Play, Pause } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import type { TrainingVideo } from '@/hooks/useProducts';
@@ -256,6 +256,78 @@ export function VideoLearningInterface({
                         </TabsContent>
                       )}
                     </Tabs>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Useful Links & Attachments */}
+              {(currentVideo?.useful_links?.length > 0 || currentVideo?.attachments?.length > 0) && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Learning Resources</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {/* Useful Links */}
+                    {currentVideo?.useful_links?.length > 0 && (
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-medium">Useful Links</h4>
+                        <div className="grid gap-2">
+                          {currentVideo.useful_links.map((link, index) => (
+                            <Button
+                              key={index}
+                              variant="outline"
+                              className="justify-start h-auto p-3"
+                              onClick={() => window.open(link.url, '_blank')}
+                            >
+                              <span className="mr-2">{link.icon}</span>
+                              <div className="text-left">
+                                <div className="font-medium">{link.name}</div>
+                                <div className="text-xs text-muted-foreground truncate">
+                                  {link.url}
+                                </div>
+                              </div>
+                              <ExternalLink className="h-4 w-4 ml-auto" />
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Attachments */}
+                    {currentVideo?.attachments?.length > 0 && (
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-medium">Downloadable Resources</h4>
+                        <div className="grid gap-2">
+                          {currentVideo.attachments.map((attachment, index) => (
+                            <Button
+                              key={index}
+                              variant="outline"
+                              className="justify-start h-auto p-3"
+                              onClick={() => window.open(attachment.url, '_blank')}
+                            >
+                              <FileText className="h-5 w-5 mr-3 text-primary" />
+                              <div className="text-left flex-1">
+                                <div className="font-medium">{attachment.name}</div>
+                                <div className="text-xs text-muted-foreground flex gap-2">
+                                  {attachment.file_type && (
+                                    <span>{attachment.file_type}</span>
+                                  )}
+                                  {attachment.file_size && (
+                                    <span>
+                                      {attachment.file_size > 1024 * 1024 
+                                        ? `${(attachment.file_size / (1024 * 1024)).toFixed(1)} MB`
+                                        : `${Math.round(attachment.file_size / 1024)} KB`
+                                      }
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              <Download className="h-4 w-4 ml-auto" />
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               )}
