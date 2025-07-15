@@ -88,6 +88,61 @@ export default function Dashboard() {
           )}
         </div>
 
+        {/* CMFAS Exam Section */}
+        <div className="space-y-6">
+          <h2 className="text-2xl font-bold">CMFAS Exam Preparation</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <CategoryCard
+              title="CMFAS Module 1"
+              description="Rules and Regulations - Essential foundations for capital markets"
+              icon="BookOpen"
+              productCount={25}
+              gradient="from-blue-500 to-blue-600"
+              onClick={() => navigate('/cmfas/module-1')}
+            />
+            <CategoryCard
+              title="CMFAS Module 5"
+              description="Securities & Futures Act - Legal framework and compliance"
+              icon="Scale"
+              productCount={30}
+              gradient="from-green-500 to-green-600"
+              onClick={() => navigate('/cmfas/module-5')}
+            />
+            <CategoryCard
+              title="CMFAS Module 6"
+              description="Investment Analysis - Fundamental and technical analysis"
+              icon="TrendingUp"
+              productCount={35}
+              gradient="from-purple-500 to-purple-600"
+              onClick={() => navigate('/cmfas/module-6')}
+            />
+            <CategoryCard
+              title="CMFAS Module 8"
+              description="Collective Investment Schemes - Unit trusts and funds"
+              icon="PieChart"
+              productCount={28}
+              gradient="from-orange-500 to-orange-600"
+              onClick={() => navigate('/cmfas/module-8')}
+            />
+            <CategoryCard
+              title="Practice Tests"
+              description="Comprehensive mock exams and practice questions"
+              icon="FileText"
+              productCount={150}
+              gradient="from-red-500 to-red-600"
+              onClick={() => navigate('/cmfas/practice-tests')}
+            />
+            <CategoryCard
+              title="Study Materials"
+              description="Downloadable guides, flashcards, and reference materials"
+              icon="Download"
+              productCount={45}
+              gradient="from-teal-500 to-teal-600"
+              onClick={() => navigate('/cmfas/study-materials')}
+            />
+          </div>
+        </div>
+
         {/* User-specific sections - Only show if logged in */}
         {user && (
           <>
