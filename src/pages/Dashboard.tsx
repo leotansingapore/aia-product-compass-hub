@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { getCategoryIdFromName } from "@/hooks/useProducts";
 import { CategoryCard } from "@/components/CategoryCard";
 import { getCategoryConfig } from "@/utils/categoryConfig";
-import { UsefulLinksSection } from "@/components/dashboard/UsefulLinksSection";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -88,9 +87,6 @@ export default function Dashboard() {
             </div>
           )}
         </div>
-
-        {/* Useful Links Section */}
-        <UsefulLinksSection />
 
 
         {/* User-specific sections - Only show if logged in */}

@@ -2,7 +2,8 @@ import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CategoryCard } from "@/components/CategoryCard";
-import { BookOpen, Scale, TrendingUp, PieChart, FileText, Download } from "lucide-react";
+import { UsefulLinksSection } from "@/components/dashboard/UsefulLinksSection";
+import { BookOpen, Scale, TrendingUp, PieChart, FileText } from "lucide-react";
 
 export default function CMFASExams() {
   const navigate = useNavigate();
@@ -69,6 +70,9 @@ export default function CMFASExams() {
             Prepare for your Capital Markets Financial Advisory Services certification with our comprehensive study materials, practice tests, and expert guidance across all essential modules.
           </p>
         </div>
+
+        {/* Useful Links Section */}
+        <UsefulLinksSection />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cmfasModules.map((module) => (
