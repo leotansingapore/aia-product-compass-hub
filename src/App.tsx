@@ -20,11 +20,7 @@ import Bookmarks from "./pages/Bookmarks";
 import Auth from "./pages/Auth";
 import ConsultantLanding from "./pages/ConsultantLanding";
 import CMFASExams from "./pages/CMFASExams";
-import OnboardingModule from "./pages/cmfas/OnboardingModule";
-import M9Module from "./pages/cmfas/M9Module";
-import M9AModule from "./pages/cmfas/M9AModule";
-import HIModule from "./pages/cmfas/HIModule";
-import RES5Module from "./pages/cmfas/RES5Module";
+import CMFASModuleDetail from "./pages/cmfas/CMFASModuleDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,11 +46,7 @@ const App = () => (
                 <Route path="/sales-tools" element={<SalesTools />} />
                 <Route path="/bookmarks" element={<Bookmarks />} />
                 <Route path="/cmfas-exams" element={<CMFASExams />} />
-                <Route path="/cmfas/onboarding" element={<OnboardingModule />} />
-                <Route path="/cmfas/m9" element={<M9Module />} />
-                <Route path="/cmfas/m9a" element={<M9AModule />} />
-                <Route path="/cmfas/hi" element={<HIModule />} />
-                <Route path="/cmfas/res5" element={<RES5Module />} />
+                <Route path="/cmfas/module/:moduleId" element={<CMFASModuleDetail />} />
                 <Route path="/category/:categoryId" element={<ProductCategory />} />
                 <Route path="/product/:productId" element={<ProductDetail />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

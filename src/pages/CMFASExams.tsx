@@ -15,7 +15,7 @@ export default function CMFASExams() {
       icon: BookOpen,
       productCount: 4,
       gradient: "from-cyan-500 to-cyan-600",
-      route: "/cmfas/onboarding"
+      route: "/cmfas/module/onboarding"
     },
     {
       title: "M9 Module",
@@ -23,7 +23,7 @@ export default function CMFASExams() {
       icon: Scale,
       productCount: 17,
       gradient: "from-blue-500 to-blue-600",
-      route: "/cmfas/m9"
+      route: "/cmfas/module/m9"
     },
     {
       title: "M9A Module", 
@@ -31,7 +31,7 @@ export default function CMFASExams() {
       icon: TrendingUp,
       productCount: 6,
       gradient: "from-green-500 to-green-600",
-      route: "/cmfas/m9a"
+      route: "/cmfas/module/m9a"
     },
     {
       title: "HI Module",
@@ -39,7 +39,7 @@ export default function CMFASExams() {
       icon: PieChart,
       productCount: 15,
       gradient: "from-purple-500 to-purple-600",
-      route: "/cmfas/hi"
+      route: "/cmfas/module/hi"
     },
     {
       title: "RES5 Module",
@@ -47,7 +47,7 @@ export default function CMFASExams() {
       icon: FileText,
       productCount: 28,
       gradient: "from-red-500 to-red-600",
-      route: "/cmfas/res5"
+      route: "/cmfas/module/res5"
     }
   ];
 
