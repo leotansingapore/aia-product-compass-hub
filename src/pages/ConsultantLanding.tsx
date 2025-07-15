@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -113,6 +114,10 @@ const ConsultantLanding = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <Helmet>
+        <title>For Financial Consultants - AIA Product Compass Hub</title>
+        <meta name="description" content="Accelerate your success as an AIA financial consultant with our comprehensive learning platform. Access 50+ product guides, 100+ training videos, AI assistance, and gamified learning to excel in your career." />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-primary text-white">
         <div className="absolute inset-0 bg-black/20"></div>

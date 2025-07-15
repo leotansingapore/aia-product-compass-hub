@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { ProductCard } from "@/components/ProductCard";
@@ -55,6 +56,9 @@ export default function ProductCategory() {
 
   // Find the category by ID from the database
   const category = categories.find(cat => cat.id === categoryId);
+  
+  // Get category info for meta tags
+  const categoryInfo = getCategoryInfo(categoryId || '');
 
   // Track category view
   useEffect(() => {
@@ -116,6 +120,10 @@ export default function ProductCategory() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{categoryInfo?.title || 'Product Category'} - AIA Product Compass Hub</title>
+        <meta name="description" content={`Explore ${categoryInfo?.title.toLowerCase() || 'products'} - ${categoryInfo?.description || 'Comprehensive insurance and investment solutions'} with detailed guides, videos, and AI assistance.`} />
+      </Helmet>
       <NavigationHeader 
         title={category.name}
         subtitle={category.description || ''}

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useBookmarks } from "@/hooks/useBookmarks";
 import { useAllProducts } from "@/hooks/useProducts";
 import { ProductCard } from "@/components/ProductCard";
@@ -25,7 +26,11 @@ export default function Bookmarks() {
 
   return (
     <div className="min-h-screen bg-background">
-      <NavigationHeader 
+      <Helmet>
+        <title>My Bookmarks - AIA Product Compass Hub</title>
+        <meta name="description" content="Access your saved products and resources in one place. Quickly find your bookmarked AIA insurance and investment products for easy reference." />
+      </Helmet>
+      <NavigationHeader
         title="My Bookmarks"
         subtitle="Your saved products and resources"
         showBackButton={true}

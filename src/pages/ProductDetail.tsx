@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { useProductById, getCategoryIdFromName } from "@/hooks/useProducts";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
@@ -109,6 +110,10 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{product?.title || 'Product Details'} - AIA Product Compass Hub</title>
+        <meta name="description" content={`Learn about ${product?.title || 'this product'} - ${product?.description || 'Complete product information including benefits, features, training videos, and AI assistance for financial advisors.'}`} />
+      </Helmet>
       <ProductHeader
         productTitle={product.title}
         categoryName={categoryName}

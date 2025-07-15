@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { ProductCard } from "@/components/ProductCard";
@@ -97,7 +98,11 @@ export default function SearchResults() {
 
   return (
     <div className="min-h-screen bg-background">
-      <NavigationHeader 
+      <Helmet>
+        <title>Search Results - AIA Product Compass Hub</title>
+        <meta name="description" content={`Search results for "${query || 'products'}" - Find AIA insurance and investment products with detailed information, training videos, and AI assistance.`} />
+      </Helmet>
+      <NavigationHeader
         title="Search Results"
         subtitle={hasQuery ? `Results for "${query}"` : "Search our knowledge base"}
         showBackButton

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useAuth } from "@/hooks/useAuth";
 import { useCategories } from "@/hooks/useProducts";
 import { NavigationHeader } from "@/components/NavigationHeader";
@@ -32,6 +33,10 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Dashboard - AIA Product Compass Hub</title>
+        <meta name="description" content="Access your personalized dashboard with product categories, learning progress, and recommendations. Navigate investment, endowment, whole life, term, and medical insurance products." />
+      </Helmet>
       <NavigationHeader 
         title="AIA Product Learning Platform"
         subtitle="Your comprehensive resource for product knowledge and sales excellence"

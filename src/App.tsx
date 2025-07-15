@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "@/hooks/useAuth";
 import { AdminProvider } from "@/hooks/useAdmin";
 import { OnboardingProvider } from "@/hooks/useOnboarding";
@@ -24,10 +25,11 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <OnboardingProvider>
-        <AdminProvider>
-          <TooltipProvider>
+    <HelmetProvider>
+      <AuthProvider>
+        <OnboardingProvider>
+          <AdminProvider>
+            <TooltipProvider>
           <Toaster />
           <Sonner />
           <BrowserRouter>
@@ -49,10 +51,11 @@ const App = () => (
               <FloatingQuickActions />
             </AppLayout>
           </BrowserRouter>
-        </TooltipProvider>
-      </AdminProvider>
-      </OnboardingProvider>
-    </AuthProvider>
+          </TooltipProvider>
+        </AdminProvider>
+        </OnboardingProvider>
+      </AuthProvider>
+    </HelmetProvider>
   </QueryClientProvider>
 );
 

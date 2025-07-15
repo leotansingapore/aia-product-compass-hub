@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -242,6 +243,10 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle flex items-center justify-center p-4">
+      <Helmet>
+        <title>Sign In - AIA Product Compass Hub</title>
+        <meta name="description" content="Sign in to access the AIA Product Compass Hub - Track your learning progress, earn achievements, and access comprehensive product training materials." />
+      </Helmet>
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
