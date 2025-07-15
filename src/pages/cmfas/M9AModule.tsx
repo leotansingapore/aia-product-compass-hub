@@ -95,6 +95,22 @@ export default function M9AModule() {
       />
       
       <div className="max-w-4xl mx-auto px-6 py-8">
+        {/* Useful Links Section */}
+        <div className="mb-8">
+          <CMFASUsefulLinks
+            links={usefulLinks}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
+        {/* AI Assistant Section */}
+        <div className="mb-8">
+          <CMFASAIAssistant
+            customGptLink={customGptLink}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
         <div className="bg-card rounded-lg p-6 border">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center">
@@ -203,21 +219,6 @@ export default function M9AModule() {
           />
         </div>
 
-        {/* Useful Links Section */}
-        <div className="mt-8">
-          <CMFASUsefulLinks
-            links={usefulLinks}
-            onUpdate={handleUpdate}
-          />
-        </div>
-
-        {/* AI Assistant Section */}
-        <div className="mt-8">
-          <CMFASAIAssistant
-            customGptLink={customGptLink}
-            onUpdate={handleUpdate}
-          />
-        </div>
     </div>
   );
 }

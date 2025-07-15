@@ -95,6 +95,22 @@ const OnboardingModule = () => {
       />
       
       <div className="max-w-4xl mx-auto px-6 py-8">
+        {/* Useful Links Section */}
+        <div className="mb-8">
+          <CMFASUsefulLinks
+            links={usefulLinks}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
+        {/* AI Assistant Section */}
+        <div className="mb-8">
+          <CMFASAIAssistant
+            customGptLink={customGptLink}
+            onUpdate={handleUpdate}
+          />
+        </div>
+
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4">🚀 Getting Started - Required Setup</h1>
           <p className="text-muted-foreground text-lg">
@@ -254,21 +270,6 @@ const OnboardingModule = () => {
           />
         </div>
 
-        {/* Useful Links Section */}
-        <div className="mt-8">
-          <CMFASUsefulLinks
-            links={usefulLinks}
-            onUpdate={handleUpdate}
-          />
-        </div>
-
-        {/* AI Assistant Section */}
-        <div className="mt-8">
-          <CMFASAIAssistant
-            customGptLink={customGptLink}
-            onUpdate={handleUpdate}
-          />
-        </div>
       </div>
     </div>
   );
