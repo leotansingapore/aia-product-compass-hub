@@ -125,6 +125,54 @@ export default function CMFASExams() {
             </div>
 
             <div className="border-l-4 border-primary pl-4">
+              <h3 className="font-semibold text-lg mb-2">Step 3: Get Access to Exam Question Bank</h3>
+              <p className="text-muted-foreground mb-3">
+                This is essential for exam preparation - a quick 5-minute setup to access practice questions.
+              </p>
+              
+              <div className="space-y-4">
+                <div className="bg-muted p-4 rounded-md">
+                  <h4 className="font-medium mb-2">🔐 Initial Setup</h4>
+                  <ol className="text-sm space-y-2 list-decimal list-inside">
+                    <li>Send Leo your <strong>name</strong>, <strong>email</strong>, and <strong>handphone number</strong></li>
+                    <li>Login to <strong>iRecruit</strong> using the credentials provided</li>
+                  </ol>
+                </div>
+
+                <div className="bg-muted p-4 rounded-md">
+                  <h4 className="font-medium mb-2">📚 Accessing the Question Bank</h4>
+                  <p className="text-sm mb-2">Navigate through the platform:</p>
+                  <div className="bg-background p-3 rounded border font-mono text-sm">
+                    iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions → Chapter Revision and Premium Papers → Launch
+                  </div>
+                </div>
+
+                <div className="bg-muted p-4 rounded-md">
+                  <h4 className="font-medium mb-2">⚙️ Optimal Study Settings</h4>
+                  <p className="text-sm mb-2">Configure your practice session:</p>
+                  <div className="bg-background p-3 rounded border font-mono text-sm">
+                    Launch → Restart → OK → Select Module 9 → All Questions → 50 Questions → Redo Cleared Questions → Learning Mode → Start Session
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-md border border-blue-200 dark:border-blue-800">
+                  <h4 className="font-medium mb-2">💡 Study Strategy</h4>
+                  <p className="text-sm">
+                    Use the <strong>speed reference</strong> to answer questions and learn by doing instead of reading the textbook first. 
+                    Understand concepts through practice, then refer to the relevant textbook sections for deeper comprehension.
+                  </p>
+                </div>
+
+                <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-md border border-green-200 dark:border-green-800">
+                  <h4 className="font-medium mb-2">📱 Mobile Access</h4>
+                  <p className="text-sm">
+                    <strong>Highly recommended:</strong> Login to iLearn on mobile as well. Follow the same steps above and you'll be prompted to download the iLearn mobile app for studying on-the-go.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-l-4 border-primary pl-4">
               <h3 className="font-semibold text-lg mb-2">📚 Study Timeline & Costs</h3>
               <p className="text-muted-foreground mb-3">
                 Each exam requires approximately <strong>20-30 hours</strong> of dedicated study time.
