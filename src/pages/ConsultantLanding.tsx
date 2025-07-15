@@ -139,7 +139,7 @@ const ConsultantLanding = () => {
                 Start Your Journey
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="xl" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="xl" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
                 Watch Demo
               </Button>
             </div>
@@ -323,7 +323,7 @@ const ConsultantLanding = () => {
               </Button>
             </Link>
             <Link to="/how-to-use">
-              <Button size="xl" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="xl" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
                 Learn More
               </Button>
             </Link>
