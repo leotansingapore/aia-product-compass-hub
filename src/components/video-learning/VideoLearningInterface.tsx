@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ChevronLeft, ChevronRight, Check, Play, Pause } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
+import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoLearningInterfaceProps {
@@ -217,42 +218,15 @@ export function VideoLearningInterface({
                 <CardHeader>
                   <CardTitle>Course Videos</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-2">
-                  {videos.map((video, index) => {
-                    const progress = getVideoProgress(video.id);
-                    return (
-                      <button
-                        key={video.id}
-                        onClick={() => {
-                          setCurrentVideoIndex(index);
-                          setWatchTime(0);
-                        }}
-                        className={`w-full text-left p-3 rounded-lg border transition-colors ${
-                          index === currentVideoIndex 
-                            ? 'border-primary bg-primary/5' 
-                            : 'border-border hover:bg-muted'
-                        }`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2">
-                              <span className="text-sm font-medium truncate">
-                                {index + 1}. {video.title}
-                              </span>
-                              {progress?.completed && (
-                                <Check className="h-4 w-4 text-green-600 flex-shrink-0" />
-                              )}
-                            </div>
-                            {video.duration && (
-                              <div className="text-xs text-muted-foreground">
-                                {Math.floor(video.duration / 60)}:{(video.duration % 60).toString().padStart(2, '0')}
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </button>
-                    );
-                  })}
+                <CardContent>
+                  <VideosByCategory
+                    videos={videos}
+                    onVideoSelect={(index) => {
+                      setCurrentVideoIndex(index);
+                      setWatchTime(0);
+                    }}
+                    getVideoProgress={getVideoProgress}
+                  />
                 </CardContent>
               </Card>
 
