@@ -730,7 +730,7 @@ export default function SalesTools() {
                               }
                             }}
                           >
-                            {module.status === 'available' ? 'Start' : 'Soon'}
+                            Start
                           </Button>
                         </div>
                       </div>
