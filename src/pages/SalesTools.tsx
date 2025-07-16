@@ -9,9 +9,75 @@ import { FlashcardStudyInterface } from "@/components/FlashcardStudyInterface";
 import { TrainingModuleInterface } from "@/components/TrainingModuleInterface";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Plus, Edit, Trash2, Save, X, ChevronDown, ChevronUp } from "lucide-react";
 
-const salesTools = [
+interface ToolSection {
+  title: string;
+  content: string;
+}
+
+interface BaseTool {
+  name: string;
+  description: string;
+}
+
+interface ScriptTool extends BaseTool {
+  scripts: string[];
+  questions?: never;
+  techniques?: never;
+  action?: never;
+  sections?: never;
+  link?: never;
+}
+
+interface QuestionTool extends BaseTool {
+  questions: string[];
+  techniques?: never;
+  scripts?: never;
+  action?: never;
+  sections?: never;
+  link?: never;
+}
+
+interface TechniqueTool extends BaseTool {
+  techniques: string[];
+  questions?: never;
+  scripts?: never;
+  action?: never;
+  sections?: never;
+  link?: never;
+}
+
+interface ActionTool extends BaseTool {
+  action: string;
+  sections: ToolSection[];
+  scripts?: never;
+  questions?: never;
+  techniques?: never;
+  link?: never;
+}
+
+interface LinkTool extends BaseTool {
+  link: string;
+  scripts?: never;
+  questions?: never;
+  techniques?: never;
+  action?: never;
+  sections?: never;
+}
+
+type Tool = ScriptTool | QuestionTool | TechniqueTool | ActionTool | LinkTool;
+
+interface ToolCategory {
+  id: string;
+  title: string;
+  description: string;
+  tools: Tool[];
+}
+
+const salesTools: ToolCategory[] = [
   {
     id: 'objection-handling',
     title: 'Objection Handling Scripts',
@@ -54,17 +120,33 @@ const salesTools = [
       {
         name: 'Need Analysis Worksheet',
         description: 'Structured approach to identify client needs',
-        action: 'worksheet'
+        action: 'worksheet',
+        sections: [
+          { title: 'Client Information', content: 'Basic client demographics and contact details' },
+          { title: 'Financial Goals', content: 'Short-term and long-term financial objectives' },
+          { title: 'Risk Assessment', content: 'Current insurance coverage and protection gaps' },
+          { title: 'Budget Analysis', content: 'Monthly income, expenses, and available premium budget' }
+        ]
       },
       {
         name: 'Comparison Charts',
         description: 'Side-by-side product comparisons',
-        action: 'comparison'
+        action: 'comparison',
+        sections: [
+          { title: 'Feature Comparison', content: 'Side-by-side comparison of product features' },
+          { title: 'Premium Comparison', content: 'Cost analysis across different products' },
+          { title: 'Benefit Comparison', content: 'Coverage amounts and benefit structures' }
+        ]
       },
       {
         name: 'Benefit Illustrations',
         description: 'Customizable benefit projections',
-        action: 'illustrations'
+        action: 'illustrations',
+        sections: [
+          { title: 'Projection Scenarios', content: 'Different growth rate scenarios' },
+          { title: 'Withdrawal Options', content: 'Various withdrawal strategies and timing' },
+          { title: 'Legacy Planning', content: 'Death benefit illustrations and estate planning' }
+        ]
       }
     ]
   },
@@ -156,6 +238,10 @@ export default function SalesTools() {
     category: string;
   } | null>(null);
   const [editableTrainingModules, setEditableTrainingModules] = useState(trainingModules);
+  const [editableSalesTools, setEditableSalesTools] = useState(salesTools);
+  const [expandedTools, setExpandedTools] = useState<{[key: string]: boolean}>({});
+  const [editingSections, setEditingSections] = useState<{[key: string]: boolean}>({});
+  const [tempSectionData, setTempSectionData] = useState<{[key: string]: {title: string, content: string}}>({});
   
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
@@ -197,6 +283,126 @@ export default function SalesTools() {
     });
   };
 
+  // Tool section management functions
+  const toggleToolExpansion = (toolCategoryId: string, toolIndex: number) => {
+    const key = `${toolCategoryId}-${toolIndex}`;
+    setExpandedTools(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const startEditingSection = (toolCategoryId: string, toolIndex: number, sectionIndex: number, section: any) => {
+    const key = `${toolCategoryId}-${toolIndex}-${sectionIndex}`;
+    setEditingSections(prev => ({ ...prev, [key]: true }));
+    setTempSectionData(prev => ({ 
+      ...prev, 
+      [key]: { title: section.title, content: section.content } 
+    }));
+  };
+
+  const cancelEditingSection = (toolCategoryId: string, toolIndex: number, sectionIndex: number) => {
+    const key = `${toolCategoryId}-${toolIndex}-${sectionIndex}`;
+    setEditingSections(prev => ({ ...prev, [key]: false }));
+    setTempSectionData(prev => {
+      const newData = { ...prev };
+      delete newData[key];
+      return newData;
+    });
+  };
+
+  const saveSection = (toolCategoryId: string, toolIndex: number, sectionIndex: number) => {
+    const key = `${toolCategoryId}-${toolIndex}-${sectionIndex}`;
+    const tempData = tempSectionData[key];
+    
+    if (!tempData || !tempData.title.trim()) {
+      toast({
+        title: "Error",
+        description: "Section title is required",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const updatedTools = editableSalesTools.map(toolCategory => {
+      if (toolCategory.id === toolCategoryId) {
+        const updatedTools = [...toolCategory.tools];
+        const tool = updatedTools[toolIndex];
+        if (tool && 'sections' in tool && tool.sections) {
+          updatedTools[toolIndex] = {
+            ...tool,
+            sections: tool.sections.map((section, idx) => 
+              idx === sectionIndex 
+                ? { title: tempData.title.trim(), content: tempData.content.trim() }
+                : section
+            )
+          } as ActionTool;
+        }
+        return { ...toolCategory, tools: updatedTools };
+      }
+      return toolCategory;
+    });
+
+    setEditableSalesTools(updatedTools);
+    setEditingSections(prev => ({ ...prev, [key]: false }));
+    setTempSectionData(prev => {
+      const newData = { ...prev };
+      delete newData[key];
+      return newData;
+    });
+
+    toast({
+      title: "Section Updated",
+      description: "Section has been successfully updated"
+    });
+  };
+
+  const addNewSection = (toolCategoryId: string, toolIndex: number) => {
+    const updatedTools = editableSalesTools.map(toolCategory => {
+      if (toolCategory.id === toolCategoryId) {
+        const updatedTools = [...toolCategory.tools];
+        const tool = updatedTools[toolIndex];
+        if (tool && 'sections' in tool) {
+          const sections = tool.sections || [];
+          updatedTools[toolIndex] = {
+            ...tool,
+            sections: [...sections, { title: 'New Section', content: 'Section content here...' }]
+          } as ActionTool;
+        }
+        return { ...toolCategory, tools: updatedTools };
+      }
+      return toolCategory;
+    });
+
+    setEditableSalesTools(updatedTools);
+    
+    toast({
+      title: "Section Added",
+      description: "New section has been added"
+    });
+  };
+
+  const deleteSection = (toolCategoryId: string, toolIndex: number, sectionIndex: number) => {
+    const updatedTools = editableSalesTools.map(toolCategory => {
+      if (toolCategory.id === toolCategoryId) {
+        const updatedTools = [...toolCategory.tools];
+        const tool = updatedTools[toolIndex];
+        if (tool && 'sections' in tool && tool.sections) {
+          updatedTools[toolIndex] = {
+            ...tool,
+            sections: tool.sections.filter((_, idx) => idx !== sectionIndex)
+          } as ActionTool;
+        }
+        return { ...toolCategory, tools: updatedTools };
+      }
+      return toolCategory;
+    });
+
+    setEditableSalesTools(updatedTools);
+    
+    toast({
+      title: "Section Deleted",
+      description: "Section has been removed"
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <NavigationHeader 
@@ -223,7 +429,7 @@ export default function SalesTools() {
 
         {/* Sales Tools Content */}
         <div className="mb-12">
-          {salesTools.map((toolCategory) => (
+          {editableSalesTools.map((toolCategory) => (
             <div key={toolCategory.id} className={activeTab === toolCategory.id ? 'block' : 'hidden'}>
               <Card className="mb-6">
                 <CardHeader>
@@ -275,21 +481,118 @@ export default function SalesTools() {
                             </Button>
                           )}
                           {tool.action && (
-                            <Button 
-                              variant="outline" 
-                              className="mt-3"
-                              onClick={() => {
-                                if (tool.action === 'worksheet') {
-                                  alert('Need Analysis Worksheet: This would open a customizable worksheet template for conducting comprehensive client needs assessments.');
-                                } else if (tool.action === 'comparison') {
-                                  alert('Comparison Charts: This would open interactive comparison tools to help clients visualize product differences side-by-side.');
-                                } else if (tool.action === 'illustrations') {
-                                  alert('Benefit Illustrations: This would open customizable projection tools to show potential policy benefits and returns.');
-                                }
-                              }}
-                            >
-                              Access Tool
-                            </Button>
+                            <div className="mt-3">
+                              <div className="flex items-center gap-2">
+                                <Button 
+                                  variant="outline" 
+                                  onClick={() => toggleToolExpansion(toolCategory.id, index)}
+                                  className="flex items-center gap-2"
+                                >
+                                  Access Tool
+                                  {expandedTools[`${toolCategory.id}-${index}`] ? 
+                                    <ChevronUp className="h-4 w-4" /> : 
+                                    <ChevronDown className="h-4 w-4" />
+                                  }
+                                </Button>
+                                {isAdminMode && (
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => addNewSection(toolCategory.id, index)}
+                                    className="flex items-center gap-2"
+                                  >
+                                    <Plus className="h-4 w-4" />
+                                    Add Section
+                                  </Button>
+                                )}
+                              </div>
+                              
+                              {/* Expandable Sections */}
+                              {expandedTools[`${toolCategory.id}-${index}`] && 'sections' in tool && tool.sections && (
+                                <div className="mt-4 space-y-3 border-t pt-4">
+                                  {tool.sections.map((section, sectionIndex) => {
+                                    const sectionKey = `${toolCategory.id}-${index}-${sectionIndex}`;
+                                    const isEditing = editingSections[sectionKey];
+                                    const tempData = tempSectionData[sectionKey];
+                                    
+                                    return (
+                                      <Card key={sectionIndex} className="bg-accent/20">
+                                        <CardContent className="p-4">
+                                          {isEditing ? (
+                                            <div className="space-y-3">
+                                              <Input
+                                                value={tempData?.title || section.title}
+                                                onChange={(e) => setTempSectionData(prev => ({
+                                                  ...prev,
+                                                  [sectionKey]: { ...tempData, title: e.target.value }
+                                                }))}
+                                                placeholder="Section title..."
+                                                className="font-medium"
+                                              />
+                                              <Textarea
+                                                value={tempData?.content || section.content}
+                                                onChange={(e) => setTempSectionData(prev => ({
+                                                  ...prev,
+                                                  [sectionKey]: { ...tempData, content: e.target.value }
+                                                }))}
+                                                placeholder="Section content..."
+                                                rows={3}
+                                              />
+                                              <div className="flex gap-2">
+                                                <Button
+                                                  size="sm"
+                                                  onClick={() => saveSection(toolCategory.id, index, sectionIndex)}
+                                                  className="flex items-center gap-2"
+                                                >
+                                                  <Save className="h-4 w-4" />
+                                                  Save
+                                                </Button>
+                                                <Button
+                                                  size="sm"
+                                                  variant="outline"
+                                                  onClick={() => cancelEditingSection(toolCategory.id, index, sectionIndex)}
+                                                  className="flex items-center gap-2"
+                                                >
+                                                  <X className="h-4 w-4" />
+                                                  Cancel
+                                                </Button>
+                                              </div>
+                                            </div>
+                                          ) : (
+                                            <div>
+                                              <div className="flex justify-between items-start mb-2">
+                                                <h4 className="font-medium text-sm">{section.title}</h4>
+                                                {isAdminMode && (
+                                                  <div className="flex gap-1">
+                                                    <Button
+                                                      size="sm"
+                                                      variant="ghost"
+                                                      onClick={() => startEditingSection(toolCategory.id, index, sectionIndex, section)}
+                                                      className="p-1"
+                                                    >
+                                                      <Edit className="h-3 w-3" />
+                                                    </Button>
+                                                    <Button
+                                                      size="sm"
+                                                      variant="ghost"
+                                                      onClick={() => deleteSection(toolCategory.id, index, sectionIndex)}
+                                                      className="p-1 text-destructive hover:text-destructive"
+                                                    >
+                                                      <Trash2 className="h-3 w-3" />
+                                                    </Button>
+                                                  </div>
+                                                )}
+                                              </div>
+                                              <p className="text-xs text-muted-foreground">{section.content}</p>
+                                            </div>
+                                          )}
+                                        </CardContent>
+                                      </Card>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                            </div>
                           )}
                         </CardContent>
                       </Card>
