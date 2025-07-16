@@ -3,7 +3,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, ChevronRight, RotateCcw, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { ChevronLeft, ChevronRight, RotateCcw, X, Edit, Save, Plus, Trash2 } from "lucide-react";
+import { useAdmin } from "@/hooks/useAdmin";
+import { useToast } from "@/hooks/use-toast";
 
 interface FlashcardData {
   question: string;
@@ -76,8 +80,21 @@ export function FlashcardStudyInterface({ setName, category, totalCards, onClose
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [studiedCards, setStudiedCards] = useState<Set<number>>(new Set());
+  const [editableCards, setEditableCards] = useState<FlashcardData[]>([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingQuestion, setEditingQuestion] = useState("");
+  const [editingAnswer, setEditingAnswer] = useState("");
   
-  const cards = flashcardData[setName] || [];
+  const { isAdminMode } = useAdmin();
+  const { toast } = useToast();
+  
+  // Initialize editable cards from the static data
+  useEffect(() => {
+    const originalCards = flashcardData[setName] || [];
+    setEditableCards([...originalCards]);
+  }, [setName]);
+  
+  const cards = editableCards;
   const currentCard = cards[currentCardIndex];
   const progress = ((studiedCards.size) / cards.length) * 100;
 
@@ -104,6 +121,90 @@ export function FlashcardStudyInterface({ setName, category, totalCards, onClose
     setStudiedCards(new Set());
     setCurrentCardIndex(0);
     setShowAnswer(false);
+  };
+
+  // Admin editing functions
+  const startEditing = () => {
+    if (!isAdminMode) return;
+    setIsEditing(true);
+    setEditingQuestion(currentCard.question);
+    setEditingAnswer(currentCard.answer);
+  };
+
+  const saveEdit = () => {
+    if (!editingQuestion.trim() || !editingAnswer.trim()) {
+      toast({
+        title: "Error",
+        description: "Question and answer cannot be empty",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const updatedCards = [...editableCards];
+    updatedCards[currentCardIndex] = {
+      question: editingQuestion.trim(),
+      answer: editingAnswer.trim()
+    };
+    setEditableCards(updatedCards);
+    setIsEditing(false);
+    
+    toast({
+      title: "Card Updated",
+      description: "Flashcard has been successfully updated"
+    });
+  };
+
+  const cancelEdit = () => {
+    setIsEditing(false);
+    setEditingQuestion("");
+    setEditingAnswer("");
+  };
+
+  const addNewCard = () => {
+    const newCard: FlashcardData = {
+      question: "New Question",
+      answer: "New Answer"
+    };
+    const updatedCards = [...editableCards, newCard];
+    setEditableCards(updatedCards);
+    setCurrentCardIndex(updatedCards.length - 1);
+    setShowAnswer(false);
+    setIsEditing(true);
+    setEditingQuestion(newCard.question);
+    setEditingAnswer(newCard.answer);
+    
+    toast({
+      title: "New Card Added",
+      description: "A new flashcard has been created"
+    });
+  };
+
+  const deleteCard = () => {
+    if (editableCards.length <= 1) {
+      toast({
+        title: "Cannot Delete",
+        description: "Cannot delete the last remaining card",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const updatedCards = editableCards.filter((_, index) => index !== currentCardIndex);
+    setEditableCards(updatedCards);
+    
+    // Adjust current index if necessary
+    if (currentCardIndex >= updatedCards.length) {
+      setCurrentCardIndex(updatedCards.length - 1);
+    }
+    
+    setShowAnswer(false);
+    setIsEditing(false);
+    
+    toast({
+      title: "Card Deleted",
+      description: "Flashcard has been removed"
+    });
   };
 
   if (!currentCard) {
@@ -149,31 +250,75 @@ export function FlashcardStudyInterface({ setName, category, totalCards, onClose
 
         <CardContent className="p-6">
           <div className="min-h-[300px] flex flex-col justify-center">
-            <div className="text-center space-y-6">
-              <div className="p-6 bg-accent/20 rounded-lg">
-                <h3 className="font-semibold mb-4 text-lg">Question</h3>
-                <p className="text-lg leading-relaxed">{currentCard.question}</p>
-              </div>
-
-              {showAnswer && (
-                <div className="p-6 bg-primary/10 rounded-lg border-2 border-primary/20">
-                  <h3 className="font-semibold mb-4 text-lg text-primary">Answer</h3>
-                  <p className="text-lg leading-relaxed">{currentCard.answer}</p>
+            {isEditing && isAdminMode ? (
+              /* Admin Editing Mode */
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Question</label>
+                  <Textarea
+                    value={editingQuestion}
+                    onChange={(e) => setEditingQuestion(e.target.value)}
+                    placeholder="Enter the question..."
+                    className="min-h-[100px]"
+                  />
                 </div>
-              )}
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Answer</label>
+                  <Textarea
+                    value={editingAnswer}
+                    onChange={(e) => setEditingAnswer(e.target.value)}
+                    placeholder="Enter the answer..."
+                    className="min-h-[100px]"
+                  />
+                </div>
 
-              {!showAnswer ? (
-                <Button onClick={markAsStudied} size="lg" className="px-8">
-                  Show Answer
-                </Button>
-              ) : (
                 <div className="flex gap-2 justify-center">
-                  <Badge variant="secondary" className="px-3 py-1">
-                    ✓ Studied
-                  </Badge>
+                  <Button onClick={saveEdit} size="sm" className="flex items-center gap-2">
+                    <Save className="h-4 w-4" />
+                    Save Changes
+                  </Button>
+                  <Button onClick={cancelEdit} variant="outline" size="sm">
+                    Cancel
+                  </Button>
                 </div>
-              )}
-            </div>
+              </div>
+            ) : (
+              /* Normal Study Mode */
+              <div className="text-center space-y-6">
+                <div className="p-6 bg-accent/20 rounded-lg">
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="font-semibold text-lg">Question</h3>
+                    {isAdminMode && (
+                      <Button onClick={startEditing} variant="ghost" size="sm" className="flex items-center gap-2">
+                        <Edit className="h-4 w-4" />
+                        Edit
+                      </Button>
+                    )}
+                  </div>
+                  <p className="text-lg leading-relaxed">{currentCard.question}</p>
+                </div>
+
+                {showAnswer && (
+                  <div className="p-6 bg-primary/10 rounded-lg border-2 border-primary/20">
+                    <h3 className="font-semibold mb-4 text-lg text-primary">Answer</h3>
+                    <p className="text-lg leading-relaxed">{currentCard.answer}</p>
+                  </div>
+                )}
+
+                {!showAnswer ? (
+                  <Button onClick={markAsStudied} size="lg" className="px-8">
+                    Show Answer
+                  </Button>
+                ) : (
+                  <div className="flex gap-2 justify-center">
+                    <Badge variant="secondary" className="px-3 py-1">
+                      ✓ Studied
+                    </Badge>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </CardContent>
 
@@ -199,6 +344,28 @@ export function FlashcardStudyInterface({ setName, category, totalCards, onClose
                 <RotateCcw className="h-4 w-4" />
                 Reset
               </Button>
+              {isAdminMode && (
+                <>
+                  <Button
+                    variant="outline"
+                    onClick={addNewCard}
+                    size="sm"
+                    className="flex items-center gap-2"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Add
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={deleteCard}
+                    size="sm"
+                    className="flex items-center gap-2 text-destructive hover:text-destructive"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    Delete
+                  </Button>
+                </>
+              )}
             </div>
 
             <Button
