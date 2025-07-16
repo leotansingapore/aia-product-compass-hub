@@ -50,87 +50,98 @@ export function CMFASAIAssistant({ customGptLink, onUpdate }: CMFASAIAssistantPr
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Bot className="h-5 w-5" />
-          Ask the AI (Custom GPT)
+    <Card className="bg-gradient-to-br from-card via-card to-purple-50/20 dark:to-purple-900/10 border-2 hover:shadow-xl transition-all duration-300 group">
+      <CardHeader className="pb-4">
+        <CardTitle className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
+            <Bot className="h-5 w-5 text-white" />
+          </div>
+          <div>
+            <span className="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent font-bold text-xl">
+              Ask the AI (Custom GPT)
+            </span>
+          </div>
         </CardTitle>
-        <CardDescription>
+        <CardDescription className="text-base text-muted-foreground/80 mt-2">
           Get personalized help and guidance for this CMFAS module
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        {isAdmin && (
-          <div className="mb-4">
-            {!isEditing ? (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsEditing(true)}
-                className="flex items-center gap-2"
-              >
-                <Edit className="h-4 w-4" />
-                Configure GPT Link
-              </Button>
-            ) : (
-              <div className="space-y-2">
-                <Input
-                  value={editLink}
-                  onChange={(e) => setEditLink(e.target.value)}
-                  placeholder="Enter Custom GPT URL..."
-                  className="mb-2"
-                />
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    onClick={handleSave}
-                    disabled={isSaving}
-                    className="flex items-center gap-1"
-                  >
-                    <Save className="h-3 w-3" />
-                    {isSaving ? "Saving..." : "Save"}
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={handleCancel}
-                    disabled={isSaving}
-                    className="flex items-center gap-1"
-                  >
-                    <X className="h-3 w-3" />
-                    Cancel
-                  </Button>
+      <CardContent className="pt-0">
+        <div className="bg-muted/30 rounded-xl p-4 border border-muted space-y-4">
+          {isAdmin && (
+            <div>
+              {!isEditing ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsEditing(true)}
+                  className="flex items-center gap-2 bg-background/50 hover:bg-background border-2 hover:border-primary/50 transition-all duration-200"
+                >
+                  <Edit className="h-4 w-4" />
+                  Configure GPT Link
+                </Button>
+              ) : (
+                <div className="space-y-3">
+                  <Input
+                    value={editLink}
+                    onChange={(e) => setEditLink(e.target.value)}
+                    placeholder="Enter Custom GPT URL..."
+                    className="bg-background/80 border-2 focus:border-primary/50"
+                  />
+                  <div className="flex gap-2">
+                    <Button
+                      size="sm"
+                      onClick={handleSave}
+                      disabled={isSaving}
+                      className="flex items-center gap-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
+                    >
+                      <Save className="h-3 w-3" />
+                      {isSaving ? "Saving..." : "Save"}
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={handleCancel}
+                      disabled={isSaving}
+                      className="flex items-center gap-1 border-2"
+                    >
+                      <X className="h-3 w-3" />
+                      Cancel
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        )}
+              )}
+            </div>
+          )}
 
-        {!isEditing && (
-          <>
-            {customGptLink ? (
-              <Button
-                onClick={openCustomGPT}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
-              >
-                <Bot className="mr-2 h-4 w-4" />
-                Chat with AI Assistant
-                <ExternalLink className="ml-2 h-4 w-4" />
-              </Button>
-            ) : (
-              <div className="text-center py-8 text-muted-foreground">
-                <Bot className="mx-auto h-12 w-12 mb-3 opacity-50" />
-                <p className="text-sm">
-                  {isAdmin 
-                    ? "Configure a custom GPT link to enable AI assistance for this module"
-                    : "AI assistant is not yet configured for this module"
-                  }
-                </p>
-              </div>
-            )}
-          </>
-        )}
+          {!isEditing && (
+            <>
+              {customGptLink ? (
+                <Button
+                  onClick={openCustomGPT}
+                  className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-purple-600 hover:from-blue-600 hover:via-purple-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 h-12 text-base font-semibold group/btn"
+                  size="lg"
+                >
+                  <Bot className="mr-3 h-5 w-5 group-hover/btn:scale-110 transition-transform duration-200" />
+                  Chat with AI Assistant
+                  <ExternalLink className="ml-3 h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
+                </Button>
+              ) : (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-gradient-to-br from-muted to-muted/50 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-inner">
+                    <Bot className="h-8 w-8 text-muted-foreground/50" />
+                  </div>
+                  <p className="text-sm text-muted-foreground/80 max-w-xs mx-auto leading-relaxed">
+                    {isAdmin 
+                      ? "Configure a custom GPT link to enable AI assistance for this module"
+                      : "AI assistant is not yet configured for this module"
+                    }
+                  </p>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </CardContent>
     </Card>
   );
