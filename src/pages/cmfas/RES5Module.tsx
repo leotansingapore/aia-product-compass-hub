@@ -113,16 +113,12 @@ export default function RES5Module() {
       />
       
       <div className="max-w-4xl mx-auto px-6 py-8">
-        {/* Useful Links Section */}
-        <div className="mb-8">
+        {/* Top Section - Useful Links and AI Assistant */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
           <CMFASUsefulLinks
             links={usefulLinks}
             onUpdate={handleUpdate}
           />
-        </div>
-
-        {/* AI Assistant Section */}
-        <div className="mb-8">
           <CMFASAIAssistant
             customGptLink={customGptLink}
             onUpdate={handleUpdate}
