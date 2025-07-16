@@ -87,29 +87,17 @@ const salesTools: ToolCategory[] = [
       {
         name: 'Price Objections',
         description: 'When clients say products are too expensive',
-        scripts: [
-          '"I understand cost is a concern. Let me show you the value you\'re getting..."',
-          '"What\'s the cost of not having this protection when you need it most?"',
-          '"Let\'s break this down to a daily amount - it\'s less than a coffee..."'
-        ]
+        link: 'https://example.com/price-objections-guide'
       },
       {
         name: 'Investment Risk Concerns',
         description: 'Addressing fears about investment-linked products',
-        scripts: [
-          '"That\'s exactly why we have multiple fund options, including conservative ones..."',
-          '"The real risk is inflation eroding your savings in low-yield accounts..."',
-          '"You can start conservative and adjust as you become more comfortable..."'
-        ]
+        link: 'https://example.com/investment-risk-handling'
       },
       {
         name: 'Timing Objections',
         description: 'When clients want to postpone decisions',
-        scripts: [
-          '"I understand you want to think about it. What specific concerns can I address?"',
-          '"The best time to plant a tree was 20 years ago. The second best time is now."',
-          '"Waiting doesn\'t make insurance cheaper or your need for protection smaller..."'
-        ]
+        link: 'https://example.com/timing-objections-scripts'
       }
     ]
   },
