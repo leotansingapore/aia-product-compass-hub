@@ -282,13 +282,15 @@ export const useGamification = () => {
   const recordPageVisit = useCallback(async (categoryId: string, productId?: string) => {
     if (!user) return;
 
-    // Throttle page visits - only record once per product per session
-    const visitKey = `page_visit_${productId || categoryId}`;
-    const lastVisit = sessionStorage.getItem(visitKey);
+    // Throttle page visits - only record once per product per day using localStorage
+    const visitKey = `page_visit_${user.id}_${productId || categoryId}`;
+    const lastVisit = localStorage.getItem(visitKey);
     const now = Date.now();
+    const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
     
-    // Only record if not visited in the last 30 seconds
-    if (lastVisit && (now - parseInt(lastVisit)) < 30000) {
+    // Only record if not visited in the last 24 hours
+    if (lastVisit && (now - parseInt(lastVisit)) < oneDay) {
+      console.log('⏳ Page visit throttled - already recorded today');
       return;
     }
 
@@ -305,8 +307,8 @@ export const useGamification = () => {
 
       if (error) throw error;
       
-      // Update session storage to prevent duplicate calls
-      sessionStorage.setItem(visitKey, now.toString());
+      // Update localStorage to prevent duplicate calls
+      localStorage.setItem(visitKey, now.toString());
       
       await updateUserProfile(5);
     } catch (error) {
