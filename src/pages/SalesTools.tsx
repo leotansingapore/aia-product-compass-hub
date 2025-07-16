@@ -7,6 +7,9 @@ import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { FlashcardStudyInterface } from "@/components/FlashcardStudyInterface";
 import { TrainingModuleInterface } from "@/components/TrainingModuleInterface";
+import { useAdmin } from "@/hooks/useAdmin";
+import { useToast } from "@/hooks/use-toast";
+import { Plus, Edit, Trash2 } from "lucide-react";
 
 const salesTools = [
   {
@@ -152,6 +155,47 @@ export default function SalesTools() {
     duration: string;
     category: string;
   } | null>(null);
+  const [editableTrainingModules, setEditableTrainingModules] = useState(trainingModules);
+  
+  const { isAdminMode } = useAdmin();
+  const { toast } = useToast();
+
+  // Admin functions for training modules
+  const addNewTrainingModule = (categoryTitle: string) => {
+    const newModule = {
+      name: 'New Training Module',
+      duration: '30 min',
+      status: 'available' as const
+    };
+
+    const updatedModules = editableTrainingModules.map(group => 
+      group.title === categoryTitle 
+        ? { ...group, modules: [...group.modules, newModule] }
+        : group
+    );
+
+    setEditableTrainingModules(updatedModules);
+    
+    toast({
+      title: "New Module Added",
+      description: `Added new training module to ${categoryTitle}`
+    });
+  };
+
+  const deleteTrainingModule = (categoryTitle: string, moduleIndex: number) => {
+    const updatedModules = editableTrainingModules.map(group => 
+      group.title === categoryTitle 
+        ? { ...group, modules: group.modules.filter((_, index) => index !== moduleIndex) }
+        : group
+    );
+
+    setEditableTrainingModules(updatedModules);
+    
+    toast({
+      title: "Module Deleted",
+      description: "Training module has been removed"
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -298,16 +342,29 @@ export default function SalesTools() {
         <div className="mb-12">
           <h2 className="text-2xl font-semibold mb-6">🎓 Training Modules</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {trainingModules.map((moduleGroup, index) => (
+            {editableTrainingModules.map((moduleGroup, index) => (
               <Card key={index}>
                 <CardHeader>
-                  <CardTitle>{moduleGroup.title}</CardTitle>
+                  <div className="flex justify-between items-center">
+                    <CardTitle>{moduleGroup.title}</CardTitle>
+                    {isAdminMode && (
+                      <Button
+                        onClick={() => addNewTrainingModule(moduleGroup.title)}
+                        size="sm"
+                        variant="outline"
+                        className="flex items-center gap-2"
+                      >
+                        <Plus className="h-4 w-4" />
+                        Add Module
+                      </Button>
+                    )}
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     {moduleGroup.modules.map((module, moduleIndex) => (
                       <div key={moduleIndex} className="flex items-center justify-between p-3 border border-border/50 rounded-md">
-                        <div>
+                        <div className="flex-1">
                           <p className="font-medium text-sm">{module.name}</p>
                           <div className="flex items-center gap-2 mt-1">
                             <span className="text-xs text-muted-foreground">{module.duration}</span>
@@ -319,22 +376,36 @@ export default function SalesTools() {
                             </Badge>
                           </div>
                         </div>
-                        <Button 
-                          size="sm" 
-                          variant={module.status === 'available' ? 'default' : 'outline'}
-                          disabled={module.status !== 'available'}
-                          onClick={() => {
-                            if (module.status === 'available') {
-                              setStudyingModule({
-                                moduleName: module.name,
-                                duration: module.duration,
-                                category: moduleGroup.title
-                              });
-                            }
-                          }}
-                        >
-                          {module.status === 'available' ? 'Start' : 'Soon'}
-                        </Button>
+                        
+                        <div className="flex items-center gap-2">
+                          {isAdminMode && (
+                            <Button
+                              onClick={() => deleteTrainingModule(moduleGroup.title, moduleIndex)}
+                              size="sm"
+                              variant="ghost"
+                              className="text-destructive hover:text-destructive p-1"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          )}
+                          
+                          <Button 
+                            size="sm" 
+                            variant={module.status === 'available' ? 'default' : 'outline'}
+                            disabled={module.status !== 'available'}
+                            onClick={() => {
+                              if (module.status === 'available') {
+                                setStudyingModule({
+                                  moduleName: module.name,
+                                  duration: module.duration,
+                                  category: moduleGroup.title
+                                });
+                              }
+                            }}
+                          >
+                            {module.status === 'available' ? 'Start' : 'Soon'}
+                          </Button>
+                        </div>
                       </div>
                     ))}
                   </div>
