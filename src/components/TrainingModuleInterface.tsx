@@ -20,6 +20,7 @@ interface ModuleContent {
   title: string;
   content: string;
   duration: number; // in seconds
+  videoUrl?: string; // Optional video URL
 }
 
 // Sample training content - in a real app, this would come from a database
@@ -96,6 +97,7 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
   const [editingTitle, setEditingTitle] = useState("");
   const [editingContent, setEditingContent] = useState("");
   const [editingDuration, setEditingDuration] = useState("");
+  const [editingVideoUrl, setEditingVideoUrl] = useState("");
   
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
@@ -168,6 +170,7 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
     setEditingTitle(currentSection.title);
     setEditingContent(currentSection.content);
     setEditingDuration((currentSection.duration / 60).toString()); // Convert to minutes for easier editing
+    setEditingVideoUrl(currentSection.videoUrl || "");
   };
 
   const saveEdit = () => {
@@ -194,7 +197,8 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
     updatedSections[currentSectionIndex] = {
       title: editingTitle.trim(),
       content: editingContent.trim(),
-      duration: durationInSeconds
+      duration: durationInSeconds,
+      videoUrl: editingVideoUrl.trim() || undefined
     };
     setEditableSections(updatedSections);
     setIsEditing(false);
@@ -212,6 +216,7 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
     setEditingTitle("");
     setEditingContent("");
     setEditingDuration("");
+    setEditingVideoUrl("");
   };
 
   const addNewSection = () => {
@@ -335,6 +340,19 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
                 </div>
                 
                 <div className="space-y-2">
+                  <label className="text-sm font-medium">Video URL (optional)</label>
+                  <Input
+                    value={editingVideoUrl}
+                    onChange={(e) => setEditingVideoUrl(e.target.value)}
+                    placeholder="Enter video URL (YouTube, Vimeo, etc.)..."
+                    type="url"
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Add a video URL to include video content in this training section
+                  </p>
+                </div>
+                
+                <div className="space-y-2">
                   <label className="text-sm font-medium">Content</label>
                   <Textarea
                     value={editingContent}
@@ -381,6 +399,23 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
                   </div>
                   <Progress value={sectionProgress} className="h-1 mt-2" />
                 </div>
+
+                {/* Video Display */}
+                {currentSection.videoUrl && (
+                  <div className="bg-accent/10 rounded-lg p-4 border">
+                    <h4 className="font-medium mb-3 text-center">Training Video</h4>
+                    <div className="aspect-video bg-muted rounded-lg overflow-hidden">
+                      <iframe
+                        src={currentSection.videoUrl}
+                        title={currentSection.title}
+                        className="w-full h-full"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+                )}
 
                 <div className="bg-accent/20 rounded-lg p-6 max-h-[400px] overflow-y-auto">
                   <div className="prose prose-sm max-w-none text-foreground">
