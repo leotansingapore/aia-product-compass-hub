@@ -80,24 +80,111 @@ interface ToolCategory {
 
 const salesTools: ToolCategory[] = [
   {
-    id: 'objection-handling',
-    title: 'Objection Handling Scripts',
-    description: 'Ready-to-use responses for common client objections',
+    id: 'generic-objections',
+    title: 'Generic Objections',
+    description: 'Common objection types across all sales situations',
     tools: [
       {
-        name: 'Price Objections',
+        name: '🔐 Trust Objections',
+        description: 'Building credibility and trust with clients',
+        link: 'https://example.com/trust-objections-guide'
+      },
+      {
+        name: 'Cost Objections',
         description: 'When clients say products are too expensive',
-        link: 'https://example.com/price-objections-guide'
+        link: 'https://example.com/cost-objections-guide'
       },
       {
-        name: 'Investment Risk Concerns',
-        description: 'Addressing fears about investment-linked products',
-        link: 'https://example.com/investment-risk-handling'
-      },
-      {
-        name: 'Timing Objections',
+        name: '⏳ Delay Objections',
         description: 'When clients want to postpone decisions',
-        link: 'https://example.com/timing-objections-scripts'
+        link: 'https://example.com/delay-objections-guide'
+      },
+      {
+        name: '💼 Entrepreneurial Objections',
+        description: 'Objections from business owners and entrepreneurs',
+        link: 'https://example.com/entrepreneurial-objections-guide'
+      },
+      {
+        name: '❤️ Emotional Objections',
+        description: 'Addressing emotional concerns and fears',
+        link: 'https://example.com/emotional-objections-guide'
+      },
+      {
+        name: '🔁 Loyalty Objections',
+        description: 'When clients are loyal to existing providers',
+        link: 'https://example.com/loyalty-objections-guide'
+      },
+      {
+        name: '🧠 Analytical Objections',
+        description: 'Handling data-driven and analytical concerns',
+        link: 'https://example.com/analytical-objections-guide'
+      }
+    ]
+  },
+  {
+    id: 'tactical-objections',
+    title: 'Tactical Objections',
+    description: 'Specific tactical objections and competitive scenarios',
+    tools: [
+      {
+        name: 'Portfolio Not Doing Well Objections',
+        description: 'When Market is Bad, what is our position',
+        link: 'https://example.com/portfolio-performance-objections'
+      },
+      {
+        name: 'Thinking that its better to Time the Market and DIY',
+        description: 'Objection Handling for DIY investors',
+        link: 'https://example.com/diy-market-timing-objections'
+      },
+      {
+        name: 'Addressing Client Concerns about ILPs',
+        description: 'e.g bad returns objection handling',
+        link: 'https://example.com/ilp-concerns-objections'
+      },
+      {
+        name: 'How to Confidently Present Insurance Policy Loadings and Exclusions',
+        description: 'Handling concerns about policy terms',
+        link: 'https://example.com/policy-loadings-exclusions'
+      },
+      {
+        name: 'Comparing with FWD Par Fund Objections',
+        description: 'Competitive comparison handling',
+        link: 'https://example.com/fwd-par-fund-objections'
+      },
+      {
+        name: 'How to Respond When a Client Says They Want to Talk to an IFA',
+        description: 'Handling IFA referral requests',
+        link: 'https://example.com/ifa-referral-objections'
+      },
+      {
+        name: 'How to Respond for combating GTL',
+        description: 'Group Term Life objection handling',
+        link: 'https://example.com/gtl-objections'
+      },
+      {
+        name: 'Beating a Robo Advisor',
+        description: 'Competing against automated investment platforms',
+        link: 'https://example.com/robo-advisor-objections'
+      },
+      {
+        name: 'Objections Regarding MHA and Group Term Life GTL',
+        description: 'Medical and group insurance concerns',
+        link: 'https://example.com/mha-gtl-objections'
+      },
+      {
+        name: 'Why Not Invest in S&P 500',
+        description: 'S&P500 investment objections',
+        link: 'https://example.com/sp500-objections'
+      },
+      {
+        name: 'Objections Against Single Premium Vs Regular Premiums',
+        description: 'Premium payment structure concerns',
+        link: 'https://example.com/premium-structure-objections'
+      },
+      {
+        name: 'Mastering Market Stress Tests',
+        description: 'Turning Uncertainty into a Selling Edge',
+        link: 'https://example.com/market-stress-tests'
       }
     ]
   },
@@ -215,7 +302,7 @@ const trainingModules = [
 
 export default function SalesTools() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('objection-handling');
+  const [activeTab, setActiveTab] = useState('generic-objections');
   const [studyingFlashcard, setStudyingFlashcard] = useState<{
     setName: string;
     category: string;
@@ -542,7 +629,7 @@ export default function SalesTools() {
                       <CardTitle>{toolCategory.title}</CardTitle>
                       <CardDescription>{toolCategory.description}</CardDescription>
                     </div>
-                    {isAdminMode && toolCategory.id === 'objection-handling' && (
+                    {isAdminMode && (toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') && (
                       <Button
                         onClick={() => addNewTool(toolCategory.id)}
                         size="sm"
@@ -670,7 +757,7 @@ export default function SalesTools() {
                                       Access Tool
                                     </a>
                                   </Button>
-                                  {isAdminMode && toolCategory.id === 'objection-handling' && (
+                    {isAdminMode && (toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') && (
                                     <div className="flex gap-1 mt-3">
                                       <Button
                                         size="sm"
