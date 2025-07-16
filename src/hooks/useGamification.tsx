@@ -312,10 +312,11 @@ export const useGamification = () => {
     // Only record if not visited in the last 24 hours
     if (lastVisit && (now - parseInt(lastVisit)) < oneDay) {
       console.log('⏳ Page visit throttled - already recorded today');
-      return;
+      return; // This should prevent the entire function from continuing
     }
 
     try {
+      console.log('📄 Recording new page visit for:', productId || categoryId);
       const { error } = await supabase
         .from('learning_progress')
         .insert({
@@ -330,6 +331,7 @@ export const useGamification = () => {
       
       // Update localStorage to prevent duplicate calls
       localStorage.setItem(visitKey, now.toString());
+      console.log('🏆 Page visit recorded, awarding 5 XP');
       
       await updateUserProfile(5);
     } catch (error) {
