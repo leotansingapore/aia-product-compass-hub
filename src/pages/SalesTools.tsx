@@ -86,37 +86,37 @@ const salesTools: ToolCategory[] = [
     tools: [
       {
         name: '🔐 Trust Objections',
-        description: 'Building credibility and trust with clients',
+        description: 'Building credibility and trust',
         link: 'https://example.com/trust-objections-guide'
       },
       {
         name: 'Cost Objections',
-        description: 'When clients say products are too expensive',
+        description: 'Price concerns and affordability',
         link: 'https://example.com/cost-objections-guide'
       },
       {
         name: '⏳ Delay Objections',
-        description: 'When clients want to postpone decisions',
+        description: 'Postponing decisions',
         link: 'https://example.com/delay-objections-guide'
       },
       {
         name: '💼 Entrepreneurial Objections',
-        description: 'Objections from business owners and entrepreneurs',
+        description: 'Business owner concerns',
         link: 'https://example.com/entrepreneurial-objections-guide'
       },
       {
         name: '❤️ Emotional Objections',
-        description: 'Addressing emotional concerns and fears',
+        description: 'Emotional concerns and fears',
         link: 'https://example.com/emotional-objections-guide'
       },
       {
         name: '🔁 Loyalty Objections',
-        description: 'When clients are loyal to existing providers',
+        description: 'Existing provider loyalty',
         link: 'https://example.com/loyalty-objections-guide'
       },
       {
         name: '🧠 Analytical Objections',
-        description: 'Handling data-driven and analytical concerns',
+        description: 'Data-driven concerns',
         link: 'https://example.com/analytical-objections-guide'
       }
     ]
@@ -127,63 +127,63 @@ const salesTools: ToolCategory[] = [
     description: 'Specific tactical objections and competitive scenarios',
     tools: [
       {
-        name: 'Portfolio Not Doing Well Objections',
-        description: 'When Market is Bad, what is our position',
+        name: 'Portfolio Performance Issues',
+        description: 'Market downturns and poor performance',
         link: 'https://example.com/portfolio-performance-objections'
       },
       {
-        name: 'Thinking that its better to Time the Market and DIY',
-        description: 'Objection Handling for DIY investors',
+        name: 'Market Timing & DIY Investing',
+        description: 'Self-directed investment preferences',
         link: 'https://example.com/diy-market-timing-objections'
       },
       {
-        name: 'Addressing Client Concerns about ILPs',
-        description: 'e.g bad returns objection handling',
+        name: 'ILP Concerns',
+        description: 'Investment-linked product objections',
         link: 'https://example.com/ilp-concerns-objections'
       },
       {
-        name: 'How to Confidently Present Insurance Policy Loadings and Exclusions',
-        description: 'Handling concerns about policy terms',
+        name: 'Policy Loadings & Exclusions',
+        description: 'Insurance terms and conditions',
         link: 'https://example.com/policy-loadings-exclusions'
       },
       {
-        name: 'Comparing with FWD Par Fund Objections',
-        description: 'Competitive comparison handling',
+        name: 'FWD Par Fund Comparisons',
+        description: 'Competitive product comparisons',
         link: 'https://example.com/fwd-par-fund-objections'
       },
       {
-        name: 'How to Respond When a Client Says They Want to Talk to an IFA',
-        description: 'Handling IFA referral requests',
+        name: 'IFA Referral Requests',
+        description: 'Independent advisor preferences',
         link: 'https://example.com/ifa-referral-objections'
       },
       {
-        name: 'How to Respond for combating GTL',
-        description: 'Group Term Life objection handling',
+        name: 'Group Term Life (GTL)',
+        description: 'Employer insurance benefits',
         link: 'https://example.com/gtl-objections'
       },
       {
-        name: 'Beating a Robo Advisor',
-        description: 'Competing against automated investment platforms',
+        name: 'Robo Advisor Competition',
+        description: 'Automated investment platforms',
         link: 'https://example.com/robo-advisor-objections'
       },
       {
-        name: 'Objections Regarding MHA and Group Term Life GTL',
-        description: 'Medical and group insurance concerns',
+        name: 'MHA & GTL Concerns',
+        description: 'Medical and group insurance',
         link: 'https://example.com/mha-gtl-objections'
       },
       {
-        name: 'Why Not Invest in S&P 500',
-        description: 'S&P500 investment objections',
+        name: 'S&P 500 Preferences',
+        description: 'Index fund comparisons',
         link: 'https://example.com/sp500-objections'
       },
       {
-        name: 'Objections Against Single Premium Vs Regular Premiums',
-        description: 'Premium payment structure concerns',
+        name: 'Premium Structure Debates',
+        description: 'Single vs regular premiums',
         link: 'https://example.com/premium-structure-objections'
       },
       {
-        name: 'Mastering Market Stress Tests',
-        description: 'Turning Uncertainty into a Selling Edge',
+        name: 'Market Stress Testing',
+        description: 'Uncertainty and risk management',
         link: 'https://example.com/market-stress-tests'
       }
     ]
