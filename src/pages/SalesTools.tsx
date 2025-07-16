@@ -212,7 +212,7 @@ const trainingModules = [
     modules: [
       { name: 'Investment Products Deep Dive', duration: '45 min', status: 'available' },
       { name: 'Endowment Product Features', duration: '30 min', status: 'available' },
-      { name: 'Medical Insurance Overview', duration: '35 min', status: 'coming-soon' }
+      { name: 'Medical Insurance Overview', duration: '35 min', status: 'available' }
     ]
   },
   {
