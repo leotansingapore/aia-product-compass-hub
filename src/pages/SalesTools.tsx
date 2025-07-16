@@ -19,6 +19,19 @@ interface ToolSection {
   url?: string;
 }
 
+interface ModuleSection {
+  title: string;
+  content: string;
+  url?: string;
+}
+
+interface TrainingModule {
+  name: string;
+  duration: string;
+  status: 'available' | 'coming-soon';
+  sections?: ModuleSection[];
+}
+
 interface BaseTool {
   name: string;
   description: string;
@@ -76,6 +89,11 @@ interface ToolCategory {
   title: string;
   description: string;
   tools: Tool[];
+}
+
+interface TrainingModuleGroup {
+  title: string;
+  modules: TrainingModule[];
 }
 
 const salesTools: ToolCategory[] = [
@@ -210,17 +228,73 @@ const trainingModules = [
   {
     title: 'Product Knowledge Mastery',
     modules: [
-      { name: 'Investment Products Deep Dive', duration: '45 min', status: 'available' },
-      { name: 'Endowment Product Features', duration: '30 min', status: 'available' },
-      { name: 'Medical Insurance Overview', duration: '35 min', status: 'coming-soon' }
+      { 
+        name: 'Investment Products Deep Dive', 
+        duration: '45 min', 
+        status: 'available' as const,
+        sections: [
+          { title: 'ILP Fundamentals', content: 'Understanding Investment-Linked Products structure and benefits' },
+          { title: 'Fund Selection', content: 'How to choose appropriate funds for different risk profiles' },
+          { title: 'Performance Analysis', content: 'Reading and interpreting fund performance data' },
+          { title: 'Client Communication', content: 'Explaining investment concepts to clients effectively' }
+        ]
+      },
+      { 
+        name: 'Endowment Product Features', 
+        duration: '30 min', 
+        status: 'available' as const,
+        sections: [
+          { title: 'Product Overview', content: 'Key features and benefits of endowment products' },
+          { title: 'Guaranteed vs Non-Guaranteed', content: 'Understanding different benefit types' },
+          { title: 'Policy Loans', content: 'Loan features and withdrawal options' }
+        ]
+      },
+      { 
+        name: 'Medical Insurance Overview', 
+        duration: '35 min', 
+        status: 'available' as const,
+        sections: [
+          { title: 'Coverage Types', content: 'Understanding different medical insurance plans' },
+          { title: 'Claims Process', content: 'Step-by-step guide to medical claims' },
+          { title: 'Pre-existing Conditions', content: 'How to handle pre-existing condition cases' },
+          { title: 'Network Providers', content: 'Understanding panel doctors and direct billing' }
+        ]
+      }
     ]
   },
   {
     title: 'Sales Skills Development',
     modules: [
-      { name: 'Consultative Selling Approach', duration: '60 min', status: 'available' },
-      { name: 'Objection Handling Mastery', duration: '40 min', status: 'available' },
-      { name: 'Digital Presentation Skills', duration: '25 min', status: 'available' }
+      { 
+        name: 'Consultative Selling Approach', 
+        duration: '60 min', 
+        status: 'available' as const,
+        sections: [
+          { title: 'Needs Discovery', content: 'Techniques for uncovering client needs and motivations' },
+          { title: 'Solution Mapping', content: 'Matching products to client requirements' },
+          { title: 'Value Proposition', content: 'Articulating unique value for each client' }
+        ]
+      },
+      { 
+        name: 'Objection Handling Mastery', 
+        duration: '40 min', 
+        status: 'available' as const,
+        sections: [
+          { title: 'Common Objections', content: 'Most frequent client concerns and how to address them' },
+          { title: 'Reframing Techniques', content: 'Turning objections into opportunities' },
+          { title: 'Follow-up Strategies', content: 'Maintaining momentum after handling objections' }
+        ]
+      },
+      { 
+        name: 'Digital Presentation Skills', 
+        duration: '25 min', 
+        status: 'available' as const,
+        sections: [
+          { title: 'Virtual Meeting Setup', content: 'Best practices for online client meetings' },
+          { title: 'Screen Sharing', content: 'Effective use of digital tools and presentations' },
+          { title: 'Engagement Techniques', content: 'Keeping clients engaged in virtual environments' }
+        ]
+      }
     ]
   }
 ];
@@ -238,9 +312,10 @@ export default function SalesTools() {
     duration: string;
     category: string;
   } | null>(null);
-  const [editableTrainingModules, setEditableTrainingModules] = useState(trainingModules);
+  const [editableTrainingModules, setEditableTrainingModules] = useState<TrainingModuleGroup[]>(trainingModules);
   const [editableSalesTools, setEditableSalesTools] = useState(salesTools);
   const [expandedTools, setExpandedTools] = useState<{[key: string]: boolean}>({});
+  const [expandedModules, setExpandedModules] = useState<{[key: string]: boolean}>({});
   const [editingSections, setEditingSections] = useState<{[key: string]: boolean}>({});
   const [tempSectionData, setTempSectionData] = useState<{[key: string]: {title: string, content: string, url?: string}}>({});
   
@@ -249,10 +324,14 @@ export default function SalesTools() {
 
   // Admin functions for training modules
   const addNewTrainingModule = (categoryTitle: string) => {
-    const newModule = {
+    const newModule: TrainingModule = {
       name: 'New Training Module',
       duration: '30 min',
-      status: 'available' as const
+      status: 'available' as const,
+      sections: [
+        { title: 'Module Overview', content: 'Introduction to this training module' },
+        { title: 'Key Concepts', content: 'Main topics and learning objectives' }
+      ]
     };
 
     const updatedModules = editableTrainingModules.map(group => 
@@ -267,6 +346,12 @@ export default function SalesTools() {
       title: "New Module Added",
       description: `Added new training module to ${categoryTitle}`
     });
+  };
+
+  // Training module expansion functions
+  const toggleModuleExpansion = (moduleGroupTitle: string, moduleIndex: number) => {
+    const key = `${moduleGroupTitle}-${moduleIndex}`;
+    setExpandedModules(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
   const deleteTrainingModule = (categoryTitle: string, moduleIndex: number) => {
@@ -689,52 +774,101 @@ export default function SalesTools() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {moduleGroup.modules.map((module, moduleIndex) => (
-                      <div key={moduleIndex} className="flex items-center justify-between p-3 border border-border/50 rounded-md">
-                        <div className="flex-1">
-                          <p className="font-medium text-sm">{module.name}</p>
-                          <div className="flex items-center gap-2 mt-1">
-                            <span className="text-xs text-muted-foreground">{module.duration}</span>
-                            <Badge 
-                              variant={module.status === 'available' ? 'secondary' : 'outline'}
-                              className="text-xs"
-                            >
-                              {module.status === 'available' ? 'Available' : 'Coming Soon'}
-                            </Badge>
+                    {moduleGroup.modules.map((module, moduleIndex) => {
+                      const moduleKey = `${moduleGroup.title}-${moduleIndex}`;
+                      const isExpanded = expandedModules[moduleKey];
+                      
+                      return (
+                        <div key={moduleIndex} className="border border-border/50 rounded-md">
+                          <div className="flex items-center justify-between p-3">
+                            <div className="flex-1">
+                              <p className="font-medium text-sm">{module.name}</p>
+                              <div className="flex items-center gap-2 mt-1">
+                                <span className="text-xs text-muted-foreground">{module.duration}</span>
+                                <Badge 
+                                  variant={module.status === 'available' ? 'secondary' : 'outline'}
+                                  className="text-xs"
+                                >
+                                  {module.status === 'available' ? 'Available' : 'Coming Soon'}
+                                </Badge>
+                              </div>
+                            </div>
+                            
+                            <div className="flex items-center gap-2">
+                              {isAdminMode && (
+                                <Button
+                                  onClick={() => deleteTrainingModule(moduleGroup.title, moduleIndex)}
+                                  size="sm"
+                                  variant="ghost"
+                                  className="text-destructive hover:text-destructive p-1"
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              )}
+                              
+                              <Button 
+                                size="sm" 
+                                variant="default"
+                                onClick={() => {
+                                  toggleModuleExpansion(moduleGroup.title, moduleIndex);
+                                }}
+                                className="flex items-center gap-2"
+                              >
+                                Start
+                                {isExpanded ? 
+                                  <ChevronUp className="h-4 w-4" /> : 
+                                  <ChevronDown className="h-4 w-4" />
+                                }
+                              </Button>
+                            </div>
                           </div>
-                        </div>
-                        
-                        <div className="flex items-center gap-2">
-                          {isAdminMode && (
-                            <Button
-                              onClick={() => deleteTrainingModule(moduleGroup.title, moduleIndex)}
-                              size="sm"
-                              variant="ghost"
-                              className="text-destructive hover:text-destructive p-1"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
+
+                          {/* Expandable Sections */}
+                          {isExpanded && module.sections && (
+                            <div className="border-t border-border/50 p-3 bg-accent/10">
+                              <div className="space-y-2">
+                                {module.sections.map((section, sectionIndex) => (
+                                  <div key={sectionIndex} className="bg-background/50 p-3 rounded-md">
+                                    <h4 className="font-medium text-sm mb-1">{section.title}</h4>
+                                    <p className="text-xs text-muted-foreground">{section.content}</p>
+                                    {section.url && (
+                                      <div className="mt-2">
+                                        <Button
+                                          variant="link"
+                                          size="sm"
+                                          className="h-auto p-0 text-xs"
+                                          asChild
+                                        >
+                                          <a href={section.url} target="_blank" rel="noopener noreferrer">
+                                            View Resource →
+                                          </a>
+                                        </Button>
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
+                                <div className="mt-3 pt-3 border-t border-border/30">
+                                  <Button 
+                                    size="sm" 
+                                    variant="outline"
+                                    onClick={() => {
+                                      setStudyingModule({
+                                        moduleName: module.name,
+                                        duration: module.duration,
+                                        category: moduleGroup.title
+                                      });
+                                    }}
+                                    className="w-full"
+                                  >
+                                    Begin Training Module
+                                  </Button>
+                                </div>
+                              </div>
+                            </div>
                           )}
-                          
-                          <Button 
-                            size="sm" 
-                            variant={module.status === 'available' ? 'default' : 'outline'}
-                            disabled={module.status !== 'available'}
-                            onClick={() => {
-                              if (module.status === 'available') {
-                                setStudyingModule({
-                                  moduleName: module.name,
-                                  duration: module.duration,
-                                  category: moduleGroup.title
-                                });
-                              }
-                            }}
-                          >
-                            Start
-                          </Button>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </CardContent>
               </Card>
