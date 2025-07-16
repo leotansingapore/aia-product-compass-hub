@@ -227,7 +227,7 @@ export default function SalesTools() {
     category: string;
   } | null>(null);
   const [editableTrainingModules, setEditableTrainingModules] = useState(trainingModules);
-  const [editableSalesTools, setEditableSalesTools] = useState(salesTools);
+  const [editableSalesTools, setEditableSalesTools] = useState(() => salesTools);
   const [expandedTools, setExpandedTools] = useState<{[key: string]: boolean}>({});
   const [editingSections, setEditingSections] = useState<{[key: string]: boolean}>({});
   const [tempSectionData, setTempSectionData] = useState<{[key: string]: {title: string, content: string, url?: string}}>({});
