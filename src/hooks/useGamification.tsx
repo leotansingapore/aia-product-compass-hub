@@ -300,7 +300,7 @@ export const useGamification = () => {
           category_id: categoryId,
           product_id: productId,
           progress_type: 'page_visited',
-          xp_earned: 10
+          xp_earned: 5
         });
 
       if (error) throw error;
@@ -308,7 +308,7 @@ export const useGamification = () => {
       // Update session storage to prevent duplicate calls
       sessionStorage.setItem(visitKey, now.toString());
       
-      await updateUserProfile(10);
+      await updateUserProfile(5);
     } catch (error) {
       console.error('Error recording page visit:', error);
     }
