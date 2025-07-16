@@ -16,6 +16,7 @@ import { Plus, Edit, Trash2, Save, X, ChevronDown, ChevronUp } from "lucide-reac
 interface ToolSection {
   title: string;
   content: string;
+  url?: string;
 }
 
 interface BaseTool {
@@ -122,8 +123,8 @@ const salesTools: ToolCategory[] = [
         description: 'Structured approach to identify client needs',
         action: 'worksheet',
         sections: [
-          { title: 'Client Information', content: 'Basic client demographics and contact details' },
-          { title: 'Financial Goals', content: 'Short-term and long-term financial objectives' },
+          { title: 'Client Information', content: 'Basic client demographics and contact details', url: 'https://example.com/client-info-template' },
+          { title: 'Financial Goals', content: 'Short-term and long-term financial objectives', url: 'https://example.com/financial-goals-guide' },
           { title: 'Risk Assessment', content: 'Current insurance coverage and protection gaps' },
           { title: 'Budget Analysis', content: 'Monthly income, expenses, and available premium budget' }
         ]
@@ -241,7 +242,7 @@ export default function SalesTools() {
   const [editableSalesTools, setEditableSalesTools] = useState(salesTools);
   const [expandedTools, setExpandedTools] = useState<{[key: string]: boolean}>({});
   const [editingSections, setEditingSections] = useState<{[key: string]: boolean}>({});
-  const [tempSectionData, setTempSectionData] = useState<{[key: string]: {title: string, content: string}}>({});
+  const [tempSectionData, setTempSectionData] = useState<{[key: string]: {title: string, content: string, url?: string}}>({});
   
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
@@ -294,7 +295,7 @@ export default function SalesTools() {
     setEditingSections(prev => ({ ...prev, [key]: true }));
     setTempSectionData(prev => ({ 
       ...prev, 
-      [key]: { title: section.title, content: section.content } 
+      [key]: { title: section.title, content: section.content, url: section.url || '' } 
     }));
   };
 
@@ -330,7 +331,7 @@ export default function SalesTools() {
             ...tool,
             sections: tool.sections.map((section, idx) => 
               idx === sectionIndex 
-                ? { title: tempData.title.trim(), content: tempData.content.trim() }
+                ? { title: tempData.title.trim(), content: tempData.content.trim(), url: tempData.url?.trim() || undefined }
                 : section
             )
           } as ActionTool;
@@ -363,7 +364,7 @@ export default function SalesTools() {
           const sections = tool.sections || [];
           updatedTools[toolIndex] = {
             ...tool,
-            sections: [...sections, { title: 'New Section', content: 'Section content here...' }]
+            sections: [...sections, { title: 'New Section', content: 'Section content here...', url: '' }]
           } as ActionTool;
         }
         return { ...toolCategory, tools: updatedTools };
@@ -538,6 +539,15 @@ export default function SalesTools() {
                                                 placeholder="Section content..."
                                                 rows={3}
                                               />
+                                              <Input
+                                                value={tempData?.url || section.url || ''}
+                                                onChange={(e) => setTempSectionData(prev => ({
+                                                  ...prev,
+                                                  [sectionKey]: { ...tempData, url: e.target.value }
+                                                }))}
+                                                placeholder="Optional URL (e.g., https://example.com/resource)"
+                                                type="url"
+                                              />
                                               <div className="flex gap-2">
                                                 <Button
                                                   size="sm"
@@ -584,6 +594,20 @@ export default function SalesTools() {
                                                 )}
                                               </div>
                                               <p className="text-xs text-muted-foreground">{section.content}</p>
+                                              {section.url && (
+                                                <div className="mt-2">
+                                                  <Button
+                                                    variant="link"
+                                                    size="sm"
+                                                    className="h-auto p-0 text-xs"
+                                                    asChild
+                                                  >
+                                                    <a href={section.url} target="_blank" rel="noopener noreferrer">
+                                                      View Resource →
+                                                    </a>
+                                                  </Button>
+                                                </div>
+                                              )}
                                             </div>
                                           )}
                                         </CardContent>
