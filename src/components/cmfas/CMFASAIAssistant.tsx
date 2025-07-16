@@ -53,9 +53,7 @@ export function CMFASAIAssistant({ customGptLink, onUpdate }: CMFASAIAssistantPr
     <Card className="bg-gradient-to-br from-card via-card to-purple-50/20 dark:to-purple-900/10 border-2 hover:shadow-xl transition-all duration-300 group">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
-            <Bot className="h-5 w-5 text-white" />
-          </div>
+          <span className="text-3xl">🤖</span>
           <div>
             <span className="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent font-bold text-xl">
               Ask the AI (Custom GPT)

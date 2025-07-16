@@ -12,9 +12,7 @@ export function CMFASUsefulLinks({ links, onUpdate }: CMFASUsefulLinksProps) {
     <Card className="bg-gradient-to-br from-card via-card to-muted/20 border-2 hover:shadow-xl transition-all duration-300 group">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
-            <span className="text-xl">🔗</span>
-          </div>
+          <span className="text-3xl">🔗</span>
           <div>
             <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent font-bold text-xl">
               Useful Links
