@@ -231,6 +231,8 @@ export default function SalesTools() {
   const [expandedTools, setExpandedTools] = useState<{[key: string]: boolean}>({});
   const [editingSections, setEditingSections] = useState<{[key: string]: boolean}>({});
   const [tempSectionData, setTempSectionData] = useState<{[key: string]: {title: string, content: string, url?: string}}>({});
+  const [editingTools, setEditingTools] = useState<{[key: string]: boolean}>({});
+  const [tempToolData, setTempToolData] = useState<{[key: string]: {name: string, description: string, link?: string}}>({});
   
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
@@ -392,6 +394,119 @@ export default function SalesTools() {
     });
   };
 
+  // Tool management functions
+  const startEditingTool = (toolCategoryId: string, toolIndex: number, tool: any) => {
+    const key = `${toolCategoryId}-${toolIndex}`;
+    setEditingTools(prev => ({ ...prev, [key]: true }));
+    setTempToolData(prev => ({ 
+      ...prev, 
+      [key]: { 
+        name: tool.name, 
+        description: tool.description, 
+        link: (tool as LinkTool).link || '' 
+      } 
+    }));
+  };
+
+  const cancelEditingTool = (toolCategoryId: string, toolIndex: number) => {
+    const key = `${toolCategoryId}-${toolIndex}`;
+    setEditingTools(prev => ({ ...prev, [key]: false }));
+    setTempToolData(prev => {
+      const newData = { ...prev };
+      delete newData[key];
+      return newData;
+    });
+  };
+
+  const saveTool = (toolCategoryId: string, toolIndex: number) => {
+    const key = `${toolCategoryId}-${toolIndex}`;
+    const tempData = tempToolData[key];
+    
+    if (!tempData || !tempData.name.trim()) {
+      toast({
+        title: "Error",
+        description: "Tool name is required",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!tempData.link?.trim()) {
+      toast({
+        title: "Error", 
+        description: "Tool link is required",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const updatedTools = editableSalesTools.map(toolCategory => {
+      if (toolCategory.id === toolCategoryId) {
+        const updatedTools = [...toolCategory.tools];
+        updatedTools[toolIndex] = {
+          name: tempData.name.trim(),
+          description: tempData.description.trim(),
+          link: tempData.link.trim()
+        } as LinkTool;
+        return { ...toolCategory, tools: updatedTools };
+      }
+      return toolCategory;
+    });
+
+    setEditableSalesTools(updatedTools);
+    setEditingTools(prev => ({ ...prev, [key]: false }));
+    setTempToolData(prev => {
+      const newData = { ...prev };
+      delete newData[key];
+      return newData;
+    });
+
+    toast({
+      title: "Tool Updated",
+      description: "Tool has been successfully updated"
+    });
+  };
+
+  const addNewTool = (toolCategoryId: string) => {
+    const updatedTools = editableSalesTools.map(toolCategory => {
+      if (toolCategory.id === toolCategoryId) {
+        const newTool: LinkTool = {
+          name: 'New Objection',
+          description: 'New objection handling guide',
+          link: 'https://example.com/new-objection-guide'
+        };
+        return { ...toolCategory, tools: [...toolCategory.tools, newTool] };
+      }
+      return toolCategory;
+    });
+
+    setEditableSalesTools(updatedTools);
+    
+    toast({
+      title: "New Tool Added",
+      description: "New objection handling tool has been added"
+    });
+  };
+
+  const deleteTool = (toolCategoryId: string, toolIndex: number) => {
+    const updatedTools = editableSalesTools.map(toolCategory => {
+      if (toolCategory.id === toolCategoryId) {
+        return { 
+          ...toolCategory, 
+          tools: toolCategory.tools.filter((_, idx) => idx !== toolIndex) 
+        };
+      }
+      return toolCategory;
+    });
+
+    setEditableSalesTools(updatedTools);
+    
+    toast({
+      title: "Tool Deleted",
+      description: "Objection handling tool has been removed"
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <NavigationHeader 
@@ -422,8 +537,23 @@ export default function SalesTools() {
             <div key={toolCategory.id} className={activeTab === toolCategory.id ? 'block' : 'hidden'}>
               <Card className="mb-6">
                 <CardHeader>
-                  <CardTitle>{toolCategory.title}</CardTitle>
-                  <CardDescription>{toolCategory.description}</CardDescription>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <CardTitle>{toolCategory.title}</CardTitle>
+                      <CardDescription>{toolCategory.description}</CardDescription>
+                    </div>
+                    {isAdminMode && toolCategory.id === 'objection-handling' && (
+                      <Button
+                        onClick={() => addNewTool(toolCategory.id)}
+                        size="sm"
+                        variant="outline"
+                        className="flex items-center gap-2"
+                      >
+                        <Plus className="h-4 w-4" />
+                        Add Objection
+                      </Button>
+                    )}
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
@@ -463,11 +593,108 @@ export default function SalesTools() {
                             </div>
                           )}
                           {tool.link && (
-                            <Button variant="outline" className="mt-3" asChild>
-                              <a href={tool.link} target="_blank" rel="noopener noreferrer">
-                                Access Tool
-                              </a>
-                            </Button>
+                            <div className="space-y-3">
+                              {/* Check if we're editing this specific tool */}
+                              {isAdminMode && editingTools[`${toolCategory.id}-${index}`] ? (
+                                /* Admin Edit Mode for Link Tools */
+                                <div className="space-y-3 p-4 border border-border rounded-md bg-accent/20">
+                                  <div className="space-y-2">
+                                    <label className="text-sm font-medium">Tool Name</label>
+                                    <Input
+                                      value={tempToolData[`${toolCategory.id}-${index}`]?.name || tool.name}
+                                      onChange={(e) => setTempToolData(prev => ({
+                                        ...prev,
+                                        [`${toolCategory.id}-${index}`]: { 
+                                          ...prev[`${toolCategory.id}-${index}`], 
+                                          name: e.target.value 
+                                        }
+                                      }))}
+                                      placeholder="Tool name..."
+                                    />
+                                  </div>
+                                  <div className="space-y-2">
+                                    <label className="text-sm font-medium">Description</label>
+                                    <Textarea
+                                      value={tempToolData[`${toolCategory.id}-${index}`]?.description || tool.description}
+                                      onChange={(e) => setTempToolData(prev => ({
+                                        ...prev,
+                                        [`${toolCategory.id}-${index}`]: { 
+                                          ...prev[`${toolCategory.id}-${index}`], 
+                                          description: e.target.value 
+                                        }
+                                      }))}
+                                      placeholder="Tool description..."
+                                      rows={2}
+                                    />
+                                  </div>
+                                  <div className="space-y-2">
+                                    <label className="text-sm font-medium">External Link URL</label>
+                                    <Input
+                                      value={tempToolData[`${toolCategory.id}-${index}`]?.link || (tool as LinkTool).link}
+                                      onChange={(e) => setTempToolData(prev => ({
+                                        ...prev,
+                                        [`${toolCategory.id}-${index}`]: { 
+                                          ...prev[`${toolCategory.id}-${index}`], 
+                                          link: e.target.value 
+                                        }
+                                      }))}
+                                      placeholder="https://example.com/objection-guide"
+                                      type="url"
+                                    />
+                                  </div>
+                                  <div className="flex gap-2">
+                                    <Button
+                                      size="sm"
+                                      onClick={() => saveTool(toolCategory.id, index)}
+                                      className="flex items-center gap-2"
+                                    >
+                                      <Save className="h-4 w-4" />
+                                      Save
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={() => cancelEditingTool(toolCategory.id, index)}
+                                      className="flex items-center gap-2"
+                                    >
+                                      <X className="h-4 w-4" />
+                                      Cancel
+                                    </Button>
+                                  </div>
+                                </div>
+                              ) : (
+                                /* Normal View Mode */
+                                <div className="flex items-center gap-2">
+                                  <Button variant="outline" className="mt-3" asChild>
+                                    <a href={(tool as LinkTool).link} target="_blank" rel="noopener noreferrer">
+                                      Access Tool
+                                    </a>
+                                  </Button>
+                                  {isAdminMode && toolCategory.id === 'objection-handling' && (
+                                    <div className="flex gap-1 mt-3">
+                                      <Button
+                                        size="sm"
+                                        variant="ghost"
+                                        onClick={() => startEditingTool(toolCategory.id, index, tool)}
+                                        className="flex items-center gap-2"
+                                      >
+                                        <Edit className="h-4 w-4" />
+                                        Edit
+                                      </Button>
+                                      <Button
+                                        size="sm"
+                                        variant="ghost"
+                                        onClick={() => deleteTool(toolCategory.id, index)}
+                                        className="flex items-center gap-2 text-destructive hover:text-destructive"
+                                      >
+                                        <Trash2 className="h-4 w-4" />
+                                        Delete
+                                      </Button>
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </div>
                           )}
                           {tool.action && (
                             <div className="mt-3">
