@@ -180,7 +180,7 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
     setIsPlaying(false);
   };
 
-  // Editing functions
+  // Admin editing functions
   const startEditing = () => {
     setIsEditing(true);
     setEditingTitle(currentSection.title);
@@ -331,7 +331,7 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
 
         <CardContent className="p-6">
           <div className="space-y-6">
-            {isEditing ? (
+            {isEditing && isAdminMode ? (
               /* Admin Editing Mode */
               <div className="space-y-4">
                 <div className="space-y-2">
@@ -394,10 +394,12 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
                 <div className="text-center">
                   <div className="flex justify-between items-center mb-2">
                     <h2 className="text-2xl font-semibold flex-1">{currentSection.title}</h2>
-                    <Button onClick={startEditing} variant="ghost" size="sm" className="flex items-center gap-2">
-                      <Edit className="h-4 w-4" />
-                      Edit
-                    </Button>
+                    {isAdminMode && (
+                      <Button onClick={startEditing} variant="ghost" size="sm" className="flex items-center gap-2">
+                        <Edit className="h-4 w-4" />
+                        Edit
+                      </Button>
+                    )}
                   </div>
                   <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
                     <div className="flex items-center gap-1">
@@ -490,17 +492,17 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
             </Button>
 
             <div className="flex gap-1 items-center">
-              <div className="flex gap-1 mr-4">
-                <Button
-                  variant="outline"
-                  onClick={addNewSection}
-                  size="sm"
-                  className="flex items-center gap-2"
-                >
-                  <Plus className="h-4 w-4" />
-                  Add Section
-                </Button>
-                {isAdminMode && (
+              {isAdminMode && (
+                <div className="flex gap-1 mr-4">
+                  <Button
+                    variant="outline"
+                    onClick={addNewSection}
+                    size="sm"
+                    className="flex items-center gap-2"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Add Section
+                  </Button>
                   <Button
                     variant="outline"
                     onClick={deleteSection}
@@ -510,8 +512,8 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
                     <Trash2 className="h-4 w-4" />
                     Delete
                   </Button>
-                )}
-              </div>
+                </div>
+              )}
               
               {sections.map((_, index) => (
                 <div
