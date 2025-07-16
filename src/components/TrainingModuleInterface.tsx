@@ -84,6 +84,23 @@ const trainingContent: { [key: string]: ModuleContent[] } = {
       content: "Master digital presentations for better client engagement:\n\n• Technology setup: Good lighting, clear audio, stable internet\n• Engagement techniques: Interactive polls, screen sharing, breakout discussions\n• Visual aids: Clear, simple slides with minimal text\n• Follow-up: Record sessions (with permission), send summaries\n\nRemember: The fundamentals of good presenting apply whether virtual or in-person.",
       duration: 180
     }
+  ],
+  "Medical Insurance Overview": [
+    {
+      title: "Understanding Health Insurance Basics",
+      content: "Medical insurance provides financial protection against healthcare costs. Key components include:\n\n• Hospitalization coverage\n• Outpatient benefits\n• Emergency medical expenses\n• Pre-existing condition coverage\n\nUnderstanding these basics helps you explain the value proposition to clients and match their specific healthcare needs.",
+      duration: 420
+    },
+    {
+      title: "Policy Features and Benefits",
+      content: "Modern medical insurance policies offer comprehensive benefits:\n\n• Cashless hospitalization at network hospitals\n• Worldwide emergency coverage\n• Annual health check-ups\n• Preventive care benefits\n• Telemedicine consultations\n\nThese features address evolving healthcare needs and provide convenience to policyholders.",
+      duration: 480
+    },
+    {
+      title: "Claims Process and Customer Support",
+      content: "Efficient claims processing is crucial for customer satisfaction:\n\n• Pre-authorization for planned treatments\n• Cashless facility at network providers\n• Reimbursement for non-network treatments\n• 24/7 customer support helpline\n• Digital claim submission options\n\nEducating clients about the claims process builds confidence and trust in the product.",
+      duration: 360
+    }
   ]
 };
 
