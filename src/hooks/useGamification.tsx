@@ -28,6 +28,27 @@ export const useGamification = () => {
     console.log('🎯 Starting quiz completion recording for user:', user.id, 'result:', result);
     setIsProcessing(true);
     try {
+      // Check if user has already completed this quiz today to prevent XP farming
+      const today = new Date().toISOString().split('T')[0];
+      const { data: existingAttempt } = await supabase
+        .from('quiz_attempts')
+        .select('id')
+        .eq('user_id', user.id)
+        .eq('product_id', result.productId)
+        .gte('completed_at', today)
+        .order('completed_at', { ascending: false })
+        .limit(1);
+
+      if (existingAttempt && existingAttempt.length > 0) {
+        console.log('⚠️ Quiz already completed today, no XP awarded');
+        toast({
+          title: "Quiz Already Completed Today",
+          description: "You've already earned XP for this quiz today. Try again tomorrow!",
+          variant: "default",
+        });
+        return;
+      }
+
       const xpEarned = calculateXP(result.score, result.totalQuestions);
       console.log('💎 Calculated XP:', xpEarned);
       
