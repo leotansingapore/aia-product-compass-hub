@@ -642,139 +642,103 @@ export default function SalesTools() {
                     )}
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
+                <CardContent className="p-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {toolCategory.tools.map((tool, index) => (
-                      <Card key={index} className="border border-border/50">
-                        <CardHeader className="pb-3">
-                          <CardTitle className="text-lg">{tool.name}</CardTitle>
-                          <CardDescription>{tool.description}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                          {tool.scripts && (
-                            <div className="space-y-2">
-                              {tool.scripts.map((script, scriptIndex) => (
-                                <div key={scriptIndex} className="bg-accent/30 p-3 rounded-md">
-                                  <p className="text-sm">{script}</p>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                          {tool.questions && (
-                            <div className="space-y-2">
-                              {tool.questions.map((question, questionIndex) => (
-                                <div key={questionIndex} className="flex items-start">
-                                  <span className="text-primary mr-2 mt-1">Q:</span>
-                                  <p className="text-sm text-muted-foreground">{question}</p>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                          {tool.techniques && (
-                            <div className="space-y-2">
-                              {tool.techniques.map((technique, techIndex) => (
-                                <div key={techIndex} className="bg-success/10 p-3 rounded-md">
-                                  <p className="text-sm">{technique}</p>
-                                </div>
-                              ))}
-                            </div>
-                          )}
+                      <div key={index} className="border border-border/50 rounded-lg p-4 hover:bg-accent/20 transition-colors">
+                        <div className="space-y-3">
+                          <div className="space-y-2">
+                            <h3 className="font-medium text-sm leading-tight">{tool.name}</h3>
+                            <p className="text-xs text-muted-foreground leading-relaxed">{tool.description}</p>
+                          </div>
+
                           {tool.link && (
-                            <div className="space-y-3">
-                              {/* Check if we're editing this specific tool */}
+                            <div className="space-y-2">
                               {isAdminMode && editingTools[`${toolCategory.id}-${index}`] ? (
-                                /* Admin Edit Mode for Link Tools */
-                                <div className="space-y-3 p-4 border border-border rounded-md bg-accent/20">
-                                  <div className="space-y-2">
-                                    <label className="text-sm font-medium">Tool Name</label>
-                                    <Input
-                                      value={tempToolData[`${toolCategory.id}-${index}`]?.name || tool.name}
-                                      onChange={(e) => setTempToolData(prev => ({
-                                        ...prev,
-                                        [`${toolCategory.id}-${index}`]: { 
-                                          ...prev[`${toolCategory.id}-${index}`], 
-                                          name: e.target.value 
-                                        }
-                                      }))}
-                                      placeholder="Tool name..."
-                                    />
-                                  </div>
-                                  <div className="space-y-2">
-                                    <label className="text-sm font-medium">Description</label>
-                                    <Textarea
-                                      value={tempToolData[`${toolCategory.id}-${index}`]?.description || tool.description}
-                                      onChange={(e) => setTempToolData(prev => ({
-                                        ...prev,
-                                        [`${toolCategory.id}-${index}`]: { 
-                                          ...prev[`${toolCategory.id}-${index}`], 
-                                          description: e.target.value 
-                                        }
-                                      }))}
-                                      placeholder="Tool description..."
-                                      rows={2}
-                                    />
-                                  </div>
-                                  <div className="space-y-2">
-                                    <label className="text-sm font-medium">External Link URL</label>
-                                    <Input
-                                      value={tempToolData[`${toolCategory.id}-${index}`]?.link || (tool as LinkTool).link}
-                                      onChange={(e) => setTempToolData(prev => ({
-                                        ...prev,
-                                        [`${toolCategory.id}-${index}`]: { 
-                                          ...prev[`${toolCategory.id}-${index}`], 
-                                          link: e.target.value 
-                                        }
-                                      }))}
-                                      placeholder="https://example.com/objection-guide"
-                                      type="url"
-                                    />
-                                  </div>
-                                  <div className="flex gap-2">
+                                <div className="space-y-2 p-3 border border-border rounded-md bg-accent/20">
+                                  <Input
+                                    value={tempToolData[`${toolCategory.id}-${index}`]?.name || tool.name}
+                                    onChange={(e) => setTempToolData(prev => ({
+                                      ...prev,
+                                      [`${toolCategory.id}-${index}`]: { 
+                                        ...prev[`${toolCategory.id}-${index}`], 
+                                        name: e.target.value 
+                                      }
+                                    }))}
+                                    placeholder="Tool name..."
+                                    className="text-xs"
+                                  />
+                                  <Textarea
+                                    value={tempToolData[`${toolCategory.id}-${index}`]?.description || tool.description}
+                                    onChange={(e) => setTempToolData(prev => ({
+                                      ...prev,
+                                      [`${toolCategory.id}-${index}`]: { 
+                                        ...prev[`${toolCategory.id}-${index}`], 
+                                        description: e.target.value 
+                                      }
+                                    }))}
+                                    placeholder="Tool description..."
+                                    rows={2}
+                                    className="text-xs"
+                                  />
+                                  <Input
+                                    value={tempToolData[`${toolCategory.id}-${index}`]?.link || (tool as LinkTool).link}
+                                    onChange={(e) => setTempToolData(prev => ({
+                                      ...prev,
+                                      [`${toolCategory.id}-${index}`]: { 
+                                        ...prev[`${toolCategory.id}-${index}`], 
+                                        link: e.target.value 
+                                      }
+                                    }))}
+                                    placeholder="https://example.com/objection-guide"
+                                    type="url"
+                                    className="text-xs"
+                                  />
+                                  <div className="flex gap-1">
                                     <Button
                                       size="sm"
                                       onClick={() => saveTool(toolCategory.id, index)}
-                                      className="flex items-center gap-2"
+                                      className="flex items-center gap-1 text-xs h-7"
                                     >
-                                      <Save className="h-4 w-4" />
+                                      <Save className="h-3 w-3" />
                                       Save
                                     </Button>
                                     <Button
                                       size="sm"
                                       variant="outline"
                                       onClick={() => cancelEditingTool(toolCategory.id, index)}
-                                      className="flex items-center gap-2"
+                                      className="flex items-center gap-1 text-xs h-7"
                                     >
-                                      <X className="h-4 w-4" />
+                                      <X className="h-3 w-3" />
                                       Cancel
                                     </Button>
                                   </div>
                                 </div>
                               ) : (
-                                /* Normal View Mode */
-                                <div className="flex items-center gap-2">
-                                  <Button variant="outline" className="mt-3" asChild>
+                                <div className="flex flex-col gap-2">
+                                  <Button variant="outline" size="sm" className="w-full text-xs h-8" asChild>
                                     <a href={(tool as LinkTool).link} target="_blank" rel="noopener noreferrer">
                                       Access Tool
                                     </a>
                                   </Button>
-                    {isAdminMode && (toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') && (
-                                    <div className="flex gap-1 mt-3">
+                                  {isAdminMode && (toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') && (
+                                    <div className="flex gap-1">
                                       <Button
                                         size="sm"
                                         variant="ghost"
                                         onClick={() => startEditingTool(toolCategory.id, index, tool)}
-                                        className="flex items-center gap-2"
+                                        className="flex items-center gap-1 text-xs h-7 flex-1"
                                       >
-                                        <Edit className="h-4 w-4" />
+                                        <Edit className="h-3 w-3" />
                                         Edit
                                       </Button>
                                       <Button
                                         size="sm"
                                         variant="ghost"
                                         onClick={() => deleteTool(toolCategory.id, index)}
-                                        className="flex items-center gap-2 text-destructive hover:text-destructive"
+                                        className="flex items-center gap-1 text-xs h-7 text-destructive hover:text-destructive flex-1"
                                       >
-                                        <Trash2 className="h-4 w-4" />
+                                        <Trash2 className="h-3 w-3" />
                                         Delete
                                       </Button>
                                     </div>
@@ -783,18 +747,51 @@ export default function SalesTools() {
                               )}
                             </div>
                           )}
+
+                          {tool.scripts && (
+                            <div className="space-y-2">
+                              {tool.scripts.map((script, scriptIndex) => (
+                                <div key={scriptIndex} className="bg-accent/30 p-2 rounded-md">
+                                  <p className="text-xs">{script}</p>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {tool.questions && (
+                            <div className="space-y-2">
+                              {tool.questions.map((question, questionIndex) => (
+                                <div key={questionIndex} className="flex items-start">
+                                  <span className="text-primary mr-1 mt-0.5 text-xs">Q:</span>
+                                  <p className="text-xs text-muted-foreground">{question}</p>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {tool.techniques && (
+                            <div className="space-y-2">
+                              {tool.techniques.map((technique, techIndex) => (
+                                <div key={techIndex} className="bg-success/10 p-2 rounded-md">
+                                  <p className="text-xs">{technique}</p>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
                           {tool.action && (
-                            <div className="mt-3">
+                            <div className="space-y-2">
                               <div className="flex items-center gap-2">
                                 <Button 
                                   variant="outline" 
+                                  size="sm"
                                   onClick={() => toggleToolExpansion(toolCategory.id, index)}
-                                  className="flex items-center gap-2"
+                                  className="flex items-center gap-1 text-xs h-8 flex-1"
                                 >
                                   Access Tool
                                   {expandedTools[`${toolCategory.id}-${index}`] ? 
-                                    <ChevronUp className="h-4 w-4" /> : 
-                                    <ChevronDown className="h-4 w-4" />
+                                    <ChevronUp className="h-3 w-3" /> : 
+                                    <ChevronDown className="h-3 w-3" />
                                   }
                                 </Button>
                                 {isAdminMode && (
@@ -802,126 +799,122 @@ export default function SalesTools() {
                                     variant="ghost"
                                     size="sm"
                                     onClick={() => addNewSection(toolCategory.id, index)}
-                                    className="flex items-center gap-2"
+                                    className="flex items-center gap-1 text-xs h-8"
                                   >
-                                    <Plus className="h-4 w-4" />
-                                    Add Section
+                                    <Plus className="h-3 w-3" />
                                   </Button>
                                 )}
                               </div>
                               
-                              {/* Expandable Sections */}
                               {expandedTools[`${toolCategory.id}-${index}`] && 'sections' in tool && tool.sections && (
-                                <div className="mt-4 space-y-3 border-t pt-4">
+                                <div className="space-y-2 border-t pt-2">
                                   {tool.sections.map((section, sectionIndex) => {
                                     const sectionKey = `${toolCategory.id}-${index}-${sectionIndex}`;
                                     const isEditing = editingSections[sectionKey];
                                     const tempData = tempSectionData[sectionKey];
                                     
                                     return (
-                                      <Card key={sectionIndex} className="bg-accent/20">
-                                        <CardContent className="p-4">
-                                          {isEditing ? (
-                                            <div className="space-y-3">
-                                              <Input
-                                                value={tempData?.title || section.title}
-                                                onChange={(e) => setTempSectionData(prev => ({
-                                                  ...prev,
-                                                  [sectionKey]: { ...tempData, title: e.target.value }
-                                                }))}
-                                                placeholder="Section title..."
-                                                className="font-medium"
-                                              />
-                                              <Textarea
-                                                value={tempData?.content || section.content}
-                                                onChange={(e) => setTempSectionData(prev => ({
-                                                  ...prev,
-                                                  [sectionKey]: { ...tempData, content: e.target.value }
-                                                }))}
-                                                placeholder="Section content..."
-                                                rows={3}
-                                              />
-                                              <Input
-                                                value={tempData?.url || section.url || ''}
-                                                onChange={(e) => setTempSectionData(prev => ({
-                                                  ...prev,
-                                                  [sectionKey]: { ...tempData, url: e.target.value }
-                                                }))}
-                                                placeholder="Optional URL (e.g., https://example.com/resource)"
-                                                type="url"
-                                              />
-                                              <div className="flex gap-2">
-                                                <Button
-                                                  size="sm"
-                                                  onClick={() => saveSection(toolCategory.id, index, sectionIndex)}
-                                                  className="flex items-center gap-2"
-                                                >
-                                                  <Save className="h-4 w-4" />
-                                                  Save
-                                                </Button>
-                                                <Button
-                                                  size="sm"
-                                                  variant="outline"
-                                                  onClick={() => cancelEditingSection(toolCategory.id, index, sectionIndex)}
-                                                  className="flex items-center gap-2"
-                                                >
-                                                  <X className="h-4 w-4" />
-                                                  Cancel
-                                                </Button>
-                                              </div>
+                                      <div key={sectionIndex} className="bg-accent/20 p-2 rounded-md">
+                                        {isEditing ? (
+                                          <div className="space-y-2">
+                                            <Input
+                                              value={tempData?.title || section.title}
+                                              onChange={(e) => setTempSectionData(prev => ({
+                                                ...prev,
+                                                [sectionKey]: { ...tempData, title: e.target.value }
+                                              }))}
+                                              placeholder="Section title..."
+                                              className="text-xs"
+                                            />
+                                            <Textarea
+                                              value={tempData?.content || section.content}
+                                              onChange={(e) => setTempSectionData(prev => ({
+                                                ...prev,
+                                                [sectionKey]: { ...tempData, content: e.target.value }
+                                              }))}
+                                              placeholder="Section content..."
+                                              rows={2}
+                                              className="text-xs"
+                                            />
+                                            <Input
+                                              value={tempData?.url || section.url || ''}
+                                              onChange={(e) => setTempSectionData(prev => ({
+                                                ...prev,
+                                                [sectionKey]: { ...tempData, url: e.target.value }
+                                              }))}
+                                              placeholder="Optional URL"
+                                              type="url"
+                                              className="text-xs"
+                                            />
+                                            <div className="flex gap-1">
+                                              <Button
+                                                size="sm"
+                                                onClick={() => saveSection(toolCategory.id, index, sectionIndex)}
+                                                className="flex items-center gap-1 text-xs h-6"
+                                              >
+                                                <Save className="h-3 w-3" />
+                                                Save
+                                              </Button>
+                                              <Button
+                                                size="sm"
+                                                variant="outline"
+                                                onClick={() => cancelEditingSection(toolCategory.id, index, sectionIndex)}
+                                                className="flex items-center gap-1 text-xs h-6"
+                                              >
+                                                <X className="h-3 w-3" />
+                                                Cancel
+                                              </Button>
                                             </div>
-                                          ) : (
-                                            <div>
-                                              <div className="flex justify-between items-start mb-2">
-                                                <h4 className="font-medium text-sm">{section.title}</h4>
-                                                {isAdminMode && (
-                                                  <div className="flex gap-1">
-                                                    <Button
-                                                      size="sm"
-                                                      variant="ghost"
-                                                      onClick={() => startEditingSection(toolCategory.id, index, sectionIndex, section)}
-                                                      className="p-1"
-                                                    >
-                                                      <Edit className="h-3 w-3" />
-                                                    </Button>
-                                                    <Button
-                                                      size="sm"
-                                                      variant="ghost"
-                                                      onClick={() => deleteSection(toolCategory.id, index, sectionIndex)}
-                                                      className="p-1 text-destructive hover:text-destructive"
-                                                    >
-                                                      <Trash2 className="h-3 w-3" />
-                                                    </Button>
-                                                  </div>
-                                                )}
-                                              </div>
-                                              <p className="text-xs text-muted-foreground">{section.content}</p>
-                                              {section.url && (
-                                                <div className="mt-2">
+                                          </div>
+                                        ) : (
+                                          <div>
+                                            <div className="flex justify-between items-start mb-1">
+                                              <h4 className="font-medium text-xs">{section.title}</h4>
+                                              {isAdminMode && (
+                                                <div className="flex gap-1">
                                                   <Button
-                                                    variant="link"
                                                     size="sm"
-                                                    className="h-auto p-0 text-xs"
-                                                    asChild
+                                                    variant="ghost"
+                                                    onClick={() => startEditingSection(toolCategory.id, index, sectionIndex, section)}
+                                                    className="p-0.5 h-5 w-5"
                                                   >
-                                                    <a href={section.url} target="_blank" rel="noopener noreferrer">
-                                                      View Resource →
-                                                    </a>
+                                                    <Edit className="h-3 w-3" />
+                                                  </Button>
+                                                  <Button
+                                                    size="sm"
+                                                    variant="ghost"
+                                                    onClick={() => deleteSection(toolCategory.id, index, sectionIndex)}
+                                                    className="p-0.5 h-5 w-5 text-destructive hover:text-destructive"
+                                                  >
+                                                    <Trash2 className="h-3 w-3" />
                                                   </Button>
                                                 </div>
                                               )}
                                             </div>
-                                          )}
-                                        </CardContent>
-                                      </Card>
+                                            <p className="text-xs text-muted-foreground mb-1">{section.content}</p>
+                                            {section.url && (
+                                              <Button
+                                                variant="link"
+                                                size="sm"
+                                                className="h-auto p-0 text-xs"
+                                                asChild
+                                              >
+                                                <a href={section.url} target="_blank" rel="noopener noreferrer">
+                                                  View Resource →
+                                                </a>
+                                              </Button>
+                                            )}
+                                          </div>
+                                        )}
+                                      </div>
                                     );
                                   })}
                                 </div>
                               )}
                             </div>
                           )}
-                        </CardContent>
-                      </Card>
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </CardContent>
