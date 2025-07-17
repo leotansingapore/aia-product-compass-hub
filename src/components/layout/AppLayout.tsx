@@ -56,7 +56,8 @@ export function AppLayout({ children }: AppLayoutProps) {
                   className={isAdminMode ? "bg-orange-500 hover:bg-orange-600 text-white" : ""}
                   title={isAdminMode ? "Disable Admin Mode" : "Enable Admin Mode"}
                 >
-                  <Settings className="h-4 w-4" />
+                  <Settings className="h-4 w-4 mr-2" />
+                  {isAdminMode ? "Admin Mode" : "Enable Admin"}
                 </Button>
               )}
             </div>
