@@ -2,11 +2,13 @@ import { ReactNode } from "react";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { Button } from "@/components/ui/button";
-import { Menu, Settings } from "lucide-react";
+import { Menu, Settings, LogIn } from "lucide-react";
 import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
 import { useAdmin } from "@/hooks/useAdmin";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -15,6 +17,8 @@ interface AppLayoutProps {
 export function AppLayout({ children }: AppLayoutProps) {
   console.log("AppLayout rendering");
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   
   return (
     <SidebarProvider defaultOpen={true}>
@@ -29,16 +33,33 @@ export function AppLayout({ children }: AppLayoutProps) {
               <h1 className="text-lg font-semibold">AIA Learning Platform</h1>
             </div>
             
-            {/* Admin Mode Toggle */}
-            <Button
-              variant={isAdminMode ? "default" : "ghost"}
-              size="sm"
-              onClick={toggleAdminMode}
-              className={isAdminMode ? "bg-orange-500 hover:bg-orange-600 text-white" : ""}
-              title={isAdminMode ? "Disable Admin Mode" : "Enable Admin Mode"}
-            >
-              <Settings className="h-4 w-4" />
-            </Button>
+            <div className="flex items-center gap-2">
+              {/* Login/Signup Button - shown when user is not logged in */}
+              {!user && (
+                <Button
+                  variant="default"
+                  size="sm"
+                  onClick={() => navigate('/auth')}
+                  className="flex items-center gap-2"
+                >
+                  <LogIn className="h-4 w-4" />
+                  Sign In
+                </Button>
+              )}
+              
+              {/* Admin Mode Toggle - shown when user is logged in */}
+              {user && (
+                <Button
+                  variant={isAdminMode ? "default" : "ghost"}
+                  size="sm"
+                  onClick={toggleAdminMode}
+                  className={isAdminMode ? "bg-orange-500 hover:bg-orange-600 text-white" : ""}
+                  title={isAdminMode ? "Disable Admin Mode" : "Enable Admin Mode"}
+                >
+                  <Settings className="h-4 w-4" />
+                </Button>
+              )}
+            </div>
           </header>
 
           {/* Main Content */}
