@@ -52,31 +52,49 @@ export default function AdminDashboard() {
 
   const fetchData = async () => {
     try {
-      // Fetch users (would need a view or function in production)
-      const { data: userData } = await supabase.auth.admin.listUsers();
+      // Fetch users from profiles table (accessible to master admins)
+      const { data: profilesData, error: profilesError } = await supabase
+        .from('profiles')
+        .select('*');
+
+      if (profilesError) {
+        throw profilesError;
+      }
       
       // Fetch sections
-      const { data: sectionsData } = await supabase
+      const { data: sectionsData, error: sectionsError } = await supabase
         .from('app_sections')
         .select('*')
         .order('category', { ascending: true });
 
+      if (sectionsError) {
+        throw sectionsError;
+      }
+
       // Fetch permissions
-      const { data: permissionsData } = await supabase
+      const { data: permissionsData, error: permissionsError } = await supabase
         .from('user_section_permissions')
         .select('*');
 
+      if (permissionsError) {
+        throw permissionsError;
+      }
+
       // Fetch user roles
-      const { data: rolesData } = await supabase
+      const { data: rolesData, error: rolesError } = await supabase
         .from('user_roles')
         .select('user_id, role');
 
-      // Combine user data with roles
-      const usersWithRoles = userData?.users?.map(user => ({
-        id: user.id,
-        email: user.email,
-        created_at: user.created_at,
-        roles: rolesData?.filter(r => r.user_id === user.id).map(r => r.role) || []
+      if (rolesError) {
+        throw rolesError;
+      }
+
+      // Transform profiles data to match User interface
+      const usersWithRoles = profilesData?.map(profile => ({
+        id: profile.user_id,
+        email: profile.email || 'No email',
+        created_at: profile.created_at,
+        roles: rolesData?.filter(r => r.user_id === profile.user_id).map(r => r.role) || []
       })) || [];
 
       setUsers(usersWithRoles);
@@ -86,7 +104,7 @@ export default function AdminDashboard() {
       console.error('Error fetching admin data:', error);
       toast({
         title: "Error",
-        description: "Failed to load admin data",
+        description: "Failed to load admin data. Make sure you're logged in as a master admin.",
         variant: "destructive",
       });
     } finally {
