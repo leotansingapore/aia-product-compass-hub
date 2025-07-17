@@ -39,27 +39,28 @@ export function UserManagementSection() {
 
   const fetchUsers = async () => {
     try {
-      // Get all profiles first
-      const { data: profiles, error: profileError } = await supabase
+      // Get profiles (users with profiles)
+      const { data: profiles, error: profilesError } = await supabase
         .from('profiles')
         .select('*');
 
-      if (profileError) {
-        throw profileError;
+      if (profilesError && profilesError.message.includes('permission')) {
+        throw new Error('Access denied. Make sure you are logged in as a master admin.');
       }
 
-      // Get user roles separately
+      // Get user roles
       const { data: userRoles, error: rolesError } = await supabase
         .from('user_roles')
         .select('*');
 
-      if (rolesError) {
-        throw rolesError;
+      if (rolesError && rolesError.message.includes('permission')) {
+        throw new Error('Access denied. Make sure you are logged in as a master admin.');
       }
 
-      // Transform the data to match our User interface
+      // Transform the data
       const transformedUsers: User[] = profiles?.map(profile => {
-        const roles = userRoles?.filter(ur => ur.user_id === profile.user_id).map(ur => ur.role) || ['user'];
+        const roles = userRoles?.filter(ur => ur.user_id === profile.user_id).map(ur => ur.role) || [];
+        
         return {
           id: profile.user_id,
           email: profile.email || 'No email',
@@ -75,11 +76,19 @@ export function UserManagementSection() {
       }) || [];
 
       setUsers(transformedUsers);
+
+      if (transformedUsers.length === 0) {
+        toast({
+          title: "No Users Found",
+          description: "No user profiles found in the system.",
+          variant: "default",
+        });
+      }
     } catch (error) {
       console.error('Error fetching users:', error);
       toast({
         title: "Error",
-        description: "Failed to load users",
+        description: error instanceof Error ? error.message : "Failed to load users. Make sure you're logged in as an admin.",
         variant: "destructive",
       });
     } finally {
