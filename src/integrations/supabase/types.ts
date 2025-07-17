@@ -53,6 +53,33 @@ export type Database = {
         }
         Relationships: []
       }
+      app_sections: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description?: string | null
+          id: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       booking_audit_log: {
         Row: {
           action: string
@@ -570,6 +597,68 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_section_permissions: {
+        Row: {
+          created_at: string
+          id: string
+          lock_message: string | null
+          permission_type: string
+          section_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          lock_message?: string | null
+          permission_type?: string
+          section_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          lock_message?: string | null
+          permission_type?: string
+          section_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_section_permissions_section_id_fkey"
+            columns: ["section_id"]
+            isOneToOne: false
+            referencedRelation: "app_sections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       video_progress: {
         Row: {
           completed: boolean
@@ -614,7 +703,17 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_section_permission: {
+        Args: { _user_id: string; _section_id: string }
+        Returns: {
+          permission_type: string
+          lock_message: string
+        }[]
+      }
+      has_role: {
+        Args: { _user_id: string; _role: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never

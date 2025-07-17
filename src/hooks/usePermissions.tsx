@@ -1,0 +1,108 @@
+import { useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from './useAuth';
+
+export type PermissionType = 'hidden' | 'locked' | 'read_only' | 'view' | 'edit';
+
+export interface SectionPermission {
+  permission_type: PermissionType;
+  lock_message?: string;
+}
+
+export function usePermissions() {
+  const { user } = useAuth();
+  const [userRoles, setUserRoles] = useState<string[]>([]);
+  const [sectionPermissions, setSectionPermissions] = useState<Record<string, SectionPermission>>({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      fetchUserPermissions();
+    } else {
+      setUserRoles([]);
+      setSectionPermissions({});
+      setLoading(false);
+    }
+  }, [user]);
+
+  const fetchUserPermissions = async () => {
+    if (!user) return;
+
+    try {
+      // Fetch user roles
+      const { data: roles } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', user.id);
+
+      const userRolesList = roles?.map(r => r.role) || ['user'];
+      setUserRoles(userRolesList);
+
+      // Fetch section permissions
+      const { data: permissions } = await supabase
+        .from('user_section_permissions')
+        .select('section_id, permission_type, lock_message')
+        .eq('user_id', user.id);
+
+      const permissionsMap: Record<string, SectionPermission> = {};
+      permissions?.forEach(p => {
+        permissionsMap[p.section_id] = {
+          permission_type: p.permission_type as PermissionType,
+          lock_message: p.lock_message
+        };
+      });
+
+      setSectionPermissions(permissionsMap);
+    } catch (error) {
+      console.error('Error fetching permissions:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const hasRole = (role: string): boolean => {
+    return userRoles.includes(role);
+  };
+
+  const isMasterAdmin = (): boolean => {
+    return hasRole('master_admin');
+  };
+
+  const getSectionPermission = (sectionId: string): SectionPermission => {
+    return sectionPermissions[sectionId] || { permission_type: 'view' };
+  };
+
+  const canAccessSection = (sectionId: string): boolean => {
+    const permission = getSectionPermission(sectionId);
+    return permission.permission_type !== 'hidden';
+  };
+
+  const canEditSection = (sectionId: string): boolean => {
+    const permission = getSectionPermission(sectionId);
+    return permission.permission_type === 'edit' || permission.permission_type === 'view';
+  };
+
+  const isSectionLocked = (sectionId: string): boolean => {
+    const permission = getSectionPermission(sectionId);
+    return permission.permission_type === 'locked';
+  };
+
+  const isSectionReadOnly = (sectionId: string): boolean => {
+    const permission = getSectionPermission(sectionId);
+    return permission.permission_type === 'read_only';
+  };
+
+  return {
+    userRoles,
+    sectionPermissions,
+    loading,
+    hasRole,
+    isMasterAdmin,
+    getSectionPermission,
+    canAccessSection,
+    canEditSection,
+    isSectionLocked,
+    isSectionReadOnly,
+    refetch: fetchUserPermissions
+  };
+}

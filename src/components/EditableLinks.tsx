@@ -8,13 +8,14 @@ import type { UsefulLink } from '@/hooks/useProducts';
 
 interface EditableLinksProps {
   links: UsefulLink[];
-  onSave: (newLinks: UsefulLink[]) => Promise<void>;
+  onSave?: (newLinks: UsefulLink[]) => Promise<void>;
   className?: string;
+  readOnly?: boolean;
 }
 
 const defaultIcons = ['📄', '📋', '🌐', '📚', '📊', '🎥', '🔗', '📱'];
 
-export function EditableLinks({ links, onSave, className = "" }: EditableLinksProps) {
+export function EditableLinks({ links, onSave, className = "", readOnly = false }: EditableLinksProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editLinks, setEditLinks] = useState<UsefulLink[]>(links);
   const [newLink, setNewLink] = useState<UsefulLink>({ name: '', url: '', icon: '📄' });
@@ -28,7 +29,7 @@ export function EditableLinks({ links, onSave, className = "" }: EditableLinksPr
     console.log('🔗 EditableLinks handleSave called with:', editLinks);
     
     try {
-      await onSave(editLinks);
+      await onSave!(editLinks);
       setIsEditing(false);
       setEditingIndex(null);
       console.log('✅ EditableLinks save successful');
@@ -83,7 +84,7 @@ export function EditableLinks({ links, onSave, className = "" }: EditableLinksPr
     }
   };
 
-  if (!isAdminMode) {
+  if (!isAdminMode || readOnly || !onSave) {
     return (
       <div className={`grid md:grid-cols-2 gap-3 ${className}`}>
         {links.map((link, index) => (

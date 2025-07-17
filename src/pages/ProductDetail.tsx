@@ -19,6 +19,7 @@ import { PersonalNotes } from "@/components/PersonalNotes";
 import { ProductQuiz } from "@/components/ProductQuiz";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { BookOpen } from "lucide-react";
+import { ProtectedSection } from "@/components/ProtectedSection";
 
 export default function ProductDetail() {
   const { productId } = useParams<{ productId: string }>();
@@ -124,15 +125,17 @@ export default function ProductDetail() {
       <div className="max-w-4xl mx-auto px-6 py-8 space-y-8 animate-fade-in">
         
         {/* Tags and Bookmark Button */}
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex-1">
-            <EditableTags
-              tags={product.tags || []}
-              onSave={(newTags) => handleUpdate('tags', newTags)}
-            />
+        <ProtectedSection sectionId="product_tags">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1">
+              <EditableTags
+                tags={product.tags || []}
+                onSave={(newTags) => handleUpdate('tags', newTags)}
+              />
+            </div>
+            <BookmarkButton productId={product.id} />
           </div>
-          <BookmarkButton productId={product.id} />
-        </div>
+        </ProtectedSection>
 
         {/* Summary */}
         <ProductSummary
@@ -153,46 +156,54 @@ export default function ProductDetail() {
         />
 
         {/* AI Assistant */}
-        <ProductAIAssistant 
-          customGptLink={product.custom_gpt_link}
-          onUpdate={handleUpdate}
-        />
+        <ProtectedSection sectionId="product_ai">
+          <ProductAIAssistant 
+            customGptLink={product.custom_gpt_link}
+            onUpdate={handleUpdate}
+          />
+        </ProtectedSection>
 
         {/* Training Videos */}
-        <ProductTrainingVideos
-          videos={product.training_videos || []}
-          productId={product.id}
-          onUpdate={handleUpdate}
-        />
+        <ProtectedSection sectionId="product_videos">
+          <ProductTrainingVideos
+            videos={product.training_videos || []}
+            productId={product.id}
+            onUpdate={handleUpdate}
+          />
+        </ProtectedSection>
 
         {/* Quiz Section */}
-        <Card className="border-accent/20 bg-gradient-card">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="flex items-center gap-2">
-                <BookOpen className="h-5 w-5" />
-                Product Knowledge Quiz
-              </CardTitle>
-              <Button 
-                onClick={() => setShowQuiz(!showQuiz)}
-                variant={showQuiz ? "secondary" : "default"}
-              >
-                {showQuiz ? "Hide Quiz" : "Take Quiz"}
-              </Button>
-            </div>
-          </CardHeader>
-          {showQuiz && (
-            <CardContent>
-              <ProductQuiz 
-                questions={sampleQuizQuestions}
-                productId={product.id}
-              />
-            </CardContent>
-          )}
-        </Card>
+        <ProtectedSection sectionId="product_quiz">
+          <Card className="border-accent/20 bg-gradient-card">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center gap-2">
+                  <BookOpen className="h-5 w-5" />
+                  Product Knowledge Quiz
+                </CardTitle>
+                <Button 
+                  onClick={() => setShowQuiz(!showQuiz)}
+                  variant={showQuiz ? "secondary" : "default"}
+                >
+                  {showQuiz ? "Hide Quiz" : "Take Quiz"}
+                </Button>
+              </div>
+            </CardHeader>
+            {showQuiz && (
+              <CardContent>
+                <ProductQuiz 
+                  questions={sampleQuizQuestions}
+                  productId={product.id}
+                />
+              </CardContent>
+            )}
+          </Card>
+        </ProtectedSection>
 
         {/* Personal Notes */}
-        <PersonalNotes productId={product.id} />
+        <ProtectedSection sectionId="product_notes">
+          <PersonalNotes productId={product.id} />
+        </ProtectedSection>
 
       </div>
     </div>

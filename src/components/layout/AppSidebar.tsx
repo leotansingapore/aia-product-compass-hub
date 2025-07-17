@@ -10,7 +10,8 @@ import {
   Users,
   ChevronDown,
   Archive,
-  GraduationCap
+  GraduationCap,
+  Shield
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
@@ -30,14 +31,7 @@ import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useCategories } from "@/hooks/useProducts";
 import { Badge } from "@/components/ui/badge";
-
-const mainNavItems = [
-  { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined },
-  { title: "Search", url: "/search", icon: Search, dataAttr: undefined },
-  { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks" },
-  { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined },
-  { title: "Sales Tools", url: "/sales-tools", icon: TrendingUp, dataAttr: undefined },
-];
+import { usePermissions } from "@/hooks/usePermissions";
 
 const resourceItems = [
   { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle },
@@ -49,6 +43,16 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
   const { categories } = useCategories();
+  const { isMasterAdmin } = usePermissions();
+
+  const mainNavItems = [
+    { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined },
+    { title: "Search", url: "/search", icon: Search, dataAttr: undefined },
+    { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks" },
+    { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined },
+    { title: "Sales Tools", url: "/sales-tools", icon: TrendingUp, dataAttr: undefined },
+    ...(isMasterAdmin() ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined }] : []),
+  ];
   const [categoriesOpen, setCategoriesOpen] = useState(true);
   
   const isCollapsed = state === "collapsed";

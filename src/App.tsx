@@ -21,6 +21,7 @@ import Auth from "./pages/Auth";
 import ConsultantLanding from "./pages/ConsultantLanding";
 import CMFASExams from "./pages/CMFASExams";
 import CMFASModuleDetail from "./pages/cmfas/CMFASModuleDetail";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +48,7 @@ const App = () => (
                 <Route path="/bookmarks" element={<Bookmarks />} />
                 <Route path="/cmfas-exams" element={<CMFASExams />} />
                 <Route path="/cmfas/module/:moduleId" element={<CMFASModuleDetail />} />
+                <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="/category/:categoryId" element={<ProductCategory />} />
                 <Route path="/product/:productId" element={<ProductDetail />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

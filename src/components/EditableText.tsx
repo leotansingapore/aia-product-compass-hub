@@ -9,10 +9,11 @@ import { useAdmin } from '@/hooks/useAdmin';
 
 interface EditableTextProps {
   value: string;
-  onSave: (newValue: string) => Promise<void>;
+  onSave?: (newValue: string) => Promise<void>;
   multiline?: boolean;
   className?: string;
   placeholder?: string;
+  readOnly?: boolean;
 }
 
 export function EditableText({ 
@@ -20,7 +21,8 @@ export function EditableText({
   onSave, 
   multiline = false, 
   className = "",
-  placeholder = "Click to edit..."
+  placeholder = "Click to edit...",
+  readOnly = false
 }: EditableTextProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value);
@@ -39,7 +41,7 @@ export function EditableText({
 
     setSaving(true);
     try {
-      await onSave(editValue);
+      await onSave!(editValue);
       setIsEditing(false);
       toast({
         title: "Saved",
@@ -62,7 +64,7 @@ export function EditableText({
     setIsEditing(false);
   };
 
-  if (!isAdminMode) {
+  if (!isAdminMode || readOnly || !onSave) {
     return <span className={className}>{value}</span>;
   }
 

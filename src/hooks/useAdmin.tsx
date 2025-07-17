@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useAuth } from './useAuth';
+import { usePermissions } from './usePermissions';
 
 interface AdminContextType {
   isAdminMode: boolean;
@@ -10,15 +11,22 @@ interface AdminContextType {
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
 export function AdminProvider({ children }: { children: ReactNode }) {
-  const [isAdminMode, setIsAdminMode] = useState(true);
+  const [isAdminMode, setIsAdminMode] = useState(false);
   const { user } = useAuth();
+  const { isMasterAdmin, hasRole, loading } = usePermissions();
   
-  // For development: Enable admin mode regardless of auth state
-  // In production, you'd check user roles from database
-  const isAdmin = true; // Simplified for development
+  // Check if user has admin privileges
+  const isAdmin = isMasterAdmin() || hasRole('admin');
   
+  useEffect(() => {
+    // Auto-enable admin mode for master admins
+    if (isMasterAdmin() && !loading) {
+      setIsAdminMode(true);
+    }
+  }, [isMasterAdmin, loading]);
+
   // Debug logging
-  console.log('🔧 Admin Context State:', { isAdminMode, isAdmin, hasUser: !!user });
+  console.log('🔧 Admin Context State:', { isAdminMode, isAdmin, hasUser: !!user, isMasterAdmin: isMasterAdmin() });
 
   const toggleAdminMode = () => {
     if (isAdmin) {
