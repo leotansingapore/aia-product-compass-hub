@@ -46,20 +46,6 @@ export function AppLayout({ children }: AppLayoutProps) {
                   Sign In
                 </Button>
               )}
-              
-              {/* Admin Mode Toggle - shown when user is logged in */}
-              {user && (
-                <Button
-                  variant={isAdminMode ? "default" : "ghost"}
-                  size="sm"
-                  onClick={toggleAdminMode}
-                  className={isAdminMode ? "bg-orange-500 hover:bg-orange-600 text-white" : ""}
-                  title={isAdminMode ? "Disable Admin Mode" : "Enable Admin Mode"}
-                >
-                  <Settings className="h-4 w-4 mr-2" />
-                  {isAdminMode ? "Admin Mode" : "Enable Admin"}
-                </Button>
-              )}
             </div>
           </header>
 
