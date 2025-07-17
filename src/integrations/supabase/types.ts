@@ -703,6 +703,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      assign_master_admin: {
+        Args: { user_email: string }
+        Returns: undefined
+      }
       get_section_permission: {
         Args: { _user_id: string; _section_id: string }
         Returns: {
