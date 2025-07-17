@@ -10,6 +10,7 @@ import { Shield, Users, Settings, Lock, Unlock, Eye, EyeOff, Edit } from 'lucide
 import { supabase } from '@/integrations/supabase/client';
 import { usePermissions } from '@/hooks/usePermissions';
 import { useToast } from '@/hooks/use-toast';
+import { UserInterfacePreview } from '@/components/admin/UserInterfacePreview';
 
 interface User {
   id: string;
@@ -227,12 +228,48 @@ export default function AdminDashboard() {
           <h1 className="text-3xl font-bold">Master Admin Dashboard</h1>
         </div>
 
-        <Tabs defaultValue="permissions" className="space-y-6">
+        <Tabs defaultValue="preview" className="space-y-6">
           <TabsList>
+            <TabsTrigger value="preview">User Preview & Controls</TabsTrigger>
             <TabsTrigger value="permissions">Section Permissions</TabsTrigger>
             <TabsTrigger value="users">User Management</TabsTrigger>
             <TabsTrigger value="sections">Section Overview</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="preview" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Select User to Preview</CardTitle>
+                <CardDescription>
+                  Choose a user to preview their interface and manage their section permissions.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="max-w-md">
+                  <label className="text-sm font-medium mb-2 block">Select User</label>
+                  <Select value={selectedUser} onValueChange={setSelectedUser}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Choose a user to preview" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {users.map(user => (
+                        <SelectItem key={user.id} value={user.id}>
+                          {user.email} ({user.roles?.join(', ') || 'user'})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardContent>
+            </Card>
+
+            <UserInterfacePreview
+              selectedUser={selectedUser ? users.find(u => u.id === selectedUser) || null : null}
+              sections={sections}
+              permissions={permissions}
+              onPermissionUpdate={fetchData}
+            />
+          </TabsContent>
 
           <TabsContent value="permissions" className="space-y-6">
             <Card>
