@@ -11,7 +11,8 @@ import {
   ChevronDown,
   Archive,
   GraduationCap,
-  Shield
+  Shield,
+  User
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
@@ -51,6 +52,7 @@ export function AppSidebar() {
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks" },
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined },
     { title: "Sales Tools", url: "/sales-tools", icon: TrendingUp, dataAttr: undefined },
+    { title: "My Account", url: "/my-account", icon: User, dataAttr: undefined },
     ...(isMasterAdmin() ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined }] : []),
   ];
   const [categoriesOpen, setCategoriesOpen] = useState(true);
