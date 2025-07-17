@@ -9,7 +9,8 @@ import {
   TrendingUp,
   Users,
   ChevronDown,
-  Archive
+  Archive,
+  GraduationCap
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
@@ -34,6 +35,7 @@ const mainNavItems = [
   { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined },
   { title: "Search", url: "/search", icon: Search, dataAttr: undefined },
   { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks" },
+  { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined },
   { title: "Sales Tools", url: "/sales-tools", icon: TrendingUp, dataAttr: undefined },
 ];
 
