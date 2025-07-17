@@ -36,7 +36,7 @@ import { usePermissions } from "@/hooks/usePermissions";
 
 const resourceItems = [
   { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle },
-  { title: "Search by Profile", url: "/search-by-profile", icon: Users },
+  { title: "Search by Client Profile", url: "/search-by-profile", icon: Users },
 ];
 
 export function AppSidebar() {
