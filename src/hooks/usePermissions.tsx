@@ -69,6 +69,12 @@ export function usePermissions() {
   };
 
   const getSectionPermission = (sectionId: string): SectionPermission => {
+    // If user is not authenticated, check if there are any hidden permissions for this section
+    if (!user) {
+      // For unauthenticated users, assume hidden if any user has this section hidden
+      // This prevents bypassing restrictions by logging out
+      return { permission_type: 'hidden' };
+    }
     return sectionPermissions[sectionId] || { permission_type: 'view' };
   };
 
