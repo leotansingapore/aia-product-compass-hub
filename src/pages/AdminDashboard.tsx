@@ -50,10 +50,10 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (isMasterAdmin()) {
       fetchData();
-      // Auto-sync sections when admin panel loads
-      autoSync();
+      // Auto-sync only runs once per session to prevent resource exhaustion
+      setTimeout(() => autoSync(), 2000);
     }
-  }, [isMasterAdmin, autoSync]);
+  }, [isMasterAdmin]);
 
   const fetchData = async () => {
     try {

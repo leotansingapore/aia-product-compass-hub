@@ -150,6 +150,9 @@ export function useAppSectionSync() {
     const result: SyncResult = { added: 0, updated: 0, removed: 0, errors: [] };
 
     try {
+      // Add a small delay to prevent resource exhaustion
+      await new Promise(resolve => setTimeout(resolve, 100));
+
       // Get current sections from database
       const { data: currentSections, error: fetchError } = await supabase
         .from('app_sections')
@@ -223,29 +226,34 @@ export function useAppSectionSync() {
     }
 
     try {
+      // Check if we should run auto-sync (only once per session)
+      const hasAutoSynced = sessionStorage.getItem('admin_auto_sync_completed');
+      if (hasAutoSynced) {
+        return;
+      }
+
+      // Wait a bit after page load to avoid resource conflicts
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
       const result = await syncSections();
+      
+      // Mark as completed for this session
+      sessionStorage.setItem('admin_auto_sync_completed', 'true');
       
       if (result.added > 0 || result.updated > 0) {
         toast({
-          title: "App Sections Synced",
+          title: "App Sections Auto-Synced",
           description: `Added: ${result.added}, Updated: ${result.updated}`,
         });
       }
 
       if (result.errors.length > 0) {
-        toast({
-          title: "Sync Warnings",
-          description: result.errors[0],
-          variant: "destructive",
-        });
+        console.warn('Auto-sync warnings:', result.errors);
+        // Don't show toast for auto-sync warnings to avoid spam
       }
     } catch (error) {
       console.error('Auto sync failed:', error);
-      toast({
-        title: "Sync Failed",
-        description: "Failed to automatically sync app sections",
-        variant: "destructive",
-      });
+      // Silent fail for auto-sync to avoid disrupting the admin experience
     }
   }, [isMasterAdmin, syncSections, toast]);
 
