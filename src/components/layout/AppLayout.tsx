@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButt
 import { useAdmin } from "@/hooks/useAdmin";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useAppStructureSync } from "@/hooks/useAppStructureSync";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -19,6 +20,12 @@ export function AppLayout({ children }: AppLayoutProps) {
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
+  const { autoSync } = useAppStructureSync();
+
+  // Auto-sync app structure when layout mounts (for admin users)
+  useEffect(() => {
+    autoSync();
+  }, [autoSync]);
   
   return (
     <SidebarProvider defaultOpen={true}>

@@ -9,10 +9,22 @@ export interface SectionPermission {
   lock_message?: string;
 }
 
+export interface PagePermission {
+  permission_type: PermissionType;
+  lock_message?: string;
+}
+
+export interface TabPermission {
+  permission_type: PermissionType;
+  lock_message?: string;
+}
+
 export function usePermissions() {
   const { user } = useAuth();
   const [userRoles, setUserRoles] = useState<string[]>([]);
   const [sectionPermissions, setSectionPermissions] = useState<Record<string, SectionPermission>>({});
+  const [pagePermissions, setPagePermissions] = useState<Record<string, PagePermission>>({});
+  const [tabPermissions, setTabPermissions] = useState<Record<string, TabPermission>>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,6 +33,8 @@ export function usePermissions() {
     } else {
       setUserRoles([]);
       setSectionPermissions({});
+      setPagePermissions({});
+      setTabPermissions({});
       setLoading(false);
     }
   }, [user]);
@@ -65,6 +79,48 @@ export function usePermissions() {
 
       setSectionPermissions(permissionsMap);
       console.log('🔧 Loaded section permissions:', permissionsMap);
+
+      // Fetch page permissions
+      const { data: pagePerms, error: pagePermsError } = await supabase
+        .from('user_page_permissions')
+        .select('page_id, permission_type, lock_message')
+        .eq('user_id', user.id);
+
+      if (pagePermsError) {
+        console.error('🔧 Error fetching page permissions:', pagePermsError);
+      }
+
+      const pagePermissionsMap: Record<string, PagePermission> = {};
+      pagePerms?.forEach(p => {
+        pagePermissionsMap[p.page_id] = {
+          permission_type: p.permission_type as PermissionType,
+          lock_message: p.lock_message
+        };
+      });
+
+      setPagePermissions(pagePermissionsMap);
+      console.log('🔧 Loaded page permissions:', pagePermissionsMap);
+
+      // Fetch tab permissions
+      const { data: tabPerms, error: tabPermsError } = await supabase
+        .from('user_tab_permissions')
+        .select('tab_id, permission_type, lock_message')
+        .eq('user_id', user.id);
+
+      if (tabPermsError) {
+        console.error('🔧 Error fetching tab permissions:', tabPermsError);
+      }
+
+      const tabPermissionsMap: Record<string, TabPermission> = {};
+      tabPerms?.forEach(p => {
+        tabPermissionsMap[p.tab_id] = {
+          permission_type: p.permission_type as PermissionType,
+          lock_message: p.lock_message
+        };
+      });
+
+      setTabPermissions(tabPermissionsMap);
+      console.log('🔧 Loaded tab permissions:', tabPermissionsMap);
     } finally {
       setLoading(false);
     }
@@ -114,17 +170,82 @@ export function usePermissions() {
     return permission.permission_type === 'read_only';
   };
 
+  // Page permission methods
+  const getPagePermission = (pageId: string): PagePermission => {
+    return pagePermissions[pageId] || { permission_type: 'view' };
+  };
+
+  const canAccessPage = (pageId: string): boolean => {
+    const permission = getPagePermission(pageId);
+    return permission.permission_type !== 'hidden';
+  };
+
+  const canEditPage = (pageId: string): boolean => {
+    const permission = getPagePermission(pageId);
+    return permission.permission_type === 'edit' || permission.permission_type === 'view';
+  };
+
+  const isPageLocked = (pageId: string): boolean => {
+    const permission = getPagePermission(pageId);
+    return permission.permission_type === 'locked';
+  };
+
+  const isPageReadOnly = (pageId: string): boolean => {
+    const permission = getPagePermission(pageId);
+    return permission.permission_type === 'read_only';
+  };
+
+  // Tab permission methods
+  const getTabPermission = (tabId: string): TabPermission => {
+    return tabPermissions[tabId] || { permission_type: 'view' };
+  };
+
+  const canAccessTab = (tabId: string): boolean => {
+    const permission = getTabPermission(tabId);
+    return permission.permission_type !== 'hidden';
+  };
+
+  const canEditTab = (tabId: string): boolean => {
+    const permission = getTabPermission(tabId);
+    return permission.permission_type === 'edit' || permission.permission_type === 'view';
+  };
+
+  const isTabLocked = (tabId: string): boolean => {
+    const permission = getTabPermission(tabId);
+    return permission.permission_type === 'locked';
+  };
+
+  const isTabReadOnly = (tabId: string): boolean => {
+    const permission = getTabPermission(tabId);
+    return permission.permission_type === 'read_only';
+  };
+
   return {
     userRoles,
     sectionPermissions,
+    pagePermissions,
+    tabPermissions,
     loading,
     hasRole,
     isMasterAdmin,
+    // Section permissions
     getSectionPermission,
     canAccessSection,
     canEditSection,
     isSectionLocked,
     isSectionReadOnly,
+    // Page permissions
+    getPagePermission,
+    canAccessPage,
+    canEditPage,
+    isPageLocked,
+    isPageReadOnly,
+    // Tab permissions
+    getTabPermission,
+    canAccessTab,
+    canEditTab,
+    isTabLocked,
+    isTabReadOnly,
     refetch: fetchUserPermissions
   };
 }

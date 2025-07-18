@@ -53,6 +53,36 @@ export type Database = {
         }
         Relationships: []
       }
+      app_pages: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          path: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description?: string | null
+          id: string
+          name: string
+          path: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          path?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       app_sections: {
         Row: {
           category: string
@@ -79,6 +109,44 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      app_tabs: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          page_id: string
+          tab_order: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id: string
+          name: string
+          page_id: string
+          tab_order?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          page_id?: string
+          tab_order?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "app_tabs_page_id_fkey"
+            columns: ["page_id"]
+            isOneToOne: false
+            referencedRelation: "app_pages"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       booking_audit_log: {
         Row: {
@@ -597,6 +665,44 @@ export type Database = {
         }
         Relationships: []
       }
+      user_page_permissions: {
+        Row: {
+          created_at: string
+          id: string
+          lock_message: string | null
+          page_id: string
+          permission_type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          lock_message?: string | null
+          page_id: string
+          permission_type?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          lock_message?: string | null
+          page_id?: string
+          permission_type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_page_permissions_page_id_fkey"
+            columns: ["page_id"]
+            isOneToOne: false
+            referencedRelation: "app_pages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -659,6 +765,44 @@ export type Database = {
           },
         ]
       }
+      user_tab_permissions: {
+        Row: {
+          created_at: string
+          id: string
+          lock_message: string | null
+          permission_type: string
+          tab_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          lock_message?: string | null
+          permission_type?: string
+          tab_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          lock_message?: string | null
+          permission_type?: string
+          tab_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_tab_permissions_tab_id_fkey"
+            columns: ["tab_id"]
+            isOneToOne: false
+            referencedRelation: "app_tabs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       video_progress: {
         Row: {
           completed: boolean
@@ -707,8 +851,22 @@ export type Database = {
         Args: { user_email: string }
         Returns: undefined
       }
+      get_page_permission: {
+        Args: { _user_id: string; _page_id: string }
+        Returns: {
+          permission_type: string
+          lock_message: string
+        }[]
+      }
       get_section_permission: {
         Args: { _user_id: string; _section_id: string }
+        Returns: {
+          permission_type: string
+          lock_message: string
+        }[]
+      }
+      get_tab_permission: {
+        Args: { _user_id: string; _tab_id: string }
         Returns: {
           permission_type: string
           lock_message: string
