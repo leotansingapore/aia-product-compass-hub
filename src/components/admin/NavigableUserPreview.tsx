@@ -134,6 +134,16 @@ const APP_STRUCTURE = {
       { id: "system-settings", name: "System Settings", description: "Global configuration" }
     ]
   },
+  "search-by-profile": {
+    name: "Search by Client Profile",
+    icon: Users,
+    path: "/search-by-profile",
+    sections: [
+      { id: "client-profile-search", name: "Client Profile Search", description: "Search products by client demographics" },
+      { id: "profile-filters", name: "Profile Filters", description: "Age, income, risk tolerance filters" },
+      { id: "recommendation-engine", name: "Recommendation Engine", description: "AI-powered product suggestions" }
+    ]
+  },
   "product-categories": {
     name: "Product Categories",
     icon: Archive,
@@ -379,7 +389,7 @@ export function NavigableUserPreview({
         </CardHeader>
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 w-full h-auto p-2">
+            <TabsList className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-9 2xl:grid-cols-10 w-full h-auto p-2">
               {Object.entries(APP_STRUCTURE).map(([key, page]) => {
                 const isAccessible = isPageAccessible(key);
                 const permissionSummary = getPagePermissionSummary(key);
