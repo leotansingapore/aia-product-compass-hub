@@ -92,6 +92,55 @@ export function PermissionMatrix({ user, onClose }: PermissionMatrixProps) {
     }
   };
 
+  const handleCategoryPermissions = async (permissionType: string) => {
+    if (!user) return;
+
+    try {
+      // Get all categories
+      const { data: categories, error: categoriesError } = await supabase
+        .from('categories')
+        .select('id');
+
+      if (categoriesError) throw categoriesError;
+
+      if (permissionType === 'hidden') {
+        // Create hidden permissions for all individual categories
+        const categoryPermissions = categories?.map(cat => ({
+          user_id: user.id,
+          section_id: `product-category-${cat.id}`,
+          permission_type: 'hidden',
+          lock_message: 'Category access restricted'
+        })) || [];
+
+        if (categoryPermissions.length > 0) {
+          const { error: insertError } = await supabase
+            .from('user_section_permissions')
+            .upsert(categoryPermissions, { 
+              onConflict: 'user_id,section_id',
+              ignoreDuplicates: false 
+            });
+
+          if (insertError) throw insertError;
+        }
+      } else {
+        // Remove hidden permissions for individual categories to restore default access
+        const categoryIds = categories?.map(cat => `product-category-${cat.id}`) || [];
+        
+        if (categoryIds.length > 0) {
+          const { error: deleteError } = await supabase
+            .from('user_section_permissions')
+            .delete()
+            .eq('user_id', user.id)
+            .in('section_id', categoryIds);
+
+          if (deleteError) throw deleteError;
+        }
+      }
+    } catch (error) {
+      console.error('Error managing category permissions:', error);
+    }
+  };
+
   const handleAddPermission = async () => {
     if (!user || !newSectionId || !newPermissionType) return;
 
@@ -111,6 +160,11 @@ export function PermissionMatrix({ user, onClose }: PermissionMatrixProps) {
 
       if (error) throw error;
 
+      // If this is the product-categories section, also handle individual category permissions
+      if (newSectionId === 'product-categories') {
+        await handleCategoryPermissions(newPermissionType);
+      }
+
       setPermissions(prev => [...prev, data]);
       setNewSectionId("");
       setNewPermissionType("view");
@@ -120,6 +174,9 @@ export function PermissionMatrix({ user, onClose }: PermissionMatrixProps) {
         title: "Success",
         description: "Permission added successfully",
       });
+
+      // Refresh data to show updated permissions
+      await fetchData();
     } catch (error) {
       console.error('Error adding permission:', error);
       toast({
@@ -132,6 +189,9 @@ export function PermissionMatrix({ user, onClose }: PermissionMatrixProps) {
 
   const handleDeletePermission = async (permissionId: string) => {
     try {
+      // Find the permission being deleted
+      const permission = permissions.find(p => p.id === permissionId);
+      
       const { error } = await supabase
         .from('user_section_permissions')
         .delete()
@@ -139,12 +199,20 @@ export function PermissionMatrix({ user, onClose }: PermissionMatrixProps) {
 
       if (error) throw error;
 
+      // If deleting product-categories permission, also clean up individual category permissions
+      if (permission?.section_id === 'product-categories') {
+        await handleCategoryPermissions('view'); // This will remove hidden permissions
+      }
+
       setPermissions(prev => prev.filter(p => p.id !== permissionId));
 
       toast({
         title: "Success",
         description: "Permission removed successfully",
       });
+
+      // Refresh data to show updated permissions
+      await fetchData();
     } catch (error) {
       console.error('Error deleting permission:', error);
       toast({

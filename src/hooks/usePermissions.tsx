@@ -53,8 +53,6 @@ export function usePermissions() {
       });
 
       setSectionPermissions(permissionsMap);
-      console.log('Loaded section permissions:', permissionsMap);
-      console.log('User roles:', userRolesList);
     } finally {
       setLoading(false);
     }
@@ -69,16 +67,24 @@ export function usePermissions() {
   };
 
   const getSectionPermission = (sectionId: string): SectionPermission => {
-    const permission = sectionPermissions[sectionId] || { permission_type: 'view' };
-    console.log(`getSectionPermission for ${sectionId}:`, permission);
-    return permission;
+    // Check for direct permission first
+    let permission = sectionPermissions[sectionId];
+    
+    // If no direct permission and this is an individual category, check parent permission
+    if (!permission && sectionId.startsWith('product-category-')) {
+      const parentPermission = sectionPermissions['product-categories'];
+      if (parentPermission && parentPermission.permission_type === 'hidden') {
+        permission = { permission_type: 'hidden', lock_message: 'Category access restricted' };
+      }
+    }
+    
+    // Default to view if no permission found
+    return permission || { permission_type: 'view' };
   };
 
   const canAccessSection = (sectionId: string): boolean => {
     const permission = getSectionPermission(sectionId);
-    const canAccess = permission.permission_type !== 'hidden';
-    console.log(`canAccessSection for ${sectionId}:`, canAccess, 'permission_type:', permission.permission_type);
-    return canAccess;
+    return permission.permission_type !== 'hidden';
   };
 
   const canEditSection = (sectionId: string): boolean => {
