@@ -9,10 +9,9 @@ import { AuthPrompt } from "@/components/dashboard/AuthPrompt";
 
 import { RecentlyViewedSection } from "@/components/dashboard/RecentlyViewedSection";
 import { RecommendationsSection } from "@/components/recommendations/RecommendationsSection";
+import { ProductCategoriesSection } from "@/components/dashboard/ProductCategoriesSection";
 import { useNavigate } from "react-router-dom";
 import { getCategoryIdFromName } from "@/hooks/useProducts";
-import { CategoryCard } from "@/components/CategoryCard";
-import { getCategoryConfig } from "@/utils/categoryConfig";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -61,31 +60,11 @@ export default function Dashboard() {
 
         {/* Product Categories */}
         <div data-onboarding="categories">
-          <h2 className="text-2xl font-bold mb-6">Product Categories</h2>
-          {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-48 bg-accent/20 rounded-lg animate-pulse" />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {categories.map((category) => {
-                const categoryConfig = getCategoryConfig(category.name);
-                return (
-                  <CategoryCard
-                    key={category.id}
-                    title={category.name}
-                    description={category.description || 'Explore products in this category'}
-                    icon={categoryConfig.icon}
-                    productCount={categoryConfig.productCount}
-                    gradient={categoryConfig.gradient}
-                    onClick={() => handleCategoryClick(category.name)}
-                  />
-                );
-              })}
-            </div>
-          )}
+          <ProductCategoriesSection 
+            categories={categories}
+            loading={loading}
+            onCategoryClick={handleCategoryClick}
+          />
         </div>
 
 
