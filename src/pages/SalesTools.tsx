@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Plus, Edit, Trash2, Save, X, ChevronDown, ChevronUp } from "lucide-react";
 import { EditableLinks } from "@/components/EditableLinks";
+import { supabase } from "@/integrations/supabase/client";
 import type { UsefulLink } from "@/hooks/useProducts";
 
 interface ToolSection {
@@ -184,9 +185,54 @@ export default function SalesTools() {
     category: string;
   } | null>(null);
   const [editableSalesTools, setEditableSalesTools] = useState(() => salesTools);
+  const [isLoading, setIsLoading] = useState(true);
   
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
+
+  // Load sales tools data from database on component mount
+  useEffect(() => {
+    loadSalesToolsData();
+  }, []);
+
+  const loadSalesToolsData = async () => {
+    try {
+      setIsLoading(true);
+      
+      // Try to load from database first
+      const { data: salesToolsData, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('id', 'sales-tools-objections')
+        .single();
+
+      if (error && error.code !== 'PGRST116') { // PGRST116 is "not found"
+        throw error;
+      }
+
+      if (salesToolsData && salesToolsData.useful_links) {
+        // Parse the saved data and merge with default structure
+        const savedData = salesToolsData.useful_links as any;
+        const updatedTools = salesTools.map(category => {
+          const savedCategory = savedData[category.id];
+          if (savedCategory) {
+            return {
+              ...category,
+              tools: convertToLinkTools(savedCategory)
+            };
+          }
+          return category;
+        });
+        setEditableSalesTools(updatedTools);
+      }
+    } catch (error) {
+      console.error('Error loading sales tools data:', error);
+      // Fallback to default data if loading fails
+      setEditableSalesTools(salesTools);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleUpdateLinks = async (toolCategoryId: string, newLinks: UsefulLink[]) => {
     try {
@@ -204,20 +250,58 @@ export default function SalesTools() {
       
       setEditableSalesTools(updatedTools);
       
+      // Save to database
+      const dataToSave = {};
+      updatedTools.forEach(category => {
+        (dataToSave as any)[category.id] = convertToUsefulLinks(category.tools);
+      });
+
+      const { error } = await supabase
+        .from('products')
+        .upsert({
+          id: 'sales-tools-objections',
+          title: 'Sales Tools & Objection Handling',
+          category_id: 'sales-tools', // We'll need to ensure this category exists
+          useful_links: dataToSave
+        }, { onConflict: 'id' });
+
+      if (error) {
+        throw error;
+      }
+      
       toast({
         title: "Success",
-        description: "Sales tool links updated successfully",
+        description: "Sales tool links saved successfully",
       });
       
     } catch (error) {
       console.error('❌ Failed to update sales tool links:', error);
       toast({
         title: "Error",
-        description: "Failed to update links. Please try again.",
+        description: "Failed to save links. Please try again.",
         variant: "destructive",
       });
+      
+      // Reload data to revert local state
+      loadSalesToolsData();
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <NavigationHeader 
+          title="Sales Tools & Objection Handling"
+          subtitle="Everything you need to excel in client interactions and close more sales"
+          showBackButton
+          onBack={() => navigate('/')}
+        />
+        <div className="max-w-6xl mx-auto px-6 py-8">
+          <div className="text-center">Loading sales tools...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
