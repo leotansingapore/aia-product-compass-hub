@@ -18,9 +18,9 @@ export function ProtectedSection({ sectionId, children, fallback, className }: P
   console.log('Permission:', getSectionPermission(sectionId));
   console.log('Can access:', canAccessSection(sectionId));
 
-  // If still loading permissions, show children (avoid flash)
+  // If still loading permissions, return null to avoid showing content
   if (loading) {
-    return <div className={className}>{children}</div>;
+    return null;
   }
 
   // If section is hidden, don't render anything
