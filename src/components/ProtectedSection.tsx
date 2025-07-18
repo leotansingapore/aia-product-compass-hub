@@ -11,10 +11,21 @@ interface ProtectedSectionProps {
 }
 
 export function ProtectedSection({ sectionId, children, fallback, className }: ProtectedSectionProps) {
-  const { canAccessSection, isSectionLocked, isSectionReadOnly, getSectionPermission } = usePermissions();
+  const { canAccessSection, isSectionLocked, isSectionReadOnly, getSectionPermission, loading } = usePermissions();
+
+  // Debug logging
+  console.log('ProtectedSection:', { sectionId, loading });
+  console.log('Permission:', getSectionPermission(sectionId));
+  console.log('Can access:', canAccessSection(sectionId));
+
+  // If still loading permissions, show children (avoid flash)
+  if (loading) {
+    return <div className={className}>{children}</div>;
+  }
 
   // If section is hidden, don't render anything
   if (!canAccessSection(sectionId)) {
+    console.log('Section hidden:', sectionId);
     return null;
   }
 

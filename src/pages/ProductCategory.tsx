@@ -120,7 +120,7 @@ export default function ProductCategory() {
   }
 
   return (
-    <ProtectedSection sectionId={`product-category-${categoryId}`}>
+    <ProtectedSection sectionId="product-categories">
       <div className="min-h-screen bg-background">
         <Helmet>
           <title>{categoryInfo?.title || 'Product Category'} - AIA Product Compass Hub</title>
