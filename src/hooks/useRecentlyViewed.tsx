@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAllProducts } from './useProducts';
 
 interface RecentItem {
@@ -32,28 +32,20 @@ export function useRecentlyViewed() {
     }
   }, []);
 
-  const addToRecent = (id: string, type: 'product' | 'category') => {
+  const addToRecent = useCallback((id: string, type: 'product' | 'category') => {
     const newItem: RecentItem = {
       id,
       timestamp: Date.now(),
       type
     };
 
-    // Update immediately without causing re-renders during effect
     setRecentItems(prev => {
-      // Remove existing item if it exists
       const filtered = prev.filter(item => !(item.id === id && item.type === type));
-      // Add new item to the beginning
-      const newItems = [newItem, ...filtered].slice(0, 10); // Keep only last 10 items
-      
-      // Save to localStorage asynchronously
-      setTimeout(() => {
-        localStorage.setItem('recentlyViewed', JSON.stringify(newItems));
-      }, 0);
-      
-      return newItems;
+      const updated = [newItem, ...filtered].slice(0, 10);
+      localStorage.setItem('recentItems', JSON.stringify(updated));
+      return updated;
     });
-  };
+  }, []);
 
   const getRecentProducts = (): RecentProduct[] => {
     const recentProductItems = recentItems
