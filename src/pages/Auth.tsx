@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Trophy, Award, Zap } from "lucide-react";
+import { Loader2, Trophy, Award, Zap, Crown, Settings, User } from "lucide-react";
 
 const Auth = () => {
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,40 @@ const Auth = () => {
       }
     };
     checkUser();
+
+    // Load last login email
+    const lastEmail = localStorage.getItem('lastLoginEmail');
+    if (lastEmail && !email) {
+      setEmail(lastEmail);
+    }
   }, []);
+
+  const quickLogins = [
+    {
+      type: "Master Admin",
+      email: "admin@aialearning.com",
+      password: "admin123",
+      description: "Full system access & user management",
+      icon: Crown,
+      color: "text-yellow-500"
+    },
+    {
+      type: "Admin",
+      email: "admin@demo.com", 
+      password: "demo123456",
+      description: "Admin dashboard & content management",
+      icon: Settings,
+      color: "text-blue-500"
+    },
+    {
+      type: "Regular User",
+      email: "user@demo.com",
+      password: "demo123456", 
+      description: "Standard user experience",
+      icon: User,
+      color: "text-green-500"
+    }
+  ];
 
   const cleanupAuthState = () => {
     Object.keys(localStorage).forEach((key) => {
@@ -241,14 +274,55 @@ const Auth = () => {
     }
   };
 
+  const handleQuickLogin = async (loginEmail: string, loginPassword: string) => {
+    setEmail(loginEmail);
+    setPassword(loginPassword);
+    setLoading(true);
+
+    try {
+      cleanupAuthState();
+      
+      try {
+        await supabase.auth.signOut({ scope: 'global' });
+      } catch (err) {
+        console.log('Sign out error (continuing):', err);
+      }
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: loginEmail,
+        password: loginPassword,
+      });
+
+      if (error) throw error;
+
+      if (data.user) {
+        localStorage.setItem('lastLoginEmail', loginEmail);
+        toast({
+          title: "Quick Login Successful!",
+          description: `Signed in as ${quickLogins.find(q => q.email === loginEmail)?.type}`,
+        });
+        window.location.href = '/';
+      }
+    } catch (error: any) {
+      console.error('Quick login error:', error);
+      toast({
+        title: "Login failed",
+        description: error.message || "An error occurred during login",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-subtle flex items-center justify-center p-4">
       <Helmet>
         <title>Sign In - AIA Product Compass Hub</title>
         <meta name="description" content="Sign in to access the AIA Product Compass Hub - Track your learning progress, earn achievements, and access comprehensive product training materials." />
       </Helmet>
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
+      <div className="w-full max-w-lg space-y-6">
+        <div className="text-center">
           <div className="flex justify-center mb-4">
             <div className="bg-gradient-primary p-4 rounded-full">
               <Trophy className="h-8 w-8 text-primary-foreground" />
@@ -258,15 +332,59 @@ const Auth = () => {
             Knowledge Portal
           </h1>
           <p className="text-muted-foreground">
-            Level up your expertise with our gamified learning platform
+            Choose your access level or sign in with your account
           </p>
         </div>
 
-        <Card className="border-accent/20 shadow-elegant">
+        {/* Quick Login Cards */}
+        <div className="space-y-3">
+          <h3 className="text-sm font-medium text-muted-foreground text-center">
+            Quick Access
+          </h3>
+          {quickLogins.map((login) => {
+            const IconComponent = login.icon;
+            return (
+              <Card key={login.type} className="border-border/50 hover:border-primary/50 transition-colors">
+                <CardContent className="p-4">
+                  <Button
+                    onClick={() => handleQuickLogin(login.email, login.password)}
+                    variant="ghost"
+                    className="w-full h-auto p-0 justify-start hover:bg-transparent"
+                    disabled={loading}
+                  >
+                    <div className="flex items-center gap-3 text-left w-full">
+                      <div className={`p-2 rounded-lg bg-muted/50 ${login.color}`}>
+                        <IconComponent className="h-5 w-5" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-foreground">{login.type}</div>
+                        <div className="text-sm text-muted-foreground">{login.description}</div>
+                      </div>
+                      {loading && <Loader2 className="h-4 w-4 animate-spin" />}
+                    </div>
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t border-border" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground">
+              Or use your account
+            </span>
+          </div>
+        </div>
+
+        <Card className="border-border/50 shadow-elegant">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Award className="h-5 w-5 text-primary" />
-              Get Started
+              Sign In
             </CardTitle>
             <CardDescription>
               Sign in to track your progress and earn achievements
@@ -290,6 +408,7 @@ const Auth = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
                       disabled={loading}
+                      onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && e.currentTarget.form?.requestSubmit()}
                     />
                   </div>
                   <div className="space-y-2">
@@ -301,6 +420,7 @@ const Auth = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
                       disabled={loading}
+                      onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && e.currentTarget.form?.requestSubmit()}
                     />
                   </div>
                   <Button 
@@ -362,36 +482,12 @@ const Auth = () => {
                 </form>
               </TabsContent>
             </Tabs>
-
-            {/* Demo Login Section */}
-            <div className="mt-6 pt-6 border-t">
-              <div className="text-center space-y-3">
-                <h4 className="text-sm font-medium text-muted-foreground flex items-center justify-center gap-2">
-                  <Zap className="h-4 w-4" />
-                  Quick Demo Access
-                </h4>
-                <Button 
-                  onClick={handleDemoLogin}
-                  disabled={loading}
-                  variant="outline"
-                  className="w-full border-primary/30 hover:bg-primary/5"
-                >
-                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  🚀 Try Admin Demo (No Sign-up Required)
-                </Button>
-                <p className="text-xs text-muted-foreground">
-                  Instantly sign in with admin privileges to test content editing
-                </p>
-              </div>
-            </div>
           </CardContent>
         </Card>
 
-        <div className="text-center mt-6">
-          <p className="text-sm text-muted-foreground">
-            Start your learning journey and unlock achievements as you master each product!
-          </p>
-        </div>
+        <p className="text-xs text-muted-foreground text-center">
+          💡 Use quick access buttons above for instant demo access with different permission levels
+        </p>
       </div>
     </div>
   );
