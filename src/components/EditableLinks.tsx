@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
@@ -24,26 +25,41 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
 
+  // Update editLinks when links prop changes
+  useState(() => {
+    setEditLinks(links);
+  });
+
   const handleSave = async () => {
+    if (!onSave) {
+      console.warn('EditableLinks: onSave callback not provided');
+      return;
+    }
+
     setSaving(true);
     console.log('🔗 EditableLinks handleSave called with:', editLinks);
     
     try {
-      await onSave!(editLinks);
+      // Validate links before saving
+      const validLinks = editLinks.filter(link => link.name.trim() && link.url.trim());
+      console.log('🔗 Valid links to save:', validLinks);
+      
+      await onSave(validLinks);
       setIsEditing(false);
       setEditingIndex(null);
       console.log('✅ EditableLinks save successful');
       toast({
-        title: "Saved",
-        description: "Useful links updated successfully",
+        title: "Success",
+        description: "Useful links saved successfully",
       });
     } catch (error) {
       console.error('❌ EditableLinks save failed:', error);
       toast({
         title: "Error",
-        description: "Failed to save links",
+        description: "Failed to save links. Please try again.",
         variant: "destructive",
       });
+      // Reset to original links on failure
       setEditLinks(links);
     } finally {
       setSaving(false);
@@ -59,8 +75,10 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
 
   const addLink = () => {
     if (newLink.name.trim() && newLink.url.trim()) {
-      setEditLinks([...editLinks, { ...newLink }]);
+      const updatedLinks = [...editLinks, { ...newLink }];
+      setEditLinks(updatedLinks);
       setNewLink({ name: '', url: '', icon: '📄' });
+      console.log('🔗 Added new link:', newLink);
     }
   };
 
@@ -69,10 +87,13 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
     updated[index] = updatedLink;
     setEditLinks(updated);
     setEditingIndex(null);
+    console.log('🔗 Updated link at index', index, ':', updatedLink);
   };
 
   const removeLink = (index: number) => {
-    setEditLinks(editLinks.filter((_, i) => i !== index));
+    const updated = editLinks.filter((_, i) => i !== index);
+    setEditLinks(updated);
+    console.log('🔗 Removed link at index', index);
   };
 
   const isValidUrl = (url: string) => {
@@ -197,9 +218,9 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
         </div>
 
         <div className="flex gap-2">
-          <Button onClick={handleSave} disabled={saving}>
+          <Button onClick={handleSave} disabled={saving} className="bg-green-600 hover:bg-green-700">
             <Check className="h-4 w-4 mr-1" />
-            Save Links
+            {saving ? 'Saving...' : 'Save Changes'}
           </Button>
           <Button variant="outline" onClick={handleCancel} disabled={saving}>
             <X className="h-4 w-4 mr-1" />

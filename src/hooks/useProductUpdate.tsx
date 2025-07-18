@@ -1,3 +1,4 @@
+
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -39,7 +40,13 @@ export function useProductUpdate() {
     }
     
     try {
-      console.log('📡 Sending update to Supabase...');
+      console.log('📡 Sending update to Supabase...', { 
+        table: 'products', 
+        id: productId, 
+        field, 
+        value: JSON.stringify(value).substring(0, 200) + '...' 
+      });
+      
       const { data, error } = await supabase
         .from('products')
         .update({ [field]: value })
@@ -52,7 +59,9 @@ export function useProductUpdate() {
           message: error.message,
           details: error.details,
           hint: error.hint,
-          code: error.code
+          code: error.code,
+          field,
+          productId
         });
         toast({
           title: "Update Failed",
@@ -62,7 +71,16 @@ export function useProductUpdate() {
         throw new Error(`Supabase error: ${error.message}`);
       }
 
-      console.log('✅ Update successful:', { data, updatedField: field });
+      console.log('✅ Update successful:', { 
+        data: data ? { id: data.id, [field]: data[field] } : null, 
+        updatedField: field 
+      });
+      
+      toast({
+        title: "Success",
+        description: `${field.replace('_', ' ')} updated successfully`,
+      });
+      
       return data;
     } catch (err: any) {
       console.error('❌ Update failed:', {
@@ -70,7 +88,7 @@ export function useProductUpdate() {
         stack: err.stack,
         productId,
         field,
-        value,
+        value: JSON.stringify(value).substring(0, 100),
         userId: user?.id
       });
       
