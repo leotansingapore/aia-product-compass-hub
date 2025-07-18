@@ -107,9 +107,9 @@ const APP_STRUCTURE = {
     icon: TrendingUp,
     path: "/sales-tools",
     sections: [
-      { id: "presentation-tools", name: "Presentation Tools", description: "Sales presentations and calculators" },
-      { id: "client-profiling", name: "Client Profiling", description: "Customer analysis tools" },
-      { id: "proposal-generators", name: "Proposal Generators", description: "Automated proposal creation" }
+      { id: "generic-objections", name: "Generic Objections", description: "Common sales objections and responses" },
+      { id: "tactical-objections", name: "Tactical Objections", description: "Advanced objection handling techniques" },
+      { id: "presentation-tools", name: "Presentation Tools", description: "Sales presentations and calculators" }
     ]
   },
   "my-account": {
@@ -134,28 +134,24 @@ const APP_STRUCTURE = {
       { id: "system-settings", name: "System Settings", description: "Global configuration" }
     ]
   },
-  "product-categories": {
-    name: "Product Categories",
-    icon: Archive,
-    path: "/category/*",
+  "how-to-use": {
+    name: "How to Use Portal",
+    icon: HelpCircle,
+    path: "/how-to-use",
     sections: [
-      { id: "category-overview", name: "Category Overview", description: "Category description and stats" },
-      { id: "product-filters", name: "Product Filters", description: "Search and tag filters" },
-      { id: "product-grid", name: "Product Grid", description: "List of products in category" }
+      { id: "portal-overview", name: "Portal Overview", description: "Introduction and navigation guide" },
+      { id: "learning-features", name: "Learning Features", description: "How to use learning tools" },
+      { id: "support-resources", name: "Support Resources", description: "Help and FAQ sections" }
     ]
   },
-  "product-detail": {
-    name: "Product Detail",
-    icon: BookOpen,
-    path: "/product/*",
+  "search-by-profile": {
+    name: "Search by Client Profile",
+    icon: Users,
+    path: "/search-by-profile",
     sections: [
-      { id: "product-summary", name: "Product Summary", description: "Basic product information" },
-      { id: "key-highlights", name: "Key Highlights", description: "Important features and benefits" },
-      { id: "training-videos", name: "Training Videos", description: "Educational content" },
-      { id: "useful-links", name: "Useful Links", description: "PDFs, brochures, external links" },
-      { id: "ai-assistant", name: "AI Assistant", description: "Custom GPT integration" },
-      { id: "personal-notes", name: "Personal Notes", description: "User's private notes" },
-      { id: "quiz-section", name: "Quiz Section", description: "Knowledge assessment" }
+      { id: "profile-builder", name: "Profile Builder", description: "Create client profiles" },
+      { id: "product-recommendations", name: "Product Recommendations", description: "AI-powered product suggestions" },
+      { id: "profile-history", name: "Profile History", description: "Previously created profiles" }
     ]
   }
 };
