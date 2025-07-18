@@ -375,7 +375,7 @@ export function NavigableUserPreview({
         </CardHeader>
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 w-full">
+            <TabsList className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-9 w-full gap-1">
               {Object.entries(APP_STRUCTURE).map(([key, page]) => {
                 const isAccessible = isPageAccessible(key);
                 const permissionSummary = getPagePermissionSummary(key);
@@ -385,13 +385,13 @@ export function NavigableUserPreview({
                   <TabsTrigger 
                     key={key} 
                     value={key}
-                    className={`flex flex-col gap-1 h-auto py-2 text-xs ${!isAccessible ? 'opacity-50' : ''}`}
+                    className={`flex flex-col gap-1 h-auto py-1 px-1 text-[10px] min-w-0 ${!isAccessible ? 'opacity-50' : ''}`}
                     disabled={!isAccessible}
                   >
-                    <PageIcon className="h-4 w-4" />
-                    <span className="truncate max-w-16">{page.name}</span>
+                    <PageIcon className="h-3 w-3 shrink-0" />
+                    <span className="truncate max-w-full text-center leading-tight">{page.name}</span>
                     {permissionSummary && (
-                      <span className="text-[10px] text-muted-foreground truncate max-w-20">
+                      <span className="text-[8px] text-muted-foreground truncate max-w-full">
                         {permissionSummary}
                       </span>
                     )}
