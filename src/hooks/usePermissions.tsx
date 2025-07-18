@@ -29,20 +29,31 @@ export function usePermissions() {
     if (!user) return;
 
     try {
+      console.log('🔧 Fetching permissions for user:', user.id);
+      
       // Fetch user roles
-      const { data: roles } = await supabase
+      const { data: roles, error: rolesError } = await supabase
         .from('user_roles')
         .select('role')
         .eq('user_id', user.id);
 
+      if (rolesError) {
+        console.error('🔧 Error fetching roles:', rolesError);
+      }
+
       const userRolesList = roles?.map(r => r.role) || ['user'];
       setUserRoles(userRolesList);
+      console.log('🔧 User roles:', userRolesList);
 
       // Fetch section permissions
-      const { data: permissions } = await supabase
+      const { data: permissions, error: permissionsError } = await supabase
         .from('user_section_permissions')
         .select('section_id, permission_type, lock_message')
         .eq('user_id', user.id);
+
+      if (permissionsError) {
+        console.error('🔧 Error fetching permissions:', permissionsError);
+      }
 
       const permissionsMap: Record<string, SectionPermission> = {};
       permissions?.forEach(p => {
@@ -53,6 +64,7 @@ export function usePermissions() {
       });
 
       setSectionPermissions(permissionsMap);
+      console.log('🔧 Loaded section permissions:', permissionsMap);
     } finally {
       setLoading(false);
     }
