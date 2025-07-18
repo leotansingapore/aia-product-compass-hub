@@ -39,17 +39,21 @@ export function useRecentlyViewed() {
       type
     };
 
-    // Update immediately without causing re-renders during effect
     setRecentItems(prev => {
+      // Check if item already exists to prevent unnecessary updates
+      const existingIndex = prev.findIndex(item => item.id === id && item.type === type);
+      if (existingIndex === 0) {
+        // Item is already at the top, no need to update
+        return prev;
+      }
+
       // Remove existing item if it exists
       const filtered = prev.filter(item => !(item.id === id && item.type === type));
       // Add new item to the beginning
       const newItems = [newItem, ...filtered].slice(0, 10); // Keep only last 10 items
       
-      // Save to localStorage asynchronously
-      setTimeout(() => {
-        localStorage.setItem('recentlyViewed', JSON.stringify(newItems));
-      }, 0);
+      // Save to localStorage
+      localStorage.setItem('recentlyViewed', JSON.stringify(newItems));
       
       return newItems;
     });

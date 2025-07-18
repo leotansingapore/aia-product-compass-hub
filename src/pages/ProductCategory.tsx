@@ -5,6 +5,7 @@ import { NavigationHeader } from "@/components/NavigationHeader";
 import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { ProductCard } from "@/components/ProductCard";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
+import { ProtectedSection } from "@/components/ProtectedSection";
 import { useProducts, useCategories } from "@/hooks/useProducts";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 
@@ -62,10 +63,10 @@ export default function ProductCategory() {
 
   // Track category view
   useEffect(() => {
-    if (categoryId && category) {
+    if (categoryId && category?.id) {
       addToRecent(categoryId, 'category');
     }
-  }, [categoryId, category?.id, addToRecent]);
+  }, [categoryId, category?.id]);
 
   // Get all unique tags from products
   const allTags = Array.from(new Set(products.flatMap(product => product.tags || [])));
@@ -119,23 +120,24 @@ export default function ProductCategory() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{categoryInfo?.title || 'Product Category'} - AIA Product Compass Hub</title>
-        <meta name="description" content={`Explore ${categoryInfo?.title.toLowerCase() || 'products'} - ${categoryInfo?.description || 'Comprehensive insurance and investment solutions'} with detailed guides, videos, and AI assistance.`} />
-      </Helmet>
-      <NavigationHeader 
-        title={category.name}
-        subtitle={category.description || ''}
-        showBackButton
-        onBack={() => window.history.back()}
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: category.name }
-        ]}
-      />
-      
-      <div className="max-w-7xl mx-auto px-6 py-8">
+    <ProtectedSection sectionId="product-categories">
+      <div className="min-h-screen bg-background">
+        <Helmet>
+          <title>{categoryInfo?.title || 'Product Category'} - AIA Product Compass Hub</title>
+          <meta name="description" content={`Explore ${categoryInfo?.title.toLowerCase() || 'products'} - ${categoryInfo?.description || 'Comprehensive insurance and investment solutions'} with detailed guides, videos, and AI assistance.`} />
+        </Helmet>
+        <NavigationHeader 
+          title={category.name}
+          subtitle={category.description || ''}
+          showBackButton
+          onBack={() => window.history.back()}
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: category.name }
+          ]}
+        />
+        
+        <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Search and Filters */}
         <div className="mb-8">
           <div className="mb-6">
@@ -205,7 +207,8 @@ export default function ProductCategory() {
             </Button>
           </div>
         )}
+        </div>
       </div>
-    </div>
+    </ProtectedSection>
   );
 }
