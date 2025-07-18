@@ -53,8 +53,8 @@ export function usePermissions() {
       });
 
       setSectionPermissions(permissionsMap);
-    } catch (error) {
-      console.error('Error fetching permissions:', error);
+      console.log('Loaded section permissions:', permissionsMap);
+      console.log('User roles:', userRolesList);
     } finally {
       setLoading(false);
     }
@@ -69,12 +69,16 @@ export function usePermissions() {
   };
 
   const getSectionPermission = (sectionId: string): SectionPermission => {
-    return sectionPermissions[sectionId] || { permission_type: 'view' };
+    const permission = sectionPermissions[sectionId] || { permission_type: 'view' };
+    console.log(`getSectionPermission for ${sectionId}:`, permission);
+    return permission;
   };
 
   const canAccessSection = (sectionId: string): boolean => {
     const permission = getSectionPermission(sectionId);
-    return permission.permission_type !== 'hidden';
+    const canAccess = permission.permission_type !== 'hidden';
+    console.log(`canAccessSection for ${sectionId}:`, canAccess, 'permission_type:', permission.permission_type);
+    return canAccess;
   };
 
   const canEditSection = (sectionId: string): boolean => {
