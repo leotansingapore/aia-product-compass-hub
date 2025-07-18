@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Plus, Edit, Trash2, Save, X, ChevronDown, ChevronUp } from "lucide-react";
 import { EditableLinks } from "@/components/EditableLinks";
+import { ProtectedSection } from "@/components/ProtectedSection";
 import { supabase } from "@/integrations/supabase/client";
 import type { UsefulLink } from "@/hooks/useProducts";
 
@@ -330,53 +331,55 @@ export default function SalesTools() {
         {/* Sales Tools Content */}
         <div className="mb-12">
           {editableSalesTools.map((toolCategory) => (
-            <div key={toolCategory.id} className={activeTab === toolCategory.id ? 'block' : 'hidden'}>
-              <Card className="mb-6">
-                <CardHeader>
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <CardTitle>{toolCategory.title}</CardTitle>
-                      <CardDescription>{toolCategory.description}</CardDescription>
+            <ProtectedSection key={toolCategory.id} sectionId={`sales-tools-${toolCategory.id}`}>
+              <div className={activeTab === toolCategory.id ? 'block' : 'hidden'}>
+                <Card className="mb-6">
+                  <CardHeader>
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <CardTitle>{toolCategory.title}</CardTitle>
+                        <CardDescription>{toolCategory.description}</CardDescription>
+                      </div>
+                      {isAdminMode && (toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') && (
+                        <Button
+                          onClick={() => {}}
+                          size="sm"
+                          variant="outline"
+                          className="flex items-center gap-2"
+                        >
+                          <Plus className="h-4 w-4" />
+                          Add Objection
+                        </Button>
+                      )}
                     </div>
-                    {isAdminMode && (toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') && (
-                      <Button
-                        onClick={() => {}}
-                        size="sm"
-                        variant="outline"
-                        className="flex items-center gap-2"
-                      >
-                        <Plus className="h-4 w-4" />
-                        Add Objection
-                      </Button>
+                  </CardHeader>
+                  <CardContent className="p-4">
+                    {(toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') ? (
+                      <div className="mb-6">
+                        <EditableLinks
+                          links={convertToUsefulLinks(toolCategory.tools)}
+                          onSave={(newLinks) => handleUpdateLinks(toolCategory.id, newLinks)}
+                        />
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                        {toolCategory.tools.map((tool, index) => (
+                          <div key={index} className="border border-border/50 rounded-lg p-4 hover:bg-accent/20 transition-colors">
+                            <h3 className="font-medium text-sm">{tool.name}</h3>
+                            <p className="text-xs text-muted-foreground">{tool.description}</p>
+                            <Button variant="link" size="sm" className="h-auto p-0 text-xs" asChild>
+                              <a href={(tool as LinkTool).link} target="_blank" rel="noopener noreferrer">
+                                Access Tool
+                              </a>
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
                     )}
-                  </div>
-                </CardHeader>
-                <CardContent className="p-4">
-                  {(toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') ? (
-                    <div className="mb-6">
-                      <EditableLinks
-                        links={convertToUsefulLinks(toolCategory.tools)}
-                        onSave={(newLinks) => handleUpdateLinks(toolCategory.id, newLinks)}
-                      />
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                      {toolCategory.tools.map((tool, index) => (
-                        <div key={index} className="border border-border/50 rounded-lg p-4 hover:bg-accent/20 transition-colors">
-                          <h3 className="font-medium text-sm">{tool.name}</h3>
-                          <p className="text-xs text-muted-foreground">{tool.description}</p>
-                          <Button variant="link" size="sm" className="h-auto p-0 text-xs" asChild>
-                            <a href={(tool as LinkTool).link} target="_blank" rel="noopener noreferrer">
-                              Access Tool
-                            </a>
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </ProtectedSection>
           ))}
         </div>
 
