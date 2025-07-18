@@ -220,6 +220,52 @@ export function useAppSectionSync() {
     return result;
   }, [isMasterAdmin, extractSectionsFromStructure]);
 
+  const applyDefaultPermissionsToAllUsers = useCallback(async () => {
+    try {
+      console.log('🔧 Applying default permissions to all users for new sections...');
+      
+      // Get all users from profiles
+      const { data: profiles, error: profilesError } = await supabase
+        .from('profiles')
+        .select('user_id');
+      
+      if (profilesError) {
+        console.error('🔧 Error fetching profiles:', profilesError);
+        return;
+      }
+      
+      const allSections = extractSectionsFromStructure();
+      
+      // For each user, ensure they have permissions for all sections
+      for (const profile of profiles || []) {
+        for (const section of allSections) {
+          // Check if permission already exists
+          const { data: existingPermission } = await supabase
+            .from('user_section_permissions')
+            .select('id')
+            .eq('user_id', profile.user_id)
+            .eq('section_id', section.id)
+            .maybeSingle();
+          
+          // If no permission exists, create default 'view' permission
+          if (!existingPermission) {
+            await supabase
+              .from('user_section_permissions')
+              .insert({
+                user_id: profile.user_id,
+                section_id: section.id,
+                permission_type: 'view'
+              });
+          }
+        }
+      }
+      
+      console.log('🔧 Default permissions applied successfully');
+    } catch (error) {
+      console.error('🔧 Error applying default permissions:', error);
+    }
+  }, [extractSectionsFromStructure]);
+
   const autoSync = useCallback(async () => {
     if (!isMasterAdmin()) {
       return;
@@ -237,13 +283,20 @@ export function useAppSectionSync() {
       
       const result = await syncSections();
       
+      // If new sections were added, apply default permissions to all users
+      if (result.added > 0) {
+        await applyDefaultPermissionsToAllUsers();
+        console.log('🔧 Applied default permissions for new sections');
+      }
+      
       // Mark as completed for this session
       sessionStorage.setItem('admin_auto_sync_completed', 'true');
       
       if (result.added > 0 || result.updated > 0) {
+        const permissionsMsg = result.added > 0 ? ' (permissions applied)' : '';
         toast({
           title: "App Sections Auto-Synced",
-          description: `Added: ${result.added}, Updated: ${result.updated}`,
+          description: `Added: ${result.added}, Updated: ${result.updated}${permissionsMsg}`,
         });
       }
 
@@ -255,7 +308,7 @@ export function useAppSectionSync() {
       console.error('Auto sync failed:', error);
       // Silent fail for auto-sync to avoid disrupting the admin experience
     }
-  }, [isMasterAdmin, syncSections, toast]);
+  }, [isMasterAdmin, syncSections, toast, applyDefaultPermissionsToAllUsers]);
 
   return {
     syncing,
