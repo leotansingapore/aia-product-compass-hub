@@ -6,11 +6,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Shield, Users, Settings, Lock, Unlock, Eye, EyeOff, Edit } from 'lucide-react';
+import { Shield, Users, Settings, Lock, Unlock, Eye, EyeOff, Edit, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { usePermissions } from '@/hooks/usePermissions';
 import { useToast } from '@/hooks/use-toast';
 import { UserInterfacePreview } from '@/components/admin/UserInterfacePreview';
+import { useAppSectionSync } from '@/hooks/useAppSectionSync';
 
 interface User {
   id: string;
@@ -36,6 +37,7 @@ interface UserPermission {
 export default function AdminDashboard() {
   const { isMasterAdmin } = usePermissions();
   const { toast } = useToast();
+  const { syncing, lastSyncResult, syncSections, autoSync } = useAppSectionSync();
   const [users, setUsers] = useState<User[]>([]);
   const [sections, setSections] = useState<Section[]>([]);
   const [permissions, setPermissions] = useState<UserPermission[]>([]);
@@ -48,8 +50,10 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (isMasterAdmin()) {
       fetchData();
+      // Auto-sync sections when admin panel loads
+      autoSync();
     }
-  }, [isMasterAdmin]);
+  }, [isMasterAdmin, autoSync]);
 
   const fetchData = async () => {
     try {
@@ -110,6 +114,24 @@ export default function AdminDashboard() {
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleManualSync = async () => {
+    try {
+      const result = await syncSections();
+      toast({
+        title: "Sync Complete",
+        description: `Added: ${result.added}, Updated: ${result.updated}${result.errors.length > 0 ? ` (${result.errors.length} warnings)` : ''}`,
+      });
+      // Refresh data after sync
+      fetchData();
+    } catch (error) {
+      toast({
+        title: "Sync Failed",
+        description: "Failed to sync app sections",
+        variant: "destructive",
+      });
     }
   };
 
@@ -234,6 +256,7 @@ export default function AdminDashboard() {
             <TabsTrigger value="permissions">Section Permissions</TabsTrigger>
             <TabsTrigger value="users">User Management</TabsTrigger>
             <TabsTrigger value="sections">Section Overview</TabsTrigger>
+            <TabsTrigger value="sync">Auto Sync</TabsTrigger>
           </TabsList>
 
           <TabsContent value="preview" className="space-y-6">
@@ -454,6 +477,84 @@ export default function AdminDashboard() {
                 </Card>
               ))}
             </div>
+          </TabsContent>
+
+          <TabsContent value="sync" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <RefreshCw className="h-5 w-5" />
+                  App Section Sync
+                </CardTitle>
+                <CardDescription>
+                  Automatically synchronize app sections from code to database. This ensures that when you add or remove sections in the APP_STRUCTURE, the database stays in sync.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <Button 
+                    onClick={handleManualSync} 
+                    disabled={syncing}
+                    className="flex items-center gap-2"
+                  >
+                    {syncing ? (
+                      <>
+                        <RefreshCw className="h-4 w-4 animate-spin" />
+                        Syncing...
+                      </>
+                    ) : (
+                      <>
+                        <RefreshCw className="h-4 w-4" />
+                        Sync Now
+                      </>
+                    )}
+                  </Button>
+                  
+                  {lastSyncResult && (
+                    <Badge variant={lastSyncResult.errors.length > 0 ? "destructive" : "default"} className="flex items-center gap-1">
+                      {lastSyncResult.errors.length > 0 ? (
+                        <AlertCircle className="h-3 w-3" />
+                      ) : (
+                        <CheckCircle className="h-3 w-3" />
+                      )}
+                      Last sync: +{lastSyncResult.added} -{lastSyncResult.updated} 
+                      {lastSyncResult.errors.length > 0 && ` (${lastSyncResult.errors.length} warnings)`}
+                    </Badge>
+                  )}
+                </div>
+
+                {lastSyncResult && lastSyncResult.errors.length > 0 && (
+                  <Card className="bg-destructive/10 border-destructive/20">
+                    <CardHeader>
+                      <CardTitle className="text-sm flex items-center gap-2">
+                        <AlertCircle className="h-4 w-4" />
+                        Sync Warnings
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="text-sm space-y-1">
+                        {lastSyncResult.errors.map((error, index) => (
+                          <li key={index} className="text-destructive">• {error}</li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                )}
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">How Auto-Sync Works</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-sm text-muted-foreground">
+                    <p>• <strong>Automatic:</strong> Runs when the admin panel loads</p>
+                    <p>• <strong>Safe:</strong> Only adds/updates sections, never deletes</p>
+                    <p>• <strong>Smart:</strong> Detects changes in names, descriptions, and categories</p>
+                    <p>• <strong>Preserves:</strong> All existing permissions are maintained</p>
+                    <p>• <strong>Logs:</strong> Shows detailed sync results and warnings</p>
+                  </CardContent>
+                </Card>
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>

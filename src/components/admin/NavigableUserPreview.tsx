@@ -29,6 +29,7 @@ import {
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useCategories } from '@/hooks/useProducts';
+import { APP_STRUCTURE } from '@/hooks/useAppSectionSync';
 
 interface User {
   id: string;
@@ -57,116 +58,67 @@ interface NavigableUserPreviewProps {
   onPermissionUpdate: () => void;
 }
 
-// Define the actual app structure with pages and their sections
-const APP_STRUCTURE = {
+// Define the actual app structure with pages and their sections and icons
+const APP_STRUCTURE_WITH_ICONS = {
   dashboard: {
     name: "Dashboard",
     icon: Home,
     path: "/",
-    sections: [
-      { id: "user-stats", name: "User Stats", description: "XP, level, streak, achievements" },
-      { id: "search-section", name: "Search Section", description: "Main search interface" },
-      { id: "quick-actions", name: "Quick Actions", description: "Profile search and shortcuts" },
-      { id: "product-categories", name: "Product Categories", description: "Category grid" },
-      { id: "recently-viewed", name: "Recently Viewed", description: "Recent activity" },
-      { id: "recommendations", name: "Recommendations", description: "AI-powered suggestions" }
-    ]
+    sections: APP_STRUCTURE.dashboard.sections
   },
   search: {
     name: "Search",
     icon: Search,
     path: "/search",
-    sections: [
-      { id: "search-interface", name: "Search Interface", description: "Advanced search with filters" },
-      { id: "search-results", name: "Search Results", description: "Product and content results" },
-      { id: "search-history", name: "Search History", description: "Previous searches" }
-    ]
+    sections: APP_STRUCTURE.search.sections
   },
   bookmarks: {
     name: "Bookmarks",
     icon: Bookmark,
     path: "/bookmarks",
-    sections: [
-      { id: "bookmarks-list", name: "Bookmarks List", description: "Saved products and content" },
-      { id: "bookmark-categories", name: "Bookmark Categories", description: "Organized bookmark groups" }
-    ]
+    sections: APP_STRUCTURE.bookmarks.sections
   },
   "cmfas-exams": {
     name: "CMFAS Exams",
     icon: GraduationCap,
     path: "/cmfas-exams",
-    sections: [
-      { id: "exam-modules", name: "Exam Modules", description: "Available CMFAS modules" },
-      { id: "practice-tests", name: "Practice Tests", description: "Mock exams and quizzes" },
-      { id: "study-materials", name: "Study Materials", description: "PDFs, videos, flashcards" },
-      { id: "progress-tracking", name: "Progress Tracking", description: "Study progress and analytics" }
-    ]
+    sections: APP_STRUCTURE["cmfas-exams"].sections
   },
   "sales-tools": {
     name: "Sales Tools",
     icon: TrendingUp,
     path: "/sales-tools",
-    sections: [
-      { id: "presentation-tools", name: "Presentation Tools", description: "Sales presentations and calculators" },
-      { id: "client-profiling", name: "Client Profiling", description: "Customer analysis tools" },
-      { id: "proposal-generators", name: "Proposal Generators", description: "Automated proposal creation" }
-    ]
+    sections: APP_STRUCTURE["sales-tools"].sections
   },
   "my-account": {
     name: "My Account",
     icon: User,
     path: "/my-account",
-    sections: [
-      { id: "profile-settings", name: "Profile Settings", description: "Personal information and preferences" },
-      { id: "learning-analytics", name: "Learning Analytics", description: "Progress and performance insights" },
-      { id: "achievements", name: "Achievements", description: "Badges and accomplishments" },
-      { id: "account-security", name: "Account Security", description: "Password and security settings" }
-    ]
+    sections: APP_STRUCTURE["my-account"].sections
   },
   "admin-panel": {
     name: "Admin Panel",
     icon: Shield,
     path: "/admin",
-    sections: [
-      { id: "user-management", name: "User Management", description: "Manage users and roles" },
-      { id: "content-management", name: "Content Management", description: "Edit products and content" },
-      { id: "analytics-dashboard", name: "Analytics Dashboard", description: "Platform usage analytics" },
-      { id: "system-settings", name: "System Settings", description: "Global configuration" }
-    ]
+    sections: APP_STRUCTURE["admin-panel"].sections
   },
   "search-by-profile": {
     name: "Search by Client Profile",
     icon: Users,
     path: "/search-by-profile",
-    sections: [
-      { id: "client-profile-search", name: "Client Profile Search", description: "Search products by client demographics" },
-      { id: "profile-filters", name: "Profile Filters", description: "Age, income, risk tolerance filters" },
-      { id: "recommendation-engine", name: "Recommendation Engine", description: "AI-powered product suggestions" }
-    ]
+    sections: APP_STRUCTURE["search-by-profile"].sections
   },
   "product-categories": {
     name: "Product Categories",
     icon: Archive,
     path: "/category/*",
-    sections: [
-      { id: "category-overview", name: "Category Overview", description: "Category description and stats" },
-      { id: "product-filters", name: "Product Filters", description: "Search and tag filters" },
-      { id: "product-grid", name: "Product Grid", description: "List of products in category" }
-    ]
+    sections: APP_STRUCTURE["product-categories"].sections
   },
   "product-detail": {
     name: "Product Detail",
     icon: BookOpen,
     path: "/product/*",
-    sections: [
-      { id: "product-summary", name: "Product Summary", description: "Basic product information" },
-      { id: "key-highlights", name: "Key Highlights", description: "Important features and benefits" },
-      { id: "training-videos", name: "Training Videos", description: "Educational content" },
-      { id: "useful-links", name: "Useful Links", description: "PDFs, brochures, external links" },
-      { id: "ai-assistant", name: "AI Assistant", description: "Custom GPT integration" },
-      { id: "personal-notes", name: "Personal Notes", description: "User's private notes" },
-      { id: "quiz-section", name: "Quiz Section", description: "Knowledge assessment" }
-    ]
+    sections: APP_STRUCTURE["product-detail"].sections
   }
 };
 
@@ -272,7 +224,7 @@ export function NavigableUserPreview({
   };
 
   const isPageAccessible = (pageKey: string): boolean => {
-    const pageData = APP_STRUCTURE[pageKey as keyof typeof APP_STRUCTURE];
+    const pageData = APP_STRUCTURE_WITH_ICONS[pageKey as keyof typeof APP_STRUCTURE_WITH_ICONS];
     if (!pageData) return true;
 
     // Check if at least one section in the page is accessible
@@ -283,7 +235,7 @@ export function NavigableUserPreview({
   };
 
   const getPagePermissionSummary = (pageKey: string): string => {
-    const pageData = APP_STRUCTURE[pageKey as keyof typeof APP_STRUCTURE];
+    const pageData = APP_STRUCTURE_WITH_ICONS[pageKey as keyof typeof APP_STRUCTURE_WITH_ICONS];
     if (!pageData) return '';
 
     const sectionCount = pageData.sections.length;
@@ -390,7 +342,7 @@ export function NavigableUserPreview({
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-9 2xl:grid-cols-10 w-full h-auto p-2">
-              {Object.entries(APP_STRUCTURE).map(([key, page]) => {
+              {Object.entries(APP_STRUCTURE_WITH_ICONS).map(([key, page]) => {
                 const isAccessible = isPageAccessible(key);
                 const permissionSummary = getPagePermissionSummary(key);
                 const PageIcon = page.icon;
@@ -415,7 +367,7 @@ export function NavigableUserPreview({
             </TabsList>
 
             {/* Page Content */}
-            {Object.entries(APP_STRUCTURE).map(([key, page]) => (
+            {Object.entries(APP_STRUCTURE_WITH_ICONS).map(([key, page]) => (
               <TabsContent key={key} value={key} className="mt-6">
                 <Card>
                   <CardHeader>

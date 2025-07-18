@@ -1,0 +1,259 @@
+import { useState, useCallback } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { usePermissions } from './usePermissions';
+import { useToast } from './use-toast';
+
+// Import the APP_STRUCTURE - we'll extract this to a shared file
+export const APP_STRUCTURE = {
+  dashboard: {
+    name: "Dashboard",
+    path: "/",
+    sections: [
+      { id: "user-stats", name: "User Stats", description: "XP, level, streak, achievements" },
+      { id: "search-section", name: "Search Section", description: "Main search interface" },
+      { id: "quick-actions", name: "Quick Actions", description: "Profile search and shortcuts" },
+      { id: "product-categories", name: "Product Categories", description: "Category grid" },
+      { id: "recently-viewed", name: "Recently Viewed", description: "Recent activity" },
+      { id: "recommendations", name: "Recommendations", description: "AI-powered suggestions" }
+    ]
+  },
+  search: {
+    name: "Search",
+    path: "/search",
+    sections: [
+      { id: "search-interface", name: "Search Interface", description: "Advanced search with filters" },
+      { id: "search-results", name: "Search Results", description: "Product and content results" },
+      { id: "search-history", name: "Search History", description: "Previous searches" }
+    ]
+  },
+  bookmarks: {
+    name: "Bookmarks",
+    path: "/bookmarks",
+    sections: [
+      { id: "bookmarks-list", name: "Bookmarks List", description: "Saved products and content" },
+      { id: "bookmark-categories", name: "Bookmark Categories", description: "Organized bookmark groups" }
+    ]
+  },
+  "cmfas-exams": {
+    name: "CMFAS Exams",
+    path: "/cmfas-exams",
+    sections: [
+      { id: "exam-modules", name: "Exam Modules", description: "Available CMFAS modules" },
+      { id: "practice-tests", name: "Practice Tests", description: "Mock exams and quizzes" },
+      { id: "study-materials", name: "Study Materials", description: "PDFs, videos, flashcards" },
+      { id: "progress-tracking", name: "Progress Tracking", description: "Study progress and analytics" }
+    ]
+  },
+  "sales-tools": {
+    name: "Sales Tools",
+    path: "/sales-tools",
+    sections: [
+      { id: "presentation-tools", name: "Presentation Tools", description: "Sales presentations and calculators" },
+      { id: "client-profiling", name: "Client Profiling", description: "Customer analysis tools" },
+      { id: "proposal-generators", name: "Proposal Generators", description: "Automated proposal creation" }
+    ]
+  },
+  "my-account": {
+    name: "My Account",
+    path: "/my-account",
+    sections: [
+      { id: "profile-settings", name: "Profile Settings", description: "Personal information and preferences" },
+      { id: "learning-analytics", name: "Learning Analytics", description: "Progress and performance insights" },
+      { id: "achievements", name: "Achievements", description: "Badges and accomplishments" },
+      { id: "account-security", name: "Account Security", description: "Password and security settings" }
+    ]
+  },
+  "admin-panel": {
+    name: "Admin Panel",
+    path: "/admin",
+    sections: [
+      { id: "user-management", name: "User Management", description: "Manage users and roles" },
+      { id: "content-management", name: "Content Management", description: "Edit products and content" },
+      { id: "analytics-dashboard", name: "Analytics Dashboard", description: "Platform usage analytics" },
+      { id: "system-settings", name: "System Settings", description: "Global configuration" }
+    ]
+  },
+  "search-by-profile": {
+    name: "Search by Client Profile",
+    path: "/search-by-profile",
+    sections: [
+      { id: "client-profile-search", name: "Client Profile Search", description: "Search products by client demographics" },
+      { id: "profile-filters", name: "Profile Filters", description: "Age, income, risk tolerance filters" },
+      { id: "recommendation-engine", name: "Recommendation Engine", description: "AI-powered product suggestions" }
+    ]
+  },
+  "product-categories": {
+    name: "Product Categories",
+    path: "/category/*",
+    sections: [
+      { id: "category-overview", name: "Category Overview", description: "Category description and stats" },
+      { id: "product-filters", name: "Product Filters", description: "Search and tag filters" },
+      { id: "product-grid", name: "Product Grid", description: "List of products in category" }
+    ]
+  },
+  "product-detail": {
+    name: "Product Detail",
+    path: "/product/*",
+    sections: [
+      { id: "product-summary", name: "Product Summary", description: "Basic product information" },
+      { id: "key-highlights", name: "Key Highlights", description: "Important features and benefits" },
+      { id: "training-videos", name: "Training Videos", description: "Educational content" },
+      { id: "useful-links", name: "Useful Links", description: "PDFs, brochures, external links" },
+      { id: "ai-assistant", name: "AI Assistant", description: "Custom GPT integration" },
+      { id: "personal-notes", name: "Personal Notes", description: "User's private notes" },
+      { id: "quiz-section", name: "Quiz Section", description: "Knowledge assessment" }
+    ]
+  }
+};
+
+export interface SyncResult {
+  added: number;
+  updated: number;
+  removed: number;
+  errors: string[];
+}
+
+export function useAppSectionSync() {
+  const { isMasterAdmin } = usePermissions();
+  const { toast } = useToast();
+  const [syncing, setSyncing] = useState(false);
+  const [lastSyncResult, setLastSyncResult] = useState<SyncResult | null>(null);
+
+  const extractSectionsFromStructure = useCallback(() => {
+    const sections: Array<{
+      id: string;
+      name: string;
+      description: string;
+      category: string;
+    }> = [];
+
+    Object.entries(APP_STRUCTURE).forEach(([pageKey, pageData]) => {
+      pageData.sections.forEach(section => {
+        sections.push({
+          id: section.id,
+          name: section.name,
+          description: section.description,
+          category: pageKey
+        });
+      });
+    });
+
+    return sections;
+  }, []);
+
+  const syncSections = useCallback(async (): Promise<SyncResult> => {
+    if (!isMasterAdmin()) {
+      throw new Error('Only master admins can sync app sections');
+    }
+
+    setSyncing(true);
+    const result: SyncResult = { added: 0, updated: 0, removed: 0, errors: [] };
+
+    try {
+      // Get current sections from database
+      const { data: currentSections, error: fetchError } = await supabase
+        .from('app_sections')
+        .select('*');
+
+      if (fetchError) {
+        throw fetchError;
+      }
+
+      // Get sections from code structure
+      const codeSections = extractSectionsFromStructure();
+      const currentSectionMap = new Map(currentSections?.map(s => [s.id, s]) || []);
+      const codeSectionMap = new Map(codeSections.map(s => [s.id, s]));
+
+      // Find sections to add or update
+      const sectionsToUpsert = [];
+      for (const codeSection of codeSections) {
+        const currentSection = currentSectionMap.get(codeSection.id);
+        
+        if (!currentSection) {
+          // New section to add
+          sectionsToUpsert.push(codeSection);
+          result.added++;
+        } else if (
+          currentSection.name !== codeSection.name ||
+          currentSection.description !== codeSection.description ||
+          currentSection.category !== codeSection.category
+        ) {
+          // Existing section to update
+          sectionsToUpsert.push(codeSection);
+          result.updated++;
+        }
+      }
+
+      // Insert or update sections
+      if (sectionsToUpsert.length > 0) {
+        const { error: upsertError } = await supabase
+          .from('app_sections')
+          .upsert(sectionsToUpsert, { onConflict: 'id' });
+
+        if (upsertError) {
+          result.errors.push(`Failed to upsert sections: ${upsertError.message}`);
+        }
+      }
+
+      // Find orphaned sections (in database but not in code)
+      const orphanedSections = currentSections?.filter(s => !codeSectionMap.has(s.id)) || [];
+      
+      if (orphanedSections.length > 0) {
+        console.warn('Found orphaned sections:', orphanedSections.map(s => s.id));
+        
+        // For now, we'll just log orphaned sections and not auto-delete them
+        // This is a safety measure to prevent accidental data loss
+        result.errors.push(`Found ${orphanedSections.length} orphaned sections that weren't removed automatically for safety. Manual review recommended.`);
+      }
+
+    } catch (error) {
+      console.error('Error syncing app sections:', error);
+      result.errors.push(error instanceof Error ? error.message : 'Unknown error occurred');
+    } finally {
+      setSyncing(false);
+    }
+
+    setLastSyncResult(result);
+    return result;
+  }, [isMasterAdmin, extractSectionsFromStructure]);
+
+  const autoSync = useCallback(async () => {
+    if (!isMasterAdmin()) {
+      return;
+    }
+
+    try {
+      const result = await syncSections();
+      
+      if (result.added > 0 || result.updated > 0) {
+        toast({
+          title: "App Sections Synced",
+          description: `Added: ${result.added}, Updated: ${result.updated}`,
+        });
+      }
+
+      if (result.errors.length > 0) {
+        toast({
+          title: "Sync Warnings",
+          description: result.errors[0],
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Auto sync failed:', error);
+      toast({
+        title: "Sync Failed",
+        description: "Failed to automatically sync app sections",
+        variant: "destructive",
+      });
+    }
+  }, [isMasterAdmin, syncSections, toast]);
+
+  return {
+    syncing,
+    lastSyncResult,
+    syncSections,
+    autoSync,
+    extractSectionsFromStructure
+  };
+}
