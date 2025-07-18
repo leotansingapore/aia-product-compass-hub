@@ -250,7 +250,7 @@ export default function SalesTools() {
       
       setEditableSalesTools(updatedTools);
       
-      // Save to database
+      // Save to database using the products table
       const dataToSave = {};
       updatedTools.forEach(category => {
         (dataToSave as any)[category.id] = convertToUsefulLinks(category.tools);
@@ -261,7 +261,7 @@ export default function SalesTools() {
         .upsert({
           id: 'sales-tools-objections',
           title: 'Sales Tools & Objection Handling',
-          category_id: 'sales-tools', // We'll need to ensure this category exists
+          category_id: 'c7cde8f4-12d4-4ddc-9150-7b32008a4e19', // Use existing category
           useful_links: dataToSave
         }, { onConflict: 'id' });
 
