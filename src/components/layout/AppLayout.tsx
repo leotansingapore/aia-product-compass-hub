@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { Button } from "@/components/ui/button";
-import { Menu, Settings, LogIn } from "lucide-react";
+import { LogIn, Settings } from "lucide-react";
 import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
@@ -34,6 +34,19 @@ export function AppLayout({ children }: AppLayoutProps) {
             </div>
             
             <div className="flex items-center gap-2">
+              {/* Admin Toggle - shown when user has admin privileges */}
+              {isAdmin && (
+                <Button
+                  variant={isAdminMode ? "default" : "outline"}
+                  size="sm"
+                  onClick={toggleAdminMode}
+                  className="flex items-center gap-2"
+                >
+                  <Settings className="h-4 w-4" />
+                  {isAdminMode ? "Exit Admin" : "Admin Mode"}
+                </Button>
+              )}
+              
               {/* Login/Signup Button - shown when user is not logged in */}
               {!user ? (
                 <Button
