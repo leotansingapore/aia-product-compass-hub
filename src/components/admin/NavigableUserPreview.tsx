@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { useCategories } from '@/hooks/useProducts';
 
 interface User {
   id: string;
@@ -166,6 +167,7 @@ export function NavigableUserPreview({
   onPermissionUpdate 
 }: NavigableUserPreviewProps) {
   const { toast } = useToast();
+  const { categories } = useCategories();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
@@ -422,6 +424,88 @@ export function NavigableUserPreview({
               </TabsContent>
             ))}
           </Tabs>
+        </CardContent>
+      </Card>
+
+      {/* Product Categories Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Archive className="h-5 w-5" />
+            Product Categories
+          </CardTitle>
+          <CardDescription>
+            These are the subcategories users see under "Products" in the sidebar navigation.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4">
+            {categories.map(category => {
+              const categoryPermissionType = getSectionPermissionType(`product-category-${category.id}`);
+              const categoryPermission = getUserPermissionForSection(`product-category-${category.id}`);
+              const isHidden = categoryPermissionType === 'hidden';
+              const isLocked = categoryPermissionType === 'locked';
+
+              return (
+                <div key={category.id} className={`border rounded-lg p-4 space-y-3 ${isHidden ? 'opacity-50 bg-muted/20' : ''}`}>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Archive className="h-4 w-4" />
+                      <div>
+                        <h5 className="font-medium">{category.name}</h5>
+                        <p className="text-sm text-muted-foreground">
+                          Category: {category.description || 'Product category navigation'}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          Path: /category/{category.id}
+                        </p>
+                      </div>
+                      <Badge variant={getPermissionColor(categoryPermissionType)} className="flex items-center gap-1">
+                        {getPermissionIcon(categoryPermissionType)}
+                        {categoryPermissionType}
+                      </Badge>
+                    </div>
+                    
+                    <select
+                      value={categoryPermissionType}
+                      onChange={(e) => updateSectionPermission(`product-category-${category.id}`, e.target.value)}
+                      className="text-sm border rounded px-2 py-1 min-w-24"
+                    >
+                      <option value="view">Full</option>
+                      <option value="read_only">Read Only</option>
+                      <option value="locked">Locked</option>
+                      <option value="hidden">Hidden</option>
+                    </select>
+                  </div>
+
+                  {/* Show different states */}
+                  {isHidden && (
+                    <div className="bg-destructive/10 border border-destructive/20 rounded p-2">
+                      <div className="flex items-center gap-2 text-destructive text-sm">
+                        <EyeOff className="h-3 w-3" />
+                        <span className="font-medium">Category hidden from user - won't appear in sidebar</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {isLocked && (
+                    <div className="bg-secondary/50 border border-secondary rounded p-2 space-y-2">
+                      <div className="flex items-center gap-2 text-sm">
+                        <Lock className="h-3 w-3" />
+                        <span className="font-medium">Category Locked</span>
+                      </div>
+                      <Textarea
+                        value={categoryPermission?.lock_message || ''}
+                        onChange={(e) => updateSectionPermission(`product-category-${category.id}`, 'locked', e.target.value)}
+                        placeholder="Enter custom lock message for this category..."
+                        className="text-xs h-12"
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </CardContent>
       </Card>
     </div>
