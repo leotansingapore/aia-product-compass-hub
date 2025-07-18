@@ -11,12 +11,16 @@ interface ProtectedSectionProps {
 }
 
 export function ProtectedSection({ sectionId, children, fallback, className }: ProtectedSectionProps) {
-  const { canAccessSection, isSectionLocked, isSectionReadOnly, getSectionPermission, loading } = usePermissions();
+  const { canAccessSection, isSectionLocked, isSectionReadOnly, getSectionPermission, loading, sectionPermissions } = usePermissions();
 
   // Debug logging
-  console.log('ProtectedSection:', { sectionId, loading });
-  console.log('Permission:', getSectionPermission(sectionId));
-  console.log('Can access:', canAccessSection(sectionId));
+  console.log('🔧 ProtectedSection Debug:', { 
+    sectionId, 
+    loading,
+    canAccess: canAccessSection(sectionId),
+    permission: getSectionPermission(sectionId),
+    allPermissions: sectionPermissions
+  });
 
   // If still loading permissions, return null to avoid showing content
   if (loading) {
