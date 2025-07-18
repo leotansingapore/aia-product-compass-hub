@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
@@ -13,7 +14,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Plus, Edit, Trash2, Save, X, ChevronDown, ChevronUp } from "lucide-react";
 import { EditableLinks } from "@/components/EditableLinks";
-import { useProductUpdate } from "@/hooks/useProductUpdate";
 import type { UsefulLink } from "@/hooks/useProducts";
 
 interface ToolSection {
@@ -152,6 +152,24 @@ const salesTools: ToolCategory[] = [
   }
 ];
 
+// Convert LinkTool to UsefulLink
+const convertToUsefulLinks = (tools: Tool[]): UsefulLink[] => {
+  return tools.map(tool => ({
+    name: tool.name,
+    url: tool.link,
+    icon: '📄'
+  }));
+};
+
+// Convert UsefulLink back to LinkTool 
+const convertToLinkTools = (links: UsefulLink[]): Tool[] => {
+  return links.map(link => ({
+    name: link.name,
+    description: '', // We don't have description in UsefulLink, so use empty string
+    link: link.url
+  }));
+};
+
 export default function SalesTools() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('generic-objections');
@@ -165,17 +183,10 @@ export default function SalesTools() {
     duration: string;
     category: string;
   } | null>(null);
-  const [editableTrainingModules, setEditableTrainingModules] = useState([]);
   const [editableSalesTools, setEditableSalesTools] = useState(() => salesTools);
-  const [expandedTools, setExpandedTools] = useState<{[key: string]: boolean}>({});
-  const [editingSections, setEditingSections] = useState<{[key: string]: boolean}>({});
-  const [tempSectionData, setTempSectionData] = useState<{[key: string]: {title: string, content: string, url?: string}}>({});
-  const [editingTools, setEditingTools] = useState<{[key: string]: boolean}>({});
-  const [tempToolData, setTempToolData] = useState<{[key: string]: {name: string, description: string, link?: string}}>({});
   
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
-  const { updateProduct } = useProductUpdate();
 
   const handleUpdateLinks = async (toolCategoryId: string, newLinks: UsefulLink[]) => {
     try {
@@ -183,7 +194,10 @@ export default function SalesTools() {
       
       const updatedTools = editableSalesTools.map(toolCategory => {
         if (toolCategory.id === toolCategoryId) {
-          return { ...toolCategory, tools: newLinks };
+          return { 
+            ...toolCategory, 
+            tools: convertToLinkTools(newLinks)
+          };
         }
         return toolCategory;
       });
@@ -257,11 +271,7 @@ export default function SalesTools() {
                   {(toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') ? (
                     <div className="mb-6">
                       <EditableLinks
-                        links={toolCategory.tools.filter(tool => tool.link).map(tool => ({
-                          name: tool.name,
-                          url: (tool as LinkTool).link,
-                          icon: '📄'
-                        }))}
+                        links={convertToUsefulLinks(toolCategory.tools)}
                         onSave={(newLinks) => handleUpdateLinks(toolCategory.id, newLinks)}
                       />
                     </div>
