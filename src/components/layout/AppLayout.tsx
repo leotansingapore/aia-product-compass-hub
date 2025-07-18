@@ -17,7 +17,7 @@ interface AppLayoutProps {
 export function AppLayout({ children }: AppLayoutProps) {
   console.log("AppLayout rendering");
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
   
   return (
@@ -35,7 +35,7 @@ export function AppLayout({ children }: AppLayoutProps) {
             
             <div className="flex items-center gap-2">
               {/* Login/Signup Button - shown when user is not logged in */}
-              {!user && (
+              {!user ? (
                 <Button
                   variant="default"
                   size="sm"
@@ -44,6 +44,16 @@ export function AppLayout({ children }: AppLayoutProps) {
                 >
                   <LogIn className="h-4 w-4" />
                   Sign In
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={signOut}
+                  className="flex items-center gap-2"
+                >
+                  <LogIn className="h-4 w-4 rotate-180" />
+                  Sign Out
                 </Button>
               )}
             </div>
