@@ -44,7 +44,7 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
   const { categories } = useCategories();
-  const { isMasterAdmin } = usePermissions();
+  const { isMasterAdmin, canAccessSection } = usePermissions();
 
   const mainNavItems = [
     { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined },
@@ -128,28 +128,34 @@ export function AppSidebar() {
             <CollapsibleContent>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  {categories.map((category) => {
-                    const isActiveCategory = currentPath.includes(`/category/${category.id}`);
-                    return (
-                      <SidebarMenuItem key={category.id}>
-                        <SidebarMenuButton asChild tooltip={isCollapsed ? category.name : undefined}>
-                          <NavLink 
-                            to={`/category/${category.id}`} 
-                            className={`flex items-center w-full text-left transition-colors ${
-                              isActiveCategory 
-                                ? "bg-primary text-primary-foreground font-medium" 
-                                : "hover:bg-accent hover:text-accent-foreground"
-                            }`}
-                          >
-                            <Archive className="h-4 w-4" />
-                            {!isCollapsed && (
-                              <span className="truncate">{category.name}</span>
-                            )}
-                          </NavLink>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    );
-                  })}
+                  {categories
+                    .filter((category) => {
+                      // Check if this category is accessible to the current user
+                      const sectionId = `product-category-${category.id}`;
+                      return canAccessSection(sectionId);
+                    })
+                    .map((category) => {
+                      const isActiveCategory = currentPath.includes(`/category/${category.id}`);
+                      return (
+                        <SidebarMenuItem key={category.id}>
+                          <SidebarMenuButton asChild tooltip={isCollapsed ? category.name : undefined}>
+                            <NavLink 
+                              to={`/category/${category.id}`} 
+                              className={`flex items-center w-full text-left transition-colors ${
+                                isActiveCategory 
+                                  ? "bg-primary text-primary-foreground font-medium" 
+                                  : "hover:bg-accent hover:text-accent-foreground"
+                              }`}
+                            >
+                              <Archive className="h-4 w-4" />
+                              {!isCollapsed && (
+                                <span className="truncate">{category.name}</span>
+                              )}
+                            </NavLink>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      );
+                    })}
                 </SidebarMenu>
               </SidebarGroupContent>
             </CollapsibleContent>
