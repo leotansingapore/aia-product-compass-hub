@@ -12,6 +12,9 @@ import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Plus, Edit, Trash2, Save, X, ChevronDown, ChevronUp } from "lucide-react";
+import { EditableLinks } from "@/components/EditableLinks";
+import { useProductUpdate } from "@/hooks/useProductUpdate";
+import type { UsefulLink } from "@/hooks/useProducts";
 
 interface ToolSection {
   title: string;
@@ -24,52 +27,11 @@ interface BaseTool {
   description: string;
 }
 
-interface ScriptTool extends BaseTool {
-  scripts: string[];
-  questions?: never;
-  techniques?: never;
-  action?: never;
-  sections?: never;
-  link?: never;
-}
-
-interface QuestionTool extends BaseTool {
-  questions: string[];
-  techniques?: never;
-  scripts?: never;
-  action?: never;
-  sections?: never;
-  link?: never;
-}
-
-interface TechniqueTool extends BaseTool {
-  techniques: string[];
-  questions?: never;
-  scripts?: never;
-  action?: never;
-  sections?: never;
-  link?: never;
-}
-
-interface ActionTool extends BaseTool {
-  action: string;
-  sections: ToolSection[];
-  scripts?: never;
-  questions?: never;
-  techniques?: never;
-  link?: never;
-}
-
 interface LinkTool extends BaseTool {
   link: string;
-  scripts?: never;
-  questions?: never;
-  techniques?: never;
-  action?: never;
-  sections?: never;
 }
 
-type Tool = ScriptTool | QuestionTool | TechniqueTool | ActionTool | LinkTool;
+type Tool = LinkTool;
 
 interface ToolCategory {
   id: string;
@@ -187,116 +149,6 @@ const salesTools: ToolCategory[] = [
         link: 'https://example.com/market-stress-tests'
       }
     ]
-  },
-  {
-    id: 'presentation-tools',
-    title: 'Presentation Tools',
-    description: 'Visual aids and templates for client meetings',
-    tools: [
-      {
-        name: 'Need Analysis Worksheet',
-        description: 'Structured approach to identify client needs',
-        action: 'worksheet',
-        sections: [
-          { title: 'Client Information', content: 'Basic client demographics and contact details', url: 'https://example.com/client-info-template' },
-          { title: 'Financial Goals', content: 'Short-term and long-term financial objectives', url: 'https://example.com/financial-goals-guide' },
-          { title: 'Risk Assessment', content: 'Current insurance coverage and protection gaps' },
-          { title: 'Budget Analysis', content: 'Monthly income, expenses, and available premium budget' }
-        ]
-      },
-      {
-        name: 'Comparison Charts',
-        description: 'Side-by-side product comparisons',
-        action: 'comparison',
-        sections: [
-          { title: 'Feature Comparison', content: 'Side-by-side comparison of product features' },
-          { title: 'Premium Comparison', content: 'Cost analysis across different products' },
-          { title: 'Benefit Comparison', content: 'Coverage amounts and benefit structures' }
-        ]
-      },
-      {
-        name: 'Benefit Illustrations',
-        description: 'Customizable benefit projections',
-        action: 'illustrations',
-        sections: [
-          { title: 'Projection Scenarios', content: 'Different growth rate scenarios' },
-          { title: 'Withdrawal Options', content: 'Various withdrawal strategies and timing' },
-          { title: 'Legacy Planning', content: 'Death benefit illustrations and estate planning' }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'sales-process',
-    title: 'Sales Process Guide',
-    description: 'Step-by-step methodology for effective selling',
-    tools: [
-      {
-        name: 'Discovery Questions',
-        description: 'Questions to uncover client needs and motivations',
-        questions: [
-          'What would happen to your family if you couldn\'t work tomorrow?',
-          'What are your biggest financial concerns for the future?',
-          'How important is it to leave a legacy for your children?',
-          'What\'s your experience with investment products?'
-        ]
-      },
-      {
-        name: 'Closing Techniques',
-        description: 'Natural ways to move clients toward a decision',
-        techniques: [
-          'Assumptive Close: "When would you like the coverage to start?"',
-          'Alternative Close: "Would you prefer monthly or annual premiums?"',
-          'Urgency Close: "Let\'s get this in place before any health changes occur."'
-        ]
-      }
-    ]
-  }
-];
-
-const flashcardSets = [
-  {
-    category: 'Investment Products',
-    sets: [
-      { name: 'Pro Achiever Key Features', cards: 15 },
-      { name: 'Investment Risks & Benefits', cards: 12 },
-      { name: 'Fund Options Overview', cards: 18 }
-    ]
-  },
-  {
-    category: 'Endowment Products',
-    sets: [
-      { name: 'Smart Wealth Builder Benefits', cards: 10 },
-      { name: 'Guaranteed vs Non-Guaranteed', cards: 8 },
-      { name: 'Policy Loans & Withdrawals', cards: 6 }
-    ]
-  },
-  {
-    category: 'Term Products',
-    sets: [
-      { name: 'Term vs Whole Life', cards: 12 },
-      { name: 'Conversion Options', cards: 8 },
-      { name: 'Underwriting Guidelines', cards: 15 }
-    ]
-  }
-];
-
-const trainingModules = [
-  {
-    title: 'Product Knowledge Mastery',
-    modules: [
-      { name: 'Investment Products Deep Dive', duration: '45 min', status: 'available' },
-      { name: 'Endowment Product Features', duration: '30 min', status: 'available' },
-      { name: 'Medical Insurance Overview', duration: '35 min', status: 'available' }
-    ]
-  },
-  {
-    title: 'Sales Skills Development',
-    modules: [
-      { name: 'Consultative Selling Approach', duration: '60 min', status: 'available' },
-      { name: 'Objection Handling Mastery', duration: '40 min', status: 'available' },
-      { name: 'Digital Presentation Skills', duration: '25 min', status: 'available' }
-    ]
   }
 ];
 
@@ -313,7 +165,7 @@ export default function SalesTools() {
     duration: string;
     category: string;
   } | null>(null);
-  const [editableTrainingModules, setEditableTrainingModules] = useState(trainingModules);
+  const [editableTrainingModules, setEditableTrainingModules] = useState([]);
   const [editableSalesTools, setEditableSalesTools] = useState(() => salesTools);
   const [expandedTools, setExpandedTools] = useState<{[key: string]: boolean}>({});
   const [editingSections, setEditingSections] = useState<{[key: string]: boolean}>({});
@@ -323,275 +175,34 @@ export default function SalesTools() {
   
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
+  const { updateProduct } = useProductUpdate();
 
-  // Admin functions for training modules
-  const addNewTrainingModule = (categoryTitle: string) => {
-    const newModule = {
-      name: 'New Training Module',
-      duration: '30 min',
-      status: 'available' as const
-    };
-
-    const updatedModules = editableTrainingModules.map(group => 
-      group.title === categoryTitle 
-        ? { ...group, modules: [...group.modules, newModule] }
-        : group
-    );
-
-    setEditableTrainingModules(updatedModules);
-    
-    toast({
-      title: "New Module Added",
-      description: `Added new training module to ${categoryTitle}`
-    });
-  };
-
-  const deleteTrainingModule = (categoryTitle: string, moduleIndex: number) => {
-    const updatedModules = editableTrainingModules.map(group => 
-      group.title === categoryTitle 
-        ? { ...group, modules: group.modules.filter((_, index) => index !== moduleIndex) }
-        : group
-    );
-
-    setEditableTrainingModules(updatedModules);
-    
-    toast({
-      title: "Module Deleted",
-      description: "Training module has been removed"
-    });
-  };
-
-  // Tool section management functions
-  const toggleToolExpansion = (toolCategoryId: string, toolIndex: number) => {
-    const key = `${toolCategoryId}-${toolIndex}`;
-    setExpandedTools(prev => ({ ...prev, [key]: !prev[key] }));
-  };
-
-  const startEditingSection = (toolCategoryId: string, toolIndex: number, sectionIndex: number, section: any) => {
-    const key = `${toolCategoryId}-${toolIndex}-${sectionIndex}`;
-    setEditingSections(prev => ({ ...prev, [key]: true }));
-    setTempSectionData(prev => ({ 
-      ...prev, 
-      [key]: { title: section.title, content: section.content, url: section.url || '' } 
-    }));
-  };
-
-  const cancelEditingSection = (toolCategoryId: string, toolIndex: number, sectionIndex: number) => {
-    const key = `${toolCategoryId}-${toolIndex}-${sectionIndex}`;
-    setEditingSections(prev => ({ ...prev, [key]: false }));
-    setTempSectionData(prev => {
-      const newData = { ...prev };
-      delete newData[key];
-      return newData;
-    });
-  };
-
-  const saveSection = (toolCategoryId: string, toolIndex: number, sectionIndex: number) => {
-    const key = `${toolCategoryId}-${toolIndex}-${sectionIndex}`;
-    const tempData = tempSectionData[key];
-    
-    if (!tempData || !tempData.title.trim()) {
+  const handleUpdateLinks = async (toolCategoryId: string, newLinks: UsefulLink[]) => {
+    try {
+      console.log('🔧 Updating sales tool links for category:', toolCategoryId, newLinks);
+      
+      const updatedTools = editableSalesTools.map(toolCategory => {
+        if (toolCategory.id === toolCategoryId) {
+          return { ...toolCategory, tools: newLinks };
+        }
+        return toolCategory;
+      });
+      
+      setEditableSalesTools(updatedTools);
+      
+      toast({
+        title: "Success",
+        description: "Sales tool links updated successfully",
+      });
+      
+    } catch (error) {
+      console.error('❌ Failed to update sales tool links:', error);
       toast({
         title: "Error",
-        description: "Section title is required",
-        variant: "destructive"
+        description: "Failed to update links. Please try again.",
+        variant: "destructive",
       });
-      return;
     }
-
-    const updatedTools = editableSalesTools.map(toolCategory => {
-      if (toolCategory.id === toolCategoryId) {
-        const updatedTools = [...toolCategory.tools];
-        const tool = updatedTools[toolIndex];
-        if (tool && 'sections' in tool && tool.sections) {
-          updatedTools[toolIndex] = {
-            ...tool,
-            sections: tool.sections.map((section, idx) => 
-              idx === sectionIndex 
-                ? { title: tempData.title.trim(), content: tempData.content.trim(), url: tempData.url?.trim() || undefined }
-                : section
-            )
-          } as ActionTool;
-        }
-        return { ...toolCategory, tools: updatedTools };
-      }
-      return toolCategory;
-    });
-
-    setEditableSalesTools(updatedTools);
-    setEditingSections(prev => ({ ...prev, [key]: false }));
-    setTempSectionData(prev => {
-      const newData = { ...prev };
-      delete newData[key];
-      return newData;
-    });
-
-    toast({
-      title: "Section Updated",
-      description: "Section has been successfully updated"
-    });
-  };
-
-  const addNewSection = (toolCategoryId: string, toolIndex: number) => {
-    const updatedTools = editableSalesTools.map(toolCategory => {
-      if (toolCategory.id === toolCategoryId) {
-        const updatedTools = [...toolCategory.tools];
-        const tool = updatedTools[toolIndex];
-        if (tool && 'sections' in tool) {
-          const sections = tool.sections || [];
-          updatedTools[toolIndex] = {
-            ...tool,
-            sections: [...sections, { title: 'New Section', content: 'Section content here...', url: '' }]
-          } as ActionTool;
-        }
-        return { ...toolCategory, tools: updatedTools };
-      }
-      return toolCategory;
-    });
-
-    setEditableSalesTools(updatedTools);
-    
-    toast({
-      title: "Section Added",
-      description: "New section has been added"
-    });
-  };
-
-  const deleteSection = (toolCategoryId: string, toolIndex: number, sectionIndex: number) => {
-    const updatedTools = editableSalesTools.map(toolCategory => {
-      if (toolCategory.id === toolCategoryId) {
-        const updatedTools = [...toolCategory.tools];
-        const tool = updatedTools[toolIndex];
-        if (tool && 'sections' in tool && tool.sections) {
-          updatedTools[toolIndex] = {
-            ...tool,
-            sections: tool.sections.filter((_, idx) => idx !== sectionIndex)
-          } as ActionTool;
-        }
-        return { ...toolCategory, tools: updatedTools };
-      }
-      return toolCategory;
-    });
-
-    setEditableSalesTools(updatedTools);
-    
-    toast({
-      title: "Section Deleted",
-      description: "Section has been removed"
-    });
-  };
-
-  // Tool management functions
-  const startEditingTool = (toolCategoryId: string, toolIndex: number, tool: any) => {
-    const key = `${toolCategoryId}-${toolIndex}`;
-    setEditingTools(prev => ({ ...prev, [key]: true }));
-    setTempToolData(prev => ({ 
-      ...prev, 
-      [key]: { 
-        name: tool.name, 
-        description: tool.description, 
-        link: (tool as LinkTool).link || '' 
-      } 
-    }));
-  };
-
-  const cancelEditingTool = (toolCategoryId: string, toolIndex: number) => {
-    const key = `${toolCategoryId}-${toolIndex}`;
-    setEditingTools(prev => ({ ...prev, [key]: false }));
-    setTempToolData(prev => {
-      const newData = { ...prev };
-      delete newData[key];
-      return newData;
-    });
-  };
-
-  const saveTool = (toolCategoryId: string, toolIndex: number) => {
-    const key = `${toolCategoryId}-${toolIndex}`;
-    const tempData = tempToolData[key];
-    
-    if (!tempData || !tempData.name.trim()) {
-      toast({
-        title: "Error",
-        description: "Tool name is required",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    if (!tempData.link?.trim()) {
-      toast({
-        title: "Error", 
-        description: "Tool link is required",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    const updatedTools = editableSalesTools.map(toolCategory => {
-      if (toolCategory.id === toolCategoryId) {
-        const updatedTools = [...toolCategory.tools];
-        updatedTools[toolIndex] = {
-          name: tempData.name.trim(),
-          description: tempData.description.trim(),
-          link: tempData.link.trim()
-        } as LinkTool;
-        return { ...toolCategory, tools: updatedTools };
-      }
-      return toolCategory;
-    });
-
-    setEditableSalesTools(updatedTools);
-    setEditingTools(prev => ({ ...prev, [key]: false }));
-    setTempToolData(prev => {
-      const newData = { ...prev };
-      delete newData[key];
-      return newData;
-    });
-
-    toast({
-      title: "Tool Updated",
-      description: "Tool has been successfully updated"
-    });
-  };
-
-  const addNewTool = (toolCategoryId: string) => {
-    const updatedTools = editableSalesTools.map(toolCategory => {
-      if (toolCategory.id === toolCategoryId) {
-        const newTool: LinkTool = {
-          name: 'New Objection',
-          description: 'New objection handling guide',
-          link: 'https://example.com/new-objection-guide'
-        };
-        return { ...toolCategory, tools: [...toolCategory.tools, newTool] };
-      }
-      return toolCategory;
-    });
-
-    setEditableSalesTools(updatedTools);
-    
-    toast({
-      title: "New Tool Added",
-      description: "New objection handling tool has been added"
-    });
-  };
-
-  const deleteTool = (toolCategoryId: string, toolIndex: number) => {
-    const updatedTools = editableSalesTools.map(toolCategory => {
-      if (toolCategory.id === toolCategoryId) {
-        return { 
-          ...toolCategory, 
-          tools: toolCategory.tools.filter((_, idx) => idx !== toolIndex) 
-        };
-      }
-      return toolCategory;
-    });
-
-    setEditableSalesTools(updatedTools);
-    
-    toast({
-      title: "Tool Deleted",
-      description: "Objection handling tool has been removed"
-    });
   };
 
   return (
@@ -631,7 +242,7 @@ export default function SalesTools() {
                     </div>
                     {isAdminMode && (toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') && (
                       <Button
-                        onClick={() => addNewTool(toolCategory.id)}
+                        onClick={() => {}}
                         size="sm"
                         variant="outline"
                         className="flex items-center gap-2"
@@ -643,481 +254,58 @@ export default function SalesTools() {
                   </div>
                 </CardHeader>
                 <CardContent className="p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {toolCategory.tools.map((tool, index) => (
-                      <div key={index} className="border border-border/50 rounded-lg p-4 hover:bg-accent/20 transition-colors">
-                        <div className="space-y-3">
-                          <div className="space-y-2">
-                            <h3 className="font-medium text-sm leading-tight">{tool.name}</h3>
-                            <p className="text-xs text-muted-foreground leading-relaxed">{tool.description}</p>
-                          </div>
-
-                          {tool.link && (
-                            <div className="space-y-2">
-                              {isAdminMode && editingTools[`${toolCategory.id}-${index}`] ? (
-                                <div className="space-y-2 p-3 border border-border rounded-md bg-accent/20">
-                                  <Input
-                                    value={tempToolData[`${toolCategory.id}-${index}`]?.name || tool.name}
-                                    onChange={(e) => setTempToolData(prev => ({
-                                      ...prev,
-                                      [`${toolCategory.id}-${index}`]: { 
-                                        ...prev[`${toolCategory.id}-${index}`], 
-                                        name: e.target.value 
-                                      }
-                                    }))}
-                                    placeholder="Tool name..."
-                                    className="text-xs"
-                                  />
-                                  <Textarea
-                                    value={tempToolData[`${toolCategory.id}-${index}`]?.description || tool.description}
-                                    onChange={(e) => setTempToolData(prev => ({
-                                      ...prev,
-                                      [`${toolCategory.id}-${index}`]: { 
-                                        ...prev[`${toolCategory.id}-${index}`], 
-                                        description: e.target.value 
-                                      }
-                                    }))}
-                                    placeholder="Tool description..."
-                                    rows={2}
-                                    className="text-xs"
-                                  />
-                                  <Input
-                                    value={tempToolData[`${toolCategory.id}-${index}`]?.link || (tool as LinkTool).link}
-                                    onChange={(e) => setTempToolData(prev => ({
-                                      ...prev,
-                                      [`${toolCategory.id}-${index}`]: { 
-                                        ...prev[`${toolCategory.id}-${index}`], 
-                                        link: e.target.value 
-                                      }
-                                    }))}
-                                    placeholder="https://example.com/objection-guide"
-                                    type="url"
-                                    className="text-xs"
-                                  />
-                                  <div className="flex gap-1">
-                                    <Button
-                                      size="sm"
-                                      onClick={() => saveTool(toolCategory.id, index)}
-                                      className="flex items-center gap-1 text-xs h-7"
-                                    >
-                                      <Save className="h-3 w-3" />
-                                      Save
-                                    </Button>
-                                    <Button
-                                      size="sm"
-                                      variant="outline"
-                                      onClick={() => cancelEditingTool(toolCategory.id, index)}
-                                      className="flex items-center gap-1 text-xs h-7"
-                                    >
-                                      <X className="h-3 w-3" />
-                                      Cancel
-                                    </Button>
-                                  </div>
-                                </div>
-                              ) : (
-                                <div className="flex flex-col gap-2">
-                                  <Button variant="outline" size="sm" className="w-full text-xs h-8" asChild>
-                                    <a href={(tool as LinkTool).link} target="_blank" rel="noopener noreferrer">
-                                      Access Tool
-                                    </a>
-                                  </Button>
-                                  {isAdminMode && (toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') && (
-                                    <div className="flex gap-1">
-                                      <Button
-                                        size="sm"
-                                        variant="ghost"
-                                        onClick={() => startEditingTool(toolCategory.id, index, tool)}
-                                        className="flex items-center gap-1 text-xs h-7 flex-1"
-                                      >
-                                        <Edit className="h-3 w-3" />
-                                        Edit
-                                      </Button>
-                                      <Button
-                                        size="sm"
-                                        variant="ghost"
-                                        onClick={() => deleteTool(toolCategory.id, index)}
-                                        className="flex items-center gap-1 text-xs h-7 text-destructive hover:text-destructive flex-1"
-                                      >
-                                        <Trash2 className="h-3 w-3" />
-                                        Delete
-                                      </Button>
-                                    </div>
-                                  )}
-                                </div>
-                              )}
-                            </div>
-                          )}
-
-                          {tool.scripts && (
-                            <div className="space-y-2">
-                              {tool.scripts.map((script, scriptIndex) => (
-                                <div key={scriptIndex} className="bg-accent/30 p-2 rounded-md">
-                                  <p className="text-xs">{script}</p>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {tool.questions && (
-                            <div className="space-y-2">
-                              {tool.questions.map((question, questionIndex) => (
-                                <div key={questionIndex} className="flex items-start">
-                                  <span className="text-primary mr-1 mt-0.5 text-xs">Q:</span>
-                                  <p className="text-xs text-muted-foreground">{question}</p>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {tool.techniques && (
-                            <div className="space-y-2">
-                              {tool.techniques.map((technique, techIndex) => (
-                                <div key={techIndex} className="bg-success/10 p-2 rounded-md">
-                                  <p className="text-xs">{technique}</p>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {tool.action && (
-                            <div className="space-y-2">
-                              <div className="flex items-center gap-2">
-                                <Button 
-                                  variant="outline" 
-                                  size="sm"
-                                  onClick={() => toggleToolExpansion(toolCategory.id, index)}
-                                  className="flex items-center gap-1 text-xs h-8 flex-1"
-                                >
-                                  Access Tool
-                                  {expandedTools[`${toolCategory.id}-${index}`] ? 
-                                    <ChevronUp className="h-3 w-3" /> : 
-                                    <ChevronDown className="h-3 w-3" />
-                                  }
-                                </Button>
-                                {isAdminMode && (
-                                  <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    onClick={() => addNewSection(toolCategory.id, index)}
-                                    className="flex items-center gap-1 text-xs h-8"
-                                  >
-                                    <Plus className="h-3 w-3" />
-                                  </Button>
-                                )}
-                              </div>
-                              
-                              {expandedTools[`${toolCategory.id}-${index}`] && 'sections' in tool && tool.sections && (
-                                <div className="space-y-2 border-t pt-2">
-                                  {tool.sections.map((section, sectionIndex) => {
-                                    const sectionKey = `${toolCategory.id}-${index}-${sectionIndex}`;
-                                    const isEditing = editingSections[sectionKey];
-                                    const tempData = tempSectionData[sectionKey];
-                                    
-                                    return (
-                                      <div key={sectionIndex} className="bg-accent/20 p-2 rounded-md">
-                                        {isEditing ? (
-                                          <div className="space-y-2">
-                                            <Input
-                                              value={tempData?.title || section.title}
-                                              onChange={(e) => setTempSectionData(prev => ({
-                                                ...prev,
-                                                [sectionKey]: { ...tempData, title: e.target.value }
-                                              }))}
-                                              placeholder="Section title..."
-                                              className="text-xs"
-                                            />
-                                            <Textarea
-                                              value={tempData?.content || section.content}
-                                              onChange={(e) => setTempSectionData(prev => ({
-                                                ...prev,
-                                                [sectionKey]: { ...tempData, content: e.target.value }
-                                              }))}
-                                              placeholder="Section content..."
-                                              rows={2}
-                                              className="text-xs"
-                                            />
-                                            <Input
-                                              value={tempData?.url || section.url || ''}
-                                              onChange={(e) => setTempSectionData(prev => ({
-                                                ...prev,
-                                                [sectionKey]: { ...tempData, url: e.target.value }
-                                              }))}
-                                              placeholder="Optional URL"
-                                              type="url"
-                                              className="text-xs"
-                                            />
-                                            <div className="flex gap-1">
-                                              <Button
-                                                size="sm"
-                                                onClick={() => saveSection(toolCategory.id, index, sectionIndex)}
-                                                className="flex items-center gap-1 text-xs h-6"
-                                              >
-                                                <Save className="h-3 w-3" />
-                                                Save
-                                              </Button>
-                                              <Button
-                                                size="sm"
-                                                variant="outline"
-                                                onClick={() => cancelEditingSection(toolCategory.id, index, sectionIndex)}
-                                                className="flex items-center gap-1 text-xs h-6"
-                                              >
-                                                <X className="h-3 w-3" />
-                                                Cancel
-                                              </Button>
-                                            </div>
-                                          </div>
-                                        ) : (
-                                          <div>
-                                            <div className="flex justify-between items-start mb-1">
-                                              <h4 className="font-medium text-xs">{section.title}</h4>
-                                              {isAdminMode && (
-                                                <div className="flex gap-1">
-                                                  <Button
-                                                    size="sm"
-                                                    variant="ghost"
-                                                    onClick={() => startEditingSection(toolCategory.id, index, sectionIndex, section)}
-                                                    className="p-0.5 h-5 w-5"
-                                                  >
-                                                    <Edit className="h-3 w-3" />
-                                                  </Button>
-                                                  <Button
-                                                    size="sm"
-                                                    variant="ghost"
-                                                    onClick={() => deleteSection(toolCategory.id, index, sectionIndex)}
-                                                    className="p-0.5 h-5 w-5 text-destructive hover:text-destructive"
-                                                  >
-                                                    <Trash2 className="h-3 w-3" />
-                                                  </Button>
-                                                </div>
-                                              )}
-                                            </div>
-                                            <p className="text-xs text-muted-foreground mb-1">{section.content}</p>
-                                            {section.url && (
-                                              <Button
-                                                variant="link"
-                                                size="sm"
-                                                className="h-auto p-0 text-xs"
-                                                asChild
-                                              >
-                                                <a href={section.url} target="_blank" rel="noopener noreferrer">
-                                                  View Resource →
-                                                </a>
-                                              </Button>
-                                            )}
-                                          </div>
-                                        )}
-                                      </div>
-                                    );
-                                  })}
-                                </div>
-                              )}
-                            </div>
-                          )}
+                  {(toolCategory.id === 'generic-objections' || toolCategory.id === 'tactical-objections') ? (
+                    <div className="mb-6">
+                      <EditableLinks
+                        links={toolCategory.tools.filter(tool => tool.link).map(tool => ({
+                          name: tool.name,
+                          url: (tool as LinkTool).link,
+                          icon: '📄'
+                        }))}
+                        onSave={(newLinks) => handleUpdateLinks(toolCategory.id, newLinks)}
+                      />
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                      {toolCategory.tools.map((tool, index) => (
+                        <div key={index} className="border border-border/50 rounded-lg p-4 hover:bg-accent/20 transition-colors">
+                          <h3 className="font-medium text-sm">{tool.name}</h3>
+                          <p className="text-xs text-muted-foreground">{tool.description}</p>
+                          <Button variant="link" size="sm" className="h-auto p-0 text-xs" asChild>
+                            <a href={(tool as LinkTool).link} target="_blank" rel="noopener noreferrer">
+                              Access Tool
+                            </a>
+                          </Button>
                         </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </div>
           ))}
         </div>
 
-        {/* Flashcards Section */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6">🃏 Study Flashcards</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {flashcardSets.map((category, index) => (
-              <Card key={index} className="hover:shadow-card transition-all duration-300">
-                <CardHeader>
-                  <CardTitle className="text-lg">{category.category}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {category.sets.map((set, setIndex) => (
-                      <div key={setIndex} className="flex items-center justify-between p-3 bg-accent/30 rounded-md">
-                        <div>
-                          <p className="font-medium text-sm">{set.name}</p>
-                          <p className="text-xs text-muted-foreground">{set.cards} cards</p>
-                        </div>
-                        <Button 
-                          size="sm" 
-                          variant="outline"
-                          onClick={() => setStudyingFlashcard({
-                            setName: set.name,
-                            category: category.category,
-                            totalCards: set.cards
-                          })}
-                        >
-                          Study
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+        {/* Flashcard Study Interface */}
+        {studyingFlashcard && (
+          <FlashcardStudyInterface
+            setName={studyingFlashcard.setName}
+            category={studyingFlashcard.category}
+            totalCards={studyingFlashcard.totalCards}
+            onClose={() => setStudyingFlashcard(null)}
+          />
+        )}
 
-        {/* Training Modules */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6">🎓 Training Modules</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {editableTrainingModules.map((moduleGroup, index) => (
-              <Card key={index}>
-                <CardHeader>
-                  <div className="flex justify-between items-center">
-                    <CardTitle>{moduleGroup.title}</CardTitle>
-                    {isAdminMode && (
-                      <Button
-                        onClick={() => addNewTrainingModule(moduleGroup.title)}
-                        size="sm"
-                        variant="outline"
-                        className="flex items-center gap-2"
-                      >
-                        <Plus className="h-4 w-4" />
-                        Add Module
-                      </Button>
-                    )}
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {moduleGroup.modules.map((module, moduleIndex) => (
-                      <div key={moduleIndex} className="flex items-center justify-between p-3 border border-border/50 rounded-md">
-                        <div className="flex-1">
-                          <p className="font-medium text-sm">{module.name}</p>
-                          <div className="flex items-center gap-2 mt-1">
-                            <span className="text-xs text-muted-foreground">{module.duration}</span>
-                            <Badge 
-                              variant={module.status === 'available' ? 'secondary' : 'outline'}
-                              className="text-xs"
-                            >
-                              {module.status === 'available' ? 'Available' : 'Coming Soon'}
-                            </Badge>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center gap-2">
-                          {isAdminMode && (
-                            <Button
-                              onClick={() => deleteTrainingModule(moduleGroup.title, moduleIndex)}
-                              size="sm"
-                              variant="ghost"
-                              className="text-destructive hover:text-destructive p-1"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          )}
-                          
-                          <Button 
-                            size="sm" 
-                            variant={module.status === 'available' ? 'default' : 'outline'}
-                            disabled={module.status !== 'available'}
-                            onClick={() => {
-                              if (module.status === 'available') {
-                                setStudyingModule({
-                                  moduleName: module.name,
-                                  duration: module.duration,
-                                  category: moduleGroup.title
-                                });
-                              }
-                            }}
-                          >
-                            Start
-                          </Button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Quick Reference */}
-        <Card>
-          <CardHeader>
-            <CardTitle>📚 Quick Reference Guide</CardTitle>
-            <CardDescription>Essential information at your fingertips</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="comparison">
-                <AccordionTrigger>Product Comparison Cheat Sheet</AccordionTrigger>
-                <AccordionContent>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                      <thead>
-                        <tr className="border-b">
-                          <th className="text-left p-2">Product Type</th>
-                          <th className="text-left p-2">Best For</th>
-                          <th className="text-left p-2">Key Benefit</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr className="border-b">
-                          <td className="p-2">Investment-Linked</td>
-                          <td className="p-2">Growth seekers</td>
-                          <td className="p-2">Flexibility & upside potential</td>
-                        </tr>
-                        <tr className="border-b">
-                          <td className="p-2">Endowment</td>
-                          <td className="p-2">Conservative savers</td>
-                          <td className="p-2">Guaranteed returns</td>
-                        </tr>
-                        <tr className="border-b">
-                          <td className="p-2">Whole Life</td>
-                          <td className="p-2">Estate planning</td>
-                          <td className="p-2">Lifelong protection</td>
-                        </tr>
-                        <tr>
-                          <td className="p-2">Term</td>
-                          <td className="p-2">Young families</td>
-                          <td className="p-2">Maximum coverage, low cost</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="contact-info">
-                <AccordionTrigger>Emergency Contact Information</AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-2">
-                    <p><strong>Technical Support:</strong> 1800-248-8000</p>
-                    <p><strong>Underwriting Hotline:</strong> 6248-8888</p>
-                    <p><strong>Claims Department:</strong> 6248-8777</p>
-                    <p><strong>After Hours Emergency:</strong> 9000-1234</p>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </CardContent>
-        </Card>
+        {/* Training Module Interface */}
+        {studyingModule && (
+          <TrainingModuleInterface
+            moduleName={studyingModule.moduleName}
+            duration={studyingModule.duration}
+            category={studyingModule.category}
+            onClose={() => setStudyingModule(null)}
+          />
+        )}
       </div>
-
-      {/* Flashcard Study Interface */}
-      {studyingFlashcard && (
-        <FlashcardStudyInterface
-          setName={studyingFlashcard.setName}
-          category={studyingFlashcard.category}
-          totalCards={studyingFlashcard.totalCards}
-          onClose={() => setStudyingFlashcard(null)}
-        />
-      )}
-
-      {/* Training Module Interface */}
-      {studyingModule && (
-        <TrainingModuleInterface
-          moduleName={studyingModule.moduleName}
-          duration={studyingModule.duration}
-          category={studyingModule.category}
-          onClose={() => setStudyingModule(null)}
-        />
-      )}
     </div>
   );
 }
