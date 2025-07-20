@@ -159,6 +159,12 @@ export default function ProductDetail() {
         <ProtectedSection sectionId="product_ai">
           <ProductAIAssistant 
             customGptLink={product.custom_gpt_link}
+            productData={{
+              name: product.title,
+              category: product.category_id,
+              summary: product.description,
+              highlights: product.highlights
+            }}
             onUpdate={handleUpdate}
           />
         </ProtectedSection>
