@@ -1,3 +1,4 @@
+
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
@@ -168,104 +169,61 @@ async function updateAssistant(product: any, openAIApiKey: string) {
 }
 
 async function chatWithAssistant(product: any, messages: any[], openAIApiKey: string) {
-  if (!product.assistant_id) {
-    throw new Error('No assistant found for this product. Please create one first.');
-  }
+  console.log('Using fast Chat Completion API for product:', product.title);
 
-  console.log('Chatting with assistant:', product.assistant_id);
+  // Build specialized system prompt with product context
+  const systemPrompt = `You are a specialized AI assistant for the financial product "${product.title}".
 
-  // Create a thread
-  const threadResponse = await fetch('https://api.openai.com/v1/threads', {
+Product Details:
+- Name: ${product.title}
+- Description: ${product.description || 'Not provided'}
+- Category: ${product.category_id}
+- Key Highlights: ${product.highlights ? product.highlights.join(', ') : 'Not provided'}
+
+Your Role:
+You are an expert on this specific financial product. You should:
+1. Provide detailed information about features, benefits, and use cases
+2. Address common objections and concerns about this product
+3. Help financial advisors understand how to position this product
+4. Answer questions about product eligibility, requirements, and processes
+5. Provide practical sales tips and objection handling techniques
+
+Always be professional, accurate, and helpful. If asked about other products, acknowledge but redirect focus to this specific product. If you're unsure about specific details, recommend consulting official product documentation.
+
+${product.assistant_instructions ? `\nAdditional Instructions: ${product.assistant_instructions}` : ''}`;
+
+  // Use direct Chat Completion API for much faster responses
+  const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${openAIApiKey}`,
       'Content-Type': 'application/json',
-      'OpenAI-Beta': 'assistants=v2',
     },
     body: JSON.stringify({
-      messages: messages.map(msg => ({
-        role: msg.role,
-        content: msg.content
-      }))
+      model: 'gpt-4.1-2025-04-14',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        ...messages.map(msg => ({
+          role: msg.role,
+          content: msg.content
+        }))
+      ],
+      temperature: 0.7,
+      max_tokens: 1000,
     }),
   });
 
-  const threadData = await threadResponse.json();
+  const data = await response.json();
   
-  if (!threadResponse.ok) {
-    throw new Error(threadData.error?.message || 'Failed to create thread');
+  if (!response.ok) {
+    throw new Error(data.error?.message || 'OpenAI API error');
   }
 
-  console.log('Created thread:', threadData.id);
-
-  // Run the assistant
-  const runResponse = await fetch(`https://api.openai.com/v1/threads/${threadData.id}/runs`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${openAIApiKey}`,
-      'Content-Type': 'application/json',
-      'OpenAI-Beta': 'assistants=v2',
-    },
-    body: JSON.stringify({
-      assistant_id: product.assistant_id,
-    }),
-  });
-
-  const runData = await runResponse.json();
-  
-  if (!runResponse.ok) {
-    throw new Error(runData.error?.message || 'Failed to run assistant');
-  }
-
-  console.log('Started run:', runData.id);
-
-  // Poll for completion
-  let run = runData;
-  while (run.status === 'queued' || run.status === 'in_progress') {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const statusResponse = await fetch(`https://api.openai.com/v1/threads/${threadData.id}/runs/${run.id}`, {
-      headers: {
-        'Authorization': `Bearer ${openAIApiKey}`,
-        'OpenAI-Beta': 'assistants=v2',
-      },
-    });
-    
-    run = await statusResponse.json();
-    console.log('Run status:', run.status);
-  }
-
-  if (run.status !== 'completed') {
-    throw new Error(`Assistant run failed with status: ${run.status}`);
-  }
-
-  // Get the messages
-  const messagesResponse = await fetch(`https://api.openai.com/v1/threads/${threadData.id}/messages`, {
-    headers: {
-      'Authorization': `Bearer ${openAIApiKey}`,
-      'OpenAI-Beta': 'assistants=v2',
-    },
-  });
-
-  const messagesData = await messagesResponse.json();
-  
-  if (!messagesResponse.ok) {
-    throw new Error(messagesData.error?.message || 'Failed to get messages');
-  }
-
-  // Get the latest assistant message
-  const assistantMessages = messagesData.data.filter((msg: any) => msg.role === 'assistant');
-  if (assistantMessages.length === 0) {
-    throw new Error('No response from assistant');
-  }
-
-  const latestMessage = assistantMessages[0];
-  const messageContent = latestMessage.content[0]?.text?.value || 'No response';
+  const assistantMessage = data.choices[0].message.content;
 
   return new Response(JSON.stringify({ 
-    message: messageContent,
-    threadId: threadData.id,
-    runId: run.id
+    message: assistantMessage,
+    usage: data.usage 
   }), {
     headers: { ...corsHeaders, 'Content-Type': 'application/json' },
   });

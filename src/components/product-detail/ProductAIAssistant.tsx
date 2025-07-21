@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -147,29 +148,23 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
     setIsLoading(true);
 
     try {
-      // Use assistant if available, fallback to generic chat
-      const endpoint = productData.assistant_id ? 'chat-with-assistant' : 'chat-with-gpt';
-      const requestBody = productData.assistant_id 
-        ? {
-            action: 'chat',
-            productId: productData.id,
-            messages: [...messages, userMessage].map(msg => ({
-              role: msg.role,
-              content: msg.content
-            }))
-          }
-        : {
-            messages: [...messages, userMessage].map(msg => ({
-              role: msg.role,
-              content: msg.content
-            })),
-            productInfo: productData,
-            customInstructions: "You are an AI assistant specialized in helping financial advisors with product information and objection handling."
-          };
+      console.log('🚀 Sending message to fast Chat API...');
+      const startTime = Date.now();
 
-      const { data, error } = await supabase.functions.invoke(endpoint, {
-        body: requestBody
+      // Always use the fast chat endpoint for better performance
+      const { data, error } = await supabase.functions.invoke('chat-with-assistant', {
+        body: {
+          action: 'chat',
+          productId: productData.id,
+          messages: [...messages, userMessage].map(msg => ({
+            role: msg.role,
+            content: msg.content
+          }))
+        }
       });
+
+      const responseTime = Date.now() - startTime;
+      console.log(`⚡ Response received in ${responseTime}ms`);
 
       if (error) throw error;
 
@@ -209,11 +204,7 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <span>🤖</span> 
-          {productData?.assistant_id ? (
-            <>Ask the AI ({productData.name} Expert)</>
-          ) : (
-            <>Ask the AI (Enhanced Context)</>
-          )}
+          Ask the AI ({productData?.name} Expert) ⚡
           {isAdminMode && !isEditing && !isChatOpen && (
             <Button 
               size="sm" 
@@ -226,11 +217,7 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
           )}
         </CardTitle>
         <CardDescription>
-          {productData?.assistant_id ? (
-            <>Chat with a specialized AI assistant trained specifically for {productData.name}</>
-          ) : (
-            <>Get instant answers with enhanced product context. Admins can create a specialized assistant.</>
-          )}
+          Fast AI responses powered by optimized Chat API - get instant answers about {productData?.name}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -256,7 +243,7 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
                 id="assistant-instructions"
                 value={editInstructions}
                 onChange={(e) => setEditInstructions(e.target.value)}
-                placeholder="Custom instructions for the AI assistant (will be used if no specialized assistant exists)"
+                placeholder="Custom instructions for the AI assistant"
                 className="mt-1 min-h-[100px]"
               />
               <p className="text-xs text-muted-foreground mt-1">
@@ -279,11 +266,7 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h4 className="font-medium">
-                {productData?.assistant_id ? (
-                  <>Chat with {productData.name} Expert</>
-                ) : (
-                  <>Chat with AI Assistant</>
-                )}
+                ⚡ Fast Chat with {productData?.name} Expert
               </h4>
               <div className="flex gap-2">
                 <Button
@@ -308,6 +291,7 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
                 <div className="text-center text-muted-foreground py-8">
                   <MessageCircle className="h-8 w-8 mx-auto mb-2 opacity-50" />
                   <p>Start a conversation about this product!</p>
+                  <p className="text-xs mt-1">⚡ Optimized for fast responses</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -359,45 +343,31 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
           </div>
         ) : (
           <div className="space-y-3">
-            {productData?.assistant_id ? (
+            <Button 
+              variant="hero" 
+              size="lg" 
+              onClick={() => setIsChatOpen(true)}
+              className="w-full"
+            >
+              <MessageCircle className="h-5 w-5 mr-2" />
+              ⚡ Fast Chat with {productData?.name} Expert
+            </Button>
+            
+            {isAdminMode && !productData?.assistant_id && (
               <Button 
-                variant="hero" 
+                variant="outline" 
                 size="lg" 
-                onClick={() => setIsChatOpen(true)}
+                onClick={createAssistant}
+                disabled={creatingAssistant}
                 className="w-full"
               >
-                <MessageCircle className="h-5 w-5 mr-2" />
-                💬 Chat with {productData.name} Expert
-              </Button>
-            ) : (
-              <>
-                <Button 
-                  variant="hero" 
-                  size="lg" 
-                  onClick={() => setIsChatOpen(true)}
-                  className="w-full"
-                >
-                  <MessageCircle className="h-5 w-5 mr-2" />
-                  💬 Chat with AI Assistant
-                </Button>
-                
-                {isAdminMode && (
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    onClick={createAssistant}
-                    disabled={creatingAssistant}
-                    className="w-full"
-                  >
-                    {creatingAssistant ? (
-                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
-                    ) : (
-                      <span className="mr-2">🚀</span>
-                    )}
-                    {creatingAssistant ? 'Creating...' : 'Create Specialized Assistant'}
-                  </Button>
+                {creatingAssistant ? (
+                  <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                ) : (
+                  <span className="mr-2">🚀</span>
                 )}
-              </>
+                {creatingAssistant ? 'Creating...' : 'Create Specialized Assistant'}
+              </Button>
             )}
             
             {customGptLink && (
