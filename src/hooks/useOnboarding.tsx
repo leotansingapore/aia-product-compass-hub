@@ -1,7 +1,6 @@
 
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { useAuth } from './useAuth';
-import { useLocation } from 'react-router-dom';
 
 export interface OnboardingStep {
   id: string;
@@ -143,13 +142,18 @@ const ADVANCED_ONBOARDING_STEPS: OnboardingStep[] = [
 export function OnboardingProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
   
-  // Safely use useLocation - will return null if not in Router context
-  let location;
-  try {
-    location = useLocation();
-  } catch {
-    location = { pathname: '/' }; // fallback when not in Router context
-  }
+  // Use a state to track location instead of directly calling useLocation
+  const [currentPath, setCurrentPath] = useState('/');
+  
+  // Try to get location safely
+  useEffect(() => {
+    try {
+      // We'll set this from inside a router context when available
+      setCurrentPath(window.location.pathname);
+    } catch {
+      setCurrentPath('/');
+    }
+  }, []);
   
   const [isOnboardingActive, setIsOnboardingActive] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -160,7 +164,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
 
   // Enhanced welcome logic with personalization
   useEffect(() => {
-    if (user && location.pathname === '/') {
+    if (user && currentPath === '/') {
       const hasSeenWelcome = localStorage.getItem(`welcome-seen-${user.id}`);
       const lastTourVersion = localStorage.getItem(`tour-version-${user.id}`);
       const currentTourVersion = '2.0'; // Increment when tour changes significantly
@@ -169,7 +173,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
         setShowWelcome(true);
       }
     }
-  }, [user, location.pathname]);
+  }, [user, currentPath]);
 
   // Load saved progress
   useEffect(() => {
