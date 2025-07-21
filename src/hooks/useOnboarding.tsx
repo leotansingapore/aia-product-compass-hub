@@ -142,7 +142,15 @@ const ADVANCED_ONBOARDING_STEPS: OnboardingStep[] = [
 
 export function OnboardingProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
-  const location = useLocation();
+  
+  // Safely use useLocation - will return null if not in Router context
+  let location;
+  try {
+    location = useLocation();
+  } catch {
+    location = { pathname: '/' }; // fallback when not in Router context
+  }
+  
   const [isOnboardingActive, setIsOnboardingActive] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [steps, setSteps] = useState<OnboardingStep[]>(BASIC_ONBOARDING_STEPS);
