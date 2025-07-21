@@ -36,8 +36,8 @@ const Auth = () => {
   const quickLogins = [
     {
       type: "Master Admin",
-      email: "admin@aialearning.com",
-      password: "admin123",
+      email: "admin@demo.com",
+      password: "demo123456",
       description: "Full system access & user management",
       icon: Crown,
       color: "text-yellow-500"
