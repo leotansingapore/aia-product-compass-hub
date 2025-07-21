@@ -6,8 +6,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Send, MessageCircle, Loader2, Sparkles, User, Bot, Maximize2, Minimize2 } from "lucide-react";
+import { Send, MessageCircle, Loader2, Sparkles, User, Bot, Maximize2, Minimize2, Square } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useStreamingChat } from "@/hooks/useStreamingChat";
 import ReactMarkdown from 'react-markdown';
 
 interface ChatMessage {
@@ -37,12 +38,54 @@ interface EnhancedAIChatProps {
 export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [threadId, setThreadId] = useState<string | null>(null);
+  const [streamingContent, setStreamingContent] = useState('');
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Streaming chat hook
+  const { 
+    sendStreamingMessage, 
+    stopStreaming, 
+    isStreaming 
+  } = useStreamingChat({
+    productId: productData?.id || '',
+    onMessage: (content: string, isComplete: boolean) => {
+      setStreamingContent(content);
+      if (isComplete) {
+        // Replace the streaming placeholder with the final message
+        setMessages(prev => {
+          const newMessages = [...prev];
+          const lastMessage = newMessages[newMessages.length - 1];
+          if (lastMessage && lastMessage.isStreaming) {
+            newMessages[newMessages.length - 1] = {
+              role: 'assistant',
+              content: content,
+              timestamp: new Date()
+            };
+          }
+          return newMessages;
+        });
+        setStreamingContent('');
+      }
+    },
+    onError: (error: string) => {
+      console.error('Streaming error:', error);
+      setMessages(prev => prev.slice(0, -1)); // Remove streaming placeholder
+      toast({
+        title: "Error",
+        description: error || "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    },
+    onComplete: (newThreadId: string) => {
+      if (newThreadId && !threadId) {
+        setThreadId(newThreadId);
+      }
+    }
+  });
 
   // Product-specific quick questions
   const quickQuestions: QuickQuestion[] = [
@@ -57,7 +100,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
   // Auto-scroll to bottom when new messages are added
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, streamingContent]);
 
   // Welcome message on first load
   useEffect(() => {
@@ -73,7 +116,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
 
   const sendMessage = async (messageContent?: string) => {
     const content = messageContent || currentMessage.trim();
-    if (!content || isLoading || !productData?.id) return;
+    if (!content || isStreaming || !productData?.id) return;
 
     // Check if assistant exists
     if (!productData?.assistant_id) {
@@ -101,48 +144,15 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
 
     setMessages(prev => [...prev, userMessage, streamingMessage]);
     setCurrentMessage('');
-    setIsLoading(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('chat-with-assistant', {
-        body: {
-          action: 'chat',
-          productId: productData.id,
-          threadId: threadId,
-          messages: [...messages, userMessage].map(msg => ({
-            role: msg.role,
-            content: msg.content
-          }))
-        }
-      });
-
-      if (error) throw error;
-
-      // Store thread ID for conversation continuity
-      if (data.threadId && !threadId) {
-        setThreadId(data.threadId);
+      const newThreadId = await sendStreamingMessage([...messages, userMessage], threadId);
+      if (newThreadId && !threadId) {
+        setThreadId(newThreadId);
       }
-
-      // Remove streaming placeholder and add final response
-      setMessages(prev => {
-        const newMessages = [...prev];
-        newMessages[newMessages.length - 1] = {
-          role: 'assistant',
-          content: data.message,
-          timestamp: new Date()
-        };
-        return newMessages;
-      });
     } catch (error) {
       console.error('Error sending message:', error);
       setMessages(prev => prev.slice(0, -1)); // Remove streaming placeholder
-      toast({
-        title: "Error",
-        description: error.message || "Failed to send message. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -159,7 +169,8 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
 
   const startNewChat = () => {
     setMessages([]);
-    setThreadId(null); // Reset thread for new conversation
+    setThreadId(null);
+    setStreamingContent('');
     // Re-add welcome message
     if (productData?.name) {
       const welcomeMessage: ChatMessage = {
@@ -194,6 +205,17 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
             </div>
           </div>
           <div className="flex gap-2">
+            {isStreaming && (
+              <Button
+                size="sm"
+                variant="destructive"
+                onClick={stopStreaming}
+                className="px-2"
+              >
+                <Square className="h-4 w-4" />
+                Stop
+              </Button>
+            )}
             <Button
               size="sm"
               variant="outline"
@@ -206,6 +228,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
               size="sm"
               variant="outline"
               onClick={startNewChat}
+              disabled={isStreaming}
             >
               New Chat
             </Button>
@@ -225,7 +248,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
         )}
 
         {/* Quick Questions */}
-        {messages.length <= 1 && productData?.assistant_id && (
+        {messages.length <= 1 && productData?.assistant_id && !isStreaming && (
           <div className="space-y-3 animate-fade-in">
             <div className="text-sm font-medium text-muted-foreground">💡 Quick Start Questions:</div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -235,7 +258,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => handleQuickQuestion(q.question)}
-                  disabled={isLoading}
+                  disabled={isStreaming}
                   className="text-left h-auto py-2 px-3 justify-start hover:bg-primary/5 transition-colors"
                 >
                   <div>
@@ -293,9 +316,34 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
                       </div>
                       
                       {message.isStreaming ? (
-                        <div className="flex items-center gap-2">
-                          <Loader2 className="h-4 w-4 animate-spin" />
-                          <span className="text-sm">Thinking...</span>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2">
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                            <span className="text-sm">Thinking...</span>
+                          </div>
+                          {streamingContent && (
+                            <div className="markdown-content prose prose-sm max-w-none">
+                              <ReactMarkdown
+                                components={{
+                                  h1: ({ children }) => <h1 className="text-lg font-bold mb-2 text-card-foreground">{children}</h1>,
+                                  h2: ({ children }) => <h2 className="text-base font-semibold mb-2 text-card-foreground">{children}</h2>,
+                                  h3: ({ children }) => <h3 className="text-sm font-semibold mb-1 text-card-foreground">{children}</h3>,
+                                  p: ({ children }) => <p className="mb-2 last:mb-0 text-card-foreground">{children}</p>,
+                                  ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1 text-card-foreground">{children}</ul>,
+                                  ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1 text-card-foreground">{children}</ol>,
+                                  li: ({ children }) => <li className="text-sm text-card-foreground">{children}</li>,
+                                  strong: ({ children }) => <strong className="font-semibold text-card-foreground">{children}</strong>,
+                                  em: ({ children }) => <em className="italic text-card-foreground">{children}</em>,
+                                  code: ({ children }) => <code className="bg-muted px-1 py-0.5 rounded text-xs font-mono text-card-foreground">{children}</code>,
+                                  pre: ({ children }) => <pre className="bg-muted p-2 rounded text-xs font-mono overflow-x-auto mb-2 text-card-foreground">{children}</pre>,
+                                  blockquote: ({ children }) => <blockquote className="border-l-2 border-border pl-2 italic mb-2 text-card-foreground">{children}</blockquote>,
+                                }}
+                              >
+                                {streamingContent}
+                              </ReactMarkdown>
+                              <span className="inline-block w-2 h-4 bg-primary animate-pulse ml-1"></span>
+                            </div>
+                          )}
                         </div>
                       ) : message.role === 'assistant' ? (
                         <div className="markdown-content prose prose-sm max-w-none">
@@ -343,15 +391,15 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
               onKeyPress={handleKeyPress}
               placeholder={productData?.assistant_id ? `Ask about ${productData?.name}...` : 'Create an assistant first to enable chat'}
               className="min-h-[60px] resize-none flex-1"
-              disabled={isLoading || !productData?.assistant_id}
+              disabled={isStreaming || !productData?.assistant_id}
             />
             <Button
               onClick={() => sendMessage()}
-              disabled={!currentMessage.trim() || isLoading || !productData?.assistant_id}
+              disabled={!currentMessage.trim() || isStreaming || !productData?.assistant_id}
               size="lg"
               className="px-6"
             >
-              {isLoading ? (
+              {isStreaming ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
                 <Send className="h-4 w-4" />
@@ -363,6 +411,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
             💡 Pro tip: Press <kbd className="px-1 py-0.5 bg-muted rounded text-xs">Enter</kbd> to send, 
             <kbd className="px-1 py-0.5 bg-muted rounded text-xs mx-1">Shift + Enter</kbd> for new line
             {threadId && <span className="ml-2">• Thread: {threadId.slice(-8)}</span>}
+            {isStreaming && <span className="ml-2 text-primary">• Streaming...</span>}
           </div>
         </div>
       </CardContent>
