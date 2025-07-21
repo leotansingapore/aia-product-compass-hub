@@ -19,10 +19,13 @@ interface ChatMessage {
 interface ProductAIAssistantProps {
   customGptLink?: string;
   productData?: {
+    id?: string;
     name?: string;
     category?: string;
     summary?: string;
     highlights?: string[];
+    assistant_id?: string;
+    assistant_instructions?: string;
   };
   onUpdate: (field: string, value: any) => Promise<void>;
 }
@@ -30,11 +33,13 @@ interface ProductAIAssistantProps {
 export function ProductAIAssistant({ customGptLink, productData, onUpdate }: ProductAIAssistantProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editLink, setEditLink] = useState(customGptLink || '');
+  const [editInstructions, setEditInstructions] = useState(productData?.assistant_instructions || '');
   const [saving, setSaving] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [creatingAssistant, setCreatingAssistant] = useState(false);
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -51,24 +56,26 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
 
   const handleSave = async () => {
     setSaving(true);
-    console.log('🤖 ProductAIAssistant saving link:', editLink);
+    console.log('🤖 ProductAIAssistant saving data');
     
     try {
       await onUpdate('custom_gpt_link', editLink);
+      await onUpdate('assistant_instructions', editInstructions);
       setIsEditing(false);
       console.log('✅ ProductAIAssistant save successful');
       toast({
         title: "Saved",
-        description: "Custom GPT link updated successfully",
+        description: "AI assistant settings updated successfully",
       });
     } catch (error) {
       console.error('❌ ProductAIAssistant save failed:', error);
       toast({
         title: "Error",
-        description: "Failed to save custom GPT link",
+        description: "Failed to save AI assistant settings",
         variant: "destructive",
       });
       setEditLink(customGptLink || '');
+      setEditInstructions(productData?.assistant_instructions || '');
     } finally {
       setSaving(false);
     }
@@ -76,6 +83,7 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
 
   const handleCancel = () => {
     setEditLink(customGptLink || '');
+    setEditInstructions(productData?.assistant_instructions || '');
     setIsEditing(false);
   };
 
@@ -85,8 +93,48 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
     }
   };
 
+  const createAssistant = async () => {
+    if (!productData?.id) {
+      toast({
+        title: "Error",
+        description: "Product ID is required to create assistant",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setCreatingAssistant(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('chat-with-assistant', {
+        body: {
+          action: 'create_assistant',
+          productId: productData.id
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Success",
+        description: "Product-specific assistant created successfully!",
+      });
+
+      // Refresh the page to show the new assistant
+      window.location.reload();
+    } catch (error) {
+      console.error('Error creating assistant:', error);
+      toast({
+        title: "Error",
+        description: "Failed to create assistant. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setCreatingAssistant(false);
+    }
+  };
+
   const sendMessage = async () => {
-    if (!currentMessage.trim() || isLoading) return;
+    if (!currentMessage.trim() || isLoading || !productData?.id) return;
 
     const userMessage: ChatMessage = {
       role: 'user',
@@ -99,15 +147,28 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
     setIsLoading(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('chat-with-gpt', {
-        body: {
-          messages: [...messages, userMessage].map(msg => ({
-            role: msg.role,
-            content: msg.content
-          })),
-          productInfo: productData,
-          customInstructions: "You are an AI assistant specialized in helping financial advisors with product information and objection handling."
-        }
+      // Use assistant if available, fallback to generic chat
+      const endpoint = productData.assistant_id ? 'chat-with-assistant' : 'chat-with-gpt';
+      const requestBody = productData.assistant_id 
+        ? {
+            action: 'chat',
+            productId: productData.id,
+            messages: [...messages, userMessage].map(msg => ({
+              role: msg.role,
+              content: msg.content
+            }))
+          }
+        : {
+            messages: [...messages, userMessage].map(msg => ({
+              role: msg.role,
+              content: msg.content
+            })),
+            productInfo: productData,
+            customInstructions: "You are an AI assistant specialized in helping financial advisors with product information and objection handling."
+          };
+
+      const { data, error } = await supabase.functions.invoke(endpoint, {
+        body: requestBody
       });
 
       if (error) throw error;
@@ -147,7 +208,12 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
     <Card className="border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <span>🤖</span> Ask the AI (Custom GPT)
+          <span>🤖</span> 
+          {productData?.assistant_id ? (
+            <>Ask the AI ({productData.name} Expert)</>
+          ) : (
+            <>Ask the AI (Enhanced Context)</>
+          )}
           {isAdminMode && !isEditing && !isChatOpen && (
             <Button 
               size="sm" 
@@ -160,7 +226,11 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
           )}
         </CardTitle>
         <CardDescription>
-          Get instant answers about this product's features, benefits, and objection handling
+          {productData?.assistant_id ? (
+            <>Chat with a specialized AI assistant trained specifically for {productData.name}</>
+          ) : (
+            <>Get instant answers with enhanced product context. Admins can create a specialized assistant.</>
+          )}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -179,6 +249,21 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
                 Enter the full URL to your custom GPT (for external link option)
               </p>
             </div>
+            
+            <div>
+              <Label htmlFor="assistant-instructions">Assistant Instructions (Optional)</Label>
+              <Textarea
+                id="assistant-instructions"
+                value={editInstructions}
+                onChange={(e) => setEditInstructions(e.target.value)}
+                placeholder="Custom instructions for the AI assistant (will be used if no specialized assistant exists)"
+                className="mt-1 min-h-[100px]"
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                These instructions will customize how the AI responds for this product
+              </p>
+            </div>
+
             <div className="flex gap-2">
               <Button onClick={handleSave} disabled={saving} size="sm">
                 <Check className="h-4 w-4 mr-1" />
@@ -193,7 +278,13 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
         ) : isChatOpen ? (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h4 className="font-medium">Chat with AI Assistant</h4>
+              <h4 className="font-medium">
+                {productData?.assistant_id ? (
+                  <>Chat with {productData.name} Expert</>
+                ) : (
+                  <>Chat with AI Assistant</>
+                )}
+              </h4>
               <div className="flex gap-2">
                 <Button
                   size="sm"
@@ -268,15 +359,46 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
           </div>
         ) : (
           <div className="space-y-3">
-            <Button 
-              variant="hero" 
-              size="lg" 
-              onClick={() => setIsChatOpen(true)}
-              className="w-full"
-            >
-              <MessageCircle className="h-5 w-5 mr-2" />
-              💬 Chat with AI Assistant
-            </Button>
+            {productData?.assistant_id ? (
+              <Button 
+                variant="hero" 
+                size="lg" 
+                onClick={() => setIsChatOpen(true)}
+                className="w-full"
+              >
+                <MessageCircle className="h-5 w-5 mr-2" />
+                💬 Chat with {productData.name} Expert
+              </Button>
+            ) : (
+              <>
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  onClick={() => setIsChatOpen(true)}
+                  className="w-full"
+                >
+                  <MessageCircle className="h-5 w-5 mr-2" />
+                  💬 Chat with AI Assistant
+                </Button>
+                
+                {isAdminMode && (
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    onClick={createAssistant}
+                    disabled={creatingAssistant}
+                    className="w-full"
+                  >
+                    {creatingAssistant ? (
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                    ) : (
+                      <span className="mr-2">🚀</span>
+                    )}
+                    {creatingAssistant ? 'Creating...' : 'Create Specialized Assistant'}
+                  </Button>
+                )}
+              </>
+            )}
             
             {customGptLink && (
               <Button 

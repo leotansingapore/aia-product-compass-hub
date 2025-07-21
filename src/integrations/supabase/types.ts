@@ -402,6 +402,8 @@ export type Database = {
       }
       products: {
         Row: {
+          assistant_id: string | null
+          assistant_instructions: string | null
           category_id: string
           created_at: string
           custom_gpt_link: string | null
@@ -415,6 +417,8 @@ export type Database = {
           useful_links: Json | null
         }
         Insert: {
+          assistant_id?: string | null
+          assistant_instructions?: string | null
           category_id: string
           created_at?: string
           custom_gpt_link?: string | null
@@ -428,6 +432,8 @@ export type Database = {
           useful_links?: Json | null
         }
         Update: {
+          assistant_id?: string | null
+          assistant_instructions?: string | null
           category_id?: string
           created_at?: string
           custom_gpt_link?: string | null

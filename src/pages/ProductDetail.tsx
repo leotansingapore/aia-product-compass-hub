@@ -160,10 +160,13 @@ export default function ProductDetail() {
           <ProductAIAssistant 
             customGptLink={product.custom_gpt_link}
             productData={{
+              id: product.id,
               name: product.title,
               category: product.category_id,
               summary: product.description,
-              highlights: product.highlights
+              highlights: product.highlights,
+              assistant_id: product.assistant_id,
+              assistant_instructions: product.assistant_instructions
             }}
             onUpdate={handleUpdate}
           />
