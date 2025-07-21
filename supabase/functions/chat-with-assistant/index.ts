@@ -203,7 +203,7 @@ async function streamChatWithAssistant(product: any, messages: any[], openAIApiK
 
   // Create a readable stream for SSE
   const stream = new ReadableStream({
-    start(controller) {
+    async start(controller) {
       // Send initial metadata
       controller.enqueue(`data: ${JSON.stringify({ 
         type: 'metadata', 
@@ -214,26 +214,28 @@ async function streamChatWithAssistant(product: any, messages: any[], openAIApiK
       const words = responseData.message.split(' ');
       let currentText = '';
       
-      words.forEach((word, index) => {
-        setTimeout(() => {
-          currentText += (index > 0 ? ' ' : '') + word;
-          
-          controller.enqueue(`data: ${JSON.stringify({ 
-            type: 'content', 
-            content: currentText,
-            isComplete: index === words.length - 1
-          })}\n\n`);
-          
-          if (index === words.length - 1) {
-            controller.enqueue(`data: ${JSON.stringify({ 
-              type: 'done',
-              threadId: responseData.threadId,
-              usage: responseData.usage
-            })}\n\n`);
-            controller.close();
-          }
-        }, index * 50); // 50ms delay between words for smooth streaming
-      });
+      for (let index = 0; index < words.length; index++) {
+        currentText += (index > 0 ? ' ' : '') + words[index];
+        
+        controller.enqueue(`data: ${JSON.stringify({ 
+          type: 'content', 
+          content: currentText,
+          isComplete: index === words.length - 1
+        })}\n\n`);
+        
+        // Add a small delay between words for smooth streaming effect
+        if (index < words.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, 50));
+        }
+      }
+      
+      controller.enqueue(`data: ${JSON.stringify({ 
+        type: 'done',
+        threadId: responseData.threadId,
+        usage: responseData.usage
+      })}\n\n`);
+      
+      controller.close();
     }
   });
 
