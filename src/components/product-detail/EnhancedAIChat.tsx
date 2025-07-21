@@ -39,6 +39,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
   const [currentMessage, setCurrentMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [threadId, setThreadId] = useState<string | null>(null);
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -74,6 +75,16 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
     const content = messageContent || currentMessage.trim();
     if (!content || isLoading || !productData?.id) return;
 
+    // Check if assistant exists
+    if (!productData?.assistant_id) {
+      toast({
+        title: "Assistant Not Found",
+        description: "Please create a specialized assistant for this product first.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const userMessage: ChatMessage = {
       role: 'user',
       content,
@@ -97,6 +108,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
         body: {
           action: 'chat',
           productId: productData.id,
+          threadId: threadId,
           messages: [...messages, userMessage].map(msg => ({
             role: msg.role,
             content: msg.content
@@ -105,6 +117,11 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
       });
 
       if (error) throw error;
+
+      // Store thread ID for conversation continuity
+      if (data.threadId && !threadId) {
+        setThreadId(data.threadId);
+      }
 
       // Remove streaming placeholder and add final response
       setMessages(prev => {
@@ -121,7 +138,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
       setMessages(prev => prev.slice(0, -1)); // Remove streaming placeholder
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: error.message || "Failed to send message. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -142,6 +159,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
 
   const startNewChat = () => {
     setMessages([]);
+    setThreadId(null); // Reset thread for new conversation
     // Re-add welcome message
     if (productData?.name) {
       const welcomeMessage: ChatMessage = {
@@ -165,10 +183,13 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
             </div>
             <div>
               <CardTitle className="flex items-center gap-2 text-lg">
-                🤖 {productData?.name} Expert ⚡
+                🤖 {productData?.name} Expert Assistant ⚡
               </CardTitle>
               <CardDescription className="text-sm">
-                Powered by advanced AI • Fast responses • Expert knowledge
+                {productData?.assistant_id ? 
+                  `Powered by specialized AI • Assistant ID: ${productData.assistant_id.slice(-8)}` : 
+                  'No assistant configured - create one to get started'
+                }
               </CardDescription>
             </div>
           </div>
@@ -193,8 +214,18 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
       </CardHeader>
 
       <CardContent className="space-y-4">
+        {/* Assistant Status Warning */}
+        {!productData?.assistant_id && (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+            <p className="text-yellow-800 font-medium">⚠️ No Specialized Assistant Found</p>
+            <p className="text-yellow-700 text-sm mt-1">
+              Create a specialized assistant for this product to enable AI chat functionality.
+            </p>
+          </div>
+        )}
+
         {/* Quick Questions */}
-        {messages.length <= 1 && (
+        {messages.length <= 1 && productData?.assistant_id && (
           <div className="space-y-3 animate-fade-in">
             <div className="text-sm font-medium text-muted-foreground">💡 Quick Start Questions:</div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -310,13 +341,13 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
               value={currentMessage}
               onChange={(e) => setCurrentMessage(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder={`Ask about ${productData?.name}...`}
+              placeholder={productData?.assistant_id ? `Ask about ${productData?.name}...` : 'Create an assistant first to enable chat'}
               className="min-h-[60px] resize-none flex-1"
-              disabled={isLoading}
+              disabled={isLoading || !productData?.assistant_id}
             />
             <Button
               onClick={() => sendMessage()}
-              disabled={!currentMessage.trim() || isLoading}
+              disabled={!currentMessage.trim() || isLoading || !productData?.assistant_id}
               size="lg"
               className="px-6"
             >
@@ -331,6 +362,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
           <div className="text-xs text-muted-foreground text-center">
             💡 Pro tip: Press <kbd className="px-1 py-0.5 bg-muted rounded text-xs">Enter</kbd> to send, 
             <kbd className="px-1 py-0.5 bg-muted rounded text-xs mx-1">Shift + Enter</kbd> for new line
+            {threadId && <span className="ml-2">• Thread: {threadId.slice(-8)}</span>}
           </div>
         </div>
       </CardContent>

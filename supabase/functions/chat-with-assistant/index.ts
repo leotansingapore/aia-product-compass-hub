@@ -1,3 +1,4 @@
+
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
@@ -14,7 +15,7 @@ serve(async (req) => {
   }
 
   try {
-    const { messages, productId, action } = await req.json();
+    const { messages, productId, action, threadId } = await req.json();
     
     const openAIApiKey = Deno.env.get('OPENAI_API_KEY');
     if (!openAIApiKey) {
@@ -43,7 +44,7 @@ serve(async (req) => {
     if (action === 'create_assistant') {
       return await createAssistant(product, openAIApiKey, supabase);
     } else if (action === 'chat') {
-      return await chatWithAssistant(product, messages, openAIApiKey);
+      return await chatWithAssistant(product, messages, openAIApiKey, threadId);
     } else if (action === 'update_assistant') {
       return await updateAssistant(product, openAIApiKey);
     }
@@ -81,6 +82,18 @@ You are an expert on this specific financial product. You should:
 4. Answer questions about product eligibility, requirements, and processes
 5. Provide practical sales tips and objection handling techniques
 
+FORMATTING INSTRUCTIONS:
+- Always format your responses using proper markdown for better readability
+- Use **bold text** for important points and product names
+- Use *italic text* for emphasis
+- Use bullet points (-) for lists of features, benefits, or tips
+- Use numbered lists (1.) for step-by-step processes
+- Use ## for main section headings when appropriate
+- Use ### for subsection headings
+- Use > for important quotes or key takeaways
+- Use \`code\` formatting for technical terms, premium amounts, or specific product codes
+- Keep paragraphs concise and well-structured
+
 Always be professional, accurate, and helpful. If asked about other products, acknowledge but redirect focus to this specific product. If you're unsure about specific details, recommend consulting official product documentation.`;
 
   // Create assistant via OpenAI API
@@ -92,7 +105,7 @@ Always be professional, accurate, and helpful. If asked about other products, ac
       'OpenAI-Beta': 'assistants=v2',
     },
     body: JSON.stringify({
-      model: 'gpt-4.1-2025-04-14',
+      model: 'gpt-4o-mini',
       name: `${product.title} Expert Assistant`,
       instructions: instructions,
       description: `Specialized assistant for the financial product: ${product.title}`,
@@ -167,74 +180,141 @@ async function updateAssistant(product: any, openAIApiKey: string) {
   });
 }
 
-async function chatWithAssistant(product: any, messages: any[], openAIApiKey: string) {
-  console.log('Using fast Chat Completion API for product:', product.title);
+async function chatWithAssistant(product: any, messages: any[], openAIApiKey: string, threadId?: string) {
+  if (!product.assistant_id) {
+    throw new Error('No assistant found for this product. Please create an assistant first.');
+  }
 
-  // Build specialized system prompt with product context and formatting instructions
-  const systemPrompt = `You are a specialized AI assistant for the financial product "${product.title}".
+  console.log('Using OpenAI Assistant API for product:', product.title);
+  console.log('Assistant ID:', product.assistant_id);
 
-Product Details:
-- Name: ${product.title}
-- Description: ${product.description || 'Not provided'}
-- Category: ${product.category_id}
-- Key Highlights: ${product.highlights ? product.highlights.join(', ') : 'Not provided'}
+  let currentThreadId = threadId;
 
-Your Role:
-You are an expert on this specific financial product. You should:
-1. Provide detailed information about features, benefits, and use cases
-2. Address common objections and concerns about this product
-3. Help financial advisors understand how to position this product
-4. Answer questions about product eligibility, requirements, and processes
-5. Provide practical sales tips and objection handling techniques
+  // Create a new thread if none provided
+  if (!currentThreadId) {
+    console.log('Creating new thread...');
+    const threadResponse = await fetch('https://api.openai.com/v1/threads', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${openAIApiKey}`,
+        'Content-Type': 'application/json',
+        'OpenAI-Beta': 'assistants=v2',
+      },
+      body: JSON.stringify({}),
+    });
 
-FORMATTING INSTRUCTIONS:
-- Always format your responses using proper markdown for better readability
-- Use **bold text** for important points and product names
-- Use *italic text* for emphasis
-- Use bullet points (-) for lists of features, benefits, or tips
-- Use numbered lists (1.) for step-by-step processes
-- Use ## for main section headings when appropriate
-- Use ### for subsection headings
-- Use > for important quotes or key takeaways
-- Use \`code\` formatting for technical terms, premium amounts, or specific product codes
-- Keep paragraphs concise and well-structured
+    const threadData = await threadResponse.json();
+    if (!threadResponse.ok) {
+      throw new Error(threadData.error?.message || 'Failed to create thread');
+    }
+    
+    currentThreadId = threadData.id;
+    console.log('Created thread:', currentThreadId);
+  }
 
-Always be professional, accurate, and helpful. If asked about other products, acknowledge but redirect focus to this specific product. If you're unsure about specific details, recommend consulting official product documentation.
+  // Get the latest user message
+  const latestUserMessage = messages[messages.length - 1];
+  if (!latestUserMessage || latestUserMessage.role !== 'user') {
+    throw new Error('No user message found');
+  }
 
-${product.assistant_instructions ? `\nAdditional Instructions: ${product.assistant_instructions}` : ''}`;
-
-  // Use direct Chat Completion API for much faster responses
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
+  // Add the user message to the thread
+  console.log('Adding message to thread...');
+  const messageResponse = await fetch(`https://api.openai.com/v1/threads/${currentThreadId}/messages`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${openAIApiKey}`,
       'Content-Type': 'application/json',
+      'OpenAI-Beta': 'assistants=v2',
     },
     body: JSON.stringify({
-      model: 'gpt-4.1-2025-04-14',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        ...messages.map(msg => ({
-          role: msg.role,
-          content: msg.content
-        }))
-      ],
-      temperature: 0.7,
-      max_tokens: 1000,
+      role: 'user',
+      content: latestUserMessage.content,
     }),
   });
 
-  const data = await response.json();
-  
-  if (!response.ok) {
-    throw new Error(data.error?.message || 'OpenAI API error');
+  const messageData = await messageResponse.json();
+  if (!messageResponse.ok) {
+    throw new Error(messageData.error?.message || 'Failed to add message to thread');
   }
 
-  const assistantMessage = data.choices[0].message.content;
+  // Create a run
+  console.log('Creating run...');
+  const runResponse = await fetch(`https://api.openai.com/v1/threads/${currentThreadId}/runs`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${openAIApiKey}`,
+      'Content-Type': 'application/json',
+      'OpenAI-Beta': 'assistants=v2',
+    },
+    body: JSON.stringify({
+      assistant_id: product.assistant_id,
+    }),
+  });
+
+  const runData = await runResponse.json();
+  if (!runResponse.ok) {
+    throw new Error(runData.error?.message || 'Failed to create run');
+  }
+
+  const runId = runData.id;
+  console.log('Created run:', runId);
+
+  // Poll for completion
+  let run = runData;
+  const maxAttempts = 30; // 30 seconds timeout
+  let attempts = 0;
+
+  while (run.status === 'queued' || run.status === 'in_progress') {
+    if (attempts >= maxAttempts) {
+      throw new Error('Assistant response timed out');
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
+    attempts++;
+
+    const statusResponse = await fetch(`https://api.openai.com/v1/threads/${currentThreadId}/runs/${runId}`, {
+      headers: {
+        'Authorization': `Bearer ${openAIApiKey}`,
+        'OpenAI-Beta': 'assistants=v2',
+      },
+    });
+
+    run = await statusResponse.json();
+    console.log('Run status:', run.status);
+  }
+
+  if (run.status !== 'completed') {
+    throw new Error(`Assistant run failed with status: ${run.status}`);
+  }
+
+  // Get the assistant's response
+  console.log('Retrieving messages...');
+  const messagesResponse = await fetch(`https://api.openai.com/v1/threads/${currentThreadId}/messages`, {
+    headers: {
+      'Authorization': `Bearer ${openAIApiKey}`,
+      'OpenAI-Beta': 'assistants=v2',
+    },
+  });
+
+  const messagesData = await messagesResponse.json();
+  if (!messagesResponse.ok) {
+    throw new Error('Failed to retrieve messages');
+  }
+
+  // Get the latest assistant message
+  const assistantMessages = messagesData.data.filter((msg: any) => msg.role === 'assistant');
+  if (assistantMessages.length === 0) {
+    throw new Error('No assistant response found');
+  }
+
+  const latestAssistantMessage = assistantMessages[0];
+  const messageContent = latestAssistantMessage.content[0]?.text?.value || 'No response available';
 
   return new Response(JSON.stringify({ 
-    message: assistantMessage,
-    usage: data.usage 
+    message: messageContent,
+    threadId: currentThreadId,
+    usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 } // Placeholder
   }), {
     headers: { ...corsHeaders, 'Content-Type': 'application/json' },
   });
