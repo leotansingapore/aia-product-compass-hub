@@ -8,6 +8,7 @@ import { useState } from "react";
 import type { UsefulLink } from "@/hooks/useProducts";
 
 export default function CMFASExams() {
+  console.log('CMFASExams component loaded - no UsefulLinksSection here');
   const navigate = useNavigate();
   
   // State for editable useful links
