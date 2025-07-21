@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Send, MessageCircle, Loader2, Sparkles, User, Bot, Maximize2, Minimize2 } from "lucide-react";
+import { Send, MessageCircle, Loader2, Sparkles, User, Bot, Maximize2, Minimize2, ArrowDown, Bell } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from 'react-markdown';
 
@@ -40,9 +40,12 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [threadId, setThreadId] = useState<string | null>(null);
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  const [hasNewMessage, setHasNewMessage] = useState(false);
+  const [userScrolledUp, setUserScrolledUp] = useState(false);
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollViewportRef = useRef<HTMLDivElement>(null);
 
   // Product-specific quick questions
   const quickQuestions: QuickQuestion[] = [
@@ -54,10 +57,68 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
     { question: `What are the premium payment options for ${productData?.name}?`, category: "Pricing" }
   ];
 
-  // Auto-scroll to bottom when new messages are added
+  // Smart scroll detection - check if user is near bottom
+  const isNearBottom = () => {
+    const viewport = scrollViewportRef.current;
+    if (!viewport) return true;
+    
+    const threshold = 100; // pixels from bottom
+    const isAtBottom = viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight <= threshold;
+    return isAtBottom;
+  };
+
+  // Scroll to bottom with smooth animation
+  const scrollToBottom = (smooth = true) => {
+    const viewport = scrollViewportRef.current;
+    if (!viewport) return;
+    
+    viewport.scrollTo({
+      top: viewport.scrollHeight,
+      behavior: smooth ? 'smooth' : 'auto'
+    });
+    setShowScrollButton(false);
+    setHasNewMessage(false);
+    setUserScrolledUp(false);
+  };
+
+  // Handle scroll events to detect user scroll behavior
+  const handleScroll = () => {
+    const viewport = scrollViewportRef.current;
+    if (!viewport) return;
+
+    const isAtBottom = isNearBottom();
+    const isUserScrolling = !isAtBottom;
+
+    setUserScrolledUp(isUserScrolling);
+    setShowScrollButton(isUserScrolling && messages.length > 0);
+    
+    if (isAtBottom) {
+      setHasNewMessage(false);
+    }
+  };
+
+  // Smart auto-scroll logic
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    if (messages.length === 0) return;
+
+    const lastMessage = messages[messages.length - 1];
+    const isUserMessage = lastMessage.role === 'user';
+    const isAtBottom = isNearBottom();
+
+    // Auto-scroll conditions:
+    // 1. User just sent a message (always scroll)
+    // 2. User is already at bottom (continue following)
+    // 3. First message (welcome)
+    const shouldAutoScroll = isUserMessage || isAtBottom || messages.length === 1;
+
+    if (shouldAutoScroll) {
+      // Small delay to ensure DOM is updated
+      setTimeout(() => scrollToBottom(true), 50);
+    } else {
+      // User is scrolled up and new message arrived
+      setHasNewMessage(true);
+    }
+  }, [messages.length]);
 
   // Welcome message on first load
   useEffect(() => {
@@ -159,7 +220,11 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
 
   const startNewChat = () => {
     setMessages([]);
-    setThreadId(null); // Reset thread for new conversation
+    setThreadId(null);
+    setHasNewMessage(false);
+    setUserScrolledUp(false);
+    setShowScrollButton(false);
+    
     // Re-add welcome message
     if (productData?.name) {
       const welcomeMessage: ChatMessage = {
@@ -248,91 +313,125 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
           </div>
         )}
 
-        {/* Chat Area */}
-        <ScrollArea 
-          className={`border rounded-lg bg-background/50 ${
-            isFullscreen ? 'h-[calc(100vh-16rem)]' : 'h-96'
-          }`} 
-          ref={scrollAreaRef}
-        >
-          <div className="p-4 space-y-4">
-            {messages.length === 0 ? (
-              <div className="text-center text-muted-foreground py-12 animate-fade-in">
-                <MessageCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                <p className="text-lg font-medium">Ready to help with {productData?.name}!</p>
-                <p className="text-sm mt-2">Ask a question or use the quick start options above</p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {messages.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
-                  >
+        {/* Chat Area with Enhanced Scroll Controls */}
+        <div className="relative">
+          <ScrollArea 
+            className={`border rounded-lg bg-background/50 ${
+              isFullscreen ? 'h-[calc(100vh-16rem)]' : 'h-96'
+            }`} 
+            ref={scrollAreaRef}
+          >
+            <div 
+              className="p-4 space-y-4"
+              ref={scrollViewportRef}
+              onScroll={handleScroll}
+            >
+              {messages.length === 0 ? (
+                <div className="text-center text-muted-foreground py-12 animate-fade-in">
+                  <MessageCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                  <p className="text-lg font-medium">Ready to help with {productData?.name}!</p>
+                  <p className="text-sm mt-2">Ask a question or use the quick start options above</p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {messages.map((message, index) => (
                     <div
-                      className={`max-w-[85%] rounded-2xl px-4 py-3 shadow-sm ${
-                        message.role === 'user'
-                          ? 'bg-primary text-primary-foreground ml-4'
-                          : 'bg-card text-card-foreground border mr-4'
-                      }`}
+                      key={index}
+                      className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
                     >
-                      <div className="flex items-start gap-2 mb-2">
-                        <div className={`p-1 rounded-full ${
-                          message.role === 'user' 
-                            ? 'bg-primary-foreground/20' 
-                            : 'bg-muted'
-                        }`}>
-                          {message.role === 'user' ? 
-                            <User className="h-3 w-3" /> : 
-                            <Bot className="h-3 w-3" />
-                          }
+                      <div
+                        className={`max-w-[85%] rounded-2xl px-4 py-3 shadow-sm ${
+                          message.role === 'user'
+                            ? 'bg-primary text-primary-foreground ml-4'
+                            : 'bg-card text-card-foreground border mr-4'
+                        }`}
+                      >
+                        <div className="flex items-start gap-2 mb-2">
+                          <div className={`p-1 rounded-full ${
+                            message.role === 'user' 
+                              ? 'bg-primary-foreground/20' 
+                              : 'bg-muted'
+                          }`}>
+                            {message.role === 'user' ? 
+                              <User className="h-3 w-3" /> : 
+                              <Bot className="h-3 w-3" />
+                            }
+                          </div>
+                          <div className="text-xs opacity-75">
+                            {message.role === 'user' ? 'You' : 'AI Expert'}
+                          </div>
                         </div>
-                        <div className="text-xs opacity-75">
-                          {message.role === 'user' ? 'You' : 'AI Expert'}
+                        
+                        {message.isStreaming ? (
+                          <div className="flex items-center gap-2">
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                            <span className="text-sm">Thinking...</span>
+                          </div>
+                        ) : message.role === 'assistant' ? (
+                          <div className="markdown-content prose prose-sm max-w-none">
+                            <ReactMarkdown
+                              components={{
+                                h1: ({ children }) => <h1 className="text-lg font-bold mb-2 text-card-foreground">{children}</h1>,
+                                h2: ({ children }) => <h2 className="text-base font-semibold mb-2 text-card-foreground">{children}</h2>,
+                                h3: ({ children }) => <h3 className="text-sm font-semibold mb-1 text-card-foreground">{children}</h3>,
+                                p: ({ children }) => <p className="mb-2 last:mb-0 text-card-foreground">{children}</p>,
+                                ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1 text-card-foreground">{children}</ul>,
+                                ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1 text-card-foreground">{children}</ol>,
+                                li: ({ children }) => <li className="text-sm text-card-foreground">{children}</li>,
+                                strong: ({ children }) => <strong className="font-semibold text-card-foreground">{children}</strong>,
+                                em: ({ children }) => <em className="italic text-card-foreground">{children}</em>,
+                                code: ({ children }) => <code className="bg-muted px-1 py-0.5 rounded text-xs font-mono text-card-foreground">{children}</code>,
+                                pre: ({ children }) => <pre className="bg-muted p-2 rounded text-xs font-mono overflow-x-auto mb-2 text-card-foreground">{children}</pre>,
+                                blockquote: ({ children }) => <blockquote className="border-l-2 border-border pl-2 italic mb-2 text-card-foreground">{children}</blockquote>,
+                              }}
+                            >
+                              {message.content}
+                            </ReactMarkdown>
+                          </div>
+                        ) : (
+                          <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                        )}
+                        
+                        <div className="text-xs opacity-50 mt-2">
+                          {message.timestamp.toLocaleTimeString()}
                         </div>
-                      </div>
-                      
-                      {message.isStreaming ? (
-                        <div className="flex items-center gap-2">
-                          <Loader2 className="h-4 w-4 animate-spin" />
-                          <span className="text-sm">Thinking...</span>
-                        </div>
-                      ) : message.role === 'assistant' ? (
-                        <div className="markdown-content prose prose-sm max-w-none">
-                          <ReactMarkdown
-                            components={{
-                              h1: ({ children }) => <h1 className="text-lg font-bold mb-2 text-card-foreground">{children}</h1>,
-                              h2: ({ children }) => <h2 className="text-base font-semibold mb-2 text-card-foreground">{children}</h2>,
-                              h3: ({ children }) => <h3 className="text-sm font-semibold mb-1 text-card-foreground">{children}</h3>,
-                              p: ({ children }) => <p className="mb-2 last:mb-0 text-card-foreground">{children}</p>,
-                              ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1 text-card-foreground">{children}</ul>,
-                              ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1 text-card-foreground">{children}</ol>,
-                              li: ({ children }) => <li className="text-sm text-card-foreground">{children}</li>,
-                              strong: ({ children }) => <strong className="font-semibold text-card-foreground">{children}</strong>,
-                              em: ({ children }) => <em className="italic text-card-foreground">{children}</em>,
-                              code: ({ children }) => <code className="bg-muted px-1 py-0.5 rounded text-xs font-mono text-card-foreground">{children}</code>,
-                              pre: ({ children }) => <pre className="bg-muted p-2 rounded text-xs font-mono overflow-x-auto mb-2 text-card-foreground">{children}</pre>,
-                              blockquote: ({ children }) => <blockquote className="border-l-2 border-border pl-2 italic mb-2 text-card-foreground">{children}</blockquote>,
-                            }}
-                          >
-                            {message.content}
-                          </ReactMarkdown>
-                        </div>
-                      ) : (
-                        <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                      )}
-                      
-                      <div className="text-xs opacity-50 mt-2">
-                        {message.timestamp.toLocaleTimeString()}
                       </div>
                     </div>
-                  </div>
-                ))}
-                <div ref={messagesEndRef} />
-              </div>
-            )}
-          </div>
-        </ScrollArea>
+                  ))}
+                </div>
+              )}
+            </div>
+          </ScrollArea>
+
+          {/* New Message Indicator */}
+          {hasNewMessage && (
+            <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-10">
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => scrollToBottom(true)}
+                className="bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary shadow-lg animate-pulse"
+              >
+                <Bell className="h-3 w-3 mr-1" />
+                New message
+              </Button>
+            </div>
+          )}
+
+          {/* Scroll to Bottom Button */}
+          {showScrollButton && (
+            <div className="absolute bottom-2 right-2 z-10">
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => scrollToBottom(true)}
+                className="bg-background/80 hover:bg-background border shadow-lg"
+              >
+                <ArrowDown className="h-4 w-4" />
+              </Button>
+            </div>
+          )}
+        </div>
 
         {/* Input Area */}
         <div className="space-y-3">
