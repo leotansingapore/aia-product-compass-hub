@@ -1,4 +1,3 @@
-
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
@@ -171,7 +170,7 @@ async function updateAssistant(product: any, openAIApiKey: string) {
 async function chatWithAssistant(product: any, messages: any[], openAIApiKey: string) {
   console.log('Using fast Chat Completion API for product:', product.title);
 
-  // Build specialized system prompt with product context
+  // Build specialized system prompt with product context and formatting instructions
   const systemPrompt = `You are a specialized AI assistant for the financial product "${product.title}".
 
 Product Details:
@@ -187,6 +186,18 @@ You are an expert on this specific financial product. You should:
 3. Help financial advisors understand how to position this product
 4. Answer questions about product eligibility, requirements, and processes
 5. Provide practical sales tips and objection handling techniques
+
+FORMATTING INSTRUCTIONS:
+- Always format your responses using proper markdown for better readability
+- Use **bold text** for important points and product names
+- Use *italic text* for emphasis
+- Use bullet points (-) for lists of features, benefits, or tips
+- Use numbered lists (1.) for step-by-step processes
+- Use ## for main section headings when appropriate
+- Use ### for subsection headings
+- Use > for important quotes or key takeaways
+- Use \`code\` formatting for technical terms, premium amounts, or specific product codes
+- Keep paragraphs concise and well-structured
 
 Always be professional, accurate, and helpful. If asked about other products, acknowledge but redirect focus to this specific product. If you're unsure about specific details, recommend consulting official product documentation.
 
