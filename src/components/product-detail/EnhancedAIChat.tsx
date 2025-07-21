@@ -1,0 +1,339 @@
+
+import { useState, useRef, useEffect } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast";
+import { Send, MessageCircle, Loader2, Sparkles, User, Bot, Maximize2, Minimize2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import ReactMarkdown from 'react-markdown';
+
+interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
+  isStreaming?: boolean;
+}
+
+interface QuickQuestion {
+  question: string;
+  category: string;
+}
+
+interface EnhancedAIChatProps {
+  productData?: {
+    id?: string;
+    name?: string;
+    category?: string;
+    summary?: string;
+    highlights?: string[];
+    assistant_id?: string;
+    assistant_instructions?: string;
+  };
+}
+
+export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [currentMessage, setCurrentMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const { toast } = useToast();
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Product-specific quick questions
+  const quickQuestions: QuickQuestion[] = [
+    { question: `What are the key benefits of ${productData?.name}?`, category: "Benefits" },
+    { question: `Who is the ideal customer for ${productData?.name}?`, category: "Target Market" },
+    { question: `How does ${productData?.name} compare to competitors?`, category: "Comparison" },
+    { question: `What are common objections for ${productData?.name} and how to handle them?`, category: "Sales Tips" },
+    { question: `What documentation do I need for ${productData?.name} applications?`, category: "Process" },
+    { question: `What are the premium payment options for ${productData?.name}?`, category: "Pricing" }
+  ];
+
+  // Auto-scroll to bottom when new messages are added
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Welcome message on first load
+  useEffect(() => {
+    if (messages.length === 0 && productData?.name) {
+      const welcomeMessage: ChatMessage = {
+        role: 'assistant',
+        content: `👋 **Welcome to the ${productData.name} Expert Assistant!**\n\nI'm here to help you with everything about this product. You can:\n\n- Ask specific questions about features and benefits\n- Get sales tips and objection handling advice\n- Learn about target customers and positioning\n- Understand application processes and requirements\n\n**Try one of the quick questions below or ask me anything!** ⚡`,
+        timestamp: new Date()
+      };
+      setMessages([welcomeMessage]);
+    }
+  }, [productData?.name]);
+
+  const sendMessage = async (messageContent?: string) => {
+    const content = messageContent || currentMessage.trim();
+    if (!content || isLoading || !productData?.id) return;
+
+    const userMessage: ChatMessage = {
+      role: 'user',
+      content,
+      timestamp: new Date()
+    };
+
+    // Add user message and streaming placeholder
+    const streamingMessage: ChatMessage = {
+      role: 'assistant',
+      content: '',
+      timestamp: new Date(),
+      isStreaming: true
+    };
+
+    setMessages(prev => [...prev, userMessage, streamingMessage]);
+    setCurrentMessage('');
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('chat-with-assistant', {
+        body: {
+          action: 'chat',
+          productId: productData.id,
+          messages: [...messages, userMessage].map(msg => ({
+            role: msg.role,
+            content: msg.content
+          }))
+        }
+      });
+
+      if (error) throw error;
+
+      // Remove streaming placeholder and add final response
+      setMessages(prev => {
+        const newMessages = [...prev];
+        newMessages[newMessages.length - 1] = {
+          role: 'assistant',
+          content: data.message,
+          timestamp: new Date()
+        };
+        return newMessages;
+      });
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setMessages(prev => prev.slice(0, -1)); // Remove streaming placeholder
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleQuickQuestion = (question: string) => {
+    sendMessage(question);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
+  const startNewChat = () => {
+    setMessages([]);
+    // Re-add welcome message
+    if (productData?.name) {
+      const welcomeMessage: ChatMessage = {
+        role: 'assistant',
+        content: `👋 **Welcome back to the ${productData.name} Expert Assistant!**\n\nWhat would you like to know about this product today?`,
+        timestamp: new Date()
+      };
+      setMessages([welcomeMessage]);
+    }
+  };
+
+  return (
+    <Card className={`border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50 transition-all duration-300 ${
+      isFullscreen ? 'fixed inset-4 z-50 h-[calc(100vh-2rem)]' : 'h-auto'
+    }`}>
+      <CardHeader className="pb-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-primary/10 rounded-full">
+              <Sparkles className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <CardTitle className="flex items-center gap-2 text-lg">
+                🤖 {productData?.name} Expert ⚡
+              </CardTitle>
+              <CardDescription className="text-sm">
+                Powered by advanced AI • Fast responses • Expert knowledge
+              </CardDescription>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => setIsFullscreen(!isFullscreen)}
+              className="px-2"
+            >
+              {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={startNewChat}
+            >
+              New Chat
+            </Button>
+          </div>
+        </div>
+      </CardHeader>
+
+      <CardContent className="space-y-4">
+        {/* Quick Questions */}
+        {messages.length <= 1 && (
+          <div className="space-y-3 animate-fade-in">
+            <div className="text-sm font-medium text-muted-foreground">💡 Quick Start Questions:</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              {quickQuestions.map((q, index) => (
+                <Button
+                  key={index}
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleQuickQuestion(q.question)}
+                  disabled={isLoading}
+                  className="text-left h-auto py-2 px-3 justify-start hover:bg-primary/5 transition-colors"
+                >
+                  <div>
+                    <Badge variant="secondary" className="text-xs mb-1">{q.category}</Badge>
+                    <div className="text-xs text-muted-foreground">{q.question}</div>
+                  </div>
+                </Button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Chat Area */}
+        <ScrollArea 
+          className={`border rounded-lg bg-background/50 ${
+            isFullscreen ? 'h-[calc(100vh-16rem)]' : 'h-96'
+          }`} 
+          ref={scrollAreaRef}
+        >
+          <div className="p-4 space-y-4">
+            {messages.length === 0 ? (
+              <div className="text-center text-muted-foreground py-12 animate-fade-in">
+                <MessageCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                <p className="text-lg font-medium">Ready to help with {productData?.name}!</p>
+                <p className="text-sm mt-2">Ask a question or use the quick start options above</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {messages.map((message, index) => (
+                  <div
+                    key={index}
+                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
+                  >
+                    <div
+                      className={`max-w-[85%] rounded-2xl px-4 py-3 shadow-sm ${
+                        message.role === 'user'
+                          ? 'bg-primary text-primary-foreground ml-4'
+                          : 'bg-card text-card-foreground border mr-4'
+                      }`}
+                    >
+                      <div className="flex items-start gap-2 mb-2">
+                        <div className={`p-1 rounded-full ${
+                          message.role === 'user' 
+                            ? 'bg-primary-foreground/20' 
+                            : 'bg-muted'
+                        }`}>
+                          {message.role === 'user' ? 
+                            <User className="h-3 w-3" /> : 
+                            <Bot className="h-3 w-3" />
+                          }
+                        </div>
+                        <div className="text-xs opacity-75">
+                          {message.role === 'user' ? 'You' : 'AI Expert'}
+                        </div>
+                      </div>
+                      
+                      {message.isStreaming ? (
+                        <div className="flex items-center gap-2">
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          <span className="text-sm">Thinking...</span>
+                        </div>
+                      ) : message.role === 'assistant' ? (
+                        <div className="markdown-content prose prose-sm max-w-none">
+                          <ReactMarkdown
+                            components={{
+                              h1: ({ children }) => <h1 className="text-lg font-bold mb-2 text-card-foreground">{children}</h1>,
+                              h2: ({ children }) => <h2 className="text-base font-semibold mb-2 text-card-foreground">{children}</h2>,
+                              h3: ({ children }) => <h3 className="text-sm font-semibold mb-1 text-card-foreground">{children}</h3>,
+                              p: ({ children }) => <p className="mb-2 last:mb-0 text-card-foreground">{children}</p>,
+                              ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1 text-card-foreground">{children}</ul>,
+                              ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1 text-card-foreground">{children}</ol>,
+                              li: ({ children }) => <li className="text-sm text-card-foreground">{children}</li>,
+                              strong: ({ children }) => <strong className="font-semibold text-card-foreground">{children}</strong>,
+                              em: ({ children }) => <em className="italic text-card-foreground">{children}</em>,
+                              code: ({ children }) => <code className="bg-muted px-1 py-0.5 rounded text-xs font-mono text-card-foreground">{children}</code>,
+                              pre: ({ children }) => <pre className="bg-muted p-2 rounded text-xs font-mono overflow-x-auto mb-2 text-card-foreground">{children}</pre>,
+                              blockquote: ({ children }) => <blockquote className="border-l-2 border-border pl-2 italic mb-2 text-card-foreground">{children}</blockquote>,
+                            }}
+                          >
+                            {message.content}
+                          </ReactMarkdown>
+                        </div>
+                      ) : (
+                        <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                      )}
+                      
+                      <div className="text-xs opacity-50 mt-2">
+                        {message.timestamp.toLocaleTimeString()}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <div ref={messagesEndRef} />
+              </div>
+            )}
+          </div>
+        </ScrollArea>
+
+        {/* Input Area */}
+        <div className="space-y-3">
+          <div className="flex gap-2">
+            <Textarea
+              value={currentMessage}
+              onChange={(e) => setCurrentMessage(e.target.value)}
+              onKeyPress={handleKeyPress}
+              placeholder={`Ask about ${productData?.name}...`}
+              className="min-h-[60px] resize-none flex-1"
+              disabled={isLoading}
+            />
+            <Button
+              onClick={() => sendMessage()}
+              disabled={!currentMessage.trim() || isLoading}
+              size="lg"
+              className="px-6"
+            >
+              {isLoading ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Send className="h-4 w-4" />
+              )}
+            </Button>
+          </div>
+          
+          <div className="text-xs text-muted-foreground text-center">
+            💡 Pro tip: Press <kbd className="px-1 py-0.5 bg-muted rounded text-xs">Enter</kbd> to send, 
+            <kbd className="px-1 py-0.5 bg-muted rounded text-xs mx-1">Shift + Enter</kbd> for new line
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
