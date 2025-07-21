@@ -35,42 +35,42 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <AuthProvider>
-        <OnboardingProvider>
-          <AdminProvider>
-            <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <AppLayout>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/auth" element={<Auth />} />
-                <Route path="/consultant-landing" element={<ConsultantLanding />} />
-                <Route path="/search" element={<SearchResults />} />
-                <Route path="/how-to-use" element={<HowToUsePortal />} />
-                <Route path="/search-by-profile" element={<SearchByProfile />} />
-                <Route path="/sales-tools" element={<SalesTools />} />
-                <Route path="/bookmarks" element={<Bookmarks />} />
-                <Route path="/cmfas-exams" element={<CMFASExams />} />
-                <Route path="/cmfas/module/:moduleId" element={<CMFASModuleDetail />} />
-                <Route path="/admin" element={<AdminDashboard />} />
-                <Route path="/my-account" element={<MyAccount />} />
-                <Route path="/category/:categoryId" element={<ProductCategory />} />
-                <Route path="/product/:productId" element={<ProductDetail />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-              <FloatingQuickActions />
-              
-              {/* Enhanced Onboarding Components */}
-              <OnboardingTutorial />
-              <OnboardingHelpButton />
-              <WelcomeModal />
-            </AppLayout>
-          </BrowserRouter>
+        <AdminProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <OnboardingProvider>
+                <AppLayout>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/auth" element={<Auth />} />
+                    <Route path="/consultant-landing" element={<ConsultantLanding />} />
+                    <Route path="/search" element={<SearchResults />} />
+                    <Route path="/how-to-use" element={<HowToUsePortal />} />
+                    <Route path="/search-by-profile" element={<SearchByProfile />} />
+                    <Route path="/sales-tools" element={<SalesTools />} />
+                    <Route path="/bookmarks" element={<Bookmarks />} />
+                    <Route path="/cmfas-exams" element={<CMFASExams />} />
+                    <Route path="/cmfas/module/:moduleId" element={<CMFASModuleDetail />} />
+                    <Route path="/admin" element={<AdminDashboard />} />
+                    <Route path="/my-account" element={<MyAccount />} />
+                    <Route path="/category/:categoryId" element={<ProductCategory />} />
+                    <Route path="/product/:productId" element={<ProductDetail />} />
+                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                  <FloatingQuickActions />
+                  
+                  {/* Enhanced Onboarding Components */}
+                  <OnboardingTutorial />
+                  <OnboardingHelpButton />
+                  <WelcomeModal />
+                </AppLayout>
+              </OnboardingProvider>
+            </BrowserRouter>
           </TooltipProvider>
         </AdminProvider>
-        </OnboardingProvider>
       </AuthProvider>
     </HelmetProvider>
   </QueryClientProvider>
