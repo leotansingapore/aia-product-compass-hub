@@ -43,17 +43,20 @@ export default function Dashboard() {
       />
       
       <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
-        
-
-        {/* Search Section */}
+        {/* Search Section - Enhanced for onboarding */}
         <ProtectedSection sectionId="dashboard-search">
           <div className="text-center" data-onboarding="search">
             <h2 className="text-2xl font-bold mb-4">Find What You Need</h2>
-            <EnhancedSearchBar onSearch={handleSearch} />
+            <div className="max-w-2xl mx-auto">
+              <EnhancedSearchBar onSearch={handleSearch} />
+              <p className="text-sm text-muted-foreground mt-2">
+                Search for products, documents, training materials, and more
+              </p>
+            </div>
           </div>
         </ProtectedSection>
 
-        {/* Quick Actions */}
+        {/* Quick Actions - Enhanced for onboarding */}
         <ProtectedSection sectionId="dashboard-quick-actions">
           <div data-onboarding="profile-search">
             <QuickActions />
@@ -65,7 +68,7 @@ export default function Dashboard() {
           {user ? <UserStats /> : <AuthPrompt />}
         </ProtectedSection>
 
-        {/* Product Categories */}
+        {/* Product Categories - Enhanced for onboarding */}
         <ProtectedSection sectionId="product-categories">
           <div data-onboarding="categories">
             <ProductCategoriesSection 

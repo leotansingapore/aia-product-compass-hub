@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +10,9 @@ import { AdminProvider } from "@/hooks/useAdmin";
 import { OnboardingProvider } from "@/hooks/useOnboarding";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { FloatingQuickActions } from "@/components/FloatingQuickActions";
+import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
+import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
+import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
 import Index from "./pages/Index";
 import ProductCategory from "./pages/ProductCategory";
 import ProductDetail from "./pages/ProductDetail";
@@ -57,6 +61,11 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <FloatingQuickActions />
+              
+              {/* Enhanced Onboarding Components */}
+              <OnboardingTutorial />
+              <OnboardingHelpButton />
+              <WelcomeModal />
             </AppLayout>
           </BrowserRouter>
           </TooltipProvider>

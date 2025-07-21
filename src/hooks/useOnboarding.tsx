@@ -1,14 +1,20 @@
+
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { useAuth } from './useAuth';
+import { useLocation } from 'react-router-dom';
 
 export interface OnboardingStep {
   id: string;
   title: string;
   description: string;
-  target?: string; // CSS selector for element to highlight
+  target?: string;
   position?: 'top' | 'bottom' | 'left' | 'right';
   action?: () => void;
+  actionHint?: string;
   completed: boolean;
+  optional?: boolean;
+  condition?: () => boolean; // For conditional steps
+  celebrationMessage?: string;
 }
 
 interface OnboardingContextType {
@@ -16,15 +22,21 @@ interface OnboardingContextType {
   currentStep: number;
   totalSteps: number;
   steps: OnboardingStep[];
-  startOnboarding: () => void;
+  startOnboarding: (tourType?: 'basic' | 'advanced' | 'admin') => void;
   nextStep: () => void;
   prevStep: () => void;
+  skipStep: () => void;
   skipOnboarding: () => void;
   completeStep: (stepId: string) => void;
   isStepCompleted: (stepId: string) => boolean;
   getProgress: () => number;
   showWelcome: boolean;
   dismissWelcome: () => void;
+  canResumeTour: boolean;
+  resumeTour: () => void;
+  resetTour: () => void;
+  tourType: string;
+  completedStepsCount: number;
 }
 
 const OnboardingContext = createContext<OnboardingContextType>({
@@ -35,95 +47,200 @@ const OnboardingContext = createContext<OnboardingContextType>({
   startOnboarding: () => {},
   nextStep: () => {},
   prevStep: () => {},
+  skipStep: () => {},
   skipOnboarding: () => {},
   completeStep: () => {},
   isStepCompleted: () => false,
   getProgress: () => 0,
   showWelcome: false,
   dismissWelcome: () => {},
+  canResumeTour: false,
+  resumeTour: () => {},
+  resetTour: () => {},
+  tourType: 'basic',
+  completedStepsCount: 0,
 });
 
-const ONBOARDING_STEPS: OnboardingStep[] = [
+// Enhanced onboarding steps with branching logic
+const BASIC_ONBOARDING_STEPS: OnboardingStep[] = [
   {
     id: 'welcome',
-    title: 'Welcome to AIA Learning Platform!',
+    title: 'Welcome to AIA Learning Platform! 🎉',
     description: 'Let\'s take a quick tour to help you get started with your learning journey.',
     completed: false,
+    celebrationMessage: 'Great! Let\'s explore the platform together.',
   },
   {
     id: 'search',
-    title: 'Powerful Search',
-    description: 'Use our enhanced search to quickly find products, documents, and learning materials.',
+    title: 'Powerful Search 🔍',
+    description: 'Use our enhanced search to quickly find products, documents, and learning materials. Try typing a product name!',
     target: '[data-onboarding="search"]',
     position: 'bottom',
     completed: false,
+    actionHint: 'Click on the search bar and try searching for something',
   },
   {
     id: 'categories',
-    title: 'Product Categories',
+    title: 'Product Categories 📂',
     description: 'Browse products organized by type: Investment, Endowment, Whole Life, Term, and Medical Insurance.',
     target: '[data-onboarding="categories"]',
     position: 'top',
     completed: false,
+    actionHint: 'Click on any category to explore products',
   },
   {
     id: 'profile-search',
-    title: 'Client Profile Search',
+    title: 'Client Profile Search 👥',
     description: 'Find products based on client demographics and life stages for better recommendations.',
     target: '[data-onboarding="profile-search"]',
     position: 'left',
     completed: false,
+    actionHint: 'Try the "Search by Client Profile" feature',
   },
   {
     id: 'sidebar',
-    title: 'Navigation Sidebar',
-    description: 'Access all features through our collapsible sidebar. You can toggle it anytime.',
+    title: 'Navigation Sidebar 📱',
+    description: 'Access all features through our collapsible sidebar. You can toggle it anytime for a cleaner view.',
     target: '[data-onboarding="sidebar-trigger"]',
     position: 'right',
     completed: false,
+    actionHint: 'Click the menu button to open/close the sidebar',
   },
   {
     id: 'bookmarks',
-    title: 'Bookmark Content',
-    description: 'Save important products and resources for quick access later.',
+    title: 'Bookmark Content ⭐',
+    description: 'Save important products and resources for quick access later. Your bookmarks sync across devices!',
     target: '[data-onboarding="bookmarks"]',
     position: 'bottom',
     completed: false,
+    optional: true,
+    actionHint: 'Look for the bookmark icon on any product page',
+  },
+];
+
+const ADVANCED_ONBOARDING_STEPS: OnboardingStep[] = [
+  ...BASIC_ONBOARDING_STEPS,
+  {
+    id: 'ai-assistant',
+    title: 'AI Assistant 🤖',
+    description: 'Get instant answers and personalized recommendations from our AI-powered assistant.',
+    target: '[data-onboarding="ai-assistant"]',
+    position: 'left',
+    completed: false,
+    actionHint: 'Click to start a conversation with the AI',
+  },
+  {
+    id: 'analytics',
+    title: 'Learning Analytics 📊',
+    description: 'Track your progress, completion rates, and identify areas for improvement.',
+    target: '[data-onboarding="analytics"]',
+    position: 'bottom',
+    completed: false,
+    optional: true,
   },
 ];
 
 export function OnboardingProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
+  const location = useLocation();
   const [isOnboardingActive, setIsOnboardingActive] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const [steps, setSteps] = useState<OnboardingStep[]>(ONBOARDING_STEPS);
+  const [steps, setSteps] = useState<OnboardingStep[]>(BASIC_ONBOARDING_STEPS);
   const [showWelcome, setShowWelcome] = useState(false);
+  const [tourType, setTourType] = useState<'basic' | 'advanced' | 'admin'>('basic');
+  const [completedStepsCount, setCompletedStepsCount] = useState(0);
 
-  // Check if user should see onboarding - simplified
+  // Enhanced welcome logic with personalization
+  useEffect(() => {
+    if (user && location.pathname === '/') {
+      const hasSeenWelcome = localStorage.getItem(`welcome-seen-${user.id}`);
+      const lastTourVersion = localStorage.getItem(`tour-version-${user.id}`);
+      const currentTourVersion = '2.0'; // Increment when tour changes significantly
+      
+      if (!hasSeenWelcome || lastTourVersion !== currentTourVersion) {
+        setShowWelcome(true);
+      }
+    }
+  }, [user, location.pathname]);
+
+  // Load saved progress
   useEffect(() => {
     if (user) {
-      const hasSeenWelcome = localStorage.getItem(`welcome-seen-${user.id}`);
-      if (!hasSeenWelcome) {
-        setShowWelcome(true);
+      const savedProgress = localStorage.getItem(`onboarding-progress-${user.id}`);
+      const savedStep = localStorage.getItem(`onboarding-current-step-${user.id}`);
+      const savedTourType = localStorage.getItem(`onboarding-tour-type-${user.id}`) as 'basic' | 'advanced' | 'admin';
+      
+      if (savedProgress) {
+        try {
+          const progressArray = JSON.parse(savedProgress);
+          setSteps(prev => prev.map((step, index) => ({
+            ...step,
+            completed: progressArray[index] || false
+          })));
+          
+          const completed = progressArray.filter(Boolean).length;
+          setCompletedStepsCount(completed);
+        } catch (error) {
+          console.error('Error loading onboarding progress:', error);
+        }
+      }
+      
+      if (savedStep) {
+        setCurrentStep(parseInt(savedStep, 10));
+      }
+      
+      if (savedTourType) {
+        setTourType(savedTourType);
+        const stepSet = savedTourType === 'advanced' ? ADVANCED_ONBOARDING_STEPS : BASIC_ONBOARDING_STEPS;
+        setSteps(stepSet);
       }
     }
   }, [user]);
 
-  // Simplified progress saving
+  // Save progress automatically
   useEffect(() => {
-    if (user) {
-      localStorage.setItem(`onboarding-progress-${user.id}`, JSON.stringify(steps.map(s => s.completed)));
+    if (user && steps.length > 0) {
+      const progressArray = steps.map(s => s.completed);
+      localStorage.setItem(`onboarding-progress-${user.id}`, JSON.stringify(progressArray));
+      localStorage.setItem(`onboarding-current-step-${user.id}`, currentStep.toString());
+      localStorage.setItem(`onboarding-tour-type-${user.id}`, tourType);
+      
+      const completed = progressArray.filter(Boolean).length;
+      setCompletedStepsCount(completed);
     }
-  }, [steps, user]);
+  }, [steps, currentStep, user, tourType]);
 
-  const startOnboarding = () => {
+  const startOnboarding = (selectedTourType: 'basic' | 'advanced' | 'admin' = 'basic') => {
+    setTourType(selectedTourType);
+    const stepSet = selectedTourType === 'advanced' ? ADVANCED_ONBOARDING_STEPS : BASIC_ONBOARDING_STEPS;
+    setSteps(stepSet);
     setIsOnboardingActive(true);
     setCurrentStep(0);
+    
+    // Add tour start event
+    if (user) {
+      localStorage.setItem(`tour-started-${user.id}`, new Date().toISOString());
+    }
   };
 
   const nextStep = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
+    // Mark current step as completed
+    if (currentStep < steps.length) {
+      completeStep(steps[currentStep].id);
+    }
+
+    // Find next valid step (skip conditional steps that don't meet requirements)
+    let nextStepIndex = currentStep + 1;
+    while (nextStepIndex < steps.length) {
+      const nextStep = steps[nextStepIndex];
+      if (!nextStep.condition || nextStep.condition()) {
+        break;
+      }
+      nextStepIndex++;
+    }
+
+    if (nextStepIndex < steps.length) {
+      setCurrentStep(nextStepIndex);
     } else {
       completeOnboarding();
     }
@@ -135,6 +252,10 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const skipStep = () => {
+    nextStep(); // Same as next, but could add analytics tracking
+  };
+
   const skipOnboarding = () => {
     completeOnboarding();
   };
@@ -143,6 +264,14 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     setIsOnboardingActive(false);
     if (user) {
       localStorage.setItem(`onboarding-completed-${user.id}`, 'true');
+      localStorage.setItem(`tour-completed-${user.id}`, new Date().toISOString());
+      localStorage.setItem(`tour-version-${user.id}`, '2.0');
+      
+      // Show completion celebration
+      setTimeout(() => {
+        // Could trigger a completion toast or modal here
+        console.log('🎉 Onboarding completed!');
+      }, 500);
     }
   };
 
@@ -165,7 +294,36 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     setShowWelcome(false);
     if (user) {
       localStorage.setItem(`welcome-seen-${user.id}`, 'true');
+      localStorage.setItem(`tour-version-${user.id}`, '2.0');
     }
+  };
+
+  const canResumeTour = () => {
+    if (!user) return false;
+    const hasStarted = localStorage.getItem(`tour-started-${user.id}`);
+    const hasCompleted = localStorage.getItem(`onboarding-completed-${user.id}`);
+    return hasStarted && !hasCompleted && completedStepsCount > 0 && completedStepsCount < steps.length;
+  };
+
+  const resumeTour = () => {
+    if (canResumeTour()) {
+      setIsOnboardingActive(true);
+    }
+  };
+
+  const resetTour = () => {
+    if (user) {
+      localStorage.removeItem(`onboarding-progress-${user.id}`);
+      localStorage.removeItem(`onboarding-current-step-${user.id}`);
+      localStorage.removeItem(`onboarding-completed-${user.id}`);
+      localStorage.removeItem(`tour-started-${user.id}`);
+      localStorage.removeItem(`tour-completed-${user.id}`);
+    }
+    
+    setSteps(prev => prev.map(step => ({ ...step, completed: false })));
+    setCurrentStep(0);
+    setCompletedStepsCount(0);
+    setIsOnboardingActive(false);
   };
 
   return (
@@ -178,12 +336,18 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
         startOnboarding,
         nextStep,
         prevStep,
+        skipStep,
         skipOnboarding,
         completeStep,
         isStepCompleted,
         getProgress,
         showWelcome,
         dismissWelcome,
+        canResumeTour: canResumeTour(),
+        resumeTour,
+        resetTour,
+        tourType,
+        completedStepsCount,
       }}
     >
       {children}
