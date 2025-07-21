@@ -126,48 +126,46 @@ const Auth = () => {
 
     setLoading(true);
     try {
-      cleanupAuthState();
-      
-      const redirectUrl = `${window.location.origin}/`;
-      
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: redirectUrl,
-          data: {
-            display_name: displayName,
-          }
-        }
-      });
+      // Create approval request instead of user account
+      const nameParts = displayName.trim().split(' ');
+      const firstName = nameParts[0];
+      const lastName = nameParts.slice(1).join(' ');
 
-      if (error) throw error;
-
-      if (data.user) {
-        // Create profile
-        const { error: profileError } = await supabase
-          .from('profiles')
-          .insert({
-            user_id: data.user.id,
-            display_name: displayName,
-            email: email,
-          });
-
-        if (profileError) {
-          console.error('Profile creation error:', profileError);
-        }
-
-        toast({
-          title: "Welcome to the Knowledge Portal!",
-          description: "Your account has been created successfully",
+      const { error } = await supabase
+        .from('user_approval_requests')
+        .insert({
+          email,
+          first_name: firstName,
+          last_name: lastName || null,
+          reason: "User registration request"
         });
-        
-        window.location.href = '/';
+
+      if (error) {
+        if (error.code === '23505') { // Unique constraint violation
+          toast({
+            title: "Request Already Submitted",
+            description: "A registration request with this email already exists. Please wait for admin approval.",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
+        }
+        return;
       }
+
+      toast({
+        title: "Registration Request Submitted!",
+        description: "Your request has been sent to administrators for approval. You'll receive an email once your account is approved.",
+      });
+      
+      // Clear form
+      setEmail('');
+      setPassword('');
+      setDisplayName('');
     } catch (error: any) {
       toast({
-        title: "Sign Up Failed",
-        description: error.message || "An error occurred during sign up",
+        title: "Registration Failed",
+        description: error.message || "An error occurred during registration",
         variant: "destructive",
       });
     } finally {
@@ -470,15 +468,15 @@ const Auth = () => {
                       disabled={loading}
                     />
                   </div>
-                  <Button 
-                    type="submit" 
-                    className="w-full" 
-                    disabled={loading}
-                    variant="hero"
-                  >
-                    {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    Create Account
-                  </Button>
+                   <Button 
+                     type="submit" 
+                     className="w-full" 
+                     disabled={loading}
+                     variant="hero"
+                   >
+                     {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                     Request Account
+                   </Button>
                 </form>
               </TabsContent>
             </Tabs>

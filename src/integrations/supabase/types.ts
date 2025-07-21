@@ -853,6 +853,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      approve_user_request: {
+        Args: { request_id: string }
+        Returns: undefined
+      }
       assign_master_admin: {
         Args: { user_email: string }
         Returns: undefined
