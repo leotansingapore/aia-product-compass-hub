@@ -1,3 +1,4 @@
+
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
@@ -14,7 +15,7 @@ serve(async (req) => {
   }
 
   try {
-    const { messages, productId, action, threadId, stream = false } = await req.json();
+    const { messages, productId, action, threadId } = await req.json();
     
     const openAIApiKey = Deno.env.get('OPENAI_API_KEY');
     if (!openAIApiKey) {
@@ -43,11 +44,7 @@ serve(async (req) => {
     if (action === 'create_assistant') {
       return await createAssistant(product, openAIApiKey, supabase);
     } else if (action === 'chat') {
-      if (stream) {
-        return await streamChatWithAssistant(product, messages, openAIApiKey, threadId);
-      } else {
-        return await chatWithAssistant(product, messages, openAIApiKey, threadId);
-      }
+      return await chatWithAssistant(product, messages, openAIApiKey, threadId);
     } else if (action === 'update_assistant') {
       return await updateAssistant(product, openAIApiKey);
     }
@@ -183,66 +180,14 @@ async function updateAssistant(product: any, openAIApiKey: string) {
   });
 }
 
-async function streamChatWithAssistant(product: any, messages: any[], openAIApiKey: string, threadId?: string) {
+async function chatWithAssistant(product: any, messages: any[], openAIApiKey: string, threadId?: string) {
   if (!product.assistant_id) {
     throw new Error('No assistant found for this product. Please create an assistant first.');
   }
 
-  console.log('Streaming chat with assistant for product:', product.title);
+  console.log('Using OpenAI Assistant API for product:', product.title);
+  console.log('Assistant ID:', product.assistant_id);
 
-  // First, get the assistant response using the regular flow
-  const responseData = await getAssistantResponse(product, messages, openAIApiKey, threadId);
-  
-  // Set up Server-Sent Events headers
-  const headers = {
-    ...corsHeaders,
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive',
-  };
-
-  // Create a readable stream for SSE
-  const stream = new ReadableStream({
-    async start(controller) {
-      // Send initial metadata
-      controller.enqueue(`data: ${JSON.stringify({ 
-        type: 'metadata', 
-        threadId: responseData.threadId 
-      })}\n\n`);
-
-      // Stream the response word by word
-      const words = responseData.message.split(' ');
-      let currentText = '';
-      
-      for (let index = 0; index < words.length; index++) {
-        currentText += (index > 0 ? ' ' : '') + words[index];
-        
-        controller.enqueue(`data: ${JSON.stringify({ 
-          type: 'content', 
-          content: currentText,
-          isComplete: index === words.length - 1
-        })}\n\n`);
-        
-        // Add a small delay between words for smooth streaming effect
-        if (index < words.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 50));
-        }
-      }
-      
-      controller.enqueue(`data: ${JSON.stringify({ 
-        type: 'done',
-        threadId: responseData.threadId,
-        usage: responseData.usage
-      })}\n\n`);
-      
-      controller.close();
-    }
-  });
-
-  return new Response(stream, { headers });
-}
-
-async function getAssistantResponse(product: any, messages: any[], openAIApiKey: string, threadId?: string) {
   let currentThreadId = threadId;
 
   // Create a new thread if none provided
@@ -317,7 +262,7 @@ async function getAssistantResponse(product: any, messages: any[], openAIApiKey:
 
   // Poll for completion
   let run = runData;
-  const maxAttempts = 30;
+  const maxAttempts = 30; // 30 seconds timeout
   let attempts = 0;
 
   while (run.status === 'queued' || run.status === 'in_progress') {
@@ -325,7 +270,7 @@ async function getAssistantResponse(product: any, messages: any[], openAIApiKey:
       throw new Error('Assistant response timed out');
     }
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
     attempts++;
 
     const statusResponse = await fetch(`https://api.openai.com/v1/threads/${currentThreadId}/runs/${runId}`, {
@@ -366,17 +311,11 @@ async function getAssistantResponse(product: any, messages: any[], openAIApiKey:
   const latestAssistantMessage = assistantMessages[0];
   const messageContent = latestAssistantMessage.content[0]?.text?.value || 'No response available';
 
-  return {
+  return new Response(JSON.stringify({ 
     message: messageContent,
     threadId: currentThreadId,
-    usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 }
-  };
-}
-
-async function chatWithAssistant(product: any, messages: any[], openAIApiKey: string, threadId?: string) {
-  const responseData = await getAssistantResponse(product, messages, openAIApiKey, threadId);
-  
-  return new Response(JSON.stringify(responseData), {
+    usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 } // Placeholder
+  }), {
     headers: { ...corsHeaders, 'Content-Type': 'application/json' },
   });
 }
