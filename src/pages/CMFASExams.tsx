@@ -2,11 +2,56 @@ import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CategoryCard } from "@/components/CategoryCard";
-import { UsefulLinksSection } from "@/components/dashboard/UsefulLinksSection";
+import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { BookOpen, Scale, TrendingUp, PieChart, FileText } from "lucide-react";
+import { useState } from "react";
+import type { UsefulLink } from "@/hooks/useProducts";
 
 export default function CMFASExams() {
   const navigate = useNavigate();
+  
+  // State for editable useful links
+  const [usefulLinks, setUsefulLinks] = useState<UsefulLink[]>([
+    {
+      name: "SCI College Student Portal",
+      url: "https://www.scicollege.org.sg/Account/Register",
+      icon: "🎓"
+    },
+    {
+      name: "MAS Guidelines",
+      url: "https://www.mas.gov.sg/regulation/guidelines",
+      icon: "📋"
+    },
+    {
+      name: "AIA Singapore",
+      url: "https://www.aia.com.sg",
+      icon: "🌐"
+    },
+    {
+      name: "Life Insurance Calculator",
+      url: "https://www.aia.com.sg/en/our-products/life-insurance.html",
+      icon: "🧮"
+    },
+    {
+      name: "CMFAS Practice Tests",
+      url: "/cmfas-exams",
+      icon: "📚"
+    },
+    {
+      name: "Technical Support",
+      url: "mailto:support@aiaproductcompass.com",
+      icon: "📞"
+    }
+  ]);
+
+  // Handler for updating useful links
+  const handleUpdate = async (field: string, value: any) => {
+    if (field === 'useful_links') {
+      setUsefulLinks(value);
+      // In a real app, you would save this to a database
+      console.log('Updated useful links:', value);
+    }
+  };
 
   const cmfasModules = [
     {
@@ -73,7 +118,10 @@ export default function CMFASExams() {
 
         {/* Useful Links Section */}
         <div className="mb-12">
-          <UsefulLinksSection />
+          <CMFASUsefulLinks
+            links={usefulLinks}
+            onUpdate={handleUpdate}
+          />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
