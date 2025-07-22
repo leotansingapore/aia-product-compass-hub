@@ -4,9 +4,14 @@ import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures"
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { CMFASAIAssistant } from "@/components/cmfas/CMFASAIAssistant";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useProductUpdate } from "@/hooks/useProductUpdate";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function M9Module() {
+  const productId = 'm9-module';
+  const { updateProduct } = useProductUpdate();
+  
   const [tutorialLectures, setTutorialLectures] = useState([
     {
       id: 'm9-intro',
@@ -80,16 +85,103 @@ export default function M9Module() {
   ]);
 
   const [customGptLink, setCustomGptLink] = useState<string>("https://chatgpt.com/g/g-example-m9");
+  const [loading, setLoading] = useState(true);
+
+  // Load data from database on component mount
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('*')
+          .eq('id', productId)
+          .single();
+
+        if (error && error.code !== 'PGRST116') { // PGRST116 = not found
+          console.error('Error loading M9 module data:', error);
+          return;
+        }
+
+        if (data) {
+          // Load data from database if exists
+          if (data.training_videos && Array.isArray(data.training_videos)) {
+            setTutorialLectures(data.training_videos as any[]);
+          }
+          if (data.useful_links && Array.isArray(data.useful_links)) {
+            setUsefulLinks(data.useful_links as any[]);
+          }
+          if (data.custom_gpt_link && typeof data.custom_gpt_link === 'string') {
+            setCustomGptLink(data.custom_gpt_link);
+          }
+        } else {
+          // Create initial product entry if it doesn't exist
+          const { error: insertError } = await supabase
+            .from('products')
+            .insert({
+              id: productId,
+              title: 'CMFAS M9 Module',
+              description: 'Life Insurance & Investment-Linked Policies',
+              category_id: (await supabase.from('categories').select('id').eq('name', 'CMFAS').single()).data?.id,
+              training_videos: tutorialLectures,
+              useful_links: usefulLinks,
+              custom_gpt_link: customGptLink
+            });
+
+          if (insertError) {
+            console.error('Error creating M9 module entry:', insertError);
+          }
+        }
+      } catch (error) {
+        console.error('Error in loadData:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [productId]);
 
   const handleUpdate = async (field: string, value: any) => {
-    if (field === 'tutorial_lectures') {
-      setTutorialLectures(value);
-    } else if (field === 'useful_links') {
-      setUsefulLinks(value);
-    } else if (field === 'custom_gpt_link') {
-      setCustomGptLink(value);
+    try {
+      // Update local state
+      if (field === 'tutorial_lectures') {
+        setTutorialLectures(value);
+      } else if (field === 'useful_links') {
+        setUsefulLinks(value);
+      } else if (field === 'custom_gpt_link') {
+        setCustomGptLink(value);
+      }
+
+      // Save to database
+      await updateProduct(productId, field, value);
+    } catch (error) {
+      console.error('Error updating M9 module:', error);
+      // Revert local state if database update failed
+      if (field === 'tutorial_lectures') {
+        // Reload from database to get the previous state
+        const { data } = await supabase
+          .from('products')
+          .select('training_videos')
+          .eq('id', productId)
+          .single();
+        if (data && Array.isArray(data.training_videos)) {
+          setTutorialLectures(data.training_videos as any[]);
+        }
+      }
+      // Similar for other fields...
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Loading M9 Module...</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       <Helmet>
