@@ -146,14 +146,15 @@ export default function M9Module() {
       // Update local state
       if (field === 'tutorial_lectures') {
         setTutorialLectures(value);
+        // Save to database with correct field name
+        await updateProduct(productId, 'training_videos', value);
       } else if (field === 'useful_links') {
         setUsefulLinks(value);
+        await updateProduct(productId, 'useful_links', value);
       } else if (field === 'custom_gpt_link') {
         setCustomGptLink(value);
+        await updateProduct(productId, 'custom_gpt_link', value);
       }
-
-      // Save to database
-      await updateProduct(productId, field, value);
     } catch (error) {
       console.error('Error updating M9 module:', error);
       // Revert local state if database update failed
