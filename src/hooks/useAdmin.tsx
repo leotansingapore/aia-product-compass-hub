@@ -19,15 +19,11 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const isAdmin = isMasterAdmin() || hasRole('admin');
   
   useEffect(() => {
-    // Auto-enable admin mode for master admins
-    if (isMasterAdmin() && !loading) {
-      setIsAdminMode(true);
-    }
     // Reset admin mode when user logs out
     if (!user) {
       setIsAdminMode(false);
     }
-  }, [isMasterAdmin, loading, user]);
+  }, [user]);
 
   // Debug logging
   console.log('🔧 Admin Context State:', { isAdminMode, isAdmin, hasUser: !!user, isMasterAdmin: isMasterAdmin() });
