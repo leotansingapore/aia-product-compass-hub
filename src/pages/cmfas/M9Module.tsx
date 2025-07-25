@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
-import { CMFASAIAssistant } from "@/components/cmfas/CMFASAIAssistant";
+import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState, useEffect } from "react";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
@@ -204,11 +204,11 @@ export default function M9Module() {
           />
         </div>
 
-        {/* AI Assistant */}
+        {/* CMFAS Chatbot */}
         <div className="animate-fade-in">
-          <CMFASAIAssistant
-            customGptLink={customGptLink}
-            onUpdate={handleUpdate}
+          <CMFASChatbot
+            moduleId="m9"
+            moduleName="M9 Module - Life Insurance & Investment-Linked Policies"
           />
         </div>
 

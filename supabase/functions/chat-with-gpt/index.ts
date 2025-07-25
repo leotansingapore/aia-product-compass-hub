@@ -13,15 +13,36 @@ serve(async (req) => {
   }
 
   try {
-    const { messages, productInfo, customInstructions } = await req.json();
+    const { messages, productInfo, customInstructions, cmfasMode, moduleId, moduleName } = await req.json();
     
     const openAIApiKey = Deno.env.get('OPENAI_API_KEY');
     if (!openAIApiKey) {
       throw new Error('OpenAI API key not configured');
     }
 
-    // Build system prompt with product context
-    const systemPrompt = `You are an AI assistant specialized in helping with financial advisory products. 
+    // Build system prompt with appropriate context
+    let systemPrompt;
+    
+    if (cmfasMode) {
+      systemPrompt = `You are a helpful CMFAS Exam tutor, your students will ask you questions related to the CMFAS exams and financial advisory services in Singapore.
+
+${moduleId && moduleName ? `
+Current Module: ${moduleName} (${moduleId.toUpperCase()})
+Focus on topics specifically relevant to this module while maintaining broad CMFAS knowledge.
+` : ''}
+
+You should help with:
+- Exam preparation strategies and study tips
+- Key concepts and regulations in Singapore's financial advisory landscape
+- Product knowledge for investment-linked policies, life insurance, health insurance
+- Regulatory requirements and compliance (MAS guidelines)
+- Practice questions and exam format guidance
+- Professional ethics and best practices
+- Calculations and technical concepts
+
+Always be encouraging, patient, and educational. Break down complex topics into understandable parts and provide practical examples when helpful.`;
+    } else {
+      systemPrompt = `You are an AI assistant specialized in helping with financial advisory products. 
 
 Product Context:
 ${productInfo ? `
@@ -34,6 +55,7 @@ Product Highlights: ${productInfo.highlights ? productInfo.highlights.join(', ')
 ${customInstructions || 'Provide helpful, accurate information about this financial product. Focus on features, benefits, and addressing common objections or questions that financial advisors might have.'}
 
 Always be professional, accurate, and helpful. If you're unsure about specific product details, acknowledge the limitation and suggest consulting official product documentation.`;
+    }
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',

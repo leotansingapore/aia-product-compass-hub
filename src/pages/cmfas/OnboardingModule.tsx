@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
-import { CMFASAIAssistant } from "@/components/cmfas/CMFASAIAssistant";
+import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
 import { useState } from "react";
 
 const OnboardingModule = () => {
@@ -101,9 +101,9 @@ const OnboardingModule = () => {
             links={usefulLinks}
             onUpdate={handleUpdate}
           />
-          <CMFASAIAssistant
-            customGptLink={customGptLink}
-            onUpdate={handleUpdate}
+          <CMFASChatbot
+            moduleId="onboarding"
+            moduleName="CMFAS Onboarding - Getting Started"
           />
         </div>
 

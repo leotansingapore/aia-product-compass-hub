@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
-import { CMFASAIAssistant } from "@/components/cmfas/CMFASAIAssistant";
+import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
 import { useState } from "react";
 
 export default function RES5Module() {
@@ -119,9 +119,9 @@ export default function RES5Module() {
             links={usefulLinks}
             onUpdate={handleUpdate}
           />
-          <CMFASAIAssistant
-            customGptLink={customGptLink}
-            onUpdate={handleUpdate}
+          <CMFASChatbot
+            moduleId="res5"
+            moduleName="RES5 Module - Rules, Ethics & Skills for Financial Advisory Services"
           />
         </div>
 

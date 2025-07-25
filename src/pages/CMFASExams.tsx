@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CategoryCard } from "@/components/CategoryCard";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
+import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
 import { BookOpen, Scale, TrendingUp, PieChart, FileText } from "lucide-react";
 import { useState } from "react";
 import type { UsefulLink } from "@/hooks/useProducts";
@@ -117,11 +118,14 @@ export default function CMFASExams() {
           </p>
         </div>
 
-        {/* Useful Links Section */}
-        <div className="mb-12">
+        {/* Top Section - Useful Links and Chatbot */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-12">
           <CMFASUsefulLinks
             links={usefulLinks}
             onUpdate={handleUpdate}
+          />
+          <CMFASChatbot
+            moduleName="CMFAS Exam Preparation - General"
           />
         </div>
 
