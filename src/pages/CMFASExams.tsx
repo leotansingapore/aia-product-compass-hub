@@ -118,12 +118,16 @@ export default function CMFASExams() {
           </p>
         </div>
 
-        {/* Top Section - Useful Links and Chatbot */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+        {/* Useful Links Section - Positioned Higher */}
+        <div className="mb-8">
           <CMFASUsefulLinks
             links={usefulLinks}
             onUpdate={handleUpdate}
           />
+        </div>
+
+        {/* CMFAS AI Tutor - Below Useful Links */}
+        <div className="mb-12">
           <CMFASChatbot
             moduleName="CMFAS Exam Preparation - General"
           />
