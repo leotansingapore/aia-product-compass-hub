@@ -196,13 +196,6 @@ export default function M9Module() {
       />
       
       <div className="max-w-6xl mx-auto px-6 py-8 space-y-8">
-        {/* Top Section - Useful Links */}
-        <div className="animate-fade-in">
-          <CMFASUsefulLinks
-            links={usefulLinks}
-            onUpdate={handleUpdate}
-          />
-        </div>
 
         {/* CMFAS Chatbot */}
         <div className="animate-fade-in">

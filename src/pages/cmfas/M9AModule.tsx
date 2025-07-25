@@ -95,12 +95,8 @@ export default function M9AModule() {
       />
       
       <div className="max-w-4xl mx-auto px-6 py-8">
-        {/* Top Section - Useful Links and AI Assistant */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <CMFASUsefulLinks
-            links={usefulLinks}
-            onUpdate={handleUpdate}
-          />
+        {/* CMFAS Chatbot */}
+        <div className="mb-8">
           <CMFASChatbot
             moduleId="m9a"
             moduleName="M9A Module - Life Insurance & Investment-Linked Policies II"
