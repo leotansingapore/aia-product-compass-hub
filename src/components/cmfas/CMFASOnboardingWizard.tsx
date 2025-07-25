@@ -8,6 +8,7 @@ import { useChecklistProgress } from '@/hooks/useChecklistProgress';
 import { useNavigate } from 'react-router-dom';
 import { EditableText } from '@/components/EditableText';
 import { useAdmin } from '@/hooks/useAdmin';
+import ReactMarkdown from 'react-markdown';
 
 interface OnboardingStep {
   id: string;
@@ -331,10 +332,22 @@ Click "Complete Step" and start your first practice session!`
           </div>
 
           {/* Step Content */}
-          <div className="prose prose-lg max-w-none mb-8 text-foreground">
-            <div dangerouslySetInnerHTML={{ 
-              __html: currentStepData.content.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-            }} />
+          <div className="prose prose-lg max-w-none mb-8 text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground">
+            <ReactMarkdown
+              components={{
+                h1: ({ children }) => <h1 className="text-3xl font-bold mb-4 text-primary">{children}</h1>,
+                h2: ({ children }) => <h2 className="text-2xl font-semibold mb-3 text-primary">{children}</h2>,
+                h3: ({ children }) => <h3 className="text-xl font-semibold mb-2 text-primary">{children}</h3>,
+                p: ({ children }) => <p className="mb-4 text-foreground leading-relaxed">{children}</p>,
+                ul: ({ children }) => <ul className="mb-4 space-y-2">{children}</ul>,
+                li: ({ children }) => <li className="flex items-start space-x-2 text-foreground"><span className="text-primary mt-1">•</span><span>{children}</span></li>,
+                strong: ({ children }) => <strong className="font-semibold text-primary">{children}</strong>,
+                em: ({ children }) => <em className="italic text-foreground">{children}</em>,
+                blockquote: ({ children }) => <blockquote className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground mb-4">{children}</blockquote>
+              }}
+            >
+              {currentStepData.content}
+            </ReactMarkdown>
           </div>
 
           {/* Action Button for External Links */}
