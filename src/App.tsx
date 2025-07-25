@@ -8,6 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "@/hooks/useAuth";
 import { AdminProvider } from "@/hooks/useAdmin";
 import { OnboardingProvider } from "@/hooks/useOnboarding";
+import { ChecklistProvider } from "@/hooks/useChecklistProgress";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { FloatingQuickActions } from "@/components/FloatingQuickActions";
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
@@ -41,7 +42,8 @@ const App = () => (
             <Sonner />
             <BrowserRouter>
               <OnboardingProvider>
-                <AppLayout>
+                <ChecklistProvider>
+                  <AppLayout>
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/auth" element={<Auth />} />
@@ -66,7 +68,8 @@ const App = () => (
                   <OnboardingTutorial />
                   <OnboardingHelpButton />
                   <WelcomeModal />
-                </AppLayout>
+                  </AppLayout>
+                </ChecklistProvider>
               </OnboardingProvider>
             </BrowserRouter>
           </TooltipProvider>
