@@ -359,23 +359,23 @@ Click "Complete Step" and start your first practice session!`
 
           {/* Step Content */}
           <div className="mb-8">
-            <EditableText
-              value={currentStepData.content}
-              onSave={async (value) => {
-                const newSteps = [...wizardData.steps];
-                newSteps[currentStep] = { ...currentStepData, content: value };
-                const newData = { ...wizardData, steps: newSteps };
-                setWizardData(newData);
-                if (onUpdate) {
-                  await onUpdate('wizard_data', newData);
-                }
-              }}
-              multiline
-              className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground"
-              placeholder="Enter step content..."
-              readOnly={!isAdminMode}
-            />
-            {!isAdminMode && (
+            {isAdminMode ? (
+              <EditableText
+                value={currentStepData.content}
+                onSave={async (value) => {
+                  const newSteps = [...wizardData.steps];
+                  newSteps[currentStep] = { ...currentStepData, content: value };
+                  const newData = { ...wizardData, steps: newSteps };
+                  setWizardData(newData);
+                  if (onUpdate) {
+                    await onUpdate('wizard_data', newData);
+                  }
+                }}
+                multiline
+                className="prose prose-lg max-w-none text-foreground"
+                placeholder="Enter step content..."
+              />
+            ) : (
               <div className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground">
                 <ReactMarkdown
                   components={{
