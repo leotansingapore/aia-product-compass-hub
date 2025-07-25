@@ -1,8 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
-import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
-import { CMFASOnboardingChecklist } from "@/components/cmfas/CMFASOnboardingChecklist";
+import { CMFASOnboardingWizard } from "@/components/cmfas/CMFASOnboardingWizard";
 import { useState } from "react";
 
 const OnboardingModule = () => {
@@ -95,16 +94,8 @@ const OnboardingModule = () => {
       />
       
       <div className="max-w-4xl mx-auto px-6 py-8">
-        {/* CMFAS Chatbot */}
-        <div className="mb-8">
-          <CMFASChatbot
-            moduleId="onboarding"
-            moduleName="CMFAS Onboarding - Getting Started"
-          />
-        </div>
-
-        {/* CMFAS Onboarding Checklist */}
-        <CMFASOnboardingChecklist onUpdate={handleUpdate} />
+        {/* CMFAS Onboarding Wizard */}
+        <CMFASOnboardingWizard onUpdate={handleUpdate} />
 
         {/* Tutorial Lectures Section */}
         <div className="mt-8">
