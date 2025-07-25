@@ -320,8 +320,34 @@ Click "Complete Step" and start your first practice session!`
                 )}
               </div>
               <div>
-                <h2 className="text-2xl font-bold">{currentStepData.title}</h2>
-                <p className="text-muted-foreground">{currentStepData.description}</p>
+                <EditableText
+                  value={currentStepData.title}
+                  onSave={async (value) => {
+                    const newSteps = [...wizardData.steps];
+                    newSteps[currentStep] = { ...currentStepData, title: value };
+                    const newData = { ...wizardData, steps: newSteps };
+                    setWizardData(newData);
+                    if (onUpdate) {
+                      await onUpdate('wizard_data', newData);
+                    }
+                  }}
+                  className="text-2xl font-bold"
+                  placeholder="Enter step title..."
+                />
+                <EditableText
+                  value={currentStepData.description}
+                  onSave={async (value) => {
+                    const newSteps = [...wizardData.steps];
+                    newSteps[currentStep] = { ...currentStepData, description: value };
+                    const newData = { ...wizardData, steps: newSteps };
+                    setWizardData(newData);
+                    if (onUpdate) {
+                      await onUpdate('wizard_data', newData);
+                    }
+                  }}
+                  className="text-muted-foreground"
+                  placeholder="Enter step description..."
+                />
                 {currentStepData.points > 0 && (
                   <Badge variant="secondary" className="mt-2">
                     +{currentStepData.points} points
@@ -332,22 +358,42 @@ Click "Complete Step" and start your first practice session!`
           </div>
 
           {/* Step Content */}
-          <div className="prose prose-lg max-w-none mb-8 text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground">
-            <ReactMarkdown
-              components={{
-                h1: ({ children }) => <h1 className="text-3xl font-bold mb-4 text-primary">{children}</h1>,
-                h2: ({ children }) => <h2 className="text-2xl font-semibold mb-3 text-primary">{children}</h2>,
-                h3: ({ children }) => <h3 className="text-xl font-semibold mb-2 text-primary">{children}</h3>,
-                p: ({ children }) => <p className="mb-4 text-foreground leading-relaxed">{children}</p>,
-                ul: ({ children }) => <ul className="mb-4 space-y-2">{children}</ul>,
-                li: ({ children }) => <li className="flex items-start space-x-2 text-foreground"><span className="text-primary mt-1">•</span><span>{children}</span></li>,
-                strong: ({ children }) => <strong className="font-semibold text-primary">{children}</strong>,
-                em: ({ children }) => <em className="italic text-foreground">{children}</em>,
-                blockquote: ({ children }) => <blockquote className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground mb-4">{children}</blockquote>
+          <div className="mb-8">
+            <EditableText
+              value={currentStepData.content}
+              onSave={async (value) => {
+                const newSteps = [...wizardData.steps];
+                newSteps[currentStep] = { ...currentStepData, content: value };
+                const newData = { ...wizardData, steps: newSteps };
+                setWizardData(newData);
+                if (onUpdate) {
+                  await onUpdate('wizard_data', newData);
+                }
               }}
-            >
-              {currentStepData.content}
-            </ReactMarkdown>
+              multiline
+              className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground"
+              placeholder="Enter step content..."
+              readOnly={!isAdminMode}
+            />
+            {!isAdminMode && (
+              <div className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground">
+                <ReactMarkdown
+                  components={{
+                    h1: ({ children }) => <h1 className="text-3xl font-bold mb-4 text-primary">{children}</h1>,
+                    h2: ({ children }) => <h2 className="text-2xl font-semibold mb-3 text-primary">{children}</h2>,
+                    h3: ({ children }) => <h3 className="text-xl font-semibold mb-2 text-primary">{children}</h3>,
+                    p: ({ children }) => <p className="mb-4 text-foreground leading-relaxed">{children}</p>,
+                    ul: ({ children }) => <ul className="mb-4 space-y-2">{children}</ul>,
+                    li: ({ children }) => <li className="flex items-start space-x-2 text-foreground"><span className="text-primary mt-1">•</span><span>{children}</span></li>,
+                    strong: ({ children }) => <strong className="font-semibold text-primary">{children}</strong>,
+                    em: ({ children }) => <em className="italic text-foreground">{children}</em>,
+                    blockquote: ({ children }) => <blockquote className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground mb-4">{children}</blockquote>
+                  }}
+                >
+                  {currentStepData.content}
+                </ReactMarkdown>
+              </div>
+            )}
           </div>
 
           {/* Action Button for External Links */}
