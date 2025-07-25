@@ -3,12 +3,20 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, ArrowRight, ArrowLeft, Trophy, Sparkles, UserPlus, Calendar, Database, BookOpen, ExternalLink } from 'lucide-react';
+import { CheckCircle, ArrowRight, ArrowLeft, Trophy, Sparkles, UserPlus, Calendar, Database, BookOpen, ExternalLink, Image, Video, Plus, Trash2 } from 'lucide-react';
 import { useChecklistProgress } from '@/hooks/useChecklistProgress';
 import { useNavigate } from 'react-router-dom';
 import { EditableText } from '@/components/EditableText';
 import { useAdmin } from '@/hooks/useAdmin';
 import ReactMarkdown from 'react-markdown';
+
+interface MediaItem {
+  id: string;
+  type: 'gif' | 'youtube' | 'loom';
+  url: string;
+  title?: string;
+  position: number; // Position in content flow
+}
 
 interface OnboardingStep {
   id: string;
@@ -17,6 +25,7 @@ interface OnboardingStep {
   icon: any;
   points: number;
   content: string;
+  media?: MediaItem[];
   actionTitle?: string;
   actionUrl?: string;
 }
@@ -42,6 +51,7 @@ export function CMFASOnboardingWizard({ onUpdate }: CMFASOnboardingWizardProps) 
         description: 'Your journey to becoming a certified financial advisor starts here!',
         icon: Sparkles,
         points: 0,
+        media: [] as MediaItem[],
         content: `# Welcome! 🎉
 
 **You're about to embark on an exciting journey** to become a certified financial advisor.
@@ -68,6 +78,7 @@ Ready to get started? Let's set you up for success!`
         description: 'Set up your official student account at SCI College',
         icon: UserPlus,
         points: 25,
+        media: [] as MediaItem[],
         content: `# Step 1: Create Student Account 🎓
 
 **Register your student account** at SCI College to access exam booking and official materials.
@@ -95,6 +106,7 @@ This confirms your account is properly set up for exam registration.`,
         description: 'Register for M9 exam to create a study deadline',
         icon: Calendar,
         points: 20,
+        media: [] as MediaItem[],
         content: `# Step 2: Register for M9 Exam 📅
 
 **Book your M9 exam first** to create a study deadline and build momentum.
@@ -120,6 +132,7 @@ Having a deadline makes you more focused and committed to your study schedule.`
         description: 'Get access to our comprehensive practice questions',
         icon: Database,
         points: 30,
+        media: [] as MediaItem[],
         content: `# Step 3: Get Access to Question Bank 🎯
 
 **Essential 5-minute setup** to access our comprehensive practice questions.
@@ -151,6 +164,7 @@ Download the **iLearn mobile app** for studying on-the-go!`
         description: 'Understand exam costs, timeline, and our support',
         icon: BookOpen,
         points: 15,
+        media: [] as MediaItem[],
         content: `# Step 4: Know Your Investment 💰
 
 Each exam requires approximately **20-30 hours** of dedicated study time.
@@ -180,6 +194,7 @@ We **subsidize only the first attempt** of each exam. Subsequent attempts will b
         description: 'Complete your first practice session to get started',
         icon: Trophy,
         points: 40,
+        media: [] as MediaItem[],
         content: `# Step 5: Complete First Practice 🏆
 
 **Take your first practice test** using the question bank to establish your baseline knowledge.
@@ -201,7 +216,7 @@ Don't worry about your initial score - everyone starts somewhere!
 ### Ready to begin your practice?
 Click "Complete Step" and start your first practice session!`
       }
-    ]
+    ] as OnboardingStep[]
   });
 
   const currentStepData = wizardData.steps[currentStep];
@@ -239,6 +254,51 @@ Click "Complete Step" and start your first practice session!`
     if (onUpdate) {
       await onUpdate('wizard_data', newData);
     }
+  };
+
+  const handleStepUpdate = async (stepIndex: number, updates: Partial<OnboardingStep>) => {
+    const newSteps = [...wizardData.steps];
+    newSteps[stepIndex] = { ...newSteps[stepIndex], ...updates };
+    const newData = { ...wizardData, steps: newSteps };
+    setWizardData(newData);
+    if (onUpdate) {
+      await onUpdate('wizard_data', newData);
+    }
+  };
+
+  const addMediaItem = (type: 'gif' | 'youtube' | 'loom') => {
+    const newMedia: MediaItem = {
+      id: Date.now().toString(),
+      type,
+      url: '',
+      position: (currentStepData.media?.length || 0) + 1
+    };
+    const updatedMedia = [...(currentStepData.media || []), newMedia];
+    handleStepUpdate(currentStep, { media: updatedMedia });
+  };
+
+  const updateMediaItem = (mediaId: string, updates: Partial<MediaItem>) => {
+    const updatedMedia = (currentStepData.media || []).map(item =>
+      item.id === mediaId ? { ...item, ...updates } : item
+    );
+    handleStepUpdate(currentStep, { media: updatedMedia });
+  };
+
+  const removeMediaItem = (mediaId: string) => {
+    const updatedMedia = (currentStepData.media || []).filter(item => item.id !== mediaId);
+    handleStepUpdate(currentStep, { media: updatedMedia });
+  };
+
+  const getEmbedUrl = (url: string, type: string) => {
+    if (type === 'youtube') {
+      const youtubeId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/)?.[1];
+      return youtubeId ? `https://www.youtube.com/embed/${youtubeId}` : url;
+    }
+    if (type === 'loom') {
+      const loomId = url.match(/loom\.com\/share\/([^?]+)/)?.[1];
+      return loomId ? `https://www.loom.com/embed/${loomId}` : url;
+    }
+    return url;
   };
 
   const isWelcomeStep = currentStep === 0;
@@ -358,40 +418,116 @@ Click "Complete Step" and start your first practice session!`
           </div>
 
           {/* Step Content */}
-          <div className="mb-8">
+          <div className="mb-8 space-y-6">
             {isAdminMode ? (
-              <EditableText
-                value={currentStepData.content}
-                onSave={async (value) => {
-                  const newSteps = [...wizardData.steps];
-                  newSteps[currentStep] = { ...currentStepData, content: value };
-                  const newData = { ...wizardData, steps: newSteps };
-                  setWizardData(newData);
-                  if (onUpdate) {
-                    await onUpdate('wizard_data', newData);
-                  }
-                }}
-                multiline
-                className="prose prose-lg max-w-none text-foreground"
-                placeholder="Enter step content..."
-              />
-            ) : (
-              <div className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground">
-                <ReactMarkdown
-                  components={{
-                    h1: ({ children }) => <h1 className="text-3xl font-bold mb-4 text-primary">{children}</h1>,
-                    h2: ({ children }) => <h2 className="text-2xl font-semibold mb-3 text-primary">{children}</h2>,
-                    h3: ({ children }) => <h3 className="text-xl font-semibold mb-2 text-primary">{children}</h3>,
-                    p: ({ children }) => <p className="mb-4 text-foreground leading-relaxed">{children}</p>,
-                    ul: ({ children }) => <ul className="mb-4 space-y-2">{children}</ul>,
-                    li: ({ children }) => <li className="flex items-start space-x-2 text-foreground"><span className="text-primary mt-1">•</span><span>{children}</span></li>,
-                    strong: ({ children }) => <strong className="font-semibold text-primary">{children}</strong>,
-                    em: ({ children }) => <em className="italic text-foreground">{children}</em>,
-                    blockquote: ({ children }) => <blockquote className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground mb-4">{children}</blockquote>
+              <div className="space-y-4">
+                <EditableText
+                  value={currentStepData.content}
+                  onSave={async (value) => {
+                    await handleStepUpdate(currentStep, { content: value });
                   }}
-                >
-                  {currentStepData.content}
-                </ReactMarkdown>
+                  multiline
+                  className="prose prose-lg max-w-none text-foreground"
+                  placeholder="Enter step content..."
+                />
+                
+                {/* Media Management for Admins */}
+                <div className="border-t pt-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="font-semibold text-sm text-muted-foreground">Media Content</h4>
+                    <div className="flex gap-2">
+                      <Button size="sm" variant="outline" onClick={() => addMediaItem('gif')}>
+                        <Image className="w-4 h-4 mr-1" />
+                        Add GIF
+                      </Button>
+                      <Button size="sm" variant="outline" onClick={() => addMediaItem('youtube')}>
+                        <Video className="w-4 h-4 mr-1" />
+                        YouTube
+                      </Button>
+                      <Button size="sm" variant="outline" onClick={() => addMediaItem('loom')}>
+                        <Video className="w-4 h-4 mr-1" />
+                        Loom
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  {currentStepData.media?.map((mediaItem) => (
+                    <div key={mediaItem.id} className="border rounded-lg p-4 mb-3 bg-muted/30">
+                      <div className="flex items-center justify-between mb-2">
+                        <Badge variant="secondary">{mediaItem.type.toUpperCase()}</Badge>
+                        <Button size="sm" variant="ghost" onClick={() => removeMediaItem(mediaItem.id)}>
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="space-y-2">
+                        <input
+                          type="text"
+                          placeholder={`Enter ${mediaItem.type} URL...`}
+                          value={mediaItem.url}
+                          onChange={(e) => updateMediaItem(mediaItem.id, { url: e.target.value })}
+                          className="w-full px-3 py-2 border rounded-md text-sm"
+                        />
+                        <input
+                          type="text"
+                          placeholder="Optional title..."
+                          value={mediaItem.title || ''}
+                          onChange={(e) => updateMediaItem(mediaItem.id, { title: e.target.value })}
+                          className="w-full px-3 py-2 border rounded-md text-sm"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {/* Rendered Content */}
+                <div className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground">
+                  <ReactMarkdown
+                    components={{
+                      h1: ({ children }) => <h1 className="text-3xl font-bold mb-4 text-primary">{children}</h1>,
+                      h2: ({ children }) => <h2 className="text-2xl font-semibold mb-3 text-primary">{children}</h2>,
+                      h3: ({ children }) => <h3 className="text-xl font-semibold mb-2 text-primary">{children}</h3>,
+                      p: ({ children }) => <p className="mb-4 text-foreground leading-relaxed">{children}</p>,
+                      ul: ({ children }) => <ul className="mb-4 space-y-2">{children}</ul>,
+                      li: ({ children }) => <li className="flex items-start space-x-2 text-foreground"><span className="text-primary mt-1">•</span><span>{children}</span></li>,
+                      strong: ({ children }) => <strong className="font-semibold text-primary">{children}</strong>,
+                      em: ({ children }) => <em className="italic text-foreground">{children}</em>,
+                      blockquote: ({ children }) => <blockquote className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground mb-4">{children}</blockquote>
+                    }}
+                  >
+                    {currentStepData.content}
+                  </ReactMarkdown>
+                </div>
+                
+                {/* Rendered Media */}
+                {currentStepData.media?.map((mediaItem) => (
+                  <div key={mediaItem.id} className="my-6">
+                    {mediaItem.title && (
+                      <h4 className="text-lg font-semibold mb-3 text-center">{mediaItem.title}</h4>
+                    )}
+                    {mediaItem.type === 'gif' && mediaItem.url && (
+                      <div className="flex justify-center">
+                        <img 
+                          src={mediaItem.url} 
+                          alt={mediaItem.title || 'GIF'} 
+                          className="max-w-full h-auto rounded-lg shadow-lg"
+                        />
+                      </div>
+                    )}
+                    {(mediaItem.type === 'youtube' || mediaItem.type === 'loom') && mediaItem.url && (
+                      <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
+                        <iframe
+                          src={getEmbedUrl(mediaItem.url, mediaItem.type)}
+                          className="w-full h-full"
+                          frameBorder="0"
+                          allowFullScreen
+                          title={mediaItem.title || `${mediaItem.type} video`}
+                        />
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
           </div>
