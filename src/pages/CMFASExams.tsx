@@ -5,7 +5,8 @@ import { CategoryCard } from "@/components/CategoryCard";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
 import { BookOpen, Scale, TrendingUp, PieChart, FileText } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import type { UsefulLink } from "@/hooks/useProducts";
 
 export default function CMFASExams() {
@@ -46,12 +47,58 @@ export default function CMFASExams() {
     }
   ]);
 
+  // Load and save useful links to/from database
+  const productId = 'cmfas-exams-page';
+
+  useEffect(() => {
+    const loadUsefulLinks = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('useful_links')
+          .eq('id', productId)
+          .single();
+
+        if (data && data.useful_links && Array.isArray(data.useful_links)) {
+          setUsefulLinks(data.useful_links as unknown as UsefulLink[]);
+        }
+      } catch (error) {
+        console.log('No existing useful links found, using defaults');
+      }
+    };
+
+    loadUsefulLinks();
+  }, []);
+
   // Handler for updating useful links
   const handleUpdate = async (field: string, value: any) => {
     if (field === 'useful_links') {
       setUsefulLinks(value);
-      // In a real app, you would save this to a database
-      console.log('Updated useful links:', value);
+      
+      try {
+        // Save to database
+        const { error } = await supabase
+          .from('products')
+          .upsert({
+            id: productId,
+            title: 'CMFAS Exams Page',
+            description: 'Main CMFAS exams page useful links',
+            category_id: (await supabase.from('categories').select('id').eq('name', 'Learning Modules').single()).data?.id || null,
+            useful_links: value
+          });
+
+        if (error) {
+          console.error('Error saving useful links:', error);
+          throw error;
+        }
+        
+        console.log('Useful links saved successfully to database');
+      } catch (error) {
+        console.error('Failed to save useful links:', error);
+        // Revert the local state on error
+        setUsefulLinks(usefulLinks);
+        throw error;
+      }
     }
   };
 

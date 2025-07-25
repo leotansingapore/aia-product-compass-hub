@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -26,9 +26,9 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
   const { toast } = useToast();
 
   // Update editLinks when links prop changes
-  useState(() => {
+  useEffect(() => {
     setEditLinks(links);
-  });
+  }, [links]);
 
   const handleSave = async () => {
     if (!onSave) {
