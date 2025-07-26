@@ -118,43 +118,13 @@ Create a student account here on SCI College.
         actionUrl: 'https://www.scicollege.org.sg/Account/Register'
       },
       {
-        id: 'understand-costs-timeline',
-        title: 'Know Your Investment',
-        description: 'Understand exam costs, timeline, and our support',
-        icon: BookOpen,
-        points: 15,
-        media: [] as MediaItem[],
-        content: `# Step 3: Know Your Investment 💰
-
-Each exam requires approximately **20-30 hours** of dedicated study time.
-
-## 💸 Exam Costs (First Attempt - Subsidized):
-- **M9:** S$109.00
-- **M9A:** S$109.00  
-- **HI:** S$76.30
-- **RES5:** S$185.30
-
-## 🎁 Our Complete Support Package:
-- 📚 **Comprehensive Flashcards**
-- 👨‍🏫 **Personal Tutoring Support**
-- ❓ **Extensive Question Bank** (1000+ questions)
-- 🤖 **AI Chatbot Support** (24/7)
-- 🔑 **Key Concepts Summary**
-- 💡 **Expert Study Tips & Strategies**
-
-## ⚠️ Important Note:
-We **subsidize only the first attempt** of each exam. Subsequent attempts will be at your own cost.
-
-**That's why our proven system focuses on helping you pass on the first try!**`
-      },
-      {
         id: 'access-question-bank',
         title: 'Access Question Bank',
         description: 'Get access to our comprehensive practice questions',
         icon: Database,
         points: 30,
         media: [] as MediaItem[],
-        content: `# Step 4: Get Access to Question Bank 🎯
+        content: `# Step 3: Get Access to Question Bank 🎯
 
 **Essential 5-minute setup** to access our comprehensive practice questions.
 
@@ -178,6 +148,36 @@ Use the **speed reference** to answer questions and **learn by doing** instead o
 
 ## 📱 Mobile Access:
 Download the **iLearn mobile app** for studying on-the-go!`
+      },
+      {
+        id: 'understand-costs-timeline',
+        title: 'Know Your Investment',
+        description: 'Understand exam costs, timeline, and our support',
+        icon: BookOpen,
+        points: 15,
+        media: [] as MediaItem[],
+        content: `# Step 4: Know Your Investment 💰
+
+Each exam requires approximately **20-30 hours** of dedicated study time.
+
+## 💸 Exam Costs (First Attempt - Subsidized):
+- **M9:** S$109.00
+- **M9A:** S$109.00  
+- **HI:** S$76.30
+- **RES5:** S$185.30
+
+## 🎁 Our Complete Support Package:
+- 📚 **Comprehensive Flashcards**
+- 👨‍🏫 **Personal Tutoring Support**
+- ❓ **Extensive Question Bank** (1000+ questions)
+- 🤖 **AI Chatbot Support** (24/7)
+- 🔑 **Key Concepts Summary**
+- 💡 **Expert Study Tips & Strategies**
+
+## ⚠️ Important Note:
+We **subsidize only the first attempt** of each exam. Subsequent attempts will be at your own cost.
+
+**That's why our proven system focuses on helping you pass on the first try!**`
       },
       {
         id: 'register-m9-exam',
