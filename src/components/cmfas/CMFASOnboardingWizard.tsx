@@ -118,32 +118,6 @@ Create a student account here on SCI College.
         actionUrl: 'https://www.scicollege.org.sg/Account/Register'
       },
       {
-        id: 'register-m9-exam',
-        title: 'Book Your First Exam',
-        description: 'Register for M9 exam to create a study deadline',
-        icon: Calendar,
-        points: 20,
-        media: [] as MediaItem[],
-        content: `# Step 2: Register for M9 Exam 📅
-
-**Book your M9 exam first** to create a study deadline and build momentum.
-
-## Why Start with M9?
-- 🎯 **Foundation Module** - Essential knowledge for all advisors
-- ⏰ **Quick Win** - Can be completed in 2-3 weeks
-- 🚀 **Momentum Builder** - Success breeds success
-
-## Study Timeline:
-- **Aim for 1-2 exams per month**
-- **M9 → M9A → HI → RES5** (recommended sequence)
-- **20-30 hours study time** per exam
-
-### 💡 Pro Tip:
-Book your exam **before you start studying** to create accountability and motivation!
-
-Having a deadline makes you more focused and committed to your study schedule.`
-      },
-      {
         id: 'access-question-bank',
         title: 'Access Question Bank',
         description: 'Get access to our comprehensive practice questions',
@@ -174,6 +148,32 @@ Use the **speed reference** to answer questions and **learn by doing** instead o
 
 ## 📱 Mobile Access:
 Download the **iLearn mobile app** for studying on-the-go!`
+      },
+      {
+        id: 'register-m9-exam',
+        title: 'Book Your First Exam',
+        description: 'Register for M9 exam to create a study deadline',
+        icon: Calendar,
+        points: 20,
+        media: [] as MediaItem[],
+        content: `# Step 4: Register for M9 Exam 📅
+
+**Book your M9 exam first** to create a study deadline and build momentum.
+
+## Why Start with M9?
+- 🎯 **Foundation Module** - Essential knowledge for all advisors
+- ⏰ **Quick Win** - Can be completed in 2-3 weeks
+- 🚀 **Momentum Builder** - Success breeds success
+
+## Study Timeline:
+- **Aim for 1-2 exams per month**
+- **M9 → M9A → HI → RES5** (recommended sequence)
+- **20-30 hours study time** per exam
+
+### 💡 Pro Tip:
+Book your exam **before you start studying** to create accountability and motivation!
+
+Having a deadline makes you more focused and committed to your study schedule.`
       },
       {
         id: 'understand-costs-timeline',
