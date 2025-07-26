@@ -37,19 +37,39 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
   // Save current cursor position/selection
   const saveSelection = () => {
     const selection = window.getSelection();
-    if (selection && selection.rangeCount > 0) {
+    if (selection && selection.rangeCount > 0 && editorRef.current?.contains(selection.anchorNode)) {
       setSavedSelection(selection.getRangeAt(0).cloneRange());
+    } else if (editorRef.current) {
+      // If no selection, create one at the end of the content
+      const range = document.createRange();
+      range.selectNodeContents(editorRef.current);
+      range.collapse(false); // Collapse to end
+      setSavedSelection(range);
     }
   };
 
   // Restore saved cursor position/selection
   const restoreSelection = () => {
     if (savedSelection && editorRef.current) {
-      const selection = window.getSelection();
-      if (selection) {
-        selection.removeAllRanges();
-        selection.addRange(savedSelection);
+      try {
+        const selection = window.getSelection();
+        if (selection) {
+          selection.removeAllRanges();
+          selection.addRange(savedSelection);
+          editorRef.current.focus();
+        }
+      } catch (error) {
+        // If restoring fails, place cursor at end
+        console.warn('Failed to restore selection, placing at end');
         editorRef.current.focus();
+        const selection = window.getSelection();
+        if (selection) {
+          const range = document.createRange();
+          range.selectNodeContents(editorRef.current);
+          range.collapse(false);
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }
       }
     }
   };
