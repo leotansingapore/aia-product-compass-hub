@@ -118,45 +118,13 @@ Create a student account here on SCI College.
         actionUrl: 'https://www.scicollege.org.sg/Account/Register'
       },
       {
-        id: 'access-question-bank',
-        title: 'Access Question Bank',
-        description: 'Get access to our comprehensive practice questions',
-        icon: Database,
-        points: 30,
-        media: [] as MediaItem[],
-        content: `# Step 3: Get Access to Question Bank 🎯
-
-**Essential 5-minute setup** to access our comprehensive practice questions.
-
-## 🔐 Initial Setup:
-**Contact Leo** with your details:
-- 📝 **Full Name**
-- 📧 **Email Address** 
-- 📱 **Phone Number**
-
-You'll receive **iRecruit login credentials** within 24 hours.
-
-## 📚 Accessing Questions:
-**Navigation Path:**
-iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions → Chapter Revision and Premium Papers → **Launch**
-
-## ⚙️ Optimal Study Settings:
-**Configure:** Launch → Restart → OK → Select Module 9 → All Questions → 50 Questions → Redo Cleared Questions → **Learning Mode** → Start Session
-
-## 💡 Study Strategy:
-Use the **speed reference** to answer questions and **learn by doing** instead of reading textbook first.
-
-## 📱 Mobile Access:
-Download the **iLearn mobile app** for studying on-the-go!`
-      },
-      {
         id: 'register-m9-exam',
         title: 'Book Your First Exam',
         description: 'Register for M9 exam to create a study deadline',
         icon: Calendar,
         points: 20,
         media: [] as MediaItem[],
-        content: `# Step 4: Register for M9 Exam 📅
+        content: `# Step 3: Register for M9 Exam 📅
 
 **Book your M9 exam first** to create a study deadline and build momentum.
 
@@ -206,13 +174,45 @@ We **subsidize only the first attempt** of each exam. Subsequent attempts will b
 **That's why our proven system focuses on helping you pass on the first try!**`
       },
       {
+        id: 'access-question-bank',
+        title: 'Access Question Bank',
+        description: 'Get access to our comprehensive practice questions',
+        icon: Database,
+        points: 30,
+        media: [] as MediaItem[],
+        content: `# Step 5: Get Access to Question Bank 🎯
+
+**Essential 5-minute setup** to access our comprehensive practice questions.
+
+## 🔐 Initial Setup:
+**Contact Leo** with your details:
+- 📝 **Full Name**
+- 📧 **Email Address** 
+- 📱 **Phone Number**
+
+You'll receive **iRecruit login credentials** within 24 hours.
+
+## 📚 Accessing Questions:
+**Navigation Path:**
+iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions → Chapter Revision and Premium Papers → **Launch**
+
+## ⚙️ Optimal Study Settings:
+**Configure:** Launch → Restart → OK → Select Module 9 → All Questions → 50 Questions → Redo Cleared Questions → **Learning Mode** → Start Session
+
+## 💡 Study Strategy:
+Use the **speed reference** to answer questions and **learn by doing** instead of reading textbook first.
+
+## 📱 Mobile Access:
+Download the **iLearn mobile app** for studying on-the-go!`
+      },
+      {
         id: 'first-practice',
         title: 'Take Practice Test',
         description: 'Complete your first practice session to get started',
         icon: Trophy,
         points: 40,
         media: [] as MediaItem[],
-        content: `# Step 5: Complete First Practice 🏆
+        content: `# Step 6: Complete First Practice 🏆
 
 **Take your first practice test** using the question bank to establish your baseline knowledge.
 
