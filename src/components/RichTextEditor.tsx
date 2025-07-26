@@ -92,7 +92,11 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
   const insertLink = () => {
     const url = prompt('Enter URL:');
     if (url) {
-      formatText('createLink', url);
+      const linkHtml = `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+      if (editorRef.current) {
+        document.execCommand('insertHTML', false, linkHtml);
+        setContent(editorRef.current.innerHTML);
+      }
     }
   };
 
