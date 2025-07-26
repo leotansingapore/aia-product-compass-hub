@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
+import { MediaUploadZone } from './MediaUploadZone';
 import ReactMarkdown from 'react-markdown';
 import { 
   Bold, 
@@ -28,6 +29,7 @@ interface RichTextEditorProps {
 export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type your content..." }: RichTextEditorProps) {
   const [content, setContent] = useState('');
   const [saving, setSaving] = useState(false);
+  const [showMediaUpload, setShowMediaUpload] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -119,11 +121,23 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
     }
   };
 
-  const insertImage = () => {
-    const url = prompt('Enter image URL:');
-    if (url) {
-      formatText('insertImage', url);
+  const toggleMediaUpload = () => {
+    setShowMediaUpload(!showMediaUpload);
+  };
+
+  const handleMediaAdd = (url: string, type: 'gif' | 'image') => {
+    editorRef.current?.focus();
+    
+    // Create responsive image HTML with proper styling
+    const imageHtml = `<img src="${url}" alt="${type === 'gif' ? 'GIF' : 'Image'}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 8px 0;" />`;
+    
+    if (editorRef.current) {
+      document.execCommand('insertHTML', false, imageHtml);
+      setContent(editorRef.current.innerHTML);
     }
+    
+    // Hide the upload zone after successful insertion
+    setShowMediaUpload(false);
   };
 
   const insertVideo = () => {
@@ -274,9 +288,9 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
 
         {/* Media */}
         <Button
-          variant="ghost"
+          variant={showMediaUpload ? "default" : "ghost"}
           size="sm"
-          onClick={insertImage}
+          onClick={toggleMediaUpload}
         >
           <Image className="h-4 w-4" />
         </Button>
@@ -295,6 +309,13 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
           <Video className="h-4 w-4" />
         </Button>
       </div>
+
+      {/* Media Upload Zone */}
+      {showMediaUpload && (
+        <div className="p-4 border-b border-border bg-muted/30">
+          <MediaUploadZone onMediaAdd={handleMediaAdd} />
+        </div>
+      )}
 
       {/* Editor */}
       <div
