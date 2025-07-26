@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Check, X, Edit } from 'lucide-react';
 import { useAdmin } from '@/hooks/useAdmin';
 import { RichTextEditor } from './RichTextEditor';
+import ReactMarkdown from 'react-markdown';
 
 interface EditableTextProps {
   value: string;
@@ -68,6 +69,35 @@ export function EditableText({
   };
 
   if (!isAdminMode || readOnly || !onSave) {
+    if (richText && value) {
+      // Check if content is HTML or markdown
+      if (value.includes('<')) {
+        // Content is HTML
+        return (
+          <div 
+            className={className}
+            dangerouslySetInnerHTML={{ __html: value }}
+          />
+        );
+      } else {
+        // Content is Markdown
+        return (
+          <div className={className}>
+            <ReactMarkdown
+              components={{
+                a: ({ children, href }) => (
+                  <a href={href} className="text-blue-600 underline hover:text-blue-800" target="_blank" rel="noopener noreferrer">
+                    {children}
+                  </a>
+                )
+              }}
+            >
+              {value}
+            </ReactMarkdown>
+          </div>
+        );
+      }
+    }
     return <span className={className}>{value}</span>;
   }
 
