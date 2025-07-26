@@ -94,16 +94,22 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
     if (url) {
       editorRef.current?.focus();
       
+      // Add protocol if missing
+      let formattedUrl = url;
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        formattedUrl = `https://${url}`;
+      }
+      
       const selection = window.getSelection();
       const selectedText = selection?.toString() || '';
       
       let linkHtml;
       if (selectedText) {
         // If text is selected, wrap it in a link
-        linkHtml = `<a href="${url}" target="_blank" rel="noopener noreferrer">${selectedText}</a>`;
+        linkHtml = `<a href="${formattedUrl}" target="_blank" rel="noopener noreferrer">${selectedText}</a>`;
       } else {
-        // If no text is selected, insert the URL as both link text and href
-        linkHtml = `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+        // If no text is selected, insert the original URL as link text but use formatted URL for href
+        linkHtml = `<a href="${formattedUrl}" target="_blank" rel="noopener noreferrer">${url}</a>`;
       }
       
       if (editorRef.current) {
