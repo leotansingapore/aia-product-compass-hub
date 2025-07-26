@@ -209,28 +209,8 @@ export function VideoLearningInterface({
                   </div>
                 </CardContent>
               </Card>
-            </div>
 
-            {/* Sidebar */}
-            <div className="space-y-6">
-              {/* Course Navigation */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Course Videos</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <VideosByCategory
-                    videos={videos}
-                    onVideoSelect={(index) => {
-                      setCurrentVideoIndex(index);
-                      setWatchTime(0);
-                    }}
-                    getVideoProgress={getVideoProgress}
-                  />
-                </CardContent>
-              </Card>
-
-              {/* Additional Content */}
+              {/* Notes & Transcript */}
               {(currentVideo?.notes || currentVideo?.transcript) && (
                 <Card>
                   <CardContent className="p-0">
@@ -259,6 +239,27 @@ export function VideoLearningInterface({
                   </CardContent>
                 </Card>
               )}
+            </div>
+
+            {/* Sidebar */}
+            <div className="space-y-6">
+              {/* Course Navigation */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Course Videos</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <VideosByCategory
+                    videos={videos}
+                    onVideoSelect={(index) => {
+                      setCurrentVideoIndex(index);
+                      setWatchTime(0);
+                    }}
+                    getVideoProgress={getVideoProgress}
+                  />
+                </CardContent>
+              </Card>
+
 
               {/* Useful Links & Attachments */}
               {(currentVideo?.useful_links?.length > 0 || currentVideo?.attachments?.length > 0) && (
