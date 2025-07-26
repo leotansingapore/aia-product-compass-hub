@@ -375,101 +375,82 @@ Click "Complete Step" and start your first practice session!`
 
       {/* Current Step */}
       <Card className="border-2 border-primary/20">
-        <CardContent className="p-6 md:p-8 lg:p-12">
-          {/* Header Section with Enhanced Styling */}
-          <div className="mb-10">
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
-              {/* Main Content Area */}
-              <div className="flex items-start space-x-6 flex-1">
-                {/* Icon Container with Enhanced Styling */}
-                <div className={`
-                  p-5 rounded-2xl shadow-lg border-2 transition-all duration-300
-                  ${isCompleted 
-                    ? 'bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 border-green-200 dark:border-green-700' 
-                    : 'bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20'
-                  }
-                `}>
-                  {isCompleted ? (
-                    <CheckCircle className="w-10 h-10 text-green-600 dark:text-green-400 drop-shadow-sm" />
-                  ) : (
-                    <currentStepData.icon className="w-10 h-10 text-primary drop-shadow-sm" />
-                  )}
-                </div>
-                
-                {/* Text Content with Better Typography */}
-                <div className="flex-1 min-w-0 space-y-3">
-                  <EditableText
-                    value={currentStepData.title}
-                    onSave={async (value) => {
-                      const newSteps = [...wizardData.steps];
-                      newSteps[currentStep] = { ...currentStepData, title: value };
-                      const newData = { ...wizardData, steps: newSteps };
-                      setWizardData(newData);
-                      if (onUpdate) {
-                        await onUpdate('wizard_data', newData);
+        <CardContent className="p-6 md:p-8 lg:p-10">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-8">
+            <div className="flex items-start space-x-4 flex-1">
+              <div className={`p-4 rounded-xl shadow-sm ${isCompleted ? 'bg-green-100 dark:bg-green-900/20' : 'bg-primary/10'}`}>
+                {isCompleted ? (
+                  <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+                ) : (
+                  <currentStepData.icon className="w-8 h-8 text-primary" />
+                )}
+              </div>
+              <div className="flex-1 min-w-0">
+                <EditableText
+                  value={currentStepData.title}
+                  onSave={async (value) => {
+                    const newSteps = [...wizardData.steps];
+                    newSteps[currentStep] = { ...currentStepData, title: value };
+                    const newData = { ...wizardData, steps: newSteps };
+                    setWizardData(newData);
+                    if (onUpdate) {
+                      await onUpdate('wizard_data', newData);
+                    }
+                  }}
+                  className="text-2xl lg:text-3xl font-bold leading-tight"
+                  placeholder="Enter step title..."
+                />
+                <EditableText
+                  value={currentStepData.description}
+                  onSave={async (value) => {
+                    const newSteps = [...wizardData.steps];
+                    newSteps[currentStep] = { ...currentStepData, description: value };
+                    const newData = { ...wizardData, steps: newSteps };
+                    setWizardData(newData);
+                    if (onUpdate) {
+                      await onUpdate('wizard_data', newData);
+                    }
+                  }}
+                  className="text-muted-foreground mt-2 text-base lg:text-lg leading-relaxed"
+                  placeholder="Enter step description..."
+                />
+                {currentStepData.points > 0 && (
+                  <Badge variant="secondary" className="mt-3 font-medium">
+                    +{currentStepData.points} points
+                  </Badge>
+                )}
+              </div>
+            </div>
+            
+            {/* Admin Edit Button */}
+            {isAdminMode && (
+              <div className="flex items-center space-x-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    // Toggle edit mode for content
+                    const contentElement = document.querySelector(`[data-step-content="${currentStep}"]`);
+                    if (contentElement) {
+                      const editButton = contentElement.querySelector('.edit-trigger');
+                      if (editButton) {
+                        (editButton as HTMLElement).click();
                       }
-                    }}
-                    className="text-3xl lg:text-4xl font-bold leading-tight bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent"
-                    placeholder="Enter step title..."
-                  />
-                  
-                  <EditableText
-                    value={currentStepData.description}
-                    onSave={async (value) => {
-                      const newSteps = [...wizardData.steps];
-                      newSteps[currentStep] = { ...currentStepData, description: value };
-                      const newData = { ...wizardData, steps: newSteps };
-                      setWizardData(newData);
-                      if (onUpdate) {
-                        await onUpdate('wizard_data', newData);
-                      }
-                    }}
-                    className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl"
-                    placeholder="Enter step description..."
-                  />
-                  
-                  {currentStepData.points > 0 && (
-                    <Badge 
-                      variant="secondary" 
-                      className="mt-4 px-4 py-2 text-sm font-semibold bg-gradient-to-r from-primary/10 to-primary/5 text-primary border border-primary/20"
-                    >
-                      <span className="mr-1">🎯</span>
-                      +{currentStepData.points} points
-                    </Badge>
-                  )}
+                    }
+                  }}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  </svg>
+                </Button>
+                <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
+                  <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
                 </div>
               </div>
-
-              {/* Admin Controls with Better Positioning */}
-              {isAdminMode && (
-                <div className="flex items-start space-x-3 lg:flex-col lg:space-x-0 lg:space-y-3">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => {
-                      const contentElement = document.querySelector(`[data-step-content="${currentStep}"]`);
-                      if (contentElement) {
-                        const editButton = contentElement.querySelector('.edit-trigger');
-                        if (editButton) {
-                          (editButton as HTMLElement).click();
-                        }
-                      }
-                    }}
-                    className="text-muted-foreground hover:text-foreground hover:bg-primary/5 transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                    </svg>
-                  </Button>
-                  
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center shadow-sm">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                </div>
-              )}
-            </div>
+            )}
           </div>
 
           {/* Step Content */}
