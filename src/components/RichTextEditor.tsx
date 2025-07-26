@@ -92,7 +92,20 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
   const insertLink = () => {
     const url = prompt('Enter URL:');
     if (url) {
-      const linkHtml = `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+      editorRef.current?.focus();
+      
+      const selection = window.getSelection();
+      const selectedText = selection?.toString() || '';
+      
+      let linkHtml;
+      if (selectedText) {
+        // If text is selected, wrap it in a link
+        linkHtml = `<a href="${url}" target="_blank" rel="noopener noreferrer">${selectedText}</a>`;
+      } else {
+        // If no text is selected, insert the URL as both link text and href
+        linkHtml = `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+      }
+      
       if (editorRef.current) {
         document.execCommand('insertHTML', false, linkHtml);
         setContent(editorRef.current.innerHTML);
