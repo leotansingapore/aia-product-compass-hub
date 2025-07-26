@@ -129,7 +129,7 @@ Create a student account here on SCI College.
 **Essential 5-minute setup** to access our comprehensive practice questions.
 
 ## 🔐 Initial Setup:
-**Contact Leo** with your details:
+**[Click here to submit your details](https://nsgukkz32942.sg.larksuite.com/share/base/form/shrlgzgwycA7f2m2JVxP5T2qhyd)** and I'll create your iRecruit login credentials:
 - 📝 **Full Name**
 - 📧 **Email Address** 
 - 📱 **Phone Number**
