@@ -493,7 +493,7 @@ Click "Complete Step" and start your first practice session!`
                     // Content is HTML
                     <div 
                       dangerouslySetInnerHTML={{ __html: currentStepData.content }}
-                      className="prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-4 prose-h1:text-primary prose-h2:text-2xl prose-h2:font-semibold prose-h2:mb-3 prose-h2:text-primary prose-h3:text-xl prose-h3:font-semibold prose-h3:mb-2 prose-h3:text-primary prose-p:mb-4 prose-p:text-foreground prose-p:leading-relaxed prose-ul:mb-4 prose-ul:space-y-2 prose-li:flex prose-li:items-start prose-li:space-x-2 prose-li:text-foreground prose-strong:font-semibold prose-strong:text-primary prose-em:italic prose-em:text-foreground"
+                      className="prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-4 prose-h1:text-primary prose-h2:text-2xl prose-h2:font-semibold prose-h2:mb-3 prose-h2:text-primary prose-h3:text-xl prose-h3:font-semibold prose-h3:mb-2 prose-h3:text-primary prose-p:mb-4 prose-p:text-foreground prose-p:leading-relaxed prose-ul:mb-4 prose-ul:space-y-2 prose-li:flex prose-li:items-start prose-li:space-x-2 prose-li:text-foreground prose-strong:font-semibold prose-strong:text-primary prose-em:italic prose-em:text-foreground [&_a]:text-blue-600 [&_a]:underline [&_a:hover]:text-blue-800 [&_a:hover]:underline"
                     />
                   ) : (
                     // Content is Markdown
@@ -507,7 +507,8 @@ Click "Complete Step" and start your first practice session!`
                         li: ({ children }) => <li className="flex items-start space-x-2 text-foreground"><span className="text-primary mt-1">•</span><span>{children}</span></li>,
                         strong: ({ children }) => <strong className="font-semibold text-primary">{children}</strong>,
                         em: ({ children }) => <em className="italic text-foreground">{children}</em>,
-                        blockquote: ({ children }) => <blockquote className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground mb-4">{children}</blockquote>
+                        blockquote: ({ children }) => <blockquote className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground mb-4">{children}</blockquote>,
+                        a: ({ children, href }) => <a href={href} className="text-blue-600 underline hover:text-blue-800" target="_blank" rel="noopener noreferrer">{children}</a>
                       }}
                     >
                       {currentStepData.content}
