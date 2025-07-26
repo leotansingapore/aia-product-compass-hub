@@ -103,52 +103,17 @@ Ready to prove your commitment? Let's begin your certification journey! 🚀`
         icon: UserPlus,
         points: 25,
         media: [] as MediaItem[],
-        content: `# 🏢 Create Your Student Account
+        content: `# Create Your Student Account
 
-## 📝 Step-by-Step Registration Process
+Create a student account here on SCI College.
 
-Follow these **essential steps** to create your student account:
+**Registration Details:**
+- Training Co-ordinator: **NG CHUN HIONG**
+- Email: **junxiong@aiafa.com.sg**
+- Agency: **JUNXIONG-WFG ORG**
+- Company: **AIA Financial Advisers Pte Ltd**
 
-### 1️⃣ Visit Registration Portal
-- Navigate to the **SCI College registration portal**
-- Ensure you have a stable internet connection
-
-### 2️⃣ Complete Personal Details
-- Fill in your **personal details carefully**
-- Double-check all information for accuracy
-- Use your official name as per NRIC/Passport
-
-### 3️⃣ Registration Form Details
-**Use these specific details when filling the form:**
-- **Training Co-ordinator:** NA
-- **Email:** NA  
-- **Agency:** NA
-
-### 4️⃣ Complete Registration
-- Review all information before submission
-- **Save your login credentials securely**
-- Note down your student ID for future reference
-
----
-
-## 📸 **IMPORTANT: Confirmation Screenshot**
-
-⚠️ **MANDATORY STEP:** After registration, take a screenshot of your confirmation page and send it to us.
-
-### 📤 What to Send:
-✅ **Screenshot of confirmation page**  
-✅ **Registration confirmation email**  
-✅ **Your new student ID number**
-
-### 📧 Send To:
-Send your confirmation screenshots via our support channel or to your designated contact person.
-
----
-
-💡 **Why This Matters:**  
-This step is crucial for **tracking your progress** and ensuring you get the **support you need** throughout your certification journey.
-
-🎯 **Next Step:** Once confirmed, you'll be ready to book your first exam!`,
+**After registration:** Send me a screenshot of the email confirmation of student account creation completion.`,
         actionTitle: 'Register at SCI College',
         actionUrl: 'https://www.scicollege.org.sg/Account/Register'
       },
