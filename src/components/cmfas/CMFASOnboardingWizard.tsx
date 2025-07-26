@@ -9,10 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import { EditableText } from '@/components/EditableText';
 import { useAdmin } from '@/hooks/useAdmin';
 import ReactMarkdown from 'react-markdown';
+import { MediaUploadZone } from '@/components/MediaUploadZone';
 
 interface MediaItem {
   id: string;
-  type: 'gif' | 'youtube' | 'loom';
+  type: 'gif' | 'image' | 'youtube' | 'loom';
   url: string;
   title?: string;
   position: number; // Position in content flow
@@ -266,15 +267,19 @@ Click "Complete Step" and start your first practice session!`
     }
   };
 
-  const addMediaItem = (type: 'gif' | 'youtube' | 'loom') => {
+  const addMediaItem = (type: 'gif' | 'image' | 'youtube' | 'loom', url?: string) => {
     const newMedia: MediaItem = {
       id: Date.now().toString(),
       type,
-      url: '',
+      url: url || '',
       position: (currentStepData.media?.length || 0) + 1
     };
     const updatedMedia = [...(currentStepData.media || []), newMedia];
     handleStepUpdate(currentStep, { media: updatedMedia });
+  };
+
+  const handleMediaUpload = (url: string, type: 'gif' | 'image') => {
+    addMediaItem(type, url);
   };
 
   const updateMediaItem = (mediaId: string, updates: Partial<MediaItem>) => {
@@ -436,10 +441,6 @@ Click "Complete Step" and start your first practice session!`
                   <div className="flex items-center justify-between mb-4">
                     <h4 className="font-semibold text-sm text-muted-foreground">Media Content</h4>
                     <div className="flex gap-2">
-                      <Button size="sm" variant="outline" onClick={() => addMediaItem('gif')}>
-                        <Image className="w-4 h-4 mr-1" />
-                        Add GIF
-                      </Button>
                       <Button size="sm" variant="outline" onClick={() => addMediaItem('youtube')}>
                         <Video className="w-4 h-4 mr-1" />
                         YouTube
@@ -449,6 +450,11 @@ Click "Complete Step" and start your first practice session!`
                         Loom
                       </Button>
                     </div>
+                  </div>
+                  
+                  {/* Image/GIF Upload Zone */}
+                  <div className="mb-4">
+                    <MediaUploadZone onMediaAdd={handleMediaUpload} className="mb-4" />
                   </div>
                   
                   {currentStepData.media?.map((mediaItem) => (
@@ -506,11 +512,11 @@ Click "Complete Step" and start your first practice session!`
                     {mediaItem.title && (
                       <h4 className="text-lg font-semibold mb-3 text-center">{mediaItem.title}</h4>
                     )}
-                    {mediaItem.type === 'gif' && mediaItem.url && (
+                    {(mediaItem.type === 'gif' || mediaItem.type === 'image') && mediaItem.url && (
                       <div className="flex justify-center">
                         <img 
                           src={mediaItem.url} 
-                          alt={mediaItem.title || 'GIF'} 
+                          alt={mediaItem.title || (mediaItem.type === 'gif' ? 'GIF' : 'Image')} 
                           className="max-w-full h-auto rounded-lg shadow-lg"
                         />
                       </div>
