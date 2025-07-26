@@ -301,7 +301,6 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
         ref={editorRef}
         contentEditable
         className="min-h-[200px] p-4 focus:outline-none prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline [&_a:hover]:text-blue-800"
-        dangerouslySetInnerHTML={{ __html: content }}
         onInput={handleContentChange}
         onBlur={handleContentChange}
         suppressContentEditableWarning={true}
