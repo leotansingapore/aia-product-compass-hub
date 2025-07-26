@@ -118,39 +118,13 @@ Create a student account here on SCI College.
         actionUrl: 'https://www.scicollege.org.sg/Account/Register'
       },
       {
-        id: 'register-m9-exam',
-        title: 'Book Your First Exam',
-        description: 'Register for M9 exam to create a study deadline',
-        icon: Calendar,
-        points: 20,
-        media: [] as MediaItem[],
-        content: `# Step 3: Register for M9 Exam 📅
-
-**Book your M9 exam first** to create a study deadline and build momentum.
-
-## Why Start with M9?
-- 🎯 **Foundation Module** - Essential knowledge for all advisors
-- ⏰ **Quick Win** - Can be completed in 2-3 weeks
-- 🚀 **Momentum Builder** - Success breeds success
-
-## Study Timeline:
-- **Aim for 1-2 exams per month**
-- **M9 → M9A → HI → RES5** (recommended sequence)
-- **20-30 hours study time** per exam
-
-### 💡 Pro Tip:
-Book your exam **before you start studying** to create accountability and motivation!
-
-Having a deadline makes you more focused and committed to your study schedule.`
-      },
-      {
         id: 'understand-costs-timeline',
         title: 'Know Your Investment',
         description: 'Understand exam costs, timeline, and our support',
         icon: BookOpen,
         points: 15,
         media: [] as MediaItem[],
-        content: `# Step 4: Know Your Investment 💰
+        content: `# Step 3: Know Your Investment 💰
 
 Each exam requires approximately **20-30 hours** of dedicated study time.
 
@@ -172,6 +146,32 @@ Each exam requires approximately **20-30 hours** of dedicated study time.
 We **subsidize only the first attempt** of each exam. Subsequent attempts will be at your own cost.
 
 **That's why our proven system focuses on helping you pass on the first try!**`
+      },
+      {
+        id: 'register-m9-exam',
+        title: 'Book Your First Exam',
+        description: 'Register for M9 exam to create a study deadline',
+        icon: Calendar,
+        points: 20,
+        media: [] as MediaItem[],
+        content: `# Step 4: Register for M9 Exam 📅
+
+**Book your M9 exam first** to create a study deadline and build momentum.
+
+## Why Start with M9?
+- 🎯 **Foundation Module** - Essential knowledge for all advisors
+- ⏰ **Quick Win** - Can be completed in 2-3 weeks
+- 🚀 **Momentum Builder** - Success breeds success
+
+## Study Timeline:
+- **Aim for 1-2 exams per month**
+- **M9 → M9A → HI → RES5** (recommended sequence)
+- **20-30 hours study time** per exam
+
+### 💡 Pro Tip:
+Book your exam **before you start studying** to create accountability and motivation!
+
+Having a deadline makes you more focused and committed to your study schedule.`
       },
       {
         id: 'access-question-bank',
