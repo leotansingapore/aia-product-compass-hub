@@ -375,17 +375,17 @@ Click "Complete Step" and start your first practice session!`
 
       {/* Current Step */}
       <Card className="border-2 border-primary/20">
-        <CardContent className="p-8">
-          <div className="flex items-start justify-between mb-6">
-            <div className="flex items-center space-x-4">
-              <div className={`p-3 rounded-full ${isCompleted ? 'bg-green-100 dark:bg-green-900/20' : 'bg-primary/10'}`}>
+        <CardContent className="p-6 md:p-8 lg:p-10">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-8">
+            <div className="flex items-start space-x-4 flex-1">
+              <div className={`p-4 rounded-xl shadow-sm ${isCompleted ? 'bg-green-100 dark:bg-green-900/20' : 'bg-primary/10'}`}>
                 {isCompleted ? (
                   <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
                 ) : (
                   <currentStepData.icon className="w-8 h-8 text-primary" />
                 )}
               </div>
-              <div>
+              <div className="flex-1 min-w-0">
                 <EditableText
                   value={currentStepData.title}
                   onSave={async (value) => {
@@ -397,7 +397,7 @@ Click "Complete Step" and start your first practice session!`
                       await onUpdate('wizard_data', newData);
                     }
                   }}
-                  className="text-2xl font-bold"
+                  className="text-2xl lg:text-3xl font-bold leading-tight"
                   placeholder="Enter step title..."
                 />
                 <EditableText
@@ -411,11 +411,11 @@ Click "Complete Step" and start your first practice session!`
                       await onUpdate('wizard_data', newData);
                     }
                   }}
-                  className="text-muted-foreground"
+                  className="text-muted-foreground mt-2 text-base lg:text-lg leading-relaxed"
                   placeholder="Enter step description..."
                 />
                 {currentStepData.points > 0 && (
-                  <Badge variant="secondary" className="mt-2">
+                  <Badge variant="secondary" className="mt-3 font-medium">
                     +{currentStepData.points} points
                   </Badge>
                 )}
