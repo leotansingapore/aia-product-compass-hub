@@ -174,31 +174,47 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
   };
 
   const handleMediaAdd = async (url: string, type: 'gif' | 'image') => {
-    // Restore cursor position before inserting image
-    restoreSelection();
+    if (!editorRef.current) return;
     
     // Create responsive image HTML with proper styling
     const imageHtml = `<img src="${url}" alt="${type === 'gif' ? 'GIF' : 'Image'}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 8px 0;" />`;
     
-    if (editorRef.current) {
-      document.execCommand('insertHTML', false, imageHtml);
-      const newContent = editorRef.current.innerHTML;
-      setContent(newContent);
-      
-      // Auto-save the content with the new image
+    // Focus the editor first
+    editorRef.current.focus();
+    
+    // Try to restore selection if we have one saved
+    if (savedSelection) {
       try {
-        await onSave(newContent);
-        toast({
-          title: "Image added",
-          description: "Image has been added and saved successfully",
-        });
+        const selection = window.getSelection();
+        if (selection) {
+          selection.removeAllRanges();
+          selection.addRange(savedSelection);
+        }
       } catch (error) {
-        toast({
-          title: "Error",
-          description: "Failed to save image",
-          variant: "destructive",
-        });
+        console.warn('Could not restore selection, inserting at current position');
       }
+    }
+    
+    // Insert the image at the current cursor position
+    document.execCommand('insertHTML', false, imageHtml);
+    
+    // Update content state
+    const newContent = editorRef.current.innerHTML;
+    setContent(newContent);
+    
+    // Auto-save the content with the new image
+    try {
+      await onSave(newContent);
+      toast({
+        title: "Image added",
+        description: "Image has been added and saved successfully",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save image",
+        variant: "destructive",
+      });
     }
     
     // Hide the upload zone after successful insertion
