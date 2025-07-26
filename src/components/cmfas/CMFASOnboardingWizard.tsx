@@ -103,24 +103,52 @@ Ready to prove your commitment? Let's begin your certification journey! 🚀`
         icon: UserPlus,
         points: 25,
         media: [] as MediaItem[],
-        content: `# Step 1: Create Student Account 🎓
+        content: `# 🏢 Create Your Student Account
 
-**Register your student account** at SCI College to access exam booking and official materials.
+## 📝 Step-by-Step Registration Process
 
-## Quick Setup Instructions:
+Follow these **essential steps** to create your student account:
 
-**1. Click the registration link below**
-**2. Fill in the form with these details:**
-- Training Co-ordinator: **NA**
-- Email: **NA**  
-- Agency: **NA**
+### 1️⃣ Visit Registration Portal
+- Navigate to the **SCI College registration portal**
+- Ensure you have a stable internet connection
 
-**3. Complete your registration**
+### 2️⃣ Complete Personal Details
+- Fill in your **personal details carefully**
+- Double-check all information for accuracy
+- Use your official name as per NRIC/Passport
 
-### ✅ After Registration:
-📧 **Important:** Send us a **screenshot of your email confirmation** once your student account is created.
+### 3️⃣ Registration Form Details
+**Use these specific details when filling the form:**
+- **Training Co-ordinator:** NA
+- **Email:** NA  
+- **Agency:** NA
 
-This confirms your account is properly set up for exam registration.`,
+### 4️⃣ Complete Registration
+- Review all information before submission
+- **Save your login credentials securely**
+- Note down your student ID for future reference
+
+---
+
+## 📸 **IMPORTANT: Confirmation Screenshot**
+
+⚠️ **MANDATORY STEP:** After registration, take a screenshot of your confirmation page and send it to us.
+
+### 📤 What to Send:
+✅ **Screenshot of confirmation page**  
+✅ **Registration confirmation email**  
+✅ **Your new student ID number**
+
+### 📧 Send To:
+Send your confirmation screenshots via our support channel or to your designated contact person.
+
+---
+
+💡 **Why This Matters:**  
+This step is crucial for **tracking your progress** and ensuring you get the **support you need** throughout your certification journey.
+
+🎯 **Next Step:** Once confirmed, you'll be ready to book your first exam!`,
         actionTitle: 'Register at SCI College',
         actionUrl: 'https://www.scicollege.org.sg/Account/Register'
       },
