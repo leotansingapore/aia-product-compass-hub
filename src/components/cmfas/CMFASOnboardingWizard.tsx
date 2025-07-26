@@ -431,7 +431,7 @@ Click "Complete Step" and start your first practice session!`
                   onSave={async (value) => {
                     await handleStepUpdate(currentStep, { content: value });
                   }}
-                  multiline
+                  richText
                   className="prose prose-lg max-w-none text-foreground"
                   placeholder="Enter step content..."
                 />

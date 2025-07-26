@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Check, X, Edit } from 'lucide-react';
 import { useAdmin } from '@/hooks/useAdmin';
+import { RichTextEditor } from './RichTextEditor';
 
 interface EditableTextProps {
   value: string;
@@ -14,6 +15,7 @@ interface EditableTextProps {
   className?: string;
   placeholder?: string;
   readOnly?: boolean;
+  richText?: boolean;
 }
 
 export function EditableText({ 
@@ -22,7 +24,8 @@ export function EditableText({
   multiline = false, 
   className = "",
   placeholder = "Click to edit...",
-  readOnly = false
+  readOnly = false,
+  richText = false
 }: EditableTextProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value);
@@ -69,6 +72,21 @@ export function EditableText({
   }
 
   if (isEditing) {
+    if (richText) {
+      return (
+        <RichTextEditor
+          value={editValue}
+          onSave={async (content) => {
+            setEditValue(content);
+            await onSave!(content);
+            setIsEditing(false);
+          }}
+          onCancel={handleCancel}
+          placeholder={placeholder}
+        />
+      );
+    }
+
     const InputComponent = multiline ? Textarea : Input;
     
     return (
