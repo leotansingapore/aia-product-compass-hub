@@ -35,43 +35,46 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
 
   // Convert markdown to HTML for initial display
   useEffect(() => {
-    const convertMarkdownToHtml = (markdown: string) => {
-      return markdown
-        // Headers
-        .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-        .replace(/^## (.*$)/gm, '<h2>$1</h2>')
-        .replace(/^# (.*$)/gm, '<h1>$1</h1>')
-        // Bold
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        // Italic
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        // Lists (handle multiple lines)
-        .replace(/^- (.*$)/gm, '<li>$1</li>')
-        .replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs, '<ul>$1</ul>')
-        // Numbered lists
-        .replace(/^\d+\. (.*$)/gm, '<li>$1</li>')
-        .replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs, (match) => {
-          if (!match.includes('<ul>')) {
-            return `<ol>${match}</ol>`;
-          }
-          return match;
-        })
-        // Line breaks and paragraphs
-        .replace(/\n\n+/g, '</p><p>')
-        .replace(/^(?!<[h|u|o|l])(.+)$/gm, '<p>$1</p>')
-        // Clean up
-        .replace(/<p><\/p>/g, '')
-        .replace(/<p>(<[h|u|o])/g, '$1')
-        .replace(/(<\/[h|u|o][^>]*>)<\/p>/g, '$1')
-        .replace(/\n/g, '<br>');
-    };
+    // Only update if content is significantly different to avoid overwriting user changes
+    if (editorRef.current && Math.abs(editorRef.current.innerHTML.length - value.length) > 10) {
+      const convertMarkdownToHtml = (markdown: string) => {
+        return markdown
+          // Headers
+          .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+          .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+          .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+          // Bold
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          // Italic
+          .replace(/\*(.*?)\*/g, '<em>$1</em>')
+          // Lists (handle multiple lines)
+          .replace(/^- (.*$)/gm, '<li>$1</li>')
+          .replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs, '<ul>$1</ul>')
+          // Numbered lists
+          .replace(/^\d+\. (.*$)/gm, '<li>$1</li>')
+          .replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs, (match) => {
+            if (!match.includes('<ul>')) {
+              return `<ol>${match}</ol>`;
+            }
+            return match;
+          })
+          // Line breaks and paragraphs
+          .replace(/\n\n+/g, '</p><p>')
+          .replace(/^(?!<[h|u|o|l])(.+)$/gm, '<p>$1</p>')
+          // Clean up
+          .replace(/<p><\/p>/g, '')
+          .replace(/<p>(<[h|u|o])/g, '$1')
+          .replace(/(<\/[h|u|o][^>]*>)<\/p>/g, '$1')
+          .replace(/\n/g, '<br>');
+      };
 
-    const htmlContent = convertMarkdownToHtml(value);
-    setContent(htmlContent);
-    
-    // Set initial content in editor
-    if (editorRef.current) {
-      editorRef.current.innerHTML = htmlContent;
+      const htmlContent = convertMarkdownToHtml(value);
+      setContent(htmlContent);
+      
+      // Set initial content in editor
+      if (editorRef.current) {
+        editorRef.current.innerHTML = htmlContent;
+      }
     }
   }, [value]);
 
@@ -125,7 +128,7 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
     setShowMediaUpload(!showMediaUpload);
   };
 
-  const handleMediaAdd = (url: string, type: 'gif' | 'image') => {
+  const handleMediaAdd = async (url: string, type: 'gif' | 'image') => {
     editorRef.current?.focus();
     
     // Create responsive image HTML with proper styling
@@ -133,7 +136,23 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
     
     if (editorRef.current) {
       document.execCommand('insertHTML', false, imageHtml);
-      setContent(editorRef.current.innerHTML);
+      const newContent = editorRef.current.innerHTML;
+      setContent(newContent);
+      
+      // Auto-save the content with the new image
+      try {
+        await onSave(newContent);
+        toast({
+          title: "Image added",
+          description: "Image has been added and saved successfully",
+        });
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to save image",
+          variant: "destructive",
+        });
+      }
     }
     
     // Hide the upload zone after successful insertion
