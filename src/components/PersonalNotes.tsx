@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { useNotes } from "@/hooks/useNotes";
 import { formatDistanceToNow } from 'date-fns';
-import { Plus, Edit2, Trash2, Save, X, FileText } from "lucide-react";
+import { Plus, Edit2, Trash2, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { MinimalRichEditor } from './MinimalRichEditor';
+import ReactMarkdown from 'react-markdown';
 
 interface PersonalNotesProps {
   productId: string;
@@ -51,138 +52,183 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <FileText className="h-5 w-5" />
-          Personal Notes
-        </CardTitle>
-        <CardDescription>
-          Keep track of your thoughts and insights about this product
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {/* Add New Note Button */}
+    <div className="space-y-4">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <FileText className="h-5 w-5 text-muted-foreground" />
+          <h3 className="font-medium">Personal Notes</h3>
+        </div>
         {!showNewNote && (
           <Button
-            variant="outline"
+            variant="ghost"
+            size="sm"
             onClick={() => setShowNewNote(true)}
-            className="w-full"
+            className="text-muted-foreground hover:text-foreground"
           >
-            <Plus className="h-4 w-4 mr-2" />
-            Add New Note
+            <Plus className="h-4 w-4" />
           </Button>
         )}
+      </div>
 
-        {/* New Note Form */}
-        {showNewNote && (
-          <div className="space-y-3 p-4 border rounded-lg bg-muted/50">
-            <Textarea
-              placeholder="Write your note here..."
-              value={newNoteContent}
-              onChange={(e) => setNewNoteContent(e.target.value)}
-              className="min-h-[100px]"
-            />
-            <div className="flex gap-2">
-              <Button
-                onClick={handleAddNote}
-                disabled={!newNoteContent.trim()}
-                size="sm"
-              >
-                <Save className="h-4 w-4 mr-2" />
-                Save Note
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setShowNewNote(false);
-                  setNewNoteContent('');
-                }}
-                size="sm"
-              >
-                <X className="h-4 w-4 mr-2" />
-                Cancel
-              </Button>
-            </div>
+      {/* New Note Form */}
+      {showNewNote && (
+        <div className="border border-border/40 rounded-lg bg-card/50 backdrop-blur-sm">
+          <MinimalRichEditor
+            value={newNoteContent}
+            onChange={setNewNoteContent}
+            onSave={handleAddNote}
+            onCancel={() => {
+              setShowNewNote(false);
+              setNewNoteContent('');
+            }}
+            placeholder="Write your note... (⌘+Enter to save, Esc to cancel)"
+            autoFocus={true}
+            showToolbar={true}
+          />
+          <div className="px-3 pb-3 flex gap-2">
+            <Button
+              onClick={handleAddNote}
+              disabled={!newNoteContent.trim()}
+              size="sm"
+              className="h-7 text-xs"
+            >
+              Save
+            </Button>
+            <Button
+              variant="ghost"
+              onClick={() => {
+                setShowNewNote(false);
+                setNewNoteContent('');
+              }}
+              size="sm"
+              className="h-7 text-xs"
+            >
+              Cancel
+            </Button>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Notes List */}
-        {loading ? (
-          <div className="text-center py-8 text-muted-foreground">
-            Loading notes...
-          </div>
-        ) : notes.length === 0 ? (
-          <div className="text-center py-8 text-muted-foreground">
-            No notes yet. Add your first note above!
-          </div>
-        ) : (
-          <div className="space-y-3">
-            {notes.map((note) => (
-              <div
-                key={note.id}
-                className={cn(
-                  "p-4 border rounded-lg transition-colors",
-                  editingId === note.id ? "bg-muted/50" : "bg-card"
-                )}
-              >
-                {editingId === note.id ? (
-                  <div className="space-y-3">
-                    <Textarea
-                      value={editContent}
-                      onChange={(e) => setEditContent(e.target.value)}
-                      className="min-h-[100px]"
-                    />
-                    <div className="flex gap-2">
-                      <Button
-                        onClick={handleSaveEdit}
-                        disabled={!editContent.trim()}
-                        size="sm"
-                      >
-                        <Save className="h-4 w-4 mr-2" />
-                        Save
-                      </Button>
-                      <Button
-                        variant="outline"
-                        onClick={handleCancelEdit}
-                        size="sm"
-                      >
-                        <X className="h-4 w-4 mr-2" />
-                        Cancel
-                      </Button>
-                    </div>
+      {/* Notes List */}
+      {loading ? (
+        <div className="text-center py-8 text-muted-foreground text-sm">
+          Loading notes...
+        </div>
+      ) : notes.length === 0 ? (
+        <div className="text-center py-8 text-muted-foreground text-sm">
+          {showNewNote ? "Your notes will appear here" : "No notes yet. Click + to add your first note"}
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {notes.map((note) => (
+            <div
+              key={note.id}
+              className={cn(
+                "group border border-border/40 rounded-lg transition-all duration-200 hover:border-border/60",
+                editingId === note.id ? "bg-card/50 backdrop-blur-sm" : "bg-card/30 hover:bg-card/50"
+              )}
+            >
+              {editingId === note.id ? (
+                <div>
+                  <MinimalRichEditor
+                    value={editContent}
+                    onChange={setEditContent}
+                    onSave={handleSaveEdit}
+                    onCancel={handleCancelEdit}
+                    placeholder="Edit your note..."
+                    autoFocus={true}
+                    showToolbar={true}
+                  />
+                  <div className="px-3 pb-3 flex gap-2">
+                    <Button
+                      onClick={handleSaveEdit}
+                      disabled={!editContent.trim()}
+                      size="sm"
+                      className="h-7 text-xs"
+                    >
+                      Save
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      onClick={handleCancelEdit}
+                      size="sm"
+                      className="h-7 text-xs"
+                    >
+                      Cancel
+                    </Button>
                   </div>
-                ) : (
-                  <div className="space-y-2">
-                    <p className="whitespace-pre-wrap">{note.content}</p>
+                </div>
+              ) : (
+                <div 
+                  className="p-4 cursor-pointer"
+                  onClick={() => handleStartEdit(note.id, note.content)}
+                >
+                  <div className="space-y-3">
+                    <div className="prose prose-sm max-w-none text-foreground">
+                      <ReactMarkdown
+                        components={{
+                          a: ({ href, children }) => (
+                            <a
+                              href={href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-primary hover:underline"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              {children}
+                            </a>
+                          ),
+                          strong: ({ children }) => (
+                            <strong className="font-semibold text-foreground">{children}</strong>
+                          ),
+                          em: ({ children }) => (
+                            <em className="italic">{children}</em>
+                          ),
+                          p: ({ children }) => (
+                            <p className="leading-relaxed text-foreground last:mb-0">{children}</p>
+                          )
+                        }}
+                      >
+                        {note.content}
+                      </ReactMarkdown>
+                    </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">
+                      <span className="text-xs text-muted-foreground">
                         {formatDistanceToNow(new Date(note.updated_at), { addSuffix: true })}
                       </span>
-                      <div className="flex gap-2">
+                      <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => handleStartEdit(note.id, note.content)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleStartEdit(note.id, note.content);
+                          }}
+                          className="h-7 w-7 p-0"
                         >
-                          <Edit2 className="h-4 w-4" />
+                          <Edit2 className="h-3 w-3" />
                         </Button>
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => handleDeleteNote(note.id)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeleteNote(note.id);
+                          }}
+                          className="h-7 w-7 p-0 text-destructive hover:text-destructive"
                         >
-                          <Trash2 className="h-4 w-4" />
+                          <Trash2 className="h-3 w-3" />
                         </Button>
                       </div>
                     </div>
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-      </CardContent>
-    </Card>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
