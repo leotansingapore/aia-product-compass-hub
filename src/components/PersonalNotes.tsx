@@ -1,232 +1,257 @@
-import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { useNotes } from "@/hooks/useNotes";
-import { formatDistanceToNow } from 'date-fns';
-import { Plus, Edit2, Trash2, FileText } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { MinimalRichEditor } from './MinimalRichEditor';
+import React, { useState } from 'react';
+import { Button } from './ui/button';
+import { Card } from './ui/card';
+import { Trash2, Plus, Search, GripVertical } from 'lucide-react';
+import { NotionStyleEditor } from './notion-editor/NotionStyleEditor';
+import { useNotes } from '../hooks/useNotes';
+import { useAuth } from '../hooks/useAuth';
 import ReactMarkdown from 'react-markdown';
+import { useToast } from './ui/use-toast';
+import { Input } from './ui/input';
 
 interface PersonalNotesProps {
   productId: string;
 }
 
 export function PersonalNotes({ productId }: PersonalNotesProps) {
+  const { user } = useAuth();
   const { notes, loading, addNote, updateNote, deleteNote } = useNotes(productId);
+  const { toast } = useToast();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showNewNoteEditor, setShowNewNoteEditor] = useState(false);
   const [newNoteContent, setNewNoteContent] = useState('');
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [editContent, setEditContent] = useState('');
-  const [showNewNote, setShowNewNote] = useState(false);
 
-  const handleAddNote = async () => {
-    if (newNoteContent.trim()) {
-      await addNote(newNoteContent);
+  const handleAddNote = async (content: string) => {
+    if (!content.trim()) return;
+
+    try {
+      await addNote(content);
       setNewNoteContent('');
-      setShowNewNote(false);
+      setShowNewNoteEditor(false);
+      toast({
+        title: "Note added",
+        description: "Your note has been saved successfully.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to add note. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
-  const handleStartEdit = (noteId: string, content: string) => {
-    setEditingId(noteId);
-    setEditContent(content);
-  };
-
-  const handleSaveEdit = async () => {
-    if (editingId && editContent.trim()) {
-      await updateNote(editingId, editContent);
-      setEditingId(null);
-      setEditContent('');
+  const handleUpdateNote = async (noteId: string, content: string) => {
+    try {
+      await updateNote(noteId, content);
+      toast({
+        title: "Note updated",
+        description: "Your changes have been saved.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to update note. Please try again.",
+        variant: "destructive",
+      });
     }
-  };
-
-  const handleCancelEdit = () => {
-    setEditingId(null);
-    setEditContent('');
   };
 
   const handleDeleteNote = async (noteId: string) => {
     if (window.confirm('Are you sure you want to delete this note?')) {
-      await deleteNote(noteId);
+      try {
+        await deleteNote(noteId);
+        toast({
+          title: "Note deleted",
+          description: "Your note has been removed.",
+        });
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to delete note. Please try again.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
-  return (
-    <div className="space-y-4">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <FileText className="h-5 w-5 text-muted-foreground" />
-          <h3 className="font-medium">Personal Notes</h3>
-        </div>
-        {!showNewNote && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowNewNote(true)}
-            className="text-muted-foreground hover:text-foreground"
-          >
-            <Plus className="h-4 w-4" />
-          </Button>
-        )}
-      </div>
+  // Filter notes based on search query
+  const filteredNotes = notes.filter(note => 
+    note.content.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-      {/* New Note Form */}
-      {showNewNote && (
-        <div className="border border-border/40 rounded-lg bg-card/50 backdrop-blur-sm">
-          <MinimalRichEditor
-            value={newNoteContent}
-            onChange={setNewNoteContent}
-            onSave={handleAddNote}
-            onCancel={() => {
-              setShowNewNote(false);
-              setNewNoteContent('');
-            }}
-            placeholder="Write your note... (⌘+Enter to save, Esc to cancel)"
-            autoFocus={true}
-            showToolbar={true}
-          />
-          <div className="px-3 pb-3 flex gap-2">
-            <Button
-              onClick={handleAddNote}
-              disabled={!newNoteContent.trim()}
-              size="sm"
-              className="h-7 text-xs"
-            >
-              Save
-            </Button>
-            <Button
-              variant="ghost"
-              onClick={() => {
-                setShowNewNote(false);
-                setNewNoteContent('');
-              }}
-              size="sm"
-              className="h-7 text-xs"
-            >
-              Cancel
-            </Button>
+  if (!user) {
+    return (
+      <Card className="p-8">
+        <div className="text-center">
+          <p className="text-muted-foreground mb-4">
+            Please log in to view and add personal notes.
+          </p>
+        </div>
+      </Card>
+    );
+  }
+
+  if (loading) {
+    return (
+      <Card className="p-8">
+        <div className="text-center">
+          <div className="animate-pulse">
+            <div className="h-4 bg-muted rounded w-1/3 mx-auto mb-2"></div>
+            <div className="h-4 bg-muted rounded w-1/4 mx-auto"></div>
           </div>
         </div>
+      </Card>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header with search */}
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-semibold">Personal Notes</h3>
+        <div className="flex items-center gap-3">
+          {notes.length > 0 && (
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+              <Input
+                placeholder="Search notes..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-9 w-64"
+              />
+            </div>
+          )}
+          <Button 
+            onClick={() => setShowNewNoteEditor(true)}
+            size="sm"
+            className="gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            New Note
+          </Button>
+        </div>
+      </div>
+
+      {/* New note editor */}
+      {showNewNoteEditor && (
+        <Card className="border-dashed border-2 border-muted-foreground/25">
+          <div className="p-6">
+            <NotionStyleEditor
+              value={newNoteContent}
+              onChange={setNewNoteContent}
+              onSave={handleAddNote}
+              placeholder="Start writing your note... Type '/' for formatting options"
+              autoFocus
+            />
+            <div className="flex justify-end gap-2 mt-4 pt-4 border-t">
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => {
+                  setShowNewNoteEditor(false);
+                  setNewNoteContent('');
+                }}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </Card>
       )}
 
-      {/* Notes List */}
-      {loading ? (
-        <div className="text-center py-8 text-muted-foreground text-sm">
-          Loading notes...
-        </div>
-      ) : notes.length === 0 ? (
-        <div className="text-center py-8 text-muted-foreground text-sm">
-          {showNewNote ? "Your notes will appear here" : "No notes yet. Click + to add your first note"}
-        </div>
-      ) : (
-        <div className="space-y-3">
-          {notes.map((note) => (
-            <div
-              key={note.id}
-              className={cn(
-                "group border border-border/40 rounded-lg transition-all duration-200 hover:border-border/60",
-                editingId === note.id ? "bg-card/50 backdrop-blur-sm" : "bg-card/30 hover:bg-card/50"
-              )}
-            >
-              {editingId === note.id ? (
-                <div>
-                  <MinimalRichEditor
-                    value={editContent}
-                    onChange={setEditContent}
-                    onSave={handleSaveEdit}
-                    onCancel={handleCancelEdit}
-                    placeholder="Edit your note..."
-                    autoFocus={true}
-                    showToolbar={true}
-                  />
-                  <div className="px-3 pb-3 flex gap-2">
-                    <Button
-                      onClick={handleSaveEdit}
-                      disabled={!editContent.trim()}
-                      size="sm"
-                      className="h-7 text-xs"
-                    >
-                      Save
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      onClick={handleCancelEdit}
-                      size="sm"
-                      className="h-7 text-xs"
-                    >
-                      Cancel
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <div 
-                  className="p-4 cursor-pointer"
-                  onClick={() => handleStartEdit(note.id, note.content)}
+      {/* Notes list */}
+      {filteredNotes.length === 0 ? (
+        <Card className="p-12 text-center">
+          {searchQuery ? (
+            <div>
+              <p className="text-muted-foreground mb-4">
+                No notes found matching "{searchQuery}"
+              </p>
+              <Button 
+                variant="outline"
+                onClick={() => setSearchQuery('')}
+              >
+                Clear search
+              </Button>
+            </div>
+          ) : notes.length === 0 ? (
+            <div>
+              <div className="w-16 h-16 mx-auto mb-4 bg-muted rounded-full flex items-center justify-center">
+                <Plus className="w-8 h-8 text-muted-foreground" />
+              </div>
+              <p className="text-muted-foreground mb-4 text-lg">
+                No personal notes yet
+              </p>
+              <p className="text-sm text-muted-foreground mb-6">
+                Capture your thoughts, insights, and important information about this product.
+              </p>
+              {!showNewNoteEditor && (
+                <Button 
+                  onClick={() => setShowNewNoteEditor(true)}
+                  className="gap-2"
                 >
-                  <div className="space-y-3">
-                    <div className="prose prose-sm max-w-none text-foreground">
-                      <ReactMarkdown
-                        components={{
-                          a: ({ href, children }) => (
-                            <a
-                              href={href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-primary hover:underline"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              {children}
-                            </a>
-                          ),
-                          strong: ({ children }) => (
-                            <strong className="font-semibold text-foreground">{children}</strong>
-                          ),
-                          em: ({ children }) => (
-                            <em className="italic">{children}</em>
-                          ),
-                          p: ({ children }) => (
-                            <p className="leading-relaxed text-foreground last:mb-0">{children}</p>
-                          )
-                        }}
-                      >
-                        {note.content}
-                      </ReactMarkdown>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground">
-                        {formatDistanceToNow(new Date(note.updated_at), { addSuffix: true })}
-                      </span>
-                      <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleStartEdit(note.id, note.content);
-                          }}
-                          className="h-7 w-7 p-0"
-                        >
-                          <Edit2 className="h-3 w-3" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleDeleteNote(note.id);
-                          }}
-                          className="h-7 w-7 p-0 text-destructive hover:text-destructive"
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  <Plus className="w-4 h-4" />
+                  Create Your First Note
+                </Button>
               )}
             </div>
-          ))}
+          ) : null}
+        </Card>
+      ) : (
+        <div className="space-y-4">
+          {filteredNotes.map((note) => {
+            const noteTitle = note.content.split('\n')[0] || 'Untitled Note';
+            const notePreview = note.content.length > 100 
+              ? note.content.substring(0, 100) + '...' 
+              : note.content;
+
+            return (
+              <Card key={note.id} className="group hover:shadow-md transition-all duration-200">
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3 flex-1">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                        <GripVertical className="w-4 h-4 text-muted-foreground cursor-grab" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-medium text-foreground line-clamp-1">
+                          {noteTitle}
+                        </h4>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-xs text-muted-foreground">
+                            {new Date(note.created_at).toLocaleDateString()}
+                          </span>
+                          {note.updated_at !== note.created_at && (
+                            <span className="text-xs text-muted-foreground">
+                              • Edited {new Date(note.updated_at).toLocaleDateString()}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={() => handleDeleteNote(note.id)}
+                        className="h-8 w-8 p-0 text-muted-foreground hover:text-destructive"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+
+                  <NotionStyleEditor
+                    value={note.content}
+                    onChange={() => {}} // Controlled by onSave
+                    onSave={(content) => handleUpdateNote(note.id, content)}
+                    placeholder="Click to edit this note..."
+                  />
+                </div>
+              </Card>
+            );
+          })}
         </div>
       )}
     </div>
