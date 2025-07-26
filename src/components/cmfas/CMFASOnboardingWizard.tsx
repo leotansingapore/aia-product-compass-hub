@@ -268,13 +268,14 @@ Click "Complete Step" and start your first practice session!`
   };
 
   const addMediaItem = (type: 'gif' | 'image' | 'youtube' | 'loom', url?: string) => {
+    const stepData = wizardData.steps[currentStep];
     const newMedia: MediaItem = {
       id: Date.now().toString(),
       type,
       url: url || '',
-      position: (currentStepData.media?.length || 0) + 1
+      position: (stepData.media?.length || 0) + 1
     };
-    const updatedMedia = [...(currentStepData.media || []), newMedia];
+    const updatedMedia = [...(stepData.media || []), newMedia];
     handleStepUpdate(currentStep, { media: updatedMedia });
   };
 
