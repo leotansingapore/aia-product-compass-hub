@@ -55,23 +55,46 @@ export function CMFASOnboardingWizard({ onUpdate }: CMFASOnboardingWizardProps) 
         media: [] as MediaItem[],
         content: `# Welcome! 🎉
 
-**You're about to embark on an exciting journey** to become a certified financial advisor.
+It is puzzling to me how people spend years on a degree just to earn $3-4k/mth but don't have the patience to spend a few months clearing some certifications to have the chance to earn a 5 figure income within a few months.
 
-Our proven system has helped **hundreds of advisors** pass their CMFAS exams efficiently.
+## 🎯 Your CMFAS Journey Starts Here
 
-### What you'll achieve:
-- ✅ **Professional Certification** - Become a licensed financial advisor
-- 💰 **Career Growth** - Unlock higher earning potential  
-- 🎯 **Expert Knowledge** - Master financial products and regulations
-- 🚀 **Fast Track Success** - Our streamlined approach saves you time
+In the next few months, you will be spending the majority of the time studying financial certifications, called the **CMFAS exams**.
 
-### Our Success Formula:
-- 📚 **Comprehensive Question Bank** - 1000+ practice questions
-- 🎯 **Targeted Study Materials** - Focus on what matters
-- 👨‍🏫 **Personal Support** - Get help when you need it
-- 🏆 **Proven Results** - High pass rates
+### 📖 Study Commitment
+I would suggest that you spend **at least 1 hour a day** studying for the exams.
 
-Ready to get started? Let's set you up for success!`
+There are **4 exams**, and it should take **at most 1 month** to study for each exam.
+
+## 💪 Tests of Conviction
+
+Treat these as **"obstacles"** or **"tests"** of your conviction and commitment.
+
+The more you pass these exams, the more content I will **"unlock"** for you.
+
+Just as how anyone and everyone can enter into BMT, not everyone can go into OCS, or make it to becoming a commando.
+
+## 🔄 Two-Way Test
+
+So treat this as a **two way test**:
+- **For yourself:** to learn more about the business before placing your bets
+- **For myself:** to check for your convictions and commitment to us
+
+The more you study and pass the exams, the more courses you will unlock, and you will progress to the next level.
+
+Think of it this way: Anyone can join BMT, but not everyone will enter OCS Foundation Term, and OCS Pro Term, and eventually commission as an Officer.
+
+## 🎓 Progression Levels
+
+**Finternship™ Bootcamp** → Everyone Starts here
+
+**Finternship™ Fastrack** → Progress here after passing 1 exam
+
+**Finternship™ Accelerator** → Progress here after passing 4 exams
+
+---
+
+Ready to prove your commitment? Let's begin your certification journey! 🚀`
       },
       {
         id: 'create-student-account',
