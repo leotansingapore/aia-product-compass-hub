@@ -30,8 +30,29 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
   const [content, setContent] = useState('');
   const [saving, setSaving] = useState(false);
   const [showMediaUpload, setShowMediaUpload] = useState(false);
+  const [savedSelection, setSavedSelection] = useState<Range | null>(null);
   const editorRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  // Save current cursor position/selection
+  const saveSelection = () => {
+    const selection = window.getSelection();
+    if (selection && selection.rangeCount > 0) {
+      setSavedSelection(selection.getRangeAt(0).cloneRange());
+    }
+  };
+
+  // Restore saved cursor position/selection
+  const restoreSelection = () => {
+    if (savedSelection && editorRef.current) {
+      const selection = window.getSelection();
+      if (selection) {
+        selection.removeAllRanges();
+        selection.addRange(savedSelection);
+        editorRef.current.focus();
+      }
+    }
+  };
 
   // Convert markdown to HTML for initial display
   useEffect(() => {
@@ -125,11 +146,16 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
   };
 
   const toggleMediaUpload = () => {
+    if (!showMediaUpload) {
+      // Save cursor position before opening media upload
+      saveSelection();
+    }
     setShowMediaUpload(!showMediaUpload);
   };
 
   const handleMediaAdd = async (url: string, type: 'gif' | 'image') => {
-    editorRef.current?.focus();
+    // Restore cursor position before inserting image
+    restoreSelection();
     
     // Create responsive image HTML with proper styling
     const imageHtml = `<img src="${url}" alt="${type === 'gif' ? 'GIF' : 'Image'}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 8px 0;" />`;
