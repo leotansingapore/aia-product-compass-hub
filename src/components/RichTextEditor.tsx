@@ -1,7 +1,8 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
+import ReactMarkdown from 'react-markdown';
 import { 
   Bold, 
   Italic, 
@@ -25,10 +26,52 @@ interface RichTextEditorProps {
 }
 
 export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type your content..." }: RichTextEditorProps) {
-  const [content, setContent] = useState(value);
+  const [content, setContent] = useState('');
   const [saving, setSaving] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  // Convert markdown to HTML for initial display
+  useEffect(() => {
+    const convertMarkdownToHtml = (markdown: string) => {
+      return markdown
+        // Headers
+        .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+        .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+        .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+        // Bold
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        // Italic
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        // Lists (handle multiple lines)
+        .replace(/^- (.*$)/gm, '<li>$1</li>')
+        .replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs, '<ul>$1</ul>')
+        // Numbered lists
+        .replace(/^\d+\. (.*$)/gm, '<li>$1</li>')
+        .replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs, (match) => {
+          if (!match.includes('<ul>')) {
+            return `<ol>${match}</ol>`;
+          }
+          return match;
+        })
+        // Line breaks and paragraphs
+        .replace(/\n\n+/g, '</p><p>')
+        .replace(/^(?!<[h|u|o|l])(.+)$/gm, '<p>$1</p>')
+        // Clean up
+        .replace(/<p><\/p>/g, '')
+        .replace(/<p>(<[h|u|o])/g, '$1')
+        .replace(/(<\/[h|u|o][^>]*>)<\/p>/g, '$1')
+        .replace(/\n/g, '<br>');
+    };
+
+    const htmlContent = convertMarkdownToHtml(value);
+    setContent(htmlContent);
+    
+    // Set initial content in editor
+    if (editorRef.current) {
+      editorRef.current.innerHTML = htmlContent;
+    }
+  }, [value]);
 
   const execCommand = useCallback((command: string, value?: string) => {
     document.execCommand(command, false, value);
@@ -86,6 +129,7 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
   const handleSave = async () => {
     setSaving(true);
     try {
+      // Save as HTML since we're now working with HTML content
       await onSave(content);
       toast({
         title: "Saved",
