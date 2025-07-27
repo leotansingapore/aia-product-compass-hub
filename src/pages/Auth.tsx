@@ -334,46 +334,13 @@ const Auth = () => {
           </p>
         </div>
 
-        {/* Quick Login Cards */}
-        <div className="space-y-3">
-          <h3 className="text-sm font-medium text-muted-foreground text-center">
-            Quick Access
-          </h3>
-          {quickLogins.map((login) => {
-            const IconComponent = login.icon;
-            return (
-              <Card key={login.type} className="border-border/50 hover:border-primary/50 transition-colors">
-                <CardContent>
-                  <Button
-                    onClick={() => handleQuickLogin(login.email, login.password)}
-                    variant="ghost"
-                    className="w-full h-auto p-0 justify-start hover:bg-transparent"
-                    disabled={loading}
-                  >
-                    <div className="flex items-center gap-3 text-left w-full">
-                      <div className={`p-2 rounded-lg bg-muted/50 ${login.color}`}>
-                        <IconComponent className="h-5 w-5" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-foreground">{login.type}</div>
-                        <div className="text-sm text-muted-foreground">{login.description}</div>
-                      </div>
-                      {loading && <Loader2 className="h-4 w-4 animate-spin" />}
-                    </div>
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t border-border" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
             <span className="bg-background px-2 text-muted-foreground">
-              Or use your account
+              Sign in with your account
             </span>
           </div>
         </div>
