@@ -436,71 +436,9 @@ export function useAppStructureSync() {
       
       // For each user, ensure they have permissions for all new items
       for (const profile of profiles || []) {
-        // Page permissions
-        if (pagesAdded > 0) {
-          for (const page of allPages) {
-            const { data: existingPermission } = await supabase
-              .from('user_page_permissions')
-              .select('id')
-              .eq('user_id', profile.user_id)
-              .eq('page_id', page.id)
-              .maybeSingle();
-            
-            if (!existingPermission) {
-              await supabase
-                .from('user_page_permissions')
-                .insert({
-                  user_id: profile.user_id,
-                  page_id: page.id,
-                  permission_type: 'view'
-                });
-            }
-          }
-        }
+        // Page and tab permissions are now handled by tier system - no individual permissions needed
 
-        // Tab permissions
-        if (tabsAdded > 0) {
-          for (const tab of allTabs) {
-            const { data: existingPermission } = await supabase
-              .from('user_tab_permissions')
-              .select('id')
-              .eq('user_id', profile.user_id)
-              .eq('tab_id', tab.id)
-              .maybeSingle();
-            
-            if (!existingPermission) {
-              await supabase
-                .from('user_tab_permissions')
-                .insert({
-                  user_id: profile.user_id,
-                  tab_id: tab.id,
-                  permission_type: 'view'
-                });
-            }
-          }
-        }
-
-        // Section permissions
-        if (sectionsAdded > 0) {
-          for (const section of allSections) {
-            const { data: existingPermission } = await supabase
-              .from('user_section_permissions')
-              .select('id')
-              .eq('user_id', profile.user_id)
-              .eq('section_id', section.id)
-              .maybeSingle();
-            
-            if (!existingPermission) {
-              await supabase
-                .from('user_section_permissions')
-                .insert({
-                  user_id: profile.user_id,
-                  section_id: section.id,
-                  permission_type: 'view'
-                });
-            }
-          }
-        }
+        // Section permissions are now handled by tier system - no individual permissions needed
       }
       
       console.log('🔧 Default permissions applied successfully');

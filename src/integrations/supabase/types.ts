@@ -698,44 +698,6 @@ export type Database = {
         }
         Relationships: []
       }
-      user_page_permissions: {
-        Row: {
-          created_at: string
-          id: string
-          lock_message: string | null
-          page_id: string
-          permission_type: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          lock_message?: string | null
-          page_id: string
-          permission_type?: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          lock_message?: string | null
-          page_id?: string
-          permission_type?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_page_permissions_page_id_fkey"
-            columns: ["page_id"]
-            isOneToOne: false
-            referencedRelation: "app_pages"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       user_roles: {
         Row: {
           created_at: string
@@ -759,82 +721,6 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
-      }
-      user_section_permissions: {
-        Row: {
-          created_at: string
-          id: string
-          lock_message: string | null
-          permission_type: string
-          section_id: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          lock_message?: string | null
-          permission_type?: string
-          section_id: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          lock_message?: string | null
-          permission_type?: string
-          section_id?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_section_permissions_section_id_fkey"
-            columns: ["section_id"]
-            isOneToOne: false
-            referencedRelation: "app_sections"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      user_tab_permissions: {
-        Row: {
-          created_at: string
-          id: string
-          lock_message: string | null
-          permission_type: string
-          tab_id: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          lock_message?: string | null
-          permission_type?: string
-          tab_id: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          lock_message?: string | null
-          permission_type?: string
-          tab_id?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_tab_permissions_tab_id_fkey"
-            columns: ["tab_id"]
-            isOneToOne: false
-            referencedRelation: "app_tabs"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       video_progress: {
         Row: {
@@ -887,27 +773,6 @@ export type Database = {
       assign_master_admin: {
         Args: { user_email: string }
         Returns: undefined
-      }
-      get_page_permission: {
-        Args: { _user_id: string; _page_id: string }
-        Returns: {
-          permission_type: string
-          lock_message: string
-        }[]
-      }
-      get_section_permission: {
-        Args: { _user_id: string; _section_id: string }
-        Returns: {
-          permission_type: string
-          lock_message: string
-        }[]
-      }
-      get_tab_permission: {
-        Args: { _user_id: string; _tab_id: string }
-        Returns: {
-          permission_type: string
-          lock_message: string
-        }[]
       }
       get_user_tier: {
         Args: { user_id: string }

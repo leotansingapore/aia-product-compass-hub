@@ -227,29 +227,7 @@ export function useAppSectionSync() {
       
       const allSections = extractSectionsFromStructure();
       
-      // For each user, ensure they have permissions for all sections
-      for (const profile of profiles || []) {
-        for (const section of allSections) {
-          // Check if permission already exists
-          const { data: existingPermission } = await supabase
-            .from('user_section_permissions')
-            .select('id')
-            .eq('user_id', profile.user_id)
-            .eq('section_id', section.id)
-            .maybeSingle();
-          
-          // If no permission exists, create default 'view' permission
-          if (!existingPermission) {
-            await supabase
-              .from('user_section_permissions')
-              .insert({
-                user_id: profile.user_id,
-                section_id: section.id,
-                permission_type: 'view'
-              });
-          }
-        }
-      }
+      // Section permissions are now handled by tier system - no individual section permissions needed
       
       console.log('🔧 Default permissions applied successfully');
     } catch (error) {

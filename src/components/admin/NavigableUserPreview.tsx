@@ -157,44 +157,13 @@ export function NavigableUserPreview({
   };
 
   const updateSectionPermission = async (sectionId: string, permissionType: string, lockMsg?: string) => {
-    try {
-      if (permissionType === 'view') {
-        // Remove permission (default to view)
-        const { error } = await supabase
-          .from('user_section_permissions')
-          .delete()
-          .eq('user_id', selectedUser.id)
-          .eq('section_id', sectionId);
-
-        if (error) throw error;
-      } else {
-        // Upsert permission
-        const { error } = await supabase
-          .from('user_section_permissions')
-          .upsert({
-            user_id: selectedUser.id,
-            section_id: sectionId,
-            permission_type: permissionType,
-            lock_message: lockMsg || null
-          }, { onConflict: 'user_id,section_id' });
-
-        if (error) throw error;
-      }
-
-      toast({
-        title: "Success",
-        description: "Section permission updated successfully",
-      });
-
-      onPermissionUpdate();
-    } catch (error) {
-      console.error('Error updating section permission:', error);
-      toast({
-        title: "Error",
-        description: "Failed to update section permission",
-        variant: "destructive",
-      });
-    }
+    // Section permissions are now handled by tier system
+    console.log('Section permissions updated via tier system');
+    
+    toast({
+      title: "Info",
+      description: "Permissions are now managed through the tier system",
+    });
   };
 
   const getPermissionIcon = (permissionType: string) => {
