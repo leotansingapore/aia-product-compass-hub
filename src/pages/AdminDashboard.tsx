@@ -62,22 +62,6 @@ export default function AdminDashboard() {
   const [lockMessage, setLockMessage] = useState<string>('');
   const [loading, setLoading] = useState(true);
 
-  // Check if user is master admin - if not, show access denied
-  if (!isMasterAdmin()) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Card className="w-[400px]">
-          <CardHeader>
-            <CardTitle>Access Denied</CardTitle>
-            <CardDescription>
-              You must be a master admin to access this page.
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
-    );
-  }
-
   useEffect(() => {
     fetchData();
     // Auto-sync only runs once per session to prevent resource exhaustion
@@ -306,6 +290,22 @@ export default function AdminDashboard() {
     }
   };
 
+
+  // Check if user is master admin - if not, show access denied
+  if (!isMasterAdmin()) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Card className="w-[400px]">
+          <CardHeader>
+            <CardTitle>Access Denied</CardTitle>
+            <CardDescription>
+              You must be a master admin to access this page.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
