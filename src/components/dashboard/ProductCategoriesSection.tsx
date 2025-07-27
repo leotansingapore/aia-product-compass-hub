@@ -19,26 +19,9 @@ export function ProductCategoriesSection({
     <ProtectedSection sectionId="product-categories">
       <div className="mb-12">
         <h3 className="text-xl font-semibold mb-6">Product Categories</h3>
-        {loading ? (
-          <SkeletonLoader type="card" count={6} />
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => {
-              const categoryConfig = getCategoryConfig(category.name);
-              return (
-                <CategoryCard
-                  key={category.id}
-                  title={category.name}
-                  description={category.description || ''}
-                  icon={categoryConfig.icon}
-                  productCount={categoryConfig.productCount}
-                  gradient={categoryConfig.gradient}
-                  onClick={() => onCategoryClick(category.name)}
-                />
-              );
-            })}
-          </div>
-        )}
+        <div className="text-center py-8">
+          <p className="text-muted-foreground">Learning modules have been removed</p>
+        </div>
       </div>
     </ProtectedSection>
   );
