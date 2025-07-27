@@ -29,20 +29,26 @@ const availableRoles = [
   {
     id: 'tier_1',
     name: 'Tier 1',
-    description: 'Basic access with limited page permissions',
+    description: 'CMFAS Exams access only',
     color: 'bg-blue-500',
   },
   {
     id: 'tier_2',
     name: 'Tier 2',
-    description: 'Intermediate access with moderate page permissions',
+    description: 'CMFAS Exams + Investment Products',
     color: 'bg-amber-500',
   },
   {
     id: 'tier_3',
     name: 'Tier 3',
-    description: 'Advanced access with extensive page permissions',
+    description: 'CMFAS Exams + Investment & Endowment Products',
     color: 'bg-emerald-500',
+  },
+  {
+    id: 'tier_4',
+    name: 'Tier 4',
+    description: 'CMFAS Exams + All Product Categories',
+    color: 'bg-green-500',
   },
   {
     id: 'master_admin',

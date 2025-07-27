@@ -546,6 +546,33 @@ export type Database = {
         }
         Relationships: []
       }
+      tier_permissions: {
+        Row: {
+          access_type: string
+          created_at: string
+          id: string
+          resource_id: string
+          tier_level: string
+          updated_at: string
+        }
+        Insert: {
+          access_type: string
+          created_at?: string
+          id?: string
+          resource_id: string
+          tier_level: string
+          updated_at?: string
+        }
+        Update: {
+          access_type?: string
+          created_at?: string
+          id?: string
+          resource_id?: string
+          tier_level?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_achievements: {
         Row: {
           achievement_id: string
@@ -882,8 +909,16 @@ export type Database = {
           lock_message: string
         }[]
       }
+      get_user_tier: {
+        Args: { user_id: string }
+        Returns: string
+      }
       has_role: {
         Args: { _user_id: string; _role: string }
+        Returns: boolean
+      }
+      has_tier_access: {
+        Args: { user_id: string; access_type: string; resource_id: string }
         Returns: boolean
       }
     }

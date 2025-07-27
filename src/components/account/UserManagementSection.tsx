@@ -8,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { UserCard } from "./UserCard";
 import { RoleSelector } from "./RoleSelector";
-import { PermissionMatrix } from "./PermissionMatrix";
+import { TierConfigurationPanel } from "./TierConfigurationPanel";
 import { Users, Search, UserPlus, Settings } from "lucide-react";
 
 interface User {
@@ -31,7 +31,7 @@ export function UserManagementSection() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [showRoleSelector, setShowRoleSelector] = useState(false);
-  const [showPermissionMatrix, setShowPermissionMatrix] = useState(false);
+  const [showTierConfiguration, setShowTierConfiguration] = useState(false);
 
   useEffect(() => {
     fetchUsers();
@@ -177,9 +177,9 @@ export function UserManagementSection() {
                 className="pl-10"
               />
             </div>
-            <Button variant="outline" onClick={() => setShowPermissionMatrix(true)}>
+            <Button variant="outline" onClick={() => setShowTierConfiguration(true)}>
               <Settings className="h-4 w-4 mr-2" />
-              Manage Permissions
+              Configure Tiers
             </Button>
           </div>
 
@@ -202,9 +202,8 @@ export function UserManagementSection() {
                 <UserCard
                   user={user}
                   onRoleUpdate={handleUserRoleUpdate}
-                  onViewPermissions={(user) => {
-                    setSelectedUser(user);
-                    setShowPermissionMatrix(true);
+                  onViewPermissions={() => {
+                    // Simplified tier system - no per-user permissions
                   }}
                 />
                 <div className="flex gap-2">
@@ -222,13 +221,10 @@ export function UserManagementSection() {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => {
-                      setSelectedUser(user);
-                      setShowPermissionMatrix(true);
-                    }}
+                    onClick={() => setShowTierConfiguration(true)}
                   >
                     <Settings className="h-4 w-4 mr-2" />
-                    Page Permissions
+                    Configure Tiers
                   </Button>
                 </div>
               </div>
@@ -252,13 +248,9 @@ export function UserManagementSection() {
         />
       )}
 
-      {showPermissionMatrix && (
-        <PermissionMatrix
-          user={selectedUser}
-          onClose={() => {
-            setShowPermissionMatrix(false);
-            setSelectedUser(null);
-          }}
+      {showTierConfiguration && (
+        <TierConfigurationPanel
+          onClose={() => setShowTierConfiguration(false)}
         />
       )}
     </div>

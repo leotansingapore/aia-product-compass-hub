@@ -2,39 +2,18 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
 
-export type PermissionType = 'hidden' | 'locked' | 'read_only' | 'view' | 'edit';
-
-export interface SectionPermission {
-  permission_type: PermissionType;
-  lock_message?: string;
-}
-
-export interface PagePermission {
-  permission_type: PermissionType;
-  lock_message?: string;
-}
-
-export interface TabPermission {
-  permission_type: PermissionType;
-  lock_message?: string;
-}
-
 export function usePermissions() {
   const { user } = useAuth();
-  const [userRoles, setUserRoles] = useState<string[]>([]);
-  const [sectionPermissions, setSectionPermissions] = useState<Record<string, SectionPermission>>({});
-  const [pagePermissions, setPagePermissions] = useState<Record<string, PagePermission>>({});
-  const [tabPermissions, setTabPermissions] = useState<Record<string, TabPermission>>({});
+  const [userTier, setUserTier] = useState<string | null>(null);
+  const [tierPermissions, setTierPermissions] = useState<{ access_type: string; resource_id: string; }[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (user) {
       fetchUserPermissions();
     } else {
-      setUserRoles([]);
-      setSectionPermissions({});
-      setPagePermissions({});
-      setTabPermissions({});
+      setUserTier(null);
+      setTierPermissions([]);
       setLoading(false);
     }
   }, [user]);
@@ -43,191 +22,144 @@ export function usePermissions() {
     if (!user) return;
 
     try {
-      console.log('🔧 Fetching permissions for user:', user.id);
+      console.log('🔧 Fetching tier permissions for user:', user.id);
       
-      // Fetch user roles
-      const { data: roles, error: rolesError } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', user.id);
-
-      if (rolesError) {
-        console.error('🔧 Error fetching roles:', rolesError);
-      }
-
-      const userRolesList = roles?.map(r => r.role) || ['user'];
-      setUserRoles(userRolesList);
-      console.log('🔧 User roles:', userRolesList);
-
-      // Fetch section permissions
-      const { data: permissions, error: permissionsError } = await supabase
-        .from('user_section_permissions')
-        .select('section_id, permission_type, lock_message')
-        .eq('user_id', user.id);
-
-      if (permissionsError) {
-        console.error('🔧 Error fetching permissions:', permissionsError);
-      }
-
-      const permissionsMap: Record<string, SectionPermission> = {};
-      permissions?.forEach(p => {
-        permissionsMap[p.section_id] = {
-          permission_type: p.permission_type as PermissionType,
-          lock_message: p.lock_message
-        };
+      // Get user's tier using the database function
+      const { data: tierData, error: tierError } = await supabase.rpc('get_user_tier', {
+        user_id: user.id
       });
 
-      setSectionPermissions(permissionsMap);
-      console.log('🔧 Loaded section permissions:', permissionsMap);
-
-      // Fetch page permissions
-      const { data: pagePerms, error: pagePermsError } = await supabase
-        .from('user_page_permissions')
-        .select('page_id, permission_type, lock_message')
-        .eq('user_id', user.id);
-
-      if (pagePermsError) {
-        console.error('🔧 Error fetching page permissions:', pagePermsError);
+      if (tierError) {
+        console.error('🔧 Error fetching user tier:', tierError);
+        setUserTier(null);
+      } else {
+        setUserTier(tierData || null);
+        console.log('🔧 User tier:', tierData);
       }
 
-      const pagePermissionsMap: Record<string, PagePermission> = {};
-      pagePerms?.forEach(p => {
-        pagePermissionsMap[p.page_id] = {
-          permission_type: p.permission_type as PermissionType,
-          lock_message: p.lock_message
-        };
-      });
+      // Fetch tier permissions if user has a tier
+      if (tierData) {
+        const { data: permissions, error: permissionsError } = await supabase
+          .from('tier_permissions')
+          .select('access_type, resource_id')
+          .eq('tier_level', tierData);
 
-      setPagePermissions(pagePermissionsMap);
-      console.log('🔧 Loaded page permissions:', pagePermissionsMap);
-
-      // Fetch tab permissions
-      const { data: tabPerms, error: tabPermsError } = await supabase
-        .from('user_tab_permissions')
-        .select('tab_id, permission_type, lock_message')
-        .eq('user_id', user.id);
-
-      if (tabPermsError) {
-        console.error('🔧 Error fetching tab permissions:', tabPermsError);
+        if (permissionsError) {
+          console.error('🔧 Error fetching tier permissions:', permissionsError);
+        } else {
+          setTierPermissions(permissions || []);
+          console.log('🔧 Loaded tier permissions:', permissions);
+        }
       }
-
-      const tabPermissionsMap: Record<string, TabPermission> = {};
-      tabPerms?.forEach(p => {
-        tabPermissionsMap[p.tab_id] = {
-          permission_type: p.permission_type as PermissionType,
-          lock_message: p.lock_message
-        };
-      });
-
-      setTabPermissions(tabPermissionsMap);
-      console.log('🔧 Loaded tab permissions:', tabPermissionsMap);
     } finally {
       setLoading(false);
     }
   };
 
   const hasRole = (role: string): boolean => {
-    return userRoles.includes(role);
+    return userTier === role;
   };
 
   const isMasterAdmin = (): boolean => {
-    return hasRole('master_admin');
+    return userTier === 'master_admin';
   };
 
-  const getSectionPermission = (sectionId: string): SectionPermission => {
-    // Check for direct permission first
-    let permission = sectionPermissions[sectionId];
-    
-    // If no direct permission and this is an individual category, check parent permission
-    if (!permission && sectionId.startsWith('product-category-')) {
-      const parentPermission = sectionPermissions['product-categories'];
-      if (parentPermission && parentPermission.permission_type === 'hidden') {
-        permission = { permission_type: 'hidden', lock_message: 'Category access restricted' };
-      }
-    }
-    
-    // Default to view if no permission found
-    return permission || { permission_type: 'view' };
+  const getUserTier = (): string | null => {
+    return userTier;
   };
 
   const canAccessSection = (sectionId: string): boolean => {
-    const permission = getSectionPermission(sectionId);
-    return permission.permission_type !== 'hidden';
-  };
-
-  const canEditSection = (sectionId: string): boolean => {
-    const permission = getSectionPermission(sectionId);
-    return permission.permission_type === 'edit' || permission.permission_type === 'view';
-  };
-
-  const isSectionLocked = (sectionId: string): boolean => {
-    const permission = getSectionPermission(sectionId);
-    return permission.permission_type === 'locked';
-  };
-
-  const isSectionReadOnly = (sectionId: string): boolean => {
-    const permission = getSectionPermission(sectionId);
-    return permission.permission_type === 'read_only';
-  };
-
-  // Page permission methods
-  const getPagePermission = (pageId: string): PagePermission => {
-    return pagePermissions[pageId] || { permission_type: 'view' };
+    // Master admin can access everything
+    if (isMasterAdmin()) return true;
+    
+    // Check if this section is allowed for the user's tier
+    return tierPermissions.some(
+      p => p.access_type === 'section' && p.resource_id === sectionId
+    );
   };
 
   const canAccessPage = (pageId: string): boolean => {
-    const permission = getPagePermission(pageId);
-    return permission.permission_type !== 'hidden';
+    // Master admin can access everything
+    if (isMasterAdmin()) return true;
+    
+    // Check if this page is allowed for the user's tier
+    return tierPermissions.some(
+      p => p.access_type === 'page' && p.resource_id === pageId
+    );
+  };
+
+  const canEditSection = (sectionId: string): boolean => {
+    // Only master admin can edit for now
+    return isMasterAdmin();
   };
 
   const canEditPage = (pageId: string): boolean => {
-    const permission = getPagePermission(pageId);
-    return permission.permission_type === 'edit' || permission.permission_type === 'view';
-  };
-
-  const isPageLocked = (pageId: string): boolean => {
-    const permission = getPagePermission(pageId);
-    return permission.permission_type === 'locked';
-  };
-
-  const isPageReadOnly = (pageId: string): boolean => {
-    const permission = getPagePermission(pageId);
-    return permission.permission_type === 'read_only';
-  };
-
-  // Tab permission methods
-  const getTabPermission = (tabId: string): TabPermission => {
-    return tabPermissions[tabId] || { permission_type: 'view' };
+    // Only master admin can edit for now
+    return isMasterAdmin();
   };
 
   const canAccessTab = (tabId: string): boolean => {
-    const permission = getTabPermission(tabId);
-    return permission.permission_type !== 'hidden';
+    // For tabs, we'll use the same logic as pages for now
+    return canAccessPage(tabId);
   };
 
   const canEditTab = (tabId: string): boolean => {
-    const permission = getTabPermission(tabId);
-    return permission.permission_type === 'edit' || permission.permission_type === 'view';
+    return isMasterAdmin();
+  };
+
+  // Simplified permission getters that return basic permission objects
+  const getSectionPermission = (sectionId: string) => {
+    return {
+      permission_type: canAccessSection(sectionId) ? 'view' : 'hidden',
+      lock_message: !canAccessSection(sectionId) ? 'Access restricted for your tier level' : undefined
+    };
+  };
+
+  const getPagePermission = (pageId: string) => {
+    return {
+      permission_type: canAccessPage(pageId) ? 'view' : 'hidden',
+      lock_message: !canAccessPage(pageId) ? 'Access restricted for your tier level' : undefined
+    };
+  };
+
+  const getTabPermission = (tabId: string) => {
+    return {
+      permission_type: canAccessTab(tabId) ? 'view' : 'hidden',
+      lock_message: !canAccessTab(tabId) ? 'Access restricted for your tier level' : undefined
+    };
+  };
+
+  const isSectionLocked = (sectionId: string): boolean => {
+    return false; // No locked state in tier system, only hidden/visible
+  };
+
+  const isSectionReadOnly = (sectionId: string): boolean => {
+    return !canEditSection(sectionId) && canAccessSection(sectionId);
+  };
+
+  const isPageLocked = (pageId: string): boolean => {
+    return false; // No locked state in tier system
+  };
+
+  const isPageReadOnly = (pageId: string): boolean => {
+    return !canEditPage(pageId) && canAccessPage(pageId);
   };
 
   const isTabLocked = (tabId: string): boolean => {
-    const permission = getTabPermission(tabId);
-    return permission.permission_type === 'locked';
+    return false; // No locked state in tier system
   };
 
   const isTabReadOnly = (tabId: string): boolean => {
-    const permission = getTabPermission(tabId);
-    return permission.permission_type === 'read_only';
+    return !canEditTab(tabId) && canAccessTab(tabId);
   };
 
   return {
-    userRoles,
-    sectionPermissions,
-    pagePermissions,
-    tabPermissions,
+    userTier,
+    tierPermissions,
     loading,
     hasRole,
     isMasterAdmin,
+    getUserTier,
     // Section permissions
     getSectionPermission,
     canAccessSection,

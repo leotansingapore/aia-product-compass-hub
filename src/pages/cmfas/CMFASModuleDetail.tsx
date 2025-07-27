@@ -5,6 +5,7 @@ import HIModule from "./HIModule";
 import RES5Module from "./RES5Module";
 import OnboardingModule from "./OnboardingModule";
 import NotFound from "../NotFound";
+import { ProtectedPage } from "@/components/ProtectedPage";
 
 export default function CMFASModuleDetail() {
   const { moduleId } = useParams<{ moduleId: string }>();
@@ -23,5 +24,9 @@ export default function CMFASModuleDetail() {
     return <NotFound />;
   }
 
-  return <ModuleComponent />;
+  return (
+    <ProtectedPage pageId="cmfas-exams">
+      <ModuleComponent />
+    </ProtectedPage>
+  );
 }
