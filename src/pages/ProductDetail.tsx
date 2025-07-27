@@ -20,6 +20,7 @@ import { ProductQuiz } from "@/components/ProductQuiz";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { BookOpen } from "lucide-react";
 import { ProtectedSection } from "@/components/ProtectedSection";
+import { ProtectedPage } from "@/components/ProtectedPage";
 
 export default function ProductDetail() {
   const { productId } = useParams<{ productId: string }>();
@@ -110,6 +111,7 @@ export default function ProductDetail() {
   ];
 
   return (
+    <ProtectedPage pageId="product-detail">
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>{product?.title || 'Product Details'} - AIA Product Compass Hub</title>
@@ -216,5 +218,6 @@ export default function ProductDetail() {
 
       </div>
     </div>
+    </ProtectedPage>
   );
 }

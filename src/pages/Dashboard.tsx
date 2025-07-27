@@ -16,6 +16,7 @@ import { RecentlyViewedSection } from "@/components/dashboard/RecentlyViewedSect
 import { RecommendationsSection } from "@/components/recommendations/RecommendationsSection";
 import { ProductCategoriesSection } from "@/components/dashboard/ProductCategoriesSection";
 import { ProtectedSection } from "@/components/ProtectedSection";
+import { ProtectedPage } from "@/components/ProtectedPage";
 import { useNavigate } from "react-router-dom";
 import { getCategoryIdFromName } from "@/hooks/useProducts";
 
@@ -56,6 +57,7 @@ export default function Dashboard() {
   const progress = getProgress();
 
   return (
+    <ProtectedPage pageId="dashboard">
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Dashboard - AIA Product Compass Hub</title>
@@ -152,5 +154,6 @@ export default function Dashboard() {
         )}
       </div>
     </div>
+    </ProtectedPage>
   );
 }

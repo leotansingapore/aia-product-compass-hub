@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Plus, Edit, Trash2, Save, X, ChevronDown, ChevronUp } from "lucide-react";
 import { EditableLinks } from "@/components/EditableLinks";
 import { ProtectedSection } from "@/components/ProtectedSection";
+import { ProtectedPage } from "@/components/ProtectedPage";
 import { supabase } from "@/integrations/supabase/client";
 import type { UsefulLink } from "@/hooks/useProducts";
 
@@ -290,6 +291,7 @@ export default function SalesTools() {
 
   if (isLoading) {
     return (
+      <ProtectedPage pageId="sales-tools">
       <div className="min-h-screen bg-background">
         <NavigationHeader 
           title="Sales Tools & Objection Handling"
@@ -301,10 +303,12 @@ export default function SalesTools() {
           <div className="text-center">Loading sales tools...</div>
         </div>
       </div>
+      </ProtectedPage>
     );
   }
 
   return (
+    <ProtectedPage pageId="sales-tools">
     <div className="min-h-screen bg-background">
       <NavigationHeader 
         title="Sales Tools & Objection Handling"
@@ -404,5 +408,6 @@ export default function SalesTools() {
         )}
       </div>
     </div>
+    </ProtectedPage>
   );
 }

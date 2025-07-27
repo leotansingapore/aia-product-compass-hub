@@ -12,6 +12,7 @@ import { usePermissions } from '@/hooks/usePermissions';
 import { useToast } from '@/hooks/use-toast';
 import { UserInterfacePreview } from '@/components/admin/UserInterfacePreview';
 import { useAppSectionSync } from '@/hooks/useAppSectionSync';
+import { ProtectedPage } from '@/components/ProtectedPage';
 
 interface User {
   id: string;
@@ -61,13 +62,27 @@ export default function AdminDashboard() {
   const [lockMessage, setLockMessage] = useState<string>('');
   const [loading, setLoading] = useState(true);
 
+  // Check if user is master admin - if not, show access denied
+  if (!isMasterAdmin()) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Card className="w-[400px]">
+          <CardHeader>
+            <CardTitle>Access Denied</CardTitle>
+            <CardDescription>
+              You must be a master admin to access this page.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
+    );
+  }
+
   useEffect(() => {
-    if (isMasterAdmin()) {
-      fetchData();
-      // Auto-sync only runs once per session to prevent resource exhaustion
-      setTimeout(() => autoSync(), 2000);
-    }
-  }, [isMasterAdmin]);
+    fetchData();
+    // Auto-sync only runs once per session to prevent resource exhaustion
+    setTimeout(() => autoSync(), 2000);
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -291,23 +306,6 @@ export default function AdminDashboard() {
     }
   };
 
-  if (!isMasterAdmin()) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <Card className="w-96">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Shield className="h-5 w-5" />
-              Access Denied
-            </CardTitle>
-            <CardDescription>
-              You need master administrator privileges to access this page.
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
-    );
-  }
 
   if (loading) {
     return (

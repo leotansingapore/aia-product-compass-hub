@@ -7,6 +7,7 @@ import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { Bookmark, BookmarkX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { ProtectedPage } from "@/components/ProtectedPage";
 
 export default function Bookmarks() {
   const { bookmarks, loading: bookmarksLoading } = useBookmarks();
@@ -25,6 +26,7 @@ export default function Bookmarks() {
   }
 
   return (
+    <ProtectedPage pageId="bookmarks">
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>My Bookmarks - AIA Product Compass Hub</title>
@@ -69,5 +71,6 @@ export default function Bookmarks() {
         )}
       </div>
     </div>
+    </ProtectedPage>
   );
 }

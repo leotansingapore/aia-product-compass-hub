@@ -6,6 +6,7 @@ import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { ProductCard } from "@/components/ProductCard";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { ProtectedSection } from "@/components/ProtectedSection";
+import { ProtectedPage } from "@/components/ProtectedPage";
 import { useProducts, useCategories } from "@/hooks/useProducts";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 
@@ -120,6 +121,7 @@ export default function ProductCategory() {
   }
 
   return (
+    <ProtectedPage pageId="product-category">
     <ProtectedSection sectionId="product-categories">
       <div className="min-h-screen bg-background">
         <Helmet>
@@ -210,5 +212,6 @@ export default function ProductCategory() {
         </div>
       </div>
     </ProtectedSection>
+    </ProtectedPage>
   );
 }
