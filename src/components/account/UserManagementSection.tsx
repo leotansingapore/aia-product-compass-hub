@@ -184,20 +184,54 @@ export function UserManagementSection() {
           </div>
 
           <div className="space-y-4">
-            <div className="text-sm text-muted-foreground">
-              Showing {filteredUsers.length} of {users.length} users
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-muted-foreground">
+                Showing {filteredUsers.length} of {users.length} users
+              </div>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => window.location.reload()}
+              >
+                Refresh Users
+              </Button>
             </div>
             
             {filteredUsers.map((user) => (
-              <UserCard
-                key={user.id}
-                user={user}
-                onRoleUpdate={handleUserRoleUpdate}
-                onViewPermissions={(user) => {
-                  setSelectedUser(user);
-                  setShowPermissionMatrix(true);
-                }}
-              />
+              <div key={user.id} className="flex items-center gap-4 p-4 border rounded-lg">
+                <UserCard
+                  user={user}
+                  onRoleUpdate={handleUserRoleUpdate}
+                  onViewPermissions={(user) => {
+                    setSelectedUser(user);
+                    setShowPermissionMatrix(true);
+                  }}
+                />
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setSelectedUser(user);
+                      setShowRoleSelector(true);
+                    }}
+                  >
+                    <UserPlus className="h-4 w-4 mr-2" />
+                    Assign Roles
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setSelectedUser(user);
+                      setShowPermissionMatrix(true);
+                    }}
+                  >
+                    <Settings className="h-4 w-4 mr-2" />
+                    Page Permissions
+                  </Button>
+                </div>
+              </div>
             ))}
           </div>
         </CardContent>

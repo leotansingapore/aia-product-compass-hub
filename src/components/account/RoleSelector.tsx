@@ -27,24 +27,28 @@ interface RoleSelectorProps {
 
 const availableRoles = [
   {
-    id: 'user',
-    name: 'User',
-    description: 'Basic user with access to learning content',
+    id: 'tier_1',
+    name: 'Tier 1',
+    description: 'Basic access with limited page permissions',
+    color: 'bg-blue-500',
   },
   {
-    id: 'moderator',
-    name: 'Moderator',
-    description: 'Can moderate content and assist other users',
+    id: 'tier_2',
+    name: 'Tier 2',
+    description: 'Intermediate access with moderate page permissions',
+    color: 'bg-amber-500',
   },
   {
-    id: 'admin',
-    name: 'Admin',
-    description: 'Can manage content and basic administrative tasks',
+    id: 'tier_3',
+    name: 'Tier 3',
+    description: 'Advanced access with extensive page permissions',
+    color: 'bg-emerald-500',
   },
   {
     id: 'master_admin',
     name: 'Master Admin',
     description: 'Full system access and user management',
+    color: 'bg-purple-500',
   },
 ];
 
@@ -76,16 +80,19 @@ export function RoleSelector({ user, onSave, onCancel }: RoleSelectorProps) {
       <CardContent className="space-y-6">
         <div className="space-y-4">
           {availableRoles.map((role) => (
-            <div key={role.id} className="flex items-start space-x-3">
+            <div key={role.id} className="flex items-start space-x-3 p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors">
               <Checkbox
                 id={role.id}
                 checked={selectedRoles.includes(role.id)}
                 onCheckedChange={() => handleRoleToggle(role.id)}
               />
               <div className="flex-1 space-y-1">
-                <Label htmlFor={role.id} className="text-sm font-medium cursor-pointer">
-                  {role.name}
-                </Label>
+                <div className="flex items-center gap-2">
+                  <div className={`w-3 h-3 rounded-full ${role.color}`}></div>
+                  <Label htmlFor={role.id} className="text-sm font-medium cursor-pointer">
+                    {role.name}
+                  </Label>
+                </div>
                 <p className="text-xs text-muted-foreground">
                   {role.description}
                 </p>
