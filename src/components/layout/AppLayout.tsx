@@ -10,6 +10,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useAppStructureSync } from "@/hooks/useAppStructureSync";
+import { usePermissions } from "@/hooks/usePermissions";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -21,6 +22,7 @@ export function AppLayout({ children }: AppLayoutProps) {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const { autoSync } = useAppStructureSync();
+  const { loading: permissionsLoading } = usePermissions();
 
   // Auto-sync app structure when layout mounts (for admin users)
   useEffect(() => {
@@ -65,8 +67,8 @@ export function AppLayout({ children }: AppLayoutProps) {
             </div>
             
             <div className="flex items-center gap-2">
-              {/* Admin Toggle - only shown to master admins */}
-              {isAdmin && (
+              {/* Admin Toggle - only shown to master admins after permissions are loaded */}
+              {!permissionsLoading && isAdmin && (
                 <Button
                   variant={isAdminMode ? "default" : "outline"}
                   size="sm"
