@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { ProtectedPage } from "@/components/ProtectedPage";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -43,6 +44,7 @@ export default function HowToUsePortal() {
   ];
 
   return (
+    <ProtectedPage pageId="how-to-use-portal">
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>How to Use Portal - AIA Product Compass Hub</title>
@@ -196,5 +198,6 @@ export default function HowToUsePortal() {
         </Card>
       </div>
     </div>
+    </ProtectedPage>
   );
 }

@@ -27,6 +27,30 @@ export function AppLayout({ children }: AppLayoutProps) {
     autoSync();
   }, [autoSync]);
   
+  // For unauthenticated users, show simple layout without sidebar
+  if (!user) {
+    return (
+      <div className="min-h-screen w-full">
+        {/* Top Bar for unauthenticated users */}
+        <header className="flex h-12 items-center justify-between gap-2 border-b bg-card px-4 sticky top-0 z-10">
+          <h1 className="text-lg font-semibold">AIA Learning Platform</h1>
+          <Button
+            variant="default"
+            size="sm"
+            onClick={() => navigate('/auth')}
+            className="flex items-center gap-2"
+          >
+            <LogIn className="h-4 w-4" />
+            Sign In
+          </Button>
+        </header>
+        <main className="flex-1">
+          {children}
+        </main>
+      </div>
+    );
+  }
+  
   return (
     <SidebarProvider defaultOpen={true}>
       <div className="min-h-screen flex w-full">

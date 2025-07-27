@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { ProtectedPage } from "@/components/ProtectedPage";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -113,6 +114,7 @@ const ConsultantLanding = () => {
   ];
 
   return (
+    <ProtectedPage pageId="consultant-landing">
     <div className="min-h-screen bg-gradient-subtle">
       <Helmet>
         <title>For Financial Consultants - AIA Product Compass Hub</title>
@@ -331,6 +333,7 @@ const ConsultantLanding = () => {
         </div>
       </section>
     </div>
+    </ProtectedPage>
   );
 };
 

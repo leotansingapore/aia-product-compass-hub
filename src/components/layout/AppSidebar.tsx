@@ -33,6 +33,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { useCategories } from "@/hooks/useProducts";
 import { Badge } from "@/components/ui/badge";
 import { usePermissions } from "@/hooks/usePermissions";
+import { useAuth } from "@/hooks/useAuth";
 
 const resourceItems = [
   { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle },
@@ -45,6 +46,12 @@ export function AppSidebar() {
   const location = useLocation();
   const { categories } = useCategories();
   const { isMasterAdmin, canAccessSection } = usePermissions();
+  const { user } = useAuth();
+
+  // Don't render sidebar for unauthenticated users
+  if (!user) {
+    return null;
+  }
 
   const mainNavItems = [
     { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined },

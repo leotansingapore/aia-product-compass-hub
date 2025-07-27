@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import { ProtectedPage } from "@/components/ProtectedPage";
 import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
@@ -97,32 +98,33 @@ export default function SearchResults() {
   });
 
   return (
-    <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>Search Results - AIA Product Compass Hub</title>
-        <meta name="description" content={`Search results for "${query || 'products'}" - Find AIA insurance and investment products with detailed information, training videos, and AI assistance.`} />
-      </Helmet>
-      <NavigationHeader
-        title="Search Results"
-        subtitle={hasQuery ? `Results for "${query}"` : "Search our knowledge base"}
-        showBackButton
-        onBack={() => navigate(-1)}
-        breadcrumbs={[
-          { label: "Dashboard", href: "/" },
-          { label: "Search Results" }
-        ]}
-      />
-      
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        {/* Search Bar */}
-        <div className="mb-8">
-          <div className="relative">
-            <EnhancedSearchBar 
-              onSearch={handleSearch}
-              placeholder="Search products, categories, or content..."
-            />
+    <ProtectedPage pageId="search-results">
+      <div className="min-h-screen bg-background">
+        <Helmet>
+          <title>Search Results - AIA Product Compass Hub</title>
+          <meta name="description" content={`Search results for "${query || 'products'}" - Find AIA insurance and investment products with detailed information, training videos, and AI assistance.`} />
+        </Helmet>
+        <NavigationHeader
+          title="Search Results"
+          subtitle={hasQuery ? `Results for "${query}"` : "Search our knowledge base"}
+          showBackButton
+          onBack={() => navigate(-1)}
+          breadcrumbs={[
+            { label: "Dashboard", href: "/" },
+            { label: "Search Results" }
+          ]}
+        />
+        
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          {/* Search Bar */}
+          <div className="mb-8">
+            <div className="relative">
+              <EnhancedSearchBar 
+                onSearch={handleSearch}
+                placeholder="Search products, categories, or content..."
+              />
+            </div>
           </div>
-        </div>
 
         <div className="flex gap-8">
           {/* Filters Sidebar */}
@@ -360,7 +362,8 @@ export default function SearchResults() {
             )}
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </ProtectedPage>
   );
 }

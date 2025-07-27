@@ -18,16 +18,18 @@ export default function MyAccount() {
 
   if (!user) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Card className="w-[400px]">
-          <CardHeader>
-            <CardTitle>Access Denied</CardTitle>
-            <CardDescription>
-              You need to be logged in to access your account.
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
+      <ProtectedPage pageId="my-account">
+        <div className="flex items-center justify-center min-h-screen">
+          <Card className="w-[400px]">
+            <CardHeader>
+              <CardTitle>Access Denied</CardTitle>
+              <CardDescription>
+                You need to be logged in to access your account.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+      </ProtectedPage>
     );
   }
 
