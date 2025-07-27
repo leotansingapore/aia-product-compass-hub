@@ -117,16 +117,4 @@ export const createChecklistItems = (
     points: 15,
     category: 'explore'
   },
-  {
-    id: 'sales-tools',
-    title: 'Explore Sales Tools',
-    description: 'Check out objection handling guides and presentation materials',
-    icon: Target,
-    action: () => {
-      completeItem('sales-tools');
-      navigate('/sales-tools');
-    },
-    points: 15,
-    category: 'advanced'
-  }
 ];

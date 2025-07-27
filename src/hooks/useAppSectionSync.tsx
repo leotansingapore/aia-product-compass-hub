@@ -44,15 +44,6 @@ export const APP_STRUCTURE = {
       { id: "progress-tracking", name: "Progress Tracking", description: "Study progress and analytics" }
     ]
   },
-  "sales-tools": {
-    name: "Sales Tools",
-    path: "/sales-tools",
-    sections: [
-      { id: "presentation-tools", name: "Presentation Tools", description: "Sales presentations and calculators" },
-      { id: "client-profiling", name: "Client Profiling", description: "Customer analysis tools" },
-      { id: "proposal-generators", name: "Proposal Generators", description: "Automated proposal creation" }
-    ]
-  },
   "my-account": {
     name: "My Account",
     path: "/my-account",

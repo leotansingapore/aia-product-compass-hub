@@ -34,15 +34,6 @@ const quickActions: QuickAction[] = [
     priority: 2
   },
   {
-    title: 'Sales Tools & Objection Handling',
-    description: 'Access training materials, scripts, and objection responses',
-    action: 'Access Tools',
-    route: '/sales-tools',
-    icon: Wrench,
-    badge: 'Popular',
-    priority: 3
-  },
-  {
     title: 'My Bookmarks',
     description: 'View your saved products and important resources',
     action: 'View Bookmarks',

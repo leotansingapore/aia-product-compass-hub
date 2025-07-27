@@ -58,7 +58,7 @@ export function AppSidebar() {
     { title: "Search", url: "/search", icon: Search, dataAttr: undefined },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks" },
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined },
-    { title: "Sales Tools", url: "/sales-tools", icon: TrendingUp, dataAttr: undefined },
+    
     { title: "My Account", url: "/my-account", icon: User, dataAttr: undefined },
     ...(isMasterAdmin() ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined }] : []),
   ];

@@ -229,9 +229,6 @@ export default function SearchByProfile() {
             <Button variant="hero" onClick={() => navigate('/')}>
               Browse All Products
             </Button>
-            <Button variant="outline" onClick={() => navigate('/sales-tools')}>
-              Access Sales Tools
-            </Button>
             <Button variant="outline" onClick={() => navigate('/how-to-use')}>
               How to Use Portal
             </Button>

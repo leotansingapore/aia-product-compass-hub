@@ -24,12 +24,6 @@ export function FloatingQuickActions() {
       color: "bg-green-500 hover:bg-green-600"
     },
     {
-      icon: TrendingUp,
-      label: "Sales Tools",
-      action: () => navigate("/sales-tools"),
-      color: "bg-purple-500 hover:bg-purple-600"
-    },
-    {
       icon: FileText,
       label: "How to Use",
       action: () => navigate("/how-to-use"),

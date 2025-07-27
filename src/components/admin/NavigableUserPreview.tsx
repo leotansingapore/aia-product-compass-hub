@@ -84,12 +84,6 @@ const APP_STRUCTURE_WITH_ICONS = {
     path: "/cmfas-exams",
     sections: APP_STRUCTURE["cmfas-exams"].sections
   },
-  "sales-tools": {
-    name: "Sales Tools",
-    icon: TrendingUp,
-    path: "/sales-tools",
-    sections: APP_STRUCTURE["sales-tools"].sections
-  },
   "my-account": {
     name: "My Account",
     icon: User,

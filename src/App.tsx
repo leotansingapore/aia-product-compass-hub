@@ -20,7 +20,7 @@ import ProductDetail from "./pages/ProductDetail";
 import HowToUsePortal from "./pages/HowToUsePortal";
 import SearchByProfile from "./pages/SearchByProfile";
 import SearchResults from "./pages/SearchResults";
-import SalesTools from "./pages/SalesTools";
+
 import Bookmarks from "./pages/Bookmarks";
 import Auth from "./pages/Auth";
 import ConsultantLanding from "./pages/ConsultantLanding";
@@ -51,7 +51,7 @@ const App = () => (
                     <Route path="/search" element={<SearchResults />} />
                     <Route path="/how-to-use" element={<HowToUsePortal />} />
                     <Route path="/search-by-profile" element={<SearchByProfile />} />
-                    <Route path="/sales-tools" element={<SalesTools />} />
+                    
                     <Route path="/bookmarks" element={<Bookmarks />} />
                     <Route path="/cmfas-exams" element={<CMFASExams />} />
                     <Route path="/cmfas/module/:moduleId" element={<CMFASModuleDetail />} />

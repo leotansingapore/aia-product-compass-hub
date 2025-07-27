@@ -58,14 +58,6 @@ export const APP_STRUCTURE = {
       category: 'learning',
       tabs: {}
     },
-    'sales-tools': {
-      id: 'sales-tools',
-      name: 'Sales Tools',
-      description: 'Tools and resources for sales',
-      path: '/sales-tools',
-      category: 'tools',
-      tabs: {}
-    },
     'cmfas-exams': {
       id: 'cmfas-exams',
       name: 'CMFAS Exams',
