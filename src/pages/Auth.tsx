@@ -343,7 +343,7 @@ const Auth = () => {
             const IconComponent = login.icon;
             return (
               <Card key={login.type} className="border-border/50 hover:border-primary/50 transition-colors">
-                <CardContent className="p-4">
+                <CardContent>
                   <Button
                     onClick={() => handleQuickLogin(login.email, login.password)}
                     variant="ghost"
