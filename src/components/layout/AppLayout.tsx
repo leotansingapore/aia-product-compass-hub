@@ -65,8 +65,8 @@ export function AppLayout({ children }: AppLayoutProps) {
             </div>
             
             <div className="flex items-center gap-2">
-              {/* Admin Toggle - shown when user is logged in (temporary for demo) */}
-              {user && (
+              {/* Admin Toggle - only shown to master admins */}
+              {isAdmin && (
                 <Button
                   variant={isAdminMode ? "default" : "outline"}
                   size="sm"
