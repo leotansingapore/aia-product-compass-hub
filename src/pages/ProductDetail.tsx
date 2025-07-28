@@ -103,13 +103,19 @@ export default function ProductDetail() {
     );
   }
 
-  // Enhanced breadcrumbs
+  // Enhanced breadcrumbs - special handling for sales tools
   const categoryName = (product as any).categories?.name || '';
-  const breadcrumbs = [
-    { label: 'Home', href: '/' },
-    { label: categoryName, href: `/category/${product.category_id}` },
-    { label: product.title }
-  ];
+  const breadcrumbs = productId === 'sales-tools-objections' 
+    ? [
+        { label: 'Home', href: '/' },
+        { label: 'Resources', href: '/' },
+        { label: product.title }
+      ]
+    : [
+        { label: 'Home', href: '/' },
+        { label: categoryName, href: `/category/${product.category_id}` },
+        { label: product.title }
+      ];
 
   return (
     <ProtectedPage pageId="product-detail">
@@ -140,17 +146,21 @@ export default function ProductDetail() {
           </div>
         </ProtectedSection>
 
-        {/* Summary */}
-        <ProductSummary
-          description={product.description || ''}
-          onUpdate={handleUpdate}
-        />
+        {/* Summary - Hidden for Sales Tools */}
+        {productId !== 'sales-tools-objections' && (
+          <ProductSummary
+            description={product.description || ''}
+            onUpdate={handleUpdate}
+          />
+        )}
 
-        {/* Key Highlights */}
-        <ProductHighlights
-          highlights={product.highlights || []}
-          onUpdate={handleUpdate}
-        />
+        {/* Key Highlights - Hidden for Sales Tools */}
+        {productId !== 'sales-tools-objections' && (
+          <ProductHighlights
+            highlights={product.highlights || []}
+            onUpdate={handleUpdate}
+          />
+        )}
 
         {/* Useful Links */}
         {productId === 'sales-tools-objections' ? (
