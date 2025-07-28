@@ -35,10 +35,10 @@ import { Badge } from "@/components/ui/badge";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useAuth } from "@/hooks/useAuth";
 
-const resourceItems = [
-  { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle },
-  { title: "Search by Client Profile", url: "/search-by-profile", icon: Users },
-  { title: "Sales Tools & Objection Handling", url: "/product/sales-tools-objections", icon: TrendingUp },
+const allResourceItems = [
+  { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle, sectionId: "how-to-use" },
+  { title: "Search by Client Profile", url: "/search-by-profile", icon: Users, sectionId: "search-by-profile" },
+  { title: "Sales Tools & Objection Handling", url: "/product/sales-tools-objections", icon: TrendingUp, sectionId: "sales-tools" },
 ];
 
 export function AppSidebar() {
@@ -54,15 +54,35 @@ export function AppSidebar() {
     return null;
   }
 
-  const mainNavItems = [
-    { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined },
-    { title: "Search", url: "/search", icon: Search, dataAttr: undefined },
-    { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks" },
-    { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined },
-    
-    { title: "My Account", url: "/my-account", icon: User, dataAttr: undefined },
-    ...(isMasterAdmin() ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined }] : []),
+  const allMainNavItems = [
+    { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined, sectionId: "dashboard" },
+    { title: "Search", url: "/search", icon: Search, dataAttr: undefined, sectionId: "search" },
+    { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
+    { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
+    { title: "My Account", url: "/my-account", icon: User, dataAttr: undefined, sectionId: "my-account" },
+    ...(isMasterAdmin() ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
   ];
+
+  // Filter navigation items based on user permissions
+  const mainNavItems = allMainNavItems.filter(item => {
+    // Always show My Account to authenticated users
+    if (item.sectionId === "my-account") return true;
+    
+    // Master admin can see everything
+    if (isMasterAdmin()) return true;
+    
+    // Check if user has access to this section
+    return canAccessSection(item.sectionId);
+  });
+
+  // Filter resource items based on user permissions
+  const resourceItems = allResourceItems.filter(item => {
+    // Master admin can see everything
+    if (isMasterAdmin()) return true;
+    
+    // Check if user has access to this section
+    return canAccessSection(item.sectionId);
+  });
   const [categoriesOpen, setCategoriesOpen] = useState(true);
   
   const isCollapsed = state === "collapsed";
