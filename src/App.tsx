@@ -18,6 +18,7 @@ import Index from "./pages/Index";
 import ProductCategory from "./pages/ProductCategory";
 import ProductDetail from "./pages/ProductDetail";
 import HowToUsePortal from "./pages/HowToUsePortal";
+import ObjectionHandling from "./pages/ObjectionHandling";
 import SearchByProfile from "./pages/SearchByProfile";
 import SearchResults from "./pages/SearchResults";
 
@@ -50,6 +51,7 @@ const App = () => (
                     <Route path="/consultant-landing" element={<ConsultantLanding />} />
                     <Route path="/search" element={<SearchResults />} />
                     <Route path="/how-to-use" element={<HowToUsePortal />} />
+                    <Route path="/objection-handling" element={<ObjectionHandling />} />
                     <Route path="/search-by-profile" element={<SearchByProfile />} />
                     
                     <Route path="/bookmarks" element={<Bookmarks />} />

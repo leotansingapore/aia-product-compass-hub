@@ -12,7 +12,8 @@ import {
   Archive,
   GraduationCap,
   Shield,
-  User
+  User,
+  Target
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
@@ -37,6 +38,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 const resourceItems = [
   { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle },
+  { title: "Objection Handling", url: "/objection-handling", icon: Target },
   { title: "Search by Client Profile", url: "/search-by-profile", icon: Users },
 ];
 
