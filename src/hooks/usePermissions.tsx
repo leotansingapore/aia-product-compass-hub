@@ -69,6 +69,10 @@ export function usePermissions() {
   };
 
   const canAccessSection = (sectionId: string): boolean => {
+    // Core sections accessible to all authenticated users
+    const coreSections = ['dashboard', 'search', 'my-account'];
+    if (coreSections.includes(sectionId)) return true;
+    
     // Master admin can access everything
     if (isMasterAdmin()) return true;
     
@@ -79,6 +83,10 @@ export function usePermissions() {
   };
 
   const canAccessPage = (pageId: string): boolean => {
+    // Core pages accessible to all authenticated users
+    const corePages = ['dashboard', 'search', 'my-account'];
+    if (corePages.includes(pageId)) return true;
+    
     // Master admin can access everything
     if (isMasterAdmin()) return true;
     
