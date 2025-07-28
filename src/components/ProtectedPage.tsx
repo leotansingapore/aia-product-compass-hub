@@ -11,9 +11,31 @@ interface ProtectedPageProps {
 export function ProtectedPage({ pageId, children, fallback }: ProtectedPageProps) {
   const { getPagePermission, canAccessPage } = usePermissions();
   
-  // If page is hidden, don't render anything
+  // If page access is restricted, show locked state
   if (!canAccessPage(pageId)) {
-    return fallback || null;
+    return (
+      <div className="relative min-h-screen">
+        {/* Blurred background content */}
+        <div className="absolute inset-0 blur-sm opacity-30 pointer-events-none">
+          {children}
+        </div>
+        
+        {/* Lock overlay */}
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center">
+          <div className="max-w-md mx-auto space-y-4">
+            <div className="h-16 w-16 bg-muted rounded-full flex items-center justify-center mx-auto">
+              <div className="text-2xl">🔒</div>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-xl font-semibold">Access Restricted</h3>
+              <p className="text-muted-foreground">
+                This page requires special permissions. Please ask your administrator for access to this section.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const permission = getPagePermission(pageId);
@@ -21,12 +43,26 @@ export function ProtectedPage({ pageId, children, fallback }: ProtectedPageProps
   // If page is locked, show locked state
   if (permission.permission_type === 'locked') {
     return (
-      <div className="flex flex-col items-center justify-center p-8 text-center">
-        <div className="h-12 w-12 text-muted-foreground mb-4">🔒</div>
-        <h3 className="text-lg font-semibold mb-2">Page Locked</h3>
-        <p className="text-muted-foreground">
-          {permission.lock_message || 'This page is currently locked and requires special access.'}
-        </p>
+      <div className="relative min-h-screen">
+        {/* Blurred background content */}
+        <div className="absolute inset-0 blur-sm opacity-30 pointer-events-none">
+          {children}
+        </div>
+        
+        {/* Lock overlay */}
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center">
+          <div className="max-w-md mx-auto space-y-4">
+            <div className="h-16 w-16 bg-muted rounded-full flex items-center justify-center mx-auto">
+              <div className="text-2xl">🔒</div>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-xl font-semibold">Page Locked</h3>
+              <p className="text-muted-foreground">
+                {permission.lock_message || 'This page is currently locked. Please ask your administrator for access.'}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

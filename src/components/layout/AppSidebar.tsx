@@ -63,26 +63,9 @@ export function AppSidebar() {
     ...(isMasterAdmin() ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
   ];
 
-  // Filter navigation items based on user permissions
-  const mainNavItems = allMainNavItems.filter(item => {
-    // Always show My Account to authenticated users
-    if (item.sectionId === "my-account") return true;
-    
-    // Master admin can see everything
-    if (isMasterAdmin()) return true;
-    
-    // Check if user has access to this section
-    return canAccessSection(item.sectionId);
-  });
-
-  // Filter resource items based on user permissions
-  const resourceItems = allResourceItems.filter(item => {
-    // Master admin can see everything
-    if (isMasterAdmin()) return true;
-    
-    // Check if user has access to this section
-    return canAccessSection(item.sectionId);
-  });
+  // Show all navigation items, but they'll be protected by ProtectedPage
+  const mainNavItems = allMainNavItems;
+  const resourceItems = allResourceItems;
   const [categoriesOpen, setCategoriesOpen] = useState(true);
   
   const isCollapsed = state === "collapsed";
