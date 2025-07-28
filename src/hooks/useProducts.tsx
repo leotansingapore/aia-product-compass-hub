@@ -109,11 +109,26 @@ export function useProducts(categoryId?: string) {
 
         if (error) throw error;
         // Transform the data to ensure useful_links is properly typed
-        const transformedData = (data || []).map(product => ({
-          ...product,
-          useful_links: Array.isArray(product.useful_links) ? product.useful_links as unknown as UsefulLink[] : [],
-          training_videos: Array.isArray(product.training_videos) ? product.training_videos as unknown as TrainingVideo[] : []
-        }));
+        const transformedData = (data || []).map(product => {
+          // Handle both flat array and nested object structure for useful_links
+          let flattenedLinks: UsefulLink[] = [];
+          if (Array.isArray(product.useful_links)) {
+            flattenedLinks = product.useful_links as unknown as UsefulLink[];
+          } else if (product.useful_links && typeof product.useful_links === 'object') {
+            // Flatten nested structure (e.g., {generic-objections: [...], tactical-objections: [...]})
+            Object.values(product.useful_links).forEach((category: any) => {
+              if (Array.isArray(category)) {
+                flattenedLinks.push(...category);
+              }
+            });
+          }
+
+          return {
+            ...product,
+            useful_links: flattenedLinks,
+            training_videos: Array.isArray(product.training_videos) ? product.training_videos as unknown as TrainingVideo[] : []
+          };
+        });
         setProducts(transformedData);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch products');
@@ -149,11 +164,26 @@ export function useAllProducts() {
 
         if (error) throw error;
         // Transform the data to ensure useful_links is properly typed
-        const transformedData = (data || []).map(product => ({
-          ...product,
-          useful_links: Array.isArray(product.useful_links) ? product.useful_links as unknown as UsefulLink[] : [],
-          training_videos: Array.isArray(product.training_videos) ? product.training_videos as unknown as TrainingVideo[] : []
-        }));
+        const transformedData = (data || []).map(product => {
+          // Handle both flat array and nested object structure for useful_links
+          let flattenedLinks: UsefulLink[] = [];
+          if (Array.isArray(product.useful_links)) {
+            flattenedLinks = product.useful_links as unknown as UsefulLink[];
+          } else if (product.useful_links && typeof product.useful_links === 'object') {
+            // Flatten nested structure (e.g., {generic-objections: [...], tactical-objections: [...]})
+            Object.values(product.useful_links).forEach((category: any) => {
+              if (Array.isArray(category)) {
+                flattenedLinks.push(...category);
+              }
+            });
+          }
+
+          return {
+            ...product,
+            useful_links: flattenedLinks,
+            training_videos: Array.isArray(product.training_videos) ? product.training_videos as unknown as TrainingVideo[] : []
+          };
+        });
         setAllProducts(transformedData);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch products');
@@ -191,9 +221,22 @@ export function useProductById(productId: string) {
         if (error) throw error;
         // Transform the data to ensure useful_links is properly typed
         if (data) {
+          // Handle both flat array and nested object structure for useful_links
+          let flattenedLinks: UsefulLink[] = [];
+          if (Array.isArray(data.useful_links)) {
+            flattenedLinks = data.useful_links as unknown as UsefulLink[];
+          } else if (data.useful_links && typeof data.useful_links === 'object') {
+            // Flatten nested structure (e.g., {generic-objections: [...], tactical-objections: [...]})
+            Object.values(data.useful_links).forEach((category: any) => {
+              if (Array.isArray(category)) {
+                flattenedLinks.push(...category);
+              }
+            });
+          }
+
           const transformedData = {
             ...data,
-            useful_links: Array.isArray(data.useful_links) ? data.useful_links as unknown as UsefulLink[] : [],
+            useful_links: flattenedLinks,
             training_videos: Array.isArray(data.training_videos) ? data.training_videos as unknown as TrainingVideo[] : []
           };
           setProduct(transformedData);
