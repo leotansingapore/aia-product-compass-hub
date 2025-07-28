@@ -38,6 +38,7 @@ import { useAuth } from "@/hooks/useAuth";
 const resourceItems = [
   { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle },
   { title: "Search by Client Profile", url: "/search-by-profile", icon: Users },
+  { title: "Sales Tools & Objection Handling", url: "/product/sales-tools-objections", icon: TrendingUp },
 ];
 
 export function AppSidebar() {
