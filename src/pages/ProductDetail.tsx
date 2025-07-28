@@ -12,6 +12,7 @@ import { ProductHeader } from "@/components/product-detail/ProductHeader";
 import { ProductSummary } from "@/components/product-detail/ProductSummary";
 import { ProductHighlights } from "@/components/product-detail/ProductHighlights";
 import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLinks";
+import { SalesToolsUsefulLinks } from "@/components/product-detail/SalesToolsUsefulLinks";
 import { ProductAIAssistant } from "@/components/product-detail/ProductAIAssistant";
 import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
 import { BookmarkButton } from "@/components/BookmarkButton";
@@ -152,10 +153,17 @@ export default function ProductDetail() {
         />
 
         {/* Useful Links */}
-        <ProductUsefulLinks
-          links={product.useful_links || []}
-          onUpdate={handleUpdate}
-        />
+        {productId === 'sales-tools-objections' ? (
+          <SalesToolsUsefulLinks
+            links={product.useful_links || []}
+            onUpdate={handleUpdate}
+          />
+        ) : (
+          <ProductUsefulLinks
+            links={product.useful_links || []}
+            onUpdate={handleUpdate}
+          />
+        )}
 
         {/* AI Assistant */}
         <ProtectedSection sectionId="product_ai">
