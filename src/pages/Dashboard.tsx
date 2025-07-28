@@ -45,14 +45,6 @@ export default function Dashboard() {
     navigate(`/category/${categoryId}`);
   };
 
-  // Debug controls for tour testing
-  const handleDebugTour = () => {
-    resetTour();
-    setTimeout(() => {
-      startOnboarding('basic');
-      toast.success('Debug tour started!');
-    }, 100);
-  };
 
   const progress = getProgress();
 
@@ -69,41 +61,6 @@ export default function Dashboard() {
       />
       
       <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
-        {/* Debug Tour Controls - Dev/Testing Only */}
-        {process.env.NODE_ENV === 'development' && (
-          <div className="fixed top-4 left-4 z-40 bg-background/90 backdrop-blur-sm p-3 rounded-lg border shadow-md">
-            <div className="flex items-center gap-2 mb-2">
-              <Bug className="w-4 h-4 text-orange-500" />
-              <span className="text-sm font-medium">Tour Debug</span>
-              {progress > 0 && (
-                <Badge variant="outline" className="text-xs">
-                  {completedStepsCount}/{totalSteps}
-                </Badge>
-              )}
-            </div>
-            <div className="flex gap-2">
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={handleDebugTour}
-                disabled={isOnboardingActive}
-                className="text-xs"
-              >
-                <Play className="w-3 h-3 mr-1" />
-                Fresh Tour
-              </Button>
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={resetTour}
-                className="text-xs"
-              >
-                <RotateCcw className="w-3 h-3 mr-1" />
-                Reset
-              </Button>
-            </div>
-          </div>
-        )}
 
         {/* Search Section - Enhanced for onboarding */}
         <ProtectedSection sectionId="dashboard-search">
