@@ -70,7 +70,11 @@ export function usePermissions() {
 
   const canAccessSection = (sectionId: string): boolean => {
     // Core sections accessible to all authenticated users
-    const coreSections = ['dashboard', 'search', 'my-account'];
+    const coreSections = [
+      'dashboard', 'search', 'my-account',
+      'dashboard-search', 'dashboard-quick-actions', 'dashboard-user-stats', 
+      'product-categories', 'dashboard-recently-viewed', 'dashboard-recommendations'
+    ];
     if (coreSections.includes(sectionId)) return true;
     
     // Master admin can access everything
