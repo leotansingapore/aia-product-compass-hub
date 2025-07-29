@@ -88,7 +88,7 @@ export function usePermissions() {
 
   const canAccessPage = (pageId: string): boolean => {
     // Core pages accessible to all authenticated users
-    const corePages = ['dashboard', 'search', 'my-account', 'how-to-use-portal'];
+    const corePages = ['dashboard', 'search', 'my-account', 'how-to-use-portal', 'search-by-profile'];
     if (corePages.includes(pageId)) return true;
     
     // Master admin can access everything
