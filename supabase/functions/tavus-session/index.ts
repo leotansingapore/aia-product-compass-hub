@@ -16,6 +16,12 @@ serve(async (req) => {
   try {
     const tavusApiKey = Deno.env.get('TAVUS_API_KEY');
     
+    console.log('Tavus API Key status:', {
+      hasKey: !!tavusApiKey,
+      keyLength: tavusApiKey?.length || 0,
+      keyPrefix: tavusApiKey?.substring(0, 8) + '...' || 'none'
+    });
+    
     if (!tavusApiKey) {
       throw new Error('Tavus API key not configured');
     }
