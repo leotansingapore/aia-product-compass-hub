@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import { 
   Play, 
   Pause, 
@@ -40,9 +42,12 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const [isSpeakerOn, setIsSpeakerOn] = useState(true);
   const [sessionDuration, setSessionDuration] = useState(0);
   const [connectionError, setConnectionError] = useState<string | null>(null);
+  const [conversationId, setConversationId] = useState<string | null>(null);
+  const [conversationUrl, setConversationUrl] = useState<string | null>(null);
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     return () => {
@@ -71,40 +76,101 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const createTavusConversation = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('tavus-session', {
+        body: {
+          action: 'create_conversation',
+          replica_id: 'r785e695b47', // Default Tavus replica ID - you can change this
+          conversation_name: `${scenario.title} - Roleplay Session`
+        }
+      });
+
+      if (error) throw error;
+
+      console.log('Tavus conversation created:', data);
+      setConversationId(data.conversation_id);
+      setConversationUrl(data.conversation_url);
+      
+      return data;
+    } catch (error) {
+      console.error('Failed to create Tavus conversation:', error);
+      throw error;
+    }
+  };
+
   const handleStartSession = async () => {
     setIsLoading(true);
     setConnectionError(null);
     
     try {
-      // Request camera and microphone permissions
-      const stream = await navigator.mediaDevices.getUserMedia({ 
+      // Request media permissions first
+      await navigator.mediaDevices.getUserMedia({ 
         video: true, 
         audio: true 
       });
+
+      // Create Tavus conversation
+      const conversationData = await createTavusConversation();
       
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
+      toast({
+        title: "Session Starting",
+        description: "Connecting to your AI roleplay partner...",
+      });
+
+      // Open Tavus conversation in iframe or new window
+      if (conversationData.conversation_url) {
+        // For now, we'll open in a new window
+        // In production, you might want to embed this in an iframe
+        window.open(conversationData.conversation_url, '_blank', 'width=800,height=600');
       }
-      
-      // TODO: Initialize Tavus SDK here
-      // This would involve creating a Tavus session with the scenario context
       
       setIsConnected(true);
       setIsRecording(true);
       startTimer();
+
+      toast({
+        title: "Session Active",
+        description: "You're now connected to your AI roleplay partner!",
+      });
       
     } catch (error) {
-      console.error('Error starting session:', error);
-      setConnectionError('Failed to access camera or microphone. Please check your permissions.');
+      console.error('Failed to start session:', error);
+      setConnectionError(
+        error instanceof Error 
+          ? error.message 
+          : 'Failed to start session. Please check your connection and try again.'
+      );
+      
+      toast({
+        title: "Connection Failed",
+        description: "Unable to start roleplay session. Please try again.",
+        variant: "destructive"
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleEndSession = () => {
+  const handleEndSession = async () => {
+    if (conversationId) {
+      try {
+        await supabase.functions.invoke('tavus-session', {
+          body: {
+            action: 'end_conversation',
+            conversation_id: conversationId
+          }
+        });
+      } catch (error) {
+        console.error('Failed to end Tavus conversation:', error);
+      }
+    }
+
     setIsConnected(false);
     setIsRecording(false);
     stopTimer();
+    setConversationId(null);
+    setConversationUrl(null);
     
     // Stop camera stream
     if (videoRef.current?.srcObject) {
@@ -112,8 +178,11 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       stream.getTracks().forEach(track => track.stop());
       videoRef.current.srcObject = null;
     }
-    
-    // TODO: End Tavus session
+
+    toast({
+      title: "Session Ended",
+      description: "Your roleplay session has been completed.",
+    });
   };
 
   const handleRestart = () => {
@@ -127,17 +196,26 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
   const toggleMute = () => {
     setIsMuted(!isMuted);
-    // TODO: Implement actual mute functionality with Tavus
+    toast({
+      title: isMuted ? "Microphone On" : "Microphone Off",
+      description: "Control your microphone in the video chat window.",
+    });
   };
 
   const toggleVideo = () => {
     setIsVideoEnabled(!isVideoEnabled);
-    // TODO: Implement actual video toggle with Tavus
+    toast({
+      title: isVideoEnabled ? "Camera Off" : "Camera On",
+      description: "Control your camera in the video chat window.",
+    });
   };
 
   const toggleSpeaker = () => {
     setIsSpeakerOn(!isSpeakerOn);
-    // TODO: Implement actual speaker toggle
+    toast({
+      title: isSpeakerOn ? "Speaker Off" : "Speaker On",
+      description: "Control audio output in the video chat window.",
+    });
   };
 
   return (
