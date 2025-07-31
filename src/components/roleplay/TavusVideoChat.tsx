@@ -95,6 +95,12 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       return data;
     } catch (error) {
       console.error('Failed to create Tavus conversation:', error);
+      
+      // Show more specific error message for API key issues
+      if (error.message?.includes('non-2xx') || error.message?.includes('401')) {
+        throw new Error('Invalid Tavus API key. Please check your API key in the environment settings.');
+      }
+      
       throw error;
     }
   };
