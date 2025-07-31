@@ -12,7 +12,8 @@ import {
   Archive,
   GraduationCap,
   Shield,
-  User
+  User,
+  MessageCircle
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
@@ -59,6 +60,7 @@ export function AppSidebar() {
     { title: "Search", url: "/search", icon: Search, dataAttr: undefined, sectionId: "search" },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
+    { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
     { title: "My Account", url: "/my-account", icon: User, dataAttr: undefined, sectionId: "my-account" },
     ...(isMasterAdmin() ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
   ];

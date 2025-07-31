@@ -71,7 +71,7 @@ export function usePermissions() {
   const canAccessSection = (sectionId: string): boolean => {
     // Core sections accessible to all authenticated users
     const coreSections = [
-      'dashboard', 'search', 'my-account', 'how-to-use-portal',
+      'dashboard', 'search', 'my-account', 'how-to-use-portal', 'roleplay',
       'dashboard-search', 'dashboard-quick-actions', 'dashboard-user-stats', 
       'product-categories', 'dashboard-recently-viewed', 'dashboard-recommendations'
     ];
@@ -88,7 +88,7 @@ export function usePermissions() {
 
   const canAccessPage = (pageId: string): boolean => {
     // Core pages accessible to all authenticated users
-    const corePages = ['dashboard', 'search', 'my-account', 'how-to-use-portal', 'search-by-profile'];
+    const corePages = ['dashboard', 'search', 'my-account', 'how-to-use-portal', 'search-by-profile', 'roleplay'];
     if (corePages.includes(pageId)) return true;
     
     // Master admin can access everything
