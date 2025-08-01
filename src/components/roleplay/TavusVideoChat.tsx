@@ -143,12 +143,8 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         description: "Connecting to your AI roleplay partner...",
       });
 
-      // Open Tavus conversation in iframe or new window
-      if (conversationData.conversation_url) {
-        // For now, we'll open in a new window
-        // In production, you might want to embed this in an iframe
-        window.open(conversationData.conversation_url, '_blank', 'width=800,height=600');
-      }
+      // Now the conversation will be embedded in the iframe instead of opening in a new window
+      // The iframe will be displayed in the AI Avatar section
       
       setIsConnected(true);
       setIsRecording(true);
@@ -282,7 +278,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
             <CardTitle className="text-lg">AI Trainer</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+            <div className="aspect-video bg-muted rounded-lg flex items-center justify-center overflow-hidden">
               {!isConnected ? (
                 <div className="text-center space-y-4">
                   <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
@@ -290,15 +286,19 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
                   </div>
                   <p className="text-muted-foreground">Click "Start Session" to begin</p>
                 </div>
+              ) : conversationUrl ? (
+                <iframe
+                  src={conversationUrl}
+                  className="w-full h-full border-0"
+                  allow="camera; microphone; autoplay; encrypted-media; fullscreen"
+                  title="AI Avatar Video Chat"
+                />
               ) : (
                 <div className="text-center space-y-4">
                   <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
                     <MessageCircle className="h-8 w-8 text-green-500" />
                   </div>
-                  <p className="text-muted-foreground">AI Avatar would appear here</p>
-                  <p className="text-xs text-muted-foreground">
-                    Tavus integration required for video display
-                  </p>
+                  <p className="text-muted-foreground">Loading AI Avatar...</p>
                 </div>
               )}
             </div>
