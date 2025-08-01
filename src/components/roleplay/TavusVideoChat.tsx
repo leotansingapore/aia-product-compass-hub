@@ -400,15 +400,20 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         {conversationUrl ? (
           <iframe
             src={conversationUrl}
-            className="w-full h-full"
-            allow="camera; microphone"
+            className="w-full h-full border-0"
+            allow="camera; microphone; autoplay; encrypted-media; fullscreen; display-capture"
             title="Tavus AI Conversation"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
+            onLoad={() => console.log('Tavus iframe loaded')}
+            onError={() => console.error('Tavus iframe error')}
+            style={{ backgroundColor: 'transparent' }}
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-white">
+          <div className="w-full h-full flex items-center justify-center text-white bg-gray-900">
             <div className="text-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
               <p>Connecting to AI trainer...</p>
+              <p className="text-sm text-gray-400 mt-2">Session initializing...</p>
             </div>
           </div>
         )}
