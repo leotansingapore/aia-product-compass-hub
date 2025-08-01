@@ -401,19 +401,33 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
           <iframe
             src={conversationUrl}
             className="w-full h-full border-0"
-            allow="camera; microphone; autoplay; encrypted-media; fullscreen; display-capture"
+            allow="camera *; microphone *; autoplay *; encrypted-media *; fullscreen *; display-capture *; clipboard-write *"
             title="Tavus AI Conversation"
-            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
-            onLoad={() => console.log('Tavus iframe loaded')}
-            onError={() => console.error('Tavus iframe error')}
-            style={{ backgroundColor: 'transparent' }}
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-presentation allow-top-navigation allow-downloads"
+            onLoad={() => {
+              console.log('Tavus iframe loaded successfully');
+              toast({
+                title: "Connected",
+                description: "Video session is now active"
+              });
+            }}
+            onError={(e) => {
+              console.error('Tavus iframe error:', e);
+              toast({
+                title: "Connection Issue", 
+                description: "Retrying connection...",
+                variant: "destructive"
+              });
+            }}
+            style={{ backgroundColor: '#000' }}
+            referrerPolicy="no-referrer-when-downgrade"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-white bg-gray-900">
             <div className="text-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
-              <p>Connecting to AI trainer...</p>
-              <p className="text-sm text-gray-400 mt-2">Session initializing...</p>
+              <p>Initializing AI trainer session...</p>
+              <p className="text-sm text-gray-400 mt-2">Please wait while we connect you...</p>
             </div>
           </div>
         )}
