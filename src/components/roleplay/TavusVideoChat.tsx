@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { 
@@ -16,7 +16,9 @@ import {
   Volume2,
   VolumeX,
   MessageCircle,
-  RotateCcw
+  RotateCcw,
+  CheckCircle,
+  AlertTriangle
 } from 'lucide-react';
 
 interface RoleplayScenario {
@@ -38,7 +40,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [isVideoEnabled, setIsVideoEnabled] = useState(true);
+  const [isVideoOn, setIsVideoOn] = useState(true);
   const [isSpeakerOn, setIsSpeakerOn] = useState(true);
   const [sessionDuration, setSessionDuration] = useState(0);
   const [connectionError, setConnectionError] = useState<string | null>(null);
@@ -70,7 +72,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     }
   };
 
-  const formatDuration = (seconds: number) => {
+  const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, '0')}`;
@@ -224,9 +226,9 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   };
 
   const toggleVideo = () => {
-    setIsVideoEnabled(!isVideoEnabled);
+    setIsVideoOn(!isVideoOn);
     toast({
-      title: isVideoEnabled ? "Camera Off" : "Camera On",
+      title: isVideoOn ? "Camera Off" : "Camera On",
       description: "Control your camera in the video chat window.",
     });
   };
@@ -239,211 +241,247 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     });
   };
 
-  return (
-    <div className="min-h-screen space-y-6 p-6">
-      {/* Session Info */}
-      <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <div>
-              <CardTitle className="flex items-center gap-2">
-                <MessageCircle className="h-5 w-5" />
-                {scenario.title}
-              </CardTitle>
-              <div className="flex gap-2 mt-2">
-                <Badge variant="outline">{scenario.category}</Badge>
-                <Badge variant="outline">{scenario.difficulty}</Badge>
-                {isConnected && (
-                  <Badge variant="default">
-                    {formatDuration(sessionDuration)}
+  // Category and difficulty styling
+  const categoryColors = {
+    sales: "border-blue-200 text-blue-800",
+    objection: "border-orange-200 text-orange-800", 
+    consultation: "border-green-200 text-green-800",
+    "exam-prep": "border-purple-200 text-purple-800"
+  };
+
+  const difficultyColors = {
+    beginner: "border-green-200 text-green-800",
+    intermediate: "border-yellow-200 text-yellow-800",
+    advanced: "border-red-200 text-red-800"
+  };
+
+  // Setup State - Before session starts
+  if (!isConnected) {
+    return (
+      <div className="min-h-screen space-y-6 p-6">
+        {/* Session Info */}
+        <Card>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-xl font-bold">{scenario.title}</CardTitle>
+                <CardDescription className="mt-1">
+                  <Badge variant="outline" className={categoryColors[scenario.category]}>
+                    {scenario.category}
                   </Badge>
-                )}
+                  <Badge variant="outline" className={`ml-2 ${difficultyColors[scenario.difficulty]}`}>
+                    {scenario.difficulty}
+                  </Badge>
+                  <span className="ml-2 text-sm text-muted-foreground">
+                    Duration: {scenario.duration}
+                  </span>
+                </CardDescription>
               </div>
             </div>
-            {isConnected && (
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm text-muted-foreground">Live Session</span>
-              </div>
-            )}
-          </div>
-        </CardHeader>
-      </Card>
-
-      {/* Video Interface */}
-      <div className="grid lg:grid-cols-2 gap-6">
-        {/* AI Avatar Video */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">AI Trainer</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="aspect-video bg-muted rounded-lg flex items-center justify-center overflow-hidden">
-              {!isConnected ? (
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
-                    <Play className="h-8 w-8 text-primary" />
-                  </div>
-                  <p className="text-muted-foreground">Click "Start Session" to begin</p>
-                </div>
-              ) : conversationUrl ? (
-                <iframe
-                  src={conversationUrl}
-                  className="w-full h-full border-0"
-                  allow="camera; microphone; autoplay; encrypted-media; fullscreen"
-                  title="AI Avatar Video Chat"
+        </Card>
+
+        {/* Preview Video Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>AI Trainer Preview</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="aspect-video bg-black rounded-lg overflow-hidden flex items-center justify-center text-white">
+                <p>AI trainer will appear here when session starts</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Your Video Preview</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden">
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
                 />
-              ) : (
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
-                    <MessageCircle className="h-8 w-8 text-green-500" />
-                  </div>
-                  <p className="text-muted-foreground">Loading AI Avatar...</p>
-                </div>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
-        {/* Your Video */}
+        {/* Start Button */}
         <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Your Video</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="aspect-video bg-black rounded-lg overflow-hidden">
-              <video
-                ref={videoRef}
-                autoPlay
-                muted
-                playsInline
-                className={`w-full h-full object-cover ${!isVideoEnabled ? 'hidden' : ''}`}
-              />
-              {!isVideoEnabled && (
-                <div className="w-full h-full flex items-center justify-center">
-                  <VideoOff className="h-12 w-12 text-muted-foreground" />
-                </div>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Error Display */}
-      {connectionError && (
-        <Alert variant="destructive">
-          <AlertDescription>{connectionError}</AlertDescription>
-        </Alert>
-      )}
-
-      {/* Control Panel */}
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex items-center justify-center gap-4">
-            {!isConnected ? (
-              <Button 
-                onClick={handleStartSession} 
+          <CardContent className="pt-6">
+            <div className="flex justify-center">
+              <Button
+                onClick={handleStartSession}
                 disabled={isLoading}
                 size="lg"
                 className="px-8"
               >
                 {isLoading ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
-                    Connecting...
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Starting Session...
                   </>
                 ) : (
                   <>
-                    <Play className="h-4 w-4 mr-2" />
-                    Start Session
+                    <Play className="mr-2 h-4 w-4" />
+                    Start Roleplay Session
                   </>
                 )}
               </Button>
-            ) : (
-              <>
-                <Button
-                  variant={isRecording ? "destructive" : "default"}
-                  onClick={isRecording ? handleEndSession : handleStartSession}
-                  size="lg"
-                >
-                  {isRecording ? (
-                    <>
-                      <Square className="h-4 w-4 mr-2" />
-                      End Session
-                    </>
-                  ) : (
-                    <>
-                      <Play className="h-4 w-4 mr-2" />
-                      Resume
-                    </>
-                  )}
-                </Button>
+            </div>
+          </CardContent>
+        </Card>
 
-                <Button
-                  variant="outline"
-                  onClick={handleRestart}
-                  size="lg"
-                >
-                  <RotateCcw className="h-4 w-4 mr-2" />
-                  Restart
-                </Button>
+        {/* Learning Objectives */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Learning Objectives</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2">
+              {scenario.objectives.map((objective, index) => (
+                <li key={index} className="flex items-start space-x-2">
+                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span className="text-sm">{objective}</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
 
-                <div className="flex items-center gap-2 border-l pl-4">
-                  <Button
-                    variant={isMuted ? "destructive" : "outline"}
-                    size="sm"
-                    onClick={toggleMute}
-                  >
-                    {isMuted ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
-                  </Button>
+        {/* Error Display */}
+        {connectionError && (
+          <Alert variant="destructive">
+            <AlertDescription>{connectionError}</AlertDescription>
+          </Alert>
+        )}
 
-                  <Button
-                    variant={!isVideoEnabled ? "destructive" : "outline"}
-                    size="sm"
-                    onClick={toggleVideo}
-                  >
-                    {isVideoEnabled ? <Video className="h-4 w-4" /> : <VideoOff className="h-4 w-4" />}
-                  </Button>
+        {/* Tavus Integration Alert */}
+        <Alert>
+          <AlertTriangle className="h-4 w-4" />
+          <AlertTitle>Tavus Integration Required</AlertTitle>
+          <AlertDescription>
+            This roleplay feature requires Tavus integration to be properly configured. 
+            Make sure you have valid Tavus API credentials and replica IDs set up.
+          </AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
 
-                  <Button
-                    variant={!isSpeakerOn ? "destructive" : "outline"}
-                    size="sm"
-                    onClick={toggleSpeaker}
-                  >
-                    {isSpeakerOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-                  </Button>
-                </div>
-              </>
-            )}
+  // Full-Screen State - During active session
+  return (
+    <div className="fixed inset-0 bg-black z-50">
+      {/* Top Overlay - Session Info */}
+      <div className="absolute top-0 left-0 right-0 z-10 bg-black/50 backdrop-blur-sm p-4">
+        <div className="flex items-center justify-between text-white">
+          <div className="flex items-center space-x-4">
+            <h1 className="text-lg font-semibold">{scenario.title}</h1>
+            <Badge variant="outline" className="border-white/20 text-white">
+              {scenario.category}
+            </Badge>
           </div>
-        </CardContent>
-      </Card>
+          <div className="flex items-center space-x-2">
+            <div className="h-2 w-2 bg-red-500 rounded-full animate-pulse"></div>
+            <span className="text-sm font-medium">LIVE</span>
+            <span className="text-sm">{formatTime(sessionDuration)}</span>
+          </div>
+        </div>
+      </div>
 
-      {/* Learning Objectives */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Session Objectives</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-2">
-            {scenario.objectives.map((objective, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>{objective}</span>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
+      {/* Main Video Area - AI Trainer */}
+      <div className="absolute inset-0">
+        {conversationUrl ? (
+          <iframe
+            src={conversationUrl}
+            className="w-full h-full"
+            allow="camera; microphone"
+            title="Tavus AI Conversation"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-white">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
+              <p>Connecting to AI trainer...</p>
+            </div>
+          </div>
+        )}
+      </div>
 
-      {/* Integration Notice */}
-      <Alert>
-        <MessageCircle className="h-4 w-4" />
-        <AlertDescription>
-          <strong>Tavus Integration Required:</strong> To enable AI video avatars, you'll need to integrate the Tavus SDK. 
-          This component provides the UI framework and will connect to Tavus once configured.
-        </AlertDescription>
-      </Alert>
+      {/* Picture-in-Picture - User Video */}
+      <div className="absolute top-20 right-4 w-48 h-36 z-20">
+        <div className="w-full h-full bg-gray-900 rounded-lg overflow-hidden border-2 border-white/20">
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+            className={`w-full h-full object-cover ${!isVideoOn ? 'hidden' : ''}`}
+          />
+          {!isVideoOn && (
+            <div className="w-full h-full flex items-center justify-center">
+              <VideoOff className="h-8 w-8 text-white/60" />
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Bottom Floating Controls */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="bg-black/70 backdrop-blur-sm rounded-full px-6 py-3 flex items-center space-x-3">
+          <Button
+            onClick={toggleMute}
+            variant={isMuted ? "destructive" : "secondary"}
+            size="sm"
+            className="rounded-full"
+          >
+            {isMuted ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+          </Button>
+          
+          <Button
+            onClick={toggleVideo}
+            variant={!isVideoOn ? "destructive" : "secondary"}
+            size="sm"
+            className="rounded-full"
+          >
+            {isVideoOn ? <Video className="h-4 w-4" /> : <VideoOff className="h-4 w-4" />}
+          </Button>
+          
+          <Button
+            onClick={toggleSpeaker}
+            variant={!isSpeakerOn ? "destructive" : "secondary"}
+            size="sm"
+            className="rounded-full"
+          >
+            {isSpeakerOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+          </Button>
+
+          <Button
+            onClick={handleEndSession}
+            variant="destructive"
+            size="sm"
+            className="rounded-full px-4"
+          >
+            <Square className="mr-2 h-3 w-3" />
+            End Session
+          </Button>
+
+          <Button
+            onClick={handleRestart}
+            variant="secondary"
+            size="sm"
+            className="rounded-full"
+          >
+            <RotateCcw className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
