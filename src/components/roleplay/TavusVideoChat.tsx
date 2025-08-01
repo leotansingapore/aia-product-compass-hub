@@ -396,27 +396,17 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       </div>
 
       {/* Main Video Area - AI Trainer */}
-      <div className="absolute inset-0">
-        {conversationUrl ? (
-          <iframe
-            src={conversationUrl}
-            className="w-full h-full border-0"
-            allow="camera; microphone; autoplay; encrypted-media; fullscreen; display-capture"
-            title="Tavus AI Conversation"
-            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
-            onLoad={() => console.log('Tavus iframe loaded')}
-            onError={() => console.error('Tavus iframe error')}
-            style={{ backgroundColor: 'transparent' }}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-white bg-gray-900">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
-              <p>Connecting to AI trainer...</p>
-              <p className="text-sm text-gray-400 mt-2">Session initializing...</p>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-gray-900 to-black">
+        <div className="w-full h-full flex items-center justify-center text-white">
+          <div className="text-center">
+            <div className="w-24 h-24 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <MessageCircle className="h-12 w-12 text-blue-400" />
             </div>
+            <h2 className="text-2xl font-semibold mb-2">AI Trainer Ready</h2>
+            <p className="text-blue-200">Roleplay session is active</p>
+            <p className="text-sm text-gray-400 mt-2">Voice conversation in progress</p>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Picture-in-Picture - User Video */}
