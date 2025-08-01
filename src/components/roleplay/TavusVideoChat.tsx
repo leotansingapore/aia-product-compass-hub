@@ -419,23 +419,6 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         )}
       </div>
 
-      {/* Picture-in-Picture - User Video */}
-      <div className="absolute top-20 right-4 w-48 h-36 z-20">
-        <div className="w-full h-full bg-gray-900 rounded-lg overflow-hidden border-2 border-white/20">
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            playsInline
-            className={`w-full h-full object-cover ${!isVideoOn ? 'hidden' : ''}`}
-          />
-          {!isVideoOn && (
-            <div className="w-full h-full flex items-center justify-center">
-              <VideoOff className="h-8 w-8 text-white/60" />
-            </div>
-          )}
-        </div>
-      </div>
 
       {/* Bottom Floating Controls */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
