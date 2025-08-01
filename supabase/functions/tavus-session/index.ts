@@ -48,12 +48,6 @@ serve(async (req) => {
               max_call_duration: 600, // 10 minutes
               participant_left_timeout: 30,
               participant_absent_timeout: 60,
-              enable_recording: false,
-              apply_greenscreen: false,
-            },
-            conversation_config: {
-              persona_id: replica_id,
-              conversation_type: "video_call"
             }
           }),
         });
