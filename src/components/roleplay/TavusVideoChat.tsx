@@ -78,10 +78,29 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
   const createTavusConversation = async () => {
     try {
+      // First get available replicas to use a valid one
+      const { data: replicasData, error: replicasError } = await supabase.functions.invoke('tavus-session', {
+        body: {
+          action: 'list_replicas'
+        }
+      });
+
+      if (replicasError) {
+        console.error('Failed to fetch replicas:', replicasError);
+        throw new Error('Failed to fetch available AI avatars');
+      }
+
+      if (!replicasData?.data || replicasData.data.length === 0) {
+        throw new Error('No AI avatars available. Please create a replica in your Tavus dashboard first.');
+      }
+
+      const replicaId = replicasData.data[0].replica_id;
+      console.log('Using replica ID:', replicaId);
+
       const { data, error } = await supabase.functions.invoke('tavus-session', {
         body: {
           action: 'create_conversation',
-          replica_id: 'r785e695b47', // Default Tavus replica ID - you can change this
+          replica_id: replicaId,
           conversation_name: `${scenario.title} - Roleplay Session`
         }
       });
