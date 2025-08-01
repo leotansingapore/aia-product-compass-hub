@@ -37,7 +37,7 @@ serve(async (req) => {
         const response = await fetch('https://tavusapi.com/v2/conversations', {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${tavusApiKey}`,
+            'x-api-key': tavusApiKey,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
@@ -71,7 +71,7 @@ serve(async (req) => {
         const response = await fetch(`https://tavusapi.com/v2/conversations/${conversation_id}`, {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${tavusApiKey}`,
+            'x-api-key': tavusApiKey,
             'Content-Type': 'application/json',
           },
         });
@@ -93,7 +93,7 @@ serve(async (req) => {
         const response = await fetch(`https://tavusapi.com/v2/conversations/${conversation_id}`, {
           method: 'DELETE',
           headers: {
-            'Authorization': `Bearer ${tavusApiKey}`,
+            'x-api-key': tavusApiKey,
             'Content-Type': 'application/json',
           },
         });
@@ -112,7 +112,7 @@ serve(async (req) => {
         const response = await fetch('https://tavusapi.com/v2/replicas', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${tavusApiKey}`,
+            'x-api-key': tavusApiKey,
             'Content-Type': 'application/json',
           },
         });
