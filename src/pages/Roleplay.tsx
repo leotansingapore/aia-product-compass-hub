@@ -14,6 +14,8 @@ interface RoleplayScenario {
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   duration: string;
   objectives: string[];
+  replicaId?: string; // Optional Tavus replica ID for specific persona
+  personaDescription?: string; // Description of the AI persona
 }
 
 const roleplayScenarios: RoleplayScenario[] = [
@@ -24,6 +26,8 @@ const roleplayScenarios: RoleplayScenario[] = [
     category: 'sales',
     difficulty: 'beginner',
     duration: '10-15 min',
+    replicaId: 'your-sales-trainer-replica-id', // Replace with your actual replica ID
+    personaDescription: 'Professional sales trainer persona',
     objectives: [
       'Present product features clearly',
       'Handle basic questions',
@@ -37,6 +41,8 @@ const roleplayScenarios: RoleplayScenario[] = [
     category: 'objection',
     difficulty: 'intermediate',
     duration: '15-20 min',
+    replicaId: 'your-objection-trainer-replica-id', // Replace with your actual replica ID
+    personaDescription: 'Challenging client persona for objection training',
     objectives: [
       'Listen actively to objections',
       'Provide value-based responses',
@@ -50,6 +56,8 @@ const roleplayScenarios: RoleplayScenario[] = [
     category: 'consultation',
     difficulty: 'advanced',
     duration: '20-30 min',
+    replicaId: 'your-consultation-client-replica-id', // Replace with your actual replica ID
+    personaDescription: 'Realistic client persona for consultation practice',
     objectives: [
       'Ask probing questions',
       'Identify client pain points',
@@ -63,6 +71,8 @@ const roleplayScenarios: RoleplayScenario[] = [
     category: 'exam-prep',
     difficulty: 'intermediate',
     duration: '10-15 min',
+    replicaId: 'your-exam-tutor-replica-id', // Replace with your actual replica ID
+    personaDescription: 'CMFAS exam tutor persona',
     objectives: [
       'Explain concepts simply',
       'Use relevant examples',

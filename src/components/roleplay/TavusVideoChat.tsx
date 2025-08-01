@@ -29,6 +29,8 @@ interface RoleplayScenario {
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   duration: string;
   objectives: string[];
+  replicaId?: string; // Optional Tavus replica ID for specific persona
+  personaDescription?: string; // Description of the AI persona
 }
 
 interface TavusVideoChatProps {
@@ -80,23 +82,28 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
   const createTavusConversation = async () => {
     try {
-      // First get available replicas to use a valid one
-      const { data: replicasData, error: replicasError } = await supabase.functions.invoke('tavus-session', {
-        body: {
-          action: 'list_replicas'
+      let replicaId = scenario.replicaId;
+      
+      // If no specific replica ID is provided, get the first available one
+      if (!replicaId) {
+        const { data: replicasData, error: replicasError } = await supabase.functions.invoke('tavus-session', {
+          body: {
+            action: 'list_replicas'
+          }
+        });
+
+        if (replicasError) {
+          console.error('Failed to fetch replicas:', replicasError);
+          throw new Error('Failed to fetch available AI avatars');
         }
-      });
 
-      if (replicasError) {
-        console.error('Failed to fetch replicas:', replicasError);
-        throw new Error('Failed to fetch available AI avatars');
+        if (!replicasData?.data || replicasData.data.length === 0) {
+          throw new Error('No AI avatars available. Please create a replica in your Tavus dashboard first.');
+        }
+
+        replicaId = replicasData.data[0].replica_id;
       }
-
-      if (!replicasData?.data || replicasData.data.length === 0) {
-        throw new Error('No AI avatars available. Please create a replica in your Tavus dashboard first.');
-      }
-
-      const replicaId = replicasData.data[0].replica_id;
+      
       console.log('Using replica ID:', replicaId);
 
       const { data, error } = await supabase.functions.invoke('tavus-session', {
