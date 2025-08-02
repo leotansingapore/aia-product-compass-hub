@@ -8,6 +8,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { RoleplayFeedbackInterface } from './RoleplayFeedbackInterface';
 import { EnhancedRoleplayFeedback } from './EnhancedRoleplayFeedback';
 import { LiveCoachingOverlay } from './LiveCoachingOverlay';
+import { LiveTranscriptOverlay } from './LiveTranscriptOverlay';
 import { useSpeechAnalysis } from '@/hooks/useSpeechAnalysis';
 import { useTavusCallbacks } from '@/hooks/useTavusCallbacks';
 import { useAuth } from '@/hooks/useAuth';
@@ -77,6 +78,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const [feedback, setFeedback] = useState<any>(null);
   const [isGeneratingFeedback, setIsGeneratingFeedback] = useState(false);
   const [showLiveCoaching, setShowLiveCoaching] = useState(true);
+  const [showLiveTranscript, setShowLiveTranscript] = useState(true);
   const [finalizedSession, setFinalizedSession] = useState<ExtendedSessionOut | null>(null);
   
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -706,6 +708,13 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         sessionDuration={sessionDuration * 1000}
         isVisible={showLiveCoaching && isAnalyzing}
         isRealTimeEnabled={isRealTimeEnabled}
+      />
+
+      {/* Live Transcript Overlay */}
+      <LiveTranscriptOverlay
+        sessionId={sessionId || ''}
+        isActive={isConnected && showLiveTranscript}
+        onToggle={() => setShowLiveTranscript(!showLiveTranscript)}
       />
 
       {/* Bottom Floating Controls */}

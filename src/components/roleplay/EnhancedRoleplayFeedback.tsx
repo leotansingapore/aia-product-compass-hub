@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { Clock, Mic, TrendingUp, AlertTriangle, Target, BookOpen } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { TranscriptDisplay } from './TranscriptDisplay';
 
 interface RoleplaySession {
   id: string;
@@ -390,41 +391,12 @@ export const EnhancedRoleplayFeedback: React.FC<EnhancedRoleplayFeedbackProps> =
 
         {/* Transcript Tab */}
         <TabsContent value="transcript" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Conversation Transcript</CardTitle>
-            </CardHeader>
-            <CardContent className="max-h-96 overflow-y-auto">
-              <div className="space-y-4">
-                {transcripts.map((transcript, index) => (
-                  <div key={index} className={`p-3 rounded-lg ${
-                    transcript.speaker === 'user' 
-                      ? 'bg-blue-50 ml-8' 
-                      : 'bg-gray-50 mr-8'
-                  }`}>
-                    <div className="flex justify-between items-start mb-2">
-                      <Badge variant={transcript.speaker === 'user' ? 'default' : 'secondary'}>
-                        {transcript.speaker === 'user' ? 'You' : 'AI'}
-                      </Badge>
-                      <span className="text-xs text-muted-foreground">
-                        {Math.floor(transcript.timestamp_offset / 1000)}s
-                      </span>
-                    </div>
-                    <p className="text-sm">{transcript.text}</p>
-                    {transcript.filler_words && transcript.filler_words.length > 0 && (
-                      <div className="mt-2 flex gap-1 flex-wrap">
-                        {transcript.filler_words.map((word: string, i: number) => (
-                          <Badge key={i} variant="destructive" className="text-xs">
-                            {word}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <TranscriptDisplay
+            sessionId={session.id}
+            isLive={false}
+            showControls={true}
+            height="h-96"
+          />
         </TabsContent>
 
         {/* Coaching Tab */}
