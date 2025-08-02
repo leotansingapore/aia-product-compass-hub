@@ -18,7 +18,9 @@ import {
   MessageCircle,
   RotateCcw,
   CheckCircle,
-  AlertTriangle
+  AlertTriangle,
+  Subtitles,
+  X
 } from 'lucide-react';
 
 interface RoleplayScenario {
@@ -49,6 +51,9 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const [connectionError, setConnectionError] = useState<string | null>(null);
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [conversationUrl, setConversationUrl] = useState<string | null>(null);
+  const [transcripts, setTranscripts] = useState<Array<{speaker: string, text: string, timestamp: number}>>([]);
+  const [sessionId, setSessionId] = useState<string | null>(null);
+  const [showTranscripts, setShowTranscripts] = useState(true);
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -61,6 +66,37 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       }
     };
   }, []);
+
+  // Subscribe to real-time transcript updates
+  useEffect(() => {
+    if (!sessionId) return;
+
+    const channel = supabase
+      .channel('conversation-transcripts')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'conversation_transcripts',
+          filter: `session_id=eq.${sessionId}`
+        },
+        (payload) => {
+          console.log('New transcript received:', payload);
+          const newTranscript = payload.new as any;
+          setTranscripts(prev => [...prev, {
+            speaker: newTranscript.speaker,
+            text: newTranscript.text,
+            timestamp: newTranscript.timestamp_offset || Date.now()
+          }]);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [sessionId]);
 
   const startTimer = () => {
     intervalRef.current = setInterval(() => {
@@ -127,6 +163,21 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       console.log('Tavus conversation created:', data);
       setConversationId(data.conversation_id);
       setConversationUrl(data.conversation_url);
+      
+      // Create roleplay session record for transcript tracking
+      const { data: sessionData, error: sessionError } = await supabase.rpc('create_roleplay_session', {
+        scenario_title: scenario.title,
+        scenario_category: scenario.category,
+        scenario_difficulty: scenario.difficulty,
+        tavus_conversation_id: data.conversation_id
+      });
+
+      if (sessionError) {
+        console.error('Failed to create session record:', sessionError);
+      } else {
+        setSessionId(sessionData);
+        console.log('Session record created with ID:', sessionData);
+      }
       
       return data;
     } catch (error) {
@@ -204,11 +255,26 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       }
     }
 
+    // Update session record with end time
+    if (sessionId) {
+      try {
+        await supabase.rpc('update_roleplay_session', {
+          session_id: sessionId,
+          end_time: new Date().toISOString(),
+          duration: sessionDuration
+        });
+      } catch (error) {
+        console.error('Failed to update session record:', error);
+      }
+    }
+
     setIsConnected(false);
     setIsRecording(false);
     stopTimer();
     setConversationId(null);
     setConversationUrl(null);
+    setSessionId(null);
+    setTranscripts([]);
     
     // Stop camera stream
     if (videoRef.current?.srcObject) {
@@ -439,6 +505,53 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         )}
       </div>
 
+      {/* Live Transcript Overlay */}
+      {showTranscripts && transcripts.length > 0 && (
+        <div className="absolute bottom-24 right-6 z-20 w-80 max-h-60 bg-black/80 backdrop-blur-sm rounded-lg p-4 overflow-hidden">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center space-x-2">
+              <Subtitles className="h-4 w-4 text-white" />
+              <span className="text-white text-sm font-medium">Live Transcript</span>
+            </div>
+            <Button
+              onClick={() => setShowTranscripts(false)}
+              variant="ghost"
+              size="sm"
+              className="h-6 w-6 p-0 text-white/60 hover:text-white"
+            >
+              <X className="h-3 w-3" />
+            </Button>
+          </div>
+          <div className="space-y-2 overflow-y-auto max-h-36 scrollbar-thin scrollbar-thumb-white/20">
+            {transcripts.slice(-6).map((transcript, index) => (
+              <div key={index} className="text-sm">
+                <span className={`font-medium ${
+                  transcript.speaker === 'user' ? 'text-blue-300' : 'text-green-300'
+                }`}>
+                  {transcript.speaker === 'user' ? 'You' : 'AI Trainer'}:
+                </span>
+                <span className="text-white/90 ml-2">
+                  {transcript.text}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Transcript Toggle Button */}
+      {!showTranscripts && transcripts.length > 0 && (
+        <div className="absolute bottom-24 right-6 z-20">
+          <Button
+            onClick={() => setShowTranscripts(true)}
+            variant="secondary"
+            size="sm"
+            className="rounded-full bg-black/70 backdrop-blur-sm text-white border-white/20"
+          >
+            <Subtitles className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
 
       {/* Bottom Floating Controls */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
