@@ -9,7 +9,9 @@ import { RoleplayFeedbackInterface } from './RoleplayFeedbackInterface';
 import { EnhancedRoleplayFeedback } from './EnhancedRoleplayFeedback';
 import { LiveCoachingOverlay } from './LiveCoachingOverlay';
 import { useSpeechAnalysis } from '@/hooks/useSpeechAnalysis';
+import { useTavusCallbacks } from '@/hooks/useTavusCallbacks';
 import { useAuth } from '@/hooks/useAuth';
+import { SessionOut } from '@/lib/speechCoachApi';
 import { 
   Play, 
   Pause, 
@@ -60,6 +62,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const [feedback, setFeedback] = useState<any>(null);
   const [isGeneratingFeedback, setIsGeneratingFeedback] = useState(false);
   const [showLiveCoaching, setShowLiveCoaching] = useState(true);
+  const [finalizedSession, setFinalizedSession] = useState<SessionOut | null>(null);
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -78,6 +81,30 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     sendTranscriptionToRealTime,
     stopAnalysis
   } = useSpeechAnalysis();
+
+  // Tavus callbacks integration - get session token async
+  const [userToken, setUserToken] = useState<string>('');
+  
+  useEffect(() => {
+    const getToken = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUserToken(session?.access_token || '');
+    };
+    getToken();
+  }, []);
+
+  const { isFinalizing } = useTavusCallbacks({
+    callFrame: conversationUrl ? { on: () => {}, off: () => {} } : null, // Mock callFrame for now
+    userToken,
+    onFinalized: (session) => {
+      setFinalizedSession(session);
+      setIsConnected(false);
+      toast({
+        title: "Session Analyzed",
+        description: "Your roleplay has been automatically analyzed!",
+      });
+    },
+  });
 
   useEffect(() => {
     return () => {
@@ -135,7 +162,8 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       const requestBody: any = {
         action: 'create_conversation',
         replica_id: replicaId,
-        conversation_name: `${scenario.title} - Roleplay Session`
+        conversation_name: `${scenario.title} - Roleplay Session`,
+        callback_url: `${window.location.origin}/functions/v1/speech-analysis`
       };
 
       // Add persona_id if available
@@ -401,34 +429,46 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     advanced: "border-red-200 text-red-800"
   };
 
-  // Show enhanced feedback interface after session ends
-  if (showFeedback && feedback) {
+  // Show enhanced feedback interface after session ends (prioritize finalized session)
+  if (finalizedSession || (showFeedback && feedback)) {
     return (
       <EnhancedRoleplayFeedback
         session={{
-          id: sessionId!,
-          scenario_title: scenario.title,
-          scenario_category: scenario.category,
-          scenario_difficulty: scenario.difficulty,
-          duration_seconds: sessionDuration
+          id: finalizedSession?.id || sessionId!,
+          scenario_title: finalizedSession?.scenario_title || scenario.title,
+          scenario_category: finalizedSession?.scenario_category || scenario.category,
+          scenario_difficulty: finalizedSession?.scenario_difficulty || scenario.difficulty,
+          duration_seconds: finalizedSession?.duration_seconds || sessionDuration
         }}
         feedback={feedback}
-        onPracticeAgain={handlePracticeAgain}
+        onPracticeAgain={() => {
+          setShowFeedback(false);
+          setFeedback(null);
+          setFinalizedSession(null);
+          setSessionId(null);
+          setSessionStartTime(null);
+          setSessionDuration(0);
+        }}
         onContinue={handleContinueLearning}
       />
     );
   }
 
-  // Show loading state while generating feedback
-  if (isGeneratingFeedback) {
+  // Show loading state while generating feedback or finalizing
+  if (isGeneratingFeedback || isFinalizing) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
         <Card className="w-full max-w-md">
           <CardContent className="pt-6 text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-            <h3 className="text-lg font-semibold mb-2">Generating Your Feedback</h3>
+            <h3 className="text-lg font-semibold mb-2">
+              {isFinalizing ? 'Processing Session Data' : 'Generating Your Feedback'}
+            </h3>
             <p className="text-sm text-muted-foreground">
-              Our AI is analyzing your roleplay session and preparing personalized feedback...
+              {isFinalizing 
+                ? 'Analyzing your conversation and speech patterns...' 
+                : 'Our AI is analyzing your roleplay session and preparing personalized feedback...'
+              }
             </p>
           </CardContent>
         </Card>

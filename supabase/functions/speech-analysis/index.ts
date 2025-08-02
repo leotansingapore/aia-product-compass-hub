@@ -176,6 +176,111 @@ class CoachingEngine {
   }
 }
 
+async function handleFinalizeSession(body: any, supabase: any) {
+  const { conversationId, recordingUrl, finalTranscript, durationSeconds, meta } = body;
+  
+  // Get or create session record
+  let session;
+  if (conversationId !== 'unknown') {
+    const { data: existingSessions } = await supabase
+      .from('roleplay_sessions')
+      .select('*')
+      .eq('tavus_conversation_id', conversationId)
+      .single();
+    
+    session = existingSessions;
+  }
+  
+  // Analyze transcript if provided
+  let analysis = null;
+  if (finalTranscript) {
+    const duration = durationSeconds || 60;
+    const fillerWords = AudioProcessor.analyzeFillerWords(finalTranscript);
+    const wpm = AudioProcessor.calculateWPM(finalTranscript, duration * 1000);
+    const clarity = AudioProcessor.calculateClarityScore(finalTranscript, 0.9);
+    
+    analysis = {
+      transcript: finalTranscript,
+      wpm,
+      filler_count: fillerWords.count,
+      clarity_score: clarity,
+      sentiment: 0.7, // Default neutral-positive
+      score: Math.round((wpm > 120 ? 80 : wpm < 80 ? 60 : 75) - fillerWords.count * 2 + clarity * 10)
+    };
+  }
+  
+  // Update or create session
+  const sessionData = {
+    ended_at: new Date().toISOString(),
+    duration_seconds: durationSeconds,
+    transcript: analysis?.transcript,
+    tavus_conversation_id: conversationId,
+    ...(recordingUrl && { meta: { ...meta, recording_url: recordingUrl } })
+  };
+  
+  if (session) {
+    const { data: updatedSession } = await supabase
+      .from('roleplay_sessions')
+      .update(sessionData)
+      .eq('id', session.id)
+      .select()
+      .single();
+    
+    return new Response(JSON.stringify({
+      id: updatedSession.id,
+      scenario_title: updatedSession.scenario_title,
+      scenario_category: updatedSession.scenario_category,
+      scenario_difficulty: updatedSession.scenario_difficulty,
+      ...analysis,
+      started_at: updatedSession.started_at,
+      ended_at: updatedSession.ended_at,
+      duration_seconds: updatedSession.duration_seconds,
+      tavus_video_url: recordingUrl
+    }), { headers: corsHeaders });
+  }
+  
+  return new Response(JSON.stringify({
+    id: 'temp',
+    scenario_title: 'Unknown Session',
+    scenario_category: 'consultation',
+    scenario_difficulty: 'beginner',
+    ...analysis,
+    started_at: new Date().toISOString(),
+    ended_at: new Date().toISOString(),
+    duration_seconds: durationSeconds,
+    tavus_video_url: recordingUrl
+  }), { headers: corsHeaders });
+}
+
+async function handleGetSession(body: any, supabase: any) {
+  const { sessionId } = body;
+  
+  const { data: session } = await supabase
+    .from('roleplay_sessions')
+    .select('*')
+    .eq('id', sessionId)
+    .single();
+  
+  if (!session) {
+    return new Response(JSON.stringify({ error: 'Session not found' }), { 
+      status: 404, 
+      headers: corsHeaders 
+    });
+  }
+  
+  return new Response(JSON.stringify({
+    id: session.id,
+    scenario_title: session.scenario_title,
+    scenario_category: session.scenario_category,
+    scenario_difficulty: session.scenario_difficulty,
+    transcript: session.transcript,
+    started_at: session.started_at,
+    ended_at: session.ended_at,
+    duration_seconds: session.duration_seconds,
+    tavus_video_url: session.meta?.recording_url
+  }), { headers: corsHeaders });
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
@@ -301,88 +406,101 @@ serve(async (req) => {
       return response;
     }
 
-    // REST endpoint for batch transcription
+    // REST endpoint for different actions
     if (req.method === 'POST') {
-      const { audio, sessionId } = await req.json();
-      
-      if (!audio || !sessionId) {
-        throw new Error('Missing audio data or session ID');
-      }
+      const body = await req.json();
+      const { action } = body;
 
-      // Transcribe with OpenAI Whisper
-      let transcriptionResult = { text: '', confidence: 0.9 };
-      
-      if (openaiApiKey) {
-        const audioBuffer = Uint8Array.from(atob(audio), c => c.charCodeAt(0));
-        const formData = new FormData();
-        formData.append('file', new Blob([audioBuffer], { type: 'audio/wav' }), 'audio.wav');
-        formData.append('model', 'whisper-1');
-        formData.append('response_format', 'verbose_json');
+      switch (action) {
+        case 'finalize_session':
+          return await handleFinalizeSession(body, supabase);
+        
+        case 'get_session':
+          return await handleGetSession(body, supabase);
+        
+        default:
+          // Original batch transcription logic
+          const { audio, sessionId } = body;
+          
+          if (!audio || !sessionId) {
+            throw new Error('Missing audio data or session ID');
+          }
 
-        const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${openaiApiKey}`,
-          },
-          body: formData,
-        });
+          // Transcribe with OpenAI Whisper
+          let transcriptionResult = { text: '', confidence: 0.9 };
+          
+          if (openaiApiKey) {
+            const audioBuffer = Uint8Array.from(atob(audio), c => c.charCodeAt(0));
+            const formData = new FormData();
+            formData.append('file', new Blob([audioBuffer], { type: 'audio/wav' }), 'audio.wav');
+            formData.append('model', 'whisper-1');
+            formData.append('response_format', 'verbose_json');
 
-        if (response.ok) {
-          const result = await response.json();
-          transcriptionResult = {
-            text: result.text || '',
-            confidence: result.segments?.[0]?.no_speech_prob ? 1 - result.segments[0].no_speech_prob : 0.9
+            const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${openaiApiKey}`,
+              },
+              body: formData,
+            });
+
+            if (response.ok) {
+              const result = await response.json();
+              transcriptionResult = {
+                text: result.text || '',
+                confidence: result.segments?.[0]?.no_speech_prob ? 1 - result.segments[0].no_speech_prob : 0.9
+              };
+            }
+          }
+
+          // Analyze speech metrics
+          const samples = AudioProcessor.decodePCMAudio(audio);
+          const duration = (samples.length / 24000) * 1000; // Assuming 24kHz sample rate
+          const rms = AudioProcessor.calculateRMS(samples);
+          const fillerAnalysis = AudioProcessor.analyzeFillerWords(transcriptionResult.text);
+          
+          const metrics: SpeechMetrics = {
+            wordsPerMinute: AudioProcessor.calculateWPM(transcriptionResult.text, duration),
+            fillerWordCount: fillerAnalysis.count,
+            speakingTimeMs: duration,
+            pauseDurationMs: 0,
+            energyLevel: Math.min(1.0, rms * 5),
+            clarityScore: AudioProcessor.calculateClarityScore(transcriptionResult.text, transcriptionResult.confidence),
+            confidenceScore: transcriptionResult.confidence
           };
-        }
+
+          // Store results
+          await supabase.from('conversation_transcripts').insert({
+            session_id: sessionId,
+            speaker: 'user',
+            text: transcriptionResult.text,
+            timestamp_offset: 0,
+            confidence: transcriptionResult.confidence,
+            filler_words: fillerAnalysis.words
+          });
+
+          await supabase.from('speech_metrics').insert({
+            session_id: sessionId,
+            timestamp_offset: 0,
+            words_per_minute: metrics.wordsPerMinute,
+            filler_word_count: metrics.fillerWordCount,
+            speaking_time_ms: metrics.speakingTimeMs,
+            pause_duration_ms: metrics.pauseDurationMs,
+            energy_level: metrics.energyLevel
+          });
+
+          return new Response(JSON.stringify({
+            transcription: transcriptionResult.text,
+            metrics,
+            analysis: {
+              fillerWords: fillerAnalysis.words,
+              clarity: metrics.clarityScore,
+              confidence: metrics.confidenceScore
+            }
+          }), {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+          });
       }
-
-      // Analyze speech metrics
-      const samples = AudioProcessor.decodePCMAudio(audio);
-      const duration = (samples.length / 24000) * 1000; // Assuming 24kHz sample rate
-      const rms = AudioProcessor.calculateRMS(samples);
-      const fillerAnalysis = AudioProcessor.analyzeFillerWords(transcriptionResult.text);
-      
-      const metrics: SpeechMetrics = {
-        wordsPerMinute: AudioProcessor.calculateWPM(transcriptionResult.text, duration),
-        fillerWordCount: fillerAnalysis.count,
-        speakingTimeMs: duration,
-        pauseDurationMs: 0,
-        energyLevel: Math.min(1.0, rms * 5),
-        clarityScore: AudioProcessor.calculateClarityScore(transcriptionResult.text, transcriptionResult.confidence),
-        confidenceScore: transcriptionResult.confidence
-      };
-
-      // Store results
-      await supabase.from('conversation_transcripts').insert({
-        session_id: sessionId,
-        speaker: 'user',
-        text: transcriptionResult.text,
-        timestamp_offset: 0,
-        confidence: transcriptionResult.confidence,
-        filler_words: fillerAnalysis.words
-      });
-
-      await supabase.from('speech_metrics').insert({
-        session_id: sessionId,
-        timestamp_offset: 0,
-        words_per_minute: metrics.wordsPerMinute,
-        filler_word_count: metrics.fillerWordCount,
-        speaking_time_ms: metrics.speakingTimeMs,
-        pause_duration_ms: metrics.pauseDurationMs,
-        energy_level: metrics.energyLevel
-      });
-
-      return new Response(JSON.stringify({
-        transcription: transcriptionResult.text,
-        metrics,
-        analysis: {
-          fillerWords: fillerAnalysis.words,
-          clarity: metrics.clarityScore,
-          confidence: metrics.confidenceScore
-        }
-      }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      });
     }
 
   } catch (error) {
