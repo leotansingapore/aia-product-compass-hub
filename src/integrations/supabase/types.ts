@@ -297,6 +297,82 @@ export type Database = {
         }
         Relationships: []
       }
+      coaching_events: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          message: string
+          session_id: string
+          timestamp_offset: number
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          message: string
+          session_id: string
+          timestamp_offset: number
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          message?: string
+          session_id?: string
+          timestamp_offset?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "coaching_events_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "roleplay_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      conversation_transcripts: {
+        Row: {
+          confidence: number | null
+          created_at: string
+          filler_words: string[] | null
+          id: string
+          session_id: string
+          speaker: string
+          text: string
+          timestamp_offset: number
+        }
+        Insert: {
+          confidence?: number | null
+          created_at?: string
+          filler_words?: string[] | null
+          id?: string
+          session_id: string
+          speaker: string
+          text: string
+          timestamp_offset: number
+        }
+        Update: {
+          confidence?: number | null
+          created_at?: string
+          filler_words?: string[] | null
+          id?: string
+          session_id?: string
+          speaker?: string
+          text?: string
+          timestamp_offset?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "conversation_transcripts_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "roleplay_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       file_embeddings: {
         Row: {
           content: string
@@ -681,6 +757,50 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      speech_metrics: {
+        Row: {
+          created_at: string
+          energy_level: number | null
+          filler_word_count: number | null
+          id: string
+          pause_duration_ms: number | null
+          session_id: string
+          speaking_time_ms: number | null
+          timestamp_offset: number
+          words_per_minute: number | null
+        }
+        Insert: {
+          created_at?: string
+          energy_level?: number | null
+          filler_word_count?: number | null
+          id?: string
+          pause_duration_ms?: number | null
+          session_id: string
+          speaking_time_ms?: number | null
+          timestamp_offset: number
+          words_per_minute?: number | null
+        }
+        Update: {
+          created_at?: string
+          energy_level?: number | null
+          filler_word_count?: number | null
+          id?: string
+          pause_duration_ms?: number | null
+          session_id?: string
+          speaking_time_ms?: number | null
+          timestamp_offset?: number
+          words_per_minute?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "speech_metrics_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "roleplay_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       tier_permissions: {
         Row: {

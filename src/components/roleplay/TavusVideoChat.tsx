@@ -6,6 +6,9 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { RoleplayFeedbackInterface } from './RoleplayFeedbackInterface';
+import { EnhancedRoleplayFeedback } from './EnhancedRoleplayFeedback';
+import { LiveCoachingOverlay } from './LiveCoachingOverlay';
+import { useSpeechAnalysis } from '@/hooks/useSpeechAnalysis';
 import { useAuth } from '@/hooks/useAuth';
 import { 
   Play, 
@@ -56,11 +59,22 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const [sessionStartTime, setSessionStartTime] = useState<Date | null>(null);
   const [feedback, setFeedback] = useState<any>(null);
   const [isGeneratingFeedback, setIsGeneratingFeedback] = useState(false);
+  const [showLiveCoaching, setShowLiveCoaching] = useState(true);
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const { toast } = useToast();
   const { user } = useAuth();
+  
+  // Speech analysis integration
+  const {
+    isAnalyzing,
+    realtimeMetrics,
+    coachingEvents,
+    startAnalysis,
+    processSpeechData,
+    stopAnalysis
+  } = useSpeechAnalysis();
 
   useEffect(() => {
     return () => {
@@ -230,6 +244,11 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       setSessionId(newSessionId);
       setSessionStartTime(new Date());
       
+      // Start speech analysis
+      if (newSessionId) {
+        startAnalysis(newSessionId);
+      }
+      
       setIsConnected(true);
       setIsRecording(true);
       startTimer();
@@ -258,6 +277,9 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   };
 
   const handleEndSession = async () => {
+    // Stop speech analysis
+    stopAnalysis();
+    
     if (conversationId) {
       try {
         await supabase.functions.invoke('tavus-session', {
@@ -376,10 +398,10 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     advanced: "border-red-200 text-red-800"
   };
 
-  // Show feedback interface after session ends
+  // Show enhanced feedback interface after session ends
   if (showFeedback && feedback) {
     return (
-      <RoleplayFeedbackInterface
+      <EnhancedRoleplayFeedback
         session={{
           id: sessionId!,
           scenario_title: scenario.title,
@@ -580,6 +602,14 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         )}
       </div>
 
+
+      {/* Live Coaching Overlay */}
+      <LiveCoachingOverlay
+        metrics={realtimeMetrics}
+        recentEvents={coachingEvents.slice(-3)}
+        sessionDuration={sessionDuration * 1000}
+        isVisible={showLiveCoaching && isAnalyzing}
+      />
 
       {/* Bottom Floating Controls */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
