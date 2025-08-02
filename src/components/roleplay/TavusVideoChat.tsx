@@ -339,15 +339,38 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
       setCallFrame(call);
 
-      // Set up audio processing
-      call.on('participant-joined', (event: any) => {
+      // Set up audio processing and video subscription
+      call.on('participant-joined', async (event: any) => {
         console.log('Participant joined:', event);
+        
+        // Subscribe to Tavus replica's video and audio
+        if (event.participant.user_id === 'tavus-replica') {
+          try {
+            // Subscribe to the replica's video and audio tracks
+            await call.updateParticipant(event.participant.session_id, {
+              setSubscribedTracks: {
+                audio: true,
+                video: true
+              }
+            });
+            console.log('Subscribed to Tavus replica tracks');
+          } catch (error) {
+            console.error('Failed to subscribe to replica tracks:', error);
+          }
+        }
       });
 
       call.on('track-started', async (event: any) => {
         console.log('Track started:', event);
+        
+        // Handle local audio track for speech analysis
         if (event.track.kind === 'audio' && event.participant.local) {
           await setupAudioProcessing(call);
+        }
+        
+        // Ensure remote video tracks are displayed
+        if (event.track.kind === 'video' && !event.participant.local) {
+          console.log('Remote video track received from:', event.participant.user_id);
         }
       });
 
@@ -360,10 +383,13 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         setConnectionError('Video call connection failed');
       });
 
-      // Join the call
+      // Join the call with proper configuration
       await call.join({ 
         url: conversationUrl,
-        userName: user?.email || 'User'
+        userName: user?.email || 'User',
+        subscribeToTracksAutomatically: true,
+        audioSource: true,
+        videoSource: true
       });
 
       console.log('Successfully joined Daily call');
