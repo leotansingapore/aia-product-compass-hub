@@ -14,7 +14,8 @@ interface RoleplayScenario {
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   duration: string;
   objectives: string[];
-  replicaId?: string; // Optional Tavus replica ID for specific persona
+  replicaId?: string; // Optional Tavus replica ID for specific avatar appearance
+  personaId?: string; // Optional Tavus persona ID for specific personality/behavior
   personaDescription?: string; // Description of the AI persona
 }
 
@@ -27,6 +28,7 @@ const roleplayScenarios: RoleplayScenario[] = [
     difficulty: 'beginner',
     duration: '10-15 min',
     replicaId: 'your-sales-trainer-replica-id', // Replace with your actual replica ID
+    personaId: 'your-sales-trainer-persona-id', // Replace with your actual persona ID
     personaDescription: 'Professional sales trainer persona',
     objectives: [
       'Present product features clearly',
@@ -42,6 +44,7 @@ const roleplayScenarios: RoleplayScenario[] = [
     difficulty: 'intermediate',
     duration: '15-20 min',
     replicaId: 'your-objection-trainer-replica-id', // Replace with your actual replica ID
+    personaId: 'your-objection-trainer-persona-id', // Replace with your actual persona ID
     personaDescription: 'Challenging client persona for objection training',
     objectives: [
       'Listen actively to objections',
@@ -57,6 +60,7 @@ const roleplayScenarios: RoleplayScenario[] = [
     difficulty: 'advanced',
     duration: '20-30 min',
     replicaId: 'your-consultation-client-replica-id', // Replace with your actual replica ID
+    personaId: 'your-consultation-client-persona-id', // Replace with your actual persona ID
     personaDescription: 'Realistic client persona for consultation practice',
     objectives: [
       'Ask probing questions',
@@ -72,6 +76,7 @@ const roleplayScenarios: RoleplayScenario[] = [
     difficulty: 'intermediate',
     duration: '10-15 min',
     replicaId: 'your-exam-tutor-replica-id', // Replace with your actual replica ID
+    personaId: 'your-exam-tutor-persona-id', // Replace with your actual persona ID
     personaDescription: 'CMFAS exam tutor persona',
     objectives: [
       'Explain concepts simply',

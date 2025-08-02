@@ -32,7 +32,23 @@ serve(async (req) => {
 
     switch (action) {
       case 'create_conversation': {
-        const { replica_id, conversation_name } = params;
+        const { replica_id, persona_id, conversation_name } = params;
+        
+        const requestBody: any = {
+          replica_id,
+          conversation_name: conversation_name || 'Roleplay Session',
+          callback_url: `${Deno.env.get('SUPABASE_URL')}/functions/v1/tavus-webhook`,
+          properties: {
+            max_call_duration: 600, // 10 minutes
+            participant_left_timeout: 30,
+            participant_absent_timeout: 60,
+          }
+        };
+
+        // Add persona_id if provided
+        if (persona_id) {
+          requestBody.persona_id = persona_id;
+        }
         
         const response = await fetch('https://tavusapi.com/v2/conversations', {
           method: 'POST',
@@ -40,16 +56,7 @@ serve(async (req) => {
             'x-api-key': tavusApiKey,
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            replica_id,
-            conversation_name: conversation_name || 'Roleplay Session',
-            callback_url: `${Deno.env.get('SUPABASE_URL')}/functions/v1/tavus-webhook`,
-            properties: {
-              max_call_duration: 600, // 10 minutes
-              participant_left_timeout: 30,
-              participant_absent_timeout: 60,
-            }
-          }),
+          body: JSON.stringify(requestBody),
         });
 
         if (!response.ok) {

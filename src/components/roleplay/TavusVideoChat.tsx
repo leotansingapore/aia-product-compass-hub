@@ -29,7 +29,8 @@ interface RoleplayScenario {
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   duration: string;
   objectives: string[];
-  replicaId?: string; // Optional Tavus replica ID for specific persona
+  replicaId?: string; // Optional Tavus replica ID for specific avatar appearance
+  personaId?: string; // Optional Tavus persona ID for specific personality/behavior
   personaDescription?: string; // Description of the AI persona
 }
 
@@ -106,12 +107,19 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       
       console.log('Using replica ID:', replicaId);
 
+      const requestBody: any = {
+        action: 'create_conversation',
+        replica_id: replicaId,
+        conversation_name: `${scenario.title} - Roleplay Session`
+      };
+
+      // Add persona_id if available
+      if (scenario.personaId) {
+        requestBody.persona_id = scenario.personaId;
+      }
+
       const { data, error } = await supabase.functions.invoke('tavus-session', {
-        body: {
-          action: 'create_conversation',
-          replica_id: replicaId,
-          conversation_name: `${scenario.title} - Roleplay Session`
-        }
+        body: requestBody
       });
 
       if (error) throw error;
