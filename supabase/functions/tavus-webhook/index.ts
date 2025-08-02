@@ -23,25 +23,54 @@ serve(async (req) => {
     console.log('Tavus webhook received:', JSON.stringify(webhookData, null, 2));
 
     const { 
-      event_type, 
+      event_type,
+      message_type,
       conversation_id,
-      participant_id,
-      recording_url,
-      transcript,
-      duration_seconds,
-      status,
-      metadata 
+      properties,
+      timestamp 
     } = webhookData;
 
-    // Handle different webhook events
+    console.log(`Processing Tavus webhook: ${event_type} (${message_type}) for conversation ${conversation_id}`);
+
+    // Handle different webhook events based on Tavus API documentation
     switch (event_type) {
-      case 'conversation_started':
-        console.log(`Conversation ${conversation_id} started`);
+      case 'system.replica_joined':
+        console.log(`✅ Replica joined conversation ${conversation_id}`);
+        
+        // Update session to mark as active
+        const { error: joinError } = await supabase
+          .from('roleplay_sessions')
+          .update({ 
+            started_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          })
+          .eq('tavus_conversation_id', conversation_id);
+
+        if (joinError) {
+          console.error('Failed to update session on replica join:', joinError);
+        }
         break;
 
-      case 'conversation_ended':
-      case 'recording_ready':
-        console.log(`Conversation ${conversation_id} ended with recording: ${recording_url}`);
+      case 'system.shutdown':
+        const shutdownReason = properties?.shutdown_reason || 'unknown';
+        console.log(`🔚 Conversation ${conversation_id} shut down: ${shutdownReason}`);
+        
+        // Mark session as ended
+        const { error: shutdownError } = await supabase
+          .from('roleplay_sessions')
+          .update({ 
+            ended_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          })
+          .eq('tavus_conversation_id', conversation_id);
+
+        if (shutdownError) {
+          console.error('Failed to update session on shutdown:', shutdownError);
+        }
+        break;
+
+      case 'application.transcription_ready':
+        console.log(`📝 Transcript ready for conversation ${conversation_id}`);
         
         // Find the corresponding roleplay session
         const { data: session, error: sessionError } = await supabase
@@ -55,96 +84,101 @@ serve(async (req) => {
           break;
         }
 
-        if (session) {
-          // Update session with final data
-          const updateData: any = {
-            ended_at: new Date().toISOString(),
-          };
-
-          if (duration_seconds) {
-            updateData.duration_seconds = duration_seconds;
-          }
-
-          // Store transcript if available
-          if (transcript) {
-            updateData.transcript = transcript;
-            
-            // Also store individual transcript entries
-            if (Array.isArray(transcript)) {
-              for (const entry of transcript) {
-                await supabase
-                  .from('conversation_transcripts')
-                  .insert({
-                    session_id: session.id,
-                    speaker: entry.speaker || 'unknown',
-                    text: entry.text || entry.content || '',
-                    timestamp_offset: entry.timestamp || 0,
-                    confidence: entry.confidence || 0.9,
-                    filler_words: entry.filler_words || []
-                  });
-              }
-            } else if (typeof transcript === 'string') {
-              // Simple string transcript
-              await supabase
-                .from('conversation_transcripts')
-                .insert({
-                  session_id: session.id,
-                  speaker: 'system',
-                  text: transcript,
-                  timestamp_offset: 0,
-                  confidence: 0.9,
-                  filler_words: []
-                });
-            }
-          }
-
+        if (session && properties?.transcript) {
+          const transcript = properties.transcript;
+          
+          // Store the full transcript in the session
           const { error: updateError } = await supabase
             .from('roleplay_sessions')
-            .update(updateData)
+            .update({
+              transcript: transcript,
+              ended_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            })
             .eq('id', session.id);
 
           if (updateError) {
-            console.error('Failed to update roleplay session:', updateError);
-          } else {
-            console.log(`Updated roleplay session ${session.id} with final data`);
+            console.error('Failed to update session with transcript:', updateError);
           }
 
-          // Trigger speech analysis finalization if we have recording URL
-          if (recording_url) {
-            try {
-              const { data: analysisResult, error: analysisError } = await supabase.functions.invoke('speech-analysis', {
-                body: {
-                  action: 'finalize_session',
-                  conversationId: conversation_id,
-                  recordingUrl: recording_url,
-                  finalTranscript: transcript,
-                  durationSeconds: duration_seconds,
-                  meta: metadata
-                }
-              });
+          // Convert Tavus transcript format to our database format and store individual entries
+          if (Array.isArray(transcript)) {
+            const transcriptEntries = transcript
+              .filter(entry => entry.role !== 'system') // Skip system messages
+              .map((entry, index) => ({
+                session_id: session.id,
+                speaker: entry.role === 'user' ? 'human' : 'assistant',
+                text: entry.content || '',
+                timestamp_offset: index * 1000, // Approximate timestamps
+                confidence: 0.95,
+                filler_words: []
+              }));
 
-              if (analysisError) {
-                console.error('Failed to finalize speech analysis:', analysisError);
+            if (transcriptEntries.length > 0) {
+              const { error: transcriptError } = await supabase
+                .from('conversation_transcripts')
+                .insert(transcriptEntries);
+
+              if (transcriptError) {
+                console.error('Failed to insert transcript entries:', transcriptError);
               } else {
-                console.log('Speech analysis finalized:', analysisResult);
+                console.log(`✅ Inserted ${transcriptEntries.length} transcript entries for session ${session.id}`);
               }
-            } catch (error) {
-              console.error('Error calling speech analysis finalization:', error);
             }
+          }
+
+          // Trigger AI feedback generation
+          try {
+            const { data: feedbackResult, error: feedbackError } = await supabase.functions.invoke('roleplay-feedback', {
+              body: {
+                sessionId: session.id,
+                transcript: transcript,
+                scenario: {
+                  title: session.scenario_title,
+                  category: session.scenario_category,
+                  difficulty: session.scenario_difficulty
+                }
+              }
+            });
+
+            if (feedbackError) {
+              console.error('Failed to generate AI feedback:', feedbackError);
+            } else {
+              console.log('✅ AI feedback generated successfully:', feedbackResult);
+            }
+          } catch (error) {
+            console.error('Error calling roleplay feedback function:', error);
           }
         }
         break;
 
-      case 'participant_joined':
-        console.log(`Participant ${participant_id} joined conversation ${conversation_id}`);
+      case 'application.recording_ready':
+        const s3Key = properties?.s3_key;
+        console.log(`🎥 Recording ready for conversation ${conversation_id}: ${s3Key}`);
+        
+        // Could store recording URL in session if needed
+        if (s3Key) {
+          const { error: recordingError } = await supabase
+            .from('roleplay_sessions')
+            .update({ 
+              updated_at: new Date().toISOString()
+              // Could add recording_url field if needed
+            })
+            .eq('tavus_conversation_id', conversation_id);
+
+          if (recordingError) {
+            console.error('Failed to update session with recording info:', recordingError);
+          }
+        }
         break;
 
-      case 'participant_left':
-        console.log(`Participant ${participant_id} left conversation ${conversation_id}`);
+      case 'application.perception_analysis':
+        const analysis = properties?.analysis;
+        console.log(`🧠 Perception analysis ready for conversation ${conversation_id}:`, analysis);
         break;
 
       default:
-        console.log(`Unhandled webhook event: ${event_type}`);
+        console.log(`❓ Unhandled Tavus webhook event: ${event_type}`);
     }
 
     return new Response(JSON.stringify({ success: true }), {
