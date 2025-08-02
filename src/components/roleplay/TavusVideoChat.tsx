@@ -165,7 +165,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       setConversationUrl(data.conversation_url);
       
       // Create roleplay session record for transcript tracking
-      const { data: sessionData, error: sessionError } = await supabase.rpc('create_roleplay_session', {
+      const { data: sessionData, error: sessionError } = await supabase.rpc('create_roleplay_session' as any, {
         scenario_title: scenario.title,
         scenario_category: scenario.category,
         scenario_difficulty: scenario.difficulty,
@@ -175,7 +175,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       if (sessionError) {
         console.error('Failed to create session record:', sessionError);
       } else {
-        setSessionId(sessionData);
+        setSessionId(sessionData as string);
         console.log('Session record created with ID:', sessionData);
       }
       
@@ -258,7 +258,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     // Update session record with end time
     if (sessionId) {
       try {
-        await supabase.rpc('update_roleplay_session', {
+        await supabase.rpc('update_roleplay_session' as any, {
           session_id: sessionId,
           end_time: new Date().toISOString(),
           duration: sessionDuration
