@@ -377,15 +377,6 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
           </Alert>
         )}
 
-        {/* Tavus Integration Alert */}
-        <Alert>
-          <AlertTriangle className="h-4 w-4" />
-          <AlertTitle>Tavus Integration Required</AlertTitle>
-          <AlertDescription>
-            This roleplay feature requires Tavus integration to be properly configured. 
-            Make sure you have valid Tavus API credentials and replica IDs set up.
-          </AlertDescription>
-        </Alert>
       </div>
     );
   }
