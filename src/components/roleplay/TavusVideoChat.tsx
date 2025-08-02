@@ -69,10 +69,13 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   // Speech analysis integration
   const {
     isAnalyzing,
+    isRealTimeEnabled,
     realtimeMetrics,
+    liveMetrics,
     coachingEvents,
     startAnalysis,
-    processSpeechData,
+    processAudioUpload,
+    sendTranscriptionToRealTime,
     stopAnalysis
   } = useSpeechAnalysis();
 
@@ -606,9 +609,11 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       {/* Live Coaching Overlay */}
       <LiveCoachingOverlay
         metrics={realtimeMetrics}
+        liveMetrics={liveMetrics}
         recentEvents={coachingEvents.slice(-3)}
         sessionDuration={sessionDuration * 1000}
         isVisible={showLiveCoaching && isAnalyzing}
+        isRealTimeEnabled={isRealTimeEnabled}
       />
 
       {/* Bottom Floating Controls */}

@@ -1,22 +1,26 @@
 import React from 'react';
-import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
-import { Mic, Clock, TrendingUp, Volume2 } from 'lucide-react';
+import { Card } from '@/components/ui/card';
 import { SpeechMetrics, CoachingEvent } from '@/hooks/useSpeechAnalysis';
+import { RealTimeMetrics } from '@/utils/audioProcessing';
+import { Activity, Mic, MicOff, Zap } from 'lucide-react';
 
 interface LiveCoachingOverlayProps {
   metrics: SpeechMetrics | null;
+  liveMetrics: RealTimeMetrics | null;
   recentEvents: CoachingEvent[];
   sessionDuration: number;
   isVisible: boolean;
+  isRealTimeEnabled: boolean;
 }
 
 export const LiveCoachingOverlay: React.FC<LiveCoachingOverlayProps> = ({
   metrics,
+  liveMetrics,
   recentEvents,
   sessionDuration,
-  isVisible
+  isVisible,
+  isRealTimeEnabled
 }) => {
   if (!isVisible) return null;
 
@@ -32,84 +36,128 @@ export const LiveCoachingOverlay: React.FC<LiveCoachingOverlayProps> = ({
     return 'text-green-500';
   };
 
-  const getEnergyColor = (energy: number) => {
-    if (energy < 0.3) return 'text-yellow-500';
-    if (energy > 0.7) return 'text-green-500';
-    return 'text-blue-500';
+  const getEnergyColor = (energy: number): string => {
+    if (energy >= 0.7) return 'text-emerald-400';
+    if (energy >= 0.4) return 'text-amber-400';
+    return 'text-red-400';
+  };
+
+  const getBadgeVariant = (priority?: string) => {
+    switch (priority) {
+      case 'high': return 'destructive';
+      case 'medium': return 'secondary';
+      case 'low': return 'outline';
+      default: return 'secondary';
+    }
   };
 
   return (
     <div className="fixed top-4 right-4 z-50 space-y-2 max-w-sm">
-      {/* Real-time metrics */}
-      <Card className="p-4 bg-background/95 backdrop-blur-sm border-border">
+      <Card className="p-4 bg-black/80 backdrop-blur-sm border-white/20 text-white">
         <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-muted-foreground" />
-            <span className="text-sm font-medium">
-              {formatDuration(sessionDuration)}
-            </span>
+          {/* Header with Real-time Status */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-300">Duration:</span>
+              <span className="font-mono text-lg">{formatDuration(sessionDuration)}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              {isRealTimeEnabled && liveMetrics?.hasVoice ? (
+                <div className="flex items-center gap-1">
+                  <Mic className="h-3 w-3 text-emerald-400" />
+                  <div className="h-2 w-2 bg-emerald-400 rounded-full animate-pulse" />
+                </div>
+              ) : isRealTimeEnabled ? (
+                <div className="flex items-center gap-1">
+                  <MicOff className="h-3 w-3 text-gray-400" />
+                  <div className="h-2 w-2 bg-gray-400 rounded-full" />
+                </div>
+              ) : (
+                <div className="flex items-center gap-1">
+                  <Activity className="h-3 w-3 text-blue-400" />
+                  <span className="text-xs text-blue-400">Batch Mode</span>
+                </div>
+              )}
+            </div>
           </div>
 
-          {metrics && (
-            <>
-              <div className="flex items-center gap-2">
-                <Mic className="w-4 h-4 text-muted-foreground" />
-                <span className={`text-sm font-medium ${getWPMColor(metrics.wordsPerMinute)}`}>
-                  {metrics.wordsPerMinute} WPM
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-muted-foreground" />
-                <span className="text-sm">
-                  Filler words: {metrics.fillerWordCount}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Volume2 className="w-4 h-4 text-muted-foreground" />
-                <div className="flex-1">
-                  <div className="flex justify-between text-xs mb-1">
-                    <span>Energy</span>
-                    <span className={getEnergyColor(metrics.energyLevel)}>
-                      {Math.round(metrics.energyLevel * 100)}%
-                    </span>
-                  </div>
-                  <Progress 
-                    value={metrics.energyLevel * 100} 
-                    className="h-2"
+          {/* Live Voice Activity */}
+          {isRealTimeEnabled && liveMetrics && (
+            <div className="flex items-center gap-2 p-2 bg-white/5 rounded-lg">
+              <Zap className="h-4 w-4 text-amber-400" />
+              <div className="flex-1">
+                <div className="flex justify-between text-xs mb-1">
+                  <span className="text-gray-300">Voice Energy</span>
+                  <span className={getEnergyColor(liveMetrics.energyLevel)}>
+                    {Math.round(liveMetrics.energyLevel * 100)}%
+                  </span>
+                </div>
+                <div className="w-full bg-gray-700 rounded-full h-2">
+                  <div 
+                    className={`h-2 rounded-full transition-all duration-200 ${
+                      liveMetrics.energyLevel >= 0.7 ? 'bg-emerald-400' :
+                      liveMetrics.energyLevel >= 0.4 ? 'bg-amber-400' : 'bg-red-400'
+                    }`}
+                    style={{ width: `${Math.min(100, liveMetrics.energyLevel * 100)}%` }}
                   />
                 </div>
               </div>
-            </>
+            </div>
+          )}
+
+          {/* Comprehensive Metrics */}
+          {metrics && (
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <span className="text-gray-300">WPM: </span>
+                <span className={`font-semibold ${getWPMColor(metrics.wordsPerMinute)}`}>
+                  {metrics.wordsPerMinute}
+                </span>
+              </div>
+              <div>
+                <span className="text-gray-300">Fillers: </span>
+                <span className="font-semibold text-orange-400">
+                  {metrics.fillerWordCount}
+                </span>
+              </div>
+              {metrics.clarityScore !== undefined && (
+                <div>
+                  <span className="text-gray-300">Clarity: </span>
+                  <span className="font-semibold text-blue-400">
+                    {Math.round(metrics.clarityScore * 100)}%
+                  </span>
+                </div>
+              )}
+              {metrics.confidenceScore !== undefined && (
+                <div>
+                  <span className="text-gray-300">Confidence: </span>
+                  <span className="font-semibold text-purple-400">
+                    {Math.round(metrics.confidenceScore * 100)}%
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Recent Coaching Events */}
+          {recentEvents.length > 0 && (
+            <div className="space-y-2">
+              <h4 className="text-sm font-medium text-gray-300">Recent Tips:</h4>
+              <div className="space-y-1">
+                {recentEvents.slice(-3).map((event, index) => (
+                  <Badge 
+                    key={index} 
+                    variant={getBadgeVariant(event.priority)}
+                    className="text-xs w-full justify-start"
+                  >
+                    {event.message}
+                  </Badge>
+                ))}
+              </div>
+            </div>
           )}
         </div>
       </Card>
-
-      {/* Recent coaching events */}
-      {recentEvents.slice(-3).map((event, index) => (
-        <Card 
-          key={index} 
-          className="p-3 bg-background/95 backdrop-blur-sm border-border animate-in slide-in-from-right"
-        >
-          <div className="flex items-start gap-2">
-            <Badge 
-              variant={
-                event.type === 'filler_warning' ? 'destructive' :
-                event.type === 'pace_fast' ? 'secondary' :
-                event.type === 'pace_slow' ? 'outline' :
-                'default'
-              }
-              className="text-xs"
-            >
-              {event.type.replace('_', ' ')}
-            </Badge>
-          </div>
-          <p className="text-sm text-muted-foreground mt-1">
-            {event.message}
-          </p>
-        </Card>
-      ))}
     </div>
   );
 };

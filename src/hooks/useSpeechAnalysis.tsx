@@ -1,5 +1,12 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { 
+  RealtimeSpeechClient, 
+  AudioChunk, 
+  RealTimeMetrics, 
+  CoachingEvent as RealtimeCoachingEvent,
+  uploadAudioForAnalysis
+} from '@/utils/audioProcessing';
 
 export interface SpeechMetrics {
   wordsPerMinute: number;
@@ -7,207 +14,160 @@ export interface SpeechMetrics {
   speakingTimeMs: number;
   pauseDurationMs: number;
   energyLevel: number;
+  clarityScore?: number;
+  confidenceScore?: number;
 }
 
 export interface CoachingEvent {
-  type: 'filler_warning' | 'pace_slow' | 'pace_fast' | 'energy_low';
+  type: 'filler_warning' | 'pace_slow' | 'pace_fast' | 'energy_low' | 'pause_long';
   message: string;
   timestamp: number;
+  priority?: 'low' | 'medium' | 'high';
 }
-
-const FILLER_WORDS = ['um', 'uh', 'like', 'you know', 'so', 'actually', 'basically', 'literally'];
 
 export const useSpeechAnalysis = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [isRealTimeEnabled, setIsRealTimeEnabled] = useState(false);
   const [realtimeMetrics, setRealtimeMetrics] = useState<SpeechMetrics | null>(null);
+  const [liveMetrics, setLiveMetrics] = useState<RealTimeMetrics | null>(null);
   const [coachingEvents, setCoachingEvents] = useState<CoachingEvent[]>([]);
   
   const sessionStartTime = useRef<number>(0);
-  const lastSpeechTime = useRef<number>(0);
-  const speechBuffer = useRef<string[]>([]);
-  const speakingPeriods = useRef<{ start: number; end: number }[]>([]);
-  const currentSpeakingStart = useRef<number | null>(null);
+  const realtimeClient = useRef<RealtimeSpeechClient | null>(null);
+  const currentSessionId = useRef<string>('');
 
-  const detectFillerWords = useCallback((text: string): string[] => {
-    const words = text.toLowerCase().split(/\s+/);
-    return words.filter(word => 
-      FILLER_WORDS.some(filler => word.includes(filler))
-    );
-  }, []);
-
-  const calculateWPM = useCallback((text: string, timeMs: number): number => {
-    const words = text.trim().split(/\s+/).length;
-    const minutes = timeMs / 60000;
-    return minutes > 0 ? Math.round(words / minutes) : 0;
-  }, []);
-
-  const analyzeEnergyLevel = useCallback((text: string): number => {
-    // Simple energy analysis based on text characteristics
-    const exclamationPoints = (text.match(/!/g) || []).length;
-    const questionMarks = (text.match(/\?/g) || []).length;
-    const capitalWords = (text.match(/[A-Z]{2,}/g) || []).length;
+  const handleRealTimeMetrics = useCallback((metrics: RealTimeMetrics) => {
+    setLiveMetrics(metrics);
     
-    const energyScore = (exclamationPoints * 0.3) + (questionMarks * 0.2) + (capitalWords * 0.4);
-    return Math.min(1.0, energyScore / text.split(' ').length);
+    // Convert to our SpeechMetrics format for consistency
+    setRealtimeMetrics(prev => ({
+      ...prev,
+      energyLevel: metrics.energyLevel,
+      speakingTimeMs: prev?.speakingTimeMs || 0,
+      wordsPerMinute: prev?.wordsPerMinute || 0,
+      fillerWordCount: prev?.fillerWordCount || 0,
+      pauseDurationMs: prev?.pauseDurationMs || 0,
+    }));
   }, []);
 
-  const startAnalysis = useCallback((sessionId: string) => {
+  const handleRealTimeCoaching = useCallback((event: RealtimeCoachingEvent) => {
+    const coachingEvent: CoachingEvent = {
+      type: event.type,
+      message: event.message,
+      timestamp: event.timestamp,
+      priority: event.priority
+    };
+    
+    setCoachingEvents(prev => [...prev, coachingEvent]);
+  }, []);
+
+  const handleRealTimeError = useCallback((error: string) => {
+    console.error('Real-time speech analysis error:', error);
+  }, []);
+
+  const startAnalysis = useCallback(async (sessionId: string, enableRealTime: boolean = false) => {
     setIsAnalyzing(true);
+    setIsRealTimeEnabled(enableRealTime);
     sessionStartTime.current = Date.now();
-    speechBuffer.current = [];
-    speakingPeriods.current = [];
+    currentSessionId.current = sessionId;
     setCoachingEvents([]);
     setRealtimeMetrics(null);
-  }, []);
-
-  const processSpeechData = useCallback(async (
-    text: string, 
-    sessionId: string, 
-    speaker: 'user' | 'ai' = 'user',
-    confidence: number = 1.0
-  ) => {
-    if (!isAnalyzing || speaker !== 'user') return;
-
-    const currentTime = Date.now();
-    const timestampOffset = currentTime - sessionStartTime.current;
+    setLiveMetrics(null);
     
-    // Detect filler words
-    const fillerWords = detectFillerWords(text);
-    
-    // Update speaking periods
-    if (currentSpeakingStart.current === null) {
-      currentSpeakingStart.current = currentTime;
-    }
-    
-    // Calculate pause duration
-    const pauseDuration = lastSpeechTime.current > 0 
-      ? currentTime - lastSpeechTime.current 
-      : 0;
-    
-    lastSpeechTime.current = currentTime;
-    speechBuffer.current.push(text);
-    
-    // Calculate metrics
-    const combinedText = speechBuffer.current.join(' ');
-    const totalSpeakingTime = speakingPeriods.current.reduce(
-      (total, period) => total + (period.end - period.start), 
-      currentTime - (currentSpeakingStart.current || currentTime)
-    );
-    
-    const metrics: SpeechMetrics = {
-      wordsPerMinute: calculateWPM(combinedText, totalSpeakingTime),
-      fillerWordCount: speechBuffer.current.reduce(
-        (total, segment) => total + detectFillerWords(segment).length, 0
-      ),
-      speakingTimeMs: totalSpeakingTime,
-      pauseDurationMs: pauseDuration,
-      energyLevel: analyzeEnergyLevel(text)
-    };
-
-    setRealtimeMetrics(metrics);
-
-    // Generate coaching events
-    const newCoachingEvents: CoachingEvent[] = [];
-    
-    // Check for excessive filler words
-    if (fillerWords.length > 2) {
-      newCoachingEvents.push({
-        type: 'filler_warning',
-        message: `Try to reduce filler words like "${fillerWords.join(', ')}"`,
-        timestamp: timestampOffset
-      });
-    }
-    
-    // Check speaking pace
-    if (metrics.wordsPerMinute > 180) {
-      newCoachingEvents.push({
-        type: 'pace_fast',
-        message: 'You\'re speaking quite fast. Try to slow down for better clarity.',
-        timestamp: timestampOffset
-      });
-    } else if (metrics.wordsPerMinute < 120 && metrics.wordsPerMinute > 0) {
-      newCoachingEvents.push({
-        type: 'pace_slow',
-        message: 'Consider speaking a bit faster to maintain engagement.',
-        timestamp: timestampOffset
-      });
-    }
-    
-    // Check energy level
-    if (metrics.energyLevel < 0.2) {
-      newCoachingEvents.push({
-        type: 'energy_low',
-        message: 'Try to inject more energy and enthusiasm into your voice.',
-        timestamp: timestampOffset
-      });
-    }
-
-    if (newCoachingEvents.length > 0) {
-      setCoachingEvents(prev => [...prev, ...newCoachingEvents]);
-      
-      // Store coaching events in database
-      for (const event of newCoachingEvents) {
-        await supabase
-          .from('coaching_events')
-          .insert({
-            session_id: sessionId,
-            event_type: event.type,
-            message: event.message,
-            timestamp_offset: event.timestamp
-          });
+    if (enableRealTime) {
+      try {
+        realtimeClient.current = new RealtimeSpeechClient(
+          sessionId,
+          handleRealTimeMetrics,
+          handleRealTimeCoaching,
+          handleRealTimeError
+        );
+        
+        await realtimeClient.current.connect();
+        await realtimeClient.current.startRecording();
+        
+        console.log('Real-time speech analysis started');
+      } catch (error) {
+        console.error('Failed to start real-time analysis:', error);
+        setIsRealTimeEnabled(false);
       }
     }
+  }, [handleRealTimeMetrics, handleRealTimeCoaching, handleRealTimeError]);
 
-    // Store transcript
-    await supabase
-      .from('conversation_transcripts')
-      .insert({
-        session_id: sessionId,
-        speaker,
-        text,
-        timestamp_offset: timestampOffset,
-        confidence,
-        filler_words: fillerWords
-      });
+  const processAudioUpload = useCallback(async (
+    audioBlob: Blob,
+    sessionId: string
+  ) => {
+    if (!isAnalyzing) return null;
 
-    // Store metrics periodically (every 10 seconds)
-    if (timestampOffset % 10000 < 1000) {
-      await supabase
-        .from('speech_metrics')
-        .insert({
-          session_id: sessionId,
-          timestamp_offset: timestampOffset,
-          words_per_minute: metrics.wordsPerMinute,
-          filler_word_count: metrics.fillerWordCount,
-          speaking_time_ms: metrics.speakingTimeMs,
-          pause_duration_ms: metrics.pauseDurationMs,
-          energy_level: metrics.energyLevel
-        });
+    try {
+      const result = await uploadAudioForAnalysis(audioBlob, sessionId);
+      
+      // Update metrics with comprehensive analysis
+      const enhancedMetrics: SpeechMetrics = {
+        ...result.metrics,
+        clarityScore: result.analysis.clarity,
+        confidenceScore: result.analysis.confidence
+      };
+      
+      setRealtimeMetrics(enhancedMetrics);
+      
+      return {
+        transcription: result.transcription,
+        metrics: enhancedMetrics,
+        fillerWords: result.analysis.fillerWords
+      };
+      
+    } catch (error) {
+      console.error('Error processing audio upload:', error);
+      return null;
     }
-  }, [isAnalyzing, detectFillerWords, calculateWPM, analyzeEnergyLevel]);
+  }, [isAnalyzing]);
 
-  const endSpeaking = useCallback(() => {
-    if (currentSpeakingStart.current !== null) {
-      speakingPeriods.current.push({
-        start: currentSpeakingStart.current,
-        end: Date.now()
-      });
-      currentSpeakingStart.current = null;
+  const sendTranscriptionToRealTime = useCallback((
+    text: string,
+    confidence: number = 0.9
+  ) => {
+    if (realtimeClient.current && isRealTimeEnabled) {
+      realtimeClient.current.sendTranscription(
+        text, 
+        confidence, 
+        Date.now() - sessionStartTime.current
+      );
     }
-  }, []);
+  }, [isRealTimeEnabled]);
 
   const stopAnalysis = useCallback(() => {
     setIsAnalyzing(false);
-    endSpeaking();
-  }, [endSpeaking]);
+    setIsRealTimeEnabled(false);
+    
+    // Cleanup real-time client
+    if (realtimeClient.current) {
+      realtimeClient.current.disconnect();
+      realtimeClient.current = null;
+    }
+    
+    console.log('Speech analysis stopped');
+  }, []);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (realtimeClient.current) {
+        realtimeClient.current.disconnect();
+      }
+    };
+  }, []);
 
   return {
     isAnalyzing,
+    isRealTimeEnabled,
     realtimeMetrics,
+    liveMetrics,
     coachingEvents,
     startAnalysis,
-    processSpeechData,
-    endSpeaking,
+    processAudioUpload,
+    sendTranscriptionToRealTime,
     stopAnalysis
   };
 };
