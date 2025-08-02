@@ -27,7 +27,6 @@ import ConsultantLanding from "./pages/ConsultantLanding";
 import CMFASExams from "./pages/CMFASExams";
 import CMFASModuleDetail from "./pages/cmfas/CMFASModuleDetail";
 import Roleplay from "./pages/Roleplay";
-import TranscriptHistory from "./pages/TranscriptHistory";
 import AdminDashboard from "./pages/AdminDashboard";
 import MyAccount from "./pages/MyAccount";
 import NotFound from "./pages/NotFound";
@@ -58,7 +57,6 @@ const App = () => (
                     <Route path="/cmfas-exams" element={<CMFASExams />} />
                     <Route path="/cmfas/module/:moduleId" element={<CMFASModuleDetail />} />
                     <Route path="/roleplay" element={<Roleplay />} />
-                    <Route path="/transcript-history" element={<TranscriptHistory />} />
                     <Route path="/admin" element={<AdminDashboard />} />
                     <Route path="/my-account" element={<MyAccount />} />
                     <Route path="/category/:categoryId" element={<ProductCategory />} />
