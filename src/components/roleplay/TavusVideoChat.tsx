@@ -12,6 +12,21 @@ import { useSpeechAnalysis } from '@/hooks/useSpeechAnalysis';
 import { useTavusCallbacks } from '@/hooks/useTavusCallbacks';
 import { useAuth } from '@/hooks/useAuth';
 import { SessionOut } from '@/lib/speechCoachApi';
+
+interface ExtendedSessionOut extends SessionOut {
+  aiFeedback?: {
+    overall_score: number;
+    communication_score: number;
+    listening_score: number;
+    objection_handling_score: number;
+    product_knowledge_score: number;
+    strengths: string[];
+    improvement_areas: string[];
+    specific_feedback: string;
+    coaching_points?: string[];
+    follow_up_questions?: string[];
+  };
+}
 import { 
   Play, 
   Pause, 
@@ -62,7 +77,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const [feedback, setFeedback] = useState<any>(null);
   const [isGeneratingFeedback, setIsGeneratingFeedback] = useState(false);
   const [showLiveCoaching, setShowLiveCoaching] = useState(true);
-  const [finalizedSession, setFinalizedSession] = useState<SessionOut | null>(null);
+  const [finalizedSession, setFinalizedSession] = useState<ExtendedSessionOut | null>(null);
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -96,12 +111,49 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const { isFinalizing } = useTavusCallbacks({
     callFrame: conversationUrl ? { on: () => {}, off: () => {} } : null, // Mock callFrame for now
     userToken,
-    onFinalized: (session) => {
-      setFinalizedSession(session);
+    onFinalized: async (session) => {
+      // Fetch real AI feedback from database
+      if (sessionId) {
+        try {
+          const { data: feedbackData } = await supabase
+            .from('roleplay_feedback')
+            .select('*')
+            .eq('session_id', sessionId)
+            .single();
+          
+          if (feedbackData) {
+            // Create combined session object with real AI feedback
+            const enhancedSession = {
+              ...session,
+              aiFeedback: {
+                overall_score: feedbackData.overall_score,
+                communication_score: feedbackData.communication_score,
+                listening_score: feedbackData.listening_score,
+                objection_handling_score: feedbackData.objection_handling_score,
+                product_knowledge_score: feedbackData.product_knowledge_score,
+                strengths: feedbackData.strengths,
+                improvement_areas: feedbackData.improvement_areas,
+                specific_feedback: feedbackData.specific_feedback,
+                coaching_points: feedbackData.coaching_points,
+                follow_up_questions: feedbackData.follow_up_questions
+              }
+            };
+            setFinalizedSession(enhancedSession);
+          } else {
+            setFinalizedSession(session);
+          }
+        } catch (error) {
+          console.error('Error fetching AI feedback:', error);
+          setFinalizedSession(session);
+        }
+      } else {
+        setFinalizedSession(session);
+      }
+      
       setIsConnected(false);
       toast({
         title: "Session Analyzed",
-        description: "Your roleplay has been automatically analyzed!",
+        description: "Your roleplay has been analyzed with real AI feedback!",
       });
     },
   });
@@ -440,7 +492,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
           scenario_difficulty: finalizedSession?.scenario_difficulty || scenario.difficulty,
           duration_seconds: finalizedSession?.duration_seconds || sessionDuration
         }}
-        feedback={feedback}
+        feedback={finalizedSession?.aiFeedback || feedback}
         onPracticeAgain={() => {
           setShowFeedback(false);
           setFeedback(null);

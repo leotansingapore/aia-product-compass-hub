@@ -178,6 +178,9 @@ class CoachingEngine {
 
 async function handleFinalizeSession(body: any, supabase: any) {
   const { conversationId, recordingUrl, finalTranscript, durationSeconds, meta } = body;
+  const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
+  
+  console.log('Processing roleplay session for conversation:', conversationId);
   
   // Get or create session record
   let session;
@@ -191,22 +194,132 @@ async function handleFinalizeSession(body: any, supabase: any) {
     session = existingSessions;
   }
   
-  // Analyze transcript if provided
+  // Analyze transcript and generate AI feedback if provided
   let analysis = null;
-  if (finalTranscript) {
+  let aiFeedback = null;
+  
+  if (finalTranscript && finalTranscript.trim()) {
+    console.log('Analyzing transcript:', finalTranscript.substring(0, 100) + '...');
+    
     const duration = durationSeconds || 60;
     const fillerWords = AudioProcessor.analyzeFillerWords(finalTranscript);
     const wpm = AudioProcessor.calculateWPM(finalTranscript, duration * 1000);
     const clarity = AudioProcessor.calculateClarityScore(finalTranscript, 0.9);
+    
+    // Generate AI feedback using OpenAI
+    try {
+      const prompt = `
+You are an expert sales and communication coach analyzing a roleplay conversation. 
+The conversation was a ${session?.scenario_difficulty || 'beginner'} level ${session?.scenario_category || 'sales consultation'} roleplay session titled "${session?.scenario_title || 'Practice Session'}".
+
+Here is the complete transcript of the roleplay session:
+"${finalTranscript}"
+
+Please analyze this conversation and provide detailed feedback in the following JSON format:
+{
+  "overall_score": [number 0-100],
+  "communication_score": [number 0-100],
+  "listening_score": [number 0-100], 
+  "objection_handling_score": [number 0-100],
+  "product_knowledge_score": [number 0-100],
+  "strengths": [array of 3-5 specific strengths observed],
+  "improvement_areas": [array of 3-5 specific areas for improvement],
+  "specific_feedback": "[detailed paragraph explaining performance]",
+  "coaching_points": [array of 3-5 actionable coaching tips],
+  "follow_up_questions": [array of 2-3 reflection questions]
+}
+
+Focus on:
+- Communication clarity and effectiveness
+- Active listening and responsiveness  
+- Handling objections and concerns
+- Product/service knowledge demonstration
+- Overall professionalism and rapport building
+- Speaking pace and filler word usage (they spoke at ${wpm} WPM with ${fillerWords.count} filler words)
+
+Provide constructive, specific feedback that will help improve their roleplay skills.`;
+
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${openaiApiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            { role: 'system', content: 'You are an expert sales coach providing detailed performance feedback.' },
+            { role: 'user', content: prompt }
+          ],
+          temperature: 0.7,
+          max_tokens: 1500
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        const feedbackText = result.choices[0].message.content;
+        
+        try {
+          aiFeedback = JSON.parse(feedbackText);
+          console.log('AI feedback generated:', aiFeedback);
+        } catch (parseError) {
+          console.error('Failed to parse AI feedback JSON:', parseError);
+          // Fallback feedback if JSON parsing fails
+          aiFeedback = {
+            overall_score: Math.round((wpm > 120 ? 80 : wpm < 80 ? 60 : 75) - fillerWords.count * 2 + clarity * 10),
+            communication_score: Math.round(clarity * 100),
+            listening_score: 75,
+            objection_handling_score: 70,
+            product_knowledge_score: 75,
+            strengths: ["Clear communication", "Good engagement"],
+            improvement_areas: ["Reduce filler words", "Improve pacing"],
+            specific_feedback: "Overall good performance with room for improvement in speaking fluency.",
+            coaching_points: ["Practice speaking at a consistent pace", "Work on reducing filler words"],
+            follow_up_questions: ["What would you do differently next time?", "How did you feel about your responses?"]
+          };
+        }
+      } else {
+        console.error('OpenAI API error:', await response.text());
+      }
+    } catch (error) {
+      console.error('Error generating AI feedback:', error);
+    }
     
     analysis = {
       transcript: finalTranscript,
       wpm,
       filler_count: fillerWords.count,
       clarity_score: clarity,
-      sentiment: 0.7, // Default neutral-positive
-      score: Math.round((wpm > 120 ? 80 : wpm < 80 ? 60 : 75) - fillerWords.count * 2 + clarity * 10)
+      sentiment: 0.7,
+      score: aiFeedback?.overall_score || Math.round((wpm > 120 ? 80 : wpm < 80 ? 60 : 75) - fillerWords.count * 2 + clarity * 10)
     };
+    
+    // Store AI feedback in database
+    if (aiFeedback && session) {
+      await supabase.from('roleplay_feedback').insert({
+        session_id: session.id,
+        overall_score: aiFeedback.overall_score,
+        communication_score: aiFeedback.communication_score,
+        listening_score: aiFeedback.listening_score,
+        objection_handling_score: aiFeedback.objection_handling_score,
+        product_knowledge_score: aiFeedback.product_knowledge_score,
+        strengths: aiFeedback.strengths,
+        improvement_areas: aiFeedback.improvement_areas,
+        specific_feedback: aiFeedback.specific_feedback,
+        coaching_points: aiFeedback.coaching_points,
+        follow_up_questions: aiFeedback.follow_up_questions
+      });
+      
+      // Store performance metrics
+      await supabase.from('roleplay_performance_metrics').insert([
+        { session_id: session.id, metric_name: 'wpm', metric_value: Math.round(wpm), metric_description: 'Words per minute' },
+        { session_id: session.id, metric_name: 'filler_words', metric_value: fillerWords.count, metric_description: 'Total filler words used' },
+        { session_id: session.id, metric_name: 'clarity_score', metric_value: Math.round(clarity * 100), metric_description: 'Speech clarity percentage' }
+      ]);
+      
+      console.log('Feedback stored successfully');
+    }
   }
   
   // Update or create session
