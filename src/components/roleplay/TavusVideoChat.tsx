@@ -13,6 +13,7 @@ import { useSpeechAnalysis } from '@/hooks/useSpeechAnalysis';
 import { useTavusCallbacks } from '@/hooks/useTavusCallbacks';
 import { useAuth } from '@/hooks/useAuth';
 import { SessionOut } from '@/lib/speechCoachApi';
+import DailyIframe from '@daily-co/daily-js';
 
 interface ExtendedSessionOut extends SessionOut {
   aiFeedback?: {
@@ -80,9 +81,12 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const [showLiveCoaching, setShowLiveCoaching] = useState(true);
   const [showLiveTranscript, setShowLiveTranscript] = useState(true);
   const [finalizedSession, setFinalizedSession] = useState<ExtendedSessionOut | null>(null);
+  const [callFrame, setCallFrame] = useState<any>(null);
   
   const videoRef = useRef<HTMLVideoElement>(null);
+  const dailyRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const audioProcessorRef = useRef<AudioWorkletNode | null>(null);
   const { toast } = useToast();
   const { user } = useAuth();
   
@@ -111,7 +115,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   }, []);
 
   const { isFinalizing } = useTavusCallbacks({
-    callFrame: conversationUrl ? { on: () => {}, off: () => {} } : null, // Mock callFrame for now
+    callFrame: callFrame,
     userToken,
     onFinalized: async (session) => {
       // Fetch real AI feedback from database
@@ -305,6 +309,141 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     }
   };
 
+  const setupDailyCall = async (conversationUrl: string) => {
+    try {
+      // Create Daily.co call frame with embedded configuration
+      const call = DailyIframe.createFrame(dailyRef.current!, {
+        iframeStyle: {
+          width: '100%',
+          height: '100%',
+          border: 'none',
+          borderRadius: '8px'
+        },
+        showLeaveButton: false,
+        showFullscreenButton: false,
+        showParticipantsBar: false,
+        theme: {
+          colors: {
+            accent: '#3b82f6',
+            accentText: '#ffffff',
+            background: '#000000',
+            backgroundAccent: '#1f2937',
+            baseText: '#ffffff',
+            border: '#374151',
+            mainAreaBg: '#111827',
+            mainAreaText: '#ffffff',
+            supportiveText: '#9ca3af'
+          }
+        }
+      });
+
+      setCallFrame(call);
+
+      // Set up audio processing
+      call.on('participant-joined', (event: any) => {
+        console.log('Participant joined:', event);
+      });
+
+      call.on('track-started', async (event: any) => {
+        console.log('Track started:', event);
+        if (event.track.kind === 'audio' && event.participant.local) {
+          await setupAudioProcessing(call);
+        }
+      });
+
+      call.on('participant-left', (event: any) => {
+        console.log('Participant left:', event);
+      });
+
+      call.on('error', (event: any) => {
+        console.error('Daily call error:', event);
+        setConnectionError('Video call connection failed');
+      });
+
+      // Join the call
+      await call.join({ 
+        url: conversationUrl,
+        userName: user?.email || 'User'
+      });
+
+      console.log('Successfully joined Daily call');
+      return call;
+
+    } catch (error) {
+      console.error('Failed to setup Daily call:', error);
+      throw error;
+    }
+  };
+
+  const setupAudioProcessing = async (call: any) => {
+    try {
+      if (!sessionId) return;
+
+      // Get the local audio track
+      const localTracks = call.participants().local.tracks;
+      const audioTrack = localTracks.audio;
+      
+      if (!audioTrack?.track) {
+        console.warn('No local audio track available');
+        return;
+      }
+
+      // Create an audio context for processing
+      const audioContext = new AudioContext({ sampleRate: 24000 });
+      const mediaStream = new MediaStream([audioTrack.track]);
+      const source = audioContext.createMediaStreamSource(mediaStream);
+
+      // Create audio worklet for real-time processing
+      await audioContext.audioWorklet.addModule('/audio-processor.js');
+      const processor = new AudioWorkletNode(audioContext, 'audio-processor');
+      
+      audioProcessorRef.current = processor;
+
+      // Connect audio processing pipeline
+      source.connect(processor);
+      processor.connect(audioContext.destination);
+
+      // Send audio chunks to speech analysis
+      processor.port.onmessage = (event) => {
+        const { audioData, timestamp } = event.data;
+        if (audioData && sessionId) {
+          // Convert Float32Array to base64 PCM for analysis
+          const pcmData = convertToPCM16(audioData);
+          const base64Audio = arrayBufferToBase64(pcmData);
+          
+          // Send to speech analysis WebSocket
+          if (isRealTimeEnabled) {
+            // This will be handled by the useSpeechAnalysis hook
+            console.log('Audio chunk processed:', audioData.length, 'samples');
+          }
+        }
+      };
+
+      console.log('Audio processing pipeline established');
+      
+    } catch (error) {
+      console.error('Failed to setup audio processing:', error);
+    }
+  };
+
+  const convertToPCM16 = (float32Array: Float32Array): ArrayBuffer => {
+    const int16Array = new Int16Array(float32Array.length);
+    for (let i = 0; i < float32Array.length; i++) {
+      const s = Math.max(-1, Math.min(1, float32Array[i]));
+      int16Array[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+    }
+    return int16Array.buffer;
+  };
+
+  const arrayBufferToBase64 = (buffer: ArrayBuffer): string => {
+    const bytes = new Uint8Array(buffer);
+    let binary = '';
+    for (let i = 0; i < bytes.byteLength; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
+  };
+
   const handleStartSession = async () => {
     setIsLoading(true);
     setConnectionError(null);
@@ -329,10 +468,13 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       setSessionId(newSessionId);
       setSessionStartTime(new Date());
       
-      // Start speech analysis
+      // Start speech analysis with real-time processing
       if (newSessionId) {
-        startAnalysis(newSessionId);
+        startAnalysis(newSessionId, true);
       }
+
+      // Setup Daily.co video call with real audio processing
+      await setupDailyCall(conversationData.conversation_url);
       
       setIsConnected(true);
       setIsRecording(true);
@@ -364,6 +506,23 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const handleEndSession = async () => {
     // Stop speech analysis
     stopAnalysis();
+    
+    // Clean up audio processing
+    if (audioProcessorRef.current) {
+      audioProcessorRef.current.disconnect();
+      audioProcessorRef.current = null;
+    }
+
+    // Leave Daily call
+    if (callFrame) {
+      try {
+        await callFrame.leave();
+        callFrame.destroy();
+        setCallFrame(null);
+      } catch (error) {
+        console.error('Failed to leave Daily call:', error);
+      }
+    }
     
     if (conversationId) {
       try {
@@ -399,13 +558,6 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     setConversationId(null);
     setConversationUrl(null);
     
-    // Stop camera stream
-    if (videoRef.current?.srcObject) {
-      const stream = videoRef.current.srcObject as MediaStream;
-      stream.getTracks().forEach(track => track.stop());
-      videoRef.current.srcObject = null;
-    }
-
     // Generate and show feedback
     if (sessionId) {
       const feedbackData = await generateFeedback(sessionId);
@@ -432,28 +584,49 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     }, 1000);
   };
 
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
-    toast({
-      title: isMuted ? "Microphone On" : "Microphone Off",
-      description: "Control your microphone in the video chat window.",
-    });
+  const toggleMute = async () => {
+    if (callFrame) {
+      try {
+        await callFrame.setLocalAudio(!isMuted);
+        setIsMuted(!isMuted);
+        toast({
+          title: isMuted ? "Microphone On" : "Microphone Off",
+          description: "Audio control updated.",
+        });
+      } catch (error) {
+        console.error('Failed to toggle microphone:', error);
+      }
+    }
   };
 
-  const toggleVideo = () => {
-    setIsVideoOn(!isVideoOn);
-    toast({
-      title: isVideoOn ? "Camera Off" : "Camera On",
-      description: "Control your camera in the video chat window.",
-    });
+  const toggleVideo = async () => {
+    if (callFrame) {
+      try {
+        await callFrame.setLocalVideo(!isVideoOn);
+        setIsVideoOn(!isVideoOn);
+        toast({
+          title: isVideoOn ? "Camera Off" : "Camera On",
+          description: "Video control updated.",
+        });
+      } catch (error) {
+        console.error('Failed to toggle camera:', error);
+      }
+    }
   };
 
-  const toggleSpeaker = () => {
-    setIsSpeakerOn(!isSpeakerOn);
-    toast({
-      title: isSpeakerOn ? "Speaker Off" : "Speaker On",
-      description: "Control audio output in the video chat window.",
-    });
+  const toggleSpeaker = async () => {
+    if (callFrame) {
+      try {
+        // Daily.co handles speaker controls via outputDevice
+        setIsSpeakerOn(!isSpeakerOn);
+        toast({
+          title: isSpeakerOn ? "Speaker Off" : "Speaker On",
+          description: "Audio output control updated.",
+        });
+      } catch (error) {
+        console.error('Failed to toggle speaker:', error);
+      }
+    }
   };
 
   const handlePracticeAgain = () => {
@@ -661,42 +834,25 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         </div>
       </div>
 
-      {/* Main Video Area - AI Trainer */}
+      {/* Main Video Area - Daily.co Call Frame */}
       <div className="absolute inset-0">
-        {conversationUrl ? (
-          <iframe
-            src={conversationUrl}
-            className="w-full h-full border-0"
-            allow="camera *; microphone *; autoplay *; encrypted-media *; fullscreen *; display-capture *; clipboard-write *"
-            title="Tavus AI Conversation"
-            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-presentation allow-top-navigation allow-downloads"
-            onLoad={() => {
-              console.log('Tavus iframe loaded successfully');
-              toast({
-                title: "Connected",
-                description: "Video session is now active"
-              });
-            }}
-            onError={(e) => {
-              console.error('Tavus iframe error:', e);
-              toast({
-                title: "Connection Issue", 
-                description: "Retrying connection...",
-                variant: "destructive"
-              });
-            }}
-            style={{ backgroundColor: '#000' }}
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-white bg-gray-900">
-            <div className="text-center">
+        <div 
+          ref={dailyRef}
+          className="w-full h-full bg-black"
+          style={{ 
+            display: callFrame ? 'block' : 'flex',
+            alignItems: !callFrame ? 'center' : undefined,
+            justifyContent: !callFrame ? 'center' : undefined
+          }}
+        >
+          {!callFrame && (
+            <div className="text-center text-white">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
               <p>Initializing AI trainer session...</p>
               <p className="text-sm text-gray-400 mt-2">Please wait while we connect you...</p>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
 

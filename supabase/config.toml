@@ -1,1 +1,4 @@
 project_id = "hgdbflprrficdoyxmdxe"
+
+[functions.tavus-webhook]
+verify_jwt = false
