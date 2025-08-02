@@ -546,6 +546,142 @@ export type Database = {
         }
         Relationships: []
       }
+      roleplay_feedback: {
+        Row: {
+          coaching_points: string[] | null
+          communication_score: number
+          created_at: string
+          follow_up_questions: string[] | null
+          id: string
+          improvement_areas: string[] | null
+          listening_score: number
+          objection_handling_score: number
+          overall_score: number
+          product_knowledge_score: number
+          session_id: string
+          specific_feedback: string
+          strengths: string[] | null
+        }
+        Insert: {
+          coaching_points?: string[] | null
+          communication_score: number
+          created_at?: string
+          follow_up_questions?: string[] | null
+          id?: string
+          improvement_areas?: string[] | null
+          listening_score: number
+          objection_handling_score: number
+          overall_score: number
+          product_knowledge_score: number
+          session_id: string
+          specific_feedback: string
+          strengths?: string[] | null
+        }
+        Update: {
+          coaching_points?: string[] | null
+          communication_score?: number
+          created_at?: string
+          follow_up_questions?: string[] | null
+          id?: string
+          improvement_areas?: string[] | null
+          listening_score?: number
+          objection_handling_score?: number
+          overall_score?: number
+          product_knowledge_score?: number
+          session_id?: string
+          specific_feedback?: string
+          strengths?: string[] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "roleplay_feedback_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "roleplay_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      roleplay_performance_metrics: {
+        Row: {
+          created_at: string
+          id: string
+          metric_description: string | null
+          metric_name: string
+          metric_value: number
+          session_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          metric_description?: string | null
+          metric_name: string
+          metric_value: number
+          session_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          metric_description?: string | null
+          metric_name?: string
+          metric_value?: number
+          session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "roleplay_performance_metrics_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "roleplay_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      roleplay_sessions: {
+        Row: {
+          created_at: string
+          duration_seconds: number | null
+          ended_at: string | null
+          id: string
+          scenario_category: string
+          scenario_difficulty: string
+          scenario_title: string
+          started_at: string
+          tavus_conversation_id: string | null
+          transcript: Json | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          duration_seconds?: number | null
+          ended_at?: string | null
+          id?: string
+          scenario_category: string
+          scenario_difficulty: string
+          scenario_title: string
+          started_at?: string
+          tavus_conversation_id?: string | null
+          transcript?: Json | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          duration_seconds?: number | null
+          ended_at?: string | null
+          id?: string
+          scenario_category?: string
+          scenario_difficulty?: string
+          scenario_title?: string
+          started_at?: string
+          tavus_conversation_id?: string | null
+          transcript?: Json | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       tier_permissions: {
         Row: {
           access_type: string

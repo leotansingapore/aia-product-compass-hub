@@ -5,6 +5,8 @@ import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { RoleplayFeedbackInterface } from './RoleplayFeedbackInterface';
+import { useAuth } from '@/hooks/useAuth';
 import { 
   Play, 
   Pause, 
@@ -49,10 +51,16 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const [connectionError, setConnectionError] = useState<string | null>(null);
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [conversationUrl, setConversationUrl] = useState<string | null>(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
+  const [sessionStartTime, setSessionStartTime] = useState<Date | null>(null);
+  const [feedback, setFeedback] = useState<any>(null);
+  const [isGeneratingFeedback, setIsGeneratingFeedback] = useState(false);
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const { toast } = useToast();
+  const { user } = useAuth();
 
   useEffect(() => {
     return () => {
@@ -141,6 +149,63 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     }
   };
 
+  const createRoleplaySession = async () => {
+    if (!user) return null;
+
+    const { data, error } = await supabase
+      .from('roleplay_sessions')
+      .insert({
+        user_id: user.id,
+        scenario_title: scenario.title,
+        scenario_category: scenario.category,
+        scenario_difficulty: scenario.difficulty,
+        started_at: new Date().toISOString(),
+        tavus_conversation_id: conversationId
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Failed to create roleplay session:', error);
+      return null;
+    }
+
+    return data.id;
+  };
+
+  const generateFeedback = async (sessionId: string) => {
+    setIsGeneratingFeedback(true);
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('roleplay-feedback', {
+        body: {
+          sessionId,
+          scenario: {
+            title: scenario.title,
+            category: scenario.category,
+            difficulty: scenario.difficulty,
+            objectives: scenario.objectives
+          },
+          durationSeconds: sessionDuration
+        }
+      });
+
+      if (error) throw error;
+      
+      return data.feedback;
+    } catch (error) {
+      console.error('Failed to generate feedback:', error);
+      toast({
+        title: "Feedback Generation Failed",
+        description: "Unable to generate feedback. You can still review your session manually.",
+        variant: "destructive"
+      });
+      return null;
+    } finally {
+      setIsGeneratingFeedback(false);
+    }
+  };
+
   const handleStartSession = async () => {
     setIsLoading(true);
     setConnectionError(null);
@@ -160,8 +225,10 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         description: "Connecting to your AI roleplay partner...",
       });
 
-      // Now the conversation will be embedded in the iframe instead of opening in a new window
-      // The iframe will be displayed in the AI Avatar section
+      // Create session record
+      const newSessionId = await createRoleplaySession();
+      setSessionId(newSessionId);
+      setSessionStartTime(new Date());
       
       setIsConnected(true);
       setIsRecording(true);
@@ -204,6 +271,21 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       }
     }
 
+    // Update session end time in database
+    if (sessionId && sessionStartTime) {
+      try {
+        await supabase
+          .from('roleplay_sessions')
+          .update({
+            ended_at: new Date().toISOString(),
+            duration_seconds: sessionDuration
+          })
+          .eq('id', sessionId);
+      } catch (error) {
+        console.error('Failed to update session end time:', error);
+      }
+    }
+
     setIsConnected(false);
     setIsRecording(false);
     stopTimer();
@@ -217,10 +299,21 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       videoRef.current.srcObject = null;
     }
 
-    toast({
-      title: "Session Ended",
-      description: "Your roleplay session has been completed.",
-    });
+    // Generate and show feedback
+    if (sessionId) {
+      const feedbackData = await generateFeedback(sessionId);
+      if (feedbackData) {
+        setFeedback(feedbackData);
+        setShowFeedback(true);
+      }
+    }
+
+    if (!isGeneratingFeedback) {
+      toast({
+        title: "Session Ended",
+        description: "Your roleplay session has been completed.",
+      });
+    }
   };
 
   const handleRestart = () => {
@@ -256,6 +349,19 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     });
   };
 
+  const handlePracticeAgain = () => {
+    setShowFeedback(false);
+    setFeedback(null);
+    setSessionId(null);
+    setSessionStartTime(null);
+    setSessionDuration(0);
+  };
+
+  const handleContinueLearning = () => {
+    // Navigate back to roleplay scenarios or dashboard
+    window.history.back();
+  };
+
   // Category and difficulty styling
   const categoryColors = {
     sales: "border-blue-200 text-blue-800",
@@ -269,6 +375,41 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     intermediate: "border-yellow-200 text-yellow-800",
     advanced: "border-red-200 text-red-800"
   };
+
+  // Show feedback interface after session ends
+  if (showFeedback && feedback) {
+    return (
+      <RoleplayFeedbackInterface
+        session={{
+          id: sessionId!,
+          scenario_title: scenario.title,
+          scenario_category: scenario.category,
+          scenario_difficulty: scenario.difficulty,
+          duration_seconds: sessionDuration
+        }}
+        feedback={feedback}
+        onPracticeAgain={handlePracticeAgain}
+        onContinue={handleContinueLearning}
+      />
+    );
+  }
+
+  // Show loading state while generating feedback
+  if (isGeneratingFeedback) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-6">
+        <Card className="w-full max-w-md">
+          <CardContent className="pt-6 text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+            <h3 className="text-lg font-semibold mb-2">Generating Your Feedback</h3>
+            <p className="text-sm text-muted-foreground">
+              Our AI is analyzing your roleplay session and preparing personalized feedback...
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   // Setup State - Before session starts
   if (!isConnected) {
