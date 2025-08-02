@@ -322,15 +322,16 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         showLeaveButton: false,
         showFullscreenButton: false,
         showParticipantsBar: false,
+        activeSpeakerMode: true,
         theme: {
           colors: {
             accent: '#3b82f6',
             accentText: '#ffffff',
-            background: '#000000',
+            background: '#111827',
             backgroundAccent: '#1f2937',
             baseText: '#ffffff',
             border: '#374151',
-            mainAreaBg: '#111827',
+            mainAreaBg: '#000000',
             mainAreaText: '#ffffff',
             supportiveText: '#9ca3af'
           }
