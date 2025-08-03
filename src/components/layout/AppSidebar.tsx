@@ -47,8 +47,10 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
   const { categories } = useCategories();
-  const { isMasterAdmin, canAccessSection } = usePermissions();
+  const { isMasterAdmin, canAccessSection, getUserTier } = usePermissions();
   const { user } = useAuth();
+  
+  const userTier = getUserTier();
 
   // Don't render sidebar for unauthenticated users
   if (!user) {
@@ -65,9 +67,9 @@ export function AppSidebar() {
     ...(isMasterAdmin() ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
   ];
 
-  // Show all navigation items, but they'll be protected by ProtectedPage
-  const mainNavItems = allMainNavItems;
-  const resourceItems = allResourceItems;
+  // Filter navigation items based on user permissions
+  const mainNavItems = allMainNavItems.filter(item => canAccessSection(item.sectionId));
+  const resourceItems = allResourceItems.filter(item => canAccessSection(item.sectionId));
   const [categoriesOpen, setCategoriesOpen] = useState(true);
   
   const isCollapsed = state === "collapsed";
@@ -197,9 +199,22 @@ export function AppSidebar() {
 
       <SidebarFooter className="border-t p-4">
         {!isCollapsed && (
-          <div className="text-xs text-muted-foreground">
-            <p>© 2024 AIA Learning Platform</p>
-            <p>Version 2.0</p>
+          <div className="space-y-2">
+            {userTier && (
+              <div className="flex items-center gap-2">
+                <Badge variant="secondary" className="text-xs">
+                  {userTier === 'master_admin' ? 'Master Admin' : 
+                   userTier === 'tier_4' ? 'Tier 4' :
+                   userTier === 'tier_3' ? 'Tier 3' :
+                   userTier === 'tier_2' ? 'Tier 2' :
+                   userTier === 'tier_1' ? 'Tier 1' : 'Standard'}
+                </Badge>
+              </div>
+            )}
+            <div className="text-xs text-muted-foreground">
+              <p>© 2024 AIA Learning Platform</p>
+              <p>Version 2.0</p>
+            </div>
           </div>
         )}
       </SidebarFooter>

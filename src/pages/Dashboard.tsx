@@ -5,7 +5,7 @@ import { useCategories } from "@/hooks/useProducts";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { UserStats } from "@/components/UserStats";
-import { QuickActions } from "@/components/QuickActions";
+import { PermissionAwareQuickActions } from "@/components/PermissionAwareQuickActions";
 import { AuthPrompt } from "@/components/dashboard/AuthPrompt";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -75,10 +75,19 @@ export default function Dashboard() {
           </div>
         </ProtectedSection>
 
-        {/* User Stats - Hidden since gamification removed */}
+        {/* Quick Actions - Permission-based */}
+        <ProtectedSection sectionId="dashboard-quick-actions">
+          <PermissionAwareQuickActions />
+        </ProtectedSection>
 
-
-        {/* User-specific sections removed from homepage */}
+        {/* Product Categories - Permission-based */}
+        <ProtectedSection sectionId="product-categories">
+          <ProductCategoriesSection 
+            categories={categories}
+            loading={loading}
+            onCategoryClick={handleCategoryClick} 
+          />
+        </ProtectedSection>
       </div>
     </div>
     </ProtectedPage>
