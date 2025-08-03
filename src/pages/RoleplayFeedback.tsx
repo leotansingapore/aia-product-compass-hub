@@ -9,6 +9,7 @@ import { SkeletonLoader } from '@/components/SkeletonLoader';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, RefreshCw, Target, TrendingUp, MessageSquare, Volume2 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { ConversationTranscript } from '@/components/ConversationTranscript';
 
 interface FeedbackData {
   id: string;
@@ -257,6 +258,9 @@ const RoleplayFeedback = () => {
           Practice Again
         </Button>
       </div>
+
+      {/* Conversation Transcript - Full Width */}
+      <ConversationTranscript sessionId={sessionId!} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Rubric Section */}
