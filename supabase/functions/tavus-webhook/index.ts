@@ -109,6 +109,22 @@ serve(async (req) => {
 
         if (transcriptUpdateError) {
           console.error('Error updating session transcript:', transcriptUpdateError);
+        } else {
+          // Trigger comprehensive feedback generation
+          try {
+            console.log('Triggering feedback generation for session:', session.id);
+            const { error: feedbackError } = await supabase.functions.invoke('generate-roleplay-feedback', {
+              body: { sessionId: session.id }
+            });
+            
+            if (feedbackError) {
+              console.error('Error generating feedback:', feedbackError);
+            } else {
+              console.log('Feedback generation triggered successfully');
+            }
+          } catch (error) {
+            console.error('Failed to trigger feedback generation:', error);
+          }
         }
         break;
 

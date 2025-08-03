@@ -624,49 +624,67 @@ export type Database = {
       }
       roleplay_feedback: {
         Row: {
+          active_listening_score: number
           coaching_points: string[] | null
           communication_score: number
+          conversation_summary: string | null
           created_at: string
           follow_up_questions: string[] | null
           id: string
           improvement_areas: string[] | null
-          listening_score: number
           objection_handling_score: number
           overall_score: number
+          pain_point_identification_score: number | null
           product_knowledge_score: number
+          pronunciation_feedback: string | null
           session_id: string
+          small_talk_score: number | null
           specific_feedback: string
           strengths: string[] | null
+          tone_analysis: string[] | null
+          visual_presence_analysis: string[] | null
         }
         Insert: {
+          active_listening_score: number
           coaching_points?: string[] | null
           communication_score: number
+          conversation_summary?: string | null
           created_at?: string
           follow_up_questions?: string[] | null
           id?: string
           improvement_areas?: string[] | null
-          listening_score: number
           objection_handling_score: number
           overall_score: number
+          pain_point_identification_score?: number | null
           product_knowledge_score: number
+          pronunciation_feedback?: string | null
           session_id: string
+          small_talk_score?: number | null
           specific_feedback: string
           strengths?: string[] | null
+          tone_analysis?: string[] | null
+          visual_presence_analysis?: string[] | null
         }
         Update: {
+          active_listening_score?: number
           coaching_points?: string[] | null
           communication_score?: number
+          conversation_summary?: string | null
           created_at?: string
           follow_up_questions?: string[] | null
           id?: string
           improvement_areas?: string[] | null
-          listening_score?: number
           objection_handling_score?: number
           overall_score?: number
+          pain_point_identification_score?: number | null
           product_knowledge_score?: number
+          pronunciation_feedback?: string | null
           session_id?: string
+          small_talk_score?: number | null
           specific_feedback?: string
           strengths?: string[] | null
+          tone_analysis?: string[] | null
+          visual_presence_analysis?: string[] | null
         }
         Relationships: [
           {
