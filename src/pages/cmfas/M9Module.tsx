@@ -223,16 +223,49 @@ export default function M9Module() {
           </div>
 
           <Tabs defaultValue="overview" className="w-full">
-            <div className="px-8 pt-6">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-1">
-              <TabsTrigger value="overview" className="text-xs md:text-sm px-2 md:px-4">Overview</TabsTrigger>
-              <TabsTrigger value="objectives" className="text-xs md:text-sm px-2 md:px-4">Objectives</TabsTrigger>
-              <TabsTrigger value="content" className="text-xs md:text-sm px-2 md:px-4">Content</TabsTrigger>
-              <TabsTrigger value="exam" className="text-xs md:text-sm px-2 md:px-4">Exam</TabsTrigger>
-            </TabsList>
+            {/* Mobile-First Tab Navigation */}
+            <div className="px-3 md:px-8 pt-4 md:pt-6">
+              <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 h-auto p-2 bg-muted/50">
+                <TabsTrigger 
+                  value="overview" 
+                  className="mobile-touch-target text-sm font-medium px-4 py-3 min-h-[48px] data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg"
+                >
+                  <div className="flex flex-col items-center gap-1">
+                    <span className="text-lg">📋</span>
+                    <span>Overview</span>
+                  </div>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="objectives" 
+                  className="mobile-touch-target text-sm font-medium px-4 py-3 min-h-[48px] data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg"
+                >
+                  <div className="flex flex-col items-center gap-1">
+                    <span className="text-lg">🎯</span>
+                    <span>Objectives</span>
+                  </div>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="content" 
+                  className="mobile-touch-target text-sm font-medium px-4 py-3 min-h-[48px] data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg"
+                >
+                  <div className="flex flex-col items-center gap-1">
+                    <span className="text-lg">📚</span>
+                    <span>Content</span>
+                  </div>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="exam" 
+                  className="mobile-touch-target text-sm font-medium px-4 py-3 min-h-[48px] data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg"
+                >
+                  <div className="flex flex-col items-center gap-1">
+                    <span className="text-lg">📝</span>
+                    <span>Exam</span>
+                  </div>
+                </TabsTrigger>
+              </TabsList>
             </div>
 
-            <div className="p-4 md:p-8">
+            <div className="p-3 md:p-8">
               <TabsContent value="overview" className="space-y-6">
                 {/* For Whom Section */}
                 <div className="space-y-4">
