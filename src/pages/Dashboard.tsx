@@ -60,16 +60,16 @@ export default function Dashboard() {
         subtitle="Your comprehensive resource for product knowledge and sales excellence"
       />
       
-      <div className="max-w-7xl mx-auto px-1 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-8 space-y-3 sm:space-y-6 md:space-y-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-8 space-y-2 sm:space-y-4 md:space-y-6">
 
-        {/* Search Section - Enhanced for onboarding */}
+        {/* Search Section - Mobile optimized */}
         <ProtectedSection sectionId="dashboard-search">
-          <div className="text-center px-2 sm:px-3" data-onboarding="search">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4">Find What You Need</h2>
+          <div className="text-center" data-onboarding="search">
+            <h2 className="hidden sm:block text-lg md:text-xl font-bold mb-3 md:mb-4">Find What You Need</h2>
             <div className="max-w-2xl mx-auto">
               <EnhancedSearchBar onSearch={handleSearch} />
-              <p className="text-xs sm:text-sm text-muted-foreground mt-2">
-                Search for products, documents, training materials, and more
+              <p className="hidden sm:block text-sm text-muted-foreground mt-2">
+                Search for products, documents, and training materials
               </p>
             </div>
           </div>
@@ -87,16 +87,6 @@ export default function Dashboard() {
           {user ? <UserStats /> : <AuthPrompt />}
         </ProtectedSection>
 
-        {/* Product Categories - Enhanced for onboarding */}
-        <ProtectedSection sectionId="product-categories">
-          <div data-onboarding="categories">
-            <ProductCategoriesSection 
-              categories={categories}
-              loading={loading}
-              onCategoryClick={handleCategoryClick}
-            />
-          </div>
-        </ProtectedSection>
 
         {/* User-specific sections - Only show if logged in */}
         {user && (

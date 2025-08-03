@@ -152,66 +152,67 @@ export function UserStats() {
   const progressPercentage = profile ? (currentLevelXP / nextLevelXP) * 100 : 0;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6">
-      {/* Level & XP */}
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-3 sm:mb-4">
+      {/* Level & XP - Priority on mobile */}
       <Card className="border-accent/20 bg-gradient-card">
-        <CardContent className="p-3 sm:p-4">
+        <CardContent className="p-3">
           <div className="flex items-center gap-2 mb-2">
-            <Trophy className="h-5 w-5 text-warning" />
-            <span className="font-semibold">Level {profile?.current_level || 1}</span>
+            <Trophy className="h-4 w-4 text-warning" />
+            <span className="text-sm font-semibold">Level {profile?.current_level || 1}</span>
           </div>
-          <Progress value={progressPercentage} className="mb-2" />
-          <p className="text-sm text-muted-foreground">
+          <Progress value={progressPercentage} className="mb-1" />
+          <p className="text-xs text-muted-foreground">
             {currentLevelXP}/{nextLevelXP} XP
           </p>
         </CardContent>
       </Card>
 
-      {/* Total XP */}
+      {/* Streak - Priority on mobile */}
       <Card className="border-accent/20 bg-gradient-card">
-        <CardContent className="p-3 sm:p-4">
+        <CardContent className="p-3">
           <div className="flex items-center gap-2 mb-2">
-            <Target className="h-5 w-5 text-primary" />
-            <span className="font-semibold">Total XP</span>
+            <Zap className="h-4 w-4 text-warning" />
+            <span className="text-sm font-semibold">Streak</span>
           </div>
-          <p className="text-2xl font-bold text-primary">
+          <p className="text-xl font-bold text-warning">
+            {profile?.streak_days || 0}
+          </p>
+          <p className="text-xs text-muted-foreground">days</p>
+        </CardContent>
+      </Card>
+
+      {/* Total XP - Hidden on mobile, shown on larger screens */}
+      <Card className="border-accent/20 bg-gradient-card hidden lg:block">
+        <CardContent className="p-3">
+          <div className="flex items-center gap-2 mb-2">
+            <Target className="h-4 w-4 text-primary" />
+            <span className="text-sm font-semibold">Total XP</span>
+          </div>
+          <p className="text-xl font-bold text-primary">
             {profile?.total_xp || 0}
           </p>
         </CardContent>
       </Card>
 
-      {/* Streak */}
-      <Card className="border-accent/20 bg-gradient-card">
-        <CardContent className="p-3 sm:p-4">
+      {/* Recent Achievement - Hidden on mobile, shown on larger screens */}
+      <Card className="border-accent/20 bg-gradient-card hidden lg:block">
+        <CardContent className="p-3">
           <div className="flex items-center gap-2 mb-2">
-            <Zap className="h-5 w-5 text-warning" />
-            <span className="font-semibold">Streak</span>
-          </div>
-          <p className="text-2xl font-bold text-warning">
-            {profile?.streak_days || 0} days
-          </p>
-        </CardContent>
-      </Card>
-
-      {/* Recent Achievement */}
-      <Card className="border-accent/20 bg-gradient-card">
-        <CardContent className="p-3 sm:p-4">
-          <div className="flex items-center gap-2 mb-2">
-            <Award className="h-5 w-5 text-success" />
-            <span className="font-semibold">Latest Achievement</span>
+            <Award className="h-4 w-4 text-success" />
+            <span className="text-sm font-semibold">Achievement</span>
           </div>
           {recentAchievements.length > 0 ? (
             <div className="flex items-center gap-2">
-              <span className="text-lg">{recentAchievements[0].icon}</span>
+              <span className="text-sm">{recentAchievements[0].icon}</span>
               <div>
-                <p className="text-sm font-medium">{recentAchievements[0].name}</p>
+                <p className="text-xs font-medium line-clamp-1">{recentAchievements[0].name}</p>
                 <Badge variant="secondary" className="text-xs">
                   +{recentAchievements[0].xp_reward} XP
                 </Badge>
               </div>
             </div>
           ) : (
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Complete your first quiz!
             </p>
           )}

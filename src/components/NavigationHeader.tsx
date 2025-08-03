@@ -29,12 +29,12 @@ interface NavigationHeaderProps {
 export function NavigationHeader({ title, subtitle, showBackButton, onBack, breadcrumbs, actions }: NavigationHeaderProps) {
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
   return (
-    <div className="bg-gradient-hero text-white py-3 sm:py-4 md:py-8 px-3 sm:px-4 md:px-6">
+    <div className="bg-gradient-hero text-white py-2 sm:py-3 md:py-6 px-2 sm:px-3 md:px-4">
       <div className="max-w-7xl mx-auto">
         
-        {/* Breadcrumbs */}
+        {/* Breadcrumbs - Hidden on mobile */}
         {breadcrumbs && breadcrumbs.length > 0 && (
-          <div className="mb-3 md:mb-4">
+          <div className="mb-2 md:mb-3 hidden sm:block">
             <Breadcrumb>
               <BreadcrumbList>
                 {breadcrumbs.map((item, index) => [
@@ -59,18 +59,18 @@ export function NavigationHeader({ title, subtitle, showBackButton, onBack, brea
         )}
 
         {/* Header Content */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3">
-          <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             {showBackButton && (
               <Button variant="ghost" onClick={onBack} className="text-white hover:bg-white/20 mobile-touch-target">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">Back</span>
+                <ArrowLeft className="h-4 w-4" />
+                <span className="hidden sm:inline ml-2">Back</span>
               </Button>
             )}
             <div>
-              <h1 className="text-lg sm:text-xl md:text-3xl font-bold">{title}</h1>
+              <h1 className="text-base sm:text-lg md:text-2xl font-bold">{title}</h1>
               {subtitle && (
-                <p className="text-white/90 mt-1 md:mt-2 text-xs sm:text-sm md:text-lg">{subtitle}</p>
+                <p className="hidden sm:block text-white/90 mt-1 text-sm md:text-base">{subtitle}</p>
               )}
             </div>
           </div>
@@ -86,12 +86,14 @@ export function NavigationHeader({ title, subtitle, showBackButton, onBack, brea
                     : "text-white hover:bg-white/20 border border-white/30"
                   }`}
                 >
-                  <Settings className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">{isAdminMode ? "🔧 Exit Admin Mode" : "⚡ Enable Admin Mode"}</span>
+                  <Settings className="h-4 w-4" />
+                  <span className="hidden sm:inline ml-2">{isAdminMode ? "🔧 Exit Admin" : "⚡ Admin"}</span>
                   <span className="sm:hidden">{isAdminMode ? "🔧" : "⚡"}</span>
                 </Button>
               )}
-              {actions}
+              <div className="hidden sm:flex items-center space-x-2">
+                {actions}
+              </div>
             </div>
           )}
         </div>

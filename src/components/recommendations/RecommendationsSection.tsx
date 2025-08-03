@@ -51,57 +51,45 @@ export function RecommendationsSection({ limit = 6, showHeader = true }: Recomme
   return (
     <div className="space-y-4">
       {showHeader && (
-        <div className="flex items-center gap-2 mb-6">
-          <Sparkles className="h-6 w-6 text-primary" />
-          <h2 className="text-2xl font-bold">Recommended for You</h2>
+        <div className="flex items-center gap-2 mb-4">
+          <Sparkles className="h-5 w-5 text-primary" />
+          <h2 className="text-lg md:text-xl font-bold">Recommended for You</h2>
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {recommendations.map((recommendation) => (
           <Card 
             key={recommendation.id} 
             className="hover:shadow-md transition-shadow cursor-pointer group"
             onClick={() => navigate(`/product/${recommendation.id}`)}
           >
-            <CardHeader className="pb-3">
+            <CardHeader className="p-3 pb-2">
               <div className="flex items-start justify-between">
-                <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                <CardTitle className="text-sm md:text-base group-hover:text-primary transition-colors line-clamp-2">
                   {recommendation.title}
                 </CardTitle>
-                <div className={`p-1 rounded-md ${getRecommendationColor(recommendation.type)}`}>
+                <div className={`p-1 rounded-md ${getRecommendationColor(recommendation.type)} hidden sm:block`}>
                   {getRecommendationIcon(recommendation.type)}
                 </div>
               </div>
             </CardHeader>
             
-            <CardContent className="space-y-4">
+            <CardContent className="p-3 pt-0 space-y-3">
               
-              {/* Description */}
-              {recommendation.description && (
-                <p className="text-sm text-muted-foreground line-clamp-2">
-                  {recommendation.description}
-                </p>
-              )}
-
-              {/* Recommendation Reason */}
+              {/* Recommendation Reason - Priority on mobile */}
               <div className="flex items-center gap-2 p-2 rounded-lg bg-primary/5">
                 <Sparkles className="h-3 w-3 text-primary flex-shrink-0" />
-                <span className="text-xs text-primary font-medium">
+                <span className="text-xs text-primary font-medium line-clamp-1">
                   {recommendation.reason}
                 </span>
               </div>
 
-              {/* Category and Tags */}
-              <div className="flex items-center gap-2 flex-wrap">
+              {/* Category - Mobile optimized */}
+              <div className="flex items-center gap-2">
                 <Badge variant="secondary" className="text-xs">
                   {recommendation.categoryName}
                 </Badge>
-                {recommendation.tags?.slice(0, 2).map(tag => (
-                  <Badge key={tag} variant="outline" className="text-xs">
-                    {tag}
-                  </Badge>
-                ))}
               </div>
 
               {/* Action Button */}
@@ -110,7 +98,7 @@ export function RecommendationsSection({ limit = 6, showHeader = true }: Recomme
                 size="sm" 
                 className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
               >
-                Explore Product
+                <span className="text-xs">Explore</span>
                 <ArrowRight className="h-3 w-3 ml-2" />
               </Button>
             </CardContent>
