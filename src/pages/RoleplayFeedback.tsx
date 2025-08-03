@@ -38,11 +38,15 @@ const RoleplayFeedback = () => {
   const [feedback, setFeedback] = useState<FeedbackData | null>(null);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
+  const [timeoutReached, setTimeoutReached] = useState(false);
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    let channel: any;
+
     const fetchFeedback = async () => {
       if (!sessionId) {
-        console.error('No session ID provided in URL parameters');
+        console.error('🔍 FEEDBACK DEBUG: No session ID provided in URL parameters');
         toast({
           title: "Error",
           description: "No session ID found. Please start a new roleplay session.",
@@ -52,33 +56,61 @@ const RoleplayFeedback = () => {
         return;
       }
 
-      console.log('Fetching feedback for session ID:', sessionId);
+      console.log('🔍 FEEDBACK DEBUG: Starting feedback fetch for session ID:', sessionId);
+      console.log('🔍 FEEDBACK DEBUG: Initial state - loading:', loading, 'generating:', generating, 'feedback:', !!feedback);
 
       try {
+        console.log('🔍 FEEDBACK DEBUG: Querying database...');
         const { data, error } = await supabase
           .from('roleplay_feedback')
           .select('*')
           .eq('session_id', sessionId)
           .maybeSingle();
 
+        console.log('🔍 FEEDBACK DEBUG: Database query result:', {
+          hasData: !!data,
+          error: error?.message,
+          errorCode: error?.code,
+          dataId: data?.id
+        });
+
         if (error && error.code !== 'PGRST116') {
-          console.error('Error fetching feedback:', error);
+          console.error('🔍 FEEDBACK DEBUG: Database error:', error);
           toast({
             title: "Error",
             description: "Failed to load feedback data.",
             variant: "destructive",
           });
+          setLoading(false);
           return;
         }
 
         if (data) {
+          console.log('🔍 FEEDBACK DEBUG: Feedback found! Setting feedback and disabling loading states');
           setFeedback(data);
           setLoading(false);
+          setGenerating(false);
+          console.log('🔍 FEEDBACK DEBUG: States updated - feedback loaded successfully');
         } else {
-          setGenerating(true);
+          console.log('🔍 FEEDBACK DEBUG: No feedback found, entering generating mode');
           setLoading(false);
+          setGenerating(true);
+          
+          // Set up 30-second timeout
+          timeoutId = setTimeout(() => {
+            console.log('🔍 FEEDBACK DEBUG: Timeout reached after 30 seconds');
+            setTimeoutReached(true);
+            setGenerating(false);
+            toast({
+              title: "Feedback Generation Taking Longer Than Expected",
+              description: "Please refresh the page or try again later.",
+              variant: "default",
+            });
+          }, 30000);
+
           // Set up real-time subscription for feedback generation
-          const channel = supabase
+          console.log('🔍 FEEDBACK DEBUG: Setting up real-time subscription');
+          channel = supabase
             .channel('feedback-updates')
             .on(
               'postgres_changes',
@@ -89,24 +121,38 @@ const RoleplayFeedback = () => {
                 filter: `session_id=eq.${sessionId}`
               },
               (payload) => {
+                console.log('🔍 FEEDBACK DEBUG: Real-time update received:', payload);
                 setFeedback(payload.new as FeedbackData);
                 setGenerating(false);
+                setTimeoutReached(false);
+                if (timeoutId) clearTimeout(timeoutId);
               }
             )
             .subscribe();
 
-          return () => {
-            supabase.removeChannel(channel);
-          };
+          console.log('🔍 FEEDBACK DEBUG: Real-time subscription established');
         }
       } catch (error) {
-        console.error('Error fetching feedback:', error);
+        console.error('🔍 FEEDBACK DEBUG: Fetch error:', error);
         setLoading(false);
+        setGenerating(false);
+        toast({
+          title: "Error",
+          description: "Failed to load feedback. Please try again.",
+          variant: "destructive",
+        });
       }
     };
 
     fetchFeedback();
-  }, [sessionId]);
+
+    // Cleanup function
+    return () => {
+      console.log('🔍 FEEDBACK DEBUG: Cleaning up - removing channel and timeout');
+      if (timeoutId) clearTimeout(timeoutId);
+      if (channel) supabase.removeChannel(channel);
+    };
+  }, [sessionId, navigate]);
 
   const getScoreColor = (score: number) => {
     if (score >= 4) return 'bg-green-500';
@@ -136,6 +182,28 @@ const RoleplayFeedback = () => {
           <RefreshCw className="h-12 w-12 animate-spin mx-auto mb-4 text-primary" />
           <h2 className="text-2xl font-semibold mb-2">Generating Your Feedback</h2>
           <p className="text-muted-foreground">Our AI is analyzing your performance...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (timeoutReached) {
+    return (
+      <div className="container mx-auto p-6 space-y-6">
+        <div className="text-center py-12">
+          <MessageSquare className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+          <h2 className="text-2xl font-semibold mb-2">Feedback Generation Timed Out</h2>
+          <p className="text-muted-foreground mb-4">The feedback is taking longer than expected to generate.</p>
+          <div className="flex flex-col sm:flex-row gap-2 justify-center">
+            <Button onClick={() => window.location.reload()}>
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Refresh Page
+            </Button>
+            <Button variant="outline" onClick={() => navigate('/roleplay')}>
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Roleplay
+            </Button>
+          </div>
         </div>
       </div>
     );
