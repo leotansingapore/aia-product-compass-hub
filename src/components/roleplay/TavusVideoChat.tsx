@@ -21,7 +21,13 @@ import {
   CheckCircle,
   AlertTriangle,
   Subtitles,
-  X
+  X,
+  RefreshCw,
+  Settings,
+  HelpCircle,
+  Camera,
+  CameraOff,
+  VolumeOff
 } from 'lucide-react';
 
 interface RoleplayScenario {
@@ -55,19 +61,51 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const [transcripts, setTranscripts] = useState<Array<{speaker: string, text: string, timestamp: number}>>([]);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [showTranscripts, setShowTranscripts] = useState(true);
+  const [permissionStatus, setPermissionStatus] = useState<{
+    camera: 'granted' | 'denied' | 'prompt' | 'checking';
+    microphone: 'granted' | 'denied' | 'prompt' | 'checking';
+  }>({ camera: 'checking', microphone: 'checking' });
+  const [showPermissionHelp, setShowPermissionHelp] = useState(false);
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  // Check permissions on component mount
   useEffect(() => {
+    checkPermissions();
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
   }, []);
+
+  const checkPermissions = async () => {
+    try {
+      setPermissionStatus({ camera: 'checking', microphone: 'checking' });
+      
+      // Simple permission check by trying to get media
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      setPermissionStatus({ camera: 'granted', microphone: 'granted' });
+      
+      // Stop the stream immediately as this is just a permission check
+      stream.getTracks().forEach(track => track.stop());
+    } catch (error) {
+      console.error('Permission check error:', error);
+      const errorName = (error as any)?.name;
+      
+      if (errorName === 'NotAllowedError') {
+        setPermissionStatus({ camera: 'denied', microphone: 'denied' });
+        setShowPermissionHelp(true);
+      } else if (errorName === 'NotFoundError') {
+        setPermissionStatus({ camera: 'denied', microphone: 'denied' });
+      } else {
+        setPermissionStatus({ camera: 'prompt', microphone: 'prompt' });
+      }
+    }
+  };
 
   // Subscribe to real-time transcript updates
   useEffect(() => {
@@ -197,13 +235,17 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const handleStartSession = async () => {
     setIsLoading(true);
     setConnectionError(null);
+    setShowPermissionHelp(false);
     
     try {
       // Request media permissions first
-      await navigator.mediaDevices.getUserMedia({ 
+      const stream = await navigator.mediaDevices.getUserMedia({ 
         video: true, 
         audio: true 
       });
+
+      // Update permission status to granted
+      setPermissionStatus({ camera: 'granted', microphone: 'granted' });
 
       // Create Tavus conversation
       const conversationData = await createTavusConversation();
@@ -227,17 +269,41 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       
     } catch (error) {
       console.error('Failed to start session:', error);
-      setConnectionError(
-        error instanceof Error 
-          ? error.message 
-          : 'Failed to start session. Please check your connection and try again.'
-      );
+      const errorName = (error as any)?.name;
       
-      toast({
-        title: "Connection Failed",
-        description: "Unable to start roleplay session. Please try again.",
-        variant: "destructive"
-      });
+      // Handle specific permission errors
+      if (errorName === 'NotAllowedError') {
+        setPermissionStatus({ camera: 'denied', microphone: 'denied' });
+        setShowPermissionHelp(true);
+        setConnectionError(
+          'Camera and microphone access denied. Please allow permissions in your browser and try again.'
+        );
+        
+        toast({
+          title: "Permissions Required",
+          description: "Please enable camera and microphone access to start the roleplay session.",
+          variant: "destructive"
+        });
+      } else if (errorName === 'NotFoundError') {
+        setConnectionError('No camera or microphone found. Please connect your devices and try again.');
+        toast({
+          title: "Hardware Not Found",
+          description: "Please connect a camera and microphone to continue.",
+          variant: "destructive"
+        });
+      } else {
+        setConnectionError(
+          error instanceof Error 
+            ? error.message 
+            : 'Failed to start session. Please check your connection and try again.'
+        );
+        
+        toast({
+          title: "Connection Failed",
+          description: "Unable to start roleplay session. Please try again.",
+          variant: "destructive"
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -376,6 +442,121 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
             </div>
           </CardHeader>
         </Card>
+
+        {/* Permission Status */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Settings className="h-5 w-5" />
+              Camera & Microphone Setup
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Camera className="h-4 w-4" />
+                  <span>Camera Access</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  {permissionStatus.camera === 'checking' && (
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
+                  )}
+                  <Badge variant={permissionStatus.camera === 'granted' ? 'default' : 
+                                 permissionStatus.camera === 'denied' ? 'destructive' : 'secondary'}>
+                    {permissionStatus.camera === 'granted' ? 'Allowed' :
+                     permissionStatus.camera === 'denied' ? 'Denied' :
+                     permissionStatus.camera === 'checking' ? 'Checking...' : 'Prompt'}
+                  </Badge>
+                </div>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Mic className="h-4 w-4" />
+                  <span>Microphone Access</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  {permissionStatus.microphone === 'checking' && (
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
+                  )}
+                  <Badge variant={permissionStatus.microphone === 'granted' ? 'default' : 
+                                 permissionStatus.microphone === 'denied' ? 'destructive' : 'secondary'}>
+                    {permissionStatus.microphone === 'granted' ? 'Allowed' :
+                     permissionStatus.microphone === 'denied' ? 'Denied' :
+                     permissionStatus.microphone === 'checking' ? 'Checking...' : 'Prompt'}
+                  </Badge>
+                </div>
+              </div>
+
+              <div className="flex gap-2">
+                <Button
+                  onClick={checkPermissions}
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-2"
+                >
+                  <RefreshCw className="h-3 w-3" />
+                  Check Permissions
+                </Button>
+                
+                {(permissionStatus.camera === 'denied' || permissionStatus.microphone === 'denied') && (
+                  <Button
+                    onClick={() => setShowPermissionHelp(!showPermissionHelp)}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2"
+                  >
+                    <HelpCircle className="h-3 w-3" />
+                    Need Help?
+                  </Button>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Permission Help */}
+        {showPermissionHelp && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-orange-600">
+                <AlertTriangle className="h-5 w-5" />
+                How to Enable Camera & Microphone
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2">Chrome Instructions:</h4>
+                  <ol className="list-decimal list-inside space-y-1 text-sm">
+                    <li>Click the camera/microphone icon in your address bar</li>
+                    <li>Select "Always allow" for this site</li>
+                    <li>Refresh the page or click "Check Permissions" above</li>
+                  </ol>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-2">Alternative Method:</h4>
+                  <ol className="list-decimal list-inside space-y-1 text-sm">
+                    <li>Go to Chrome Settings → Privacy and Security → Site Settings</li>
+                    <li>Click "Camera" and "Microphone"</li>
+                    <li>Remove this site from the "Blocked" list</li>
+                    <li>Add this site to the "Allowed" list</li>
+                  </ol>
+                </div>
+
+                <Alert>
+                  <AlertTriangle className="h-4 w-4" />
+                  <AlertDescription>
+                    Camera and microphone access is required for the AI roleplay session to work properly.
+                    The video chat needs both permissions to function.
+                  </AlertDescription>
+                </Alert>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Preview Video Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
