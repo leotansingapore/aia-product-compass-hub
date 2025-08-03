@@ -73,8 +73,10 @@ const RoleplayFeedback = () => {
 
         if (data) {
           setFeedback(data);
+          setLoading(false);
         } else {
           setGenerating(true);
+          setLoading(false);
           // Set up real-time subscription for feedback generation
           const channel = supabase
             .channel('feedback-updates')
@@ -99,7 +101,6 @@ const RoleplayFeedback = () => {
         }
       } catch (error) {
         console.error('Error fetching feedback:', error);
-      } finally {
         setLoading(false);
       }
     };
