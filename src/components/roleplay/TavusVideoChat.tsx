@@ -159,76 +159,95 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
   const createTavusConversation = async () => {
     try {
-      let replicaId = scenario.replicaId;
+      setIsLoading(true);
+      setConnectionError(null);
+
+      // Create session in our database first
+      const { data: sessionData, error: sessionError } = await supabase.rpc(
+        'create_roleplay_session',
+        {
+          scenario_title: scenario.title,
+          scenario_category: scenario.category,
+          scenario_difficulty: scenario.difficulty,
+          tavus_conversation_id: '' // Will be updated after Tavus call
+        }
+      );
+
+      if (sessionError) {
+        throw new Error(`Failed to create session: ${sessionError.message}`);
+      }
+
+      setSessionId(sessionData);
+
+      // Determine which replica to use
+      let replicaToUse = scenario.replicaId;
       
-      // If no specific replica ID is provided, get the first available one
-      if (!replicaId) {
+      // If no specific replica is set, get available replicas
+      if (!replicaToUse) {
         const { data: replicasData, error: replicasError } = await supabase.functions.invoke('tavus-session', {
-          body: {
-            action: 'list_replicas'
-          }
+          body: { action: 'list_replicas' }
         });
 
         if (replicasError) {
-          console.error('Failed to fetch replicas:', replicasError);
-          throw new Error('Failed to fetch available AI avatars');
+          throw new Error(`Failed to list replicas: ${replicasError.message}`);
         }
 
-        if (!replicasData?.data || replicasData.data.length === 0) {
-          throw new Error('No AI avatars available. Please create a replica in your Tavus dashboard first.');
+        if (replicasData?.data && replicasData.data.length > 0) {
+          replicaToUse = replicasData.data[0].replica_id;
+        } else {
+          throw new Error('No replicas available');
         }
-
-        replicaId = replicasData.data[0].replica_id;
       }
-      
-      console.log('Using replica ID:', replicaId);
 
+      // Create the Tavus conversation with recording enabled
       const requestBody: any = {
         action: 'create_conversation',
-        replica_id: replicaId,
-        conversation_name: `${scenario.title} - Roleplay Session`
+        replica_id: replicaToUse,
+        conversation_name: `${scenario.title} - ${new Date().toLocaleString()}`,
+        enable_recording: true  // Enable recording for mentor review
       };
 
-      // Add persona_id if available
+      // Add persona if specified
       if (scenario.personaId) {
         requestBody.persona_id = scenario.personaId;
       }
 
-      const { data, error } = await supabase.functions.invoke('tavus-session', {
+      const { data: conversationData, error: conversationError } = await supabase.functions.invoke('tavus-session', {
         body: requestBody
       });
 
-      if (error) throw error;
-
-      console.log('Tavus conversation created:', data);
-      setConversationId(data.conversation_id);
-      setConversationUrl(data.conversation_url);
-      
-      // Create roleplay session record for transcript tracking
-      const { data: sessionData, error: sessionError } = await supabase.rpc('create_roleplay_session' as any, {
-        scenario_title: scenario.title,
-        scenario_category: scenario.category,
-        scenario_difficulty: scenario.difficulty,
-        tavus_conversation_id: data.conversation_id
-      });
-
-      if (sessionError) {
-        console.error('Failed to create session record:', sessionError);
-      } else {
-        setSessionId(sessionData as string);
-        console.log('Session record created with ID:', sessionData);
+      if (conversationError) {
+        throw new Error(`Failed to create conversation: ${conversationError.message}`);
       }
-      
-      return data;
-    } catch (error) {
-      console.error('Failed to create Tavus conversation:', error);
-      
-      // Show more specific error message for API key issues
-      if (error.message?.includes('non-2xx') || error.message?.includes('401')) {
-        throw new Error('Invalid Tavus API key. Please check your API key in the environment settings.');
+
+      if (!conversationData?.conversation_url) {
+        throw new Error('No conversation URL received from Tavus');
       }
-      
+
+      setConversationId(conversationData.conversation_id);
+      setConversationUrl(conversationData.conversation_url);
+
+      // Update the session with the Tavus conversation ID and recording status
+      const { error: updateError } = await supabase
+        .from('roleplay_sessions')
+        .update({ 
+          tavus_conversation_id: conversationData.conversation_id,
+          recording_status: 'recording',
+          recording_started_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', sessionData);
+
+      if (updateError) {
+        console.error('Failed to update session with conversation ID:', updateError);
+      }
+
+      return conversationData;
+    } catch (error: any) {
+      setConnectionError(error.message);
       throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 

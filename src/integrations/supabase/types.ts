@@ -476,6 +476,94 @@ export type Database = {
         }
         Relationships: []
       }
+      mentor_annotations: {
+        Row: {
+          annotation_type: string
+          content: string
+          created_at: string
+          id: string
+          review_id: string
+          timestamp_seconds: number
+        }
+        Insert: {
+          annotation_type: string
+          content: string
+          created_at?: string
+          id?: string
+          review_id: string
+          timestamp_seconds: number
+        }
+        Update: {
+          annotation_type?: string
+          content?: string
+          created_at?: string
+          id?: string
+          review_id?: string
+          timestamp_seconds?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mentor_annotations_review_id_fkey"
+            columns: ["review_id"]
+            isOneToOne: false
+            referencedRelation: "mentor_reviews"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mentor_reviews: {
+        Row: {
+          assigned_at: string
+          completed_at: string | null
+          created_at: string
+          id: string
+          mentor_feedback: string | null
+          mentor_id: string
+          mentor_notes: Json | null
+          mentor_score: number | null
+          session_id: string
+          started_at: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_at?: string
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          mentor_feedback?: string | null
+          mentor_id: string
+          mentor_notes?: Json | null
+          mentor_score?: number | null
+          session_id: string
+          started_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_at?: string
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          mentor_feedback?: string | null
+          mentor_id?: string
+          mentor_notes?: Json | null
+          mentor_score?: number | null
+          session_id?: string
+          started_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mentor_reviews_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "roleplay_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       products: {
         Row: {
           assistant_id: string | null
@@ -737,6 +825,9 @@ export type Database = {
           duration_seconds: number | null
           ended_at: string | null
           id: string
+          recording_completed_at: string | null
+          recording_started_at: string | null
+          recording_status: string | null
           scenario_category: string
           scenario_difficulty: string
           scenario_title: string
@@ -745,12 +836,17 @@ export type Database = {
           transcript: Json | null
           updated_at: string
           user_id: string
+          video_duration_seconds: number | null
+          video_url: string | null
         }
         Insert: {
           created_at?: string
           duration_seconds?: number | null
           ended_at?: string | null
           id?: string
+          recording_completed_at?: string | null
+          recording_started_at?: string | null
+          recording_status?: string | null
           scenario_category: string
           scenario_difficulty: string
           scenario_title: string
@@ -759,12 +855,17 @@ export type Database = {
           transcript?: Json | null
           updated_at?: string
           user_id: string
+          video_duration_seconds?: number | null
+          video_url?: string | null
         }
         Update: {
           created_at?: string
           duration_seconds?: number | null
           ended_at?: string | null
           id?: string
+          recording_completed_at?: string | null
+          recording_started_at?: string | null
+          recording_status?: string | null
           scenario_category?: string
           scenario_difficulty?: string
           scenario_title?: string
@@ -773,6 +874,8 @@ export type Database = {
           transcript?: Json | null
           updated_at?: string
           user_id?: string
+          video_duration_seconds?: number | null
+          video_url?: string | null
         }
         Relationships: []
       }

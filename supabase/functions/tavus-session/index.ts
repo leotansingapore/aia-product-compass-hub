@@ -32,7 +32,7 @@ serve(async (req) => {
 
     switch (action) {
       case 'create_conversation': {
-        const { replica_id, persona_id, conversation_name } = params;
+        const { replica_id, persona_id, conversation_name, enable_recording } = params;
         
         const requestBody: any = {
           replica_id,
@@ -48,6 +48,11 @@ serve(async (req) => {
         // Add persona_id if provided
         if (persona_id) {
           requestBody.persona_id = persona_id;
+        }
+
+        // Enable recording if requested
+        if (enable_recording) {
+          requestBody.properties.enable_recording = true;
         }
         
         const response = await fetch('https://tavusapi.com/v2/conversations', {
