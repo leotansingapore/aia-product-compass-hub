@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { Progress } from '@/components/ui/progress';
 import { SkeletonLoader } from '@/components/SkeletonLoader';
 import { supabase } from '@/integrations/supabase/client';
-import { ArrowLeft, RefreshCw, Target, TrendingUp, MessageSquare, Volume2 } from 'lucide-react';
+import { ArrowLeft, RefreshCw, Target, TrendingUp, MessageSquare, Volume2, ChevronDown, ChevronRight } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { ConversationTranscript } from '@/components/ConversationTranscript';
 
@@ -31,6 +31,12 @@ interface FeedbackData {
   pronunciation_feedback: string | null;
   conversation_summary: string | null;
   created_at: string;
+  // Enhanced fields
+  practice_score?: number;
+  detailed_rubric_feedback?: any;
+  conversation_flow_summary?: string[];
+  body_language_analysis?: string;
+  tone_detailed_analysis?: string;
 }
 
 const RoleplayFeedback = () => {
@@ -40,6 +46,7 @@ const RoleplayFeedback = () => {
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
   const [timeoutReached, setTimeoutReached] = useState(false);
+  const [expandedRubric, setExpandedRubric] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -88,7 +95,7 @@ const RoleplayFeedback = () => {
 
         if (data) {
           console.log('🔍 FEEDBACK DEBUG: Feedback found! Setting feedback and disabling loading states');
-          setFeedback(data);
+          setFeedback(data as FeedbackData);
           setLoading(false);
           setGenerating(false);
           console.log('🔍 FEEDBACK DEBUG: States updated - feedback loaded successfully');
@@ -123,7 +130,18 @@ const RoleplayFeedback = () => {
               },
               (payload) => {
                 console.log('🔍 FEEDBACK DEBUG: Real-time update received:', payload);
-                setFeedback(payload.new as FeedbackData);
+                // Type conversion for compatibility
+                const feedbackData: FeedbackData = {
+                  ...payload.new as any,
+                  conversation_flow_summary: Array.isArray(payload.new.conversation_flow_summary) 
+                    ? payload.new.conversation_flow_summary 
+                    : payload.new.conversation_flow_summary 
+                      ? (typeof payload.new.conversation_flow_summary === 'string' 
+                         ? JSON.parse(payload.new.conversation_flow_summary) 
+                         : payload.new.conversation_flow_summary)
+                      : undefined
+                };
+                setFeedback(feedbackData);
                 setGenerating(false);
                 setTimeoutReached(false);
                 if (timeoutId) clearTimeout(timeoutId);
@@ -227,13 +245,17 @@ const RoleplayFeedback = () => {
   }
 
   const coreScores = [
-    { name: 'Engage in Small Talk', score: feedback.small_talk_score || 0 },
-    { name: 'Active Listening', score: feedback.active_listening_score },
-    { name: 'Identify Pain Points', score: feedback.pain_point_identification_score || 0 },
-    { name: 'Product Knowledge', score: feedback.product_knowledge_score },
-    { name: 'Objection Handling', score: feedback.objection_handling_score },
-    { name: 'Communication', score: feedback.communication_score },
+    { name: 'Engage in Small Talk', score: feedback.small_talk_score || 0, key: 'smallTalk' },
+    { name: 'Active Listening', score: feedback.active_listening_score, key: 'activeListening' },
+    { name: 'Identify Pain Points', score: feedback.pain_point_identification_score || 0, key: 'painPointIdentification' },
+    { name: 'Product Knowledge', score: feedback.product_knowledge_score, key: 'productKnowledge' },
+    { name: 'Objection Handling', score: feedback.objection_handling_score, key: 'objectionHandling' },
+    { name: 'Communication', score: feedback.communication_score, key: 'communication' },
   ];
+
+  const toggleRubricExpansion = (key: string) => {
+    setExpandedRubric(prev => ({ ...prev, [key]: !prev[key] }));
+  };
 
   return (
     <div className="container mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6">
@@ -273,25 +295,57 @@ const RoleplayFeedback = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {coreScores.map((item, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium">{item.name}</span>
-                    <Badge 
-                      variant={item.score >= 4 ? 'default' : item.score >= 3 ? 'secondary' : 'destructive'}
-                      className="min-w-[60px] justify-center"
-                    >
-                      {item.score === 0 ? 'Missed' : `${item.score}/5`}
-                    </Badge>
+              {coreScores.map((item, index) => {
+                const rubricData = feedback.detailed_rubric_feedback?.[item.key];
+                const isExpanded = expandedRubric[item.key];
+                
+                return (
+                  <div key={index} className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">{item.name}</span>
+                      <Badge 
+                        variant={item.score >= 4 ? 'default' : item.score >= 3 ? 'secondary' : 'destructive'}
+                        className="min-w-[60px] justify-center"
+                      >
+                        {item.score === 0 ? 'Missed' : `${item.score}/5`}
+                      </Badge>
+                    </div>
+                    <Progress value={(item.score / 5) * 100} className="h-2" />
+                    
+                    {item.score === 0 && !rubricData && (
+                      <p className="text-sm text-muted-foreground">
+                        This competency was not demonstrated during the conversation.
+                      </p>
+                    )}
+                    
+                    {rubricData && (
+                      <div className="mt-2">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => toggleRubricExpansion(item.key)}
+                          className="h-auto p-1 text-xs text-muted-foreground hover:text-foreground"
+                        >
+                          {isExpanded ? <ChevronDown className="h-3 w-3 mr-1" /> : <ChevronRight className="h-3 w-3 mr-1" />}
+                          {isExpanded ? 'Hide' : 'Show'} in-depth insights
+                        </Button>
+                        
+                        {isExpanded && (
+                          <div className="mt-2 p-3 bg-muted/50 rounded-lg space-y-2">
+                            <p className="text-sm">{rubricData.explanation}</p>
+                            {rubricData.insights && (
+                              <div className="text-sm">
+                                <span className="font-medium">Improvement suggestions:</span>
+                                <p className="mt-1 text-muted-foreground">{rubricData.insights}</p>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
-                  <Progress value={(item.score / 5) * 100} className="h-2" />
-                  {item.score === 0 && (
-                    <p className="text-sm text-muted-foreground">
-                      This competency was not demonstrated during the conversation.
-                    </p>
-                  )}
-                </div>
-              ))}
+                );
+              })}
             </CardContent>
           </Card>
 
@@ -304,32 +358,54 @@ const RoleplayFeedback = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
+              {feedback.practice_score && (
+                <div>
+                  <h3 className="font-semibold mb-2">Practice Score</h3>
+                  <Badge variant="outline" className="text-lg px-3 py-1">
+                    {feedback.practice_score}/3
+                  </Badge>
+                </div>
+              )}
+
               {feedback.strengths && feedback.strengths.length > 0 && (
                 <div>
-                  <h3 className="font-semibold text-green-600 mb-2">Strengths</h3>
-                  <ul className="space-y-1">
+                  <h3 className="font-semibold text-green-600 mb-2">Strength</h3>
+                  <div className="space-y-2">
                     {feedback.strengths.map((strength, index) => (
-                      <li key={index} className="text-sm">{strength}</li>
+                      <p key={index} className="text-sm leading-relaxed">{strength}</p>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               )}
 
               {feedback.improvement_areas && feedback.improvement_areas.length > 0 && (
                 <div>
-                  <h3 className="font-semibold text-orange-600 mb-2">Growth Areas</h3>
-                  <ul className="space-y-1 list-disc list-inside">
+                  <h3 className="font-semibold text-orange-600 mb-2">Growth Area</h3>
+                  <div className="space-y-3">
                     {feedback.improvement_areas.map((area, index) => (
-                      <li key={index} className="text-sm">{area}</li>
+                      <div key={index} className="text-sm">
+                        <p className="leading-relaxed">{area}</p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               )}
 
               {feedback.specific_feedback && (
                 <div>
                   <h3 className="font-semibold mb-2">Detailed Feedback</h3>
-                  <p className="text-sm text-muted-foreground">{feedback.specific_feedback}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feedback.specific_feedback}</p>
+                </div>
+              )}
+
+              {feedback.coaching_points && feedback.coaching_points.length > 0 && (
+                <div>
+                  <h3 className="font-semibold mb-2">Coaching Points</h3>
+                  <div className="space-y-1">
+                    {feedback.coaching_points.map((point, index) => (
+                      <p key={index} className="text-sm text-muted-foreground">{point}</p>
+                    ))}
+                  </div>
                 </div>
               )}
             </CardContent>
@@ -357,49 +433,75 @@ const RoleplayFeedback = () => {
         {/* Right Column - Advanced Analytics */}
         <div className="space-y-4 sm:space-y-6">
           {/* Tone Analysis */}
-          {feedback.tone_analysis && feedback.tone_analysis.length > 0 && (
+          {(feedback.tone_analysis && feedback.tone_analysis.length > 0) || feedback.tone_detailed_analysis && (
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Tone</CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {feedback.tone_analysis.map((tone, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
-                      {tone}
-                    </Badge>
-                  ))}
-                </div>
+              <CardContent className="space-y-3">
+                {feedback.tone_analysis && feedback.tone_analysis.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {feedback.tone_analysis.map((tone, index) => (
+                      <Badge key={index} variant="outline" className="text-xs">
+                        {tone}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+                {feedback.tone_detailed_analysis && (
+                  <div className="text-sm text-muted-foreground leading-relaxed">
+                    {feedback.tone_detailed_analysis.split('\n').map((paragraph, index) => (
+                      <p key={index} className="mb-2">{paragraph}</p>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
           )}
 
           {/* Visual Presence */}
-          {feedback.visual_presence_analysis && feedback.visual_presence_analysis.length > 0 && (
+          {(feedback.visual_presence_analysis && feedback.visual_presence_analysis.length > 0) || feedback.body_language_analysis && (
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Visual Presence</CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {feedback.visual_presence_analysis.map((presence, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
-                      {presence}
-                    </Badge>
-                  ))}
-                </div>
+              <CardContent className="space-y-3">
+                {feedback.visual_presence_analysis && feedback.visual_presence_analysis.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {feedback.visual_presence_analysis.map((presence, index) => (
+                      <Badge key={index} variant="outline" className="text-xs">
+                        {presence}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+                {feedback.body_language_analysis && (
+                  <div className="text-sm text-muted-foreground leading-relaxed">
+                    {feedback.body_language_analysis.split('\n').map((paragraph, index) => (
+                      <p key={index} className="mb-2">{paragraph}</p>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
           )}
 
           {/* Summary */}
-          {feedback.conversation_summary && (
+          {(feedback.conversation_summary || (feedback.conversation_flow_summary && feedback.conversation_flow_summary.length > 0)) && (
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Summary</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">{feedback.conversation_summary}</p>
+                {feedback.conversation_flow_summary && feedback.conversation_flow_summary.length > 0 ? (
+                  <div className="space-y-1">
+                    {feedback.conversation_flow_summary.map((item, index) => (
+                      <p key={index} className="text-sm text-muted-foreground">{item}</p>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground">{feedback.conversation_summary}</p>
+                )}
               </CardContent>
             </Card>
           )}
@@ -414,7 +516,11 @@ const RoleplayFeedback = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">{feedback.pronunciation_feedback}</p>
+                <div className="text-sm text-muted-foreground leading-relaxed">
+                  {feedback.pronunciation_feedback.split('\n').map((paragraph, index) => (
+                    <p key={index} className="mb-2">{paragraph}</p>
+                  ))}
+                </div>
               </CardContent>
             </Card>
           )}

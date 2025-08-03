@@ -713,16 +713,21 @@ export type Database = {
       roleplay_feedback: {
         Row: {
           active_listening_score: number
+          body_language_analysis: string | null
           coaching_points: string[] | null
           communication_score: number
+          conversation_flow_summary: Json | null
           conversation_summary: string | null
           created_at: string
+          detailed_rubric_feedback: Json | null
           follow_up_questions: string[] | null
           id: string
           improvement_areas: string[] | null
           objection_handling_score: number
           overall_score: number
           pain_point_identification_score: number | null
+          practice_score: number | null
+          previous_attempt_comparison: string | null
           product_knowledge_score: number
           pronunciation_feedback: string | null
           session_id: string
@@ -730,20 +735,26 @@ export type Database = {
           specific_feedback: string
           strengths: string[] | null
           tone_analysis: string[] | null
+          tone_detailed_analysis: string | null
           visual_presence_analysis: string[] | null
         }
         Insert: {
           active_listening_score: number
+          body_language_analysis?: string | null
           coaching_points?: string[] | null
           communication_score: number
+          conversation_flow_summary?: Json | null
           conversation_summary?: string | null
           created_at?: string
+          detailed_rubric_feedback?: Json | null
           follow_up_questions?: string[] | null
           id?: string
           improvement_areas?: string[] | null
           objection_handling_score: number
           overall_score: number
           pain_point_identification_score?: number | null
+          practice_score?: number | null
+          previous_attempt_comparison?: string | null
           product_knowledge_score: number
           pronunciation_feedback?: string | null
           session_id: string
@@ -751,20 +762,26 @@ export type Database = {
           specific_feedback: string
           strengths?: string[] | null
           tone_analysis?: string[] | null
+          tone_detailed_analysis?: string | null
           visual_presence_analysis?: string[] | null
         }
         Update: {
           active_listening_score?: number
+          body_language_analysis?: string | null
           coaching_points?: string[] | null
           communication_score?: number
+          conversation_flow_summary?: Json | null
           conversation_summary?: string | null
           created_at?: string
+          detailed_rubric_feedback?: Json | null
           follow_up_questions?: string[] | null
           id?: string
           improvement_areas?: string[] | null
           objection_handling_score?: number
           overall_score?: number
           pain_point_identification_score?: number | null
+          practice_score?: number | null
+          previous_attempt_comparison?: string | null
           product_knowledge_score?: number
           pronunciation_feedback?: string | null
           session_id?: string
@@ -772,6 +789,7 @@ export type Database = {
           specific_feedback?: string
           strengths?: string[] | null
           tone_analysis?: string[] | null
+          tone_detailed_analysis?: string | null
           visual_presence_analysis?: string[] | null
         }
         Relationships: [

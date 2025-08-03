@@ -71,18 +71,25 @@ serve(async (req) => {
       small_talk_score: metricsResult.scores.smallTalk,
       pain_point_identification_score: metricsResult.scores.painPointIdentification,
       
-      // Qualitative analysis
-      strengths: qualitativeResult.strengths,
-      improvement_areas: qualitativeResult.improvementAreas,
+      // Enhanced fields
+      practice_score: parseInt(qualitativeResult.practiceScore) || 1,
+      detailed_rubric_feedback: metricsResult.rubricFeedback || {},
+      conversation_flow_summary: qualitativeResult.conversationFlowSummary || [],
+      body_language_analysis: advancedResult.visualPresence?.detailedAnalysis || null,
+      tone_detailed_analysis: advancedResult.toneAnalysis?.detailedAnalysis || null,
+      
+      // Original qualitative analysis (restructured)
+      strengths: qualitativeResult.strengths ? [qualitativeResult.strengths.content] : [],
+      improvement_areas: qualitativeResult.growthAreas?.map(area => area.title + ': ' + area.content) || [],
       specific_feedback: qualitativeResult.specificFeedback,
       coaching_points: qualitativeResult.coachingPoints,
       follow_up_questions: qualitativeResult.followUpQuestions,
-      conversation_summary: qualitativeResult.conversationSummary,
+      conversation_summary: qualitativeResult.conversationFlowSummary?.join(' ') || null,
       
-      // Advanced analytics
-      tone_analysis: advancedResult.toneAnalysis,
-      visual_presence_analysis: advancedResult.visualPresence,
-      pronunciation_feedback: advancedResult.pronunciationFeedback
+      // Advanced analytics (simplified for compatibility)
+      tone_analysis: advancedResult.toneAnalysis?.descriptors || [],
+      visual_presence_analysis: advancedResult.visualPresence?.descriptors || [],
+      pronunciation_feedback: advancedResult.pronunciationFeedback?.detailedAnalysis || null
     };
 
     // Store feedback in database
@@ -123,7 +130,7 @@ serve(async (req) => {
 });
 
 async function generateMetricsFeedback(conversationText: string, session: any, openAIApiKey: string) {
-  const prompt = `You are an expert sales coach analyzing a roleplay conversation. Score the following 6 core competencies on a scale of 1-5 (1=Poor, 2=Below Average, 3=Average, 4=Good, 5=Excellent).
+  const prompt = `You are an expert sales coach analyzing a roleplay conversation. Score the following 6 core competencies and provide detailed explanations for each.
 
 SCENARIO CONTEXT:
 - Title: ${session.scenario_title}
@@ -133,49 +140,7 @@ SCENARIO CONTEXT:
 CONVERSATION TRANSCRIPT:
 ${conversationText}
 
-SCORING CRITERIA:
-
-1. SMALL TALK (smallTalk): 
-   - 5: Natural, engaging rapport building with smooth transitions
-   - 4: Good conversation starters, builds some rapport
-   - 3: Adequate small talk, somewhat mechanical
-   - 2: Minimal attempt at rapport building
-   - 1: Abrupt start, no rapport building
-
-2. ACTIVE LISTENING (activeListening):
-   - 5: Consistently acknowledges, asks clarifying questions, builds on responses
-   - 4: Generally responsive, shows understanding
-   - 3: Some evidence of listening, occasionally responds appropriately
-   - 2: Limited engagement with partner's responses
-   - 1: Fails to respond or acknowledge what partner says
-
-3. PAIN POINT IDENTIFICATION (painPointIdentification):
-   - 5: Skillfully uncovers multiple needs through probing questions
-   - 4: Identifies key pain points effectively
-   - 3: Some discovery of client needs
-   - 2: Limited attempt to understand needs
-   - 1: No evidence of needs discovery
-
-4. PRODUCT KNOWLEDGE (productKnowledge):
-   - 5: Demonstrates expert understanding, connects features to benefits
-   - 4: Good product knowledge, mostly accurate information
-   - 3: Basic understanding, some gaps
-   - 2: Limited knowledge, some inaccuracies
-   - 1: Poor understanding or incorrect information
-
-5. OBJECTION HANDLING (objectionHandling):
-   - 5: Addresses concerns professionally with empathy and solutions
-   - 4: Handles objections well, provides good responses
-   - 3: Adequate responses to concerns
-   - 2: Defensive or incomplete objection handling
-   - 1: Hostile, dismissive, or no attempt to address concerns
-
-6. COMMUNICATION (communication):
-   - 5: Clear, professional, engaging throughout
-   - 4: Generally clear and professional
-   - 3: Adequate communication, some clarity issues
-   - 2: Unclear or unprofessional at times
-   - 1: Poor communication, hostile or rude
+For each competency, provide a score (1-5 or "Missed" for 0) and detailed feedback with specific examples from the conversation.
 
 Return ONLY a JSON object with this structure:
 {
@@ -186,8 +151,56 @@ Return ONLY a JSON object with this structure:
     "productKnowledge": number,
     "objectionHandling": number,
     "communication": number
+  },
+  "rubricFeedback": {
+    "smallTalk": {
+      "score": number,
+      "explanation": "Detailed explanation with specific examples",
+      "status": "Missed" | "1/5" | "2/5" | "3/5" | "4/5" | "5/5",
+      "insights": "Specific improvement suggestions with alternative responses"
+    },
+    "activeListening": {
+      "score": number,
+      "explanation": "Detailed explanation with specific examples",
+      "status": "Missed" | "1/5" | "2/5" | "3/5" | "4/5" | "5/5",
+      "insights": "Specific improvement suggestions with alternative responses"
+    },
+    "painPointIdentification": {
+      "score": number,
+      "explanation": "Detailed explanation with specific examples",
+      "status": "Missed" | "1/5" | "2/5" | "3/5" | "4/5" | "5/5",
+      "insights": "Specific improvement suggestions with alternative responses"
+    },
+    "productKnowledge": {
+      "score": number,
+      "explanation": "Detailed explanation with specific examples",
+      "status": "Missed" | "1/5" | "2/5" | "3/5" | "4/5" | "5/5",
+      "insights": "Specific improvement suggestions with alternative responses"
+    },
+    "objectionHandling": {
+      "score": number,
+      "explanation": "Detailed explanation with specific examples",
+      "status": "Missed" | "1/5" | "2/5" | "3/5" | "4/5" | "5/5",
+      "insights": "Specific improvement suggestions with alternative responses"
+    },
+    "communication": {
+      "score": number,
+      "explanation": "Detailed explanation with specific examples",
+      "status": "Missed" | "1/5" | "2/5" | "3/5" | "4/5" | "5/5",
+      "insights": "Specific improvement suggestions with alternative responses"
+    }
   }
-}`;
+}
+
+SCORING CRITERIA:
+- Small Talk: Rapport building and conversation starters
+- Active Listening: Acknowledgment and building on responses  
+- Pain Point Identification: Discovery of client needs through questions
+- Product Knowledge: Understanding and articulation of solutions
+- Objection Handling: Professional responses to concerns
+- Communication: Clarity, tone, and professionalism
+
+Provide specific examples from the conversation and actionable improvement suggestions.`;
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -207,7 +220,7 @@ Return ONLY a JSON object with this structure:
 }
 
 async function generateQualitativeFeedback(conversationText: string, session: any, openAIApiKey: string) {
-  const prompt = `You are an expert sales coach providing detailed feedback on a roleplay conversation. Analyze the conversation and provide qualitative insights.
+  const prompt = `You are an expert sales coach providing detailed feedback on a roleplay conversation in the style of Yoodli feedback.
 
 SCENARIO CONTEXT:
 - Title: ${session.scenario_title}
@@ -217,24 +230,47 @@ SCENARIO CONTEXT:
 CONVERSATION TRANSCRIPT:
 ${conversationText}
 
-Provide comprehensive qualitative analysis with specific examples from the conversation.
+Provide comprehensive Yoodli-style feedback with specific examples and structured insights.
 
 Return ONLY a JSON object with this structure:
 {
-  "strengths": ["List 2-3 specific things done well with examples"],
-  "improvementAreas": ["List 2-3 specific areas for improvement with actionable steps"],
-  "specificFeedback": "Detailed paragraph about overall performance with specific examples",
-  "coachingPoints": ["List 3-4 specific coaching recommendations"],
-  "followUpQuestions": ["List 2-3 self-reflection questions for continued learning"],
-  "conversationSummary": "2-3 sentence summary of key moments and outcomes"
+  "strengths": {
+    "title": "Strength",
+    "content": "Detailed paragraph with specific examples of what was done well"
+  },
+  "growthAreas": [
+    {
+      "title": "Area title (e.g., 'Engage in small talk')",
+      "content": "Detailed explanation with specific examples and actionable suggestions",
+      "alternatives": [
+        "Original: 'what was said'",
+        "Alternative: 'better approach with specific example'"
+      ]
+    }
+  ],
+  "specificFeedback": "Comprehensive paragraph analyzing overall performance with specific conversation examples",
+  "coachingPoints": [
+    "• Specific actionable coaching recommendation with examples",
+    "• Another coaching point with context"
+  ],
+  "followUpQuestions": [
+    "Thought-provoking self-reflection question about performance",
+    "Question about strategy and approach"
+  ],
+  "conversationFlowSummary": [
+    "• First key moment or interaction",
+    "• Second significant event", 
+    "• Final outcome or conclusion"
+  ],
+  "practiceScore": "A score from 1-3 representing overall practice effectiveness"
 }
 
 Guidelines:
-- Reference specific moments from the transcript
-- Provide actionable, specific feedback
-- Use professional sales coaching language
-- Focus on behavior that can be improved
-- Include positive reinforcement where appropriate`;
+- Use the exact conversation quotes where possible
+- Provide specific alternative responses
+- Structure growth areas with clear titles and actionable advice
+- Include bullet-point conversation flow summary
+- Reference specific moments with quotes when relevant`;
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -254,7 +290,7 @@ Guidelines:
 }
 
 async function generateAdvancedFeedback(conversationText: string, session: any, openAIApiKey: string) {
-  const prompt = `You are an expert communication coach analyzing advanced presentation skills from a roleplay conversation.
+  const prompt = `You are an expert communication coach analyzing advanced presentation skills from a roleplay conversation in Yoodli style.
 
 SCENARIO CONTEXT:
 - Title: ${session.scenario_title}
@@ -264,21 +300,30 @@ SCENARIO CONTEXT:
 CONVERSATION TRANSCRIPT:
 ${conversationText}
 
-Analyze advanced communication elements and provide insights.
+Analyze advanced communication elements and provide detailed Yoodli-style insights.
 
 Return ONLY a JSON object with this structure:
 {
-  "toneAnalysis": ["List 2-3 tone descriptors like 'professional', 'engaging', 'confident', 'hesitant', 'abrasive', etc."],
-  "visualPresence": ["List 2-3 presence indicators based on conversation flow like 'focused', 'dynamic', 'static', 'engaged', etc."],
-  "pronunciationFeedback": "Paragraph with specific recommendations for speech clarity, pacing, and emphasis based on conversation patterns"
+  "toneAnalysis": {
+    "descriptors": ["disengaged", "abrasive", "condescending"],
+    "detailedAnalysis": "Multi-paragraph analysis explaining tone evolution throughout conversation with specific quotes and timestamps where possible. Explain how tone changed and its impact."
+  },
+  "visualPresence": {
+    "descriptors": ["focused", "reserved", "tense", "static"],
+    "detailedAnalysis": "Multi-paragraph analysis of body language and presence with specific behavioral observations. Include recommendations for improvement."
+  },
+  "pronunciationFeedback": {
+    "summary": "Brief assessment of speech clarity",
+    "detailedAnalysis": "Comprehensive paragraph with specific recommendations for speech clarity, pacing, emphasis, and American English pronunciation patterns with examples."
+  }
 }
 
 Guidelines:
-- Infer tone from conversation content and flow
-- Base visual presence on engagement level and conversation dynamics
-- Provide specific speech improvement recommendations
-- Use professional communication coaching terminology
-- Focus on observable patterns in the conversation`;
+- Infer detailed behavioral patterns from conversation flow and content
+- Provide specific quotes and examples where possible
+- Use Yoodli-style detailed analysis with actionable recommendations
+- Focus on observable communication patterns that can be improved
+- Include specific technique suggestions for enhancement`;
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
