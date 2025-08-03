@@ -147,9 +147,53 @@ const RoleplayFeedback = () => {
                 if (timeoutId) clearTimeout(timeoutId);
               }
             )
-            .subscribe();
+            .subscribe((status) => {
+              console.log('🔍 FEEDBACK DEBUG: Subscription status:', status);
+              if (status === 'SUBSCRIBED') {
+                console.log('🔍 FEEDBACK DEBUG: Successfully subscribed to real-time updates');
+              }
+            });
 
-          console.log('🔍 FEEDBACK DEBUG: Real-time subscription established');
+          // Add fallback polling mechanism
+          const pollInterval = setInterval(async () => {
+            console.log('🔍 FEEDBACK DEBUG: Polling for feedback...');
+            try {
+              const { data, error } = await supabase
+                .from('roleplay_feedback')
+                .select('*')
+                .eq('session_id', sessionId)
+                .maybeSingle();
+
+              if (data && !feedback) {
+                console.log('🔍 FEEDBACK DEBUG: Polling found feedback!');
+                setFeedback(data as FeedbackData);
+                setGenerating(false);
+                setTimeoutReached(false);
+                if (timeoutId) clearTimeout(timeoutId);
+                clearInterval(pollInterval);
+              }
+            } catch (error) {
+              console.error('🔍 FEEDBACK DEBUG: Polling error:', error);
+            }
+          }, 3000); // Poll every 3 seconds
+
+          // Store poll interval for cleanup
+          const pollIntervalRef = pollInterval;
+          
+          // Update timeout to also clear polling
+          timeoutId = setTimeout(() => {
+            console.log('🔍 FEEDBACK DEBUG: Timeout reached after 30 seconds');
+            clearInterval(pollIntervalRef);
+            setTimeoutReached(true);
+            setGenerating(false);
+            toast({
+              title: "Feedback Generation Taking Longer Than Expected",
+              description: "Please refresh the page or try again later.",
+              variant: "default",
+            });
+          }, 30000);
+
+          console.log('🔍 FEEDBACK DEBUG: Real-time subscription and polling established');
         }
       } catch (error) {
         console.error('🔍 FEEDBACK DEBUG: Fetch error:', error);
