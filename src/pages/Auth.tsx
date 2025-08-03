@@ -314,22 +314,22 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-subtle flex items-center justify-center px-3 sm:px-4 py-6">
       <Helmet>
         <title>Sign In - AIA Product Compass Hub</title>
         <meta name="description" content="Sign in to access the AIA Product Compass Hub - Track your learning progress, earn achievements, and access comprehensive product training materials." />
       </Helmet>
-      <div className="w-full max-w-lg space-y-6">
+      <div className="w-full max-w-lg space-y-4 sm:space-y-6">
         <div className="text-center">
           <div className="flex justify-center mb-4">
             <div className="bg-gradient-primary p-4 rounded-full">
               <Trophy className="h-8 w-8 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
             Knowledge Portal
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-sm sm:text-base text-muted-foreground">
             Choose your access level or sign in with your account
           </p>
         </div>
@@ -363,7 +363,7 @@ const Auth = () => {
               </TabsList>
               
               <TabsContent value="signin">
-                <form onSubmit={handleSignIn} className="space-y-4">
+                <form onSubmit={handleSignIn} className="space-y-3 sm:space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="signin-email">Email</Label>
                     <Input
@@ -373,6 +373,7 @@ const Auth = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
                       disabled={loading}
+                      className="h-11 sm:h-10"
                       onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && e.currentTarget.form?.requestSubmit()}
                     />
                   </div>
@@ -385,12 +386,13 @@ const Auth = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
                       disabled={loading}
+                      className="h-11 sm:h-10"
                       onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && e.currentTarget.form?.requestSubmit()}
                     />
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full" 
+                    className="w-full min-h-[44px]" 
                     disabled={loading}
                     variant="hero"
                   >

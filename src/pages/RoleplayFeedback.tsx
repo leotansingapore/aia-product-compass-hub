@@ -155,32 +155,32 @@ const RoleplayFeedback = () => {
   ];
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
+    <div className="container mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
           <Button
             variant="ghost"
             onClick={() => navigate('/roleplay')}
-            className="gap-2"
+            className="gap-2 min-h-[44px]"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Scenarios
           </Button>
           <div>
-            <h1 className="text-3xl font-bold">Roleplay Feedback</h1>
-            <p className="text-muted-foreground">Your performance analysis and coaching insights</p>
+            <h1 className="text-2xl sm:text-3xl font-bold">Roleplay Feedback</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">Your performance analysis and coaching insights</p>
           </div>
         </div>
-        <Button onClick={() => navigate('/roleplay')} className="gap-2">
+        <Button onClick={() => navigate('/roleplay')} className="gap-2 min-h-[44px] w-full sm:w-auto">
           <RefreshCw className="h-4 w-4" />
           Practice Again
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Rubric Section */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -271,7 +271,7 @@ const RoleplayFeedback = () => {
         </div>
 
         {/* Right Column - Advanced Analytics */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {/* Tone Analysis */}
           {feedback.tone_analysis && feedback.tone_analysis.length > 0 && (
             <Card>

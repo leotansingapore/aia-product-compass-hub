@@ -127,17 +127,17 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-6xl mx-auto space-y-6">
-        <div className="flex items-center gap-2 mb-6">
-          <Shield className="h-6 w-6" />
-          <h1 className="text-3xl font-bold">Master Admin Dashboard</h1>
+    <div className="min-h-screen bg-background px-3 sm:px-4 md:px-6 py-4 sm:py-6">
+      <div className="max-w-6xl mx-auto space-y-4 sm:space-y-6">
+        <div className="flex items-center gap-2 mb-4 sm:mb-6">
+          <Shield className="h-5 w-5 sm:h-6 sm:w-6" />
+          <h1 className="text-2xl sm:text-3xl font-bold">Master Admin Dashboard</h1>
         </div>
 
-        <Tabs defaultValue="users" className="space-y-6">
-          <TabsList>
-            <TabsTrigger value="users">User Management</TabsTrigger>
-            <TabsTrigger value="approvals" className="relative">
+        <Tabs defaultValue="users" className="space-y-4 sm:space-y-6">
+          <TabsList className="grid w-full grid-cols-2 h-auto">
+            <TabsTrigger value="users" className="min-h-[44px] text-sm">User Management</TabsTrigger>
+            <TabsTrigger value="approvals" className="relative min-h-[44px] text-sm">
               User Approvals
               {approvalRequests.filter(r => r.status === 'pending').length > 0 && (
                 <Badge className="ml-1 text-xs" variant="destructive">
@@ -147,11 +147,11 @@ export default function AdminDashboard() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="users" className="space-y-6">
+          <TabsContent value="users" className="space-y-4 sm:space-y-6">
             <UserManagementSection />
           </TabsContent>
 
-          <TabsContent value="approvals" className="space-y-6">
+          <TabsContent value="approvals" className="space-y-4 sm:space-y-6">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">

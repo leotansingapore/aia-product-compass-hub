@@ -144,15 +144,15 @@ export default function Roleplay() {
 
   return (
     <ProtectedPage pageId="roleplay">
-      <div className="container mx-auto p-6 space-y-6">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold">AI Roleplay Training</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6">
+        <div className="text-center space-y-3 sm:space-y-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">AI Roleplay Training</h1>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
             Practice your sales skills, objection handling, and client consultation with AI-powered video avatars
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {roleplayScenarios.map((scenario) => {
             const CategoryIcon = categoryIcons[scenario.category];
             
@@ -192,7 +192,7 @@ export default function Roleplay() {
                   </div>
                   
                   <Button 
-                    className="w-full"
+                    className="w-full min-h-[44px]"
                     onClick={() => handleStartRoleplay(scenario)}
                   >
                     <Play className="h-4 w-4 mr-2" />
@@ -211,7 +211,7 @@ export default function Roleplay() {
               How Roleplay Training Works
             </CardTitle>
           </CardHeader>
-          <CardContent className="grid md:grid-cols-3 gap-6">
+          <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             <div className="text-center space-y-2">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto">
                 <span className="text-primary-foreground font-bold">1</span>

@@ -61,12 +61,12 @@ export default function HowToUsePortal() {
         ]}
       />
       
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
         {/* Welcome Section */}
-        <Card className="mb-8 bg-gradient-card">
+        <Card className="mb-6 sm:mb-8 bg-gradient-card">
           <CardHeader>
-            <CardTitle className="text-2xl">Welcome to Your Learning Hub 🎯</CardTitle>
-            <CardDescription className="text-lg">
+            <CardTitle className="text-xl sm:text-2xl">Welcome to Your Learning Hub 🎯</CardTitle>
+            <CardDescription className="text-sm sm:text-base md:text-lg">
               This portal is designed to make you a more effective financial advisor by providing instant access 
               to product knowledge, training materials, and sales tools.
             </CardDescription>
@@ -96,9 +96,9 @@ export default function HowToUsePortal() {
         </Card>
 
         {/* Key Features */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-semibold mb-6">🔧 Key Features</h2>
-          <div className="grid md:grid-cols-2 gap-4">
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">🔧 Key Features</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {features.map((feature, index) => (
               <Card key={index} className="hover:shadow-card transition-all duration-300">
                 <CardHeader className="pb-3">
@@ -113,7 +113,7 @@ export default function HowToUsePortal() {
         </div>
 
         {/* Navigation Tips */}
-        <Card className="mb-8">
+        <Card className="mb-6 sm:mb-8">
           <CardHeader>
             <CardTitle>🧭 Navigation Tips</CardTitle>
             <CardDescription>Get the most out of your learning experience</CardDescription>
@@ -131,13 +131,13 @@ export default function HowToUsePortal() {
         </Card>
 
         {/* Product Categories Overview */}
-        <Card className="mb-8">
+        <Card className="mb-6 sm:mb-8">
           <CardHeader>
             <CardTitle>📂 Product Categories</CardTitle>
             <CardDescription>Understand our product organization</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               <div className="text-center p-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg">
                 <div className="text-2xl mb-2">📈</div>
                 <h4 className="font-semibold">Investment Products</h4>
@@ -174,22 +174,25 @@ export default function HowToUsePortal() {
             <CardDescription>Ready to dive in?</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-3">
               <Button 
                 variant="hero" 
                 onClick={() => navigate('/')}
+                className="min-h-[44px]"
               >
                 Browse All Categories
               </Button>
               <Button 
                 variant="outline"
                 onClick={() => navigate('/category/investment')}
+                className="min-h-[44px]"
               >
                 Start with Investment Products
               </Button>
               <Button 
                 variant="outline"
                 onClick={() => navigate('/search-by-profile')}
+                className="min-h-[44px]"
               >
                 Search by Client Profile
               </Button>

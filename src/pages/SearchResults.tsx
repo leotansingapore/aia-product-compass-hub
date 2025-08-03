@@ -115,9 +115,9 @@ export default function SearchResults() {
           ]}
         />
         
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-8">
           {/* Search Bar */}
-          <div className="mb-6 md:mb-8">
+          <div className="mb-4 sm:mb-6 md:mb-8">
             <div className="relative">
               <EnhancedSearchBar 
                 onSearch={handleSearch}
@@ -126,13 +126,13 @@ export default function SearchResults() {
             </div>
           </div>
 
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
           {/* Filters Sidebar */}
-          <div className={`${showFilters ? 'block' : 'hidden'} lg:block w-full lg:w-80 space-y-6`}>
+          <div className={`${showFilters ? 'block' : 'hidden'} lg:block w-full lg:w-80 space-y-4 sm:space-y-6`}>
             <Card>
-              <CardHeader className="p-4 md:p-6">
+              <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-base md:text-lg">Filters</CardTitle>
+                  <CardTitle className="text-sm sm:text-base md:text-lg">Filters</CardTitle>
                   <div className="flex items-center gap-2">
                     {activeFilterCount > 0 && (
                       <Badge variant="secondary" className="text-xs">{activeFilterCount}</Badge>
@@ -148,7 +148,7 @@ export default function SearchResults() {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4 md:space-y-6 p-4 md:p-6">
+              <CardContent className="space-y-3 sm:space-y-4 md:space-y-6">
                 {/* Category Filter */}
                 <div>
                   <h4 className="font-medium mb-3">Category</h4>
@@ -332,7 +332,7 @@ export default function SearchResults() {
                 ))}
               </div>
             ) : results.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
                 {sortedResults.map((result) => (
                   <ProductCard
                     key={result.id}

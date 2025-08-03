@@ -123,25 +123,25 @@ const ConsultantLanding = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-primary text-white">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative container mx-auto px-4 py-20">
+        <div className="relative container mx-auto px-3 sm:px-4 py-12 sm:py-16 md:py-20">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 bg-white/20 text-white border-white/30">
               For Financial Consultants
             </Badge>
-            <h1 className="text-5xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
               Accelerate Your Success with
               <span className="block text-accent-glow">AIA Product Compass</span>
             </h1>
-            <p className="text-xl mb-8 text-white max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl mb-6 sm:mb-8 text-white max-w-2xl mx-auto">
               Join hundreds of successful consultants who use our comprehensive platform to master AIA products, 
               serve clients better, and accelerate their career growth.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="xl" className="bg-white text-primary hover:bg-white/90">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
+              <Button size="xl" className="bg-white text-primary hover:bg-white/90 min-h-[44px]">
                 Start Your Journey
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="xl" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
+              <Button size="xl" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 min-h-[44px]">
                 Watch Demo
               </Button>
             </div>
@@ -150,9 +150,9 @@ const ConsultantLanding = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="py-8 sm:py-12 md:py-16 bg-white">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
@@ -164,16 +164,16 @@ const ConsultantLanding = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Everything You Need to Excel</h2>
-            <p className="text-xl text-foreground max-w-2xl mx-auto">
+      <section className="py-12 sm:py-16 md:py-20">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Everything You Need to Excel</h2>
+            <p className="text-lg sm:text-xl text-foreground max-w-2xl mx-auto">
               Our platform provides comprehensive tools and resources designed specifically for AIA consultants
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {features.map((feature, index) => (
               <Card key={index} className="border-0 shadow-card hover:shadow-elegant transition-all duration-300">
                 <CardContent className="p-6">

@@ -126,10 +126,10 @@ export default function SearchByProfile() {
         onBack={() => navigate('/')}
       />
       
-      <div className="max-w-6xl mx-auto px-6 py-8">
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
         
         {/* Search Section */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <SearchBar 
             onSearch={handleSearch} 
             placeholder="Search by age, profession, life stage, or needs..."
@@ -137,9 +137,9 @@ export default function SearchByProfile() {
         </div>
 
         {/* Client Profiles */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6">👥 Client Profiles</h2>
-          <div className="grid md:grid-cols-2 gap-6">
+        <div className="mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">👥 Client Profiles</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {filteredProfiles.map((profile) => (
               <Card 
                 key={profile.id} 
@@ -195,8 +195,8 @@ export default function SearchByProfile() {
 
         {/* Life Events */}
         <div>
-          <h2 className="text-2xl font-semibold mb-6">🎉 Life Events & Product Recommendations</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">🎉 Life Events & Product Recommendations</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {lifeEvents.map((event, index) => (
               <Card key={index} className="hover:shadow-card transition-all duration-300">
                 <CardHeader>
@@ -223,9 +223,9 @@ export default function SearchByProfile() {
         </div>
 
         {/* Quick Actions */}
-        <div className="mt-12 text-center">
-          <h3 className="text-xl font-semibold mb-4">Need More Specific Guidance?</h3>
-          <div className="flex flex-wrap justify-center gap-4">
+        <div className="mt-8 sm:mt-12 text-center">
+          <h3 className="text-lg sm:text-xl font-semibold mb-4">Need More Specific Guidance?</h3>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
             <Button variant="hero" onClick={() => navigate('/')}>
               Browse All Products
             </Button>
