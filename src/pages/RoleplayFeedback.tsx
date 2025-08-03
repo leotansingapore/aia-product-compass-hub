@@ -41,14 +41,25 @@ const RoleplayFeedback = () => {
 
   useEffect(() => {
     const fetchFeedback = async () => {
-      if (!sessionId) return;
+      if (!sessionId) {
+        console.error('No session ID provided in URL parameters');
+        toast({
+          title: "Error",
+          description: "No session ID found. Please start a new roleplay session.",
+          variant: "destructive",
+        });
+        navigate('/roleplay');
+        return;
+      }
+
+      console.log('Fetching feedback for session ID:', sessionId);
 
       try {
         const { data, error } = await supabase
           .from('roleplay_feedback')
           .select('*')
           .eq('session_id', sessionId)
-          .single();
+          .maybeSingle();
 
         if (error && error.code !== 'PGRST116') {
           console.error('Error fetching feedback:', error);

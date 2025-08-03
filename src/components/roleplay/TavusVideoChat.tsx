@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -57,6 +58,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const navigate = useNavigate();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -288,11 +290,18 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       description: "Redirecting to your feedback results...",
     });
 
-    // Redirect to feedback page
-    const currentSessionId = sessionId;
-    setTimeout(() => {
-      window.location.href = `/roleplay/feedback/${currentSessionId}`;
-    }, 1500);
+    // Redirect to feedback page using React Router
+    if (sessionId) {
+      navigate(`/roleplay/feedback/${sessionId}`);
+    } else {
+      console.error('No session ID available for feedback redirect');
+      toast({
+        title: "Navigation Error",
+        description: "Unable to load feedback. Session ID not found.",
+        variant: "destructive",
+      });
+      navigate('/roleplay');
+    }
   };
 
   const handleRestart = () => {
