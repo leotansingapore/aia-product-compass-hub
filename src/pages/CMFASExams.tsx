@@ -1,10 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { CategoryCard } from "@/components/CategoryCard";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
 import { BookOpen, Scale, TrendingUp, PieChart, FileText } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import type { UsefulLink } from "@/hooks/useProducts";
@@ -12,6 +14,7 @@ import type { UsefulLink } from "@/hooks/useProducts";
 export default function CMFASExams() {
   console.log('CMFASExams component loaded - no UsefulLinksSection here');
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   
   // State for editable useful links
   const [usefulLinks, setUsefulLinks] = useState<UsefulLink[]>([
@@ -152,21 +155,28 @@ export default function CMFASExams() {
         <meta name="description" content="Comprehensive CMFAS exam preparation materials including modules 1, 5, 6, 8, practice tests, and study materials for capital markets financial advisory services certification." />
       </Helmet>
 
-      <NavigationHeader 
-        title="CMFAS Exam Preparation"
-        subtitle="Capital Markets Financial Advisory Services - Your path to certification"
-      />
+      {!isMobile && (
+        <NavigationHeader 
+          title="CMFAS Exam Preparation"
+          subtitle="Capital Markets Financial Advisory Services - Your path to certification"
+        />
+      )}
       
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-4">CMFAS Certification Program</h1>
-          <p className="text-muted-foreground text-lg">
-            Prepare for your Capital Markets Financial Advisory Services certification with our comprehensive study materials, practice tests, and expert guidance across all essential modules.
-          </p>
-        </div>
+      <div className={cn(
+        "max-w-7xl mx-auto",
+        isMobile ? "px-4 py-4" : "px-6 py-8"
+      )}>
+        {!isMobile && (
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold mb-4">CMFAS Certification Program</h1>
+            <p className="text-muted-foreground text-lg">
+              Prepare for your Capital Markets Financial Advisory Services certification with our comprehensive study materials, practice tests, and expert guidance across all essential modules.
+            </p>
+          </div>
+        )}
 
         {/* Useful Links Section - Positioned Higher */}
-        <div className="mb-8">
+        <div className={cn("mb-6", isMobile && "mb-4")}>
           <CMFASUsefulLinks
             links={usefulLinks}
             onUpdate={handleUpdate}
@@ -174,13 +184,16 @@ export default function CMFASExams() {
         </div>
 
         {/* CMFAS AI Tutor - Below Useful Links */}
-        <div className="mb-12">
+        <div className={cn("mb-8", isMobile && "mb-6")}>
           <CMFASChatbot
             moduleName="CMFAS Exam Preparation - General"
           />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className={cn(
+          "grid gap-4",
+          isMobile ? "grid-cols-1" : "md:grid-cols-2 lg:grid-cols-3 gap-6"
+        )}>
           {cmfasModules.map((module) => (
             <CategoryCard
               key={module.title}
@@ -194,20 +207,22 @@ export default function CMFASExams() {
           ))}
         </div>
 
-        <div className="mt-12 bg-card rounded-lg p-6 border">
-          <h2 className="text-xl font-semibold mb-4">About CMFAS Certification</h2>
-          <div className="space-y-4 text-muted-foreground">
-            <p>
-              The Capital Markets Financial Advisory Services (CMFAS) certification is required for financial advisors in Singapore to provide investment advice on capital market products.
-            </p>
-            <p>
-              Our comprehensive preparation materials are organized by module, each containing detailed syllabi, practice questions, and expert guidance. Start with the Getting Started module to complete your essential setup, then proceed through each exam module systematically.
-            </p>
-            <p>
-              With our support package including flashcards, personal tutoring, question banks, and AI assistance, passing on your first attempt should be highly achievable.
-            </p>
+        {!isMobile && (
+          <div className="mt-12 bg-card rounded-lg p-6 border">
+            <h2 className="text-xl font-semibold mb-4">About CMFAS Certification</h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p>
+                The Capital Markets Financial Advisory Services (CMFAS) certification is required for financial advisors in Singapore to provide investment advice on capital market products.
+              </p>
+              <p>
+                Our comprehensive preparation materials are organized by module, each containing detailed syllabi, practice questions, and expert guidance. Start with the Getting Started module to complete your essential setup, then proceed through each exam module systematically.
+              </p>
+              <p>
+                With our support package including flashcards, personal tutoring, question banks, and AI assistance, passing on your first attempt should be highly achievable.
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

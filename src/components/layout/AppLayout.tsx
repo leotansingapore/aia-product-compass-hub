@@ -1,6 +1,8 @@
 import { ReactNode, useEffect } from "react";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
+import { MobileBottomNav } from "./MobileBottomNav";
+import { MobileHeader } from "./MobileHeader";
 import { Button } from "@/components/ui/button";
 import { LogIn, Settings } from "lucide-react";
 import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
@@ -11,6 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useAppStructureSync } from "@/hooks/useAppStructureSync";
 import { usePermissions } from "@/hooks/usePermissions";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -23,6 +26,7 @@ export function AppLayout({ children }: AppLayoutProps) {
   const navigate = useNavigate();
   const { autoSync } = useAppStructureSync();
   const { loading: permissionsLoading } = usePermissions();
+  const isMobile = useIsMobile();
 
   // Auto-sync app structure when layout mounts (for admin users)
   useEffect(() => {
@@ -31,6 +35,30 @@ export function AppLayout({ children }: AppLayoutProps) {
   
   // For unauthenticated users, show simple layout without sidebar
   if (!user) {
+    if (isMobile) {
+      return (
+        <div className="min-h-screen w-full">
+          <MobileHeader 
+            title="AIA Learning Platform"
+            rightAction={
+              <Button
+                variant="default"
+                size="sm"
+                onClick={() => navigate('/auth')}
+                className="flex items-center gap-2"
+              >
+                <LogIn className="h-4 w-4" />
+                Sign In
+              </Button>
+            }
+          />
+          <main className="flex-1 pb-20">
+            {children}
+          </main>
+        </div>
+      );
+    }
+
     return (
       <div className="min-h-screen w-full">
         {/* Top Bar for unauthenticated users */}
@@ -53,6 +81,41 @@ export function AppLayout({ children }: AppLayoutProps) {
     );
   }
   
+  // Mobile Layout for authenticated users
+  if (isMobile) {
+    return (
+      <div className="min-h-screen w-full">
+        <MobileHeader 
+          rightAction={
+            !permissionsLoading && isAdmin ? (
+              <Button
+                variant={isAdminMode ? "default" : "outline"}
+                size="sm"
+                onClick={toggleAdminMode}
+                className="flex items-center gap-2"
+              >
+                <Settings className="h-4 w-4" />
+                {isAdminMode ? "Exit" : "Admin"}
+              </Button>
+            ) : undefined
+          }
+        />
+        
+        <main className="flex-1 pb-20">
+          {children}
+        </main>
+        
+        <MobileBottomNav />
+        
+        {/* Onboarding Components */}
+        <WelcomeModal />
+        <OnboardingTutorial />
+        <OnboardingHelpButton />
+      </div>
+    );
+  }
+
+  // Desktop Layout for authenticated users
   return (
     <SidebarProvider defaultOpen={true}>
       <div className="min-h-screen flex w-full">
