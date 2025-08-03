@@ -144,7 +144,7 @@ export default function Roleplay() {
 
   return (
     <ProtectedPage pageId="roleplay">
-      <div className="container mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6">
+      <div className="container mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 space-y-3 sm:space-y-6">
         <div className="text-center space-y-3 sm:space-y-4">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">AI Roleplay Training</h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">

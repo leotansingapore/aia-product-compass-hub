@@ -115,7 +115,7 @@ export default function SearchResults() {
           ]}
         />
         
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-8">
+        <div className="max-w-7xl mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8">
           {/* Search Bar */}
           <div className="mb-4 sm:mb-6 md:mb-8">
             <div className="relative">

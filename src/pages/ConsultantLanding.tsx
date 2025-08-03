@@ -123,7 +123,7 @@ const ConsultantLanding = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-primary text-white">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative container mx-auto px-3 sm:px-4 py-12 sm:py-16 md:py-20">
+        <div className="relative container mx-auto px-1 sm:px-4 py-8 sm:py-16 md:py-20">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 bg-white/20 text-white border-white/30">
               For Financial Consultants

@@ -195,7 +195,7 @@ export default function M9Module() {
         subtitle="Life Insurance & Investment-Linked Policies"
       />
       
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-8 space-y-4 sm:space-y-6 md:space-y-8">
+      <div className="max-w-6xl mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 space-y-3 sm:space-y-6 md:space-y-8">
 
         {/* CMFAS Chat Launcher */}
         <div className="animate-fade-in">
