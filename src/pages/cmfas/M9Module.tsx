@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
-import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
+import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState, useEffect } from "react";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
@@ -197,11 +197,12 @@ export default function M9Module() {
       
       <div className="max-w-6xl mx-auto px-6 py-8 space-y-8">
 
-        {/* CMFAS Chatbot */}
+        {/* CMFAS Chat Launcher */}
         <div className="animate-fade-in">
-          <CMFASChatbot
+          <CMFASChatLauncher
             moduleId="m9"
             moduleName="M9 Module - Life Insurance & Investment-Linked Policies"
+            description="Get instant help with M9 exam topics including life insurance, ILPs, premiums, and industry practices"
           />
         </div>
 

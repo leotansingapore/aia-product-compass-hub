@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
-import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
+import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
 import { useState, useEffect } from "react";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { supabase } from "@/integrations/supabase/client";
@@ -198,11 +198,12 @@ export default function HIModule() {
       />
       
       <div className="max-w-4xl mx-auto px-6 py-8">
-        {/* CMFAS Chatbot */}
+        {/* CMFAS Chat Launcher */}
         <div className="mb-8">
-          <CMFASChatbot
+          <CMFASChatLauncher
             moduleId="hi"
             moduleName="HI Module - Health Insurance"
+            description="Get instant help with HI exam topics including healthcare systems, medical insurance products, and claims processes"
           />
         </div>
 

@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
-import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
+import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
 import { useState, useEffect } from "react";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { supabase } from "@/integrations/supabase/client";
@@ -207,11 +207,12 @@ export default function RES5Module() {
       />
       
       <div className="max-w-4xl mx-auto px-6 py-8">
-        {/* CMFAS Chatbot */}
+        {/* CMFAS Chat Launcher */}
         <div className="mb-8">
-          <CMFASChatbot
+          <CMFASChatLauncher
             moduleId="res5"
             moduleName="RES5 Module - Rules, Ethics & Skills for Financial Advisory Services"
+            description="Get instant help with RES5 exam topics including regulations, ethics, compliance, and professional conduct"
           />
         </div>
 

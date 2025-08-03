@@ -4,7 +4,7 @@ import { NavigationHeader } from "@/components/NavigationHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { CategoryCard } from "@/components/CategoryCard";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
-import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
+import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
 import { BookOpen, Scale, TrendingUp, PieChart, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -185,8 +185,8 @@ export default function CMFASExams() {
 
         {/* CMFAS AI Tutor - Below Useful Links */}
         <div className={cn("mb-8", isMobile && "mb-6")}>
-          <CMFASChatbot
-            moduleName="CMFAS Exam Preparation - General"
+          <CMFASChatLauncher
+            description="Get general help with CMFAS exam preparation, study strategies, and certification requirements"
           />
         </div>
 

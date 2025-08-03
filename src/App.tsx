@@ -26,6 +26,7 @@ import Auth from "./pages/Auth";
 import ConsultantLanding from "./pages/ConsultantLanding";
 import CMFASExams from "./pages/CMFASExams";
 import CMFASModuleDetail from "./pages/cmfas/CMFASModuleDetail";
+import CMFASChat from "./pages/cmfas/CMFASChat";
 import Roleplay from "./pages/Roleplay";
 import RoleplayFeedback from "./pages/RoleplayFeedback";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -57,6 +58,7 @@ const App = () => (
                     <Route path="/bookmarks" element={<Bookmarks />} />
                     <Route path="/cmfas-exams" element={<CMFASExams />} />
                     <Route path="/cmfas/module/:moduleId" element={<CMFASModuleDetail />} />
+                    <Route path="/cmfas/chat/:moduleId?" element={<CMFASChat />} />
                     <Route path="/roleplay" element={<Roleplay />} />
                     <Route path="/roleplay/feedback/:sessionId" element={<RoleplayFeedback />} />
                     <Route path="/admin" element={<AdminDashboard />} />
