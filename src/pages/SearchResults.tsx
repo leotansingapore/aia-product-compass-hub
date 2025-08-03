@@ -115,9 +115,9 @@ export default function SearchResults() {
           ]}
         />
         
-        <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-8">
           {/* Search Bar */}
-          <div className="mb-8">
+          <div className="mb-6 md:mb-8">
             <div className="relative">
               <EnhancedSearchBar 
                 onSearch={handleSearch}
@@ -126,16 +126,16 @@ export default function SearchResults() {
             </div>
           </div>
 
-        <div className="flex gap-8">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           {/* Filters Sidebar */}
-          <div className={`${showFilters ? 'block' : 'hidden'} lg:block w-80 space-y-6`}>
+          <div className={`${showFilters ? 'block' : 'hidden'} lg:block w-full lg:w-80 space-y-6`}>
             <Card>
-              <CardHeader>
+              <CardHeader className="p-4 md:p-6">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg">Filters</CardTitle>
+                  <CardTitle className="text-base md:text-lg">Filters</CardTitle>
                   <div className="flex items-center gap-2">
                     {activeFilterCount > 0 && (
-                      <Badge variant="secondary">{activeFilterCount}</Badge>
+                      <Badge variant="secondary" className="text-xs">{activeFilterCount}</Badge>
                     )}
                     <Button
                       variant="ghost"
@@ -148,7 +148,7 @@ export default function SearchResults() {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-4 md:space-y-6 p-4 md:p-6">
                 {/* Category Filter */}
                 <div>
                   <h4 className="font-medium mb-3">Category</h4>
@@ -240,9 +240,9 @@ export default function SearchResults() {
           {/* Results */}
           <div className="flex-1">
             {/* Results Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-3">
               <div className="flex items-center gap-4">
-                <h2 className="text-xl font-semibold">
+                <h2 className="text-lg md:text-xl font-semibold">
                   {isSearching ? "Searching..." : `${results.length} results`}
                   {hasQuery && !isSearching && (
                     <span className="text-muted-foreground font-normal"> for "{query}"</span>
@@ -270,7 +270,7 @@ export default function SearchResults() {
               <div className="flex items-center gap-2">
                 <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-40">
+                  <SelectTrigger className="w-32 md:w-40">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -332,7 +332,7 @@ export default function SearchResults() {
                 ))}
               </div>
             ) : results.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {sortedResults.map((result) => (
                   <ProductCard
                     key={result.id}

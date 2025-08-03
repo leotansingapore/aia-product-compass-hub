@@ -35,39 +35,39 @@ export default function MyAccount() {
 
   return (
     <ProtectedPage pageId="my-account">
-      <div className="container mx-auto p-6 space-y-6">
+      <div className="container mx-auto p-4 md:p-6 space-y-4 md:space-y-6">
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold">My Account</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl md:text-3xl font-bold">My Account</h1>
+          <p className="text-sm md:text-base text-muted-foreground">
             Manage your profile, security settings, and preferences
           </p>
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4 md:space-y-6">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-1">
             <ProtectedTabTrigger tabId="profile">
-              <TabsTrigger value="profile" className="flex items-center gap-2">
-                <User className="h-4 w-4" />
-                Profile
+              <TabsTrigger value="profile" className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
+                <User className="h-3 w-3 md:h-4 md:w-4" />
+                <span className="hidden sm:inline">Profile</span>
               </TabsTrigger>
             </ProtectedTabTrigger>
             <ProtectedTabTrigger tabId="security">
-              <TabsTrigger value="security" className="flex items-center gap-2">
-                <Shield className="h-4 w-4" />
-                Security
+              <TabsTrigger value="security" className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
+                <Shield className="h-3 w-3 md:h-4 md:w-4" />
+                <span className="hidden sm:inline">Security</span>
               </TabsTrigger>
             </ProtectedTabTrigger>
             <ProtectedTabTrigger tabId="preferences">
-              <TabsTrigger value="preferences" className="flex items-center gap-2">
-                <Settings className="h-4 w-4" />
-                Preferences
+              <TabsTrigger value="preferences" className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
+                <Settings className="h-3 w-3 md:h-4 md:w-4" />
+                <span className="hidden sm:inline">Preferences</span>
               </TabsTrigger>
             </ProtectedTabTrigger>
             {isMasterAdmin() && (
               <ProtectedTabTrigger tabId="admin">
-                <TabsTrigger value="admin" className="flex items-center gap-2">
-                  <Users className="h-4 w-4" />
-                  Admin Panel
+                <TabsTrigger value="admin" className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
+                  <Users className="h-3 w-3 md:h-4 md:w-4" />
+                  <span className="hidden sm:inline">Admin</span>
                 </TabsTrigger>
               </ProtectedTabTrigger>
             )}

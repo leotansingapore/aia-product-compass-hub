@@ -139,10 +139,10 @@ export default function ProductCategory() {
           ]}
         />
         
-        <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-8">
         {/* Search and Filters */}
-        <div className="mb-8">
-          <div className="mb-6">
+        <div className="mb-6 md:mb-8">
+          <div className="mb-4 md:mb-6">
             <EnhancedSearchBar 
               onSearch={handleSearch} 
               placeholder={`Search ${category.name.toLowerCase()}...`}
@@ -151,12 +151,12 @@ export default function ProductCategory() {
           
           {/* Tag Filters */}
           <div className="flex flex-wrap gap-2">
-            <span className="text-sm font-medium text-muted-foreground mr-2">Filter by tags:</span>
+            <span className="text-xs md:text-sm font-medium text-muted-foreground mr-2">Filter by tags:</span>
             {allTags.map(tag => (
               <Badge
                 key={tag}
                 variant={selectedTags.includes(tag) ? "default" : "outline"}
-                className="cursor-pointer hover:bg-accent/50 transition-colors"
+                className="cursor-pointer hover:bg-accent/50 transition-colors mobile-touch-target text-xs md:text-sm"
                 onClick={(e) => {
                   e.preventDefault();
                   handleTagClick(tag);
@@ -179,7 +179,7 @@ export default function ProductCategory() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 animate-fade-in">
           {filteredProducts.map((product, index) => (
             <div key={product.id} style={{ animationDelay: `${index * 0.1}s` }} className="animate-fade-in">
               <ProductCard

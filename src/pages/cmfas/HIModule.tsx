@@ -197,9 +197,9 @@ export default function HIModule() {
         subtitle="Health Insurance"
       />
       
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 py-4 md:py-8">
         {/* CMFAS Chat Launcher */}
-        <div className="mb-8">
+        <div className="mb-6 md:mb-8">
           <CMFASChatLauncher
             moduleId="hi"
             moduleName="HI Module - Health Insurance"
@@ -207,14 +207,14 @@ export default function HIModule() {
           />
         </div>
 
-        <div className="bg-card rounded-lg p-6 border">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center">
-              <span className="text-2xl">📘</span>
+        <div className="bg-card rounded-lg p-4 md:p-6 border mobile-card">
+          <div className="flex items-center gap-3 mb-4 md:mb-6">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center">
+              <span className="text-xl md:text-2xl">📘</span>
             </div>
             <div>
-              <h1 className="text-2xl font-bold">HI Exam</h1>
-              <p className="text-muted-foreground">Health Insurance</p>
+              <h1 className="text-lg md:text-2xl font-bold">HI Exam</h1>
+              <p className="text-sm md:text-base text-muted-foreground">Health Insurance</p>
             </div>
           </div>
           
@@ -224,7 +224,7 @@ export default function HIModule() {
               <p className="text-muted-foreground mb-4">
                 The HI exam is intended for all life and general insurance intermediaries and company staff members who are involved in advising and/or selling any Health Insurance products including:
               </p>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <ul className="text-muted-foreground space-y-2 list-disc list-inside ml-4">
                   <li>Medical Expense Insurance</li>
                   <li>Disability Income Insurance</li>
@@ -316,7 +316,7 @@ export default function HIModule() {
 
             <div>
               <h2 className="text-xl font-semibold mb-4">Exam Format</h2>
-              <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                 <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
                   <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">50</div>
                   <p className="text-sm font-medium">Multiple Choice Questions</p>
