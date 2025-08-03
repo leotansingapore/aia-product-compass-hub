@@ -470,30 +470,38 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       {/* Main Video Area - AI Trainer */}
       <div className="absolute inset-0">
         {conversationUrl ? (
-          <iframe
-            src={conversationUrl}
-            className="w-full h-full border-0"
-            allow="camera *; microphone *; autoplay *; encrypted-media *; fullscreen *; display-capture *; clipboard-write *"
-            title="Tavus AI Conversation"
-            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-presentation allow-top-navigation allow-downloads"
-            onLoad={() => {
-              console.log('Tavus iframe loaded successfully');
-              toast({
-                title: "Connected",
-                description: "Video session is now active"
-              });
-            }}
-            onError={(e) => {
-              console.error('Tavus iframe error:', e);
-              toast({
-                title: "Connection Issue", 
-                description: "Retrying connection...",
-                variant: "destructive"
-              });
-            }}
-            style={{ backgroundColor: '#000' }}
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+          <>
+            <iframe
+              src={conversationUrl}
+              className="w-full h-full border-0"
+              allow="camera *; microphone *; autoplay *; encrypted-media *; fullscreen *; display-capture *; clipboard-write *"
+              title="Tavus AI Conversation"
+              sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-presentation allow-top-navigation allow-downloads"
+              onLoad={() => {
+                console.log('Tavus iframe loaded successfully with URL:', conversationUrl);
+                toast({
+                  title: "Connected",
+                  description: "Video session is now active"
+                });
+              }}
+              onError={(e) => {
+                console.error('Tavus iframe error:', e);
+                console.error('Failed URL:', conversationUrl);
+                toast({
+                  title: "Connection Issue", 
+                  description: "Failed to load video session. Please try again.",
+                  variant: "destructive"
+                });
+              }}
+              style={{ backgroundColor: '#000' }}
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            {/* Debug info overlay */}
+            <div className="absolute bottom-4 left-4 bg-black/70 text-white text-xs p-2 rounded">
+              ID: {conversationId}<br/>
+              URL: {conversationUrl}
+            </div>
+          </>
         ) : (
           <div className="w-full h-full flex items-center justify-center text-white bg-gray-900">
             <div className="text-center">
