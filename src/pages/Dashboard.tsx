@@ -60,15 +60,15 @@ export default function Dashboard() {
         subtitle="Your comprehensive resource for product knowledge and sales excellence"
       />
       
-      <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-8 space-y-6 md:space-y-8">
 
         {/* Search Section - Enhanced for onboarding */}
         <ProtectedSection sectionId="dashboard-search">
-          <div className="text-center" data-onboarding="search">
-            <h2 className="text-2xl font-bold mb-4">Find What You Need</h2>
+          <div className="text-center px-2" data-onboarding="search">
+            <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Find What You Need</h2>
             <div className="max-w-2xl mx-auto">
               <EnhancedSearchBar onSearch={handleSearch} />
-              <p className="text-sm text-muted-foreground mt-2">
+              <p className="text-xs md:text-sm text-muted-foreground mt-2">
                 Search for products, documents, training materials, and more
               </p>
             </div>

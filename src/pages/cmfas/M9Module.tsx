@@ -195,7 +195,7 @@ export default function M9Module() {
         subtitle="Life Insurance & Investment-Linked Policies"
       />
       
-      <div className="max-w-6xl mx-auto px-6 py-8 space-y-8">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-4 md:py-8 space-y-6 md:space-y-8">
 
         {/* CMFAS Chat Launcher */}
         <div className="animate-fade-in">
@@ -208,31 +208,31 @@ export default function M9Module() {
 
         {/* Main Content with Tabs */}
         <div className="bg-card rounded-2xl border shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in">
-          <div className="p-8 border-b">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                <span className="text-3xl">📘</span>
+          <div className="p-4 md:p-8 border-b">
+            <div className="flex items-center gap-3 md:gap-4">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg">
+                <span className="text-xl md:text-3xl">📘</span>
               </div>
               <div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                <h1 className="text-xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                   M9 Exam
                 </h1>
-                <p className="text-lg text-muted-foreground">Life Insurance & Investment-Linked Policies</p>
+                <p className="text-sm md:text-lg text-muted-foreground">Life Insurance & Investment-Linked Policies</p>
               </div>
             </div>
           </div>
 
           <Tabs defaultValue="overview" className="w-full">
             <div className="px-8 pt-6">
-              <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="objectives">Objectives</TabsTrigger>
-                <TabsTrigger value="content">Course Content</TabsTrigger>
-                <TabsTrigger value="exam">Exam Format</TabsTrigger>
-              </TabsList>
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-1">
+              <TabsTrigger value="overview" className="text-xs md:text-sm px-2 md:px-4">Overview</TabsTrigger>
+              <TabsTrigger value="objectives" className="text-xs md:text-sm px-2 md:px-4">Objectives</TabsTrigger>
+              <TabsTrigger value="content" className="text-xs md:text-sm px-2 md:px-4">Content</TabsTrigger>
+              <TabsTrigger value="exam" className="text-xs md:text-sm px-2 md:px-4">Exam</TabsTrigger>
+            </TabsList>
             </div>
 
-            <div className="p-8">
+            <div className="p-4 md:p-8">
               <TabsContent value="overview" className="space-y-6">
                 {/* For Whom Section */}
                 <div className="space-y-4">
@@ -258,7 +258,7 @@ export default function M9Module() {
                     </div>
                     <h3 className="font-bold text-amber-800 dark:text-amber-200">Important Notes</h3>
                   </div>
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     {[
                       "Computer Screen Examination (CSE) in English medium",
                       "One mark awarded for each correct answer",
@@ -364,7 +364,7 @@ export default function M9Module() {
                   </div>
                   <h2 className="text-2xl font-bold">Exam Format</h2>
                 </div>
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                   <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-6 rounded-2xl border border-blue-200 dark:border-blue-800 text-center hover-scale group">
                     <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-200">100</div>
                     <p className="font-medium text-blue-800 dark:text-blue-300">Multiple Choice Questions</p>

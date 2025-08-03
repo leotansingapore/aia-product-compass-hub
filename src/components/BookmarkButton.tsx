@@ -19,7 +19,7 @@ export function BookmarkButton({ productId, className }: BookmarkButtonProps) {
       size="sm"
       onClick={() => toggleBookmark(productId)}
       disabled={loading}
-      className={cn("gap-2", className)}
+      className={cn("gap-2 mobile-touch-target", className)}
     >
       {bookmarked ? (
         <>

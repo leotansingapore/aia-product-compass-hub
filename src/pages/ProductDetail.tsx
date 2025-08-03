@@ -131,7 +131,7 @@ export default function ProductDetail() {
         breadcrumbs={breadcrumbs}
       />
       
-      <div className="max-w-4xl mx-auto px-6 py-8 space-y-8 animate-fade-in">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 py-4 md:py-8 space-y-6 md:space-y-8 animate-fade-in">
         
         {/* Tags and Bookmark Button */}
         <ProtectedSection sectionId="product_tags">

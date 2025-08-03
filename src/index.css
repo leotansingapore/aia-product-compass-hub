@@ -125,11 +125,43 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 
-  /* Touch optimization */
+  /* Touch optimization and mobile-first improvements */
   @media (max-width: 768px) {
     /* Increase touch targets on mobile */
-    button, [role="button"] {
-      min-height: 44px;
+    button, [role="button"], .mobile-touch-target {
+      min-height: 48px;
+      min-width: 48px;
+    }
+    
+    /* Better spacing for mobile */
+    .mobile-spacing {
+      padding: 0.75rem;
+    }
+    
+    /* Reduce excessive padding on mobile */
+    .container, .max-w-6xl, .max-w-7xl {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    /* Mobile-first grid adjustments */
+    .mobile-grid-1 {
+      grid-template-columns: 1fr;
+    }
+    
+    .mobile-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Better mobile typography */
+    .mobile-text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+    
+    .mobile-text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem;
     }
     
     /* Improve text readability on mobile */
@@ -141,6 +173,18 @@
     /* Optimize scrolling on mobile */
     * {
       -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Mobile header optimization */
+    .mobile-header {
+      min-height: 56px;
+      padding: 0.75rem 1rem;
+    }
+    
+    /* Better mobile card spacing */
+    .mobile-card {
+      margin: 0.5rem;
+      padding: 1rem;
     }
   }
 }

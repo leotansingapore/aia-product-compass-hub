@@ -149,7 +149,7 @@ export function EnhancedSearchBar({
             onFocus={() => setShowDropdown(query.length > 0 || recentSearches.length > 0)}
             onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
             onKeyDown={handleKeyDown}
-            className="pl-10 pr-16 h-12 text-base border-2 focus:border-primary transition-colors"
+            className="pl-10 pr-12 md:pr-16 h-10 md:h-12 text-sm md:text-base border-2 focus:border-primary transition-colors"
           />
           <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
             <kbd className="hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-70">
@@ -158,8 +158,9 @@ export function EnhancedSearchBar({
             </kbd>
           </div>
         </div>
-        <Button type="submit" size="lg" className="h-12 px-6">
-          Search
+        <Button type="submit" size="sm" className="h-10 md:h-12 px-3 md:px-6 mobile-touch-target">
+          <span className="hidden sm:inline">Search</span>
+          <Search className="h-4 w-4 sm:hidden" />
         </Button>
       </form>
 

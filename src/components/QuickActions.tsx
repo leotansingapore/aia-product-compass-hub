@@ -90,7 +90,7 @@ export function QuickActions() {
         )}
       </div>
       
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         {sortedActions.map((action, index) => {
           const isRecentlyUsed = recentlyUsed.includes(action.route);
           const Icon = action.icon;
@@ -103,16 +103,16 @@ export function QuickActions() {
               }`}
               onClick={() => handleActionClick(action)}
             >
-              <CardHeader className="pb-3">
+              <CardHeader className="pb-3 p-3 md:p-6">
                 <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 md:gap-3">
                     <div className={`p-2 rounded-lg ${
                       isRecentlyUsed ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'
                     }`}>
-                      <Icon className="h-5 w-5" />
+                      <Icon className="h-4 w-4 md:h-5 md:w-5" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                      <CardTitle className="text-sm md:text-lg group-hover:text-primary transition-colors">
                         {action.title}
                       </CardTitle>
                     </div>
@@ -131,15 +131,16 @@ export function QuickActions() {
                     )}
                   </div>
                 </div>
-                <CardDescription className="mt-2">{action.description}</CardDescription>
+                <CardDescription className="mt-2 text-xs md:text-sm">{action.description}</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-3 md:p-6">
                 <Button 
                   variant={isRecentlyUsed ? "default" : "outline"} 
-                  className="w-full group-hover:shadow-sm transition-all"
+                  className="w-full group-hover:shadow-sm transition-all mobile-touch-target"
+                  size="sm"
                 >
-                  {action.action}
-                  <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <span className="text-xs md:text-sm">{action.action}</span>
+                  <ArrowRight className="h-3 w-3 md:h-4 md:w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </CardContent>
             </Card>
