@@ -60,7 +60,7 @@ export default function Dashboard() {
         subtitle="Your comprehensive resource for product knowledge and sales excellence"
       />
       
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-8 space-y-4 sm:space-y-6 md:space-y-8">
+      <div className="max-w-7xl mx-auto px-1 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-8 space-y-3 sm:space-y-6 md:space-y-8">
 
         {/* Search Section - Enhanced for onboarding */}
         <ProtectedSection sectionId="dashboard-search">
