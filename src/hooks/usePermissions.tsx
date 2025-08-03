@@ -145,24 +145,12 @@ export function usePermissions() {
     return false; // No locked state in tier system, only hidden/visible
   };
 
-  const isSectionReadOnly = (sectionId: string): boolean => {
-    return !canEditSection(sectionId) && canAccessSection(sectionId);
-  };
-
   const isPageLocked = (pageId: string): boolean => {
     return false; // No locked state in tier system
   };
 
-  const isPageReadOnly = (pageId: string): boolean => {
-    return !canEditPage(pageId) && canAccessPage(pageId);
-  };
-
   const isTabLocked = (tabId: string): boolean => {
     return false; // No locked state in tier system
-  };
-
-  const isTabReadOnly = (tabId: string): boolean => {
-    return !canEditTab(tabId) && canAccessTab(tabId);
   };
 
   return {
@@ -177,19 +165,16 @@ export function usePermissions() {
     canAccessSection,
     canEditSection,
     isSectionLocked,
-    isSectionReadOnly,
     // Page permissions
     getPagePermission,
     canAccessPage,
     canEditPage,
     isPageLocked,
-    isPageReadOnly,
     // Tab permissions
     getTabPermission,
     canAccessTab,
     canEditTab,
     isTabLocked,
-    isTabReadOnly,
     refetch: fetchUserPermissions
   };
 }

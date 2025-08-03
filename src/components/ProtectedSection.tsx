@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Lock, Shield } from 'lucide-react';
+import { Lock } from 'lucide-react';
 import { usePermissions } from '@/hooks/usePermissions';
 
 interface ProtectedSectionProps {
@@ -11,7 +11,7 @@ interface ProtectedSectionProps {
 }
 
 export function ProtectedSection({ sectionId, children, fallback, className }: ProtectedSectionProps) {
-  const { canAccessSection, isSectionLocked, isSectionReadOnly, getSectionPermission, loading } = usePermissions();
+  const { canAccessSection, isSectionLocked, getSectionPermission, loading } = usePermissions();
 
   // If still loading permissions, return null to avoid showing content
   if (loading) {
@@ -44,23 +44,6 @@ export function ProtectedSection({ sectionId, children, fallback, className }: P
             </CardContent>
           </Card>
         )}
-      </div>
-    );
-  }
-
-  // If section is read-only, add read-only indicator
-  if (isSectionReadOnly(sectionId)) {
-    return (
-      <div className={className}>
-        <div className="relative">
-          <div className="absolute top-2 right-2 z-10">
-            <div className="flex items-center gap-1 bg-amber-100 text-amber-800 px-2 py-1 rounded-md text-xs border border-amber-200">
-              <Shield className="h-3 w-3" />
-              Read Only
-            </div>
-          </div>
-          {children}
-        </div>
       </div>
     );
   }
