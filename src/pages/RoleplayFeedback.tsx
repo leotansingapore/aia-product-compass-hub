@@ -47,6 +47,9 @@ const RoleplayFeedback = () => {
   const [generating, setGenerating] = useState(false);
   const [timeoutReached, setTimeoutReached] = useState(false);
   const [expandedRubric, setExpandedRubric] = useState<{ [key: string]: boolean }>({});
+  const [progressMessage, setProgressMessage] = useState("");
+  const [estimatedTime, setEstimatedTime] = useState(60);
+  const [elapsedTime, setElapsedTime] = useState(0);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -103,18 +106,37 @@ const RoleplayFeedback = () => {
           console.log('🔍 FEEDBACK DEBUG: No feedback found, entering generating mode');
           setLoading(false);
           setGenerating(true);
+          setProgressMessage("Analyzing conversation...");
           
-          // Set up 30-second timeout
+          // Progress message updates
+          const progressTimer = setInterval(() => {
+            setElapsedTime(prev => {
+              const newTime = prev + 1;
+              if (newTime <= 15) {
+                setProgressMessage("Analyzing conversation...");
+              } else if (newTime <= 30) {
+                setProgressMessage("Generating detailed feedback...");
+              } else if (newTime <= 45) {
+                setProgressMessage("Finalizing insights...");
+              } else {
+                setProgressMessage("Almost ready...");
+              }
+              return newTime;
+            });
+          }, 1000);
+          
+          // Set up 60-second timeout (extended from 30)
           timeoutId = setTimeout(() => {
-            console.log('🔍 FEEDBACK DEBUG: Timeout reached after 30 seconds');
+            console.log('🔍 FEEDBACK DEBUG: Timeout reached after 60 seconds');
+            clearInterval(progressTimer);
             setTimeoutReached(true);
             setGenerating(false);
             toast({
               title: "Feedback Generation Taking Longer Than Expected",
-              description: "Please refresh the page or try again later.",
+              description: "The AI is still processing your feedback. You can check again or refresh the page.",
               variant: "default",
             });
-          }, 30000);
+          }, 60000);
 
           // Set up real-time subscription for feedback generation
           console.log('🔍 FEEDBACK DEBUG: Setting up real-time subscription');
@@ -175,23 +197,24 @@ const RoleplayFeedback = () => {
             } catch (error) {
               console.error('🔍 FEEDBACK DEBUG: Polling error:', error);
             }
-          }, 3000); // Poll every 3 seconds
+          }, 2000); // Poll every 2 seconds (reduced from 3)
 
           // Store poll interval for cleanup
           const pollIntervalRef = pollInterval;
           
-          // Update timeout to also clear polling
+          // Update timeout to also clear polling (extended to 60 seconds)
           timeoutId = setTimeout(() => {
-            console.log('🔍 FEEDBACK DEBUG: Timeout reached after 30 seconds');
+            console.log('🔍 FEEDBACK DEBUG: Timeout reached after 60 seconds');
             clearInterval(pollIntervalRef);
+            clearInterval(progressTimer);
             setTimeoutReached(true);
             setGenerating(false);
             toast({
-              title: "Feedback Generation Taking Longer Than Expected",
-              description: "Please refresh the page or try again later.",
+              title: "Feedback Generation Taking Longer Than Expected", 
+              description: "The AI is still processing your feedback. You can check again or refresh the page.",
               variant: "default",
             });
-          }, 30000);
+          }, 60000);
 
           console.log('🔍 FEEDBACK DEBUG: Real-time subscription and polling established');
         }
@@ -239,31 +262,90 @@ const RoleplayFeedback = () => {
   }
 
   if (generating) {
+    const progressPercentage = Math.min((elapsedTime / estimatedTime) * 100, 95);
+    
     return (
       <div className="container mx-auto p-6 space-y-6">
-        <div className="text-center py-12">
+        <div className="text-center py-12 max-w-md mx-auto">
           <RefreshCw className="h-12 w-12 animate-spin mx-auto mb-4 text-primary" />
           <h2 className="text-2xl font-semibold mb-2">Generating Your Feedback</h2>
-          <p className="text-muted-foreground">Our AI is analyzing your performance...</p>
+          <p className="text-muted-foreground mb-4">{progressMessage}</p>
+          
+          <div className="space-y-3">
+            <Progress value={progressPercentage} className="h-2" />
+            <div className="flex justify-between text-sm text-muted-foreground">
+              <span>{Math.floor(elapsedTime)}s elapsed</span>
+              <span>~{estimatedTime}s estimated</span>
+            </div>
+          </div>
+          
+          <p className="text-xs text-muted-foreground mt-4">
+            Our AI is providing comprehensive analysis of your roleplay performance
+          </p>
         </div>
       </div>
     );
   }
 
+  const handleCheckAgain = async () => {
+    setTimeoutReached(false);
+    setGenerating(true);
+    setElapsedTime(0);
+    setProgressMessage("Checking for feedback...");
+    
+    try {
+      const { data, error } = await supabase
+        .from('roleplay_feedback')
+        .select('*')
+        .eq('session_id', sessionId)
+        .maybeSingle();
+
+      if (data) {
+        setFeedback(data as FeedbackData);
+        setGenerating(false);
+        toast({
+          title: "Feedback Found!",
+          description: "Your feedback has been successfully loaded.",
+          variant: "default",
+        });
+      } else {
+        // Restart the generation process
+        setTimeout(() => {
+          setTimeoutReached(true);
+          setGenerating(false);
+        }, 15000); // Give it 15 more seconds
+      }
+    } catch (error) {
+      setGenerating(false);
+      setTimeoutReached(true);
+      toast({
+        title: "Error",
+        description: "Failed to check for feedback. Please try refreshing the page.",
+        variant: "destructive",
+      });
+    }
+  };
+
   if (timeoutReached) {
     return (
       <div className="container mx-auto p-6 space-y-6">
-        <div className="text-center py-12">
+        <div className="text-center py-12 max-w-md mx-auto">
           <MessageSquare className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-          <h2 className="text-2xl font-semibold mb-2">Feedback Generation Timed Out</h2>
-          <p className="text-muted-foreground mb-4">The feedback is taking longer than expected to generate.</p>
-          <div className="flex flex-col sm:flex-row gap-2 justify-center">
-            <Button onClick={() => window.location.reload()}>
-              <RefreshCw className="h-4 w-4 mr-2" />
+          <h2 className="text-2xl font-semibold mb-2">Still Processing Your Feedback</h2>
+          <p className="text-muted-foreground mb-6">
+            Our AI is working hard to provide you with comprehensive feedback. This sometimes takes a bit longer for complex conversations.
+          </p>
+          <div className="flex flex-col gap-3 max-w-xs mx-auto">
+            <Button onClick={handleCheckAgain} className="gap-2">
+              <RefreshCw className="h-4 w-4" />
+              Check Again
+            </Button>
+            <Button variant="outline" onClick={() => window.location.reload()}>
+              <RefreshCw className="h-4 w-4" />
               Refresh Page
             </Button>
-            <Button variant="outline" onClick={() => navigate('/roleplay')}>
-              <ArrowLeft className="h-4 w-4 mr-2" />
+            <Button variant="ghost" onClick={() => navigate('/roleplay')}>
+              <ArrowLeft className="h-4 w-4" />
               Back to Roleplay
             </Button>
           </div>
