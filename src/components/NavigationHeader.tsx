@@ -29,7 +29,7 @@ interface NavigationHeaderProps {
 export function NavigationHeader({ title, subtitle, showBackButton, onBack, breadcrumbs, actions }: NavigationHeaderProps) {
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
   return (
-    <div className="bg-gradient-hero text-white py-4 md:py-8 px-4 md:px-6">
+    <div className="bg-gradient-hero text-white py-3 sm:py-4 md:py-8 px-3 sm:px-4 md:px-6">
       <div className="max-w-7xl mx-auto">
         
         {/* Breadcrumbs */}
@@ -59,8 +59,8 @@ export function NavigationHeader({ title, subtitle, showBackButton, onBack, brea
         )}
 
         {/* Header Content */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
-          <div className="flex items-center space-x-3 md:space-x-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3">
+          <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
             {showBackButton && (
               <Button variant="ghost" onClick={onBack} className="text-white hover:bg-white/20 mobile-touch-target">
                 <ArrowLeft className="h-4 w-4 mr-2" />
@@ -68,9 +68,9 @@ export function NavigationHeader({ title, subtitle, showBackButton, onBack, brea
               </Button>
             )}
             <div>
-              <h1 className="text-xl md:text-3xl font-bold">{title}</h1>
+              <h1 className="text-lg sm:text-xl md:text-3xl font-bold">{title}</h1>
               {subtitle && (
-                <p className="text-white/90 mt-1 md:mt-2 text-sm md:text-lg">{subtitle}</p>
+                <p className="text-white/90 mt-1 md:mt-2 text-xs sm:text-sm md:text-lg">{subtitle}</p>
               )}
             </div>
           </div>

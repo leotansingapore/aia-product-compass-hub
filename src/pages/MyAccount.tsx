@@ -35,7 +35,7 @@ export default function MyAccount() {
 
   return (
     <ProtectedPage pageId="my-account">
-      <div className="container mx-auto p-4 md:p-6 space-y-4 md:space-y-6">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-6 space-y-3 sm:space-y-4 md:space-y-6">
         <div className="space-y-2">
           <h1 className="text-2xl md:text-3xl font-bold">My Account</h1>
           <p className="text-sm md:text-base text-muted-foreground">
@@ -44,30 +44,38 @@ export default function MyAccount() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4 md:space-y-6">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-1">
+          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 h-auto p-2 bg-muted/50">
             <ProtectedTabTrigger tabId="profile">
-              <TabsTrigger value="profile" className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
-                <User className="h-3 w-3 md:h-4 md:w-4" />
-                <span className="hidden sm:inline">Profile</span>
+              <TabsTrigger value="profile" className="mobile-touch-target text-sm font-medium px-3 py-2 min-h-[44px] data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg">
+                <div className="flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  <span>Profile</span>
+                </div>
               </TabsTrigger>
             </ProtectedTabTrigger>
             <ProtectedTabTrigger tabId="security">
-              <TabsTrigger value="security" className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
-                <Shield className="h-3 w-3 md:h-4 md:w-4" />
-                <span className="hidden sm:inline">Security</span>
+              <TabsTrigger value="security" className="mobile-touch-target text-sm font-medium px-3 py-2 min-h-[44px] data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg">
+                <div className="flex items-center gap-2">
+                  <Shield className="h-4 w-4" />
+                  <span>Security</span>
+                </div>
               </TabsTrigger>
             </ProtectedTabTrigger>
             <ProtectedTabTrigger tabId="preferences">
-              <TabsTrigger value="preferences" className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
-                <Settings className="h-3 w-3 md:h-4 md:w-4" />
-                <span className="hidden sm:inline">Preferences</span>
+              <TabsTrigger value="preferences" className="mobile-touch-target text-sm font-medium px-3 py-2 min-h-[44px] data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg">
+                <div className="flex items-center gap-2">
+                  <Settings className="h-4 w-4" />
+                  <span>Preferences</span>
+                </div>
               </TabsTrigger>
             </ProtectedTabTrigger>
             {isMasterAdmin() && (
               <ProtectedTabTrigger tabId="admin">
-                <TabsTrigger value="admin" className="flex items-center gap-1 md:gap-2 text-xs md:text-sm">
-                  <Users className="h-3 w-3 md:h-4 md:w-4" />
-                  <span className="hidden sm:inline">Admin</span>
+                <TabsTrigger value="admin" className="mobile-touch-target text-sm font-medium px-3 py-2 min-h-[44px] data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-lg">
+                  <div className="flex items-center gap-2">
+                    <Users className="h-4 w-4" />
+                    <span>Admin</span>
+                  </div>
                 </TabsTrigger>
               </ProtectedTabTrigger>
             )}

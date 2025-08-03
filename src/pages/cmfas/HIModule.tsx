@@ -197,7 +197,7 @@ export default function HIModule() {
         subtitle="Health Insurance"
       />
       
-      <div className="max-w-4xl mx-auto px-4 md:px-6 py-4 md:py-8">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
         {/* CMFAS Chat Launcher */}
         <div className="mb-6 md:mb-8">
           <CMFASChatLauncher
@@ -224,7 +224,7 @@ export default function HIModule() {
               <p className="text-muted-foreground mb-4">
                 The HI exam is intended for all life and general insurance intermediaries and company staff members who are involved in advising and/or selling any Health Insurance products including:
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <ul className="text-muted-foreground space-y-2 list-disc list-inside ml-4">
                   <li>Medical Expense Insurance</li>
                   <li>Disability Income Insurance</li>
@@ -246,7 +246,7 @@ export default function HIModule() {
 
             <div>
               <h2 className="text-xl font-semibold mb-4">Course Contents</h2>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-3">
                   <div className="p-3 bg-muted rounded-lg">
                     <p className="font-medium text-sm">Chapter 1</p>
@@ -316,7 +316,7 @@ export default function HIModule() {
 
             <div>
               <h2 className="text-xl font-semibold mb-4">Exam Format</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
                   <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">50</div>
                   <p className="text-sm font-medium">Multiple Choice Questions</p>

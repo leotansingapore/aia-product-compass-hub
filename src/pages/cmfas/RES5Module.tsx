@@ -206,7 +206,7 @@ export default function RES5Module() {
         subtitle="Rules, Ethics & Skills for Financial Advisory Services"
       />
       
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
         {/* CMFAS Chat Launcher */}
         <div className="mb-8">
           <CMFASChatLauncher
@@ -216,7 +216,7 @@ export default function RES5Module() {
           />
         </div>
 
-        <div className="bg-card rounded-lg p-6 border">
+        <div className="bg-card rounded-lg p-3 sm:p-4 md:p-6 border">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 bg-red-100 dark:bg-red-900/20 rounded-lg flex items-center justify-center">
               <span className="text-2xl">📘</span>
@@ -245,8 +245,8 @@ export default function RES5Module() {
 
             <div>
               <h2 className="text-xl font-semibold mb-4">Course Structure</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-muted p-4 rounded-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="bg-muted p-3 sm:p-4 rounded-lg">
                   <h3 className="font-semibold mb-3">Part I - Regulations (110 Questions)</h3>
                   <ul className="text-sm space-y-2">
                     <li>[1] Financial Advisers Act & Regulations</li>
@@ -264,7 +264,7 @@ export default function RES5Module() {
                     <li>[13] Central Provident Fund</li>
                   </ul>
                 </div>
-                <div className="bg-muted p-4 rounded-lg">
+                <div className="bg-muted p-3 sm:p-4 rounded-lg">
                   <h3 className="font-semibold mb-3">Part II - Ethics & Skills (40 Questions)</h3>
                   <ul className="text-sm space-y-2">
                     <li>[14] Why Professional Ethics Matter</li>
@@ -288,17 +288,17 @@ export default function RES5Module() {
 
             <div>
               <h2 className="text-xl font-semibold mb-4">Exam Format</h2>
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
                   <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">150</div>
                   <p className="text-sm font-medium">Multiple Choice Questions</p>
                   <p className="text-xs text-muted-foreground mt-1">(110 Part I + 40 Part II)</p>
                 </div>
-                <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                <div className="bg-green-50 dark:bg-green-900/20 p-3 sm:p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
                   <div className="text-2xl font-bold text-green-600 dark:text-green-400">3</div>
                   <p className="text-sm font-medium">Hours Duration</p>
                 </div>
-                <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800 text-center">
+                <div className="bg-orange-50 dark:bg-orange-900/20 p-3 sm:p-4 rounded-lg border border-orange-200 dark:border-orange-800 text-center">
                   <div className="text-lg font-bold text-orange-600 dark:text-orange-400">75% & 80%</div>
                   <p className="text-sm font-medium">Passing Grades</p>
                   <p className="text-xs text-muted-foreground mt-1">(Part I & Part II)</p>
@@ -306,7 +306,7 @@ export default function RES5Module() {
               </div>
             </div>
 
-            <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+            <div className="bg-red-50 dark:bg-red-900/20 p-3 sm:p-4 rounded-lg border border-red-200 dark:border-red-800">
               <h3 className="font-medium mb-2 text-red-800 dark:text-red-200">Critical Passing Requirements</h3>
               <p className="text-sm text-red-800 dark:text-red-200">
                 <strong>You must achieve at least 75% for Part I AND at least 80% for Part II to pass.</strong> 
@@ -314,7 +314,7 @@ export default function RES5Module() {
               </p>
             </div>
 
-            <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+            <div className="bg-amber-50 dark:bg-amber-900/20 p-3 sm:p-4 rounded-lg border border-amber-200 dark:border-amber-800">
               <h3 className="font-medium mb-2">Important Notes</h3>
               <ul className="text-sm space-y-1">
                 <li>• Computer Screen Examination (CSE) in English medium</li>

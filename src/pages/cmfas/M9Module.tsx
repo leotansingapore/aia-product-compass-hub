@@ -195,7 +195,7 @@ export default function M9Module() {
         subtitle="Life Insurance & Investment-Linked Policies"
       />
       
-      <div className="max-w-6xl mx-auto px-4 md:px-6 py-4 md:py-8 space-y-6 md:space-y-8">
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-8 space-y-4 sm:space-y-6 md:space-y-8">
 
         {/* CMFAS Chat Launcher */}
         <div className="animate-fade-in">
@@ -291,7 +291,7 @@ export default function M9Module() {
                     </div>
                     <h3 className="font-bold text-amber-800 dark:text-amber-200">Important Notes</h3>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     {[
                       "Computer Screen Examination (CSE) in English medium",
                       "One mark awarded for each correct answer",
@@ -397,7 +397,7 @@ export default function M9Module() {
                   </div>
                   <h2 className="text-2xl font-bold">Exam Format</h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
                   <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-6 rounded-2xl border border-blue-200 dark:border-blue-800 text-center hover-scale group">
                     <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-200">100</div>
                     <p className="font-medium text-blue-800 dark:text-blue-300">Multiple Choice Questions</p>

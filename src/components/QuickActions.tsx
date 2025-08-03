@@ -90,7 +90,7 @@ export function QuickActions() {
         )}
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
         {sortedActions.map((action, index) => {
           const isRecentlyUsed = recentlyUsed.includes(action.route);
           const Icon = action.icon;
@@ -103,7 +103,7 @@ export function QuickActions() {
               }`}
               onClick={() => handleActionClick(action)}
             >
-              <CardHeader className="pb-3 p-3 md:p-6">
+              <CardHeader className="pb-2 p-3 sm:pb-3 md:p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-2 md:gap-3">
                     <div className={`p-2 rounded-lg ${
@@ -133,7 +133,7 @@ export function QuickActions() {
                 </div>
                 <CardDescription className="mt-2 text-xs md:text-sm">{action.description}</CardDescription>
               </CardHeader>
-              <CardContent className="p-3 md:p-6">
+              <CardContent className="p-3 pt-0 sm:pt-2 md:p-6">
                 <Button 
                   variant={isRecentlyUsed ? "default" : "outline"} 
                   className="w-full group-hover:shadow-sm transition-all mobile-touch-target"

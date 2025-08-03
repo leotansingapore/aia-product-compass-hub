@@ -39,7 +39,7 @@ export default function Bookmarks() {
         onBack={() => navigate('/')}
       />
       
-      <div className="max-w-6xl mx-auto px-6 py-8">
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
         {bookmarkedProducts.length === 0 ? (
           <div className="text-center py-12">
             <BookmarkX className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
@@ -55,7 +55,7 @@ export default function Bookmarks() {
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
             {bookmarkedProducts.map((product) => (
               <ProductCard
                 key={product.id}

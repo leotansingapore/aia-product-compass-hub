@@ -152,10 +152,10 @@ export function UserStats() {
   const progressPercentage = profile ? (currentLevelXP / nextLevelXP) * 100 : 0;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6">
       {/* Level & XP */}
       <Card className="border-accent/20 bg-gradient-card">
-        <CardContent className="p-4">
+        <CardContent className="p-3 sm:p-4">
           <div className="flex items-center gap-2 mb-2">
             <Trophy className="h-5 w-5 text-warning" />
             <span className="font-semibold">Level {profile?.current_level || 1}</span>
@@ -169,7 +169,7 @@ export function UserStats() {
 
       {/* Total XP */}
       <Card className="border-accent/20 bg-gradient-card">
-        <CardContent className="p-4">
+        <CardContent className="p-3 sm:p-4">
           <div className="flex items-center gap-2 mb-2">
             <Target className="h-5 w-5 text-primary" />
             <span className="font-semibold">Total XP</span>
@@ -182,7 +182,7 @@ export function UserStats() {
 
       {/* Streak */}
       <Card className="border-accent/20 bg-gradient-card">
-        <CardContent className="p-4">
+        <CardContent className="p-3 sm:p-4">
           <div className="flex items-center gap-2 mb-2">
             <Zap className="h-5 w-5 text-warning" />
             <span className="font-semibold">Streak</span>
@@ -195,7 +195,7 @@ export function UserStats() {
 
       {/* Recent Achievement */}
       <Card className="border-accent/20 bg-gradient-card">
-        <CardContent className="p-4">
+        <CardContent className="p-3 sm:p-4">
           <div className="flex items-center gap-2 mb-2">
             <Award className="h-5 w-5 text-success" />
             <span className="font-semibold">Latest Achievement</span>
