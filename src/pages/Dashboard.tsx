@@ -75,17 +75,7 @@ export default function Dashboard() {
           </div>
         </ProtectedSection>
 
-        {/* Quick Actions - Enhanced for onboarding */}
-        <ProtectedSection sectionId="dashboard-quick-actions">
-          <div data-onboarding="profile-search">
-            <QuickActions />
-          </div>
-        </ProtectedSection>
-
-        {/* User Stats */}
-        <ProtectedSection sectionId="dashboard-user-stats">
-          {user ? <UserStats /> : <AuthPrompt />}
-        </ProtectedSection>
+        {/* User Stats - Hidden since gamification removed */}
 
 
         {/* User-specific sections - Only show if logged in */}
