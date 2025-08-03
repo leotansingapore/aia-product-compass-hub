@@ -16,7 +16,7 @@ export function MobileDrawer() {
   const { signOut } = useAuth();
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
   const { loading: permissionsLoading } = usePermissions();
-  const { categories } = useCategories();
+  const { categories, loading: categoriesLoading } = useCategories();
 
   const resourceItems = [
     { name: "How to Use Portal", href: "/how-to-use" },
@@ -70,7 +70,7 @@ export function MobileDrawer() {
                 Product Categories
               </h3>
               <div className="space-y-1">
-                {categories.map((category) => {
+                {!categoriesLoading && categories && categories.map((category) => {
                   const config = getCategoryConfig(category.name);
                   return (
                     <NavLink
@@ -95,6 +95,11 @@ export function MobileDrawer() {
                     </NavLink>
                   );
                 })}
+                {categoriesLoading && (
+                  <div className="px-3 py-2 text-sm text-muted-foreground">
+                    Loading categories...
+                  </div>
+                )}
               </div>
             </div>
 
