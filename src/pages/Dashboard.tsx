@@ -78,17 +78,7 @@ export default function Dashboard() {
         {/* User Stats - Hidden since gamification removed */}
 
 
-        {/* User-specific sections - Only show if logged in */}
-        {user && (
-          <>
-            <ProtectedSection sectionId="dashboard-recently-viewed">
-              <RecentlyViewedSection />
-            </ProtectedSection>
-            <ProtectedSection sectionId="dashboard-recommendations">
-              <RecommendationsSection limit={6} />
-            </ProtectedSection>
-          </>
-        )}
+        {/* User-specific sections removed from homepage */}
       </div>
     </div>
     </ProtectedPage>
