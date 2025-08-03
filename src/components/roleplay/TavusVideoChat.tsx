@@ -285,8 +285,14 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
     toast({
       title: "Session Ended",
-      description: "Your roleplay session has been completed.",
+      description: "Redirecting to your feedback results...",
     });
+
+    // Redirect to feedback page
+    const currentSessionId = sessionId;
+    setTimeout(() => {
+      window.location.href = `/roleplay/feedback/${currentSessionId}`;
+    }, 1500);
   };
 
   const handleRestart = () => {
