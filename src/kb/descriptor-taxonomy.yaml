@@ -1,0 +1,45 @@
+tone_descriptors:
+  - encouraging
+  - confident
+  - neutral
+  - warm
+  - empathetic
+  - assertive
+  - concise
+  - rushed
+  - tentative
+  - verbose
+  - defensive
+  - dismissive
+  - abrasive
+  - condescending
+  - collaborative
+  - consultative
+  - persuasive
+  - skeptical
+  - disengaged
+  - enthusiastic
+  - monotone
+
+visual_presence_descriptors:
+  - grounded
+  - open
+  - closed
+  - animated
+  - static
+  - tense
+  - relaxed
+  - expansive
+  - contained
+  - purposeful
+  - fidgety
+  - upright
+  - slouched
+  - pacing
+  - still
+  - engaged
+  - distracted
+  - professional
+  - casual
+
+# Evaluator MUST output exactly 3 descriptors per section for tone and visual presence.

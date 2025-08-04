@@ -1,0 +1,35 @@
+{
+  "$id": "https://kb.local/schemas/presentation.json",
+  "type": "object",
+  "required": ["toneAnalysis", "visualPresence", "pronunciationFeedback"],
+  "properties": {
+    "toneAnalysis": {
+      "type": "object",
+      "required": ["descriptors", "detailedAnalysis"],
+      "properties": {
+        "descriptors": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "string" } },
+        "detailedAnalysis": { "type": "string", "minLength": 120 }
+      },
+      "additionalProperties": false
+    },
+    "visualPresence": {
+      "type": "object",
+      "required": ["descriptors", "detailedAnalysis"],
+      "properties": {
+        "descriptors": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "string" } },
+        "detailedAnalysis": { "type": "string", "minLength": 120 }
+      },
+      "additionalProperties": false
+    },
+    "pronunciationFeedback": {
+      "type": "object",
+      "required": ["summary", "detailedAnalysis"],
+      "properties": {
+        "summary": { "type": "string", "minLength": 20, "maxLength": 200 },
+        "detailedAnalysis": { "type": "string", "minLength": 120 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

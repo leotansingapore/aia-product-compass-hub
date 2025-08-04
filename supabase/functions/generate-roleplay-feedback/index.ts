@@ -130,14 +130,14 @@ serve(async (req) => {
 });
 
 async function generateMetricsFeedback(conversationText: string, session: any, openAIApiKey: string) {
-  const prompt = `You are an expert sales coach and QA evaluator analyzing a roleplay conversation between a Seller and a Prospect. Your job is to score six core competencies and provide concise, evidence-backed coaching.
+  const prompt = `You are an expert financial advisor coach evaluating a seller-prospect conversation using personal finance domain expertise. Use the 5-point rubric with finance-specific anchors.
 
-SCENARIO CONTEXT
-- Title: ${session.scenario_title}
-- Category: ${session.scenario_category}
+CONTEXT
+- Scenario: ${session.scenario_title}
+- Category: ${session.scenario_category}  
 - Difficulty: ${session.scenario_difficulty}
 
-CONVERSATION TRANSCRIPT
+CONVERSATION TRANSCRIPT (apply redaction rules before quoting)
 ${conversationText}
 
 OUTPUT RULES (CRITICAL)
@@ -148,35 +148,56 @@ OUTPUT RULES (CRITICAL)
 - "insights" must be 2–4 actionable bullet points, each including a strong alternative line the Seller could have used.
 - Do not invent information not present in the transcript. If information is missing, state "Not evidenced in transcript."
 
-SCORING RUBRIC (ANCHORS)
-Score each competency independently using these anchors. Calibrate with the transcript's length and difficulty.
+FINANCE-SPECIFIC RUBRIC (1-5 scale):
 
-0 (Missed): Not attempted or no evidence.
-1 (Poor): Attempts present but counterproductive or off-target; harms flow; major misses.
-2 (Weak): Inconsistent or surface-level; occasional relevance; limited impact.
-3 (Adequate): Meets baseline; generally correct; some missed opportunities.
-4 (Strong): Consistently effective; minor gaps; advances the sale.
-5 (Excellent): High mastery; precise, timely, and adaptive; materially improves outcomes.
+**Small Talk & Rapport Building**
+1: No rapport, jumps to products
+2: Basic pleasantries, feels scripted
+3: Natural opener, shows interest in person vs portfolio
+4: Builds trust through shared experiences/values about money
+5: Authentic connection - client feels heard before any financial discussion
 
-COMPETENCY DEFINITIONS (WHAT TO LOOK FOR)
-1) Small Talk (Rapport & Warmth)
-   - Opens warmly, finds common ground, transitions smoothly to business.
-   - Avoids overlong chit-chat; keeps relevance and pace.
+**Active Listening** 
+1: Interrupts, doesn't acknowledge client concerns
+2: Waits to speak but misses emotional cues about money
+3: Reflects basic financial goals, asks follow-ups
+4: Catches unstated concerns about risk/fees/liquidity
+5: Deep empathy - addresses money fears and life-stage anxieties
 
-2) Active Listening (Acknowledge & Build)
-   - Reflects and labels ("Sounds like…", "What I'm hearing is…"), asks follow-ups that build on buyer's words, confirms understanding.
+**Pain Point Identification** (Finance Discovery Ladder)
+2: Basic goal ("want to retire") without quantifying gap or timeline
+3: Surfaces 2-3 specifics (savings rate, horizon, risk preference)
+4: Quantifies gap with math (needs vs assets vs time); confirms success criteria
+5: Multi-layer discovery: cashflow → protection → investing → timeline → tradeoffs; gains commitment
 
-3) Pain Point Identification (Discovery Quality)
-   - Uses layered, specific questions (problem → impact → root cause → priority → timeline), quantifies stakes, confirms success criteria.
+**Product Knowledge**
+1: Factual errors about financial products/regulations
+2: Basic product features, can't explain benefits
+3: Good product knowledge, handles standard questions
+4: Deep expertise - connects features to life-stage needs
+5: Masters positioning - shows how product solves discovered financial gaps
 
-4) Product Knowledge (Solution Clarity & Fit)
-   - Explains how features map to stated pains, articulates benefits and proof, avoids inaccuracies or vague claims.
+**Objection Handling** (Finance-specific)
+2: Generic responses to fees/performance concerns
+3: Normalizes concern, provides evidence, partial resolution check
+4: Isolates ("Other than fees..."), shows value math/risk framing, explicit check
+5: Reframes to outcomes & constraints; contrasts alternatives (DIY/ETF/insurer) fairly
 
-5) Objection Handling (Professionalism & Resolution)
-   - Surfaces and normalizes concerns, isolates, addresses with evidence, checks for resolution, advances next step.
+**Communication & Closing** (Compliance-aware)
+Penalize: implied guarantees, fear-mongering, pushing complex products
+Reward: disclaimers, plain analogies, numerical summaries, clear next steps
+1: Poor communication, no next steps
+2: Adequate explanation, vague follow-up
+3: Clear communication with logical next steps
+4: Persuasive with educational value and clear action plan
+5: Builds conviction while maintaining compliance - client eager to proceed
 
-6) Communication (Clarity, Structure, Professional Tone)
-   - Clear, concise, well-paced; avoids jargon unless defined; maintains confident, collaborative tone; good turn-taking.
+CRITICAL INSTRUCTIONS:
+- Use exactly 3 descriptors per section from the finance taxonomy
+- Include 2-3 verbatim quotes with turn indices [S3], [P2] 
+- Apply PII redaction: [NAME], [COMPANY], [ID••••], [EMAIL], [PHONE••••]
+- Keep financial amounts and timelines (they're instructive)
+- Score based on transcript evidence only
 
 EVIDENCE & FEEDBACK REQUIREMENTS
 - Explanations: 60–120 words each. Include 1–3 quotes with turn indices.
@@ -256,28 +277,37 @@ VALIDATION GUARDRAILS
 }
 
 async function generateQualitativeFeedback(conversationText: string, session: any, openAIApiKey: string) {
-  const prompt = `You are an expert sales coach generating Yoodli-style feedback on a Seller–Prospect roleplay.
+  const prompt = `You are a financial advisor communication coach providing Yoodli-style feedback. Focus on evidence-based observations with finance-specific coaching techniques.
 
 SCENARIO CONTEXT
 - Title: ${session.scenario_title}
 - Category: ${session.scenario_category}
 - Difficulty: ${session.scenario_difficulty}
 
-CONVERSATION TRANSCRIPT
+CONVERSATION TRANSCRIPT (apply redaction before quoting)
 ${conversationText}
 
-OUTPUT RULES (CRITICAL)
-- Return ONLY a valid JSON object matching the structure below. No prose, no markdown, no comments.
-- Do not add, remove, or rename keys. Do not include trailing commas.
-- Use exact conversation quotes with turn indices in square brackets (e.g., "[S3] …" for Seller turn 3, "[P2] …" for Prospect turn 2). If turns aren't labeled, index top-to-bottom as [T1], [T2], etc.
-- If a point is not evidenced in the transcript, explicitly write: "Not evidenced in transcript."
-- Keep a coaching tone (second person, concise, constructive). Avoid speculating about facts not present.
+PERSONAL FINANCE COACHING FOCUS:
+- Discovery Quality: Did they use the finance discovery ladder (cashflow → protection → goals → constraints)?
+- Objection Mastery: Fee/value, liquidity/lock-in, DIY vs product, past experiences
+- Compliance Awareness: Avoid guarantees, appropriate disclaimers, educational tone
+- Micro-techniques: Quantify-the-gap, isolate & close, number chunking with pauses
 
-YOODLI-STYLE HALLMARKS TO REFLECT
-- Evidence-based: short quotes + turn indices.
-- Actionable: alternatives that are specific, role-play-ready, and context-tied.
-- Balanced: strengths first, then growth with clear next steps.
-- Conversational mechanics: note pacing, turn-taking, question depth, and objection handling when evidenced.
+OUTPUT RULES (CRITICAL)
+- Return ONLY valid JSON - no prose, markdown, or comments
+- Support observations with verbatim quotes using turn indices [S3], [P2]
+- Apply PII redaction: [NAME], [COMPANY], [ID••••], [EMAIL], [PHONE••••]
+- Keep financial amounts and timelines (instructive for coaching)
+- Include 2-3 concrete drills per growth area
+- Use second person ("You...")
+
+ANALYSIS STRUCTURE:
+1. **Strengths**: Quote-supported effective techniques
+2. **Growth Areas**: Specific alternatives with finance micro-techniques
+3. **Specific Feedback**: Evidence-based conversation flow observations
+4. **Coaching Points**: 2-3 drills per area (behavioral, repeatable)
+5. **Follow-up Questions**: Missed finance discovery opportunities
+6. **Conversation Flow**: Phase analysis with finance-specific effectiveness
 
 FIELD-BY-FIELD CONTENT GUIDELINES
 - "strengths":
@@ -363,62 +393,61 @@ RETURN EXACTLY THIS JSON SHAPE
 }
 
 async function generateAdvancedFeedback(conversationText: string, session: any, openAIApiKey: string) {
-  const prompt = `You are an expert communication coach producing Yoodli-style feedback on advanced presentation skills from a Seller–Audience roleplay.
+  const prompt = `You are an expert financial advisory communication coach producing advanced presentation skills feedback with personal finance domain expertise.
 
 SCENARIO CONTEXT
 - Title: ${session.scenario_title}
 - Category: ${session.scenario_category}
 - Difficulty: ${session.scenario_difficulty}
 
-CONVERSATION TRANSCRIPT
+CONVERSATION TRANSCRIPT (apply redaction rules before quoting)
 ${conversationText}
 
+PERSONAL FINANCE PRESENTATION FOCUS:
+- Tone evolution through discovery → positioning → objections → close
+- Compliance-aware communication (no guarantees, appropriate disclaimers)
+- Numbers delivery (pause before/after amounts, confirm understanding)
+- Trust-building through financial empathy and expertise demonstration
+
 OUTPUT RULES (CRITICAL)
-- Return ONLY a valid JSON object matching the structure below. No prose, no markdown, no comments.
-- Do not add, remove, or rename keys. No trailing commas. Strings must be valid JSON strings.
-- Use 3–6 descriptors in each "descriptors" array, chosen ONLY from the descriptor taxonomies below.
-- Cite 2–4 verbatim quotes in each detailed analysis section, with turn indices in brackets:
-  - If roles exist: "[S3] …" for Seller turn 3, "[A2] …" for Audience turn 2.
-  - If roles aren't labeled: "[T1] …", "[T2] …" top-to-bottom.
-- If timestamps exist (e.g., 00:01:23), append them after the index like "[S3 00:01:23]".
-- If a signal (tone/visual/pronunciation) is not evidenced in a text-only transcript, write "Not evidenced in transcript (text-only)." and provide cautious, generalizable recommendations.
-- Do not fabricate metrics or timestamps. If a metric (e.g., WPM) isn't derivable from text, state: "Not measurable from transcript."
+- Return ONLY valid JSON - no prose, markdown, or comments
+- Use exactly 3 descriptors per section from taxonomies below
+- Apply PII redaction: [NAME], [COMPANY], [ID••••], [EMAIL], [PHONE••••]
+- Keep financial amounts and timelines (instructive)
+- Include 2-3 verbatim quotes with turn indices [S3], [P2]
+- If timestamps exist: [S3 00:01:23]
+- State "Not evidenced in transcript (text-only)" if no evidence available
 
-DESCRIPTOR TAXONOMY (USE ONLY THESE)
-- Tone descriptors: encouraging, confident, neutral, warm, empathetic, assertive, concise, rushed, tentative, verbose, defensive, dismissive, abrasive, condescending, collaborative, consultative, persuasive, skeptical, disengaged, enthusiastic, monotone.
-- Visual presence descriptors: grounded, open, closed, animated, static, tense, relaxed, expansive, contained, purposeful, fidgety, upright, slouched, pacing, still, engaged, distracted, professional, casual.
+DESCRIPTOR TAXONOMY (EXACTLY 3 FROM THESE):
+- Tone: encouraging, confident, neutral, warm, empathetic, assertive, concise, rushed, tentative, verbose, defensive, dismissive, abrasive, condescending, collaborative, consultative, persuasive, skeptical, disengaged, enthusiastic, monotone
+- Visual presence: grounded, open, closed, animated, static, tense, relaxed, expansive, contained, purposeful, fidgety, upright, slouched, pacing, still, engaged, distracted, professional, casual
 
-CONTENT REQUIREMENTS & LENGTH TARGETS
-- "toneAnalysis.detailedAnalysis" (120–200 words): Map tone evolution (opening → middle → close), explain audience impact, and alignment with scenario difficulty. Include 2–4 quotes with indices/timestamps if available. End with 1–2 actionable micro-techniques (e.g., "headline → reason → proof", "2-beat pause before the ask").
-- "visualPresence.detailedAnalysis" (120–200 words): Infer body language ONLY from explicit cues (e.g., "(pauses)", "[laughs]", "camera off", "(sigh)"), meta-comments, or content implying delivery. If none present, write "Not evidenced in transcript (text-only)." Provide 2–3 precise recommendations (e.g., "anchor feet", "gesture framing at chest level", "eye contact 3–5s per participant").
-- "pronunciationFeedback.summary" (1–2 sentences): Plain-language assessment of intelligibility and consistency; avoid accent judgements.
-- "pronunciationFeedback.detailedAnalysis" (120–180 words): Cover clarity, pacing (WPM if measurable; else "Not measurable from transcript"), emphasis, and American English patterns (word stress, vowel reduction, linking, /θ/–/ð/, final consonant voicing, intonation contours). Include 2–3 concrete drills (e.g., minimal pairs, sentence-stress ladder, chunk-and-pause on numbers).
+LENGTH TARGETS & FINANCE MICRO-TECHNIQUES:
+- "toneAnalysis.detailedAnalysis" (120-200 words): Map tone evolution through financial conversation phases. Include quotes. End with 2 finance micro-techniques (e.g., "2-beat pause before numbers", "Quantify-the-gap worksheet", "Isolate & Close objection loop").
+- "visualPresence.detailedAnalysis" (120-200 words): Infer from explicit cues only. If none: "Not evidenced in transcript (text-only)." Provide 2-3 finance-specific recommendations (e.g., "open posture during risk discussion", "gesture framing for number explanation").
+- "pronunciationFeedback.summary" (1-2 sentences): Neutral English standard (intelligibility-first), no US-accent bias.
+- "pronunciationFeedback.detailedAnalysis" (120-180 words): Include 2-3 finance-specific drills (e.g., "chunk-and-pause on policy numbers", "sentence stress on key financial terms", "clear articulation of percentage figures").
 
 EVIDENCE & INFERENCE GUARDRAILS
 - Quotes must be verbatim substrings from the transcript. Do not invent wording.
 - Scale claims when the transcript is short or one-sided, and state constraints explicitly.
 - Focus on observable, coachable behaviors; avoid personality attributions.
 
-RETURN EXACTLY THIS JSON SHAPE
+RETURN EXACTLY THIS JSON SHAPE:
 {
   "toneAnalysis": {
-    "descriptors": ["disengaged", "abrasive", "condescending"],
-    "detailedAnalysis": "Multi-paragraph analysis explaining tone evolution throughout conversation with specific quotes and timestamps where possible. Explain how tone changed and its impact."
+    "descriptors": ["exactly", "three", "descriptors"],
+    "detailedAnalysis": "Multi-paragraph analysis with financial context, quotes with turn indices, and 2 finance micro-techniques."
   },
   "visualPresence": {
-    "descriptors": ["focused", "reserved", "tense", "static"],
-    "detailedAnalysis": "Multi-paragraph analysis of body language and presence with specific behavioral observations. Include recommendations for improvement."
+    "descriptors": ["exactly", "three", "descriptors"], 
+    "detailedAnalysis": "Evidence-based analysis or 'Not evidenced in transcript (text-only)' with finance-specific recommendations."
   },
   "pronunciationFeedback": {
-    "summary": "Brief assessment of speech clarity",
-    "detailedAnalysis": "Comprehensive paragraph with specific recommendations for speech clarity, pacing, emphasis, and American English pronunciation patterns with examples."
+    "summary": "Brief neutral English assessment",
+    "detailedAnalysis": "Comprehensive analysis with finance-specific pronunciation drills and techniques."
   }
-}
-
-VALIDATION CHECKS
-- If no evidence for a section due to text-only input, explicitly state: "Not evidenced in transcript (text-only)."
-- Use only descriptors from the taxonomies. If nothing is evidenced, set descriptors to ["Not evidenced in transcript"].
-- Keep tone second-person, balanced, and Yoodli-style: evidence-based + actionable.`;
+}`;
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',

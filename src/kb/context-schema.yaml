@@ -1,0 +1,23 @@
+context:
+  scenario_title: string
+  scenario_category: enum [discovery, demo, pricing, objection, closing, mixed]
+  scenario_difficulty: enum [easy, medium, hard]
+  persona:
+    name: string
+    role: enum [young professional, new parent, SME owner, mid-career manager, pre-retiree, retiree]
+    traits: [string]        # e.g., risk-averse, fee-sensitive, DIY-inclined, analysis-paralysis
+    constraints: [string]   # e.g., budget cap, compliance, timeline to retirement, liquidity need
+  objectives:
+    seller_objectives: [string]   # e.g., identify retirement income gap; align product to risk profile
+    must_cover: [string]          # e.g., emergency fund, debt, protection, time horizon, risk tolerance
+  finance_domain:
+    subdomain: enum [retirement, insurance, investment, budgeting, debt, estate_planning]
+    typical_metrics: [string]     # e.g., monthly surplus, coverage amount, time horizon, IRR, fees
+    compliance_notes: [string]    # e.g., avoid guarantees; disclose risks; no personal advice in sim
+  transcript:
+    text: string
+    has_speaker_labels: boolean
+    has_timestamps: boolean
+  signals_available:
+    audio_prosody: boolean
+    video_cues: boolean
