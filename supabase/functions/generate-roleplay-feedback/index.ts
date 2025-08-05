@@ -24,6 +24,24 @@ serve(async (req) => {
 
     console.log('Generating feedback for session:', sessionId);
 
+    // Check if feedback already exists
+    const { data: existingFeedback } = await supabase
+      .from('roleplay_feedback')
+      .select('id')
+      .eq('session_id', sessionId)
+      .maybeSingle();
+
+    if (existingFeedback) {
+      console.log('Feedback already exists for session:', sessionId);
+      return new Response(JSON.stringify({ 
+        success: true, 
+        message: 'Feedback already generated',
+        existing: true
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     // Get session details with transcript
     const { data: session, error: sessionError } = await supabase
       .from('roleplay_sessions')
@@ -47,72 +65,109 @@ serve(async (req) => {
       });
     }
 
-    // Format transcript for analysis
-    const conversationText = session.transcript
-      .filter(msg => msg.role === 'user' || msg.role === 'assistant')
-      .map(msg => `${msg.role === 'user' ? 'USER' : 'AI_TRAINER'}: ${msg.content}`)
-      .join('\n');
-
-    // Generate feedback using three specialized prompts
-    const [metricsResult, qualitativeResult, advancedResult] = await Promise.all([
-      generateMetricsFeedback(conversationText, session, openAIApiKey),
-      generateQualitativeFeedback(conversationText, session, openAIApiKey),
-      generateAdvancedFeedback(conversationText, session, openAIApiKey)
-    ]);
-
-    // Combine all feedback
-    const comprehensiveFeedback = {
-      // Core metrics (1-5 scores)
-      overall_score: Math.round(Object.values(metricsResult.scores).reduce((a, b) => a + b, 0) / Object.keys(metricsResult.scores).length),
-      communication_score: metricsResult.scores.communication,
-      active_listening_score: metricsResult.scores.activeListening,
-      objection_handling_score: metricsResult.scores.objectionHandling,
-      product_knowledge_score: metricsResult.scores.productKnowledge,
-      small_talk_score: metricsResult.scores.smallTalk,
-      pain_point_identification_score: metricsResult.scores.painPointIdentification,
-      
-      // Enhanced fields
-      practice_score: parseInt(qualitativeResult.practiceScore) || 1,
-      detailed_rubric_feedback: metricsResult.rubricFeedback || {},
-      conversation_flow_summary: qualitativeResult.conversationFlowSummary || [],
-      body_language_analysis: advancedResult.visualPresence?.detailedAnalysis || null,
-      tone_detailed_analysis: advancedResult.toneAnalysis?.detailedAnalysis || null,
-      
-      // Original qualitative analysis (restructured)
-      strengths: qualitativeResult.strengths ? [qualitativeResult.strengths.content] : [],
-      improvement_areas: qualitativeResult.growthAreas?.map(area => area.title + ': ' + area.content) || [],
-      specific_feedback: qualitativeResult.specificFeedback,
-      coaching_points: qualitativeResult.coachingPoints,
-      follow_up_questions: qualitativeResult.followUpQuestions,
-      conversation_summary: qualitativeResult.conversationFlowSummary?.join(' ') || null,
-      
-      // Advanced analytics (simplified for compatibility)
-      tone_analysis: advancedResult.toneAnalysis?.descriptors || [],
-      visual_presence_analysis: advancedResult.visualPresence?.descriptors || [],
-      pronunciation_feedback: advancedResult.pronunciationFeedback?.detailedAnalysis || null
-    };
-
-    // Store feedback in database
-    const { error: insertError } = await supabase
+    // Insert progress tracking record
+    await supabase
       .from('roleplay_feedback')
       .insert({
         session_id: sessionId,
-        ...comprehensiveFeedback
+        overall_score: 0,
+        communication_score: 0,
+        active_listening_score: 0,
+        objection_handling_score: 0,
+        product_knowledge_score: 0,
+        small_talk_score: 0,
+        pain_point_identification_score: 0,
+        specific_feedback: 'Generating feedback...',
+        practice_score: 1
       });
 
-    if (insertError) {
-      console.error('Error storing feedback:', insertError);
-      return new Response(JSON.stringify({ error: 'Failed to store feedback' }), {
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
+    // Return immediate response and process in background
+    const backgroundTask = async () => {
+      try {
+        console.log('Starting background feedback generation for session:', sessionId);
+        
+        // Format transcript for analysis
+        const conversationText = session.transcript
+          .filter(msg => msg.role === 'user' || msg.role === 'assistant')
+          .map(msg => `${msg.role === 'user' ? 'USER' : 'AI_TRAINER'}: ${msg.content}`)
+          .join('\n');
 
-    console.log('Successfully generated and stored comprehensive feedback for session:', sessionId);
+        // Generate feedback with timeout controls and fallbacks
+        const [metricsResult, qualitativeResult, advancedResult] = await Promise.allSettled([
+          generateMetricsFeedbackWithTimeout(conversationText, session, openAIApiKey),
+          generateQualitativeFeedbackWithTimeout(conversationText, session, openAIApiKey),
+          generateAdvancedFeedbackWithTimeout(conversationText, session, openAIApiKey)
+        ]);
+
+        // Handle partial failures
+        const metrics = metricsResult.status === 'fulfilled' ? metricsResult.value : getDefaultMetrics();
+        const qualitative = qualitativeResult.status === 'fulfilled' ? qualitativeResult.value : getDefaultQualitative();
+        const advanced = advancedResult.status === 'fulfilled' ? advancedResult.value : getDefaultAdvanced();
+
+        // Combine all feedback
+        const comprehensiveFeedback = {
+          // Core metrics (1-5 scores)
+          overall_score: Math.round(Object.values(metrics.scores).reduce((a, b) => a + b, 0) / Object.keys(metrics.scores).length),
+          communication_score: metrics.scores.communication,
+          active_listening_score: metrics.scores.activeListening,
+          objection_handling_score: metrics.scores.objectionHandling,
+          product_knowledge_score: metrics.scores.productKnowledge,
+          small_talk_score: metrics.scores.smallTalk,
+          pain_point_identification_score: metrics.scores.painPointIdentification,
+          
+          // Enhanced fields
+          practice_score: parseInt(qualitative.practiceScore) || 1,
+          detailed_rubric_feedback: metrics.rubricFeedback || {},
+          conversation_flow_summary: qualitative.conversationFlowSummary || [],
+          body_language_analysis: advanced.visualPresence?.detailedAnalysis || null,
+          tone_detailed_analysis: advanced.toneAnalysis?.detailedAnalysis || null,
+          
+          // Original qualitative analysis (restructured)
+          strengths: qualitative.strengths ? [qualitative.strengths.content] : [],
+          improvement_areas: qualitative.growthAreas?.map(area => area.title + ': ' + area.content) || [],
+          specific_feedback: qualitative.specificFeedback,
+          coaching_points: qualitative.coachingPoints,
+          follow_up_questions: qualitative.followUpQuestions,
+          conversation_summary: qualitative.conversationFlowSummary?.join(' ') || null,
+          
+          // Advanced analytics (simplified for compatibility)
+          tone_analysis: advanced.toneAnalysis?.descriptors || [],
+          visual_presence_analysis: advanced.visualPresence?.descriptors || [],
+          pronunciation_feedback: advanced.pronunciationFeedback?.detailedAnalysis || null
+        };
+
+        // Update the feedback record
+        const { error: updateError } = await supabase
+          .from('roleplay_feedback')
+          .update(comprehensiveFeedback)
+          .eq('session_id', sessionId);
+
+        if (updateError) {
+          console.error('Error updating feedback:', updateError);
+        } else {
+          console.log('Successfully generated and stored comprehensive feedback for session:', sessionId);
+        }
+
+      } catch (error) {
+        console.error('Background feedback generation error:', error);
+        // Update with error status
+        await supabase
+          .from('roleplay_feedback')
+          .update({
+            specific_feedback: 'An error occurred while generating feedback. Please try again.',
+            overall_score: 1
+          })
+          .eq('session_id', sessionId);
+      }
+    };
+
+    // Use EdgeRuntime.waitUntil for background processing
+    EdgeRuntime.waitUntil(backgroundTask());
 
     return new Response(JSON.stringify({ 
       success: true, 
-      feedback: comprehensiveFeedback 
+      message: 'Feedback generation started',
+      status: 'processing'
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
@@ -128,6 +183,76 @@ serve(async (req) => {
     });
   }
 });
+
+// Timeout wrapper for API calls
+async function withTimeout<T>(promise: Promise<T>, timeoutMs: number, fallback: T): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) => 
+      setTimeout(() => reject(new Error(`Timeout after ${timeoutMs}ms`)), timeoutMs)
+    )
+  ]).catch(() => fallback);
+}
+
+// Default fallback data
+function getDefaultMetrics() {
+  return {
+    scores: {
+      smallTalk: 1,
+      activeListening: 1, 
+      painPointIdentification: 1,
+      productKnowledge: 1,
+      objectionHandling: 1,
+      communication: 1
+    },
+    rubricFeedback: {}
+  };
+}
+
+function getDefaultQualitative() {
+  return {
+    strengths: { content: "Feedback generation encountered an error. Please try again." },
+    growthAreas: [],
+    specificFeedback: "Unable to generate detailed feedback due to processing timeout.",
+    coachingPoints: [],
+    followUpQuestions: [],
+    conversationFlowSummary: [],
+    practiceScore: "1"
+  };
+}
+
+function getDefaultAdvanced() {
+  return {
+    toneAnalysis: { descriptors: [], detailedAnalysis: null },
+    visualPresence: { descriptors: [], detailedAnalysis: null },
+    pronunciationFeedback: { detailedAnalysis: null }
+  };
+}
+
+// Timeout-wrapped API call functions
+async function generateMetricsFeedbackWithTimeout(conversationText: string, session: any, openAIApiKey: string) {
+  return withTimeout(
+    generateMetricsFeedback(conversationText, session, openAIApiKey),
+    45000, // 45 second timeout
+    getDefaultMetrics()
+  );
+}
+
+async function generateQualitativeFeedbackWithTimeout(conversationText: string, session: any, openAIApiKey: string) {
+  return withTimeout(
+    generateQualitativeFeedback(conversationText, session, openAIApiKey),
+    45000, // 45 second timeout
+    getDefaultQualitative()
+  );
+}
+
+async function generateAdvancedFeedbackWithTimeout(conversationText: string, session: any, openAIApiKey: string) {
+  return withTimeout(
+    generateAdvancedFeedback(conversationText, session, openAIApiKey),
+    45000, // 45 second timeout
+    getDefaultAdvanced()
+  );
+}
 
 async function generateMetricsFeedback(conversationText: string, session: any, openAIApiKey: string) {
   const prompt = `You are an expert financial advisor coach evaluating a seller-prospect conversation using personal finance domain expertise. Use the 5-point rubric with finance-specific anchors.
@@ -266,9 +391,10 @@ VALIDATION GUARDRAILS
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'gpt-4.1-2025-04-14',
+      model: 'gpt-4o-mini', // Use faster model
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.3,
+      max_tokens: 2000, // Limit token usage for faster response
     }),
   });
 
@@ -382,9 +508,10 @@ RETURN EXACTLY THIS JSON SHAPE
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'gpt-4.1-2025-04-14',
+      model: 'gpt-4o-mini', // Use faster model
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.4,
+      max_tokens: 2000, // Limit token usage for faster response
     }),
   });
 
@@ -456,9 +583,10 @@ RETURN EXACTLY THIS JSON SHAPE:
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'gpt-4.1-2025-04-14',
+      model: 'gpt-4o-mini', // Use faster model
       messages: [{ role: 'user', content: prompt }],
-      temperature: 0.4,
+      temperature: 0.2,
+      max_tokens: 1500, // Limit token usage for faster response
     }),
   });
 
