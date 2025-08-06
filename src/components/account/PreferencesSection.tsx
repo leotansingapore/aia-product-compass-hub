@@ -59,22 +59,23 @@ export function PreferencesSection() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
             <Settings className="h-5 w-5" />
             Display & Theme
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Customize your visual experience
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="theme">Theme</Label>
-              <p className="text-sm text-muted-foreground">
+          {/* Mobile-friendly preference items */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
+            <div className="space-y-1">
+              <Label htmlFor="theme" className="text-sm font-medium">Theme</Label>
+              <p className="text-xs text-muted-foreground">
                 Choose your preferred color scheme
               </p>
             </div>
@@ -82,7 +83,7 @@ export function PreferencesSection() {
               value={preferences.theme}
               onValueChange={(value) => handlePreferenceChange('theme', value)}
             >
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-full sm:w-32">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -93,10 +94,10 @@ export function PreferencesSection() {
             </Select>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="dashboard-layout">Dashboard Layout</Label>
-              <p className="text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
+            <div className="space-y-1">
+              <Label htmlFor="dashboard-layout" className="text-sm font-medium">Dashboard Layout</Label>
+              <p className="text-xs text-muted-foreground">
                 Choose how content is displayed
               </p>
             </div>
@@ -104,7 +105,7 @@ export function PreferencesSection() {
               value={preferences.dashboardLayout}
               onValueChange={(value) => handlePreferenceChange('dashboardLayout', value)}
             >
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-full sm:w-32">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -119,19 +120,19 @@ export function PreferencesSection() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
             <Bell className="h-5 w-5" />
             Notifications
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Manage your notification preferences
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="email-notifications">Email Notifications</Label>
-              <p className="text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
+            <div className="space-y-1">
+              <Label htmlFor="email-notifications" className="text-sm font-medium">Email Notifications</Label>
+              <p className="text-xs text-muted-foreground">
                 Receive updates about your learning progress
               </p>
             </div>
@@ -142,10 +143,10 @@ export function PreferencesSection() {
             />
           </div>
 
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="push-notifications">Push Notifications</Label>
-              <p className="text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
+            <div className="space-y-1">
+              <Label htmlFor="push-notifications" className="text-sm font-medium">Push Notifications</Label>
+              <p className="text-xs text-muted-foreground">
                 Get notified about new content and updates
               </p>
             </div>
@@ -156,10 +157,10 @@ export function PreferencesSection() {
             />
           </div>
 
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="marketing-emails">Marketing Emails</Label>
-              <p className="text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
+            <div className="space-y-1">
+              <Label htmlFor="marketing-emails" className="text-sm font-medium">Marketing Emails</Label>
+              <p className="text-xs text-muted-foreground">
                 Receive promotional content and newsletters
               </p>
             </div>
@@ -174,19 +175,19 @@ export function PreferencesSection() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
             <Layout className="h-5 w-5" />
             Learning Experience
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Customize your learning interface
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="auto-play-videos">Auto-play Videos</Label>
-              <p className="text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
+            <div className="space-y-1">
+              <Label htmlFor="auto-play-videos" className="text-sm font-medium">Auto-play Videos</Label>
+              <p className="text-xs text-muted-foreground">
                 Automatically play training videos
               </p>
             </div>
@@ -197,10 +198,10 @@ export function PreferencesSection() {
             />
           </div>
 
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="show-progress-bars">Show Progress Bars</Label>
-              <p className="text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
+            <div className="space-y-1">
+              <Label htmlFor="show-progress-bars" className="text-sm font-medium">Show Progress Bars</Label>
+              <p className="text-xs text-muted-foreground">
                 Display progress indicators on content
               </p>
             </div>
@@ -211,10 +212,10 @@ export function PreferencesSection() {
             />
           </div>
 
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="language">Language</Label>
-              <p className="text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
+            <div className="space-y-1">
+              <Label htmlFor="language" className="text-sm font-medium">Language</Label>
+              <p className="text-xs text-muted-foreground">
                 Choose your preferred language
               </p>
             </div>
@@ -222,7 +223,7 @@ export function PreferencesSection() {
               value={preferences.language}
               onValueChange={(value) => handlePreferenceChange('language', value)}
             >
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-full sm:w-32">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -236,8 +237,13 @@ export function PreferencesSection() {
         </CardContent>
       </Card>
 
-      <div className="flex justify-end">
-        <Button onClick={handleSave} disabled={saving}>
+      {/* Mobile-friendly save button */}
+      <div className="pt-4">
+        <Button 
+          onClick={handleSave} 
+          disabled={saving}
+          className="w-full sm:w-auto"
+        >
           <Save className="h-4 w-4 mr-2" />
           {saving ? "Saving..." : "Save Preferences"}
         </Button>

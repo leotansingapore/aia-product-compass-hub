@@ -111,28 +111,36 @@ export function ProfileSection() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
+        <CardHeader className="pb-4 sm:pb-6">
+          {/* Mobile-stacked header */}
+          <div className="space-y-4 sm:space-y-0 sm:flex sm:items-center sm:justify-between">
             <div>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
                 <User className="h-5 w-5" />
                 Profile Information
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm mt-1">
                 Your personal information and learning progress
               </CardDescription>
             </div>
-            <Button variant="outline" onClick={() => setEditing(true)}>
+            <Button 
+              variant="outline" 
+              onClick={() => setEditing(true)}
+              className="w-full sm:w-auto"
+              size="sm"
+            >
               <Edit3 className="h-4 w-4 mr-2" />
               Edit Profile
             </Button>
           </div>
         </CardHeader>
+        
         <CardContent className="space-y-6">
-          <div className="flex items-center gap-6">
-            <Avatar className="h-20 w-20">
+          {/* Mobile-friendly profile header */}
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
+            <Avatar className="h-16 w-16 sm:h-20 sm:w-20">
               <AvatarImage src={profile?.avatar_url || undefined} />
               <AvatarFallback className="text-lg">
                 {profile?.display_name?.charAt(0)?.toUpperCase() || 
@@ -140,72 +148,90 @@ export function ProfileSection() {
                  user?.email?.charAt(0)?.toUpperCase() || 'U'}
               </AvatarFallback>
             </Avatar>
-            <div className="space-y-2">
-              <h3 className="text-xl font-semibold">
+            <div className="text-center sm:text-left space-y-1 sm:space-y-2">
+              <h3 className="text-lg sm:text-xl font-semibold">
                 {profile?.display_name || 
                  `${profile?.first_name || ''} ${profile?.last_name || ''}`.trim() || 
                  'User'}
               </h3>
-              <p className="text-muted-foreground">{profile?.email || user?.email}</p>
+              <p className="text-sm sm:text-base text-muted-foreground">
+                {profile?.email || user?.email}
+              </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-center gap-2">
-                  <Trophy className="h-5 w-5 text-yellow-500" />
+          {/* Mobile-responsive stats grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            <Card className="border-0 shadow-sm bg-muted/30">
+              <CardContent className="pt-4 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-yellow-100 dark:bg-yellow-900/20">
+                    <Trophy className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-600 dark:text-yellow-400" />
+                  </div>
                   <div>
-                    <p className="text-sm font-medium">Current Level</p>
-                    <p className="text-2xl font-bold">{profile?.current_level || 1}</p>
+                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">Current Level</p>
+                    <p className="text-lg sm:text-2xl font-bold">{profile?.current_level || 1}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-center gap-2">
-                  <Zap className="h-5 w-5 text-blue-500" />
+            <Card className="border-0 shadow-sm bg-muted/30">
+              <CardContent className="pt-4 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/20">
+                    <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 dark:text-blue-400" />
+                  </div>
                   <div>
-                    <p className="text-sm font-medium">Total XP</p>
-                    <p className="text-2xl font-bold">{profile?.total_xp || 0}</p>
+                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">Total XP</p>
+                    <p className="text-lg sm:text-2xl font-bold">{profile?.total_xp || 0}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5 text-green-500" />
+            <Card className="border-0 shadow-sm bg-muted/30 sm:col-span-1 col-span-1">
+              <CardContent className="pt-4 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/20">
+                    <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 dark:text-green-400" />
+                  </div>
                   <div>
-                    <p className="text-sm font-medium">Streak Days</p>
-                    <p className="text-2xl font-bold">{profile?.streak_days || 0}</p>
+                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">Streak Days</p>
+                    <p className="text-lg sm:text-2xl font-bold">{profile?.streak_days || 0}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
 
+          {/* Mobile-responsive information grid */}
           <div className="space-y-4">
-            <h4 className="font-medium">Personal Information</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="text-sm font-medium text-muted-foreground">Display Name</label>
-                <p className="mt-1">{profile?.display_name || 'Not set'}</p>
+            <h4 className="font-medium text-base sm:text-lg">Personal Information</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <label className="text-xs sm:text-sm font-medium text-muted-foreground">Display Name</label>
+                <p className="text-sm sm:text-base bg-muted/30 p-3 rounded-md">
+                  {profile?.display_name || 'Not set'}
+                </p>
               </div>
-              <div>
-                <label className="text-sm font-medium text-muted-foreground">Email</label>
-                <p className="mt-1">{profile?.email || user?.email}</p>
+              <div className="space-y-1">
+                <label className="text-xs sm:text-sm font-medium text-muted-foreground">Email</label>
+                <p className="text-sm sm:text-base bg-muted/30 p-3 rounded-md break-all">
+                  {profile?.email || user?.email}
+                </p>
               </div>
-              <div>
-                <label className="text-sm font-medium text-muted-foreground">First Name</label>
-                <p className="mt-1">{profile?.first_name || 'Not set'}</p>
+              <div className="space-y-1">
+                <label className="text-xs sm:text-sm font-medium text-muted-foreground">First Name</label>
+                <p className="text-sm sm:text-base bg-muted/30 p-3 rounded-md">
+                  {profile?.first_name || 'Not set'}
+                </p>
               </div>
-              <div>
-                <label className="text-sm font-medium text-muted-foreground">Last Name</label>
-                <p className="mt-1">{profile?.last_name || 'Not set'}</p>
+              <div className="space-y-1">
+                <label className="text-xs sm:text-sm font-medium text-muted-foreground">Last Name</label>
+                <p className="text-sm sm:text-base bg-muted/30 p-3 rounded-md">
+                  {profile?.last_name || 'Not set'}
+                </p>
               </div>
             </div>
           </div>
