@@ -69,21 +69,21 @@ export function QuickActions() {
       <h3 className="text-lg font-semibold">Quick Actions</h3>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {actions.map((action) => (
-          <Card key={action.title} className="hover:shadow-md transition-shadow cursor-pointer">
+          <Card 
+            key={action.title} 
+            className="hover:shadow-md transition-shadow cursor-pointer group"
+            onClick={() => navigate(action.href)}
+          >
             <CardContent className="p-4">
-              <Button
-                variant="ghost"
-                className="h-auto w-full p-0 flex flex-col items-center text-center space-y-2"
-                onClick={() => navigate(action.href)}
-              >
-                <div className={`p-3 rounded-lg ${action.bgColor}`}>
+              <div className="flex flex-col items-center text-center space-y-2">
+                <div className={`p-3 rounded-lg ${action.bgColor} group-hover:scale-110 transition-transform`}>
                   <action.icon className={`h-6 w-6 ${action.color}`} />
                 </div>
                 <div>
                   <div className="font-medium text-sm">{action.title}</div>
                   <div className="text-xs text-muted-foreground">{action.description}</div>
                 </div>
-              </Button>
+              </div>
             </CardContent>
           </Card>
         ))}
