@@ -111,11 +111,26 @@ Deno.serve(async (req) => {
     console.log('Processing approval for:', requestData.email)
 
     // Check if user already exists
-    const { data: existingUser, error: userLookupError } = await supabaseAdmin.auth.admin.getUserByEmail(requestData.email)
+    const { data: existingUser, error: userLookupError } = await supabaseAdmin.auth.admin.listUsers({
+      page: 1,
+      perPage: 1,
+      filter: `email.eq.${requestData.email}`
+    })
     
-    let newUser = existingUser
+    let newUser = null
     
-    if (userLookupError && userLookupError.message.includes('User not found')) {
+    if (userLookupError) {
+      console.error('User lookup error:', userLookupError)
+      return new Response(
+        JSON.stringify({ error: 'Error checking existing user' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+    
+    // Check if user exists in the list
+    const userExists = existingUser && existingUser.users && existingUser.users.length > 0
+    
+    if (!userExists) {
       // Create user using Supabase Auth Admin API
       const { data: createdUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
         email: requestData.email,
@@ -137,13 +152,9 @@ Deno.serve(async (req) => {
       
       newUser = createdUser
       console.log('User created successfully:', newUser.user.id)
-    } else if (userLookupError) {
-      console.error('User lookup error:', userLookupError)
-      return new Response(
-        JSON.stringify({ error: 'Error checking existing user' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      )
     } else {
+      // User already exists, use the existing user
+      newUser = { user: existingUser.users[0] }
       console.log('User already exists:', newUser.user.id)
     }
 
