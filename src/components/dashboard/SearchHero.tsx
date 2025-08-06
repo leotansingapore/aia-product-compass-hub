@@ -17,7 +17,8 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      onSearch(query);
+      console.log("SearchHero: Submitting search query:", query.trim());
+      onSearch(query.trim());
     }
   };
 
@@ -56,7 +57,10 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
                   key={search}
                   variant="secondary" 
                   className="cursor-pointer hover:bg-secondary/80 text-xs"
-                  onClick={() => onSearch(search)}
+                  onClick={() => {
+                    console.log("SearchHero: Clicked recent search:", search);
+                    onSearch(search);
+                  }}
                 >
                   {search}
                 </Badge>

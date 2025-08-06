@@ -10,6 +10,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   const handleSearch = (query: string) => {
+    console.log("Dashboard: Handling search for:", query);
     navigate(`/search?q=${encodeURIComponent(query)}`);
   };
 
