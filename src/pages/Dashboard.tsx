@@ -6,8 +6,7 @@ import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
-import { HeroSearchCard } from "@/components/dashboard/HeroSearchCard";
-import { QuickAccessPills } from "@/components/dashboard/QuickAccessPills";
+// import { HeroSearchCard } from "@/components/dashboard/HeroSearchCard";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -38,12 +37,16 @@ export default function Dashboard() {
       <div className="max-w-md mx-auto md:max-w-7xl px-4 py-4 md:py-8 space-y-6 md:space-y-8">
         
         <ProtectedSection sectionId="dashboard-search">
-          <HeroSearchCard onSearch={handleSearch} />
+          <Card className="p-6">
+            <h2 className="text-xl font-bold mb-4">Find What You Need</h2>
+            <p className="text-muted-foreground">Basic dashboard - testing build</p>
+          </Card>
         </ProtectedSection>
 
         <ProtectedSection sectionId="dashboard-quick-actions">
           <Card className="p-6">
-            <QuickAccessPills />
+            <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
+            <p className="text-muted-foreground">Testing build without QuickAccessPills...</p>
           </Card>
         </ProtectedSection>
 
