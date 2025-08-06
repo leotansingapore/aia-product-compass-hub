@@ -26,7 +26,7 @@ export function QuickActions() {
       title: "CMFAS Training",
       description: "Certification modules",
       icon: GraduationCap,
-      href: "/cmfas",
+      href: "/cmfas-exams",
       color: "text-green-600",
       bgColor: "bg-green-50"
     },
@@ -58,7 +58,7 @@ export function QuickActions() {
       title: "How to Use",
       description: "Portal guide",
       icon: BarChart3,
-      href: "/how-to-use-portal",
+      href: "/how-to-use",
       color: "text-teal-600",
       bgColor: "bg-teal-50"
     }
