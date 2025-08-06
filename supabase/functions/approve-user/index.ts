@@ -110,32 +110,49 @@ Deno.serve(async (req) => {
 
     console.log('Processing approval for:', requestData.email)
 
-    // Create user using Supabase Auth Admin API
-    const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
-      email: requestData.email,
-      password: 'temppass123', // User will need to reset this
-      email_confirm: true,
-      user_metadata: {
-        first_name: requestData.first_name,
-        last_name: requestData.last_name
-      }
-    })
+    // Check if user already exists
+    const { data: existingUser, error: userLookupError } = await supabaseAdmin.auth.admin.getUserByEmail(requestData.email)
+    
+    let newUser = existingUser
+    
+    if (userLookupError && userLookupError.message.includes('User not found')) {
+      // Create user using Supabase Auth Admin API
+      const { data: createdUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
+        email: requestData.email,
+        password: 'temppass123', // User will need to reset this
+        email_confirm: true,
+        user_metadata: {
+          first_name: requestData.first_name,
+          last_name: requestData.last_name
+        }
+      })
 
-    if (createError || !newUser.user) {
-      console.error('User creation error:', createError)
+      if (createError || !createdUser.user) {
+        console.error('User creation error:', createError)
+        return new Response(
+          JSON.stringify({ error: 'Failed to create user account' }),
+          { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        )
+      }
+      
+      newUser = createdUser
+      console.log('User created successfully:', newUser.user.id)
+    } else if (userLookupError) {
+      console.error('User lookup error:', userLookupError)
       return new Response(
-        JSON.stringify({ error: 'Failed to create user account' }),
+        JSON.stringify({ error: 'Error checking existing user' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
+    } else {
+      console.log('User already exists:', newUser.user.id)
     }
-
-    console.log('User created successfully:', newUser.user.id)
 
     // Call our database function to create profile and assign role
     const { error: approvalError } = await supabaseAdmin
       .rpc('approve_user_request_simple', {
         request_id: request_id,
-        new_user_id: newUser.user.id
+        new_user_id: newUser.user.id,
+        approving_user_id: user.id
       })
 
     if (approvalError) {

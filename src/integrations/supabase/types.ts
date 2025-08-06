@@ -1166,7 +1166,13 @@ export type Database = {
         Returns: undefined
       }
       approve_user_request_simple: {
-        Args: { request_id: string; new_user_id: string }
+        Args:
+          | { request_id: string; new_user_id: string }
+          | {
+              request_id: string
+              new_user_id: string
+              approving_user_id: string
+            }
         Returns: undefined
       }
       assign_master_admin: {
