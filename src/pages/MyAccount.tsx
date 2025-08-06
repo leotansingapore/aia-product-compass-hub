@@ -51,7 +51,7 @@ export default function MyAccount() {
             {/* Mobile-first tab navigation with larger touch targets */}
             <div className="w-full">
               <div className="flex overflow-x-auto pb-3 scrollbar-hide">
-                <div className="flex gap-2 min-w-max px-1">
+                <TabsList className="flex gap-2 min-w-max px-1 h-auto bg-transparent">
                   <ProtectedTabTrigger tabId="profile">
                     <TabsTrigger 
                       value="profile" 
@@ -101,7 +101,7 @@ export default function MyAccount() {
                       </TabsTrigger>
                     </ProtectedTabTrigger>
                   )}
-                </div>
+                </TabsList>
               </div>
             </div>
 
