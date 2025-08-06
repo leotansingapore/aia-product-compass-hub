@@ -253,31 +253,6 @@ export function OnboardingHelpButton() {
         </Card>
       )}
 
-      {/* Floating Action Button */}
-      <Button
-        onClick={() => setShowMenu(!showMenu)}
-        className={`rounded-full w-14 h-14 shadow-elegant hover:shadow-lg transition-all duration-300 ${
-          canResumeTour 
-            ? 'bg-gradient-to-r from-primary via-primary to-primary/80 animate-pulse' 
-            : isComplete 
-              ? 'bg-gradient-to-r from-green-500 to-green-600' 
-              : 'bg-gradient-to-r from-primary to-primary/80'
-        }`}
-        size="icon"
-      >
-        {showMenu ? (
-          <ChevronUp className="w-6 h-6" />
-        ) : canResumeTour ? (
-          <div className="relative">
-            <Play className="w-6 h-6" />
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full animate-bounce" />
-          </div>
-        ) : isComplete ? (
-          <CheckCircle className="w-6 h-6" />
-        ) : (
-          <HelpCircle className="w-6 h-6" />
-        )}
-      </Button>
     </div>
   );
 }
