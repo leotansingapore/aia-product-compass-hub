@@ -19,7 +19,7 @@ import ProductCategory from "./pages/ProductCategory";
 import ProductDetail from "./pages/ProductDetail";
 import HowToUsePortal from "./pages/HowToUsePortal";
 import SearchByProfile from "./pages/SearchByProfile";
-import SearchResults from "./pages/SearchResults";
+
 
 import Bookmarks from "./pages/Bookmarks";
 import Auth from "./pages/Auth";
@@ -51,7 +51,7 @@ const App = () => (
                     <Route path="/" element={<Index />} />
                     <Route path="/auth" element={<Auth />} />
                     <Route path="/consultant-landing" element={<ConsultantLanding />} />
-                    <Route path="/search" element={<SearchResults />} />
+                    
                     <Route path="/how-to-use" element={<HowToUsePortal />} />
                     <Route path="/search-by-profile" element={<SearchByProfile />} />
                     
