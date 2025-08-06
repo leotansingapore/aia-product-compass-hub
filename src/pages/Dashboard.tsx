@@ -7,6 +7,7 @@ import { ProtectedPage } from "@/components/ProtectedPage";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { HeroSearchCard } from "@/components/dashboard/HeroSearchCard";
+import { QuickAccessPills } from "@/components/dashboard/QuickAccessPills";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -42,8 +43,7 @@ export default function Dashboard() {
 
         <ProtectedSection sectionId="dashboard-quick-actions">
           <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
-            <p className="text-muted-foreground">Feature tiles coming back...</p>
+            <QuickAccessPills />
           </Card>
         </ProtectedSection>
 
