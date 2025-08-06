@@ -63,15 +63,25 @@ export default function AdminDashboard() {
   const handleApprovalAction = async (requestId: string, action: 'approve' | 'reject', notes?: string) => {
     try {
       if (action === 'approve') {
-        const { error } = await supabase.rpc('approve_user_request', {
-          request_id: requestId
+        // Get the current session token
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+          throw new Error('No active session');
+        }
+
+        // Call the edge function to approve the user
+        const { data, error } = await supabase.functions.invoke('approve-user', {
+          body: { request_id: requestId },
+          headers: {
+            Authorization: `Bearer ${session.access_token}`,
+          },
         });
 
         if (error) throw error;
 
         toast({
           title: "Request Approved",
-          description: "User account has been created successfully",
+          description: "User account has been created successfully. They will receive a password reset email.",
         });
       } else {
         const { error } = await supabase

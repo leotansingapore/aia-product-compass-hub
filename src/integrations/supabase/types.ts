@@ -1165,6 +1165,10 @@ export type Database = {
         Args: { request_id: string }
         Returns: undefined
       }
+      approve_user_request_simple: {
+        Args: { request_id: string; new_user_id: string }
+        Returns: undefined
+      }
       assign_master_admin: {
         Args: { user_email: string }
         Returns: undefined
