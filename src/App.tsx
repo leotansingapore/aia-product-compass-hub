@@ -10,7 +10,7 @@ import { AdminProvider } from "@/hooks/useAdmin";
 import { OnboardingProvider } from "@/hooks/useOnboarding";
 import { ChecklistProvider } from "@/hooks/useChecklistProgress";
 import { AppLayout } from "@/components/layout/AppLayout";
-import { FloatingQuickActions } from "@/components/FloatingQuickActions";
+
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
 import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
@@ -68,7 +68,6 @@ const App = () => (
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
-                  <FloatingQuickActions />
                   
                   {/* Enhanced Onboarding Components */}
                   <OnboardingTutorial />

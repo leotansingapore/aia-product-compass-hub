@@ -38,33 +38,8 @@ export function PermissionAwareQuickActions() {
   const userTier = getUserTier();
 
   useEffect(() => {
-    // Define all possible quick actions
+    // Define focused quick actions (removing redundant bottom nav items)
     const allActions: QuickAction[] = [
-      {
-        title: "Search Products",
-        description: "Find specific products and resources",
-        route: "/search",
-        icon: Search,
-        sectionId: "search",
-        priority: 10
-      },
-      {
-        title: "My Bookmarks",
-        description: "Access your saved products",
-        route: "/bookmarks",
-        icon: Bookmark,
-        sectionId: "bookmarks",
-        priority: 8
-      },
-      {
-        title: "CMFAS Exams",
-        description: "Exam preparation and resources",
-        route: "/cmfas-exams",
-        icon: GraduationCap,
-        sectionId: "cmfas-exams",
-        badge: "Learning",
-        priority: 7
-      },
       {
         title: "Roleplay Training",
         description: "Practice your sales conversations",
@@ -80,15 +55,7 @@ export function PermissionAwareQuickActions() {
         route: "/search-by-profile",
         icon: Users,
         sectionId: "search-by-profile",
-        priority: 6
-      },
-      {
-        title: "How to Use Portal",
-        description: "Learn to navigate the platform",
-        route: "/how-to-use",
-        icon: HelpCircle,
-        sectionId: "how-to-use",
-        priority: 3
+        priority: 8
       },
       {
         title: "Sales Tools",
@@ -97,7 +64,15 @@ export function PermissionAwareQuickActions() {
         icon: TrendingUp,
         sectionId: "sales-tools",
         badge: "Tools",
-        priority: 5
+        priority: 7
+      },
+      {
+        title: "How to Use Portal",
+        description: "Learn to navigate the platform",
+        route: "/how-to-use",
+        icon: HelpCircle,
+        sectionId: "how-to-use",
+        priority: 6
       }
     ];
 
@@ -122,7 +97,7 @@ export function PermissionAwareQuickActions() {
     const filteredActions = [...allActions, ...categoryActions]
       .filter(action => canAccessSection(action.sectionId))
       .sort((a, b) => b.priority - a.priority)
-      .slice(0, 6); // Show top 6 actions
+      .slice(0, 4); // Show top 4 focused actions
 
     setAvailableActions(filteredActions);
   }, [canAccessSection, categories]);
@@ -146,7 +121,7 @@ export function PermissionAwareQuickActions() {
         )}
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {availableActions.map((action) => (
           <Card key={action.route} className="cursor-pointer hover:shadow-md transition-shadow">
             <CardHeader className="pb-3">
