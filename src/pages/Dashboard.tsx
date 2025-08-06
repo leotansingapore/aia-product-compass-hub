@@ -1,8 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
-import { SearchBar } from "@/components/SearchBar";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { ProtectedPage } from "@/components/ProtectedPage";
+import { SearchHero } from "@/components/dashboard/SearchHero";
+import { QuickActions } from "@/components/dashboard/QuickActions";
+import { ProductCategories } from "@/components/dashboard/ProductCategories";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -30,14 +32,14 @@ export default function Dashboard() {
         {/* Main Content */}
         <div className="max-w-md mx-auto md:max-w-7xl px-4 py-4 md:py-8 space-y-6 md:space-y-8">
           
-          {/* Search Section */}
-          <div className="text-center space-y-4">
-            <div>
-              <h2 className="text-2xl font-bold mb-2">Find What You Need</h2>
-              <p className="text-muted-foreground">Search products, documents, and training materials</p>
-            </div>
-            <SearchBar onSearch={handleSearch} />
-          </div>
+          {/* Search Hero */}
+          <SearchHero onSearch={handleSearch} />
+
+          {/* Quick Actions */}
+          <QuickActions />
+
+          {/* Product Categories */}
+          <ProductCategories />
 
         </div>
       </div>
