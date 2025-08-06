@@ -68,106 +68,136 @@ export function SecuritySection() {
   }
 
   return (
-    <div className="space-y-4 sm:space-y-6">
-      <Card>
+    <div className="space-y-6">
+      <Card className="border-0 shadow-lg">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-            <Shield className="h-5 w-5" />
+          <CardTitle className="flex items-center gap-3 text-xl font-bold">
+            <div className="p-2 bg-primary/10 rounded-lg">
+              <Shield className="h-6 w-6 text-primary" />
+            </div>
             Security Settings
           </CardTitle>
-          <CardDescription className="text-sm">
+          <CardDescription className="text-base leading-relaxed">
             Manage your account security and authentication
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4 sm:space-y-6">
+        <CardContent className="space-y-6">
           <div className="space-y-4">
-            {/* Mobile-friendly action items */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-              <div className="space-y-1">
-                <h4 className="font-medium text-sm sm:text-base">Password</h4>
-                <p className="text-xs sm:text-sm text-muted-foreground">
-                  Change your account password
-                </p>
-              </div>
-              <Button 
-                variant="outline" 
-                onClick={() => setChangingPassword(true)}
-                className="w-full sm:w-auto"
-                size="sm"
-              >
-                <Key className="h-4 w-4 mr-2" />
-                Change Password
-              </Button>
-            </div>
+            {/* Ultra mobile-friendly action items */}
+            <Card className="border-0 shadow-sm bg-muted/30">
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <h4 className="text-lg font-bold">Password</h4>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      Change your account password
+                    </p>
+                  </div>
+                  <Button 
+                    variant="default" 
+                    onClick={() => setChangingPassword(true)}
+                    className="w-full h-12 text-base font-semibold"
+                    size="lg"
+                  >
+                    <Key className="h-5 w-5 mr-3" />
+                    Change Password
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
 
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-              <div className="space-y-1">
-                <h4 className="font-medium text-sm sm:text-base">Email</h4>
-                <p className="text-xs sm:text-sm text-muted-foreground break-all">
-                  {user?.email}
-                </p>
-              </div>
-              <Badge variant="secondary" className="w-fit">Verified</Badge>
-            </div>
+            <Card className="border-0 shadow-sm bg-muted/30">
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <h4 className="text-lg font-bold">Email</h4>
+                    <p className="text-base text-muted-foreground break-all">
+                      {user?.email}
+                    </p>
+                  </div>
+                  <div className="flex justify-start">
+                    <Badge variant="secondary" className="px-4 py-2 text-sm font-semibold">
+                      ✓ Verified
+                    </Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-              <div className="space-y-1">
-                <h4 className="font-medium text-sm sm:text-base">Account Status</h4>
-                <p className="text-xs sm:text-sm text-muted-foreground">
-                  Account created on {new Date(user?.created_at || '').toLocaleDateString()}
-                </p>
-              </div>
-              <Badge variant="outline" className="w-fit">Active</Badge>
-            </div>
+            <Card className="border-0 shadow-sm bg-muted/30">
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <h4 className="text-lg font-bold">Account Status</h4>
+                    <p className="text-base text-muted-foreground">
+                      Account created on {new Date(user?.created_at || '').toLocaleDateString()}
+                    </p>
+                  </div>
+                  <div className="flex justify-start">
+                    <Badge variant="outline" className="px-4 py-2 text-sm font-semibold">
+                      ✓ Active
+                    </Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="border-0 shadow-lg">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-            <LogOut className="h-5 w-5" />
+          <CardTitle className="flex items-center gap-3 text-xl font-bold">
+            <div className="p-2 bg-primary/10 rounded-lg">
+              <LogOut className="h-6 w-6 text-primary" />
+            </div>
             Session Management
           </CardTitle>
-          <CardDescription className="text-sm">
+          <CardDescription className="text-base leading-relaxed">
             Manage your active sessions
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-            <div className="space-y-1">
-              <h4 className="font-medium text-sm sm:text-base">Current Session</h4>
-              <p className="text-xs sm:text-sm text-muted-foreground">
-                You are currently signed in
-              </p>
-            </div>
-            <Button 
-              variant="outline" 
-              onClick={signOut}
-              className="w-full sm:w-auto"
-              size="sm"
-            >
-              <LogOut className="h-4 w-4 mr-2" />
-              Sign Out
-            </Button>
-          </div>
+          <Card className="border-0 shadow-sm bg-muted/30">
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <h4 className="text-lg font-bold">Current Session</h4>
+                  <p className="text-base text-muted-foreground">
+                    You are currently signed in
+                  </p>
+                </div>
+                <Button 
+                  variant="outline" 
+                  onClick={signOut}
+                  className="w-full h-12 text-base font-semibold border-2"
+                  size="lg"
+                >
+                  <LogOut className="h-5 w-5 mr-3" />
+                  Sign Out
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </CardContent>
       </Card>
 
-      <Card className="border-destructive/20 bg-destructive/5">
+      <Card className="border-0 shadow-lg border-destructive/20 bg-destructive/5">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-destructive text-lg sm:text-xl">
-            <AlertTriangle className="h-5 w-5" />
+          <CardTitle className="flex items-center gap-3 text-destructive text-xl font-bold">
+            <div className="p-2 bg-destructive/10 rounded-lg">
+              <AlertTriangle className="h-6 w-6 text-destructive" />
+            </div>
             Danger Zone
           </CardTitle>
-          <CardDescription className="text-sm">
+          <CardDescription className="text-base leading-relaxed">
             Irreversible actions that affect your account
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <Alert>
-            <AlertTriangle className="h-4 w-4" />
-            <AlertDescription className="text-sm">
+        <CardContent className="space-y-6">
+          <Alert className="border-destructive/30 bg-destructive/10">
+            <AlertTriangle className="h-5 w-5" />
+            <AlertDescription className="text-base leading-relaxed">
               Deleting your account is permanent and cannot be undone. All your data will be removed.
             </AlertDescription>
           </Alert>
@@ -178,26 +208,26 @@ export function SecuritySection() {
                 <Button 
                   variant="destructive" 
                   disabled={deleting}
-                  className="w-full sm:w-auto"
-                  size="sm"
+                  className="w-full h-12 text-base font-semibold"
+                  size="lg"
                 >
-                  <Trash2 className="h-4 w-4 mr-2" />
+                  <Trash2 className="h-5 w-5 mr-3" />
                   {deleting ? "Deleting..." : "Delete Account"}
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent className="mx-4 max-w-md sm:max-w-lg">
                 <AlertDialogHeader>
-                  <AlertDialogTitle className="text-base sm:text-lg">Are you absolutely sure?</AlertDialogTitle>
-                  <AlertDialogDescription className="text-sm">
+                  <AlertDialogTitle className="text-xl font-bold">Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription className="text-base leading-relaxed">
                     This action cannot be undone. This will permanently delete your account
                     and remove all your data from our servers.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
-                <AlertDialogFooter className="flex-col sm:flex-row gap-2">
-                  <AlertDialogCancel className="w-full sm:w-auto">Cancel</AlertDialogCancel>
+                <AlertDialogFooter className="flex-col gap-3 sm:flex-row sm:gap-2">
+                  <AlertDialogCancel className="w-full h-12 text-base font-semibold">Cancel</AlertDialogCancel>
                   <AlertDialogAction
                     onClick={handleDeleteAccount}
-                    className="w-full sm:w-auto bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    className="w-full h-12 text-base font-semibold bg-destructive text-destructive-foreground hover:bg-destructive/90"
                   >
                     Delete Account
                   </AlertDialogAction>

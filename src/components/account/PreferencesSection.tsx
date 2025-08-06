@@ -59,192 +59,236 @@ export function PreferencesSection() {
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6">
-      <Card>
+    <div className="space-y-6">
+      <Card className="border-0 shadow-lg">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-            <Settings className="h-5 w-5" />
+          <CardTitle className="flex items-center gap-3 text-xl font-bold">
+            <div className="p-2 bg-primary/10 rounded-lg">
+              <Settings className="h-6 w-6 text-primary" />
+            </div>
             Display & Theme
           </CardTitle>
-          <CardDescription className="text-sm">
+          <CardDescription className="text-base leading-relaxed">
             Customize your visual experience
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          {/* Mobile-friendly preference items */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-            <div className="space-y-1">
-              <Label htmlFor="theme" className="text-sm font-medium">Theme</Label>
-              <p className="text-xs text-muted-foreground">
-                Choose your preferred color scheme
-              </p>
-            </div>
-            <Select
-              value={preferences.theme}
-              onValueChange={(value) => handlePreferenceChange('theme', value)}
-            >
-              <SelectTrigger className="w-full sm:w-32">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="light">Light</SelectItem>
-                <SelectItem value="dark">Dark</SelectItem>
-                <SelectItem value="system">System</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          {/* Ultra mobile-friendly preference items */}
+          <Card className="border-0 shadow-sm bg-muted/30">
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="theme" className="text-lg font-bold">Theme</Label>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Choose your preferred color scheme
+                  </p>
+                </div>
+                <Select
+                  value={preferences.theme}
+                  onValueChange={(value) => handlePreferenceChange('theme', value)}
+                >
+                  <SelectTrigger className="w-full h-12 text-base">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="light">Light</SelectItem>
+                    <SelectItem value="dark">Dark</SelectItem>
+                    <SelectItem value="system">System</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </CardContent>
+          </Card>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-            <div className="space-y-1">
-              <Label htmlFor="dashboard-layout" className="text-sm font-medium">Dashboard Layout</Label>
-              <p className="text-xs text-muted-foreground">
-                Choose how content is displayed
-              </p>
-            </div>
-            <Select
-              value={preferences.dashboardLayout}
-              onValueChange={(value) => handlePreferenceChange('dashboardLayout', value)}
-            >
-              <SelectTrigger className="w-full sm:w-32">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="grid">Grid</SelectItem>
-                <SelectItem value="list">List</SelectItem>
-                <SelectItem value="compact">Compact</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          <Card className="border-0 shadow-sm bg-muted/30">
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="dashboard-layout" className="text-lg font-bold">Dashboard Layout</Label>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Choose how content is displayed
+                  </p>
+                </div>
+                <Select
+                  value={preferences.dashboardLayout}
+                  onValueChange={(value) => handlePreferenceChange('dashboardLayout', value)}
+                >
+                  <SelectTrigger className="w-full h-12 text-base">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="grid">Grid</SelectItem>
+                    <SelectItem value="list">List</SelectItem>
+                    <SelectItem value="compact">Compact</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </CardContent>
+          </Card>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="border-0 shadow-lg">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-            <Bell className="h-5 w-5" />
+          <CardTitle className="flex items-center gap-3 text-xl font-bold">
+            <div className="p-2 bg-primary/10 rounded-lg">
+              <Bell className="h-6 w-6 text-primary" />
+            </div>
             Notifications
           </CardTitle>
-          <CardDescription className="text-sm">
+          <CardDescription className="text-base leading-relaxed">
             Manage your notification preferences
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-            <div className="space-y-1">
-              <Label htmlFor="email-notifications" className="text-sm font-medium">Email Notifications</Label>
-              <p className="text-xs text-muted-foreground">
-                Receive updates about your learning progress
-              </p>
-            </div>
-            <Switch
-              id="email-notifications"
-              checked={preferences.emailNotifications}
-              onCheckedChange={(checked) => handlePreferenceChange('emailNotifications', checked)}
-            />
-          </div>
+          <Card className="border-0 shadow-sm bg-muted/30">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="space-y-2 flex-1">
+                  <Label htmlFor="email-notifications" className="text-lg font-bold">Email Notifications</Label>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Receive updates about your learning progress
+                  </p>
+                </div>
+                <Switch
+                  id="email-notifications"
+                  checked={preferences.emailNotifications}
+                  onCheckedChange={(checked) => handlePreferenceChange('emailNotifications', checked)}
+                  className="scale-125"
+                />
+              </div>
+            </CardContent>
+          </Card>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-            <div className="space-y-1">
-              <Label htmlFor="push-notifications" className="text-sm font-medium">Push Notifications</Label>
-              <p className="text-xs text-muted-foreground">
-                Get notified about new content and updates
-              </p>
-            </div>
-            <Switch
-              id="push-notifications"
-              checked={preferences.pushNotifications}
-              onCheckedChange={(checked) => handlePreferenceChange('pushNotifications', checked)}
-            />
-          </div>
+          <Card className="border-0 shadow-sm bg-muted/30">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="space-y-2 flex-1">
+                  <Label htmlFor="push-notifications" className="text-lg font-bold">Push Notifications</Label>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Get notified about new content and updates
+                  </p>
+                </div>
+                <Switch
+                  id="push-notifications"
+                  checked={preferences.pushNotifications}
+                  onCheckedChange={(checked) => handlePreferenceChange('pushNotifications', checked)}
+                  className="scale-125"
+                />
+              </div>
+            </CardContent>
+          </Card>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-            <div className="space-y-1">
-              <Label htmlFor="marketing-emails" className="text-sm font-medium">Marketing Emails</Label>
-              <p className="text-xs text-muted-foreground">
-                Receive promotional content and newsletters
-              </p>
-            </div>
-            <Switch
-              id="marketing-emails"
-              checked={preferences.marketingEmails}
-              onCheckedChange={(checked) => handlePreferenceChange('marketingEmails', checked)}
-            />
-          </div>
+          <Card className="border-0 shadow-sm bg-muted/30">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="space-y-2 flex-1">
+                  <Label htmlFor="marketing-emails" className="text-lg font-bold">Marketing Emails</Label>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Receive promotional content and newsletters
+                  </p>
+                </div>
+                <Switch
+                  id="marketing-emails"
+                  checked={preferences.marketingEmails}
+                  onCheckedChange={(checked) => handlePreferenceChange('marketingEmails', checked)}
+                  className="scale-125"
+                />
+              </div>
+            </CardContent>
+          </Card>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="border-0 shadow-lg">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-            <Layout className="h-5 w-5" />
+          <CardTitle className="flex items-center gap-3 text-xl font-bold">
+            <div className="p-2 bg-primary/10 rounded-lg">
+              <Layout className="h-6 w-6 text-primary" />
+            </div>
             Learning Experience
           </CardTitle>
-          <CardDescription className="text-sm">
+          <CardDescription className="text-base leading-relaxed">
             Customize your learning interface
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-            <div className="space-y-1">
-              <Label htmlFor="auto-play-videos" className="text-sm font-medium">Auto-play Videos</Label>
-              <p className="text-xs text-muted-foreground">
-                Automatically play training videos
-              </p>
-            </div>
-            <Switch
-              id="auto-play-videos"
-              checked={preferences.autoPlayVideos}
-              onCheckedChange={(checked) => handlePreferenceChange('autoPlayVideos', checked)}
-            />
-          </div>
+          <Card className="border-0 shadow-sm bg-muted/30">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="space-y-2 flex-1">
+                  <Label htmlFor="auto-play-videos" className="text-lg font-bold">Auto-play Videos</Label>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Automatically play training videos
+                  </p>
+                </div>
+                <Switch
+                  id="auto-play-videos"
+                  checked={preferences.autoPlayVideos}
+                  onCheckedChange={(checked) => handlePreferenceChange('autoPlayVideos', checked)}
+                  className="scale-125"
+                />
+              </div>
+            </CardContent>
+          </Card>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-            <div className="space-y-1">
-              <Label htmlFor="show-progress-bars" className="text-sm font-medium">Show Progress Bars</Label>
-              <p className="text-xs text-muted-foreground">
-                Display progress indicators on content
-              </p>
-            </div>
-            <Switch
-              id="show-progress-bars"
-              checked={preferences.showProgressBars}
-              onCheckedChange={(checked) => handlePreferenceChange('showProgressBars', checked)}
-            />
-          </div>
+          <Card className="border-0 shadow-sm bg-muted/30">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="space-y-2 flex-1">
+                  <Label htmlFor="show-progress-bars" className="text-lg font-bold">Show Progress Bars</Label>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Display progress indicators on content
+                  </p>
+                </div>
+                <Switch
+                  id="show-progress-bars"
+                  checked={preferences.showProgressBars}
+                  onCheckedChange={(checked) => handlePreferenceChange('showProgressBars', checked)}
+                  className="scale-125"
+                />
+              </div>
+            </CardContent>
+          </Card>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-muted/30 rounded-lg">
-            <div className="space-y-1">
-              <Label htmlFor="language" className="text-sm font-medium">Language</Label>
-              <p className="text-xs text-muted-foreground">
-                Choose your preferred language
-              </p>
-            </div>
-            <Select
-              value={preferences.language}
-              onValueChange={(value) => handlePreferenceChange('language', value)}
-            >
-              <SelectTrigger className="w-full sm:w-32">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="en">English</SelectItem>
-                <SelectItem value="zh">中文</SelectItem>
-                <SelectItem value="ms">Bahasa Melayu</SelectItem>
-                <SelectItem value="ta">தமிழ்</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          <Card className="border-0 shadow-sm bg-muted/30">
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="language" className="text-lg font-bold">Language</Label>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    Choose your preferred language
+                  </p>
+                </div>
+                <Select
+                  value={preferences.language}
+                  onValueChange={(value) => handlePreferenceChange('language', value)}
+                >
+                  <SelectTrigger className="w-full h-12 text-base">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="en">English</SelectItem>
+                    <SelectItem value="zh">中文</SelectItem>
+                    <SelectItem value="ms">Bahasa Melayu</SelectItem>
+                    <SelectItem value="ta">தமிழ்</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </CardContent>
+          </Card>
         </CardContent>
       </Card>
 
-      {/* Mobile-friendly save button */}
-      <div className="pt-4">
+      {/* Ultra mobile-friendly save button */}
+      <div className="pt-6">
         <Button 
           onClick={handleSave} 
           disabled={saving}
-          className="w-full sm:w-auto"
+          className="w-full h-14 text-lg font-bold"
+          size="lg"
         >
-          <Save className="h-4 w-4 mr-2" />
+          <Save className="h-6 w-6 mr-3" />
           {saving ? "Saving..." : "Save Preferences"}
         </Button>
       </div>

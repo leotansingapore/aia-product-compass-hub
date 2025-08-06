@@ -36,94 +36,96 @@ export default function MyAccount() {
   return (
     <ProtectedPage pageId="my-account">
       <div className="min-h-screen bg-background">
-        {/* Mobile-first container with proper spacing */}
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8 max-w-6xl">
-          {/* Header section - optimized for mobile */}
-          <div className="space-y-2 mb-6">
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">My Account</h1>
-            <p className="text-sm sm:text-base text-muted-foreground">
+        {/* Ultra mobile-friendly container */}
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 max-w-4xl">
+          {/* Larger mobile header */}
+          <div className="space-y-3 mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">My Account</h1>
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
               Manage your profile, security settings, and preferences
             </p>
           </div>
 
-          {/* Mobile-optimized tabs */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4 md:space-y-6">
-            {/* Mobile-first tab list with better touch targets */}
-            <div className="w-full overflow-x-auto pb-2">
-              <TabsList className="inline-flex h-auto p-1 bg-muted/50 rounded-lg min-w-full sm:min-w-0 sm:grid sm:grid-cols-2 lg:grid-cols-4">
-                <ProtectedTabTrigger tabId="profile">
-                  <TabsTrigger 
-                    value="profile" 
-                    className="flex-shrink-0 min-w-[100px] sm:min-w-0 px-4 py-3 text-xs sm:text-sm font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-md whitespace-nowrap"
-                  >
-                    <div className="flex items-center gap-2">
-                      <User className="h-4 w-4" />
-                      <span>Profile</span>
-                    </div>
-                  </TabsTrigger>
-                </ProtectedTabTrigger>
-                
-                <ProtectedTabTrigger tabId="security">
-                  <TabsTrigger 
-                    value="security" 
-                    className="flex-shrink-0 min-w-[100px] sm:min-w-0 px-4 py-3 text-xs sm:text-sm font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-md whitespace-nowrap"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Shield className="h-4 w-4" />
-                      <span>Security</span>
-                    </div>
-                  </TabsTrigger>
-                </ProtectedTabTrigger>
-                
-                <ProtectedTabTrigger tabId="preferences">
-                  <TabsTrigger 
-                    value="preferences" 
-                    className="flex-shrink-0 min-w-[100px] sm:min-w-0 px-4 py-3 text-xs sm:text-sm font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-md whitespace-nowrap"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Settings className="h-4 w-4" />
-                      <span>Preferences</span>
-                    </div>
-                  </TabsTrigger>
-                </ProtectedTabTrigger>
-                
-                {isMasterAdmin() && (
-                  <ProtectedTabTrigger tabId="admin">
+          {/* Ultra mobile-optimized tabs */}
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6 md:space-y-8">
+            {/* Mobile-first tab navigation with larger touch targets */}
+            <div className="w-full">
+              <div className="flex overflow-x-auto pb-3 scrollbar-hide">
+                <div className="flex gap-2 min-w-max px-1">
+                  <ProtectedTabTrigger tabId="profile">
                     <TabsTrigger 
-                      value="admin" 
-                      className="flex-shrink-0 min-w-[100px] sm:min-w-0 px-4 py-3 text-xs sm:text-sm font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-md whitespace-nowrap"
+                      value="profile" 
+                      className="flex-shrink-0 min-w-[120px] px-6 py-4 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground bg-muted/50 hover:bg-muted rounded-xl transition-all duration-200 min-h-[56px]"
                     >
-                      <div className="flex items-center gap-2">
-                        <Users className="h-4 w-4" />
-                        <span>Admin</span>
+                      <div className="flex items-center gap-3">
+                        <User className="h-5 w-5" />
+                        <span className="font-semibold">Profile</span>
                       </div>
                     </TabsTrigger>
                   </ProtectedTabTrigger>
-                )}
-              </TabsList>
+                  
+                  <ProtectedTabTrigger tabId="security">
+                    <TabsTrigger 
+                      value="security" 
+                      className="flex-shrink-0 min-w-[120px] px-6 py-4 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground bg-muted/50 hover:bg-muted rounded-xl transition-all duration-200 min-h-[56px]"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Shield className="h-5 w-5" />
+                        <span className="font-semibold">Security</span>
+                      </div>
+                    </TabsTrigger>
+                  </ProtectedTabTrigger>
+                  
+                  <ProtectedTabTrigger tabId="preferences">
+                    <TabsTrigger 
+                      value="preferences" 
+                      className="flex-shrink-0 min-w-[120px] px-6 py-4 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground bg-muted/50 hover:bg-muted rounded-xl transition-all duration-200 min-h-[56px]"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Settings className="h-5 w-5" />
+                        <span className="font-semibold">Settings</span>
+                      </div>
+                    </TabsTrigger>
+                  </ProtectedTabTrigger>
+                  
+                  {isMasterAdmin() && (
+                    <ProtectedTabTrigger tabId="admin">
+                      <TabsTrigger 
+                        value="admin" 
+                        className="flex-shrink-0 min-w-[120px] px-6 py-4 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground bg-muted/50 hover:bg-muted rounded-xl transition-all duration-200 min-h-[56px]"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Users className="h-5 w-5" />
+                          <span className="font-semibold">Admin</span>
+                        </div>
+                      </TabsTrigger>
+                    </ProtectedTabTrigger>
+                  )}
+                </div>
+              </div>
             </div>
 
-            {/* Tab content with mobile spacing */}
-            <TabsContent value="profile" className="space-y-4 sm:space-y-6 mt-4">
+            {/* Tab content with enhanced mobile spacing */}
+            <TabsContent value="profile" className="space-y-6 mt-6">
               <ProtectedTab tabId="profile">
                 <ProfileSection />
               </ProtectedTab>
             </TabsContent>
 
-            <TabsContent value="security" className="space-y-4 sm:space-y-6 mt-4">
+            <TabsContent value="security" className="space-y-6 mt-6">
               <ProtectedTab tabId="security">
                 <SecuritySection />
               </ProtectedTab>
             </TabsContent>
 
-            <TabsContent value="preferences" className="space-y-4 sm:space-y-6 mt-4">
+            <TabsContent value="preferences" className="space-y-6 mt-6">
               <ProtectedTab tabId="preferences">
                 <PreferencesSection />
               </ProtectedTab>
             </TabsContent>
 
             {isMasterAdmin() && (
-              <TabsContent value="admin" className="space-y-4 sm:space-y-6 mt-4">
+              <TabsContent value="admin" className="space-y-6 mt-6">
                 <ProtectedTab tabId="admin">
                   <UserManagementSection />
                 </ProtectedTab>
@@ -131,6 +133,9 @@ export default function MyAccount() {
             )}
           </Tabs>
         </div>
+        
+        {/* Mobile-friendly bottom padding for tab bar */}
+        <div className="h-20 sm:h-0"></div>
       </div>
     </ProtectedPage>
   );
