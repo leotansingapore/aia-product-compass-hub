@@ -25,7 +25,7 @@ const navigationItems = [
   },
   {
     name: "Account",
-    href: "/account",
+    href: "/my-account",
     icon: User,
   },
 ];
