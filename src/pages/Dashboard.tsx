@@ -3,50 +3,23 @@ import { useAuth } from "@/hooks/useAuth";
 import { useOnboarding } from "@/hooks/useOnboarding";
 import { useCategories } from "@/hooks/useProducts";
 import { NavigationHeader } from "@/components/NavigationHeader";
-import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
-import { UserStats } from "@/components/UserStats";
-import { PermissionAwareQuickActions } from "@/components/PermissionAwareQuickActions";
-import { AuthPrompt } from "@/components/dashboard/AuthPrompt";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Play, RotateCcw, Bug } from "lucide-react";
-import { toast } from "sonner";
-
-import { RecentlyViewedSection } from "@/components/dashboard/RecentlyViewedSection";
-import { RecommendationsSection } from "@/components/recommendations/RecommendationsSection";
-import { ProductCategoriesSection } from "@/components/dashboard/ProductCategoriesSection";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { useNavigate } from "react-router-dom";
-import { getCategoryIdFromName } from "@/hooks/useProducts";
+import { HeroSearchCard } from "@/components/dashboard/HeroSearchCard";
+import { FeatureTiles } from "@/components/dashboard/FeatureTiles";
+import { LearningPathCards } from "@/components/dashboard/LearningPathCards";
+import { QuickAccessPills } from "@/components/dashboard/QuickAccessPills";
+import { RecentActivityFeed } from "@/components/dashboard/RecentActivityFeed";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { categories, loading } = useCategories();
-  const { 
-    startOnboarding, 
-    resetTour, 
-    getProgress, 
-    completedStepsCount, 
-    totalSteps,
-    isOnboardingActive 
-  } = useOnboarding();
-
-  // Debug logging
-  console.log('Dashboard - Categories:', categories.length, 'Loading:', loading);
 
   const handleSearch = (query: string) => {
     navigate(`/search?q=${encodeURIComponent(query)}`);
   };
-
-  const handleCategoryClick = (categoryName: string) => {
-    const categoryId = getCategoryIdFromName(categoryName);
-    navigate(`/category/${categoryId}`);
-  };
-
-
-  const progress = getProgress();
 
   return (
     <ProtectedPage pageId="dashboard">
@@ -55,39 +28,43 @@ export default function Dashboard() {
         <title>Dashboard - AIA Product Compass Hub</title>
         <meta name="description" content="Access your personalized dashboard with product categories, learning progress, and recommendations. Navigate investment, endowment, whole life, term, and medical insurance products." />
       </Helmet>
-      <NavigationHeader 
-        title="AIA Product Learning Platform"
-        subtitle="Your comprehensive resource for product knowledge and sales excellence"
-      />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 md:py-10 space-y-8 sm:space-y-10 md:space-y-12">
-
-        {/* Search Section - Mobile optimized */}
+      {/* Desktop Header - Hidden on mobile */}
+      <div className="hidden md:block">
+        <NavigationHeader 
+          title="AIA Product Learning Platform"
+          subtitle="Your comprehensive resource for product knowledge and sales excellence"
+        />
+      </div>
+      
+      {/* Mobile-First Tile Layout */}
+      <div className="max-w-md mx-auto md:max-w-7xl px-4 py-4 md:py-8 space-y-6 md:space-y-8">
+        
+        {/* Hero Search Card */}
         <ProtectedSection sectionId="dashboard-search">
-          <div className="text-center" data-onboarding="search">
-            <h2 className="hidden sm:block text-lg md:text-xl font-bold mb-3 md:mb-4">Find What You Need</h2>
-            <div className="max-w-2xl mx-auto">
-              <EnhancedSearchBar onSearch={handleSearch} />
-              <p className="hidden sm:block text-sm text-muted-foreground mt-2">
-                Search for products, documents, and training materials
-              </p>
-            </div>
-          </div>
+          <HeroSearchCard onSearch={handleSearch} />
         </ProtectedSection>
 
-        {/* Quick Actions - Permission-based */}
+        {/* Feature Tiles - Quick Actions */}
         <ProtectedSection sectionId="dashboard-quick-actions">
-          <PermissionAwareQuickActions />
+          <FeatureTiles />
         </ProtectedSection>
 
-        {/* Product Categories - Permission-based */}
-        <ProtectedSection sectionId="product-categories">
-          <ProductCategoriesSection 
-            categories={categories}
-            loading={loading}
-            onCategoryClick={handleCategoryClick} 
-          />
+        {/* Learning Path Cards */}
+        <ProtectedSection sectionId="learning-paths">
+          <LearningPathCards />
         </ProtectedSection>
+
+        {/* Quick Access Pills - Categories */}
+        <ProtectedSection sectionId="product-categories">
+          <QuickAccessPills />
+        </ProtectedSection>
+
+        {/* Recent Activity Feed */}
+        <ProtectedSection sectionId="recent-activity">
+          <RecentActivityFeed />
+        </ProtectedSection>
+
       </div>
     </div>
     </ProtectedPage>
