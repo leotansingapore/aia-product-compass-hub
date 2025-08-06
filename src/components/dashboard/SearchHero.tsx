@@ -103,20 +103,27 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
             
             {/* Autocomplete Suggestions */}
             {showSuggestions && suggestions.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-md shadow-lg z-20 max-h-60 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
                 {suggestions.map((suggestion, index) => (
-                  <div
-                    key={suggestion}
-                    className={`px-3 py-2 cursor-pointer text-sm hover:bg-muted ${
+                  <button
+                    key={`suggestion-${index}-${suggestion}`}
+                    type="button"
+                    className={`w-full px-3 py-2 text-left cursor-pointer text-sm hover:bg-muted transition-colors ${
                       selectedIndex === index ? 'bg-muted' : ''
                     }`}
-                    onClick={() => handleSuggestionClick(suggestion)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log("Clicked suggestion:", suggestion);
+                      handleSuggestionClick(suggestion);
+                    }}
+                    onMouseEnter={() => setSelectedIndex(index)}
                   >
                     <div className="flex items-center gap-2">
-                      <Search className="h-3 w-3 text-muted-foreground" />
-                      <span>{suggestion}</span>
+                      <Search className="h-3 w-3 text-muted-foreground flex-shrink-0" />
+                      <span className="truncate">{suggestion}</span>
                     </div>
-                  </div>
+                  </button>
                 ))}
               </div>
             )}
