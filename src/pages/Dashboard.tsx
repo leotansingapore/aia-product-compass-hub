@@ -1,12 +1,16 @@
 import { Helmet } from "react-helmet-async";
 import { useAuth } from "@/hooks/useAuth";
+import { useOnboarding } from "@/hooks/useOnboarding";
 import { useCategories } from "@/hooks/useProducts";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { useNavigate } from "react-router-dom";
-import { Card } from "@/components/ui/card";
-// import { HeroSearchCard } from "@/components/dashboard/HeroSearchCard";
+import { HeroSearchCard } from "@/components/dashboard/HeroSearchCard";
+import { FeatureTiles } from "@/components/dashboard/FeatureTiles";
+import { LearningPathCards } from "@/components/dashboard/LearningPathCards";
+import { QuickAccessPills } from "@/components/dashboard/QuickAccessPills";
+import { RecentActivityFeed } from "@/components/dashboard/RecentActivityFeed";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -22,7 +26,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Dashboard - AIA Product Compass Hub</title>
-        <meta name="description" content="Access your personalized dashboard with product categories, learning progress, and recommendations." />
+        <meta name="description" content="Access your personalized dashboard with product categories, learning progress, and recommendations. Navigate investment, endowment, whole life, term, and medical insurance products." />
       </Helmet>
       
       {/* Desktop Header - Hidden on mobile */}
@@ -33,21 +37,32 @@ export default function Dashboard() {
         />
       </div>
       
-      {/* Simplified Layout for Testing */}
+      {/* Mobile-First Tile Layout */}
       <div className="max-w-md mx-auto md:max-w-7xl px-4 py-4 md:py-8 space-y-6 md:space-y-8">
         
+        {/* Hero Search Card */}
         <ProtectedSection sectionId="dashboard-search">
-          <Card className="p-6">
-            <h2 className="text-xl font-bold mb-4">Find What You Need</h2>
-            <p className="text-muted-foreground">Basic dashboard - testing build</p>
-          </Card>
+          <HeroSearchCard onSearch={handleSearch} />
         </ProtectedSection>
 
+        {/* Feature Tiles - Quick Actions */}
         <ProtectedSection sectionId="dashboard-quick-actions">
-          <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
-            <p className="text-muted-foreground">Testing build without QuickAccessPills...</p>
-          </Card>
+          <FeatureTiles />
+        </ProtectedSection>
+
+        {/* Learning Path Cards */}
+        <ProtectedSection sectionId="learning-paths">
+          <LearningPathCards />
+        </ProtectedSection>
+
+        {/* Quick Access Pills - Categories */}
+        <ProtectedSection sectionId="product-categories">
+          <QuickAccessPills />
+        </ProtectedSection>
+
+        {/* Recent Activity Feed */}
+        <ProtectedSection sectionId="recent-activity">
+          <RecentActivityFeed />
         </ProtectedSection>
 
       </div>
