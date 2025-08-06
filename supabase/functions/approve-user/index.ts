@@ -189,11 +189,26 @@ Deno.serve(async (req) => {
 
     console.log('User approval completed successfully')
 
+    // Verify the approval was successful by checking the profile creation
+    const { data: verifyProfile, error: verifyError } = await supabaseAdmin
+      .from('profiles')
+      .select('user_id, email')
+      .eq('user_id', newUser.user.id)
+      .single()
+
+    if (verifyError) {
+      console.warn('Profile verification failed:', verifyError)
+    } else {
+      console.log('Profile verification successful:', verifyProfile)
+    }
+
     return new Response(
       JSON.stringify({ 
         success: true, 
         message: 'User approved successfully',
-        user_id: newUser.user.id 
+        user_id: newUser.user.id,
+        profile_created: !verifyError,
+        email: requestData.email
       }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )

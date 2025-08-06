@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Shield, UserPlus, UserCheck, UserX, Clock } from 'lucide-react';
+import { Shield, UserPlus, UserCheck, UserX, Clock, RefreshCw, Search, AlertTriangle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { usePermissions } from '@/hooks/usePermissions';
 import { useToast } from '@/hooks/use-toast';
@@ -28,6 +29,9 @@ export default function AdminDashboard() {
   const { toast } = useToast();
   const [approvalRequests, setApprovalRequests] = useState<ApprovalRequest[]>([]);
   const [loading, setLoading] = useState(true);
+  const [verifyEmail, setVerifyEmail] = useState('');
+  const [verificationResult, setVerificationResult] = useState<any>(null);
+  const [verifyLoading, setVerifyLoading] = useState(false);
 
   useEffect(() => {
     fetchApprovalRequests();
@@ -81,7 +85,7 @@ export default function AdminDashboard() {
 
         toast({
           title: "Request Approved",
-          description: "User account has been created successfully. They will receive a password reset email.",
+          description: `User account created successfully. Profile created: ${data.profile_created ? 'Yes' : 'No'}`,
         });
       } else {
         const { error } = await supabase
@@ -108,6 +112,72 @@ export default function AdminDashboard() {
       toast({
         title: "Error",
         description: `Failed to ${action} request`,
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleVerifyUserStatus = async () => {
+    if (!verifyEmail.trim()) {
+      toast({
+        title: "Email Required",
+        description: "Please enter an email address to verify",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setVerifyLoading(true);
+    try {
+      const { data, error } = await supabase
+        .rpc('verify_user_account_status', { _email: verifyEmail.trim() });
+
+      if (error) throw error;
+
+      setVerificationResult(data);
+      toast({
+        title: "User Status Retrieved",
+        description: "Check the results below for detailed information",
+      });
+    } catch (error) {
+      console.error('Error verifying user status:', error);
+      toast({
+        title: "Verification Error",
+        description: "Failed to verify user status",
+        variant: "destructive",
+      });
+    } finally {
+      setVerifyLoading(false);
+    }
+  };
+
+  const handleResetApprovalRequest = async (email: string) => {
+    try {
+      const { data, error } = await supabase
+        .rpc('reset_approval_request', { _email: email });
+
+      if (error) throw error;
+
+      const result = data as { success: boolean; message: string };
+      if (result.success) {
+        toast({
+          title: "Request Reset",
+          description: `Approval request for ${email} has been reset to pending`,
+        });
+        fetchApprovalRequests();
+        setVerificationResult(null);
+      } else {
+        toast({
+          title: "Reset Failed",
+          description: result.message,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Error resetting approval request:', error);
+      toast({
+        title: "Error",
+        description: "Failed to reset approval request",
         variant: "destructive",
       });
     }
@@ -145,7 +215,7 @@ export default function AdminDashboard() {
         </div>
 
         <Tabs defaultValue="users" className="space-y-4 sm:space-y-6">
-          <TabsList className="grid w-full grid-cols-2 h-auto">
+          <TabsList className="grid w-full grid-cols-3 h-auto">
             <TabsTrigger value="users" className="min-h-[44px] text-sm">User Management</TabsTrigger>
             <TabsTrigger value="approvals" className="relative min-h-[44px] text-sm">
               User Approvals
@@ -155,6 +225,7 @@ export default function AdminDashboard() {
                 </Badge>
               )}
             </TabsTrigger>
+            <TabsTrigger value="troubleshoot" className="min-h-[44px] text-sm">Troubleshoot</TabsTrigger>
           </TabsList>
 
           <TabsContent value="users" className="space-y-4 sm:space-y-6">
@@ -259,6 +330,136 @@ export default function AdminDashboard() {
                       ))}
                     </TableBody>
                   </Table>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="troubleshoot" className="space-y-4 sm:space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Search className="h-5 w-5" />
+                  User Account Troubleshooting
+                </CardTitle>
+                <CardDescription>
+                  Verify user account status and troubleshoot login issues. This will help fix the issue with leejuechen10@gmail.com.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex gap-2">
+                  <Input
+                    placeholder="Enter email address to verify"
+                    value={verifyEmail}
+                    onChange={(e) => setVerifyEmail(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleVerifyUserStatus()}
+                    className="flex-1"
+                  />
+                  <Button 
+                    onClick={handleVerifyUserStatus}
+                    disabled={verifyLoading}
+                    className="whitespace-nowrap"
+                  >
+                    {verifyLoading ? (
+                      <RefreshCw className="h-4 w-4 animate-spin mr-2" />
+                    ) : (
+                      <Search className="h-4 w-4 mr-2" />
+                    )}
+                    Verify Status
+                  </Button>
+                </div>
+
+                {verificationResult && (
+                  <Card className="mt-4">
+                    <CardHeader>
+                      <CardTitle className="text-lg">Account Status for {verificationResult.email}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">Approval Request</h4>
+                          {verificationResult.approval_request.exists ? (
+                            <div className="space-y-1 text-sm">
+                              <div>Status: <Badge variant={verificationResult.approval_request.status === 'approved' ? 'default' : 'secondary'}>{verificationResult.approval_request.status}</Badge></div>
+                              <div>Requested: {new Date(verificationResult.approval_request.requested_at).toLocaleDateString()}</div>
+                              {verificationResult.approval_request.reviewed_at && (
+                                <div>Reviewed: {new Date(verificationResult.approval_request.reviewed_at).toLocaleDateString()}</div>
+                              )}
+                            </div>
+                          ) : (
+                            <div className="text-sm text-muted-foreground">No approval request found</div>
+                          )}
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2">User Profile</h4>
+                          {verificationResult.profile.exists ? (
+                            <div className="space-y-1 text-sm">
+                              <div>Profile exists: <Badge variant="default">Yes</Badge></div>
+                              <div>User ID: {verificationResult.profile.user_id}</div>
+                              <div>Display name: {verificationResult.profile.display_name || 'Not set'}</div>
+                            </div>
+                          ) : (
+                            <div className="text-sm text-muted-foreground">No profile found</div>
+                          )}
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2">Authentication</h4>
+                          <div className="space-y-1 text-sm">
+                            <div>Auth user exists: <Badge variant={verificationResult.auth_user_exists ? 'default' : 'destructive'}>{verificationResult.auth_user_exists ? 'Yes' : 'No'}</Badge></div>
+                            <div>Can login: <Badge variant={verificationResult.can_login ? 'default' : 'destructive'}>{verificationResult.can_login ? 'Yes' : 'No'}</Badge></div>
+                          </div>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2">User Roles</h4>
+                          <div className="space-y-1 text-sm">
+                            {verificationResult.roles.length > 0 ? (
+                              verificationResult.roles.map((role: string) => (
+                                <Badge key={role} variant="outline" className="mr-1">{role}</Badge>
+                              ))
+                            ) : (
+                              <div className="text-muted-foreground">No roles assigned</div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {verificationResult.issues.length > 0 && (
+                        <div className="mt-4 p-3 bg-destructive/10 border border-destructive/20 rounded-md">
+                          <div className="flex items-center gap-2 mb-2">
+                            <AlertTriangle className="h-4 w-4 text-destructive" />
+                            <span className="font-semibold text-destructive">Issues Found</span>
+                          </div>
+                          <ul className="list-disc list-inside text-sm space-y-1">
+                            {verificationResult.issues.map((issue: string, index: number) => (
+                              <li key={index} className="text-destructive">{issue}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      <div className="flex gap-2 pt-4">
+                        {verificationResult.approval_request.exists && (
+                          <Button
+                            variant="outline"
+                            onClick={() => handleResetApprovalRequest(verificationResult.email)}
+                            className="flex items-center gap-2"
+                          >
+                            <RefreshCw className="h-4 w-4" />
+                            Reset Approval Request
+                          </Button>
+                        )}
+                        <Button
+                          variant="outline"
+                          onClick={() => setVerifyEmail('leejuechen10@gmail.com')}
+                        >
+                          Check leejuechen10@gmail.com
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
                 )}
               </CardContent>
             </Card>

@@ -1200,9 +1200,17 @@ export type Database = {
         Args: { user_id: string; access_type: string; resource_id: string }
         Returns: boolean
       }
+      reset_approval_request: {
+        Args: { _email: string }
+        Returns: Json
+      }
       update_roleplay_session: {
         Args: { session_id: string; end_time: string; duration: number }
         Returns: undefined
+      }
+      verify_user_account_status: {
+        Args: { _email: string }
+        Returns: Json
       }
     }
     Enums: {
