@@ -70,8 +70,8 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
-        setShowSuggestions(false);
+      if (inputRef.current && !inputRef.current.parentElement?.contains(event.target as Node)) {
+        setTimeout(() => setShowSuggestions(false), 150);
       }
     };
 
@@ -103,23 +103,22 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
             
             {/* Autocomplete Suggestions */}
             {showSuggestions && suggestions.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-md shadow-lg z-[9999] max-h-60 overflow-y-auto pointer-events-auto">
                 {suggestions.map((suggestion, index) => (
                   <button
                     key={`suggestion-${index}-${suggestion}`}
                     type="button"
-                    className={`w-full px-3 py-2 text-left cursor-pointer text-sm hover:bg-muted transition-colors ${
+                    className={`w-full px-3 py-2 text-left cursor-pointer text-sm hover:bg-muted transition-colors border-none bg-transparent ${
                       selectedIndex === index ? 'bg-muted' : ''
                     }`}
-                    onClick={(e) => {
+                    onMouseDown={(e) => {
                       e.preventDefault();
-                      e.stopPropagation();
-                      console.log("Clicked suggestion:", suggestion);
+                      console.log("MouseDown on suggestion:", suggestion);
                       handleSuggestionClick(suggestion);
                     }}
                     onMouseEnter={() => setSelectedIndex(index)}
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 pointer-events-none">
                       <Search className="h-3 w-3 text-muted-foreground flex-shrink-0" />
                       <span className="truncate">{suggestion}</span>
                     </div>
