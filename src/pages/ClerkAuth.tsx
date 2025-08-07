@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { SignIn, SignUp, useUser } from '@clerk/clerk-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
 
 export default function ClerkAuth() {
   const { user, isLoaded } = useUser();
@@ -55,7 +56,7 @@ export default function ClerkAuth() {
             </TabsContent>
             <TabsContent value="signup" className="mt-6">
               <SignUp 
-                fallbackRedirectUrl="/"
+                fallbackRedirectUrl="/signup-request"
                 appearance={{
                   elements: {
                     formButtonPrimary: 'bg-primary hover:bg-primary/90',
@@ -65,6 +66,16 @@ export default function ClerkAuth() {
                   }
                 }}
               />
+              <div className="mt-4 text-center text-sm text-muted-foreground">
+                <p>After signing up, you'll need to request access.</p>
+                <Button 
+                  variant="link" 
+                  className="p-0 h-auto text-xs"
+                  onClick={() => navigate('/signup-request')}
+                >
+                  Already have an account? Request access here
+                </Button>
+              </div>
             </TabsContent>
           </Tabs>
         </CardContent>
