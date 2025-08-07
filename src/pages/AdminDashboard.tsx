@@ -183,6 +183,40 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleCreateManualApprovalRequest = async (email: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('user_approval_requests')
+        .insert([{
+          email: email,
+          first_name: 'Manual',
+          last_name: 'Request',
+          company: 'Admin Created',
+          reason: 'Manual approval request created by admin for troubleshooting',
+          status: 'pending'
+        }])
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      toast({
+        title: "Manual Request Created",
+        description: `Approval request created for ${email}. You can now find it in the User Approvals tab.`,
+      });
+
+      fetchApprovalRequests();
+      setVerificationResult(null);
+    } catch (error) {
+      console.error('Error creating manual approval request:', error);
+      toast({
+        title: "Error",
+        description: "Failed to create manual approval request",
+        variant: "destructive",
+      });
+    }
+  };
+
   if (!isMasterAdmin()) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -440,7 +474,7 @@ export default function AdminDashboard() {
                         </div>
                       )}
 
-                      <div className="flex gap-2 pt-4">
+                      <div className="flex gap-2 pt-4 flex-wrap">
                         {verificationResult.approval_request.exists && (
                           <Button
                             variant="outline"
@@ -449,6 +483,16 @@ export default function AdminDashboard() {
                           >
                             <RefreshCw className="h-4 w-4" />
                             Reset Approval Request
+                          </Button>
+                        )}
+                        {!verificationResult.approval_request.exists && (
+                          <Button
+                            variant="default"
+                            onClick={() => handleCreateManualApprovalRequest(verificationResult.email)}
+                            className="flex items-center gap-2"
+                          >
+                            <UserPlus className="h-4 w-4" />
+                            Create Approval Request
                           </Button>
                         )}
                         <Button
