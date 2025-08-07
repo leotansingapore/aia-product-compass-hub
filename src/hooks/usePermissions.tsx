@@ -24,7 +24,7 @@ export function usePermissions() {
     try {
       console.log('🔧 Fetching tier permissions for user:', user.id);
       
-      // Get user's tier using the database function
+      // Get user's tier using the database function  
       const { data: tierData, error: tierError } = await supabase.rpc('get_user_tier', {
         user_id: user.id
       });

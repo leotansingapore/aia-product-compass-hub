@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { useUser, useClerk } from '@clerk/clerk-react';
+import { useClerkUserSetup } from './useClerkUserSetup';
 
 interface AuthContextType {
   user: any;
@@ -18,6 +19,9 @@ const AuthContext = createContext<AuthContextType>({
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { user, isLoaded } = useUser();
   const { signOut: clerkSignOut } = useClerk();
+  
+  // Set up user profile and roles when they sign in with Clerk
+  useClerkUserSetup();
 
   const signOut = async () => {
     try {
