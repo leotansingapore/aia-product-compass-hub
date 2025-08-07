@@ -46,7 +46,21 @@ export default function AdminDashboard() {
         .order('requested_at', { ascending: false });
 
       if (approvalsError) {
-        console.error('Error fetching approval requests:', approvalsError);
+        console.error('❌ Error fetching approval requests:', approvalsError);
+        if (approvalsError.message?.includes('permission')) {
+          toast({
+            title: "Permission Denied",
+            description: "You don't have permission to view approval requests. Make sure you're logged in as a master admin.",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: `Failed to load approval requests: ${approvalsError.message}`,
+            variant: "destructive",
+          });
+        }
+        return;
       } else {
         console.log('✅ Fetched approval requests:', approvalsData);
         const mappedRequests = (approvalsData || []).map(request => ({
@@ -54,6 +68,8 @@ export default function AdminDashboard() {
           status: request.status as 'pending' | 'approved' | 'rejected'
         }));
         console.log('📋 Mapped requests:', mappedRequests);
+        console.log('📋 Looking for leejuechen10@gmail.com:', 
+          mappedRequests.find(r => r.email === 'leejuechen10@gmail.com'));
         setApprovalRequests(mappedRequests);
       }
     } catch (error) {

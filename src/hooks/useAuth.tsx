@@ -16,6 +16,22 @@ const AuthContext = createContext<AuthContextType>({
   signOut: async () => {},
 });
 
+// Auth state cleanup utility
+const cleanupAuthState = () => {
+  // Remove all Supabase auth keys from localStorage
+  Object.keys(localStorage).forEach((key) => {
+    if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
+      localStorage.removeItem(key);
+    }
+  });
+  // Remove from sessionStorage if in use
+  Object.keys(sessionStorage || {}).forEach((key) => {
+    if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
+      sessionStorage.removeItem(key);
+    }
+  });
+};
+
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { user: clerkUser, isLoaded } = useUser();
   const { signOut: clerkSignOut } = useClerkAuth();
@@ -25,7 +41,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (isLoaded) {
       if (clerkUser) {
-        fetchSupabaseUser();
+        // Defer data fetching to prevent deadlocks
+        setTimeout(() => {
+          fetchSupabaseUser();
+        }, 0);
       } else {
         setUser(null);
         setLoading(false);
@@ -72,6 +91,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             console.log('🔧 Found admin profile:', adminProfile);
             setUser({
               id: adminProfile.user_id,
+              user_id: adminProfile.user_id, // Ensure user_id is available
               email: email,
               primaryEmailAddress: clerkUser.primaryEmailAddress,
               emailAddresses: clerkUser.emailAddresses,
@@ -97,6 +117,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         // Create a user object that combines Clerk data with Supabase profile
         setUser({
           id: profile.user_id, // Use Supabase user_id
+          user_id: profile.user_id, // Ensure user_id is available
           email: email,
           primaryEmailAddress: clerkUser.primaryEmailAddress,
           emailAddresses: clerkUser.emailAddresses,
@@ -113,10 +134,21 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = async () => {
     try {
-      await clerkSignOut();
+      // Clean up auth state first
+      cleanupAuthState();
+      
+      // Attempt Clerk sign out
+      try {
+        await clerkSignOut();
+      } catch (err) {
+        console.error('Clerk sign out error:', err);
+      }
+      
+      // Force page reload for clean state
       window.location.href = '/auth';
     } catch (error) {
       console.error('Sign out error:', error);
+      // Force navigation even if sign out fails
       window.location.href = '/auth';
     }
   };

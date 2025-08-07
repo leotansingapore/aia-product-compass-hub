@@ -66,6 +66,11 @@ const Auth = () => {
         localStorage.removeItem(key);
       }
     });
+    Object.keys(sessionStorage || {}).forEach((key) => {
+      if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
+        sessionStorage.removeItem(key);
+      }
+    });
   };
 
   const handleSignIn = async (e: React.FormEvent) => {
@@ -81,11 +86,15 @@ const Auth = () => {
 
     setLoading(true);
     try {
+      // Clean up existing state first
       cleanupAuthState();
+      
+      // Attempt global sign out to clear any existing sessions
       try {
         await supabase.auth.signOut({ scope: 'global' });
       } catch (err) {
         // Continue even if this fails
+        console.log('Pre-signin cleanup error (continuing):', err);
       }
 
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -93,16 +102,33 @@ const Auth = () => {
         password,
       });
 
-      if (error) throw error;
+      if (error) {
+        // Handle specific error cases
+        if (error.message.includes('Invalid login credentials')) {
+          throw new Error('Incorrect email or password. Please try again.');
+        } else if (error.message.includes('Email not confirmed')) {
+          throw new Error('Please confirm your email address before signing in.');
+        } else if (error.message.includes('Too many requests')) {
+          throw new Error('Too many login attempts. Please wait a moment and try again.');
+        } else {
+          throw error;
+        }
+      }
 
-      if (data.user) {
+      if (data.user && data.session) {
+        // Store last successful login email
+        localStorage.setItem('lastLoginEmail', email);
+        
         toast({
           title: "Welcome back!",
           description: "Successfully signed in",
         });
+        
+        // Force page reload for clean state
         window.location.href = '/';
       }
     } catch (error: any) {
+      console.error('Sign in error:', error);
       toast({
         title: "Sign In Failed",
         description: error.message || "An error occurred during sign in",
