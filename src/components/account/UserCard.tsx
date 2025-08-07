@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Shield } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Shield, User, Award, Star } from "lucide-react";
 
 interface User {
   id: string;
@@ -32,11 +33,25 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
         return 'destructive';
       case 'admin':
         return 'default';
+      case 'advanced':
+        return 'default';
+      case 'intermediate':
+        return 'secondary';
+      case 'basic':
+        return 'outline';
       case 'moderator':
         return 'secondary';
       default:
         return 'outline';
     }
+  };
+
+  const getCurrentTier = () => {
+    if (user.roles.includes('master_admin')) return 'master_admin';
+    if (user.roles.includes('advanced')) return 'advanced';
+    if (user.roles.includes('intermediate')) return 'intermediate';
+    if (user.roles.includes('basic')) return 'basic';
+    return 'user';
   };
 
   const handleRoleToggle = (role: string) => {
@@ -46,6 +61,32 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
     
     onRoleUpdate(user.id, newRoles);
   };
+
+  const handleTierChange = (newTier: string) => {
+    // Remove all tier-related roles and add the new one
+    const nonTierRoles = user.roles.filter(r => !['basic', 'intermediate', 'advanced'].includes(r));
+    const newRoles = newTier === 'user' ? nonTierRoles : [...nonTierRoles, newTier];
+    
+    onRoleUpdate(user.id, newRoles);
+  };
+
+  const getTierIcon = (tier: string) => {
+    switch (tier) {
+      case 'master_admin':
+        return Shield;
+      case 'advanced':
+        return Star;
+      case 'intermediate':
+        return Award;
+      case 'basic':
+        return User;
+      default:
+        return User;
+    }
+  };
+
+  const currentTier = getCurrentTier();
+  const TierIcon = getTierIcon(currentTier);
 
   return (
     <div className="flex items-center gap-4 p-4 border rounded-lg">
@@ -77,14 +118,38 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
           ))}
         </div>
         
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => handleRoleToggle('admin')}
-        >
-          <Shield className="h-4 w-4 mr-1" />
-          {user.roles.includes('admin') ? 'Remove Admin' : 'Make Admin'}
-        </Button>
+        {/* Tier Management */}
+        {!user.roles.includes('master_admin') && (
+          <div className="flex items-center gap-2">
+            <TierIcon className="h-4 w-4 text-muted-foreground" />
+            <Select
+              value={currentTier}
+              onValueChange={handleTierChange}
+            >
+              <SelectTrigger className="w-32">
+                <SelectValue placeholder="Select tier" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="user">Standard</SelectItem>
+                <SelectItem value="basic">Basic</SelectItem>
+                <SelectItem value="intermediate">Intermediate</SelectItem>
+                <SelectItem value="advanced">Advanced</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        )}
+        
+        {/* Admin Toggle - only show if not master admin */}
+        {!user.roles.includes('master_admin') && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleRoleToggle('admin')}
+          >
+            <Shield className="h-4 w-4 mr-1" />
+            {user.roles.includes('admin') ? 'Remove Admin' : 'Make Admin'}
+          </Button>
+        )}
       </div>
     </div>
   );
