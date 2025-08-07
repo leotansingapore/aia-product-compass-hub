@@ -14,7 +14,7 @@ export function ProductCategories() {
 
   const categories = [
     {
-      id: "investment",
+      id: "c7cde8f4-12d4-4ddc-9150-7b32008a4e19", // Investment Products
       name: "Investment Products",
       description: "Build wealth and achieve financial goals",
       icon: TrendingUp,
@@ -23,7 +23,7 @@ export function ProductCategories() {
       count: 3
     },
     {
-      id: "endowment",
+      id: "3adb6155-c158-408d-b910-9b3db532d435", // Endowment Products
       name: "Endowment Products", 
       description: "Savings with insurance protection",
       icon: Shield,
@@ -32,7 +32,7 @@ export function ProductCategories() {
       count: 2
     },
     {
-      id: "whole-life",
+      id: "19b8c528-f36e-4731-827c-0cdb1de25059", // Whole Life Products
       name: "Whole Life Products",
       description: "Lifelong protection and savings",
       icon: Heart,
@@ -41,7 +41,7 @@ export function ProductCategories() {
       count: 1
     },
     {
-      id: "term",
+      id: "291cf475-d918-40c0-b37d-33794534d469", // Term Products
       name: "Term Products",
       description: "Affordable protection coverage",
       icon: Clock,
@@ -50,7 +50,7 @@ export function ProductCategories() {
       count: 2
     },
     {
-      id: "medical",
+      id: "b1024527-481f-4d85-9192-b43633e9be4a", // Medical Insurance Products
       name: "Medical Insurance",
       description: "Healthcare protection solutions",
       icon: Stethoscope,
