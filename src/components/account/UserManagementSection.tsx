@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { UserCard } from "./UserCard";
 import { TierConfigurationPanel } from "./TierConfigurationPanel";
-import { Users, Search, Settings } from "lucide-react";
+import { Users, Search, Settings, Trash2, Loader2 } from "lucide-react";
 
 interface User {
   id: string;
@@ -29,6 +30,8 @@ export function UserManagementSection() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [showTierConfiguration, setShowTierConfiguration] = useState(false);
+  const [selectedUsers, setSelectedUsers] = useState<Set<string>>(new Set());
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     fetchUsers();
@@ -152,6 +155,77 @@ export function UserManagementSection() {
     }
   };
 
+  const handleUserSelect = (userId: string, checked: boolean) => {
+    const newSelection = new Set(selectedUsers);
+    if (checked) {
+      newSelection.add(userId);
+    } else {
+      newSelection.delete(userId);
+    }
+    setSelectedUsers(newSelection);
+  };
+
+  const handleSelectAll = (checked: boolean) => {
+    if (checked) {
+      setSelectedUsers(new Set(filteredUsers.map(user => user.id)));
+    } else {
+      setSelectedUsers(new Set());
+    }
+  };
+
+  const handleBulkDelete = async () => {
+    if (selectedUsers.size === 0) {
+      toast({
+        title: "No users selected",
+        description: "Please select users to delete",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete ${selectedUsers.size} user(s)? This action cannot be undone.`
+    );
+
+    if (!confirmDelete) return;
+
+    setIsDeleting(true);
+    try {
+      // Delete user profiles
+      const { error: profileError } = await supabase
+        .from('profiles')
+        .delete()
+        .in('user_id', Array.from(selectedUsers));
+
+      if (profileError) throw profileError;
+
+      // Delete user roles
+      const { error: rolesError } = await supabase
+        .from('user_roles')
+        .delete()
+        .in('user_id', Array.from(selectedUsers));
+
+      if (rolesError) throw rolesError;
+
+      toast({
+        title: "Users deleted",
+        description: `Successfully deleted ${selectedUsers.size} user(s)`,
+      });
+
+      setSelectedUsers(new Set());
+      await fetchUsers();
+    } catch (error) {
+      console.error('Error deleting users:', error);
+      toast({
+        title: "Error",
+        description: "Failed to delete users",
+        variant: "destructive",
+      });
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   if (loading) {
     return (
       <Card>
@@ -189,12 +263,37 @@ export function UserManagementSection() {
               <Settings className="h-4 w-4 mr-2" />
               Configure Tiers
             </Button>
+            {selectedUsers.size > 0 && (
+              <Button
+                onClick={handleBulkDelete}
+                variant="destructive"
+                disabled={isDeleting}
+              >
+                {isDeleting ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Deleting...
+                  </>
+                ) : (
+                  <>
+                    <Trash2 className="h-4 w-4 mr-2" />
+                    Delete {selectedUsers.size} user(s)
+                  </>
+                )}
+              </Button>
+            )}
           </div>
 
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <div className="text-sm text-muted-foreground">
-                Showing {filteredUsers.length} of {users.length} users
+              <div className="flex items-center gap-3">
+                <Checkbox
+                  checked={selectedUsers.size === filteredUsers.length && filteredUsers.length > 0}
+                  onCheckedChange={handleSelectAll}
+                />
+                <span className="text-sm text-muted-foreground">
+                  Select all ({filteredUsers.length} users)
+                </span>
               </div>
               <Button 
                 variant="outline" 
@@ -206,11 +305,18 @@ export function UserManagementSection() {
             </div>
             
             {filteredUsers.map((user) => (
-              <UserCard
-                key={user.id}
-                user={user}
-                onRoleUpdate={handleUserRoleUpdate}
-              />
+              <div key={user.id} className="flex items-center gap-3">
+                <Checkbox
+                  checked={selectedUsers.has(user.id)}
+                  onCheckedChange={(checked) => handleUserSelect(user.id, checked as boolean)}
+                />
+                <div className="flex-1">
+                  <UserCard
+                    user={user}
+                    onRoleUpdate={handleUserRoleUpdate}
+                  />
+                </div>
+              </div>
             ))}
           </div>
         </CardContent>
