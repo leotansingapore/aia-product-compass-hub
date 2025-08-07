@@ -42,6 +42,47 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     try {
       const email = clerkUser.primaryEmailAddress.emailAddress;
+      console.log('🔧 Fetching Supabase user for email:', email);
+      
+      // Special handling for admin email
+      if (email === 'tanjunsing@gmail.com') {
+        console.log('🔧 Admin email detected, checking admin user setup');
+        
+        // Try to get admin user_id from user_roles first
+        const { data: roleData, error: roleError } = await supabase
+          .from('user_roles')
+          .select('user_id')
+          .eq('role', 'master_admin')
+          .limit(1);
+          
+        console.log('🔧 Admin role lookup result:', { roleData, roleError });
+        
+        if (roleData && roleData.length > 0) {
+          const adminUserId = roleData[0].user_id;
+          console.log('🔧 Found admin user_id:', adminUserId);
+          
+          // Get the profile for this user_id
+          const { data: adminProfile, error: profileError } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('user_id', adminUserId)
+            .single();
+            
+          if (!profileError && adminProfile) {
+            console.log('🔧 Found admin profile:', adminProfile);
+            setUser({
+              id: adminProfile.user_id,
+              email: email,
+              primaryEmailAddress: clerkUser.primaryEmailAddress,
+              emailAddresses: clerkUser.emailAddresses,
+              ...adminProfile
+            });
+            setLoading(false);
+            return;
+          }
+        }
+      }
+      
       const { data: profile, error } = await supabase
         .from('profiles')
         .select('*')
@@ -49,9 +90,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         .single();
 
       if (error) {
-        console.error('Error fetching user profile:', error);
+        console.error('🔧 Error fetching user profile:', error);
         setUser(null);
       } else {
+        console.log('🔧 Found user profile:', profile);
         // Create a user object that combines Clerk data with Supabase profile
         setUser({
           id: profile.user_id, // Use Supabase user_id
@@ -62,7 +104,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         });
       }
     } catch (error) {
-      console.error('Error fetching user:', error);
+      console.error('🔧 Error fetching user:', error);
       setUser(null);
     } finally {
       setLoading(false);
