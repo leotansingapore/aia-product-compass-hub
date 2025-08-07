@@ -999,6 +999,7 @@ export type Database = {
       }
       user_approval_requests: {
         Row: {
+          clerk_user_id: string | null
           company: string | null
           created_at: string
           email: string
@@ -1014,6 +1015,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          clerk_user_id?: string | null
           company?: string | null
           created_at?: string
           email: string
@@ -1029,6 +1031,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          clerk_user_id?: string | null
           company?: string | null
           created_at?: string
           email?: string
@@ -1179,6 +1182,10 @@ export type Database = {
         Args: { user_email: string }
         Returns: undefined
       }
+      assign_master_admin_to_clerk_user: {
+        Args: { clerk_user_id: string; user_email: string }
+        Returns: undefined
+      }
       create_roleplay_session: {
         Args: {
           scenario_title: string
@@ -1189,11 +1196,13 @@ export type Database = {
         Returns: string
       }
       get_user_tier: {
-        Args: { user_id: string }
+        Args: { user_id: string } | { user_id: string }
         Returns: string
       }
       has_role: {
-        Args: { _user_id: string; _role: string }
+        Args:
+          | { _user_id: string; _role: string }
+          | { _user_id: string; _role: string }
         Returns: boolean
       }
       has_tier_access: {
@@ -1206,6 +1215,10 @@ export type Database = {
       }
       update_roleplay_session: {
         Args: { session_id: string; end_time: string; duration: number }
+        Returns: undefined
+      }
+      upgrade_user_to_master_admin: {
+        Args: { target_user_id: string }
         Returns: undefined
       }
       verify_user_account_status: {
