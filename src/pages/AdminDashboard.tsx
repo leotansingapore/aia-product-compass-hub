@@ -185,6 +185,28 @@ export default function AdminDashboard() {
 
   const handleCreateManualApprovalRequest = async (email: string) => {
     try {
+      // First check if an approval request already exists for this email
+      const { data: existingRequest, error: checkError } = await supabase
+        .from('user_approval_requests')
+        .select('id, status')
+        .eq('email', email)
+        .single();
+
+      if (checkError && checkError.code !== 'PGRST116') {
+        // PGRST116 is "not found" error, which is expected if no request exists
+        throw checkError;
+      }
+
+      if (existingRequest) {
+        toast({
+          title: "Request Already Exists",
+          description: `An approval request already exists for ${email} with status: ${existingRequest.status}`,
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Create the manual approval request
       const { data, error } = await supabase
         .from('user_approval_requests')
         .insert([{
