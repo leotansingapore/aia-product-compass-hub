@@ -10,6 +10,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { usePermissions } from '@/hooks/usePermissions';
 import { useToast } from '@/hooks/use-toast';
 import { UserManagementSection } from '@/components/account/UserManagementSection';
+import { CreateUserForm } from '@/components/admin/CreateUserForm';
 
 interface ApprovalRequest {
   id: string;
@@ -285,6 +286,7 @@ export default function AdminDashboard() {
           </TabsList>
 
           <TabsContent value="users" className="space-y-4 sm:space-y-6">
+            <CreateUserForm />
             <UserManagementSection />
           </TabsContent>
 

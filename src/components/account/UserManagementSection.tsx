@@ -32,6 +32,17 @@ export function UserManagementSection() {
 
   useEffect(() => {
     fetchUsers();
+    
+    // Listen for user creation events
+    const handleUserCreated = () => {
+      fetchUsers();
+    };
+    
+    window.addEventListener('userCreated', handleUserCreated);
+    
+    return () => {
+      window.removeEventListener('userCreated', handleUserCreated);
+    };
   }, []);
 
   const fetchUsers = async () => {
