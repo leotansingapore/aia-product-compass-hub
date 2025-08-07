@@ -39,6 +39,7 @@ export default function AdminDashboard() {
 
   const fetchApprovalRequests = async () => {
     try {
+      console.log('🔍 Fetching approval requests...');
       const { data: approvalsData, error: approvalsError } = await supabase
         .from('user_approval_requests')
         .select('*')
@@ -47,10 +48,13 @@ export default function AdminDashboard() {
       if (approvalsError) {
         console.error('Error fetching approval requests:', approvalsError);
       } else {
-        setApprovalRequests((approvalsData || []).map(request => ({
+        console.log('✅ Fetched approval requests:', approvalsData);
+        const mappedRequests = (approvalsData || []).map(request => ({
           ...request,
           status: request.status as 'pending' | 'approved' | 'rejected'
-        })));
+        }));
+        console.log('📋 Mapped requests:', mappedRequests);
+        setApprovalRequests(mappedRequests);
       }
     } catch (error) {
       console.error('Error fetching admin data:', error);
