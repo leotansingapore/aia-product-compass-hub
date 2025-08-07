@@ -14,7 +14,6 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
 import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
-import { ApprovalCheck } from "@/components/ApprovalCheck";
 import Index from "./pages/Index";
 import ProductCategory from "./pages/ProductCategory";
 import ProductDetail from "./pages/ProductDetail";
@@ -23,8 +22,7 @@ import SearchByProfile from "./pages/SearchByProfile";
 
 
 import Bookmarks from "./pages/Bookmarks";
-import ClerkAuth from "./pages/ClerkAuth";
-import SignupRequest from "./pages/SignupRequest";
+import Auth from "./pages/Auth";
 import ConsultantLanding from "./pages/ConsultantLanding";
 import CMFASExams from "./pages/CMFASExams";
 import CMFASModuleDetail from "./pages/cmfas/CMFASModuleDetail";
@@ -48,12 +46,10 @@ const App = () => (
             <BrowserRouter>
               <OnboardingProvider>
                 <ChecklistProvider>
-                  <ApprovalCheck>
-                    <AppLayout>
-                    <Routes>
+                  <AppLayout>
+                  <Routes>
                     <Route path="/" element={<Index />} />
-                    <Route path="/auth" element={<ClerkAuth />} />
-                    <Route path="/signup-request" element={<SignupRequest />} />
+                    <Route path="/auth" element={<Auth />} />
                     <Route path="/consultant-landing" element={<ConsultantLanding />} />
                     
                     <Route path="/how-to-use" element={<HowToUsePortal />} />
@@ -78,7 +74,6 @@ const App = () => (
                   <OnboardingHelpButton />
                   <WelcomeModal />
                   </AppLayout>
-                  </ApprovalCheck>
                 </ChecklistProvider>
               </OnboardingProvider>
             </BrowserRouter>
