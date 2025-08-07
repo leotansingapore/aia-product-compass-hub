@@ -10,7 +10,16 @@ interface ProtectedTabProps {
 }
 
 export function ProtectedTab({ tabId, children, fallback }: ProtectedTabProps) {
-  const { getTabPermission, canAccessTab, isTabLocked } = usePermissions();
+  const { getTabPermission, canAccessTab, isTabLocked, isMasterAdmin } = usePermissions();
+  
+  // Core tabs are always accessible for authenticated users
+  const coreTabs = ['profile', 'security', 'preferences'];
+  const isCore = coreTabs.includes(tabId);
+  
+  // Master admin can access everything, core tabs are always accessible
+  if (isMasterAdmin() || isCore) {
+    return <>{children}</>;
+  }
   
   // If tab is hidden, don't render anything
   if (!canAccessTab(tabId)) {
@@ -43,7 +52,16 @@ interface ProtectedTabTriggerProps {
 }
 
 export function ProtectedTabTrigger({ tabId, children }: ProtectedTabTriggerProps) {
-  const { canAccessTab } = usePermissions();
+  const { canAccessTab, isMasterAdmin } = usePermissions();
+  
+  // Core tabs are always accessible for authenticated users
+  const coreTabs = ['profile', 'security', 'preferences'];
+  const isCore = coreTabs.includes(tabId);
+  
+  // Master admin can access everything, core tabs are always accessible
+  if (isMasterAdmin() || isCore) {
+    return <>{children}</>;
+  }
   
   // If tab is hidden, don't render the trigger
   if (!canAccessTab(tabId)) {
