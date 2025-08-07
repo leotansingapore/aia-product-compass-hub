@@ -10,6 +10,7 @@ import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useAuth } from "@/hooks/useAuth";
+import { SignInButton, UserButton } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import { useAppStructureSync } from "@/hooks/useAppStructureSync";
 import { usePermissions } from "@/hooks/usePermissions";
@@ -41,15 +42,16 @@ export function AppLayout({ children }: AppLayoutProps) {
           <MobileHeader 
             title="AIA Learning Platform"
             rightAction={
-              <Button
-                variant="default"
-                size="sm"
-                onClick={() => navigate('/auth')}
-                className="flex items-center gap-2"
-              >
-                <LogIn className="h-4 w-4" />
-                Sign In
-              </Button>
+              <SignInButton fallbackRedirectUrl="/">
+                <Button
+                  variant="default"
+                  size="sm"
+                  className="flex items-center gap-2"
+                >
+                  <LogIn className="h-4 w-4" />
+                  Sign In
+                </Button>
+              </SignInButton>
             }
           />
           <main className="flex-1 pb-20">
@@ -64,15 +66,16 @@ export function AppLayout({ children }: AppLayoutProps) {
         {/* Top Bar for unauthenticated users */}
         <header className="flex h-12 items-center justify-between gap-2 border-b bg-card px-4 sticky top-0 z-10">
           <h1 className="text-lg font-semibold">AIA Learning Platform</h1>
-          <Button
-            variant="default"
-            size="sm"
-            onClick={() => navigate('/auth')}
-            className="flex items-center gap-2"
-          >
-            <LogIn className="h-4 w-4" />
-            Sign In
-          </Button>
+          <SignInButton fallbackRedirectUrl="/">
+            <Button
+              variant="default"
+              size="sm"
+              className="flex items-center gap-2"
+            >
+              <LogIn className="h-4 w-4" />
+              Sign In
+            </Button>
+          </SignInButton>
         </header>
         <main className="flex-1">
           {children}
@@ -145,25 +148,18 @@ export function AppLayout({ children }: AppLayoutProps) {
               
               {/* Login/Signup Button - shown when user is not logged in */}
               {!user ? (
-                <Button
-                  variant="default"
-                  size="sm"
-                  onClick={() => navigate('/auth')}
-                  className="flex items-center gap-2"
-                >
-                  <LogIn className="h-4 w-4" />
-                  Sign In
-                </Button>
+                <SignInButton fallbackRedirectUrl="/">
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="flex items-center gap-2"
+                  >
+                    <LogIn className="h-4 w-4" />
+                    Sign In
+                  </Button>
+                </SignInButton>
               ) : (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={signOut}
-                  className="flex items-center gap-2"
-                >
-                  <LogIn className="h-4 w-4 rotate-180" />
-                  Sign Out
-                </Button>
+                <UserButton afterSignOutUrl="/auth" />
               )}
             </div>
           </header>

@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { Separator } from "@/components/ui/separator";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { UserButton } from "@clerk/clerk-react";
 import { useAdmin } from "@/hooks/useAdmin";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useCategories } from "@/hooks/useProducts";
@@ -156,17 +157,9 @@ export function MobileDrawer() {
             )}
           </div>
 
-          {/* Sign Out Button */}
+          {/* User Profile Button */}
           <div className="p-6 pt-0 border-t">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={signOut}
-              className="w-full justify-start gap-2 text-destructive hover:text-destructive"
-            >
-              <LogOut className="h-4 w-4" />
-              Sign Out
-            </Button>
+            <UserButton afterSignOutUrl="/auth" />
           </div>
         </div>
       </SheetContent>

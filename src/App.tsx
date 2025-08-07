@@ -22,7 +22,7 @@ import SearchByProfile from "./pages/SearchByProfile";
 
 
 import Bookmarks from "./pages/Bookmarks";
-import Auth from "./pages/Auth";
+import ClerkAuth from "./pages/ClerkAuth";
 import ConsultantLanding from "./pages/ConsultantLanding";
 import CMFASExams from "./pages/CMFASExams";
 import CMFASModuleDetail from "./pages/cmfas/CMFASModuleDetail";
@@ -49,7 +49,7 @@ const App = () => (
                   <AppLayout>
                   <Routes>
                     <Route path="/" element={<Index />} />
-                    <Route path="/auth" element={<Auth />} />
+                    <Route path="/auth" element={<ClerkAuth />} />
                     <Route path="/consultant-landing" element={<ConsultantLanding />} />
                     
                     <Route path="/how-to-use" element={<HowToUsePortal />} />
