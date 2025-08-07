@@ -162,17 +162,10 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
   const [tourType, setTourType] = useState<'basic' | 'advanced' | 'admin'>('basic');
   const [completedStepsCount, setCompletedStepsCount] = useState(0);
 
-  // Enhanced welcome logic with personalization
+  // Enhanced welcome logic with personalization - DISABLED by default
   useEffect(() => {
-    if (user && currentPath === '/') {
-      const hasSeenWelcome = localStorage.getItem(`welcome-seen-${user.id}`);
-      const lastTourVersion = localStorage.getItem(`tour-version-${user.id}`);
-      const currentTourVersion = '2.0'; // Increment when tour changes significantly
-      
-      if (!hasSeenWelcome || lastTourVersion !== currentTourVersion) {
-        setShowWelcome(true);
-      }
-    }
+    // Disable automatic welcome modal - users can manually start tours if needed
+    setShowWelcome(false);
   }, [user, currentPath]);
 
   // Load saved progress
