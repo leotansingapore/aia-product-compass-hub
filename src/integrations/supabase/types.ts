@@ -999,6 +999,7 @@ export type Database = {
       }
       user_approval_requests: {
         Row: {
+          clerk_user_id: string | null
           company: string | null
           created_at: string
           email: string
@@ -1014,6 +1015,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          clerk_user_id?: string | null
           company?: string | null
           created_at?: string
           email: string
@@ -1029,6 +1031,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          clerk_user_id?: string | null
           company?: string | null
           created_at?: string
           email?: string
