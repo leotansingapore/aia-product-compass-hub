@@ -28,13 +28,13 @@ export function ApprovalCheck({ children }: { children: React.ReactNode }) {
   }, [user]);
 
   const checkApprovalStatus = async () => {
-    if (!user?.email) {
+    if (!user?.emailAddresses?.[0]?.emailAddress) {
       setIsChecking(false);
       return;
     }
 
     try {
-      const email = user.email;
+      const email = user.emailAddresses[0].emailAddress;
       
       // Check if this user has an approval request
       const { data: request, error } = await supabase
@@ -101,7 +101,7 @@ export function ApprovalCheck({ children }: { children: React.ReactNode }) {
   }
 
   // Check if user is admin by email (bypass approval for admin)
-  const userEmail = user?.email;
+  const userEmail = user?.emailAddresses?.[0]?.emailAddress;
   if (userEmail === 'tanjunsing@gmail.com') {
     return <>{children}</>;
   }

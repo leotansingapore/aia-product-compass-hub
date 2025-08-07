@@ -39,7 +39,7 @@ export default function SignupRequest() {
       const { error } = await supabase
         .from('user_approval_requests')
         .insert([{
-          email: user.email,
+          email: user.emailAddresses?.[0]?.emailAddress,
           first_name: formData.firstName,
           last_name: formData.lastName,
           company: formData.company,
@@ -159,7 +159,7 @@ export default function SignupRequest() {
 
             {user && (
               <div className="bg-muted/50 p-3 rounded-lg text-sm">
-                <strong>Email:</strong> {user.email}
+                <strong>Email:</strong> {user.emailAddresses?.[0]?.emailAddress}
               </div>
             )}
             
