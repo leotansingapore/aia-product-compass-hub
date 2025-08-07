@@ -334,13 +334,45 @@ const Auth = () => {
           </p>
         </div>
 
+        {/* Quick Access Buttons */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {quickLogins.map((login, index) => {
+            const IconComponent = login.icon;
+            return (
+              <Card key={index} className="border-border/50 hover:border-primary/30 transition-colors cursor-pointer">
+                <CardContent className="p-4">
+                  <div className="flex flex-col items-center text-center space-y-2">
+                    <div className="bg-gradient-primary p-2 rounded-full">
+                      <IconComponent className={`h-5 w-5 text-primary-foreground`} />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-sm">{login.type}</h3>
+                      <p className="text-xs text-muted-foreground mb-2">{login.description}</p>
+                      <Button
+                        onClick={() => handleQuickLogin(login.email, login.password)}
+                        disabled={loading}
+                        size="sm"
+                        variant="outline"
+                        className="w-full text-xs"
+                      >
+                        {loading && <Loader2 className="mr-1 h-3 w-3 animate-spin" />}
+                        Quick Access
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t border-border" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
             <span className="bg-background px-2 text-muted-foreground">
-              Sign in with your account
+              Or sign in with your account
             </span>
           </div>
         </div>
