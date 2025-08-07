@@ -20,19 +20,16 @@ interface TierPermission {
 }
 
 const TIERS = [
-  { id: 'tier_1', name: 'Tier 1', color: 'bg-blue-500' },
-  { id: 'tier_2', name: 'Tier 2', color: 'bg-amber-500' },
-  { id: 'tier_3', name: 'Tier 3', color: 'bg-emerald-500' },
-  { id: 'tier_4', name: 'Tier 4', color: 'bg-green-500' },
+  { id: 'basic', name: 'Basic', color: 'bg-blue-500' },
+  { id: 'intermediate', name: 'Intermediate', color: 'bg-amber-500' },
+  { id: 'advanced', name: 'Advanced', color: 'bg-emerald-500' },
 ];
 
 const AVAILABLE_RESOURCES = [
   { id: 'cmfas-exams', name: 'CMFAS Exams', type: 'page' },
-  { id: 'product-category-investment', name: 'Investment Products', type: 'section' },
-  { id: 'product-category-endowment', name: 'Endowment Products', type: 'section' },
-  { id: 'product-category-whole-life', name: 'Whole Life Products', type: 'section' },
-  { id: 'product-category-term', name: 'Term Products', type: 'section' },
-  { id: 'product-category-medical', name: 'Medical Insurance Products', type: 'section' },
+  { id: 'roleplay', name: 'Roleplay Training', type: 'page' },
+  { id: 'product-categories', name: 'Product Categories', type: 'section' },
+  { id: 'product-category', name: 'Product Category Pages', type: 'page' },
 ];
 
 export function TierConfigurationPanel({ onClose }: TierConfigurationPanelProps) {
@@ -177,10 +174,9 @@ export function TierConfigurationPanel({ onClose }: TierConfigurationPanelProps)
         <div className="bg-muted/50 p-4 rounded-lg">
           <h4 className="font-medium mb-2">Current Tier Definitions:</h4>
           <div className="space-y-2 text-sm">
-            <div><strong>Tier 1:</strong> CMFAS Exams access only</div>
-            <div><strong>Tier 2:</strong> CMFAS Exams + Investment Products</div>
-            <div><strong>Tier 3:</strong> CMFAS Exams + Investment & Endowment Products</div>
-            <div><strong>Tier 4:</strong> CMFAS Exams + All Product Categories</div>
+            <div><strong>Basic:</strong> CMFAS Exams access only</div>
+            <div><strong>Intermediate:</strong> CMFAS Exams + Roleplay Training</div>
+            <div><strong>Advanced:</strong> CMFAS Exams + Roleplay Training + All Product Categories</div>
             <div><strong>Master Admin:</strong> Full system access (cannot be configured)</div>
           </div>
         </div>
