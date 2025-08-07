@@ -125,7 +125,7 @@ export default function ProductCategory() {
     <ProtectedSection sectionId={`product-category-${categoryId}`}>
       <div className="min-h-screen bg-background">
         <Helmet>
-          <title>{categoryInfo?.title || 'Product Category'} - AIA Product Compass Hub</title>
+          <title>{categoryInfo?.title || 'Product Category'} - FINternship Learning Platform</title>
           <meta name="description" content={`Explore ${categoryInfo?.title.toLowerCase() || 'products'} - ${categoryInfo?.description || 'Comprehensive insurance and investment solutions'} with detailed guides, videos, and AI assistance.`} />
         </Helmet>
         <NavigationHeader 

@@ -26,7 +26,7 @@ const ConsultantLanding = () => {
     {
       icon: BookOpen,
       title: "Comprehensive Knowledge Base",
-      description: "Access detailed product information, highlights, and documentation for all AIA products across investment, endowment, whole life, term, and medical insurance categories."
+      description: "Access detailed product information, highlights, and documentation for all financial products across investment, endowment, whole life, term, and medical insurance categories."
     },
     {
       icon: Video,
@@ -77,7 +77,7 @@ const ConsultantLanding = () => {
       role: "Financial Advisor",
       avatar: "MT", 
       rating: 5,
-      quote: "The gamified learning system made product training actually enjoyable. I've earned 2,500 XP points and unlocked 8 achievements while mastering AIA's investment products."
+      quote: "The gamified learning system made product training actually enjoyable. I've earned 2,500 XP points and unlocked 8 achievements while mastering investment products."
     },
     {
       name: "Jennifer Wong",
@@ -91,7 +91,7 @@ const ConsultantLanding = () => {
   const demoFeatures = [
     {
       title: "Interactive Product Catalog",
-      description: "Browse 50+ AIA products with detailed specifications, highlights, and real-world applications",
+      description: "Browse 50+ financial products with detailed specifications, highlights, and real-world applications",
       demo: "Try searching 'high net worth investment' or 'medical coverage for families'"
     },
     {
@@ -117,8 +117,8 @@ const ConsultantLanding = () => {
     <ProtectedPage pageId="consultant-landing">
     <div className="min-h-screen bg-gradient-subtle">
       <Helmet>
-        <title>For Financial Consultants - AIA Product Compass Hub</title>
-        <meta name="description" content="Accelerate your success as an AIA financial consultant with our comprehensive learning platform. Access 50+ product guides, 100+ training videos, AI assistance, and gamified learning to excel in your career." />
+        <title>For Financial Consultants - FINternship Learning Platform</title>
+        <meta name="description" content="Accelerate your success as a financial consultant with our comprehensive learning platform. Access 50+ product guides, 100+ training videos, AI assistance, and gamified learning to excel in your career." />
       </Helmet>
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-primary text-white">
@@ -130,10 +130,10 @@ const ConsultantLanding = () => {
             </Badge>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
               Accelerate Your Success with
-              <span className="block text-accent-glow">AIA Product Compass</span>
+              <span className="block text-accent-glow">FINternship Learning Platform</span>
             </h1>
             <p className="text-lg sm:text-xl mb-6 sm:mb-8 text-white max-w-2xl mx-auto">
-              Join hundreds of successful consultants who use our comprehensive platform to master AIA products, 
+              Join hundreds of successful consultants who use our comprehensive platform to master financial products, 
               serve clients better, and accelerate their career growth.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
@@ -169,7 +169,7 @@ const ConsultantLanding = () => {
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Everything You Need to Excel</h2>
             <p className="text-lg sm:text-xl text-foreground max-w-2xl mx-auto">
-              Our platform provides comprehensive tools and resources designed specifically for AIA consultants
+              Our platform provides comprehensive tools and resources designed specifically for financial consultants
             </p>
           </div>
           

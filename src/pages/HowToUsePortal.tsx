@@ -47,12 +47,12 @@ export default function HowToUsePortal() {
     <ProtectedPage pageId="how-to-use-portal">
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>How to Use Portal - AIA Product Compass Hub</title>
-        <meta name="description" content="Learn how to navigate and use the AIA Product Learning Platform effectively. Discover features like video learning, AI assistance, resource access, and objection handling tools." />
+        <title>How to Use Portal - FINternship Learning Platform</title>
+        <meta name="description" content="Learn how to navigate and use the FINternship Learning Platform effectively. Discover features like video learning, AI assistance, resource access, and objection handling tools." />
       </Helmet>
       <NavigationHeader 
         title="How to Use This Portal"
-        subtitle="Your comprehensive guide to mastering the AIA Product Learning Platform"
+        subtitle="Your comprehensive guide to mastering the FINternship Learning Platform"
         showBackButton
         onBack={() => navigate('/')}
         breadcrumbs={[

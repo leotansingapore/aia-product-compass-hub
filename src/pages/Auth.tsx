@@ -310,8 +310,8 @@ const Auth = () => {
   };
   return <div className="min-h-screen bg-gradient-subtle flex items-center justify-center px-1 sm:px-4 py-4">
       <Helmet>
-        <title>Sign In - AIA Product Compass Hub</title>
-        <meta name="description" content="Sign in to access the AIA Product Compass Hub - Track your learning progress, earn achievements, and access comprehensive product training materials." />
+        <title>Sign In - FINternship Learning Platform</title>
+        <meta name="description" content="Sign in to access the FINternship Learning Platform - Track your learning progress, earn achievements, and access comprehensive product training materials." />
       </Helmet>
       <div className="w-full max-w-lg space-y-4 sm:space-y-6">
         <div className="text-center">

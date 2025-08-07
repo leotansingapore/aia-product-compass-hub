@@ -42,7 +42,7 @@ export function MobileHeader({
     }
     if (path.startsWith("/category/")) return "Products";
     if (path.startsWith("/product/")) return "Product Details";
-    return "AIA Learning Platform";
+    return "FINternship Learning Platform";
   };
 
   return (

@@ -151,7 +151,7 @@ export default function CMFASExams() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>CMFAS Exam Preparation - AIA Product Compass Hub</title>
+        <title>CMFAS Exam Preparation - FINternship Learning Platform</title>
         <meta name="description" content="Comprehensive CMFAS exam preparation materials including modules 1, 5, 6, 8, practice tests, and study materials for capital markets financial advisory services certification." />
       </Helmet>
 

@@ -64,7 +64,7 @@ const OnboardingContext = createContext<OnboardingContextType>({
 const BASIC_ONBOARDING_STEPS: OnboardingStep[] = [
   {
     id: 'welcome',
-    title: 'Welcome to AIA Learning Platform! 🎉',
+    title: 'Welcome to FINternship Learning Platform! 🎉',
     description: 'Let\'s take a quick tour to help you get started with your learning journey.',
     completed: false,
     celebrationMessage: 'Great! Let\'s explore the platform together.',

@@ -109,14 +109,14 @@ export default function Dashboard() {
     <ProtectedPage pageId="dashboard">
       <div className="min-h-screen bg-background">
         <Helmet>
-          <title>Dashboard - AIA Product Compass Hub</title>
-          <meta name="description" content="Access your personalized dashboard with product categories, learning progress, and recommendations. Navigate investment, endowment, whole life, term, and medical insurance products." />
+        <title>Dashboard - FINternship Learning Platform</title>
+        <meta name="description" content="Access your personalized dashboard with product categories, learning progress, and recommendations. Navigate investment, endowment, whole life, term, and medical insurance products." />
         </Helmet>
         
         {/* Desktop Header - Hidden on mobile */}
         <div className="hidden md:block">
           <NavigationHeader 
-            title="AIA Product Learning Platform"
+            title="FINternship Learning Platform"
             subtitle="Your comprehensive resource for product knowledge and sales excellence"
           />
         </div>

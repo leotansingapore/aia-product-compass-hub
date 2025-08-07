@@ -39,7 +39,7 @@ export function AppLayout({ children }: AppLayoutProps) {
       return (
         <div className="min-h-screen w-full">
           <MobileHeader 
-            title="AIA Learning Platform"
+            title="FINternship Learning Platform"
             rightAction={
               <Button
                 variant="default"
@@ -63,7 +63,7 @@ export function AppLayout({ children }: AppLayoutProps) {
       <div className="min-h-screen w-full">
         {/* Top Bar for unauthenticated users */}
         <header className="flex h-12 items-center justify-between gap-2 border-b bg-card px-4 sticky top-0 z-10">
-          <h1 className="text-lg font-semibold">AIA Learning Platform</h1>
+          <h1 className="text-lg font-semibold">FINternship Learning Platform</h1>
           <Button
             variant="default"
             size="sm"
@@ -126,7 +126,7 @@ export function AppLayout({ children }: AppLayoutProps) {
           <header className="flex h-12 items-center justify-between gap-2 border-b bg-card px-4 sticky top-0 z-10">
             <div className="flex items-center gap-2">
               <SidebarTrigger data-onboarding="sidebar-trigger" />
-              <h1 className="text-lg font-semibold">AIA Learning Platform</h1>
+              <h1 className="text-lg font-semibold">FINternship Learning Platform</h1>
             </div>
             
             <div className="flex items-center gap-2">

@@ -38,7 +38,7 @@ export function MobileDrawer() {
       </SheetTrigger>
       <SheetContent side="left" className="w-80 p-0">
         <SheetHeader className="p-6 pb-4">
-          <SheetTitle className="text-left">AIA Learning Platform</SheetTitle>
+          <SheetTitle className="text-left">FINternship Learning Platform</SheetTitle>
         </SheetHeader>
         
         <div className="flex flex-col h-full">

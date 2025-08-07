@@ -101,7 +101,7 @@ export function WelcomeModal() {
 
   const slides = [
     {
-      title: `Welcome to AIA Learning Platform, ${userName}! 👋`,
+      title: `Welcome to FINternship Learning Platform, ${userName}! 👋`,
       description: "Your comprehensive resource for product knowledge and sales excellence. Discover what makes this platform special.",
       content: (
         <div className="space-y-6">

@@ -29,8 +29,8 @@ export default function Bookmarks() {
     <ProtectedPage pageId="bookmarks">
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>My Bookmarks - AIA Product Compass Hub</title>
-        <meta name="description" content="Access your saved products and resources in one place. Quickly find your bookmarked AIA insurance and investment products for easy reference." />
+        <title>My Bookmarks - FINternship Learning Platform</title>
+        <meta name="description" content="Access your saved products and resources in one place. Quickly find your bookmarked insurance and investment products for easy reference." />
       </Helmet>
       <NavigationHeader
         title="My Bookmarks"

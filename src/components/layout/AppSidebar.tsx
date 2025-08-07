@@ -97,8 +97,8 @@ export function AppSidebar() {
           </div>
           {!isCollapsed && (
             <div>
-              <h2 className="font-semibold text-sm">AIA Learning</h2>
-              <p className="text-xs text-muted-foreground">Knowledge Portal</p>
+              <h2 className="font-semibold text-sm">FINternship Learning</h2>
+              <p className="text-xs text-muted-foreground">Platform</p>
             </div>
           )}
         </div>
@@ -211,7 +211,7 @@ export function AppSidebar() {
               </div>
             )}
             <div className="text-xs text-muted-foreground">
-              <p>© 2024 AIA Learning Platform</p>
+              <p>© 2024 FINternship Learning Platform</p>
               <p>Version 2.0</p>
             </div>
           </div>
