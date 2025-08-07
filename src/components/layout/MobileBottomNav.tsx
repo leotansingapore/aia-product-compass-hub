@@ -9,11 +9,6 @@ const navigationItems = [
     icon: Home,
   },
   {
-    name: "Search",
-    href: "/search",
-    icon: Search,
-  },
-  {
     name: "CMFAS",
     href: "/cmfas-exams",
     icon: BookOpen,
