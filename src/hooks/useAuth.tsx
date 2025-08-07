@@ -1,5 +1,6 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useUser, useAuth as useClerkAuth } from '@clerk/clerk-react';
+import { supabase } from '@/integrations/supabase/client';
 
 interface AuthContextType {
   user: any;
@@ -16,8 +17,57 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const { user, isLoaded } = useUser();
+  const { user: clerkUser, isLoaded } = useUser();
   const { signOut: clerkSignOut } = useClerkAuth();
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (isLoaded) {
+      if (clerkUser) {
+        fetchSupabaseUser();
+      } else {
+        setUser(null);
+        setLoading(false);
+      }
+    }
+  }, [clerkUser, isLoaded]);
+
+  const fetchSupabaseUser = async () => {
+    if (!clerkUser?.primaryEmailAddress?.emailAddress) {
+      setUser(null);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const email = clerkUser.primaryEmailAddress.emailAddress;
+      const { data: profile, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('email', email)
+        .single();
+
+      if (error) {
+        console.error('Error fetching user profile:', error);
+        setUser(null);
+      } else {
+        // Create a user object that combines Clerk data with Supabase profile
+        setUser({
+          id: profile.user_id, // Use Supabase user_id
+          email: email,
+          primaryEmailAddress: clerkUser.primaryEmailAddress,
+          emailAddresses: clerkUser.emailAddresses,
+          ...profile
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const signOut = async () => {
     try {
@@ -32,7 +82,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const authValue = {
     user: user || null,
     session: user ? { user } : null,
-    loading: !isLoaded,
+    loading: loading,
     signOut
   };
 
