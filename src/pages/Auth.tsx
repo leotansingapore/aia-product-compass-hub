@@ -152,43 +152,79 @@ const Auth = () => {
 
     setLoading(true);
     try {
-      // Create approval request instead of user account
-      const nameParts = displayName.trim().split(' ');
-      const firstName = nameParts[0];
-      const lastName = nameParts.slice(1).join(' ');
+      // Clean up existing state first
+      cleanupAuthState();
+      
+      // Attempt global sign out to clear any existing sessions
+      try {
+        await supabase.auth.signOut({ scope: 'global' });
+      } catch (err) {
+        console.log('Pre-signup cleanup error (continuing):', err);
+      }
 
-      const { error } = await supabase
-        .from('user_approval_requests')
-        .insert({
-          email,
-          first_name: firstName,
-          last_name: lastName || null,
-          reason: "User registration request"
-        });
+      // Create the actual user account with Supabase Auth
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/`,
+          data: {
+            display_name: displayName,
+          }
+        }
+      });
 
       if (error) {
-        if (error.code === '23505') { // Unique constraint violation
-          toast({
-            title: "Request Already Submitted",
-            description: "A registration request with this email already exists. Please wait for admin approval.",
-            variant: "destructive",
-          });
+        if (error.message.includes('User already registered')) {
+          throw new Error('An account with this email already exists. Please try signing in instead.');
+        } else if (error.message.includes('Password')) {
+          throw new Error('Password must be at least 6 characters long.');
         } else {
           throw error;
         }
-        return;
       }
 
-      toast({
-        title: "Registration Request Submitted!",
-        description: "Your request has been sent to administrators for approval. You'll receive an email once your account is approved.",
-      });
+      if (data.user) {
+        // If user was created but needs email confirmation
+        if (!data.session) {
+          toast({
+            title: "Check Your Email",
+            description: "We've sent you a confirmation link. Please check your email and click the link to activate your account.",
+          });
+        } else {
+          // User is immediately signed in
+          try {
+            // Create user profile
+            await supabase
+              .from('profiles')
+              .insert({
+                user_id: data.user.id,
+                email: data.user.email,
+                display_name: displayName,
+                first_name: displayName.split(' ')[0],
+                last_name: displayName.split(' ').slice(1).join(' ') || null,
+              });
+          } catch (profileError) {
+            console.error('Profile creation error:', profileError);
+            // Don't fail the whole process
+          }
+
+          toast({
+            title: "Account Created!",
+            description: "Welcome! Your account has been created successfully.",
+          });
+          
+          // Force page reload for clean state
+          window.location.href = '/';
+        }
+      }
       
       // Clear form
       setEmail('');
       setPassword('');
       setDisplayName('');
     } catch (error: any) {
+      console.error('Sign up error:', error);
       toast({
         title: "Registration Failed",
         description: error.message || "An error occurred during registration",
