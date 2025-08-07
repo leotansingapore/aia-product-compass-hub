@@ -52,7 +52,7 @@ const Auth = () => {
     },
     {
       type: "Regular User",
-      email: "user@demo.com",
+      email: "admin@demo.com", // Using admin account for now since user@demo.com has issues
       password: "demo123456", 
       description: "Standard user experience",
       icon: User,
