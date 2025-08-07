@@ -7,9 +7,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { UserCard } from "./UserCard";
-import { RoleSelector } from "./RoleSelector";
 import { TierConfigurationPanel } from "./TierConfigurationPanel";
-import { Users, Search, UserPlus, Settings } from "lucide-react";
+import { Users, Search, Settings } from "lucide-react";
 
 interface User {
   id: string;
@@ -29,8 +28,6 @@ export function UserManagementSection() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [showRoleSelector, setShowRoleSelector] = useState(false);
   const [showTierConfiguration, setShowTierConfiguration] = useState(false);
 
   useEffect(() => {
@@ -198,55 +195,15 @@ export function UserManagementSection() {
             </div>
             
             {filteredUsers.map((user) => (
-              <div key={user.id} className="flex items-center gap-4 p-4 border rounded-lg">
-                <UserCard
-                  user={user}
-                  onRoleUpdate={handleUserRoleUpdate}
-                  onViewPermissions={() => {
-                    // Simplified tier system - no per-user permissions
-                  }}
-                />
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setSelectedUser(user);
-                      setShowRoleSelector(true);
-                    }}
-                  >
-                    <UserPlus className="h-4 w-4 mr-2" />
-                    Assign Roles
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setShowTierConfiguration(true)}
-                  >
-                    <Settings className="h-4 w-4 mr-2" />
-                    Configure Tiers
-                  </Button>
-                </div>
-              </div>
+              <UserCard
+                key={user.id}
+                user={user}
+                onRoleUpdate={handleUserRoleUpdate}
+              />
             ))}
           </div>
         </CardContent>
       </Card>
-
-      {showRoleSelector && selectedUser && (
-        <RoleSelector
-          user={selectedUser}
-          onSave={(roles) => {
-            handleUserRoleUpdate(selectedUser.id, roles);
-            setShowRoleSelector(false);
-            setSelectedUser(null);
-          }}
-          onCancel={() => {
-            setShowRoleSelector(false);
-            setSelectedUser(null);
-          }}
-        />
-      )}
 
       {showTierConfiguration && (
         <TierConfigurationPanel
