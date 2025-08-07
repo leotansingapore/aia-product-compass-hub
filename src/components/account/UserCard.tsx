@@ -86,7 +86,10 @@ export function UserCard({ user, onRoleUpdate, onViewPermissions }: UserCardProp
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => handleRoleToggle('admin')}
+                onClick={() => {
+                  console.log('🔘 UserCard role toggle clicked for user:', user.email);
+                  handleRoleToggle('admin');
+                }}
               >
                 <Shield className="h-4 w-4 mr-1" />
                 {user.roles.includes('admin') ? 'Remove Admin' : 'Make Admin'}
@@ -95,7 +98,10 @@ export function UserCard({ user, onRoleUpdate, onViewPermissions }: UserCardProp
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => onViewPermissions(user)}
+                onClick={() => {
+                  console.log('🔘 UserCard permissions clicked for user:', user.email);
+                  onViewPermissions(user);
+                }}
               >
                 <Settings className="h-4 w-4 mr-1" />
                 Permissions

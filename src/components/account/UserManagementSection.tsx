@@ -211,6 +211,7 @@ export function UserManagementSection() {
                     variant="outline"
                     size="sm"
                     onClick={() => {
+                      console.log('🔘 Assign Roles button clicked for user:', user.email);
                       setSelectedUser(user);
                       setShowRoleSelector(true);
                     }}
