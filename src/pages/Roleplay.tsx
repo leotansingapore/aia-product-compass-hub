@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -121,6 +122,11 @@ export default function Roleplay() {
     return (
       <ProtectedPage pageId="roleplay">
         <div className="container mx-auto p-6 space-y-6">
+          <Helmet>
+            <title>Roleplay - {selectedScenario.title}</title>
+            <meta name="description" content={selectedScenario.description} />
+            <link rel="canonical" href={`${window.location.origin}/roleplay`} />
+          </Helmet>
           <div className="flex items-center gap-4">
             <Button 
               variant="outline" 
@@ -145,6 +151,11 @@ export default function Roleplay() {
   return (
     <ProtectedPage pageId="roleplay">
       <div className="container mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 space-y-3 sm:space-y-6">
+        <Helmet>
+          <title>AI Roleplay Training - FINternship</title>
+          <meta name="description" content="Practice sales, objection handling, and consultation skills with AI video avatars." />
+          <link rel="canonical" href={`${window.location.origin}/roleplay`} />
+        </Helmet>
         <div className="text-center space-y-3 sm:space-y-4">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">AI Roleplay Training</h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">

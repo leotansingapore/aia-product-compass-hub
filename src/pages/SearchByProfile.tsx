@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { SearchBar } from "@/components/SearchBar";
@@ -119,6 +120,11 @@ export default function SearchByProfile() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Search by Client Profile - FINternship</title>
+        <meta name="description" content="Find tailored product recommendations by client profile and life events." />
+        <link rel="canonical" href={`${window.location.origin}/search-by-profile`} />
+      </Helmet>
       <NavigationHeader 
         title="Search by Client Profile"
         subtitle="Find the right products for your client's life stage and needs"
