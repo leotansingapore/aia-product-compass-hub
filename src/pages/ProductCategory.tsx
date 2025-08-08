@@ -11,7 +11,7 @@ import { useProducts, useCategories } from "@/hooks/useProducts";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+
 
 // Helper function to get category info for backward compatibility
 function getCategoryInfo(categoryId: string) {
@@ -70,19 +70,12 @@ export default function ProductCategory() {
   }, [categoryId, category?.id]);
 
   // Get all unique tags from products
-  const allTags = Array.from(new Set(products.flatMap(product => product.tags || [])));
+  
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
   };
 
-  const handleTagClick = (tag: string) => {
-    setSelectedTags(prev => 
-      prev.includes(tag) 
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
-    );
-  };
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = !searchQuery || 
@@ -150,33 +143,6 @@ export default function ProductCategory() {
             />
           </div>
           
-          {/* Tag Filters */}
-          <div className="flex flex-wrap gap-2">
-            <span className="text-xs md:text-sm font-medium text-muted-foreground mr-2">Filter by tags:</span>
-            {allTags.map(tag => (
-              <Badge
-                key={tag}
-                variant={selectedTags.includes(tag) ? "default" : "outline"}
-                className="cursor-pointer hover:bg-accent/50 transition-colors mobile-touch-target text-xs md:text-sm"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleTagClick(tag);
-                }}
-              >
-                {tag}
-              </Badge>
-            ))}
-            {selectedTags.length > 0 && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setSelectedTags([])}
-                className="text-xs"
-              >
-                Clear filters
-              </Button>
-            )}
-          </div>
         </div>
 
         {/* Products Grid */}
