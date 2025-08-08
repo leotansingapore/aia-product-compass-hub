@@ -122,7 +122,7 @@ export default function Dashboard() {
         </div>
         
         {/* Main Content */}
-        <div className="max-w-7xl mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8">
+        <div className="max-w-7xl mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 pb-24 md:pb-8">
           
           {/* Search Hero */}
           <SearchHero onSearch={handleSearch} />

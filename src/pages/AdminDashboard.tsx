@@ -264,7 +264,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-background px-1 sm:px-4 md:px-6 py-2 sm:py-6">
+    <div className="min-h-screen bg-background px-1 sm:px-4 md:px-6 py-2 sm:py-6 pb-24 md:pb-8">
       <div className="max-w-6xl mx-auto space-y-4 sm:space-y-6">
         <div className="flex items-center gap-2 mb-4 sm:mb-6">
           <Shield className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -308,86 +308,88 @@ export default function AdminDashboard() {
                     <p>No approval requests found</p>
                   </div>
                 ) : (
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>User Details</TableHead>
-                        <TableHead>Company</TableHead>
-                        <TableHead>Reason</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead>Requested</TableHead>
-                        <TableHead>Actions</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {approvalRequests.map((request) => (
-                        <TableRow key={request.id}>
-                          <TableCell>
-                            <div>
-                              <div className="font-medium">{request.email}</div>
-                              {(request.first_name || request.last_name) && (
-                                <div className="text-sm text-muted-foreground">
-                                  {request.first_name} {request.last_name}
-                                </div>
-                              )}
-                            </div>
-                          </TableCell>
-                          <TableCell className="text-sm">
-                            {request.company || '-'}
-                          </TableCell>
-                          <TableCell className="text-sm max-w-xs">
-                            {request.reason || '-'}
-                          </TableCell>
-                          <TableCell>
-                            <Badge 
-                              variant={
-                                request.status === 'approved' ? 'default' :
-                                request.status === 'rejected' ? 'destructive' :
-                                'secondary'
-                              }
-                              className="flex items-center gap-1 w-fit"
-                            >
-                              {request.status === 'approved' && <UserCheck className="h-3 w-3" />}
-                              {request.status === 'rejected' && <UserX className="h-3 w-3" />}
-                              {request.status === 'pending' && <Clock className="h-3 w-3" />}
-                              {request.status}
-                            </Badge>
-                          </TableCell>
-                          <TableCell className="text-sm">
-                            {new Date(request.requested_at).toLocaleDateString()}
-                          </TableCell>
-                          <TableCell>
-                            {request.status === 'pending' ? (
-                              <div className="flex gap-2">
-                                <Button
-                                  size="sm"
-                                  variant="default"
-                                  onClick={() => handleApprovalAction(request.id, 'approve')}
-                                  className="text-xs"
-                                >
-                                  <UserCheck className="h-3 w-3 mr-1" />
-                                  Approve
-                                </Button>
-                                <Button
-                                  size="sm"
-                                  variant="destructive"
-                                  onClick={() => handleApprovalAction(request.id, 'reject', 'Manually rejected by admin')}
-                                  className="text-xs"
-                                >
-                                  <UserX className="h-3 w-3 mr-1" />
-                                  Reject
-                                </Button>
-                              </div>
-                            ) : (
-                              <span className="text-xs text-muted-foreground">
-                                {request.status === 'approved' ? 'Account created' : 'Request rejected'}
-                              </span>
-                            )}
-                          </TableCell>
+                  <div className="w-full overflow-x-auto">
+                    <Table className="min-w-[720px]">
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>User Details</TableHead>
+                          <TableHead>Company</TableHead>
+                          <TableHead>Reason</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead>Requested</TableHead>
+                          <TableHead>Actions</TableHead>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                      </TableHeader>
+                      <TableBody>
+                        {approvalRequests.map((request) => (
+                          <TableRow key={request.id}>
+                            <TableCell>
+                              <div>
+                                <div className="font-medium">{request.email}</div>
+                                {(request.first_name || request.last_name) && (
+                                  <div className="text-sm text-muted-foreground">
+                                    {request.first_name} {request.last_name}
+                                  </div>
+                                )}
+                              </div>
+                            </TableCell>
+                            <TableCell className="text-sm">
+                              {request.company || '-'}
+                            </TableCell>
+                            <TableCell className="text-sm max-w-xs">
+                              {request.reason || '-'}
+                            </TableCell>
+                            <TableCell>
+                              <Badge 
+                                variant={
+                                  request.status === 'approved' ? 'default' :
+                                  request.status === 'rejected' ? 'destructive' :
+                                  'secondary'
+                                }
+                                className="flex items-center gap-1 w-fit"
+                              >
+                                {request.status === 'approved' && <UserCheck className="h-3 w-3" />}
+                                {request.status === 'rejected' && <UserX className="h-3 w-3" />}
+                                {request.status === 'pending' && <Clock className="h-3 w-3" />}
+                                {request.status}
+                              </Badge>
+                            </TableCell>
+                            <TableCell className="text-sm">
+                              {new Date(request.requested_at).toLocaleDateString()}
+                            </TableCell>
+                            <TableCell>
+                              {request.status === 'pending' ? (
+                                <div className="flex gap-2">
+                                  <Button
+                                    size="sm"
+                                    variant="default"
+                                    onClick={() => handleApprovalAction(request.id, 'approve')}
+                                    className="text-xs"
+                                  >
+                                    <UserCheck className="h-3 w-3 mr-1" />
+                                    Approve
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    variant="destructive"
+                                    onClick={() => handleApprovalAction(request.id, 'reject', 'Manually rejected by admin')}
+                                    className="text-xs"
+                                  >
+                                    <UserX className="h-3 w-3 mr-1" />
+                                    Reject
+                                  </Button>
+                                </div>
+                              ) : (
+                                <span className="text-xs text-muted-foreground">
+                                  {request.status === 'approved' ? 'Account created' : 'Request rejected'}
+                                </span>
+                              )}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
                 )}
               </CardContent>
             </Card>

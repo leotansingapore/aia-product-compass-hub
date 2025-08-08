@@ -131,18 +131,20 @@ export default function ProductDetail() {
         breadcrumbs={breadcrumbs}
       />
       
-      <div className="max-w-4xl mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 space-y-3 sm:space-y-6 md:space-y-8 animate-fade-in">
+      <div className="max-w-4xl mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 pb-24 md:pb-8 space-y-3 sm:space-y-6 md:space-y-8 animate-fade-in">
         
         {/* Tags and Bookmark Button */}
         <ProtectedSection sectionId="product_tags">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+            <div className="flex-1 w-full">
               <EditableTags
                 tags={product.tags || []}
                 onSave={(newTags) => handleUpdate('tags', newTags)}
               />
             </div>
-            <BookmarkButton productId={product.id} />
+            <div className="self-end sm:self-auto">
+              <BookmarkButton productId={product.id} />
+            </div>
           </div>
         </ProtectedSection>
 
