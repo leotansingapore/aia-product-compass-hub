@@ -32,6 +32,7 @@ export default function CMFASChat() {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={`Chat with AI tutor about ${moduleName}`} />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
       {/* Mobile Header */}

@@ -86,6 +86,7 @@ const OnboardingModule = () => {
       <Helmet>
         <title>CMFAS Onboarding - Getting Started Guide</title>
         <meta name="description" content="Essential setup steps to begin your CMFAS exam preparation journey including student account creation and question bank access." />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
       <NavigationHeader 

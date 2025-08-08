@@ -119,6 +119,7 @@ const ConsultantLanding = () => {
       <Helmet>
         <title>For Financial Consultants - FINternship Learning Platform</title>
         <meta name="description" content="Accelerate your success as a financial consultant with our comprehensive learning platform. Access 50+ product guides, 100+ training videos, AI assistance, and gamified learning to excel in your career." />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-primary text-white">

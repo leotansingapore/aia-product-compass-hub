@@ -31,6 +31,7 @@ export default function Bookmarks() {
       <Helmet>
         <title>My Bookmarks - FINternship Learning Platform</title>
         <meta name="description" content="Access your saved products and resources in one place. Quickly find your bookmarked insurance and investment products for easy reference." />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
       <NavigationHeader
         title="My Bookmarks"

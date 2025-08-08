@@ -127,6 +127,7 @@ export default function ProductCategory() {
         <Helmet>
           <title>{categoryInfo?.title || 'Product Category'} - FINternship Learning Platform</title>
           <meta name="description" content={`Explore ${categoryInfo?.title.toLowerCase() || 'products'} - ${categoryInfo?.description || 'Comprehensive insurance and investment solutions'} with detailed guides, videos, and AI assistance.`} />
+          <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
         </Helmet>
         <NavigationHeader 
           title={category.name}

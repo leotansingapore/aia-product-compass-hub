@@ -190,6 +190,7 @@ export default function HIModule() {
       <Helmet>
         <title>CMFAS HI - Health Insurance</title>
         <meta name="description" content="Complete guide to CMFAS HI exam covering health insurance products including medical expense, disability income, and critical illness insurance." />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
       <NavigationHeader 

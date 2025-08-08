@@ -327,6 +327,7 @@ const Auth = () => {
       <Helmet>
         <title>Sign In - FINternship Learning Platform</title>
         <meta name="description" content="Sign in to access the FINternship Learning Platform - Track your learning progress, earn achievements, and access comprehensive product training materials." />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
       <div className="w-full max-w-lg space-y-4 sm:space-y-6">
         <div className="text-center">

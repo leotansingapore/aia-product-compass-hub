@@ -199,6 +199,7 @@ export default function RES5Module() {
       <Helmet>
         <title>CMFAS RES5 - Rules, Ethics & Skills for Financial Advisory Services</title>
         <meta name="description" content="Complete guide to CMFAS RES5 exam covering rules, ethics, and skills for financial advisory services with detailed syllabus and exam format." />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
       <NavigationHeader 

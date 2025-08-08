@@ -181,6 +181,7 @@ export default function M9AModule() {
       <Helmet>
         <title>CMFAS M9A - Life Insurance & Investment-Linked Policies II</title>
         <meta name="description" content="Complete guide to CMFAS M9A exam covering structured products and investment-linked policies with detailed syllabus and exam format." />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
       <NavigationHeader 
