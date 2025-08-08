@@ -23,7 +23,7 @@ interface AppLayoutProps {
 export function AppLayout({ children }: AppLayoutProps) {
   console.log("AppLayout rendering");
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
-  const { user, signOut } = useAuth();
+  const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const { autoSync } = useAppStructureSync();
   const { loading: permissionsLoading } = usePermissions();
@@ -54,6 +54,15 @@ export function AppLayout({ children }: AppLayoutProps) {
     };
     enforcePasswordChange();
   }, [user?.id, location.pathname, navigate]);
+  
+  // Show loading state while auth initializes
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
   
   // For unauthenticated users, show simple layout without sidebar
   if (!user) {

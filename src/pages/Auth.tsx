@@ -95,6 +95,7 @@ const Auth = () => {
       });
       if (error) throw error;
       if (data.user) {
+        try { localStorage.setItem('lastLoginEmail', email); } catch {}
         toast({
           title: "Welcome back!",
           description: "Successfully signed in"
