@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { usePermissions } from "@/hooks/usePermissions";
@@ -36,6 +37,11 @@ export default function MyAccount() {
   return (
     <ProtectedPage pageId="my-account">
       <div className="min-h-screen bg-background">
+        <Helmet>
+          <title>My Account - FINternship</title>
+          <meta name="description" content="Manage your profile, security, preferences, and admin settings." />
+          <link rel="canonical" href={`${window.location.origin}/my-account`} />
+        </Helmet>
         {/* Ultra mobile-friendly container */}
         <div className="container mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 max-w-4xl">
           {/* Larger mobile header */}

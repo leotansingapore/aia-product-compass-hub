@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -256,6 +257,11 @@ const RoleplayFeedback = () => {
   if (loading) {
     return (
       <div className="container mx-auto p-6 space-y-6">
+        <Helmet>
+          <title>Roleplay Feedback - Loading</title>
+          <meta name="description" content="Generating your AI roleplay feedback." />
+          <link rel="canonical" href={`${window.location.origin}/roleplay/feedback/${sessionId || ''}`} />
+        </Helmet>
         <SkeletonLoader type="card" />
       </div>
     );
@@ -266,6 +272,11 @@ const RoleplayFeedback = () => {
     
     return (
       <div className="container mx-auto p-6 space-y-6">
+        <Helmet>
+          <title>Roleplay Feedback - Generating</title>
+          <meta name="description" content="Our AI is analyzing your conversation to prepare feedback." />
+          <link rel="canonical" href={`${window.location.origin}/roleplay/feedback/${sessionId || ''}`} />
+        </Helmet>
         <div className="text-center py-12 max-w-md mx-auto">
           <RefreshCw className="h-12 w-12 animate-spin mx-auto mb-4 text-primary" />
           <h2 className="text-2xl font-semibold mb-2">Generating Your Feedback</h2>
@@ -328,7 +339,12 @@ const RoleplayFeedback = () => {
 
   if (timeoutReached) {
     return (
-      <div className="container mx-auto p-6 space-y-6">
+        <div className="container mx-auto p-6 space-y-6">
+          <Helmet>
+            <title>Roleplay Feedback - Processing</title>
+            <meta name="description" content="The AI is still preparing your detailed feedback. Please check again shortly." />
+            <link rel="canonical" href={`${window.location.origin}/roleplay/feedback/${sessionId || ''}`} />
+          </Helmet>
         <div className="text-center py-12 max-w-md mx-auto">
           <MessageSquare className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
           <h2 className="text-2xl font-semibold mb-2">Still Processing Your Feedback</h2>
@@ -356,7 +372,12 @@ const RoleplayFeedback = () => {
 
   if (!feedback) {
     return (
-      <div className="container mx-auto p-6 space-y-6">
+       <div className="container mx-auto p-6 space-y-6">
+         <Helmet>
+           <title>Roleplay Feedback - Not Available</title>
+           <meta name="description" content="Feedback for this session is not yet available." />
+           <link rel="canonical" href={`${window.location.origin}/roleplay/feedback/${sessionId || ''}`} />
+         </Helmet>
         <div className="text-center py-12">
           <MessageSquare className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
           <h2 className="text-2xl font-semibold mb-2">No Feedback Available</h2>
@@ -385,6 +406,11 @@ const RoleplayFeedback = () => {
 
   return (
     <div className="container mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 space-y-3 sm:space-y-6">
+      <Helmet>
+        <title>Roleplay Feedback - FINternship</title>
+        <meta name="description" content="Detailed performance analysis, rubric scores, and coaching insights from your AI roleplay session." />
+        <link rel="canonical" href={`${window.location.origin}/roleplay/feedback/${sessionId || ''}`} />
+      </Helmet>
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
