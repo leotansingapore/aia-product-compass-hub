@@ -14,7 +14,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAppStructureSync } from "@/hooks/useAppStructureSync";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { supabase } from "@/integrations/supabase/client";
+
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -34,25 +34,10 @@ export function AppLayout({ children }: AppLayoutProps) {
     autoSync();
   }, [autoSync]);
 
-  // Force first-time users to change password
+  // Password change is optional now; previously enforced via redirect
   const location = useLocation();
   useEffect(() => {
-    const enforcePasswordChange = async () => {
-      if (!user) return;
-      try {
-        const { data } = await supabase
-          .from('profiles')
-          .select('first_login')
-          .eq('user_id', user.id)
-          .maybeSingle();
-        if (data?.first_login && location.pathname !== '/force-password') {
-          navigate('/force-password');
-        }
-      } catch (e) {
-        // Fail quietly
-      }
-    };
-    enforcePasswordChange();
+    // No-op: keep effect to reference variables and avoid unused warnings
   }, [user?.id, location.pathname, navigate]);
   
   // Show loading state while auth initializes

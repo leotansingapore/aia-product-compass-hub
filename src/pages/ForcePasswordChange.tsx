@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
 export default function ForcePasswordChange() {
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function ForcePasswordChange() {
     <div className="min-h-[60vh] flex items-center justify-center px-4">
       <Helmet>
         <title>Reset Password - FINternship</title>
-        <meta name="description" content="Force password change for first-time login to secure your account." />
+        <meta name="description" content="Optional password reset to secure your account—change it now or later." />
         <link rel="canonical" href={`${window.location.origin}/force-password`} />
       </Helmet>
 
@@ -31,7 +31,7 @@ export default function ForcePasswordChange() {
         <div className="text-center space-y-2">
           <h1 className="text-2xl font-semibold">Secure Your Account</h1>
           <p className="text-muted-foreground">
-            You're using a generated password. Please set a new password to continue.
+            You're using a generated password. It's recommended to set a new password now, or you can skip and do it later.
           </p>
         </div>
 
@@ -48,13 +48,13 @@ export default function ForcePasswordChange() {
               navigate('/');
             }}
             onCancel={() => {
-              // Prevent bypass: cancel signs out
-              signOut();
+              // Optional flow: cancel returns home
+              navigate('/');
             }}
           />
           <div className="mt-3 text-center">
-            <Button variant="ghost" size="sm" onClick={signOut}>
-              Sign out instead
+            <Button variant="ghost" size="sm" onClick={() => navigate('/')}>
+              Skip for now
             </Button>
           </div>
         </Card>
