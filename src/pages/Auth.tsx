@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { cleanupAuthState } from "@/utils/authCleanup";
 import { Loader2, Trophy, Award, Zap, Crown, Settings, User } from "lucide-react";
 const Auth = () => {
   const [loading, setLoading] = useState(false);
@@ -59,13 +60,8 @@ const Auth = () => {
     icon: User,
     color: "text-green-500"
   }];
-  const cleanupAuthState = () => {
-    Object.keys(localStorage).forEach(key => {
-      if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
-        localStorage.removeItem(key);
-      }
-    });
-  };
+  // cleanup handled via utils
+
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
@@ -168,6 +164,24 @@ const Auth = () => {
       setLoading(false);
     }
   };
+  const handleResetPassword = async () => {
+    if (!email) {
+      toast({ title: "Enter your email", description: "Please enter your email above to receive a reset link.", variant: "default" });
+      return;
+    }
+    setLoading(true);
+    try {
+      const redirectTo = `${window.location.origin}/force-password`;
+      const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+      if (error) throw error;
+      toast({ title: "Reset link sent", description: `We emailed a password reset link to ${email}.` });
+    } catch (error: any) {
+      toast({ title: "Reset failed", description: error.message || "Could not send reset email", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleDemoLogin = async () => {
     setLoading(true);
     try {
@@ -367,6 +381,11 @@ const Auth = () => {
                   <div className="space-y-2">
                     <Label htmlFor="signin-password">Password</Label>
                     <Input id="signin-password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Enter your password" disabled={loading} className="h-11 sm:h-10" onKeyDown={e => e.key === 'Enter' && !e.shiftKey && e.currentTarget.form?.requestSubmit()} />
+                  </div>
+                  <div className="flex justify-end">
+                    <Button type="button" variant="link" size="sm" className="px-0" onClick={handleResetPassword} disabled={loading}>
+                      Forgot password?
+                    </Button>
                   </div>
                   <Button type="submit" className="w-full min-h-[44px]" disabled={loading} variant="hero">
                     {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}

@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Card } from "@/components/ui/card";
@@ -10,10 +11,13 @@ export default function ForcePasswordChange() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
-  if (!user) {
-    navigate('/auth');
-    return null;
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate('/auth');
+    }
+  }, [user, navigate]);
+
+  if (!user) return null;
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center px-4">
