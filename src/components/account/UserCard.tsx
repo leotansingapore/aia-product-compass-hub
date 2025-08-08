@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Shield, User, Award, Star, Mail, Key } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 interface User {
   id: string;
@@ -90,6 +91,51 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
   const currentTier = getCurrentTier();
   const TierIcon = getTierIcon(currentTier);
 
+  const [loadingAction, setLoadingAction] = useState<'reset' | 'set' | null>(null);
+
+  const handleSendReset = async () => {
+    setLoadingAction('reset');
+    try {
+      const { data, error } = await supabase.functions.invoke('generate-password-reset-link', {
+        body: { email: user.email, send: true },
+      });
+      if (error) throw error as any;
+      toast({ title: 'Password reset link generated', description: 'User will receive an email shortly.' });
+      const resetUrl = (data as any)?.resetUrl;
+      if (resetUrl) {
+        try {
+          await navigator.clipboard.writeText(resetUrl);
+          toast({ title: 'Reset URL copied', description: 'Link copied to clipboard for convenience.' });
+        } catch {}
+      }
+    } catch (e: any) {
+      toast({ title: 'Failed to send reset link', description: e?.message || 'Please try again.', variant: 'destructive' });
+    } finally {
+      setLoadingAction(null);
+    }
+  };
+
+  const handleSetTempPassword = async () => {
+    const newPassword = prompt('Enter a new temporary password (min 6 characters):');
+    if (!newPassword) return;
+    if (newPassword.length < 6) {
+      toast({ title: 'Password too short', description: 'Must be at least 6 characters.', variant: 'destructive' });
+      return;
+    }
+    setLoadingAction('set');
+    try {
+      const { error } = await supabase.functions.invoke('admin-change-user-password', {
+        body: { userId: user.id, newPassword },
+      });
+      if (error) throw error as any;
+      toast({ title: 'Password updated', description: 'Temporary password set successfully.' });
+    } catch (e: any) {
+      toast({ title: 'Failed to change password', description: e?.message || 'Please try again.', variant: 'destructive' });
+    } finally {
+      setLoadingAction(null);
+    }
+  };
+
   return (
     <div className="flex items-center gap-4 p-4 border rounded-lg">
       <Avatar className="h-12 w-12">
@@ -143,14 +189,34 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
         
         {/* Admin Toggle - only show if not master admin */}
         {!user.roles.includes('master_admin') && (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => handleRoleToggle('admin')}
-          >
-            <Shield className="h-4 w-4 mr-1" />
-            {user.roles.includes('admin') ? 'Remove Admin' : 'Make Admin'}
-          </Button>
+          <>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleRoleToggle('admin')}
+            >
+              <Shield className="h-4 w-4 mr-1" />
+              {user.roles.includes('admin') ? 'Remove Admin' : 'Make Admin'}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleSendReset}
+              disabled={loadingAction === 'reset'}
+            >
+              <Mail className="h-4 w-4 mr-1" />
+              Reset Link
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleSetTempPassword}
+              disabled={loadingAction === 'set'}
+            >
+              <Key className="h-4 w-4 mr-1" />
+              Set Temp
+            </Button>
+          </>
         )}
       </div>
     </div>
