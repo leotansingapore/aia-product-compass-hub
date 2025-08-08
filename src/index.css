@@ -70,6 +70,9 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Mobile navigation */
+    --mobile-bottom-nav-height: 64px;
   }
 
   .dark {
@@ -185,6 +188,11 @@
     .mobile-card {
       margin: 0.5rem;
       padding: 1rem;
+    }
+
+    /* Ensure content not hidden behind bottom nav */
+    main {
+      padding-bottom: calc(env(safe-area-inset-bottom) + var(--mobile-bottom-nav-height));
     }
   }
 }

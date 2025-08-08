@@ -23,7 +23,7 @@ export function MobileHeader({
     location.pathname !== "/search" && 
     location.pathname !== "/cmfas-exams" && 
     location.pathname !== "/bookmarks" && 
-    location.pathname !== "/account"
+    location.pathname !== "/my-account"
   );
 
   // Auto-determine title based on route
@@ -35,7 +35,7 @@ export function MobileHeader({
     if (path === "/search") return "Search";
     if (path === "/cmfas-exams") return "CMFAS Exams";
     if (path === "/bookmarks") return "Bookmarks";
-    if (path === "/account") return "My Account";
+    if (path === "/my-account") return "My Account";
     if (path.startsWith("/cmfas/module/")) {
       const module = path.split("/").pop();
       return module?.toUpperCase() || "CMFAS Module";
