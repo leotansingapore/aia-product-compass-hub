@@ -630,10 +630,12 @@ export type Database = {
           current_level: number | null
           display_name: string | null
           email: string | null
+          first_login: boolean | null
           first_name: string | null
           id: string
           last_active_date: string | null
           last_name: string | null
+          password_changed_at: string | null
           postcode: string | null
           streak_days: number | null
           total_xp: number | null
@@ -649,10 +651,12 @@ export type Database = {
           current_level?: number | null
           display_name?: string | null
           email?: string | null
+          first_login?: boolean | null
           first_name?: string | null
           id?: string
           last_active_date?: string | null
           last_name?: string | null
+          password_changed_at?: string | null
           postcode?: string | null
           streak_days?: number | null
           total_xp?: number | null
@@ -668,10 +672,12 @@ export type Database = {
           current_level?: number | null
           display_name?: string | null
           email?: string | null
+          first_login?: boolean | null
           first_name?: string | null
           id?: string
           last_active_date?: string | null
           last_name?: string | null
+          password_changed_at?: string | null
           postcode?: string | null
           streak_days?: number | null
           total_xp?: number | null
