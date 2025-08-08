@@ -30,9 +30,11 @@ export function MobileHeader({
   const getPageTitle = () => {
     if (title) return title;
     
-    const path = location.pathname;
+const path = location.pathname;
     if (path === "/") return "Dashboard";
     if (path === "/search") return "Search";
+    if (path === "/kb") return "Knowledge Base";
+    if (path.startsWith("/kb/")) return "Knowledge Base";
     if (path === "/cmfas-exams") return "CMFAS Exams";
     if (path === "/bookmarks") return "Bookmarks";
     if (path === "/my-account") return "My Account";

@@ -31,6 +31,9 @@ import RoleplayFeedback from "./pages/RoleplayFeedback";
 import AdminDashboard from "./pages/AdminDashboard";
 import MyAccount from "./pages/MyAccount";
 import NotFound from "./pages/NotFound";
+import KnowledgeBase from "./pages/KnowledgeBase";
+import KBCategory from "./pages/kb/KBCategory";
+import KBProduct from "./pages/kb/KBProduct";
 
 const queryClient = new QueryClient();
 
@@ -62,11 +65,17 @@ const App = () => (
                     <Route path="/roleplay/feedback/:sessionId" element={<RoleplayFeedback />} />
                     <Route path="/admin" element={<AdminDashboard />} />
                     <Route path="/my-account" element={<MyAccount />} />
-                    <Route path="/category/:categoryId" element={<ProductCategory />} />
-                    <Route path="/product/:productId" element={<ProductDetail />} />
-                    <Route path="/force-password" element={<ForcePasswordChange />} />
-                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                    <Route path="*" element={<NotFound />} />
+<Route path="/category/:categoryId" element={<ProductCategory />} />
+<Route path="/product/:productId" element={<ProductDetail />} />
+<Route path="/force-password" element={<ForcePasswordChange />} />
+
+{/* Knowledge Base */}
+<Route path="/kb" element={<KnowledgeBase />} />
+<Route path="/kb/:categorySlug" element={<KBCategory />} />
+<Route path="/kb/:categorySlug/:productSlug" element={<KBProduct />} />
+
+{/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+<Route path="*" element={<NotFound />} />
                   </Routes>
                   
                   {/* Enhanced Onboarding Components */}

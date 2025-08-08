@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { Home, Search, BookOpen, User, Bookmark } from "lucide-react";
+import { Home, Search, BookOpen, User, Bookmark, Library } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navigationItems = [
@@ -7,6 +7,11 @@ const navigationItems = [
     name: "Home",
     href: "/",
     icon: Home,
+  },
+  {
+    name: "Knowledge",
+    href: "/kb",
+    icon: Library,
   },
   {
     name: "CMFAS",
@@ -32,8 +37,9 @@ export function MobileBottomNav() {
     <nav className="fixed bottom-0 left-0 right-0 bg-background border-t border-border z-50 safe-area-pb">
       <div className="flex items-center justify-around px-1 py-2">
         {navigationItems.map((item) => {
-          const isActive = location.pathname === item.href || 
-            (item.href === "/cmfas-exams" && location.pathname.startsWith("/cmfas"));
+const isActive = location.pathname === item.href || 
+            (item.href === "/cmfas-exams" && location.pathname.startsWith("/cmfas")) ||
+            (item.href === "/kb" && (location.pathname === "/kb" || location.pathname.startsWith("/kb/")));
           
           return (
             <NavLink
