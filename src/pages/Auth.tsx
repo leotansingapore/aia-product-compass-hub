@@ -328,25 +328,6 @@ const Auth = () => {
           </p>
         </div>
 
-        {/* Quick Access Buttons */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {quickLogins.map((login, index) => {
-            const IconComponent = login.icon;
-            return (
-              <Card key={index} className="border-border/50 hover:border-primary/20 transition-colors cursor-pointer" onClick={() => handleQuickLogin(login.email, login.password)}>
-                <CardContent className="p-4 text-center">
-                  <div className="flex flex-col items-center gap-2">
-                    <IconComponent className={`h-6 w-6 ${login.color}`} />
-                    <div>
-                      <p className="font-medium text-sm">{login.type}</p>
-                      <p className="text-xs text-muted-foreground">{login.description}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
@@ -417,9 +398,6 @@ const Auth = () => {
           </CardContent>
         </Card>
 
-        <p className="text-xs text-muted-foreground text-center">
-          💡 Use quick access buttons above for instant demo access with different permission levels
-        </p>
       </div>
     </div>;
 };
