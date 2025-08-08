@@ -19,8 +19,7 @@ import ProductCategory from "./pages/ProductCategory";
 import ProductDetail from "./pages/ProductDetail";
 import HowToUsePortal from "./pages/HowToUsePortal";
 import SearchByProfile from "./pages/SearchByProfile";
-
-
+import ForcePasswordChange from "./pages/ForcePasswordChange";
 import Bookmarks from "./pages/Bookmarks";
 import Auth from "./pages/Auth";
 import ConsultantLanding from "./pages/ConsultantLanding";
@@ -65,6 +64,7 @@ const App = () => (
                     <Route path="/my-account" element={<MyAccount />} />
                     <Route path="/category/:categoryId" element={<ProductCategory />} />
                     <Route path="/product/:productId" element={<ProductDetail />} />
+                    <Route path="/force-password" element={<ForcePasswordChange />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>

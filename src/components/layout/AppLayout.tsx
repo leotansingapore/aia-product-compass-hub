@@ -10,10 +10,11 @@ import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAppStructureSync } from "@/hooks/useAppStructureSync";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { supabase } from "@/integrations/supabase/client";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -32,6 +33,27 @@ export function AppLayout({ children }: AppLayoutProps) {
   useEffect(() => {
     autoSync();
   }, [autoSync]);
+
+  // Force first-time users to change password
+  const location = useLocation();
+  useEffect(() => {
+    const enforcePasswordChange = async () => {
+      if (!user) return;
+      try {
+        const { data } = await supabase
+          .from('profiles')
+          .select('first_login')
+          .eq('user_id', user.id)
+          .maybeSingle();
+        if (data?.first_login && location.pathname !== '/force-password') {
+          navigate('/force-password');
+        }
+      } catch (e) {
+        // Fail quietly
+      }
+    };
+    enforcePasswordChange();
+  }, [user?.id, location.pathname, navigate]);
   
   // For unauthenticated users, show simple layout without sidebar
   if (!user) {
