@@ -49,6 +49,7 @@ export default function HowToUsePortal() {
       <Helmet>
         <title>How to Use Portal - FINternship Learning Platform</title>
         <meta name="description" content="Learn how to navigate and use the FINternship Learning Platform effectively. Discover features like video learning, AI assistance, resource access, and objection handling tools." />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
       <NavigationHeader 
         title="How to Use This Portal"

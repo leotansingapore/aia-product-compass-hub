@@ -111,6 +111,7 @@ export default function Dashboard() {
         <Helmet>
         <title>Dashboard - FINternship Learning Platform</title>
         <meta name="description" content="Access your personalized dashboard with product categories, learning progress, and recommendations. Navigate investment, endowment, whole life, term, and medical insurance products." />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
         </Helmet>
         
         {/* Desktop Header - Hidden on mobile */}

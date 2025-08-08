@@ -153,6 +153,7 @@ export default function CMFASExams() {
       <Helmet>
         <title>CMFAS Exam Preparation - FINternship Learning Platform</title>
         <meta name="description" content="Comprehensive CMFAS exam preparation materials including modules 1, 5, 6, 8, practice tests, and study materials for capital markets financial advisory services certification." />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
       {!isMobile && (

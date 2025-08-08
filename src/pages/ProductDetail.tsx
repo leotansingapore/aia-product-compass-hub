@@ -123,6 +123,7 @@ export default function ProductDetail() {
       <Helmet>
         <title>{product?.title || 'Product Details'} - FINternship Learning Platform</title>
         <meta name="description" content={`Learn about ${product?.title || 'this product'} - ${product?.description || 'Complete product information including benefits, features, training videos, and AI assistance for financial advisors.'}`} />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
       <ProductHeader
         productTitle={product.title}

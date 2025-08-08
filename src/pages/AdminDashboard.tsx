@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -265,6 +266,11 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-background px-1 sm:px-4 md:px-6 py-2 sm:py-6 pb-24 md:pb-8">
+      <Helmet>
+        <title>Admin Dashboard - FINternship</title>
+        <meta name="description" content="Master admin dashboard for user approvals, management, and troubleshooting." />
+        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
+      </Helmet>
       <div className="max-w-6xl mx-auto space-y-4 sm:space-y-6">
         <div className="flex items-center gap-2 mb-4 sm:mb-6">
           <Shield className="h-5 w-5 sm:h-6 sm:w-6" />
