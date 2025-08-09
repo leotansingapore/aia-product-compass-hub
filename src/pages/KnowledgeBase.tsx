@@ -4,6 +4,7 @@ import { kbCategories } from "@/utils/kbConfig";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { NavigationHeader } from "@/components/NavigationHeader";
+import { getCategoryIdFromName } from "@/hooks/useProducts";
 
 export default function KnowledgeBase() {
   return (
@@ -39,7 +40,7 @@ export default function KnowledgeBase() {
       <main>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {kbCategories.map((cat) => (
-            <Link key={cat.slug} to={`/kb/${cat.slug}`} aria-label={`Open ${cat.name}`}>
+            <Link key={cat.slug} to={`/category/${getCategoryIdFromName(cat.name)}`} aria-label={`Open ${cat.name}`}>
               <Card className="h-full hover:shadow-elegant transition-all duration-300 hover:scale-[1.01]">
                 <CardHeader>
                   <CardTitle>{cat.name}</CardTitle>

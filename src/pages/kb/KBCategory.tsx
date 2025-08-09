@@ -1,12 +1,22 @@
 import { Helmet } from "react-helmet-async";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { findCategory } from "@/utils/kbConfig";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { NavigationHeader } from "@/components/NavigationHeader";
+import { useEffect } from "react";
+import { getCategoryIdFromName } from "@/hooks/useProducts";
 
 export default function KBCategory() {
   const { categorySlug } = useParams<{ categorySlug: string }>();
   const category = categorySlug ? findCategory(categorySlug) : undefined;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (category) {
+      const categoryId = getCategoryIdFromName(category.name);
+      navigate(`/category/${categoryId}`, { replace: true });
+    }
+  }, [category?.name]);
 
   if (!category) {
     return (
