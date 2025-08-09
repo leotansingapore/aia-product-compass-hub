@@ -331,18 +331,49 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
               ) : (
                 <div className="space-y-4">
                   {messages.map((message, index) => (
-                    <div
-                      key={index}
-                      className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
-                    >
+                    isMobile ? (
+                      <div key={index} className="flex gap-3">
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1 ${message.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
+                          {message.role === 'user' ? (
+                            <User className="h-3 w-3" />
+                          ) : (
+                            <Bot className="h-3 w-3" />
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="mb-1">
+                            <span className="text-xs font-medium text-muted-foreground">{message.role === 'user' ? 'You' : 'Assistant'}</span>
+                            <span className="text-xs text-muted-foreground/60 ml-2">{message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                          </div>
+                          <div className="text-sm leading-relaxed">
+                            {message.isStreaming ? (
+                              <div className="flex gap-1 py-1">
+                                <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                                <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                                <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce"></div>
+                              </div>
+                            ) : message.role === 'assistant' ? (
+                              <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-2 prose-ul:my-2 prose-li:my-0">
+                                <ReactMarkdown>{message.content}</ReactMarkdown>
+                              </div>
+                            ) : (
+                              <p>{message.content}</p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
                       <div
-                        className={`max-w-[85%] ${isMobile ? 'rounded-lg px-3 py-2 shadow-none' : 'rounded-2xl px-4 py-3 shadow-sm'} ${
-                          message.role === 'user'
-                            ? `bg-primary text-primary-foreground ${isMobile ? '' : 'ml-4'}`
-                            : `${isMobile ? 'bg-muted/40 text-foreground' : 'bg-card text-card-foreground border mr-4'}`
-                        }`}
+                        key={index}
+                        className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
                       >
-                        {!isMobile && (
+                        <div
+                          className={`max-w-[85%] rounded-2xl px-4 py-3 shadow-sm ${
+                            message.role === 'user'
+                              ? 'bg-primary text-primary-foreground ml-4'
+                              : 'bg-card text-card-foreground border mr-4'
+                          }`}
+                        >
                           <div className="flex items-start gap-2 mb-2">
                             <div className={`p-1 rounded-full ${message.role === 'user' ? 'bg-primary-foreground/20' : 'bg-muted'}`}>
                               {message.role === 'user' ? <User className="h-3 w-3" /> : <Bot className="h-3 w-3" />}
@@ -351,45 +382,43 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
                               {message.role === 'user' ? 'You' : 'AI Expert'}
                             </div>
                           </div>
-                        )}
 
-                        {message.isStreaming ? (
-                          <div className="flex items-center gap-2">
-                            <Loader2 className="h-4 w-4 animate-spin" />
-                            <span className="text-sm">Thinking...</span>
-                          </div>
-                        ) : message.role === 'assistant' ? (
-                          <div className="markdown-content prose prose-sm max-w-none">
-                            <ReactMarkdown
-                              components={{
-                                h1: ({ children }) => <h1 className="text-lg font-bold mb-2 text-card-foreground">{children}</h1>,
-                                h2: ({ children }) => <h2 className="text-base font-semibold mb-2 text-card-foreground">{children}</h2>,
-                                h3: ({ children }) => <h3 className="text-sm font-semibold mb-1 text-card-foreground">{children}</h3>,
-                                p: ({ children }) => <p className="mb-2 last:mb-0 text-card-foreground">{children}</p>,
-                                ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1 text-card-foreground">{children}</ul>,
-                                ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1 text-card-foreground">{children}</ol>,
-                                li: ({ children }) => <li className="text-sm text-card-foreground">{children}</li>,
-                                strong: ({ children }) => <strong className="font-semibold text-card-foreground">{children}</strong>,
-                                em: ({ children }) => <em className="italic text-card-foreground">{children}</em>,
-                                code: ({ children }) => <code className="bg-muted px-1 py-0.5 rounded text-xs font-mono text-card-foreground">{children}</code>,
-                                pre: ({ children }) => <pre className="bg-muted p-2 rounded text-xs font-mono overflow-x-auto mb-2 text-card-foreground">{children}</pre>,
-                                blockquote: ({ children }) => <blockquote className="border-l-2 border-border pl-2 italic mb-2 text-card-foreground">{children}</blockquote>,
-                              }}
-                            >
-                              {message.content}
-                            </ReactMarkdown>
-                          </div>
-                        ) : (
-                          <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                        )}
+                          {message.isStreaming ? (
+                            <div className="flex items-center gap-2">
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                              <span className="text-sm">Thinking...</span>
+                            </div>
+                          ) : message.role === 'assistant' ? (
+                            <div className="markdown-content prose prose-sm max-w-none">
+                              <ReactMarkdown
+                                components={{
+                                  h1: ({ children }) => <h1 className="text-lg font-bold mb-2 text-card-foreground">{children}</h1>,
+                                  h2: ({ children }) => <h2 className="text-base font-semibold mb-2 text-card-foreground">{children}</h2>,
+                                  h3: ({ children }) => <h3 className="text-sm font-semibold mb-1 text-card-foreground">{children}</h3>,
+                                  p: ({ children }) => <p className="mb-2 last:mb-0 text-card-foreground">{children}</p>,
+                                  ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1 text-card-foreground">{children}</ul>,
+                                  ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1 text-card-foreground">{children}</ol>,
+                                  li: ({ children }) => <li className="text-sm text-card-foreground">{children}</li>,
+                                  strong: ({ children }) => <strong className="font-semibold text-card-foreground">{children}</strong>,
+                                  em: ({ children }) => <em className="italic text-card-foreground">{children}</em>,
+                                  code: ({ children }) => <code className="bg-muted px-1 py-0.5 rounded text-xs font-mono text-card-foreground">{children}</code>,
+                                  pre: ({ children }) => <pre className="bg-muted p-2 rounded text-xs font-mono overflow-x-auto mb-2 text-card-foreground">{children}</pre>,
+                                  blockquote: ({ children }) => <blockquote className="border-l-2 border-border pl-2 italic mb-2 text-card-foreground">{children}</blockquote>,
+                                }}
+                              >
+                                {message.content}
+                              </ReactMarkdown>
+                            </div>
+                          ) : (
+                            <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                          )}
 
-                        {!isMobile && (
                           <div className="text-xs opacity-50 mt-2">
                             {message.timestamp.toLocaleTimeString()}
                           </div>
-                        )}
+                        </div>
                       </div>
-                    </div>
+                    )
                   ))}
                 </div>
               )}
