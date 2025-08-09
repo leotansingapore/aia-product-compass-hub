@@ -172,19 +172,21 @@ export default function ProductDetail() {
                   Chat assistant for {product.title}. Ask questions about features, benefits, and sales tips.
                 </DialogDescription>
               </DialogHeader>
-              <ProductAIAssistant 
-                customGptLink={product.custom_gpt_link}
-                productData={{
-                  id: product.id,
-                  name: product.title,
-                  category: product.category_id,
-                  summary: product.description,
-                  highlights: product.highlights,
-                  assistant_id: product.assistant_id,
-                  assistant_instructions: product.assistant_instructions
-                }}
-                onUpdate={handleUpdate}
-              />
+              <div className="flex-1 min-h-0 overflow-hidden">
+                <ProductAIAssistant 
+                  customGptLink={product.custom_gpt_link}
+                  productData={{
+                    id: product.id,
+                    name: product.title,
+                    category: product.category_id,
+                    summary: product.description,
+                    highlights: product.highlights,
+                    assistant_id: product.assistant_id,
+                    assistant_instructions: product.assistant_instructions
+                  }}
+                  onUpdate={handleUpdate}
+                />
+              </div>
             </DialogContent>
           </Dialog>
         </ProtectedSection>

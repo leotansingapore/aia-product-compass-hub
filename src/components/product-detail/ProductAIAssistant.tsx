@@ -114,7 +114,7 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
   };
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col h-full min-h-0 space-y-6">
       {/* Admin Configuration Panel */}
       {isAdminMode && (
         <Card className="border-orange-200 bg-orange-50">

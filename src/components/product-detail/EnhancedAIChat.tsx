@@ -208,7 +208,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
   };
 
   return (
-    <Card className={`${isMobile ? 'shadow-none border-0 rounded-none h-[85vh] flex flex-col bg-background' : 'border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50'} transition-all duration-300 ${isFullscreen && !isMobile ? 'fixed inset-4 z-50 h-[calc(100vh-2rem)]' : ''}`}>
+    <Card className={`${isMobile ? 'shadow-none border-0 rounded-none h-full min-h-0 flex flex-col bg-background' : 'border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50'} transition-all duration-300 ${isFullscreen && !isMobile ? 'fixed inset-4 z-50 h-[calc(100vh-2rem)]' : ''}`}>
       <CardHeader className={`pb-3 ${isMobile ? 'sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b' : ''}`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -260,7 +260,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
         </div>
       </CardHeader>
 
-      <CardContent className={`${isMobile ? 'flex-1 flex flex-col p-2 space-y-2' : 'space-y-4'}`}>
+      <CardContent className={`${isMobile ? 'flex-1 min-h-0 flex flex-col p-2 space-y-2' : 'space-y-4'}`}>
         {/* Assistant Status Warning */}
         {!productData?.assistant_id && (
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
@@ -326,11 +326,11 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
         {/* Chat Area with Enhanced Scroll Controls */}
         <div className={`relative ${isMobile ? 'flex-1 flex flex-col' : ''}`}>
           <ScrollArea 
-            className={`border rounded-lg bg-background/50 ${isMobile ? 'flex-1' : (isFullscreen ? 'h-[calc(100vh-16rem)]' : 'h-96')}`}
+            className={isMobile ? 'flex-1 border-0 rounded-none bg-transparent' : `border rounded-lg bg-background/50 ${isFullscreen ? 'h-[calc(100vh-16rem)]' : 'h-96'}`}
             ref={scrollAreaRef}
           >
             <div 
-              className={`${isMobile ? 'px-3 py-3 space-y-3' : 'p-4 space-y-4'}`}
+              className={`${isMobile ? 'px-3 pt-3 pb-24 space-y-3' : 'p-4 space-y-4'}`}
               ref={scrollViewportRef}
               onScroll={handleScroll}
             >
