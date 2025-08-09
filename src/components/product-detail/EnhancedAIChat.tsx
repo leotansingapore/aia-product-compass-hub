@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
@@ -241,7 +242,18 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
                 {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
               </Button>
             )}
-            <Button size="sm" variant="outline" onClick={startNewChat} className={isMobile ? 'h-8 px-2' : ''}>
+            {isMobile && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowQuickQuestions(!showQuickQuestions)}
+                className="h-8 w-8 p-0"
+                aria-label="Toggle guiding questions"
+              >
+                <Menu className="h-4 w-4" />
+              </Button>
+            )}
+            <Button size="sm" variant="outline" onClick={startNewChat} className={isMobile ? 'h-8 w-8 p-0' : ''} aria-label="Start new chat">
               {isMobile ? <RotateCcw className="h-4 w-4" /> : 'New Chat'}
             </Button>
           </div>
@@ -318,7 +330,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
             ref={scrollAreaRef}
           >
             <div 
-              className="p-4 space-y-4"
+              className={`${isMobile ? 'px-3 py-3 space-y-3' : 'p-4 space-y-4'}`}
               ref={scrollViewportRef}
               onScroll={handleScroll}
             >
@@ -458,19 +470,31 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
         {/* Input Area */}
         <div className={`${isMobile ? 'sticky bottom-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t pt-2 pb-[env(safe-area-inset-bottom)]' : ''} space-y-3`}>
           <div className="flex gap-2">
-            <Textarea
-              value={currentMessage}
-              onChange={(e) => setCurrentMessage(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder={productData?.assistant_id ? `Ask about ${productData?.name}...` : 'Create an assistant first to enable chat'}
-              className={`${isMobile ? 'min-h-[44px]' : 'min-h-[60px]'} resize-none flex-1`}
-              disabled={isLoading || !productData?.assistant_id}
-            />
+            {isMobile ? (
+              <Input
+                value={currentMessage}
+                onChange={(e) => setCurrentMessage(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder={productData?.assistant_id ? `Ask about ${productData?.name}...` : 'Create an assistant first to enable chat'}
+                className="h-10 flex-1"
+                disabled={isLoading || !productData?.assistant_id}
+              />
+            ) : (
+              <Textarea
+                value={currentMessage}
+                onChange={(e) => setCurrentMessage(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder={productData?.assistant_id ? `Ask about ${productData?.name}...` : 'Create an assistant first to enable chat'}
+                className="min-h-[60px] resize-none flex-1"
+                disabled={isLoading || !productData?.assistant_id}
+              />
+            )}
             <Button
               onClick={() => sendMessage()}
               disabled={!currentMessage.trim() || isLoading || !productData?.assistant_id}
-              size={isMobile ? 'default' : 'lg'}
-              className={isMobile ? 'px-3' : 'px-6'}
+              size={isMobile ? 'sm' : 'lg'}
+              className={isMobile ? 'h-10 w-10 p-0' : 'px-6'}
+              aria-label="Send message"
             >
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
