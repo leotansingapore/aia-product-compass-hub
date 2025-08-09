@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,7 +9,6 @@ import { Send, MessageCircle, Loader2, Sparkles, User, Bot, Maximize2, Minimize2
 import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from 'react-markdown';
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Input } from "@/components/ui/input";
 import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 
 interface ChatMessage {
@@ -47,10 +45,10 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
   const [hasNewMessage, setHasNewMessage] = useState(false);
   const [userScrolledUp, setUserScrolledUp] = useState(false);
   const { toast } = useToast();
-const scrollAreaRef = useRef<HTMLDivElement>(null);
-const scrollViewportRef = useRef<HTMLDivElement>(null);
-const isMobile = useIsMobile();
-const [showQuickQuestions, setShowQuickQuestions] = useState(false);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const scrollViewportRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+  const [showQuickQuestions, setShowQuickQuestions] = useState(false);
 
   // Product-specific quick questions
   const quickQuestions: QuickQuestion[] = [
@@ -66,7 +64,6 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
   const isNearBottom = () => {
     const viewport = scrollViewportRef.current;
     if (!viewport) return true;
-    
     const threshold = 100; // pixels from bottom
     const isAtBottom = viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight <= threshold;
     return isAtBottom;
@@ -76,11 +73,7 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
   const scrollToBottom = (smooth = true) => {
     const viewport = scrollViewportRef.current;
     if (!viewport) return;
-    
-    viewport.scrollTo({
-      top: viewport.scrollHeight,
-      behavior: smooth ? 'smooth' : 'auto'
-    });
+    viewport.scrollTo({ top: viewport.scrollHeight, behavior: smooth ? 'smooth' : 'auto' });
     setShowScrollButton(false);
     setHasNewMessage(false);
     setUserScrolledUp(false);
@@ -90,39 +83,22 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
   const handleScroll = () => {
     const viewport = scrollViewportRef.current;
     if (!viewport) return;
-
     const isAtBottom = isNearBottom();
     const isUserScrolling = !isAtBottom;
-
     setUserScrolledUp(isUserScrolling);
     setShowScrollButton(isUserScrolling && messages.length > 0);
-    
-    if (isAtBottom) {
-      setHasNewMessage(false);
-    }
+    if (isAtBottom) setHasNewMessage(false);
   };
 
   // Smart auto-scroll logic
   useEffect(() => {
     if (messages.length === 0) return;
-
     const lastMessage = messages[messages.length - 1];
     const isUserMessage = lastMessage.role === 'user';
-    const isAtBottom = isNearBottom();
-
-    // Auto-scroll conditions:
-    // 1. User just sent a message (always scroll)
-    // 2. User is already at bottom (continue following)
-    // 3. First message (welcome)
-    const shouldAutoScroll = isUserMessage || isAtBottom || messages.length === 1;
-
-    if (shouldAutoScroll) {
-      // Small delay to ensure DOM is updated
-      setTimeout(() => scrollToBottom(true), 50);
-    } else {
-      // User is scrolled up and new message arrived
-      setHasNewMessage(true);
-    }
+    const atBottom = isNearBottom();
+    const shouldAutoScroll = isUserMessage || atBottom || messages.length === 1;
+    if (shouldAutoScroll) setTimeout(() => scrollToBottom(true), 50);
+    else setHasNewMessage(true);
   }, [messages.length]);
 
   // Welcome message on first load
@@ -151,11 +127,7 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
       return;
     }
 
-    const userMessage: ChatMessage = {
-      role: 'user',
-      content,
-      timestamp: new Date()
-    };
+    const userMessage: ChatMessage = { role: 'user', content, timestamp: new Date() };
 
     // Add user message and streaming placeholder
     const streamingMessage: ChatMessage = {
@@ -175,19 +147,13 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
           action: 'chat',
           productId: productData.id,
           threadId: threadId,
-          messages: [...messages, userMessage].map(msg => ({
-            role: msg.role,
-            content: msg.content
-          }))
+          messages: [...messages, userMessage].map(msg => ({ role: msg.role, content: msg.content }))
         }
       });
 
       if (error) throw error;
 
-      // Store thread ID for conversation continuity
-      if (data.threadId && !threadId) {
-        setThreadId(data.threadId);
-      }
+      if (data.threadId && !threadId) setThreadId(data.threadId);
 
       // Remove streaming placeholder and add final response
       setMessages(prev => {
@@ -199,7 +165,7 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
         };
         return newMessages;
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending message:', error);
       setMessages(prev => prev.slice(0, -1)); // Remove streaming placeholder
       toast({
@@ -229,8 +195,7 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
     setHasNewMessage(false);
     setUserScrolledUp(false);
     setShowScrollButton(false);
-    
-    // Re-add welcome message
+
     if (productData?.name) {
       const welcomeMessage: ChatMessage = {
         role: 'assistant',
@@ -242,48 +207,48 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
   };
 
   return (
-    <Card className={`border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50 transition-all duration-300 ${
-      isFullscreen ? 'fixed inset-4 z-50 h-[calc(100vh-2rem)]' : 'h-auto'
-    }`}>
-      <CardHeader className="pb-3">
+    <Card className={`${isMobile ? 'shadow-none border-0 rounded-none h-[85vh] flex flex-col bg-background' : 'border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50'} transition-all duration-300 ${isFullscreen && !isMobile ? 'fixed inset-4 z-50 h-[calc(100vh-2rem)]' : ''}`}>
+      <CardHeader className={`pb-3 ${isMobile ? 'sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b' : ''}`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-primary/10 rounded-full">
-              <Sparkles className="h-5 w-5 text-primary" />
-            </div>
+            {!isMobile && (
+              <div className="p-2 bg-primary/10 rounded-full">
+                <Sparkles className="h-5 w-5 text-primary" />
+              </div>
+            )}
             <div>
-              <CardTitle className="flex items-center gap-2 text-lg">
-                🤖 {productData?.name} Expert Assistant ⚡
+              <CardTitle className={`flex items-center gap-2 ${isMobile ? 'text-base' : 'text-lg'}`}>
+                🤖 {productData?.name} Assistant
               </CardTitle>
-              <CardDescription className="text-sm">
-                {productData?.assistant_id ? 
-                  `Powered by specialized AI • Assistant ID: ${productData.assistant_id.slice(-8)}` : 
-                  'No assistant configured - create one to get started'
-                }
-              </CardDescription>
+              {!isMobile && (
+                <CardDescription className="text-sm">
+                  {productData?.assistant_id ? 
+                    `Powered by specialized AI • Assistant ID: ${productData.assistant_id.slice(-8)}` : 
+                    'No assistant configured - create one to get started'
+                  }
+                </CardDescription>
+              )}
             </div>
           </div>
           <div className="flex gap-2">
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => setIsFullscreen(!isFullscreen)}
-              className="px-2"
-            >
-              {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={startNewChat}
-            >
-              New Chat
+            {!isMobile && (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setIsFullscreen(!isFullscreen)}
+                className="px-2"
+              >
+                {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+              </Button>
+            )}
+            <Button size="sm" variant="outline" onClick={startNewChat} className={isMobile ? 'h-8 px-2' : ''}>
+              {isMobile ? <RotateCcw className="h-4 w-4" /> : 'New Chat'}
             </Button>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className={`space-y-4 ${isMobile ? 'flex-1 flex flex-col p-3' : ''}`}>
         {/* Assistant Status Warning */}
         {!productData?.assistant_id && (
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
@@ -296,34 +261,60 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
 
         {/* Quick Questions */}
         {messages.length <= 1 && productData?.assistant_id && (
-          <div className="space-y-3 animate-fade-in">
-            <div className="text-sm font-medium text-muted-foreground">💡 Quick Start Questions:</div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              {quickQuestions.map((q, index) => (
-                <Button
-                  key={index}
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleQuickQuestion(q.question)}
-                  disabled={isLoading}
-                  className="text-left h-auto py-2 px-3 justify-start hover:bg-primary/5 transition-colors"
-                >
-                  <div>
-                    <Badge variant="secondary" className="text-xs mb-1">{q.category}</Badge>
-                    <div className="text-xs text-muted-foreground">{q.question}</div>
-                  </div>
+          isMobile ? (
+            <Collapsible open={showQuickQuestions} onOpenChange={setShowQuickQuestions}>
+              <div className="flex items-center justify-between">
+                <div className="text-sm font-medium text-muted-foreground">Guiding questions</div>
+                <Button variant="ghost" size="sm" onClick={() => setShowQuickQuestions(!showQuickQuestions)} className="-mr-2">
+                  <Menu className="h-4 w-4" />
                 </Button>
-              ))}
+              </div>
+              <CollapsibleContent className="mt-2">
+                <div className="grid grid-cols-1 gap-2">
+                  {quickQuestions.map((q, index) => (
+                    <Button
+                      key={index}
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleQuickQuestion(q.question)}
+                      disabled={isLoading}
+                      className="justify-start h-9 text-xs"
+                    >
+                      <Badge variant="secondary" className="text-[10px] mr-2">{q.category}</Badge>
+                      <span className="truncate">{q.question}</span>
+                    </Button>
+                  ))}
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          ) : (
+            <div className="space-y-3 animate-fade-in">
+              <div className="text-sm font-medium text-muted-foreground">💡 Quick Start Questions:</div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {quickQuestions.map((q, index) => (
+                  <Button
+                    key={index}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleQuickQuestion(q.question)}
+                    disabled={isLoading}
+                    className="text-left h-auto py-2 px-3 justify-start hover:bg-primary/5 transition-colors"
+                  >
+                    <div>
+                      <Badge variant="secondary" className="text-xs mb-1">{q.category}</Badge>
+                      <div className="text-xs text-muted-foreground">{q.question}</div>
+                    </div>
+                  </Button>
+                ))}
+              </div>
             </div>
-          </div>
+          )
         )}
 
         {/* Chat Area with Enhanced Scroll Controls */}
-        <div className="relative">
+        <div className={`relative ${isMobile ? 'flex-1 flex flex-col' : ''}`}>
           <ScrollArea 
-            className={`border rounded-lg bg-background/50 ${
-              isFullscreen ? 'h-[calc(100vh-16rem)]' : 'h-96'
-            }`} 
+            className={`border rounded-lg bg-background/50 ${isMobile ? 'flex-1' : (isFullscreen ? 'h-[calc(100vh-16rem)]' : 'h-96')}`}
             ref={scrollAreaRef}
           >
             <div 
@@ -351,22 +342,17 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
                             : 'bg-card text-card-foreground border mr-4'
                         }`}
                       >
-                        <div className="flex items-start gap-2 mb-2">
-                          <div className={`p-1 rounded-full ${
-                            message.role === 'user' 
-                              ? 'bg-primary-foreground/20' 
-                              : 'bg-muted'
-                          }`}>
-                            {message.role === 'user' ? 
-                              <User className="h-3 w-3" /> : 
-                              <Bot className="h-3 w-3" />
-                            }
+                        {!isMobile && (
+                          <div className="flex items-start gap-2 mb-2">
+                            <div className={`p-1 rounded-full ${message.role === 'user' ? 'bg-primary-foreground/20' : 'bg-muted'}`}>
+                              {message.role === 'user' ? <User className="h-3 w-3" /> : <Bot className="h-3 w-3" />}
+                            </div>
+                            <div className="text-xs opacity-75">
+                              {message.role === 'user' ? 'You' : 'AI Expert'}
+                            </div>
                           </div>
-                          <div className="text-xs opacity-75">
-                            {message.role === 'user' ? 'You' : 'AI Expert'}
-                          </div>
-                        </div>
-                        
+                        )}
+
                         {message.isStreaming ? (
                           <div className="flex items-center gap-2">
                             <Loader2 className="h-4 w-4 animate-spin" />
@@ -396,10 +382,12 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
                         ) : (
                           <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                         )}
-                        
-                        <div className="text-xs opacity-50 mt-2">
-                          {message.timestamp.toLocaleTimeString()}
-                        </div>
+
+                        {!isMobile && (
+                          <div className="text-xs opacity-50 mt-2">
+                            {message.timestamp.toLocaleTimeString()}
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -409,7 +397,7 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
           </ScrollArea>
 
           {/* New Message Indicator */}
-          {hasNewMessage && (
+          {!isMobile && hasNewMessage && (
             <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-10">
               <Button
                 size="sm"
@@ -424,7 +412,7 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
           )}
 
           {/* Scroll to Bottom Button */}
-          {showScrollButton && (
+          {!isMobile && showScrollButton && (
             <div className="absolute bottom-2 right-2 z-10">
               <Button
                 size="sm"
@@ -439,21 +427,21 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
         </div>
 
         {/* Input Area */}
-        <div className="space-y-3">
+        <div className={`${isMobile ? 'sticky bottom-0 bg-background border-t pt-2' : ''} space-y-3`}>
           <div className="flex gap-2">
             <Textarea
               value={currentMessage}
               onChange={(e) => setCurrentMessage(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder={productData?.assistant_id ? `Ask about ${productData?.name}...` : 'Create an assistant first to enable chat'}
-              className="min-h-[60px] resize-none flex-1"
+              className={`${isMobile ? 'min-h-[44px]' : 'min-h-[60px]'} resize-none flex-1`}
               disabled={isLoading || !productData?.assistant_id}
             />
             <Button
               onClick={() => sendMessage()}
               disabled={!currentMessage.trim() || isLoading || !productData?.assistant_id}
-              size="lg"
-              className="px-6"
+              size={isMobile ? 'default' : 'lg'}
+              className={isMobile ? 'px-3' : 'px-6'}
             >
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -462,8 +450,8 @@ const [showQuickQuestions, setShowQuickQuestions] = useState(false);
               )}
             </Button>
           </div>
-          
-          <div className="text-xs text-muted-foreground text-center">
+
+          <div className="text-xs text-muted-foreground text-center hidden sm:block">
             💡 Pro tip: Press <kbd className="px-1 py-0.5 bg-muted rounded text-xs">Enter</kbd> to send, 
             <kbd className="px-1 py-0.5 bg-muted rounded text-xs mx-1">Shift + Enter</kbd> for new line
             {threadId && <span className="ml-2">• Thread: {threadId.slice(-8)}</span>}
