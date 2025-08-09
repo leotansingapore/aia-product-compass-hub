@@ -19,7 +19,7 @@ import { ProductTrainingVideos } from "@/components/product-detail/ProductTraini
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { PersonalNotes } from "@/components/PersonalNotes";
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
@@ -163,11 +163,14 @@ export default function ProductDetail() {
         {/* AI Assistant - Dialog */}
         <ProtectedSection sectionId="product_ai">
           <Dialog open={assistantOpen} onOpenChange={setAssistantOpen}>
-            <DialogContent className="sm:max-w-3xl w-[100vw] max-w-none sm:w-auto p-0 rounded-none sm:rounded-lg">
-              <DialogHeader>
+            <DialogContent aria-describedby="product-ai-desc" className="w-screen h-[100dvh] max-w-none sm:max-w-3xl sm:w-auto sm:h-auto p-0 rounded-none sm:rounded-lg overflow-hidden flex flex-col">
+              <DialogHeader className="px-3 py-2 sm:px-6 sm:py-4">
                 <DialogTitle className="flex items-center gap-2">
                   <span>🤖</span> AI Assistant
                 </DialogTitle>
+                <DialogDescription id="product-ai-desc" className="sr-only">
+                  Chat assistant for {product.title}. Ask questions about features, benefits, and sales tips.
+                </DialogDescription>
               </DialogHeader>
               <ProductAIAssistant 
                 customGptLink={product.custom_gpt_link}
