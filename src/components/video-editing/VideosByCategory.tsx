@@ -5,6 +5,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { ChevronDown, ChevronRight, Play, Check, Clock } from 'lucide-react';
 import { formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface VideosByCategoryProps {
   videos: TrainingVideo[];
@@ -14,6 +15,7 @@ interface VideosByCategoryProps {
 
 export function VideosByCategory({ videos, onVideoSelect, getVideoProgress }: VideosByCategoryProps) {
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
+  const isMobile = useIsMobile();
 
   // Group videos by category
   const videosByCategory = videos.reduce((acc, video, index) => {
@@ -50,17 +52,17 @@ export function VideosByCategory({ videos, onVideoSelect, getVideoProgress }: Vi
       {Object.entries(videosByCategory).map(([category, videoItems]) => {
         const progress = getCategoryProgress(videoItems);
         const duration = getCategoryDuration(videoItems);
-        const isOpen = openCategories[category] ?? true; // Default to open
+        const isOpen = openCategories[category] ?? !isMobile; // Default: collapsed on mobile
         
         return (
           <Collapsible key={category} open={isOpen} onOpenChange={() => toggleCategory(category)}>
             <CollapsibleTrigger asChild>
-              <Button variant="ghost" className="w-full justify-between p-4 h-auto">
+              <Button variant="ghost" className="w-full justify-between p-3 sm:p-4 h-auto">
                 <div className="flex items-center gap-3">
                   {isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
                   <div className="text-left">
-                    <h3 className="font-medium">{category}</h3>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <h3 className="font-medium text-sm sm:text-base">{category}</h3>
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
                       <span>{progress.completed}/{progress.total} completed</span>
                       {duration > 0 && (
                         <>
@@ -80,13 +82,13 @@ export function VideosByCategory({ videos, onVideoSelect, getVideoProgress }: Vi
               </Button>
             </CollapsibleTrigger>
             
-            <CollapsibleContent className="space-y-2 pl-6">
+            <CollapsibleContent className="space-y-2 pl-4 sm:pl-6">
               {videoItems.map(({ video, index }) => {
                 const videoProgress = getVideoProgress(video.id);
                 return (
                   <div
                     key={`${category}-${index}-${video.id}`}
-                    className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
+                    className="flex items-center gap-2 sm:gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors min-h-[56px]"
                     onClick={() => onVideoSelect(index)}
                   >
                     <div className="flex-shrink-0">
@@ -98,7 +100,7 @@ export function VideosByCategory({ videos, onVideoSelect, getVideoProgress }: Vi
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-medium truncate">{video.title}</h4>
+                        <h4 className="font-medium text-sm sm:text-base truncate">{video.title}</h4>
                         {video.duration && (
                           <Badge variant="outline" className="text-xs">
                             <Clock className="h-3 w-3 mr-1" />
@@ -107,7 +109,7 @@ export function VideosByCategory({ videos, onVideoSelect, getVideoProgress }: Vi
                         )}
                       </div>
                       {video.description && (
-                        <p className="text-sm text-muted-foreground truncate">
+                        <p className="text-xs sm:text-sm text-muted-foreground truncate">
                           {video.description}
                         </p>
                       )}

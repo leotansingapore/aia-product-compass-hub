@@ -163,25 +163,27 @@ export default function ProductDetail() {
         {/* AI Assistant - Dialog */}
         <ProtectedSection sectionId="product_ai">
           <Dialog open={assistantOpen} onOpenChange={setAssistantOpen}>
-            <DialogContent className="max-w-3xl">
+            <DialogContent className="sm:max-w-3xl w-[100vw] max-w-none sm:w-auto p-0 rounded-none sm:rounded-lg">
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
                   <span>🤖</span> AI Assistant
                 </DialogTitle>
               </DialogHeader>
-              <ProductAIAssistant 
-                customGptLink={product.custom_gpt_link}
-                productData={{
-                  id: product.id,
-                  name: product.title,
-                  category: product.category_id,
-                  summary: product.description,
-                  highlights: product.highlights,
-                  assistant_id: product.assistant_id,
-                  assistant_instructions: product.assistant_instructions
-                }}
-                onUpdate={handleUpdate}
-              />
+              <div className="h-[85vh] sm:h-auto overflow-y-auto p-4 sm:p-6">
+                <ProductAIAssistant 
+                  customGptLink={product.custom_gpt_link}
+                  productData={{
+                    id: product.id,
+                    name: product.title,
+                    category: product.category_id,
+                    summary: product.description,
+                    highlights: product.highlights,
+                    assistant_id: product.assistant_id,
+                    assistant_instructions: product.assistant_instructions
+                  }}
+                  onUpdate={handleUpdate}
+                />
+              </div>
             </DialogContent>
           </Dialog>
         </ProtectedSection>
