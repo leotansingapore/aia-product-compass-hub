@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Link, useParams } from "react-router-dom";
 import { findCategory } from "@/utils/kbConfig";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { NavigationHeader } from "@/components/NavigationHeader";
 
 export default function KBCategory() {
   const { categorySlug } = useParams<{ categorySlug: string }>();
@@ -23,10 +24,15 @@ export default function KBCategory() {
         <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
-      <header className="mb-8">
-        <h1 className="text-2xl md:text-3xl font-bold mb-2">{category.name}</h1>
-        <p className="text-muted-foreground max-w-2xl">{category.description}</p>
-      </header>
+      <NavigationHeader
+        title={category.name}
+        subtitle={category.description}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Knowledge Base", href: "/kb" },
+          { label: category.name }
+        ]}
+      />
 
       <main>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -1,16 +1,18 @@
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
-import { findProduct } from "@/utils/kbConfig";
+import { findProduct, findCategory } from "@/utils/kbConfig";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import NotFound from "@/pages/NotFound";
+import { NavigationHeader } from "@/components/NavigationHeader";
 
 const files = import.meta.glob("../../kb/products/**/*.md", { as: "raw", eager: true });
 
 export default function KBProduct() {
   const { categorySlug, productSlug } = useParams<{ categorySlug: string; productSlug: string }>();
   const product = categorySlug && productSlug ? findProduct(categorySlug, productSlug) : undefined;
+  const category = categorySlug ? findCategory(categorySlug) : undefined;
 
   if (!product) return <NotFound />;
 
@@ -33,6 +35,17 @@ export default function KBProduct() {
         <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
+
+      <NavigationHeader
+        title={product.name}
+        subtitle={product.tags?.length ? `Tags: ${product.tags.join(", ")}` : undefined}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Knowledge Base", href: "/kb" },
+          { label: category?.name || (categorySlug || "Category"), href: `/kb/${categorySlug}` },
+          { label: product.name }
+        ]}
+      />
 
       <article className="prose prose-neutral dark:prose-invert max-w-none">
         <ReactMarkdown 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { kbCategories } from "@/utils/kbConfig";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { NavigationHeader } from "@/components/NavigationHeader";
 
 export default function KnowledgeBase() {
   return (
@@ -13,12 +14,11 @@ export default function KnowledgeBase() {
         <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
-      <header className="mb-8">
-        <h1 className="text-2xl md:text-3xl font-bold mb-2">Knowledge Base</h1>
-        <p className="text-muted-foreground max-w-2xl">
-          Learn and reference AIA products with concise summaries, highlights, explainer videos, documents, and custom GPT links.
-        </p>
-      </header>
+      <NavigationHeader
+        title="Knowledge Base"
+        subtitle="Learn and reference AIA products with concise summaries, highlights, explainer videos, documents, and custom GPT links."
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Knowledge Base" }]}
+      />
 
       <section aria-labelledby="kb-how-to" className="mb-10">
         <Card>

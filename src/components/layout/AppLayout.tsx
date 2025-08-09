@@ -71,6 +71,7 @@ export function AppLayout({ children }: AppLayoutProps) {
           <main className="flex-1 pb-20">
             {children}
           </main>
+          <MobileBottomNav />
         </div>
       );
     }
