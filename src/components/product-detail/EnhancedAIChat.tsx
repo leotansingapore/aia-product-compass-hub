@@ -6,9 +6,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Send, MessageCircle, Loader2, Sparkles, User, Bot, Maximize2, Minimize2, ArrowDown, Bell } from "lucide-react";
+import { Send, MessageCircle, Loader2, Sparkles, User, Bot, Maximize2, Minimize2, ArrowDown, Bell, Menu, RotateCcw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from 'react-markdown';
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Input } from "@/components/ui/input";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -44,8 +47,10 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
   const [hasNewMessage, setHasNewMessage] = useState(false);
   const [userScrolledUp, setUserScrolledUp] = useState(false);
   const { toast } = useToast();
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const scrollViewportRef = useRef<HTMLDivElement>(null);
+const scrollAreaRef = useRef<HTMLDivElement>(null);
+const scrollViewportRef = useRef<HTMLDivElement>(null);
+const isMobile = useIsMobile();
+const [showQuickQuestions, setShowQuickQuestions] = useState(false);
 
   // Product-specific quick questions
   const quickQuestions: QuickQuestion[] = [
