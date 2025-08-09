@@ -248,7 +248,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
         </div>
       </CardHeader>
 
-      <CardContent className={`space-y-4 ${isMobile ? 'flex-1 flex flex-col p-3' : ''}`}>
+      <CardContent className={`${isMobile ? 'flex-1 flex flex-col p-2 space-y-2' : 'space-y-4'}`}>
         {/* Assistant Status Warning */}
         {!productData?.assistant_id && (
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
@@ -456,7 +456,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
         </div>
 
         {/* Input Area */}
-        <div className={`${isMobile ? 'sticky bottom-0 bg-background border-t pt-2' : ''} space-y-3`}>
+        <div className={`${isMobile ? 'sticky bottom-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t pt-2 pb-[env(safe-area-inset-bottom)]' : ''} space-y-3`}>
           <div className="flex gap-2">
             <Textarea
               value={currentMessage}
