@@ -55,11 +55,11 @@ const path = location.pathname;
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => navigate(-1)}
+              onClick={() => navigate("/")}
               className="h-10 w-10 p-0"
             >
               <ArrowLeft className="h-5 w-5" />
-              <span className="sr-only">Go back</span>
+              <span className="sr-only">Go home</span>
             </Button>
           ) : (
             <MobileDrawer />
