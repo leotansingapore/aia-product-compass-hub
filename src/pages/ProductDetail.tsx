@@ -19,7 +19,7 @@ import { ProductTrainingVideos } from "@/components/product-detail/ProductTraini
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { PersonalNotes } from "@/components/PersonalNotes";
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
@@ -160,37 +160,30 @@ export default function ProductDetail() {
 
         <ProductChatLauncher productName={product.title} onLaunch={() => setAssistantOpen(true)} />
 
-        {/* AI Assistant - Collapsible */}
+        {/* AI Assistant - Dialog */}
         <ProtectedSection sectionId="product_ai">
-          <Card className="border-accent/20 bg-card/50">
-            <CardHeader className="py-3">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-base flex items-center gap-2">
+          <Dialog open={assistantOpen} onOpenChange={setAssistantOpen}>
+            <DialogContent className="max-w-3xl">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
                   <span>🤖</span> AI Assistant
-                </CardTitle>
-                <Button variant="outline" size="sm" onClick={() => setAssistantOpen(!assistantOpen)}>
-                  {assistantOpen ? 'Hide' : 'Open'}
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className={`${assistantOpen ? '' : 'hidden'}`}>
-                <ProductAIAssistant 
-                  customGptLink={product.custom_gpt_link}
-                  productData={{
-                    id: product.id,
-                    name: product.title,
-                    category: product.category_id,
-                    summary: product.description,
-                    highlights: product.highlights,
-                    assistant_id: product.assistant_id,
-                    assistant_instructions: product.assistant_instructions
-                  }}
-                  onUpdate={handleUpdate}
-                />
-              </div>
-            </CardContent>
-          </Card>
+                </DialogTitle>
+              </DialogHeader>
+              <ProductAIAssistant 
+                customGptLink={product.custom_gpt_link}
+                productData={{
+                  id: product.id,
+                  name: product.title,
+                  category: product.category_id,
+                  summary: product.description,
+                  highlights: product.highlights,
+                  assistant_id: product.assistant_id,
+                  assistant_instructions: product.assistant_instructions
+                }}
+                onUpdate={handleUpdate}
+              />
+            </DialogContent>
+          </Dialog>
         </ProtectedSection>
 
         {/* Training Videos */}
