@@ -172,22 +172,23 @@ Feel free to ask me anything or use one of the quick questions below to get star
     return (
       <div className="flex flex-col h-[calc(100vh-4rem)] bg-background">
         {/* Mobile Header */}
-        <div className="flex items-center justify-between p-4 border-b bg-card/80 backdrop-blur-sm sticky top-0 z-10">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between px-3 py-2 border-b sticky top-0 z-10 bg-background/80 backdrop-blur-sm shadow-sm">
+          <div className="flex items-center gap-2 min-w-0">
             <Bot className="h-5 w-5 text-primary" />
-            <div>
-              <h3 className="font-semibold text-sm">CMFAS AI Tutor</h3>
+            <div className="min-w-0">
+              <h3 className="text-sm font-semibold leading-none">CMFAS AI Tutor</h3>
               {moduleName && (
-                <p className="text-xs text-muted-foreground">{moduleName}</p>
+                <p className="text-xs text-muted-foreground mt-0.5 truncate max-w-[55vw]">{moduleName}</p>
               )}
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setShowQuickQuestions(!showQuickQuestions)}
               className="h-8 w-8 p-0"
+              aria-label="Toggle guiding questions"
             >
               <Menu className="h-4 w-4" />
             </Button>
@@ -195,9 +196,10 @@ Feel free to ask me anything or use one of the quick questions below to get star
               variant="ghost"
               size="sm"
               onClick={startNewChat}
-              className="h-8 px-2 text-xs"
+              className="h-8 w-8 p-0"
+              aria-label="Start new chat"
             >
-              <RotateCcw className="h-3 w-3" />
+              <RotateCcw className="h-4 w-4" />
             </Button>
           </div>
         </div>
