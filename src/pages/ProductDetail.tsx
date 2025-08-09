@@ -14,6 +14,7 @@ import { ProductHighlights } from "@/components/product-detail/ProductHighlights
 import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLinks";
 import { SalesToolsUsefulLinks } from "@/components/product-detail/SalesToolsUsefulLinks";
 import { ProductAIAssistant } from "@/components/product-detail/ProductAIAssistant";
+import { ProductChatLauncher } from "@/components/product-detail/ProductChatLauncher";
 import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { PersonalNotes } from "@/components/PersonalNotes";
@@ -156,6 +157,8 @@ export default function ProductDetail() {
             onUpdate={handleUpdate}
           />
         )}
+
+        <ProductChatLauncher productName={product.title} onLaunch={() => setAssistantOpen(true)} />
 
         {/* AI Assistant - Collapsible */}
         <ProtectedSection sectionId="product_ai">
