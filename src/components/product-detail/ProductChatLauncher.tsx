@@ -21,7 +21,7 @@ export function ProductChatLauncher({
 
   return (
     <Card className={`group hover:shadow-md transition-all duration-300 hover:scale-[1.02] border-primary/20 hover:border-primary/40 mobile-card ${className}`}>
-      <CardContent className="p-4 md:p-6">
+      <CardContent className="p-3 sm:p-4 md:p-6">
         <div className="flex items-start gap-3 md:gap-4">
           {/* Icon */}
           <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-primary rounded-lg md:rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
@@ -43,8 +43,13 @@ export function ProductChatLauncher({
               {description || defaultDescription}
             </p>
 
-            <Button onClick={onLaunch} className="w-full group-hover:shadow-md transition-all duration-300 mobile-touch-target" size="sm">
-              <MessageCircle className="h-4 w-4 mr-2" />
+            <Button
+              type="button"
+              onClick={onLaunch}
+              aria-label="Start chat with AI assistant"
+              className="w-full h-12 md:h-10 text-base md:text-sm group-hover:shadow-md transition-all duration-300 mobile-touch-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary [touch-action:manipulation]"
+            >
+              <MessageCircle className="h-5 w-5 mr-2" />
               Start Chat
             </Button>
           </div>
