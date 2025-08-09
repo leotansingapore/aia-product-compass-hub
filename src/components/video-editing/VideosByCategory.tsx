@@ -85,7 +85,7 @@ export function VideosByCategory({ videos, onVideoSelect, getVideoProgress }: Vi
                 const videoProgress = getVideoProgress(video.id);
                 return (
                   <div
-                    key={video.id}
+                    key={`${category}-${index}-${video.id}`}
                     className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
                     onClick={() => onVideoSelect(index)}
                   >
