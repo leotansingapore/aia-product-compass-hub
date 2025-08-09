@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export default function KnowledgeBase() {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
+    <div className="max-w-6xl mx-auto px-1 sm:px-4 py-4 sm:py-6 md:py-10">
       <Helmet>
         <title>Knowledge Base - FINternship</title>
         <meta name="description" content="Structured knowledge base for investment, endowment, whole life, term, and medical insurance products." />

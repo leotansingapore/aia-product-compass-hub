@@ -26,7 +26,7 @@ export default function KBProduct() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-6 md:py-10">
+    <div className="max-w-3xl mx-auto px-1 sm:px-4 py-4 sm:py-6 md:py-10">
       <Helmet>
         <title>{product.name} – Knowledge Base</title>
         <meta name="description" content={`Overview, highlights, documents, AI, and video for ${product.name}.`} />

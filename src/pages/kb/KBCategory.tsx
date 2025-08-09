@@ -16,7 +16,7 @@ export default function KBCategory() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
+    <div className="max-w-6xl mx-auto px-1 sm:px-4 py-4 sm:py-6 md:py-10">
       <Helmet>
         <title>{category.name} - Knowledge Base</title>
         <meta name="description" content={`Learn about ${category.name} with structured product pages and training resources.`} />
