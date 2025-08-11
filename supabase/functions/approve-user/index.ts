@@ -7,6 +7,7 @@ const corsHeaders = {
 
 interface ApproveUserRequest {
   request_id: string
+  temp_password?: string
 }
 
 Deno.serve(async (req) => {
@@ -82,15 +83,24 @@ Deno.serve(async (req) => {
       )
     }
 
-    // Parse request body
-    const { request_id }: ApproveUserRequest = await req.json()
+// Parse request body
+const { request_id, temp_password }: ApproveUserRequest = await req.json()
 
-    if (!request_id) {
-      return new Response(
-        JSON.stringify({ error: 'Missing request_id' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      )
-    }
+if (!request_id) {
+  return new Response(
+    JSON.stringify({ error: 'Missing request_id' }),
+    { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+  )
+}
+
+// Validate temp password if provided
+const tempPassword = (temp_password && typeof temp_password === 'string') ? temp_password.trim() : ''
+if (tempPassword && tempPassword.length < 6) {
+  return new Response(
+    JSON.stringify({ error: 'temp_password must be at least 6 characters' }),
+    { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+  )
+}
 
     // Get the approval request details
     const { data: requestData, error: requestError } = await supabaseAdmin
@@ -134,7 +144,7 @@ Deno.serve(async (req) => {
       // Create user using Supabase Auth Admin API
       const { data: createdUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
         email: requestData.email,
-        password: 'temppass123', // User will need to reset this
+        password: tempPassword || 'temppass123', // Use provided temp password if available
         email_confirm: true,
         user_metadata: {
           first_name: requestData.first_name,
@@ -156,9 +166,24 @@ Deno.serve(async (req) => {
       // User already exists, use the existing user
       newUser = { user: existingUser.users[0] }
       console.log('User already exists:', newUser.user.id)
+
+      // If a temp password is provided, update the user's password
+      if (tempPassword) {
+        const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(
+          newUser.user.id,
+          { password: tempPassword }
+        )
+        if (updateError) {
+          console.error('Failed to update existing user password:', updateError)
+          return new Response(
+            JSON.stringify({ error: 'Failed to set temporary password for existing user' }),
+            { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+          )
+        }
+        console.log('Temporary password set for existing user')
+      }
     }
 
-    // Call our database function to create profile and assign role
     const { error: approvalError } = await supabaseAdmin
       .rpc('approve_user_request_simple', {
         request_id: request_id,
@@ -176,16 +201,18 @@ Deno.serve(async (req) => {
       )
     }
 
-    // Send password reset email so user can set their own password
-    const { error: resetError } = await supabaseAdmin.auth.admin.generateLink({
-      type: 'recovery',
-      email: requestData.email,
-    })
+// If no temp password was provided, send a password reset email so user can set their own password
+if (!tempPassword) {
+  const { error: resetError } = await supabaseAdmin.auth.admin.generateLink({
+    type: 'recovery',
+    email: requestData.email,
+  })
 
-    if (resetError) {
-      console.warn('Password reset email error:', resetError)
-      // Don't fail the whole process for this
-    }
+  if (resetError) {
+    console.warn('Password reset email error:', resetError)
+    // Don't fail the whole process for this
+  }
+}
 
     console.log('User approval completed successfully')
 

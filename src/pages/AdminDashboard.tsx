@@ -34,7 +34,7 @@ export default function AdminDashboard() {
   const [verifyEmail, setVerifyEmail] = useState('');
   const [verificationResult, setVerificationResult] = useState<any>(null);
   const [verifyLoading, setVerifyLoading] = useState(false);
-
+  const [tempPasswords, setTempPasswords] = useState<Record<string, string>>({});
   useEffect(() => {
     fetchApprovalRequests();
   }, []);
@@ -69,6 +69,12 @@ export default function AdminDashboard() {
   const handleApprovalAction = async (requestId: string, action: 'approve' | 'reject', notes?: string) => {
     try {
       if (action === 'approve') {
+        // Validate optional temp password
+        const tempPassword = tempPasswords[requestId]?.trim();
+        if (tempPassword && tempPassword.length < 6) {
+          toast({ title: 'Password too short', description: 'Temporary password must be at least 6 characters.', variant: 'destructive' });
+          return;
+        }
         // Get the current session token
         const { data: { session } } = await supabase.auth.getSession();
         if (!session) {
@@ -77,7 +83,7 @@ export default function AdminDashboard() {
 
         // Call the edge function to approve the user
         const { data, error } = await supabase.functions.invoke('approve-user', {
-          body: { request_id: requestId },
+          body: { request_id: requestId, temp_password: tempPassword || undefined },
           headers: {
             Authorization: `Bearer ${session.access_token}`,
           },
@@ -365,25 +371,34 @@ export default function AdminDashboard() {
                             </TableCell>
                             <TableCell>
                               {request.status === 'pending' ? (
-                                <div className="flex gap-2">
-                                  <Button
-                                    size="sm"
-                                    variant="default"
-                                    onClick={() => handleApprovalAction(request.id, 'approve')}
-                                    className="text-xs"
-                                  >
-                                    <UserCheck className="h-3 w-3 mr-1" />
-                                    Approve
-                                  </Button>
-                                  <Button
-                                    size="sm"
-                                    variant="destructive"
-                                    onClick={() => handleApprovalAction(request.id, 'reject', 'Manually rejected by admin')}
-                                    className="text-xs"
-                                  >
-                                    <UserX className="h-3 w-3 mr-1" />
-                                    Reject
-                                  </Button>
+                                <div className="flex flex-col gap-2">
+                                  <Input
+                                    type="password"
+                                    placeholder="Temp password (optional)"
+                                    value={tempPasswords[request.id] || ''}
+                                    onChange={(e) => setTempPasswords((prev) => ({ ...prev, [request.id]: e.target.value }))}
+                                    className="h-8 text-xs"
+                                  />
+                                  <div className="flex gap-2">
+                                    <Button
+                                      size="sm"
+                                      variant="default"
+                                      onClick={() => handleApprovalAction(request.id, 'approve')}
+                                      className="text-xs"
+                                    >
+                                      <UserCheck className="h-3 w-3 mr-1" />
+                                      Approve
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      variant="destructive"
+                                      onClick={() => handleApprovalAction(request.id, 'reject', 'Manually rejected by admin')}
+                                      className="text-xs"
+                                    >
+                                      <UserX className="h-3 w-3 mr-1" />
+                                      Reject
+                                    </Button>
+                                  </div>
                                 </div>
                               ) : (
                                 <span className="text-xs text-muted-foreground">
