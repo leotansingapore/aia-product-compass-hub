@@ -203,9 +203,11 @@ if (tempPassword && tempPassword.length < 6) {
 
 // If no temp password was provided, send a password reset email so user can set their own password
 if (!tempPassword) {
+  const origin = new URL(req.url).origin
   const { error: resetError } = await supabaseAdmin.auth.admin.generateLink({
     type: 'recovery',
     email: requestData.email,
+    options: { redirectTo: `${origin}/auth` }
   })
 
   if (resetError) {
