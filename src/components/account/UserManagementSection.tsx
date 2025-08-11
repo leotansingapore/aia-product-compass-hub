@@ -191,26 +191,29 @@ export function UserManagementSection() {
 
     setIsDeleting(true);
     try {
-      // Delete user profiles
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .delete()
-        .in('user_id', Array.from(selectedUsers));
+      // Use secure edge function to delete users from Auth and related tables
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error('No active session');
 
-      if (profileError) throw profileError;
-
-      // Delete user roles
-      const { error: rolesError } = await supabase
-        .from('user_roles')
-        .delete()
-        .in('user_id', Array.from(selectedUsers));
-
-      if (rolesError) throw rolesError;
-
-      toast({
-        title: "Users deleted",
-        description: `Successfully deleted ${selectedUsers.size} user(s)`,
+      const { data, error } = await supabase.functions.invoke('admin-delete-users', {
+        body: { user_ids: Array.from(selectedUsers) },
+        headers: { Authorization: `Bearer ${session.access_token}` },
       });
+      if (error) throw error as any;
+
+      const result = data as any;
+      if (result.failed && result.failed.length > 0) {
+        toast({
+          title: "Partial delete",
+          description: `Deleted ${result.deleted?.length || 0}, failed ${result.failed.length}.`,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Users deleted",
+          description: `Successfully deleted ${selectedUsers.size} user(s)`,
+        });
+      }
 
       setSelectedUsers(new Set());
       await fetchUsers();
