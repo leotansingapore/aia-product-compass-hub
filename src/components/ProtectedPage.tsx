@@ -1,18 +1,31 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { usePermissions } from '@/hooks/usePermissions';
 import { ProtectedSection } from './ProtectedSection';
-
+import { useNavigate } from 'react-router-dom';
 interface ProtectedPageProps {
   pageId: string;
   children: ReactNode;
   fallback?: ReactNode;
+  redirectTo?: string;
 }
 
-export function ProtectedPage({ pageId, children, fallback }: ProtectedPageProps) {
+export function ProtectedPage({ pageId, children, fallback, redirectTo }: ProtectedPageProps) {
   const { getPagePermission, canAccessPage } = usePermissions();
-  
-  // If page access is restricted, show locked state
-  if (!canAccessPage(pageId)) {
+  const navigate = useNavigate();
+
+  const deniedHidden = !canAccessPage(pageId);
+
+  useEffect(() => {
+    if (redirectTo && deniedHidden) {
+      navigate(redirectTo, { replace: true });
+    }
+  }, [redirectTo, deniedHidden, navigate]);
+
+  // If page access is restricted
+  if (deniedHidden) {
+    if (redirectTo) {
+      return null;
+    }
     return (
       <div className="relative min-h-screen">
         {/* Blurred background content */}
@@ -39,9 +52,19 @@ export function ProtectedPage({ pageId, children, fallback }: ProtectedPageProps
   }
 
   const permission = getPagePermission(pageId);
-  
-  // If page is locked, show locked state
-  if (permission.permission_type === 'locked') {
+  const deniedLocked = permission.permission_type === 'locked';
+
+  useEffect(() => {
+    if (redirectTo && deniedLocked) {
+      navigate(redirectTo, { replace: true });
+    }
+  }, [redirectTo, deniedLocked, navigate]);
+
+  // If page is locked
+  if (deniedLocked) {
+    if (redirectTo) {
+      return null;
+    }
     return (
       <div className="relative min-h-screen">
         {/* Blurred background content */}

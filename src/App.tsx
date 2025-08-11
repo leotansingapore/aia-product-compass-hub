@@ -64,7 +64,7 @@ const App = () => (
                     <Route path="/cmfas/chat/:moduleId?" element={<CMFASChat />} />
                     <Route path="/roleplay" element={<Roleplay />} />
                     <Route path="/roleplay/feedback/:sessionId" element={<RoleplayFeedback />} />
-                    <Route path="/admin" element={<ProtectedPage pageId="admin-panel"><AdminDashboard /></ProtectedPage>} />
+                    <Route path="/admin" element={<ProtectedPage pageId="admin-panel" redirectTo="/"><AdminDashboard /></ProtectedPage>} />
                     <Route path="/my-account" element={<MyAccount />} />
 <Route path="/category/:categoryId" element={<ProductCategory />} />
 <Route path="/product/:productId" element={<ProductDetail />} />
