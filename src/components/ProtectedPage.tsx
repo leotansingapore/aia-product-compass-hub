@@ -15,11 +15,16 @@ export function ProtectedPage({ pageId, children, fallback, redirectTo }: Protec
 
   const deniedHidden = !canAccessPage(pageId);
 
+  // Compute permission status upfront so hooks order stays consistent
+  const permission = getPagePermission(pageId);
+  const deniedLocked = permission.permission_type === 'locked';
+
+  // Redirect effect combines both hidden and locked states
   useEffect(() => {
-    if (redirectTo && deniedHidden) {
+    if (redirectTo && (deniedHidden || deniedLocked)) {
       navigate(redirectTo, { replace: true });
     }
-  }, [redirectTo, deniedHidden, navigate]);
+  }, [redirectTo, deniedHidden, deniedLocked, navigate]);
 
   // If page access is restricted
   if (deniedHidden) {
@@ -50,15 +55,6 @@ export function ProtectedPage({ pageId, children, fallback, redirectTo }: Protec
       </div>
     );
   }
-
-  const permission = getPagePermission(pageId);
-  const deniedLocked = permission.permission_type === 'locked';
-
-  useEffect(() => {
-    if (redirectTo && deniedLocked) {
-      navigate(redirectTo, { replace: true });
-    }
-  }, [redirectTo, deniedLocked, navigate]);
 
   // If page is locked
   if (deniedLocked) {
