@@ -91,9 +91,37 @@ export default function AdminDashboard() {
 
         if (error) throw error;
 
+        // If no temp password was set, automatically send a password reset email
+        if (!tempPassword && (data as any)?.email) {
+          try {
+            const { data: resetData, error: resetErr } = await supabase.functions.invoke('generate-password-reset-link', {
+              body: { email: (data as any).email, send: true },
+              headers: { Authorization: `Bearer ${session.access_token}` },
+            });
+            if (resetErr) throw resetErr as any;
+
+            const resetUrl = (resetData as any)?.resetUrl;
+            if (resetUrl) {
+              // Copy link to clipboard as a fallback when email sending isn't configured
+              try {
+                await navigator.clipboard.writeText(resetUrl);
+                toast({ title: 'Reset link generated', description: 'Email sent if configured. Link copied to clipboard as fallback.' });
+              } catch {
+                toast({ title: 'Reset link generated', description: 'Email sent if configured. Copy the link from console if needed.' });
+                console.log('Password reset URL:', resetUrl);
+              }
+            } else {
+              toast({ title: 'Password reset email sent', description: 'The user can now set their password.' });
+            }
+          } catch (e) {
+            console.error('Failed to send password reset email:', e);
+            toast({ title: 'Approved, but reset email failed', description: 'Use Troubleshoot tab to send a reset link.', variant: 'destructive' });
+          }
+        }
+
         toast({
-          title: "Request Approved",
-          description: `User account created successfully. Profile created: ${data.profile_created ? 'Yes' : 'No'}`,
+          title: 'Request Approved',
+          description: `User account created successfully. Profile created: ${(data as any).profile_created ? 'Yes' : 'No'}`,
         });
       } else {
         const { error } = await supabase
@@ -109,8 +137,8 @@ export default function AdminDashboard() {
         if (error) throw error;
 
         toast({
-          title: "Request Rejected",
-          description: "The approval request has been rejected",
+          title: 'Request Rejected',
+          description: 'The approval request has been rejected',
         });
       }
 
@@ -118,9 +146,9 @@ export default function AdminDashboard() {
     } catch (error) {
       console.error(`Error ${action}ing request:`, error);
       toast({
-        title: "Error",
+        title: 'Error',
         description: `Failed to ${action} request`,
-        variant: "destructive",
+        variant: 'destructive',
       });
     }
   };
