@@ -13,7 +13,7 @@ import { ProtectedPage } from "@/components/ProtectedPage";
 import { ProtectedTab, ProtectedTabTrigger } from "@/components/ProtectedTab";
 
 export default function MyAccount() {
-  const { isMasterAdmin } = usePermissions();
+  const { isMasterAdmin, hasRole } = usePermissions();
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState("profile");
 
@@ -94,7 +94,7 @@ export default function MyAccount() {
                     </TabsTrigger>
                   </ProtectedTabTrigger>
                   
-                  {isMasterAdmin() && (
+                  {(isMasterAdmin() || hasRole('admin')) && (
                     <ProtectedTabTrigger tabId="admin">
                       <TabsTrigger 
                         value="admin" 
@@ -130,7 +130,7 @@ export default function MyAccount() {
               </ProtectedTab>
             </TabsContent>
 
-            {isMasterAdmin() && (
+            {(isMasterAdmin() || hasRole('admin')) && (
               <TabsContent value="admin" className="space-y-6 mt-6">
                 <ProtectedTab tabId="admin">
                   <UserManagementSection />
