@@ -207,7 +207,7 @@ if (!tempPassword) {
   const { error: resetError } = await supabaseAdmin.auth.admin.generateLink({
     type: 'recovery',
     email: requestData.email,
-    options: { redirectTo: `${origin}/auth` }
+    options: { redirectTo: `${origin}/force-password` }
   })
 
   if (resetError) {

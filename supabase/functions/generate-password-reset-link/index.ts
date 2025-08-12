@@ -49,7 +49,7 @@ serve(async (req) => {
     const { data: linkData, error: linkErr } = await serviceClient.auth.admin.generateLink({
       type: 'recovery',
       email,
-      options: { redirectTo: `${origin}/auth` },
+      options: { redirectTo: `${origin}/force-password` },
     });
     if (linkErr || !linkData) {
       return new Response(JSON.stringify({ error: linkErr?.message || 'Failed to generate link' }), { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } });
