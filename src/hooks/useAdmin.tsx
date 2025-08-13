@@ -15,8 +15,8 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
   const { isMasterAdmin, hasRole, loading } = usePermissions();
   
-  // Check if user has admin privileges - only master admin can access admin mode
-  const isAdmin = isMasterAdmin();
+  // Check if user has admin privileges - admins and master admins can access admin mode
+  const isAdmin = isMasterAdmin() || hasRole('admin');
   
   useEffect(() => {
     // Reset admin mode when user logs out or loses admin privileges
@@ -29,7 +29,7 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   console.log('🔧 Admin Context State:', { isAdminMode, isAdmin, hasUser: !!user, isMasterAdmin: isMasterAdmin() });
 
   const toggleAdminMode = () => {
-    // Only master admins can toggle admin mode
+    // Only admins can toggle admin mode
     if (isAdmin) {
       setIsAdminMode(!isAdminMode);
     }

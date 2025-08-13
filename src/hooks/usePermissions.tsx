@@ -64,6 +64,10 @@ export function usePermissions() {
     return userTier === 'master_admin';
   };
 
+  const isAdmin = (): boolean => {
+    return userTier === 'admin' || isMasterAdmin();
+  };
+
   const getUserTier = (): string | null => {
     return userTier;
   };
@@ -81,8 +85,8 @@ export function usePermissions() {
 
     if (coreSections.includes(sectionId)) return true;
     
-    // Master admin can access everything
-    if (isMasterAdmin()) return true;
+    // Admins (admin and master_admin) can access everything
+    if (isAdmin()) return true;
     
     // Check if this section is allowed for the user's tier
     return tierPermissions.some(
@@ -99,8 +103,8 @@ export function usePermissions() {
 
     if (corePages.includes(pageId)) return true;
     
-    // Master admin can access everything
-    if (isMasterAdmin()) return true;
+    // Admins (admin and master_admin) can access everything
+    if (isAdmin()) return true;
     
     // Check if this page is allowed for the user's tier
     return tierPermissions.some(
@@ -167,6 +171,7 @@ export function usePermissions() {
     loading,
     hasRole,
     isMasterAdmin,
+    isAdmin,
     getUserTier,
     // Section permissions
     getSectionPermission,

@@ -47,7 +47,7 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
   const { categories } = useCategories();
-  const { isMasterAdmin, canAccessSection, getUserTier } = usePermissions();
+  const { isMasterAdmin, canAccessSection, getUserTier, hasRole } = usePermissions();
   const { user } = useAuth();
   
   const userTier = getUserTier();
@@ -63,7 +63,7 @@ export function AppSidebar() {
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
     { title: "My Account", url: "/my-account", icon: User, dataAttr: undefined, sectionId: "my-account" },
-    ...(isMasterAdmin() ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
+    ...(isMasterAdmin() || hasRole('admin') ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
   ];
 
   // Filter navigation items based on user permissions
