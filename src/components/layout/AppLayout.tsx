@@ -15,6 +15,14 @@ import { useAppStructureSync } from "@/hooks/useAppStructureSync";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useIsMobile } from "@/hooks/use-mobile";
 
+// Safe fallback to avoid crash if AdminProvider isn't mounted (e.g., during boot/HMR)
+const useAdminSafe = () => {
+  try {
+    return useAdmin();
+  } catch {
+    return { isAdminMode: false, toggleAdminMode: () => {}, isAdmin: false };
+  }
+};
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -22,7 +30,7 @@ interface AppLayoutProps {
 
 export function AppLayout({ children }: AppLayoutProps) {
   console.log("AppLayout rendering");
-  const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
+  const { isAdminMode, toggleAdminMode, isAdmin } = useAdminSafe();
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const { autoSync } = useAppStructureSync();
