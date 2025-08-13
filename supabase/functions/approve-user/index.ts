@@ -201,18 +201,46 @@ if (tempPassword && tempPassword.length < 6) {
       )
     }
 
-// If no temp password was provided, send a password reset email so user can set their own password
-if (!tempPassword) {
-  const origin = new URL(req.url).origin
-  const { error: resetError } = await supabaseAdmin.auth.admin.generateLink({
-    type: 'recovery',
-    email: requestData.email,
-    options: { redirectTo: `${origin}/force-password` }
-  })
+// Always generate a password setup link and attempt to email it to the user
+let resetUrl: string | null = null
+let emailSent = false
+const origin = new URL(req.url).origin
+const { data: linkData, error: resetError } = await supabaseAdmin.auth.admin.generateLink({
+  type: 'recovery',
+  email: requestData.email,
+  options: { redirectTo: `${origin}/force-password` }
+})
 
-  if (resetError) {
-    console.warn('Password reset email error:', resetError)
-    // Don't fail the whole process for this
+if (resetError) {
+  console.warn('Password reset link generation error:', resetError)
+} else if (linkData) {
+  resetUrl = (linkData as any).properties?.action_link || (linkData as any).action_link || null
+  const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
+  if (RESEND_API_KEY && resetUrl) {
+    try {
+      const res = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'FINternship <no-reply@resend.dev>',
+          to: [requestData.email],
+          subject: 'Set up your FINternship password',
+          html: `<p>Your access has been approved.</p><p>Click the button below to set your password securely:</p><p><a href="${resetUrl}" style="display:inline-block;padding:10px 16px;border-radius:8px;background:#0ea5e9;color:#fff;text-decoration:none">Set Password</a></p><p>If you didn\'t request this, you can ignore this email.</p>`
+        })
+      })
+      emailSent = res.ok
+      if (!res.ok) {
+        const txt = await res.text()
+        console.log('Resend send failure:', txt)
+      }
+    } catch (e) {
+      console.log('Resend exception:', e)
+    }
+  } else if (!RESEND_API_KEY) {
+    console.log('RESEND_API_KEY not configured; returning resetUrl as fallback')
   }
 }
 
@@ -231,16 +259,18 @@ if (!tempPassword) {
       console.log('Profile verification successful:', verifyProfile)
     }
 
-    return new Response(
-      JSON.stringify({ 
-        success: true, 
-        message: 'User approved successfully',
-        user_id: newUser.user.id,
-        profile_created: !verifyError,
-        email: requestData.email
-      }),
-      { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    )
+return new Response(
+  JSON.stringify({ 
+    success: true, 
+    message: 'User approved successfully',
+    user_id: newUser.user.id,
+    profile_created: !verifyError,
+    email: requestData.email,
+    reset_url: resetUrl,
+    email_sent: emailSent
+  }),
+  { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+)
 
   } catch (error) {
     console.error('Unexpected error:', error)

@@ -91,33 +91,24 @@ export default function AdminDashboard() {
 
         if (error) throw error;
 
-        // If no temp password was set, automatically send a password reset email
-        if (!tempPassword && (data as any)?.email) {
-          try {
-            const { data: resetData, error: resetErr } = await supabase.functions.invoke('generate-password-reset-link', {
-              body: { email: (data as any).email, send: true },
-              headers: { Authorization: `Bearer ${session.access_token}` },
-            });
-            if (resetErr) throw resetErr as any;
-
-            const resetUrl = (resetData as any)?.resetUrl;
-            if (resetUrl) {
-              // Copy link to clipboard as a fallback when email sending isn't configured
-              try {
-                await navigator.clipboard.writeText(resetUrl);
-                toast({ title: 'Reset link generated', description: 'Email sent if configured. Link copied to clipboard as fallback.' });
-              } catch {
-                toast({ title: 'Reset link generated', description: 'Email sent if configured. Copy the link from console if needed.' });
-                console.log('Password reset URL:', resetUrl);
-              }
-            } else {
-              toast({ title: 'Password reset email sent', description: 'The user can now set their password.' });
-            }
-          } catch (e) {
-            console.error('Failed to send password reset email:', e);
-            toast({ title: 'Approved, but reset email failed', description: 'Use Troubleshoot tab to send a reset link.', variant: 'destructive' });
-          }
-        }
+// Always guide user to set their own password via email and fallback link
+const result = data as any;
+try {
+  if (result?.email_sent) {
+    toast({ title: 'Password setup email sent', description: 'The user received a secure link to set their password.' });
+  }
+  if (result?.reset_url) {
+    try {
+      await navigator.clipboard.writeText(result.reset_url);
+      toast({ title: 'Setup link ready', description: 'Link copied to clipboard as fallback.' });
+    } catch {
+      console.log('Password setup URL:', result.reset_url);
+      toast({ title: 'Setup link generated', description: 'Copy the link from console if needed.' });
+    }
+  }
+} catch (e) {
+  console.error('Post-approval notifications failed:', e);
+}
 
         toast({
           title: 'Request Approved',
@@ -272,6 +263,33 @@ export default function AdminDashboard() {
         description: "Failed to create manual approval request",
         variant: "destructive",
       });
+    }
+  };
+
+  const handleSendPasswordSetupEmail = async (email: string) => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error('No active session');
+      const { data, error } = await supabase.functions.invoke('generate-password-reset-link', {
+        body: { email, send: true },
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+      if (error) throw error as any;
+      const resetUrl = (data as any)?.resetUrl;
+      if (resetUrl) {
+        try {
+          await navigator.clipboard.writeText(resetUrl);
+          toast({ title: 'Setup link ready', description: 'Link copied to clipboard as fallback.' });
+        } catch {
+          console.log('Password setup URL:', resetUrl);
+          toast({ title: 'Setup link generated', description: 'Copy the link from console if needed.' });
+        }
+      } else {
+        toast({ title: 'Password setup email sent', description: 'The user received a secure link.' });
+      }
+    } catch (e) {
+      console.error('Failed to send password setup email:', e);
+      toast({ title: 'Failed to send setup email', description: 'Please try again later.', variant: 'destructive' });
     }
   };
 
@@ -549,34 +567,42 @@ export default function AdminDashboard() {
                         </div>
                       )}
 
-                      <div className="flex gap-2 pt-4 flex-wrap">
-                        {verificationResult.approval_request.exists && (
-                          <Button
-                            variant="outline"
-                            onClick={() => handleResetApprovalRequest(verificationResult.email)}
-                            className="flex items-center gap-2"
-                          >
-                            <RefreshCw className="h-4 w-4" />
-                            Reset Approval Request
-                          </Button>
-                        )}
-                        {!verificationResult.approval_request.exists && (
-                          <Button
-                            variant="default"
-                            onClick={() => handleCreateManualApprovalRequest(verificationResult.email)}
-                            className="flex items-center gap-2"
-                          >
-                            <UserPlus className="h-4 w-4" />
-                            Create Approval Request
-                          </Button>
-                        )}
-                        <Button
-                          variant="outline"
-                          onClick={() => setVerifyEmail('leejuechen10@gmail.com')}
-                        >
-                          Check leejuechen10@gmail.com
-                        </Button>
-                      </div>
+<div className="flex gap-2 pt-4 flex-wrap">
+  {verificationResult.approval_request.exists && (
+    <Button
+      variant="outline"
+      onClick={() => handleResetApprovalRequest(verificationResult.email)}
+      className="flex items-center gap-2"
+    >
+      <RefreshCw className="h-4 w-4" />
+      Reset Approval Request
+    </Button>
+  )}
+  {!verificationResult.approval_request.exists && (
+    <Button
+      variant="default"
+      onClick={() => handleCreateManualApprovalRequest(verificationResult.email)}
+      className="flex items-center gap-2"
+    >
+      <UserPlus className="h-4 w-4" />
+      Create Approval Request
+    </Button>
+  )}
+  <Button
+    variant="default"
+    onClick={() => handleSendPasswordSetupEmail(verificationResult.email)}
+    className="flex items-center gap-2"
+  >
+    <UserCheck className="h-4 w-4" />
+    Send Password Setup Email
+  </Button>
+  <Button
+    variant="outline"
+    onClick={() => setVerifyEmail('leejuechen10@gmail.com')}
+  >
+    Check leejuechen10@gmail.com
+  </Button>
+</div>
                     </CardContent>
                   </Card>
                 )}
