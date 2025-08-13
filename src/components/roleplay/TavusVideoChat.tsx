@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { 
   Play, 
@@ -71,6 +72,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { user } = useAuth();
 
   // Check permissions on component mount
   useEffect(() => {
@@ -255,6 +257,18 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     setIsLoading(true);
     setConnectionError(null);
     setShowPermissionHelp(false);
+    
+    // Require authentication before starting
+    if (!user) {
+      toast({
+        title: "Please sign in",
+        description: "Log in to start a roleplay session.",
+        variant: "destructive",
+      });
+      navigate('/auth');
+      setIsLoading(false);
+      return;
+    }
     
     try {
       // Request media permissions first

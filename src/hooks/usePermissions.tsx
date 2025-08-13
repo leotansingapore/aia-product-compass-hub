@@ -75,6 +75,10 @@ export function usePermissions() {
       'dashboard-search', 'dashboard-quick-actions', 'dashboard-user-stats', 
       'product-categories', 'dashboard-recently-viewed', 'dashboard-recommendations'
     ];
+
+    // Require authentication
+    if (!user) return false;
+
     if (coreSections.includes(sectionId)) return true;
     
     // Master admin can access everything
@@ -89,6 +93,10 @@ export function usePermissions() {
   const canAccessPage = (pageId: string): boolean => {
     // Core pages accessible to all authenticated users
     const corePages = ['dashboard', 'search', 'my-account', 'how-to-use-portal', 'search-by-profile', 'roleplay'];
+
+    // Require authentication
+    if (!user) return false;
+
     if (corePages.includes(pageId)) return true;
     
     // Master admin can access everything
