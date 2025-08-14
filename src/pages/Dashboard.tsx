@@ -109,9 +109,36 @@ export default function Dashboard() {
     <ProtectedPage pageId="dashboard">
       <div className="min-h-screen bg-background">
         <Helmet>
-        <title>Dashboard - FINternship Learning Platform</title>
-        <meta name="description" content="Access your personalized dashboard with product categories, learning progress, and recommendations. Navigate investment, endowment, whole life, term, and medical insurance products." />
-        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
+          <title>Dashboard - Your Learning Hub | FINternship</title>
+          <meta name="description" content="Access your personalized learning dashboard. Browse product categories, track progress, discover recommendations, and continue your financial advisory education journey." />
+          <meta name="keywords" content="dashboard, learning hub, financial products, training progress, product categories, financial advisor platform" />
+          <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
+          
+          {/* Open Graph */}
+          <meta property="og:title" content="Dashboard - Your Learning Hub | FINternship" />
+          <meta property="og:description" content="Access your personalized learning dashboard with comprehensive financial product training resources." />
+          <meta property="og:type" content="webapp" />
+          <meta property="og:url" content={`${window.location.origin}${window.location.pathname}`} />
+          <meta property="og:image" content={`${window.location.origin}/og-default.jpg`} />
+          
+          {/* Twitter Card */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Dashboard - Your Learning Hub | FINternship" />
+          <meta name="twitter:description" content="Access your personalized learning dashboard with comprehensive financial product training resources." />
+          <meta name="twitter:image" content={`${window.location.origin}/og-default.jpg`} />
+          
+          {/* Structured Data */}
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "FINternship Learning Dashboard",
+              "description": "Personalized learning dashboard for financial advisors",
+              "url": `${window.location.origin}${window.location.pathname}`,
+              "applicationCategory": "EducationalApplication",
+              "operatingSystem": "Web Browser"
+            })}
+          </script>
         </Helmet>
         
         {/* Desktop Header - Hidden on mobile */}

@@ -16,9 +16,24 @@ const NotFound = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <Helmet>
-        <title>Page Not Found (404) - FINternship</title>
-        <meta name="description" content="The page you’re looking for doesn’t exist. Return to the dashboard to continue learning." />
+        <title>Page Not Found (404) - Return to Learning | FINternship</title>
+        <meta name="description" content="The page you're looking for doesn't exist. Return to the FINternship Learning Platform dashboard to continue your financial advisory education and product training." />
+        <meta name="keywords" content="404 error, page not found, FINternship, financial advisor training" />
         <link rel="canonical" href={`${window.location.origin}${location.pathname}`} />
+        <meta name="robots" content="noindex, nofollow" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Page Not Found (404) - Return to Learning | FINternship" />
+        <meta property="og:description" content="The page you're looking for doesn't exist. Return to continue your financial advisory education." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${window.location.origin}${location.pathname}`} />
+        <meta property="og:image" content={`${window.location.origin}/og-default.jpg`} />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Page Not Found (404) - Return to Learning | FINternship" />
+        <meta name="twitter:description" content="The page you're looking for doesn't exist. Return to continue your financial advisory education." />
+        <meta name="twitter:image" content={`${window.location.origin}/og-default.jpg`} />
       </Helmet>
       <div className="text-center">
         <h1 className="text-5xl font-bold mb-2">404</h1>

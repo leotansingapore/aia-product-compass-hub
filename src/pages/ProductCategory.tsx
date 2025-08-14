@@ -118,9 +118,56 @@ export default function ProductCategory() {
     <ProtectedSection sectionId={`product-category-${categoryId}`}>
       <div className="min-h-screen bg-background">
         <Helmet>
-          <title>{categoryInfo?.title || 'Product Category'} - FINternship Learning Platform</title>
-          <meta name="description" content={`Explore ${categoryInfo?.title.toLowerCase() || 'products'} - ${categoryInfo?.description || 'Comprehensive insurance and investment solutions'} with detailed guides, videos, and AI assistance.`} />
+          <title>{categoryInfo?.title || 'Product Category'} - Training & Resources | FINternship</title>
+          <meta name="description" content={`Master ${categoryInfo?.title.toLowerCase() || 'products'} with comprehensive training resources. ${categoryInfo?.description || 'Professional insurance and investment solutions'} featuring expert guides, training videos, and AI assistance.`} />
+          <meta name="keywords" content={`${categoryInfo?.title.toLowerCase() || 'products'}, financial advisor training, product knowledge, insurance training, investment education`} />
           <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
+          
+          {/* Open Graph */}
+          <meta property="og:title" content={`${categoryInfo?.title || 'Product Category'} - Training & Resources | FINternship`} />
+          <meta property="og:description" content={`Master ${categoryInfo?.title.toLowerCase() || 'products'} with comprehensive training resources and expert guidance.`} />
+          <meta property="og:type" content="section" />
+          <meta property="og:url" content={`${window.location.origin}${window.location.pathname}`} />
+          <meta property="og:image" content={`${window.location.origin}/og-default.jpg`} />
+          <meta property="og:section" content={categoryInfo?.title || 'Product Category'} />
+          
+          {/* Twitter Card */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={`${categoryInfo?.title || 'Product Category'} - Training & Resources | FINternship`} />
+          <meta name="twitter:description" content={`Master ${categoryInfo?.title.toLowerCase() || 'products'} with comprehensive training resources.`} />
+          <meta name="twitter:image" content={`${window.location.origin}/og-default.jpg`} />
+          
+          {/* Structured Data */}
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "CollectionPage",
+              "name": `${categoryInfo?.title || 'Product Category'} Training`,
+              "description": categoryInfo?.description || 'Professional financial product training resources',
+              "url": `${window.location.origin}${window.location.pathname}`,
+              "isPartOf": {
+                "@type": "WebSite",
+                "name": "FINternship Learning Platform",
+                "url": window.location.origin
+              },
+              "mainEntity": {
+                "@type": "ItemList",
+                "numberOfItems": filteredProducts.length,
+                "itemListElement": filteredProducts.slice(0, 10).map((product, index) => ({
+                  "@type": "ListItem",
+                  "position": index + 1,
+                  "item": {
+                    "@type": "Course",
+                    "name": product.title,
+                    "description": product.description || `Learn about ${product.title}`,
+                    "url": `${window.location.origin}/product/${product.id}`,
+                    "courseMode": "online",
+                    "educationalLevel": "professional"
+                  }
+                }))
+              }
+            })}
+          </script>
         </Helmet>
         <NavigationHeader 
           title={category.name}

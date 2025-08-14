@@ -38,9 +38,44 @@ export default function MyAccount() {
     <ProtectedPage pageId="my-account">
       <div className="min-h-screen bg-background">
         <Helmet>
-          <title>My Account - FINternship</title>
-          <meta name="description" content="Manage your profile, security, preferences, and admin settings." />
+          <title>My Account - Profile & Settings | FINternship</title>
+          <meta name="description" content="Manage your FINternship learning platform account. Update profile information, security settings, preferences, and access admin tools for comprehensive account management." />
+          <meta name="keywords" content="account settings, profile management, security settings, user preferences, admin tools, learning platform account" />
           <link rel="canonical" href={`${window.location.origin}/my-account`} />
+          <meta name="robots" content="noindex, nofollow" />
+          
+          {/* Open Graph */}
+          <meta property="og:title" content="My Account - Profile & Settings | FINternship" />
+          <meta property="og:description" content="Manage your learning platform account settings, profile, and preferences." />
+          <meta property="og:type" content="profile" />
+          <meta property="og:url" content={`${window.location.origin}/my-account`} />
+          <meta property="og:image" content={`${window.location.origin}/og-default.jpg`} />
+          
+          {/* Twitter Card */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="My Account - Profile & Settings | FINternship" />
+          <meta name="twitter:description" content="Manage your learning platform account settings and preferences." />
+          <meta name="twitter:image" content={`${window.location.origin}/og-default.jpg`} />
+          
+          {/* Structured Data */}
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfilePage",
+              "name": "My Account - FINternship",
+              "description": "User account management page for FINternship Learning Platform",
+              "url": `${window.location.origin}/my-account`,
+              "isPartOf": {
+                "@type": "WebSite",
+                "name": "FINternship Learning Platform",
+                "url": window.location.origin
+              },
+              "mainEntity": {
+                "@type": "Person",
+                "name": user?.user_metadata?.display_name || user?.email || "User"
+              }
+            })}
+          </script>
         </Helmet>
         {/* Ultra mobile-friendly container */}
         <div className="container mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 max-w-4xl">

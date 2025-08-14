@@ -47,9 +47,63 @@ export default function HowToUsePortal() {
     <ProtectedPage pageId="how-to-use-portal">
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>How to Use Portal - FINternship Learning Platform</title>
-        <meta name="description" content="Learn how to navigate and use the FINternship Learning Platform effectively. Discover features like video learning, AI assistance, resource access, and objection handling tools." />
+        <title>How to Use Portal - Navigation Guide | FINternship</title>
+        <meta name="description" content="Master the FINternship Learning Platform with our comprehensive guide. Learn navigation, discover features like video learning, AI assistance, resource access, and effective objection handling strategies." />
+        <meta name="keywords" content="platform guide, navigation tutorial, learning platform help, financial advisor training guide, portal tutorial" />
         <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="How to Use Portal - Navigation Guide | FINternship" />
+        <meta property="og:description" content="Master the FINternship Learning Platform with our comprehensive navigation guide and discover powerful features for financial advisors." />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`${window.location.origin}${window.location.pathname}`} />
+        <meta property="og:image" content={`${window.location.origin}/og-default.jpg`} />
+        <meta property="article:section" content="Help & Guides" />
+        <meta property="article:tag" content="Tutorial" />
+        <meta property="article:tag" content="Navigation" />
+        <meta property="article:tag" content="Platform Guide" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="How to Use Portal - Navigation Guide | FINternship" />
+        <meta name="twitter:description" content="Master the FINternship Learning Platform with our comprehensive navigation guide." />
+        <meta name="twitter:image" content={`${window.location.origin}/og-default.jpg`} />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Use FINternship Learning Platform",
+            "description": "Complete guide to navigating and using the FINternship Learning Platform effectively",
+            "image": `${window.location.origin}/og-default.jpg`,
+            "totalTime": "PT10M",
+            "supply": ["Internet connection", "Web browser"],
+            "tool": ["FINternship Learning Platform"],
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Sign In",
+                "text": "Sign in to access your personalized dashboard"
+              },
+              {
+                "@type": "HowToStep", 
+                "name": "Browse Categories",
+                "text": "Explore product categories to find relevant training materials"
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Use Search",
+                "text": "Search for specific products or topics using the search functionality"
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Access Resources",
+                "text": "View training videos, documents, and AI assistance for each product"
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       <NavigationHeader 
         title="How to Use This Portal"

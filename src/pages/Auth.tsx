@@ -371,9 +371,39 @@ const Auth = () => {
   };
   return <div className="min-h-screen bg-gradient-subtle flex items-center justify-center px-1 sm:px-4 py-4">
       <Helmet>
-        <title>Sign In - FINternship Learning Platform</title>
-        <meta name="description" content="Sign in to access the FINternship Learning Platform - Track your learning progress, earn achievements, and access comprehensive product training materials." />
+        <title>Sign In - Access Your Learning Platform | FINternship</title>
+        <meta name="description" content="Sign in to FINternship Learning Platform. Track progress, earn achievements, access comprehensive financial product training, and enhance your advisory skills with AI assistance." />
+        <meta name="keywords" content="sign in, login, financial advisor platform, learning platform, training portal, financial education" />
         <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Sign In - Access Your Learning Platform | FINternship" />
+        <meta property="og:description" content="Join thousands of financial advisors enhancing their skills with comprehensive product training and AI assistance." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${window.location.origin}${window.location.pathname}`} />
+        <meta property="og:image" content={`${window.location.origin}/og-default.jpg`} />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sign In - Access Your Learning Platform | FINternship" />
+        <meta name="twitter:description" content="Join thousands of financial advisors enhancing their skills with comprehensive product training." />
+        <meta name="twitter:image" content={`${window.location.origin}/og-default.jpg`} />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Sign In - FINternship Learning Platform",
+            "description": "Sign in to access comprehensive financial advisory training and education resources",
+            "url": `${window.location.origin}${window.location.pathname}`,
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "FINternship Learning Platform",
+              "url": window.location.origin
+            }
+          })}
+        </script>
       </Helmet>
       <div className="w-full max-w-lg space-y-4 sm:space-y-6">
         <div className="text-center">
