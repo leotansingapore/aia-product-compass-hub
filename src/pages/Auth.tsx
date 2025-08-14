@@ -217,49 +217,43 @@ const Auth = () => {
       // Handle sign in errors
       if (signInError) {
         if (signInError.message.includes('Invalid login credentials')) {
-          // Account doesn't exist, create it
-          const {
-            data: signUpData,
-            error: signUpError
-          } = await supabase.auth.signUp({
-            email: demoEmail,
-            password: demoPassword,
-            options: {
-              emailRedirectTo: `${window.location.origin}/`,
-              data: {
-                display_name: "Demo Admin"
-              }
-            }
-          });
-          if (signUpError) throw signUpError;
-
-          // If account was created but needs confirmation
-          if (signUpData.user && !signUpData.session) {
-            toast({
-              title: "Demo Account Setup Required",
-              description: "Demo account created but requires email confirmation. To use demo mode immediately, please disable email confirmations in your Supabase Auth settings.",
-              variant: "default"
+          // Account doesn't exist, create it via edge function
+          try {
+            const response = await fetch(`https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/ensure-demo-account`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnZGJmbHBycmZpY2RveXhtZHhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3NjY0NDAsImV4cCI6MjA2NzM0MjQ0MH0.2qwUbh0nkFyOLzzZgXk7bedINzHSf2ULMBUECOqWmIw`
+              },
+              body: JSON.stringify({ email: demoEmail })
             });
-            return;
-          }
 
-          // If we got a session immediately, create profile
-          if (signUpData.user && signUpData.session) {
-            try {
-              await supabase.from('profiles').insert({
-                user_id: signUpData.user.id,
-                display_name: "Demo Admin",
-                email: demoEmail
+            if (!response.ok) {
+              throw new Error('Failed to create demo account');
+            }
+
+            // Try signing in again after account creation
+            const { data: retryData, error: retryError } = await supabase.auth.signInWithPassword({
+              email: demoEmail,
+              password: demoPassword
+            });
+
+            if (retryError) throw retryError;
+
+            if (retryData.user && retryData.session) {
+              toast({
+                title: "Demo Account Ready!",
+                description: "You can now use all admin features"
               });
-            } catch (profileError) {
-              console.error('Profile creation error:', profileError);
-              // Don't fail the whole process for profile creation
+              window.location.href = '/';
             }
+          } catch (createError) {
+            console.error('Error creating demo account:', createError);
             toast({
-              title: "Demo Account Ready!",
-              description: "You can now use all admin features"
+              title: "Demo Setup Failed",
+              description: "Could not create demo account. Please try again.",
+              variant: "destructive"
             });
-            window.location.href = '/';
           }
         } else if (signInError.message.includes('Email not confirmed') || signInError.message.includes('email_not_confirmed')) {
           toast({
@@ -317,66 +311,43 @@ const Auth = () => {
 
       // If sign in failed because account doesn't exist, create it
       if (signInError?.message.includes('Invalid login credentials')) {
-        const {
-          data: signUpData,
-          error: signUpError
-        } = await supabase.auth.signUp({
-          email: loginEmail,
-          password: loginPassword,
-          options: {
-            emailRedirectTo: `${window.location.origin}/`,
-            data: {
-              display_name: quickLogins.find(q => q.email === loginEmail)?.type + " Demo"
-            }
-          }
-        });
-
-        if (signUpError) throw signUpError;
-
-        // If account was created but needs confirmation
-        if (signUpData.user && !signUpData.session) {
-          toast({
-            title: "Demo Account Setup Required",
-            description: "Demo account created but requires email confirmation. To use demo mode immediately, please disable email confirmations in your Supabase Auth settings.",
-            variant: "default"
+        try {
+          const response = await fetch(`https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/ensure-demo-account`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnZGJmbHBycmZpY2RveXhtZHhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3NjY0NDAsImV4cCI6MjA2NzM0MjQ0MH0.2qwUbh0nkFyOLzzZgXk7bedINzHSf2ULMBUECOqWmIw`
+            },
+            body: JSON.stringify({ email: loginEmail })
           });
-          return;
-        }
 
-        // If we got a session immediately, assign appropriate role
-        if (signUpData.user && signUpData.session) {
-          try {
-            // Determine role based on email
-            let role = 'user';
-            if (loginEmail === 'master_admin@demo.com') {
-              role = 'master_admin';
-            } else if (loginEmail === 'admin@demo.com') {
-              role = 'admin';
-            }
-
-            // Create profile and assign role
-            await supabase.from('profiles').insert({
-              user_id: signUpData.user.id,
-              display_name: quickLogins.find(q => q.email === loginEmail)?.type + " Demo",
-              email: loginEmail
-            });
-
-            await supabase.from('user_roles').insert({
-              user_id: signUpData.user.id,
-              role: role
-            });
-
-          } catch (profileError) {
-            console.error('Profile/role creation error:', profileError);
-            // Don't fail the whole process
+          if (!response.ok) {
+            throw new Error('Failed to create demo account');
           }
 
-          localStorage.setItem('lastLoginEmail', loginEmail);
-          toast({
-            title: "Demo Account Ready!",
-            description: `You now have ${quickLogins.find(q => q.email === loginEmail)?.type} access`
+          // Try signing in again after account creation
+          const { data: retryData, error: retryError } = await supabase.auth.signInWithPassword({
+            email: loginEmail,
+            password: loginPassword
           });
-          window.location.href = '/';
+
+          if (retryError) throw retryError;
+
+          if (retryData.user && retryData.session) {
+            localStorage.setItem('lastLoginEmail', loginEmail);
+            toast({
+              title: "Demo Account Ready!",
+              description: `You now have ${quickLogins.find(q => q.email === loginEmail)?.type} access`
+            });
+            window.location.href = '/';
+          }
+        } catch (createError) {
+          console.error('Error creating demo account:', createError);
+          toast({
+            title: "Demo Setup Failed",
+            description: "Could not create demo account. Please try again.",
+            variant: "destructive"
+          });
         }
       } else if (signInError?.message.includes('Email not confirmed')) {
         toast({
