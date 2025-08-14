@@ -46,13 +46,76 @@ serve(async (req) => {
 
     const serviceClient = createClient(SUPABASE_URL, SERVICE_KEY);
     const origin = new URL(req.url).origin;
-    const { data: linkData, error: linkErr } = await serviceClient.auth.admin.generateLink({
+
+    // Check if user exists in auth, if not create them using profile data
+    let { data: linkData, error: linkErr } = await serviceClient.auth.admin.generateLink({
       type: 'recovery',
       email,
       options: { redirectTo: `${origin}/force-password` },
     });
-    if (linkErr || !linkData) {
-      return new Response(JSON.stringify({ error: linkErr?.message || 'Failed to generate link' }), { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } });
+
+    // If user doesn't exist in auth but exists in profiles, create the auth user
+    if (linkErr?.message?.includes('User not found') || linkErr?.message?.includes('not found')) {
+      console.log(`User ${email} not found in auth, checking profiles table...`);
+      
+      // Query profiles table to get user data
+      const { data: profileData, error: profileErr } = await serviceClient
+        .from('profiles')
+        .select('user_id, email, first_name, last_name, display_name')
+        .eq('email', email)
+        .single();
+
+      if (profileErr || !profileData) {
+        return new Response(JSON.stringify({ error: 'User not found in system' }), { 
+          status: 404, 
+          headers: { "Content-Type": "application/json", ...corsHeaders } 
+        });
+      }
+
+      console.log(`Found profile for ${email}, creating auth user...`);
+      
+      // Create auth user with profile data
+      const { data: createUserData, error: createUserErr } = await serviceClient.auth.admin.createUser({
+        email: email,
+        password: 'temporary-password-will-be-reset',
+        email_confirm: true,
+        user_metadata: {
+          first_name: profileData.first_name || '',
+          last_name: profileData.last_name || '',
+          display_name: profileData.display_name || ''
+        }
+      });
+
+      if (createUserErr) {
+        console.error('Failed to create auth user:', createUserErr);
+        return new Response(JSON.stringify({ error: 'Failed to create auth user: ' + createUserErr.message }), { 
+          status: 500, 
+          headers: { "Content-Type": "application/json", ...corsHeaders } 
+        });
+      }
+
+      console.log(`Auth user created for ${email}, generating reset link...`);
+      
+      // Now generate the reset link for the newly created user
+      const { data: newLinkData, error: newLinkErr } = await serviceClient.auth.admin.generateLink({
+        type: 'recovery',
+        email,
+        options: { redirectTo: `${origin}/force-password` },
+      });
+
+      if (newLinkErr || !newLinkData) {
+        return new Response(JSON.stringify({ error: newLinkErr?.message || 'Failed to generate reset link after user creation' }), { 
+          status: 500, 
+          headers: { "Content-Type": "application/json", ...corsHeaders } 
+        });
+      }
+
+      linkData = newLinkData;
+    } else if (linkErr || !linkData) {
+      return new Response(JSON.stringify({ error: linkErr?.message || 'Failed to generate link' }), { 
+        status: 500, 
+        headers: { "Content-Type": "application/json", ...corsHeaders } 
+      });
     }
 
     // Optionally send email via Resend if configured and send flag provided
