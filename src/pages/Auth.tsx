@@ -39,7 +39,7 @@ const Auth = () => {
   }, []);
   const quickLogins = [{
     type: "Master Admin",
-    email: "admin@demo.com",
+    email: "master_admin@demo.com",
     password: "demo123456",
     description: "Full system access & user management",
     icon: Crown,
@@ -53,8 +53,7 @@ const Auth = () => {
     color: "text-blue-500"
   }, {
     type: "Regular User",
-    email: "admin@demo.com",
-    // Using admin account for now since user@demo.com has issues
+    email: "user@demo.com",
     password: "demo123456",
     description: "Standard user experience",
     icon: User,
@@ -296,21 +295,97 @@ const Auth = () => {
       } catch (err) {
         console.log('Sign out error (continuing):', err);
       }
+
+      // Try to sign in first
       const {
-        data,
-        error
+        data: signInData,
+        error: signInError
       } = await supabase.auth.signInWithPassword({
         email: loginEmail,
         password: loginPassword
       });
-      if (error) throw error;
-      if (data.user) {
+
+      if (signInData?.user && signInData?.session) {
         localStorage.setItem('lastLoginEmail', loginEmail);
         toast({
           title: "Quick Login Successful!",
           description: `Signed in as ${quickLogins.find(q => q.email === loginEmail)?.type}`
         });
         window.location.href = '/';
+        return;
+      }
+
+      // If sign in failed because account doesn't exist, create it
+      if (signInError?.message.includes('Invalid login credentials')) {
+        const {
+          data: signUpData,
+          error: signUpError
+        } = await supabase.auth.signUp({
+          email: loginEmail,
+          password: loginPassword,
+          options: {
+            emailRedirectTo: `${window.location.origin}/`,
+            data: {
+              display_name: quickLogins.find(q => q.email === loginEmail)?.type + " Demo"
+            }
+          }
+        });
+
+        if (signUpError) throw signUpError;
+
+        // If account was created but needs confirmation
+        if (signUpData.user && !signUpData.session) {
+          toast({
+            title: "Demo Account Setup Required",
+            description: "Demo account created but requires email confirmation. To use demo mode immediately, please disable email confirmations in your Supabase Auth settings.",
+            variant: "default"
+          });
+          return;
+        }
+
+        // If we got a session immediately, assign appropriate role
+        if (signUpData.user && signUpData.session) {
+          try {
+            // Determine role based on email
+            let role = 'user';
+            if (loginEmail === 'master_admin@demo.com') {
+              role = 'master_admin';
+            } else if (loginEmail === 'admin@demo.com') {
+              role = 'admin';
+            }
+
+            // Create profile and assign role
+            await supabase.from('profiles').insert({
+              user_id: signUpData.user.id,
+              display_name: quickLogins.find(q => q.email === loginEmail)?.type + " Demo",
+              email: loginEmail
+            });
+
+            await supabase.from('user_roles').insert({
+              user_id: signUpData.user.id,
+              role: role
+            });
+
+          } catch (profileError) {
+            console.error('Profile/role creation error:', profileError);
+            // Don't fail the whole process
+          }
+
+          localStorage.setItem('lastLoginEmail', loginEmail);
+          toast({
+            title: "Demo Account Ready!",
+            description: `You now have ${quickLogins.find(q => q.email === loginEmail)?.type} access`
+          });
+          window.location.href = '/';
+        }
+      } else if (signInError?.message.includes('Email not confirmed')) {
+        toast({
+          title: "Demo Account Needs Setup",
+          description: "Your demo account exists but requires email confirmation. To enable instant demo access, please disable 'Confirm email' in your Supabase Auth settings.",
+          variant: "default"
+        });
+      } else if (signInError) {
+        throw signInError;
       }
     } catch (error: any) {
       console.error('Quick login error:', error);
@@ -344,6 +419,32 @@ const Auth = () => {
           </p>
         </div>
 
+        {/* Quick Login Buttons */}
+        <div className="grid gap-3">
+          {quickLogins.map((login, index) => {
+            const IconComponent = login.icon;
+            return (
+              <Button
+                key={index}
+                variant="outline"
+                className="flex items-center justify-between p-4 h-auto border-border/50 hover:border-primary/50 transition-colors group"
+                onClick={() => handleQuickLogin(login.email, login.password)}
+                disabled={loading}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-full bg-muted group-hover:bg-primary/10 transition-colors">
+                    <IconComponent className={`h-4 w-4 ${login.color} group-hover:text-primary transition-colors`} />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-medium text-sm">{login.type}</div>
+                    <div className="text-xs text-muted-foreground">{login.description}</div>
+                  </div>
+                </div>
+                <Zap className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+              </Button>
+            );
+          })}
+        </div>
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
