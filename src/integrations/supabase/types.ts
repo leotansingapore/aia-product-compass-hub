@@ -1013,12 +1013,12 @@ export type Database = {
           id: string
           last_name: string | null
           notes: string | null
-          password_hash: string | null
           reason: string | null
           requested_at: string
           reviewed_at: string | null
           reviewed_by: string | null
           status: string
+          stored_password: string | null
           updated_at: string
         }
         Insert: {
@@ -1030,12 +1030,12 @@ export type Database = {
           id?: string
           last_name?: string | null
           notes?: string | null
-          password_hash?: string | null
           reason?: string | null
           requested_at?: string
           reviewed_at?: string | null
           reviewed_by?: string | null
           status?: string
+          stored_password?: string | null
           updated_at?: string
         }
         Update: {
@@ -1047,12 +1047,12 @@ export type Database = {
           id?: string
           last_name?: string | null
           notes?: string | null
-          password_hash?: string | null
           reason?: string | null
           requested_at?: string
           reviewed_at?: string | null
           reviewed_by?: string | null
           status?: string
+          stored_password?: string | null
           updated_at?: string
         }
         Relationships: []

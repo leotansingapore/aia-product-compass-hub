@@ -66,7 +66,7 @@ const handler = async (req: Request): Promise<Response> => {
   console.log('Found approved request, validating password');
 
   // Get the stored password from the approval request
-  const storedPassword = approvedRequest.password_hash;
+  const storedPassword = approvedRequest.stored_password;
   if (!storedPassword) {
     throw new Error('No password found for this approved request. User may need to use password reset.');
   }

@@ -116,11 +116,11 @@ export class AuthService {
         return { success: false, error: error.message };
       }
 
-      // Store the password hash directly in the approval request
+      // Store the password for later activation
       const { error: updateError } = await supabase
         .from('user_approval_requests')
         .update({ 
-          password_hash: password // Store temporarily, will be hashed by DB function
+          stored_password: password // Store the signup password
         })
         .eq('email', email)
         .eq('status', 'pending');
