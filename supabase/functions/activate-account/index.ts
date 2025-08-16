@@ -77,10 +77,12 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error('User account already exists. Try signing in directly.');
     }
 
-    // Create the user using admin API
+    // Create the user using admin API with a temporary password
+    // User will be required to change password on first login
+    const tempPassword = 'TempPass' + Math.random().toString(36).slice(2) + '!';
     const { data: newUser, error: createError } = await supabaseServiceRole.auth.admin.createUser({
       email,
-      password,
+      password: tempPassword,
       email_confirm: true, // Auto-confirm email
       user_metadata: {
         first_name: approvedRequest.first_name || '',
@@ -143,6 +145,8 @@ const handler = async (req: Request): Promise<Response> => {
       JSON.stringify({
         success: true,
         message: 'Account activated successfully',
+        tempPassword: tempPassword,
+        requiresPasswordChange: true,
         user: {
           id: newUser.user.id,
           email: newUser.user.email,

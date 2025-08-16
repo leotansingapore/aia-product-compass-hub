@@ -68,7 +68,7 @@ export class AuthService {
     }
   }
 
-  static async activateAccount(email: string, password: string): Promise<SignInResult> {
+  static async activateAccount(email: string, password: string): Promise<SignInResult & { tempPassword?: string; requiresPasswordChange?: boolean }> {
     try {
       const { data: activationData, error: activationError } = await supabase.functions.invoke('activate-account', {
         body: { email, password }
@@ -82,8 +82,18 @@ export class AuthService {
         return { success: false, error: activationData?.error || 'Failed to activate account' };
       }
 
-      // Now sign in with the activated account
-      return await this.signIn(email, password);
+      // Sign in with the temporary password provided by activation
+      const tempPassword = activationData.tempPassword;
+      if (tempPassword) {
+        const signInResult = await this.signIn(email, tempPassword);
+        return {
+          ...signInResult,
+          tempPassword,
+          requiresPasswordChange: activationData.requiresPasswordChange
+        };
+      }
+
+      return { success: false, error: 'Account activation incomplete' };
     } catch (error: any) {
       return { success: false, error: error.message || 'Account activation failed' };
     }

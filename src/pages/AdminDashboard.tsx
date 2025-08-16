@@ -11,6 +11,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { usePermissions } from '@/hooks/usePermissions';
 import { useToast } from '@/hooks/use-toast';
 import { UserManagementSection } from '@/components/account/UserManagementSection';
+import { ActivationInstructions } from '@/components/admin/ActivationInstructions';
 import { CreateUserForm } from '@/components/admin/CreateUserForm';
 
 interface ApprovalRequest {
@@ -333,6 +334,7 @@ toast({
           </TabsContent>
 
           <TabsContent value="approvals" className="space-y-4 sm:space-y-6">
+            <ActivationInstructions />
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
