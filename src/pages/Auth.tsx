@@ -108,31 +108,41 @@ const Auth = () => {
           .single();
         
         if (approvedRequest && !requestError) {
-          // Create account with their chosen password
-          const redirectUrl = `${window.location.origin}/`;
-          
-          const { data: signupData, error: signupError } = await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-              emailRedirectTo: redirectUrl,
-              data: {
-                first_name: approvedRequest.first_name || '',
-                last_name: approvedRequest.last_name || '',
-                display_name: `${approvedRequest.first_name || ''} ${approvedRequest.last_name || ''}`.trim() || 'User'
-              }
-            }
+          // Create account with their chosen password using admin function
+          const response = await fetch(`https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/create-user-account`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnZGJmbHBycmZpY2RveXhtZHhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3NjY0NDAsImV4cCI6MjA2NzM0MjQ0MH0.2qwUbh0nkFyOLzzZgXk7bedINzHSf2ULMBUECOqWmIw`
+            },
+            body: JSON.stringify({
+              email,
+              password,
+              first_name: approvedRequest.first_name || '',
+              last_name: approvedRequest.last_name || ''
+            })
           });
-          
-          if (signupError) throw signupError;
-          
-          if (signupData.user) {
-            // Mark the request as completed
-            await supabase
-              .from('user_approval_requests')
-              .update({ status: 'completed' })
-              .eq('id', approvedRequest.id);
-            
+
+          if (!response.ok) {
+            const errorData = await response.text();
+            throw new Error(`Failed to create account: ${errorData}`);
+          }
+
+          // Mark the request as completed
+          await supabase
+            .from('user_approval_requests')
+            .update({ status: 'completed' })
+            .eq('id', approvedRequest.id);
+
+          // Now try to sign in with the created account
+          const { data: loginData, error: loginError } = await supabase.auth.signInWithPassword({
+            email,
+            password
+          });
+
+          if (loginError) throw loginError;
+
+          if (loginData.user) {
             try { localStorage.setItem('lastLoginEmail', email); } catch {}
             toast({
               title: "Account activated!",
