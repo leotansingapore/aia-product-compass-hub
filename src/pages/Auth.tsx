@@ -119,24 +119,39 @@ const Auth = () => {
     }
     setLoading(true);
     try {
-      // Create approval request instead of user account
+      // Clean up any existing auth state
+      cleanupAuthState();
+      try {
+        await supabase.auth.signOut({ scope: 'global' });
+      } catch (err) {
+        // Continue even if this fails
+      }
+
+      // Create user account directly with their chosen password
       const nameParts = displayName.trim().split(' ');
       const firstName = nameParts[0];
       const lastName = nameParts.slice(1).join(' ');
-      const {
-        error
-      } = await supabase.from('user_approval_requests').insert({
+      
+      const redirectUrl = `${window.location.origin}/`;
+      
+      const { data, error } = await supabase.auth.signUp({
         email,
-        first_name: firstName,
-        last_name: lastName || null,
-        reason: "User registration request"
+        password,
+        options: {
+          emailRedirectTo: redirectUrl,
+          data: {
+            first_name: firstName,
+            last_name: lastName || '',
+            display_name: displayName
+          }
+        }
       });
+
       if (error) {
-        if (error.code === '23505') {
-          // Unique constraint violation
+        if (error.message.includes('User already registered')) {
           toast({
-            title: "Request Already Submitted",
-            description: "A registration request with this email already exists. Please wait for admin approval.",
+            title: "Account Already Exists",
+            description: "An account with this email already exists. Try signing in instead.",
             variant: "destructive"
           });
         } else {
@@ -144,15 +159,24 @@ const Auth = () => {
         }
         return;
       }
-      toast({
-        title: "Registration Request Submitted!",
-        description: "Your request has been sent to administrators for approval. You'll receive an email once your account is approved."
-      });
 
-      // Clear form
-      setEmail('');
-      setPassword('');
-      setDisplayName('');
+      if (data.user) {
+        toast({
+          title: "Account Created Successfully!",
+          description: "You can now sign in with your email and password.",
+          duration: 5000
+        });
+
+        // Clear form and switch to sign in tab
+        setEmail('');
+        setPassword('');
+        setDisplayName('');
+        
+        // Auto-fill email on sign in tab
+        setTimeout(() => {
+          setEmail(email);
+        }, 100);
+      }
     } catch (error: any) {
       toast({
         title: "Registration Failed",
@@ -513,7 +537,7 @@ const Auth = () => {
                   </div>
                    <Button type="submit" className="w-full" disabled={loading} variant="hero">
                      {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                     Request Account
+                     Create Account
                    </Button>
                 </form>
               </TabsContent>
