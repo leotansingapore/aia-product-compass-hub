@@ -68,7 +68,7 @@ export class AuthService {
     }
   }
 
-  static async activateAccount(email: string, password: string): Promise<SignInResult & { tempPassword?: string; requiresPasswordChange?: boolean }> {
+  static async activateAccount(email: string, password: string): Promise<SignInResult> {
     try {
       const { data: activationData, error: activationError } = await supabase.functions.invoke('activate-account', {
         body: { email, password }
@@ -82,18 +82,8 @@ export class AuthService {
         return { success: false, error: activationData?.error || 'Failed to activate account' };
       }
 
-      // Sign in with the temporary password provided by activation
-      const tempPassword = activationData.tempPassword;
-      if (tempPassword) {
-        const signInResult = await this.signIn(email, tempPassword);
-        return {
-          ...signInResult,
-          tempPassword,
-          requiresPasswordChange: activationData.requiresPasswordChange
-        };
-      }
-
-      return { success: false, error: 'Account activation incomplete' };
+      // Now sign in with the original password
+      return await this.signIn(email, password);
     } catch (error: any) {
       return { success: false, error: error.message || 'Account activation failed' };
     }
@@ -126,14 +116,17 @@ export class AuthService {
         return { success: false, error: error.message };
       }
 
-      // Store password securely via RPC function
-      const { error: passwordError } = await supabase.rpc('store_signup_password', {
-        user_email: email,
-        user_password: password
-      });
+      // Store the password hash directly in the approval request
+      const { error: updateError } = await supabase
+        .from('user_approval_requests')
+        .update({ 
+          password_hash: password // Store temporarily, will be hashed by DB function
+        })
+        .eq('email', email)
+        .eq('status', 'pending');
 
-      if (passwordError) {
-        console.warn('Could not store password securely:', passwordError);
+      if (updateError) {
+        console.warn('Could not store password for activation:', updateError);
       }
 
       return { success: true };

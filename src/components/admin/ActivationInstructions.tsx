@@ -8,15 +8,13 @@ export function ActivationInstructions() {
       <AlertDescription>
         <strong>How the approval process works:</strong>
         <br />
-        1. Users submit registration requests with their details
+        1. Users submit registration requests with their email, name, and password
         <br />
         2. You approve users here in the admin panel
         <br />
-        3. Approved users can then attempt to login with ANY password
+        3. Approved users can login with their original signup password
         <br />
-        4. On their first login attempt, a secure temporary password is generated
-        <br />
-        5. They'll be prompted to set a new password for security
+        4. Their account gets created automatically on first login attempt
       </AlertDescription>
     </Alert>
   );

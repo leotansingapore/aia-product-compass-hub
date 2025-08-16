@@ -43,21 +43,11 @@ export function useAuthOperations() {
         const activationResult = await AuthService.activateAccount(email, password);
         
         if (activationResult.success) {
-          if (activationResult.requiresPasswordChange) {
-            toast({
-              title: "Account Activated!",
-              description: `Your account is ready! Please set a new password for security. Temporary password: ${activationResult.tempPassword}`,
-              duration: 10000
-            });
-            // Redirect to password change page
-            window.location.href = '/force-password';
-          } else {
-            toast({
-              title: AUTH_CONFIG.messages.success.accountActivated,
-              description: "Your approved account is now ready. Welcome!"
-            });
-            window.location.href = AUTH_CONFIG.redirectUrls.afterSignIn;
-          }
+          toast({
+            title: AUTH_CONFIG.messages.success.accountActivated,
+            description: "Your approved account is now ready. Welcome!"
+          });
+          window.location.href = AUTH_CONFIG.redirectUrls.afterSignIn;
           return;
         } else {
           throw new Error(activationResult.error);

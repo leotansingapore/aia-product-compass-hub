@@ -63,33 +63,44 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error('No approved account request found for this email');
     }
 
-    console.log('Found approved request, creating user account');
+  console.log('Found approved request, validating password');
 
-    // Check if user already exists in auth.users
-    const { data: existingUsers, error: checkError } = await supabaseServiceRole.auth.admin.listUsers();
-    if (checkError) {
-      console.error('Error checking existing users:', checkError);
-      throw new Error('Failed to check existing users');
+  // Get the stored password from the approval request
+  const storedPassword = approvedRequest.password_hash;
+  if (!storedPassword) {
+    throw new Error('No password found for this approved request. User may need to use password reset.');
+  }
+
+  // Validate that the provided password matches the stored signup password
+  if (password !== storedPassword) {
+    throw new Error('Invalid password. Please use the password you set during registration.');
+  }
+
+  // Check if user already exists in auth.users
+  const { data: existingUsers, error: checkError } = await supabaseServiceRole.auth.admin.listUsers();
+  if (checkError) {
+    console.error('Error checking existing users:', checkError);
+    throw new Error('Failed to check existing users');
+  }
+
+  const userExists = existingUsers.users.some(u => u.email === email);
+  if (userExists) {
+    throw new Error('User account already exists. Try signing in directly.');
+  }
+
+  console.log('Password validated, creating user account');
+
+  // Use the password they originally set during signup
+  const { data: newUser, error: createError } = await supabaseServiceRole.auth.admin.createUser({
+    email,
+    password: storedPassword, // Use their original password
+    email_confirm: true, // Auto-confirm email
+    user_metadata: {
+      first_name: approvedRequest.first_name || '',
+      last_name: approvedRequest.last_name || '',
+      display_name: `${approvedRequest.first_name || ''} ${approvedRequest.last_name || ''}`.trim() || 'User'
     }
-
-    const userExists = existingUsers.users.some(u => u.email === email);
-    if (userExists) {
-      throw new Error('User account already exists. Try signing in directly.');
-    }
-
-    // Create the user using admin API with a temporary password
-    // User will be required to change password on first login
-    const tempPassword = 'TempPass' + Math.random().toString(36).slice(2) + '!';
-    const { data: newUser, error: createError } = await supabaseServiceRole.auth.admin.createUser({
-      email,
-      password: tempPassword,
-      email_confirm: true, // Auto-confirm email
-      user_metadata: {
-        first_name: approvedRequest.first_name || '',
-        last_name: approvedRequest.last_name || '',
-        display_name: `${approvedRequest.first_name || ''} ${approvedRequest.last_name || ''}`.trim() || 'User'
-      }
-    });
+  });
 
     if (createError) {
       console.error('Error creating user:', createError);
@@ -145,8 +156,6 @@ const handler = async (req: Request): Promise<Response> => {
       JSON.stringify({
         success: true,
         message: 'Account activated successfully',
-        tempPassword: tempPassword,
-        requiresPasswordChange: true,
         user: {
           id: newUser.user.id,
           email: newUser.user.email,

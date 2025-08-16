@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "12.2.3 (519615d)"
@@ -1013,6 +1013,7 @@ export type Database = {
           id: string
           last_name: string | null
           notes: string | null
+          password_hash: string | null
           reason: string | null
           requested_at: string
           reviewed_at: string | null
@@ -1029,6 +1030,7 @@ export type Database = {
           id?: string
           last_name?: string | null
           notes?: string | null
+          password_hash?: string | null
           reason?: string | null
           requested_at?: string
           reviewed_at?: string | null
@@ -1045,6 +1047,7 @@ export type Database = {
           id?: string
           last_name?: string | null
           notes?: string | null
+          password_hash?: string | null
           reason?: string | null
           requested_at?: string
           reviewed_at?: string | null
@@ -1176,12 +1179,12 @@ export type Database = {
       }
       approve_user_request_simple: {
         Args:
-          | { request_id: string; new_user_id: string }
           | {
-              request_id: string
-              new_user_id: string
               approving_user_id: string
+              new_user_id: string
+              request_id: string
             }
+          | { new_user_id: string; request_id: string }
         Returns: undefined
       }
       assign_master_admin: {
@@ -1194,11 +1197,15 @@ export type Database = {
       }
       create_roleplay_session: {
         Args: {
-          scenario_title: string
           scenario_category: string
           scenario_difficulty: string
+          scenario_title: string
           tavus_conversation_id: string
         }
+        Returns: string
+      }
+      get_signup_password: {
+        Args: { user_email: string }
         Returns: string
       }
       get_user_tier: {
@@ -1206,19 +1213,23 @@ export type Database = {
         Returns: string
       }
       has_role: {
-        Args: { _user_id: string; _role: string }
+        Args: { _role: string; _user_id: string }
         Returns: boolean
       }
       has_tier_access: {
-        Args: { user_id: string; access_type: string; resource_id: string }
+        Args: { access_type: string; resource_id: string; user_id: string }
         Returns: boolean
       }
       reset_approval_request: {
         Args: { _email: string }
         Returns: Json
       }
+      store_signup_password: {
+        Args: { user_email: string; user_password: string }
+        Returns: undefined
+      }
       update_roleplay_session: {
-        Args: { session_id: string; end_time: string; duration: number }
+        Args: { duration: number; end_time: string; session_id: string }
         Returns: undefined
       }
       upgrade_user_to_master_admin: {
