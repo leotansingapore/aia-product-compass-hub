@@ -95,7 +95,7 @@ export class AuthService {
       const firstName = nameParts[0];
       const lastName = nameParts.slice(1).join(' ');
 
-      // Store the password securely for later activation
+      // Store the password directly during initial insert
       const { error } = await supabase
         .from('user_approval_requests')
         .insert({
@@ -103,7 +103,8 @@ export class AuthService {
           first_name: firstName,
           last_name: lastName || null,
           reason: "User registration request",
-          notes: `Password set during registration` // We'll store password via RPC for security
+          stored_password: password, // Store the signup password directly
+          notes: `Password set during registration`
         });
 
       if (error) {
@@ -114,19 +115,6 @@ export class AuthService {
           };
         }
         return { success: false, error: error.message };
-      }
-
-      // Store the password for later activation
-      const { error: updateError } = await supabase
-        .from('user_approval_requests')
-        .update({ 
-          stored_password: password // Store the signup password
-        })
-        .eq('email', email)
-        .eq('status', 'pending');
-
-      if (updateError) {
-        console.warn('Could not store password for activation:', updateError);
       }
 
       return { success: true };
