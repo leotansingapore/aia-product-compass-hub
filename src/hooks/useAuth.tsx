@@ -29,27 +29,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
+      async (event, session) => {
         console.info('[Auth] onAuthStateChange:', { event, hasSession: !!session, userId: session?.user?.id });
         setSession(session);
         setUser(session?.user ?? null);
         
         if (session?.user) {
           // Check if user has role after login
-          setTimeout(async () => {
-            const userHasRole = await SimpleAuthService.checkUserHasRole(session.user.id);
-            setHasRole(userHasRole);
-            setLoading(false);
-            
-            // Redirect users without roles to awaiting approval
-            if (!userHasRole && window.location.pathname === '/') {
-              window.location.href = '/awaiting-approval';
-            }
-          }, 0);
+          const userHasRole = await SimpleAuthService.checkUserHasRole(session.user.id);
+          setHasRole(userHasRole);
         } else {
           setHasRole(false);
-          setLoading(false);
         }
+        setLoading(false);
       }
     );
 
@@ -62,11 +54,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       if (session?.user) {
         const userHasRole = await SimpleAuthService.checkUserHasRole(session.user.id);
         setHasRole(userHasRole);
-        
-        // Redirect users without roles to awaiting approval
-        if (!userHasRole && window.location.pathname === '/') {
-          window.location.href = '/awaiting-approval';
-        }
       } else {
         setHasRole(false);
       }
