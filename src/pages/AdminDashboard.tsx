@@ -95,25 +95,40 @@ export default function AdminDashboard() {
 const result = data as any;
 try {
   if (result?.email_sent) {
-    toast({ title: 'Password setup email sent', description: 'The user received a secure link to set their password.' });
+    toast({ 
+      title: '✅ User Approved & Email Sent', 
+      description: `Account created for ${result.email}. They must check email and set password before signing in.`,
+      duration: 8000
+    });
+  } else {
+    toast({ 
+      title: '⚠️ User Approved - Manual Setup Required', 
+      description: `Account created but email failed. User needs password reset link to sign in.`,
+      variant: 'destructive',
+      duration: 10000
+    });
   }
+  
   if (result?.reset_url) {
     try {
       await navigator.clipboard.writeText(result.reset_url);
-      toast({ title: 'Setup link ready', description: 'Link copied to clipboard as fallback.' });
+      toast({ 
+        title: '🔗 Password Setup Link Copied', 
+        description: 'Share this link with the user if email failed. They must use it before signing in.',
+        duration: 6000
+      });
     } catch {
       console.log('Password setup URL:', result.reset_url);
-      toast({ title: 'Setup link generated', description: 'Copy the link from console if needed.' });
+      toast({ 
+        title: '🔗 Password Setup Link Generated', 
+        description: 'Check console for setup link. User must use it before signing in.',
+        duration: 6000
+      });
     }
   }
 } catch (e) {
   console.error('Post-approval notifications failed:', e);
 }
-
-        toast({
-          title: 'Request Approved',
-          description: `User account created successfully. Profile created: ${(data as any).profile_created ? 'Yes' : 'No'}`,
-        });
       } else {
         const { error } = await supabase
           .from('user_approval_requests')
