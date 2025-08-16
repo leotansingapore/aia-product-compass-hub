@@ -141,27 +141,7 @@ if (tempPassword && tempPassword.length < 6) {
     const userExists = existingUser && existingUser.users && existingUser.users.length > 0
     
     if (!userExists) {
-      // Create user using Supabase Auth Admin API
-      const { data: createdUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
-        email: requestData.email,
-        password: tempPassword || 'temppass123', // Use provided temp password if available
-        email_confirm: true,
-        user_metadata: {
-          first_name: requestData.first_name,
-          last_name: requestData.last_name
-        }
-      })
-
-      if (createError || !createdUser.user) {
-        console.error('User creation error:', createError)
-        return new Response(
-          JSON.stringify({ error: 'Failed to create user account' }),
-          { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        )
-      }
-      
-      newUser = createdUser
-      console.log('User created successfully:', newUser.user.id)
+      console.log('User account will be created when they sign in with their chosen password');
     } else {
       // User already exists, use the existing user
       newUser = { user: existingUser.users[0] }
@@ -184,93 +164,35 @@ if (tempPassword && tempPassword.length < 6) {
       }
     }
 
+    // Just mark the approval request as approved - user account will be created when they sign in
     const { error: approvalError } = await supabaseAdmin
-      .rpc('approve_user_request_simple', {
-        request_id: request_id,
-        new_user_id: newUser.user.id,
-        approving_user_id: user.id
+      .from('user_approval_requests')
+      .update({
+        status: 'approved',
+        reviewed_at: new Date().toISOString(),
+        reviewed_by: user.id
       })
+      .eq('id', request_id)
 
     if (approvalError) {
-      console.error('Approval function error:', approvalError)
-      // If profile creation fails, we should delete the user account
-      await supabaseAdmin.auth.admin.deleteUser(newUser.user.id)
+      console.error('Approval update error:', approvalError)
       return new Response(
-        JSON.stringify({ error: 'Failed to complete user approval process' }),
+        JSON.stringify({ error: 'Failed to update approval status' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
 
-// Always generate a password setup link and attempt to email it to the user
-let resetUrl: string | null = null
-let emailSent = false
-const origin = new URL(req.url).origin
-const { data: linkData, error: resetError } = await supabaseAdmin.auth.admin.generateLink({
-  type: 'recovery',
-  email: requestData.email,
-  options: { redirectTo: `${origin}/force-password` }
-})
-
-if (resetError) {
-  console.warn('Password reset link generation error:', resetError)
-} else if (linkData) {
-  resetUrl = (linkData as any).properties?.action_link || (linkData as any).action_link || null
-  const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
-  if (RESEND_API_KEY && resetUrl) {
-    try {
-      const res = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${RESEND_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: 'FINternship <no-reply@resend.dev>',
-          to: [requestData.email],
-          subject: 'Set up your FINternship password',
-          html: `<p>Your access has been approved.</p><p>Click the button below to set your password securely:</p><p><a href="${resetUrl}" style="display:inline-block;padding:10px 16px;border-radius:8px;background:#0ea5e9;color:#fff;text-decoration:none">Set Password</a></p><p>If you didn\'t request this, you can ignore this email.</p>`
-        })
-      })
-      emailSent = res.ok
-      if (!res.ok) {
-        const txt = await res.text()
-        console.log('Resend send failure:', txt)
-      }
-    } catch (e) {
-      console.log('Resend exception:', e)
-    }
-  } else if (!RESEND_API_KEY) {
-    console.log('RESEND_API_KEY not configured; returning resetUrl as fallback')
-  }
-}
-
     console.log('User approval completed successfully')
 
-    // Verify the approval was successful by checking the profile creation
-    const { data: verifyProfile, error: verifyError } = await supabaseAdmin
-      .from('profiles')
-      .select('user_id, email')
-      .eq('user_id', newUser.user.id)
-      .single()
-
-    if (verifyError) {
-      console.warn('Profile verification failed:', verifyError)
-    } else {
-      console.log('Profile verification successful:', verifyProfile)
-    }
-
-return new Response(
-  JSON.stringify({ 
-    success: true, 
-    message: 'User approved successfully',
-    user_id: newUser.user.id,
-    profile_created: !verifyError,
-    email: requestData.email,
-    reset_url: resetUrl,
-    email_sent: emailSent
-  }),
-  { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-)
+    return new Response(
+      JSON.stringify({ 
+        success: true, 
+        message: 'User approved successfully',
+        email: requestData.email,
+        instructions: 'User can now sign in with their chosen password'
+      }),
+      { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    )
 
   } catch (error) {
     console.error('Unexpected error:', error)

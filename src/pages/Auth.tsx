@@ -81,14 +81,13 @@ const Auth = () => {
       } catch (err) {
         // Continue even if this fails
       }
-      const {
-        data,
-        error
-      } = await supabase.auth.signInWithPassword({
+      
+      // Try to sign in normally first
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password
       });
-      if (error) throw error;
+      
       if (data.user) {
         try { localStorage.setItem('lastLoginEmail', email); } catch {}
         toast({
@@ -96,7 +95,58 @@ const Auth = () => {
           description: "Successfully signed in"
         });
         window.location.href = '/';
+        return;
       }
+      
+      // If sign-in failed, check if there's an approved request for this email
+      if (error?.message.includes('Invalid login credentials')) {
+        const { data: approvedRequest, error: requestError } = await supabase
+          .from('user_approval_requests')
+          .select('*')
+          .eq('email', email)
+          .eq('status', 'approved')
+          .single();
+        
+        if (approvedRequest && !requestError) {
+          // Create account with their chosen password
+          const redirectUrl = `${window.location.origin}/`;
+          
+          const { data: signupData, error: signupError } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+              emailRedirectTo: redirectUrl,
+              data: {
+                first_name: approvedRequest.first_name || '',
+                last_name: approvedRequest.last_name || '',
+                display_name: `${approvedRequest.first_name || ''} ${approvedRequest.last_name || ''}`.trim() || 'User'
+              }
+            }
+          });
+          
+          if (signupError) throw signupError;
+          
+          if (signupData.user) {
+            // Mark the request as completed
+            await supabase
+              .from('user_approval_requests')
+              .update({ status: 'completed' })
+              .eq('id', approvedRequest.id);
+            
+            try { localStorage.setItem('lastLoginEmail', email); } catch {}
+            toast({
+              title: "Account activated!",
+              description: "Your approved account is now ready. Welcome!"
+            });
+            window.location.href = '/';
+            return;
+          }
+        }
+      }
+      
+      // If we get here, it's a regular sign-in error
+      throw error;
+      
     } catch (error: any) {
       toast({
         title: "Sign In Failed",
@@ -119,39 +169,24 @@ const Auth = () => {
     }
     setLoading(true);
     try {
-      // Clean up any existing auth state
-      cleanupAuthState();
-      try {
-        await supabase.auth.signOut({ scope: 'global' });
-      } catch (err) {
-        // Continue even if this fails
-      }
-
-      // Create user account directly with their chosen password
+      // Create approval request (password will be used when account is approved)
       const nameParts = displayName.trim().split(' ');
       const firstName = nameParts[0];
       const lastName = nameParts.slice(1).join(' ');
       
-      const redirectUrl = `${window.location.origin}/`;
-      
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.from('user_approval_requests').insert({
         email,
-        password,
-        options: {
-          emailRedirectTo: redirectUrl,
-          data: {
-            first_name: firstName,
-            last_name: lastName || '',
-            display_name: displayName
-          }
-        }
+        first_name: firstName,
+        last_name: lastName || null,
+        reason: "User registration request"
       });
-
+      
       if (error) {
-        if (error.message.includes('User already registered')) {
+        if (error.code === '23505') {
+          // Unique constraint violation
           toast({
-            title: "Account Already Exists",
-            description: "An account with this email already exists. Try signing in instead.",
+            title: "Request Already Submitted",
+            description: "A registration request with this email already exists. Please wait for admin approval.",
             variant: "destructive"
           });
         } else {
@@ -159,24 +194,24 @@ const Auth = () => {
         }
         return;
       }
+      
+      toast({
+        title: "Registration Request Submitted!",
+        description: "Your request has been sent for approval. Once approved, you can sign in with the password you just entered.",
+        duration: 6000
+      });
 
-      if (data.user) {
-        toast({
-          title: "Account Created Successfully!",
-          description: "You can now sign in with your email and password.",
-          duration: 5000
-        });
-
-        // Clear form and switch to sign in tab
-        setEmail('');
-        setPassword('');
-        setDisplayName('');
-        
-        // Auto-fill email on sign in tab
-        setTimeout(() => {
-          setEmail(email);
-        }, 100);
-      }
+      // Clear form but remember email for convenience
+      const submittedEmail = email;
+      setEmail('');
+      setPassword('');
+      setDisplayName('');
+      
+      // Set email back after a moment for user convenience
+      setTimeout(() => {
+        setEmail(submittedEmail);
+      }, 100);
+      
     } catch (error: any) {
       toast({
         title: "Registration Failed",
@@ -537,7 +572,7 @@ const Auth = () => {
                   </div>
                    <Button type="submit" className="w-full" disabled={loading} variant="hero">
                      {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                     Create Account
+                     Request Account
                    </Button>
                 </form>
               </TabsContent>
