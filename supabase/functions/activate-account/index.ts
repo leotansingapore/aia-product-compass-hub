@@ -67,14 +67,13 @@ const handler = async (req: Request): Promise<Response> => {
 
   // Get the stored password from the approval request
   const storedPassword = approvedRequest.stored_password;
-  if (!storedPassword) {
-    throw new Error('No password found for this approved request. User may need to use password reset.');
-  }
-
-  // Validate that the provided password matches the stored signup password
-  if (password !== storedPassword) {
+  
+  // For users with stored passwords (new signup flow), validate against it
+  if (storedPassword && password !== storedPassword) {
     throw new Error('Invalid password. Please use the password you set during registration.');
   }
+  
+  // For users without stored passwords (legacy accounts), we'll use the provided password
 
   // Check if user already exists in auth.users
   const { data: existingUsers, error: checkError } = await supabaseServiceRole.auth.admin.listUsers();
@@ -90,10 +89,10 @@ const handler = async (req: Request): Promise<Response> => {
 
   console.log('Password validated, creating user account');
 
-  // Use the password they originally set during signup
+  // Use the stored password if available, otherwise use the provided password
   const { data: newUser, error: createError } = await supabaseServiceRole.auth.admin.createUser({
     email,
-    password: storedPassword, // Use their original password
+    password: storedPassword || password, // Use stored password if available, otherwise the provided one
     email_confirm: true, // Auto-confirm email
     user_metadata: {
       first_name: approvedRequest.first_name || '',
