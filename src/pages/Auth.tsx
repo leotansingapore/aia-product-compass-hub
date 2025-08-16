@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Trophy } from "lucide-react";
 import { AuthService } from "@/services/authService";
-import { useAuthOperations } from "@/hooks/useAuthOperations";
+import { useSimpleAuthOperations } from "@/hooks/useSimpleAuthOperations";
 import { QuickLoginButtons } from "@/components/auth/QuickLoginButtons";
 import { AuthTabs } from "@/components/auth/AuthTabs";
 
 const Auth = () => {
-  const { loading, signIn, signUp, resetPassword, demoSignIn } = useAuthOperations();
+  const { loading, signIn, signUp, resetPassword, demoSignIn } = useSimpleAuthOperations();
 
   useEffect(() => {
     // Check if user is already logged in

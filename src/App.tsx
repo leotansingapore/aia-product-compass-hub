@@ -35,6 +35,7 @@ import NotFound from "./pages/NotFound";
 import KnowledgeBase from "./pages/KnowledgeBase";
 import KBCategory from "./pages/kb/KBCategory";
 import KBProduct from "./pages/kb/KBProduct";
+import AwaitingApproval from "./pages/AwaitingApproval";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ const App = () => (
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/auth" element={<Auth />} />
+                    <Route path="/awaiting-approval" element={<AwaitingApproval />} />
                     <Route path="/consultant-landing" element={<ConsultantLanding />} />
                     
                     <Route path="/how-to-use" element={<HowToUsePortal />} />

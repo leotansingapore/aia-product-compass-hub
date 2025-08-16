@@ -1236,6 +1236,10 @@ export type Database = {
         Args: { target_user_id: string }
         Returns: undefined
       }
+      user_has_any_role: {
+        Args: { user_id: string }
+        Returns: boolean
+      }
       verify_user_account_status: {
         Args: { _email: string }
         Returns: Json

@@ -4,14 +4,18 @@ import { useAuth } from "@/hooks/useAuth";
 import Dashboard from "./Dashboard";
 
 const Index = () => {
-  const { user, loading } = useAuth();
+  const { user, loading, hasRole } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && !user) {
-      navigate("/auth");
+    if (!loading) {
+      if (!user) {
+        navigate("/auth");
+      } else if (!hasRole) {
+        navigate("/awaiting-approval");
+      }
     }
-  }, [user, loading, navigate]);
+  }, [user, loading, hasRole, navigate]);
 
   if (loading) {
     return <div className="min-h-screen bg-background flex items-center justify-center">

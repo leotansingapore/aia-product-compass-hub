@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2 } from "lucide-react";
-import { AuthService } from "@/services/authService";
+import { SimpleAuthService } from "@/services/simpleAuthService";
 
 interface AuthTabsProps {
   onSignIn: (email: string, password: string) => void;
@@ -20,7 +20,7 @@ export function AuthTabs({ onSignIn, onSignUp, onResetPassword, loading }: AuthT
   const [displayName, setDisplayName] = useState("");
 
   useEffect(() => {
-    const lastEmail = AuthService.getLastLoginEmail();
+    const lastEmail = SimpleAuthService.getLastLoginEmail();
     if (lastEmail && !email) {
       setEmail(lastEmail);
     }
