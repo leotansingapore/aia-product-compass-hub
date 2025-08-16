@@ -2,3 +2,6 @@ project_id = "hgdbflprrficdoyxmdxe"
 
 [functions.tavus-webhook]
 verify_jwt = false
+
+[functions.activate-account]
+verify_jwt = false

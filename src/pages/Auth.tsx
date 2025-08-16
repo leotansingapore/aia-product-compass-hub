@@ -108,33 +108,20 @@ const Auth = () => {
           .single();
         
         if (approvedRequest && !requestError) {
-          // Create account with their chosen password using admin function
-          const response = await fetch(`https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/create-user-account`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnZGJmbHBycmZpY2RveXhtZHhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3NjY0NDAsImV4cCI6MjA2NzM0MjQ0MH0.2qwUbh0nkFyOLzzZgXk7bedINzHSf2ULMBUECOqWmIw`
-            },
-            body: JSON.stringify({
-              email,
-              password,
-              first_name: approvedRequest.first_name || '',
-              last_name: approvedRequest.last_name || ''
-            })
+          // Activate account with their chosen password
+          const { data: activationData, error: activationError } = await supabase.functions.invoke('activate-account', {
+            body: { email, password }
           });
 
-          if (!response.ok) {
-            const errorData = await response.text();
-            throw new Error(`Failed to create account: ${errorData}`);
+          if (activationError) {
+            throw new Error(`Failed to activate account: ${activationError.message}`);
           }
 
-          // Mark the request as completed
-          await supabase
-            .from('user_approval_requests')
-            .update({ status: 'completed' })
-            .eq('id', approvedRequest.id);
+          if (!activationData.success) {
+            throw new Error(activationData.error || 'Failed to activate account');
+          }
 
-          // Now try to sign in with the created account
+          // Now try to sign in with the activated account
           const { data: loginData, error: loginError } = await supabase.auth.signInWithPassword({
             email,
             password
