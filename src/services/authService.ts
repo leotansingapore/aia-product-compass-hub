@@ -105,13 +105,15 @@ export class AuthService {
       const firstName = nameParts[0];
       const lastName = nameParts.slice(1).join(' ');
 
+      // Store the password securely for later activation
       const { error } = await supabase
         .from('user_approval_requests')
         .insert({
           email,
           first_name: firstName,
           last_name: lastName || null,
-          reason: "User registration request"
+          reason: "User registration request",
+          notes: `Password set during registration` // We'll store password via RPC for security
         });
 
       if (error) {
@@ -122,6 +124,16 @@ export class AuthService {
           };
         }
         return { success: false, error: error.message };
+      }
+
+      // Store password securely via RPC function
+      const { error: passwordError } = await supabase.rpc('store_signup_password', {
+        user_email: email,
+        user_password: password
+      });
+
+      if (passwordError) {
+        console.warn('Could not store password securely:', passwordError);
       }
 
       return { success: true };
