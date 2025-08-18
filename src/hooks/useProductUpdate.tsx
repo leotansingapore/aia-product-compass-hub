@@ -10,9 +10,9 @@ export function useProductUpdate() {
   const updateProduct = async (productId: string, field: string, value: any) => {
     console.log('🔄 Updating product:', { productId, field, value, user: user?.id });
     
-    // Check authentication (bypass in development mode)
+    // Always allow in development mode for testing
     const isDevelopment = import.meta.env.DEV;
-    if (!user && !isDevelopment) {
+    if (!isDevelopment && !user) {
       const error = new Error('User not authenticated');
       console.error('❌ Authentication error:', error);
       toast({
