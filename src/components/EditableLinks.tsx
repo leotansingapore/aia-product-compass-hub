@@ -105,7 +105,11 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
     }
   };
 
-  if (!isAdminMode || readOnly || !onSave) {
+  // Allow editing in development mode or admin mode
+  const isDevelopment = import.meta.env.DEV;
+  const canEdit = isDevelopment || isAdminMode;
+  
+  if (!canEdit || readOnly || !onSave) {
     return (
       <div className={`grid md:grid-cols-2 gap-3 ${className}`}>
         {links.map((link, index) => (
