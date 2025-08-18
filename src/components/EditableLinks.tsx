@@ -22,7 +22,7 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
   const [newLink, setNewLink] = useState<UsefulLink>({ name: '', url: '', icon: '📄' });
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
-  const { isAdminMode } = useAdmin();
+  const { isAdminMode, isAdmin } = useAdmin();
   const { toast } = useToast();
 
   // Update editLinks when links prop changes
@@ -107,7 +107,7 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
 
   // Allow editing in development mode or admin mode
   const isDevelopment = import.meta.env.DEV;
-  const canEdit = isDevelopment || isAdminMode;
+  const canEdit = isDevelopment || isAdminMode || isAdmin;
   
   if (!canEdit || readOnly || !onSave) {
     return (
