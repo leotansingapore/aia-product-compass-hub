@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
 
@@ -7,22 +7,24 @@ export function usePermissions() {
   const [userTier, setUserTier] = useState<string | null>(null);
   const [tierPermissions, setTierPermissions] = useState<{ access_type: string; resource_id: string; }[]>([]);
   const [loading, setLoading] = useState(true);
+  const fetchingRef = useRef(false);
 
   useEffect(() => {
-    if (user) {
+    if (user && !fetchingRef.current) {
       fetchUserPermissions();
-    } else {
+    } else if (!user) {
       setUserTier(null);
       setTierPermissions([]);
       setLoading(false);
+      fetchingRef.current = false;
     }
   }, [user]);
 
   const fetchUserPermissions = async () => {
-    if (!user) return;
-
+    if (!user || fetchingRef.current) return;
+    
+    fetchingRef.current = true;
     try {
-      console.log('🔧 Fetching tier permissions for user:', user.id);
       
       // Get user's tier using the database function
       const { data: tierData, error: tierError } = await supabase.rpc('get_user_tier', {
@@ -51,8 +53,11 @@ export function usePermissions() {
           console.log('🔧 Loaded tier permissions:', permissions);
         }
       }
+    } catch (error) {
+      console.error('🔧 Error in fetchUserPermissions:', error);
     } finally {
       setLoading(false);
+      fetchingRef.current = false;
     }
   };
 
