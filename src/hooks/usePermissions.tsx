@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
 
@@ -7,36 +7,25 @@ export function usePermissions() {
   const [userTier, setUserTier] = useState<string | null>(null);
   const [tierPermissions, setTierPermissions] = useState<{ access_type: string; resource_id: string; }[]>([]);
   const [loading, setLoading] = useState(true);
-  const fetchingRef = useRef(false);
+  const hasInitialized = useRef(false);
 
-  useEffect(() => {
-    if (user && !fetchingRef.current) {
-      fetchUserPermissions();
-    } else if (!user) {
-      setUserTier(null);
-      setTierPermissions([]);
-      setLoading(false);
-      fetchingRef.current = false;
-    }
-  }, [user]);
-
-  const fetchUserPermissions = async () => {
-    if (!user || fetchingRef.current) return;
+  const fetchUserPermissions = useCallback(async () => {
+    if (!user || hasInitialized.current) return;
     
-    fetchingRef.current = true;
+    hasInitialized.current = true;
+    setLoading(true);
+    
     try {
-      
       // Get user's tier using the database function
       const { data: tierData, error: tierError } = await supabase.rpc('get_user_tier', {
         user_id: user.id
       });
 
       if (tierError) {
-        console.error('🔧 Error fetching user tier:', tierError);
+        console.error('Error fetching user tier:', tierError);
         setUserTier(null);
       } else {
         setUserTier(tierData || null);
-        console.log('🔧 User tier:', tierData);
       }
 
       // Fetch tier permissions if user has a tier
@@ -47,19 +36,36 @@ export function usePermissions() {
           .eq('tier_level', tierData);
 
         if (permissionsError) {
-          console.error('🔧 Error fetching tier permissions:', permissionsError);
+          console.error('Error fetching tier permissions:', permissionsError);
         } else {
           setTierPermissions(permissions || []);
-          console.log('🔧 Loaded tier permissions:', permissions);
         }
       }
     } catch (error) {
-      console.error('🔧 Error in fetchUserPermissions:', error);
+      console.error('Error in fetchUserPermissions:', error);
     } finally {
       setLoading(false);
-      fetchingRef.current = false;
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    if (user && !hasInitialized.current) {
+      fetchUserPermissions();
+    } else if (!user) {
+      // Reset state when user logs out
+      setUserTier(null);
+      setTierPermissions([]);
+      setLoading(false);
+      hasInitialized.current = false;
+    }
+  }, [user, fetchUserPermissions]);
+
+  // If no user, set loading to false immediately
+  useEffect(() => {
+    if (!user) {
+      setLoading(false);
+    }
+  }, [user]);
 
   const hasRole = (role: string): boolean => {
     return userTier === role;
