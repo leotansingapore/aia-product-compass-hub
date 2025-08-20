@@ -134,9 +134,12 @@ export class SimpleAuthService {
 
   static async checkUserHasRole(userId: string): Promise<boolean> {
     try {
+      console.log('[SimpleAuth] Checking user role for:', userId);
       const { data, error } = await supabase.rpc('user_has_any_role', { user_id: userId });
+      console.log('[SimpleAuth] Role check result:', { data, error });
       return !error && !!data;
-    } catch {
+    } catch (error) {
+      console.error('[SimpleAuth] Role check failed:', error);
       return false;
     }
   }

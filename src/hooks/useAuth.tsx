@@ -40,7 +40,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         
         if (session?.user) {
           try {
-            const userHasRole = await SimpleAuthService.checkUserHasRole(session.user.id);
+            // Add timeout for role check
+            const roleCheckPromise = SimpleAuthService.checkUserHasRole(session.user.id);
+            const timeoutPromise = new Promise<boolean>((resolve) => {
+              setTimeout(() => {
+                console.warn('[Auth] Role check timeout, defaulting to false');
+                resolve(false);
+              }, 3000);
+            });
+            
+            const userHasRole = await Promise.race([roleCheckPromise, timeoutPromise]);
             if (mounted) setHasRole(userHasRole);
           } catch (error) {
             console.error('[Auth] Error checking user role:', error);
@@ -76,7 +85,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         
         if (session?.user) {
           try {
-            const userHasRole = await SimpleAuthService.checkUserHasRole(session.user.id);
+            // Add timeout for role check
+            const roleCheckPromise = SimpleAuthService.checkUserHasRole(session.user.id);
+            const timeoutPromise = new Promise<boolean>((resolve) => {
+              setTimeout(() => {
+                console.warn('[Auth] Role check timeout, defaulting to false');
+                resolve(false);
+              }, 3000);
+            });
+            
+            const userHasRole = await Promise.race([roleCheckPromise, timeoutPromise]);
             if (mounted) setHasRole(userHasRole);
           } catch (error) {
             console.error('[Auth] Error checking user role:', error);
