@@ -50,6 +50,12 @@ export class SimpleAuthService {
       if (data.user) {
         this.storeLastLoginEmail(email);
         
+        // Demo accounts bypass approval check
+        const isDemoAccount = email.includes('@demo.com');
+        if (isDemoAccount) {
+          return { success: true, user: data.user };
+        }
+        
         // Check if user has any roles (is approved)
         const hasRole = await this.checkUserHasRole(data.user.id);
         if (!hasRole) {
