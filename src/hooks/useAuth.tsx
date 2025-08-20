@@ -27,41 +27,92 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [hasRole, setHasRole] = useState(false);
 
   useEffect(() => {
-    // Set up auth state listener FIRST
+    let mounted = true;
+    
+    // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        if (!mounted) return;
+        
         console.info('[Auth] onAuthStateChange:', { event, hasSession: !!session, userId: session?.user?.id });
         setSession(session);
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          // Check if user has role after login
-          const userHasRole = await SimpleAuthService.checkUserHasRole(session.user.id);
-          setHasRole(userHasRole);
+          try {
+            const userHasRole = await SimpleAuthService.checkUserHasRole(session.user.id);
+            if (mounted) setHasRole(userHasRole);
+          } catch (error) {
+            console.error('[Auth] Error checking user role:', error);
+            if (mounted) setHasRole(false);
+          }
         } else {
-          setHasRole(false);
+          if (mounted) setHasRole(false);
         }
-        setLoading(false);
+        
+        if (mounted) setLoading(false);
       }
     );
 
-    // THEN check for existing session
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      console.info('[Auth] Initial session loaded:', { hasSession: !!session, userId: session?.user?.id });
-      setSession(session);
-      setUser(session?.user ?? null);
-      
-      if (session?.user) {
-        const userHasRole = await SimpleAuthService.checkUserHasRole(session.user.id);
-        setHasRole(userHasRole);
-      } else {
-        setHasRole(false);
+    // Check for existing session with timeout
+    const checkSession = async () => {
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (!mounted) return;
+        
+        if (error) {
+          console.error('[Auth] Session error:', error);
+          setSession(null);
+          setUser(null);
+          setHasRole(false);
+          setLoading(false);
+          return;
+        }
+        
+        console.info('[Auth] Initial session loaded:', { hasSession: !!session, userId: session?.user?.id });
+        setSession(session);
+        setUser(session?.user ?? null);
+        
+        if (session?.user) {
+          try {
+            const userHasRole = await SimpleAuthService.checkUserHasRole(session.user.id);
+            if (mounted) setHasRole(userHasRole);
+          } catch (error) {
+            console.error('[Auth] Error checking user role:', error);
+            if (mounted) setHasRole(false);
+          }
+        } else {
+          if (mounted) setHasRole(false);
+        }
+        
+        if (mounted) setLoading(false);
+      } catch (error) {
+        console.error('[Auth] Fatal session error:', error);
+        if (mounted) {
+          setSession(null);
+          setUser(null);
+          setHasRole(false);
+          setLoading(false);
+        }
       }
-      
-      setLoading(false);
-    });
+    };
 
-    return () => subscription.unsubscribe();
+    // Add timeout fallback
+    const timeoutId = setTimeout(() => {
+      if (mounted && loading) {
+        console.warn('[Auth] Loading timeout - setting to false');
+        setLoading(false);
+      }
+    }, 5000); // 5 second timeout
+
+    checkSession();
+
+    return () => {
+      mounted = false;
+      clearTimeout(timeoutId);
+      subscription.unsubscribe();
+    };
   }, []);
 
   const signOut = async () => {
