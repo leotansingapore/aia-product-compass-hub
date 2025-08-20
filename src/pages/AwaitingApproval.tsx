@@ -6,16 +6,40 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 
 const AwaitingApproval = () => {
-  const { user, signOut } = useAuth();
+  const { user, signOut, hasRole, loading } = useAuth();
+
+  console.log('[AwaitingApproval] State:', { user: !!user, hasRole, loading, userEmail: user?.email });
 
   useEffect(() => {
     // If no user, redirect to auth
-    if (!user) {
+    if (!loading && !user) {
+      console.log('[AwaitingApproval] No user, redirecting to auth');
       window.location.href = '/auth';
+      return;
     }
-  }, [user]);
+    
+    // If user has role, redirect to dashboard  
+    if (!loading && user && hasRole) {
+      console.log('[AwaitingApproval] User has role, redirecting to dashboard');
+      window.location.href = '/';
+      return;
+    }
+  }, [user, hasRole, loading]);
+
+  if (loading) {
+    console.log('[AwaitingApproval] Still loading...');
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!user) {
+    console.log('[AwaitingApproval] No user found, should redirect...');
     return null;
   }
 

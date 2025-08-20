@@ -35,6 +35,7 @@ export class SimpleAuthService {
   }
 
   static async signIn(email: string, password: string): Promise<AuthResult> {
+    console.log('[SimpleAuthService] Starting sign in for:', email);
     await this.performCleanup();
 
     try {
@@ -44,20 +45,26 @@ export class SimpleAuthService {
       });
 
       if (error) {
+        console.log('[SimpleAuthService] Sign in error:', error);
         return { success: false, error: error.message };
       }
 
       if (data.user) {
+        console.log('[SimpleAuthService] User signed in:', data.user.id);
         this.storeLastLoginEmail(email);
         
         // Demo accounts bypass approval check
         const isDemoAccount = email.includes('@demo.com');
+        console.log('[SimpleAuthService] Is demo account:', isDemoAccount);
         if (isDemoAccount) {
+          console.log('[SimpleAuthService] Demo account - bypassing role check');
           return { success: true, user: data.user };
         }
         
         // Check if user has any roles (is approved)
+        console.log('[SimpleAuthService] Checking user roles...');
         const hasRole = await this.checkUserHasRole(data.user.id);
+        console.log('[SimpleAuthService] User has role:', hasRole);
         if (!hasRole) {
           return { success: true, user: data.user, needsApproval: true };
         }
@@ -67,6 +74,7 @@ export class SimpleAuthService {
 
       return { success: false, error: 'Sign in failed' };
     } catch (error: any) {
+      console.error('[SimpleAuthService] Unexpected error:', error);
       return { success: false, error: error.message || 'An unexpected error occurred' };
     }
   }
