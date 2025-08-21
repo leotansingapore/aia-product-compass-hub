@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
@@ -131,17 +130,17 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
 
   if (isEditing) {
     return (
-      <div className="space-y-4">
-        <div className="grid md:grid-cols-2 gap-3">
+      <div className="space-y-6">
+        <div className="grid gap-4">
           {editLinks.map((link, index) => (
-            <div key={index} className="border rounded-lg p-3 space-y-2">
+            <div key={index} className="border rounded-lg p-4 bg-card">
               {editingIndex === index ? (
-                <>
-                  <div className="flex gap-2">
+                <div className="space-y-4">
+                  <div className="grid grid-cols-[auto_1fr] gap-3 items-start">
                     <select
                       value={link.icon}
                       onChange={(e) => updateLink(index, { ...link, icon: e.target.value })}
-                      className="px-2 py-1 border rounded text-xl w-16"
+                      className="h-10 w-16 px-2 py-2 border border-input rounded-md text-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring"
                     >
                       {defaultIcons.map(icon => (
                         <option key={icon} value={icon}>{icon}</option>
@@ -151,7 +150,7 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
                       value={link.name}
                       onChange={(e) => updateLink(index, { ...link, name: e.target.value })}
                       placeholder="Link name"
-                      className="flex-1"
+                      className="w-full"
                     />
                   </div>
                   <Input
@@ -161,23 +160,24 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
                     className="w-full"
                   />
                   <div className="flex gap-2">
-                    <Button size="sm" onClick={() => setEditingIndex(null)}>
+                    <Button size="sm" onClick={() => setEditingIndex(null)} variant="outline">
                       <Check className="h-4 w-4" />
+                      Done
                     </Button>
                   </div>
-                </>
+                </div>
               ) : (
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl">{link.icon}</span>
-                    <div>
-                      <div className="font-medium">{link.name}</div>
-                      <div className="text-xs text-muted-foreground truncate max-w-[200px]">
+                  <div className="flex items-center gap-3 min-w-0 flex-1">
+                    <span className="text-xl flex-shrink-0">{link.icon}</span>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-medium truncate">{link.name}</div>
+                      <div className="text-xs text-muted-foreground truncate">
                         {link.url}
                       </div>
                     </div>
                   </div>
-                  <div className="flex gap-1">
+                  <div className="flex gap-1 flex-shrink-0 ml-2">
                     <Button size="sm" variant="ghost" onClick={() => setEditingIndex(index)}>
                       <Edit className="h-3 w-3" />
                     </Button>
@@ -191,37 +191,40 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
           ))}
         </div>
 
-        <div className="border-2 border-dashed border-primary/30 rounded-lg p-3 space-y-2">
-          <div className="flex gap-2">
-            <select
-              value={newLink.icon}
-              onChange={(e) => setNewLink({ ...newLink, icon: e.target.value })}
-              className="px-2 py-1 border rounded text-xl w-16"
-            >
-              {defaultIcons.map(icon => (
-                <option key={icon} value={icon}>{icon}</option>
-              ))}
-            </select>
+        <div className="border-2 border-dashed border-primary/30 rounded-lg p-4 bg-primary/5">
+          <div className="space-y-4">
+            <h4 className="text-sm font-medium text-muted-foreground">Add New Link</h4>
+            <div className="grid grid-cols-[auto_1fr] gap-3 items-start">
+              <select
+                value={newLink.icon}
+                onChange={(e) => setNewLink({ ...newLink, icon: e.target.value })}
+                className="h-10 w-16 px-2 py-2 border border-input rounded-md text-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+              >
+                {defaultIcons.map(icon => (
+                  <option key={icon} value={icon}>{icon}</option>
+                ))}
+              </select>
+              <Input
+                value={newLink.name}
+                onChange={(e) => setNewLink({ ...newLink, name: e.target.value })}
+                placeholder="Link name"
+                className="w-full"
+              />
+            </div>
             <Input
-              value={newLink.name}
-              onChange={(e) => setNewLink({ ...newLink, name: e.target.value })}
-              placeholder="Link name"
-              className="flex-1"
+              value={newLink.url}
+              onChange={(e) => setNewLink({ ...newLink, url: e.target.value })}
+              placeholder="https://example.com"
+              onKeyPress={(e) => e.key === 'Enter' && addLink()}
             />
+            <Button size="sm" onClick={addLink} disabled={!newLink.name.trim() || !newLink.url.trim()}>
+              <Plus className="h-4 w-4 mr-1" />
+              Add Link
+            </Button>
           </div>
-          <Input
-            value={newLink.url}
-            onChange={(e) => setNewLink({ ...newLink, url: e.target.value })}
-            placeholder="https://example.com"
-            onKeyPress={(e) => e.key === 'Enter' && addLink()}
-          />
-          <Button size="sm" onClick={addLink} disabled={!newLink.name.trim() || !newLink.url.trim()}>
-            <Plus className="h-4 w-4 mr-1" />
-            Add Link
-          </Button>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-3 pt-2">
           <Button onClick={handleSave} disabled={saving} className="bg-green-600 hover:bg-green-700">
             <Check className="h-4 w-4 mr-1" />
             {saving ? 'Saving...' : 'Save Changes'}
