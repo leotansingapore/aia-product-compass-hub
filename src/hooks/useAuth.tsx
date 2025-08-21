@@ -39,21 +39,30 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          try {
-            // Add timeout for role check
-            const roleCheckPromise = SimpleAuthService.checkUserHasRole(session.user.id);
-            const timeoutPromise = new Promise<boolean>((resolve) => {
-              setTimeout(() => {
-                console.warn('[Auth] Role check timeout, defaulting to false');
-                resolve(false);
-              }, 3000);
-            });
-            
-            const userHasRole = await Promise.race([roleCheckPromise, timeoutPromise]);
-            if (mounted) setHasRole(userHasRole);
-          } catch (error) {
-            console.error('[Auth] Error checking user role:', error);
-            if (mounted) setHasRole(false);
+          // Demo accounts bypass approval check
+          const isDemoAccount = session.user.email?.includes('@demo.com');
+          console.log('[Auth] Is demo account:', isDemoAccount, 'for email:', session.user.email);
+          
+          if (isDemoAccount) {
+            console.log('[Auth] Demo account - bypassing role check');
+            if (mounted) setHasRole(true);
+          } else {
+            try {
+              // Add timeout for role check
+              const roleCheckPromise = SimpleAuthService.checkUserHasRole(session.user.id);
+              const timeoutPromise = new Promise<boolean>((resolve) => {
+                setTimeout(() => {
+                  console.warn('[Auth] Role check timeout, defaulting to false');
+                  resolve(false);
+                }, 3000);
+              });
+              
+              const userHasRole = await Promise.race([roleCheckPromise, timeoutPromise]);
+              if (mounted) setHasRole(userHasRole);
+            } catch (error) {
+              console.error('[Auth] Error checking user role:', error);
+              if (mounted) setHasRole(false);
+            }
           }
         } else {
           if (mounted) setHasRole(false);
@@ -84,21 +93,30 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          try {
-            // Add timeout for role check
-            const roleCheckPromise = SimpleAuthService.checkUserHasRole(session.user.id);
-            const timeoutPromise = new Promise<boolean>((resolve) => {
-              setTimeout(() => {
-                console.warn('[Auth] Role check timeout, defaulting to false');
-                resolve(false);
-              }, 3000);
-            });
-            
-            const userHasRole = await Promise.race([roleCheckPromise, timeoutPromise]);
-            if (mounted) setHasRole(userHasRole);
-          } catch (error) {
-            console.error('[Auth] Error checking user role:', error);
-            if (mounted) setHasRole(false);
+          // Demo accounts bypass approval check
+          const isDemoAccount = session.user.email?.includes('@demo.com');
+          console.log('[Auth] Initial session - Is demo account:', isDemoAccount, 'for email:', session.user.email);
+          
+          if (isDemoAccount) {
+            console.log('[Auth] Initial session - Demo account bypassing role check');
+            if (mounted) setHasRole(true);
+          } else {
+            try {
+              // Add timeout for role check
+              const roleCheckPromise = SimpleAuthService.checkUserHasRole(session.user.id);
+              const timeoutPromise = new Promise<boolean>((resolve) => {
+                setTimeout(() => {
+                  console.warn('[Auth] Role check timeout, defaulting to false');
+                  resolve(false);
+                }, 3000);
+              });
+              
+              const userHasRole = await Promise.race([roleCheckPromise, timeoutPromise]);
+              if (mounted) setHasRole(userHasRole);
+            } catch (error) {
+              console.error('[Auth] Error checking user role:', error);
+              if (mounted) setHasRole(false);
+            }
           }
         } else {
           if (mounted) setHasRole(false);
