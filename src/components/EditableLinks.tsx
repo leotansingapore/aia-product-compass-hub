@@ -24,10 +24,12 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
   const { isAdminMode, isAdmin } = useAdmin();
   const { toast } = useToast();
 
-  // Update editLinks when links prop changes
+  // Update editLinks when links prop changes, but not while editing
   useEffect(() => {
-    setEditLinks(links);
-  }, [links]);
+    if (!isEditing) {
+      setEditLinks(links);
+    }
+  }, [links, isEditing]);
 
   const handleSave = async () => {
     if (!onSave) {
