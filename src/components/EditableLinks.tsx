@@ -87,7 +87,6 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
     const updated = [...editLinks];
     updated[index] = updatedLink;
     setEditLinks(updated);
-    setEditingIndex(null);
     console.log('🔗 Updated link at index', index, ':', updatedLink);
   };
 
