@@ -98,7 +98,9 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
 
   const isValidUrl = (url: string) => {
     try {
-      new URL(url);
+      // Allow URLs without protocol by prepending https://
+      const urlToTest = url.startsWith('http') ? url : `https://${url}`;
+      new URL(urlToTest);
       return true;
     } catch {
       return false;
@@ -116,7 +118,10 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
             key={index}
             variant="outline"
             className="justify-start"
-            onClick={() => window.open(link.url, '_blank')}
+            onClick={() => {
+              const urlToOpen = link.url.startsWith('http') ? link.url : `https://${link.url}`;
+              window.open(urlToOpen, '_blank');
+            }}
             disabled={!isValidUrl(link.url)}
           >
             <span className="mr-2">{link.icon}</span>
