@@ -10,22 +10,8 @@ export function useProductUpdate() {
   const updateProduct = async (productId: string, field: string, value: any) => {
     console.log('🔄 Updating product:', { productId, field, value, user: user?.id });
     
-    // Always allow in development mode for testing
-    const isDevelopment = import.meta.env.DEV;
-    if (!isDevelopment && !user) {
-      const error = new Error('User not authenticated');
-      console.error('❌ Authentication error:', error);
-      toast({
-        title: "Authentication Error",
-        description: "You must be logged in to update products",
-        variant: "destructive",
-      });
-      throw error;
-    }
-    
-    if (isDevelopment && !user) {
-      console.log('🚧 Development mode: Allowing update without authentication');
-    }
+    // Allow updates without authentication
+    console.log('🔄 Allowing update without authentication check');
 
     // Validate data format for JSON fields
     if ((field === 'useful_links' || field === 'training_videos') && !Array.isArray(value)) {

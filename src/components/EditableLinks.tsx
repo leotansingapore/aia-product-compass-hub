@@ -105,9 +105,8 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
     }
   };
 
-  // Allow editing in development mode or admin mode
-  const isDevelopment = import.meta.env.DEV;
-  const canEdit = isDevelopment || isAdmin || isAdminMode;
+  // Allow editing without authentication
+  const canEdit = true;
   
   if (!canEdit || readOnly || !onSave) {
     return (
