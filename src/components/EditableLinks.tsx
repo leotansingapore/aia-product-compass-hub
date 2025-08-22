@@ -244,39 +244,47 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
   }
 
   return (
-    <div 
-      className={`grid md:grid-cols-2 gap-3 ${className} cursor-pointer hover:bg-primary/10 hover:border-primary/20 border-2 border-dashed border-primary/30 p-3 rounded transition-all duration-200 bg-primary/5`}
-      onClick={() => setIsEditing(true)}
-      title="🔧 ADMIN MODE: Click to edit useful links"
-    >
-      {links.length > 0 ? (
-        links.map((link, index) => (
-          <Button
-            key={index}
-            variant="outline"
-            className="justify-start pointer-events-none"
-          >
-            <span className="mr-2">{link.icon}</span>
-            {link.name}
-          </Button>
-        ))
-      ) : (
-        <>
-          <Button variant="outline" className="justify-start pointer-events-none" disabled>
-            📄 Benefit Illustration (PDF)
-          </Button>
-          <Button variant="outline" className="justify-start pointer-events-none" disabled>
-            📋 Product Summary (PDF)
-          </Button>
-          <Button variant="outline" className="justify-start pointer-events-none" disabled>
-            🌐 AIA Website
-          </Button>
-          <Button variant="outline" className="justify-start pointer-events-none" disabled>
-            📚 Supplementary Materials
-          </Button>
-        </>
-      )}
-      <div className="flex items-center justify-center text-muted-foreground text-sm border-2 border-dashed border-primary/30 rounded p-2">
+    <div className={`space-y-3 ${className}`}>
+      <div className="grid md:grid-cols-2 gap-3">
+        {links.length > 0 ? (
+          links.map((link, index) => (
+            <Button
+              key={index}
+              variant="outline"
+              className="justify-start"
+              onClick={() => {
+                const urlToOpen = link.url.startsWith('http') ? link.url : `https://${link.url}`;
+                window.open(urlToOpen, '_blank');
+              }}
+              disabled={!isValidUrl(link.url)}
+            >
+              <span className="mr-2">{link.icon}</span>
+              {link.name}
+              <ExternalLink className="h-4 w-4 ml-auto" />
+            </Button>
+          ))
+        ) : (
+          <>
+            <Button variant="outline" className="justify-start" disabled>
+              📄 Benefit Illustration (PDF)
+            </Button>
+            <Button variant="outline" className="justify-start" disabled>
+              📋 Product Summary (PDF)
+            </Button>
+            <Button variant="outline" className="justify-start" disabled>
+              🌐 AIA Website
+            </Button>
+            <Button variant="outline" className="justify-start" disabled>
+              📚 Supplementary Materials
+            </Button>
+          </>
+        )}
+      </div>
+      <div 
+        className="flex items-center justify-center text-muted-foreground text-sm border-2 border-dashed border-primary/30 rounded p-2 cursor-pointer hover:bg-primary/10 hover:border-primary/20 transition-all duration-200 bg-primary/5"
+        onClick={() => setIsEditing(true)}
+        title="🔧 ADMIN MODE: Click to edit useful links"
+      >
         <Plus className="h-4 w-4 mr-1" />
         Click to add/edit links
       </div>
