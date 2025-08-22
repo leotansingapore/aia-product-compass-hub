@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { AuthProvider } from "@/hooks/useAuth";
+import { SimplifiedAuthProvider } from "@/hooks/useSimplifiedAuth";
 import { AdminProvider } from "@/hooks/useAdmin";
 import { OnboardingProvider } from "@/hooks/useOnboarding";
 import { ChecklistProvider } from "@/hooks/useChecklistProgress";
@@ -22,7 +22,7 @@ import HowToUsePortal from "./pages/HowToUsePortal";
 import SearchByProfile from "./pages/SearchByProfile";
 import ForcePasswordChange from "./pages/ForcePasswordChange";
 import Bookmarks from "./pages/Bookmarks";
-import Auth from "./pages/Auth";
+import SimplifiedAuth from "./pages/SimplifiedAuth";
 import ConsultantLanding from "./pages/ConsultantLanding";
 import CMFASExams from "./pages/CMFASExams";
 import CMFASModuleDetail from "./pages/cmfas/CMFASModuleDetail";
@@ -42,7 +42,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
-      <AuthProvider>
+      <SimplifiedAuthProvider>
         <AdminProvider>
           <TooltipProvider>
             <Toaster />
@@ -53,7 +53,7 @@ const App = () => (
                   <AppLayout>
                   <Routes>
                     <Route path="/" element={<Index />} />
-                    <Route path="/auth" element={<Auth />} />
+                    <Route path="/auth" element={<SimplifiedAuth />} />
                     <Route path="/awaiting-approval" element={<AwaitingApproval />} />
                     <Route path="/consultant-landing" element={<ConsultantLanding />} />
                     
@@ -91,7 +91,7 @@ const App = () => (
             </BrowserRouter>
           </TooltipProvider>
         </AdminProvider>
-      </AuthProvider>
+      </SimplifiedAuthProvider>
     </HelmetProvider>
   </QueryClientProvider>
 );

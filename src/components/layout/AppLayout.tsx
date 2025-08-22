@@ -9,7 +9,7 @@ import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
 import { useAdmin } from "@/hooks/useAdmin";
-import { useAuth } from "@/hooks/useAuth";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppStructureSync } from "@/hooks/useAppStructureSync";
 import { usePermissions } from "@/hooks/usePermissions";
@@ -31,7 +31,7 @@ interface AppLayoutProps {
 export function AppLayout({ children }: AppLayoutProps) {
   console.log("AppLayout rendering");
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdminSafe();
-  const { user, loading, signOut } = useAuth();
+  const { user, loading, signOut } = useSimplifiedAuth();
   const navigate = useNavigate();
   const { autoSync } = useAppStructureSync();
   const { loading: permissionsLoading } = usePermissions();

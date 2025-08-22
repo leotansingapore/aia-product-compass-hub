@@ -34,7 +34,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { useCategories } from "@/hooks/useProducts";
 import { Badge } from "@/components/ui/badge";
 import { usePermissions } from "@/hooks/usePermissions";
-import { useAuth } from "@/hooks/useAuth";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
 const allResourceItems = [
   { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle, sectionId: "how-to-use" },
@@ -48,7 +48,7 @@ export function AppSidebar() {
   const location = useLocation();
   const { categories } = useCategories();
   const { isMasterAdmin, canAccessSection, getUserTier, hasRole } = usePermissions();
-  const { user } = useAuth();
+  const { user } = useSimplifiedAuth();
   
   const userTier = getUserTier();
 

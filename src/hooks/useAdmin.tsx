@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useAuth } from './useAuth';
+import { useSimplifiedAuth } from './useSimplifiedAuth';
 import { usePermissions } from './usePermissions';
 
 interface AdminContextType {
@@ -12,7 +12,7 @@ const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
 export function AdminProvider({ children }: { children: ReactNode }) {
   const [isAdminMode, setIsAdminMode] = useState(false);
-  const { user } = useAuth();
+  const { user } = useSimplifiedAuth();
   const { isMasterAdmin, hasRole, loading } = usePermissions();
   
   // Check if user has admin privileges - admins and master admins can access admin mode

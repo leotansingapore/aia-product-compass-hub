@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from './useAuth';
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
 export function usePermissions() {
-  const { user } = useAuth();
+  const { user } = useSimplifiedAuth();
   const [userTier, setUserTier] = useState<string | null>(null);
   const [tierPermissions, setTierPermissions] = useState<{ access_type: string; resource_id: string; }[]>([]);
   const [loading, setLoading] = useState(true);

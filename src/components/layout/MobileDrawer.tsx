@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "@/hooks/useAuth";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useCategories } from "@/hooks/useProducts";
@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 export function MobileDrawer() {
   const [open, setOpen] = useState(false);
-  const { signOut } = useAuth();
+  const { signOut } = useSimplifiedAuth();
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
   const { loading: permissionsLoading } = usePermissions();
   const { categories, loading: categoriesLoading } = useCategories();
