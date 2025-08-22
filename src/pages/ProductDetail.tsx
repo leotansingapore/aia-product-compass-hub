@@ -51,11 +51,9 @@ export default function ProductDetail() {
     try {
       const updatedData = await updateProduct(product.id, field, value);
       console.log('✅ ProductDetail update successful:', updatedData);
-      
-      // Force a page refresh to show the updated data
-      window.location.reload();
     } catch (error) {
       console.error('❌ ProductDetail update failed:', error);
+      throw error;
     }
   };
 
