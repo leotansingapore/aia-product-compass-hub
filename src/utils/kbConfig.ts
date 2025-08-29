@@ -119,6 +119,14 @@ export const kbCategories: KBCategory[] = [
       },
     ],
   },
+  {
+    name: "Appointment Flows",
+    slug: "appointment-flows",
+    description: "Step-by-step appointment booking and consultation processes for various product types.",
+    products: [
+      // Products will be added here as appointment flows are created
+    ],
+  },
 ];
 
 export const findCategory = (slug: string) =>
