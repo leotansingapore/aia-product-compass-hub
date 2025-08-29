@@ -109,18 +109,38 @@ export function usePermissions() {
     // Core pages accessible to all authenticated users
     const corePages = ['dashboard', 'search', 'my-account', 'how-to-use-portal', 'search-by-profile', 'roleplay'];
 
-    // Require authentication
-    if (!user) return false;
+    console.log('[usePermissions] canAccessPage check:', {
+      pageId,
+      user: !!user,
+      userEmail: user?.email,
+      userTier,
+      loading,
+      corePages: corePages.includes(pageId)
+    });
 
-    if (corePages.includes(pageId)) return true;
+    // Require authentication
+    if (!user) {
+      console.log('[usePermissions] No user - denying access to', pageId);
+      return false;
+    }
+
+    if (corePages.includes(pageId)) {
+      console.log('[usePermissions] Core page access granted for', pageId);
+      return true;
+    }
     
     // Admins (admin and master_admin) can access everything
-    if (isAdmin()) return true;
+    if (isAdmin()) {
+      console.log('[usePermissions] Admin access granted for', pageId);
+      return true;
+    }
     
     // Check if this page is allowed for the user's tier
-    return tierPermissions.some(
+    const hasPermission = tierPermissions.some(
       p => p.access_type === 'page' && p.resource_id === pageId
     );
+    console.log('[usePermissions] Tier permission check:', { pageId, hasPermission, tierPermissions });
+    return hasPermission;
   };
 
   const canEditSection = (sectionId: string): boolean => {
