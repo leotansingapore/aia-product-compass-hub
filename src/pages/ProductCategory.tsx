@@ -9,6 +9,8 @@ import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { useProducts, useCategories } from "@/hooks/useProducts";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
+import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
+import { usePermissions } from "@/hooks/usePermissions";
 
 import { Button } from "@/components/ui/button";
 
@@ -50,8 +52,9 @@ export default function ProductCategory() {
   const { categoryId } = useParams<{ categoryId: string }>();
   const navigate = useNavigate();
   const { categories } = useCategories();
-  const { products, loading } = useProducts(categoryId);
+  const { products, loading, refetch } = useProducts(categoryId);
   const { addToRecent } = useRecentlyViewed();
+  const { isAdmin } = usePermissions();
   
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -181,6 +184,14 @@ export default function ProductCategory() {
         />
         
         <div className="max-w-7xl mx-auto px-1 sm:px-4 md:px-6 py-1 sm:py-4 md:py-8">
+        {/* Admin Module Creation */}
+        {isAdmin() && categoryId && (
+          <CreateModuleForm 
+            categoryId={categoryId} 
+            onModuleCreated={refetch}
+          />
+        )}
+
         {/* Search and Filters */}
         <div className="mb-4 sm:mb-6 md:mb-8">
           <div className="mb-3 sm:mb-4 md:mb-6">

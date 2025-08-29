@@ -86,9 +86,9 @@ export function useProducts(categoryId?: string) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
         let query = supabase
           .from('products')
           .select(`
@@ -135,12 +135,13 @@ export function useProducts(categoryId?: string) {
       } finally {
         setLoading(false);
       }
-    }
+    };
 
+  useEffect(() => {
     fetchProducts();
   }, [categoryId]);
 
-  return { products, loading, error };
+  return { products, loading, error, refetch: fetchProducts };
 }
 
 export function useAllProducts() {
