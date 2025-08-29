@@ -14,7 +14,8 @@ const Auth = () => {
     const checkUser = async () => {
       const isLoggedIn = await AuthService.checkSession();
       if (isLoggedIn) {
-        window.location.href = '/';
+        // Force redirect to avoid any caching issues
+        window.location.replace('/');
       }
     };
     checkUser();

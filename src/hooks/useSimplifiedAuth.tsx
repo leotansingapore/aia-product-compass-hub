@@ -29,13 +29,6 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       (event, session) => {
         if (!mounted) return;
         
-        console.log('[Auth] State change:', {
-          event, 
-          email: session?.user?.email,
-          userId: session?.user?.id,
-          hasSession: !!session,
-          hasUser: !!session?.user
-        });
         setSession(session);
         setUser(session?.user ?? null);
         setLoading(false);

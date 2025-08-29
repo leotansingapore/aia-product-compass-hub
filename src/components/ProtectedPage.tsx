@@ -19,18 +19,9 @@ export function ProtectedPage({ pageId, children, fallback, redirectTo }: Protec
   const permission = getPagePermission(pageId);
   const deniedLocked = permission.permission_type === 'locked';
 
-  console.log('[ProtectedPage] Page access check:', {
-    pageId,
-    deniedHidden,
-    deniedLocked,
-    redirectTo,
-    permission
-  });
-
   // Redirect effect combines both hidden and locked states
   useEffect(() => {
     if (redirectTo && (deniedHidden || deniedLocked)) {
-      console.log('[ProtectedPage] Redirecting due to access denied:', { pageId, deniedHidden, deniedLocked, redirectTo });
       navigate(redirectTo, { replace: true });
     }
   }, [redirectTo, deniedHidden, deniedLocked, navigate]);
