@@ -11,6 +11,7 @@ import { useProducts, useCategories } from "@/hooks/useProducts";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
 import { usePermissions } from "@/hooks/usePermissions";
+import { getCategoryIdFromSlug, getCategorySlugFromId, isUUID } from "@/utils/slugUtils";
 
 import { Button } from "@/components/ui/button";
 
@@ -49,12 +50,26 @@ function getCategoryInfo(categoryId: string) {
 }
 
 export default function ProductCategory() {
-  const { categoryId } = useParams<{ categoryId: string }>();
+  const { categorySlugOrId } = useParams<{ categorySlugOrId: string }>();
   const navigate = useNavigate();
   const { categories } = useCategories();
+  
+  // Handle both slug and UUID routing for backward compatibility
+  const categoryId = isUUID(categorySlugOrId || '') ? categorySlugOrId : getCategoryIdFromSlug(categorySlugOrId || '');
+  
   const { products, loading, refetch } = useProducts(categoryId);
   const { addToRecent } = useRecentlyViewed();
   const { isAdmin } = usePermissions();
+  
+  // Redirect UUID-based URLs to slug-based URLs
+  useEffect(() => {
+    if (categorySlugOrId && isUUID(categorySlugOrId) && categoryId) {
+      const slug = getCategorySlugFromId(categoryId);
+      if (slug !== categoryId) {
+        navigate(`/category/${slug}`, { replace: true });
+      }
+    }
+  }, [categorySlugOrId, categoryId, navigate]);
   
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -92,6 +107,7 @@ export default function ProductCategory() {
   });
 
   const handleProductClick = (productId: string) => {
+    // For now, keep using product IDs since we need to implement product slug mapping
     navigate(`/product/${productId}`);
   };
 

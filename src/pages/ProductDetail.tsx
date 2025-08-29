@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { useProductById, getCategoryIdFromName } from "@/hooks/useProducts";
+import { getCategorySlugFromId } from "@/utils/slugUtils";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { useGamification } from "@/hooks/useGamification";
@@ -25,7 +26,9 @@ import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 
 export default function ProductDetail() {
-  const { productId } = useParams<{ productId: string }>();
+  const { productSlugOrId } = useParams<{ productSlugOrId: string }>();
+  // For now, treat as product ID until we implement full product slug support
+  const productId = productSlugOrId;
   const navigate = useNavigate();
   const { product, loading } = useProductById(productId || '');
   const { updateProduct } = useProductUpdate();
@@ -58,9 +61,10 @@ export default function ProductDetail() {
   };
 
   const handleBack = () => {
-    // Navigate back to the category page
+    // Navigate back to the category page using slug
     if (product) {
-      navigate(`/category/${product.category_id}`);
+      const categorySlug = getCategorySlugFromId(product.category_id);
+      navigate(`/category/${categorySlug}`);
     } else {
       navigate('/');
     }

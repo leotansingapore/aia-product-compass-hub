@@ -11,12 +11,7 @@ export default function KBCategory() {
   const category = categorySlug ? findCategory(categorySlug) : undefined;
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (category) {
-      const categoryId = getCategoryIdFromName(category.name);
-      navigate(`/category/${categoryId}`, { replace: true });
-    }
-  }, [category?.name]);
+  // Note: We no longer redirect to /category since KB has its own routes
 
   if (!category) {
     return (

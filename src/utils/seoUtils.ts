@@ -18,10 +18,16 @@ export interface StructuredData {
   [key: string]: any;
 }
 
-// Generate canonical URL
+// Generate canonical URL with clean slug-based URLs
 export const getCanonicalUrl = (path?: string): string => {
   const baseUrl = window.location.origin;
-  return path ? `${baseUrl}${path}` : `${baseUrl}${window.location.pathname}`;
+  if (path) {
+    return `${baseUrl}${path}`;
+  }
+  
+  // For current URL, ensure we use slug-based canonical
+  const currentPath = window.location.pathname;
+  return `${baseUrl}${currentPath}`;
 };
 
 // Default SEO values

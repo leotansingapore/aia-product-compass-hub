@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { getCategorySlugFromId } from "@/utils/slugUtils";
 import { 
   TrendingUp, 
   Shield, 
@@ -68,7 +69,7 @@ export function ProductCategories() {
           <Card 
             key={category.id} 
             className="hover:shadow-md transition-shadow cursor-pointer"
-            onClick={() => navigate(`/category/${category.id}`)}
+            onClick={() => navigate(`/category/${getCategorySlugFromId(category.id)}`)}
           >
             <CardContent className="p-4">
               <div className="flex items-start space-x-3">

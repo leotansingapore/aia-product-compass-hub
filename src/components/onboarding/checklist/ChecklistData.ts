@@ -76,7 +76,7 @@ export const createChecklistItems = (
     icon: BookOpen,
     action: () => {
       completeItem('browse-category');
-      navigate('/category/c7cde8f4-12d4-4ddc-9150-7b32008a4e19');
+      navigate('/category/investment-products');
     },
     points: 15,
     category: 'essential'
@@ -100,7 +100,7 @@ export const createChecklistItems = (
     icon: Bookmark,
     action: () => {
       completeItem('bookmark-item');
-      navigate('/category/c7cde8f4-12d4-4ddc-9150-7b32008a4e19');
+      navigate('/category/investment-products');
     },
     points: 10,
     category: 'explore'
@@ -112,7 +112,7 @@ export const createChecklistItems = (
     icon: Video,
     action: () => {
       completeItem('watch-video');
-      navigate('/category/c7cde8f4-12d4-4ddc-9150-7b32008a4e19');
+      navigate('/category/investment-products');
     },
     points: 15,
     category: 'explore'

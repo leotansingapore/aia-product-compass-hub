@@ -54,7 +54,7 @@ export function GettingStartedChecklist() {
 
             {progressPercentage === 100 && (
               <CompletionCelebration
-                onStartLearning={() => navigate('/category/c7cde8f4-12d4-4ddc-9150-7b32008a4e19')}
+                onStartLearning={() => navigate('/category/investment-products')}
               />
             )}
           </CardContent>

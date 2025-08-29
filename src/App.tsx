@@ -68,8 +68,8 @@ const App = () => (
                     <Route path="/roleplay/feedback/:sessionId" element={<RoleplayFeedback />} />
                     <Route path="/admin" element={<AdminDashboard />} />
                     <Route path="/my-account" element={<MyAccount />} />
-<Route path="/category/:categoryId" element={<ProductCategory />} />
-<Route path="/product/:productId" element={<ProductDetail />} />
+<Route path="/category/:categorySlugOrId" element={<ProductCategory />} />
+<Route path="/product/:productSlugOrId" element={<ProductDetail />} />
 <Route path="/force-password" element={<ForcePasswordChange />} />
 
 {/* Knowledge Base */}

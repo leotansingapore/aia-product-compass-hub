@@ -1,15 +1,15 @@
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { useCategories } from "@/hooks/useProducts";
-import { getCategoryIdFromName } from "@/hooks/useProducts";
+import { getCategorySlug } from "@/utils/slugUtils";
 
 export function QuickAccessPills() {
   const navigate = useNavigate();
   const { categories, loading } = useCategories();
 
   const handleCategoryClick = (categoryName: string) => {
-    const categoryId = getCategoryIdFromName(categoryName);
-    navigate(`/category/${categoryId}`);
+    const slug = getCategorySlug(categoryName);
+    navigate(`/category/${slug}`);
   };
 
   if (loading || categories.length === 0) return null;

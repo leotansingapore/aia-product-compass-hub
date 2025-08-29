@@ -239,7 +239,7 @@ export default function HowToUsePortal() {
               </Button>
               <Button 
                 variant="outline"
-                onClick={() => navigate('/category/investment')}
+                onClick={() => navigate('/category/investment-products')}
                 className="min-h-[44px]"
               >
                 Start with Investment Products
