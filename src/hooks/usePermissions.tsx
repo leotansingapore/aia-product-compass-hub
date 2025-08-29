@@ -2,8 +2,18 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
+// Safe hook wrapper to handle auth context not being available during initialization
+const useSimplifiedAuthSafe = () => {
+  try {
+    return useSimplifiedAuth();
+  } catch (error) {
+    // Return safe defaults when auth context is not available
+    return { user: null, loading: true };
+  }
+};
+
 export function usePermissions() {
-  const { user } = useSimplifiedAuth();
+  const { user } = useSimplifiedAuthSafe();
   const [userTier, setUserTier] = useState<string | null>(null);
   const [tierPermissions, setTierPermissions] = useState<{ access_type: string; resource_id: string; }[]>([]);
   const [loading, setLoading] = useState(true);
