@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
-import { ProtectedPage } from "@/components/ProtectedPage";
+
 import { SearchHero } from "@/components/dashboard/SearchHero";
 import { QuickActions } from "@/components/dashboard/QuickActions";
 import { ProductCategories } from "@/components/dashboard/ProductCategories";
@@ -106,8 +106,7 @@ export default function Dashboard() {
   });
 
   return (
-    <ProtectedPage pageId="dashboard">
-      <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
         <Helmet>
           <title>Dashboard - Your Learning Hub | FINternship</title>
           <meta name="description" content="Access your personalized learning dashboard. Browse product categories, track progress, discover recommendations, and continue your financial advisory education journey." />
@@ -406,6 +405,5 @@ export default function Dashboard() {
 
         </div>
       </div>
-    </ProtectedPage>
   );
 }
