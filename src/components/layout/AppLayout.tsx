@@ -24,6 +24,15 @@ const useAdminSafe = () => {
   }
 };
 
+// Safe fallback to avoid crash if SimplifiedAuthProvider isn't mounted
+const useSimplifiedAuthSafe = () => {
+  try {
+    return useSimplifiedAuth();
+  } catch {
+    return { user: null, loading: true, signOut: () => Promise.resolve() };
+  }
+};
+
 interface AppLayoutProps {
   children: ReactNode;
 }
@@ -31,7 +40,7 @@ interface AppLayoutProps {
 export function AppLayout({ children }: AppLayoutProps) {
   console.log("AppLayout rendering");
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdminSafe();
-  const { user, loading, signOut } = useSimplifiedAuth();
+  const { user, loading, signOut } = useSimplifiedAuthSafe();
   const navigate = useNavigate();
   const { autoSync } = useAppStructureSync();
   const { loading: permissionsLoading } = usePermissions();
