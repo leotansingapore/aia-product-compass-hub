@@ -9,12 +9,23 @@ const Index = () => {
   const { isAdmin } = usePermissions();
   const navigate = useNavigate();
 
+  // Debug logging to help identify auth state
+  console.log('[Index] Auth state:', { 
+    hasUser: !!user, 
+    loading, 
+    userEmail: user?.email,
+    isAdmin 
+  });
+
   useEffect(() => {
     if (!loading) {
+      console.log('[Index] Effect - user check:', !!user);
       if (!user) {
+        console.log('[Index] No user, redirecting to /auth');
         navigate("/auth");
+      } else {
+        console.log('[Index] User authenticated, showing dashboard');
       }
-      // Remove the awaiting approval redirect for simplified auth
     }
   }, [user, loading, navigate]);
 
