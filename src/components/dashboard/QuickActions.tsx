@@ -13,10 +13,13 @@ import {
 export function QuickActions() {
   const navigate = useNavigate();
 
+  // Debug logging to help identify visibility issues
+  console.log('[QuickActions] Rendering QuickActions component');
+
   const actions = [
     {
       title: "Browse Products",
-      description: "Explore all product categories",
+      description: "Explore all product categories", 
       icon: BookOpen,
       href: "/",
       color: "text-blue-600",
@@ -25,7 +28,7 @@ export function QuickActions() {
     {
       title: "CMFAS Training",
       description: "Certification modules",
-      icon: GraduationCap,
+      icon: GraduationCap, 
       href: "/cmfas-exams",
       color: "text-green-600",
       bgColor: "bg-green-50"
@@ -35,11 +38,11 @@ export function QuickActions() {
       description: "Search by client needs",
       icon: Users,
       href: "/search-by-profile",
-      color: "text-purple-600",
+      color: "text-purple-600", 
       bgColor: "bg-purple-50"
     },
     {
-      title: "Roleplay Practice",
+      title: "Roleplay Practice", 
       description: "Practice sales scenarios",
       icon: MessageSquare,
       href: "/roleplay",
