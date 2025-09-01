@@ -231,7 +231,16 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
 export const useSimplifiedAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useSimplifiedAuth must be used within a SimplifiedAuthProvider');
+    // Return a safe default during initialization
+    return {
+      user: null,
+      session: null,
+      loading: true,
+      signIn: async () => {},
+      signUp: async () => {},
+      signOut: async () => {},
+      resetPassword: async () => {}
+    };
   }
   return context;
 };
