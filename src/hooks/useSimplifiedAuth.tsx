@@ -31,8 +31,8 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         
         console.log('[Auth] State change:', event, !!session?.user);
         
-        // Only update if this is a meaningful change
-        if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
+        // Handle all relevant auth events to prevent flickering
+        if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED' || event === 'INITIAL_SESSION') {
           setSession(session);
           setUser(session?.user ?? null);
           setLoading(false);
@@ -169,8 +169,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       // Let the app handle routing naturally
     } catch (error) {
       console.error('Sign out error:', error);
-      // Force redirect even if signOut fails
-      window.location.href = '/auth';
+      // Let React Router handle error case too
     }
   };
 

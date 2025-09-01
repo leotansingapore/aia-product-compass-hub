@@ -1,17 +1,19 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router-dom";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { SimplifiedAuthForm } from "@/components/auth/SimplifiedAuthForm";
 
 const SimplifiedAuth = () => {
   const { user, loading } = useSimplifiedAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Redirect authenticated users to dashboard
+    // Redirect authenticated users to dashboard using React Router
     if (user && !loading) {
-      window.location.href = '/';
+      navigate('/', { replace: true });
     }
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   // Show loading state while checking authentication
   if (loading) {
