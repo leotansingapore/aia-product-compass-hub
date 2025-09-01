@@ -258,18 +258,6 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     setConnectionError(null);
     setShowPermissionHelp(false);
     
-    // Require authentication before starting
-    if (!user) {
-      toast({
-        title: "Please sign in",
-        description: "Log in to start a roleplay session.",
-        variant: "destructive",
-      });
-      navigate('/auth');
-      setIsLoading(false);
-      return;
-    }
-    
     try {
       // Request media permissions first
       const stream = await navigator.mediaDevices.getUserMedia({ 
