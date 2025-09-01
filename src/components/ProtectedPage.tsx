@@ -2,6 +2,7 @@ import { ReactNode, useEffect } from 'react';
 import { usePermissions } from '@/hooks/usePermissions';
 import { ProtectedSection } from './ProtectedSection';
 import { useNavigate } from 'react-router-dom';
+import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
 interface ProtectedPageProps {
   pageId: string;
   children: ReactNode;
@@ -10,8 +11,20 @@ interface ProtectedPageProps {
 }
 
 export function ProtectedPage({ pageId, children, fallback, redirectTo }: ProtectedPageProps) {
-  const { getPagePermission, canAccessPage } = usePermissions();
+  const { getPagePermission, canAccessPage, loading } = usePermissions();
+  const { user } = useSimplifiedAuth();
   const navigate = useNavigate();
+
+  // Debug logging for roleplay page specifically
+  if (pageId === 'roleplay') {
+    console.log('🔍 ProtectedPage Debug for roleplay:', {
+      pageId,
+      loading,
+      user: !!user,
+      canAccess: canAccessPage(pageId),
+      permission: getPagePermission(pageId)
+    });
+  }
 
   const deniedHidden = !canAccessPage(pageId);
 
@@ -21,10 +34,23 @@ export function ProtectedPage({ pageId, children, fallback, redirectTo }: Protec
 
   // Redirect effect combines both hidden and locked states
   useEffect(() => {
+    // Don't redirect while still loading permissions
+    if (loading) return;
+    
+    if (pageId === 'roleplay') {
+      console.log('🔍 ProtectedPage redirect check for roleplay:', {
+        redirectTo,
+        deniedHidden,
+        deniedLocked,
+        shouldRedirect: redirectTo && (deniedHidden || deniedLocked)
+      });
+    }
+    
     if (redirectTo && (deniedHidden || deniedLocked)) {
+      console.log('🔍 Redirecting from', pageId, 'to:', redirectTo);
       navigate(redirectTo, { replace: true });
     }
-  }, [redirectTo, deniedHidden, deniedLocked, navigate]);
+  }, [redirectTo, deniedHidden, deniedLocked, navigate, loading, pageId]);
 
   // If page access is restricted
   if (deniedHidden) {
