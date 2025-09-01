@@ -29,13 +29,14 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       (event, session) => {
         if (!mounted) return;
         
-        console.log('[Auth] State change:', event, !!session?.user);
+        console.log('[SimplifiedAuth] State change:', event, 'hasUser:', !!session?.user, 'userEmail:', session?.user?.email);
         
         // Handle all relevant auth events to prevent flickering
         if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED' || event === 'INITIAL_SESSION') {
           setSession(session);
           setUser(session?.user ?? null);
           setLoading(false);
+          console.log('[SimplifiedAuth] Updated state - user:', !!session?.user, 'loading:', false);
         }
       }
     );
@@ -67,7 +68,10 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
   }, []);
 
   const signIn = async (email: string, password: string) => {
+    console.log('[SimplifiedAuth] Starting sign in for:', email);
+    
     if (!email.trim() || !password.trim()) {
+      console.log('[SimplifiedAuth] Missing fields');
       toast({
         variant: "destructive",
         title: "Missing Information",
@@ -77,12 +81,20 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
     }
 
     try {
+      console.log('[SimplifiedAuth] Calling supabase.auth.signInWithPassword');
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email.trim(),
         password: password.trim(),
       });
 
+      console.log('[SimplifiedAuth] Sign in response:', { 
+        hasUser: !!data.user, 
+        hasError: !!error, 
+        errorMessage: error?.message 
+      });
+
       if (error) {
+        console.error('[SimplifiedAuth] Sign in error:', error);
         toast({
           variant: "destructive",
           title: "Sign In Failed",
@@ -92,6 +104,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       }
 
       if (data.user) {
+        console.log('[SimplifiedAuth] Sign in successful, user:', data.user.email);
         toast({
           title: "Welcome back!",
           description: "Successfully signed in."
@@ -99,7 +112,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         // Let React Router handle navigation instead of hard redirect
       }
     } catch (error) {
-      console.error('Sign in error:', error);
+      console.error('[SimplifiedAuth] Unexpected sign in error:', error);
       toast({
         variant: "destructive",
         title: "Sign In Failed",
