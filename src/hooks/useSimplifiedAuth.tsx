@@ -29,9 +29,14 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       (event, session) => {
         if (!mounted) return;
         
-        setSession(session);
-        setUser(session?.user ?? null);
-        setLoading(false);
+        console.log('[Auth] State change:', event, !!session?.user);
+        
+        // Only update if this is a meaningful change
+        if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
+          setSession(session);
+          setUser(session?.user ?? null);
+          setLoading(false);
+        }
       }
     );
 
@@ -40,6 +45,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       try {
         const { data: { session } } = await supabase.auth.getSession();
         if (mounted) {
+          console.log('[Auth] Initial session:', !!session?.user);
           setSession(session);
           setUser(session?.user ?? null);
           setLoading(false);
@@ -90,10 +96,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
           title: "Welcome back!",
           description: "Successfully signed in."
         });
-        // Redirect will happen automatically via auth state listener
-        setTimeout(() => {
-          window.location.href = '/';
-        }, 1000);
+        // Let React Router handle navigation instead of hard redirect
       }
     } catch (error) {
       console.error('Sign in error:', error);
@@ -163,8 +166,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       localStorage.clear();
       sessionStorage.clear();
       
-      // Redirect to auth page
-      window.location.href = '/auth';
+      // Let the app handle routing naturally
     } catch (error) {
       console.error('Sign out error:', error);
       // Force redirect even if signOut fails
