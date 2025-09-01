@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Play, Users, TrendingUp, MessageSquare, ArrowLeft } from 'lucide-react';
 import { TavusVideoChat } from '@/components/roleplay/TavusVideoChat';
-import { ProtectedPage } from '@/components/ProtectedPage';
+
 
 interface RoleplayScenario {
   id: string;
@@ -120,139 +120,135 @@ export default function Roleplay() {
 
   if (selectedScenario) {
     return (
-      <ProtectedPage pageId="roleplay" redirectTo="/auth">
-        <div className="container mx-auto p-6 space-y-6">
-          <Helmet>
-            <title>Roleplay - {selectedScenario.title}</title>
-            <meta name="description" content={selectedScenario.description} />
-            <link rel="canonical" href={`${window.location.origin}/roleplay`} />
-          </Helmet>
-          <div className="flex items-center gap-4">
-            <Button 
-              variant="outline" 
-              onClick={handleBackToSelection}
-              className="flex items-center gap-2"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Scenarios
-            </Button>
-            <div>
-              <h1 className="text-2xl font-bold">{selectedScenario.title}</h1>
-              <p className="text-muted-foreground">{selectedScenario.description}</p>
-            </div>
+      <div className="container mx-auto p-6 space-y-6">
+        <Helmet>
+          <title>Roleplay - {selectedScenario.title}</title>
+          <meta name="description" content={selectedScenario.description} />
+          <link rel="canonical" href={`${window.location.origin}/roleplay`} />
+        </Helmet>
+        <div className="flex items-center gap-4">
+          <Button 
+            variant="outline" 
+            onClick={handleBackToSelection}
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Scenarios
+          </Button>
+          <div>
+            <h1 className="text-2xl font-bold">{selectedScenario.title}</h1>
+            <p className="text-muted-foreground">{selectedScenario.description}</p>
           </div>
-          
-          <TavusVideoChat scenario={selectedScenario} />
         </div>
-      </ProtectedPage>
+        
+        <TavusVideoChat scenario={selectedScenario} />
+      </div>
     );
   }
 
   return (
-    <ProtectedPage pageId="roleplay" redirectTo="/auth">
-      <div className="container mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 space-y-3 sm:space-y-6">
-        <Helmet>
-          <title>AI Roleplay Training - FINternship</title>
-          <meta name="description" content="Practice sales, objection handling, and consultation skills with AI video avatars." />
-          <link rel="canonical" href={`${window.location.origin}/roleplay`} />
-        </Helmet>
-        <div className="text-center space-y-3 sm:space-y-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">AI Roleplay Training</h1>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Practice your sales skills, objection handling, and client consultation with AI-powered video avatars
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {roleplayScenarios.map((scenario) => {
-            const CategoryIcon = categoryIcons[scenario.category];
-            
-            return (
-              <Card key={scenario.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <CategoryIcon className="h-8 w-8 text-primary" />
-                    <div className="flex gap-2">
-                      <Badge className={categoryColors[scenario.category]}>
-                        {scenario.category}
-                      </Badge>
-                      <Badge className={difficultyColors[scenario.difficulty]}>
-                        {scenario.difficulty}
-                      </Badge>
-                    </div>
-                  </div>
-                  <CardTitle className="text-lg">{scenario.title}</CardTitle>
-                  <CardDescription>{scenario.description}</CardDescription>
-                </CardHeader>
-                
-                <CardContent className="space-y-4">
-                  <div className="text-sm text-muted-foreground">
-                    <strong>Duration:</strong> {scenario.duration}
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-medium mb-2">Learning Objectives:</h4>
-                    <ul className="text-sm space-y-1">
-                      {scenario.objectives.map((objective, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <span className="text-primary">•</span>
-                          {objective}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <Button 
-                    className="w-full min-h-[44px]"
-                    onClick={() => handleStartRoleplay(scenario)}
-                  >
-                    <Play className="h-4 w-4 mr-2" />
-                    Start Roleplay
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-
-        <Card className="bg-muted/50">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5" />
-              How Roleplay Training Works
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-            <div className="text-center space-y-2">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto">
-                <span className="text-primary-foreground font-bold">1</span>
-              </div>
-              <h3 className="font-medium">Choose Scenario</h3>
-              <p className="text-sm text-muted-foreground">
-                Select a roleplay scenario that matches your learning goals
-              </p>
-            </div>
-            <div className="text-center space-y-2">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto">
-                <span className="text-primary-foreground font-bold">2</span>
-              </div>
-              <h3 className="font-medium">Practice with AI</h3>
-              <p className="text-sm text-muted-foreground">
-                Engage in realistic conversations with AI video avatars
-              </p>
-            </div>
-            <div className="text-center space-y-2">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto">
-                <span className="text-primary-foreground font-bold">3</span>
-              </div>
-              <h3 className="font-medium">Get Feedback</h3>
-              <p className="text-sm text-muted-foreground">
-                Receive AI-powered feedback to improve your performance
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+    <div className="container mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 space-y-3 sm:space-y-6">
+      <Helmet>
+        <title>AI Roleplay Training - FINternship</title>
+        <meta name="description" content="Practice sales, objection handling, and consultation skills with AI video avatars." />
+        <link rel="canonical" href={`${window.location.origin}/roleplay`} />
+      </Helmet>
+      <div className="text-center space-y-3 sm:space-y-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">AI Roleplay Training</h1>
+        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+          Practice your sales skills, objection handling, and client consultation with AI-powered video avatars
+        </p>
       </div>
-    </ProtectedPage>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        {roleplayScenarios.map((scenario) => {
+          const CategoryIcon = categoryIcons[scenario.category];
+          
+          return (
+            <Card key={scenario.id} className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <CategoryIcon className="h-8 w-8 text-primary" />
+                  <div className="flex gap-2">
+                    <Badge className={categoryColors[scenario.category]}>
+                      {scenario.category}
+                    </Badge>
+                    <Badge className={difficultyColors[scenario.difficulty]}>
+                      {scenario.difficulty}
+                    </Badge>
+                  </div>
+                </div>
+                <CardTitle className="text-lg">{scenario.title}</CardTitle>
+                <CardDescription>{scenario.description}</CardDescription>
+              </CardHeader>
+              
+              <CardContent className="space-y-4">
+                <div className="text-sm text-muted-foreground">
+                  <strong>Duration:</strong> {scenario.duration}
+                </div>
+                
+                <div>
+                  <h4 className="font-medium mb-2">Learning Objectives:</h4>
+                  <ul className="text-sm space-y-1">
+                    {scenario.objectives.map((objective, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-primary">•</span>
+                        {objective}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <Button 
+                  className="w-full min-h-[44px]"
+                  onClick={() => handleStartRoleplay(scenario)}
+                >
+                  <Play className="h-4 w-4 mr-2" />
+                  Start Roleplay
+                </Button>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+
+      <Card className="bg-muted/50">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Users className="h-5 w-5" />
+            How Roleplay Training Works
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+          <div className="text-center space-y-2">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto">
+              <span className="text-primary-foreground font-bold">1</span>
+            </div>
+            <h3 className="font-medium">Choose Scenario</h3>
+            <p className="text-sm text-muted-foreground">
+              Select a roleplay scenario that matches your learning goals
+            </p>
+          </div>
+          <div className="text-center space-y-2">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto">
+              <span className="text-primary-foreground font-bold">2</span>
+            </div>
+            <h3 className="font-medium">Practice with AI</h3>
+            <p className="text-sm text-muted-foreground">
+              Engage in realistic conversations with AI video avatars
+            </p>
+          </div>
+          <div className="text-center space-y-2">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto">
+              <span className="text-primary-foreground font-bold">3</span>
+            </div>
+            <h3 className="font-medium">Get Feedback</h3>
+            <p className="text-sm text-muted-foreground">
+              Receive AI-powered feedback to improve your performance
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
