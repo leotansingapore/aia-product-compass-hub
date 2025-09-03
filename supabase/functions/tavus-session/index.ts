@@ -28,7 +28,10 @@ serve(async (req) => {
 
     const { action, ...params } = await req.json();
 
-    console.log('Tavus session request:', { action, params });
+    console.log('Tavus session request:', { 
+      action, 
+      params: JSON.stringify(params).substring(0, 200) + '...' 
+    });
 
     switch (action) {
       case 'create_conversation': {
@@ -71,9 +74,25 @@ serve(async (req) => {
         }
 
         const conversationData = await response.json();
-        console.log('Conversation created:', conversationData);
+        console.log('Conversation created successfully:', {
+          conversation_id: conversationData.conversation_id,
+          has_conversation_url: !!conversationData.conversation_url,
+          has_web_url: !!conversationData.web_url,
+          has_room_url: !!conversationData.room_url,
+          all_fields: Object.keys(conversationData)
+        });
 
-        return new Response(JSON.stringify(conversationData), {
+        // Normalize the response to always include conversation_url
+        const normalizedResponse = {
+          conversation_id: conversationData.conversation_id,
+          conversation_url: conversationData.conversation_url || 
+                           conversationData.web_url || 
+                           conversationData.room_url || 
+                           conversationData.url,
+          ...conversationData
+        };
+
+        return new Response(JSON.stringify(normalizedResponse), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Play, Users, TrendingUp, MessageSquare, ArrowLeft } from 'lucide-react';
 import { TavusVideoChat } from '@/components/roleplay/TavusVideoChat';
+import { RoleplayDiagnostics } from '@/components/roleplay/RoleplayDiagnostics';
 
 
 interface RoleplayScenario {
@@ -141,6 +142,7 @@ export default function Roleplay() {
           </div>
         </div>
         
+        <RoleplayDiagnostics scenario={selectedScenario} />
         <TavusVideoChat scenario={selectedScenario} />
       </div>
     );

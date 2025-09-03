@@ -196,30 +196,42 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         enable_recording: true
       };
 
+      console.log('Creating Tavus conversation with:', requestBody);
+
       const { data: conversationData, error: conversationError } = await supabase.functions.invoke('tavus-session', {
         body: requestBody
       });
 
-      console.log('Tavus conversation response:', { conversationData, conversationError });
-
       if (conversationError) {
-        console.error('Conversation creation error:', conversationError);
-        throw new Error(`Failed to create conversation: ${conversationError.message}`);
+        console.error('Failed to create Tavus conversation:', conversationError);
+        setConnectionError(`Failed to create conversation: ${conversationError.message || 'Unknown error'}`);
+        setIsLoading(false);
+        return;
       }
 
       if (!conversationData) {
-        console.error('No conversation data returned');
-        throw new Error('No conversation data returned from Tavus API');
+        setConnectionError('No conversation data received from Tavus');
+        setIsLoading(false);
+        return;
       }
 
-      console.log('Successfully created conversation:', conversationData);
+      console.log('Full Tavus conversation response:', conversationData);
 
-      if (!conversationData?.conversation_url) {
-        throw new Error('No conversation URL received from Tavus');
+      // Normalize conversation URL - try multiple possible field names
+      const conversationUrl = conversationData.conversation_url || 
+                             conversationData.web_url || 
+                             conversationData.room_url || 
+                             conversationData.url;
+
+      if (!conversationUrl) {
+        console.error('No conversation URL found in response. Available fields:', Object.keys(conversationData));
+        setConnectionError('No conversation URL received from Tavus. Please check your configuration.');
+        setIsLoading(false);
+        return;
       }
 
       setConversationId(conversationData.conversation_id);
-      setConversationUrl(conversationData.conversation_url);
+      setConversationUrl(conversationUrl);
 
       // Update the session with the Tavus conversation ID and recording status
       const { error: updateError } = await supabase
@@ -649,6 +661,14 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         {connectionError && (
           <Alert variant="destructive">
             <AlertDescription>{connectionError}</AlertDescription>
+            <Button 
+              onClick={() => setConnectionError(null)} 
+              variant="outline" 
+              size="sm" 
+              className="mt-2"
+            >
+              Retry
+            </Button>
           </Alert>
         )}
 
