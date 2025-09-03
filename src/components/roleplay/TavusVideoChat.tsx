@@ -181,26 +181,19 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
       setSessionId(sessionData);
 
-      // SIMPLIFIED: Just use the first available replica without validation
-      const { data: replicasData, error: replicasError } = await supabase.functions.invoke('tavus-session', {
-        body: { action: 'list_replicas' }
-      });
-
-      if (replicasError || !replicasData?.data || replicasData.data.length === 0) {
-        throw new Error('No replicas available');
-      }
-
-      // Always use the first available replica to avoid cache issues
-      const replicaToUse = replicasData.data[0].replica_id;
-      console.log('Using first available replica:', replicaToUse);
+      // Use the specific replica and persona IDs from the scenario
+      const replicaToUse = scenario.replicaId;
+      const personaToUse = scenario.personaId;
+      
+      console.log('Using specific replica and persona:', { replicaToUse, personaToUse });
 
       // Create the Tavus conversation with recording enabled
       const requestBody = {
         action: 'create_conversation',
         replica_id: replicaToUse,
+        persona_id: personaToUse,
         conversation_name: `${scenario.title} - ${new Date().toLocaleString()}`,
         enable_recording: true
-        // NOTE: No persona_id to avoid invalid persona errors
       };
 
       const { data: conversationData, error: conversationError } = await supabase.functions.invoke('tavus-session', {
