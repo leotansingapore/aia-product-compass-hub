@@ -28,7 +28,8 @@ const roleplayScenarios: RoleplayScenario[] = [
     category: 'consultation',
     difficulty: 'beginner',
     duration: '15-20 min',
-    replicaId: 'r9d30b0e55ac', // CACHE BYPASS: Using available replica
+    replicaId: 'r9d30b0e55ac', // Working replica ID
+    personaId: 'p74cc7de032d', // Working persona ID
     personaDescription: 'You are Samantha Lee, a 27-year-old marketing executive who wants to start investing but feels overwhelmed. You\'re unsure what \'risk appetite\' means and ask lots of basic questions. You\'re eager to learn but cautious about committing to long-term plans without full understanding. In all your responses, avoid sounding overly eager or excessively friendly. Keep your tone natural, professional, and grounded. Your answers should be succinct, authentic, and realistic, as if you\'re in a real conversation and your time matters, so dont be verbose.',
     objectives: [
       'Explain investment basics in simple terms',
@@ -43,7 +44,8 @@ const roleplayScenarios: RoleplayScenario[] = [
     category: 'consultation',
     difficulty: 'intermediate',
     duration: '20-25 min',
-    replicaId: 'r1b15de50c', // Jennifer - Office
+    replicaId: 'r9d30b0e55ac', // Working replica ID
+    personaId: 'p74cc7de032d', // Working persona ID
     personaDescription: 'You are Rachel Ng, a 40-year-old HR manager and mother of two school-aged children. You\'re trying to balance family responsibilities, work stress, and financial planning. You\'re interested in investing—but only if it helps with your kids\' education or secures your retirement. You\'re emotionally motivated but dislike financial jargon or long explanations. In all your responses, avoid sounding overly eager or excessively friendly. Keep your tone natural, professional, and grounded. Your answers should be succinct, authentic, and realistic—as if you\'re a real person with limited time for fluff.',
     objectives: [
       'Focus on education and retirement planning',
@@ -58,7 +60,8 @@ const roleplayScenarios: RoleplayScenario[] = [
     category: 'consultation',
     difficulty: 'advanced',
     duration: '25-30 min',
-    replicaId: 'r315bff4de', // Victoria - White
+    replicaId: 'r9d30b0e55ac', // Working replica ID
+    personaId: 'p74cc7de032d', // Working persona ID
     personaDescription: 'You are James Liew, a 42-year-old business owner with over $500K in liquid assets. You\'re financially savvy, strategic, and value high-ROI, tax-efficient opportunities. You dislike generic sales pitches and expect advisors to speak your language. You think most insurance products are too basic and want sophisticated solutions for wealth growth and legacy planning. In all your responses, avoid sounding overly eager or excessively friendly. Keep your tone natural, professional, and grounded. Your answers should be succinct, authentic, and realistic—as if you\'re a real person with limited time for fluff.',
     objectives: [
       'Present sophisticated investment strategies',
@@ -73,7 +76,8 @@ const roleplayScenarios: RoleplayScenario[] = [
     category: 'consultation',
     difficulty: 'intermediate',
     duration: '15-20 min',
-    replicaId: 'r934c980b4', // Diego - Blue
+    replicaId: 'r9d30b0e55ac', // Working replica ID
+    personaId: 'p74cc7de032d', // Working persona ID
     personaDescription: 'You are Gabriel Ong, a 20-year-old NSF who follows finance TikToks and listens to podcast bros like Kelvin Learns Investing. You\'ve set savings goals and are using Excel to track expenses. You want to get a head start on life—maybe start investing early, maybe do part-time studies after NS. You ask smart questions but are still afraid of getting conned. Be logical and concise. You sound calm and focused, but always testing whether the advisor is genuine or just selling.',
     objectives: [
       'Build trust with a skeptical young investor',
