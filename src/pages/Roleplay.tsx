@@ -28,7 +28,7 @@ const roleplayScenarios: RoleplayScenario[] = [
     category: 'consultation',
     difficulty: 'beginner',
     duration: '15-20 min',
-    replicaId: 'r9d30b0e55ac',
+    replicaId: 'r18d46c93e', // Victoria - Selfie 2
     personaDescription: 'You are Samantha Lee, a 27-year-old marketing executive who wants to start investing but feels overwhelmed. You\'re unsure what \'risk appetite\' means and ask lots of basic questions. You\'re eager to learn but cautious about committing to long-term plans without full understanding. In all your responses, avoid sounding overly eager or excessively friendly. Keep your tone natural, professional, and grounded. Your answers should be succinct, authentic, and realistic, as if you\'re in a real conversation and your time matters, so dont be verbose.',
     objectives: [
       'Explain investment basics in simple terms',
