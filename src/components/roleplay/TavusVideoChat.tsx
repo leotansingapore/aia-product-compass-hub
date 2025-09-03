@@ -234,9 +234,19 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         body: requestBody
       });
 
+      console.log('Tavus conversation response:', { conversationData, conversationError });
+
       if (conversationError) {
+        console.error('Conversation creation error:', conversationError);
         throw new Error(`Failed to create conversation: ${conversationError.message}`);
       }
+
+      if (!conversationData) {
+        console.error('No conversation data returned');
+        throw new Error('No conversation data returned from Tavus API');
+      }
+
+      console.log('Successfully created conversation:', conversationData);
 
       if (!conversationData?.conversation_url) {
         throw new Error('No conversation URL received from Tavus');
