@@ -107,7 +107,34 @@ const RoleplayFeedback = () => {
           console.log('🔍 FEEDBACK DEBUG: No feedback found, entering generating mode');
           setLoading(false);
           setGenerating(true);
-          setProgressMessage("Analyzing conversation...");
+          setProgressMessage("Starting feedback generation...");
+          
+          // Trigger feedback generation
+          console.log('🔍 FEEDBACK DEBUG: Calling generate-roleplay-feedback function');
+          supabase.functions.invoke('generate-roleplay-feedback', {
+            body: { sessionId }
+          }).then(result => {
+            console.log('🔍 FEEDBACK DEBUG: Generation function result:', result);
+            if (result.error) {
+              console.error('🔍 FEEDBACK DEBUG: Generation function error:', result.error);
+              toast({
+                title: "Error",
+                description: "Failed to start feedback generation: " + result.error.message,
+                variant: "destructive",
+              });
+              setGenerating(false);
+              setTimeoutReached(true);
+            }
+          }).catch(error => {
+            console.error('🔍 FEEDBACK DEBUG: Generation function call failed:', error);
+            toast({
+              title: "Error", 
+              description: "Failed to start feedback generation. Please refresh and try again.",
+              variant: "destructive",
+            });
+            setGenerating(false);
+            setTimeoutReached(true);
+          });
           
           // Progress message updates
           const progressTimer = setInterval(() => {
