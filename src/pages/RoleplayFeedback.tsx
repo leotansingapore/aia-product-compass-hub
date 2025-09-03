@@ -121,7 +121,7 @@ const RoleplayFeedback = () => {
               // Handle specific error types
               let errorMessage = "Failed to generate feedback. Please try again.";
               if (result.error.message?.includes('Transcript not ready') || result.error.message?.includes('No transcript available')) {
-                errorMessage = "The conversation transcript is still being processed. Please wait a few minutes and refresh the page.";
+                errorMessage = "The conversation transcript is not available. This could mean the recording didn't complete properly. Please try starting a new roleplay session.";
               }
               
               toast({
@@ -160,18 +160,18 @@ const RoleplayFeedback = () => {
             });
           }, 1000);
           
-          // Set up 60-second timeout (extended from 30)
+          // Set up 45-second timeout (reduced from 60)
           timeoutId = setTimeout(() => {
-            console.log('🔍 FEEDBACK DEBUG: Timeout reached after 60 seconds');
+            console.log('🔍 FEEDBACK DEBUG: Timeout reached after 45 seconds');
             clearInterval(progressTimer);
             setTimeoutReached(true);
             setGenerating(false);
             toast({
               title: "Feedback Generation Taking Longer Than Expected",
-              description: "The AI is still processing your feedback. You can check again or refresh the page.",
+              description: "The conversation may not have been recorded properly. Try refreshing or starting a new roleplay session.",
               variant: "default",
             });
-          }, 60000);
+          }, 45000);
 
           // Set up real-time subscription for feedback generation
           console.log('🔍 FEEDBACK DEBUG: Setting up real-time subscription');
@@ -237,19 +237,19 @@ const RoleplayFeedback = () => {
           // Store poll interval for cleanup
           const pollIntervalRef = pollInterval;
           
-          // Update timeout to also clear polling (extended to 60 seconds)
+          // Update timeout to also clear polling (reduced to 45 seconds)
           timeoutId = setTimeout(() => {
-            console.log('🔍 FEEDBACK DEBUG: Timeout reached after 60 seconds');
+            console.log('🔍 FEEDBACK DEBUG: Timeout reached after 45 seconds');
             clearInterval(pollIntervalRef);
             clearInterval(progressTimer);
             setTimeoutReached(true);
             setGenerating(false);
             toast({
               title: "Feedback Generation Taking Longer Than Expected", 
-              description: "The AI is still processing your feedback. You can check again or refresh the page.",
+              description: "The conversation may not have been recorded properly. Try refreshing or starting a new roleplay session.",
               variant: "default",
             });
-          }, 60000);
+          }, 45000);
 
           console.log('🔍 FEEDBACK DEBUG: Real-time subscription and polling established');
         }
@@ -381,9 +381,9 @@ const RoleplayFeedback = () => {
           </Helmet>
         <div className="text-center py-12 max-w-md mx-auto">
           <MessageSquare className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-          <h2 className="text-2xl font-semibold mb-2">Still Processing Your Feedback</h2>
+          <h2 className="text-2xl font-semibold mb-2">Feedback Not Available</h2>
           <p className="text-muted-foreground mb-6">
-            Our AI is working hard to provide you with comprehensive feedback. This sometimes takes a bit longer for complex conversations.
+            The conversation transcript may not have been recorded properly. This can happen if the connection was interrupted during the roleplay session.
           </p>
           <div className="flex flex-col gap-3 max-w-xs mx-auto">
             <Button onClick={handleCheckAgain} className="gap-2">
