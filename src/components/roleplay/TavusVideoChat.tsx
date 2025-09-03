@@ -181,61 +181,27 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
       setSessionId(sessionData);
 
-      // First, let's list available replicas to debug
-      console.log('Listing available replicas...');
+      // SIMPLIFIED: Just use the first available replica without validation
       const { data: replicasData, error: replicasError } = await supabase.functions.invoke('tavus-session', {
         body: { action: 'list_replicas' }
       });
 
-      if (replicasError) {
-        console.error('Failed to list replicas:', replicasError);
-        throw new Error(`Failed to list replicas: ${replicasError.message}`);
+      if (replicasError || !replicasData?.data || replicasData.data.length === 0) {
+        throw new Error('No replicas available');
       }
 
-      console.log('Available replicas:', replicasData);
-
-      // Determine which replica to use
-      let replicaToUse = scenario.replicaId;
-      
-      // If no specific replica is set, get available replicas
-      if (!replicaToUse) {
-        if (replicasData?.data && replicasData.data.length > 0) {
-          replicaToUse = replicasData.data[0].replica_id;
-        } else {
-          throw new Error('No replicas available');
-        }
-      } else {
-        // Validate that the replica exists
-        console.log('Checking if replica exists:', replicaToUse);
-        const replicaExists = replicasData?.data?.some((replica: any) => replica.replica_id === replicaToUse);
-        console.log('Replica exists?', replicaExists);
-        console.log('Available replica IDs:', replicasData?.data?.map((r: any) => r.replica_id));
-        
-        if (!replicaExists) {
-          console.warn(`Replica ${replicaToUse} not found, using first available replica`);
-          if (replicasData?.data && replicasData.data.length > 0) {
-            replicaToUse = replicasData.data[0].replica_id;
-            console.log('Using fallback replica:', replicaToUse);
-          } else {
-            throw new Error('No replicas available');
-          }
-        } else {
-          console.log('Using specified replica:', replicaToUse);
-        }
-      }
+      // Always use the first available replica to avoid cache issues
+      const replicaToUse = replicasData.data[0].replica_id;
+      console.log('Using first available replica:', replicaToUse);
 
       // Create the Tavus conversation with recording enabled
-      const requestBody: any = {
+      const requestBody = {
         action: 'create_conversation',
         replica_id: replicaToUse,
         conversation_name: `${scenario.title} - ${new Date().toLocaleString()}`,
-        enable_recording: true  // Enable recording for mentor review
+        enable_recording: true
+        // NOTE: No persona_id to avoid invalid persona errors
       };
-
-      // Add persona if specified
-      if (scenario.personaId) {
-        requestBody.persona_id = scenario.personaId;
-      }
 
       const { data: conversationData, error: conversationError } = await supabase.functions.invoke('tavus-session', {
         body: requestBody
