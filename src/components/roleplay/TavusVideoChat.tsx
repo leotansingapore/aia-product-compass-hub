@@ -206,14 +206,21 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         }
       } else {
         // Validate that the replica exists
+        console.log('Checking if replica exists:', replicaToUse);
         const replicaExists = replicasData?.data?.some((replica: any) => replica.replica_id === replicaToUse);
+        console.log('Replica exists?', replicaExists);
+        console.log('Available replica IDs:', replicasData?.data?.map((r: any) => r.replica_id));
+        
         if (!replicaExists) {
           console.warn(`Replica ${replicaToUse} not found, using first available replica`);
           if (replicasData?.data && replicasData.data.length > 0) {
             replicaToUse = replicasData.data[0].replica_id;
+            console.log('Using fallback replica:', replicaToUse);
           } else {
             throw new Error('No replicas available');
           }
+        } else {
+          console.log('Using specified replica:', replicaToUse);
         }
       }
 
