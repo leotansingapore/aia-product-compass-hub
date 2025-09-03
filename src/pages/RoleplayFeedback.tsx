@@ -117,9 +117,16 @@ const RoleplayFeedback = () => {
             console.log('🔍 FEEDBACK DEBUG: Generation function result:', result);
             if (result.error) {
               console.error('🔍 FEEDBACK DEBUG: Generation function error:', result.error);
+              
+              // Handle specific error types
+              let errorMessage = "Failed to generate feedback. Please try again.";
+              if (result.error.message?.includes('Transcript not ready') || result.error.message?.includes('No transcript available')) {
+                errorMessage = "The conversation transcript is still being processed. Please wait a few minutes and refresh the page.";
+              }
+              
               toast({
-                title: "Error",
-                description: "Failed to start feedback generation: " + result.error.message,
+                title: "Feedback Not Ready",
+                description: errorMessage,
                 variant: "destructive",
               });
               setGenerating(false);

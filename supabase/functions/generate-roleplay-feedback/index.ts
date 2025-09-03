@@ -57,12 +57,27 @@ serve(async (req) => {
       });
     }
 
-    if (!session.transcript || !Array.isArray(session.transcript)) {
+    if (!session.transcript || !Array.isArray(session.transcript) || session.transcript.length === 0) {
       console.error('No transcript available for session:', sessionId);
-      return new Response(JSON.stringify({ error: 'No transcript available' }), {
-        status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+      
+      // Check if session is still recording or processing
+      const status = session.recording_status || 'unknown';
+      const message = status === 'recording' 
+        ? 'Conversation is still being processed. Please wait a few minutes and try again.'
+        : 'No conversation transcript found. The recording may not have been completed properly.';
+      
+      return new Response(
+        JSON.stringify({ 
+          error: 'Transcript not ready',
+          message: message,
+          status: status,
+          session_id: sessionId
+        }),
+        { 
+          status: 422, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
     }
 
     // Insert progress tracking record
