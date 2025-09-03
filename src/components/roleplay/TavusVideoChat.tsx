@@ -181,23 +181,39 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
       setSessionId(sessionData);
 
+      // First, let's list available replicas to debug
+      console.log('Listing available replicas...');
+      const { data: replicasData, error: replicasError } = await supabase.functions.invoke('tavus-session', {
+        body: { action: 'list_replicas' }
+      });
+
+      if (replicasError) {
+        console.error('Failed to list replicas:', replicasError);
+        throw new Error(`Failed to list replicas: ${replicasError.message}`);
+      }
+
+      console.log('Available replicas:', replicasData);
+
       // Determine which replica to use
       let replicaToUse = scenario.replicaId;
       
       // If no specific replica is set, get available replicas
       if (!replicaToUse) {
-        const { data: replicasData, error: replicasError } = await supabase.functions.invoke('tavus-session', {
-          body: { action: 'list_replicas' }
-        });
-
-        if (replicasError) {
-          throw new Error(`Failed to list replicas: ${replicasError.message}`);
-        }
-
         if (replicasData?.data && replicasData.data.length > 0) {
           replicaToUse = replicasData.data[0].replica_id;
         } else {
           throw new Error('No replicas available');
+        }
+      } else {
+        // Validate that the replica exists
+        const replicaExists = replicasData?.data?.some((replica: any) => replica.replica_id === replicaToUse);
+        if (!replicaExists) {
+          console.warn(`Replica ${replicaToUse} not found, using first available replica`);
+          if (replicasData?.data && replicasData.data.length > 0) {
+            replicaToUse = replicasData.data[0].replica_id;
+          } else {
+            throw new Error('No replicas available');
+          }
         }
       }
 
