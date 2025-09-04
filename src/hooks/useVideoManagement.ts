@@ -126,11 +126,30 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
     setEditVideos(updated);
   };
 
-  const removeVideo = (index: number) => {
+  const removeVideo = async (index: number) => {
     const updated = editVideos.filter((_, i) => i !== index);
     // Reorder remaining videos
     const reordered = updated.map((video, i) => ({ ...video, order: i }));
     setEditVideos(reordered);
+    
+    // Auto-save after deletion
+    try {
+      setSaving(true);
+      console.log('🎥 Auto-saving after video deletion:', reordered);
+      await onSave(reordered);
+      console.log('✅ Auto-save successful after video deletion');
+    } catch (error) {
+      console.error('❌ Auto-save failed after video deletion:', error);
+      toast({
+        title: "Auto-save Failed",
+        description: "Video was removed locally but not saved. Please save manually.",
+        variant: "destructive",
+      });
+      // Revert the local change if save failed
+      setEditVideos(editVideos);
+    } finally {
+      setSaving(false);
+    }
   };
 
   const moveVideo = (index: number, direction: 'up' | 'down') => {
