@@ -206,6 +206,11 @@ export function useProductById(productId: string) {
 
   useEffect(() => {
     async function fetchProduct() {
+      if (!productId) {
+        setLoading(false);
+        return;
+      }
+
       try {
         const { data, error } = await supabase
           .from('products')
@@ -253,6 +258,86 @@ export function useProductById(productId: string) {
 
     fetchProduct();
   }, [productId]);
+
+  return { product, loading, error };
+}
+
+export function useProductBySlugOrId(slugOrId: string) {
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      if (!slugOrId) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        // Check if it's a UUID
+        const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(slugOrId);
+        
+        let query = supabase
+          .from('products')
+          .select(`
+            *,
+            categories:category_id (
+              id,
+              name
+            )
+          `);
+
+        if (isUUID) {
+          // Query by ID if it's a UUID
+          query = query.eq('id', slugOrId);
+        } else {
+          // Convert slug to title and query by title
+          const titleFromSlug = slugOrId
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+          
+          query = query.ilike('title', `%${titleFromSlug}%`);
+        }
+
+        const { data, error } = await query.maybeSingle();
+
+        if (error) throw error;
+        
+        // Transform the data to ensure useful_links is properly typed
+        if (data) {
+          // Handle both flat array and nested object structure for useful_links
+          let flattenedLinks: UsefulLink[] = [];
+          if (Array.isArray(data.useful_links)) {
+            flattenedLinks = data.useful_links as unknown as UsefulLink[];
+          } else if (data.useful_links && typeof data.useful_links === 'object') {
+            // Flatten nested structure (e.g., {generic-objections: [...], tactical-objections: [...]})
+            Object.values(data.useful_links).forEach((category: any) => {
+              if (Array.isArray(category)) {
+                flattenedLinks.push(...category);
+              }
+            });
+          }
+
+          const transformedData = {
+            ...data,
+            useful_links: flattenedLinks,
+            training_videos: Array.isArray(data.training_videos) ? data.training_videos as unknown as TrainingVideo[] : []
+          };
+          setProduct(transformedData);
+        } else {
+          setProduct(null);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch product');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProduct();
+  }, [slugOrId]);
 
   return { product, loading, error };
 }

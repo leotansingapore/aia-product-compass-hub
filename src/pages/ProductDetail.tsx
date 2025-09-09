@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { useProductById, getCategoryIdFromName } from "@/hooks/useProducts";
+import { useProductBySlugOrId, getCategoryIdFromName } from "@/hooks/useProducts";
 import { getCategorySlugFromId } from "@/utils/slugUtils";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
@@ -30,7 +30,7 @@ export default function ProductDetail() {
   // For now, treat as product ID until we implement full product slug support
   const productId = productSlugOrId;
   const navigate = useNavigate();
-  const { product, loading } = useProductById(productId || '');
+  const { product, loading } = useProductBySlugOrId(productId || '');
   const { updateProduct } = useProductUpdate();
   const { addToRecent } = useRecentlyViewed();
   const { recordPageVisit } = useGamification();
