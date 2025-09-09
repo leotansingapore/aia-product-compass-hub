@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
 export interface UsefulLink {
@@ -86,7 +86,7 @@ export function useProducts(categoryId?: string) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
         let query = supabase
@@ -135,11 +135,11 @@ export function useProducts(categoryId?: string) {
       } finally {
         setLoading(false);
       }
-    };
+    }, [categoryId]);
 
   useEffect(() => {
     fetchProducts();
-  }, [categoryId]);
+  }, [fetchProducts]);
 
   return { products, loading, error, refetch: fetchProducts };
 }
