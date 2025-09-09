@@ -11,6 +11,7 @@ import { OnboardingProvider } from "@/hooks/useOnboarding";
 import { ChecklistProvider } from "@/hooks/useChecklistProgress";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
+import { ProtectedAdminPage } from "@/components/ProtectedAdminPage";
 
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
@@ -66,7 +67,11 @@ const App = () => (
                     <Route path="/cmfas/chat/:moduleId?" element={<CMFASChat />} />
                     <Route path="/roleplay" element={<Roleplay />} />
                     <Route path="/roleplay/feedback/:sessionId" element={<RoleplayFeedback />} />
-                    <Route path="/admin" element={<AdminDashboard />} />
+                    <Route path="/admin" element={
+                      <ProtectedAdminPage>
+                        <AdminDashboard />
+                      </ProtectedAdminPage>
+                    } />
                     <Route path="/my-account" element={<MyAccount />} />
 <Route path="/category/:categorySlugOrId" element={<ProductCategory />} />
 <Route path="/product/:productSlugOrId" element={<ProductDetail />} />

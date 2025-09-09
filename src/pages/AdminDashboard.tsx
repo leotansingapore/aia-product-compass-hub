@@ -1,29 +1,8 @@
 import { Helmet } from 'react-helmet-async';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield } from 'lucide-react';
-import { usePermissions } from '@/hooks/usePermissions';
 import { UnifiedUserDirectory } from '@/components/admin/UnifiedUserDirectory';
 
 export default function AdminDashboard() {
-  const { isMasterAdmin, hasRole } = usePermissions();
-
-  // Force refresh to clear cache
-
-  if (!(isMasterAdmin() || hasRole('admin'))) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Card className="w-[400px]">
-          <CardHeader>
-            <CardTitle>Access Denied</CardTitle>
-            <CardDescription>
-              You must be an admin to access this page.
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-background px-1 sm:px-4 md:px-6 py-2 sm:py-6 pb-24 md:pb-8">
       <Helmet>
