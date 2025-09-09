@@ -1,1 +1,4 @@
 project_id = "hgdbflprrficdoyxmdxe"
+
+[functions.provision-user]
+verify_jwt = true

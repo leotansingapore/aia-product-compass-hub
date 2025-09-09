@@ -1,16 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Users, Search, Plus, RefreshCw, Filter } from "lucide-react";
-import { UserDirectoryRow } from "./UserDirectoryRow";
+import { Users, Plus, Loader2 } from "lucide-react";
 import { CreateUserForm } from "./CreateUserForm";
 import { BulkUserActions } from "./BulkUserActions";
+import { UserManagementTable } from "./UserManagementTable";
+import { EnhancedUserFilters } from "./EnhancedUserFilters";
 
 export interface UnifiedUser {
   id: string;
@@ -29,14 +26,27 @@ export interface UnifiedUser {
   can_login: boolean;
 }
 
+interface FilterState {
+  search: string;
+  status: string;
+  role: string;
+  sortBy: 'name' | 'email' | 'created_at' | 'status';
+  sortOrder: 'asc' | 'desc';
+}
+
 export function UnifiedUserDirectory() {
   const { toast } = useToast();
   const [users, setUsers] = useState<UnifiedUser[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState<string>("all");
   const [selectedUsers, setSelectedUsers] = useState<Set<string>>(new Set());
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [filters, setFilters] = useState<FilterState>({
+    search: '',
+    status: 'all',
+    role: 'all',
+    sortBy: 'created_at',
+    sortOrder: 'desc'
+  });
 
   useEffect(() => {
     fetchAllUsers();
@@ -164,17 +174,64 @@ export function UnifiedUserDirectory() {
     }
   };
 
-  const filteredUsers = users.filter(user => {
-    const matchesSearch = 
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.profile?.display_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.profile?.first_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.profile?.last_name?.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesStatus = statusFilter === "all" || user.status === statusFilter;
-    
-    return matchesSearch && matchesStatus;
-  });
+  const filteredAndSortedUsers = useMemo(() => {
+    let filtered = users.filter(user => {
+      // Search filter
+      const searchMatch = !filters.search || [
+        user.email,
+        user.profile?.display_name,
+        user.profile?.first_name,
+        user.profile?.last_name,
+        ...user.roles
+      ].some(field => 
+        field?.toLowerCase().includes(filters.search.toLowerCase())
+      );
+      
+      // Status filter
+      const statusMatch = filters.status === "all" || user.status === filters.status;
+      
+      // Role filter
+      const roleMatch = filters.role === "all" || 
+        (filters.role === "no_roles" && user.roles.length === 0) ||
+        user.roles.includes(filters.role);
+      
+      return searchMatch && statusMatch && roleMatch;
+    });
+
+    // Sort users
+    filtered.sort((a, b) => {
+      let aValue: string | number;
+      let bValue: string | number;
+      
+      switch (filters.sortBy) {
+        case 'name':
+          aValue = (a.profile?.display_name || `${a.profile?.first_name || ''} ${a.profile?.last_name || ''}`.trim() || a.email.split('@')[0]).toLowerCase();
+          bValue = (b.profile?.display_name || `${b.profile?.first_name || ''} ${b.profile?.last_name || ''}`.trim() || b.email.split('@')[0]).toLowerCase();
+          break;
+        case 'email':
+          aValue = a.email.toLowerCase();
+          bValue = b.email.toLowerCase();
+          break;
+        case 'status':
+          aValue = a.status;
+          bValue = b.status;
+          break;
+        case 'created_at':
+        default:
+          aValue = new Date(a.created_at).getTime();
+          bValue = new Date(b.created_at).getTime();
+          break;
+      }
+      
+      if (filters.sortOrder === 'asc') {
+        return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+      } else {
+        return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
+      }
+    });
+
+    return filtered;
+  }, [users, filters]);
 
   const handleUserSelect = (userId: string, checked: boolean) => {
     const newSelection = new Set(selectedUsers);
@@ -188,7 +245,7 @@ export function UnifiedUserDirectory() {
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
-      setSelectedUsers(new Set(filteredUsers.map(user => user.id)));
+      setSelectedUsers(new Set(filteredAndSortedUsers.map(user => user.id)));
     } else {
       setSelectedUsers(new Set());
     }
@@ -210,11 +267,12 @@ export function UnifiedUserDirectory() {
 
   if (loading) {
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Loading User Directory...</CardTitle>
-        </CardHeader>
-      </Card>
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center">
+          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
+          <p className="text-muted-foreground">Loading user directory...</p>
+        </div>
+      </div>
     );
   }
 
@@ -248,114 +306,44 @@ export function UnifiedUserDirectory() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {/* Search and Filter Bar */}
-          <div className="flex gap-4 mb-6">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search users by email or name..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-            
-            <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-48">
-                <Filter className="h-4 w-4 mr-2" />
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Status ({statusCounts.all})</SelectItem>
-                <SelectItem value="pending_approval">
-                  Pending Approval ({statusCounts.pending_approval})
-                </SelectItem>
-                <SelectItem value="approved">Approved ({statusCounts.approved})</SelectItem>
-                <SelectItem value="active">Active ({statusCounts.active})</SelectItem>
-                <SelectItem value="needs_role">Needs Role ({statusCounts.needs_role})</SelectItem>
-                <SelectItem value="rejected">Rejected ({statusCounts.rejected})</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Button variant="outline" onClick={fetchAllUsers} className="gap-2">
-              <RefreshCw className="h-4 w-4" />
-              Refresh
-            </Button>
-          </div>
-
-          {/* Status Overview */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 mb-6">
-            <div className="text-center p-3 bg-muted rounded-lg">
-              <div className="font-semibold">{statusCounts.pending_approval}</div>
-              <div className="text-xs text-muted-foreground">Pending</div>
-            </div>
-            <div className="text-center p-3 bg-muted rounded-lg">
-              <div className="font-semibold">{statusCounts.approved}</div>
-              <div className="text-xs text-muted-foreground">Approved</div>
-            </div>
-            <div className="text-center p-3 bg-muted rounded-lg">
-              <div className="font-semibold text-green-600">{statusCounts.active}</div>
-              <div className="text-xs text-muted-foreground">Active</div>
-            </div>
-            <div className="text-center p-3 bg-muted rounded-lg">
-              <div className="font-semibold text-amber-600">{statusCounts.needs_role}</div>
-              <div className="text-xs text-muted-foreground">Needs Role</div>
-            </div>
-            <div className="text-center p-3 bg-muted rounded-lg">
-              <div className="font-semibold text-gray-600">{statusCounts.suspended}</div>
-              <div className="text-xs text-muted-foreground">Suspended</div>
-            </div>
-            <div className="text-center p-3 bg-muted rounded-lg">
-              <div className="font-semibold text-red-600">{statusCounts.rejected}</div>
-              <div className="text-xs text-muted-foreground">Rejected</div>
-            </div>
-          </div>
+          {/* Enhanced Filters */}
+          <EnhancedUserFilters
+            filters={filters}
+            statusCounts={statusCounts}
+            onFiltersChange={setFilters}
+            onRefresh={fetchAllUsers}
+          />
 
           {/* Bulk Actions */}
           {selectedUsers.size > 0 && (
-            <BulkUserActions
-              selectedUserIds={Array.from(selectedUsers)}
-              selectedUsers={filteredUsers.filter(u => selectedUsers.has(u.id))}
-              onActionComplete={() => {
-                setSelectedUsers(new Set());
-                fetchAllUsers();
-              }}
-            />
+            <div className="mb-6">
+              <BulkUserActions
+                selectedUserIds={Array.from(selectedUsers)}
+                selectedUsers={filteredAndSortedUsers.filter(u => selectedUsers.has(u.id))}
+                onActionComplete={() => {
+                  setSelectedUsers(new Set());
+                  fetchAllUsers();
+                }}
+              />
+            </div>
           )}
 
-          {/* User List */}
-          <div className="space-y-4">
-            {filteredUsers.length === 0 ? (
-              <div className="text-center py-8 text-muted-foreground">
-                <Users className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                <p>No users found matching your criteria</p>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 pb-2 border-b">
-                  <input
-                    type="checkbox"
-                    checked={selectedUsers.size === filteredUsers.length && filteredUsers.length > 0}
-                    onChange={(e) => handleSelectAll(e.target.checked)}
-                    className="rounded"
-                  />
-                  <span className="text-sm text-muted-foreground">
-                    Select all ({filteredUsers.length} users)
-                  </span>
-                </div>
-                
-                {filteredUsers.map((user) => (
-                  <UserDirectoryRow
-                    key={user.id}
-                    user={user}
-                    isSelected={selectedUsers.has(user.id)}
-                    onSelect={(checked) => handleUserSelect(user.id, checked)}
-                    onUpdate={fetchAllUsers}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
+          {/* User Table */}
+          {filteredAndSortedUsers.length === 0 ? (
+            <div className="text-center py-12 text-muted-foreground border rounded-lg bg-muted/20">
+              <Users className="h-16 w-16 mx-auto mb-4 opacity-40" />
+              <p className="text-lg font-medium mb-2">No users found</p>
+              <p className="text-sm">Try adjusting your search criteria or filters</p>
+            </div>
+          ) : (
+            <UserManagementTable
+              users={filteredAndSortedUsers}
+              selectedUsers={selectedUsers}
+              onUserSelect={handleUserSelect}
+              onSelectAll={handleSelectAll}
+              onUpdate={fetchAllUsers}
+            />
+          )}
         </CardContent>
       </Card>
     </div>
