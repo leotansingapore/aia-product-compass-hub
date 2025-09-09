@@ -1,5 +1,9 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.50.0";
+import { Resend } from "npm:resend@4.0.0";
+import { renderAsync } from "npm:@react-email/components@0.0.22";
+import React from "npm:react@18.3.1";
+import { PasswordResetEmail } from "./_templates/password-reset.tsx";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -118,34 +122,47 @@ serve(async (req) => {
       });
     }
 
-    // Optionally send email via Resend if configured and send flag provided
+    // Send email via Resend with custom template if send flag is true
     if (send) {
       const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
       if (!RESEND_API_KEY) {
         return new Response(JSON.stringify({ error: "Email sending not configured (missing RESEND_API_KEY)", resetUrl: linkData.properties?.action_link || linkData.action_link }), { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } });
       }
+      
       try {
-        const to = email;
-        const actionLink = (linkData.properties?.action_link || linkData.action_link) as string;
-        const res = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${RESEND_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            from: "FINternship <no-reply@resend.dev>",
-            to: [to],
-            subject: "Password reset instructions",
-            html: `<p>You (or an admin) requested a password reset.</p><p>Click the button below to set a new password:</p><p><a href="${actionLink}" style="display:inline-block;padding:10px 16px;border-radius:8px;background:#0ea5e9;color:#fff;text-decoration:none">Reset Password</a></p><p>If you did not request this, you can ignore this email.</p>`
-          }),
+        const resend = new Resend(RESEND_API_KEY);
+        const resetUrl = (linkData.properties?.action_link || linkData.action_link) as string;
+        
+        // Render the React email template
+        const html = await renderAsync(
+          React.createElement(PasswordResetEmail, {
+            resetUrl,
+            userEmail: email,
+          })
+        );
+        
+        const { error: emailError } = await resend.emails.send({
+          from: "FINternship <no-reply@resend.dev>",
+          to: [email],
+          subject: "Reset Your FINternship Account Password",
+          html,
         });
-        if (!res.ok) {
-          const txt = await res.text();
-          console.log('Resend error', txt);
+        
+        if (emailError) {
+          console.error('Resend error:', emailError);
+          return new Response(JSON.stringify({ error: "Failed to send email", resetUrl }), { 
+            status: 500, 
+            headers: { "Content-Type": "application/json", ...corsHeaders } 
+          });
         }
+        
+        console.log(`Password reset email sent successfully to ${email}`);
       } catch (e) {
-        console.log('Email send error', e);
+        console.error('Email send error:', e);
+        return new Response(JSON.stringify({ error: "Failed to send email", resetUrl: linkData.properties?.action_link || linkData.action_link }), { 
+          status: 500, 
+          headers: { "Content-Type": "application/json", ...corsHeaders } 
+        });
       }
     }
 
