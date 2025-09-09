@@ -7,6 +7,8 @@ import { UnifiedUserDirectory } from '@/components/admin/UnifiedUserDirectory';
 export default function AdminDashboard() {
   const { isMasterAdmin, hasRole } = usePermissions();
 
+  // Force refresh to clear cache
+
   if (!(isMasterAdmin() || hasRole('admin'))) {
     return (
       <div className="flex items-center justify-center min-h-screen">
