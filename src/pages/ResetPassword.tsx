@@ -19,19 +19,56 @@ export default function ResetPassword() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if we have a valid session (user clicked reset link)
+    let mounted = true;
+
+    // Listen for auth state changes to catch PASSWORD_RECOVERY event
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (!mounted) return;
+        
+        console.log('[ResetPassword] Auth event:', event);
+        
+        if (event === 'PASSWORD_RECOVERY' && session) {
+          setValidSession(true);
+        } else if (event === 'SIGNED_OUT' || (!session && event !== 'INITIAL_SESSION')) {
+          // If user is signed out or no session, redirect to auth
+          navigate('/auth');
+        }
+      }
+    );
+
+    // Check for existing session
     const checkSession = async () => {
-      const { data: { session }, error } = await supabase.auth.getSession();
-      if (session && !error) {
-        setValidSession(true);
-      } else {
-        // No valid reset session, redirect to auth
-        navigate('/auth');
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (mounted) {
+          console.log('[ResetPassword] Initial session check:', !!session, error?.message);
+          if (session && !error) {
+            setValidSession(true);
+          } else if (!session) {
+            // Give it a moment for the auth state to initialize
+            setTimeout(() => {
+              if (mounted && !validSession) {
+                navigate('/auth');
+              }
+            }, 1000);
+          }
+        }
+      } catch (error) {
+        console.error('[ResetPassword] Session check error:', error);
+        if (mounted) {
+          navigate('/auth');
+        }
       }
     };
 
     checkSession();
-  }, [navigate]);
+
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
+  }, [navigate, validSession]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
