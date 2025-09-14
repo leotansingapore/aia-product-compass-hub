@@ -119,7 +119,7 @@ export class SimpleAuthService {
 
   static async resetPassword(email: string): Promise<{ success: boolean; error?: string }> {
     try {
-      const redirectUrl = `${window.location.origin}/force-password`;
+      const redirectUrl = `${window.location.origin}/reset-password`;
       const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: redirectUrl });
       
       if (error) {

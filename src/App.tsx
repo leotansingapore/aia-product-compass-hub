@@ -22,6 +22,7 @@ import ProductDetail from "./pages/ProductDetail";
 import HowToUsePortal from "./pages/HowToUsePortal";
 import SearchByProfile from "./pages/SearchByProfile";
 import ForcePasswordChange from "./pages/ForcePasswordChange";
+import ResetPassword from "./pages/ResetPassword";
 import Bookmarks from "./pages/Bookmarks";
 import SimplifiedAuth from "./pages/SimplifiedAuth";
 import ConsultantLanding from "./pages/ConsultantLanding";
@@ -75,7 +76,8 @@ const App = () => (
                     <Route path="/my-account" element={<MyAccount />} />
 <Route path="/category/:categorySlugOrId" element={<ProductCategory />} />
 <Route path="/product/:productSlugOrId" element={<ProductDetail />} />
-<Route path="/force-password" element={<ForcePasswordChange />} />
+                    <Route path="/force-password" element={<ForcePasswordChange />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
 
 {/* Knowledge Base */}
 <Route path="/kb" element={<KnowledgeBase />} />
