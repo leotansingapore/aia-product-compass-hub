@@ -15,10 +15,22 @@ export default function ResetPassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [validSession, setValidSession] = useState(false);
+  const [linkError, setLinkError] = useState<string | null>(null);
   const { toast } = useToast();
   const navigate = useNavigate();
 
+  // Detect auth errors returned in the URL hash (e.g., otp_expired)
   useEffect(() => {
+    const hash = window.location.hash || "";
+    if (hash.includes("error=")) {
+      const params = new URLSearchParams(hash.replace(/^#/, ""));
+      const description = params.get("error_description") || "Email link is invalid or has expired.";
+      setLinkError(decodeURIComponent(description));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (linkError) return; // Don't attempt session flow if link is invalid/expired
     let mounted = true;
 
     // Listen for auth state changes to catch PASSWORD_RECOVERY event
@@ -68,7 +80,7 @@ export default function ResetPassword() {
       mounted = false;
       subscription.unsubscribe();
     };
-  }, [navigate, validSession]);
+  }, [navigate, validSession, linkError]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -122,10 +134,39 @@ export default function ResetPassword() {
     }
   };
 
+  if (linkError) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center px-4">
+        <Helmet>
+          <title>Password Reset Link Expired - FINternship</title>
+          <meta name="description" content="Your password reset link is invalid or has expired. Request a new one from the sign in page." />
+          <link rel="canonical" href={`${window.location.origin}/reset-password`} />
+        </Helmet>
+
+        <div className="max-w-lg w-full">
+          <Card className="p-4 sm:p-6">
+            <CardHeader className="px-0 pt-0">
+              <CardTitle className="text-xl">Password reset link issue</CardTitle>
+              <CardDescription>{linkError}</CardDescription>
+            </CardHeader>
+            <CardContent className="px-0 pb-0 space-y-3">
+              <p className="text-sm text-muted-foreground">
+                This can happen if the link was already used, expired, or was opened in a different browser/device than the one that requested it.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button onClick={() => navigate('/auth')} className="w-full sm:w-auto">Go to Sign In</Button>
+                <Button variant="outline" onClick={() => navigate('/auth')} className="w-full sm:w-auto">Request New Reset Link</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
   if (!validSession) {
     return null; // Will redirect in useEffect
   }
-
   return (
     <div className="min-h-[60vh] flex items-center justify-center px-4">
       <Helmet>
