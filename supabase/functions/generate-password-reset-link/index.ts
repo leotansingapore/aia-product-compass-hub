@@ -166,12 +166,21 @@ serve(async (req) => {
       }
     }
 
-    return new Response(JSON.stringify({ resetUrl: linkData.properties?.action_link || linkData.action_link }), {
+    return new Response(JSON.stringify({ 
+      success: true, 
+      resetUrl: linkData.properties?.action_link || linkData.action_link,
+      emailSent: !!send 
+    }), {
       status: 200,
       headers: { "Content-Type": "application/json", ...corsHeaders },
     });
   } catch (e: any) {
-    return new Response(JSON.stringify({ error: e?.message || 'Unexpected error' }), {
+    console.error('Password reset error:', e);
+    return new Response(JSON.stringify({ 
+      success: false, 
+      error: e?.message || 'Unexpected error',
+      details: e?.stack || 'No stack trace available'
+    }), {
       status: 500,
       headers: { "Content-Type": "application/json", ...corsHeaders },
     });
