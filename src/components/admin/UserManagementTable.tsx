@@ -202,16 +202,29 @@ export function UserManagementTable({
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error('No active session');
 
-      const { error } = await supabase.functions.invoke('admin-delete-users', {
-        body: { user_ids: [user.id] },
+      const payload: any = { user_ids: [], approval_request_ids: [] };
+      if (user.profile) payload.user_ids = [user.id];
+      if (user.approval_request_id) payload.approval_request_ids = [user.approval_request_id];
+
+      const { data, error } = await supabase.functions.invoke('admin-delete-users', {
+        body: payload,
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
 
       if (error) throw error;
 
+      const result = data as any;
+      const anyDeleted = (result.deleted?.length || 0) > 0 || (result.deleted_requests || 0) > 0;
+      const anyFailed = (result.failed?.length || 0) > 0;
+
       toast({
-        title: "User Deleted",
-        description: `Successfully deleted ${user.email}`,
+        title: anyDeleted ? "User Deleted" : 'Nothing deleted',
+        description: anyFailed
+          ? `Some parts failed. Deleted auth: ${result.deleted?.length || 0}, approval requests: ${result.deleted_requests || 0}`
+          : anyDeleted
+            ? `Removed ${result.deleted?.length || 0} account(s) and ${result.deleted_requests || 0} request(s)`
+            : 'No user account or approval request found to delete',
+        variant: anyFailed || !anyDeleted ? "destructive" : "default",
       });
 
       onUpdate();

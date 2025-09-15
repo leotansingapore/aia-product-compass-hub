@@ -262,34 +262,35 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error('No active session');
 
+      const userIds = selectedUsers.filter(u => !!u.profile).map(u => u.id);
+      const requestIds = selectedUsers.map(u => u.approval_request_id).filter(Boolean) as string[];
+
       const { data, error } = await supabase.functions.invoke('admin-delete-users', {
-        body: { user_ids: selectedUserIds },
+        body: { user_ids: userIds, approval_request_ids: requestIds },
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
 
       if (error) throw error;
 
       const result = data as any;
-      if (result.failed && result.failed.length > 0) {
-        toast({
-          title: "Partial delete",
-          description: `Deleted ${result.deleted?.length || 0}, failed ${result.failed.length}.`,
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Users deleted",
-          description: `Successfully deleted ${selectedUsers.length} user(s)`,
-        });
-      }
+      const anyDeleted = (result.deleted?.length || 0) > 0 || (result.deleted_requests || 0) > 0;
+      const anyFailed = (result.failed?.length || 0) > 0;
+
+      toast({
+        title: anyDeleted ? 'Users deleted' : 'Nothing deleted',
+        description: anyFailed
+          ? `Deleted accounts: ${result.deleted?.length || 0}, requests: ${result.deleted_requests || 0}. Failed: ${result.failed.length}`
+          : `Deleted accounts: ${result.deleted?.length || 0}, requests: ${result.deleted_requests || 0}`,
+        variant: anyFailed || !anyDeleted ? 'destructive' : 'default',
+      });
 
       onActionComplete();
     } catch (error) {
       console.error('Error deleting users:', error);
       toast({
-        title: "Error",
-        description: "Failed to delete users",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Failed to delete users',
+        variant: 'destructive',
       });
     } finally {
       setLoading(null);

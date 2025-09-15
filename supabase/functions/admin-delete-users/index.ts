@@ -7,7 +7,9 @@ const corsHeaders = {
 };
 
 interface DeleteUsersPayload {
-  user_ids: string[];
+  user_ids?: string[];
+  approval_request_ids?: string[];
+  emails?: string[];
 }
 
 serve(async (req) => {
@@ -27,9 +29,13 @@ serve(async (req) => {
     const ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY")!;
     const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
-    const { user_ids }: DeleteUsersPayload = await req.json();
-    if (!Array.isArray(user_ids) || user_ids.length === 0) {
-      return new Response(JSON.stringify({ error: "user_ids must be a non-empty array" }), {
+    const payload: DeleteUsersPayload = await req.json();
+    const user_ids = Array.isArray(payload.user_ids) ? payload.user_ids : [];
+    const approval_request_ids = Array.isArray(payload.approval_request_ids) ? payload.approval_request_ids : [];
+    const emailsParam = Array.isArray(payload.emails) ? payload.emails : [];
+
+    if (user_ids.length === 0 && approval_request_ids.length === 0 && emailsParam.length === 0) {
+      return new Response(JSON.stringify({ error: "Provide user_ids and/or approval_request_ids or emails" }), {
         status: 400,
         headers: { "Content-Type": "application/json", ...corsHeaders },
       });
@@ -88,11 +94,46 @@ serve(async (req) => {
     const failed = results.filter(r => !r.success);
     const succeeded = results.filter(r => r.success);
 
+    // Also remove any approval requests for these users (by id or email)
+    let deletedRequests = 0;
+
+    // Emails from profiles of deleted users
+    const emailsFromProfiles: string[] = [];
+    if (user_ids.length > 0) {
+      const { data: profs } = await serviceClient
+        .from('profiles')
+        .select('email')
+        .in('user_id', user_ids);
+      const profEmails = (profs || []).map((p: any) => p.email).filter(Boolean);
+      emailsFromProfiles.push(...(profEmails as string[]));
+    }
+
+    const uniqueEmails = Array.from(new Set([...(emailsParam || []), ...emailsFromProfiles].filter(Boolean)));
+
+    if (approval_request_ids.length > 0) {
+      const { data: delById } = await serviceClient
+        .from('user_approval_requests')
+        .delete()
+        .in('id', approval_request_ids)
+        .select('id');
+      deletedRequests += delById?.length || 0;
+    }
+
+    if (uniqueEmails.length > 0) {
+      const { data: delByEmail } = await serviceClient
+        .from('user_approval_requests')
+        .delete()
+        .in('email', uniqueEmails)
+        .select('id');
+      deletedRequests += delByEmail?.length || 0;
+    }
+
     return new Response(
       JSON.stringify({
         success: failed.length === 0,
         deleted: succeeded.map(s => s.id),
         failed,
+        deleted_requests: deletedRequests,
       }),
       {
         status: 200,
