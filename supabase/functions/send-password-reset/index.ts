@@ -88,6 +88,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (profileError || !profile?.user_id) {
       console.log('⚠️ No profile found for email (treat as non-existent account):', email.trim());
+      console.log('EARLY_EXIT: not sending email (no profile)');
       // Always return success to prevent email enumeration attacks
       return new Response(
         JSON.stringify({ 
