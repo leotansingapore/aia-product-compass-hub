@@ -161,13 +161,12 @@ serve(async (req) => {
       .delete()
       .eq('user_id', userId);
 
-    // Add default user role
+    // Add default user role and basic tier (unless a different tier is specified)
     const rolesToAdd = ['user'];
     
-    // Add tier role if specified
-    if (initial_tier && initial_tier !== 'user') {
-      rolesToAdd.push(initial_tier);
-    }
+    // Add tier role - default to 'basic' if not specified to make user "active"
+    const tierToAdd = initial_tier && initial_tier !== 'user' ? initial_tier : 'basic';
+    rolesToAdd.push(tierToAdd);
 
     const roleInserts = rolesToAdd.map(role => ({
       user_id: userId,

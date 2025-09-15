@@ -193,13 +193,15 @@ if (tempPassword && tempPassword.length < 6) {
       // Don't fail the approval for profile errors, just log
     }
 
-    // Assign default user role
+    // Assign default user role and basic tier to make user "active" by default
+    const rolesToAssign = [
+      { user_id: userId, role: 'user' },
+      { user_id: userId, role: 'basic' }
+    ]
+    
     const { error: roleError } = await supabaseAdmin
       .from('user_roles')
-      .upsert({
-        user_id: userId,
-        role: 'user'
-      }, { onConflict: 'user_id,role' })
+      .upsert(rolesToAssign, { onConflict: 'user_id,role' })
 
     if (roleError) {
       console.error('Role assignment error:', roleError)
