@@ -70,23 +70,23 @@ serve(async (req) => {
         .single();
 
       if (profileErr || !profileData) {
-        return new Response(JSON.stringify({ error: 'User not found in system' }), { 
-          status: 404, 
-          headers: { "Content-Type": "application/json", ...corsHeaders } 
-        });
+        console.log(`No profile found for ${email}, proceeding to create minimal auth user...`);
       }
+      const metaFirst = profileData?.first_name || '';
+      const metaLast = profileData?.last_name || '';
+      const metaDisplay = profileData?.display_name || email.split('@')[0];
 
-      console.log(`Found profile for ${email}, creating auth user...`);
+      console.log(`Creating auth user for ${email} with metadata from ${profileData ? 'profile' : 'defaults'}...`);
       
-      // Create auth user with profile data
+      // Create auth user with available metadata
       const { data: createUserData, error: createUserErr } = await serviceClient.auth.admin.createUser({
         email: email,
         password: 'temporary-password-will-be-reset',
         email_confirm: true,
         user_metadata: {
-          first_name: profileData.first_name || '',
-          last_name: profileData.last_name || '',
-          display_name: profileData.display_name || ''
+          first_name: metaFirst,
+          last_name: metaLast,
+          display_name: metaDisplay
         }
       });
 
