@@ -107,9 +107,9 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
       if (error) throw error;
 
       toast({
-        title: '✅ User Approved',
-        description: `${user.email} has been approved and can now sign in.`,
-        duration: 6000
+        title: '✅ User Approved & Account Created',
+        description: `${user.email} has been approved and their account is ready. They can sign in immediately with their original password.`,
+        duration: 8000
       });
 
       onUpdate();
