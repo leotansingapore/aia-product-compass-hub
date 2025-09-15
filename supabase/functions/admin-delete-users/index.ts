@@ -66,14 +66,107 @@ serve(async (req) => {
       auth: { autoRefreshToken: false, persistSession: false },
     });
 
-    // Clean related tables first (profiles, user_roles)
-    const { error: rolesError } = await serviceClient.from('user_roles').delete().in('user_id', user_ids);
-    if (rolesError) {
-      console.log('user_roles delete error', rolesError);
-    }
-    const { error: profilesError } = await serviceClient.from('profiles').delete().in('user_id', user_ids);
-    if (profilesError) {
-      console.log('profiles delete error', profilesError);
+    // Clean related data across public schema
+    try {
+      if (user_ids.length > 0) {
+        // 1) Simple user-owned tables
+        const userOwnedTables = [
+          'learning_progress',
+          'quiz_attempts',
+          'video_progress',
+          'user_bookmarks',
+          'user_notes',
+        ];
+        for (const table of userOwnedTables) {
+          const { error } = await serviceClient.from(table).delete().in('user_id', user_ids);
+          if (error) console.log(`${table} delete error`, error);
+        }
+
+        // 2) Bookings and audit logs
+        const { data: bookings } = await serviceClient
+          .from('bookings')
+          .select('id')
+          .in('user_id', user_ids);
+        const bookingIds = (bookings || []).map((b: any) => b.id);
+        if (bookingIds.length > 0) {
+          const { error: balErr } = await serviceClient
+            .from('booking_audit_log')
+            .delete()
+            .in('booking_id', bookingIds);
+          if (balErr) console.log('booking_audit_log delete error', balErr);
+        }
+        const { error: bookingsErr } = await serviceClient
+          .from('bookings')
+          .delete()
+          .in('user_id', user_ids);
+        if (bookingsErr) console.log('bookings delete error', bookingsErr);
+
+        // 3) Roleplay sessions and dependents
+        const { data: sessions } = await serviceClient
+          .from('roleplay_sessions')
+          .select('id')
+          .in('user_id', user_ids);
+        const sessionIds = (sessions || []).map((s: any) => s.id);
+
+        if (sessionIds.length > 0) {
+          const sessionChildTables = [
+            'conversation_transcripts',
+            'speech_metrics',
+            'roleplay_feedback',
+            'roleplay_performance_metrics',
+            'coaching_events',
+          ];
+          for (const table of sessionChildTables) {
+            const { error } = await serviceClient.from(table).delete().in('session_id', sessionIds);
+            if (error) console.log(`${table} delete error`, error);
+          }
+
+          // Mentor reviews/annotations linked to these sessions
+          const { data: reviewsBySession } = await serviceClient
+            .from('mentor_reviews')
+            .select('id')
+            .in('session_id', sessionIds);
+
+          // Mentor reviews where user acted as mentor
+          const { data: reviewsByMentor } = await serviceClient
+            .from('mentor_reviews')
+            .select('id')
+            .in('mentor_id', user_ids);
+
+          const reviewIds = Array.from(new Set([
+            ...((reviewsBySession || []).map((r: any) => r.id)),
+            ...((reviewsByMentor || []).map((r: any) => r.id)),
+          ]));
+
+          if (reviewIds.length > 0) {
+            const { error: annErr } = await serviceClient
+              .from('mentor_annotations')
+              .delete()
+              .in('review_id', reviewIds);
+            if (annErr) console.log('mentor_annotations delete error', annErr);
+
+            const { error: mrErr } = await serviceClient
+              .from('mentor_reviews')
+              .delete()
+              .in('id', reviewIds);
+            if (mrErr) console.log('mentor_reviews delete error', mrErr);
+          }
+
+          const { error: sessionsErr } = await serviceClient
+            .from('roleplay_sessions')
+            .delete()
+            .in('id', sessionIds);
+          if (sessionsErr) console.log('roleplay_sessions delete error', sessionsErr);
+        }
+
+        // 4) Roles and profiles (after other data)
+        const { error: rolesError } = await serviceClient.from('user_roles').delete().in('user_id', user_ids);
+        if (rolesError) console.log('user_roles delete error', rolesError);
+        const { error: profilesError } = await serviceClient.from('profiles').delete().in('user_id', user_ids);
+        if (profilesError) console.log('profiles delete error', profilesError);
+      }
+    } catch (cleanupError) {
+      console.log('cleanup error', cleanupError);
     }
 
     // Delete from Auth
