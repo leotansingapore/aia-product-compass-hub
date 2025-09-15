@@ -16,7 +16,8 @@ import {
   DropdownMenuContent, 
   DropdownMenuItem, 
   DropdownMenuSeparator,
-  DropdownMenuTrigger 
+  DropdownMenuTrigger,
+  DropdownMenuLabel
 } from "@/components/ui/dropdown-menu";
 import { 
   UserCheck, 
@@ -268,6 +269,77 @@ export function UserManagementTable({
       setManageRolesUser(null);
     }
   };
+
+  const handleStatusChange = async (user: UnifiedUser, newStatus: UnifiedUser['status']) => {
+    try {
+      setUserLoading(user.id, 'status');
+      
+      if (user.approval_request_id) {
+        // Update the approval request status
+        const { error } = await supabase
+          .from('user_approval_requests')
+          .update({ status: newStatus })
+          .eq('id', user.approval_request_id);
+        
+        if (error) throw error;
+      }
+      
+      toast({
+        title: "Success",
+        description: `User status changed to ${newStatus.replace('_', ' ')}`,
+      });
+      
+      onUpdate();
+    } catch (error: any) {
+      console.error('Error updating status:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to update user status",
+        variant: "destructive",
+      });
+    } finally {
+      setUserLoading(user.id, null);
+    }
+  };
+
+  const handleRoleChange = async (user: UnifiedUser, newRole: string) => {
+    try {
+      setUserLoading(user.id, 'role');
+      
+      // First delete existing roles
+      await supabase
+        .from('user_roles')
+        .delete()
+        .eq('user_id', user.id);
+      
+      // Insert the new role
+      const { error } = await supabase
+        .from('user_roles')
+        .insert({
+          user_id: user.id,
+          role: newRole
+        });
+      
+      if (error) throw error;
+      
+      toast({
+        title: "Success",
+        description: `User role changed to ${newRole.replace('_', ' ')}`,
+      });
+      
+      onUpdate();
+    } catch (error: any) {
+      console.error('Error updating role:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to update user role",
+        variant: "destructive",
+      });
+    } finally {
+      setUserLoading(user.id, null);
+    }
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',
@@ -332,30 +404,70 @@ export function UserManagementTable({
                   </TableCell>
                   
                   <TableCell>
-                    <Badge variant={statusConfig.variant} className="gap-1 text-xs">
-                      <StatusIcon className="h-3 w-3" />
-                      {statusConfig.label}
-                    </Badge>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="sm" className="h-auto p-0 hover:bg-transparent">
+                          <Badge variant={statusConfig.variant} className="gap-1 text-xs cursor-pointer hover:opacity-80">
+                            <StatusIcon className="h-3 w-3" />
+                            {statusConfig.label}
+                          </Badge>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="start" className="w-48">
+                        <DropdownMenuLabel>Change Status</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        {['pending_approval', 'approved', 'active', 'needs_role', 'suspended', 'rejected'].map((status) => (
+                          <DropdownMenuItem
+                            key={status}
+                            onClick={() => handleStatusChange(user, status as any)}
+                            disabled={user.status === status}
+                            className={user.status === status ? 'opacity-50' : ''}
+                          >
+                            {status.replace('_', ' ')} {user.status === status && '(current)'}
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </TableCell>
                   
                   <TableCell>
-                    <div className="flex flex-wrap gap-1">
-                      {user.roles.length > 0 ? (
-                        user.roles.map(role => (
-                          <Badge
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="sm" className="h-auto p-0 hover:bg-transparent">
+                          <div className="flex flex-wrap gap-1 cursor-pointer">
+                            {user.roles.length > 0 ? (
+                              user.roles.map(role => (
+                                <Badge
+                                  key={role}
+                                  variant={getRoleBadgeVariant(role)}
+                                  className="text-xs hover:opacity-80"
+                                >
+                                  {role.replace('_', ' ')}
+                                </Badge>
+                              ))
+                            ) : (
+                              <Badge variant="outline" className="text-xs text-muted-foreground hover:opacity-80">
+                                No roles
+                              </Badge>
+                            )}
+                          </div>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="start" className="w-48">
+                        <DropdownMenuLabel>Change Role</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        {['user', 'basic', 'intermediate', 'advanced', 'admin', 'master_admin'].map((role) => (
+                          <DropdownMenuItem
                             key={role}
-                            variant={getRoleBadgeVariant(role)}
-                            className="text-xs"
+                            onClick={() => handleRoleChange(user, role)}
+                            disabled={user.roles.includes(role)}
+                            className={user.roles.includes(role) ? 'opacity-50' : ''}
                           >
-                            {role.replace('_', ' ')}
-                          </Badge>
-                        ))
-                      ) : (
-                        <Badge variant="outline" className="text-xs text-muted-foreground">
-                          No roles
-                        </Badge>
-                      )}
-                    </div>
+                            {role.replace('_', ' ')} {user.roles.includes(role) && '(current)'}
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </TableCell>
                   
                   <TableCell className="text-sm text-muted-foreground">
