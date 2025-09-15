@@ -79,11 +79,15 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Check if user exists in auth system first
-    const { data: userData, error: userError } = await supabase.auth.admin.getUserByEmail(email.trim());
-    
-    if (userError || !userData.user) {
-      console.log('⚠️ User not found in auth system:', email.trim());
+    // Check if user exists via profiles (auth lookup by email not available)
+    const { data: profile, error: profileError } = await supabase
+      .from('profiles')
+      .select('user_id')
+      .eq('email', email.trim())
+      .single();
+
+    if (profileError || !profile?.user_id) {
+      console.log('⚠️ No profile found for email (treat as non-existent account):', email.trim());
       // Always return success to prevent email enumeration attacks
       return new Response(
         JSON.stringify({ 
@@ -97,7 +101,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Also check if user has been approved (optional additional check)
+    // Also check if user has been approved
     const { data: approvalData } = await supabase
       .from('user_approval_requests')
       .select('status')
@@ -133,6 +137,17 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (error) {
       console.error('❌ Error generating reset link:', error);
+      const msg = (error as any)?.message || '';
+      if (msg.toLowerCase().includes('not found')) {
+        // Hide existence details to avoid enumeration
+        return new Response(
+          JSON.stringify({ 
+            success: true,
+            message: "If an account with this email exists, a password reset link has been sent."
+          }),
+          { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
+        );
+      }
       return new Response(
         JSON.stringify({ error: "Failed to generate reset link" }),
         { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
