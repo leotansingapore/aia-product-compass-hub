@@ -977,6 +977,36 @@ export type Database = {
         }
         Relationships: []
       }
+      user_access_tiers: {
+        Row: {
+          created_at: string
+          granted_at: string
+          granted_by: string | null
+          id: string
+          tier_level: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          granted_at?: string
+          granted_by?: string | null
+          id?: string
+          tier_level?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          granted_at?: string
+          granted_by?: string | null
+          id?: string
+          tier_level?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_achievements: {
         Row: {
           achievement_id: string
@@ -1005,6 +1035,36 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_admin_roles: {
+        Row: {
+          admin_role: string
+          created_at: string
+          granted_at: string
+          granted_by: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          admin_role?: string
+          created_at?: string
+          granted_at?: string
+          granted_by?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          admin_role?: string
+          created_at?: string
+          granted_at?: string
+          granted_by?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
       }
       user_approval_requests: {
         Row: {
@@ -1211,9 +1271,21 @@ export type Database = {
         Args: { user_email: string }
         Returns: string
       }
+      get_user_access_tier: {
+        Args: { user_id: string }
+        Returns: string
+      }
+      get_user_admin_role: {
+        Args: { user_id: string }
+        Returns: string
+      }
       get_user_tier: {
         Args: { user_id: string }
         Returns: string
+      }
+      has_admin_role: {
+        Args: { required_role: string; user_id: string }
+        Returns: boolean
       }
       has_role: {
         Args: { _role: string; _user_id: string }
