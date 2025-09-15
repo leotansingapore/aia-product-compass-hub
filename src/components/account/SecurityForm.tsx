@@ -9,8 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Key, Save, X } from "lucide-react";
-
-const passwordSchema = z.object({
+const standardPasswordSchema = z.object({
   currentPassword: z.string().min(1, "Current password is required"),
   newPassword: z.string().min(6, "Password must be at least 6 characters"),
   confirmPassword: z.string().min(6, "Please confirm your password"),
@@ -19,19 +18,34 @@ const passwordSchema = z.object({
   path: ["confirmPassword"],
 });
 
-type PasswordFormData = z.infer<typeof passwordSchema>;
+const recoveryPasswordSchema = z.object({
+  newPassword: z.string().min(6, "Password must be at least 6 characters"),
+  confirmPassword: z.string().min(6, "Please confirm your password"),
+}).refine((data) => data.newPassword === data.confirmPassword, {
+  message: "Passwords don't match",
+  path: ["confirmPassword"],
+});
+
+export type PasswordFormData = {
+  currentPassword?: string;
+  newPassword: string;
+  confirmPassword: string;
+};
 
 interface SecurityFormProps {
   onSuccess: () => void;
   onCancel: () => void;
+  requireCurrent?: boolean;
 }
 
-export function SecurityForm({ onSuccess, onCancel }: SecurityFormProps) {
+export function SecurityForm({ onSuccess, onCancel, requireCurrent = true }: SecurityFormProps) {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
+  const schema = requireCurrent ? standardPasswordSchema : recoveryPasswordSchema;
+
   const form = useForm<PasswordFormData>({
-    resolver: zodResolver(passwordSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       currentPassword: "",
       newPassword: "",
@@ -74,25 +88,28 @@ export function SecurityForm({ onSuccess, onCancel }: SecurityFormProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Key className="h-5 w-5" />
-          Change Password
+          {requireCurrent ? 'Change Password' : 'Set New Password'}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="currentPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Current Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" placeholder="Enter current password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            {requireCurrent && (
+              <FormField
+                control={form.control}
+                name="currentPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Current Password</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="Enter current password" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+
 
             <FormField
               control={form.control}

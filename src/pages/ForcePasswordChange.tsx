@@ -8,16 +8,26 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
 export default function ForcePasswordChange() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    // Wait until auth is initialized
+    if (loading) return;
+
+    const hash = window.location.hash || '';
+    const hasRecoveryToken = hash.includes('type=recovery') || hash.includes('access_token');
+
+    // If no user and no recovery token, send to auth
+    if (!user && !hasRecoveryToken) {
       navigate('/auth');
     }
-  }, [user, navigate]);
+  }, [user, loading, navigate]);
 
-  if (!user) return null;
+  // While waiting for auth to initialize or for recovery token to log user in, avoid flashing redirect
+  const hash = window.location.hash || '';
+  const hasRecoveryToken = hash.includes('type=recovery') || hash.includes('access_token');
+  if (loading || (!user && hasRecoveryToken)) return null;
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center px-4">
@@ -37,6 +47,7 @@ export default function ForcePasswordChange() {
 
         <Card className="p-4 sm:p-6">
           <SecurityForm
+            requireCurrent={false}
             onSuccess={async () => {
               // Proactively mark first_login as false to avoid redirect race
               try {
