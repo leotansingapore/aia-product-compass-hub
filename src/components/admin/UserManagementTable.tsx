@@ -41,6 +41,8 @@ import type { UnifiedUser } from "./UnifiedUserDirectory";
 import { PasswordResetDialog } from "./PasswordResetDialog";
 import { ProvisionUserDialog } from "./ProvisionUserDialog";
 import { SendEmailDialog } from "./SendEmailDialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { RoleSelector } from "@/components/account/RoleSelector";
 
 interface UserManagementTableProps {
   users: UnifiedUser[];
@@ -62,6 +64,7 @@ export function UserManagementTable({
   const [passwordResetUser, setPasswordResetUser] = useState<UnifiedUser | null>(null);
   const [provisionUser, setProvisionUser] = useState<UnifiedUser | null>(null);
   const [sendEmailUser, setSendEmailUser] = useState<UnifiedUser | null>(null);
+  const [manageRolesUser, setManageRolesUser] = useState<UnifiedUser | null>(null);
 
   const setUserLoading = (userId: string, type: string | null) => {
     setLoading(prev => ({ ...prev, [userId]: type }));
@@ -244,6 +247,27 @@ export function UserManagementTable({
     setSendEmailUser(user);
   };
 
+  const handleSaveRoles = async (user: UnifiedUser, roles: string[]) => {
+    setUserLoading(user.id, 'roles');
+    try {
+      // Remove existing roles
+      await supabase.from('user_roles').delete().eq('user_id', user.id);
+      // Insert new roles
+      const inserts = roles.map((role) => ({ user_id: user.id, role }));
+      if (inserts.length > 0) {
+        const { error } = await supabase.from('user_roles').insert(inserts);
+        if (error) throw error;
+      }
+      toast({ title: 'Roles updated', description: `Saved ${roles.length} role(s)` });
+      onUpdate();
+    } catch (error) {
+      console.error('Error saving roles:', error);
+      toast({ title: 'Error', description: 'Failed to update roles', variant: 'destructive' });
+    } finally {
+      setUserLoading(user.id, null);
+      setManageRolesUser(null);
+    }
+  };
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',
@@ -410,7 +434,7 @@ export function UserManagementTable({
                             </>
                           )}
                           
-                          <DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => setManageRolesUser(user)}>
                             <Settings className="h-4 w-4 mr-2" />
                             Manage Roles
                           </DropdownMenuItem>
@@ -461,6 +485,21 @@ export function UserManagementTable({
         open={!!sendEmailUser}
         onOpenChange={(open) => !open && setSendEmailUser(null)}
       />
+
+      <Dialog open={!!manageRolesUser} onOpenChange={(open) => !open && setManageRolesUser(null)}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle>Manage Roles</DialogTitle>
+          </DialogHeader>
+          {manageRolesUser && (
+            <RoleSelector
+              user={manageRolesUser as any}
+              onSave={(roles) => handleSaveRoles(manageRolesUser, roles)}
+              onCancel={() => setManageRolesUser(null)}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
