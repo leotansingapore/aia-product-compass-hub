@@ -40,6 +40,7 @@ import { useToast } from "@/hooks/use-toast";
 import type { UnifiedUser } from "./UnifiedUserDirectory";
 import { PasswordResetDialog } from "./PasswordResetDialog";
 import { ProvisionUserDialog } from "./ProvisionUserDialog";
+import { SendEmailDialog } from "./SendEmailDialog";
 
 interface UserManagementTableProps {
   users: UnifiedUser[];
@@ -60,6 +61,7 @@ export function UserManagementTable({
   const [loading, setLoading] = useState<{ [key: string]: string | null }>({});
   const [passwordResetUser, setPasswordResetUser] = useState<UnifiedUser | null>(null);
   const [provisionUser, setProvisionUser] = useState<UnifiedUser | null>(null);
+  const [sendEmailUser, setSendEmailUser] = useState<UnifiedUser | null>(null);
 
   const setUserLoading = (userId: string, type: string | null) => {
     setLoading(prev => ({ ...prev, [userId]: type }));
@@ -225,6 +227,10 @@ export function UserManagementTable({
     }
   };
 
+  const handleSendEmail = (user: UnifiedUser) => {
+    setSendEmailUser(user);
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',
@@ -383,7 +389,7 @@ export function UserManagementTable({
                                 <Key className="h-4 w-4 mr-2" />
                                 Reset Password
                               </DropdownMenuItem>
-                              <DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => handleSendEmail(user)}>
                                 <Mail className="h-4 w-4 mr-2" />
                                 Send Email
                               </DropdownMenuItem>
@@ -435,6 +441,12 @@ export function UserManagementTable({
         open={!!provisionUser}
         onOpenChange={(open) => !open && setProvisionUser(null)}
         onSuccess={onUpdate}
+      />
+      
+      <SendEmailDialog
+        user={sendEmailUser}
+        open={!!sendEmailUser}
+        onOpenChange={(open) => !open && setSendEmailUser(null)}
       />
     </div>
   );

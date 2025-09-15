@@ -20,6 +20,7 @@ import {
   Star
 } from "lucide-react";
 import type { UnifiedUser } from "./UnifiedUserDirectory";
+import { SendEmailDialog } from "./SendEmailDialog";
 
 interface UserDirectoryRowProps {
   user: UnifiedUser;
@@ -31,6 +32,7 @@ interface UserDirectoryRowProps {
 export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserDirectoryRowProps) {
   const { toast } = useToast();
   const [loading, setLoading] = useState<string | null>(null);
+  const [showEmailDialog, setShowEmailDialog] = useState(false);
   
 
   const displayName = user.profile?.display_name || 
@@ -403,12 +405,22 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
               )}
             </>
           )}
+          <DropdownMenuItem onClick={() => setShowEmailDialog(true)}>
+            <Mail className="h-4 w-4 mr-2" />
+            Send Email
+          </DropdownMenuItem>
           <DropdownMenuItem className="text-destructive">
             <Trash2 className="h-4 w-4 mr-2" />
             Delete User
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      
+      <SendEmailDialog
+        user={user}
+        open={showEmailDialog}
+        onOpenChange={setShowEmailDialog}
+      />
     </div>
   );
 }
