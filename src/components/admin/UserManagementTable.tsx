@@ -420,7 +420,7 @@ export function UserManagementTable({
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-48">
-                          {(user.status === 'active' || user.status === 'approved') && (
+                          {(user.status === 'active' || user.status === 'approved' || user.status === 'needs_role') && (
                             <>
                               <DropdownMenuItem onClick={() => setPasswordResetUser(user)}>
                                 <Key className="h-4 w-4 mr-2" />
