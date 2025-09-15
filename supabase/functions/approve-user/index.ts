@@ -120,14 +120,12 @@ if (tempPassword && tempPassword.length < 6) {
 
     console.log('Processing approval for:', requestData.email)
 
-    // Check if user already exists
+    // Check if user already exists in auth.users
     const { data: existingUser, error: userLookupError } = await supabaseAdmin.auth.admin.listUsers({
       page: 1,
       perPage: 1,
       filter: `email.eq.${requestData.email}`
     })
-    
-    let newUser = null
     
     if (userLookupError) {
       console.error('User lookup error:', userLookupError)
@@ -137,34 +135,78 @@ if (tempPassword && tempPassword.length < 6) {
       )
     }
     
-    // Check if user exists in the list
+    let userId = null
+    
+    // Check if user exists in auth.users
     const userExists = existingUser && existingUser.users && existingUser.users.length > 0
     
     if (!userExists) {
-      console.log('User account will be created when they sign in with their chosen password');
-    } else {
-      // User already exists, use the existing user
-      newUser = { user: existingUser.users[0] }
-      console.log('User already exists:', newUser.user.id)
-
-      // If a temp password is provided, update the user's password
-      if (tempPassword) {
-        const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(
-          newUser.user.id,
-          { password: tempPassword }
+      // Get the stored password from the approval request (stored during signup)
+      const storedPassword = requestData.stored_password
+      if (!storedPassword) {
+        return new Response(
+          JSON.stringify({ error: 'No stored password found for user. User must sign up again.' }),
+          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         )
-        if (updateError) {
-          console.error('Failed to update existing user password:', updateError)
-          return new Response(
-            JSON.stringify({ error: 'Failed to set temporary password for existing user' }),
-            { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-          )
-        }
-        console.log('Temporary password set for existing user')
       }
+
+      // Create the user account with their original password
+      const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
+        email: requestData.email,
+        password: storedPassword,
+        email_confirm: true, // Auto-confirm email since admin is approving
+        user_metadata: {
+          first_name: requestData.first_name || '',
+          last_name: requestData.last_name || ''
+        }
+      })
+
+      if (createError) {
+        console.error('User creation error:', createError)
+        return new Response(
+          JSON.stringify({ error: 'Failed to create user account' }),
+          { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        )
+      }
+
+      userId = newUser.user.id
+      console.log('Created new user account:', userId)
+    } else {
+      // User already exists
+      userId = existingUser.users[0].id
+      console.log('User already exists:', userId)
     }
 
-    // Just mark the approval request as approved - user account will be created when they sign in
+    // Create profile if it doesn't exist
+    const { error: profileError } = await supabaseAdmin
+      .from('profiles')
+      .upsert({
+        user_id: userId,
+        email: requestData.email,
+        first_name: requestData.first_name,
+        last_name: requestData.last_name,
+        display_name: `${requestData.first_name || ''} ${requestData.last_name || ''}`.trim() || 'User'
+      }, { onConflict: 'user_id' })
+
+    if (profileError) {
+      console.error('Profile creation error:', profileError)
+      // Don't fail the approval for profile errors, just log
+    }
+
+    // Assign default user role
+    const { error: roleError } = await supabaseAdmin
+      .from('user_roles')
+      .upsert({
+        user_id: userId,
+        role: 'user'
+      }, { onConflict: 'user_id,role' })
+
+    if (roleError) {
+      console.error('Role assignment error:', roleError)
+      // Don't fail the approval for role errors, just log
+    }
+
+    // Mark the approval request as approved
     const { error: approvalError } = await supabaseAdmin
       .from('user_approval_requests')
       .update({
@@ -187,9 +229,10 @@ if (tempPassword && tempPassword.length < 6) {
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: 'User approved successfully',
+        message: 'User approved and account created successfully',
         email: requestData.email,
-        instructions: 'User can now sign in with their chosen password'
+        user_id: userId,
+        instructions: 'User can now sign in immediately with their original password'
       }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )

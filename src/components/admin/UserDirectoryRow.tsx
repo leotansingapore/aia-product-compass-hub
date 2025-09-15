@@ -11,7 +11,6 @@ import {
   UserCheck, 
   UserX, 
   Mail, 
-  Key, 
   Settings, 
   Trash2, 
   AlertTriangle,
@@ -32,7 +31,7 @@ interface UserDirectoryRowProps {
 export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserDirectoryRowProps) {
   const { toast } = useToast();
   const [loading, setLoading] = useState<string | null>(null);
-  const [tempPassword, setTempPassword] = useState("");
+  
 
   const displayName = user.profile?.display_name || 
     `${user.profile?.first_name || ''} ${user.profile?.last_name || ''}`.trim() || 
@@ -98,8 +97,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
 
       const { data, error } = await supabase.functions.invoke('approve-user', {
         body: { 
-          request_id: user.approval_request_id,
-          temp_password: tempPassword || undefined 
+          request_id: user.approval_request_id
         },
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
@@ -112,7 +110,6 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
         duration: 6000
       });
 
-      setTempPassword("");
       onUpdate();
     } catch (error) {
       console.error('Error approving user:', error);
@@ -397,10 +394,6 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
               <DropdownMenuItem onClick={handleSendResetLink} disabled={loading === 'reset'}>
                 <Mail className="h-4 w-4 mr-2" />
                 Send Reset Link
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={handleSetTempPassword} disabled={loading === 'setTemp'}>
-                <Key className="h-4 w-4 mr-2" />
-                Set Temp Password
               </DropdownMenuItem>
               {!user.roles.includes('master_admin') && (
                 <DropdownMenuItem onClick={handleToggleAdmin}>

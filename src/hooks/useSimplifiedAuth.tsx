@@ -132,18 +132,32 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
     }
 
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email: email.trim(),
-        password: password.trim(),
-        options: {
-          emailRedirectTo: `${window.location.origin}/`,
-          data: {
-            display_name: displayName?.trim() || 'User'
-          }
-        }
-      });
+      // Create approval request instead of direct signup
+      const [firstName, lastName] = (displayName?.trim() || '').split(' ', 2);
+      
+      const { data, error } = await supabase
+        .from('user_approval_requests')
+        .insert({
+          email: email.trim(),
+          first_name: firstName || '',
+          last_name: lastName || '',
+          stored_password: password.trim(),
+          status: 'pending'
+        })
+        .select()
+        .single();
 
       if (error) {
+        // Check if user already requested approval
+        if (error.code === '23505') { // unique constraint violation
+          toast({
+            variant: "destructive",
+            title: "Request Already Exists",
+            description: "An approval request for this email already exists. Please wait for admin approval."
+          });
+          return;
+        }
+        
         toast({
           variant: "destructive",
           title: "Registration Failed",
@@ -152,10 +166,10 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         return;
       }
 
-      if (data.user) {
+      if (data) {
         toast({
-          title: "Account Created!",
-          description: "Please check your email to verify your account."
+          title: "Registration Request Submitted!",
+          description: "Your account request has been submitted for admin approval. You'll be able to sign in once approved."
         });
       }
     } catch (error) {
