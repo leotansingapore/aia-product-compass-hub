@@ -193,26 +193,38 @@ if (tempPassword && tempPassword.length < 6) {
       // Don't fail the approval for profile errors, just log
     }
 
-    // Assign default user role and basic tier to make user "active" by default
-    const rolesToAssign = [
-      { user_id: userId, role: 'user' },
-      { user_id: userId, role: 'basic' }
-    ]
-    
-    const { error: roleError } = await supabaseAdmin
-      .from('user_roles')
-      .upsert(rolesToAssign, { onConflict: 'user_id,role' })
+    // Assign default access tier and admin role in new system
+    const { error: tierError } = await supabaseAdmin
+      .from('user_access_tiers')
+      .upsert({
+        user_id: userId,
+        tier_level: 'basic',
+        granted_by: user.id
+      }, { onConflict: 'user_id' })
 
-    if (roleError) {
-      console.error('Role assignment error:', roleError)
-      // Don't fail the approval for role errors, just log
+    if (tierError) {
+      console.error('Access tier assignment error:', tierError)
     }
 
-    // Mark the approval request as approved
+    const { error: adminRoleError } = await supabaseAdmin
+      .from('user_admin_roles')
+      .upsert({
+        user_id: userId,
+        admin_role: 'user',
+        granted_by: user.id
+      }, { onConflict: 'user_id,admin_role' })
+
+    if (adminRoleError) {
+      console.error('Admin role assignment error:', adminRoleError)
+    }
+
+    console.log('Assigned default basic tier and user role to:', userId)
+
+    // Mark the approval request as active (new status)
     const { error: approvalError } = await supabaseAdmin
       .from('user_approval_requests')
       .update({
-        status: 'approved',
+        status: 'active',
         reviewed_at: new Date().toISOString(),
         reviewed_by: user.id
       })

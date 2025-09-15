@@ -15,6 +15,7 @@ const useSimplifiedAuthSafe = () => {
 export function usePermissions() {
   const { user } = useSimplifiedAuthSafe();
   const [userTier, setUserTier] = useState<string | null>(null);
+  const [userAdminRole, setUserAdminRole] = useState<string | null>(null);
   const [tierPermissions, setTierPermissions] = useState<{ access_type: string; resource_id: string; }[]>([]);
   const [loading, setLoading] = useState(true);
   const hasInitialized = useRef(false);
@@ -26,30 +27,41 @@ export function usePermissions() {
     setLoading(true);
     
     try {
-      // Get user's tier using the database function
-      const { data: tierData, error: tierError } = await supabase.rpc('get_user_tier', {
+      // Get user's access tier
+      const { data: tierData, error: tierError } = await supabase.rpc('get_user_access_tier', {
         user_id: user.id
       });
 
       if (tierError) {
-        console.error('Error fetching user tier:', tierError);
-        setUserTier(null);
+        console.error('Error fetching user access tier:', tierError);
+        setUserTier('basic');
       } else {
-        setUserTier(tierData || null);
+        setUserTier(tierData || 'basic');
       }
 
-      // Fetch tier permissions if user has a tier
-      if (tierData) {
-        const { data: permissions, error: permissionsError } = await supabase
-          .from('tier_permissions')
-          .select('access_type, resource_id')
-          .eq('tier_level', tierData);
+      // Get user's admin role
+      const { data: adminRoleData, error: adminRoleError } = await supabase.rpc('get_user_admin_role', {
+        user_id: user.id
+      });
 
-        if (permissionsError) {
-          console.error('Error fetching tier permissions:', permissionsError);
-        } else {
-          setTierPermissions(permissions || []);
-        }
+      if (adminRoleError) {
+        console.error('Error fetching user admin role:', adminRoleError);
+        setUserAdminRole('user');
+      } else {
+        setUserAdminRole(adminRoleData || 'user');
+      }
+
+      // Fetch tier permissions based on access tier
+      const accessTier = tierData || 'basic';
+      const { data: permissions, error: permissionsError } = await supabase
+        .from('tier_permissions')
+        .select('access_type, resource_id')
+        .eq('tier_level', accessTier);
+
+      if (permissionsError) {
+        console.error('Error fetching tier permissions:', permissionsError);
+      } else {
+        setTierPermissions(permissions || []);
       }
     } catch (error) {
       console.error('Error in fetchUserPermissions:', error);
@@ -64,6 +76,7 @@ export function usePermissions() {
     } else if (!user) {
       // Reset state when user logs out
       setUserTier(null);
+      setUserAdminRole(null);
       setTierPermissions([]);
       setLoading(false);
       hasInitialized.current = false;
@@ -78,19 +91,24 @@ export function usePermissions() {
   }, [user]);
 
   const hasRole = (role: string): boolean => {
-    return userTier === role;
+    // Check both access tier and admin role
+    return userTier === role || userAdminRole === role;
   };
 
   const isMasterAdmin = (): boolean => {
-    return userTier === 'master_admin';
+    return userAdminRole === 'super_admin';
   };
 
   const isAdmin = (): boolean => {
-    return userTier === 'admin' || isMasterAdmin();
+    return userAdminRole === 'admin' || userAdminRole === 'super_admin';
   };
 
   const getUserTier = (): string | null => {
     return userTier;
+  };
+
+  const getUserAdminRole = (): string | null => {
+    return userAdminRole;
   };
 
   const canAccessSection = (sectionId: string): boolean => {
@@ -188,12 +206,14 @@ export function usePermissions() {
 
   return {
     userTier,
+    userAdminRole,
     tierPermissions,
     loading,
     hasRole,
     isMasterAdmin,
     isAdmin,
     getUserTier,
+    getUserAdminRole,
     // Section permissions
     getSectionPermission,
     canAccessSection,

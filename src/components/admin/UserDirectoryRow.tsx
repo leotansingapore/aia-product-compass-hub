@@ -72,19 +72,35 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
   };
 
   const getCurrentTier = () => {
-    if (user.roles.includes('master_admin')) return 'master_admin';
+    // Access tier
     if (user.roles.includes('advanced')) return 'advanced';
     if (user.roles.includes('intermediate')) return 'intermediate';
     if (user.roles.includes('basic')) return 'basic';
+    return 'basic';
+  };
+
+  const getCurrentAdminRole = () => {
+    // Admin role
+    if (user.roles.includes('master_admin')) return 'super_admin';
+    if (user.roles.includes('admin')) return 'admin';
+    if (user.roles.includes('mentor')) return 'mentor';
     return 'user';
   };
 
   const getTierIcon = (tier: string) => {
     switch (tier) {
-      case 'master_admin': return Shield;
       case 'advanced': return Star;
       case 'intermediate': return Award;
       case 'basic': return User;
+      default: return User;
+    }
+  };
+
+  const getAdminIcon = (role: string) => {
+    switch (role) {
+      case 'super_admin': return Shield;
+      case 'admin': return Shield;
+      case 'mentor': return Award;
       default: return User;
     }
   };
@@ -228,74 +244,80 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
 
   const handleTierChange = async (newTier: string) => {
     try {
-      // Remove all tier-related roles and add the new one
-      const nonTierRoles = user.roles.filter(r => !['basic', 'intermediate', 'advanced'].includes(r));
-      const newRoles = newTier === 'user' ? nonTierRoles : [...nonTierRoles, newTier];
-      
-      // First, remove all existing roles for this user
-      await supabase.from('user_roles').delete().eq('user_id', user.id);
-
-      // Then add the new roles
-      if (newRoles.length > 0) {
-        const roleInserts = newRoles.map(role => ({
+      // Update access tier in new table
+      const { error } = await supabase
+        .from('user_access_tiers')
+        .upsert({
           user_id: user.id,
-          role: role,
-        }));
-        await supabase.from('user_roles').insert(roleInserts);
-      }
+          tier_level: newTier,
+          granted_by: (await supabase.auth.getUser()).data.user?.id,
+        });
+
+      if (error) throw error;
 
       toast({
         title: "Success",
-        description: "User tier updated successfully",
+        description: "User access tier updated successfully",
       });
 
       onUpdate();
     } catch (error) {
-      console.error('Error updating tier:', error);
+      console.error('Error updating access tier:', error);
       toast({
         title: "Error",
-        description: "Failed to update user tier",
+        description: "Failed to update user access tier",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleAdminRoleChange = async (newRole: string) => {
+    try {
+      // Remove existing admin roles and add new one
+      await supabase
+        .from('user_admin_roles')
+        .delete()
+        .eq('user_id', user.id)
+        .in('admin_role', ['admin', 'mentor']);
+
+      if (newRole !== 'user') {
+        const { error } = await supabase
+          .from('user_admin_roles')
+          .insert({
+            user_id: user.id,
+            admin_role: newRole,
+            granted_by: (await supabase.auth.getUser()).data.user?.id,
+          });
+
+        if (error) throw error;
+      }
+
+      toast({
+        title: "Success",
+        description: "User admin role updated successfully",
+      });
+
+      onUpdate();
+    } catch (error) {
+      console.error('Error updating admin role:', error);
+      toast({
+        title: "Error",
+        description: "Failed to update user admin role",
         variant: "destructive",
       });
     }
   };
 
   const handleToggleAdmin = async () => {
-    try {
-      const newRoles = user.roles.includes('admin')
-        ? user.roles.filter(r => r !== 'admin')
-        : [...user.roles, 'admin'];
-      
-      // First, remove all existing roles for this user
-      await supabase.from('user_roles').delete().eq('user_id', user.id);
-
-      // Then add the new roles
-      if (newRoles.length > 0) {
-        const roleInserts = newRoles.map(role => ({
-          user_id: user.id,
-          role: role,
-        }));
-        await supabase.from('user_roles').insert(roleInserts);
-      }
-
-      toast({
-        title: "Success",
-        description: `User ${user.roles.includes('admin') ? 'removed from' : 'added to'} admin role`,
-      });
-
-      onUpdate();
-    } catch (error) {
-      console.error('Error toggling admin role:', error);
-      toast({
-        title: "Error",
-        description: "Failed to update admin role",
-        variant: "destructive",
-      });
-    }
+    const currentAdminRole = getCurrentAdminRole();
+    const newRole = currentAdminRole === 'admin' ? 'user' : 'admin';
+    await handleAdminRoleChange(newRole);
   };
 
   const currentTier = getCurrentTier();
+  const currentAdminRole = getCurrentAdminRole();
   const TierIcon = getTierIcon(currentTier);
+  const AdminIcon = getAdminIcon(currentAdminRole);
 
   return (
     <div className="flex items-center gap-4 p-4 border rounded-lg bg-card">
@@ -324,7 +346,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
         </p>
       </div>
       
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         {/* Role Badges */}
         <div className="flex flex-wrap gap-1">
           {user.roles.map(role => (
@@ -338,8 +360,8 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
           ))}
         </div>
         
-        {/* Tier Management for non-master-admins */}
-        {!user.roles.includes('master_admin') && user.status === 'active' && (
+        {/* Access Tier Management */}
+        {user.status === 'active' && (
           <div className="flex items-center gap-2">
             <TierIcon className="h-4 w-4 text-muted-foreground" />
             <Select value={currentTier} onValueChange={handleTierChange}>
@@ -347,10 +369,27 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="user">Standard</SelectItem>
                 <SelectItem value="basic">Basic</SelectItem>
                 <SelectItem value="intermediate">Intermediate</SelectItem>
                 <SelectItem value="advanced">Advanced</SelectItem>
+                <SelectItem value="premium">Premium</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        )}
+
+        {/* Admin Role Management */}
+        {user.status === 'active' && !user.roles.includes('master_admin') && (
+          <div className="flex items-center gap-2">
+            <AdminIcon className="h-4 w-4 text-muted-foreground" />
+            <Select value={currentAdminRole} onValueChange={handleAdminRoleChange}>
+              <SelectTrigger className="w-24 h-8 text-xs">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="user">User</SelectItem>
+                <SelectItem value="mentor">Mentor</SelectItem>
+                <SelectItem value="admin">Admin</SelectItem>
               </SelectContent>
             </Select>
           </div>

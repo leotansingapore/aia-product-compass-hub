@@ -82,7 +82,17 @@ export function UnifiedUserDirectory() {
         throw profilesError;
       }
 
-      // Get all user roles
+      // Get all user access tiers
+      const { data: userTiers, error: tiersError } = await supabase
+        .from('user_access_tiers')
+        .select('*');
+
+      // Get all user admin roles
+      const { data: userAdminRoles, error: adminRolesError } = await supabase
+        .from('user_admin_roles')
+        .select('*');
+
+      // Get legacy user roles for backward compatibility
       const { data: userRoles, error: rolesError } = await supabase
         .from('user_roles')
         .select('*');
@@ -96,14 +106,25 @@ export function UnifiedUserDirectory() {
       // Process approval requests (pending, approved, rejected)
       approvalRequests?.forEach(request => {
         const existingProfile = profiles?.find(p => p.email === request.email);
-        const userRolesForUser = userRoles?.filter(ur => ur.user_id === existingProfile?.user_id) || [];
+        const userTierForUser = userTiers?.find(ut => ut.user_id === existingProfile?.user_id);
+        const userAdminRolesForUser = userAdminRoles?.filter(ur => ur.user_id === existingProfile?.user_id) || [];
+        const legacyRolesForUser = userRoles?.filter(ur => ur.user_id === existingProfile?.user_id) || [];
+        
+        // Combine all roles for display
+        const allRoles = [
+          ...(userTierForUser ? [userTierForUser.tier_level] : []),
+          ...userAdminRolesForUser.map(r => r.admin_role),
+          ...legacyRolesForUser.map(r => r.role)
+        ];
         
         let status: UnifiedUser['status'] = 'pending_approval';
         if (request.status === 'rejected') {
           status = 'rejected';
-        } else if (request.status === 'approved') {
+        } else if (request.status === 'suspended') {
+          status = 'suspended';
+        } else if (request.status === 'active' || request.status === 'approved') {
           if (existingProfile) {
-            if (userRolesForUser.length === 0) {
+            if (allRoles.length === 0) {
               status = 'needs_role';
             } else {
               status = 'active';
@@ -129,9 +150,9 @@ export function UnifiedUserDirectory() {
             last_name: request.last_name,
             avatar_url: null,
           },
-          roles: userRolesForUser.map(ur => ur.role),
+          roles: allRoles,
           approval_request_id: request.id,
-          can_login: existingProfile && userRolesForUser.length > 0,
+          can_login: existingProfile && allRoles.length > 0,
         });
       });
 
@@ -139,12 +160,21 @@ export function UnifiedUserDirectory() {
       profiles?.forEach(profile => {
         const hasApprovalRequest = approvalRequests?.some(req => req.email === profile.email);
         if (!hasApprovalRequest) {
-          const userRolesForUser = userRoles?.filter(ur => ur.user_id === profile.user_id) || [];
+          const userTierForUser = userTiers?.find(ut => ut.user_id === profile.user_id);
+          const userAdminRolesForUser = userAdminRoles?.filter(ur => ur.user_id === profile.user_id) || [];
+          const legacyRolesForUser = userRoles?.filter(ur => ur.user_id === profile.user_id) || [];
+          
+          // Combine all roles for display
+          const allRoles = [
+            ...(userTierForUser ? [userTierForUser.tier_level] : []),
+            ...userAdminRolesForUser.map(r => r.admin_role),
+            ...legacyRolesForUser.map(r => r.role)
+          ];
           
           unifiedUsers.push({
             id: profile.user_id,
             email: profile.email || 'No email',
-            status: userRolesForUser.length > 0 ? 'active' : 'needs_role',
+            status: allRoles.length > 0 ? 'active' : 'needs_role',
             created_at: profile.created_at,
             profile: {
               display_name: profile.display_name,
@@ -152,8 +182,8 @@ export function UnifiedUserDirectory() {
               last_name: profile.last_name,
               avatar_url: profile.avatar_url,
             },
-            roles: userRolesForUser.map(ur => ur.role),
-            can_login: userRolesForUser.length > 0,
+            roles: allRoles,
+            can_login: allRoles.length > 0,
           });
         }
       });
