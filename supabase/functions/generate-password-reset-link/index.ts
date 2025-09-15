@@ -142,7 +142,7 @@ serve(async (req) => {
         );
         
         const { error: emailError } = await resend.emails.send({
-          from: "FINternship <no-reply@resend.dev>",
+          from: "FINternship <no-reply@mail.themoneybees.co>",
           to: [email],
           subject: "Reset Your FINternship Account Password",
           html,
