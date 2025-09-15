@@ -105,7 +105,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send email using Resend
     const emailResponse = await resend.emails.send({
-      from: "Knowledge Portal <noreply@resend.dev>",
+      from: "Knowledge Portal <onboarding@resend.dev>",
       to: [email.trim()],
       subject: "Reset Your Password - Knowledge Portal",
       html: emailHtml,
@@ -113,8 +113,23 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (emailResponse.error) {
       console.error('❌ Error sending email:', emailResponse.error);
+      
+      // Handle Resend domain verification errors
+      if (emailResponse.error.message?.includes('verify a domain')) {
+        return new Response(
+          JSON.stringify({ 
+            error: "Email domain not verified. Please contact support or verify your domain at resend.com/domains",
+            details: emailResponse.error.message 
+          }),
+          { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+        );
+      }
+      
       return new Response(
-        JSON.stringify({ error: "Failed to send reset email" }),
+        JSON.stringify({ 
+          error: "Failed to send reset email", 
+          details: emailResponse.error.message 
+        }),
         { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }

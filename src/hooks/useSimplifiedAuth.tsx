@@ -232,11 +232,22 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       }
 
       if (data?.error) {
-        toast({
-          variant: "destructive",
-          title: "Reset Failed",
-          description: data.error
-        });
+        console.error('Reset password error details:', data.details);
+        
+        // Show specific error message for domain verification issues
+        if (data.error.includes('verify a domain')) {
+          toast({
+            variant: "destructive",
+            title: "Email Service Configuration",
+            description: "The email service requires domain verification. Please contact support or try again later."
+          });
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Reset Failed",
+            description: data.error
+          });
+        }
         return;
       }
 
