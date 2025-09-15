@@ -17,6 +17,13 @@ export function ProtectedAdminPage({ children, redirectTo = '/' }: ProtectedAdmi
   const isAdmin = isMasterAdmin() || hasRole('admin');
 
   useEffect(() => {
+    // If not loading and no user, redirect to auth (session expired)
+    if (!loading && !user) {
+      console.log('🔒 No authenticated user found, redirecting to auth');
+      navigate('/auth', { replace: true });
+      return;
+    }
+    
     // Don't redirect while still loading permissions or user data
     if (loading || !user) return;
     
