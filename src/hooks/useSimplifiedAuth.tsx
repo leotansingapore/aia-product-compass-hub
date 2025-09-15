@@ -217,15 +217,25 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
     }
 
     try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
-        redirectTo: `${window.location.origin}/reset-password`
+      const { data, error } = await supabase.functions.invoke('send-password-reset', {
+        body: { email: email.trim() }
       });
 
       if (error) {
+        console.error('Reset password error:', error);
         toast({
           variant: "destructive",
           title: "Reset Failed",
-          description: error.message
+          description: "Failed to send reset email. Please try again."
+        });
+        return;
+      }
+
+      if (data?.error) {
+        toast({
+          variant: "destructive",
+          title: "Reset Failed",
+          description: data.error
         });
         return;
       }
