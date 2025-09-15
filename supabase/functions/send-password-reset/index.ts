@@ -126,6 +126,9 @@ const handler = async (req: Request): Promise<Response> => {
     const { data, error } = await supabase.auth.admin.generateLink({
       type: 'recovery',
       email: email.trim(),
+      options: {
+        redirectTo: `${req.headers.get('origin') || 'https://56051a92-562c-4d7b-ae59-82204f8b4c20.lovableproject.com'}/reset-password`
+      }
     });
 
     if (error) {
