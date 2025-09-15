@@ -27,28 +27,34 @@ interface RoleSelectorProps {
 
 const availableRoles = [
   {
-    id: 'tier_1',
-    name: 'Tier 1',
+    id: 'user',
+    name: 'User',
+    description: 'Basic user access (always required)',
+    color: 'bg-gray-500',
+  },
+  {
+    id: 'basic',
+    name: 'Basic',
     description: 'CMFAS Exams access only',
     color: 'bg-blue-500',
   },
   {
-    id: 'tier_2',
-    name: 'Tier 2',
+    id: 'intermediate',
+    name: 'Intermediate',
     description: 'CMFAS Exams + Investment Products',
     color: 'bg-amber-500',
   },
   {
-    id: 'tier_3',
-    name: 'Tier 3',
+    id: 'advanced',
+    name: 'Advanced',
     description: 'CMFAS Exams + Investment & Endowment Products',
     color: 'bg-emerald-500',
   },
   {
-    id: 'tier_4',
-    name: 'Tier 4',
-    description: 'CMFAS Exams + All Product Categories',
-    color: 'bg-green-500',
+    id: 'admin',
+    name: 'Admin',
+    description: 'User management and advanced features',
+    color: 'bg-red-500',
   },
   {
     id: 'master_admin',
