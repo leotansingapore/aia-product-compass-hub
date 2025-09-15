@@ -46,16 +46,25 @@ export function PasswordResetDialog({ user, open, onOpenChange, onSuccess }: Pas
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error('No active session');
 
-      const { error } = await supabase.functions.invoke('generate-password-reset-link', {
+      const { data, error } = await supabase.functions.invoke('generate-password-reset-link', {
         body: { email: user.email, send: true },
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
 
       if (error) throw error;
 
+      const { resetUrl, emailSent } = (data as any) ?? {};
+      if (resetUrl) {
+        try {
+          await navigator.clipboard.writeText(resetUrl);
+        } catch {}
+      }
+
       toast({
-        title: '📧 Reset Link Sent',
-        description: `Password reset instructions have been sent to ${user.email}`,
+        title: emailSent ? '📧 Reset Link Sent' : 'Link Generated',
+        description: emailSent
+          ? `Password reset instructions have been sent to ${user.email}`
+          : 'Email delivery unavailable. Reset link copied to clipboard.',
       });
 
       onOpenChange(false);

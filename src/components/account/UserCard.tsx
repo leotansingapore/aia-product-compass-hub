@@ -96,18 +96,26 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
   const handleSendReset = async () => {
     setLoadingAction('reset');
     try {
+      const { data: sessionRes } = await supabase.auth.getSession();
+      if (!sessionRes?.session) throw new Error('No active session');
+
       const { data, error } = await supabase.functions.invoke('generate-password-reset-link', {
         body: { email: user.email, send: true },
+        headers: { Authorization: `Bearer ${sessionRes.session.access_token}` },
       });
       if (error) throw error as any;
-      toast({ title: 'Password reset link generated', description: 'User will receive an email shortly.' });
-      const resetUrl = (data as any)?.resetUrl;
+
+      const { resetUrl, emailSent } = (data as any) ?? {};
       if (resetUrl) {
         try {
           await navigator.clipboard.writeText(resetUrl);
-          toast({ title: 'Reset URL copied', description: 'Link copied to clipboard for convenience.' });
         } catch {}
       }
+
+      toast({
+        title: emailSent ? 'Password reset link sent' : 'Link generated',
+        description: emailSent ? 'User will receive an email shortly.' : 'Email failed; reset link copied to clipboard.',
+      });
     } catch (e: any) {
       toast({ title: 'Failed to send reset link', description: e?.message || 'Please try again.', variant: 'destructive' });
     } finally {

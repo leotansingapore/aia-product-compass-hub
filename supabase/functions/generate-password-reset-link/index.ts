@@ -150,19 +150,22 @@ serve(async (req) => {
         
         if (emailError) {
           console.error('Resend error:', emailError);
-          return new Response(JSON.stringify({ error: "Failed to send email", resetUrl }), { 
-            status: 500, 
-            headers: { "Content-Type": "application/json", ...corsHeaders } 
-          });
+          // Return success with resetUrl so admins can copy the link even if email fails
+          return new Response(
+            JSON.stringify({ success: true, emailSent: false, resetUrl }),
+            { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
+          );
         }
         
         console.log(`Password reset email sent successfully to ${email}`);
       } catch (e) {
         console.error('Email send error:', e);
-        return new Response(JSON.stringify({ error: "Failed to send email", resetUrl: linkData.properties?.action_link || linkData.action_link }), { 
-          status: 500, 
-          headers: { "Content-Type": "application/json", ...corsHeaders } 
-        });
+        const fallbackUrl = (linkData.properties?.action_link || linkData.action_link) as string;
+        // Return success with resetUrl so admins can copy the link even if email fails
+        return new Response(
+          JSON.stringify({ success: true, emailSent: false, resetUrl: fallbackUrl }),
+          { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
+        );
       }
     }
 
