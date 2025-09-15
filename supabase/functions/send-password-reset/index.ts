@@ -79,6 +79,49 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // Check if user exists in auth system first
+    const { data: userData, error: userError } = await supabase.auth.admin.getUserByEmail(email.trim());
+    
+    if (userError || !userData.user) {
+      console.log('⚠️ User not found in auth system:', email.trim());
+      // Always return success to prevent email enumeration attacks
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          message: "If an account with this email exists, a password reset link has been sent."
+        }),
+        {
+          status: 200,
+          headers: { "Content-Type": "application/json", ...corsHeaders }
+        }
+      );
+    }
+
+    // Also check if user has been approved (optional additional check)
+    const { data: approvalData } = await supabase
+      .from('user_approval_requests')
+      .select('status')
+      .eq('email', email.trim())
+      .eq('status', 'approved')
+      .single();
+
+    if (!approvalData) {
+      console.log('⚠️ User exists but not approved:', email.trim());
+      // Still return success to prevent enumeration
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          message: "If an account with this email exists, a password reset link has been sent."
+        }),
+        {
+          status: 200,
+          headers: { "Content-Type": "application/json", ...corsHeaders }
+        }
+      );
+    }
+
+    console.log('✅ User verified, generating reset link for:', email.trim());
+
     // Generate password reset link using Supabase Admin API
     const { data, error } = await supabase.auth.admin.generateLink({
       type: 'recovery',
