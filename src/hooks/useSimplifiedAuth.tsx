@@ -32,7 +32,13 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         console.log('[SimplifiedAuth] State change:', event, 'hasUser:', !!session?.user, 'userEmail:', session?.user?.email);
         
         // Handle all relevant auth events to prevent flickering
-        if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED' || event === 'INITIAL_SESSION') {
+        if (
+          event === 'SIGNED_IN' ||
+          event === 'SIGNED_OUT' ||
+          event === 'TOKEN_REFRESHED' ||
+          event === 'INITIAL_SESSION' ||
+          event === 'PASSWORD_RECOVERY'
+        ) {
           setSession(session);
           setUser(session?.user ?? null);
           setLoading(false);
