@@ -7,7 +7,7 @@ import { PasswordResetEmail } from "./_templates/password-reset.tsx";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-app-origin",
 };
 
 interface Payload {
@@ -49,13 +49,14 @@ serve(async (req) => {
     }
 
     const serviceClient = createClient(SUPABASE_URL, SERVICE_KEY);
-    const origin = new URL(req.url).origin;
+    const originHeader = req.headers.get("x-app-origin") || req.headers.get("origin");
+    const appOrigin = originHeader || Deno.env.get("APP_URL") || "http://localhost:5173";
 
     // Check if user exists in auth, if not create them using profile data
     let { data: linkData, error: linkErr } = await serviceClient.auth.admin.generateLink({
       type: 'recovery',
       email,
-      options: { redirectTo: `${origin}/force-password` },
+      options: { redirectTo: `${appOrigin}/reset-password` },
     });
 
     // If user doesn't exist in auth but exists in profiles, create the auth user
@@ -104,7 +105,7 @@ serve(async (req) => {
       const { data: newLinkData, error: newLinkErr } = await serviceClient.auth.admin.generateLink({
         type: 'recovery',
         email,
-        options: { redirectTo: `${origin}/force-password` },
+        options: { redirectTo: `${appOrigin}/reset-password` },
       });
 
       if (newLinkErr || !newLinkData) {

@@ -48,7 +48,7 @@ export function PasswordResetDialog({ user, open, onOpenChange, onSuccess }: Pas
 
       const { data, error } = await supabase.functions.invoke('generate-password-reset-link', {
         body: { email: user.email, send: true },
-        headers: { Authorization: `Bearer ${session.access_token}` },
+        headers: { Authorization: `Bearer ${session.access_token}`, "x-app-origin": window.location.origin },
       });
 
       if (error) throw error;
