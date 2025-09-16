@@ -18,7 +18,7 @@ const Index = () => {
     hasUser: !!user, 
     loading, 
     userEmail: user?.email,
-    isAdmin,
+    isAdmin: isAdmin(),
     hasRecoveryHash
   });
 
