@@ -22,7 +22,7 @@ const Auth = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-subtle flex items-center justify-center px-1 sm:px-4 py-4">
+    <div className="min-h-screen bg-background flex items-center justify-center px-1 sm:px-4 py-4">
       <Helmet>
         <title>Sign In - Access Your Learning Platform | FINternship</title>
         <meta name="description" content="Sign in to FINternship Learning Platform. Track progress, earn achievements, access comprehensive financial product training, and enhance your advisory skills with AI assistance." />
