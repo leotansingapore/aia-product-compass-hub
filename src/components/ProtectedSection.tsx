@@ -13,9 +13,15 @@ interface ProtectedSectionProps {
 export function ProtectedSection({ sectionId, children, fallback, className }: ProtectedSectionProps) {
   const { canAccessSection, isSectionLocked, getSectionPermission, loading } = usePermissions();
 
-  // If still loading permissions, return null to avoid showing content
+  // If still loading permissions, show a loading state
   if (loading) {
-    return null;
+    return (
+      <div className={className}>
+        <div className="flex items-center justify-center p-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>
+      </div>
+    );
   }
 
   // If section is hidden, don't render anything
