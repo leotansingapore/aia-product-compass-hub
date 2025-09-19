@@ -6,7 +6,6 @@ import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { ProductCard } from "@/components/ProductCard";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { ProtectedSection } from "@/components/ProtectedSection";
-import { ProtectedPage } from "@/components/ProtectedPage";
 import { useProducts, useCategories } from "@/hooks/useProducts";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
@@ -115,12 +114,25 @@ export default function ProductCategory() {
     return <SkeletonLoader type="category" />;
   }
 
+  // Debug logging
+  console.log('ProductCategory Debug:', {
+    categorySlugOrId,
+    categoryId,
+    categories: categories.length,
+    category: !!category,
+    loading,
+    productsCount: products.length
+  });
+
   if (!category) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-2">Category not found</h1>
-          <p className="text-muted-foreground mb-4">The category you're looking for doesn't exist.</p>
+          <p className="text-muted-foreground mb-4">
+            The category "{categorySlugOrId}" doesn't exist. 
+            Category ID: {categoryId}
+          </p>
           <button 
             onClick={() => navigate('/')}
             className="text-primary hover:underline"
@@ -133,8 +145,7 @@ export default function ProductCategory() {
   }
 
   return (
-    <ProtectedPage pageId="product-category">
-    <ProtectedSection sectionId={`product-category-${categoryId}`}>
+    <div>
       <div className="min-h-screen bg-background">
         <Helmet>
           <title>{categoryInfo?.title || 'Product Category'} - Training & Resources | FINternship</title>
@@ -252,7 +263,6 @@ export default function ProductCategory() {
         )}
         </div>
       </div>
-    </ProtectedSection>
-    </ProtectedPage>
+    </div>
   );
 }
