@@ -275,8 +275,10 @@ export function useProductBySlugOrId(slugOrId: string) {
       }
 
       try {
-        // Check if it's a UUID
+        // Check if it's a UUID or module ID
         const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(slugOrId);
+        const isModuleId = /^module-\d+-[a-z0-9]+$/i.test(slugOrId);
+        const isDirectId = isUUID || isModuleId;
         
         let query = supabase
           .from('products')
@@ -288,8 +290,8 @@ export function useProductBySlugOrId(slugOrId: string) {
             )
           `);
 
-        if (isUUID) {
-          // Query by ID if it's a UUID
+        if (isDirectId) {
+          // Query by ID if it's a UUID or module ID
           query = query.eq('id', slugOrId);
         } else {
           // Convert slug to title and query by title
