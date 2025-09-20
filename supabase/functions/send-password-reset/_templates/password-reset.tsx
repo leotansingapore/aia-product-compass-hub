@@ -38,13 +38,6 @@ export const PasswordResetEmail = ({
           </Button>
         </Section>
         
-        <Text style={text}>
-          Or copy and paste this link into your browser:
-        </Text>
-        
-        <Text style={linkText}>
-          {resetUrl}
-        </Text>
         
         <Text style={footer}>
           If you didn't request this password reset, please ignore this email. 
