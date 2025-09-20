@@ -1192,6 +1192,36 @@ export type Database = {
         }
         Relationships: []
       }
+      user_tiers: {
+        Row: {
+          created_at: string
+          granted_at: string
+          granted_by: string | null
+          id: string
+          tier_level: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          granted_at?: string
+          granted_by?: string | null
+          id?: string
+          tier_level?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          granted_at?: string
+          granted_by?: string | null
+          id?: string
+          tier_level?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       video_progress: {
         Row: {
           completed: boolean
@@ -1292,7 +1322,9 @@ export type Database = {
         Returns: boolean
       }
       has_tier_access: {
-        Args: { access_type: string; resource_id: string; user_id: string }
+        Args:
+          | { access_type: string; resource_id: string; user_id: string }
+          | { required_tier: string; user_id: string }
         Returns: boolean
       }
       reset_approval_request: {
