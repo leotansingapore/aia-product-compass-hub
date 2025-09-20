@@ -14,7 +14,7 @@ import {
   Shield,
   Settings
 } from "lucide-react";
-import type { UnifiedUser } from "./UnifiedUserDirectory";
+import type { UnifiedUser } from "@/hooks/useUserManagement";
 
 interface BulkUserActionsProps {
   selectedUserIds: string[];

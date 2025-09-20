@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Mail } from "lucide-react";
-import type { UnifiedUser } from "./UnifiedUserDirectory";
+import type { UnifiedUser } from "@/hooks/useUserManagement";
 
 interface SendEmailDialogProps {
   user: UnifiedUser | null;

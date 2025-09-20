@@ -17,7 +17,6 @@ interface StatusCounts {
   pending_approval: number;
   approved: number;
   active: number;
-  needs_role: number;
   suspended: number;
   rejected: number;
 }
@@ -83,7 +82,6 @@ export function EnhancedUserFilters({
               </SelectItem>
               <SelectItem value="approved">Approved ({statusCounts.approved})</SelectItem>
               <SelectItem value="active">Active ({statusCounts.active})</SelectItem>
-              <SelectItem value="needs_role">Needs Role ({statusCounts.needs_role})</SelectItem>
               <SelectItem value="suspended">Suspended ({statusCounts.suspended})</SelectItem>
               <SelectItem value="rejected">Rejected ({statusCounts.rejected})</SelectItem>
             </SelectContent>

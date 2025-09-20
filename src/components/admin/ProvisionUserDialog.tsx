@@ -14,7 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Zap, Loader2, User, Shield, Award, Star } from "lucide-react";
-import type { UnifiedUser } from "./UnifiedUserDirectory";
+import type { UnifiedUser } from "@/hooks/useUserManagement";
 
 interface ProvisionUserDialogProps {
   user: UnifiedUser | null;

@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Key, Loader2, Copy, Eye, EyeOff } from "lucide-react";
-import type { UnifiedUser } from "./UnifiedUserDirectory";
+import type { UnifiedUser } from "@/hooks/useUserManagement";
 
 interface PasswordResetDialogProps {
   user: UnifiedUser | null;

@@ -19,7 +19,7 @@ import {
   Award,
   Star
 } from "lucide-react";
-import type { UnifiedUser } from "./UnifiedUserDirectory";
+import type { UnifiedUser } from "@/hooks/useUserManagement";
 import { SendEmailDialog } from "./SendEmailDialog";
 
 interface UserDirectoryRowProps {
