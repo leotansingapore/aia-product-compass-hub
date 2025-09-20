@@ -125,13 +125,18 @@ export class AuthService {
 
   static async resetPassword(email: string): Promise<{ success: boolean; error?: string }> {
     try {
-      const redirectTo = `${window.location.origin}${AUTH_CONFIG.redirectUrls.passwordReset}`;
-      const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
-      
+      const { data, error } = await supabase.functions.invoke('send-password-reset', {
+        body: { email: email.trim() }
+      });
+
       if (error) {
         return { success: false, error: error.message };
       }
-      
+
+      if (data?.error) {
+        return { success: false, error: data.error };
+      }
+
       return { success: true };
     } catch (error: any) {
       return { success: false, error: error.message || 'Could not send reset email' };

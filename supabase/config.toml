@@ -2,3 +2,6 @@ project_id = "hgdbflprrficdoyxmdxe"
 
 [functions.provision-user]
 verify_jwt = true
+
+[functions.send-password-reset]
+verify_jwt = false
