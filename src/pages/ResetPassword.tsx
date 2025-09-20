@@ -19,35 +19,13 @@ export default function ResetPassword() {
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  // Detect and handle auth hash (errors or tokens)
+  // Handle password reset link errors
   useEffect(() => {
     const hash = window.location.hash || "";
-    if (hash) {
+    if (hash && hash.includes("error=")) {
       const params = new URLSearchParams(hash.replace(/^#/, ""));
-
-      // Error case from Supabase verify redirect
-      if (params.get("error")) {
-        const description = params.get("error_description") || "Email link is invalid or has expired.";
-        setLinkError(decodeURIComponent(description));
-        return;
-      }
-
-      // Fallback: if auto-processing fails, manually set the session from tokens in hash
-      const access_token = params.get("access_token");
-      const refresh_token = params.get("refresh_token");
-      if (access_token && refresh_token) {
-        supabase.auth
-          .setSession({ access_token, refresh_token })
-          .then(({ data, error }) => {
-            console.log("[ResetPassword] setSession result:", !!data.session, error?.message);
-            if (!error && data.session) {
-              setValidSession(true);
-              // Clean the hash from the URL to avoid leaking tokens
-              window.history.replaceState({}, document.title, window.location.pathname + window.location.search);
-            }
-          })
-          .catch((e) => console.error("[ResetPassword] setSession error:", e));
-      }
+      const description = params.get("error_description") || "Email link is invalid or has expired.";
+      setLinkError(decodeURIComponent(description));
     }
   }, []);
 
