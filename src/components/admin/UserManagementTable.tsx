@@ -126,9 +126,6 @@ export function UserManagementTable({
     switch (role) {
       case 'master_admin': return 'destructive';
       case 'admin': return 'default';
-      case 'advanced': return 'default';
-      case 'intermediate': return 'secondary';
-      case 'basic': return 'outline';
       default: return 'outline';
     }
   };
@@ -430,45 +427,34 @@ export function UserManagementTable({
                     </DropdownMenu>
                   </TableCell>
                   
-                  <TableCell>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm" className="h-auto p-0 hover:bg-transparent">
-                          <div className="flex flex-wrap gap-1 cursor-pointer">
-                            {user.roles.length > 0 ? (
-                              user.roles.map(role => (
-                                <Badge
-                                  key={role}
-                                  variant={getRoleBadgeVariant(role)}
-                                  className="text-xs hover:opacity-80"
-                                >
-                                  {role.replace('_', ' ')}
-                                </Badge>
-                              ))
-                            ) : (
-                              <Badge variant="outline" className="text-xs text-muted-foreground hover:opacity-80">
-                                No roles
-                              </Badge>
-                            )}
-                          </div>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="start" className="w-48">
-                        <DropdownMenuLabel>Change Role</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        {['user', 'basic', 'intermediate', 'advanced', 'admin', 'master_admin'].map((role) => (
-                          <DropdownMenuItem
-                            key={role}
-                            onClick={() => handleRoleChange(user, role)}
-                            disabled={user.roles.includes(role)}
-                            className={user.roles.includes(role) ? 'opacity-50' : ''}
-                          >
-                            {role.replace('_', ' ')} {user.roles.includes(role) && '(current)'}
-                          </DropdownMenuItem>
-                        ))}
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
+                   <TableCell>
+                     <DropdownMenu>
+                       <DropdownMenuTrigger asChild>
+                         <Button variant="ghost" size="sm" className="h-auto p-0 hover:bg-transparent">
+                           <Badge
+                             variant={getRoleBadgeVariant(user.roles[0] || 'user')}
+                             className="text-xs hover:opacity-80 cursor-pointer"
+                           >
+                             {(user.roles[0] || 'user').replace('_', ' ')}
+                           </Badge>
+                         </Button>
+                       </DropdownMenuTrigger>
+                       <DropdownMenuContent align="start" className="w-40">
+                         <DropdownMenuLabel>Change Role</DropdownMenuLabel>
+                         <DropdownMenuSeparator />
+                         {['user', 'admin', 'master_admin'].map((role) => (
+                           <DropdownMenuItem
+                             key={role}
+                             onClick={() => handleRoleChange(user, role)}
+                             disabled={user.roles.includes(role)}
+                             className={user.roles.includes(role) ? 'opacity-50' : ''}
+                           >
+                             {role.replace('_', ' ')} {user.roles.includes(role) && '✓'}
+                           </DropdownMenuItem>
+                         ))}
+                       </DropdownMenuContent>
+                     </DropdownMenu>
+                   </TableCell>
                   
                   <TableCell className="text-sm text-muted-foreground">
                     {formatDate(user.created_at)}
