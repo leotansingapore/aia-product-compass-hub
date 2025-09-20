@@ -63,7 +63,7 @@ export function SearchFilters({
                   id={`category-${category.id}`}
                   checked={filters.category === category.id}
                   onCheckedChange={(checked) => 
-                    onCategoryFilter(category.id, checked as boolean)
+                    onCategoryFilter(category.id, Boolean(checked))
                   }
                 />
                 <label 
@@ -88,7 +88,7 @@ export function SearchFilters({
                 id="has-videos"
                 checked={filters.hasVideos || false}
                 onCheckedChange={(checked) => 
-                  onContentFilter('hasVideos', checked as boolean)
+                  onContentFilter('hasVideos', Boolean(checked))
                 }
               />
               <label htmlFor="has-videos" className="text-sm">
@@ -100,7 +100,7 @@ export function SearchFilters({
                 id="has-links"
                 checked={filters.hasLinks || false}
                 onCheckedChange={(checked) => 
-                  onContentFilter('hasLinks', checked as boolean)
+                  onContentFilter('hasLinks', Boolean(checked))
                 }
               />
               <label htmlFor="has-links" className="text-sm">
@@ -123,7 +123,7 @@ export function SearchFilters({
                     id={`tag-${tag}`}
                     checked={filters.tags?.includes(tag) || false}
                     onCheckedChange={(checked) => 
-                      onTagFilter(tag, checked as boolean)
+                      onTagFilter(tag, Boolean(checked))
                     }
                   />
                   <label 

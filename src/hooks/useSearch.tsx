@@ -123,11 +123,13 @@ export function useSearch() {
     setIsSearching(false);
   }, [query, filters, allProducts, loading]);
 
-  const hasActiveFilters = () => {
-    return filters.category || 
-           (filters.tags && filters.tags.length > 0) ||
-           filters.hasVideos ||
-           filters.hasLinks;
+  const hasActiveFilters = (): boolean => {
+    return Boolean(
+      filters.category || 
+      (filters.tags && filters.tags.length > 0) ||
+      filters.hasVideos ||
+      filters.hasLinks
+    );
   };
 
   // Get unique categories for filter dropdown

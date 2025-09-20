@@ -1,13 +1,13 @@
-import { Helmet } from "react-helmet-async";
 import { useBookmarks } from "@/hooks/useBookmarks";
 import { useAllProducts } from "@/hooks/useProducts";
 import { ProductCard } from "@/components/ProductCard";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
-import { Bookmark, BookmarkX } from "lucide-react";
+import { BookmarkX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ProtectedPage } from "@/components/ProtectedPage";
+import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 
 export default function Bookmarks() {
   const { bookmarks, loading: bookmarksLoading } = useBookmarks();
@@ -25,58 +25,46 @@ export default function Bookmarks() {
     return <SkeletonLoader type="dashboard" />;
   }
 
+  const structuredData: StructuredData = {
+    "@context": "https://schema.org" as const,
+    "@type": "CollectionPage",
+    "name": "My Bookmarks - FINternship",
+    "description": "Personal collection of saved financial products and training resources",
+    "url": `${window.location.origin}${window.location.pathname}`,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "FINternship Learning Platform",
+      "url": window.location.origin
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": bookmarkedProducts.length,
+      "itemListElement": bookmarkedProducts.slice(0, 10).map((product, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Course",
+          "name": product.title,
+          "description": product.description || `Bookmarked training resource: ${product.title}`,
+          "url": `${window.location.origin}/product/${product.id}`
+        }
+      }))
+    }
+  };
+
   return (
     <ProtectedPage pageId="bookmarks">
-    <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>My Bookmarks - Saved Resources | FINternship</title>
-        <meta name="description" content="Access your saved products and training resources in one place. Quickly find your bookmarked insurance and investment products, guides, and materials for easy reference and continued learning." />
-        <meta name="keywords" content="bookmarks, saved products, financial advisor resources, saved training materials, quick access" />
-        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
-        
-        {/* Open Graph */}
-        <meta property="og:title" content="My Bookmarks - Saved Resources | FINternship" />
-        <meta property="og:description" content="Access your saved products and training resources in one organized location for quick reference." />
-        <meta property="og:type" content="webapp" />
-        <meta property="og:url" content={`${window.location.origin}${window.location.pathname}`} />
-        <meta property="og:image" content={`${window.location.origin}/og-default.jpg`} />
-        
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="My Bookmarks - Saved Resources | FINternship" />
-        <meta name="twitter:description" content="Access your saved products and training resources in one organized location." />
-        <meta name="twitter:image" content={`${window.location.origin}/og-default.jpg`} />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "My Bookmarks - FINternship",
-            "description": "Personal collection of saved financial products and training resources",
-            "url": `${window.location.origin}${window.location.pathname}`,
-            "isPartOf": {
-              "@type": "WebSite",
-              "name": "FINternship Learning Platform",
-              "url": window.location.origin
-            },
-            "mainEntity": {
-              "@type": "ItemList",
-              "numberOfItems": bookmarkedProducts.length,
-              "itemListElement": bookmarkedProducts.slice(0, 10).map((product, index) => ({
-                "@type": "ListItem",
-                "position": index + 1,
-                "item": {
-                  "@type": "Course",
-                  "name": product.title,
-                  "description": product.description || `Bookmarked training resource: ${product.title}`,
-                  "url": `${window.location.origin}/product/${product.id}`
-                }
-              }))
-            }
-          })}
-        </script>
-      </Helmet>
+      <PageLayout
+        title="My Bookmarks - Saved Resources | FINternship"
+        description="Access your saved products and training resources in one place. Quickly find your bookmarked insurance and investment products, guides, and materials for easy reference and continued learning."
+        keywords="bookmarks, saved products, financial advisor resources, saved training materials, quick access"
+        structuredData={structuredData}
+        openGraph={{
+          title: "My Bookmarks - Saved Resources | FINternship",
+          description: "Access your saved products and training resources in one organized location for quick reference.",
+          type: "webapp"
+        }}
+      >
       <NavigationHeader
         title="My Bookmarks"
         subtitle="Your saved products and resources"
@@ -115,7 +103,7 @@ export default function Bookmarks() {
           </div>
         )}
       </div>
-    </div>
+      </PageLayout>
     </ProtectedPage>
   );
 }

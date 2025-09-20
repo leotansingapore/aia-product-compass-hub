@@ -72,9 +72,9 @@ export default function Dashboard() {
                   hasActiveFilters={hasActiveFilters}
                   availableCategories={availableCategories}
                   availableTags={availableTags}
-                  onCategoryFilter={(categoryId, checked) => handleCategoryFilter(categoryId, checked as boolean)}
-                  onTagFilter={(tag, checked) => handleTagFilter(tag, checked as boolean)}
-                  onContentFilter={(type, checked) => handleContentFilter(type, checked as boolean)}
+                  onCategoryFilter={(categoryId, checked) => handleCategoryFilter(categoryId, Boolean(checked))}
+                  onTagFilter={(tag, checked) => handleTagFilter(tag, Boolean(checked))}
+                  onContentFilter={(type, checked) => handleContentFilter(type, Boolean(checked))}
                   onClearFilters={clearFilters}
                 />
               </div>
@@ -93,8 +93,8 @@ export default function Dashboard() {
                 availableCategories={availableCategories}
                 onShowFilters={setShowFilters}
                 onSortBy={setSortBy}
-                onTagFilter={handleTagFilter}
-                onContentFilter={handleContentFilter}
+                onTagFilter={(tag, checked) => handleTagFilter(tag, Boolean(checked))}
+                onContentFilter={(type, checked) => handleContentFilter(type, Boolean(checked))}
                 onSetFilters={() => {}} // This will be handled by the filters component
               />
             </div>

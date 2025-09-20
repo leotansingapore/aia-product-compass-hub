@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -7,8 +6,8 @@ import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
 import { BookOpen, Scale, TrendingUp, PieChart, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
+import { useUsefulLinks } from "@/hooks/useUsefulLinks";
 import type { UsefulLink } from "@/hooks/useProducts";
 
 export default function CMFASExams() {
@@ -16,8 +15,8 @@ export default function CMFASExams() {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   
-  // State for editable useful links
-  const [usefulLinks, setUsefulLinks] = useState<UsefulLink[]>([
+  // Default useful links
+  const defaultLinks: UsefulLink[] = [
     {
       name: "SCI College Student Portal",
       url: "https://www.scicollege.org.sg/Account/Register",
@@ -48,60 +47,14 @@ export default function CMFASExams() {
       url: "mailto:support@aiaproductcompass.com",
       icon: "📞"
     }
-  ]);
+  ];
 
-  // Load and save useful links to/from database
-  const productId = 'cmfas-exams-page';
-
-  useEffect(() => {
-    const loadUsefulLinks = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('products')
-          .select('useful_links')
-          .eq('id', productId)
-          .single();
-
-        if (data && data.useful_links && Array.isArray(data.useful_links)) {
-          setUsefulLinks(data.useful_links as unknown as UsefulLink[]);
-        }
-      } catch (error) {
-        console.log('No existing useful links found, using defaults');
-      }
-    };
-
-    loadUsefulLinks();
-  }, []);
+  const { usefulLinks, updateUsefulLinks } = useUsefulLinks('cmfas-exams-page', defaultLinks);
 
   // Handler for updating useful links
   const handleUpdate = async (field: string, value: any) => {
     if (field === 'useful_links') {
-      setUsefulLinks(value);
-      
-      try {
-        // Save to database
-        const { error } = await supabase
-          .from('products')
-          .upsert({
-            id: productId,
-            title: 'CMFAS Exams Page',
-            description: 'Main CMFAS exams page useful links',
-            category_id: (await supabase.from('categories').select('id').eq('name', 'Learning Modules').single()).data?.id || null,
-            useful_links: value
-          });
-
-        if (error) {
-          console.error('Error saving useful links:', error);
-          throw error;
-        }
-        
-        console.log('Useful links saved successfully to database');
-      } catch (error) {
-        console.error('Failed to save useful links:', error);
-        // Revert the local state on error
-        setUsefulLinks(usefulLinks);
-        throw error;
-      }
+      await updateUsefulLinks(value);
     }
   };
 
@@ -148,13 +101,23 @@ export default function CMFASExams() {
     }
   ];
 
+  const structuredData: StructuredData = {
+    "@context": "https://schema.org" as const,
+    "@type": "Course",
+    "name": "CMFAS Exam Preparation",
+    "description": "Comprehensive CMFAS exam preparation materials including modules M9, M9A, HI, RES5, practice tests, and study materials for capital markets financial advisory services certification.",
+    "url": `${window.location.origin}${window.location.pathname}`,
+    "courseMode": "online",
+    "educationalLevel": "professional"
+  };
+
   return (
-    <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>CMFAS Exam Preparation - FINternship Learning Platform</title>
-        <meta name="description" content="Comprehensive CMFAS exam preparation materials including modules 1, 5, 6, 8, practice tests, and study materials for capital markets financial advisory services certification." />
-        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
-      </Helmet>
+    <PageLayout
+      title="CMFAS Exam Preparation - FINternship Learning Platform"
+      description="Comprehensive CMFAS exam preparation materials including modules 1, 5, 6, 8, practice tests, and study materials for capital markets financial advisory services certification."
+      keywords="CMFAS exam, capital markets, financial advisory, certification, exam preparation, modules, practice tests"
+      structuredData={structuredData}
+    >
 
       {!isMobile && (
         <NavigationHeader 
@@ -225,6 +188,6 @@ export default function CMFASExams() {
           </div>
         )}
       </div>
-    </div>
+    </PageLayout>
   );
 }
