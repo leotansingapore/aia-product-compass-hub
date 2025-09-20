@@ -164,7 +164,6 @@ export function EnhancedUserFilters({
           { key: 'pending_approval', label: 'Pending', color: 'text-amber-600', bgColor: 'bg-amber-50 hover:bg-amber-100' },
           { key: 'approved', label: 'Approved', color: 'text-blue-600', bgColor: 'bg-blue-50 hover:bg-blue-100' },
           { key: 'active', label: 'Active', color: 'text-green-600', bgColor: 'bg-green-50 hover:bg-green-100' },
-          { key: 'needs_role', label: 'Needs Role', color: 'text-orange-600', bgColor: 'bg-orange-50 hover:bg-orange-100' },
           { key: 'suspended', label: 'Suspended', color: 'text-gray-600', bgColor: 'bg-gray-50 hover:bg-gray-100' },
           { key: 'rejected', label: 'Rejected', color: 'text-red-600', bgColor: 'bg-red-50 hover:bg-red-100' },
         ].map(({ key, label, color, bgColor }) => (
