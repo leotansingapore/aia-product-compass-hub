@@ -96,13 +96,6 @@ export function UserManagementTable({
         color: "text-green-600",
         bgColor: "bg-green-50"
       },
-      needs_role: { 
-        variant: "outline" as const, 
-        label: "Needs Role", 
-        icon: Settings, 
-        color: "text-orange-600",
-        bgColor: "bg-orange-50"
-      },
       suspended: { 
         variant: "destructive" as const, 
         label: "Suspended", 
@@ -413,7 +406,7 @@ export function UserManagementTable({
                       <DropdownMenuContent align="start" className="w-48">
                         <DropdownMenuLabel>Change Status</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        {['pending_approval', 'approved', 'active', 'needs_role', 'suspended', 'rejected'].map((status) => (
+                        {['pending_approval', 'approved', 'active', 'suspended', 'rejected'].map((status) => (
                           <DropdownMenuItem
                             key={status}
                             onClick={() => handleStatusChange(user, status as any)}
