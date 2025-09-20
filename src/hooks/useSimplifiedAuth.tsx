@@ -207,6 +207,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
   };
 
   const resetPassword = async (email: string) => {
+    console.log('[SimplifiedAuth] Reset password called for:', email);
     if (!email?.trim()) {
       toast({
         variant: "destructive",
@@ -216,10 +217,14 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       return;
     }
 
+    setLoading(true);
     try {
+      console.log('[SimplifiedAuth] Calling send-password-reset function');
       const { data, error } = await supabase.functions.invoke('send-password-reset', {
         body: { email: email.trim() }
       });
+
+      console.log('[SimplifiedAuth] Reset response:', { data, error });
 
       if (error) {
         console.error('Reset password error:', error);
@@ -262,6 +267,8 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         title: "Reset Failed",
         description: "An unexpected error occurred"
       });
+    } finally {
+      setLoading(false);
     }
   };
 
