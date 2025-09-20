@@ -69,29 +69,8 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Also check if user has been approved
-    const { data: approvalData } = await supabase
-      .from('user_approval_requests')
-      .select('status')
-      .eq('email', email.trim())
-      .eq('status', 'approved')
-      .single();
-
-    if (!approvalData) {
-      console.log('⚠️ User exists but not approved:', email.trim());
-      // Still return success to prevent enumeration
-      return new Response(
-        JSON.stringify({ 
-          success: true, 
-          message: "If an account with this email exists, a password reset link has been sent."
-        }),
-        {
-          status: 200,
-          headers: { "Content-Type": "application/json", ...corsHeaders }
-        }
-      );
-    }
-
+    // Optional: previously we blocked unapproved users. Now we proceed to send reset if account exists.
+    console.log('ℹ️ Proceeding to send reset email regardless of approval status for:', email.trim());
     console.log('✅ User verified, generating reset link for:', email.trim());
 
     // Generate password reset link using Supabase Admin API
