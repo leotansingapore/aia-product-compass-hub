@@ -24,17 +24,15 @@ export function useVideoProgress(productId: string) {
 
   // Fetch user's video progress for this product
   useEffect(() => {
-    const isDevelopment = import.meta.env.DEV;
-    if ((!user && !isDevelopment) || !productId) return;
+    if (!user || !productId) return;
 
     async function fetchVideoProgress() {
       try {
-        const userId = user?.id || '00000000-0000-0000-0000-000000000000';
         const { data, error } = await supabase
           .from('video_progress')
           .select('*')
           .eq('product_id', productId)
-          .eq('user_id', userId);
+          .eq('user_id', user.id);
 
         if (error) throw error;
         setVideoProgress(data || []);
@@ -53,15 +51,14 @@ export function useVideoProgress(productId: string) {
     videoId: string,
     updates: Partial<Pick<VideoProgress, 'completed' | 'watch_time_seconds' | 'completion_percentage'>>
   ) => {
-    // Allow anonymous users in development mode
-    const isDevelopment = import.meta.env.DEV;
-    if (!user && !isDevelopment) return;
+    // Require authenticated user
+    if (!user) return;
 
     try {
       const existingProgress = videoProgress.find(p => p.video_id === videoId);
       
       const progressData = {
-        user_id: user?.id || '00000000-0000-0000-0000-000000000000', // Use dummy ID for development
+        user_id: user.id,
         product_id: productId,
         video_id: videoId,
         ...updates,
