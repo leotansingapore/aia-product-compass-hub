@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, memo, useMemo } from "react";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { MobileBottomNav } from "./MobileBottomNav";
@@ -37,8 +37,7 @@ interface AppLayoutProps {
   children: ReactNode;
 }
 
-export function AppLayout({ children }: AppLayoutProps) {
-  console.log("AppLayout rendering");
+const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdminSafe();
   const { user, loading, signOut } = useSimplifiedAuthSafe();
   const navigate = useNavigate();
@@ -46,10 +45,12 @@ export function AppLayout({ children }: AppLayoutProps) {
   const { loading: permissionsLoading } = usePermissions();
   const isMobile = useIsMobile();
 
-  // Auto-sync app structure when layout mounts (for admin users)
+  // Auto-sync app structure when layout mounts (for admin users) - memoized to prevent re-runs
   useEffect(() => {
-    autoSync();
-  }, [autoSync]);
+    if (isAdmin) {
+      autoSync();
+    }
+  }, [autoSync, isAdmin]);
 
   // Password change is optional now; previously enforced via redirect
   const location = useLocation();
@@ -215,4 +216,6 @@ export function AppLayout({ children }: AppLayoutProps) {
       <OnboardingHelpButton />
     </SidebarProvider>
   );
-}
+});
+
+export { AppLayout };

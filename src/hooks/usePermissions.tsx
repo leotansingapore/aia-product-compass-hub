@@ -1,6 +1,15 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+
+// Cache for user permissions to prevent unnecessary re-fetches
+const permissionsCache = new Map<string, {
+  tier: string;
+  adminRole: string;
+  permissions: { access_type: string; resource_id: string; }[];
+  timestamp: number;
+}>();
+const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes
 
 // Safe hook wrapper to handle auth context not being available during initialization
 const useSimplifiedAuthSafe = () => {
@@ -25,6 +34,17 @@ export function usePermissions() {
     
     hasInitialized.current = true;
     setLoading(true);
+    
+    // Check cache first
+    const cacheKey = user.id;
+    const cached = permissionsCache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+      setUserTier(cached.tier);
+      setUserAdminRole(cached.adminRole);
+      setTierPermissions(cached.permissions);
+      setLoading(false);
+      return;
+    }
     
     try {
       // Get user's access tier
@@ -63,6 +83,14 @@ export function usePermissions() {
       } else {
         setTierPermissions(permissions || []);
       }
+
+      // Cache the results
+      permissionsCache.set(user.id, {
+        tier: tierData || 'basic',
+        adminRole: adminRoleData || 'user',
+        permissions: permissions || [],
+        timestamp: Date.now()
+      });
     } catch (error) {
       console.error('Error in fetchUserPermissions:', error);
     } finally {

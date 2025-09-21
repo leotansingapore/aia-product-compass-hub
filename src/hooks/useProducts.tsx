@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
 export interface UsefulLink {
@@ -53,13 +53,25 @@ export interface Category {
   updated_at: string;
 }
 
+// Cache for categories to prevent unnecessary re-fetches
+let categoriesCache: Category[] | null = null;
+let categoriesCacheTime = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 export function useCategories() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState<Category[]>(categoriesCache || []);
+  const [loading, setLoading] = useState(!categoriesCache);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchCategories() {
+      // Use cache if it's still valid
+      if (categoriesCache && Date.now() - categoriesCacheTime < CACHE_DURATION) {
+        setCategories(categoriesCache);
+        setLoading(false);
+        return;
+      }
+
       try {
         const { data, error } = await supabase
           .from('categories')
@@ -67,7 +79,11 @@ export function useCategories() {
           .order('name');
 
         if (error) throw error;
-        setCategories(data || []);
+        
+        const fetchedCategories = data || [];
+        categoriesCache = fetchedCategories;
+        categoriesCacheTime = Date.now();
+        setCategories(fetchedCategories);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch categories');
       } finally {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo, useMemo } from "react";
 import { 
   Home, 
   BookOpen, 
@@ -42,8 +42,7 @@ const allResourceItems = [
   { title: "Sales Tools & Objection Handling", url: "/product/sales-tools-objections", icon: TrendingUp, sectionId: "sales-tools" },
 ];
 
-export function AppSidebar() {
-  console.log("AppSidebar rendering");
+const AppSidebar = memo(function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
   const { categories } = useCategories();
@@ -57,36 +56,45 @@ export function AppSidebar() {
     return null;
   }
 
-  const allMainNavItems = [
+  // Memoize navigation items to prevent recalculation on every render
+  const allMainNavItems = useMemo(() => [
     { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined, sectionId: "dashboard" },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
     { title: "My Account", url: "/my-account", icon: User, dataAttr: undefined, sectionId: "my-account" },
     ...(isMasterAdmin() || hasRole('admin') ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
-  ];
+  ], [isMasterAdmin, hasRole]);
 
-  // Filter navigation items based on user permissions
-  const mainNavItems = allMainNavItems.filter(item => canAccessSection(item.sectionId));
-  const resourceItems = allResourceItems.filter(item => canAccessSection(item.sectionId));
+  // Filter navigation items based on user permissions - memoized
+  const mainNavItems = useMemo(() => 
+    allMainNavItems.filter(item => canAccessSection(item.sectionId)), 
+    [allMainNavItems, canAccessSection]
+  );
+  
+  const resourceItems = useMemo(() => 
+    allResourceItems.filter(item => canAccessSection(item.sectionId)), 
+    [canAccessSection]
+  );
   const [categoriesOpen, setCategoriesOpen] = useState(true);
   
   const isCollapsed = state === "collapsed";
   const currentPath = location.pathname;
 
-  const isActive = (path: string) => {
+  // Memoize helper functions to prevent recreating on every render
+  const isActive = useMemo(() => (path: string) => {
     if (path === "/") return currentPath === "/";
     return currentPath.startsWith(path);
-  };
+  }, [currentPath]);
 
-  const getNavClassName = (path: string) => {
+  const getNavClassName = useMemo(() => (path: string) => {
     const isCurrentlyActive = isActive(path);
     return `flex items-center w-full text-left transition-colors ${
       isCurrentlyActive 
         ? "bg-primary text-primary-foreground font-medium" 
         : "hover:bg-accent hover:text-accent-foreground"
     }`;
-  };
+  }, [isActive]);
 
   return (
     <Sidebar className="border-r">
@@ -219,4 +227,6 @@ export function AppSidebar() {
       </SidebarFooter>
     </Sidebar>
   );
-}
+});
+
+export { AppSidebar };
