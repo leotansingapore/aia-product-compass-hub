@@ -37,6 +37,7 @@ import NotFound from "./pages/NotFound";
 import KnowledgeBase from "./pages/KnowledgeBase";
 import KBCategory from "./pages/kb/KBCategory";
 import KBProduct from "./pages/kb/KBProduct";
+import VideoDetail from "./pages/VideoDetail";
 import AwaitingApproval from "./pages/AwaitingApproval";
 
 const queryClient = new QueryClient();
@@ -76,6 +77,7 @@ const App = () => (
                     <Route path="/my-account" element={<MyAccount />} />
 <Route path="/category/:categorySlugOrId" element={<ProductCategory />} />
 <Route path="/product/:productSlugOrId" element={<ProductDetail />} />
+<Route path="/product/:productSlugOrId/video/:videoId" element={<VideoDetail />} />
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
 

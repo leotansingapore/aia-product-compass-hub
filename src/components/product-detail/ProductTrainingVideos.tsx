@@ -114,6 +114,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
                 setShowLearningInterface(true);
               }}
               getVideoProgress={getVideoProgress}
+              useIndividualPages={true}
             />
           </div>
         ) : (

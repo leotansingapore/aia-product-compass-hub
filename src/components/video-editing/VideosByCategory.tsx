@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -9,13 +10,21 @@ import { useIsMobile } from '@/hooks/use-mobile';
 
 interface VideosByCategoryProps {
   videos: TrainingVideo[];
-  onVideoSelect: (index: number) => void;
+  onVideoSelect?: (index: number) => void;
   getVideoProgress: (videoId: string) => { completed: boolean } | undefined;
+  useIndividualPages?: boolean;
 }
 
-export function VideosByCategory({ videos, onVideoSelect, getVideoProgress }: VideosByCategoryProps) {
+export function VideosByCategory({ 
+  videos, 
+  onVideoSelect, 
+  getVideoProgress, 
+  useIndividualPages = false 
+}: VideosByCategoryProps) {
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
+  const { productSlugOrId } = useParams();
 
   // Group videos by category
   const videosByCategory = videos.reduce((acc, video, index) => {
@@ -86,10 +95,16 @@ export function VideosByCategory({ videos, onVideoSelect, getVideoProgress }: Vi
               {videoItems.map(({ video, index }) => {
                 const videoProgress = getVideoProgress(video.id);
                 return (
-                  <div
+                    <div
                     key={`${category}-${index}-${video.id}`}
                     className="flex items-center gap-2 sm:gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors min-h-[56px]"
-                    onClick={() => onVideoSelect(index)}
+                    onClick={() => {
+                      if (useIndividualPages && productSlugOrId) {
+                        navigate(`/product/${productSlugOrId}/video/${video.id}`);
+                      } else {
+                        onVideoSelect?.(index);
+                      }
+                    }}
                   >
                     <div className="flex-shrink-0">
                       {videoProgress?.completed ? (
