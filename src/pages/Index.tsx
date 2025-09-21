@@ -1,41 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { usePermissions } from "@/hooks/usePermissions";
 import Dashboard from "./Dashboard";
 
-const Index = () => {
+const Index = memo(() => {
   const { user, loading } = useSimplifiedAuth();
-  const { isAdmin } = usePermissions();
   const navigate = useNavigate();
 
   const hasRecoveryHash =
     typeof window !== 'undefined' &&
     (window.location.hash.includes('type=recovery') || window.location.hash.includes('access_token='));
 
-  // Debug logging to help identify auth state
-  console.log('[Index] Auth state:', { 
-    hasUser: !!user, 
-    loading, 
-    userEmail: user?.email,
-    isAdmin: isAdmin(),
-    hasRecoveryHash
-  });
-
   useEffect(() => {
     if (hasRecoveryHash) {
-      console.log('[Index] Recovery hash detected, navigating to /reset-password');
       navigate('/reset-password', { replace: true });
       return;
     }
-    if (!loading) {
-      console.log('[Index] Effect - user check:', !!user);
-      if (!user) {
-        console.log('[Index] No user, redirecting to /auth');
-        navigate("/auth");
-      } else {
-        console.log('[Index] User authenticated, showing dashboard');
-      }
+    if (!loading && !user) {
+      navigate("/auth");
     }
   }, [user, loading, navigate, hasRecoveryHash]);
 
@@ -50,6 +33,6 @@ const Index = () => {
   }
 
   return <Dashboard />;
-};
+});
 
 export default Index;

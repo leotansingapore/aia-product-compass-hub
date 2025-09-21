@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { NavigationHeader } from "@/components/NavigationHeader";
 import { SearchHero } from "@/components/dashboard/SearchHero";
 import { QuickActions } from "@/components/dashboard/QuickActions";
@@ -7,7 +8,7 @@ import { SearchResults } from "@/components/dashboard/SearchResults";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useDashboardSearch } from "@/hooks/useDashboardSearch";
 
-export default function Dashboard() {
+const Dashboard = memo(() => {
   const {
     query,
     filters,
@@ -108,4 +109,6 @@ export default function Dashboard() {
       </div>
     </PageLayout>
   );
-}
+});
+
+export default Dashboard;
