@@ -4,7 +4,7 @@ import { QuickActions } from "@/components/dashboard/QuickActions";
 import { ProductCategories } from "@/components/dashboard/ProductCategories";
 import { SearchFilters } from "@/components/dashboard/SearchFilters";
 import { SearchResults } from "@/components/dashboard/SearchResults";
-import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
+import { PageLayout } from "@/components/layout/PageLayout";
 import { useDashboardSearch } from "@/hooks/useDashboardSearch";
 
 export default function Dashboard() {
@@ -29,22 +29,12 @@ export default function Dashboard() {
     clearFilters
   } = useDashboardSearch();
 
-  const structuredData: StructuredData = {
-    "@context": "https://schema.org" as const,
-    "@type": "WebApplication",
-    "name": "FINternship Learning Dashboard",
-    "description": "Personalized learning dashboard for financial advisors",
-    "url": `${window.location.origin}${window.location.pathname}`,
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "Web Browser"
-  };
 
   return (
     <PageLayout
       title="Dashboard - Your Learning Hub | FINternship"
       description="Access your personalized learning dashboard. Browse product categories, track progress, discover recommendations, and continue your financial advisory education journey."
       keywords="dashboard, learning hub, financial products, training progress, product categories, financial advisor platform"
-      structuredData={structuredData}
     >
       {/* Desktop Header - Hidden on mobile */}
       <div className="hidden md:block">
