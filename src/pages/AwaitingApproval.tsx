@@ -4,11 +4,15 @@ import { Clock, Mail, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
+import { usePermissions } from "@/hooks/usePermissions";
 
 const AwaitingApproval = () => {
-  const { user, signOut, hasRole, loading } = useAuth();
+  const { user, signOut, loading } = useAuth();
+  const { hasRole } = usePermissions();
 
-  console.log('[AwaitingApproval] State:', { user: !!user, hasRole, loading, userEmail: user?.email });
+  const userHasRole = hasRole('consultant') || hasRole('mentor') || hasRole('admin') || hasRole('master_admin');
+  
+  console.log('[AwaitingApproval] State:', { user: !!user, userHasRole, loading, userEmail: user?.email });
 
   useEffect(() => {
     // If no user, redirect to auth
@@ -19,12 +23,12 @@ const AwaitingApproval = () => {
     }
     
     // If user has role, redirect to dashboard  
-    if (!loading && user && hasRole) {
+    if (!loading && user && userHasRole) {
       console.log('[AwaitingApproval] User has role, redirecting to dashboard');
       window.location.href = '/';
       return;
     }
-  }, [user, hasRole, loading]);
+  }, [user, userHasRole, loading]);
 
   if (loading) {
     console.log('[AwaitingApproval] Still loading...');
