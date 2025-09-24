@@ -1,17 +1,28 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { EditableLinks } from "@/components/EditableLinks";
+import { FolderBasedUsefulLinks } from "@/components/product-detail/FolderBasedUsefulLinks";
 import type { UsefulLink } from "@/hooks/useProducts";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { usePermissions } from "@/hooks/usePermissions";
 
+interface CompetitorFolder {
+  name: string;
+  links: UsefulLink[];
+  expanded?: boolean;
+}
+
 interface ProductUsefulLinksProps {
   links: UsefulLink[];
   onUpdate: (field: string, value: any) => Promise<void>;
+  productId?: string;
 }
 
-export function ProductUsefulLinks({ links, onUpdate }: ProductUsefulLinksProps) {
+export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUsefulLinksProps) {
   const { canEditSection } = usePermissions();
   const canEdit = canEditSection('product_links');
+  
+  // Check if this is the Competitors module under Investment Products
+  const isCompetitorsModule = productId === 'module-1758266631016-n7jff6ewh';
 
   // Transform database format to EditableLinks format
   const transformToEditableFormat = (dbLinks: any[]): UsefulLink[] => {
@@ -61,7 +72,37 @@ export function ProductUsefulLinks({ links, onUpdate }: ProductUsefulLinksProps)
     await onUpdate('useful_links', dbFormatLinks);
   };
 
+  const handleFolderSave = async (folders: CompetitorFolder[]) => {
+    // Convert folder structure to database format
+    const dbFormatFolders = folders.map(folder => ({
+      folder_name: folder.name,
+      links: folder.links.map(link => ({
+        title: link.name,
+        url: link.url,
+        type: getTypeForIcon(link.icon)
+      }))
+    }));
+    await onUpdate('competitor_folders', dbFormatFolders);
+  };
+
   const transformedLinks = transformToEditableFormat(links || []);
+
+  // Transform database folders to component format
+  const transformFoldersFromDb = (dbData: any[]): CompetitorFolder[] => {
+    if (!Array.isArray(dbData)) return [];
+    return dbData.map(folder => ({
+      name: folder.folder_name || '',
+      expanded: true,
+      links: (folder.links || []).map((link: any) => ({
+        name: link.title || link.name || '',
+        url: link.url || '',
+        icon: getIconForType(link.type || 'document')
+      }))
+    }));
+  };
+
+  // Get competitor folders from the database (assuming they're stored in a 'competitor_folders' field)
+  const competitorFolders = transformFoldersFromDb((links as any)?.competitor_folders || []);
 
   return (
     <ProtectedSection sectionId="product_links">
@@ -75,11 +116,19 @@ export function ProductUsefulLinks({ links, onUpdate }: ProductUsefulLinksProps)
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <EditableLinks
-            links={transformedLinks}
-            onSave={canEdit ? handleSave : undefined}
-            readOnly={!canEdit}
-          />
+          {isCompetitorsModule ? (
+            <FolderBasedUsefulLinks
+              folders={competitorFolders}
+              onSave={canEdit ? handleFolderSave : undefined}
+              readOnly={!canEdit}
+            />
+          ) : (
+            <EditableLinks
+              links={transformedLinks}
+              onSave={canEdit ? handleSave : undefined}
+              readOnly={!canEdit}
+            />
+          )}
         </CardContent>
       </Card>
     </ProtectedSection>

@@ -106,6 +106,7 @@ export default function ProductDetail() {
             <ProductUsefulLinks
               links={product.useful_links || []}
               onUpdate={handleUpdate}
+              productId={productId}
             />
           )}
 
