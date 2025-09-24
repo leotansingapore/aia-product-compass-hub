@@ -11,6 +11,7 @@ const SimplifiedAuth = () => {
   useEffect(() => {
     // Redirect authenticated users to dashboard using React Router
     if (user && !loading) {
+      console.log('[SimplifiedAuth] Redirecting authenticated user to dashboard');
       navigate('/', { replace: true });
     }
   }, [user, loading, navigate]);

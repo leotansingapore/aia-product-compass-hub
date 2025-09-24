@@ -16,6 +16,7 @@ const useSimplifiedAuthSafe = () => {
   try {
     return useSimplifiedAuth();
   } catch (error) {
+    console.log('[Auth Hook] SimplifiedAuth context not available:', error);
     // Return safe defaults when auth context is not available
     return { user: null, loading: true };
   }
@@ -165,7 +166,10 @@ export function usePermissions() {
     // Core pages accessible to all authenticated users
     const corePages = ['dashboard', 'search', 'my-account', 'how-to-use-portal', 'search-by-profile', 'roleplay'];
 
-    // Require authentication
+    // Auth page should always be accessible to unauthenticated users
+    if (pageId === 'auth') return true;
+
+    // Require authentication for all other pages
     if (!user) return false;
 
     if (corePages.includes(pageId)) return true;
