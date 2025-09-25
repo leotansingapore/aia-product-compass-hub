@@ -74,35 +74,41 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
 
   const handleFolderSave = async (folders: CompetitorFolder[]) => {
     // Convert folder structure to database format
-    const dbFormatFolders = folders.map(folder => ({
-      folder_name: folder.name,
-      links: folder.links.map(link => ({
-        title: link.name,
-        url: link.url,
-        type: getTypeForIcon(link.icon)
+    const dbFormatFolders = {
+      type: 'folder_structure',
+      folders: folders.map(folder => ({
+        folder_name: folder.name,
+        links: folder.links.map(link => ({
+          title: link.name,
+          url: link.url,
+          type: getTypeForIcon(link.icon)
+        }))
       }))
-    }));
-    await onUpdate('competitor_folders', dbFormatFolders);
+    };
+    await onUpdate('useful_links', dbFormatFolders);
   };
 
   const transformedLinks = transformToEditableFormat(links || []);
 
   // Transform database folders to component format
-  const transformFoldersFromDb = (dbData: any[]): CompetitorFolder[] => {
-    if (!Array.isArray(dbData)) return [];
-    return dbData.map(folder => ({
-      name: folder.folder_name || '',
-      expanded: true,
-      links: (folder.links || []).map((link: any) => ({
-        name: link.title || link.name || '',
-        url: link.url || '',
-        icon: getIconForType(link.type || 'document')
-      }))
-    }));
+  const transformFoldersFromDb = (dbData: any): CompetitorFolder[] => {
+    // Check if the data has folder structure format
+    if (dbData && typeof dbData === 'object' && dbData.type === 'folder_structure' && Array.isArray(dbData.folders)) {
+      return dbData.folders.map((folder: any) => ({
+        name: folder.folder_name || '',
+        expanded: true,
+        links: (folder.links || []).map((link: any) => ({
+          name: link.title || link.name || '',
+          url: link.url || '',
+          icon: getIconForType(link.type || 'document')
+        }))
+      }));
+    }
+    return [];
   };
 
-  // Get competitor folders from the database (assuming they're stored in a 'competitor_folders' field)
-  const competitorFolders = transformFoldersFromDb((links as any)?.competitor_folders || []);
+  // Get competitor folders from the database
+  const competitorFolders = transformFoldersFromDb(links);
 
   return (
     <ProtectedSection sectionId="product_links">
