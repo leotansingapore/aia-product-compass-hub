@@ -57,6 +57,41 @@ export function ProtectedPage({ pageId, children, fallback, redirectTo }: Protec
     if (redirectTo) {
       return null;
     }
+    
+    // Show sign-in prompt for unauthenticated users
+    if (!user) {
+      return (
+        <div className="relative min-h-screen">
+          {/* Blurred background content */}
+          <div className="absolute inset-0 blur-sm opacity-30 pointer-events-none">
+            {children}
+          </div>
+          
+          {/* Sign-in overlay */}
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center">
+            <div className="max-w-md mx-auto space-y-4">
+              <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                <div className="text-2xl">🔐</div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold">Sign In Required</h3>
+                <p className="text-muted-foreground">
+                  Please sign in to access this content.
+                </p>
+                <button
+                  onClick={() => navigate('/auth')}
+                  className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+                >
+                  Sign In
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    
+    // Show access restricted message for authenticated users without permissions
     return (
       <div className="relative min-h-screen">
         {/* Blurred background content */}
