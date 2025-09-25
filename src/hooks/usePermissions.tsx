@@ -145,10 +145,20 @@ export function usePermissions() {
     const coreSections = [
       'dashboard', 'search', 'my-account', 'how-to-use-portal', 'roleplay',
       'dashboard-search', 'dashboard-quick-actions', 'dashboard-user-stats', 
-      'product-categories', 'dashboard-recently-viewed', 'dashboard-recommendations'
+      'product-categories', 'dashboard-recently-viewed', 'dashboard-recommendations',
+      // Product sections should be accessible to authenticated users
+      'product_tags', 'product_summary', 'product_highlights', 'product_links', 
+      'product_ai', 'product_videos', 'product_notes'
     ];
 
-    // Require authentication
+    // Auth sections that don't require authentication
+    const publicSections = ['auth', 'how_to_use'];
+    if (publicSections.includes(sectionId)) return true;
+
+    // During loading, allow access to prevent flickering
+    if (loading) return true;
+
+    // Require authentication for everything else
     if (!user) return false;
 
     if (coreSections.includes(sectionId)) return true;

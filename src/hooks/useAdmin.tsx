@@ -15,8 +15,8 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const { user } = useSimplifiedAuth();
   const { isMasterAdmin, hasRole, loading } = usePermissions();
   
-  // Check if user has admin privileges - admins and master admins can access admin mode
-  const isAdmin = isMasterAdmin() || hasRole('admin');
+    // Check if user has admin privileges - admins and master admins can access admin mode
+    const isAdmin = !loading && (isMasterAdmin() || hasRole('admin'));
   
   useEffect(() => {
     // Reset admin mode when user logs out or loses admin privileges

@@ -24,48 +24,59 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
   useEffect(() => {
     let mounted = true;
 
-    // Set up auth state listener
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (!mounted) return;
-        
-        console.log('[SimplifiedAuth] State change:', event, 'hasUser:', !!session?.user, 'userEmail:', session?.user?.email);
-        
-        // Handle all relevant auth events to prevent flickering
-        if (
-          event === 'SIGNED_IN' ||
-          event === 'SIGNED_OUT' ||
-          event === 'TOKEN_REFRESHED' ||
-          event === 'INITIAL_SESSION' ||
-          event === 'PASSWORD_RECOVERY'
-        ) {
-          setSession(session);
-          setUser(session?.user ?? null);
-          setLoading(false);
-          console.log('[SimplifiedAuth] Updated state - user:', !!session?.user, 'loading:', false);
-        }
-      }
-    );
-
-    // Check for existing session
-    const getInitialSession = async () => {
+    // First, check for existing session immediately
+    const initializeAuth = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (mounted) {
-          console.log('[Auth] Initial session:', !!session?.user);
+        console.log('[SimplifiedAuth] Initializing auth...');
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (error) {
+          console.error('[Auth] Error getting initial session:', error);
+        }
+        
+        if (mounted && session) {
+          console.log('[Auth] Found existing session for:', session.user?.email);
           setSession(session);
-          setUser(session?.user ?? null);
+          setUser(session.user);
+          setLoading(false);
+        } else if (mounted) {
+          console.log('[Auth] No existing session found');
+          setSession(null);
+          setUser(null);
           setLoading(false);
         }
       } catch (error) {
-        console.error('[Auth] Error getting session:', error);
+        console.error('[Auth] Error initializing auth:', error);
         if (mounted) {
+          setSession(null);
+          setUser(null);
           setLoading(false);
         }
       }
     };
 
-    getInitialSession();
+    // Set up auth state listener after checking initial session
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (!mounted) return;
+        
+        console.log('[SimplifiedAuth] Auth state change:', event, 'hasUser:', !!session?.user, 'userEmail:', session?.user?.email);
+        
+        // Update state for all auth events
+        setSession(session);
+        setUser(session?.user ?? null);
+        
+        // Only set loading to false after we've processed the initial session
+        if (event !== 'INITIAL_SESSION' || session !== null) {
+          setLoading(false);
+        }
+        
+        console.log('[SimplifiedAuth] Updated state - user:', !!session?.user, 'loading: false');
+      }
+    );
+
+    // Initialize auth
+    initializeAuth();
 
     return () => {
       mounted = false;
@@ -195,9 +206,8 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         console.error('Sign out error:', error);
       }
       
-      // Clear any cached data
-      localStorage.clear();
-      sessionStorage.clear();
+      // Only clear specific cached data, not all localStorage
+      // Let Supabase handle its own token cleanup
       
       // Let the app handle routing naturally
     } catch (error) {
