@@ -14,7 +14,19 @@ export function useProductUpdate() {
     console.log('🔄 Allowing update without authentication check');
 
     // Validate data format for JSON fields
-    if ((field === 'useful_links' || field === 'training_videos') && !Array.isArray(value)) {
+    if (field === 'useful_links') {
+      // Allow both arrays and objects (for folder structure format)
+      if (!Array.isArray(value) && (typeof value !== 'object' || value === null)) {
+        const error = new Error(`${field} must be an array or object`);
+        console.error('❌ Validation error:', error);
+        toast({
+          title: "Validation Error", 
+          description: `${field} must be an array or object`,
+          variant: "destructive",
+        });
+        throw error;
+      }
+    } else if (field === 'training_videos' && !Array.isArray(value)) {
       const error = new Error(`${field} must be an array`);
       console.error('❌ Validation error:', error);
       toast({
