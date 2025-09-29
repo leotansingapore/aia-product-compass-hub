@@ -17,8 +17,13 @@ export function useUsefulLinks(productId: string, defaultLinks: UsefulLink[] = [
           .eq('id', productId)
           .single();
 
-        if (data && data.useful_links && Array.isArray(data.useful_links)) {
-          setUsefulLinks(data.useful_links as unknown as UsefulLink[]);
+        if (data && data.useful_links) {
+          if (Array.isArray(data.useful_links)) {
+            setUsefulLinks(data.useful_links as unknown as UsefulLink[]);
+          } else {
+            // If stored as folder_structure, default to empty list for this flat hook
+            setUsefulLinks([]);
+          }
         }
       } catch (error) {
         console.log('No existing useful links found, using defaults');

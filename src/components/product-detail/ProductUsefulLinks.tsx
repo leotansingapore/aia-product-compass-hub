@@ -25,7 +25,8 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
   const isCompetitorsModule = productId === 'module-1758266631016-n7jff6ewh';
 
   // Transform database format to EditableLinks format
-  const transformToEditableFormat = (dbLinks: any[]): UsefulLink[] => {
+  const transformToEditableFormat = (dbLinks: any): UsefulLink[] => {
+    if (!Array.isArray(dbLinks)) return [];
     return dbLinks.map((link: any) => ({
       name: link.title || link.name || '',
       url: link.url || '',
@@ -88,7 +89,7 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
     await onUpdate('useful_links', dbFormatFolders);
   };
 
-  const transformedLinks = transformToEditableFormat(links || []);
+  const transformedLinks = Array.isArray(links) ? transformToEditableFormat(links) : [];
 
   // Transform database folders to component format
   const transformFoldersFromDb = (dbData: any): CompetitorFolder[] => {
