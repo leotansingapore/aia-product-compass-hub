@@ -45,12 +45,12 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const { loading: permissionsLoading } = usePermissions();
   const isMobile = useIsMobile();
 
-  // Auto-sync app structure when layout mounts (for admin users) - memoized to prevent re-runs
-  useEffect(() => {
-    if (isAdmin) {
-      autoSync();
-    }
-  }, [autoSync, isAdmin]);
+  // Auto-sync disabled to improve performance
+  // useEffect(() => {
+  //   if (isAdmin) {
+  //     autoSync();
+  //   }
+  // }, [autoSync, isAdmin]);
 
   // Password change is optional now; previously enforced via redirect
   const location = useLocation();
