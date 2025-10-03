@@ -87,31 +87,28 @@ export class SimpleAuthService {
       const firstName = nameParts[0];
       const lastName = nameParts.slice(1).join(' ');
 
-      const redirectUrl = `${window.location.origin}/`;
-      
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: redirectUrl,
-          data: {
-            first_name: firstName,
-            last_name: lastName || '',
-            display_name: displayName
-          }
-        }
-      });
+      const { error } = await supabase
+        .from('user_approval_requests')
+        .insert({
+          email: email.trim(),
+          first_name: firstName,
+          last_name: lastName || null,
+          reason: 'User registration request',
+          stored_password: password.trim(),
+          status: 'pending'
+        });
 
       if (error) {
+        if ((error as any).code === '23505') {
+          return {
+            success: false,
+            error: 'A registration request with this email already exists. Please wait for admin approval.'
+          };
+        }
         return { success: false, error: error.message };
       }
 
-      if (data.user) {
-        // User created successfully but needs approval
-        return { success: true, user: data.user, needsApproval: true };
-      }
-
-      return { success: false, error: 'Registration failed' };
+      return { success: true, needsApproval: true };
     } catch (error: any) {
       return { success: false, error: error.message || 'Registration failed' };
     }
