@@ -21,8 +21,16 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
   const { canEditSection } = usePermissions();
   const canEdit = canEditSection('product_links');
   
-  // Check if this is the Competitors module under Investment Products
-  const isCompetitorsModule = productId === 'module-1758266631016-n7jff6ewh';
+  // Check if this is a Competitors module that should use folder-based links
+  const competitorModuleIds = [
+    'module-1758266631016-n7jff6ewh', // Investment Products - Competitors
+    'module-1759490805756-i6duglldb', // Medical Insurance Products - Competitors
+  ];
+  
+  // Also enable for all Term Products
+  const isTermProduct = productId === 'secure-flexi-term' || productId === 'ultimate-critical-cover';
+  
+  const isCompetitorsModule = competitorModuleIds.includes(productId || '') || isTermProduct;
 
   // Transform database format to EditableLinks format
   const transformToEditableFormat = (dbLinks: any): UsefulLink[] => {
