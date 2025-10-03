@@ -11,18 +11,11 @@ const AwaitingApproval = () => {
   const { hasRole } = usePermissions();
 
   const userHasRole = hasRole('consultant') || hasRole('mentor') || hasRole('admin') || hasRole('master_admin');
-  
-  console.log('[AwaitingApproval] State:', { user: !!user, userHasRole, loading, userEmail: user?.email });
-
+  // Get email from query string or localStorage fallback for unauthenticated users
+  const params = new URLSearchParams(window.location.search);
+  const pendingEmail = params.get('email') || user?.email || (typeof localStorage !== 'undefined' ? localStorage.getItem('pendingApprovalEmail') || '' : '');
   useEffect(() => {
-    // If no user, redirect to auth
-    if (!loading && !user) {
-      console.log('[AwaitingApproval] No user, redirecting to auth');
-      window.location.href = '/auth';
-      return;
-    }
-    
-    // If user has role, redirect to dashboard  
+    // If user has been approved, send to dashboard
     if (!loading && user && userHasRole) {
       console.log('[AwaitingApproval] User has role, redirecting to dashboard');
       window.location.href = '/';
@@ -42,10 +35,7 @@ const AwaitingApproval = () => {
     );
   }
 
-  if (!user) {
-    console.log('[AwaitingApproval] No user found, should redirect...');
-    return null;
-  }
+  // Rendering for both authenticated and unauthenticated users awaiting approval
 
   return (
     <div className="min-h-screen bg-gradient-subtle flex items-center justify-center px-4 py-8">
@@ -77,7 +67,11 @@ const AwaitingApproval = () => {
               <div className="flex items-center gap-3 text-sm text-muted-foreground p-4 bg-muted/50 rounded-lg">
                 <Mail className="h-4 w-4 flex-shrink-0" />
                 <span>
-                  You'll receive an email at <strong>{user.email}</strong> once your account is approved
+                  {pendingEmail ? (
+                    <>You'll receive an email at <strong>{pendingEmail}</strong> once your account is approved</>
+                  ) : (
+                    <>You'll receive an email notification once your account is approved</>
+                  )}
                 </span>
               </div>
 
@@ -102,13 +96,15 @@ const AwaitingApproval = () => {
                 >
                   Try Demo Accounts
                 </Button>
-                <Button 
-                  variant="ghost" 
-                  onClick={signOut}
-                  className="flex-1"
-                >
-                  Sign Out
-                </Button>
+                {user && (
+                  <Button 
+                    variant="ghost" 
+                    onClick={signOut}
+                    className="flex-1"
+                  >
+                    Sign Out
+                  </Button>
+                )}
               </div>
             </div>
           </CardContent>

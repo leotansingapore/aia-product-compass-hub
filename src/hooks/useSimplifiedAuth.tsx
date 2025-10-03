@@ -187,8 +187,10 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         });
         
         // Optional: guide users to the awaiting approval page
+        // Persist email for the awaiting page
+        try { localStorage.setItem('pendingApprovalEmail', email.trim()); } catch {}
         setTimeout(() => {
-          try { window.location.href = '/awaiting-approval'; } catch {}
+          try { window.location.href = `/awaiting-approval?email=${encodeURIComponent(email.trim())}`; } catch {}
         }, 800);
     } catch (error) {
       console.error('Sign up error:', error);
