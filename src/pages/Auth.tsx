@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickLoginButtons } from "@/components/auth/QuickLoginButtons";
@@ -5,7 +7,14 @@ import { AuthTabs } from "@/components/auth/AuthTabs";
 import { AuthHeader } from "@/components/auth/AuthHeader";
 
 const Auth = () => {
-  const { loading, signIn, signUp, resetPassword, demoSignIn } = useAuth();
+  const { loading, signIn, signUp, resetPassword, demoSignIn, user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user && !loading) {
+      navigate('/', { replace: true });
+    }
+  }, [user, loading, navigate]);
 
   return (
     <PageLayout
