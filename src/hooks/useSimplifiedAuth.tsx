@@ -152,43 +152,44 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       // Create approval request instead of direct signup
       const [firstName, lastName] = (displayName?.trim() || '').split(' ', 2);
       
-      const { data, error } = await supabase
-        .from('user_approval_requests')
-        .insert({
-          email: email.trim(),
-          first_name: firstName || '',
-          last_name: lastName || '',
-          stored_password: password.trim(),
-          status: 'pending'
-        })
-        .select()
-        .single();
+        const { error } = await supabase
+          .from('user_approval_requests')
+          .insert({
+            email: email.trim(),
+            first_name: firstName || '',
+            last_name: lastName || '',
+            stored_password: password.trim(),
+            status: 'pending'
+          });
 
-      if (error) {
-        // Check if user already requested approval
-        if (error.code === '23505') { // unique constraint violation
+        if (error) {
+          // Check if user already requested approval
+          if ((error as any).code === '23505') { // unique constraint violation
+            toast({
+              variant: "destructive",
+              title: "Request Already Exists",
+              description: "An approval request for this email already exists. Please wait for admin approval."
+            });
+            return;
+          }
+          
           toast({
             variant: "destructive",
-            title: "Request Already Exists",
-            description: "An approval request for this email already exists. Please wait for admin approval."
+            title: "Registration Failed",
+            description: error.message
           });
           return;
         }
-        
-        toast({
-          variant: "destructive",
-          title: "Registration Failed",
-          description: error.message
-        });
-        return;
-      }
 
-      if (data) {
         toast({
           title: "Registration Request Submitted!",
           description: "Your account request has been submitted for admin approval. You'll be able to sign in once approved."
         });
-      }
+        
+        // Optional: guide users to the awaiting approval page
+        setTimeout(() => {
+          try { window.location.href = '/awaiting-approval'; } catch {}
+        }, 800);
     } catch (error) {
       console.error('Sign up error:', error);
       toast({
