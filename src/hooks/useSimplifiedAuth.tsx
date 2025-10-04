@@ -181,12 +181,25 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
           return;
         }
 
+        // Notify master admins of new signup
+        try {
+          await supabase.functions.invoke('notify-admins-new-signup', {
+            body: { 
+              email: email.trim(), 
+              firstName: firstName || '',
+              lastName: lastName || ''
+            }
+          });
+        } catch (error) {
+          console.error('Failed to notify admins:', error);
+          // Don't block signup if notification fails
+        }
+
         toast({
           title: "Registration Request Submitted!",
           description: "Your account request has been submitted for admin approval. You'll be able to sign in once approved."
         });
         
-        // Optional: guide users to the awaiting approval page
         // Persist email for the awaiting page
         try { localStorage.setItem('pendingApprovalEmail', email.trim()); } catch {}
         setTimeout(() => {

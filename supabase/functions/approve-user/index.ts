@@ -1,5 +1,8 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
+const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? ''
+const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -239,6 +242,34 @@ if (tempPassword && tempPassword.length < 6) {
     }
 
     console.log('User approval completed successfully')
+
+    // Send approval notification email to the user
+    try {
+      const notificationResponse = await fetch(
+        `${supabaseUrl}/functions/v1/notify-user-approved`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${supabaseServiceKey}`,
+          },
+          body: JSON.stringify({
+            email: requestData.email,
+            firstName: requestData.first_name,
+            lastName: requestData.last_name,
+          }),
+        }
+      )
+
+      if (!notificationResponse.ok) {
+        console.error('Failed to send approval notification email')
+      } else {
+        console.log('Approval notification email sent to:', requestData.email)
+      }
+    } catch (emailError) {
+      console.error('Error sending approval email:', emailError)
+      // Don't fail the approval if email sending fails
+    }
 
     return new Response(
       JSON.stringify({ 

@@ -5,3 +5,9 @@ verify_jwt = true
 
 [functions.send-password-reset]
 verify_jwt = false
+
+[functions.notify-admins-new-signup]
+verify_jwt = false
+
+[functions.notify-user-approved]
+verify_jwt = false
