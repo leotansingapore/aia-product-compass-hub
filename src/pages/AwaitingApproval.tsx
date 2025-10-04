@@ -84,13 +84,24 @@ const AwaitingApproval = () => {
             </div>
 
             {user && (
-              <div className="pt-4">
+              <div className="pt-4 space-y-3">
                 <Button 
                   variant="ghost" 
                   onClick={signOut}
                   className="w-full"
                 >
                   Sign Out
+                </Button>
+              </div>
+            )}
+            {!user && (
+              <div className="pt-4">
+                <Button 
+                  variant="outline" 
+                  onClick={() => window.location.href = '/auth'}
+                  className="w-full"
+                >
+                  Back to Sign In
                 </Button>
               </div>
             )}
