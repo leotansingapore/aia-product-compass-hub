@@ -83,30 +83,17 @@ const AwaitingApproval = () => {
               </div>
             </div>
 
-            <div className="pt-4 space-y-3">
-              <p className="text-sm text-muted-foreground">
-                Need immediate access? Contact your administrator or try our demo accounts.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-3">
+            {user && (
+              <div className="pt-4">
                 <Button 
-                  variant="outline" 
-                  onClick={() => window.location.href = '/auth'}
-                  className="flex-1"
+                  variant="ghost" 
+                  onClick={signOut}
+                  className="w-full"
                 >
-                  Try Demo Accounts
+                  Sign Out
                 </Button>
-                {user && (
-                  <Button 
-                    variant="ghost" 
-                    onClick={signOut}
-                    className="flex-1"
-                  >
-                    Sign Out
-                  </Button>
-                )}
               </div>
-            </div>
+            )}
           </CardContent>
         </Card>
       </div>
