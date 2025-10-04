@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -9,6 +10,7 @@ import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
 
 export function SimplifiedAuthForm() {
   const { signIn, signUp, resetPassword, loading } = useSimplifiedAuth();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -28,7 +30,10 @@ export function SimplifiedAuthForm() {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    await signUp(formData.email, formData.password, formData.displayName);
+    const result = await signUp(formData.email, formData.password, formData.displayName);
+    if (result.success) {
+      navigate(`/awaiting-approval?email=${encodeURIComponent(formData.email)}`);
+    }
   };
 
   const handleResetPassword = async (e: React.FormEvent) => {

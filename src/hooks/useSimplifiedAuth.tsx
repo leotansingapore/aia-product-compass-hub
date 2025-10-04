@@ -8,7 +8,7 @@ interface AuthContextType {
   session: Session | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, displayName?: string) => Promise<void>;
+  signUp: (email: string, password: string, displayName?: string) => Promise<{ success: boolean; email?: string }>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
 }
@@ -138,14 +138,14 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
     }
   };
 
-  const signUp = async (email: string, password: string, displayName?: string) => {
+  const signUp = async (email: string, password: string, displayName?: string): Promise<{ success: boolean; email?: string }> => {
     if (!email.trim() || !password.trim()) {
       toast({
         variant: "destructive",
         title: "Missing Information",
         description: "Please fill in all required fields"
       });
-      return;
+      return { success: false };
     }
 
     try {
@@ -170,7 +170,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
               title: "Request Already Exists",
               description: "An approval request for this email already exists. Please wait for admin approval."
             });
-            return;
+            return { success: false };
           }
           
           toast({
@@ -178,7 +178,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
             title: "Registration Failed",
             description: error.message
           });
-          return;
+          return { success: false };
         }
 
         // Notify master admins of new signup
@@ -202,10 +202,11 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         });
         
         // Persist email for the awaiting page
-        try { localStorage.setItem('pendingApprovalEmail', email.trim()); } catch {}
-        setTimeout(() => {
-          try { window.location.href = `/awaiting-approval?email=${encodeURIComponent(email.trim())}`; } catch {}
-        }, 800);
+        try { localStorage.setItem('pendingApprovalEmail', email.trim()); } catch {
+          console.log('Could not store email in localStorage');
+        }
+        
+        return { success: true, email: email.trim() };
     } catch (error) {
       console.error('Sign up error:', error);
       toast({
@@ -213,6 +214,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         title: "Registration Failed",
         description: "An unexpected error occurred"
       });
+      return { success: false };
     }
   };
 
@@ -325,7 +327,7 @@ export const useSimplifiedAuth = () => {
       session: null,
       loading: true,
       signIn: async () => {},
-      signUp: async () => {},
+      signUp: async () => ({ success: false }),
       signOut: async () => {},
       resetPassword: async () => {}
     };
