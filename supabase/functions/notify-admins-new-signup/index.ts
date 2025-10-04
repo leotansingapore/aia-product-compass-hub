@@ -23,7 +23,7 @@ serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
     const resend = new Resend(resendApiKey);
 
-    const { email, firstName, lastName } = await req.json();
+    const { email, firstName, lastName, dashboardUrl } = await req.json();
 
     console.log('New signup request from:', email);
 
@@ -74,7 +74,7 @@ serve(async (req) => {
         userEmail: email,
         firstName: firstName || '',
         lastName: lastName || '',
-        dashboardUrl: `${Deno.env.get('SUPABASE_URL')?.replace('supabase.co', 'lovable.app')}/admin`
+        dashboardUrl: dashboardUrl
       })
     );
 

@@ -187,7 +187,8 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
             body: { 
               email: email.trim(), 
               firstName: firstName || '',
-              lastName: lastName || ''
+              lastName: lastName || '',
+              dashboardUrl: `${window.location.origin}/admin`
             }
           });
         } catch (error) {
