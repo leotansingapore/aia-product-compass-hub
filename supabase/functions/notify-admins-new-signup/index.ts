@@ -81,7 +81,7 @@ serve(async (req) => {
     // Send email to each admin
     const emailPromises = adminEmails.map(adminEmail =>
       resend.emails.send({
-        from: 'FINternship <noreply@resend.dev>',
+        from: 'FINternship <noreply@mail.themoneybees.co>',
         to: [adminEmail],
         subject: '🔔 New User Registration Request',
         html,

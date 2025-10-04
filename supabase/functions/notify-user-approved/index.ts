@@ -40,7 +40,7 @@ serve(async (req) => {
 
     // Send approval email
     const { data, error } = await resend.emails.send({
-      from: 'FINternship <noreply@resend.dev>',
+      from: 'FINternship <noreply@mail.themoneybees.co>',
       to: [email],
       subject: '✅ Your FINternship Account Has Been Approved!',
       html,
