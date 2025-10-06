@@ -97,7 +97,7 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
               onKeyDown={handleKeyDown}
               onFocus={() => setShowSuggestions(query.length > 0)}
               placeholder="Search products or training..."
-              className="pl-10 h-12 text-base"
+              className="pl-10 h-12 text-base bg-white"
               autoComplete="off"
             />
             
@@ -140,10 +140,10 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
             </div>
             <div className="flex flex-wrap gap-2">
               {recentSearches.map((search) => (
-                <Badge 
+                <Badge
                   key={search}
-                  variant="secondary" 
-                  className="cursor-pointer hover:bg-secondary/80 text-xs"
+                  variant="secondary"
+                  className="cursor-pointer hover:bg-white/90 text-xs bg-white"
                   onClick={() => {
                     console.log("SearchHero: Clicked recent search:", search);
                     onSearch(search);
