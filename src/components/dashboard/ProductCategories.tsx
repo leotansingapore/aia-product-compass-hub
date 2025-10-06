@@ -71,7 +71,7 @@ export function ProductCategories() {
             className="hover:shadow-md transition-shadow cursor-pointer"
             onClick={() => navigate(`/category/${getCategorySlugFromId(category.id)}`)}
           >
-            <CardContent className="p-4">
+            <CardContent className="!p-6">
               <div className="flex items-start space-x-3">
                 <div className={`p-2 rounded-lg ${category.bgColor}`}>
                   <category.icon className={`h-5 w-5 ${category.color}`} />
