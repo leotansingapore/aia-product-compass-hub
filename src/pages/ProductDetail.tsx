@@ -8,6 +8,7 @@ import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLin
 import { SalesToolsUsefulLinks } from "@/components/product-detail/SalesToolsUsefulLinks";
 import { ProductAIAssistant } from "@/components/product-detail/ProductAIAssistant";
 import { ProductChatLauncher } from "@/components/product-detail/ProductChatLauncher";
+import { ProductChatbots } from "@/components/product-detail/ProductChatbots";
 import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { PersonalNotes } from "@/components/PersonalNotes";
@@ -110,9 +111,16 @@ export default function ProductDetail() {
             />
           )}
 
-          <ProductChatLauncher productName={product.title} onLaunch={() => setAssistantOpen(true)} />
+          {/* Three Chatbot Launchers */}
+          <ProductChatbots
+            chatbotLink1={product.custom_gpt_link}
+            chatbotLink2={(product as any).chatbot_link_2}
+            chatbotLink3={(product as any).chatbot_link_3}
+            productName={product.title}
+            onUpdate={handleUpdate}
+          />
 
-          {/* AI Assistant - Dialog */}
+          {/* AI Assistant - Dialog (keep for backward compatibility) */}
           <ProtectedSection sectionId="product_ai">
             <Dialog open={assistantOpen} onOpenChange={setAssistantOpen}>
               <DialogContent aria-describedby="product-ai-desc" className="w-screen h-[100dvh] max-w-none sm:max-w-3xl sm:w-auto sm:h-auto p-0 rounded-none sm:rounded-lg overflow-hidden flex flex-col">
