@@ -11,6 +11,9 @@ interface ProductChatbotsProps {
   chatbotLink1?: string;
   chatbotLink2?: string;
   chatbotLink3?: string;
+  chatbot2Name?: string;
+  chatbot3Name?: string;
+  chatbotButtonText?: string;
   productName?: string;
   onUpdate: (field: string, value: any) => Promise<void>;
 }
@@ -18,7 +21,10 @@ interface ProductChatbotsProps {
 export function ProductChatbots({ 
   chatbotLink1, 
   chatbotLink2, 
-  chatbotLink3, 
+  chatbotLink3,
+  chatbot2Name,
+  chatbot3Name,
+  chatbotButtonText,
   productName,
   onUpdate 
 }: ProductChatbotsProps) {
@@ -26,34 +32,43 @@ export function ProductChatbots({
   const [editLink1, setEditLink1] = useState(chatbotLink1 || '');
   const [editLink2, setEditLink2] = useState(chatbotLink2 || '');
   const [editLink3, setEditLink3] = useState(chatbotLink3 || '');
+  const [editName2, setEditName2] = useState(chatbot2Name || 'Chatbot 2');
+  const [editName3, setEditName3] = useState(chatbot3Name || 'Chatbot 3');
+  const [editButtonText, setEditButtonText] = useState(chatbotButtonText || 'Open Chat');
   const [saving, setSaving] = useState(false);
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
 
   const handleSave = async () => {
     setSaving(true);
-    console.log('🤖 ProductChatbots saving links');
+    console.log('🤖 ProductChatbots saving links and names');
     
     try {
       await onUpdate('custom_gpt_link', editLink1);
       await onUpdate('chatbot_link_2', editLink2);
       await onUpdate('chatbot_link_3', editLink3);
+      await onUpdate('chatbot_2_name', editName2);
+      await onUpdate('chatbot_3_name', editName3);
+      await onUpdate('chatbot_button_text', editButtonText);
       setIsEditing(false);
       console.log('✅ ProductChatbots save successful');
       toast({
         title: "Saved",
-        description: "Chatbot links updated successfully",
+        description: "Chatbot configuration updated successfully",
       });
     } catch (error) {
       console.error('❌ ProductChatbots save failed:', error);
       toast({
         title: "Error",
-        description: "Failed to save chatbot links",
+        description: "Failed to save chatbot configuration",
         variant: "destructive",
       });
       setEditLink1(chatbotLink1 || '');
       setEditLink2(chatbotLink2 || '');
       setEditLink3(chatbotLink3 || '');
+      setEditName2(chatbot2Name || 'Chatbot 2');
+      setEditName3(chatbot3Name || 'Chatbot 3');
+      setEditButtonText(chatbotButtonText || 'Open Chat');
     } finally {
       setSaving(false);
     }
@@ -63,19 +78,26 @@ export function ProductChatbots({
     setEditLink1(chatbotLink1 || '');
     setEditLink2(chatbotLink2 || '');
     setEditLink3(chatbotLink3 || '');
+    setEditName2(chatbot2Name || 'Chatbot 2');
+    setEditName3(chatbot3Name || 'Chatbot 3');
+    setEditButtonText(chatbotButtonText || 'Open Chat');
     setIsEditing(false);
   };
 
-  const openChatbot = (link: string) => {
+  const openChatbot = (link: string, e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     if (link) {
-      window.open(link, '_blank');
+      window.open(link, '_blank', 'noopener,noreferrer');
     }
   };
 
   const chatbots = [
     { id: 1, link: chatbotLink1, title: "AI Assistant", description: `Get instant help with ${productName || 'product'} details, comparisons, and sales tips` },
-    { id: 2, link: chatbotLink2, title: "Chatbot 2", description: "Additional AI support for specialized queries" },
-    { id: 3, link: chatbotLink3, title: "Chatbot 3", description: "Expert guidance and advanced product insights" },
+    { id: 2, link: chatbotLink2, title: chatbot2Name || "Chatbot 2", description: "Additional AI support for specialized queries" },
+    { id: 3, link: chatbotLink3, title: chatbot3Name || "Chatbot 3", description: "Expert guidance and advanced product insights" },
   ];
 
   return (
@@ -86,7 +108,7 @@ export function ProductChatbots({
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-orange-800">
               <span>⚙️</span> 
-              Chatbot Links Configuration
+              Chatbot Configuration
               {!isEditing && (
                 <Button 
                   size="sm" 
@@ -99,7 +121,7 @@ export function ProductChatbots({
               )}
             </CardTitle>
             <CardDescription className="text-orange-700">
-              Configure external chatbot links (Pirlo, NotebookLM, or custom)
+              Configure chatbot links, names, and button text (Pirlo, NotebookLM, or custom)
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -119,7 +141,7 @@ export function ProductChatbots({
                   </p>
                 </div>
                 
-                <div>
+                <div className="space-y-2">
                   <Label htmlFor="chatbot-link-2">Chatbot 2 Link</Label>
                   <Input
                     id="chatbot-link-2"
@@ -128,12 +150,17 @@ export function ProductChatbots({
                     placeholder="https://pirlo.ai/your-bot or https://notebooklm.google.com/..."
                     className="mt-1"
                   />
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Secondary chatbot link
-                  </p>
+                  <Label htmlFor="chatbot-name-2" className="text-sm">Chatbot 2 Name</Label>
+                  <Input
+                    id="chatbot-name-2"
+                    value={editName2}
+                    onChange={(e) => setEditName2(e.target.value)}
+                    placeholder="Chatbot 2"
+                    className="mt-1"
+                  />
                 </div>
 
-                <div>
+                <div className="space-y-2">
                   <Label htmlFor="chatbot-link-3">Chatbot 3 Link</Label>
                   <Input
                     id="chatbot-link-3"
@@ -142,8 +169,27 @@ export function ProductChatbots({
                     placeholder="https://pirlo.ai/your-bot or https://notebooklm.google.com/..."
                     className="mt-1"
                   />
+                  <Label htmlFor="chatbot-name-3" className="text-sm">Chatbot 3 Name</Label>
+                  <Input
+                    id="chatbot-name-3"
+                    value={editName3}
+                    onChange={(e) => setEditName3(e.target.value)}
+                    placeholder="Chatbot 3"
+                    className="mt-1"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="button-text">Button Text (for all chatbots)</Label>
+                  <Input
+                    id="button-text"
+                    value={editButtonText}
+                    onChange={(e) => setEditButtonText(e.target.value)}
+                    placeholder="Open Chat"
+                    className="mt-1"
+                  />
                   <p className="text-xs text-muted-foreground mt-1">
-                    Tertiary chatbot link
+                    This text will appear on all chatbot buttons
                   </p>
                 </div>
 
@@ -159,15 +205,18 @@ export function ProductChatbots({
                 </div>
               </div>
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <div className="text-sm">
                   <strong>Chatbot 1:</strong> {chatbotLink1 || 'Not configured'}
                 </div>
                 <div className="text-sm">
-                  <strong>Chatbot 2:</strong> {chatbotLink2 || 'Not configured'}
+                  <strong>Chatbot 2:</strong> {chatbot2Name || 'Chatbot 2'} - {chatbotLink2 || 'Not configured'}
                 </div>
                 <div className="text-sm">
-                  <strong>Chatbot 3:</strong> {chatbotLink3 || 'Not configured'}
+                  <strong>Chatbot 3:</strong> {chatbot3Name || 'Chatbot 3'} - {chatbotLink3 || 'Not configured'}
+                </div>
+                <div className="text-sm">
+                  <strong>Button Text:</strong> {chatbotButtonText || 'Open Chat'}
                 </div>
               </div>
             )}
@@ -185,7 +234,7 @@ export function ProductChatbots({
                 ? 'hover:shadow-md hover:scale-[1.02] cursor-pointer border-primary/20 hover:border-primary/40' 
                 : 'opacity-50 cursor-not-allowed'
             }`}
-            onClick={() => chatbot.link && openChatbot(chatbot.link)}
+            onClick={(e) => chatbot.link && openChatbot(chatbot.link, e)}
           >
             <CardContent className="p-4 md:p-6">
               <div className="flex flex-col items-center text-center gap-3">
@@ -216,13 +265,13 @@ export function ProductChatbots({
                     size="sm"
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (chatbot.link) openChatbot(chatbot.link);
+                      if (chatbot.link) openChatbot(chatbot.link, e);
                     }}
                   >
                     {chatbot.link ? (
                       <>
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Open Chat
+                        {chatbotButtonText || 'Open Chat'}
                       </>
                     ) : (
                       'Not configured'

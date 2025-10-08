@@ -572,6 +572,9 @@ export type Database = {
           assistant_id: string | null
           assistant_instructions: string | null
           category_id: string
+          chatbot_2_name: string | null
+          chatbot_3_name: string | null
+          chatbot_button_text: string | null
           chatbot_link_2: string | null
           chatbot_link_3: string | null
           created_at: string
@@ -589,6 +592,9 @@ export type Database = {
           assistant_id?: string | null
           assistant_instructions?: string | null
           category_id: string
+          chatbot_2_name?: string | null
+          chatbot_3_name?: string | null
+          chatbot_button_text?: string | null
           chatbot_link_2?: string | null
           chatbot_link_3?: string | null
           created_at?: string
@@ -606,6 +612,9 @@ export type Database = {
           assistant_id?: string | null
           assistant_instructions?: string | null
           category_id?: string
+          chatbot_2_name?: string | null
+          chatbot_3_name?: string | null
+          chatbot_button_text?: string | null
           chatbot_link_2?: string | null
           chatbot_link_3?: string | null
           created_at?: string

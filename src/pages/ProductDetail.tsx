@@ -112,10 +112,13 @@ export default function ProductDetail() {
           )}
 
           {/* Three Chatbot Launchers */}
-          <ProductChatbots
+          <ProductChatbots 
             chatbotLink1={product.custom_gpt_link}
             chatbotLink2={(product as any).chatbot_link_2}
             chatbotLink3={(product as any).chatbot_link_3}
+            chatbot2Name={(product as any).chatbot_2_name}
+            chatbot3Name={(product as any).chatbot_3_name}
+            chatbotButtonText={(product as any).chatbot_button_text}
             productName={product.title}
             onUpdate={handleUpdate}
           />
