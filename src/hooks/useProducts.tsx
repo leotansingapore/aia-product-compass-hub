@@ -58,6 +58,9 @@ let categoriesCache: Category[] | null = null;
 let categoriesCacheTime = 0;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
+// Cache for products to prevent unnecessary re-fetches
+const productsCache: Map<string, { data: Product[], timestamp: number }> = new Map();
+
 export function useCategories() {
   const [categories, setCategories] = useState<Category[]>(categoriesCache || []);
   const [loading, setLoading] = useState(!categoriesCache);
@@ -98,11 +101,22 @@ export function useCategories() {
 }
 
 export function useProducts(categoryId?: string) {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const cacheKey = categoryId || 'all';
+  const cachedData = productsCache.get(cacheKey);
+  
+  const [products, setProducts] = useState<Product[]>(cachedData?.data || []);
+  const [loading, setLoading] = useState(!cachedData);
   const [error, setError] = useState<string | null>(null);
 
   const fetchProducts = useCallback(async () => {
+    // Use cache if it's still valid
+    const cached = productsCache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+      setProducts(cached.data);
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     try {
         let query = supabase
@@ -132,13 +146,20 @@ export function useProducts(categoryId?: string) {
             ? (product.training_videos as unknown as TrainingVideo[])
             : []
         }));
+        
+        // Update cache
+        productsCache.set(cacheKey, {
+          data: transformedData,
+          timestamp: Date.now()
+        });
+        
         setProducts(transformedData);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch products');
       } finally {
         setLoading(false);
       }
-    }, [categoryId]);
+    }, [categoryId, cacheKey]);
 
   useEffect(() => {
     fetchProducts();
