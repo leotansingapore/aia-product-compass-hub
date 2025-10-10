@@ -95,7 +95,6 @@ export function ProductChatbots({
   };
 
   const chatbots = [
-    { id: 1, link: chatbotLink1, title: "AI Assistant", description: `Get instant help with ${productName || 'product'} details, comparisons, and sales tips` },
     { id: 2, link: chatbotLink2, title: chatbot2Name || "Chatbot 2", description: "Additional AI support for specialized queries" },
     { id: 3, link: chatbotLink3, title: chatbot3Name || "Chatbot 3", description: "Expert guidance and advanced product insights" },
   ];
@@ -225,7 +224,7 @@ export function ProductChatbots({
       )}
 
       {/* Chatbot Launchers Grid */}
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2">
         {chatbots.map((chatbot) => (
           <Card 
             key={chatbot.id}
