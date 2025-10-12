@@ -7,6 +7,7 @@ import { PreferencesSection } from "@/components/account/PreferencesSection";
 import { UserManagementSection } from "@/components/account/UserManagementSection";
 import { AccountTabs } from "@/components/account/AccountTabs";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
+import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -99,26 +100,22 @@ export default function MyAccount() {
         structuredData={structuredData}
         noIndex
       >
-        {/* Ultra mobile-friendly container */}
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 max-w-4xl">
-          {/* Larger mobile header */}
-          <div className="space-y-3 mb-8">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">My Account</h1>
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              Manage your profile, security settings, and preferences
-            </p>
-          </div>
+        <BrandedPageHeader
+          title="👤 My Account"
+          subtitle="Manage your profile, security settings, and preferences"
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "My Account" }
+          ]}
+        />
 
-          {/* Ultra mobile-optimized tabs */}
-          <AccountTabs 
+        <main role="main" aria-label="Account management" className="mx-auto px-4 sm:px-6 py-4 sm:py-8 md:pb-10">
+          <AccountTabs
             activeTab={activeTab}
             onTabChange={setActiveTab}
             tabs={tabs}
           />
-        </div>
-        
-        {/* Mobile-friendly bottom padding for tab bar */}
-        <div className="h-20 sm:h-0"></div>
+        </main>
       </PageLayout>
     </ProtectedPage>
   );

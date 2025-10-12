@@ -67,7 +67,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
           <GraduationCap className="h-5 w-5" />
           Training Course
           {processedVideos.length > 0 && (
-            <Badge variant="secondary" className="ml-auto">
+            <Badge variant="secondary" className="ml-auto text-xs px-2">
               {completedVideos}/{processedVideos.length} completed
             </Badge>
           )}
@@ -84,7 +84,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
                 )}
               </div>
               {totalDuration > 0 && (
-                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                <div className="flex items-center gap-1 text-micro text-muted-foreground">
                   <Clock className="h-3 w-3" />
                   Total duration: {formatDuration(totalDuration)}
                 </div>

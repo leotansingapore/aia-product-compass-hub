@@ -37,7 +37,7 @@ export function RecentlyViewedSection() {
                 {product.description}
               </p>
               <div className="flex items-center justify-between mt-3">
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-micro">
                   {product.categoryName}
                 </Badge>
                 <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />

@@ -151,7 +151,7 @@ export function MediaUploadZone({ onMediaAdd, className = "" }: MediaUploadZoneP
               <p className="text-sm text-muted-foreground">
                 Or paste (Ctrl+V), drag & drop, or click to browse
               </p>
-              <p className="text-xs text-muted-foreground mt-1">
+              <p className="text-micro text-muted-foreground mt-1">
                 Supports GIF, PNG, JPG, WebP (max 10MB)
               </p>
             </div>

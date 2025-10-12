@@ -181,7 +181,7 @@ export function EnhancedSearchBar({
                     variant="ghost"
                     size="sm"
                     onClick={clearAllRecent}
-                    className="h-6 text-xs"
+                    className="h-6 text-micro"
                   >
                     Clear all
                   </Button>
@@ -221,7 +221,7 @@ export function EnhancedSearchBar({
                     {isSearching && (
                       <div className="flex items-center gap-2">
                         <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                        <span className="text-xs text-muted-foreground">Searching...</span>
+                        <span className="text-micro text-muted-foreground">Searching...</span>
                       </div>
                     )}
                   </div>
@@ -242,11 +242,11 @@ export function EnhancedSearchBar({
                               {result.description}
                             </p>
                             <div className="flex items-center gap-2 mt-1">
-                              <Badge variant="secondary" className="text-xs">
+                              <Badge variant="secondary" className="text-micro">
                                 {result.categoryName}
                               </Badge>
                               {result.tags?.slice(0, 2).map(tag => (
-                                <Badge key={tag} variant="outline" className="text-xs">
+                                <Badge key={tag} variant="outline" className="text-micro">
                                   {tag}
                                 </Badge>
                               ))}
@@ -271,7 +271,7 @@ export function EnhancedSearchBar({
               <div className="p-6 text-center">
                 <Search className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
                 <p className="text-sm text-muted-foreground mb-1">No results found for "{query}"</p>
-                <p className="text-xs text-muted-foreground">Try different keywords or browse categories</p>
+                <p className="text-micro text-muted-foreground">Try different keywords or browse categories</p>
               </div>
             )}
           </CardContent>

@@ -33,47 +33,54 @@ export function RoleplayScenarioCard({ scenario, onStart }: RoleplayScenarioCard
   const CategoryIcon = categoryIcons[scenario.category];
   
   return (
-    <Card className="hover:shadow-lg transition-shadow">
+    <Card className="hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col group border-border/50">
       <CardHeader>
-        <div className="flex items-start justify-between">
-          <CategoryIcon className="h-8 w-8 text-primary" />
+        <div className="flex items-start justify-between mb-3">
+          <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+            <CategoryIcon className="h-8 w-8 text-primary" />
+          </div>
           <div className="flex gap-2">
-            <Badge className={categoryColors[scenario.category]}>
+            <Badge className={`${categoryColors[scenario.category]} transition-all text-xs px-2`}>
               {scenario.category}
             </Badge>
-            <Badge className={difficultyColors[scenario.difficulty]}>
+            <Badge className={`${difficultyColors[scenario.difficulty]} transition-all text-xs px-2`}>
               {scenario.difficulty}
             </Badge>
           </div>
         </div>
-        <CardTitle className="text-lg">{scenario.title}</CardTitle>
-        <CardDescription>{scenario.description}</CardDescription>
+        <CardTitle className="text-lg group-hover:text-primary transition-colors">{scenario.title}</CardTitle>
+        <CardDescription className="line-clamp-2">{scenario.description}</CardDescription>
       </CardHeader>
-      
-      <CardContent className="space-y-4">
-        <div className="text-sm text-muted-foreground">
-          <strong>Duration:</strong> {scenario.duration}
+
+      <CardContent className="flex flex-col flex-1">
+        <div className="flex-1" />
+
+        <div className="space-y-4 pt-4 border-t border-border/50">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="h-1.5 w-1.5 rounded-full bg-primary/60" />
+            <strong>Duration:</strong> {scenario.duration}
+          </div>
+
+          <div>
+            <h4 className="font-medium mb-2 text-sm">Learning Objectives:</h4>
+            <ul className="text-sm space-y-1.5">
+              {scenario.objectives.map((objective, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">✓</span>
+                  <span className="flex-1">{objective}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <Button
+            className="w-full min-h-[44px] bg-gradient-to-r from-primary to-primary-glow hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+            onClick={() => onStart(scenario)}
+          >
+            <Play className="h-4 w-4 mr-2" />
+            Start Roleplay
+          </Button>
         </div>
-        
-        <div>
-          <h4 className="font-medium mb-2">Learning Objectives:</h4>
-          <ul className="text-sm space-y-1">
-            {scenario.objectives.map((objective, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                {objective}
-              </li>
-            ))}
-          </ul>
-        </div>
-        
-        <Button 
-          className="w-full min-h-[44px]"
-          onClick={() => onStart(scenario)}
-        >
-          <Play className="h-4 w-4 mr-2" />
-          Start Roleplay
-        </Button>
       </CardContent>
     </Card>
   );

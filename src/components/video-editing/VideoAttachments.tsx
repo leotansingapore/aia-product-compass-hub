@@ -71,7 +71,7 @@ export function VideoAttachments({ attachments, onAttachmentsChange }: VideoAtta
                       placeholder="Attachment name"
                     />
                     {attachment.file_size && (
-                      <span className="text-xs text-muted-foreground whitespace-nowrap">
+                      <span className="text-micro text-muted-foreground whitespace-nowrap">
                         {formatFileSize(attachment.file_size)}
                       </span>
                     )}
@@ -80,21 +80,21 @@ export function VideoAttachments({ attachments, onAttachmentsChange }: VideoAtta
                     value={attachment.url}
                     onChange={(e) => updateAttachment(attachment.id, 'url', e.target.value)}
                     placeholder="Download URL"
-                    className="text-xs"
+                    className="text-micro"
                   />
                   <div className="flex gap-2 mt-2">
                     <Input
                       value={attachment.file_type || ''}
                       onChange={(e) => updateAttachment(attachment.id, 'file_type', e.target.value)}
                       placeholder="File type (e.g., PDF, DOCX)"
-                      className="text-xs"
+                      className="text-micro"
                     />
                     <Input
                       type="number"
                       value={attachment.file_size || ''}
                       onChange={(e) => updateAttachment(attachment.id, 'file_size', parseInt(e.target.value) || 0)}
                       placeholder="Size (bytes)"
-                      className="text-xs"
+                      className="text-micro"
                     />
                   </div>
                 </div>

@@ -2,9 +2,11 @@ import { Helmet } from "react-helmet-async";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { findCategory } from "@/utils/kbConfig";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { NavigationHeader } from "@/components/NavigationHeader";
+import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { useEffect } from "react";
 import { getCategoryIdFromName } from "@/hooks/useProducts";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Tag } from "lucide-react";
 
 export default function KBCategory() {
   const { categorySlug } = useParams<{ categorySlug: string }>();
@@ -22,13 +24,13 @@ export default function KBCategory() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-1 sm:px-4 py-4 sm:py-6 md:py-10">
+    <>
       <Helmet>
         <title>{category.name} - Product Training Hub | FINternship</title>
         <meta name="description" content={`Master ${category.name.toLowerCase()} with structured product training pages and comprehensive resources. ${category.description} Access expert guides, training videos, and AI assistance.`} />
         <meta name="keywords" content={`${category.name.toLowerCase()}, product training, financial advisor education, AIA products, training resources`} />
         <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
-        
+
         {/* Open Graph */}
         <meta property="og:title" content={`${category.name} - Product Training Hub | FINternship`} />
         <meta property="og:description" content={`Master ${category.name.toLowerCase()} with structured training resources and expert guidance.`} />
@@ -36,13 +38,13 @@ export default function KBCategory() {
         <meta property="og:url" content={`${window.location.origin}${window.location.pathname}`} />
         <meta property="og:image" content={`${window.location.origin}/og-default.jpg`} />
         <meta property="og:section" content={category.name} />
-        
+
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${category.name} - Product Training Hub | FINternship`} />
         <meta name="twitter:description" content={`Master ${category.name.toLowerCase()} with structured training resources.`} />
         <meta name="twitter:image" content={`${window.location.origin}/og-default.jpg`} />
-        
+
         {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -76,7 +78,7 @@ export default function KBCategory() {
         </script>
       </Helmet>
 
-      <NavigationHeader
+      <BrandedPageHeader
         title={category.name}
         subtitle={category.description}
         breadcrumbs={[
@@ -86,23 +88,47 @@ export default function KBCategory() {
         ]}
       />
 
+      <div className="mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-10">
       <main>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {category.products.map((p) => (
-            <Link key={p.slug} to={`/kb/${category.slug}/${p.slug}`} aria-label={`Open ${p.name}`}>
-              <Card className="h-full hover:shadow-elegant transition-all duration-300 hover:scale-[1.01]">
-                <CardHeader>
-                  <CardTitle>{p.name}</CardTitle>
-                  <CardDescription>Tags: {p.tags.join(", ")}</CardDescription>
+            <Link
+              key={p.slug}
+              to={`/kb/${category.slug}/${p.slug}`}
+              aria-label={`Open ${p.name}`}
+              className="group"
+            >
+              <Card className="h-full hover:shadow-elegant transition-all duration-300 hover:scale-[1.01] active:scale-[0.98] border-2 hover:border-primary/20">
+                <CardHeader className="space-y-3 pb-4">
+                  <CardTitle className="text-base sm:text-lg leading-tight group-hover:text-primary transition-colors">
+                    {p.name}
+                  </CardTitle>
+
+                  {/* Tags as badges */}
+                  {p.tags && p.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {p.tags.map((tag, idx) => (
+                        <Badge key={idx} variant="outline" className="text-xs font-normal">
+                          <Tag className="h-3 w-3 mr-1" />
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">Open product page</p>
+
+                <CardContent className="pt-0">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">View details</span>
+                    <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </CardContent>
               </Card>
             </Link>
           ))}
         </div>
       </main>
-    </div>
+      </div>
+    </>
   );
 }

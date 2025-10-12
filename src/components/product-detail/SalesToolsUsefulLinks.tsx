@@ -53,7 +53,7 @@ export function SalesToolsUsefulLinks({ links, onUpdate }: SalesToolsUsefulLinks
           <span className="text-2xl">{icon}</span>
           <div className="flex items-center gap-2">
             <h3 className="text-lg font-semibold text-foreground">{categoryName}</h3>
-            <Badge variant="secondary" className="text-xs">
+            <Badge variant="secondary" className="text-micro">
               {categoryLinks.length} {categoryLinks.length === 1 ? 'resource' : 'resources'}
             </Badge>
           </div>

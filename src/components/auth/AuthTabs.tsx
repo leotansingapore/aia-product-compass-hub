@@ -102,7 +102,7 @@ export function AuthTabs({ onSignIn, onSignUp, onResetPassword, loading }: AuthT
                   type="button"
                   variant="ghost"
                   size="sm"
-                  className="w-full text-xs"
+                  className="w-full text-micro"
                   onClick={() => onResetPassword(email)}
                   disabled={loading}
                 >

@@ -82,7 +82,7 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
 
   if (!user) {
     return (
-      <Card className="p-8">
+      <Card className="p-4">
         <div className="text-center">
           <p className="text-muted-foreground mb-4">
             Please log in to view and add personal notes.
@@ -94,7 +94,7 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
 
   if (loading) {
     return (
-      <Card className="p-8">
+      <Card className="p-4">
         <div className="text-center">
           <div className="animate-pulse">
             <div className="h-4 bg-muted rounded w-1/3 mx-auto mb-2"></div>
@@ -112,13 +112,13 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
         <h3 className="text-lg font-semibold">Personal Notes</h3>
         <div className="flex items-center gap-3">
           {notes.length > 0 && (
-            <div className="relative">
+            <div className="relative w-full sm:w-auto">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
                 placeholder="Search notes..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9 w-64"
+                className="pl-9 w-full sm:w-64"
               />
             </div>
           )}
@@ -136,7 +136,7 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
       {/* New note editor */}
       {showNewNoteEditor && (
         <Card className="border-dashed border-2 border-muted-foreground/25">
-          <div className="p-6">
+          <div className="p-4">
             <NotionStyleEditor
               value={newNoteContent}
               onChange={setNewNoteContent}
@@ -145,8 +145,8 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
               autoFocus
             />
             <div className="flex justify-end gap-2 mt-4 pt-4 border-t">
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 size="sm"
                 onClick={() => {
                   setShowNewNoteEditor(false);
@@ -162,7 +162,7 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
 
       {/* Notes list */}
       {filteredNotes.length === 0 ? (
-        <Card className="p-12 text-center">
+        <Card className="p-6 text-center">
           {searchQuery ? (
             <div>
               <p className="text-muted-foreground mb-4">
@@ -208,7 +208,7 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
 
             return (
               <Card key={note.id} className="group hover:shadow-md transition-all duration-200">
-                <div className="p-6">
+                <div className="p-4">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3 flex-1">
                       <div className="opacity-0 group-hover:opacity-100 transition-opacity">
@@ -219,11 +219,11 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
                           {noteTitle}
                         </h4>
                         <div className="flex items-center gap-2 mt-1">
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-micro text-muted-foreground">
                             {new Date(note.created_at).toLocaleDateString()}
                           </span>
                           {note.updated_at !== note.created_at && (
-                            <span className="text-xs text-muted-foreground">
+                            <span className="text-micro text-muted-foreground">
                               • Edited {new Date(note.updated_at).toLocaleDateString()}
                             </span>
                           )}

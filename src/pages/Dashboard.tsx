@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { NavigationHeader } from "@/components/NavigationHeader";
+import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { SearchHero } from "@/components/dashboard/SearchHero";
 import { QuickActions } from "@/components/dashboard/QuickActions";
 import { ProductCategories } from "@/components/dashboard/ProductCategories";
@@ -27,7 +27,8 @@ const Dashboard = memo(() => {
     handleCategoryFilter,
     handleTagFilter,
     handleContentFilter,
-    clearFilters
+    clearFilters,
+    clearSearch
   } = useDashboardSearch();
 
 
@@ -39,14 +40,15 @@ const Dashboard = memo(() => {
     >
       {/* Desktop Header - Hidden on mobile */}
       <div className="hidden md:block">
-        <NavigationHeader 
+        <BrandedPageHeader
           title="FINternship Learning Platform"
           subtitle="Your comprehensive resource for product knowledge and sales excellence"
+          breadcrumbs={[{ label: "Home" }]}
         />
       </div>
       
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 pb-24 md:pb-8">
+      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 md:pb-8">
         
         {/* Search Hero */}
         <SearchHero onSearch={handleSearch} />
@@ -87,6 +89,7 @@ const Dashboard = memo(() => {
                 onTagFilter={(tag, checked) => handleTagFilter(tag, Boolean(checked))}
                 onContentFilter={(type, checked) => handleContentFilter(type, Boolean(checked))}
                 onSetFilters={() => {}} // This will be handled by the filters component
+                onClearSearch={clearSearch}
               />
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { NavigationHeader } from "@/components/NavigationHeader";
+import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 
 interface Category {
   id: string;
@@ -13,7 +13,7 @@ interface CategoryHeaderProps {
 
 export function CategoryHeader({ category, onBack }: CategoryHeaderProps) {
   return (
-    <NavigationHeader 
+    <BrandedPageHeader
       title={category.name}
       subtitle={category.description || ''}
       showBackButton

@@ -59,7 +59,7 @@ const isActive = location.pathname === item.href ||
                   isActive ? "text-primary" : "text-muted-foreground"
                 )} 
               />
-              <span 
+              <span
                 className={cn(
                   "text-xs font-medium",
                   isActive ? "text-primary" : "text-muted-foreground"

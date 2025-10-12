@@ -104,11 +104,51 @@ const RoleplayFeedback = () => {
           setGenerating(false);
           console.log('🔍 FEEDBACK DEBUG: States updated - feedback loaded successfully');
         } else {
-          console.log('🔍 FEEDBACK DEBUG: No feedback found, entering generating mode');
+          console.log('🔍 FEEDBACK DEBUG: No feedback found, checking session transcript status');
+
+          // Check if session has transcript before trying to generate feedback
+          const { data: sessionData } = await supabase
+            .from('roleplay_sessions')
+            .select('transcript, recording_status, ended_at')
+            .eq('id', sessionId)
+            .maybeSingle();
+
+          console.log('🔍 FEEDBACK DEBUG: Session data:', {
+            hasTranscript: !!sessionData?.transcript,
+            transcriptLength: sessionData?.transcript?.length || 0,
+            recordingStatus: sessionData?.recording_status,
+            endedAt: sessionData?.ended_at
+          });
+
+          // If session just ended (within last 10 seconds), wait for webhook to process
+          const sessionEndTime = sessionData?.ended_at ? new Date(sessionData.ended_at).getTime() : 0;
+          const timeSinceEnd = Date.now() - sessionEndTime;
+
+          if (sessionEndTime && timeSinceEnd < 10000) {
+            console.log('🔍 FEEDBACK DEBUG: Session recently ended, waiting for webhook processing...');
+            setProgressMessage("Processing conversation recording...");
+
+            // Wait 8 seconds for webhook to process transcript
+            await new Promise(resolve => setTimeout(resolve, 8000));
+
+            // Re-check for transcript
+            const { data: updatedSession } = await supabase
+              .from('roleplay_sessions')
+              .select('transcript')
+              .eq('id', sessionId)
+              .maybeSingle();
+
+            if (updatedSession?.transcript && Array.isArray(updatedSession.transcript) && updatedSession.transcript.length > 0) {
+              console.log('🔍 FEEDBACK DEBUG: Transcript now available after waiting');
+            } else {
+              console.log('🔍 FEEDBACK DEBUG: Transcript still not available after waiting');
+            }
+          }
+
           setLoading(false);
           setGenerating(true);
           setProgressMessage("Starting feedback generation...");
-          
+
           // Trigger feedback generation
           console.log('🔍 FEEDBACK DEBUG: Calling generate-roleplay-feedback function');
           supabase.functions.invoke('generate-roleplay-feedback', {
@@ -117,17 +157,32 @@ const RoleplayFeedback = () => {
             console.log('🔍 FEEDBACK DEBUG: Generation function result:', result);
             if (result.error) {
               console.error('🔍 FEEDBACK DEBUG: Generation function error:', result.error);
-              
-              // Handle specific error types
+
+              // Parse error response for better messaging
               let errorMessage = "Failed to generate feedback. Please try again.";
-              if (result.error.message?.includes('Transcript not ready') || result.error.message?.includes('No transcript available')) {
-                errorMessage = "The conversation transcript is not available. This could mean the recording didn't complete properly. Please try starting a new roleplay session.";
+              let suggestion = "Try the 'Retry Transcript Retrieval' button or refresh the page.";
+
+              try {
+                const errorData = typeof result.error === 'object' ? result.error : JSON.parse(result.error.message || '{}');
+                if (errorData.message) {
+                  errorMessage = errorData.message;
+                }
+                if (errorData.suggestion) {
+                  suggestion = errorData.suggestion;
+                }
+              } catch (e) {
+                // Use default messages if parsing fails
+                if (result.error.message?.includes('Transcript not ready') || result.error.message?.includes('No transcript available')) {
+                  errorMessage = "The conversation transcript is not available.";
+                  suggestion = "Click 'Retry Transcript Retrieval' to fetch the recording, or try starting a new session.";
+                }
               }
-              
+
               toast({
                 title: "Feedback Not Ready",
-                description: errorMessage,
+                description: `${errorMessage} ${suggestion}`,
                 variant: "destructive",
+                duration: 8000
               });
               setGenerating(false);
               setTimeoutReached(true);
@@ -324,7 +379,7 @@ const RoleplayFeedback = () => {
             </div>
           </div>
           
-          <p className="text-xs text-muted-foreground mt-4">
+          <p className="text-micro text-muted-foreground mt-4">
             Our AI is providing comprehensive analysis of your roleplay performance
           </p>
         </div>
@@ -337,7 +392,7 @@ const RoleplayFeedback = () => {
     setGenerating(true);
     setElapsedTime(0);
     setProgressMessage("Checking for feedback...");
-    
+
     try {
       const { data, error } = await supabase
         .from('roleplay_feedback')
@@ -371,6 +426,78 @@ const RoleplayFeedback = () => {
     }
   };
 
+  const handleRetryTranscript = async () => {
+    setTimeoutReached(false);
+    setGenerating(true);
+    setElapsedTime(0);
+    setProgressMessage("Retrieving conversation transcript...");
+
+    try {
+      console.log('🔄 Manually retrying transcript retrieval for session:', sessionId);
+
+      const { data, error } = await supabase.functions.invoke('retry-transcript-retrieval', {
+        body: { sessionId }
+      });
+
+      if (error) {
+        console.error('Transcript retrieval error:', error);
+        throw error;
+      }
+
+      console.log('✅ Transcript retrieval response:', data);
+
+      toast({
+        title: "Transcript Retrieved!",
+        description: "Generating your feedback now. This may take up to 60 seconds.",
+      });
+
+      setProgressMessage("Generating detailed feedback...");
+
+      // Wait for feedback to be generated (with polling)
+      let attempts = 0;
+      const maxAttempts = 30; // 60 seconds total (2s intervals)
+
+      const pollForFeedback = setInterval(async () => {
+        attempts++;
+
+        const { data: feedbackData } = await supabase
+          .from('roleplay_feedback')
+          .select('*')
+          .eq('session_id', sessionId)
+          .maybeSingle();
+
+        if (feedbackData) {
+          clearInterval(pollForFeedback);
+          setFeedback(feedbackData as FeedbackData);
+          setGenerating(false);
+          toast({
+            title: "Feedback Ready!",
+            description: "Your performance analysis is now available.",
+          });
+        } else if (attempts >= maxAttempts) {
+          clearInterval(pollForFeedback);
+          setTimeoutReached(true);
+          setGenerating(false);
+          toast({
+            title: "Still Processing",
+            description: "Feedback generation is taking longer than expected. Try refreshing in a moment.",
+          });
+        }
+      }, 2000);
+
+    } catch (error: any) {
+      console.error('Failed to retry transcript:', error);
+      setGenerating(false);
+      setTimeoutReached(true);
+
+      toast({
+        title: "Transcript Retrieval Failed",
+        description: error.message || "Unable to retrieve the conversation transcript. The recording may not be available.",
+        variant: "destructive",
+      });
+    }
+  };
+
   if (timeoutReached) {
     return (
         <div className="container mx-auto p-6 space-y-6">
@@ -386,7 +513,11 @@ const RoleplayFeedback = () => {
             The conversation transcript may not have been recorded properly. This can happen if the connection was interrupted during the roleplay session.
           </p>
           <div className="flex flex-col gap-3 max-w-xs mx-auto">
-            <Button onClick={handleCheckAgain} className="gap-2">
+            <Button onClick={handleRetryTranscript} className="gap-2 bg-primary">
+              <RefreshCw className="h-4 w-4" />
+              Retry Transcript Retrieval
+            </Button>
+            <Button onClick={handleCheckAgain} variant="outline" className="gap-2">
               <RefreshCw className="h-4 w-4" />
               Check Again
             </Button>
@@ -510,7 +641,7 @@ const RoleplayFeedback = () => {
                           variant="ghost"
                           size="sm"
                           onClick={() => toggleRubricExpansion(item.key)}
-                          className="h-auto p-1 text-xs text-muted-foreground hover:text-foreground"
+                          className="h-auto p-1 text-micro text-muted-foreground hover:text-foreground"
                         >
                           {isExpanded ? <ChevronDown className="h-3 w-3 mr-1" /> : <ChevronRight className="h-3 w-3 mr-1" />}
                           {isExpanded ? 'Hide' : 'Show'} in-depth insights
@@ -628,7 +759,7 @@ const RoleplayFeedback = () => {
                 {feedback.tone_analysis && feedback.tone_analysis.length > 0 && (
                   <div className="flex flex-wrap gap-2">
                     {feedback.tone_analysis.map((tone, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
+                      <Badge key={index} variant="outline" className="text-micro">
                         {tone}
                       </Badge>
                     ))}
@@ -655,7 +786,7 @@ const RoleplayFeedback = () => {
                 {feedback.visual_presence_analysis && feedback.visual_presence_analysis.length > 0 && (
                   <div className="flex flex-wrap gap-2">
                     {feedback.visual_presence_analysis.map((presence, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
+                      <Badge key={index} variant="outline" className="text-micro">
                         {presence}
                       </Badge>
                     ))}

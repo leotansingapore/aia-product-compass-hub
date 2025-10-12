@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -10,6 +10,7 @@ import { EditableText } from '@/components/EditableText';
 import { useAdmin } from '@/hooks/useAdmin';
 import ReactMarkdown from 'react-markdown';
 import { MediaUploadZone } from '@/components/MediaUploadZone';
+import { announceToScreenReader, getProgressAriaProps } from '@/lib/accessibility-utils';
 
 interface MediaItem {
   id: string;
@@ -244,22 +245,37 @@ Click "Complete Step" and start your first practice session!`
 
   const handleNext = () => {
     if (currentStep < wizardData.steps.length - 1) {
-      setCurrentStep(currentStep + 1);
+      const nextStep = currentStep + 1;
+      setCurrentStep(nextStep);
+      announceToScreenReader(`Moving to step ${nextStep + 1}: ${wizardData.steps[nextStep].title}`);
     }
   };
 
   const handlePrevious = () => {
     if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
+      const prevStep = currentStep - 1;
+      setCurrentStep(prevStep);
+      announceToScreenReader(`Moving to step ${prevStep + 1}: ${wizardData.steps[prevStep].title}`);
     }
   };
 
   const handleComplete = () => {
     completeItem(currentStepData.id);
+    announceToScreenReader(`Step completed: ${currentStepData.title}. You earned ${currentStepData.points} points.`);
     if (currentStep < wizardData.steps.length - 1) {
-      setCurrentStep(currentStep + 1);
+      setTimeout(() => {
+        setCurrentStep(currentStep + 1);
+      }, 500);
     }
   };
+
+  // Announce progress updates to screen readers
+  useEffect(() => {
+    if (completedSteps.length > 0) {
+      const progressMessage = `Progress: ${completedSteps.length} of ${wizardData.steps.length} steps completed. ${earnedPoints} out of ${totalPoints} points earned.`;
+      announceToScreenReader(progressMessage, 'polite');
+    }
+  }, [completedSteps.length]);
 
   const handleStepClick = (stepIndex: number) => {
     setCurrentStep(stepIndex);
@@ -328,9 +344,9 @@ Click "Complete Step" and start your first practice session!`
   const allCompleted = wizardData.steps.every(step => isItemCompleted(step.id));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" role="region" aria-label="Onboarding Wizard">
       {/* Header */}
-      <div className="text-center mb-8">
+      <header className="text-center mb-8">
         <EditableText
           value={wizardData.title}
           onSave={(value) => handleTextUpdate('title', value)}
@@ -343,49 +359,58 @@ Click "Complete Step" and start your first practice session!`
           className="text-xl text-muted-foreground"
           placeholder="Enter wizard subtitle..."
         />
-      </div>
+      </header>
 
       {/* Progress Overview */}
       <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10">
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="font-semibold">Your Progress</h3>
-              <p className="text-sm text-muted-foreground">
+              <h3 className="font-semibold" id="progress-heading">Your Progress</h3>
+              <p className="text-sm text-muted-foreground" aria-live="polite">
                 {completedSteps.length} of {wizardData.steps.length} steps completed
               </p>
             </div>
-            <div className="text-right">
-              <div className="text-2xl font-bold text-primary">{earnedPoints}</div>
+            <div className="text-right" aria-live="polite">
+              <div className="text-2xl font-bold text-primary" aria-label={`${earnedPoints} points earned`}>{earnedPoints}</div>
               <div className="text-sm text-muted-foreground">/ {totalPoints} points</div>
             </div>
           </div>
-          
-          <Progress value={progressPercentage} className="mb-4" />
-          
+
+          <Progress
+            value={progressPercentage}
+            className="mb-4"
+            aria-labelledby="progress-heading"
+            aria-valuenow={progressPercentage}
+            aria-valuemin={0}
+            aria-valuemax={100}
+          />
+
           {/* Step Indicators */}
-          <div className="flex justify-between">
+          <nav aria-label="Wizard step navigation" className="flex justify-between">
             {wizardData.steps.map((step, index) => (
               <button
                 key={step.id}
                 onClick={() => handleStepClick(index)}
-                className={`flex flex-col items-center space-y-1 p-2 rounded-lg transition-all ${
-                  index === currentStep 
-                    ? 'bg-primary text-primary-foreground' 
+                className={`flex flex-col items-center space-y-1 p-2 rounded-lg transition-all min-w-[44px] min-h-[44px] focus:ring-2 focus:ring-ring focus:ring-offset-2 ${
+                  index === currentStep
+                    ? 'bg-primary text-primary-foreground'
                     : isItemCompleted(step.id)
                     ? 'bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400'
                     : 'hover:bg-muted'
                 }`}
+                aria-label={`Step ${index + 1}: ${step.title}${isItemCompleted(step.id) ? ' (completed)' : ''}${index === currentStep ? ' (current)' : ''}`}
+                aria-current={index === currentStep ? 'step' : undefined}
               >
                 {isItemCompleted(step.id) ? (
-                  <CheckCircle className="w-6 h-6" />
+                  <CheckCircle className="w-6 h-6" aria-hidden="true" />
                 ) : (
-                  <step.icon className="w-6 h-6" />
+                  <step.icon className="w-6 h-6" aria-hidden="true" />
                 )}
-                <span className="text-xs font-medium hidden sm:block">{index + 1}</span>
+                <span className="text-micro font-medium hidden sm:block" aria-hidden="true">{index + 1}</span>
               </button>
             ))}
-          </div>
+          </nav>
         </CardContent>
       </Card>
 
@@ -613,14 +638,15 @@ Click "Complete Step" and start your first practice session!`
           )}
 
           {/* Navigation */}
-          <div className="flex justify-between items-center">
+          <nav aria-label="Wizard navigation" className="flex justify-between items-center">
             <Button
               variant="outline"
               onClick={handlePrevious}
               disabled={currentStep === 0}
-              className="flex items-center"
+              className="flex items-center min-h-[44px]"
+              aria-label="Go to previous step"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" />
               Previous
             </Button>
 
@@ -630,11 +656,12 @@ Click "Complete Step" and start your first practice session!`
                   onClick={handleComplete}
                   disabled={isCompleted}
                   variant={isCompleted ? "secondary" : "default"}
-                  className="flex items-center"
+                  className="flex items-center min-h-[44px]"
+                  aria-label={isCompleted ? `Step already completed` : `Mark step as complete and earn ${currentStepData.points} points`}
                 >
                   {isCompleted ? (
                     <>
-                      <CheckCircle className="w-4 h-4 mr-2" />
+                      <CheckCircle className="w-4 h-4 mr-2" aria-hidden="true" />
                       Completed
                     </>
                   ) : (
@@ -646,13 +673,14 @@ Click "Complete Step" and start your first practice session!`
               <Button
                 onClick={handleNext}
                 disabled={currentStep === wizardData.steps.length - 1}
-                className="flex items-center"
+                className="flex items-center min-h-[44px]"
+                aria-label="Go to next step"
               >
                 Next
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Button>
             </div>
-          </div>
+          </nav>
         </CardContent>
       </Card>
 

@@ -53,7 +53,7 @@ export default function CMFASChat() {
           <div className="min-w-0">
             <h1 className="text-sm md:text-base font-semibold text-foreground truncate">AI Tutor</h1>
             {moduleId && (
-              <p className="text-xs md:text-sm text-muted-foreground truncate">
+              <p className="text-micro md:text-sm text-muted-foreground truncate">
                 {moduleId.toUpperCase()} Module
               </p>
             )}

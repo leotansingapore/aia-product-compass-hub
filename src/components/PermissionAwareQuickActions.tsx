@@ -111,7 +111,7 @@ export function PermissionAwareQuickActions() {
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold">Quick Actions</h3>
         {userTier && (
-          <Badge variant="outline" className="text-xs">
+          <Badge variant="outline" className="text-micro">
             {userTier === 'master_admin' ? 'Full Access' : 
              userTier === 'tier_4' ? 'Tier 4 Access' :
              userTier === 'tier_3' ? 'Tier 3 Access' :
@@ -128,7 +128,7 @@ export function PermissionAwareQuickActions() {
               <div className="flex items-center justify-between">
                 <action.icon className="h-5 w-5 text-primary" />
                 {action.badge && (
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge variant="secondary" className="text-micro">
                     {action.badge}
                   </Badge>
                 )}
@@ -136,7 +136,7 @@ export function PermissionAwareQuickActions() {
               <CardTitle className="text-sm font-medium">{action.title}</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
-              <CardDescription className="text-xs mb-3">
+              <CardDescription className="text-micro mb-3">
                 {action.description}
               </CardDescription>
               <Button 

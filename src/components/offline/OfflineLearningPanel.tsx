@@ -122,7 +122,7 @@ export function OfflineLearningPanel() {
               </div>
               <div className="flex-1">
                 <p className="text-sm font-medium">Downloading content...</p>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-micro text-muted-foreground">
                   {downloadQueue.length} items remaining
                 </p>
               </div>
@@ -143,17 +143,17 @@ export function OfflineLearningPanel() {
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
               <div className="text-2xl font-bold">{stats.totalDownloaded}</div>
-              <p className="text-xs text-muted-foreground">Products</p>
+              <p className="text-micro text-muted-foreground">Products</p>
             </div>
             <div>
               <div className="text-2xl font-bold">{formatSize(stats.totalSize)}</div>
-              <p className="text-xs text-muted-foreground">Storage Used</p>
+              <p className="text-micro text-muted-foreground">Storage Used</p>
             </div>
             <div>
               <div className="text-2xl font-bold">
                 {stats.lastSync ? formatDate(stats.lastSync) : 'Never'}
               </div>
-              <p className="text-xs text-muted-foreground">Last Sync</p>
+              <p className="text-micro text-muted-foreground">Last Sync</p>
             </div>
           </div>
           
@@ -198,13 +198,13 @@ export function OfflineLearningPanel() {
                   <div className="flex-1 min-w-0">
                     <h4 className="font-medium truncate">{content.title}</h4>
                     <div className="flex items-center gap-2 mt-1">
-                      <Badge variant="secondary" className="text-xs">
+                      <Badge variant="secondary" className="text-micro">
                         {content.categoryName}
                       </Badge>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-micro text-muted-foreground">
                         {formatSize(content.size)}
                       </span>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-micro text-muted-foreground">
                         <Clock className="h-3 w-3 inline mr-1" />
                         {formatDate(content.downloadedAt)}
                       </span>

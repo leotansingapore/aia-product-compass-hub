@@ -86,14 +86,14 @@ export function RecentActivityFeed() {
                 {getIcon(item.type)}
                 <div className="flex-1 min-w-0">
                   <p className="font-medium text-sm truncate">{item.title}</p>
-                  <p className="text-xs text-muted-foreground truncate">{item.subtitle}</p>
+                  <p className="text-micro text-muted-foreground truncate">{item.subtitle}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 flex-shrink-0 ml-2">
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="secondary" className="text-micro">
                   {getBadgeText(item.type)}
                 </Badge>
-                <span className="text-xs text-muted-foreground">{item.timestamp}</span>
+                <span className="text-micro text-muted-foreground">{item.timestamp}</span>
               </div>
             </div>
           </div>

@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Checkbox } from "@/components/ui/checkbox";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { 
   DropdownMenu, 
@@ -82,17 +81,19 @@ export function UserTableRow({
   return (
     <TableRow className="group hover:bg-muted/30">
       <TableCell>
-        <Checkbox
+        <input
+          type="checkbox"
           checked={isSelected}
-          onCheckedChange={onSelect}
+          onChange={(e) => onSelect(e.target.checked)}
+          className="cursor-pointer"
         />
       </TableCell>
-      
-      <TableCell>
+
+      <TableCell className="md:max-w-[200px] lg:max-w-none">
         <div className="flex items-center gap-3">
           <Avatar className="h-8 w-8">
             <AvatarImage src={user.profile?.avatar_url || undefined} />
-            <AvatarFallback className="text-xs">
+            <AvatarFallback className="text-micro">
               {getDisplayName(user).charAt(0).toUpperCase()}
             </AvatarFallback>
           </Avatar>
@@ -108,7 +109,14 @@ export function UserTableRow({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="sm" className="h-auto p-0 hover:bg-transparent">
-              <Badge variant={statusConfig.variant} className="gap-1 text-xs cursor-pointer hover:opacity-80">
+              <Badge
+                variant={statusConfig.variant}
+                className={`gap-1 text-micro cursor-pointer hover:opacity-80 ${
+                  statusConfig.variant === 'outline' || statusConfig.variant === 'secondary'
+                    ? 'text-black'
+                    : 'text-white'
+                }`}
+              >
                 {statusConfig.label}
               </Badge>
             </Button>
@@ -137,7 +145,11 @@ export function UserTableRow({
             <Button variant="ghost" size="sm" className="h-auto p-0 hover:bg-transparent">
               <Badge
                 variant={getRoleBadgeVariant(user.roles[0] || 'user')}
-                className="text-xs hover:opacity-80 cursor-pointer"
+                className={`text-micro hover:opacity-80 cursor-pointer ${
+                  getRoleBadgeVariant(user.roles[0] || 'user') === 'outline'
+                    ? 'text-black'
+                    : 'text-white'
+                }`}
               >
                 {(user.roles[0] || 'user').replace('_', ' ')}
               </Badge>
@@ -159,11 +171,7 @@ export function UserTableRow({
           </DropdownMenuContent>
         </DropdownMenu>
       </TableCell>
-      
-      <TableCell className="text-sm text-muted-foreground">
-        {formatDate(user.created_at)}
-      </TableCell>
-      
+
       {/* Actions */}
       <TableCell className="text-right">
         <div className="flex items-center justify-end gap-1">
@@ -175,7 +183,7 @@ export function UserTableRow({
                 variant="default"
                 onClick={() => handleQuickAction('approve')}
                 disabled={userLoading === 'approve'}
-                className="h-7 px-2 text-xs"
+                className="h-7 px-2 text-micro"
               >
                 {userLoading === 'approve' ? (
                   <Loader2 className="h-3 w-3 animate-spin" />
@@ -188,7 +196,7 @@ export function UserTableRow({
                 variant="destructive"
                 onClick={() => handleQuickAction('reject')}
                 disabled={userLoading === 'reject'}
-                className="h-7 px-2 text-xs"
+                className="h-7 px-2 text-micro"
               >
                 {userLoading === 'reject' ? (
                   <Loader2 className="h-3 w-3 animate-spin" />
@@ -205,7 +213,7 @@ export function UserTableRow({
               size="sm"
               variant="outline"
               onClick={() => onProvision(user)}
-              className="h-7 px-2 text-xs"
+              className="h-7 px-2 text-micro"
             >
               <ExternalLink className="h-3 w-3" />
             </Button>

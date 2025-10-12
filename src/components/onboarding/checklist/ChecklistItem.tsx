@@ -40,10 +40,10 @@ export function ChecklistItem({ item, completed }: ChecklistItemProps) {
           </h4>
           <div className="flex items-center gap-2">
             <div className={`w-2 h-2 rounded-full ${getCategoryColor(item.category)}`} />
-            <Badge variant="outline" className="text-xs">
+            <Badge variant="outline" className="text-micro">
               {getCategoryLabel(item.category)}
             </Badge>
-            <Badge variant="secondary" className="text-xs">
+            <Badge variant="secondary" className="text-micro">
               +{item.points} pts
             </Badge>
           </div>

@@ -5,7 +5,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Settings, Bell, Globe, Layout, Save } from "lucide-react";
+import { Settings, Bell, Layout, Save } from "lucide-react";
 
 interface Preferences {
   theme: string;
@@ -143,7 +143,7 @@ export function PreferencesSection() {
         <CardContent className="space-y-4">
           <Card className="border-0 shadow-sm bg-muted/30">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-4">
                 <div className="space-y-2 flex-1">
                   <Label htmlFor="email-notifications" className="text-lg font-bold">Email Notifications</Label>
                   <p className="text-base text-muted-foreground leading-relaxed">
@@ -154,7 +154,7 @@ export function PreferencesSection() {
                   id="email-notifications"
                   checked={preferences.emailNotifications}
                   onCheckedChange={(checked) => handlePreferenceChange('emailNotifications', checked)}
-                  className="scale-125"
+                  className="shrink-0"
                 />
               </div>
             </CardContent>
@@ -162,7 +162,7 @@ export function PreferencesSection() {
 
           <Card className="border-0 shadow-sm bg-muted/30">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-4">
                 <div className="space-y-2 flex-1">
                   <Label htmlFor="push-notifications" className="text-lg font-bold">Push Notifications</Label>
                   <p className="text-base text-muted-foreground leading-relaxed">
@@ -173,7 +173,7 @@ export function PreferencesSection() {
                   id="push-notifications"
                   checked={preferences.pushNotifications}
                   onCheckedChange={(checked) => handlePreferenceChange('pushNotifications', checked)}
-                  className="scale-125"
+                  className="shrink-0"
                 />
               </div>
             </CardContent>
@@ -181,7 +181,7 @@ export function PreferencesSection() {
 
           <Card className="border-0 shadow-sm bg-muted/30">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-4">
                 <div className="space-y-2 flex-1">
                   <Label htmlFor="marketing-emails" className="text-lg font-bold">Marketing Emails</Label>
                   <p className="text-base text-muted-foreground leading-relaxed">
@@ -192,7 +192,7 @@ export function PreferencesSection() {
                   id="marketing-emails"
                   checked={preferences.marketingEmails}
                   onCheckedChange={(checked) => handlePreferenceChange('marketingEmails', checked)}
-                  className="scale-125"
+                  className="shrink-0"
                 />
               </div>
             </CardContent>
@@ -215,7 +215,7 @@ export function PreferencesSection() {
         <CardContent className="space-y-4">
           <Card className="border-0 shadow-sm bg-muted/30">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-4">
                 <div className="space-y-2 flex-1">
                   <Label htmlFor="auto-play-videos" className="text-lg font-bold">Auto-play Videos</Label>
                   <p className="text-base text-muted-foreground leading-relaxed">
@@ -226,7 +226,7 @@ export function PreferencesSection() {
                   id="auto-play-videos"
                   checked={preferences.autoPlayVideos}
                   onCheckedChange={(checked) => handlePreferenceChange('autoPlayVideos', checked)}
-                  className="scale-125"
+                  className="shrink-0"
                 />
               </div>
             </CardContent>
@@ -234,7 +234,7 @@ export function PreferencesSection() {
 
           <Card className="border-0 shadow-sm bg-muted/30">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-4">
                 <div className="space-y-2 flex-1">
                   <Label htmlFor="show-progress-bars" className="text-lg font-bold">Show Progress Bars</Label>
                   <p className="text-base text-muted-foreground leading-relaxed">
@@ -245,7 +245,7 @@ export function PreferencesSection() {
                   id="show-progress-bars"
                   checked={preferences.showProgressBars}
                   onCheckedChange={(checked) => handlePreferenceChange('showProgressBars', checked)}
-                  className="scale-125"
+                  className="shrink-0"
                 />
               </div>
             </CardContent>

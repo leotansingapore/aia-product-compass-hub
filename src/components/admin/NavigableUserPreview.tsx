@@ -267,7 +267,7 @@ export function NavigableUserPreview({
               value={permission?.lock_message || ''}
               onChange={(e) => updateSectionPermission(section.id, 'locked', e.target.value)}
               placeholder="Enter custom lock message..."
-              className="text-xs h-12"
+              className="text-micro h-12"
             />
           </div>
         )}
@@ -314,7 +314,7 @@ export function NavigableUserPreview({
                 <TabsTrigger 
                   key={key} 
                   value={key}
-                  className={`flex flex-col gap-1 h-auto py-3 px-2 text-xs min-w-0 ${!isAccessible ? 'opacity-50' : ''}`}
+                  className={`flex flex-col gap-1 h-auto py-3 px-2 text-micro min-w-0 ${!isAccessible ? 'opacity-50' : ''}`}
                   // Remove disabled prop so admins can always access tabs to change permissions
                 >
                   <PageIcon className="h-4 w-4 flex-shrink-0" />
@@ -381,7 +381,7 @@ export function NavigableUserPreview({
                         <p className="text-sm text-muted-foreground">
                           Category: {category.description || 'Product category navigation'}
                         </p>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-micro text-muted-foreground">
                           Path: /category/{category.id}
                         </p>
                       </div>
@@ -423,7 +423,7 @@ export function NavigableUserPreview({
                         value={categoryPermission?.lock_message || ''}
                         onChange={(e) => updateSectionPermission(`product-category-${category.id}`, 'locked', e.target.value)}
                         placeholder="Enter custom lock message for this category..."
-                        className="text-xs h-12"
+                        className="text-micro h-12"
                       />
                     </div>
                   )}

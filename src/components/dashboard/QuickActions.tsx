@@ -22,8 +22,8 @@ export function QuickActions() {
       description: "Explore all product categories",
       icon: BookOpen,
       href: "/",
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
+      color: "text-white",
+      bgColor: "bg-blue-600",
       borderColor: "group-hover:border-blue-300"
     },
     {
@@ -31,8 +31,8 @@ export function QuickActions() {
       description: "Certification modules",
       icon: GraduationCap,
       href: "/cmfas-exams",
-      color: "text-green-600",
-      bgColor: "bg-green-50",
+      color: "text-white",
+      bgColor: "bg-green-600",
       borderColor: "group-hover:border-green-300"
     },
     {
@@ -40,8 +40,8 @@ export function QuickActions() {
       description: "Search by client needs",
       icon: Users,
       href: "/search-by-profile",
-      color: "text-purple-600",
-      bgColor: "bg-purple-50",
+      color: "text-white",
+      bgColor: "bg-purple-600",
       borderColor: "group-hover:border-purple-300"
     },
     {
@@ -49,8 +49,8 @@ export function QuickActions() {
       description: "Practice sales scenarios",
       icon: MessageSquare,
       href: "/roleplay",
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
+      color: "text-white",
+      bgColor: "bg-orange-600",
       borderColor: "group-hover:border-orange-300"
     },
     {
@@ -58,8 +58,8 @@ export function QuickActions() {
       description: "Saved materials",
       icon: FileText,
       href: "/bookmarks",
-      color: "text-red-600",
-      bgColor: "bg-red-50",
+      color: "text-white",
+      bgColor: "bg-red-600",
       borderColor: "group-hover:border-red-300"
     },
     {
@@ -67,8 +67,8 @@ export function QuickActions() {
       description: "Portal guide",
       icon: BarChart3,
       href: "/how-to-use",
-      color: "text-teal-600",
-      bgColor: "bg-teal-50",
+      color: "text-white",
+      bgColor: "bg-teal-600",
       borderColor: "group-hover:border-teal-300"
     }
   ];
@@ -85,12 +85,12 @@ export function QuickActions() {
           >
             <CardContent className="h-full !p-6 flex items-center justify-center">
               <div className="flex flex-col items-center text-center space-y-3 w-full">
-                <div className={`p-3 rounded-xl ${action.bgColor} ${action.borderColor} group-hover:scale-105 transition-all duration-200 shadow-sm border-2 border-transparent`}>
+                <div className={`p-3 rounded-xl ${action.bgColor} ${action.borderColor} group-hover:scale-105 transition-all duration-200 shadow-md border-2 border-transparent`}>
                   <action.icon className={`h-6 w-6 ${action.color} stroke-[2]`} />
                 </div>
                 <div>
                   <div className="font-medium text-sm sm:text-base">{action.title}</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground mt-1">{action.description}</div>
+                  <div className="text-micro sm:text-sm text-muted-foreground mt-1">{action.description}</div>
                 </div>
               </div>
             </CardContent>

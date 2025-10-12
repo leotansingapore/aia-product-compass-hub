@@ -403,17 +403,17 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
         {/* Selection Summary */}
         <div className="flex flex-wrap gap-1 mt-3">
           {pendingUsers.length > 0 && (
-            <Badge variant="secondary" className="text-xs">
+            <Badge variant="secondary" className="text-micro">
               {pendingUsers.length} pending
             </Badge>
           )}
           {activeUsers.length > 0 && (
-            <Badge variant="default" className="text-xs">
+            <Badge variant="default" className="text-micro">
               {activeUsers.length} active
             </Badge>
           )}
           {nonAdminUsers.length > 0 && (
-            <Badge variant="outline" className="text-xs">
+            <Badge variant="outline" className="text-micro">
               {nonAdminUsers.length} non-admin
             </Badge>
           )}

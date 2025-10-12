@@ -178,18 +178,18 @@ export function LearningAnalyticsDashboard() {
                       day: 'numeric' 
                     })}
                   </div>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-micro text-muted-foreground">
                     {day.productsViewed} products • {day.timeSpent} min
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
                   {day.productsViewed > 0 && (
-                    <Badge variant="outline" className="text-xs">
+                    <Badge variant="outline" className="text-micro">
                       {day.productsViewed}
                     </Badge>
                   )}
                   {day.bookmarksAdded > 0 && (
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge variant="secondary" className="text-micro">
                       +{day.bookmarksAdded}
                     </Badge>
                   )}

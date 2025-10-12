@@ -73,11 +73,11 @@ export function SearchBar({ onSearch, placeholder = "Search products, benefits, 
                       {result.description}
                     </p>
                     <div className="flex items-center gap-2 mt-1">
-                      <Badge variant="secondary" className="text-xs">
+                      <Badge variant="secondary" className="text-micro">
                         {result.categoryName}
                       </Badge>
                       {result.tags?.slice(0, 2).map(tag => (
-                        <Badge key={tag} variant="outline" className="text-xs">
+                        <Badge key={tag} variant="outline" className="text-micro">
                           {tag}
                         </Badge>
                       ))}

@@ -5,7 +5,9 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import NotFound from "@/pages/NotFound";
-import { NavigationHeader } from "@/components/NavigationHeader";
+import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
+import { Badge } from "@/components/ui/badge";
+import { Tag } from "lucide-react";
 
 const files = import.meta.glob("../../kb/products/**/*.md", { as: "raw", eager: true });
 
@@ -28,7 +30,7 @@ export default function KBProduct() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-1 sm:px-4 py-4 sm:py-6 md:py-10">
+    <>
       <Helmet>
         <title>{product.name} – Knowledge Base</title>
         <meta name="description" content={`Overview, highlights, documents, AI, and video for ${product.name}.`} />
@@ -36,9 +38,9 @@ export default function KBProduct() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      <NavigationHeader
+      <BrandedPageHeader
         title={product.name}
-        subtitle={product.tags?.length ? `Tags: ${product.tags.join(", ")}` : undefined}
+        subtitle={category?.name}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Knowledge Base", href: "/kb" },
@@ -47,18 +49,32 @@ export default function KBProduct() {
         ]}
       />
 
-      <article className="prose prose-neutral dark:prose-invert max-w-none">
-        <ReactMarkdown 
-          remarkPlugins={[remarkGfm]} 
-          rehypePlugins={[rehypeRaw]} 
+      <div className="mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-10">
+      {/* Product Tags */}
+      {product.tags && product.tags.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-6">
+          {product.tags.map((tag, idx) => (
+            <Badge key={idx} variant="secondary" className="text-sm">
+              <Tag className="h-3.5 w-3.5 mr-1.5" />
+              {tag}
+            </Badge>
+          ))}
+        </div>
+      )}
+
+      <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-img:rounded-lg prose-a:text-primary hover:prose-a:text-primary/80 prose-code:text-sm prose-pre:bg-muted">
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
           components={{
-            img: (props) => <img loading="lazy" {...props} />,
+            img: (props) => <img loading="lazy" className="w-full h-auto" {...props} />,
             a: (props) => <a {...props} target={props.href?.startsWith("http") ? "_blank" : undefined} rel={props.href?.startsWith("http") ? "noopener noreferrer" : undefined} />,
           }}
         >
           {markdown}
         </ReactMarkdown>
       </article>
-    </div>
+      </div>
+    </>
   );
 }

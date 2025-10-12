@@ -179,11 +179,11 @@ function HighlightOverlay({
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="text-xs font-medium">
+              <Badge variant="outline" className="text-micro font-medium">
                 Step {currentStep + 1} of {totalSteps}
               </Badge>
               {isPaused && (
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="secondary" className="text-micro">
                   <Pause className="w-3 h-3 mr-1" />
                   Paused
                 </Badge>
@@ -202,7 +202,7 @@ function HighlightOverlay({
           {/* Progress bar */}
           <div className="space-y-2">
             <Progress value={progress} className="h-2" />
-            <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <div className="flex items-center justify-between text-micro text-muted-foreground">
               <span>{Math.round(progress)}% complete</span>
               <span>{totalSteps - currentStep - 1} steps remaining</span>
             </div>
@@ -223,7 +223,7 @@ function HighlightOverlay({
           {/* Interactive action hint */}
           {step.action && (
             <div className="mb-4 p-3 rounded-lg bg-accent/30 border border-accent/50">
-              <p className="text-xs font-medium text-accent-foreground">
+              <p className="text-micro font-medium text-accent-foreground">
                 💡 Try it: {step.actionHint || "Interact with the highlighted element"}
               </p>
             </div>
@@ -235,20 +235,20 @@ function HighlightOverlay({
               size="sm"
               onClick={onPrev}
               disabled={currentStep === 0}
-              className="text-xs"
+              className="text-micro"
             >
               <ArrowLeft className="w-3 h-3 mr-1" />
               Previous
             </Button>
             
             <div className="flex gap-2">
-              <Button variant="outline" size="sm" onClick={onSkip} className="text-xs">
+              <Button variant="outline" size="sm" onClick={onSkip} className="text-micro">
                 Skip Tour
               </Button>
               <Button 
                 size="sm" 
                 onClick={onNext} 
-                className="text-xs bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70"
+                className="text-micro bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70"
               >
                 {currentStep === totalSteps - 1 ? (
                   <>

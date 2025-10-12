@@ -41,7 +41,7 @@ export function HeroSearchCard({ onSearch }: HeroSearchCardProps) {
 
         {recentSearches.length > 0 && (
           <div className="space-y-2">
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="flex items-center gap-1 text-micro text-muted-foreground">
               <Clock className="h-3 w-3" />
               <span>Recent searches</span>
             </div>
@@ -50,7 +50,7 @@ export function HeroSearchCard({ onSearch }: HeroSearchCardProps) {
                 <Badge 
                   key={search}
                   variant="secondary" 
-                  className="cursor-pointer hover:bg-secondary/80 text-xs"
+                  className="cursor-pointer hover:bg-secondary/80 text-micro"
                   onClick={() => onSearch(search)}
                 >
                   {search}

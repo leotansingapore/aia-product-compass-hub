@@ -105,7 +105,7 @@ export function RoleSelector({ user, onSave, onCancel }: RoleSelectorProps) {
                     {role.name}
                   </Label>
                 </div>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-micro text-muted-foreground">
                   {role.description}
                 </p>
               </div>

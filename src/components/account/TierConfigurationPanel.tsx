@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
-import { X, Settings, Save } from 'lucide-react';
+import { Settings } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+import {
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog';
 
 interface TierConfigurationPanelProps {
-  onClose: () => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
 interface TierPermission {
@@ -20,9 +23,9 @@ interface TierPermission {
 }
 
 const TIERS = [
-  { id: 'basic', name: 'Basic', color: 'bg-blue-500' },
-  { id: 'intermediate', name: 'Intermediate', color: 'bg-amber-500' },
-  { id: 'advanced', name: 'Advanced', color: 'bg-emerald-500' },
+  { id: 'basic', name: 'Basic', shortName: 'B', color: 'bg-blue-500' },
+  { id: 'intermediate', name: 'Intermediate', shortName: 'I', color: 'bg-amber-500' },
+  { id: 'advanced', name: 'Advanced', shortName: 'A', color: 'bg-emerald-500' },
 ];
 
 const AVAILABLE_RESOURCES = [
@@ -32,7 +35,7 @@ const AVAILABLE_RESOURCES = [
   { id: 'product-category', name: 'Product Category Pages', type: 'page' },
 ];
 
-export function TierConfigurationPanel({ onClose }: TierConfigurationPanelProps) {
+export function TierConfigurationPanel({ open, onOpenChange }: TierConfigurationPanelProps) {
   const [tierPermissions, setTierPermissions] = useState<TierPermission[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -105,82 +108,88 @@ export function TierConfigurationPanel({ onClose }: TierConfigurationPanelProps)
     }
   };
 
-  if (loading) {
-    return (
-      <Card>
-        <CardContent className="p-6">
-          <div className="text-center">Loading tier configuration...</div>
-        </CardContent>
-      </Card>
-    );
-  }
-
   return (
-    <Card className="w-full max-w-4xl">
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="flex items-center gap-2">
-          <Settings className="h-5 w-5" />
+    <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[85vh] sm:max-h-[90vh] overflow-y-auto p-3 sm:p-6">
+      <DialogHeader>
+        <DialogTitle className="flex items-center gap-2 text-base sm:text-lg">
+          <Settings className="h-4 w-4 sm:h-5 sm:w-5" />
           Tier Configuration
-        </CardTitle>
-        <Button variant="ghost" size="sm" onClick={onClose}>
-          <X className="h-4 w-4" />
-        </Button>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="text-sm text-muted-foreground">
+        </DialogTitle>
+        <DialogDescription className="text-xs sm:text-sm">
           Configure which resources each tier can access. Changes are saved automatically.
-        </div>
+        </DialogDescription>
+      </DialogHeader>
 
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left p-3 font-medium">Resource</th>
-                {TIERS.map(tier => (
-                  <th key={tier.id} className="text-center p-3 font-medium">
-                    <div className="flex items-center justify-center gap-2">
-                      <div className={`w-3 h-3 rounded-full ${tier.color}`}></div>
-                      {tier.name}
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {AVAILABLE_RESOURCES.map(resource => (
-                <tr key={resource.id} className="border-b hover:bg-accent/50">
-                  <td className="p-3">
-                    <div className="flex items-center gap-2">
-                      <Badge variant="outline" className="text-xs">
-                        {resource.type}
-                      </Badge>
-                      {resource.name}
-                    </div>
-                  </td>
+      {loading ? (
+        <div className="text-center py-8">Loading tier configuration...</div>
+      ) : (
+        <div className="space-y-6">
+          {/* Mobile-only tier legend */}
+          <div className="sm:hidden flex items-center justify-center gap-3 text-xs pb-2">
+            {TIERS.map(tier => (
+              <div key={tier.id} className="flex items-center gap-1">
+                <div className={`w-2 h-2 rounded-full ${tier.color}`}></div>
+                <span>{tier.shortName} = {tier.name}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left p-1.5 sm:p-3 font-medium text-xs sm:text-sm">Resource</th>
                   {TIERS.map(tier => (
-                    <td key={tier.id} className="p-3 text-center">
-                      <Checkbox
-                        checked={hasPermission(tier.id, resource.id)}
-                        onCheckedChange={() => togglePermission(tier.id, resource)}
-                      />
-                    </td>
+                    <th key={tier.id} className="text-center p-1.5 sm:p-3 font-medium text-xs sm:text-sm">
+                      {/* Mobile: Show abbreviated name only */}
+                      <span className="sm:hidden">{tier.shortName}</span>
+                      {/* Desktop: Show full name with color dot */}
+                      <div className="hidden sm:flex items-center justify-center gap-2">
+                        <div className={`w-3 h-3 rounded-full ${tier.color}`}></div>
+                        {tier.name}
+                      </div>
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {AVAILABLE_RESOURCES.map(resource => (
+                  <tr key={resource.id} className="border-b hover:bg-accent/50">
+                    <td className="p-1.5 sm:p-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                        <Badge variant="outline" className="text-[10px] sm:text-xs w-fit">
+                          {resource.type}
+                        </Badge>
+                        <span className="text-xs sm:text-sm">{resource.name}</span>
+                      </div>
+                    </td>
+                    {TIERS.map(tier => (
+                      <td key={tier.id} className="p-1.5 sm:p-3 text-center">
+                        <input
+                          type="checkbox"
+                          checked={hasPermission(tier.id, resource.id)}
+                          onChange={() => togglePermission(tier.id, resource)}
+                          className="h-4 w-4 shrink-0 cursor-pointer accent-primary"
+                        />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-        <div className="bg-muted/50 p-4 rounded-lg">
-          <h4 className="font-medium mb-2">Current Tier Definitions:</h4>
-          <div className="space-y-2 text-sm">
-            <div><strong>Basic:</strong> CMFAS Exams access only</div>
-            <div><strong>Intermediate:</strong> CMFAS Exams + Roleplay Training</div>
-            <div><strong>Advanced:</strong> CMFAS Exams + Roleplay Training + All Product Categories</div>
-            <div><strong>Master Admin:</strong> Full system access (cannot be configured)</div>
+          <div className="bg-muted/50 p-2 sm:p-4 rounded-lg">
+            <h4 className="font-medium mb-2 text-xs sm:text-sm">Current Tier Definitions:</h4>
+            <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
+              <div><strong>Basic:</strong> CMFAS Exams access only</div>
+              <div><strong>Intermediate:</strong> CMFAS Exams + Roleplay Training</div>
+              <div><strong>Advanced:</strong> CMFAS Exams + Roleplay Training + All Product Categories</div>
+              <div><strong>Master Admin:</strong> Full system access (cannot be configured)</div>
+            </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      )}
+    </DialogContent>
   );
 }

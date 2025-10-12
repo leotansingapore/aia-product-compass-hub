@@ -10,6 +10,7 @@ import ReactMarkdown from "react-markdown";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { markdownComponents } from "@/lib/markdown-config";
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -178,7 +179,7 @@ Feel free to ask me anything or use one of the quick questions below to get star
             <div className="min-w-0">
               <h3 className="text-sm font-semibold leading-none">CMFAS AI Tutor</h3>
               {moduleName && (
-                <p className="text-xs text-muted-foreground mt-0.5 truncate max-w-[55vw]">{moduleName}</p>
+                <p className="text-micro text-muted-foreground mt-0.5 truncate max-w-[55vw]">{moduleName}</p>
               )}
             </div>
           </div>
@@ -208,14 +209,14 @@ Feel free to ask me anything or use one of the quick questions below to get star
         <Collapsible open={showQuickQuestions} onOpenChange={setShowQuickQuestions}>
           <CollapsibleContent className="border-b bg-muted/30">
             <div className="p-3 space-y-2">
-              <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Quick Questions</h4>
+              <h4 className="text-micro font-medium text-muted-foreground uppercase tracking-wide">Quick Questions</h4>
               <div className="grid gap-2">
                 {quickQuestions.slice(0, 6).map((q, index) => (
                   <Button
                     key={index}
                     variant="outline"
                     size="sm"
-                    className="justify-start text-left h-auto py-2 px-3 text-xs font-normal"
+                    className="justify-start text-left h-auto py-2 px-3 text-micro font-normal"
                     onClick={() => {
                       handleQuickQuestion(q.question);
                       setShowQuickQuestions(false);
@@ -254,17 +255,17 @@ Feel free to ask me anything or use one of the quick questions below to get star
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="mb-1">
-                    <span className="text-xs font-medium text-muted-foreground">
+                    <span className="text-micro font-medium text-muted-foreground">
                       {message.role === 'user' ? 'You' : 'CMFAS Tutor'}
                     </span>
-                    <span className="text-xs text-muted-foreground/60 ml-2">
+                    <span className="text-micro text-muted-foreground/60 ml-2">
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </span>
                   </div>
                   <div className="text-sm leading-relaxed">
                     {message.role === 'assistant' ? (
-                      <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-2 prose-ul:my-2 prose-li:my-0">
-                        <ReactMarkdown>{message.content}</ReactMarkdown>
+                      <div className="prose prose-sm dark:prose-invert max-w-none">
+                        <ReactMarkdown components={markdownComponents}>{message.content}</ReactMarkdown>
                       </div>
                     ) : (
                       <p>{message.content}</p>
@@ -281,7 +282,7 @@ Feel free to ask me anything or use one of the quick questions below to get star
                 </div>
                 <div className="flex-1">
                   <div className="mb-1">
-                    <span className="text-xs font-medium text-muted-foreground">CMFAS Tutor</span>
+                    <span className="text-micro font-medium text-muted-foreground">CMFAS Tutor</span>
                   </div>
                   <div className="flex gap-1 py-2">
                     <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
@@ -355,7 +356,7 @@ Feel free to ask me anything or use one of the quick questions below to get star
               <Badge
                 key={index}
                 variant="outline"
-                className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors text-xs px-2 py-1"
+                className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors text-micro px-2 py-1"
                 onClick={() => handleQuickQuestion(q.question)}
               >
                 {q.question}
@@ -375,7 +376,7 @@ Feel free to ask me anything or use one of the quick questions below to get star
               variant="ghost"
               size="sm"
               onClick={startNewChat}
-              className="h-7 px-2 text-xs"
+              className="h-7 px-2 text-micro"
             >
               <RotateCcw className="h-3 w-3 mr-1" />
               New Chat
@@ -414,13 +415,13 @@ Feel free to ask me anything or use one of the quick questions below to get star
                     } ${message.role === 'user' ? 'inline-block' : ''}`}>
                       {message.role === 'assistant' ? (
                         <div className="prose prose-sm dark:prose-invert max-w-none">
-                          <ReactMarkdown>{message.content}</ReactMarkdown>
+                          <ReactMarkdown components={markdownComponents}>{message.content}</ReactMarkdown>
                         </div>
                       ) : (
                         <p className="text-sm">{message.content}</p>
                       )}
                     </div>
-                    <p className="text-xs text-muted-foreground mt-1">
+                    <p className="text-micro text-muted-foreground mt-1">
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
                   </div>

@@ -6,13 +6,10 @@ import { ProductSummary } from "@/components/product-detail/ProductSummary";
 import { ProductHighlights } from "@/components/product-detail/ProductHighlights";
 import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLinks";
 import { SalesToolsUsefulLinks } from "@/components/product-detail/SalesToolsUsefulLinks";
-import { ProductAIAssistant } from "@/components/product-detail/ProductAIAssistant";
 import { ProductChatLauncher } from "@/components/product-detail/ProductChatLauncher";
-import { ProductChatbots } from "@/components/product-detail/ProductChatbots";
 import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { PersonalNotes } from "@/components/PersonalNotes";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -23,8 +20,6 @@ export default function ProductDetail() {
     product,
     loading,
     productId,
-    assistantOpen,
-    setAssistantOpen,
     handleUpdate,
     handleBack,
     breadcrumbs,
@@ -64,109 +59,83 @@ export default function ProductDetail() {
           breadcrumbs={breadcrumbs}
         />
         
-        <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-8 pb-28 md:pb-10 space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in">
-          
-          {/* Tags and Bookmark Button */}
-          <ProtectedSection sectionId="product_tags">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-              <div className="flex-1 w-full">
-                <EditableTags
-                  tags={product.tags || []}
-                  onSave={(newTags) => handleUpdate('tags', newTags)}
-                />
-              </div>
-              <div className="self-end sm:self-auto">
-                <BookmarkButton productId={product.id} />
-              </div>
-            </div>
-          </ProtectedSection>
+        <div className="mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
 
-          {/* Summary - Hidden for Sales Tools */}
-          {productId !== 'sales-tools-objections' && (
-            <ProductSummary
-              description={product.description || ''}
-              onUpdate={handleUpdate}
-            />
-          )}
+          {/* 2-Column Grid Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 overflow-hidden">
 
-          {/* Key Highlights - Hidden for Sales Tools */}
-          {productId !== 'sales-tools-objections' && (
-            <ProductHighlights
-              highlights={product.highlights || []}
-              onUpdate={handleUpdate}
-            />
-          )}
+            {/* Left Column - Main Content */}
+            <div className="lg:col-span-2 space-y-4 sm:space-y-6 md:space-y-8">
 
-          {/* Useful Links */}
-          {productId === 'sales-tools-objections' ? (
-            <SalesToolsUsefulLinks
-              links={product.useful_links || []}
-              onUpdate={handleUpdate}
-            />
-          ) : (
-            <ProductUsefulLinks
-              links={product.useful_links || []}
-              onUpdate={handleUpdate}
-              productId={productId}
-            />
-          )}
-
-          {/* Three Chatbot Launchers */}
-          <ProductChatbots 
-            chatbotLink1={product.custom_gpt_link}
-            chatbotLink2={(product as any).chatbot_link_2}
-            chatbotLink3={(product as any).chatbot_link_3}
-            chatbot2Name={(product as any).chatbot_2_name}
-            chatbot3Name={(product as any).chatbot_3_name}
-            chatbotButtonText={(product as any).chatbot_button_text}
-            productName={product.title}
-            onUpdate={handleUpdate}
-          />
-
-          {/* AI Assistant - Dialog (keep for backward compatibility) */}
-          <ProtectedSection sectionId="product_ai">
-            <Dialog open={assistantOpen} onOpenChange={setAssistantOpen}>
-              <DialogContent aria-describedby="product-ai-desc" className="w-screen h-[100dvh] max-w-none sm:max-w-3xl sm:w-auto sm:h-auto p-0 rounded-none sm:rounded-lg overflow-hidden flex flex-col">
-                <DialogHeader className="px-3 py-2 sm:px-6 sm:py-4">
-                  <DialogTitle className="flex items-center gap-2">
-                    <span>🤖</span> AI Assistant
-                  </DialogTitle>
-                  <DialogDescription id="product-ai-desc" className="sr-only">
-                    Chat assistant for {product.title}. Ask questions about features, benefits, and sales tips.
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="flex-1 min-h-0 overflow-hidden">
-                  <ProductAIAssistant 
-                    customGptLink={product.custom_gpt_link}
-                    productData={{
-                      id: product.id,
-                      name: product.title,
-                      category: product.category_id,
-                      summary: product.description,
-                      highlights: product.highlights,
-                      assistant_id: product.assistant_id,
-                      assistant_instructions: product.assistant_instructions
-                    }}
-                    onUpdate={handleUpdate}
-                  />
+              {/* Tags and Bookmark Button */}
+              <ProtectedSection sectionId="product_tags">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                  <div className="flex-1 w-full">
+                    <EditableTags
+                      tags={product.tags || []}
+                      onSave={(newTags) => handleUpdate('tags', newTags)}
+                    />
+                  </div>
+                  <div className="self-end sm:self-auto">
+                    <BookmarkButton productId={product.id} />
+                  </div>
                 </div>
-              </DialogContent>
-            </Dialog>
-          </ProtectedSection>
+              </ProtectedSection>
 
-          {/* Training Videos */}
-          <ProtectedSection sectionId="product_videos">
-            <ProductTrainingVideos
-              videos={product.training_videos || []}
-              productId={product.id}
-              onUpdate={handleUpdate}
-            />
-          </ProtectedSection>
+              {/* Summary - Hidden for Sales Tools */}
+              {productId !== 'sales-tools-objections' && (
+                <ProductSummary
+                  description={product.description || ''}
+                  onUpdate={handleUpdate}
+                />
+              )}
 
-          {/* Personal Notes */}
-          <ProtectedSection sectionId="product_notes">
-            <PersonalNotes productId={product.id} />
-          </ProtectedSection>
+              {/* Key Highlights - Hidden for Sales Tools */}
+              {productId !== 'sales-tools-objections' && (
+                <ProductHighlights
+                  highlights={product.highlights || []}
+                  onUpdate={handleUpdate}
+                />
+              )}
+
+              {/* Training Videos */}
+              <ProtectedSection sectionId="product_videos">
+                <ProductTrainingVideos
+                  videos={product.training_videos || []}
+                  productId={product.id}
+                  onUpdate={handleUpdate}
+                />
+              </ProtectedSection>
+
+            </div>
+
+            {/* Right Column - Sidebar */}
+            <div className="lg:col-span-1 space-y-4 sm:space-y-6 md:space-y-8">
+
+              {/* Useful Links */}
+              {productId === 'sales-tools-objections' ? (
+                <SalesToolsUsefulLinks
+                  links={product.useful_links || []}
+                  onUpdate={handleUpdate}
+                />
+              ) : (
+                <ProductUsefulLinks
+                  links={product.useful_links || []}
+                  onUpdate={handleUpdate}
+                  productId={productId}
+                />
+              )}
+
+              <ProductChatLauncher productName={product.title} productId={product.id} />
+
+              {/* Personal Notes */}
+              <ProtectedSection sectionId="product_notes">
+                <PersonalNotes productId={product.id} />
+              </ProtectedSection>
+
+            </div>
+
+          </div>
 
         </div>
       </PageLayout>

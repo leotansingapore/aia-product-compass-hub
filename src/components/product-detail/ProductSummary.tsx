@@ -25,7 +25,7 @@ export function ProductSummary({ description, onUpdate }: ProductSummaryProps) {
             value={description || ''}
             onSave={canEdit ? (newValue) => onUpdate('description', newValue) : undefined}
             multiline
-            className="text-muted-foreground leading-relaxed"
+            className="text-muted-foreground leading-relaxed break-words"
             placeholder="Add product description..."
             readOnly={!canEdit}
           />

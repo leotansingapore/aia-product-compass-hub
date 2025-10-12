@@ -363,7 +363,7 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
                     placeholder="Enter video URL (YouTube, Vimeo, etc.)..."
                     type="url"
                   />
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-micro text-muted-foreground">
                     Add a video URL to include video content in this training section
                   </p>
                 </div>

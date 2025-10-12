@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Dialog } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { UserCard } from "./UserCard";
@@ -242,76 +242,91 @@ export function UserManagementSection() {
   return (
     <div className="space-y-6">
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Users className="h-5 w-5" />
+        <CardHeader className="p-4 sm:p-6">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <Users className="h-4 w-4 sm:h-5 sm:w-5" />
             User Management
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-xs sm:text-sm">
             Manage user accounts, roles, and permissions
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="flex gap-4 mb-6">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+        <CardContent className="p-4 sm:p-6">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
+            <div className="relative flex-1 min-w-[150px] sm:min-w-[200px]">
+              <Search className="absolute left-2 sm:left-3 top-2.5 sm:top-3 h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" />
               <Input
                 placeholder="Search users..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+                className="pl-8 sm:pl-10 text-xs sm:text-sm h-9 sm:h-10 py-1 border-0"
               />
             </div>
-            <Button variant="outline" onClick={() => setShowTierConfiguration(true)}>
-              <Settings className="h-4 w-4 mr-2" />
-              Configure Tiers
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowTierConfiguration(true)}
+              className="flex-shrink-0 text-xs sm:text-sm px-2 sm:px-4"
+            >
+              <Settings className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Configure Tiers</span>
+              <span className="sm:hidden">Tiers</span>
             </Button>
             {selectedUsers.size > 0 && (
               <Button
                 onClick={handleBulkDelete}
                 variant="destructive"
+                size="sm"
                 disabled={isDeleting}
+                className="flex-shrink-0 text-xs sm:text-sm px-2 sm:px-4"
               >
                 {isDeleting ? (
                   <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Deleting...
+                    <Loader2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 animate-spin" />
+                    <span className="hidden sm:inline">Deleting...</span>
+                    <span className="sm:hidden">Del...</span>
                   </>
                 ) : (
                   <>
-                    <Trash2 className="h-4 w-4 mr-2" />
-                    Delete {selectedUsers.size} user(s)
+                    <Trash2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                    <span className="hidden sm:inline">Delete {selectedUsers.size} user(s)</span>
+                    <span className="sm:hidden">Del ({selectedUsers.size})</span>
                   </>
                 )}
               </Button>
             )}
           </div>
 
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Checkbox
+          <div className="space-y-3 sm:space-y-4">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <input
+                  type="checkbox"
                   checked={selectedUsers.size === filteredUsers.length && filteredUsers.length > 0}
-                  onCheckedChange={handleSelectAll}
+                  onChange={(e) => handleSelectAll(e.target.checked)}
+                  className="h-4 w-4 shrink-0 cursor-pointer accent-primary"
                 />
-                <span className="text-sm text-muted-foreground">
-                  Select all ({filteredUsers.length} users)
+                <span className="text-xs sm:text-sm text-muted-foreground">
+                  Select all ({filteredUsers.length})
                 </span>
               </div>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="sm"
                 onClick={() => window.location.reload()}
+                className="text-xs sm:text-sm px-2 sm:px-3"
               >
-                Refresh Users
+                Refresh
               </Button>
             </div>
             
             {filteredUsers.map((user) => (
-              <div key={user.id} className="flex items-center gap-3">
-                <Checkbox
+              <div key={user.id} className="flex items-start gap-2 sm:gap-3">
+                <input
+                  type="checkbox"
                   checked={selectedUsers.has(user.id)}
-                  onCheckedChange={(checked) => handleUserSelect(user.id, checked as boolean)}
+                  onChange={(e) => handleUserSelect(user.id, e.target.checked)}
+                  className="h-4 w-4 shrink-0 mt-3 sm:mt-[18px] cursor-pointer accent-primary"
                 />
                 <div className="flex-1">
                   <UserCard
@@ -325,11 +340,12 @@ export function UserManagementSection() {
         </CardContent>
       </Card>
 
-      {showTierConfiguration && (
+      <Dialog open={showTierConfiguration} onOpenChange={setShowTierConfiguration}>
         <TierConfigurationPanel
-          onClose={() => setShowTierConfiguration(false)}
+          open={showTierConfiguration}
+          onOpenChange={setShowTierConfiguration}
         />
-      )}
+      </Dialog>
     </div>
   );
 }

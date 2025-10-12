@@ -128,12 +128,84 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 
+  /* Accessibility: Screen reader only content */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .sr-only:focus,
+  .sr-only:active {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Accessibility: Two-Color Focus Indicators (WCAG 2.4.7) */
+  /* Ensures at least one color has sufficient contrast against any background */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px hsl(var(--primary-glow) / 0.3);
+  }
+
+  /* Enhanced focus indicators for interactive elements */
+  button:focus-visible,
+  a:focus-visible,
+  [role="button"]:focus-visible,
+  [role="tab"]:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
+    box-shadow: 0 0 0 4px hsl(var(--primary-glow) / 0.3);
+  }
+
+  /* Card interactive focus states */
+  [role="article"]:focus-visible,
+  [role="link"]:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 4px;
+    box-shadow: 0 0 0 6px hsl(var(--primary-glow) / 0.2);
+  }
+
+  /* Skip navigation link styling */
+  .skip-link {
+    z-index: 9999;
+  }
+
+  .skip-link:focus {
+    @apply not-sr-only;
+  }
+
+  /* Reduced motion support (WCAG 2.3.3) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* Touch optimization and mobile-first improvements */
   @media (max-width: 768px) {
-    /* Increase touch targets on mobile */
-    button, [role="button"], .mobile-touch-target {
-      min-height: 48px;
-      min-width: 48px;
+    /* Increase touch targets on mobile (WCAG 2.5.5) */
+    button:not([role="switch"]), [role="button"]:not([role="switch"]), .mobile-touch-target {
+      min-height: 44px;
+      min-width: 44px;
     }
     
     /* Better spacing for mobile */
@@ -155,44 +227,87 @@
     .mobile-grid-2 {
       grid-template-columns: repeat(2, 1fr);
     }
-    
-    /* Better mobile typography */
+
+    /* Better mobile typography - accessibility compliant (min 14px) */
     .mobile-text-sm {
-      font-size: 0.875rem;
-      line-height: 1.25rem;
+      font-size: max(0.875rem, 14px);
+      line-height: 1.5;
     }
-    
-    .mobile-text-xs {
-      font-size: 0.75rem;
-      line-height: 1rem;
+
+    .mobile-text-micro {
+      font-size: max(0.875rem, 14px);
+      line-height: 1.5;
     }
-    
+
     /* Improve text readability on mobile */
     body {
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
+      font-size: max(16px, 1rem);
     }
-    
+
+    /* Responsive heading sizes - maintaining accessibility minimums */
+    h1 {
+      font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+
+    h2 {
+      font-size: clamp(1.375rem, 5vw, 2rem);
+    }
+
+    h3 {
+      font-size: clamp(1.125rem, 4vw, 1.5rem);
+    }
+
     /* Optimize scrolling on mobile */
     * {
       -webkit-overflow-scrolling: touch;
     }
-    
+
     /* Mobile header optimization */
     .mobile-header {
       min-height: 56px;
       padding: 0.75rem 1rem;
     }
-    
+
     /* Better mobile card spacing */
     .mobile-card {
       margin: 0.5rem;
       padding: 1rem;
     }
 
-    /* Ensure content not hidden behind bottom nav */
-    main {
-      padding-bottom: calc(env(safe-area-inset-bottom) + var(--mobile-bottom-nav-height));
-    }
+  }
+
+  /* Semantic Typography Utilities */
+  .text-body-primary {
+    @apply text-body font-serif;
+  }
+
+  .text-body-secondary {
+    @apply text-body-sm text-muted-foreground font-serif;
+  }
+
+  .text-heading-primary {
+    @apply text-heading-xl sm:text-heading-2xl font-sans tracking-heading font-bold;
+  }
+
+  .text-heading-secondary {
+    @apply text-heading-md sm:text-heading-lg font-sans tracking-heading font-semibold;
+  }
+
+  .text-metadata {
+    @apply text-micro text-muted-foreground;
+  }
+
+  .text-label {
+    @apply text-micro font-medium uppercase tracking-wide;
+  }
+
+  .text-card-title {
+    @apply text-heading-sm sm:text-heading-md font-sans font-semibold;
+  }
+
+  .text-card-description {
+    @apply text-body-sm text-muted-foreground;
   }
 }

@@ -43,7 +43,7 @@ export function ChecklistHeader({
         </div>
         <div className="space-y-2 mt-3">
           <Progress value={progressPercentage} className="h-2" />
-          <div className="flex justify-between text-xs text-muted-foreground">
+          <div className="flex justify-between text-micro text-muted-foreground">
             <span>{progressPercentage}% Complete</span>
             <span>{completedCount} of {totalCount} tasks done</span>
           </div>

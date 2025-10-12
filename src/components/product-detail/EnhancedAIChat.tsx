@@ -1,18 +1,15 @@
-import { useState, useRef, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Send, MessageCircle, Loader2, Sparkles, User, Bot, Maximize2, Minimize2, ArrowDown, Bell, Menu, RotateCcw } from "lucide-react";
+import { Send, MessageCircle, Loader2, ArrowDown, Bell, RotateCcw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import ReactMarkdown from 'react-markdown';
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
+import { ChatMessage } from "./ChatMessage";
 
-interface ChatMessage {
+interface ChatMessageType {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
@@ -37,19 +34,16 @@ interface EnhancedAIChatProps {
 }
 
 export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [messages, setMessages] = useState<ChatMessageType[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [threadId, setThreadId] = useState<string | null>(null);
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [hasNewMessage, setHasNewMessage] = useState(false);
   const [userScrolledUp, setUserScrolledUp] = useState(false);
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const scrollViewportRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  const [showQuickQuestions, setShowQuickQuestions] = useState(false);
 
   // Product-specific quick questions
   const quickQuestions: QuickQuestion[] = [
@@ -63,7 +57,8 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
 
   // Smart scroll detection - check if user is near bottom
   const isNearBottom = () => {
-    const viewport = scrollViewportRef.current;
+    if (!scrollAreaRef.current) return true;
+    const viewport = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
     if (!viewport) return true;
     const threshold = 100; // pixels from bottom
     const isAtBottom = viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight <= threshold;
@@ -72,7 +67,8 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
 
   // Scroll to bottom with smooth animation
   const scrollToBottom = (smooth = true) => {
-    const viewport = scrollViewportRef.current;
+    if (!scrollAreaRef.current) return;
+    const viewport = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
     if (!viewport) return;
     viewport.scrollTo({ top: viewport.scrollHeight, behavior: smooth ? 'smooth' : 'auto' });
     setShowScrollButton(false);
@@ -82,7 +78,8 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
 
   // Handle scroll events to detect user scroll behavior
   const handleScroll = () => {
-    const viewport = scrollViewportRef.current;
+    if (!scrollAreaRef.current) return;
+    const viewport = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
     if (!viewport) return;
     const isAtBottom = isNearBottom();
     const isUserScrolling = !isAtBottom;
@@ -90,6 +87,16 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
     setShowScrollButton(isUserScrolling && messages.length > 0);
     if (isAtBottom) setHasNewMessage(false);
   };
+
+  // Attach scroll event listener to viewport
+  useEffect(() => {
+    if (!scrollAreaRef.current) return;
+    const viewport = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
+    if (!viewport) return;
+
+    viewport.addEventListener('scroll', handleScroll);
+    return () => viewport.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Smart auto-scroll logic
   useEffect(() => {
@@ -105,7 +112,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
   // Welcome message on first load
   useEffect(() => {
     if (messages.length === 0 && productData?.name) {
-      const welcomeMessage: ChatMessage = {
+      const welcomeMessage: ChatMessageType = {
         role: 'assistant',
         content: `👋 **Welcome to the ${productData.name} Expert Assistant!**\n\nI'm here to help you with everything about this product. You can:\n\n- Ask specific questions about features and benefits\n- Get sales tips and objection handling advice\n- Learn about target customers and positioning\n- Understand application processes and requirements\n\n**Try one of the quick questions below or ask me anything!** ⚡`,
         timestamp: new Date()
@@ -128,10 +135,10 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
       return;
     }
 
-    const userMessage: ChatMessage = { role: 'user', content, timestamp: new Date() };
+    const userMessage: ChatMessageType = { role: 'user', content, timestamp: new Date() };
 
     // Add user message and streaming placeholder
-    const streamingMessage: ChatMessage = {
+    const streamingMessage: ChatMessageType = {
       role: 'assistant',
       content: '',
       timestamp: new Date(),
@@ -179,18 +186,18 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
     }
   };
 
-  const handleQuickQuestion = (question: string) => {
+  const handleQuickQuestion = useCallback((question: string) => {
     sendMessage(question);
-  };
+  }, [sendMessage]);
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
-  };
+  }, [sendMessage]);
 
-  const startNewChat = () => {
+  const startNewChat = useCallback(() => {
     setMessages([]);
     setThreadId(null);
     setHasNewMessage(false);
@@ -198,69 +205,30 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
     setShowScrollButton(false);
 
     if (productData?.name) {
-      const welcomeMessage: ChatMessage = {
+      const welcomeMessage: ChatMessageType = {
         role: 'assistant',
         content: `👋 **Welcome back to the ${productData.name} Expert Assistant!**\n\nWhat would you like to know about this product today?`,
         timestamp: new Date()
       };
       setMessages([welcomeMessage]);
     }
-  };
+  }, [productData?.name]);
 
   return (
-    <Card className={`${isMobile ? 'shadow-none border-0 rounded-none h-full min-h-0 flex flex-col bg-background' : 'border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50'} transition-all duration-300 ${isFullscreen && !isMobile ? 'fixed inset-4 z-50 h-[calc(100vh-2rem)]' : ''}`}>
-      <CardHeader className={`pb-3 ${isMobile ? 'sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b' : ''}`}>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            {!isMobile && (
-              <div className="p-2 bg-primary/10 rounded-full">
-                <Sparkles className="h-5 w-5 text-primary" />
-              </div>
-            )}
-            <div>
-              <CardTitle className={`flex items-center gap-2 ${isMobile ? 'text-base' : 'text-lg'}`}>
-                🤖 {productData?.name} Assistant
-              </CardTitle>
-              {!isMobile && (
-                <CardDescription className="text-sm">
-                  {productData?.assistant_id ? 
-                    `Powered by specialized AI • Assistant ID: ${productData.assistant_id.slice(-8)}` : 
-                    'No assistant configured - create one to get started'
-                  }
-                </CardDescription>
-              )}
-            </div>
-          </div>
-          <div className="flex gap-2">
-            {!isMobile && (
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => setIsFullscreen(!isFullscreen)}
-                className="px-2"
-              >
-                {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-              </Button>
-            )}
-            {isMobile && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowQuickQuestions(!showQuickQuestions)}
-                className="h-8 w-8 p-0"
-                aria-label="Toggle guiding questions"
-              >
-                <Menu className="h-4 w-4" />
-              </Button>
-            )}
-            <Button size="sm" variant="outline" onClick={startNewChat} className={isMobile ? 'h-8 w-8 p-0' : ''} aria-label="Start new chat">
-              {isMobile ? <RotateCcw className="h-4 w-4" /> : 'New Chat'}
-            </Button>
-          </div>
-        </div>
-      </CardHeader>
+    <div className={`h-full flex flex-col bg-background relative ${isMobile ? 'overflow-hidden' : ''}`}>
+      {/* Floating New Chat Button */}
+      <Button
+        size="sm"
+        variant="outline"
+        onClick={startNewChat}
+        className="absolute top-4 right-4 z-20 shadow-lg hover:shadow-xl transition-shadow"
+        aria-label="Start new chat"
+      >
+        <RotateCcw className="h-4 w-4 mr-2" />
+        New Chat
+      </Button>
 
-      <CardContent className={`${isMobile ? 'flex-1 min-h-0 flex flex-col p-2 space-y-2' : 'space-y-4'}`}>
+      <div className={`${isMobile ? 'flex flex-col p-2 pb-0 space-y-2 flex-shrink-0' : 'flex flex-col p-4 space-y-4 flex-shrink-0'}`}>
         {/* Assistant Status Warning */}
         {!productData?.assistant_id && (
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
@@ -271,167 +239,67 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
           </div>
         )}
 
-        {/* Quick Questions */}
-        {messages.length <= 1 && productData?.assistant_id && (
-          isMobile ? (
-            <Collapsible open={showQuickQuestions} onOpenChange={setShowQuickQuestions}>
-              <div className="flex items-center justify-between">
-                <div className="text-sm font-medium text-muted-foreground">Guiding questions</div>
-                <Button variant="ghost" size="sm" onClick={() => setShowQuickQuestions(!showQuickQuestions)} className="-mr-2">
-                  <Menu className="h-4 w-4" />
-                </Button>
-              </div>
-              <CollapsibleContent className="mt-2">
-                <div className="grid grid-cols-1 gap-2">
-                  {quickQuestions.map((q, index) => (
-                    <Button
-                      key={index}
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleQuickQuestion(q.question)}
-                      disabled={isLoading}
-                      className="justify-start h-9 text-xs"
-                    >
-                      <Badge variant="secondary" className="text-[10px] mr-2">{q.category}</Badge>
-                      <span className="truncate">{q.question}</span>
-                    </Button>
-                  ))}
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
-          ) : (
-            <div className="space-y-3 animate-fade-in">
-              <div className="text-sm font-medium text-muted-foreground">💡 Quick Start Questions:</div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {quickQuestions.map((q, index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleQuickQuestion(q.question)}
-                    disabled={isLoading}
-                    className="text-left h-auto py-2 px-3 justify-start hover:bg-primary/5 transition-colors"
-                  >
-                    <div>
-                      <Badge variant="secondary" className="text-xs mb-1">{q.category}</Badge>
-                      <div className="text-xs text-muted-foreground">{q.question}</div>
-                    </div>
-                  </Button>
-                ))}
-              </div>
-            </div>
-          )
-        )}
-
         {/* Chat Area with Enhanced Scroll Controls */}
-        <div className={`relative ${isMobile ? 'flex-1 flex flex-col' : ''}`}>
-          <ScrollArea 
-            className={isMobile ? 'flex-1 border-0 rounded-none bg-transparent' : `border rounded-lg bg-background/50 ${isFullscreen ? 'h-[calc(100vh-16rem)]' : 'h-96'}`}
+        <div className={`relative ${isMobile ? 'flex flex-col overflow-hidden max-h-[calc(100vh-350px)] flex-shrink-0' : 'flex flex-col overflow-hidden max-h-[calc(100vh-320px)] flex-shrink-0'}`}>
+          <ScrollArea
+            className={isMobile ? 'flex-1 border-0 rounded-none bg-transparent' : 'flex-1 border-0 rounded-lg bg-transparent'}
             ref={scrollAreaRef}
           >
-            <div 
-              className={`${isMobile ? 'px-3 pt-3 pb-24 space-y-3' : 'p-4 space-y-4'}`}
-              ref={scrollViewportRef}
-              onScroll={handleScroll}
+            <div
+              className={`${isMobile ? 'px-3 pt-3 pb-4 space-y-3' : 'p-4 pb-20 space-y-4'}`}
             >
               {messages.length === 0 ? (
                 <div className="text-center text-muted-foreground py-12 animate-fade-in">
                   <MessageCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
                   <p className="text-lg font-medium">Ready to help with {productData?.name}!</p>
-                  <p className="text-sm mt-2">Ask a question or use the quick start options above</p>
+                  <p className="text-sm mt-2">Ask a question or use the quick start options below</p>
                 </div>
               ) : (
                 <div className="space-y-4">
                   {messages.map((message, index) => (
-                    isMobile ? (
-                      <div key={index} className="flex gap-3">
-                        <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1 ${message.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                          {message.role === 'user' ? (
-                            <User className="h-3 w-3" />
-                          ) : (
-                            <Bot className="h-3 w-3" />
-                          )}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="mb-1">
-                            <span className="text-xs font-medium text-muted-foreground">{message.role === 'user' ? 'You' : 'Assistant'}</span>
-                            <span className="text-xs text-muted-foreground/60 ml-2">{message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                          </div>
-                          <div className="text-sm leading-relaxed">
-                            {message.isStreaming ? (
-                              <div className="flex gap-1 py-1">
-                                <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                                <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                                <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce"></div>
-                              </div>
-                            ) : message.role === 'assistant' ? (
-                              <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-2 prose-ul:my-2 prose-li:my-0">
-                                <ReactMarkdown>{message.content}</ReactMarkdown>
-                              </div>
-                            ) : (
-                              <p>{message.content}</p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div
-                        key={index}
-                        className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
-                      >
-                        <div
-                          className={`max-w-[85%] rounded-2xl px-4 py-3 shadow-sm ${
-                            message.role === 'user'
-                              ? 'bg-primary text-primary-foreground ml-4'
-                              : 'bg-card text-card-foreground border mr-4'
-                          }`}
-                        >
-                          <div className="flex items-start gap-2 mb-2">
-                            <div className={`p-1 rounded-full ${message.role === 'user' ? 'bg-primary-foreground/20' : 'bg-muted'}`}>
-                              {message.role === 'user' ? <User className="h-3 w-3" /> : <Bot className="h-3 w-3" />}
-                            </div>
-                            <div className="text-xs opacity-75">
-                              {message.role === 'user' ? 'You' : 'AI Expert'}
-                            </div>
-                          </div>
-
-                          {message.isStreaming ? (
-                            <div className="flex items-center gap-2">
-                              <Loader2 className="h-4 w-4 animate-spin" />
-                              <span className="text-sm">Thinking...</span>
-                            </div>
-                          ) : message.role === 'assistant' ? (
-                            <div className="markdown-content prose prose-sm max-w-none">
-                              <ReactMarkdown
-                                components={{
-                                  h1: ({ children }) => <h1 className="text-lg font-bold mb-2 text-card-foreground">{children}</h1>,
-                                  h2: ({ children }) => <h2 className="text-base font-semibold mb-2 text-card-foreground">{children}</h2>,
-                                  h3: ({ children }) => <h3 className="text-sm font-semibold mb-1 text-card-foreground">{children}</h3>,
-                                  p: ({ children }) => <p className="mb-2 last:mb-0 text-card-foreground">{children}</p>,
-                                  ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1 text-card-foreground">{children}</ul>,
-                                  ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1 text-card-foreground">{children}</ol>,
-                                  li: ({ children }) => <li className="text-sm text-card-foreground">{children}</li>,
-                                  strong: ({ children }) => <strong className="font-semibold text-card-foreground">{children}</strong>,
-                                  em: ({ children }) => <em className="italic text-card-foreground">{children}</em>,
-                                  code: ({ children }) => <code className="bg-muted px-1 py-0.5 rounded text-xs font-mono text-card-foreground">{children}</code>,
-                                  pre: ({ children }) => <pre className="bg-muted p-2 rounded text-xs font-mono overflow-x-auto mb-2 text-card-foreground">{children}</pre>,
-                                  blockquote: ({ children }) => <blockquote className="border-l-2 border-border pl-2 italic mb-2 text-card-foreground">{children}</blockquote>,
-                                }}
-                              >
-                                {message.content}
-                              </ReactMarkdown>
-                            </div>
-                          ) : (
-                            <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                          )}
-
-                          <div className="text-xs opacity-50 mt-2">
-                            {message.timestamp.toLocaleTimeString()}
-                          </div>
-                        </div>
-                      </div>
-                    )
+                    <ChatMessage
+                      key={index}
+                      role={message.role}
+                      content={message.content}
+                      timestamp={message.timestamp}
+                      isStreaming={message.isStreaming}
+                      isMobile={isMobile}
+                    />
                   ))}
+                </div>
+              )}
+
+              {/* Quick Questions - shown in messages view */}
+              {messages.length <= 1 && productData?.assistant_id && (
+                <div className="space-y-3 animate-fade-in">
+                  <div className="text-sm font-medium text-muted-foreground">💡 Quick Start Questions:</div>
+                  <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'} gap-2`}>
+                    {quickQuestions.map((q, index) => (
+                      <Button
+                        key={index}
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleQuickQuestion(q.question)}
+                        disabled={isLoading}
+                        className={isMobile
+                          ? "justify-start h-9 text-micro"
+                          : "text-left h-auto py-2 px-3 justify-start hover:bg-primary/5 transition-colors"
+                        }
+                      >
+                        {isMobile ? (
+                          <>
+                            <Badge variant="secondary" className="text-[10px] mr-2">{q.category}</Badge>
+                            <span className="truncate">{q.question}</span>
+                          </>
+                        ) : (
+                          <div>
+                            <Badge variant="secondary" className="text-micro mb-1">{q.category}</Badge>
+                            <div className="text-micro text-muted-foreground">{q.question}</div>
+                          </div>
+                        )}
+                      </Button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -466,34 +334,27 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
             </div>
           )}
         </div>
+      </div>
 
-        {/* Input Area */}
-        <div className={`${isMobile ? 'sticky bottom-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t pt-2 pb-[env(safe-area-inset-bottom)]' : ''} space-y-3`}>
-          <div className="flex gap-2">
-            {isMobile ? (
-              <Input
-                value={currentMessage}
-                onChange={(e) => setCurrentMessage(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder={productData?.assistant_id ? `Ask about ${productData?.name}...` : 'Create an assistant first to enable chat'}
-                className="h-10 flex-1"
-                disabled={isLoading || !productData?.assistant_id}
-              />
-            ) : (
-              <Textarea
-                value={currentMessage}
-                onChange={(e) => setCurrentMessage(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder={productData?.assistant_id ? `Ask about ${productData?.name}...` : 'Create an assistant first to enable chat'}
-                className="min-h-[60px] resize-none flex-1"
-                disabled={isLoading || !productData?.assistant_id}
-              />
-            )}
+      {/* Input Area */}
+      <div className={`${isMobile ? 'sticky bottom-36 z-30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t py-4 pb-[env(safe-area-inset-bottom)] px-4' : 'flex-shrink-0 border-t-2 border-primary/20 bg-background pt-4 pb-4 px-4 shadow-[0_-2px_4px_-1px_rgba(0,0,0,0.05)]'}`}>
+          <div className={`flex gap-2 ${isMobile ? 'items-end' : 'items-start'}`}>
+            <Textarea
+              value={currentMessage}
+              onChange={(e) => setCurrentMessage(e.target.value)}
+              onKeyDown={handleKeyPress}
+              placeholder={productData?.assistant_id ? `Ask about ${productData?.name}...` : 'Create an assistant first to enable chat'}
+              className={isMobile
+                ? "min-h-[100px] max-h-[140px] resize-none flex-1 text-base border-2 border-border hover:border-primary/50 focus:border-primary transition-colors"
+                : "min-h-[60px] resize-none flex-1 border-2 border-border hover:border-primary/50 focus:border-primary transition-colors shadow-sm"
+              }
+              disabled={isLoading || !productData?.assistant_id}
+            />
             <Button
               onClick={() => sendMessage()}
               disabled={!currentMessage.trim() || isLoading || !productData?.assistant_id}
-              size={isMobile ? 'sm' : 'lg'}
-              className={isMobile ? 'h-10 w-10 p-0' : 'px-6'}
+              size={isMobile ? 'default' : 'lg'}
+              className={isMobile ? 'h-12 px-4 shadow-md' : 'px-8 h-[60px] shadow-md hover:shadow-lg transition-shadow'}
               aria-label="Send message"
             >
               {isLoading ? (
@@ -503,14 +364,7 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
               )}
             </Button>
           </div>
-
-          <div className="text-xs text-muted-foreground text-center hidden sm:block">
-            💡 Pro tip: Press <kbd className="px-1 py-0.5 bg-muted rounded text-xs">Enter</kbd> to send, 
-            <kbd className="px-1 py-0.5 bg-muted rounded text-xs mx-1">Shift + Enter</kbd> for new line
-            {threadId && <span className="ml-2">• Thread: {threadId.slice(-8)}</span>}
-          </div>
         </div>
-      </CardContent>
-    </Card>
+    </div>
   );
 }

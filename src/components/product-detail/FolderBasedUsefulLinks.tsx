@@ -155,28 +155,28 @@ export function FolderBasedUsefulLinks({ folders, onSave, className = "", readOn
                   <ChevronRight className="h-4 w-4 mr-2" />
                   <Folder className="h-4 w-4 mr-2" />
                   {folder.name}
-                  <span className="ml-auto text-xs text-muted-foreground">
+                  <span className="ml-auto text-micro text-muted-foreground">
                     {folder.links.length} links
                   </span>
                 </Button>
               </CollapsibleTrigger>
               <CollapsibleContent className="pl-6">
-                <div className="grid md:grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 3xl:grid-cols-2 gap-2">
                   {folder.links.map((link, linkIndex) => (
                     <Button
                       key={linkIndex}
                       variant="ghost"
                       size="sm"
-                      className="justify-start"
+                      className="justify-start min-w-0"
                       onClick={() => {
                         const urlToOpen = link.url.startsWith('http') ? link.url : `https://${link.url}`;
                         window.open(urlToOpen, '_blank');
                       }}
                       disabled={!isValidUrl(link.url)}
                     >
-                      <span className="mr-2">{link.icon}</span>
-                      {link.name}
-                      <ExternalLink className="h-3 w-3 ml-auto" />
+                      <span className="mr-2 flex-shrink-0">{link.icon}</span>
+                      <span className="truncate">{link.name}</span>
+                      <ExternalLink className="h-3 w-3 ml-auto flex-shrink-0" />
                     </Button>
                   ))}
                 </div>
@@ -269,7 +269,7 @@ export function FolderBasedUsefulLinks({ folders, onSave, className = "", readOn
                           <span className="text-lg">{link.icon}</span>
                           <div className="min-w-0 flex-1">
                             <div className="font-medium truncate">{link.name}</div>
-                            <div className="text-xs text-muted-foreground truncate">{link.url}</div>
+                            <div className="text-micro text-muted-foreground truncate">{link.url}</div>
                           </div>
                         </div>
                         <div className="flex gap-1">
@@ -393,28 +393,28 @@ export function FolderBasedUsefulLinks({ folders, onSave, className = "", readOn
                   <ChevronRight className="h-4 w-4 mr-2" />
                   <Folder className="h-4 w-4 mr-2" />
                   {folder.name}
-                  <span className="ml-auto text-xs text-muted-foreground">
+                  <span className="ml-auto text-micro text-muted-foreground">
                     {folder.links.length} links
                   </span>
                 </Button>
               </CollapsibleTrigger>
               <CollapsibleContent className="pl-6 mt-2">
-                <div className="grid md:grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 3xl:grid-cols-2 gap-2">
                   {folder.links.map((link, linkIndex) => (
                     <Button
                       key={linkIndex}
                       variant="ghost"
                       size="sm"
-                      className="justify-start"
+                      className="justify-start min-w-0"
                       onClick={() => {
                         const urlToOpen = link.url.startsWith('http') ? link.url : `https://${link.url}`;
                         window.open(urlToOpen, '_blank');
                       }}
                       disabled={!isValidUrl(link.url)}
                     >
-                      <span className="mr-2">{link.icon}</span>
-                      {link.name}
-                      <ExternalLink className="h-3 w-3 ml-auto" />
+                      <span className="mr-2 flex-shrink-0">{link.icon}</span>
+                      <span className="truncate">{link.name}</span>
+                      <ExternalLink className="h-3 w-3 ml-auto flex-shrink-0" />
                     </Button>
                   ))}
                 </div>

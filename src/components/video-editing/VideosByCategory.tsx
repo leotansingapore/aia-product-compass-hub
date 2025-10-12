@@ -71,7 +71,7 @@ export function VideosByCategory({
                   {isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
                   <div className="text-left">
                     <h3 className="font-medium text-sm sm:text-base">{category}</h3>
-                    <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2 text-micro sm:text-sm text-muted-foreground">
                       <span>{progress.completed}/{progress.total} completed</span>
                       {duration > 0 && (
                         <>
@@ -85,7 +85,7 @@ export function VideosByCategory({
                     </div>
                   </div>
                 </div>
-                <Badge variant={progress.completed === progress.total ? "default" : "secondary"}>
+                <Badge variant={progress.completed === progress.total ? "default" : "secondary"} className="text-xs">
                   {Math.round((progress.completed / progress.total) * 100)}%
                 </Badge>
               </Button>
@@ -124,12 +124,12 @@ export function VideosByCategory({
                         )}
                       </div>
                       {video.description && (
-                        <p className="text-xs sm:text-sm text-muted-foreground truncate">
+                        <p className="text-micro sm:text-sm text-muted-foreground truncate">
                           {video.description}
                         </p>
                       )}
                     </div>
-                    <div className="text-xs text-muted-foreground">
+                    <div className="text-micro text-muted-foreground">
                       {index + 1}/{videos.length}
                     </div>
                   </div>

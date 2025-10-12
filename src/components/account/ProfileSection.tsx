@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -162,47 +162,59 @@ export function ProfileSection() {
             </div>
           </div>
 
-          {/* Large mobile-friendly stats */}
-          <div className="grid grid-cols-1 gap-4">
-            <Card className="border-0 shadow-sm bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <div className="p-4 rounded-2xl bg-yellow-500/20">
-                    <Trophy className="h-8 w-8 text-yellow-600 dark:text-yellow-400" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-base font-semibold text-muted-foreground">Current Level</p>
-                    <p className="text-4xl font-bold text-yellow-700 dark:text-yellow-400">{profile?.current_level || 1}</p>
-                  </div>
+          {/* Modern stats cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {/* Current Level */}
+            <Card className="hover:shadow-lg hover:scale-[1.02] transition-all duration-300 border-border/50 group">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
+                  Current Level
+                </CardTitle>
+                <div className="p-2 rounded-lg bg-amber-500/10 group-hover:bg-amber-500/20 transition-colors">
+                  <Trophy className="h-4 w-4 text-amber-600 dark:text-amber-400" />
                 </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{profile?.current_level || 1}</div>
+                <p className="text-micro text-muted-foreground mt-1">
+                  Keep learning to progress
+                </p>
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-sm bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <div className="p-4 rounded-2xl bg-blue-500/20">
-                    <Zap className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-base font-semibold text-muted-foreground">Total XP</p>
-                    <p className="text-4xl font-bold text-blue-700 dark:text-blue-400">{profile?.total_xp || 0}</p>
-                  </div>
+            {/* Total XP */}
+            <Card className="hover:shadow-lg hover:scale-[1.02] transition-all duration-300 border-border/50 group">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
+                  Total XP
+                </CardTitle>
+                <div className="p-2 rounded-lg bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
+                  <Zap className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                 </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{profile?.total_xp || 0}</div>
+                <p className="text-micro text-muted-foreground mt-1">
+                  Experience points earned
+                </p>
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-sm bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <div className="p-4 rounded-2xl bg-green-500/20">
-                    <Calendar className="h-8 w-8 text-green-600 dark:text-green-400" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-base font-semibold text-muted-foreground">Streak Days</p>
-                    <p className="text-4xl font-bold text-green-700 dark:text-green-400">{profile?.streak_days || 0}</p>
-                  </div>
+            {/* Streak Days */}
+            <Card className="hover:shadow-lg hover:scale-[1.02] transition-all duration-300 border-border/50 group">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
+                  Streak Days
+                </CardTitle>
+                <div className="p-2 rounded-lg bg-emerald-500/10 group-hover:bg-emerald-500/20 transition-colors">
+                  <Calendar className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                 </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{profile?.streak_days || 0}</div>
+                <p className="text-micro text-muted-foreground mt-1">
+                  Consecutive active days
+                </p>
               </CardContent>
             </Card>
           </div>

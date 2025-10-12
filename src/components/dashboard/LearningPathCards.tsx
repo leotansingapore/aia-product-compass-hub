@@ -63,7 +63,7 @@ export function LearningPathCards() {
               <div className="flex items-center justify-between">
                 <path.icon className="h-5 w-5 text-primary" />
                 {path.badge && (
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge variant="secondary" className="text-micro">
                     {path.badge}
                   </Badge>
                 )}
@@ -71,11 +71,11 @@ export function LearningPathCards() {
               
               <div className="space-y-2">
                 <h4 className="font-medium text-sm">{path.title}</h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">{path.description}</p>
+                <p className="text-micro text-muted-foreground leading-relaxed">{path.description}</p>
                 
                 {path.progress && (
                   <div className="space-y-1">
-                    <div className="flex justify-between text-xs">
+                    <div className="flex justify-between text-micro">
                       <span className="text-muted-foreground">Progress</span>
                       <span className="font-medium">{path.progress}%</span>
                     </div>

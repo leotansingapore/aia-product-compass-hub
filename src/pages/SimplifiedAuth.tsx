@@ -39,7 +39,7 @@ const SimplifiedAuth = () => {
       <div className="w-full max-w-md">
         <SimplifiedAuthForm />
         
-        <div className="text-center text-xs text-muted-foreground mt-6 px-4">
+        <div className="text-center text-micro text-muted-foreground mt-6 px-4">
           <p>
             Welcome to the FINternship Knowledge Portal. 
             Create an account or sign in to access comprehensive financial training resources.

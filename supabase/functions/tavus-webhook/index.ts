@@ -77,25 +77,53 @@ serve(async (req) => {
 
       case 'application.transcription_ready':
         console.log('📝 Processing final transcript');
-        
-        const transcript = properties.transcript;
+        console.log('📦 Webhook payload structure:', {
+          hasProperties: !!properties,
+          propertiesKeys: properties ? Object.keys(properties) : [],
+          hasTranscript: !!properties?.transcript,
+          transcriptType: properties?.transcript ? typeof properties.transcript : 'undefined'
+        });
+
+        // Try multiple possible transcript locations in payload
+        let transcript = properties?.transcript ||
+                        properties?.messages ||
+                        properties?.conversation?.transcript ||
+                        webhookData?.transcript;
+
         if (!transcript || !Array.isArray(transcript)) {
-          console.error('Invalid transcript data');
+          console.error('❌ Invalid transcript data structure:', {
+            hasTranscript: !!transcript,
+            isArray: Array.isArray(transcript),
+            type: typeof transcript,
+            fullPayload: JSON.stringify(webhookData).substring(0, 500)
+          });
+
+          // Try to retrieve transcript directly from Tavus API as fallback
+          console.log('🔄 Attempting fallback transcript retrieval from Tavus API');
+          try {
+            await retrieveTranscriptFromTavus(conversation_id, session, supabase);
+          } catch (error) {
+            console.error('Fallback transcript retrieval failed:', error);
+          }
           break;
         }
 
+        console.log(`✅ Found valid transcript with ${transcript.length} messages`);
+
         // Filter out system messages and process user/assistant messages
-        const conversationMessages = transcript.filter(msg => 
+        const conversationMessages = transcript.filter(msg =>
           msg.role === 'user' || msg.role === 'assistant'
         );
+
+        console.log(`💬 Filtered to ${conversationMessages.length} conversation messages (user/assistant only)`);
 
         // Insert transcript entries
         const transcriptEntries = conversationMessages.map((msg, index) => ({
           session_id: session.id,
-          timestamp_offset: index * 1000, // Simple offset based on message order
+          timestamp_offset: msg.timestamp || (index * 1000), // Use actual timestamp if available
           speaker: msg.role === 'user' ? 'user' : 'ai_trainer',
-          text: msg.content,
-          confidence: 1.0, // Tavus doesn't provide confidence, so we use 1.0
+          text: msg.content || msg.text || '', // Handle different field names
+          confidence: msg.confidence || 1.0,
           filler_words: null
         }));
 
@@ -105,39 +133,44 @@ serve(async (req) => {
             .insert(transcriptEntries);
 
           if (insertError) {
-            console.error('Error inserting transcript entries:', insertError);
+            console.error('❌ Error inserting transcript entries:', insertError);
           } else {
-            console.log(`Inserted ${transcriptEntries.length} transcript entries`);
+            console.log(`✅ Inserted ${transcriptEntries.length} transcript entries`);
           }
+        } else {
+          console.warn('⚠️ No valid conversation messages to insert');
         }
 
         // Update session with full transcript and mark as completed
         const { error: transcriptUpdateError } = await supabase
           .from('roleplay_sessions')
-          .update({ 
+          .update({
             transcript: transcript,
             recording_status: 'completed',
+            recording_completed_at: new Date().toISOString(),
             updated_at: new Date().toISOString()
           })
           .eq('id', session.id);
 
         if (transcriptUpdateError) {
-          console.error('Error updating session transcript:', transcriptUpdateError);
+          console.error('❌ Error updating session transcript:', transcriptUpdateError);
         } else {
+          console.log('✅ Session transcript updated successfully');
+
           // Trigger comprehensive feedback generation
           try {
-            console.log('Triggering feedback generation for session:', session.id);
+            console.log('🤖 Triggering feedback generation for session:', session.id);
             const { error: feedbackError } = await supabase.functions.invoke('generate-roleplay-feedback', {
               body: { sessionId: session.id }
             });
-            
+
             if (feedbackError) {
-              console.error('Error generating feedback:', feedbackError);
+              console.error('❌ Error triggering feedback generation:', feedbackError);
             } else {
-              console.log('Feedback generation triggered successfully');
+              console.log('✅ Feedback generation triggered successfully');
             }
           } catch (error) {
-            console.error('Failed to trigger feedback generation:', error);
+            console.error('❌ Failed to trigger feedback generation:', error);
           }
         }
         break;
@@ -162,7 +195,7 @@ serve(async (req) => {
   }
 });
 
-// Helper function to retrieve transcript directly from Tavus API
+// Helper function to retrieve transcript directly from Tavus API with retry logic
 async function retrieveTranscriptFromTavus(conversationId: string, session: any, supabase: any) {
   const tavusApiKey = Deno.env.get('TAVUS_API_KEY');
   if (!tavusApiKey) {
@@ -170,42 +203,91 @@ async function retrieveTranscriptFromTavus(conversationId: string, session: any,
   }
 
   console.log('Attempting to retrieve transcript from Tavus API for conversation:', conversationId);
-  
-  // Wait a bit for Tavus to process the conversation
-  await new Promise(resolve => setTimeout(resolve, 3000));
-  
-  try {
-    const response = await fetch(`https://tavusapi.com/v2/conversations/${conversationId}`, {
-      headers: {
-        'x-api-key': tavusApiKey,
-        'Content-Type': 'application/json'
+
+  // Retry logic with exponential backoff
+  const maxRetries = 3;
+  const baseDelay = 2000;
+
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    const delay = baseDelay * Math.pow(2, attempt);
+    console.log(`📡 Attempt ${attempt + 1}/${maxRetries} - waiting ${delay}ms before fetching...`);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    try {
+      const response = await fetch(`https://tavusapi.com/v2/conversations/${conversationId}`, {
+        headers: {
+          'x-api-key': tavusApiKey,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`❌ Tavus API error (attempt ${attempt + 1}):`, response.status, errorText);
+
+        if (attempt === maxRetries - 1) {
+          throw new Error(`Tavus API error: ${response.status} - ${errorText}`);
+        }
+        continue; // Retry
       }
-    });
 
-    if (!response.ok) {
-      throw new Error(`Tavus API error: ${response.status}`);
-    }
+      const data = await response.json();
+      console.log('📥 Tavus conversation data structure:', {
+        hasConversation: !!data.conversation,
+        hasTranscript: !!data.conversation?.transcript,
+        hasMessages: !!data.messages,
+        topLevelKeys: Object.keys(data),
+        attempt: attempt + 1
+      });
 
-    const data = await response.json();
-    console.log('Tavus conversation data:', data);
+      // Try multiple possible transcript locations with better logging
+      let transcript = null;
+      const possiblePaths = [
+        { path: 'data.transcript', value: data.transcript },
+        { path: 'data.conversation.transcript', value: data.conversation?.transcript },
+        { path: 'data.messages', value: data.messages },
+        { path: 'data.conversation.messages', value: data.conversation?.messages },
+        { path: 'data.recording.transcript', value: data.recording?.transcript }
+      ];
 
-    // Check if transcript is available
-    if (data.conversation && data.conversation.transcript && Array.isArray(data.conversation.transcript)) {
-      const transcript = data.conversation.transcript;
-      console.log('Found transcript with', transcript.length, 'messages');
+      for (const { path, value } of possiblePaths) {
+        if (value && Array.isArray(value) && value.length > 0) {
+          transcript = value;
+          console.log(`✅ Found transcript at ${path} with ${value.length} messages`);
+          break;
+        }
+      }
+
+      if (!transcript || transcript.length === 0) {
+        if (attempt === maxRetries - 1) {
+          console.log('❌ No transcript available after all retries, marking as completed anyway');
+          await supabase
+            .from('roleplay_sessions')
+            .update({ recording_status: 'completed' })
+            .eq('id', session.id);
+          return;
+        } else {
+          console.log('⚠️ No transcript yet, will retry...');
+          continue; // Retry
+        }
+      }
+
+      console.log(`📝 Processing transcript with ${transcript.length} messages (attempt ${attempt + 1})`);
 
       // Filter out system messages and process user/assistant messages
-      const conversationMessages = transcript.filter(msg => 
+      const conversationMessages = transcript.filter((msg: any) =>
         msg.role === 'user' || msg.role === 'assistant'
       );
 
+      console.log(`💬 Filtered to ${conversationMessages.length} conversation messages`);
+
       // Insert transcript entries
-      const transcriptEntries = conversationMessages.map((msg, index) => ({
+      const transcriptEntries = conversationMessages.map((msg: any, index: number) => ({
         session_id: session.id,
-        timestamp_offset: index * 1000,
+        timestamp_offset: msg.timestamp || (index * 1000),
         speaker: msg.role === 'user' ? 'user' : 'ai_trainer',
-        text: msg.content,
-        confidence: 1.0,
+        text: msg.content || msg.text || '',
+        confidence: msg.confidence || 1.0,
         filler_words: null
       }));
 
@@ -215,55 +297,59 @@ async function retrieveTranscriptFromTavus(conversationId: string, session: any,
           .insert(transcriptEntries);
 
         if (insertError) {
-          console.error('Error inserting transcript entries:', insertError);
+          console.error('❌ Error inserting transcript entries:', insertError);
         } else {
-          console.log(`Inserted ${transcriptEntries.length} transcript entries`);
+          console.log(`✅ Inserted ${transcriptEntries.length} transcript entries`);
         }
       }
 
       // Update session with full transcript
       const { error: transcriptUpdateError } = await supabase
         .from('roleplay_sessions')
-        .update({ 
+        .update({
           transcript: transcript,
           recording_status: 'completed',
+          recording_completed_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         })
         .eq('id', session.id);
 
       if (transcriptUpdateError) {
-        console.error('Error updating session transcript:', transcriptUpdateError);
+        console.error('❌ Error updating session transcript:', transcriptUpdateError);
       } else {
+        console.log('✅ Session transcript updated via fallback retrieval');
+
         // Trigger feedback generation
         try {
-          console.log('Triggering feedback generation for session:', session.id);
+          console.log('🤖 Triggering feedback generation for session:', session.id);
           const { error: feedbackError } = await supabase.functions.invoke('generate-roleplay-feedback', {
             body: { sessionId: session.id }
           });
-          
+
           if (feedbackError) {
-            console.error('Error generating feedback:', feedbackError);
+            console.error('❌ Error generating feedback:', feedbackError);
           } else {
-            console.log('Feedback generation triggered successfully');
+            console.log('✅ Feedback generation triggered successfully');
           }
         } catch (error) {
-          console.error('Failed to trigger feedback generation:', error);
+          console.error('❌ Failed to trigger feedback generation:', error);
         }
       }
-    } else {
-      console.log('No transcript available yet, marking as completed anyway');
-      await supabase
-        .from('roleplay_sessions')
-        .update({ recording_status: 'completed' })
-        .eq('id', session.id);
+
+      // Success - break retry loop
+      return;
+
+    } catch (error) {
+      console.error(`❌ Error on attempt ${attempt + 1}:`, error);
+
+      if (attempt === maxRetries - 1) {
+        console.error('❌ All retry attempts failed, marking as completed anyway');
+        await supabase
+          .from('roleplay_sessions')
+          .update({ recording_status: 'completed' })
+          .eq('id', session.id);
+        throw error;
+      }
     }
-  } catch (error) {
-    console.error('Error retrieving transcript from Tavus:', error);
-    // Mark as completed even if we can't get transcript
-    await supabase
-      .from('roleplay_sessions')
-      .update({ recording_status: 'completed' })
-      .eq('id', session.id);
-    throw error;
   }
 }

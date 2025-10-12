@@ -104,7 +104,7 @@ export function SlashCommandMenu({ onCommand, onClose, position }: SlashCommandM
           <div className="text-muted-foreground">{command.icon}</div>
           <div className="flex-1">
             <div className="text-sm font-medium text-foreground">{command.label}</div>
-            <div className="text-xs text-muted-foreground">{command.description}</div>
+            <div className="text-micro text-muted-foreground">{command.description}</div>
           </div>
         </div>
       ))}

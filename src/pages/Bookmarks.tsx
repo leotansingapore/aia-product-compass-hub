@@ -1,7 +1,7 @@
 import { useBookmarks } from "@/hooks/useBookmarks";
 import { useAllProducts } from "@/hooks/useProducts";
 import { ProductCard } from "@/components/ProductCard";
-import { NavigationHeader } from "@/components/NavigationHeader";
+import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { BookmarkX } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -65,14 +65,18 @@ export default function Bookmarks() {
           type: "webapp"
         }}
       >
-      <NavigationHeader
-        title="My Bookmarks"
+      <BrandedPageHeader
+        title="📚 My Bookmarks"
         subtitle="Your saved products and resources"
         showBackButton={true}
         onBack={() => navigate('/')}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "My Bookmarks" }
+        ]}
       />
-      
-      <div className="max-w-6xl mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 md:py-8">
+
+      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 md:py-8">
         {bookmarkedProducts.length === 0 ? (
           <div className="text-center py-12">
             <BookmarkX className="h-16 w-16 mx-auto text-muted-foreground mb-4" />

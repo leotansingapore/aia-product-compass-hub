@@ -149,7 +149,7 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
                     placeholder="https://chatgpt.com/g/your-custom-gpt-id"
                     className="mt-1"
                   />
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-micro text-muted-foreground mt-1">
                     Enter the full URL to your custom GPT (for external link option)
                   </p>
                 </div>
@@ -163,7 +163,7 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
                     placeholder="Custom instructions for the AI assistant"
                     className="mt-1 min-h-[100px]"
                   />
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-micro text-muted-foreground mt-1">
                     These instructions will customize how the AI responds for this product
                   </p>
                 </div>

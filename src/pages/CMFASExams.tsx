@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { NavigationHeader } from "@/components/NavigationHeader";
+import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { CategoryCard } from "@/components/CategoryCard";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
@@ -118,26 +118,16 @@ export default function CMFASExams() {
       keywords="CMFAS exam, capital markets, financial advisory, certification, exam preparation, modules, practice tests"
       structuredData={structuredData}
     >
+      <BrandedPageHeader
+        title="📚 CMFAS Exam Preparation"
+        subtitle="Capital Markets Financial Advisory Services - Your path to certification"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "CMFAS Exams" }
+        ]}
+      />
 
-      {!isMobile && (
-        <NavigationHeader 
-          title="CMFAS Exam Preparation"
-          subtitle="Capital Markets Financial Advisory Services - Your path to certification"
-        />
-      )}
-      
-      <div className={cn(
-        "max-w-7xl mx-auto",
-        isMobile ? "px-4 py-4" : "px-6 py-8"
-      )}>
-        {!isMobile && (
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold mb-4">CMFAS Certification Program</h1>
-            <p className="text-muted-foreground text-lg">
-              Prepare for your Capital Markets Financial Advisory Services certification with our comprehensive study materials, practice tests, and expert guidance across all essential modules.
-            </p>
-          </div>
-        )}
+      <div className="mx-auto px-4 sm:px-6 py-4 sm:py-8">
 
         {/* Useful Links Section - Positioned Higher */}
         <div className={cn("mb-6", isMobile && "mb-4")}>
@@ -154,10 +144,7 @@ export default function CMFASExams() {
           />
         </div>
 
-        <div className={cn(
-          "grid gap-4",
-          isMobile ? "grid-cols-1" : "md:grid-cols-2 lg:grid-cols-3 gap-6"
-        )}>
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {cmfasModules.map((module) => (
             <CategoryCard
               key={module.title}
@@ -171,22 +158,20 @@ export default function CMFASExams() {
           ))}
         </div>
 
-        {!isMobile && (
-          <div className="mt-12 bg-card rounded-lg p-6 border">
-            <h2 className="text-xl font-semibold mb-4">About CMFAS Certification</h2>
-            <div className="space-y-4 text-muted-foreground">
-              <p>
-                The Capital Markets Financial Advisory Services (CMFAS) certification is required for financial advisors in Singapore to provide investment advice on capital market products.
-              </p>
-              <p>
-                Our comprehensive preparation materials are organized by module, each containing detailed syllabi, practice questions, and expert guidance. Start with the Getting Started module to complete your essential setup, then proceed through each exam module systematically.
-              </p>
-              <p>
-                With our support package including flashcards, personal tutoring, question banks, and AI assistance, passing on your first attempt should be highly achievable.
-              </p>
-            </div>
+        <div className="mt-8 sm:mt-12 bg-card rounded-lg p-6 border shadow-card">
+          <h2 className="text-xl font-semibold mb-4">About CMFAS Certification</h2>
+          <div className="space-y-4 text-muted-foreground">
+            <p>
+              The Capital Markets Financial Advisory Services (CMFAS) certification is required for financial advisors in Singapore to provide investment advice on capital market products.
+            </p>
+            <p>
+              Our comprehensive preparation materials are organized by module, each containing detailed syllabi, practice questions, and expert guidance. Start with the Getting Started module to complete your essential setup, then proceed through each exam module systematically.
+            </p>
+            <p>
+              With our support package including flashcards, personal tutoring, question banks, and AI assistance, passing on your first attempt should be highly achievable.
+            </p>
           </div>
-        )}
+        </div>
       </div>
     </PageLayout>
   );

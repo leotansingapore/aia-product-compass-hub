@@ -80,14 +80,14 @@ export function RecommendationsSection({ limit = 6, showHeader = true }: Recomme
               {/* Recommendation Reason - Priority on mobile */}
               <div className="flex items-center gap-2 p-2 rounded-lg bg-primary/5">
                 <Sparkles className="h-3 w-3 text-primary flex-shrink-0" />
-                <span className="text-xs text-primary font-medium line-clamp-1">
+                <span className="text-micro text-primary font-medium line-clamp-1">
                   {recommendation.reason}
                 </span>
               </div>
 
               {/* Category - Mobile optimized */}
               <div className="flex items-center gap-2">
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="secondary" className="text-micro">
                   {recommendation.categoryName}
                 </Badge>
               </div>
@@ -98,7 +98,7 @@ export function RecommendationsSection({ limit = 6, showHeader = true }: Recomme
                 size="sm" 
                 className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
               >
-                <span className="text-xs">Explore</span>
+                <span className="text-micro">Explore</span>
                 <ArrowRight className="h-3 w-3 ml-2" />
               </Button>
             </CardContent>

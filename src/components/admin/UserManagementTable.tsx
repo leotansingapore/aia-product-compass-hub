@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
 } from "@/components/ui/table";
 import { UnifiedUser } from "@/hooks/useUserManagement";
 import { PasswordResetDialog } from "./PasswordResetDialog";
@@ -44,15 +43,16 @@ export function UserManagementTable({
           <TableHeader>
             <TableRow className="bg-muted/50">
               <TableHead className="w-12">
-                <Checkbox
+                <input
+                  type="checkbox"
                   checked={selectedUsers.size === users.length && users.length > 0}
-                  onCheckedChange={(checked) => onSelectAll(checked as boolean)}
+                  onChange={(e) => onSelectAll(e.target.checked)}
+                  className="cursor-pointer"
                 />
               </TableHead>
               <TableHead>User</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Roles</TableHead>
-              <TableHead>Created</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>

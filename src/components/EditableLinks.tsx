@@ -112,21 +112,21 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
   
   if (!canEdit || readOnly || !onSave) {
     return (
-      <div className={`grid md:grid-cols-2 gap-3 ${className}`}>
+      <div className={`grid grid-cols-1 3xl:grid-cols-2 gap-3 ${className}`}>
         {links.map((link, index) => (
           <Button
             key={index}
             variant="outline"
-            className="justify-start"
+            className="justify-start min-w-0"
             onClick={() => {
               const urlToOpen = link.url.startsWith('http') ? link.url : `https://${link.url}`;
               window.open(urlToOpen, '_blank');
             }}
             disabled={!isValidUrl(link.url)}
           >
-            <span className="mr-2">{link.icon}</span>
-            {link.name}
-            <ExternalLink className="h-4 w-4 ml-auto" />
+            <span className="mr-2 flex-shrink-0">{link.icon}</span>
+            <span className="truncate">{link.name}</span>
+            <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" />
           </Button>
         ))}
       </div>
@@ -177,7 +177,7 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
                     <span className="text-xl flex-shrink-0">{link.icon}</span>
                     <div className="min-w-0 flex-1">
                       <div className="font-medium truncate">{link.name}</div>
-                      <div className="text-xs text-muted-foreground truncate">
+                      <div className="text-micro text-muted-foreground truncate">
                         {link.url}
                       </div>
                     </div>
@@ -245,36 +245,36 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
 
   return (
     <div className={`space-y-3 ${className}`}>
-      <div className="grid md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 3xl:grid-cols-2 gap-3">
         {links.length > 0 ? (
           links.map((link, index) => (
             <Button
               key={index}
               variant="outline"
-              className="justify-start"
+              className="justify-start hover:border-primary hover:bg-primary/5 min-w-0"
               onClick={() => {
                 const urlToOpen = link.url.startsWith('http') ? link.url : `https://${link.url}`;
                 window.open(urlToOpen, '_blank');
               }}
               disabled={!isValidUrl(link.url)}
             >
-              <span className="mr-2">{link.icon}</span>
-              {link.name}
-              <ExternalLink className="h-4 w-4 ml-auto" />
+              <span className="mr-2 flex-shrink-0">{link.icon}</span>
+              <span className="truncate">{link.name}</span>
+              <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" />
             </Button>
           ))
         ) : (
           <>
-            <Button variant="outline" className="justify-start" disabled>
+            <Button variant="outline" className="justify-start hover:border-primary hover:bg-primary/5" disabled>
               📄 Benefit Illustration (PDF)
             </Button>
-            <Button variant="outline" className="justify-start" disabled>
+            <Button variant="outline" className="justify-start hover:border-primary hover:bg-primary/5" disabled>
               📋 Product Summary (PDF)
             </Button>
-            <Button variant="outline" className="justify-start" disabled>
+            <Button variant="outline" className="justify-start hover:border-primary hover:bg-primary/5" disabled>
               🌐 AIA Website
             </Button>
-            <Button variant="outline" className="justify-start" disabled>
+            <Button variant="outline" className="justify-start hover:border-primary hover:bg-primary/5" disabled>
               📚 Supplementary Materials
             </Button>
           </>

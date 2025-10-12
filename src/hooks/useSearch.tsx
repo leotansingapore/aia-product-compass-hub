@@ -134,11 +134,16 @@ export function useSearch() {
 
   // Get unique categories for filter dropdown
   const getAvailableCategories = () => {
-    const categories = new Set(allProducts.map(p => ({
-      id: p.category_id,
-      name: (p as any).categories?.name || ''
-    })));
-    return Array.from(categories);
+    const categoryMap = new Map();
+    allProducts.forEach(p => {
+      if (p.category_id && !categoryMap.has(p.category_id)) {
+        categoryMap.set(p.category_id, {
+          id: p.category_id,
+          name: (p as any).categories?.name || ''
+        });
+      }
+    });
+    return Array.from(categoryMap.values());
   };
 
   // Get unique tags for filter dropdown

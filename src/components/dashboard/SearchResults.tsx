@@ -22,6 +22,7 @@ interface SearchResultsProps {
   onTagFilter: (tag: string, checked: boolean) => void;
   onContentFilter: (type: 'hasVideos' | 'hasLinks', checked: boolean) => void;
   onSetFilters: (filters: any) => void;
+  onClearSearch?: () => void;
 }
 
 export function SearchResults({
@@ -39,7 +40,8 @@ export function SearchResults({
   onSortBy,
   onTagFilter,
   onContentFilter,
-  onSetFilters
+  onSetFilters,
+  onClearSearch
 }: SearchResultsProps) {
   const navigate = useNavigate();
 
@@ -47,14 +49,27 @@ export function SearchResults({
     <div className="flex-1">
       {/* Results Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-3">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
           <h2 className="text-lg md:text-xl font-semibold">
             {isSearching ? "Searching..." : `${results.length} results`}
             {hasQuery && !isSearching && (
               <span className="text-muted-foreground font-normal"> for "{query}"</span>
             )}
           </h2>
-          
+
+          {/* Clear Search Button */}
+          {onClearSearch && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onClearSearch}
+              className="flex items-center gap-1"
+            >
+              <X className="h-4 w-4" />
+              <span className="hidden sm:inline">Clear Search</span>
+            </Button>
+          )}
+
           {/* Mobile Filter Toggle */}
           <Button
             variant="outline"

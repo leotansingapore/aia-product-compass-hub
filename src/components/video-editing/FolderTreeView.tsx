@@ -118,7 +118,7 @@ export function FolderTreeView({
                       <Folder className="h-4 w-4 text-blue-500" />
                     )}
                     <span className="font-medium">{folderName}</span>
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-micro text-muted-foreground">
                       ({folderVideos.length} video{folderVideos.length !== 1 ? 's' : ''})
                     </span>
                   </CollapsibleTrigger>

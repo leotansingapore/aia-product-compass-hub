@@ -15,7 +15,7 @@ import {
   User,
   MessageCircle
 } from "lucide-react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -45,10 +45,11 @@ const allResourceItems = [
 const AppSidebar = memo(function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
+  const navigate = useNavigate();
   const { categories } = useCategories();
   const { isMasterAdmin, canAccessSection, getUserTier, hasRole } = usePermissions();
   const { user } = useSimplifiedAuth();
-  
+
   const userTier = getUserTier();
 
   // Don't render sidebar for unauthenticated users
@@ -106,7 +107,7 @@ const AppSidebar = memo(function AppSidebar() {
           {!isCollapsed && (
             <div>
               <h2 className="font-semibold text-sm">FINternship Learning</h2>
-              <p className="text-xs text-muted-foreground">Platform</p>
+              <p className="text-micro text-muted-foreground">Platform</p>
             </div>
           )}
         </div>
@@ -121,9 +122,16 @@ const AppSidebar = memo(function AppSidebar() {
               {mainNavItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
-                    <NavLink 
-                      to={item.url} 
+                    <NavLink
+                      to={item.url}
                       className={getNavClassName(item.url)}
+                      onClick={(e) => {
+                        // Clear search params when clicking Dashboard
+                        if (item.url === "/") {
+                          e.preventDefault();
+                          navigate("/", { replace: true });
+                        }
+                      }}
                       {...(item.dataAttr && { 'data-onboarding': item.dataAttr })}
                     >
                       <item.icon className="h-4 w-4" />
@@ -209,7 +217,7 @@ const AppSidebar = memo(function AppSidebar() {
           <div className="space-y-2">
             {userTier && (
               <div className="flex items-center gap-2">
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="secondary" className="text-micro">
                   {userTier === 'master_admin' ? 'Master Admin' : 
                    userTier === 'tier_4' ? 'Tier 4' :
                    userTier === 'tier_3' ? 'Tier 3' :
@@ -218,7 +226,7 @@ const AppSidebar = memo(function AppSidebar() {
                 </Badge>
               </div>
             )}
-            <div className="text-xs text-muted-foreground">
+            <div className="text-micro text-muted-foreground">
               <p>© 2024 FINternship Learning Platform</p>
               <p>Version 2.0</p>
             </div>

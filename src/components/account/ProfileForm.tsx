@@ -173,7 +173,7 @@ export function ProfileForm({ profile, onSave, onCancel }: ProfileFormProps) {
               onChange={handleAvatarUpload}
               className="hidden"
             />
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-micro text-muted-foreground mt-1">
               JPG, PNG or GIF (max 5MB)
             </p>
           </div>

@@ -1,30 +1,16 @@
-import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { MobileDrawer } from "./MobileDrawer";
 
 interface MobileHeaderProps {
   title?: string;
-  showBackButton?: boolean;
   rightAction?: React.ReactNode;
 }
 
-export function MobileHeader({ 
-  title, 
-  showBackButton = false, 
-  rightAction 
+export function MobileHeader({
+  title,
+  rightAction
 }: MobileHeaderProps) {
-  const navigate = useNavigate();
   const location = useLocation();
-
-  // Auto-determine if back button should be shown
-  const shouldShowBack = showBackButton || (
-    location.pathname !== "/" && 
-    location.pathname !== "/search" && 
-    location.pathname !== "/cmfas-exams" && 
-    location.pathname !== "/bookmarks" && 
-    location.pathname !== "/my-account"
-  );
 
   // Auto-determine title based on route
   const getPageTitle = () => {
@@ -50,22 +36,10 @@ const path = location.pathname;
   return (
     <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="flex h-14 items-center justify-between px-4">
-        <div className="flex items-center gap-3">
-          {shouldShowBack ? (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => navigate("/")}
-              className="h-10 w-10 p-0"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              <span className="sr-only">Go home</span>
-            </Button>
-          ) : (
-            <MobileDrawer />
-          )}
-          
-          <h1 className="font-semibold text-lg truncate">
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          <MobileDrawer />
+
+          <h1 className="font-semibold text-sm sm:text-base md:text-lg truncate">
             {getPageTitle()}
           </h1>
         </div>

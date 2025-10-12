@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useSearch } from "@/hooks/useSearch";
+import { useSemanticSearch } from "@/hooks/useSemanticSearch";
 
 interface SearchHeroProps {
   onSearch: (query: string) => void;
@@ -16,8 +17,9 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const { getSearchSuggestions } = useSearch();
-  
-  const recentSearches = ["Pro Achiever", "Medical Insurance", "Term Life"];
+  const { searchHistory } = useSemanticSearch();
+
+  const recentSearches = searchHistory.slice(0, 3);
   const suggestions = query.length > 0 ? getSearchSuggestions(query).slice(0, 5) : [];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -134,7 +136,7 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
 
         {recentSearches.length > 0 && (
           <div className="space-y-2">
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="flex items-center gap-1 text-micro text-muted-foreground">
               <Clock className="h-3 w-3" />
               <span>Recent searches</span>
             </div>
@@ -143,7 +145,7 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
                 <Badge
                   key={search}
                   variant="secondary"
-                  className="cursor-pointer hover:bg-white/90 text-xs bg-white"
+                  className="cursor-pointer hover:bg-white/90 text-micro bg-white"
                   onClick={() => {
                     console.log("SearchHero: Clicked recent search:", search);
                     onSearch(search);

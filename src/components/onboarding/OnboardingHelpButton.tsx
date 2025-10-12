@@ -121,15 +121,15 @@ export function OnboardingHelpButton() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="font-medium text-sm">{option.title}</h4>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-micro">
                           {option.steps} steps
                         </Badge>
                       </div>
-                      <p className="text-xs text-muted-foreground mb-2">
+                      <p className="text-micro text-muted-foreground mb-2">
                         {option.description}
                       </p>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-medium text-primary">
+                        <span className="text-micro font-medium text-primary">
                           {option.duration}
                         </span>
                       </div>
@@ -172,7 +172,7 @@ export function OnboardingHelpButton() {
                 </Badge>
               </div>
               <Progress value={progress} className="h-2 mb-2" />
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <div className="flex items-center justify-between text-micro text-muted-foreground">
                 <span>{progress}% completed</span>
                 {tourType && (
                   <span className="capitalize">{tourType} tour</span>
@@ -242,7 +242,7 @@ export function OnboardingHelpButton() {
               <h4 className="font-medium text-sm mb-2 text-blue-800 dark:text-blue-200">
                 💡 Quick Tip
               </h4>
-              <p className="text-xs text-blue-700 dark:text-blue-300">
+              <p className="text-micro text-blue-700 dark:text-blue-300">
                 {isComplete
                   ? "Explore advanced features or check out the latest updates!"
                   : "Use the search bar to quickly find specific products or features."

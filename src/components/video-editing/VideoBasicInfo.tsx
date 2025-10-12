@@ -35,12 +35,12 @@ export function VideoBasicInfo({ video, isDetectingDuration, onChange }: VideoBa
           {(video.duration || isDetectingDuration) && (
             <div className="flex items-center gap-2">
               {isDetectingDuration ? (
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="secondary" className="text-micro">
                   <Loader2 className="h-3 w-3 mr-1 animate-spin" />
                   Updating duration...
                 </Badge>
               ) : video.duration ? (
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-micro">
                   <Clock className="h-3 w-3 mr-1" />
                   {formatDuration(video.duration)}
                 </Badge>

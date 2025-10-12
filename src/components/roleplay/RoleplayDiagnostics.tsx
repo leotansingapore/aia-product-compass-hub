@@ -135,7 +135,7 @@ export function RoleplayDiagnostics({ scenario }: RoleplayDiagnosticsProps) {
               placeholder="Conversation ID"
               value={conversationId}
               onChange={(e) => setConversationId(e.target.value)}
-              className="text-xs"
+              className="text-micro"
             />
             <Button
               onClick={handleGetConversation}
@@ -164,7 +164,7 @@ export function RoleplayDiagnostics({ scenario }: RoleplayDiagnosticsProps) {
               </div>
             </CardHeader>
             <CardContent>
-              <pre className="text-xs bg-muted p-3 rounded overflow-auto max-h-60">
+              <pre className="text-micro bg-muted p-3 rounded overflow-auto max-h-60">
                 {JSON.stringify(results.data, null, 2)}
               </pre>
             </CardContent>

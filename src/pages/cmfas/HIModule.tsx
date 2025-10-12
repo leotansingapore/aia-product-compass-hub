@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { NavigationHeader } from "@/components/NavigationHeader";
+import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
@@ -193,12 +193,17 @@ export default function HIModule() {
         <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
-      <NavigationHeader 
-        title="CMFAS HI Module"
+      <BrandedPageHeader
+        title="📘 CMFAS HI Module"
         subtitle="Health Insurance"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "CMFAS Exams", href: "/cmfas-exams" },
+          { label: "HI Module" }
+        ]}
       />
-      
-      <div className="max-w-4xl mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 md:py-8">
+
+      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 md:py-8">
         {/* CMFAS Chat Launcher */}
         <div className="mb-6 md:mb-8">
           <CMFASChatLauncher
@@ -318,16 +323,16 @@ export default function HIModule() {
             <div>
               <h2 className="text-xl font-semibold mb-4">Exam Format</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
-                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">50</div>
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-800 flex items-center gap-3 sm:gap-4">
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400 shrink-0">50</div>
                   <p className="text-sm font-medium">Multiple Choice Questions</p>
                 </div>
-                <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
-                  <div className="text-2xl font-bold text-green-600 dark:text-green-400">1:15</div>
+                <div className="bg-green-50 dark:bg-green-900/20 p-3 sm:p-4 rounded-lg border border-green-200 dark:border-green-800 flex items-center gap-3 sm:gap-4">
+                  <div className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400 shrink-0">1:15</div>
                   <p className="text-sm font-medium">Hour 15 Minutes</p>
                 </div>
-                <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800 text-center">
-                  <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">70%</div>
+                <div className="bg-orange-50 dark:bg-orange-900/20 p-3 sm:p-4 rounded-lg border border-orange-200 dark:border-orange-800 flex items-center gap-3 sm:gap-4">
+                  <div className="text-2xl sm:text-3xl font-bold text-orange-600 dark:text-orange-400 shrink-0">70%</div>
                   <p className="text-sm font-medium">Passing Grade</p>
                 </div>
               </div>

@@ -197,7 +197,7 @@ export function ProgressiveDisclosure() {
                     <div className="flex-1 text-left">
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="font-semibold">{group.title}</h4>
-                        <Badge className={`text-xs ${getLevelColor(group.level)}`}>
+                        <Badge className={`text-micro ${getLevelColor(group.level)}`}>
                           {getLevelLabel(group.level)}
                         </Badge>
                       </div>
@@ -219,14 +219,14 @@ export function ProgressiveDisclosure() {
                           <h5 className="font-medium text-sm">{feature.title}</h5>
                           <div className="flex gap-1">
                             {feature.isNew && (
-                              <Badge variant="default" className="text-xs">New</Badge>
+                              <Badge variant="default" className="text-micro">New</Badge>
                             )}
                             {feature.isPremium && (
-                              <Badge variant="secondary" className="text-xs">Premium</Badge>
+                              <Badge variant="secondary" className="text-micro">Premium</Badge>
                             )}
                           </div>
                         </div>
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className="text-micro text-muted-foreground mt-1">
                           {feature.description}
                         </p>
                       </div>
@@ -257,12 +257,12 @@ export function ProgressiveDisclosure() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="font-semibold text-muted-foreground">{group.title}</h4>
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="outline" className="text-micro">
                           Locked
                         </Badge>
                       </div>
                       <p className="text-sm text-muted-foreground">{group.description}</p>
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="text-micro text-muted-foreground mt-1">
                         Complete more tasks to unlock
                       </p>
                     </div>

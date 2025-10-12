@@ -1,4 +1,5 @@
 
+import { lazy, Suspense } from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +13,7 @@ import { ChecklistProvider } from "@/hooks/useChecklistProgress";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { ProtectedAdminPage } from "@/components/ProtectedAdminPage";
+import { SkeletonLoader } from "@/components/SkeletonLoader";
 
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
@@ -39,6 +41,9 @@ import KBCategory from "./pages/kb/KBCategory";
 import KBProduct from "./pages/kb/KBProduct";
 import VideoDetail from "./pages/VideoDetail";
 import AwaitingApproval from "./pages/AwaitingApproval";
+
+// Lazy load AI Assistant page for performance optimization
+const AIAssistant = lazy(() => import("./pages/AIAssistant"));
 
 const queryClient = new QueryClient();
 
@@ -77,6 +82,11 @@ const App = () => (
                     <Route path="/my-account" element={<MyAccount />} />
 <Route path="/category/:categorySlugOrId" element={<ProductCategory />} />
 <Route path="/product/:productSlugOrId" element={<ProductDetail />} />
+<Route path="/product/:productId/ai-assistant" element={
+  <Suspense fallback={<SkeletonLoader type="product" />}>
+    <AIAssistant />
+  </Suspense>
+} />
 <Route path="/product/:productSlugOrId/video/:videoId" element={<VideoDetail />} />
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />

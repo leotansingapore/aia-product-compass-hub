@@ -11,3 +11,13 @@ verify_jwt = false
 
 [functions.notify-user-approved]
 verify_jwt = false
+
+# Roleplay feedback functions
+[functions.retry-transcript-retrieval]
+verify_jwt = false
+
+[functions.tavus-webhook]
+verify_jwt = false
+
+[functions.generate-roleplay-feedback]
+verify_jwt = false

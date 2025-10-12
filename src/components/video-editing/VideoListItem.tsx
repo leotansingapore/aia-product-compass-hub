@@ -59,7 +59,7 @@ export function VideoListItem({
           <div className="flex items-center gap-2 mb-1">
             <h4 className="font-medium">{video.title}</h4>
             {video.duration && (
-              <Badge variant="outline" className="text-xs">
+              <Badge variant="outline" className="text-micro">
                 <Clock className="h-3 w-3 mr-1" />
                 {formatDuration(video.duration)}
               </Badge>
@@ -68,7 +68,7 @@ export function VideoListItem({
           {video.description && (
             <p className="text-sm text-muted-foreground">{video.description}</p>
           )}
-          <p className="text-xs text-muted-foreground truncate max-w-[300px]">{video.url}</p>
+          <p className="text-micro text-muted-foreground truncate max-w-[300px]">{video.url}</p>
         </div>
         <div className="flex gap-2">
           <Button size="sm" variant="ghost" onClick={onMoveUp} disabled={!canMoveUp}>

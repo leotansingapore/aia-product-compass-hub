@@ -111,8 +111,8 @@ export const ConversationTranscript = ({ sessionId }: ConversationTranscriptProp
   }
 
   return (
-    <Card>
-      <CardHeader>
+    <Card className="border-0 shadow-none">
+      <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2">
           <MessageSquare className="h-5 w-5" />
           Conversation Transcript
@@ -121,54 +121,76 @@ export const ConversationTranscript = ({ sessionId }: ConversationTranscriptProp
           Complete conversation flow with timestamps
         </p>
       </CardHeader>
-      <CardContent>
-        <ScrollArea className="h-[400px] w-full">
-          <div className="space-y-4">
+      <CardContent className="px-2 sm:px-6">
+        <ScrollArea className="h-[500px] w-full pr-4">
+          <div className="space-y-3 px-2">
             {transcript.map((entry) => {
               const speakerInfo = getSpeakerInfo(entry.speaker);
               const IconComponent = speakerInfo.icon;
-              
+              const isUser = entry.speaker === 'user';
+
               return (
                 <div
                   key={entry.id}
-                  className={`p-4 rounded-lg border-l-4 ${speakerInfo.bgClass} ${speakerInfo.borderClass}`}
+                  className={`flex gap-2 ${isUser ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className="flex items-start gap-3">
-                    <Avatar className="h-8 w-8 mt-1">
-                      <AvatarFallback className="text-xs">
+                  {/* Avatar - Left side for AI */}
+                  {!isUser && (
+                    <Avatar className="h-8 w-8 flex-shrink-0">
+                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white">
                         <IconComponent className="h-4 w-4" />
                       </AvatarFallback>
                     </Avatar>
-                    
-                    <div className="flex-1 space-y-2">
-                      <div className="flex items-center gap-2">
-                        <Badge variant={speakerInfo.variant} className="text-xs">
-                          {speakerInfo.name}
-                        </Badge>
-                        <span className="text-xs text-muted-foreground">
-                          {formatTimestamp(entry.timestamp_offset)}
-                        </span>
-                        {entry.confidence < 0.8 && (
-                          <Badge variant="outline" className="text-xs">
-                            Low confidence
-                          </Badge>
-                        )}
-                      </div>
-                      
-                      <p className="text-sm leading-relaxed">{entry.text}</p>
-                      
+                  )}
+
+                  {/* Message Bubble */}
+                  <div className={`flex flex-col max-w-[75%] ${isUser ? 'items-end' : 'items-start'}`}>
+                    <div
+                      className={`rounded-2xl px-4 py-2.5 ${
+                        isUser
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted'
+                      }`}
+                    >
+                      <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                        {entry.text}
+                      </p>
+
+                      {/* Filler words indicator - subtle */}
                       {entry.filler_words && entry.filler_words.length > 0 && (
-                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                          <span>Filler words:</span>
+                        <div className="flex flex-wrap gap-1 mt-2 pt-2 border-t border-current/10">
                           {entry.filler_words.map((word, index) => (
-                            <Badge key={index} variant="outline" className="text-xs">
+                            <span key={index} className={`text-xs px-1.5 py-0.5 rounded ${
+                              isUser ? 'bg-primary-foreground/20' : 'bg-background/50'
+                            }`}>
                               {word}
-                            </Badge>
+                            </span>
                           ))}
                         </div>
                       )}
                     </div>
+
+                    {/* Timestamp and metadata */}
+                    <div className="flex items-center gap-2 mt-1 px-1">
+                      <span className="text-xs text-muted-foreground">
+                        {formatTimestamp(entry.timestamp_offset)}
+                      </span>
+                      {entry.confidence < 0.8 && (
+                        <span className="text-xs text-muted-foreground/70">
+                          • Low confidence
+                        </span>
+                      )}
+                    </div>
                   </div>
+
+                  {/* Avatar - Right side for User */}
+                  {isUser && (
+                    <Avatar className="h-8 w-8 flex-shrink-0">
+                      <AvatarFallback className="bg-primary text-primary-foreground">
+                        <IconComponent className="h-4 w-4" />
+                      </AvatarFallback>
+                    </Avatar>
+                  )}
                 </div>
               );
             })}

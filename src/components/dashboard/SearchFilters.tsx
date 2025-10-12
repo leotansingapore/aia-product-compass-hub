@@ -39,7 +39,7 @@ export function SearchFilters({
           <CardTitle className="text-sm sm:text-base md:text-lg">Filters</CardTitle>
           <div className="flex items-center gap-2">
             {activeFilterCount > 0 && (
-              <Badge variant="secondary" className="text-xs">{activeFilterCount}</Badge>
+              <Badge variant="secondary" className="text-micro">{activeFilterCount}</Badge>
             )}
             <Button
               variant="ghost"

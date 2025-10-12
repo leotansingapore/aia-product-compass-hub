@@ -4,9 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
+import { useIsMobile } from '@/hooks/use-mobile';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoLearningInterfaceProps {
@@ -57,12 +59,14 @@ export function VideoLearningInterface({
   const [isPlaying, setIsPlaying] = useState(false);
   const [watchTime, setWatchTime] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  
-  const { 
-    getVideoProgress, 
-    markVideoComplete, 
-    updateWatchTime, 
-    getCourseProgress 
+  const isMobile = useIsMobile();
+  const [isNotesOpen, setIsNotesOpen] = useState(!isMobile);
+
+  const {
+    getVideoProgress,
+    markVideoComplete,
+    updateWatchTime,
+    getCourseProgress
   } = useVideoProgress(productId);
 
   const currentVideo = videos[currentVideoIndex];
@@ -115,41 +119,41 @@ export function VideoLearningInterface({
       <div className="min-h-screen">
         {/* Header */}
         <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
-          <div className="max-w-7xl mx-auto px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <Button variant="ghost" onClick={onClose}>
-                  <ChevronLeft className="h-4 w-4 mr-2" />
-                  Back to Product
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div className="flex items-center justify-between gap-2 sm:gap-4">
+              <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
+                <Button variant="ghost" size={isMobile ? "sm" : "default"} onClick={onClose} className="flex-shrink-0">
+                  <ChevronLeft className="h-4 w-4" />
+                  <span className="hidden sm:inline ml-2">Back to Product</span>
                 </Button>
-                <div>
-                  <h1 className="text-xl font-semibold">Training Course</h1>
-                  <p className="text-sm text-muted-foreground">
+                <div className="min-w-0 flex-1">
+                  <h1 className="text-base sm:text-xl font-semibold truncate">Training Course</h1>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     Video {currentVideoIndex + 1} of {videos.length}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 flex-shrink-0">
                 <div className="text-right">
-                  <div className="text-sm font-medium">{courseProgress}% Complete</div>
-                  <Progress value={courseProgress} className="w-32" />
+                  <div className="text-xs sm:text-sm font-medium">{courseProgress}%</div>
+                  <Progress value={courseProgress} className="w-16 sm:w-32" />
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-24 sm:pb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
             {/* Video Player */}
             <div className="lg:col-span-2 space-y-6">
               <Card>
                 <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="flex items-center gap-2">
-                      {currentVideo?.title}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <CardTitle className="flex items-start sm:items-center gap-2 flex-wrap">
+                      <span className="break-words">{currentVideo?.title}</span>
                       {currentProgress?.completed && (
-                        <Badge variant="secondary" className="text-green-600">
+                        <Badge variant="secondary" className="text-xs text-green-600 flex-shrink-0">
                           <Check className="h-3 w-3 mr-1" />
                           Completed
                         </Badge>
@@ -179,26 +183,31 @@ export function VideoLearningInterface({
                     </div>
                   )}
 
-                  <div className="flex items-center justify-between mt-6">
-                    <div className="flex gap-2">
-                      <Button 
-                        variant="outline" 
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-6">
+                    <div className="flex gap-2 w-full sm:w-auto">
+                      <Button
+                        variant="outline"
+                        className="flex-1 sm:flex-none"
                         onClick={() => navigateVideo('prev')}
                         disabled={currentVideoIndex === 0}
                       >
                         <ChevronLeft className="h-4 w-4 mr-2" />
-                        Previous
+                        <span className="hidden sm:inline">Previous</span>
+                        <span className="sm:hidden">Prev</span>
                       </Button>
-                      <Button 
+                      <Button
                         variant="outline"
+                        className="flex-1 sm:flex-none"
                         onClick={() => navigateVideo('next')}
                         disabled={currentVideoIndex === videos.length - 1}
                       >
-                        Next
+                        <span className="hidden sm:inline">Next</span>
+                        <span className="sm:hidden">Next</span>
                         <ChevronRight className="h-4 w-4 ml-2" />
                       </Button>
                     </div>
-                    <Button 
+                    <Button
+                      className="w-full sm:w-auto"
                       onClick={handleMarkComplete}
                       disabled={currentProgress?.completed}
                       variant={currentProgress?.completed ? "secondary" : "default"}
@@ -212,32 +221,47 @@ export function VideoLearningInterface({
 
               {/* Notes & Transcript */}
               {(currentVideo?.notes || currentVideo?.transcript) && (
-                <Card>
-                  <CardContent className="p-0">
-                    <Tabs defaultValue="notes" className="w-full">
-                      <TabsList className="w-full">
-                        {currentVideo?.notes && <TabsTrigger value="notes">Notes</TabsTrigger>}
-                        {currentVideo?.transcript && <TabsTrigger value="transcript">Transcript</TabsTrigger>}
-                      </TabsList>
-                      {currentVideo?.notes && (
-                        <TabsContent value="notes" className="p-4">
-                          <div className="prose prose-sm max-w-none">
-                            <h4>Learning Notes</h4>
-                            <div className="whitespace-pre-wrap">{currentVideo.notes}</div>
-                          </div>
-                        </TabsContent>
-                      )}
-                      {currentVideo?.transcript && (
-                        <TabsContent value="transcript" className="p-4">
-                          <div className="prose prose-sm max-w-none">
-                            <h4>Video Transcript</h4>
-                            <div className="whitespace-pre-wrap text-sm">{currentVideo.transcript}</div>
-                          </div>
-                        </TabsContent>
-                      )}
-                    </Tabs>
-                  </CardContent>
-                </Card>
+                <Collapsible open={isNotesOpen} onOpenChange={setIsNotesOpen}>
+                  <Card>
+                    {isMobile && (
+                      <CollapsibleTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-between p-4 h-auto hover:bg-accent"
+                        >
+                          <span className="font-semibold">Notes & Transcript</span>
+                          <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isNotesOpen ? 'rotate-180' : ''}`} />
+                        </Button>
+                      </CollapsibleTrigger>
+                    )}
+                    <CollapsibleContent>
+                      <CardContent className="p-0">
+                        <Tabs defaultValue="notes" className="w-full">
+                          <TabsList className="w-full">
+                            {currentVideo?.notes && <TabsTrigger value="notes">Notes</TabsTrigger>}
+                            {currentVideo?.transcript && <TabsTrigger value="transcript">Transcript</TabsTrigger>}
+                          </TabsList>
+                          {currentVideo?.notes && (
+                            <TabsContent value="notes" className="p-4">
+                              <div className="prose prose-sm max-w-none">
+                                <h4>Learning Notes</h4>
+                                <div className="whitespace-pre-wrap">{currentVideo.notes}</div>
+                              </div>
+                            </TabsContent>
+                          )}
+                          {currentVideo?.transcript && (
+                            <TabsContent value="transcript" className="p-4">
+                              <div className="prose prose-sm max-w-none">
+                                <h4>Video Transcript</h4>
+                                <div className="whitespace-pre-wrap text-sm">{currentVideo.transcript}</div>
+                              </div>
+                            </TabsContent>
+                          )}
+                        </Tabs>
+                      </CardContent>
+                    </CollapsibleContent>
+                  </Card>
+                </Collapsible>
               )}
             </div>
 
@@ -283,7 +307,7 @@ export function VideoLearningInterface({
                               <span className="mr-2">{link.icon}</span>
                               <div className="text-left">
                                 <div className="font-medium">{link.name}</div>
-                                <div className="text-xs text-muted-foreground truncate">
+                                <div className="text-micro text-muted-foreground truncate">
                                   {link.url}
                                 </div>
                               </div>
@@ -309,7 +333,7 @@ export function VideoLearningInterface({
                               <FileText className="h-5 w-5 mr-3 text-primary" />
                               <div className="text-left flex-1">
                                 <div className="font-medium">{attachment.name}</div>
-                                <div className="text-xs text-muted-foreground flex gap-2">
+                                <div className="text-micro text-muted-foreground flex gap-2">
                                   {attachment.file_type && (
                                     <span>{attachment.file_type}</span>
                                   )}

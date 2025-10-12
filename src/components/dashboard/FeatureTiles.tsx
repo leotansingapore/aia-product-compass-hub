@@ -71,14 +71,14 @@ export function FeatureTiles() {
               <div className="flex items-start justify-between">
                 <tile.icon className="h-6 w-6 text-primary" />
                 {tile.badge && (
-                  <Badge variant="secondary" className="text-xs px-2 py-0">
+                  <Badge variant="secondary" className="text-micro px-2 py-0">
                     {tile.badge}
                   </Badge>
                 )}
               </div>
               <div className="space-y-1">
                 <h4 className="font-medium text-sm leading-tight">{tile.title}</h4>
-                <p className="text-xs text-muted-foreground leading-tight">{tile.description}</p>
+                <p className="text-micro text-muted-foreground leading-tight">{tile.description}</p>
               </div>
             </div>
           </Card>

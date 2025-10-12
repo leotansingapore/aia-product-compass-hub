@@ -74,19 +74,19 @@ export function EditableText({
       if (value.includes('<')) {
         // Content is HTML
         return (
-          <div 
-            className={className}
+          <div
+            className={`${className} break-words`}
             dangerouslySetInnerHTML={{ __html: value }}
           />
         );
       } else {
         // Content is Markdown
         return (
-          <div className={className}>
+          <div className={`${className} break-words`}>
             <ReactMarkdown
               components={{
                 a: ({ children, href }) => (
-                  <a href={href} className="text-blue-600 underline hover:text-blue-800" target="_blank" rel="noopener noreferrer">
+                  <a href={href} className="text-blue-600 underline hover:text-blue-800 break-all" target="_blank" rel="noopener noreferrer">
                     {children}
                   </a>
                 )
@@ -98,7 +98,7 @@ export function EditableText({
         );
       }
     }
-    return <span className={className}>{value}</span>;
+    return <span className={`${className} break-words`}>{value}</span>;
   }
 
   if (isEditing) {
@@ -150,7 +150,7 @@ export function EditableText({
   }
 
   return (
-    <div 
+    <div
       className={`${className} cursor-pointer hover:bg-primary/10 hover:border-primary/20 border-2 border-dashed border-primary/30 p-2 rounded group transition-all duration-200 bg-primary/5`}
       onClick={() => {
         console.log('EditableText clicked, setting editing to true');
@@ -158,11 +158,11 @@ export function EditableText({
       }}
       title="🔧 ADMIN MODE: Click to edit this content"
     >
-      <div className="flex items-center justify-between">
-        <span className={value ? "" : "text-muted-foreground italic"}>
+      <div className="flex items-center justify-between gap-2 min-w-0">
+        <span className={`${value ? "" : "text-muted-foreground italic"} break-words flex-1 min-w-0`}>
           {value || placeholder}
         </span>
-        <Edit className="h-4 w-4 opacity-60 group-hover:opacity-100 text-primary transition-opacity" />
+        <Edit className="h-4 w-4 opacity-60 group-hover:opacity-100 text-primary transition-opacity flex-shrink-0" />
       </div>
     </div>
   );

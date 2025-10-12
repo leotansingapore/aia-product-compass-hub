@@ -4,7 +4,7 @@ import { usePermissions } from "@/hooks/usePermissions";
 import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
-import { CategoryHeader } from "@/components/category/CategoryHeader";
+import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ProductsGrid } from "@/components/category/ProductsGrid";
 import { useProductCategory } from "@/hooks/useProductCategory";
 
@@ -126,9 +126,18 @@ export default function ProductCategory() {
         type: "section"
       }}
     >
-      <CategoryHeader category={category} />
-      
-      <div className="max-w-7xl mx-auto px-1 sm:px-4 md:px-6 py-1 sm:py-4 md:py-8">
+      <BrandedPageHeader
+        title={categoryInfo?.icon ? `${categoryInfo.icon} ${categoryInfo.title}` : category.name}
+        subtitle={categoryInfo?.description || category.description}
+        showBackButton
+        onBack={() => window.history.back()}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: category.name }
+        ]}
+      />
+
+      <div className="mx-auto px-4 sm:px-6 py-4 sm:py-8">
         {/* Admin Module Creation */}
         {isAdmin() && categoryId && (
           <CreateModuleForm 
@@ -138,13 +147,11 @@ export default function ProductCategory() {
         )}
 
         {/* Search and Filters */}
-        <div className="mb-4 sm:mb-6 md:mb-8">
-          <div className="mb-3 sm:mb-4 md:mb-6">
-            <EnhancedSearchBar 
-              onSearch={handleSearch} 
-              placeholder={`Search ${category.name.toLowerCase()}...`}
-            />
-          </div>
+        <div className="mb-6 sm:mb-8">
+          <EnhancedSearchBar
+            onSearch={handleSearch}
+            placeholder={`Search ${category.name.toLowerCase()}...`}
+          />
         </div>
 
         <ProductsGrid

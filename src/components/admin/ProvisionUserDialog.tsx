@@ -154,7 +154,7 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
                 </SelectItem>
               </SelectContent>
             </Select>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-micro text-muted-foreground mt-1">
               Select the initial access level for this user
             </p>
           </div>
@@ -178,7 +178,7 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
                 Generate
               </Button>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-micro text-muted-foreground mt-1">
               User should change this password after first login
             </p>
           </div>

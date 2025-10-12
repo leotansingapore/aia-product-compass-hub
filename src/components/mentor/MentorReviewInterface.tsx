@@ -493,7 +493,7 @@ export function MentorReviewInterface() {
                 {annotations.map((annotation, index) => (
                   <div key={index} className="border-l-4 border-l-primary pl-3 space-y-1">
                     <div className="flex items-center gap-2 text-sm">
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-micro">
                         {annotation.annotation_type}
                       </Badge>
                       <button

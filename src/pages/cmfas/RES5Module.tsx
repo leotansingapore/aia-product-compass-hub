@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { NavigationHeader } from "@/components/NavigationHeader";
+import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
@@ -202,12 +202,17 @@ export default function RES5Module() {
         <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
-      <NavigationHeader 
-        title="CMFAS RES5 Module"
+      <BrandedPageHeader
+        title="📘 CMFAS RES5 Module"
         subtitle="Rules, Ethics & Skills for Financial Advisory Services"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "CMFAS Exams", href: "/cmfas-exams" },
+          { label: "RES5 Module" }
+        ]}
       />
-      
-      <div className="max-w-4xl mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 md:py-8">
+
+      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 md:py-8">
         {/* CMFAS Chat Launcher */}
         <div className="mb-8">
           <CMFASChatLauncher
@@ -290,19 +295,23 @@ export default function RES5Module() {
             <div>
               <h2 className="text-xl font-semibold mb-4">Exam Format</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                <div className="bg-blue-50 dark:bg-blue-900/20 p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
-                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">150</div>
-                  <p className="text-sm font-medium">Multiple Choice Questions</p>
-                  <p className="text-xs text-muted-foreground mt-1">(110 Part I + 40 Part II)</p>
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-800 flex items-center gap-3 sm:gap-4">
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400 shrink-0">150</div>
+                  <div>
+                    <p className="text-sm font-medium">Multiple Choice Questions</p>
+                    <p className="text-micro text-muted-foreground mt-1">(110 Part I + 40 Part II)</p>
+                  </div>
                 </div>
-                <div className="bg-green-50 dark:bg-green-900/20 p-3 sm:p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
-                  <div className="text-2xl font-bold text-green-600 dark:text-green-400">3</div>
+                <div className="bg-green-50 dark:bg-green-900/20 p-3 sm:p-4 rounded-lg border border-green-200 dark:border-green-800 flex items-center gap-3 sm:gap-4">
+                  <div className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400 shrink-0">3</div>
                   <p className="text-sm font-medium">Hours Duration</p>
                 </div>
-                <div className="bg-orange-50 dark:bg-orange-900/20 p-3 sm:p-4 rounded-lg border border-orange-200 dark:border-orange-800 text-center">
-                  <div className="text-lg font-bold text-orange-600 dark:text-orange-400">75% & 80%</div>
-                  <p className="text-sm font-medium">Passing Grades</p>
-                  <p className="text-xs text-muted-foreground mt-1">(Part I & Part II)</p>
+                <div className="bg-orange-50 dark:bg-orange-900/20 p-3 sm:p-4 rounded-lg border border-orange-200 dark:border-orange-800 flex items-center gap-3 sm:gap-4">
+                  <div className="text-lg sm:text-xl font-bold text-orange-600 dark:text-orange-400 shrink-0">75% & 80%</div>
+                  <div>
+                    <p className="text-sm font-medium">Passing Grades</p>
+                    <p className="text-micro text-muted-foreground mt-1">(Part I & Part II)</p>
+                  </div>
                 </div>
               </div>
             </div>

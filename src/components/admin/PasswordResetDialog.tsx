@@ -228,7 +228,7 @@ export function PasswordResetDialog({ user, open, onOpenChange, onSuccess }: Pas
                     </div>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">
+                <p className="text-micro text-muted-foreground mt-1">
                   Minimum 6 characters required
                 </p>
               </div>
@@ -238,7 +238,7 @@ export function PasswordResetDialog({ user, open, onOpenChange, onSuccess }: Pas
                   type="button"
                   variant="outline"
                   onClick={generateRandomPassword}
-                  className="text-xs"
+                  className="text-micro"
                 >
                   Generate Random
                 </Button>

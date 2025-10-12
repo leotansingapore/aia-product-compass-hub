@@ -51,9 +51,16 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
     
     const config = variants[status];
     const IconComponent = config.icon;
-    
+
     return (
-      <Badge variant={config.variant} className="gap-1">
+      <Badge
+        variant={config.variant}
+        className={`gap-1 ${
+          config.variant === 'outline' || config.variant === 'secondary'
+            ? 'text-black'
+            : 'text-white'
+        }`}
+      >
         <IconComponent className="h-3 w-3" />
         {config.label}
       </Badge>
@@ -341,7 +348,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
           {getStatusBadge(user.status)}
         </div>
         <p className="text-sm text-muted-foreground truncate">{user.email}</p>
-        <p className="text-xs text-muted-foreground">
+        <p className="text-micro text-muted-foreground">
           Created {new Date(user.created_at).toLocaleDateString()}
         </p>
       </div>
@@ -349,15 +356,22 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
       <div className="flex items-center gap-3">
         {/* Role Badges */}
         <div className="flex flex-wrap gap-1">
-          {user.roles.map(role => (
-            <Badge
-              key={role}
-              variant={getRoleBadgeVariant(role)}
-              className="text-xs"
-            >
-              {role.replace('_', ' ')}
-            </Badge>
-          ))}
+          {user.roles.map(role => {
+            const variant = getRoleBadgeVariant(role);
+            const textColor = variant === 'outline' || variant === 'secondary'
+              ? 'text-black'
+              : 'text-white';
+
+            return (
+              <Badge
+                key={role}
+                variant={variant}
+                className={`text-micro ${textColor}`}
+              >
+                {role.replace('_', ' ')}
+              </Badge>
+            );
+          })}
         </div>
         
         {/* Access Tier Management */}
@@ -365,7 +379,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
           <div className="flex items-center gap-2">
             <TierIcon className="h-4 w-4 text-muted-foreground" />
             <Select value={currentTier} onValueChange={handleTierChange}>
-              <SelectTrigger className="w-28 h-8 text-xs">
+              <SelectTrigger className="w-28 h-8 text-micro">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -383,7 +397,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
           <div className="flex items-center gap-2">
             <AdminIcon className="h-4 w-4 text-muted-foreground" />
             <Select value={currentAdminRole} onValueChange={handleAdminRoleChange}>
-              <SelectTrigger className="w-24 h-8 text-xs">
+              <SelectTrigger className="w-24 h-8 text-micro">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -404,7 +418,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
             variant="default"
             onClick={handleApprove}
             disabled={loading === 'approve'}
-            className="text-xs"
+            className="text-micro"
           >
             <UserCheck className="h-3 w-3 mr-1" />
             {loading === 'approve' ? 'Approving...' : 'Approve'}
@@ -414,7 +428,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
             variant="destructive"
             onClick={handleReject}
             disabled={loading === 'reject'}
-            className="text-xs"
+            className="text-micro"
           >
             <UserX className="h-3 w-3 mr-1" />
             {loading === 'reject' ? 'Rejecting...' : 'Reject'}

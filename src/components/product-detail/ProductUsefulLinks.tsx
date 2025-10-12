@@ -25,10 +25,9 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
   const competitorModuleIds = [
     'module-1758266631016-n7jff6ewh', // Investment Products - Competitors
     'module-1759490805756-i6duglldb', // Medical Insurance Products - Competitors
-    'module-1759491941845-w3co71e10', // Term Products - Competitors
   ];
   
-  // Also enable for all Term Products (including the individual product pages)
+  // Also enable for all Term Products
   const isTermProduct = productId === 'secure-flexi-term' || productId === 'ultimate-critical-cover';
   
   const isCompetitorsModule = competitorModuleIds.includes(productId || '') || isTermProduct;

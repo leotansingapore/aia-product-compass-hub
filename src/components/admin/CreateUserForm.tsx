@@ -193,7 +193,7 @@ export function CreateUserForm() {
                 Generate
               </Button>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-micro text-muted-foreground mt-1">
               Password must be at least 6 characters long
             </p>
           </div>

@@ -120,11 +120,11 @@ export function WelcomeModal() {
                       <h4 className="font-semibold text-sm group-hover:text-primary transition-colors">
                         {feature.title}
                       </h4>
-                      <Badge variant="secondary" className="text-xs">
+                      <Badge variant="secondary" className="text-micro">
                         {feature.badge}
                       </Badge>
                     </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
+                    <p className="text-micro text-muted-foreground leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
@@ -181,21 +181,21 @@ export function WelcomeModal() {
                   </p>
                   
                   <div className="flex items-center gap-4 mb-3">
-                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-1 text-micro text-muted-foreground">
                       <Clock className="w-3 h-3" />
                       {option.duration}
                     </div>
-                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-1 text-micro text-muted-foreground">
                       <CheckCircle2 className="w-3 h-3" />
                       {option.steps} steps
                     </div>
                   </div>
                   
                   <div className="space-y-1">
-                    <p className="text-xs font-medium">What you'll learn:</p>
+                    <p className="text-micro font-medium">What you'll learn:</p>
                     <div className="flex flex-wrap gap-1">
                       {option.features.map((feature, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs">
+                        <Badge key={idx} variant="outline" className="text-micro">
                           {feature}
                         </Badge>
                       ))}
@@ -209,7 +209,7 @@ export function WelcomeModal() {
           ))}
           
           <div className="text-center pt-4">
-            <p className="text-xs text-muted-foreground mb-3">
+            <p className="text-micro text-muted-foreground mb-3">
               Not ready for a tour? You can always start one later from the help button.
             </p>
             <Button

@@ -24,7 +24,7 @@ export function ProductHighlights({ highlights, onUpdate }: ProductHighlightsPro
         <CardContent>
           <div className="grid md:grid-cols-2 gap-3">
             {highlights?.map((highlight, index) => (
-              <div key={index} className="flex items-start gap-2">
+              <div key={index} className="flex items-start gap-2 min-w-0">
                 <CheckCircle className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
                 <EditableText
                   value={highlight}
@@ -33,7 +33,7 @@ export function ProductHighlights({ highlights, onUpdate }: ProductHighlightsPro
                     updatedHighlights[index] = newValue;
                     await onUpdate('highlights', updatedHighlights);
                   } : undefined}
-                  className="text-sm flex-1"
+                  className="text-sm flex-1 min-w-0 break-words"
                   placeholder="Enter highlight..."
                   readOnly={!canEdit}
                 />

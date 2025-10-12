@@ -31,6 +31,7 @@ export function useDashboardSearch() {
 
   const handleSearch = (newQuery: string) => {
     setQuery(newQuery);
+    setFilters({}); // Clear filters on new search
     // Update URL
     const newSearchParams = new URLSearchParams(searchParams);
     if (newQuery) {
@@ -66,6 +67,14 @@ export function useDashboardSearch() {
 
   const clearFilters = () => {
     setFilters({});
+  };
+
+  const clearSearch = () => {
+    setQuery("");
+    setFilters({});
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete("q");
+    setSearchParams(newSearchParams);
   };
 
   const activeFilterCount = [
@@ -104,6 +113,7 @@ export function useDashboardSearch() {
     handleCategoryFilter,
     handleTagFilter,
     handleContentFilter,
-    clearFilters
+    clearFilters,
+    clearSearch
   };
 }

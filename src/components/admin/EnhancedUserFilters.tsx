@@ -137,14 +137,14 @@ export function EnhancedUserFilters({
           
           {activeFiltersCount > 0 && (
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="text-xs">
+              <Badge variant="secondary" className="text-micro">
                 {activeFiltersCount} filter{activeFiltersCount > 1 ? 's' : ''} active
               </Badge>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={clearFilters}
-                className="h-7 px-2 text-xs"
+                className="h-7 px-2 text-micro"
               >
                 Clear all
               </Button>
@@ -159,7 +159,7 @@ export function EnhancedUserFilters({
       </div>
 
       {/* Status Overview Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pb-3">
         {[
           { key: 'pending_approval', label: 'Pending', color: 'text-amber-600', bgColor: 'bg-amber-50 hover:bg-amber-100' },
           { key: 'approved', label: 'Approved', color: 'text-blue-600', bgColor: 'bg-blue-50 hover:bg-blue-100' },
@@ -170,14 +170,16 @@ export function EnhancedUserFilters({
           <button
             key={key}
             onClick={() => updateFilter('status', key === 'all' ? 'all' : key)}
-            className={`text-center p-3 rounded-lg border transition-colors ${bgColor} ${
+            className={`text-center py-3 min-h-0 rounded-lg border transition-colors ${bgColor} ${
               filters.status === key ? 'ring-2 ring-primary' : 'hover:shadow-sm'
             }`}
           >
-            <div className={`font-semibold text-lg ${color}`}>
-              {statusCounts[key as keyof StatusCounts]}
+            <div className="flex flex-col gap-1">
+              <div className={`font-semibold text-lg ${color}`}>
+                {statusCounts[key as keyof StatusCounts]}
+              </div>
+              <div className="text-micro text-muted-foreground font-medium">{label}</div>
             </div>
-            <div className="text-xs text-muted-foreground font-medium">{label}</div>
           </button>
         ))}
       </div>

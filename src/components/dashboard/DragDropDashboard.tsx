@@ -221,7 +221,7 @@ export function DragDropDashboard({ onCategoryClick }: DragDropDashboardProps) {
                       {section.visible ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
                     </Button>
                     {section.required && (
-                      <span className="text-xs text-muted-foreground">Required</span>
+                      <span className="text-micro text-muted-foreground">Required</span>
                     )}
                   </div>
                 </div>

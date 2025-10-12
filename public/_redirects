@@ -1,0 +1,5 @@
+# Netlify redirects for SPA routing
+# This ensures all routes are served by the React app
+# The 200 status code means it's a rewrite, not a redirect
+
+/* /index.html 200

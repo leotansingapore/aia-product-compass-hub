@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Menu, X, Settings, LogOut } from "lucide-react";
+import { Menu, X, Settings, LogOut, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { usePermissions } from "@/hooks/usePermissions";
@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 
 export function MobileDrawer() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const { signOut } = useSimplifiedAuth();
   const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
   const { loading: permissionsLoading } = usePermissions();
@@ -42,7 +43,7 @@ export function MobileDrawer() {
         </SheetHeader>
         
         <div className="flex flex-col h-full">
-          <div className="flex-1 px-6 pb-6">
+          <div className="flex-1 px-6 pb-6 overflow-y-auto">
             {/* Admin Controls */}
             {!permissionsLoading && isAdmin && (
               <>
@@ -63,6 +64,27 @@ export function MobileDrawer() {
                 <Separator className="mb-6" />
               </>
             )}
+
+            {/* Main Navigation */}
+            <div className="mb-6">
+              <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">
+                Main
+              </h3>
+              <div className="space-y-1">
+                <button
+                  onClick={() => {
+                    navigate("/", { replace: true });
+                    handleLinkClick();
+                  }}
+                  className="flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted text-muted-foreground w-full text-left"
+                >
+                  <Home className="h-4 w-4" />
+                  <span>Dashboard</span>
+                </button>
+              </div>
+            </div>
+
+            <Separator className="mb-6" />
 
             {/* Product Categories */}
             <div className="mb-6">
@@ -89,7 +111,7 @@ export function MobileDrawer() {
                     >
                       <span className="text-lg">{config.icon}</span>
                       <span className="truncate">{category.name}</span>
-                      <span className="ml-auto text-xs bg-muted text-muted-foreground px-2 py-1 rounded-full">
+                      <span className="ml-auto text-micro bg-muted text-muted-foreground px-2 py-1 rounded-full">
                         {config.productCount}
                       </span>
                     </NavLink>

@@ -70,6 +70,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const streamRef = useRef<MediaStream | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user } = useAuth();
@@ -81,23 +82,30 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
+      // Clean up stream on unmount
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(track => track.stop());
+      }
     };
   }, []);
 
   const checkPermissions = async () => {
     try {
       setPermissionStatus({ camera: 'checking', microphone: 'checking' });
-      
-      // Simple permission check by trying to get media
+
+      // Request media and show preview
       const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
       setPermissionStatus({ camera: 'granted', microphone: 'granted' });
-      
-      // Stop the stream immediately as this is just a permission check
-      stream.getTracks().forEach(track => track.stop());
+
+      // Store stream reference and connect to video element for preview
+      streamRef.current = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
     } catch (error) {
       console.error('Permission check error:', error);
       const errorName = (error as any)?.name;
-      
+
       if (errorName === 'NotAllowedError') {
         setPermissionStatus({ camera: 'denied', microphone: 'denied' });
         setShowPermissionHelp(true);
@@ -261,28 +269,33 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     setIsLoading(true);
     setConnectionError(null);
     setShowPermissionHelp(false);
-    
-    try {
-      // Request media permissions first
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: true, 
-        audio: true 
-      });
 
-      // Update permission status to granted
-      setPermissionStatus({ camera: 'granted', microphone: 'granted' });
+    try {
+      // Check if we already have permissions and stream
+      if (!streamRef.current) {
+        // If no stream exists, request permissions
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true
+        });
+        streamRef.current = stream;
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+        setPermissionStatus({ camera: 'granted', microphone: 'granted' });
+      }
 
       // Create Tavus conversation
       const conversationData = await createTavusConversation();
-      
+
       toast({
         title: "Session Starting",
         description: "Connecting to your AI roleplay partner...",
       });
 
-      // Now the conversation will be embedded in the iframe instead of opening in a new window
-      // The iframe will be displayed in the AI Avatar section
-      
+      // Now the conversation will be embedded in the iframe
+      // The Tavus iframe will handle its own media stream
+
       setIsConnected(true);
       setIsRecording(true);
       startTimer();
@@ -291,11 +304,11 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         title: "Session Active",
         description: "You're now connected to your AI roleplay partner!",
       });
-      
+
     } catch (error) {
       console.error('Failed to start session:', error);
       const errorName = (error as any)?.name;
-      
+
       // Handle specific permission errors
       if (errorName === 'NotAllowedError') {
         setPermissionStatus({ camera: 'denied', microphone: 'denied' });
@@ -303,7 +316,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         setConnectionError(
           'Camera and microphone access denied. Please allow permissions in your browser and try again.'
         );
-        
+
         toast({
           title: "Permissions Required",
           description: "Please enable camera and microphone access to start the roleplay session.",
@@ -318,11 +331,11 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         });
       } else {
         setConnectionError(
-          error instanceof Error 
-            ? error.message 
+          error instanceof Error
+            ? error.message
             : 'Failed to start session. Please check your connection and try again.'
         );
-        
+
         toast({
           title: "Connection Failed",
           description: "Unable to start roleplay session. Please try again.",
@@ -368,11 +381,13 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     setConversationUrl(null);
     setSessionId(null);
     setTranscripts([]);
-    
+
     // Stop camera stream
-    if (videoRef.current?.srcObject) {
-      const stream = videoRef.current.srcObject as MediaStream;
-      stream.getTracks().forEach(track => track.stop());
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
+    }
+    if (videoRef.current) {
       videoRef.current.srcObject = null;
     }
 
@@ -445,92 +460,117 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   // Setup State - Before session starts
   if (!isConnected) {
     return (
-      <div className="min-h-screen space-y-6 p-6">
+      <div className="space-y-6">
         {/* Session Info */}
-        <Card>
+        <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <div>
+              <div className="space-y-2">
                 <CardTitle className="text-xl font-bold">{scenario.title}</CardTitle>
-                <CardDescription className="mt-1">
-                  <Badge variant="outline" className={categoryColors[scenario.category]}>
+                <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                  <Badge variant="outline" className={`${categoryColors[scenario.category]} border-current`}>
                     {scenario.category}
                   </Badge>
-                  <Badge variant="outline" className={`ml-2 ${difficultyColors[scenario.difficulty]}`}>
+                  <Badge variant="outline" className={`${difficultyColors[scenario.difficulty]} border-current`}>
                     {scenario.difficulty}
                   </Badge>
-                  <span className="ml-2 text-sm text-muted-foreground">
+                  <span className="flex items-center gap-1.5">
+                    <div className="h-1 w-1 rounded-full bg-muted-foreground/50" />
                     Duration: {scenario.duration}
                   </span>
-                </CardDescription>
+                </div>
               </div>
             </div>
           </CardHeader>
         </Card>
 
         {/* Permission Status */}
-        <Card>
+        <Card className="border-border/50">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Settings className="h-5 w-5" />
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <Settings className="h-5 w-5 text-primary" />
               Camera & Microphone Setup
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
                 <div className="flex items-center gap-3">
-                  <Camera className="h-4 w-4" />
-                  <span>Camera Access</span>
+                  <div className={`p-2 rounded-full ${
+                    permissionStatus.camera === 'granted' ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' :
+                    permissionStatus.camera === 'denied' ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' :
+                    'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
+                  }`}>
+                    <Camera className="h-4 w-4" />
+                  </div>
+                  <span className="font-medium">Camera Access</span>
                 </div>
                 <div className="flex items-center gap-2">
                   {permissionStatus.camera === 'checking' && (
                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
                   )}
-                  <Badge variant={permissionStatus.camera === 'granted' ? 'default' : 
-                                 permissionStatus.camera === 'denied' ? 'destructive' : 'secondary'}>
-                    {permissionStatus.camera === 'granted' ? 'Allowed' :
-                     permissionStatus.camera === 'denied' ? 'Denied' :
-                     permissionStatus.camera === 'checking' ? 'Checking...' : 'Prompt'}
+                  <Badge variant={permissionStatus.camera === 'granted' ? 'default' :
+                                 permissionStatus.camera === 'denied' ? 'destructive' : 'secondary'}
+                         className="font-medium">
+                    {permissionStatus.camera === 'granted' ? '✓ Allowed' :
+                     permissionStatus.camera === 'denied' ? '✗ Denied' :
+                     permissionStatus.camera === 'checking' ? 'Checking...' : 'Not Set'}
                   </Badge>
                 </div>
               </div>
-              
-              <div className="flex items-center justify-between">
+
+              <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
                 <div className="flex items-center gap-3">
-                  <Mic className="h-4 w-4" />
-                  <span>Microphone Access</span>
+                  <div className={`p-2 rounded-full ${
+                    permissionStatus.microphone === 'granted' ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' :
+                    permissionStatus.microphone === 'denied' ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' :
+                    'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
+                  }`}>
+                    <Mic className="h-4 w-4" />
+                  </div>
+                  <span className="font-medium">Microphone Access</span>
                 </div>
                 <div className="flex items-center gap-2">
                   {permissionStatus.microphone === 'checking' && (
                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
                   )}
-                  <Badge variant={permissionStatus.microphone === 'granted' ? 'default' : 
-                                 permissionStatus.microphone === 'denied' ? 'destructive' : 'secondary'}>
-                    {permissionStatus.microphone === 'granted' ? 'Allowed' :
-                     permissionStatus.microphone === 'denied' ? 'Denied' :
-                     permissionStatus.microphone === 'checking' ? 'Checking...' : 'Prompt'}
+                  <Badge variant={permissionStatus.microphone === 'granted' ? 'default' :
+                                 permissionStatus.microphone === 'denied' ? 'destructive' : 'secondary'}
+                         className="font-medium">
+                    {permissionStatus.microphone === 'granted' ? '✓ Allowed' :
+                     permissionStatus.microphone === 'denied' ? '✗ Denied' :
+                     permissionStatus.microphone === 'checking' ? 'Checking...' : 'Not Set'}
                   </Badge>
                 </div>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 pt-2">
                 <Button
-                  onClick={checkPermissions}
+                  onClick={() => {
+                    // Clean up existing stream before rechecking
+                    if (streamRef.current) {
+                      streamRef.current.getTracks().forEach(track => track.stop());
+                      streamRef.current = null;
+                    }
+                    if (videoRef.current) {
+                      videoRef.current.srcObject = null;
+                    }
+                    checkPermissions();
+                  }}
                   variant="outline"
                   size="sm"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 hover:bg-primary/10"
                 >
                   <RefreshCw className="h-3 w-3" />
-                  Check Permissions
+                  Recheck Permissions
                 </Button>
-                
+
                 {(permissionStatus.camera === 'denied' || permissionStatus.microphone === 'denied') && (
                   <Button
                     onClick={() => setShowPermissionHelp(!showPermissionHelp)}
                     variant="outline"
                     size="sm"
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-950"
                   >
                     <HelpCircle className="h-3 w-3" />
                     Need Help?
@@ -583,55 +623,54 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
           </Card>
         )}
 
-        {/* Preview Video Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>AI Trainer Preview</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="aspect-video bg-black rounded-lg overflow-hidden flex items-center justify-center text-white">
-                <p>AI trainer will appear here when session starts</p>
+        {/* Video Preview & Start Session Card */}
+        <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-transparent">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Video className="h-5 w-5 text-primary" />
+              Session Preview
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {/* Video Previews */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium text-muted-foreground">AI Trainer Preview</h4>
+                <div className="aspect-video bg-black rounded-lg overflow-hidden flex items-center justify-center text-white/60 text-sm">
+                  <p>AI trainer will appear here when session starts</p>
+                </div>
               </div>
-            </CardContent>
-          </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Your Video Preview</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden">
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium text-muted-foreground">Your Video Preview</h4>
+                <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden">
+                  <video
+                    ref={videoRef}
+                    autoPlay
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
 
-        {/* Start Button */}
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex justify-center">
+            {/* Start Button */}
+            <div className="flex justify-center pt-2">
               <Button
                 onClick={handleStartSession}
                 disabled={isLoading}
                 size="lg"
-                className="px-8"
+                className="px-12 py-6 text-lg bg-gradient-to-r from-primary to-primary-glow hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300 font-semibold"
               >
                 {isLoading ? (
                   <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
                     Starting Session...
                   </>
                 ) : (
                   <>
-                    <Play className="mr-2 h-4 w-4" />
+                    <Play className="mr-3 h-5 w-5" />
                     Start Roleplay Session
                   </>
                 )}
@@ -641,16 +680,21 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         </Card>
 
         {/* Learning Objectives */}
-        <Card>
+        <Card className="border-border/50">
           <CardHeader>
-            <CardTitle>Learning Objectives</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
+              Learning Objectives
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {scenario.objectives.map((objective, index) => (
-                <li key={index} className="flex items-start space-x-2">
-                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">{objective}</span>
+                <li key={index} className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="p-1 rounded-full bg-green-100 dark:bg-green-900 mt-0.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
+                  </div>
+                  <span className="text-sm flex-1">{objective}</span>
                 </li>
               ))}
             </ul>
@@ -726,7 +770,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
               referrerPolicy="no-referrer-when-downgrade"
             />
             {/* Debug info overlay */}
-            <div className="absolute bottom-4 left-4 bg-black/70 text-white text-xs p-2 rounded">
+            <div className="absolute bottom-4 left-4 bg-black/70 text-white text-micro p-2 rounded">
               ID: {conversationId}<br/>
               URL: {conversationUrl}
             </div>

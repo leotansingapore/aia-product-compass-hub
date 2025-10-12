@@ -58,26 +58,110 @@ serve(async (req) => {
     }
 
     if (!session.transcript || !Array.isArray(session.transcript) || session.transcript.length === 0) {
-      console.error('No transcript available for session:', sessionId);
-      
-      // Check if session is still recording or processing
-      const status = session.recording_status || 'unknown';
-      const message = status === 'recording' 
-        ? 'Conversation is still being processed. Please wait a few minutes and try again.'
-        : 'No conversation transcript found. The recording may not have been completed properly.';
-      
-      return new Response(
-        JSON.stringify({ 
-          error: 'Transcript not ready',
-          message: message,
-          status: status,
-          session_id: sessionId
-        }),
-        { 
-          status: 422, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+      console.error('❌ No transcript available for session:', sessionId, {
+        hasTranscript: !!session.transcript,
+        isArray: Array.isArray(session.transcript),
+        length: session.transcript?.length || 0,
+        recordingStatus: session.recording_status,
+        conversationId: session.tavus_conversation_id
+      });
+
+      // Attempt to fetch transcript from Tavus API as fallback
+      if (session.tavus_conversation_id) {
+        console.log('🔄 Attempting fallback transcript retrieval from Tavus API');
+
+        try {
+          const tavusApiKey = Deno.env.get('TAVUS_API_KEY');
+          if (tavusApiKey) {
+            console.log('📡 Fetching from Tavus API:', session.tavus_conversation_id);
+
+            const tavusResponse = await fetch(
+              `https://tavusapi.com/v2/conversations/${session.tavus_conversation_id}`,
+              {
+                headers: {
+                  'x-api-key': tavusApiKey,
+                  'Content-Type': 'application/json'
+                }
+              }
+            );
+
+            if (tavusResponse.ok) {
+              const data = await tavusResponse.json();
+              console.log('📥 Tavus API response structure:', Object.keys(data));
+
+              // Try multiple possible transcript locations
+              let transcript = data.transcript ||
+                              data.conversation?.transcript ||
+                              data.messages ||
+                              data.conversation?.messages ||
+                              data.recording?.transcript;
+
+              if (transcript && Array.isArray(transcript) && transcript.length > 0) {
+                console.log('✅ Successfully retrieved transcript from Tavus API:', transcript.length, 'messages');
+
+                // Update session with retrieved transcript
+                const { error: updateError } = await supabase
+                  .from('roleplay_sessions')
+                  .update({
+                    transcript: transcript,
+                    recording_status: 'completed',
+                    updated_at: new Date().toISOString()
+                  })
+                  .eq('id', sessionId);
+
+                if (updateError) {
+                  console.error('❌ Failed to update session with fallback transcript:', updateError);
+                } else {
+                  console.log('✅ Session updated with fallback transcript, proceeding with feedback generation');
+                  // Update session object to continue with feedback generation
+                  session.transcript = transcript;
+                }
+              } else {
+                console.log('⚠️ Tavus API returned data but no valid transcript found');
+              }
+            } else {
+              console.error('❌ Tavus API request failed:', tavusResponse.status);
+            }
+          }
+        } catch (fallbackError) {
+          console.error('❌ Fallback transcript retrieval failed:', fallbackError);
         }
-      );
+      }
+
+      // Check again after fallback attempt
+      if (!session.transcript || !Array.isArray(session.transcript) || session.transcript.length === 0) {
+        // Check if session is still recording or processing
+        const status = session.recording_status || 'unknown';
+
+        let message = '';
+        let suggestion = '';
+
+        if (status === 'recording' || status === 'processing') {
+          message = 'Your conversation is still being processed. This usually takes 1-2 minutes after the session ends.';
+          suggestion = 'Please wait a moment and try the "Retry Transcript Retrieval" button.';
+        } else if (!session.tavus_conversation_id) {
+          message = 'The conversation was not properly initialized. This may happen if the session started incorrectly.';
+          suggestion = 'Please try starting a new roleplay session.';
+        } else {
+          message = 'The conversation transcript is not available. This can happen if the connection was interrupted.';
+          suggestion = 'Click "Retry Transcript Retrieval" to attempt to fetch the transcript from the recording service.';
+        }
+
+        return new Response(
+          JSON.stringify({
+            error: 'Transcript not ready',
+            message: message,
+            suggestion: suggestion,
+            status: status,
+            session_id: sessionId,
+            has_conversation_id: !!session.tavus_conversation_id
+          }),
+          {
+            status: 422,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+          }
+        );
+      }
     }
 
     // Insert progress tracking record
@@ -96,24 +180,21 @@ serve(async (req) => {
         practice_score: 1
       });
 
-    // Return immediate response and process in background
-    const backgroundTask = async () => {
+    // Format transcript for analysis
+    const conversationText = session.transcript
+      .filter(msg => msg.role === 'user' || msg.role === 'assistant')
+      .map(msg => `${msg.role === 'user' ? 'USER' : 'AI_TRAINER'}: ${msg.content}`)
+      .join('\n');
+
+    console.log('Starting feedback generation for session:', sessionId);
+
+    // Generate feedback with timeout controls and fallbacks (async, not awaited)
+    Promise.allSettled([
+      generateMetricsFeedbackWithTimeout(conversationText, session, openAIApiKey),
+      generateQualitativeFeedbackWithTimeout(conversationText, session, openAIApiKey),
+      generateAdvancedFeedbackWithTimeout(conversationText, session, openAIApiKey)
+    ]).then(async ([metricsResult, qualitativeResult, advancedResult]) => {
       try {
-        console.log('Starting background feedback generation for session:', sessionId);
-        
-        // Format transcript for analysis
-        const conversationText = session.transcript
-          .filter(msg => msg.role === 'user' || msg.role === 'assistant')
-          .map(msg => `${msg.role === 'user' ? 'USER' : 'AI_TRAINER'}: ${msg.content}`)
-          .join('\n');
-
-        // Generate feedback with timeout controls and fallbacks
-        const [metricsResult, qualitativeResult, advancedResult] = await Promise.allSettled([
-          generateMetricsFeedbackWithTimeout(conversationText, session, openAIApiKey),
-          generateQualitativeFeedbackWithTimeout(conversationText, session, openAIApiKey),
-          generateAdvancedFeedbackWithTimeout(conversationText, session, openAIApiKey)
-        ]);
-
         // Handle partial failures
         const metrics = metricsResult.status === 'fulfilled' ? metricsResult.value : getDefaultMetrics();
         const qualitative = qualitativeResult.status === 'fulfilled' ? qualitativeResult.value : getDefaultQualitative();
@@ -129,14 +210,14 @@ serve(async (req) => {
           product_knowledge_score: metrics.scores.productKnowledge,
           small_talk_score: metrics.scores.smallTalk,
           pain_point_identification_score: metrics.scores.painPointIdentification,
-          
+
           // Enhanced fields
           practice_score: parseInt(qualitative.practiceScore) || 1,
           detailed_rubric_feedback: metrics.rubricFeedback || {},
           conversation_flow_summary: qualitative.conversationFlowSummary || [],
           body_language_analysis: advanced.visualPresence?.detailedAnalysis || null,
           tone_detailed_analysis: advanced.toneAnalysis?.detailedAnalysis || null,
-          
+
           // Original qualitative analysis (restructured)
           strengths: qualitative.strengths ? [qualitative.strengths.content] : [],
           improvement_areas: qualitative.growthAreas?.map(area => area.title + ': ' + area.content) || [],
@@ -144,7 +225,7 @@ serve(async (req) => {
           coaching_points: qualitative.coachingPoints,
           follow_up_questions: qualitative.followUpQuestions,
           conversation_summary: qualitative.conversationFlowSummary?.join(' ') || null,
-          
+
           // Advanced analytics (simplified for compatibility)
           tone_analysis: advanced.toneAnalysis?.descriptors || [],
           visual_presence_analysis: advanced.visualPresence?.descriptors || [],
@@ -162,7 +243,6 @@ serve(async (req) => {
         } else {
           console.log('Successfully generated and stored comprehensive feedback for session:', sessionId);
         }
-
       } catch (error) {
         console.error('Background feedback generation error:', error);
         // Update with error status
@@ -174,13 +254,13 @@ serve(async (req) => {
           })
           .eq('session_id', sessionId);
       }
-    };
+    }).catch(error => {
+      console.error('Fatal error in background processing:', error);
+    });
 
-    // Use EdgeRuntime.waitUntil for background processing
-    EdgeRuntime.waitUntil(backgroundTask());
-
-    return new Response(JSON.stringify({ 
-      success: true, 
+    // Return immediate response - processing continues in background
+    return new Response(JSON.stringify({
+      success: true,
       message: 'Feedback generation started',
       status: 'processing'
     }), {

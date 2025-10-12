@@ -1,4 +1,4 @@
-import { NavigationHeader, BreadcrumbItem } from "@/components/NavigationHeader";
+import { BrandedPageHeader, BreadcrumbItem } from "@/components/layout/BrandedPageHeader";
 import { getCategoryIdFromName } from "@/hooks/useProducts";
 
 interface ProductHeaderProps {
@@ -11,15 +11,15 @@ interface ProductHeaderProps {
 export function ProductHeader({ productTitle, categoryName, onBack, breadcrumbs }: ProductHeaderProps) {
   const defaultBreadcrumbs = [
     { label: "Home", href: "/" },
-    { 
-      label: categoryName || 'Products', 
+    {
+      label: categoryName || 'Products',
       href: `/category/${getCategoryIdFromName(categoryName || '')}`
     },
     { label: productTitle }
   ];
 
   return (
-    <NavigationHeader 
+    <BrandedPageHeader
       title={`🧾 ${productTitle}`}
       subtitle={categoryName || 'Product Details'}
       showBackButton
