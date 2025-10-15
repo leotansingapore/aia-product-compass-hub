@@ -99,6 +99,22 @@ export default function ProductDetail() {
                 />
               )}
 
+              {/* Chat Assistance Section */}
+              <div className="space-y-4">
+                <h2 className="text-xl font-semibold text-foreground">Chat Assistance</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <ProductChatLauncher productName={product.title} productId={product.id} />
+                  <ProductChatbots
+                    chatbot2Name={product.chatbot_2_name}
+                    chatbot3Name={product.chatbot_3_name}
+                    chatbot2Link={product.chatbot_link_2}
+                    chatbot3Link={product.chatbot_link_3}
+                    buttonText={product.chatbot_button_text}
+                    onUpdate={handleUpdate}
+                  />
+                </div>
+              </div>
+
               {/* Training Videos */}
               <ProtectedSection sectionId="product_videos">
                 <ProductTrainingVideos
@@ -126,17 +142,6 @@ export default function ProductDetail() {
                   productId={productId}
                 />
               )}
-
-              <ProductChatLauncher productName={product.title} productId={product.id} />
-
-              <ProductChatbots
-                chatbot2Name={product.chatbot_2_name}
-                chatbot3Name={product.chatbot_3_name}
-                chatbot2Link={product.chatbot_link_2}
-                chatbot3Link={product.chatbot_link_3}
-                buttonText={product.chatbot_button_text}
-                onUpdate={handleUpdate}
-              />
 
               {/* Personal Notes */}
               <ProtectedSection sectionId="product_notes">
