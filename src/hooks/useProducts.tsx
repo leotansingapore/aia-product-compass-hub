@@ -41,6 +41,11 @@ export interface Product {
   custom_gpt_link?: string;
   assistant_id?: string;
   assistant_instructions?: string;
+  chatbot_link_2?: string;
+  chatbot_link_3?: string;
+  chatbot_2_name?: string;
+  chatbot_3_name?: string;
+  chatbot_button_text?: string;
   created_at: string;
   updated_at: string;
 }

@@ -115,7 +115,7 @@ const RoleplayFeedback = () => {
 
           console.log('🔍 FEEDBACK DEBUG: Session data:', {
             hasTranscript: !!sessionData?.transcript,
-            transcriptLength: sessionData?.transcript?.length || 0,
+            transcriptLength: Array.isArray(sessionData?.transcript) ? sessionData.transcript.length : 0,
             recordingStatus: sessionData?.recording_status,
             endedAt: sessionData?.ended_at
           });

@@ -112,7 +112,7 @@ export function UserTableRow({
               <Badge
                 variant={statusConfig.variant}
                 className={`gap-1 text-micro cursor-pointer hover:opacity-80 ${
-                  statusConfig.variant === 'outline' || statusConfig.variant === 'secondary'
+                  statusConfig.variant === 'secondary'
                     ? 'text-black'
                     : 'text-white'
                 }`}

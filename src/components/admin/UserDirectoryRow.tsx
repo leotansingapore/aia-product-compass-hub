@@ -56,7 +56,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
       <Badge
         variant={config.variant}
         className={`gap-1 ${
-          config.variant === 'outline' || config.variant === 'secondary'
+          config.variant === 'secondary'
             ? 'text-black'
             : 'text-white'
         }`}

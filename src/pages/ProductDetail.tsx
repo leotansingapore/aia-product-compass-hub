@@ -7,6 +7,7 @@ import { ProductHighlights } from "@/components/product-detail/ProductHighlights
 import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLinks";
 import { SalesToolsUsefulLinks } from "@/components/product-detail/SalesToolsUsefulLinks";
 import { ProductChatLauncher } from "@/components/product-detail/ProductChatLauncher";
+import { ProductChatbots } from "@/components/product-detail/ProductChatbots";
 import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { PersonalNotes } from "@/components/PersonalNotes";
@@ -127,6 +128,15 @@ export default function ProductDetail() {
               )}
 
               <ProductChatLauncher productName={product.title} productId={product.id} />
+
+              <ProductChatbots
+                chatbot2Name={product.chatbot_2_name}
+                chatbot3Name={product.chatbot_3_name}
+                chatbot2Link={product.chatbot_link_2}
+                chatbot3Link={product.chatbot_link_3}
+                buttonText={product.chatbot_button_text}
+                onUpdate={handleUpdate}
+              />
 
               {/* Personal Notes */}
               <ProtectedSection sectionId="product_notes">

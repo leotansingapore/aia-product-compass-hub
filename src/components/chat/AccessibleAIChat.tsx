@@ -194,7 +194,7 @@ function AccessibleAIChatInner({ productData, className }: AccessibleAIChatProps
     {
       key: '/',
       modifiers: ['ctrl'],
-      handler: () => focusInput(inputAreaRef),
+      handler: () => inputAreaRef.current?.focus(),
       description: 'Focus input'
     },
     {
