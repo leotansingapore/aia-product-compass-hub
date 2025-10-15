@@ -168,15 +168,19 @@ export function FolderBasedUsefulLinks({ folders, onSave, className = "", readOn
                       variant="ghost"
                       size="sm"
                       className="justify-start min-w-0"
-                      onClick={() => {
-                        const urlToOpen = link.url.startsWith('http') ? link.url : `https://${link.url}`;
-                        window.open(urlToOpen, '_blank');
-                      }}
+                      asChild
                       disabled={!isValidUrl(link.url)}
                     >
-                      <span className="mr-2 flex-shrink-0">{link.icon}</span>
-                      <span className="truncate">{link.name}</span>
-                      <ExternalLink className="h-3 w-3 ml-auto flex-shrink-0" />
+                      <a
+                        href={link.url.startsWith('http') ? link.url : `https://${link.url}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center w-full"
+                      >
+                        <span className="mr-2 flex-shrink-0">{link.icon}</span>
+                        <span className="truncate">{link.name}</span>
+                        <ExternalLink className="h-3 w-3 ml-auto flex-shrink-0" />
+                      </a>
                     </Button>
                   ))}
                 </div>
@@ -401,20 +405,24 @@ export function FolderBasedUsefulLinks({ folders, onSave, className = "", readOn
               <CollapsibleContent className="pl-6 mt-2">
                 <div className="grid grid-cols-1 3xl:grid-cols-2 gap-2">
                   {folder.links.map((link, linkIndex) => (
-                    <Button
+                  <Button
                       key={linkIndex}
                       variant="ghost"
                       size="sm"
                       className="justify-start min-w-0"
-                      onClick={() => {
-                        const urlToOpen = link.url.startsWith('http') ? link.url : `https://${link.url}`;
-                        window.open(urlToOpen, '_blank');
-                      }}
+                      asChild
                       disabled={!isValidUrl(link.url)}
                     >
-                      <span className="mr-2 flex-shrink-0">{link.icon}</span>
-                      <span className="truncate">{link.name}</span>
-                      <ExternalLink className="h-3 w-3 ml-auto flex-shrink-0" />
+                      <a
+                        href={link.url.startsWith('http') ? link.url : `https://${link.url}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center w-full"
+                      >
+                        <span className="mr-2 flex-shrink-0">{link.icon}</span>
+                        <span className="truncate">{link.name}</span>
+                        <ExternalLink className="h-3 w-3 ml-auto flex-shrink-0" />
+                      </a>
                     </Button>
                   ))}
                 </div>

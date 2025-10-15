@@ -118,15 +118,19 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
             key={index}
             variant="outline"
             className="justify-start min-w-0"
-            onClick={() => {
-              const urlToOpen = link.url.startsWith('http') ? link.url : `https://${link.url}`;
-              window.open(urlToOpen, '_blank');
-            }}
+            asChild
             disabled={!isValidUrl(link.url)}
           >
-            <span className="mr-2 flex-shrink-0">{link.icon}</span>
-            <span className="truncate">{link.name}</span>
-            <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" />
+            <a
+              href={link.url.startsWith('http') ? link.url : `https://${link.url}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center w-full"
+            >
+              <span className="mr-2 flex-shrink-0">{link.icon}</span>
+              <span className="truncate">{link.name}</span>
+              <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" />
+            </a>
           </Button>
         ))}
       </div>
@@ -252,15 +256,19 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
               key={index}
               variant="outline"
               className="justify-start hover:border-primary hover:bg-primary/5 min-w-0"
-              onClick={() => {
-                const urlToOpen = link.url.startsWith('http') ? link.url : `https://${link.url}`;
-                window.open(urlToOpen, '_blank');
-              }}
+              asChild
               disabled={!isValidUrl(link.url)}
             >
-              <span className="mr-2 flex-shrink-0">{link.icon}</span>
-              <span className="truncate">{link.name}</span>
-              <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" />
+              <a
+                href={link.url.startsWith('http') ? link.url : `https://${link.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center w-full"
+              >
+                <span className="mr-2 flex-shrink-0">{link.icon}</span>
+                <span className="truncate">{link.name}</span>
+                <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" />
+              </a>
             </Button>
           ))
         ) : (

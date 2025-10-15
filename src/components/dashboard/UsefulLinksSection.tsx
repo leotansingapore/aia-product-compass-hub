@@ -86,31 +86,31 @@ export function UsefulLinksSection() {
           <h3 className="text-lg font-semibold mb-4">{categoryTitles[category as keyof typeof categoryTitles]}</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {links.map((link, index) => (
-              <Card 
-                key={index} 
-                className={`${categoryColors[link.category as keyof typeof categoryColors]} hover:shadow-md transition-shadow cursor-pointer`}
-                onClick={() => {
-                  if (link.url.startsWith('http') || link.url.startsWith('mailto:')) {
-                    window.open(link.url, '_blank', 'noopener,noreferrer');
-                  } else {
-                    window.location.href = link.url;
-                  }
-                }}
+              <a
+                key={index}
+                href={link.url}
+                target={link.url.startsWith('http') || link.url.startsWith('mailto:') ? '_blank' : '_self'}
+                rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="block"
               >
-                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-base">
-                    {link.icon}
-                    {link.title}
-                    {(link.url.startsWith('http') || link.url.startsWith('mailto:')) && (
-                      <ExternalLink className="w-3 h-3 ml-auto" />
-                    )}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <p className="text-sm text-muted-foreground">{link.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+                <Card 
+                  className={`${categoryColors[link.category as keyof typeof categoryColors]} hover:shadow-md transition-shadow cursor-pointer`}
+                >
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-base">
+                      {link.icon}
+                      {link.title}
+                      {(link.url.startsWith('http') || link.url.startsWith('mailto:')) && (
+                        <ExternalLink className="w-3 h-3 ml-auto" />
+                      )}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-sm text-muted-foreground">{link.description}</p>
+                  </CardContent>
+                </Card>
+              </a>
+            ))
           </div>
         </div>
       ))}

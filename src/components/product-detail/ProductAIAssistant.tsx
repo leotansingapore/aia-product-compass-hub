@@ -202,11 +202,13 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    onClick={openCustomGPT}
+                    asChild
                     className="w-full"
                   >
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    ➡️ Open Custom GPT
+                    <a href={customGptLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      ➡️ Open Custom GPT
+                    </a>
                   </Button>
                 )}
               </div>
