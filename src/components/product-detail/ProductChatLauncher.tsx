@@ -26,34 +26,40 @@ export function ProductChatLauncher({
   };
 
   return (
-    <Card className={`group hover:shadow-md transition-all duration-300 hover:scale-[1.02] border-primary/20 hover:border-primary/40 mobile-card ${className}`}>
-      <CardContent className="p-3 sm:p-4 md:p-6">
-        <div className="flex items-start">
-          {/* Content */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-2">
-              <h3 className="text-sm md:text-base font-semibold text-foreground">Chat with AI Assistant</h3>
-              <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-primary animate-pulse" />
-            </div>
+    <Card className={`group hover:shadow-md transition-all duration-300 border border-border hover:border-primary/50 bg-card ${className}`}>
+      <CardContent className="p-5">
+        <div className="flex flex-col items-center text-center space-y-3">
+          {/* Icon */}
+          <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+            <MessageCircle className="h-7 w-7 text-primary" />
+          </div>
 
+          {/* Title */}
+          <div className="space-y-1">
+            <h3 className="text-base font-semibold text-foreground">
+              Chat with AI Assistant
+            </h3>
             {productName && (
-              <p className="text-micro md:text-sm font-medium text-muted-foreground mb-2">for {productName}</p>
+              <p className="text-xs font-medium text-primary">
+                for {productName}
+              </p>
             )}
-
-            <p className="text-micro md:text-sm text-muted-foreground leading-relaxed mb-3 md:mb-4">
+            <p className="text-xs text-muted-foreground leading-snug">
               {description || defaultDescription}
             </p>
-
-            <Button
-              type="button"
-              onClick={handleLaunch}
-              aria-label="Start chat with AI assistant"
-              className="w-full h-12 md:h-10 text-base md:text-sm group-hover:shadow-md transition-all duration-300 mobile-touch-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary [touch-action:manipulation]"
-            >
-              <MessageCircle className="h-5 w-5 mr-2" />
-              Start Chat
-            </Button>
           </div>
+
+          {/* Button */}
+          <Button
+            type="button"
+            onClick={handleLaunch}
+            aria-label="Start chat with AI assistant"
+            className="w-full h-10 text-sm"
+            size="default"
+          >
+            <MessageCircle className="h-4 w-4 mr-2" />
+            Start Chat
+          </Button>
         </div>
       </CardContent>
     </Card>
