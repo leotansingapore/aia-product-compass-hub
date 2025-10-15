@@ -196,48 +196,52 @@ export function ProductChatbots({
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Chatbot 2 */}
-        <Card className="group hover:shadow-md transition-all duration-300 hover:scale-[1.02] border-primary/20 hover:border-primary/40 mobile-card">
-          <CardContent className="p-4 md:p-6">
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <MessageCircle className="h-6 w-6 md:h-8 md:w-8 text-primary" />
+        <Card className="group hover:shadow-lg transition-all duration-300 border-2 border-primary/30 hover:border-primary bg-card overflow-hidden">
+          <CardContent className="p-6 md:p-8">
+            <div className="flex flex-col items-center text-center space-y-5">
+              {/* Icon */}
+              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <MessageCircle className="h-10 w-10 text-primary" />
               </div>
 
-              <div>
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <h3 className="text-sm md:text-base font-semibold text-foreground">
+              {/* Title with badge */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-center gap-2">
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">
                     {chatbot2Name}
                   </h3>
-                  <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-primary animate-pulse" />
+                  <Sparkles className="h-5 w-5 text-primary animate-pulse" />
                 </div>
-                <p className="text-micro md:text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
                   Additional AI support for specialized queries
                 </p>
               </div>
 
+              {/* Button */}
               {chatbot2Link ? (
                 <Button
                   asChild
-                  className="w-full group-hover:shadow-md transition-all duration-300 mobile-touch-target"
-                  size="sm"
+                  className="w-full h-12 text-base font-semibold shadow-md hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90"
+                  size="lg"
                 >
                   <a
                     href={chatbot2Link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center"
+                    className="flex items-center justify-center gap-2"
                   >
-                    <ExternalLink className="h-4 w-4 mr-2" />
+                    <MessageCircle className="h-5 w-5" />
                     {buttonText}
+                    <ExternalLink className="h-4 w-4" />
                   </a>
                 </Button>
               ) : (
                 <Button
                   disabled
-                  className="w-full"
-                  size="sm"
+                  className="w-full h-12"
+                  size="lg"
                   variant="outline"
                 >
                   No link configured
@@ -248,46 +252,50 @@ export function ProductChatbots({
         </Card>
 
         {/* Chatbot 3 */}
-        <Card className="group hover:shadow-md transition-all duration-300 hover:scale-[1.02] border-primary/20 hover:border-primary/40 mobile-card">
-          <CardContent className="p-4 md:p-6">
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <MessageCircle className="h-6 w-6 md:h-8 md:w-8 text-primary" />
+        <Card className="group hover:shadow-lg transition-all duration-300 border-2 border-primary/30 hover:border-primary bg-card overflow-hidden">
+          <CardContent className="p-6 md:p-8">
+            <div className="flex flex-col items-center text-center space-y-5">
+              {/* Icon */}
+              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <MessageCircle className="h-10 w-10 text-primary" />
               </div>
 
-              <div>
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <h3 className="text-sm md:text-base font-semibold text-foreground">
+              {/* Title with badge */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-center gap-2">
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">
                     {chatbot3Name}
                   </h3>
-                  <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-primary animate-pulse" />
+                  <Sparkles className="h-5 w-5 text-primary animate-pulse" />
                 </div>
-                <p className="text-micro md:text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
                   Expert guidance and advanced product insights
                 </p>
               </div>
 
+              {/* Button */}
               {chatbot3Link ? (
                 <Button
                   asChild
-                  className="w-full group-hover:shadow-md transition-all duration-300 mobile-touch-target"
-                  size="sm"
+                  className="w-full h-12 text-base font-semibold shadow-md hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90"
+                  size="lg"
                 >
                   <a
                     href={chatbot3Link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center"
+                    className="flex items-center justify-center gap-2"
                   >
-                    <ExternalLink className="h-4 w-4 mr-2" />
+                    <MessageCircle className="h-5 w-5" />
                     {buttonText}
+                    <ExternalLink className="h-4 w-4" />
                   </a>
                 </Button>
               ) : (
                 <Button
                   disabled
-                  className="w-full"
-                  size="sm"
+                  className="w-full h-12"
+                  size="lg"
                   variant="outline"
                 >
                   No link configured
