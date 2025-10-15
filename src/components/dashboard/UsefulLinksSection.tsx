@@ -110,7 +110,7 @@ export function UsefulLinksSection() {
                   </CardContent>
                 </Card>
               </a>
-            ))
+            ))}
           </div>
         </div>
       ))}
