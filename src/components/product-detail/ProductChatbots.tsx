@@ -196,25 +196,22 @@ export function ProductChatbots({
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {/* Chatbot 2 */}
-        <Card className="group hover:shadow-lg transition-all duration-300 border-2 border-primary/30 hover:border-primary bg-card overflow-hidden">
-          <CardContent className="p-6 md:p-8">
-            <div className="flex flex-col items-center text-center space-y-5">
+        <Card className="group hover:shadow-md transition-all duration-300 border border-border hover:border-primary/50 bg-card">
+          <CardContent className="p-6">
+            <div className="flex flex-col items-center text-center space-y-4">
               {/* Icon */}
-              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <MessageCircle className="h-10 w-10 text-primary" />
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+                <MessageCircle className="h-8 w-8 text-primary" />
               </div>
 
-              {/* Title with badge */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-center gap-2">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground">
-                    {chatbot2Name}
-                  </h3>
-                  <Sparkles className="h-5 w-5 text-primary animate-pulse" />
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+              {/* Title */}
+              <div className="space-y-1.5">
+                <h3 className="text-lg font-semibold text-foreground">
+                  {chatbot2Name}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-snug">
                   Additional AI support for specialized queries
                 </p>
               </div>
@@ -223,8 +220,8 @@ export function ProductChatbots({
               {chatbot2Link ? (
                 <Button
                   asChild
-                  className="w-full h-12 text-base font-semibold shadow-md hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90"
-                  size="lg"
+                  className="w-full h-11 text-sm font-medium"
+                  size="default"
                 >
                   <a
                     href={chatbot2Link}
@@ -232,7 +229,6 @@ export function ProductChatbots({
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2"
                   >
-                    <MessageCircle className="h-5 w-5" />
                     {buttonText}
                     <ExternalLink className="h-4 w-4" />
                   </a>
@@ -240,8 +236,8 @@ export function ProductChatbots({
               ) : (
                 <Button
                   disabled
-                  className="w-full h-12"
-                  size="lg"
+                  className="w-full h-11"
+                  size="default"
                   variant="outline"
                 >
                   No link configured
@@ -252,23 +248,20 @@ export function ProductChatbots({
         </Card>
 
         {/* Chatbot 3 */}
-        <Card className="group hover:shadow-lg transition-all duration-300 border-2 border-primary/30 hover:border-primary bg-card overflow-hidden">
-          <CardContent className="p-6 md:p-8">
-            <div className="flex flex-col items-center text-center space-y-5">
+        <Card className="group hover:shadow-md transition-all duration-300 border border-border hover:border-primary/50 bg-card">
+          <CardContent className="p-6">
+            <div className="flex flex-col items-center text-center space-y-4">
               {/* Icon */}
-              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <MessageCircle className="h-10 w-10 text-primary" />
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+                <MessageCircle className="h-8 w-8 text-primary" />
               </div>
 
-              {/* Title with badge */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-center gap-2">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground">
-                    {chatbot3Name}
-                  </h3>
-                  <Sparkles className="h-5 w-5 text-primary animate-pulse" />
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+              {/* Title */}
+              <div className="space-y-1.5">
+                <h3 className="text-lg font-semibold text-foreground">
+                  {chatbot3Name}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-snug">
                   Expert guidance and advanced product insights
                 </p>
               </div>
@@ -277,8 +270,8 @@ export function ProductChatbots({
               {chatbot3Link ? (
                 <Button
                   asChild
-                  className="w-full h-12 text-base font-semibold shadow-md hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90"
-                  size="lg"
+                  className="w-full h-11 text-sm font-medium"
+                  size="default"
                 >
                   <a
                     href={chatbot3Link}
@@ -286,7 +279,6 @@ export function ProductChatbots({
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2"
                   >
-                    <MessageCircle className="h-5 w-5" />
                     {buttonText}
                     <ExternalLink className="h-4 w-4" />
                   </a>
@@ -294,8 +286,8 @@ export function ProductChatbots({
               ) : (
                 <Button
                   disabled
-                  className="w-full h-12"
-                  size="lg"
+                  className="w-full h-11"
+                  size="default"
                   variant="outline"
                 >
                   No link configured
