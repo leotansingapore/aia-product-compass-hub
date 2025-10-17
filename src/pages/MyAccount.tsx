@@ -3,7 +3,6 @@ import { usePermissions } from "@/hooks/usePermissions";
 import { useAuth } from "@/hooks/useAuth";
 import { ProfileSection } from "@/components/account/ProfileSection";
 import { SecuritySection } from "@/components/account/SecuritySection";
-import { PreferencesSection } from "@/components/account/PreferencesSection";
 import { UserManagementSection } from "@/components/account/UserManagementSection";
 import { AccountTabs } from "@/components/account/AccountTabs";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
@@ -11,7 +10,7 @@ import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, Shield, Settings, Users, Lock } from "lucide-react";
+import { User, Shield, Users, Lock } from "lucide-react";
 
 export default function MyAccount() {
   const { isMasterAdmin, hasRole } = usePermissions();
@@ -74,13 +73,6 @@ export default function MyAccount() {
       protected: true
     },
     {
-      id: "preferences",
-      label: "Settings",
-      icon: <Settings className="h-5 w-5" />,
-      component: <PreferencesSection />,
-      protected: true
-    },
-    {
       id: "admin",
       label: "Admin",
       icon: <Users className="h-5 w-5" />,
@@ -94,7 +86,7 @@ export default function MyAccount() {
     <ProtectedPage pageId="my-account">
       <PageLayout
         title="My Account - Profile & Settings | FINternship"
-        description="Manage your FINternship learning platform account. Update profile information, security settings, preferences, and access admin tools for comprehensive account management."
+        description="Manage your FINternship learning platform account. Update profile information, security settings and access admin tools for comprehensive account management."
         keywords="account settings, profile management, security settings, user preferences, admin tools, learning platform account"
         canonical={`${window.location.origin}/my-account`}
         structuredData={structuredData}
@@ -102,7 +94,7 @@ export default function MyAccount() {
       >
         <BrandedPageHeader
           title="👤 My Account"
-          subtitle="Manage your profile, security settings, and preferences"
+          subtitle="Manage your profile and security settings"
           breadcrumbs={[
             { label: "Home", href: "/" },
             { label: "My Account" }

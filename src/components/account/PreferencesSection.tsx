@@ -5,15 +5,13 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Settings, Bell, Layout, Save } from "lucide-react";
+import { Bell, Layout, Save } from "lucide-react";
 
 interface Preferences {
-  theme: string;
   language: string;
   emailNotifications: boolean;
   pushNotifications: boolean;
   marketingEmails: boolean;
-  dashboardLayout: string;
   autoPlayVideos: boolean;
   showProgressBars: boolean;
 }
@@ -21,12 +19,10 @@ interface Preferences {
 export function PreferencesSection() {
   const { toast } = useToast();
   const [preferences, setPreferences] = useState<Preferences>({
-    theme: "system",
     language: "en",
     emailNotifications: true,
     pushNotifications: false,
     marketingEmails: false,
-    dashboardLayout: "grid",
     autoPlayVideos: true,
     showProgressBars: true,
   });
@@ -60,74 +56,6 @@ export function PreferencesSection() {
 
   return (
     <div className="space-y-6">
-      <Card className="border-0 shadow-lg">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-3 text-xl font-bold">
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <Settings className="h-6 w-6 text-primary" />
-            </div>
-            Display & Theme
-          </CardTitle>
-          <CardDescription className="text-base leading-relaxed">
-            Customize your visual experience
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {/* Ultra mobile-friendly preference items */}
-          <Card className="border-0 shadow-sm bg-muted/30">
-            <CardContent className="p-6">
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="theme" className="text-lg font-bold">Theme</Label>
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    Choose your preferred color scheme
-                  </p>
-                </div>
-                <Select
-                  value={preferences.theme}
-                  onValueChange={(value) => handlePreferenceChange('theme', value)}
-                >
-                  <SelectTrigger className="w-full h-12 text-base">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-0 shadow-sm bg-muted/30">
-            <CardContent className="p-6">
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="dashboard-layout" className="text-lg font-bold">Dashboard Layout</Label>
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    Choose how content is displayed
-                  </p>
-                </div>
-                <Select
-                  value={preferences.dashboardLayout}
-                  onValueChange={(value) => handlePreferenceChange('dashboardLayout', value)}
-                >
-                  <SelectTrigger className="w-full h-12 text-base">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="grid">Grid</SelectItem>
-                    <SelectItem value="list">List</SelectItem>
-                    <SelectItem value="compact">Compact</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </CardContent>
-          </Card>
-        </CardContent>
-      </Card>
-
       <Card className="border-0 shadow-lg">
         <CardHeader>
           <CardTitle className="flex items-center gap-3 text-xl font-bold">
