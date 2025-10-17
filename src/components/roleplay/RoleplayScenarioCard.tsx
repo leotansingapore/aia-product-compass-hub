@@ -1,7 +1,8 @@
+import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Play, Users, TrendingUp, MessageSquare } from 'lucide-react';
+import { Play, Users, TrendingUp, MessageSquare, BookOpen, Briefcase, Target } from 'lucide-react';
 import type { RoleplayScenario } from '@/hooks/useRoleplay';
 
 const categoryColors = {
@@ -24,26 +25,33 @@ const categoryIcons = {
   'exam-prep': Play
 };
 
+const scenarioIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  'samantha-lee-v2': BookOpen,
+  'rachel-ng': Users,
+  'james-liew': Briefcase,
+  'gabriel-ong': Target
+};
+
 interface RoleplayScenarioCardProps {
   scenario: RoleplayScenario;
   onStart: (scenario: RoleplayScenario) => void;
 }
 
 export function RoleplayScenarioCard({ scenario, onStart }: RoleplayScenarioCardProps) {
-  const CategoryIcon = categoryIcons[scenario.category];
+  const CategoryIcon = scenarioIcons[scenario.id] || categoryIcons[scenario.category];
   
   return (
-    <Card className="hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col group border-border/50">
+    <Card className="hover:shadow-md transition-shadow flex flex-col group border-border/50">
       <CardHeader>
         <div className="flex items-start justify-between mb-3">
-          <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+          <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 border-2 border-transparent group-hover:border-primary group-hover:scale-105 transition-all duration-200 shadow-md">
             <CategoryIcon className="h-8 w-8 text-primary" />
           </div>
           <div className="flex gap-2">
-            <Badge className={`${categoryColors[scenario.category]} transition-all text-xs px-2`}>
+            <Badge className={`${categoryColors[scenario.category]} text-xs px-2 transition-none pointer-events-none`}>
               {scenario.category}
             </Badge>
-            <Badge className={`${difficultyColors[scenario.difficulty]} transition-all text-xs px-2`}>
+            <Badge className={`${difficultyColors[scenario.difficulty]} text-xs px-2 transition-none pointer-events-none`}>
               {scenario.difficulty}
             </Badge>
           </div>
