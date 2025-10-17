@@ -32,6 +32,7 @@ interface FeedbackData {
   pronunciation_feedback: string | null;
   conversation_summary: string | null;
   created_at: string;
+  generation_status?: 'pending' | 'generating' | 'completed' | 'failed';
   // Enhanced fields
   practice_score?: number;
   detailed_rubric_feedback?: any;
@@ -98,11 +99,33 @@ const RoleplayFeedback = () => {
         }
 
         if (data) {
-          console.log('🔍 FEEDBACK DEBUG: Feedback found! Setting feedback and disabling loading states');
-          setFeedback(data as FeedbackData);
-          setLoading(false);
-          setGenerating(false);
-          console.log('🔍 FEEDBACK DEBUG: States updated - feedback loaded successfully');
+          console.log('🔍 FEEDBACK DEBUG: Feedback found! Checking generation status:', data.generation_status);
+
+          // Check if feedback is still being generated
+          if (data.generation_status === 'generating') {
+            console.log('🔍 FEEDBACK DEBUG: Status is "generating" - showing progress UI');
+            setLoading(false);
+            setGenerating(true);
+            setProgressMessage("Generating your feedback...");
+            // Don't set feedback data yet - wait for completed status
+          } else if (data.generation_status === 'completed') {
+            console.log('🔍 FEEDBACK DEBUG: Status is "completed" - displaying feedback');
+            setFeedback(data as FeedbackData);
+            setLoading(false);
+            setGenerating(false);
+          } else if (data.generation_status === 'failed') {
+            console.log('🔍 FEEDBACK DEBUG: Status is "failed" - showing error UI');
+            setLoading(false);
+            setGenerating(false);
+            setTimeoutReached(true);
+          } else {
+            // Handle legacy records without generation_status
+            console.log('🔍 FEEDBACK DEBUG: No generation_status - treating as completed');
+            setFeedback(data as FeedbackData);
+            setLoading(false);
+            setGenerating(false);
+          }
+          console.log('🔍 FEEDBACK DEBUG: States updated based on generation status');
         } else {
           console.log('🔍 FEEDBACK DEBUG: No feedback found, checking session transcript status');
 
@@ -242,21 +265,35 @@ const RoleplayFeedback = () => {
               },
               (payload) => {
                 console.log('🔍 FEEDBACK DEBUG: Real-time update received:', payload);
+
                 // Type conversion for compatibility
                 const feedbackData: FeedbackData = {
                   ...payload.new as any,
-                  conversation_flow_summary: Array.isArray(payload.new.conversation_flow_summary) 
-                    ? payload.new.conversation_flow_summary 
-                    : payload.new.conversation_flow_summary 
-                      ? (typeof payload.new.conversation_flow_summary === 'string' 
-                         ? JSON.parse(payload.new.conversation_flow_summary) 
+                  conversation_flow_summary: Array.isArray(payload.new.conversation_flow_summary)
+                    ? payload.new.conversation_flow_summary
+                    : payload.new.conversation_flow_summary
+                      ? (typeof payload.new.conversation_flow_summary === 'string'
+                         ? JSON.parse(payload.new.conversation_flow_summary)
                          : payload.new.conversation_flow_summary)
                       : undefined
                 };
-                setFeedback(feedbackData);
-                setGenerating(false);
-                setTimeoutReached(false);
-                if (timeoutId) clearTimeout(timeoutId);
+
+                // Only show feedback if generation is completed
+                if (feedbackData.generation_status === 'completed') {
+                  console.log('🔍 FEEDBACK DEBUG: Real-time update shows completed status - displaying feedback');
+                  setFeedback(feedbackData);
+                  setGenerating(false);
+                  setTimeoutReached(false);
+                  if (timeoutId) clearTimeout(timeoutId);
+                } else if (feedbackData.generation_status === 'failed') {
+                  console.log('🔍 FEEDBACK DEBUG: Real-time update shows failed status - showing error UI');
+                  setGenerating(false);
+                  setTimeoutReached(true);
+                  if (timeoutId) clearTimeout(timeoutId);
+                } else if (feedbackData.generation_status === 'generating') {
+                  console.log('🔍 FEEDBACK DEBUG: Real-time update shows generating status - keeping progress UI');
+                  setGenerating(true);
+                }
               }
             )
             .subscribe((status) => {
@@ -277,12 +314,24 @@ const RoleplayFeedback = () => {
                 .maybeSingle();
 
               if (data && !feedback) {
-                console.log('🔍 FEEDBACK DEBUG: Polling found feedback!');
-                setFeedback(data as FeedbackData);
-                setGenerating(false);
-                setTimeoutReached(false);
-                if (timeoutId) clearTimeout(timeoutId);
-                clearInterval(pollInterval);
+                console.log('🔍 FEEDBACK DEBUG: Polling found feedback! Status:', data.generation_status);
+
+                // Only set feedback if generation is completed
+                if (data.generation_status === 'completed') {
+                  console.log('🔍 FEEDBACK DEBUG: Polling found completed feedback - displaying');
+                  setFeedback(data as FeedbackData);
+                  setGenerating(false);
+                  setTimeoutReached(false);
+                  if (timeoutId) clearTimeout(timeoutId);
+                  clearInterval(pollInterval);
+                } else if (data.generation_status === 'failed') {
+                  console.log('🔍 FEEDBACK DEBUG: Polling found failed feedback - showing error');
+                  setGenerating(false);
+                  setTimeoutReached(true);
+                  if (timeoutId) clearTimeout(timeoutId);
+                  clearInterval(pollInterval);
+                }
+                // If still generating, keep polling
               }
             } catch (error) {
               console.error('🔍 FEEDBACK DEBUG: Polling error:', error);
@@ -401,15 +450,37 @@ const RoleplayFeedback = () => {
         .maybeSingle();
 
       if (data) {
-        setFeedback(data as FeedbackData);
-        setGenerating(false);
-        toast({
-          title: "Feedback Found!",
-          description: "Your feedback has been successfully loaded.",
-          variant: "default",
-        });
+        // Check generation status
+        if (data.generation_status === 'completed') {
+          setFeedback(data as FeedbackData);
+          setGenerating(false);
+          toast({
+            title: "Feedback Found!",
+            description: "Your feedback has been successfully loaded.",
+            variant: "default",
+          });
+        } else if (data.generation_status === 'generating') {
+          // Still generating - wait a bit more
+          toast({
+            title: "Still Generating",
+            description: "Your feedback is still being generated. Please wait...",
+            variant: "default",
+          });
+          setTimeout(() => {
+            setTimeoutReached(true);
+            setGenerating(false);
+          }, 15000); // Give it 15 more seconds
+        } else if (data.generation_status === 'failed') {
+          setGenerating(false);
+          setTimeoutReached(true);
+          toast({
+            title: "Generation Failed",
+            description: "Feedback generation encountered an error. Please try again.",
+            variant: "destructive",
+          });
+        }
       } else {
-        // Restart the generation process
+        // No feedback record found - restart the generation process
         setTimeout(() => {
           setTimeoutReached(true);
           setGenerating(false);
@@ -466,13 +537,22 @@ const RoleplayFeedback = () => {
           .eq('session_id', sessionId)
           .maybeSingle();
 
-        if (feedbackData) {
+        if (feedbackData && feedbackData.generation_status === 'completed') {
           clearInterval(pollForFeedback);
           setFeedback(feedbackData as FeedbackData);
           setGenerating(false);
           toast({
             title: "Feedback Ready!",
             description: "Your performance analysis is now available.",
+          });
+        } else if (feedbackData && feedbackData.generation_status === 'failed') {
+          clearInterval(pollForFeedback);
+          setTimeoutReached(true);
+          setGenerating(false);
+          toast({
+            title: "Generation Failed",
+            description: "Feedback generation encountered an error. Please try again.",
+            variant: "destructive",
           });
         } else if (attempts >= maxAttempts) {
           clearInterval(pollForFeedback);

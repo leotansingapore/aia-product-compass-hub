@@ -164,7 +164,7 @@ serve(async (req) => {
       }
     }
 
-    // Insert progress tracking record
+    // Insert progress tracking record with 'generating' status
     await supabase
       .from('roleplay_feedback')
       .insert({
@@ -177,7 +177,8 @@ serve(async (req) => {
         small_talk_score: 0,
         pain_point_identification_score: 0,
         specific_feedback: 'Generating feedback...',
-        practice_score: 1
+        practice_score: 1,
+        generation_status: 'generating'
       });
 
     // Format transcript for analysis
@@ -229,7 +230,10 @@ serve(async (req) => {
           // Advanced analytics (simplified for compatibility)
           tone_analysis: advanced.toneAnalysis?.descriptors || [],
           visual_presence_analysis: advanced.visualPresence?.descriptors || [],
-          pronunciation_feedback: advanced.pronunciationFeedback?.detailedAnalysis || null
+          pronunciation_feedback: advanced.pronunciationFeedback?.detailedAnalysis || null,
+
+          // Generation status
+          generation_status: 'completed'
         };
 
         // Update the feedback record
@@ -250,7 +254,8 @@ serve(async (req) => {
           .from('roleplay_feedback')
           .update({
             specific_feedback: 'An error occurred while generating feedback. Please try again.',
-            overall_score: 1
+            overall_score: 1,
+            generation_status: 'failed'
           })
           .eq('session_id', sessionId);
       }

@@ -730,6 +730,7 @@ export type Database = {
           created_at: string
           detailed_rubric_feedback: Json | null
           follow_up_questions: string[] | null
+          generation_status: string
           id: string
           improvement_areas: string[] | null
           objection_handling_score: number
@@ -757,6 +758,7 @@ export type Database = {
           created_at?: string
           detailed_rubric_feedback?: Json | null
           follow_up_questions?: string[] | null
+          generation_status?: string
           id?: string
           improvement_areas?: string[] | null
           objection_handling_score: number
@@ -784,6 +786,7 @@ export type Database = {
           created_at?: string
           detailed_rubric_feedback?: Json | null
           follow_up_questions?: string[] | null
+          generation_status?: string
           id?: string
           improvement_areas?: string[] | null
           objection_handling_score?: number
