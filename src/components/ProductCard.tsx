@@ -21,10 +21,10 @@ export function ProductCard({ title, description, category, tags, highlights, on
   };
 
   return (
-    <Card className="hover:shadow-elegant transition-all duration-300 hover:scale-105 cursor-pointer mobile-card h-full flex flex-col" onClick={onClick}>
+    <Card className="hover:shadow-md transition-shadow cursor-pointer mobile-card h-full flex flex-col" onClick={onClick}>
       <CardHeader className="p-3 md:p-6">
         <div className="flex justify-between items-start mb-2">
-          <Badge variant="secondary" className={`text-xs px-2 text-white hover:text-black ${categoryColors[category as keyof typeof categoryColors] || 'bg-primary'}`}>
+          <Badge variant="secondary" className={`text-xs px-2 text-white ${categoryColors[category as keyof typeof categoryColors] || 'bg-primary'}`}>
             {category}
           </Badge>
         </div>
