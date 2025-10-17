@@ -91,16 +91,16 @@ const AppSidebar = memo(function AppSidebar() {
   const getNavClassName = useMemo(() => (path: string) => {
     const isCurrentlyActive = isActive(path);
     return `flex items-center w-full text-left transition-colors ${
-      isCurrentlyActive 
-        ? "bg-primary text-primary-foreground font-medium" 
+      isCurrentlyActive
+        ? "bg-primary text-primary-foreground font-medium cursor-default hover:!bg-primary hover:!text-primary-foreground"
         : "hover:bg-accent hover:text-accent-foreground"
     }`;
   }, [isActive]);
 
   return (
-    <Sidebar className="border-r">
-      <SidebarHeader className="border-b px-4 py-3">
-        <div className="flex items-center gap-2">
+    <Sidebar collapsible="icon" className="border-r">
+      <SidebarHeader className="border-b py-3 px-4 group-data-[collapsible=icon]:px-2">
+        <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
             <BookOpen className="h-4 w-4 text-primary-foreground" />
           </div>
@@ -169,11 +169,11 @@ const AppSidebar = memo(function AppSidebar() {
                       return (
                         <SidebarMenuItem key={category.id}>
                           <SidebarMenuButton asChild tooltip={isCollapsed ? category.name : undefined}>
-                            <NavLink 
-                              to={`/category/${category.id}`} 
+                            <NavLink
+                              to={`/category/${category.id}`}
                               className={`flex items-center w-full text-left transition-colors ${
-                                isActiveCategory 
-                                  ? "bg-primary text-primary-foreground font-medium" 
+                                isActiveCategory
+                                  ? "bg-primary text-primary-foreground font-medium cursor-default hover:!bg-primary hover:!text-primary-foreground"
                                   : "hover:bg-accent hover:text-accent-foreground"
                               }`}
                             >
