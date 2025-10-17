@@ -9,13 +9,14 @@ interface CategoryCardProps {
   productCount: number;
   onClick: () => void;
   gradient?: string;
+  borderColor?: string;
 }
 
-export function CategoryCard({ title, description, icon, productCount, onClick, gradient }: CategoryCardProps) {
+export function CategoryCard({ title, description, icon, productCount, onClick, gradient, borderColor = 'group-hover:border-primary' }: CategoryCardProps) {
   return (
-    <Card className="hover:shadow-elegant transition-all duration-300 hover:scale-105 cursor-pointer group" onClick={onClick}>
+    <Card className="hover:shadow-md transition-shadow cursor-pointer group" onClick={onClick}>
       <CardHeader className="text-center pb-2 p-3 sm:p-4 md:p-6">
-        <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto rounded-full flex items-center justify-center mb-3 md:mb-4 ${gradient ? `bg-gradient-to-br ${gradient}` : 'bg-gradient-primary'} group-hover:scale-110 transition-transform duration-300`}>
+        <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto rounded-full flex items-center justify-center mb-3 md:mb-4 ${gradient ? `bg-gradient-to-br ${gradient}` : 'bg-gradient-primary'} ${borderColor} group-hover:scale-105 transition-all duration-200 shadow-md border-2 border-transparent`}>
           <div className="text-white text-lg sm:text-xl md:text-2xl">
             {icon}
           </div>

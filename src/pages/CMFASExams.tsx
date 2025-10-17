@@ -65,6 +65,7 @@ export default function CMFASExams() {
       icon: BookOpen,
       productCount: 4,
       gradient: "from-cyan-500 to-cyan-600",
+      borderColor: "group-hover:border-cyan-300",
       route: "/cmfas/module/onboarding"
     },
     {
@@ -73,22 +74,25 @@ export default function CMFASExams() {
       icon: Scale,
       productCount: 17,
       gradient: "from-blue-500 to-blue-600",
+      borderColor: "group-hover:border-blue-300",
       route: "/cmfas/module/m9"
     },
     {
-      title: "M9A Module", 
+      title: "M9A Module",
       description: "Life Insurance And Investment-Linked Policies II",
       icon: TrendingUp,
       productCount: 6,
       gradient: "from-green-500 to-green-600",
+      borderColor: "group-hover:border-green-300",
       route: "/cmfas/module/m9a"
     },
     {
       title: "HI Module",
-      description: "Health Insurance", 
+      description: "Health Insurance",
       icon: PieChart,
       productCount: 15,
       gradient: "from-purple-500 to-purple-600",
+      borderColor: "group-hover:border-purple-300",
       route: "/cmfas/module/hi"
     },
     {
@@ -97,6 +101,7 @@ export default function CMFASExams() {
       icon: FileText,
       productCount: 28,
       gradient: "from-red-500 to-red-600",
+      borderColor: "group-hover:border-red-300",
       route: "/cmfas/module/res5"
     }
   ];
@@ -153,6 +158,7 @@ export default function CMFASExams() {
               icon={<module.icon />}
               productCount={module.productCount}
               gradient={module.gradient}
+              borderColor={module.borderColor}
               onClick={() => navigate(module.route)}
             />
           ))}

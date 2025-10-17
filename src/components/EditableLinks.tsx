@@ -255,7 +255,7 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
             <Button
               key={index}
               variant="outline"
-              className="justify-start hover:border-primary hover:bg-primary/5 min-w-0"
+              className="justify-start hover:bg-primary/90 hover:text-primary-foreground min-w-0"
               asChild
               disabled={!isValidUrl(link.url)}
             >
@@ -273,16 +273,16 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
           ))
         ) : (
           <>
-            <Button variant="outline" className="justify-start hover:border-primary hover:bg-primary/5" disabled>
+            <Button variant="outline" className="justify-start hover:bg-primary/90 hover:text-primary-foreground" disabled>
               📄 Benefit Illustration (PDF)
             </Button>
-            <Button variant="outline" className="justify-start hover:border-primary hover:bg-primary/5" disabled>
+            <Button variant="outline" className="justify-start hover:bg-primary/90 hover:text-primary-foreground" disabled>
               📋 Product Summary (PDF)
             </Button>
-            <Button variant="outline" className="justify-start hover:border-primary hover:bg-primary/5" disabled>
+            <Button variant="outline" className="justify-start hover:bg-primary/90 hover:text-primary-foreground" disabled>
               🌐 AIA Website
             </Button>
-            <Button variant="outline" className="justify-start hover:border-primary hover:bg-primary/5" disabled>
+            <Button variant="outline" className="justify-start hover:bg-primary/90 hover:text-primary-foreground" disabled>
               📚 Supplementary Materials
             </Button>
           </>
