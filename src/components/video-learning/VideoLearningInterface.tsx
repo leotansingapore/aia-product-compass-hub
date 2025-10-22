@@ -78,6 +78,12 @@ export function VideoLearningInterface({
   const currentProgress = getVideoProgress(currentVideo?.id);
   const courseProgress = getCourseProgress(videos.length);
 
+  // Sync state with URL changes when video is selected from sidebar
+  useEffect(() => {
+    setCurrentVideoIndex(initialVideoIndex);
+    setWatchTime(0);
+  }, [initialVideoIndex]);
+
   // Track watch time
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -108,12 +114,20 @@ export function VideoLearningInterface({
   };
 
   const navigateVideo = (direction: 'prev' | 'next') => {
+    let targetIndex = currentVideoIndex;
+
     if (direction === 'prev' && currentVideoIndex > 0) {
-      setCurrentVideoIndex(currentVideoIndex - 1);
-      setWatchTime(0);
+      targetIndex = currentVideoIndex - 1;
     } else if (direction === 'next' && currentVideoIndex < videos.length - 1) {
-      setCurrentVideoIndex(currentVideoIndex + 1);
-      setWatchTime(0);
+      targetIndex = currentVideoIndex + 1;
+    } else {
+      return; // No navigation needed
+    }
+
+    const targetVideo = videos[targetIndex];
+    if (targetVideo && productSlugOrId) {
+      const videoSlug = getVideoSlug(targetVideo.title);
+      window.location.href = `/product/${productSlugOrId}/video/${videoSlug}`;
     }
   };
 
@@ -334,6 +348,8 @@ export function VideoLearningInterface({
                       setWatchTime(0);
                     }}
                     getVideoProgress={getVideoProgress}
+                    useIndividualPages={true}
+                    currentVideoId={currentVideo?.id}
                   />
                 </CardContent>
               </Card>

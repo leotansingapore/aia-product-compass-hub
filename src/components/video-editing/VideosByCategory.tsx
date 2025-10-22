@@ -14,13 +14,15 @@ interface VideosByCategoryProps {
   onVideoSelect?: (index: number) => void;
   getVideoProgress: (videoId: string) => { completed: boolean } | undefined;
   useIndividualPages?: boolean;
+  currentVideoId?: string;
 }
 
-export function VideosByCategory({ 
-  videos, 
-  onVideoSelect, 
-  getVideoProgress, 
-  useIndividualPages = false 
+export function VideosByCategory({
+  videos,
+  onVideoSelect,
+  getVideoProgress,
+  useIndividualPages = false,
+  currentVideoId
 }: VideosByCategoryProps) {
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
   const isMobile = useIsMobile();
@@ -95,10 +97,15 @@ export function VideosByCategory({
             <CollapsibleContent className="space-y-2 pl-4 sm:pl-6">
               {videoItems.map(({ video, index }) => {
                 const videoProgress = getVideoProgress(video.id);
+                const isCurrentVideo = currentVideoId === video.id;
                 return (
                     <div
                     key={`${category}-${index}-${video.id}`}
-                    className="flex items-center gap-2 sm:gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors min-h-[56px]"
+                    className={`flex items-center gap-2 sm:gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors min-h-[56px] ${
+                      isCurrentVideo
+                        ? 'bg-primary/10 border-primary shadow-sm'
+                        : ''
+                    }`}
                     onClick={() => {
                       if (useIndividualPages && productSlugOrId) {
                         const videoSlug = getVideoSlug(video.title);
