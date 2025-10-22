@@ -26,8 +26,8 @@ export function ProductChatLauncher({
   };
 
   return (
-    <Card className={`group hover:shadow-md transition-all duration-300 border border-border hover:border-primary/50 bg-card ${className}`}>
-      <CardContent className="p-5">
+    <Card className={`h-full group hover:shadow-md transition-all duration-300 border border-border hover:border-primary/50 bg-card ${className}`}>
+      <CardContent className="p-5 pt-5 sm:pt-4 md:pt-6 flex flex-col justify-center h-full">
         <div className="flex flex-col items-center text-center space-y-3">
           {/* Icon */}
           <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
