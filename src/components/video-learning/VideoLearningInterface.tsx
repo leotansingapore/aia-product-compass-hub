@@ -5,11 +5,14 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Share2 } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useToast } from '@/hooks/use-toast';
 import type { TrainingVideo } from '@/hooks/useProducts';
+import { getVideoSlug } from '@/utils/slugUtils';
+import { useParams } from 'react-router-dom';
 
 interface VideoLearningInterfaceProps {
   videos: TrainingVideo[];
@@ -49,11 +52,11 @@ function getVideoEmbedInfo(url: string) {
   return null;
 }
 
-export function VideoLearningInterface({ 
-  videos, 
-  productId, 
-  onClose, 
-  initialVideoIndex = 0 
+export function VideoLearningInterface({
+  videos,
+  productId,
+  onClose,
+  initialVideoIndex = 0
 }: VideoLearningInterfaceProps) {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(initialVideoIndex);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -61,6 +64,8 @@ export function VideoLearningInterface({
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const isMobile = useIsMobile();
   const [isNotesOpen, setIsNotesOpen] = useState(!isMobile);
+  const { toast } = useToast();
+  const { productSlugOrId } = useParams();
 
   const {
     getVideoProgress,
@@ -109,6 +114,45 @@ export function VideoLearningInterface({
     } else if (direction === 'next' && currentVideoIndex < videos.length - 1) {
       setCurrentVideoIndex(currentVideoIndex + 1);
       setWatchTime(0);
+    }
+  };
+
+  const handleShare = async () => {
+    if (!currentVideo || !productSlugOrId) return;
+
+    const videoSlug = getVideoSlug(currentVideo.title);
+    const shareUrl = `${window.location.origin}/product/${productSlugOrId}/video/${videoSlug}`;
+    const shareData = {
+      title: currentVideo.title,
+      text: currentVideo.description || `Watch "${currentVideo.title}" on FINternship`,
+      url: shareUrl,
+    };
+
+    try {
+      // Try using Web Share API first (works on mobile and some desktop browsers)
+      if (navigator.share) {
+        await navigator.share(shareData);
+        toast({
+          title: "Shared successfully",
+          description: "Video link has been shared",
+        });
+      } else {
+        // Fallback to clipboard copy
+        await navigator.clipboard.writeText(shareUrl);
+        toast({
+          title: "Link copied",
+          description: "Video link has been copied to clipboard",
+        });
+      }
+    } catch (error) {
+      // User cancelled share or clipboard copy failed
+      if (error instanceof Error && error.name !== 'AbortError') {
+        toast({
+          title: "Share failed",
+          description: "Could not share or copy the video link",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -206,15 +250,25 @@ export function VideoLearningInterface({
                         <ChevronRight className="h-4 w-4 ml-2" />
                       </Button>
                     </div>
-                    <Button
-                      className="w-full sm:w-auto"
-                      onClick={handleMarkComplete}
-                      disabled={currentProgress?.completed}
-                      variant={currentProgress?.completed ? "secondary" : "default"}
-                    >
-                      <Check className="h-4 w-4 mr-2" />
-                      {currentProgress?.completed ? "Completed" : "Mark Complete"}
-                    </Button>
+                    <div className="flex gap-2 w-full sm:w-auto">
+                      <Button
+                        variant="outline"
+                        className="flex-1 sm:flex-none"
+                        onClick={handleShare}
+                      >
+                        <Share2 className="h-4 w-4 mr-2" />
+                        Share
+                      </Button>
+                      <Button
+                        className="flex-1 sm:flex-none"
+                        onClick={handleMarkComplete}
+                        disabled={currentProgress?.completed}
+                        variant={currentProgress?.completed ? "secondary" : "default"}
+                      >
+                        <Check className="h-4 w-4 mr-2" />
+                        {currentProgress?.completed ? "Completed" : "Mark Complete"}
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>

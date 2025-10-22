@@ -7,6 +7,7 @@ import { ChevronDown, ChevronRight, Play, Check, Clock } from 'lucide-react';
 import { formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { getVideoSlug } from '@/utils/slugUtils';
 
 interface VideosByCategoryProps {
   videos: TrainingVideo[];
@@ -100,7 +101,8 @@ export function VideosByCategory({
                     className="flex items-center gap-2 sm:gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors min-h-[56px]"
                     onClick={() => {
                       if (useIndividualPages && productSlugOrId) {
-                        navigate(`/product/${productSlugOrId}/video/${video.id}`);
+                        const videoSlug = getVideoSlug(video.title);
+                        navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
                       } else {
                         onVideoSelect?.(index);
                       }

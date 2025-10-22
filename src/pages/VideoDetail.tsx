@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
@@ -5,21 +6,34 @@ import { VideoLearningInterface } from "@/components/video-learning/VideoLearnin
 import { PageLayout } from "@/components/layout/PageLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { useProductBySlugOrId } from "@/hooks/useProducts";
+import { getVideoSlug, isVideoId } from "@/utils/slugUtils";
 
 export default function VideoDetail() {
-  const { productSlugOrId, videoId } = useParams<{
+  const { productSlugOrId, videoId: videoSlugOrId } = useParams<{
     productSlugOrId: string;
     videoId: string;
   }>();
   const navigate = useNavigate();
-  
+
   const { product, loading } = useProductBySlugOrId(productSlugOrId || '');
+
+  // Handle backward compatibility - redirect old ID-based URLs to slug-based URLs
+  useEffect(() => {
+    if (product && videoSlugOrId && isVideoId(videoSlugOrId)) {
+      const videos = product.training_videos || [];
+      const video = videos.find(v => v.id === videoSlugOrId);
+      if (video) {
+        const videoSlug = getVideoSlug(video.title);
+        navigate(`/product/${productSlugOrId}/video/${videoSlug}`, { replace: true });
+      }
+    }
+  }, [product, videoSlugOrId, productSlugOrId, navigate]);
 
   if (loading) {
     return <SkeletonLoader type="product" />;
   }
 
-  if (!product || !videoId) {
+  if (!product || !videoSlugOrId) {
     return (
       <PageLayout
         title="Video Not Found | FINternship"
@@ -36,7 +50,15 @@ export default function VideoDetail() {
   }
 
   const videos = product.training_videos || [];
-  const videoIndex = videos.findIndex(video => video.id === videoId);
+
+  // Find video by slug (matching against title) or by ID (backward compatibility)
+  let videoIndex = videos.findIndex(video => getVideoSlug(video.title) === videoSlugOrId);
+
+  // Fallback to ID-based lookup if slug doesn't match
+  if (videoIndex === -1) {
+    videoIndex = videos.findIndex(video => video.id === videoSlugOrId);
+  }
+
   const currentVideo = videos[videoIndex];
 
   if (videoIndex === -1 || !currentVideo) {
