@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,6 +36,17 @@ export function ProductChatbots({
   const [saving, setSaving] = useState(false);
   const { isAdminMode } = useAdmin();
   const { toast } = useToast();
+
+  // Sync local state when props change (after successful save)
+  useEffect(() => {
+    setEditData({
+      chatbot2Name,
+      chatbot3Name,
+      chatbot2Link: chatbot2Link || "",
+      chatbot3Link: chatbot3Link || "",
+      buttonText,
+    });
+  }, [chatbot2Name, chatbot3Name, chatbot2Link, chatbot3Link, buttonText]);
 
   const handleSave = async () => {
     setSaving(true);
@@ -83,100 +94,102 @@ export function ProductChatbots({
 
   if (isAdminMode && isEditing) {
     return (
-      <Card className="border-orange-200 bg-orange-50">
-        <CardContent className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-orange-800">
-              ⚙️ Edit Chatbot Settings
-            </h3>
-          </div>
+      <div className="col-span-full">
+        <Card className="border-orange-200 bg-orange-50">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-orange-800">
+                ⚙️ Edit Chatbot Settings
+              </h3>
+            </div>
 
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="chatbot2-name">Chatbot 2 Name</Label>
+                  <Input
+                    id="chatbot2-name"
+                    value={editData.chatbot2Name}
+                    onChange={(e) =>
+                      setEditData({ ...editData, chatbot2Name: e.target.value })
+                    }
+                    placeholder="Chat with Chatbot"
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="chatbot2-link">Chatbot 2 Link</Label>
+                  <Input
+                    id="chatbot2-link"
+                    value={editData.chatbot2Link}
+                    onChange={(e) =>
+                      setEditData({ ...editData, chatbot2Link: e.target.value })
+                    }
+                    placeholder="https://..."
+                    className="mt-1"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="chatbot3-name">Chatbot 3 Name</Label>
+                  <Input
+                    id="chatbot3-name"
+                    value={editData.chatbot3Name}
+                    onChange={(e) =>
+                      setEditData({ ...editData, chatbot3Name: e.target.value })
+                    }
+                    placeholder="Chat with Notebook"
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="chatbot3-link">Chatbot 3 Link</Label>
+                  <Input
+                    id="chatbot3-link"
+                    value={editData.chatbot3Link}
+                    onChange={(e) =>
+                      setEditData({ ...editData, chatbot3Link: e.target.value })
+                    }
+                    placeholder="https://..."
+                    className="mt-1"
+                  />
+                </div>
+              </div>
+
               <div>
-                <Label htmlFor="chatbot2-name">Chatbot 2 Name</Label>
+                <Label htmlFor="button-text">Button Text</Label>
                 <Input
-                  id="chatbot2-name"
-                  value={editData.chatbot2Name}
+                  id="button-text"
+                  value={editData.buttonText}
                   onChange={(e) =>
-                    setEditData({ ...editData, chatbot2Name: e.target.value })
+                    setEditData({ ...editData, buttonText: e.target.value })
                   }
-                  placeholder="Chat with Chatbot"
+                  placeholder="Open Chat"
                   className="mt-1"
                 />
               </div>
-              <div>
-                <Label htmlFor="chatbot2-link">Chatbot 2 Link</Label>
-                <Input
-                  id="chatbot2-link"
-                  value={editData.chatbot2Link}
-                  onChange={(e) =>
-                    setEditData({ ...editData, chatbot2Link: e.target.value })
-                  }
-                  placeholder="https://..."
-                  className="mt-1"
-                />
+
+              <div className="flex gap-2 pt-2">
+                <Button onClick={handleSave} disabled={saving} size="sm">
+                  <Check className="h-4 w-4 mr-1" />
+                  {saving ? "Saving..." : "Save"}
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={handleCancel}
+                  disabled={saving}
+                  size="sm"
+                >
+                  <X className="h-4 w-4 mr-1" />
+                  Cancel
+                </Button>
               </div>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="chatbot3-name">Chatbot 3 Name</Label>
-                <Input
-                  id="chatbot3-name"
-                  value={editData.chatbot3Name}
-                  onChange={(e) =>
-                    setEditData({ ...editData, chatbot3Name: e.target.value })
-                  }
-                  placeholder="Chat with Notebook"
-                  className="mt-1"
-                />
-              </div>
-              <div>
-                <Label htmlFor="chatbot3-link">Chatbot 3 Link</Label>
-                <Input
-                  id="chatbot3-link"
-                  value={editData.chatbot3Link}
-                  onChange={(e) =>
-                    setEditData({ ...editData, chatbot3Link: e.target.value })
-                  }
-                  placeholder="https://..."
-                  className="mt-1"
-                />
-              </div>
-            </div>
-
-            <div>
-              <Label htmlFor="button-text">Button Text</Label>
-              <Input
-                id="button-text"
-                value={editData.buttonText}
-                onChange={(e) =>
-                  setEditData({ ...editData, buttonText: e.target.value })
-                }
-                placeholder="Open Chat"
-                className="mt-1"
-              />
-            </div>
-
-            <div className="flex gap-2 pt-2">
-              <Button onClick={handleSave} disabled={saving} size="sm">
-                <Check className="h-4 w-4 mr-1" />
-                {saving ? "Saving..." : "Save"}
-              </Button>
-              <Button
-                variant="outline"
-                onClick={handleCancel}
-                disabled={saving}
-                size="sm"
-              >
-                <X className="h-4 w-4 mr-1" />
-                Cancel
-              </Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 

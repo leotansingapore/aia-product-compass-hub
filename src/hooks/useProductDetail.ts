@@ -10,7 +10,7 @@ export function useProductDetail() {
   const { productSlugOrId } = useParams<{ productSlugOrId: string }>();
   const productId = productSlugOrId; // For now, treat as product ID until we implement full product slug support
   const navigate = useNavigate();
-  const { product, loading } = useProductBySlugOrId(productId || '');
+  const { product, loading, silentRefetch } = useProductBySlugOrId(productId || '');
   const { updateProduct } = useProductUpdate();
   const { addToRecent } = useRecentlyViewed();
   const { recordPageVisit } = useGamification();
@@ -27,12 +27,16 @@ export function useProductDetail() {
 
   const handleUpdate = async (field: string, value: any) => {
     if (!product) return;
-    
+
     console.log('🎯 ProductDetail handleUpdate called:', { field, value, productId: product.id });
-    
+
     try {
       const updatedData = await updateProduct(product.id, field, value);
       console.log('✅ ProductDetail update successful:', updatedData);
+
+      // Silent refetch to update UI without loading flicker
+      await silentRefetch();
+      console.log('🔄 Product data silently refetched after update');
     } catch (error) {
       console.error('❌ ProductDetail update failed:', error);
       throw error;

@@ -251,70 +251,78 @@ export function useProductBySlugOrId(slugOrId: string) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function fetchProduct() {
-      if (!slugOrId) {
-        setLoading(false);
-        return;
-      }
-
-      try {
-        // Check if it's a UUID or module ID
-        const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(slugOrId);
-        const isModuleId = /^module-\d+-[a-z0-9]+$/i.test(slugOrId);
-        const isDirectId = isUUID || isModuleId;
-        
-        let query = supabase
-          .from('products')
-          .select(`
-            *,
-            categories:category_id (
-              id,
-              name
-            )
-          `);
-
-        if (isDirectId) {
-          // Query by ID if it's a UUID or module ID
-          query = query.eq('id', slugOrId);
-        } else {
-          // Convert slug to title and query by title
-          const titleFromSlug = slugOrId
-            .split('-')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
-          
-          query = query.ilike('title', `%${titleFromSlug}%`);
-        }
-
-        const { data, error } = await query.maybeSingle();
-
-        if (error) throw error;
-        
-        // Preserve useful_links exactly as stored (array or folder_structure object)
-        if (data) {
-          const transformedData = {
-            ...data,
-            useful_links: data.useful_links,
-            training_videos: Array.isArray(data.training_videos)
-              ? (data.training_videos as unknown as TrainingVideo[])
-              : []
-          };
-          setProduct(transformedData);
-        } else {
-          setProduct(null);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch product');
-      } finally {
-        setLoading(false);
-      }
+  const fetchProduct = useCallback(async (silent: boolean = false) => {
+    if (!slugOrId) {
+      if (!silent) setLoading(false);
+      return;
     }
 
-    fetchProduct();
+    // Only show loading state if not a silent refetch
+    if (!silent) setLoading(true);
+
+    try {
+      // Check if it's a UUID or module ID
+      const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(slugOrId);
+      const isModuleId = /^module-\d+-[a-z0-9]+$/i.test(slugOrId);
+      const isDirectId = isUUID || isModuleId;
+
+      let query = supabase
+        .from('products')
+        .select(`
+          *,
+          categories:category_id (
+            id,
+            name
+          )
+        `);
+
+      if (isDirectId) {
+        // Query by ID if it's a UUID or module ID
+        query = query.eq('id', slugOrId);
+      } else {
+        // Convert slug to title and query by title
+        const titleFromSlug = slugOrId
+          .split('-')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+
+        query = query.ilike('title', `%${titleFromSlug}%`);
+      }
+
+      const { data, error } = await query.maybeSingle();
+
+      if (error) throw error;
+
+      // Preserve useful_links exactly as stored (array or folder_structure object)
+      if (data) {
+        const transformedData = {
+          ...data,
+          useful_links: data.useful_links,
+          training_videos: Array.isArray(data.training_videos)
+            ? (data.training_videos as unknown as TrainingVideo[])
+            : []
+        };
+        setProduct(transformedData);
+      } else {
+        setProduct(null);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch product');
+    } finally {
+      if (!silent) setLoading(false);
+    }
   }, [slugOrId]);
 
-  return { product, loading, error };
+  // Initial fetch on mount
+  useEffect(() => {
+    fetchProduct(false);
+  }, [fetchProduct]);
+
+  // Wrapper functions for different refetch behaviors
+  const refetch = useCallback(() => fetchProduct(false), [fetchProduct]);
+  const silentRefetch = useCallback(() => fetchProduct(true), [fetchProduct]);
+
+  return { product, loading, error, refetch, silentRefetch };
 }
 
 // Helper function to map category IDs to names for backward compatibility
