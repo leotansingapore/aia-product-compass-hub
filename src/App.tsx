@@ -30,6 +30,7 @@ import SimplifiedAuth from "./pages/SimplifiedAuth";
 import ConsultantLanding from "./pages/ConsultantLanding";
 import CMFASExams from "./pages/CMFASExams";
 import CMFASModuleDetail from "./pages/cmfas/CMFASModuleDetail";
+import CMFASVideoDetail from "./pages/cmfas/CMFASVideoDetail";
 import CMFASChat from "./pages/cmfas/CMFASChat";
 import Roleplay from "./pages/Roleplay";
 import RoleplayFeedback from "./pages/RoleplayFeedback";
@@ -71,6 +72,7 @@ const App = () => (
                     <Route path="/bookmarks" element={<Bookmarks />} />
                     <Route path="/cmfas-exams" element={<CMFASExams />} />
                     <Route path="/cmfas/module/:moduleId" element={<CMFASModuleDetail />} />
+                    <Route path="/cmfas/module/:moduleId/video/:videoSlugOrId" element={<CMFASVideoDetail />} />
                     <Route path="/cmfas/chat/:moduleId?" element={<CMFASChat />} />
                     <Route path="/roleplay" element={<Roleplay />} />
                     <Route path="/roleplay/feedback/:sessionId" element={<RoleplayFeedback />} />

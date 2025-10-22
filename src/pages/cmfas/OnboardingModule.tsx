@@ -8,57 +8,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Home, Info } from "lucide-react";
+import { getCMFASModuleVideos } from "@/data/cmfasModuleData";
 
 const OnboardingModule = () => {
-  const [tutorialLectures, setTutorialLectures] = useState([
-    {
-      id: 'onboarding-intro',
-      title: 'CMFAS Onboarding Overview',
-      description: 'Complete guide to getting started with CMFAS exams',
-      url: '/lectures/onboarding-intro.mp4',
-      duration: 1200, // 20 minutes
-      order: 0,
-      category: 'Getting Started'
-    },
-    {
-      id: 'onboarding-account-setup',
-      title: 'Student Account Creation',
-      description: 'Step-by-step guide to create your student account',
-      url: '/lectures/onboarding-account-setup.mp4',
-      duration: 900, // 15 minutes
-      order: 1,
-      category: 'Setup'
-    },
-    {
-      id: 'onboarding-exam-registration',
-      title: 'Exam Registration Process',
-      description: 'How to register for your first CMFAS exam',
-      url: '/lectures/onboarding-exam-registration.mp4',
-      duration: 1500, // 25 minutes
-      order: 2,
-      category: 'Setup'
-    },
-    {
-      id: 'onboarding-question-bank',
-      title: 'Accessing Question Bank',
-      description: 'Complete guide to accessing and using the question bank',
-      url: '/lectures/onboarding-question-bank.mp4',
-      duration: 1800, // 30 minutes
-      order: 3,
-      category: 'Study Tools'
-    },
-    {
-      id: 'onboarding-study-strategy',
-      title: 'Effective Study Strategy',
-      description: 'Proven strategies for CMFAS exam success',
-      url: '/lectures/onboarding-study-strategy.mp4',
-      duration: 2100, // 35 minutes
-      order: 4,
-      category: 'Study Strategy'
-    }
-  ]);
+  const moduleId = 'onboarding';
+  const [tutorialLectures, setTutorialLectures] = useState(getCMFASModuleVideos(moduleId));
 
   const [usefulLinks, setUsefulLinks] = useState([
     {
@@ -411,7 +367,7 @@ const OnboardingModule = () => {
           <h2 id="tutorial-lectures-heading" className="sr-only">Tutorial Lectures</h2>
           <CMFASTutorialLectures
             videos={tutorialLectures}
-            moduleId="onboarding"
+            moduleId={moduleId}
             moduleName="CMFAS Onboarding"
             onUpdate={handleUpdate}
           />

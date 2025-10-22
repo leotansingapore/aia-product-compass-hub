@@ -47,6 +47,8 @@ export function CMFASTutorialLectures({ videos, moduleId, moduleName, onUpdate }
       <VideoLearningInterface
         videos={processedVideos}
         productId={moduleId}
+        moduleId={moduleId}
+        moduleType="cmfas"
         onClose={() => setShowLearningInterface(false)}
         initialVideoIndex={selectedVideoIndex}
       />
@@ -107,6 +109,9 @@ export function CMFASTutorialLectures({ videos, moduleId, moduleName, onUpdate }
                 setShowLearningInterface(true);
               }}
               getVideoProgress={getVideoProgress}
+              useIndividualPages={true}
+              moduleId={moduleId}
+              moduleType="cmfas"
             />
           </div>
         ) : (

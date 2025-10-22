@@ -15,6 +15,8 @@ interface VideosByCategoryProps {
   getVideoProgress: (videoId: string) => { completed: boolean } | undefined;
   useIndividualPages?: boolean;
   currentVideoId?: string;
+  moduleId?: string;
+  moduleType?: 'product' | 'cmfas';
 }
 
 export function VideosByCategory({
@@ -22,7 +24,9 @@ export function VideosByCategory({
   onVideoSelect,
   getVideoProgress,
   useIndividualPages = false,
-  currentVideoId
+  currentVideoId,
+  moduleId,
+  moduleType = 'product'
 }: VideosByCategoryProps) {
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
   const isMobile = useIsMobile();
@@ -107,9 +111,13 @@ export function VideosByCategory({
                         : ''
                     }`}
                     onClick={() => {
-                      if (useIndividualPages && productSlugOrId) {
+                      if (useIndividualPages) {
                         const videoSlug = getVideoSlug(video.title);
-                        navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
+                        if (moduleType === 'cmfas' && moduleId) {
+                          navigate(`/cmfas/module/${moduleId}/video/${videoSlug}`);
+                        } else if (productSlugOrId) {
+                          navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
+                        }
                       } else {
                         onVideoSelect?.(index);
                       }

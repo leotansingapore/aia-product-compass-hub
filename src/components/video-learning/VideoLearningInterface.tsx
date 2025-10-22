@@ -19,6 +19,8 @@ interface VideoLearningInterfaceProps {
   productId: string;
   onClose: () => void;
   initialVideoIndex?: number;
+  moduleId?: string;
+  moduleType?: 'product' | 'cmfas';
 }
 
 function getVideoEmbedInfo(url: string) {
@@ -56,7 +58,9 @@ export function VideoLearningInterface({
   videos,
   productId,
   onClose,
-  initialVideoIndex = 0
+  initialVideoIndex = 0,
+  moduleId,
+  moduleType = 'product'
 }: VideoLearningInterfaceProps) {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(initialVideoIndex);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -125,17 +129,33 @@ export function VideoLearningInterface({
     }
 
     const targetVideo = videos[targetIndex];
-    if (targetVideo && productSlugOrId) {
+    if (targetVideo) {
       const videoSlug = getVideoSlug(targetVideo.title);
-      window.location.href = `/product/${productSlugOrId}/video/${videoSlug}`;
+
+      // Use appropriate URL pattern based on module type
+      if (moduleType === 'cmfas' && moduleId) {
+        window.location.href = `/cmfas/module/${moduleId}/video/${videoSlug}`;
+      } else if (productSlugOrId) {
+        window.location.href = `/product/${productSlugOrId}/video/${videoSlug}`;
+      }
     }
   };
 
   const handleShare = async () => {
-    if (!currentVideo || !productSlugOrId) return;
+    if (!currentVideo) return;
 
     const videoSlug = getVideoSlug(currentVideo.title);
-    const shareUrl = `${window.location.origin}/product/${productSlugOrId}/video/${videoSlug}`;
+
+    // Generate appropriate URL based on module type
+    let shareUrl: string;
+    if (moduleType === 'cmfas' && moduleId) {
+      shareUrl = `${window.location.origin}/cmfas/module/${moduleId}/video/${videoSlug}`;
+    } else if (productSlugOrId) {
+      shareUrl = `${window.location.origin}/product/${productSlugOrId}/video/${videoSlug}`;
+    } else {
+      return; // Cannot generate share URL without context
+    }
+
     const shareData = {
       title: currentVideo.title,
       text: currentVideo.description || `Watch "${currentVideo.title}" on FINternship`,
@@ -350,6 +370,8 @@ export function VideoLearningInterface({
                     getVideoProgress={getVideoProgress}
                     useIndividualPages={true}
                     currentVideoId={currentVideo?.id}
+                    moduleId={moduleId}
+                    moduleType={moduleType}
                   />
                 </CardContent>
               </Card>
