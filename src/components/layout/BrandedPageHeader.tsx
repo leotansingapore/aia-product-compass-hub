@@ -10,8 +10,6 @@ import {
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 import { Link } from "react-router-dom";
-import { useAdmin } from "@/hooks/useAdmin";
-import { Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export interface BreadcrumbItem {
@@ -37,7 +35,7 @@ interface BrandedPageHeaderProps {
  * - WCAG-compliant focus indicators
  * - Responsive typography and spacing
  * - Optional breadcrumb navigation
- * - Admin mode toggle integration
+ * - Optional custom actions
  * - Mobile-optimized layout
  * - Performance optimized with memoization
  */
@@ -51,7 +49,6 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
   variant = "default",
   className
 }: BrandedPageHeaderProps) {
-  const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
 
   // Memoize breadcrumb rendering to avoid unnecessary re-renders
   const breadcrumbElements = useMemo(() => {
@@ -128,30 +125,9 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
               )}
             </div>
           </div>
-          {(actions || isAdmin) && (
+          {actions && (
             <div className="flex items-center space-x-2">
-              {isAdmin && (
-                <Button
-                  variant={isAdminMode ? "default" : "ghost"}
-                  size="sm"
-                  onClick={toggleAdminMode}
-                  className={cn(
-                    "mobile-touch-target transition-all",
-                    isAdminMode
-                      ? "bg-orange-600 hover:bg-orange-700 shadow-lg animate-pulse"
-                      : "text-white hover:bg-white/20 border border-white/30"
-                  )}
-                  aria-label={isAdminMode ? "Exit admin mode" : "Enter admin mode"}
-                  aria-pressed={isAdminMode}
-                >
-                  <Settings className="h-4 w-4" aria-hidden="true" />
-                  <span className="hidden sm:inline ml-2">{isAdminMode ? "🔧 Exit Admin" : "⚡ Admin"}</span>
-                  <span className="sm:hidden">{isAdminMode ? "🔧" : "⚡"}</span>
-                </Button>
-              )}
-              <div className="hidden sm:flex items-center space-x-2">
-                {actions}
-              </div>
+              {actions}
             </div>
           )}
         </div>
