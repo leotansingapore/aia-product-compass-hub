@@ -9,9 +9,9 @@ interface AdminVideoPreviewProps {
 }
 
 export function AdminVideoPreview({ videos, className = "", onClick }: AdminVideoPreviewProps) {
-  console.log('🎞️ AdminVideoPreview render:', { 
-    videosCount: videos?.length || 0, 
-    className 
+  console.log('🎞️ AdminVideoPreview render:', {
+    videosCount: videos?.length || 0,
+    className
   });
 
   // Ensure videos is always an array
@@ -22,7 +22,7 @@ export function AdminVideoPreview({ videos, className = "", onClick }: AdminVide
     return (
       <div className={`${className} space-y-4`}>
         <div className="flex gap-2 mb-4">
-          <Button 
+          <Button
             onClick={onClick}
             className="flex-1"
             size="lg"
@@ -31,7 +31,7 @@ export function AdminVideoPreview({ videos, className = "", onClick }: AdminVide
             Add First Video
           </Button>
         </div>
-        <div 
+        <div
           className="cursor-pointer hover:bg-primary/10 hover:border-primary/20 border-2 border-dashed border-primary/30 p-6 rounded transition-all duration-200 bg-primary/5"
           onClick={onClick}
           title="🔧 ADMIN MODE: Click to manage training videos"
@@ -49,11 +49,11 @@ export function AdminVideoPreview({ videos, className = "", onClick }: AdminVide
   }
 
   console.log('🎞️ AdminVideoPreview: Rendering video list with', safeVideos.length, 'videos');
-  
+
   return (
     <div className={`${className} space-y-4`}>
       <div className="flex gap-2 mb-4">
-        <Button 
+        <Button
           onClick={onClick}
           variant="default"
           size="lg"
@@ -62,7 +62,7 @@ export function AdminVideoPreview({ videos, className = "", onClick }: AdminVide
           <Plus className="h-5 w-5 mr-2" />
           Add Video
         </Button>
-        <Button 
+        <Button
           onClick={onClick}
           variant="outline"
           size="lg"
@@ -71,27 +71,35 @@ export function AdminVideoPreview({ videos, className = "", onClick }: AdminVide
           Manage
         </Button>
       </div>
-      
-      <div 
+
+      <div
         className="cursor-pointer hover:bg-primary/10 hover:border-primary/20 border-2 border-dashed border-primary/30 p-4 rounded transition-all duration-200 bg-primary/5"
         onClick={onClick}
         title="🔧 ADMIN MODE: Click to edit training videos"
       >
-        <div className="space-y-4">
-          {safeVideos.map((video, index) => {
+        <div className="space-y-2">
+          {safeVideos.map((video) => {
             // Ensure video object is valid
             if (!video || typeof video !== 'object') {
-              console.warn('🎞️ AdminVideoPreview: Invalid video object at index', index, video);
+              console.warn('🎞️ AdminVideoPreview: Invalid video object', video);
               return null;
             }
 
             return (
-              <div key={video.id || index} className="flex items-center gap-3 p-3 bg-background rounded border">
+              <div
+                key={video.id}
+                className="flex items-center gap-3 p-3 bg-background rounded border"
+              >
                 <Play className="h-5 w-5 text-primary" />
-                <div>
+                <div className="flex-1">
                   <p className="font-medium">{video.title || 'Untitled Video'}</p>
                   {video.description && (
-                    <p className="text-sm text-muted-foreground">{video.description}</p>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{video.description}</p>
+                  )}
+                  {video.category && (
+                    <p className="text-xs text-muted-foreground mt-1">
+                      📁 {video.category}
+                    </p>
                   )}
                 </div>
               </div>

@@ -89,6 +89,7 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
           existingCategories={existingCategories}
           onEditingIndexChange={videoManagement.setEditingIndex}
           onUpdateVideo={videoManagement.updateVideo}
+          onSetEditVideos={videoManagement.setEditVideos}
           onRemoveVideo={videoManagement.removeVideo}
           onMoveVideo={videoManagement.moveVideo}
           onNewVideoChange={videoManagement.setNewVideo}
@@ -101,8 +102,9 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
     );
   }
 
-  // Admin preview mode
+  // Admin preview mode (static list, no drag-and-drop)
   console.log('🎬 EditableVideos: Rendering AdminVideoPreview');
+
   return (
     <AdminVideoPreview
       videos={videos || []}

@@ -14,6 +14,7 @@ interface CourseStructurePanelProps {
   onEditVideo: (index: number) => void;
   onDeleteVideo: (index: number) => void;
   onAddVideoToFolder: (folderName: string) => void;
+  onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
 }
 
 export function CourseStructurePanel({
@@ -28,7 +29,8 @@ export function CourseStructurePanel({
   onMoveVideoToFolder,
   onEditVideo,
   onDeleteVideo,
-  onAddVideoToFolder
+  onAddVideoToFolder,
+  onReorderVideos
 }: CourseStructurePanelProps) {
   return (
     <div className="lg:col-span-1 space-y-4">
@@ -47,6 +49,7 @@ export function CourseStructurePanel({
           onEditVideo={onEditVideo}
           onDeleteVideo={onDeleteVideo}
           onAddVideoToFolder={onAddVideoToFolder}
+          onReorderVideos={onReorderVideos}
         />
       </div>
     </div>

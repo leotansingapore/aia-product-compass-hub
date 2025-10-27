@@ -182,11 +182,12 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
     editingIndex,
     saving,
     emptyFolders,
-    
+
     // Actions
     setIsEditing,
     setNewVideo,
     setEditingIndex,
+    setEditVideos,
     handleSave,
     handleCancel,
     addVideo,

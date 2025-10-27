@@ -28,6 +28,7 @@ interface VideoEditingLayoutProps {
   onExpandedChange: (expanded: Set<string>) => void;
   onFolderDialogOpenChange: (open: boolean) => void;
   onFolderSave: (folderName: string) => void;
+  onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
 }
 
 export function VideoEditingLayout({
@@ -54,7 +55,8 @@ export function VideoEditingLayout({
   onAddVideoToFolder,
   onExpandedChange,
   onFolderDialogOpenChange,
-  onFolderSave
+  onFolderSave,
+  onReorderVideos
 }: VideoEditingLayoutProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -71,6 +73,7 @@ export function VideoEditingLayout({
         onEditVideo={(index) => onEditingIndexChange(index)}
         onDeleteVideo={onRemoveVideo}
         onAddVideoToFolder={onAddVideoToFolder}
+        onReorderVideos={onReorderVideos}
       />
 
       <VideoEditorPanel

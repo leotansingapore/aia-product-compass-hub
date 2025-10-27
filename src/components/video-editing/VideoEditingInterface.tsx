@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { VideoEditingLayout } from './VideoEditingLayout';
 import { VideoEditingActions } from './VideoEditingActions';
+import { VideoOrderActions } from './VideoOrderActions';
 import { useFolderManagement } from '@/hooks/useFolderManagement';
 import { useVideoActions } from '@/hooks/useVideoActions';
+import { useVideoOrderChanges } from '@/hooks/useVideoOrderChanges';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoEditingInterfaceProps {
@@ -13,6 +15,7 @@ interface VideoEditingInterfaceProps {
   existingCategories: string[];
   onEditingIndexChange: (index: number | null) => void;
   onUpdateVideo: (index: number, updatedVideo: TrainingVideo) => void;
+  onSetEditVideos: (videos: TrainingVideo[]) => void;
   onRemoveVideo: (index: number) => void;
   onMoveVideo: (index: number, direction: 'up' | 'down') => void;
   onNewVideoChange: (video: TrainingVideo) => void;
@@ -30,6 +33,7 @@ export function VideoEditingInterface({
   existingCategories,
   onEditingIndexChange,
   onUpdateVideo,
+  onSetEditVideos,
   onRemoveVideo,
   onMoveVideo,
   onNewVideoChange,
@@ -47,9 +51,23 @@ export function VideoEditingInterface({
 
   // Use empty arrays as default since this interface manages its own state
   const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
-  
+
+  // Track video order changes from drag-and-drop
+  const videoOrderChanges = useVideoOrderChanges({
+    videos: editVideos,
+    onSave: async (updatedVideos: TrainingVideo[]) => {
+      // Update the entire video array in parent component's state
+      console.log('🔄 VideoEditingInterface: Syncing reordered videos to parent state', {
+        count: updatedVideos.length,
+        firstVideo: updatedVideos[0]?.title,
+        lastVideo: updatedVideos[updatedVideos.length - 1]?.title
+      });
+      onSetEditVideos(updatedVideos);
+    }
+  });
+
   const folderManagement = useFolderManagement({
-    editVideos,
+    editVideos: videoOrderChanges.pendingVideos,
     onUpdateVideo,
     onCreateCategory,
     emptyFolders,
@@ -79,7 +97,7 @@ export function VideoEditingInterface({
     return (
       <>
         <VideoEditingLayout
-          editVideos={editVideos}
+          editVideos={videoOrderChanges.pendingVideos}
           editingIndex={editingIndex}
           newVideo={newVideo}
           existingCategories={existingCategories}
@@ -103,12 +121,24 @@ export function VideoEditingInterface({
           onExpandedChange={folderManagement.setExpandedFolders}
           onFolderDialogOpenChange={folderManagement.setFolderDialogOpen}
           onFolderSave={folderManagement.handleFolderSave}
+          onReorderVideos={videoOrderChanges.updatePendingVideos}
         />
-        <VideoEditingActions
-          saving={saving}
-          onSave={onSave}
-          onCancel={onCancel}
-        />
+        {videoOrderChanges.hasPendingChanges && (
+          <VideoOrderActions
+            changeCount={videoOrderChanges.getChangeCount()}
+            changeSummary={videoOrderChanges.getChangeSummary()}
+            isSaving={videoOrderChanges.isSaving}
+            onSave={videoOrderChanges.saveChanges}
+            onDiscard={videoOrderChanges.discardChanges}
+          />
+        )}
+        {!videoOrderChanges.hasPendingChanges && (
+          <VideoEditingActions
+            saving={saving}
+            onSave={onSave}
+            onCancel={onCancel}
+          />
+        )}
       </>
     );
   } catch (error) {
