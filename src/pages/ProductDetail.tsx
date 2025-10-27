@@ -104,7 +104,12 @@ export default function ProductDetail() {
                 <div className="space-y-4">
                   <h2 className="text-xl font-semibold text-foreground">Chat Assistance</h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <ProductChatLauncher productName={product.title} productId={product.id} />
+                    <ProductChatLauncher
+                      productName={product.title}
+                      productId={product.id}
+                      customLink={product.custom_gpt_link}
+                      onUpdate={handleUpdate}
+                    />
                     <ProductChatbots
                       chatbot2Name={product.chatbot_2_name}
                       chatbot3Name={product.chatbot_3_name}
