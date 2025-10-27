@@ -5,7 +5,7 @@ import type { UsefulLink } from "@/hooks/useProducts";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { usePermissions } from "@/hooks/usePermissions";
 
-interface CompetitorFolder {
+interface ResourceFolder {
   name: string;
   links: UsefulLink[];
   expanded?: boolean;
@@ -21,16 +21,16 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
   const { canEditSection } = usePermissions();
   const canEdit = canEditSection('product_links');
   
-  // Check if this is a Competitors module that should use folder-based links
-  const competitorModuleIds = [
-    'module-1758266631016-n7jff6ewh', // Investment Products - Competitors
-    'module-1759490805756-i6duglldb', // Medical Insurance Products - Competitors
+  // Check if this is a Resources module that should use folder-based links
+  const resourceModuleIds = [
+    'module-1758266631016-n7jff6ewh', // Investment Products - Resources
+    'module-1759490805756-i6duglldb', // Medical Insurance Products - Resources
   ];
-  
+
   // Also enable for all Term Products
   const isTermProduct = productId === 'secure-flexi-term' || productId === 'ultimate-critical-cover';
-  
-  const isCompetitorsModule = competitorModuleIds.includes(productId || '') || isTermProduct;
+
+  const isResourcesModule = resourceModuleIds.includes(productId || '') || isTermProduct;
 
   // Transform database format to EditableLinks format
   const transformToEditableFormat = (dbLinks: any): UsefulLink[] => {
@@ -81,7 +81,7 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
     await onUpdate('useful_links', dbFormatLinks);
   };
 
-  const handleFolderSave = async (folders: CompetitorFolder[]) => {
+  const handleFolderSave = async (folders: ResourceFolder[]) => {
     // Convert folder structure to database format
     const dbFormatFolders = {
       type: 'folder_structure',
@@ -100,7 +100,7 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
   const transformedLinks = Array.isArray(links) ? transformToEditableFormat(links) : [];
 
   // Transform database folders to component format
-  const transformFoldersFromDb = (dbData: any): CompetitorFolder[] => {
+  const transformFoldersFromDb = (dbData: any): ResourceFolder[] => {
     // Check if the data has folder structure format
     if (dbData && typeof dbData === 'object' && dbData.type === 'folder_structure' && Array.isArray(dbData.folders)) {
       return dbData.folders.map((folder: any) => ({
@@ -116,8 +116,8 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
     return [];
   };
 
-  // Get competitor folders from the database
-  const competitorFolders = transformFoldersFromDb(links);
+  // Get resource folders from the database
+  const resourceFolders = transformFoldersFromDb(links);
 
   return (
     <ProtectedSection sectionId="product_links">
@@ -131,9 +131,9 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {isCompetitorsModule ? (
+          {isResourcesModule ? (
             <FolderBasedUsefulLinks
-              folders={competitorFolders}
+              folders={resourceFolders}
               onSave={canEdit ? handleFolderSave : undefined}
               readOnly={!canEdit}
             />

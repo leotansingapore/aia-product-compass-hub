@@ -6,15 +6,15 @@ import { Check, X, Plus, Edit, Trash2, ExternalLink, Folder, FolderPlus, Chevron
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import type { UsefulLink } from '@/hooks/useProducts';
 
-interface CompetitorFolder {
+interface ResourceFolder {
   name: string;
   links: UsefulLink[];
   expanded?: boolean;
 }
 
 interface FolderBasedUsefulLinksProps {
-  folders: CompetitorFolder[];
-  onSave?: (newFolders: CompetitorFolder[]) => Promise<void>;
+  folders: ResourceFolder[];
+  onSave?: (newFolders: ResourceFolder[]) => Promise<void>;
   className?: string;
   readOnly?: boolean;
 }
@@ -23,7 +23,7 @@ const defaultIcons = ['📄', '📋', '🌐', '📚', '📊', '🎥', '🔗', '�
 
 export function FolderBasedUsefulLinks({ folders, onSave, className = "", readOnly = false }: FolderBasedUsefulLinksProps) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editFolders, setEditFolders] = useState<CompetitorFolder[]>(folders);
+  const [editFolders, setEditFolders] = useState<ResourceFolder[]>(folders);
   const [newFolderName, setNewFolderName] = useState('');
   const [editingFolderIndex, setEditingFolderIndex] = useState<number | null>(null);
   const [editingLinkIndex, setEditingLinkIndex] = useState<{ folderIndex: number; linkIndex: number } | null>(null);
@@ -55,7 +55,7 @@ export function FolderBasedUsefulLinks({ folders, onSave, className = "", readOn
       setAddingLinkToFolder(null);
       toast({
         title: "Success",
-        description: "Competitor folders saved successfully",
+        description: "Resource folders saved successfully",
       });
     } catch (error) {
       console.error('Failed to save folders:', error);
@@ -145,7 +145,7 @@ export function FolderBasedUsefulLinks({ folders, onSave, className = "", readOn
         {folders.length === 0 ? (
           <div className="text-center text-muted-foreground py-8">
             <Folder className="h-12 w-12 mx-auto mb-4 opacity-50" />
-            <p>No competitor folders created yet</p>
+            <p>No resource folders created yet</p>
           </div>
         ) : (
           folders.map((folder, folderIndex) => (
@@ -203,7 +203,7 @@ export function FolderBasedUsefulLinks({ folders, onSave, className = "", readOn
                   <Input
                     value={folder.name}
                     onChange={(e) => updateFolderName(folderIndex, e.target.value)}
-                    placeholder="Competitor name (e.g., Prudential)"
+                    placeholder="Resource name (e.g., Prudential)"
                     className="flex-1"
                   />
                   <Button size="sm" onClick={() => setEditingFolderIndex(null)} variant="outline">
@@ -357,12 +357,12 @@ export function FolderBasedUsefulLinks({ folders, onSave, className = "", readOn
           <div className="space-y-3">
             <h4 className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <FolderPlus className="h-4 w-4" />
-              Add New Competitor Folder
+              Add New Resource Folder
             </h4>
             <Input
               value={newFolderName}
               onChange={(e) => setNewFolderName(e.target.value)}
-              placeholder="Competitor name (e.g., Great Eastern, Prudential)"
+              placeholder="Resource name (e.g., Great Eastern, Prudential)"
               onKeyPress={(e) => e.key === 'Enter' && addFolder()}
             />
             <Button size="sm" onClick={addFolder} disabled={!newFolderName.trim()}>
@@ -433,17 +433,17 @@ export function FolderBasedUsefulLinks({ folders, onSave, className = "", readOn
       ) : (
         <div className="text-center text-muted-foreground py-4">
           <Folder className="h-8 w-8 mx-auto mb-2 opacity-50" />
-          <p className="text-sm">No competitor folders yet</p>
+          <p className="text-sm">Resources will be uploaded soon</p>
         </div>
       )}
       
-      <div 
+      <div
         className="flex items-center justify-center text-muted-foreground text-sm border-2 border-dashed border-primary/30 rounded p-3 cursor-pointer hover:bg-primary/10 hover:border-primary/20 transition-all duration-200 bg-primary/5"
         onClick={() => setIsEditing(true)}
-        title="Click to manage competitor folders"
+        title="Click to manage resource folders"
       >
         <FolderPlus className="h-4 w-4 mr-1" />
-        Click to add/edit competitor folders
+        Click to add/edit resource folders
       </div>
     </div>
   );
