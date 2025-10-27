@@ -73,47 +73,49 @@ export function ProductChatLauncher({
 
   if (isAdminMode && isEditing) {
     return (
-      <Card className="border-orange-200 bg-orange-50 h-full">
-        <CardContent className="p-5 pt-5 sm:pt-4 md:pt-6">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="text-base font-semibold text-orange-800">
-                ⚙️ Edit AI Assistant Link
-              </h3>
-            </div>
+      <div className="col-span-full">
+        <Card className="border-orange-200 bg-orange-50 h-full">
+          <CardContent className="p-5 pt-5 sm:pt-4 md:pt-6">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-semibold text-orange-800">
+                  ⚙️ Edit AI Assistant Link
+                </h3>
+              </div>
 
-            <div>
-              <Label htmlFor="custom-link">Custom AI Assistant Link (Optional)</Label>
-              <Input
-                id="custom-link"
-                value={editLink}
-                onChange={(e) => setEditLink(e.target.value)}
-                placeholder="https://chatgpt.com/g/..."
-                className="mt-1"
-              />
-              <p className="text-xs text-muted-foreground mt-1">
-                Leave empty to use the built-in assistant
-              </p>
-            </div>
+              <div>
+                <Label htmlFor="custom-link">Custom AI Assistant Link (Optional)</Label>
+                <Input
+                  id="custom-link"
+                  value={editLink}
+                  onChange={(e) => setEditLink(e.target.value)}
+                  placeholder="https://chatgpt.com/g/..."
+                  className="mt-1"
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Leave empty to use the built-in assistant
+                </p>
+              </div>
 
-            <div className="flex gap-2">
-              <Button onClick={handleSave} disabled={saving} size="sm">
-                <Check className="h-4 w-4 mr-1" />
-                {saving ? "Saving..." : "Save"}
-              </Button>
-              <Button
-                variant="outline"
-                onClick={handleCancel}
-                disabled={saving}
-                size="sm"
-              >
-                <X className="h-4 w-4 mr-1" />
-                Cancel
-              </Button>
+              <div className="flex gap-2">
+                <Button onClick={handleSave} disabled={saving} size="sm">
+                  <Check className="h-4 w-4 mr-1" />
+                  {saving ? "Saving..." : "Save"}
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={handleCancel}
+                  disabled={saving}
+                  size="sm"
+                >
+                  <X className="h-4 w-4 mr-1" />
+                  Cancel
+                </Button>
+              </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
