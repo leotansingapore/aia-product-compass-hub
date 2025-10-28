@@ -194,8 +194,8 @@ export function usePermissions() {
   };
 
   const canEditSection = (sectionId: string): boolean => {
-    // Only master admin can edit for now
-    return isMasterAdmin();
+    // Both admin and super_admin can edit
+    return isAdmin();
   };
 
   const canEditPage = (pageId: string): boolean => {
