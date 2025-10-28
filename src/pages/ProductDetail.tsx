@@ -108,9 +108,11 @@ export default function ProductDetail() {
                       productName={product.title}
                       productId={product.id}
                       customLink={product.custom_gpt_link}
-                      onUpdate={handleUpdate}
+                      chatbot1Name={product.chatbot_1_name}
                     />
                     <ProductChatbots
+                      chatbot1Name={product.chatbot_1_name}
+                      chatbot1Link={product.custom_gpt_link}
                       chatbot2Name={product.chatbot_2_name}
                       chatbot3Name={product.chatbot_3_name}
                       chatbot2Link={product.chatbot_link_2}

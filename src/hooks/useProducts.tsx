@@ -39,6 +39,7 @@ export interface Product {
   useful_links?: any; // Can be flat array or folder_structure object
   training_videos?: TrainingVideo[];
   custom_gpt_link?: string;
+  chatbot_1_name?: string;
   assistant_id?: string;
   assistant_instructions?: string;
   chatbot_link_2?: string;

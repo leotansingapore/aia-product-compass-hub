@@ -9,6 +9,8 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { useToast } from "@/hooks/use-toast";
 
 interface ProductChatbotsProps {
+  chatbot1Name?: string;
+  chatbot1Link?: string;
   chatbot2Name?: string;
   chatbot3Name?: string;
   chatbot2Link?: string;
@@ -18,6 +20,8 @@ interface ProductChatbotsProps {
 }
 
 export function ProductChatbots({
+  chatbot1Name = "Chat with AI Assistant",
+  chatbot1Link,
   chatbot2Name = "Chat with Chatbot",
   chatbot3Name = "Chat with Notebook",
   chatbot2Link,
@@ -27,6 +31,8 @@ export function ProductChatbots({
 }: ProductChatbotsProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
+    chatbot1Name,
+    chatbot1Link: chatbot1Link || "",
     chatbot2Name,
     chatbot3Name,
     chatbot2Link: chatbot2Link || "",
@@ -40,36 +46,42 @@ export function ProductChatbots({
   // Sync local state when props change (after successful save)
   useEffect(() => {
     setEditData({
+      chatbot1Name,
+      chatbot1Link: chatbot1Link || "",
       chatbot2Name,
       chatbot3Name,
       chatbot2Link: chatbot2Link || "",
       chatbot3Link: chatbot3Link || "",
       buttonText,
     });
-  }, [chatbot2Name, chatbot3Name, chatbot2Link, chatbot3Link, buttonText]);
+  }, [chatbot1Name, chatbot1Link, chatbot2Name, chatbot3Name, chatbot2Link, chatbot3Link, buttonText]);
 
   const handleSave = async () => {
     setSaving(true);
     try {
+      await onUpdate("chatbot_1_name", editData.chatbot1Name);
+      await onUpdate("custom_gpt_link", editData.chatbot1Link);
       await onUpdate("chatbot_2_name", editData.chatbot2Name);
-      await onUpdate("chatbot_3_name", editData.chatbot3Name);
       await onUpdate("chatbot_link_2", editData.chatbot2Link);
+      await onUpdate("chatbot_3_name", editData.chatbot3Name);
       await onUpdate("chatbot_link_3", editData.chatbot3Link);
       await onUpdate("chatbot_button_text", editData.buttonText);
-      
+
       setIsEditing(false);
       toast({
         title: "Saved",
-        description: "Chatbot settings updated successfully",
+        description: "All chat settings updated successfully",
       });
     } catch (error) {
-      console.error("Failed to save chatbot settings:", error);
+      console.error("Failed to save chat settings:", error);
       toast({
         title: "Error",
-        description: "Failed to save chatbot settings",
+        description: "Failed to save chat settings",
         variant: "destructive",
       });
       setEditData({
+        chatbot1Name,
+        chatbot1Link: chatbot1Link || "",
         chatbot2Name,
         chatbot3Name,
         chatbot2Link: chatbot2Link || "",
@@ -83,6 +95,8 @@ export function ProductChatbots({
 
   const handleCancel = () => {
     setEditData({
+      chatbot1Name,
+      chatbot1Link: chatbot1Link || "",
       chatbot2Name,
       chatbot3Name,
       chatbot2Link: chatbot2Link || "",
@@ -99,67 +113,107 @@ export function ProductChatbots({
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-orange-800">
-                ⚙️ Edit Chatbot Settings
+                ⚙️ Edit All Chat Assistance
               </h3>
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="chatbot2-name">Chatbot 2 Name</Label>
-                  <Input
-                    id="chatbot2-name"
-                    value={editData.chatbot2Name}
-                    onChange={(e) =>
-                      setEditData({ ...editData, chatbot2Name: e.target.value })
-                    }
-                    placeholder="Chat with Chatbot"
-                    className="mt-1"
-                  />
+            <div className="space-y-6">
+              {/* 3-Column Layout for All 3 Chats */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* 1st Chat */}
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-sm text-orange-900">1st Chat (AI Assistant)</h4>
+                  <div>
+                    <Label htmlFor="chatbot1-name">Chat Name</Label>
+                    <Input
+                      id="chatbot1-name"
+                      value={editData.chatbot1Name}
+                      onChange={(e) =>
+                        setEditData({ ...editData, chatbot1Name: e.target.value })
+                      }
+                      placeholder="Chat with AI Assistant"
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="chatbot1-link">Chat Link (Optional)</Label>
+                    <Input
+                      id="chatbot1-link"
+                      value={editData.chatbot1Link}
+                      onChange={(e) =>
+                        setEditData({ ...editData, chatbot1Link: e.target.value })
+                      }
+                      placeholder="https://..."
+                      className="mt-1"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Leave empty for built-in assistant
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <Label htmlFor="chatbot2-link">Chatbot 2 Link</Label>
-                  <Input
-                    id="chatbot2-link"
-                    value={editData.chatbot2Link}
-                    onChange={(e) =>
-                      setEditData({ ...editData, chatbot2Link: e.target.value })
-                    }
-                    placeholder="https://..."
-                    className="mt-1"
-                  />
+
+                {/* 2nd Chat */}
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-sm text-orange-900">2nd Chat</h4>
+                  <div>
+                    <Label htmlFor="chatbot2-name">Chat Name</Label>
+                    <Input
+                      id="chatbot2-name"
+                      value={editData.chatbot2Name}
+                      onChange={(e) =>
+                        setEditData({ ...editData, chatbot2Name: e.target.value })
+                      }
+                      placeholder="Chat with Chatbot"
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="chatbot2-link">Chat Link</Label>
+                    <Input
+                      id="chatbot2-link"
+                      value={editData.chatbot2Link}
+                      onChange={(e) =>
+                        setEditData({ ...editData, chatbot2Link: e.target.value })
+                      }
+                      placeholder="https://..."
+                      className="mt-1"
+                    />
+                  </div>
+                </div>
+
+                {/* 3rd Chat */}
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-sm text-orange-900">3rd Chat</h4>
+                  <div>
+                    <Label htmlFor="chatbot3-name">Chat Name</Label>
+                    <Input
+                      id="chatbot3-name"
+                      value={editData.chatbot3Name}
+                      onChange={(e) =>
+                        setEditData({ ...editData, chatbot3Name: e.target.value })
+                      }
+                      placeholder="Chat with Notebook"
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="chatbot3-link">Chat Link</Label>
+                    <Input
+                      id="chatbot3-link"
+                      value={editData.chatbot3Link}
+                      onChange={(e) =>
+                        setEditData({ ...editData, chatbot3Link: e.target.value })
+                      }
+                      placeholder="https://..."
+                      className="mt-1"
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="chatbot3-name">Chatbot 3 Name</Label>
-                  <Input
-                    id="chatbot3-name"
-                    value={editData.chatbot3Name}
-                    onChange={(e) =>
-                      setEditData({ ...editData, chatbot3Name: e.target.value })
-                    }
-                    placeholder="Chat with Notebook"
-                    className="mt-1"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="chatbot3-link">Chatbot 3 Link</Label>
-                  <Input
-                    id="chatbot3-link"
-                    value={editData.chatbot3Link}
-                    onChange={(e) =>
-                      setEditData({ ...editData, chatbot3Link: e.target.value })
-                    }
-                    placeholder="https://..."
-                    className="mt-1"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="button-text">Button Text</Label>
+              {/* Shared Button Text */}
+              <div className="max-w-md">
+                <Label htmlFor="button-text">Button Text (for 2nd & 3rd chats)</Label>
                 <Input
                   id="button-text"
                   value={editData.buttonText}
@@ -171,10 +225,10 @@ export function ProductChatbots({
                 />
               </div>
 
-              <div className="flex gap-2 pt-2">
-                <Button onClick={handleSave} disabled={saving} size="sm">
+              <div className="flex gap-2 pt-2 border-t">
+                <Button onClick={handleSave} disabled={saving} size="sm" className="bg-green-600 hover:bg-green-700">
                   <Check className="h-4 w-4 mr-1" />
-                  {saving ? "Saving..." : "Save"}
+                  {saving ? "Saving..." : "Save All"}
                 </Button>
                 <Button
                   variant="outline"
@@ -196,7 +250,7 @@ export function ProductChatbots({
   return (
     <>
       {isAdminMode && (
-        <div className="col-span-full flex justify-end">
+        <div className="col-span-full flex justify-end mb-2">
           <Button
             size="sm"
             variant="ghost"
@@ -204,7 +258,7 @@ export function ProductChatbots({
             className="text-orange-600 hover:text-orange-800"
           >
             <Edit className="h-4 w-4 mr-1" />
-            Edit Chatbots
+            Edit All Chats
           </Button>
         </div>
       )}
