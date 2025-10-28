@@ -34,6 +34,7 @@ export function ProductCategories() {
       icon: TrendingUp,
       color: "text-white",
       bgColor: "bg-green-600",
+      borderColor: "group-hover:border-green-300",
       count: categoryCounts["c7cde8f4-12d4-4ddc-9150-7b32008a4e19"] || 0
     },
     {
@@ -43,6 +44,7 @@ export function ProductCategories() {
       icon: Shield,
       color: "text-white",
       bgColor: "bg-blue-600",
+      borderColor: "group-hover:border-blue-300",
       count: categoryCounts["3adb6155-c158-408d-b910-9b3db532d435"] || 0
     },
     {
@@ -52,6 +54,7 @@ export function ProductCategories() {
       icon: Heart,
       color: "text-white",
       bgColor: "bg-red-600",
+      borderColor: "group-hover:border-red-300",
       count: categoryCounts["19b8c528-f36e-4731-827c-0cdb1de25059"] || 0
     },
     {
@@ -61,6 +64,7 @@ export function ProductCategories() {
       icon: Clock,
       color: "text-white",
       bgColor: "bg-orange-600",
+      borderColor: "group-hover:border-orange-300",
       count: categoryCounts["291cf475-d918-40c0-b37d-33794534d469"] || 0
     },
     {
@@ -70,6 +74,7 @@ export function ProductCategories() {
       icon: Stethoscope,
       color: "text-white",
       bgColor: "bg-purple-600",
+      borderColor: "group-hover:border-purple-300",
       count: categoryCounts["b1024527-481f-4d85-9192-b43633e9be4a"] || 0
     }
   ];
@@ -77,28 +82,24 @@ export function ProductCategories() {
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold">Product Categories</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 auto-rows-fr">
         {categories.map((category) => (
           <Card
             key={category.id}
-            className="hover:shadow-md transition-shadow cursor-pointer"
+            className="h-full hover:shadow-md transition-shadow cursor-pointer group"
             onClick={() => navigate(`/category/${getCategorySlugFromId(category.id)}`)}
           >
-            <CardContent className="!p-6">
-              <div className="flex items-start space-x-3">
-                <div className={`p-2 rounded-lg ${category.bgColor} shadow-md`}>
-                  <category.icon className={`h-5 w-5 ${category.color}`} />
+            <CardContent className="h-full !p-4 flex items-center justify-center">
+              <div className="flex flex-col items-center text-center space-y-2 w-full">
+                <div className={`p-2.5 rounded-xl ${category.bgColor} ${category.borderColor} group-hover:scale-105 transition-all duration-200 shadow-md border-2 border-transparent`}>
+                  <category.icon className={`h-6 w-6 ${category.color} stroke-[2]`} />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-medium text-sm truncate">{category.name}</h4>
-                    <Badge variant="secondary" className="text-micro">
-                      {loading ? "..." : category.count}
-                    </Badge>
-                  </div>
-                  <p className="text-micro text-muted-foreground mt-1">
-                    {category.description}
-                  </p>
+                <div>
+                  <div className="font-medium text-sm sm:text-base">{category.name}</div>
+                  <div className="text-micro sm:text-sm text-muted-foreground mt-1">{category.description}</div>
+                  <Badge variant="secondary" className="text-micro mt-1">
+                    {loading ? "..." : category.count} {category.count === 1 ? "product" : "products"}
+                  </Badge>
                 </div>
               </div>
             </CardContent>

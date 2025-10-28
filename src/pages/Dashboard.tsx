@@ -97,14 +97,14 @@ const Dashboard = memo(() => {
 
         {!hasQuery && (
           <>
-            {/* Quick Actions */}
-            <div className="mt-6">
-              <QuickActions />
-            </div>
-
             {/* Product Categories */}
             <div className="mt-6">
               <ProductCategories />
+            </div>
+
+            {/* Quick Actions */}
+            <div className="mt-6">
+              <QuickActions />
             </div>
           </>
         )}

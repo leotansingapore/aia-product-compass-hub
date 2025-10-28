@@ -23,8 +23,7 @@ export function QuickActions() {
       icon: BookOpen,
       href: "/",
       color: "text-white",
-      bgColor: "bg-blue-600",
-      borderColor: "group-hover:border-blue-300"
+      bgColor: "bg-blue-600"
     },
     {
       title: "CMFAS Training",
@@ -32,8 +31,7 @@ export function QuickActions() {
       icon: GraduationCap,
       href: "/cmfas-exams",
       color: "text-white",
-      bgColor: "bg-green-600",
-      borderColor: "group-hover:border-green-300"
+      bgColor: "bg-green-600"
     },
     {
       title: "Client Profiles",
@@ -41,8 +39,7 @@ export function QuickActions() {
       icon: Users,
       href: "/search-by-profile",
       color: "text-white",
-      bgColor: "bg-purple-600",
-      borderColor: "group-hover:border-purple-300"
+      bgColor: "bg-purple-600"
     },
     {
       title: "Roleplay Practice",
@@ -50,8 +47,7 @@ export function QuickActions() {
       icon: MessageSquare,
       href: "/roleplay",
       color: "text-white",
-      bgColor: "bg-orange-600",
-      borderColor: "group-hover:border-orange-300"
+      bgColor: "bg-orange-600"
     },
     {
       title: "My Bookmarks",
@@ -59,8 +55,7 @@ export function QuickActions() {
       icon: FileText,
       href: "/bookmarks",
       color: "text-white",
-      bgColor: "bg-red-600",
-      borderColor: "group-hover:border-red-300"
+      bgColor: "bg-red-600"
     },
     {
       title: "How to Use",
@@ -68,29 +63,27 @@ export function QuickActions() {
       icon: BarChart3,
       href: "/how-to-use",
       color: "text-white",
-      bgColor: "bg-teal-600",
-      borderColor: "group-hover:border-teal-300"
+      bgColor: "bg-teal-600"
     }
   ];
 
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold">Quick Actions</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 auto-rows-fr">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {actions.map((action) => (
           <Card
             key={action.title}
-            className="h-full hover:shadow-md transition-shadow cursor-pointer group"
+            className="hover:shadow-md transition-shadow cursor-pointer"
             onClick={() => navigate(action.href)}
           >
-            <CardContent className="h-full !p-6 flex items-center justify-center">
-              <div className="flex flex-col items-center text-center space-y-3 w-full">
-                <div className={`p-3 rounded-xl ${action.bgColor} ${action.borderColor} group-hover:scale-105 transition-all duration-200 shadow-md border-2 border-transparent`}>
-                  <action.icon className={`h-6 w-6 ${action.color} stroke-[2]`} />
+            <CardContent className="!p-6">
+              <div className="flex items-center space-x-3">
+                <div className={`p-2 rounded-lg ${action.bgColor} shadow-md`}>
+                  <action.icon className={`h-5 w-5 ${action.color}`} />
                 </div>
-                <div>
-                  <div className="font-medium text-sm sm:text-base">{action.title}</div>
-                  <div className="text-micro sm:text-sm text-muted-foreground mt-1">{action.description}</div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-medium text-sm truncate">{action.title}</h4>
                 </div>
               </div>
             </CardContent>
