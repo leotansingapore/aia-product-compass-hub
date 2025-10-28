@@ -152,7 +152,7 @@ export function SearchHero({ onSearch, variant = "default" }: SearchHeroProps) {
               <Badge
                 key={search}
                 variant="secondary"
-                className={`cursor-pointer text-micro ${variant === "compact" ? "bg-white/90 hover:bg-white" : "bg-white hover:bg-white/90"}`}
+                className={`cursor-pointer text-micro text-primary ${variant === "compact" ? "bg-white/90 hover:bg-white" : "bg-white hover:bg-white/90"}`}
                 onClick={() => {
                   console.log("SearchHero: Clicked recent search:", search);
                   onSearch(search);
