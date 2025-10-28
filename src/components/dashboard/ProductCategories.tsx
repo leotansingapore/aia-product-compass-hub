@@ -89,7 +89,10 @@ export function ProductCategories() {
             className="h-full hover:shadow-md transition-shadow cursor-pointer group"
             onClick={() => navigate(`/category/${getCategorySlugFromId(category.id)}`)}
           >
-            <CardContent className="h-full !p-4 flex items-center justify-center">
+            <CardContent className="h-full !p-4 flex items-center justify-center relative">
+              <Badge variant="secondary" className="absolute top-2 right-2 text-micro">
+                {loading ? "..." : category.count}
+              </Badge>
               <div className="flex flex-col items-center text-center space-y-2 w-full">
                 <div className={`p-2.5 rounded-xl ${category.bgColor} ${category.borderColor} group-hover:scale-105 transition-all duration-200 shadow-md border-2 border-transparent`}>
                   <category.icon className={`h-6 w-6 ${category.color} stroke-[2]`} />
@@ -97,9 +100,6 @@ export function ProductCategories() {
                 <div>
                   <div className="font-medium text-sm sm:text-base">{category.name}</div>
                   <div className="text-micro sm:text-sm text-muted-foreground mt-1">{category.description}</div>
-                  <Badge variant="secondary" className="text-micro mt-1">
-                    {loading ? "..." : category.count} {category.count === 1 ? "product" : "products"}
-                  </Badge>
                 </div>
               </div>
             </CardContent>
