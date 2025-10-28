@@ -3,9 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { MessageCircle, Sparkles, Edit, Check, X, ExternalLink } from "lucide-react";
-import { useAdmin } from "@/hooks/useAdmin";
+import { MessageCircle, Check, X, ExternalLink } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface ProductChatbotsProps {
@@ -17,6 +15,8 @@ interface ProductChatbotsProps {
   chatbot3Link?: string;
   buttonText?: string;
   onUpdate: (field: string, value: any) => Promise<void>;
+  isEditing: boolean;
+  setIsEditing: (value: boolean) => void;
 }
 
 export function ProductChatbots({
@@ -28,8 +28,9 @@ export function ProductChatbots({
   chatbot3Link,
   buttonText = "Open Chat",
   onUpdate,
+  isEditing,
+  setIsEditing,
 }: ProductChatbotsProps) {
-  const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
     chatbot1Name,
     chatbot1Link: chatbot1Link || "",
@@ -40,7 +41,6 @@ export function ProductChatbots({
     buttonText,
   });
   const [saving, setSaving] = useState(false);
-  const { isAdminMode } = useAdmin();
   const { toast } = useToast();
 
   // Sync local state when props change (after successful save)
@@ -106,7 +106,7 @@ export function ProductChatbots({
     setIsEditing(false);
   };
 
-  if (isAdminMode && isEditing) {
+  if (isEditing) {
     return (
       <div className="col-span-full">
         <Card className="border-orange-200 bg-orange-50">
@@ -249,20 +249,6 @@ export function ProductChatbots({
 
   return (
     <>
-      {isAdminMode && (
-        <div className="col-span-full flex justify-end mb-2">
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={() => setIsEditing(true)}
-            className="text-orange-600 hover:text-orange-800"
-          >
-            <Edit className="h-4 w-4 mr-1" />
-            Edit All Chats
-          </Button>
-        </div>
-      )}
-
       {/* Chatbot 2 */}
       <Card className="h-full group hover:shadow-md transition-all duration-300 border border-border hover:border-primary/50 bg-card">
         <CardContent className="p-5 pt-5 sm:pt-4 md:pt-6 flex flex-col justify-center h-full">
