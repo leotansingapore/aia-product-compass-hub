@@ -62,12 +62,13 @@ export function ProductChatLauncher({
           <Button
             type="button"
             onClick={handleLaunch}
-            aria-label="Start chat with AI assistant"
+            disabled={!customLink}
+            aria-label={customLink ? "Open chat with AI assistant" : "Chat not configured"}
             className="w-full h-10 text-sm"
             size="default"
           >
             <MessageCircle className="h-4 w-4 mr-2" />
-            {customLink ? "Open Chat" : "Start Chat"}
+            {customLink ? "Open Chat" : "Chat Not Configured"}
             {customLink && <ExternalLink className="h-3.5 w-3.5 ml-1" />}
           </Button>
         </div>

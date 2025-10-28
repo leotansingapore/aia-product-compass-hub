@@ -119,7 +119,7 @@ export function ProductChatbots({
 
             <div className="space-y-6">
               {/* 3-Column Layout for All 3 Chats */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 {/* 1st Chat */}
                 <div className="space-y-3">
                   <h4 className="font-semibold text-sm text-orange-900">1st Chat (AI Assistant)</h4>
