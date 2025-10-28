@@ -44,14 +44,17 @@ const Dashboard = memo(() => {
           title="FINternship Learning Platform"
           subtitle="Your comprehensive resource for product knowledge and sales excellence"
           breadcrumbs={[{ label: "Home" }]}
+          searchBar={<SearchHero onSearch={handleSearch} variant="compact" />}
         />
       </div>
-      
+
+      {/* Mobile Search - Shown only on mobile */}
+      <div className="md:hidden px-1 sm:px-4 py-2 sm:py-4">
+        <SearchHero onSearch={handleSearch} />
+      </div>
+
       {/* Main Content */}
       <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 md:pb-8">
-        
-        {/* Search Hero */}
-        <SearchHero onSearch={handleSearch} />
 
         {hasQuery && (
           <div className="mt-6 mb-6">

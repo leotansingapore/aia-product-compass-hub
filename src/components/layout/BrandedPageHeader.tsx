@@ -24,6 +24,7 @@ interface BrandedPageHeaderProps {
   onBack?: () => void;
   breadcrumbs?: BreadcrumbItem[];
   actions?: React.ReactNode;
+  searchBar?: React.ReactNode;
   variant?: "default" | "compact";
   className?: string;
 }
@@ -46,6 +47,7 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
   onBack,
   breadcrumbs,
   actions,
+  searchBar,
   variant = "default",
   className
 }: BrandedPageHeaderProps) {
@@ -131,6 +133,13 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
             </div>
           )}
         </div>
+
+        {/* Search Bar */}
+        {searchBar && (
+          <div className="mt-4">
+            {searchBar}
+          </div>
+        )}
       </div>
     </div>
   );

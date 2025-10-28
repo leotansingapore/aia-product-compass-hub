@@ -9,9 +9,10 @@ import { useSemanticSearch } from "@/hooks/useSemanticSearch";
 
 interface SearchHeroProps {
   onSearch: (query: string) => void;
+  variant?: "default" | "compact";
 }
 
-export function SearchHero({ onSearch }: SearchHeroProps) {
+export function SearchHero({ onSearch, variant = "default" }: SearchHeroProps) {
   const [query, setQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -81,15 +82,16 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  return (
-    <Card className="p-6 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-      <div className="space-y-4">
+  const content = (
+    <div className={variant === "compact" ? "space-y-3" : "space-y-4"}>
+      {variant === "default" && (
         <div className="text-center">
           <h2 className="text-xl font-bold mb-2">Find What You Need</h2>
           <p className="text-sm text-muted-foreground">Search products, documents, and training materials</p>
         </div>
-        
-        <form onSubmit={handleSubmit} className="flex gap-2">
+      )}
+
+      <form onSubmit={handleSubmit} className="flex gap-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground z-10" />
             <Input
@@ -99,7 +101,7 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
               onKeyDown={handleKeyDown}
               onFocus={() => setShowSuggestions(query.length > 0)}
               placeholder="Search products or training..."
-              className="pl-10 h-12 text-base bg-white"
+              className={variant === "compact" ? "pl-10 h-10 text-base bg-white/90 text-foreground" : "pl-10 h-12 text-base bg-white text-foreground"}
               autoComplete="off"
             />
             
@@ -110,7 +112,7 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
                   <button
                     key={`suggestion-${index}-${suggestion}`}
                     type="button"
-                    className={`w-full px-3 py-2 text-left cursor-pointer text-sm hover:bg-muted transition-colors border-none bg-transparent ${
+                    className={`w-full px-3 py-2 text-left cursor-pointer text-sm text-foreground hover:bg-muted transition-colors border-none bg-transparent ${
                       selectedIndex === index ? 'bg-muted' : ''
                     }`}
                     onMouseDown={(e) => {
@@ -129,35 +131,49 @@ export function SearchHero({ onSearch }: SearchHeroProps) {
               </div>
             )}
           </div>
-          <Button type="submit" size="lg" className="h-12">
+          <Button
+            type="submit"
+            variant="outline"
+            size={variant === "compact" ? "default" : "lg"}
+            className={variant === "compact" ? "h-10 bg-white text-primary hover:bg-white hover:text-primary hover:shadow-md border-white" : "h-12 bg-white text-primary hover:bg-white hover:text-primary hover:shadow-md border-white"}
+          >
             Search
           </Button>
         </form>
 
-        {recentSearches.length > 0 && (
-          <div className="space-y-2">
-            <div className="flex items-center gap-1 text-micro text-muted-foreground">
-              <Clock className="h-3 w-3" />
-              <span>Recent searches</span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {recentSearches.map((search) => (
-                <Badge
-                  key={search}
-                  variant="secondary"
-                  className="cursor-pointer hover:bg-white/90 text-micro bg-white"
-                  onClick={() => {
-                    console.log("SearchHero: Clicked recent search:", search);
-                    onSearch(search);
-                  }}
-                >
-                  {search}
-                </Badge>
-              ))}
-            </div>
+      {recentSearches.length > 0 && (
+        <div className="space-y-2">
+          <div className={`flex items-center gap-1 text-micro ${variant === "compact" ? "text-white/70" : "text-muted-foreground"}`}>
+            <Clock className="h-3 w-3" />
+            <span>Recent searches</span>
           </div>
-        )}
-      </div>
+          <div className="flex flex-wrap gap-2">
+            {recentSearches.map((search) => (
+              <Badge
+                key={search}
+                variant="secondary"
+                className={`cursor-pointer text-micro ${variant === "compact" ? "bg-white/90 hover:bg-white" : "bg-white hover:bg-white/90"}`}
+                onClick={() => {
+                  console.log("SearchHero: Clicked recent search:", search);
+                  onSearch(search);
+                }}
+              >
+                {search}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  if (variant === "compact") {
+    return content;
+  }
+
+  return (
+    <Card className="p-6 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
+      {content}
     </Card>
   );
 }
