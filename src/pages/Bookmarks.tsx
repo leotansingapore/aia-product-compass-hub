@@ -69,7 +69,7 @@ export default function Bookmarks() {
         title="📚 My Bookmarks"
         subtitle="Your saved products and resources"
         showBackButton={true}
-        onBack={() => navigate('/')}
+        onBack={() => window.history.back()}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "My Bookmarks" }

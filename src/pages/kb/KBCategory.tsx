@@ -86,6 +86,8 @@ export default function KBCategory() {
           { label: "Knowledge Base", href: "/kb" },
           { label: category.name }
         ]}
+        showBackButton={true}
+        onBack={() => window.history.back()}
       />
 
       <div className="mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-10">

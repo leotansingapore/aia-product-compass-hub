@@ -192,6 +192,8 @@ export default function M9AModule() {
           { label: "CMFAS Exams", href: "/cmfas-exams" },
           { label: "M9A Module" }
         ]}
+        showBackButton={true}
+        onBack={() => window.history.back()}
       />
 
       <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 space-y-3 sm:space-y-6 md:space-y-8">

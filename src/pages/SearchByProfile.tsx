@@ -128,8 +128,8 @@ export default function SearchByProfile() {
       <BrandedPageHeader
         title="👥 Search by Client Profile"
         subtitle="Find the right products for your client's life stage and needs"
-        showBackButton
-        onBack={() => navigate('/')}
+        showBackButton={true}
+        onBack={() => window.history.back()}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Client Profiles" }

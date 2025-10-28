@@ -66,6 +66,8 @@ export default function KnowledgeBase() {
         title="📚 Knowledge Base"
         subtitle="Learn and reference AIA products with concise summaries, highlights, explainer videos, documents, and custom GPT links."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Knowledge Base" }]}
+        showBackButton={true}
+        onBack={() => window.history.back()}
       />
 
       <div className="mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-10">

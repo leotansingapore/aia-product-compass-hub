@@ -48,6 +48,8 @@ export default function Roleplay() {
           { label: "Home", href: "/" },
           { label: "Roleplay Training" }
         ]}
+        showBackButton={true}
+        onBack={() => window.history.back()}
       />
 
       <div className="mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-8 sm:space-y-10">

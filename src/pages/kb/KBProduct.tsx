@@ -47,6 +47,8 @@ export default function KBProduct() {
           { label: category?.name || (categorySlug || "Category"), href: `/kb/${categorySlug}` },
           { label: product.name }
         ]}
+        showBackButton={true}
+        onBack={() => window.history.back()}
       />
 
       <div className="mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-10">
