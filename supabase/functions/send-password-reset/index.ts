@@ -73,12 +73,17 @@ const handler = async (req: Request): Promise<Response> => {
     console.log('ℹ️ Proceeding to send reset email regardless of approval status for:', email.trim());
     console.log('✅ User verified, generating reset link for:', email.trim());
 
+    // Get origin from request headers or use default
+    const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/') || 'https://56051a92-562c-4d7b-ae59-82204f8b4c20.lovableproject.com';
+    const redirectTo = `${origin}/reset-password`;
+    console.log('📍 Using redirect URL:', redirectTo);
+
     // Generate password reset link using Supabase Admin API
     const { data, error } = await supabase.auth.admin.generateLink({
       type: 'recovery',
       email: email.trim(),
       options: {
-        redirectTo: 'https://56051a92-562c-4d7b-ae59-82204f8b4c20.lovableproject.com/reset-password'
+        redirectTo
       }
     });
 

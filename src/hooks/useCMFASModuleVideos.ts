@@ -48,7 +48,7 @@ export function useCMFASModuleVideos(moduleId: string): UseCMFASModuleVideosResu
 
         // Use database videos if available, otherwise fall back to static data
         if (data && data.training_videos && Array.isArray(data.training_videos)) {
-          const dbVideos = data.training_videos as TrainingVideo[];
+          const dbVideos = data.training_videos as unknown as TrainingVideo[];
           // Sort by order property
           const sortedVideos = dbVideos.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
           setVideos(sortedVideos);
