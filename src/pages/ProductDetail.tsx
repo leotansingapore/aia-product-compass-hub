@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { EditableTags } from "@/components/EditableTags";
@@ -15,6 +16,8 @@ import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useProductDetail } from "@/hooks/useProductDetail";
+import { useAdmin } from "@/hooks/useAdmin";
+import { Edit } from "lucide-react";
 
 export default function ProductDetail() {
   const {
@@ -26,6 +29,9 @@ export default function ProductDetail() {
     breadcrumbs,
     categoryName
   } = useProductDetail();
+
+  const { isAdminMode } = useAdmin();
+  const [isChatEditing, setIsChatEditing] = useState(false);
 
   if (loading) {
     return <SkeletonLoader type="product" />;
@@ -102,14 +108,29 @@ export default function ProductDetail() {
               {/* Chat Assistance Section */}
               <ProtectedSection sectionId="product_chat_assistance">
                 <div className="space-y-4">
-                  <h2 className="text-xl font-semibold text-foreground">Chat Assistance</h2>
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-xl font-semibold text-foreground">Chat Assistance</h2>
+                    {isAdminMode && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => setIsChatEditing(true)}
+                        className="text-orange-600 hover:text-orange-800"
+                      >
+                        <Edit className="h-4 w-4 mr-1" />
+                        Edit All Chats
+                      </Button>
+                    )}
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <ProductChatLauncher
-                      productName={product.title}
-                      productId={product.id}
-                      customLink={product.custom_gpt_link}
-                      chatbot1Name={product.chatbot_1_name}
-                    />
+                    {!isChatEditing && (
+                      <ProductChatLauncher
+                        productName={product.title}
+                        productId={product.id}
+                        customLink={product.custom_gpt_link}
+                        chatbot1Name={product.chatbot_1_name}
+                      />
+                    )}
                     <ProductChatbots
                       chatbot1Name={product.chatbot_1_name}
                       chatbot1Link={product.custom_gpt_link}
@@ -119,6 +140,8 @@ export default function ProductDetail() {
                       chatbot3Link={product.chatbot_link_3}
                       buttonText={product.chatbot_button_text}
                       onUpdate={handleUpdate}
+                      isEditing={isChatEditing}
+                      setIsEditing={setIsChatEditing}
                     />
                   </div>
                 </div>
