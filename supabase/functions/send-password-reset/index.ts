@@ -39,6 +39,7 @@ const handler = async (req: Request): Promise<Response> => {
     const { email }: PasswordResetRequest = await req.json();
     console.log('📧 Processing password reset for:', email);
 
+    // Validate email format
     if (!email?.trim()) {
       return new Response(
         JSON.stringify({ error: "Email is required" }),
@@ -46,15 +47,114 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Check if user exists via profiles (auth lookup by email not available)
+    const trimmedEmail = email.trim().toLowerCase();
+    
+    // Get client IP for rate limiting
+    const clientIp = req.headers.get('x-forwarded-for')?.split(',')[0] || 
+                     req.headers.get('x-real-ip') || 
+                     'unknown';
+    
+    console.log('🌐 Client IP:', clientIp);
+
+    // Clean up old rate limit records (older than 24 hours)
+    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    await supabase
+      .from('password_reset_rate_limits')
+      .delete()
+      .lt('attempted_at', twentyFourHoursAgo);
+
+    // Check rate limits - Email based (3 per 24 hours)
+    const { data: emailAttempts, error: emailRateLimitError } = await supabase
+      .from('password_reset_rate_limits')
+      .select('*')
+      .eq('email', trimmedEmail)
+      .gte('attempted_at', twentyFourHoursAgo);
+
+    if (emailRateLimitError) {
+      console.error('❌ Error checking email rate limit:', emailRateLimitError);
+    }
+
+    if (emailAttempts && emailAttempts.length >= 3) {
+      console.log('⚠️ Rate limit exceeded for email:', trimmedEmail);
+      return new Response(
+        JSON.stringify({ 
+          error: "Too many password reset attempts. Please try again in 24 hours.",
+          rateLimitExceeded: true
+        }),
+        { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // Check rate limits - IP based (10 per 24 hours)
+    if (clientIp !== 'unknown') {
+      const { data: ipAttempts, error: ipRateLimitError } = await supabase
+        .from('password_reset_rate_limits')
+        .select('*')
+        .eq('ip_address', clientIp)
+        .gte('attempted_at', twentyFourHoursAgo);
+
+      if (ipRateLimitError) {
+        console.error('❌ Error checking IP rate limit:', ipRateLimitError);
+      }
+
+      if (ipAttempts && ipAttempts.length >= 10) {
+        console.log('⚠️ Rate limit exceeded for IP:', clientIp);
+        return new Response(
+          JSON.stringify({ 
+            error: "Too many password reset attempts from this network. Please try again in 24 hours.",
+            rateLimitExceeded: true
+          }),
+          { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
+        );
+      }
+    }
+
+    // Record this attempt for rate limiting
+    await supabase
+      .from('password_reset_rate_limits')
+      .insert({
+        email: trimmedEmail,
+        ip_address: clientIp
+      });
+
+    console.log('✅ Rate limit check passed');
+
+    // Check if user exists in auth.users (using admin API)
+    const { data: authUsers, error: authError } = await supabase.auth.admin.listUsers();
+    
+    if (authError) {
+      console.error('❌ Error fetching auth users:', authError);
+    }
+
+    const authUser = authUsers?.users?.find(u => u.email?.toLowerCase() === trimmedEmail);
+    
+    if (!authUser) {
+      console.log('⚠️ No auth user found for email:', trimmedEmail);
+      console.log('EARLY_EXIT: not sending email (no auth user)');
+      // Always return success to prevent email enumeration attacks
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          message: "If an account with this email exists, a password reset link has been sent."
+        }),
+        {
+          status: 200,
+          headers: { "Content-Type": "application/json", ...corsHeaders }
+        }
+      );
+    }
+
+    console.log('✅ Auth user found:', authUser.id);
+
+    // Check if user has a profile
     const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('user_id')
-      .eq('email', email.trim())
+      .eq('email', trimmedEmail)
       .single();
 
     if (profileError || !profile?.user_id) {
-      console.log('⚠️ No profile found for email (treat as non-existent account):', email.trim());
+      console.log('⚠️ No profile found for email:', trimmedEmail);
       console.log('EARLY_EXIT: not sending email (no profile)');
       // Always return success to prevent email enumeration attacks
       return new Response(
@@ -69,9 +169,37 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Optional: previously we blocked unapproved users. Now we proceed to send reset if account exists.
-    console.log('ℹ️ Proceeding to send reset email regardless of approval status for:', email.trim());
-    console.log('✅ User verified, generating reset link for:', email.trim());
+    console.log('✅ Profile found for user:', profile.user_id);
+
+    // Check user approval status
+    const { data: approvalRequest, error: approvalError } = await supabase
+      .from('user_approval_requests')
+      .select('status')
+      .eq('email', trimmedEmail)
+      .single();
+
+    if (approvalError && approvalError.code !== 'PGRST116') { // PGRST116 = no rows returned
+      console.error('❌ Error checking approval status:', approvalError);
+    }
+
+    if (approvalRequest && approvalRequest.status !== 'approved') {
+      console.log('⚠️ User not approved:', trimmedEmail, 'Status:', approvalRequest.status);
+      console.log('EARLY_EXIT: not sending email (not approved)');
+      // Return success to prevent enumeration
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          message: "If an account with this email exists, a password reset link has been sent."
+        }),
+        {
+          status: 200,
+          headers: { "Content-Type": "application/json", ...corsHeaders }
+        }
+      );
+    }
+
+    console.log('✅ User is approved or no approval request found (proceeding)');
+    console.log('✅ All checks passed, generating reset link for:', trimmedEmail);
 
     // Get origin from request headers or use default
     const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/') || 'https://56051a92-562c-4d7b-ae59-82204f8b4c20.lovableproject.com';

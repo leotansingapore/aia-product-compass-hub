@@ -249,27 +249,41 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
     setLoading(true);
     try {
       console.log('[SimplifiedAuth] Calling send-password-reset function');
-      const { data, error } = await supabase.functions.invoke('send-password-reset', {
-        body: { email: email.trim() }
-      });
+      
+      // Use fetch with proper headers to get status code
+      const response = await fetch(
+        `https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/send-password-reset`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnZGJmbHBycmZpY2RveXhtZHhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3NjY0NDAsImV4cCI6MjA2NzM0MjQ0MH0.2qwUbh0nkFyOLzzZgXk7bedINzHSf2ULMBUECOqWmIw`,
+            'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnZGJmbHBycmZpY2RveXhtZHhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3NjY0NDAsImV4cCI6MjA2NzM0MjQ0MH0.2qwUbh0nkFyOLzzZgXk7bedINzHSf2ULMBUECOqWmIw'
+          },
+          body: JSON.stringify({ email: email.trim() })
+        }
+      );
 
-      console.log('[SimplifiedAuth] Reset response:', { data, error });
+      const data = await response.json();
+      console.log('[SimplifiedAuth] Reset response:', { status: response.status, data });
 
-      if (error) {
-        console.error('Reset password error:', error);
+      // Handle rate limiting (429 status)
+      if (response.status === 429) {
+        console.log('⚠️ Rate limit exceeded');
         toast({
           variant: "destructive",
-          title: "Reset Failed",
-          description: "Failed to send reset email. Please try again."
+          title: "Too Many Attempts",
+          description: data.error || "You've tried too many times. Please wait 24 hours before trying again."
         });
         return;
       }
 
-      if (data?.error) {
-        console.error('Reset password error details:', data.details);
+      // Handle other errors
+      if (!response.ok) {
+        console.error('Reset password error:', data);
         
         // Show specific error message for domain verification issues
-        if (data.error.includes('verify a domain')) {
+        if (data.error?.includes('verify a domain')) {
           toast({
             variant: "destructive",
             title: "Email Service Configuration",
@@ -279,12 +293,13 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
           toast({
             variant: "destructive",
             title: "Reset Failed",
-            description: data.error
+            description: data.error || "Failed to send reset email. Please try again."
           });
         }
         return;
       }
 
+      // Success
       toast({
         title: "Reset Email Sent",
         description: "Check your email for password reset instructions"
