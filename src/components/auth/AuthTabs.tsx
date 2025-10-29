@@ -74,7 +74,19 @@ export function AuthTabs({ onSignIn, onSignUp, onResetPassword, loading }: AuthT
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="signin-password">Password</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="signin-password">Password</Label>
+                  <Button
+                    type="button"
+                    variant="link"
+                    size="sm"
+                    className="h-auto p-0 text-xs text-muted-foreground hover:text-primary"
+                    onClick={() => onResetPassword(email)}
+                    disabled={loading}
+                  >
+                    Forgot password?
+                  </Button>
+                </div>
                 <Input
                   id="signin-password"
                   type="password"
@@ -86,29 +98,16 @@ export function AuthTabs({ onSignIn, onSignUp, onResetPassword, loading }: AuthT
                 />
               </div>
               
-              <div className="space-y-3">
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Signing in...
-                    </>
-                  ) : (
-                    "Sign In"
-                  )}
-                </Button>
-                
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  className="w-full text-micro"
-                  onClick={() => onResetPassword(email)}
-                  disabled={loading}
-                >
-                  Forgot your password?
-                </Button>
-              </div>
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Signing in...
+                  </>
+                ) : (
+                  "Sign In"
+                )}
+              </Button>
             </form>
           </TabsContent>
           
