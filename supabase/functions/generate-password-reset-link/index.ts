@@ -49,8 +49,9 @@ serve(async (req) => {
     }
 
     const serviceClient = createClient(SUPABASE_URL, SERVICE_KEY);
-    const originHeader = req.headers.get("x-app-origin") || req.headers.get("origin");
-    const appOrigin = originHeader || Deno.env.get("APP_URL") || "http://localhost:5173";
+    
+    // Always use the production domain for password reset
+    const appOrigin = "https://academy.finternship.com";
 
     // Check if user exists in auth, if not create them using profile data
     let { data: linkData, error: linkErr } = await serviceClient.auth.admin.generateLink({
@@ -105,7 +106,7 @@ serve(async (req) => {
       const { data: newLinkData, error: newLinkErr } = await serviceClient.auth.admin.generateLink({
         type: 'recovery',
         email,
-        options: { redirectTo: `${appOrigin}/reset-password` },
+        options: { redirectTo: "https://academy.finternship.com/reset-password" },
       });
 
       if (newLinkErr || !newLinkData) {
