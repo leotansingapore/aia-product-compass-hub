@@ -7,7 +7,6 @@ import { ProductSummary } from "@/components/product-detail/ProductSummary";
 import { ProductHighlights } from "@/components/product-detail/ProductHighlights";
 import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLinks";
 import { SalesToolsUsefulLinks } from "@/components/product-detail/SalesToolsUsefulLinks";
-import { ProductChatLauncher } from "@/components/product-detail/ProductChatLauncher";
 import { ProductChatbots } from "@/components/product-detail/ProductChatbots";
 import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
 import { BookmarkButton } from "@/components/BookmarkButton";
@@ -123,14 +122,6 @@ export default function ProductDetail() {
                     )}
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {!isChatEditing && (
-                      <ProductChatLauncher
-                        productName={product.title}
-                        productId={product.id}
-                        customLink={product.custom_gpt_link}
-                        chatbot1Name={product.chatbot_1_name}
-                      />
-                    )}
                     <ProductChatbots
                       chatbot1Name={product.chatbot_1_name}
                       chatbot1Link={product.custom_gpt_link}
