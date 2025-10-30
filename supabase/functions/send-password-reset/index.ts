@@ -119,20 +119,11 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log('✅ Rate limit check passed');
 
-    // Quick check: verify user exists in auth before proceeding
-    const { data: { user: authUser }, error: userCheckError } = await supabase.auth.admin.getUserById(trimmedEmail);
+    // Quick check: verify user exists in auth before proceeding with email send
+    const { data: authUsers } = await supabase.auth.admin.listUsers();
+    const authUser = authUsers?.users?.find(u => u.email?.toLowerCase() === trimmedEmail);
     
-    // Try to find user by email if getUserById didn't work
-    let userExists = false;
     if (!authUser) {
-      const { data: authUsers } = await supabase.auth.admin.listUsers();
-      const foundUser = authUsers?.users?.find(u => u.email?.toLowerCase() === trimmedEmail);
-      userExists = !!foundUser;
-    } else {
-      userExists = true;
-    }
-    
-    if (!userExists) {
       console.log('⚠️ No auth user found for email:', trimmedEmail);
       // Always return success to prevent email enumeration attacks
       return new Response(
