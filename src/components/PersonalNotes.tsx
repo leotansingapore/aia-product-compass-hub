@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
-import { Trash2, Plus, Search, GripVertical } from 'lucide-react';
+import { Trash2, Plus, Search, GripVertical, Save, X } from 'lucide-react';
 import { NotionStyleEditor } from './notion-editor/NotionStyleEditor';
 import { useNotes } from '../hooks/useNotes';
 import { useAuth } from '../hooks/useAuth';
@@ -20,12 +20,16 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [showNewNoteEditor, setShowNewNoteEditor] = useState(false);
   const [newNoteContent, setNewNoteContent] = useState('');
+  const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
+  const [unsavedChanges, setUnsavedChanges] = useState<Record<string, string>>({});
+  const [savingNoteId, setSavingNoteId] = useState<string | null>(null);
 
-  const handleAddNote = async (content: string) => {
-    if (!content.trim()) return;
+  const handleAddNote = async () => {
+    if (!newNoteContent.trim()) return;
 
+    setSavingNoteId('new');
     try {
-      await addNote(content);
+      await addNote(newNoteContent);
       setNewNoteContent('');
       setShowNewNoteEditor(false);
       toast({
@@ -38,12 +42,24 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
         description: "Failed to add note. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setSavingNoteId(null);
     }
   };
 
-  const handleUpdateNote = async (noteId: string, content: string) => {
+  const handleUpdateNote = async (noteId: string) => {
+    const content = unsavedChanges[noteId];
+    if (!content || !content.trim()) return;
+
+    setSavingNoteId(noteId);
     try {
       await updateNote(noteId, content);
+      setUnsavedChanges(prev => {
+        const newChanges = { ...prev };
+        delete newChanges[noteId];
+        return newChanges;
+      });
+      setEditingNoteId(null);
       toast({
         title: "Note updated",
         description: "Your changes have been saved.",
@@ -54,7 +70,18 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
         description: "Failed to update note. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setSavingNoteId(null);
     }
+  };
+
+  const handleDiscardChanges = (noteId: string) => {
+    setUnsavedChanges(prev => {
+      const newChanges = { ...prev };
+      delete newChanges[noteId];
+      return newChanges;
+    });
+    setEditingNoteId(null);
   };
 
   const handleDeleteNote = async (noteId: string) => {
@@ -140,9 +167,9 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
             <NotionStyleEditor
               value={newNoteContent}
               onChange={setNewNoteContent}
-              onSave={handleAddNote}
               placeholder="Start writing your note... Type '/' for formatting options"
               autoFocus
+              autoSave={false}
             />
             <div className="flex justify-end gap-2 mt-4 pt-4 border-t">
               <Button
@@ -152,8 +179,24 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
                   setShowNewNoteEditor(false);
                   setNewNoteContent('');
                 }}
+                disabled={savingNoteId === 'new'}
               >
                 Cancel
+              </Button>
+              <Button
+                size="sm"
+                onClick={handleAddNote}
+                disabled={!newNoteContent.trim() || savingNoteId === 'new'}
+                className="gap-2"
+              >
+                {savingNoteId === 'new' ? (
+                  <>Saving...</>
+                ) : (
+                  <>
+                    <Save className="w-4 h-4" />
+                    Save Note
+                  </>
+                )}
               </Button>
             </div>
           </div>
@@ -206,8 +249,14 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
               ? note.content.substring(0, 100) + '...' 
               : note.content;
 
+            const hasUnsavedChanges = unsavedChanges[note.id] !== undefined;
+            const displayContent = hasUnsavedChanges ? unsavedChanges[note.id] : note.content;
+
             return (
-              <Card key={note.id} className="group hover:shadow-md transition-all duration-200">
+              <Card 
+                key={note.id} 
+                className={`group hover:shadow-md transition-all duration-200 ${hasUnsavedChanges ? 'ring-2 ring-warning/50' : ''}`}
+              >
                 <div className="p-4">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3 flex-1">
@@ -215,9 +264,14 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
                         <GripVertical className="w-4 h-4 text-muted-foreground cursor-grab" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-medium text-foreground line-clamp-1">
-                          {noteTitle}
-                        </h4>
+                        <div className="flex items-center gap-2">
+                          <h4 className="font-medium text-foreground line-clamp-1">
+                            {noteTitle}
+                          </h4>
+                          {hasUnsavedChanges && (
+                            <span className="text-xs text-warning">• Unsaved changes</span>
+                          )}
+                        </div>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="text-micro text-muted-foreground">
                             {new Date(note.created_at).toLocaleDateString()}
@@ -236,6 +290,7 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
                         size="sm"
                         onClick={() => handleDeleteNote(note.id)}
                         className="h-8 w-8 p-0 text-muted-foreground hover:text-destructive"
+                        disabled={savingNoteId === note.id}
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>
@@ -243,11 +298,44 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
                   </div>
 
                   <NotionStyleEditor
-                    value={note.content}
-                    onChange={() => {}} // Controlled by onSave
-                    onSave={(content) => handleUpdateNote(note.id, content)}
+                    value={displayContent}
+                    onChange={(content) => {
+                      setUnsavedChanges(prev => ({ ...prev, [note.id]: content }));
+                      setEditingNoteId(note.id);
+                    }}
                     placeholder="Click to edit this note..."
+                    autoSave={false}
                   />
+
+                  {hasUnsavedChanges && (
+                    <div className="flex justify-end gap-2 mt-4 pt-4 border-t">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleDiscardChanges(note.id)}
+                        disabled={savingNoteId === note.id}
+                        className="gap-2"
+                      >
+                        <X className="w-4 h-4" />
+                        Discard Changes
+                      </Button>
+                      <Button
+                        size="sm"
+                        onClick={() => handleUpdateNote(note.id)}
+                        disabled={savingNoteId === note.id}
+                        className="gap-2"
+                      >
+                        {savingNoteId === note.id ? (
+                          <>Saving...</>
+                        ) : (
+                          <>
+                            <Save className="w-4 h-4" />
+                            Save Changes
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </Card>
             );

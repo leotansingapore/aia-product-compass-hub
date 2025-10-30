@@ -6,9 +6,10 @@ import { useAutoSave } from '../../hooks/useAutoSave';
 interface NotionStyleEditorProps {
   value: string;
   onChange: (value: string) => void;
-  onSave: (content: string) => Promise<void>;
+  onSave?: (content: string) => Promise<void>;
   placeholder?: string;
   autoFocus?: boolean;
+  autoSave?: boolean;
 }
 
 export function NotionStyleEditor({ 
@@ -16,7 +17,8 @@ export function NotionStyleEditor({
   onChange, 
   onSave, 
   placeholder = "Type '/' for commands...",
-  autoFocus = false 
+  autoFocus = false,
+  autoSave = true
 }: NotionStyleEditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
   const [showSlashMenu, setShowSlashMenu] = useState(false);
@@ -26,7 +28,7 @@ export function NotionStyleEditor({
   const [linkInputVisible, setLinkInputVisible] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');
   
-  const { debouncedSave } = useAutoSave({ onSave });
+  const { debouncedSave } = autoSave && onSave ? useAutoSave({ onSave }) : { debouncedSave: () => {} };
 
   useEffect(() => {
     if (autoFocus && editorRef.current) {
@@ -66,7 +68,9 @@ export function NotionStyleEditor({
     const content = e.currentTarget.innerHTML;
     const textContent = convertHtmlToText(content);
     onChange(textContent);
-    debouncedSave(textContent);
+    if (autoSave && onSave) {
+      debouncedSave(textContent);
+    }
 
     // Check for slash command
     const selection = window.getSelection();
@@ -137,7 +141,9 @@ export function NotionStyleEditor({
     if (editorRef.current) {
       const content = convertHtmlToText(editorRef.current.innerHTML);
       onChange(content);
-      debouncedSave(content);
+      if (autoSave && onSave) {
+        debouncedSave(content);
+      }
     }
   };
 
@@ -188,7 +194,9 @@ export function NotionStyleEditor({
       if (editorRef.current) {
         const content = convertHtmlToText(editorRef.current.innerHTML);
         onChange(content);
-        debouncedSave(content);
+        if (autoSave && onSave) {
+          debouncedSave(content);
+        }
       }
     }
     setShowSlashMenu(false);
@@ -207,7 +215,9 @@ export function NotionStyleEditor({
       if (editorRef.current) {
         const content = convertHtmlToText(editorRef.current.innerHTML);
         onChange(content);
-        debouncedSave(content);
+        if (autoSave && onSave) {
+          debouncedSave(content);
+        }
       }
     }
     setLinkInputVisible(false);
