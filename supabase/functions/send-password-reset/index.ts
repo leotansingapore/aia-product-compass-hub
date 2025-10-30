@@ -119,18 +119,21 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log('✅ Rate limit check passed');
 
-    // Check if user exists in auth.users (using admin API)
-    const { data: authUsers, error: authError } = await supabase.auth.admin.listUsers();
+    // Quick check: verify user exists in auth before proceeding
+    const { data: { user: authUser }, error: userCheckError } = await supabase.auth.admin.getUserById(trimmedEmail);
     
-    if (authError) {
-      console.error('❌ Error fetching auth users:', authError);
-    }
-
-    const authUser = authUsers?.users?.find(u => u.email?.toLowerCase() === trimmedEmail);
-    
+    // Try to find user by email if getUserById didn't work
+    let userExists = false;
     if (!authUser) {
+      const { data: authUsers } = await supabase.auth.admin.listUsers();
+      const foundUser = authUsers?.users?.find(u => u.email?.toLowerCase() === trimmedEmail);
+      userExists = !!foundUser;
+    } else {
+      userExists = true;
+    }
+    
+    if (!userExists) {
       console.log('⚠️ No auth user found for email:', trimmedEmail);
-      console.log('EARLY_EXIT: not sending email (no auth user)');
       // Always return success to prevent email enumeration attacks
       return new Response(
         JSON.stringify({ 
@@ -144,61 +147,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log('✅ Auth user found:', authUser.id);
-
-    // Check if user has a profile
-    const { data: profile, error: profileError } = await supabase
-      .from('profiles')
-      .select('user_id')
-      .eq('email', trimmedEmail)
-      .maybeSingle();
-
-    if (profileError) {
-      console.error('❌ Error fetching profile for email:', trimmedEmail, profileError);
-    }
-    // Proceed even if no profile; it's not required for password reset
-    if (!profile?.user_id) {
-      console.log('ℹ️ No profile found for email, proceeding with reset as long as auth user exists');
-    }
-
-    console.log('ℹ️ Profile lookup:', { hasProfile: !!profile?.user_id });
-
-    // Check user approval status
-    const { data: approvalRequest, error: approvalError } = await supabase
-      .from('user_approval_requests')
-      .select('status')
-      .eq('email', trimmedEmail)
-      .single();
-
-    if (approvalError && approvalError.code !== 'PGRST116') { // PGRST116 = no rows returned
-      console.error('❌ Error checking approval status:', approvalError);
-    }
-
-    // Allow both 'approved' and 'active' status to reset password
-    if (approvalRequest && !['approved', 'active'].includes(approvalRequest.status)) {
-      console.log('⚠️ User not approved:', trimmedEmail, 'Status:', approvalRequest.status);
-      console.log('EARLY_EXIT: not sending email (user status not approved/active)');
-      // Return success to prevent enumeration
-      return new Response(
-        JSON.stringify({ 
-          success: true, 
-          message: "If an account with this email exists, a password reset link has been sent."
-        }),
-        {
-          status: 200,
-          headers: { "Content-Type": "application/json", ...corsHeaders }
-        }
-      );
-    }
-
-    console.log('✅ User is approved/active or no approval request found (proceeding)');
-    console.log('✅ All validation checks passed:', {
-      email: trimmedEmail,
-      hasAuthUser: !!authUser,
-      hasProfile: !!profile,
-      approvalStatus: approvalRequest?.status || 'no_request_found'
-    });
-    console.log('✅ Generating reset link for:', trimmedEmail);
+    console.log('✅ Auth user found, proceeding with password reset');
 
     // Always use the production domain for password reset
     const redirectTo = 'https://academy.finternship.com/reset-password';
