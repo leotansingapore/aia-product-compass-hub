@@ -118,40 +118,8 @@ export function ProductChatbots({
             </div>
 
             <div className="space-y-6">
-              {/* 3-Column Layout for All 3 Chats */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                {/* 1st Chat */}
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-sm text-orange-900">1st Chat (AI Assistant)</h4>
-                  <div>
-                    <Label htmlFor="chatbot1-name">Chat Name</Label>
-                    <Input
-                      id="chatbot1-name"
-                      value={editData.chatbot1Name}
-                      onChange={(e) =>
-                        setEditData({ ...editData, chatbot1Name: e.target.value })
-                      }
-                      placeholder="Chat with AI Assistant"
-                      className="mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="chatbot1-link">Chat Link (Optional)</Label>
-                    <Input
-                      id="chatbot1-link"
-                      value={editData.chatbot1Link}
-                      onChange={(e) =>
-                        setEditData({ ...editData, chatbot1Link: e.target.value })
-                      }
-                      placeholder="https://..."
-                      className="mt-1"
-                    />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Leave empty for built-in assistant
-                    </p>
-                  </div>
-                </div>
-
+              {/* 2-Column Layout for 2nd & 3rd Chats */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {/* 2nd Chat */}
                 <div className="space-y-3">
                   <h4 className="font-semibold text-sm text-orange-900">2nd Chat</h4>
