@@ -299,10 +299,10 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         return;
       }
 
-      // Success
+      // Success - use neutral message to prevent email enumeration
       toast({
-        title: "Reset Email Sent",
-        description: "Check your email for password reset instructions"
+        title: "Reset Request Received",
+        description: "If an account with this email exists, you'll receive a password reset link."
       });
     } catch (error) {
       console.error('Reset password error:', error);

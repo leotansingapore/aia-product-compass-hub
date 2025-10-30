@@ -182,9 +182,10 @@ const handler = async (req: Request): Promise<Response> => {
       console.error('❌ Error checking approval status:', approvalError);
     }
 
-    if (approvalRequest && approvalRequest.status !== 'approved') {
+    // Allow both 'approved' and 'active' status to reset password
+    if (approvalRequest && !['approved', 'active'].includes(approvalRequest.status)) {
       console.log('⚠️ User not approved:', trimmedEmail, 'Status:', approvalRequest.status);
-      console.log('EARLY_EXIT: not sending email (not approved)');
+      console.log('EARLY_EXIT: not sending email (user status not approved/active)');
       // Return success to prevent enumeration
       return new Response(
         JSON.stringify({ 
@@ -198,8 +199,14 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log('✅ User is approved or no approval request found (proceeding)');
-    console.log('✅ All checks passed, generating reset link for:', trimmedEmail);
+    console.log('✅ User is approved/active or no approval request found (proceeding)');
+    console.log('✅ All validation checks passed:', {
+      email: trimmedEmail,
+      hasAuthUser: !!authUser,
+      hasProfile: !!profile,
+      approvalStatus: approvalRequest?.status || 'no_request_found'
+    });
+    console.log('✅ Generating reset link for:', trimmedEmail);
 
     // Get origin from request headers or use default
     const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/') || 'https://56051a92-562c-4d7b-ae59-82204f8b4c20.lovableproject.com';
