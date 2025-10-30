@@ -29,7 +29,7 @@ export default function ProductDetail() {
     categoryName
   } = useProductDetail();
 
-  const { isAdminMode } = useAdmin();
+  const { isAdmin: isAdminMode } = useAdmin();
   const [isChatEditing, setIsChatEditing] = useState(false);
 
   if (loading) {

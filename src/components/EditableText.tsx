@@ -32,11 +32,8 @@ export function EditableText({
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value);
   const [saving, setSaving] = useState(false);
-  const { isAdminMode } = useAdmin();
+  const { isAdmin: isAdminMode } = useAdmin();
   const { toast } = useToast();
-
-  // Debug logging
-  console.log('EditableText State:', { isAdminMode, value, isEditing });
 
   const handleSave = async () => {
     if (editValue === value) {

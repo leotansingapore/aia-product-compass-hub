@@ -18,7 +18,7 @@ export function EditableTags({ tags, onSave, className = "" }: EditableTagsProps
   const [editTags, setEditTags] = useState<string[]>(tags);
   const [newTag, setNewTag] = useState('');
   const [saving, setSaving] = useState(false);
-  const { isAdminMode } = useAdmin();
+  const { isAdmin: isAdminMode } = useAdmin();
   const { toast } = useToast();
 
   const handleSave = async () => {

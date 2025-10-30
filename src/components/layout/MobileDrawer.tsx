@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Menu, X, Settings, LogOut, Home } from "lucide-react";
+import { Menu, X, LogOut, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
-import { usePermissions } from "@/hooks/usePermissions";
 import { useCategories } from "@/hooks/useProducts";
 import { getCategoryConfig } from "@/utils/categoryConfig";
 import { cn } from "@/lib/utils";
@@ -15,8 +14,7 @@ export function MobileDrawer() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const { signOut } = useSimplifiedAuth();
-  const { isAdminMode, toggleAdminMode, isAdmin } = useAdmin();
-  const { loading: permissionsLoading } = usePermissions();
+  const { isAdmin } = useAdmin();
   const { categories, loading: categoriesLoading } = useCategories();
 
   const resourceItems = [
@@ -44,27 +42,6 @@ export function MobileDrawer() {
         
         <div className="flex flex-col h-full">
           <div className="flex-1 px-6 pb-6 overflow-y-auto">
-            {/* Admin Controls */}
-            {!permissionsLoading && isAdmin && (
-              <>
-                <div className="mb-6">
-                  <Button
-                    variant={isAdminMode ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => {
-                      toggleAdminMode();
-                      handleLinkClick();
-                    }}
-                    className="w-full justify-start gap-2"
-                  >
-                    <Settings className="h-4 w-4" />
-                    {isAdminMode ? "Exit Admin Mode" : "Admin Mode"}
-                  </Button>
-                </div>
-                <Separator className="mb-6" />
-              </>
-            )}
-
             {/* Main Navigation */}
             <div className="mb-6">
               <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">

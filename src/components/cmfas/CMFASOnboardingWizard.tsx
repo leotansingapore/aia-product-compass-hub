@@ -40,7 +40,7 @@ interface CMFASOnboardingWizardProps {
 export function CMFASOnboardingWizard({ onUpdate }: CMFASOnboardingWizardProps) {
   const navigate = useNavigate();
   const { completeItem, isItemCompleted } = useChecklistProgress();
-  const { isAdminMode } = useAdmin();
+  const { isAdmin: isAdminMode } = useAdmin();
   
   const [currentStep, setCurrentStep] = useState(0);
   

@@ -21,7 +21,7 @@ interface ProductTrainingVideosProps {
 export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTrainingVideosProps) {
   const [showLearningInterface, setShowLearningInterface] = useState(false);
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
-  const { isAdminMode } = useAdmin();
+  const { isAdmin: isAdminMode } = useAdmin();
   const { getCourseProgress, getVideoProgress } = useVideoProgress(productId);
 
   // Debug logging

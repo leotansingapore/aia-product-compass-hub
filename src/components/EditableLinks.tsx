@@ -251,7 +251,7 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
   const [newLinkEmojiPopoverOpen, setNewLinkEmojiPopoverOpen] = useState(false);
-  const { isAdminMode, isAdmin } = useAdmin();
+  const { isAdmin, isAdmin: isAdminMode } = useAdmin();
   const { toast } = useToast();
 
   const sensors = useSensors(

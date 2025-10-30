@@ -22,7 +22,7 @@ interface CMFASTutorialLecturesProps {
 export function CMFASTutorialLectures({ videos, moduleId, moduleName, onUpdate }: CMFASTutorialLecturesProps) {
   const [showLearningInterface, setShowLearningInterface] = useState(false);
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
-  const { isAdminMode } = useAdmin();
+  const { isAdmin: isAdminMode } = useAdmin();
   const { getCourseProgress, getVideoProgress } = useVideoProgress(moduleId);
 
   // Ensure videos have IDs and are sorted by order

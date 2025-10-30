@@ -116,7 +116,7 @@ export function TrainingModuleInterface({ moduleName, duration, category, onClos
   const [editingDuration, setEditingDuration] = useState("");
   const [editingVideoUrl, setEditingVideoUrl] = useState("");
   
-  const { isAdminMode } = useAdmin();
+  const { isAdmin: isAdminMode } = useAdmin();
   const { toast } = useToast();
   
   // Initialize editable sections from the static data

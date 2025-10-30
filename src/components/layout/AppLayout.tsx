@@ -4,7 +4,7 @@ import { AppSidebar } from "./AppSidebar";
 import { MobileBottomNav } from "./MobileBottomNav";
 import { MobileHeader } from "./MobileHeader";
 import { Button } from "@/components/ui/button";
-import { LogIn, Settings } from "lucide-react";
+import { LogIn } from "lucide-react";
 import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
@@ -20,7 +20,7 @@ const useAdminSafe = () => {
   try {
     return useAdmin();
   } catch {
-    return { isAdminMode: false, toggleAdminMode: () => {}, isAdmin: false };
+    return { isAdmin: false };
   }
 };
 
@@ -38,7 +38,7 @@ interface AppLayoutProps {
 }
 
 const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
-  const { isAdminMode, toggleAdminMode, isAdmin } = useAdminSafe();
+  const { isAdmin } = useAdminSafe();
   const { user, loading, signOut } = useSimplifiedAuthSafe();
   const navigate = useNavigate();
   const { autoSync } = useAppStructureSync();
@@ -123,21 +123,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   if (isMobile) {
     return (
       <div className="min-h-screen w-full">
-        <MobileHeader 
-          rightAction={
-            !permissionsLoading && isAdmin ? (
-              <Button
-                variant={isAdminMode ? "default" : "outline"}
-                size="sm"
-                onClick={toggleAdminMode}
-                className="flex items-center gap-2"
-              >
-                <Settings className="h-4 w-4" />
-                {isAdminMode ? "Exit" : "Admin"}
-              </Button>
-            ) : undefined
-          }
-        />
+        <MobileHeader />
         
         <main className="flex-1 pb-20">
           {children}
@@ -168,19 +154,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
             </div>
             
             <div className="flex items-center gap-2">
-              {/* Admin Toggle - only shown to master admins after permissions are loaded */}
-              {!permissionsLoading && isAdmin && (
-                <Button
-                  variant={isAdminMode ? "default" : "outline"}
-                  size="sm"
-                  onClick={toggleAdminMode}
-                  className="flex items-center gap-2"
-                >
-                  <Settings className="h-4 w-4" />
-                  {isAdminMode ? "Exit Admin" : "Admin Mode"}
-                </Button>
-              )}
-              
               {/* Login/Signup Button - shown when user is not logged in */}
               {!user ? (
                 <Button

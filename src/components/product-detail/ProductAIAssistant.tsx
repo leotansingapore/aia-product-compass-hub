@@ -31,7 +31,7 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
   const [editInstructions, setEditInstructions] = useState(productData?.assistant_instructions || '');
   const [saving, setSaving] = useState(false);
   const [creatingAssistant, setCreatingAssistant] = useState(false);
-  const { isAdminMode } = useAdmin();
+  const { isAdmin: isAdminMode } = useAdmin();
   const { toast } = useToast();
 
   const handleSave = async () => {

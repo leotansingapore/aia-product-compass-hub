@@ -14,7 +14,7 @@ interface EditableVideosProps {
 }
 
 export function EditableVideos({ videos, onSave, className = "" }: EditableVideosProps) {
-  const { isAdminMode } = useAdmin();
+  const { isAdmin: isAdminMode } = useAdmin();
   
   console.log('🎬 EditableVideos: Starting initialization...', { 
     videosCount: videos?.length || 0, 

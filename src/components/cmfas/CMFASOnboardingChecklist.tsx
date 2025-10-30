@@ -27,7 +27,7 @@ interface CMFASOnboardingChecklistProps {
 export function CMFASOnboardingChecklist({ onUpdate }: CMFASOnboardingChecklistProps) {
   const navigate = useNavigate();
   const { completeItem, isItemCompleted } = useChecklistProgress();
-  const { isAdminMode } = useAdmin();
+  const { isAdmin: isAdminMode } = useAdmin();
   const [isExpanded, setIsExpanded] = useState(true);
 
   const [checklistData, setChecklistData] = useState({

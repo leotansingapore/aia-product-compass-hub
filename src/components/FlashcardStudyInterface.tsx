@@ -85,7 +85,7 @@ export function FlashcardStudyInterface({ setName, category, totalCards, onClose
   const [editingQuestion, setEditingQuestion] = useState("");
   const [editingAnswer, setEditingAnswer] = useState("");
   
-  const { isAdminMode } = useAdmin();
+  const { isAdmin: isAdminMode } = useAdmin();
   const { toast } = useToast();
   
   // Initialize editable cards from the static data
