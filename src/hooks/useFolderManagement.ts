@@ -20,7 +20,14 @@ export function useFolderManagement({
   const [folderDialogOpen, setFolderDialogOpen] = useState(false);
   const [folderDialogMode, setFolderDialogMode] = useState<'create' | 'edit'>('create');
   const [editingFolderName, setEditingFolderName] = useState('');
-  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set());
+  
+  // Auto-expand all folders on mount for better discoverability
+  const allFolderNames = Array.from(new Set([
+    ...editVideos.map(v => v.category || 'Uncategorized'),
+    ...emptyFolders
+  ]));
+  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(allFolderNames));
+  
   const { toast } = useToast();
 
   const handleCreateFolder = () => {

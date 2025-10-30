@@ -75,7 +75,7 @@ export function AdminVideoPreview({ videos, className = "", onClick }: AdminVide
       <div
         className="cursor-pointer hover:bg-primary/10 hover:border-primary/20 border-2 border-dashed border-primary/30 p-4 rounded transition-all duration-200 bg-primary/5"
         onClick={onClick}
-        title="🔧 ADMIN MODE: Click to edit training videos"
+        title="🔧 ADMIN MODE: Click to edit and reorder videos with drag-and-drop"
       >
         <div className="space-y-2">
           {safeVideos.map((video) => {

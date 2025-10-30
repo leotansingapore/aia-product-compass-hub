@@ -35,7 +35,12 @@ export function CourseStructurePanel({
   return (
     <div className="lg:col-span-1 space-y-4">
       <div className="border rounded-lg p-4">
-        <h3 className="font-semibold mb-4">Course Structure</h3>
+        <div className="mb-4">
+          <h3 className="font-semibold">Course Structure</h3>
+          <p className="text-sm text-muted-foreground mt-1">
+            Organize and reorder your videos with drag-and-drop
+          </p>
+        </div>
         <FolderTreeView
           videos={videos}
           emptyFolders={emptyFolders}

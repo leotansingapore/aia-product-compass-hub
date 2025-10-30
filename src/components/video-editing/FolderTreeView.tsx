@@ -60,7 +60,7 @@ function SortableVideoItem({ video, index, onVideoSelect, onEditVideo, onDeleteV
           {...attributes}
           {...listeners}
         >
-          <GripVertical className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+          <GripVertical className="h-4 w-4 text-muted-foreground hover:text-foreground transition-colors" />
         </button>
         <div
           className="flex items-center gap-2 flex-1 cursor-pointer"
@@ -251,6 +251,12 @@ export function FolderTreeView({
       onDragCancel={handleDragCancel}
     >
       <div className="space-y-2">
+        {/* Help text */}
+        <p className="text-sm text-muted-foreground px-1 flex items-center gap-2">
+          <GripVertical className="h-3 w-3" />
+          Drag videos to reorder within or between folders
+        </p>
+        
         {/* Add Folder Button */}
         <Button
           onClick={onCreateFolder}
