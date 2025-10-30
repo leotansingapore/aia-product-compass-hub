@@ -152,7 +152,7 @@ export type Database = {
         Row: {
           action: string
           booking_id: string | null
-          client_ip: unknown | null
+          client_ip: unknown
           created_at: string
           id: string
           new_values: Json | null
@@ -163,7 +163,7 @@ export type Database = {
         Insert: {
           action: string
           booking_id?: string | null
-          client_ip?: unknown | null
+          client_ip?: unknown
           created_at?: string
           id?: string
           new_values?: Json | null
@@ -174,7 +174,7 @@ export type Database = {
         Update: {
           action?: string
           booking_id?: string | null
-          client_ip?: unknown | null
+          client_ip?: unknown
           created_at?: string
           id?: string
           new_values?: Json | null
@@ -199,7 +199,7 @@ export type Database = {
           bedrooms: string | null
           booking_source: string | null
           cleaning_date: string
-          client_ip: unknown | null
+          client_ip: unknown
           completed_at: string | null
           created_at: string
           currency: string | null
@@ -225,7 +225,7 @@ export type Database = {
           bedrooms?: string | null
           booking_source?: string | null
           cleaning_date: string
-          client_ip?: unknown | null
+          client_ip?: unknown
           completed_at?: string | null
           created_at?: string
           currency?: string | null
@@ -251,7 +251,7 @@ export type Database = {
           bedrooms?: string | null
           booking_source?: string | null
           cleaning_date?: string
-          client_ip?: unknown | null
+          client_ip?: unknown
           completed_at?: string | null
           created_at?: string
           currency?: string | null
@@ -567,6 +567,30 @@ export type Database = {
           },
         ]
       }
+      password_reset_rate_limits: {
+        Row: {
+          attempted_at: string
+          created_at: string
+          email: string
+          id: string
+          ip_address: string | null
+        }
+        Insert: {
+          attempted_at?: string
+          created_at?: string
+          email: string
+          id?: string
+          ip_address?: string | null
+        }
+        Update: {
+          attempted_at?: string
+          created_at?: string
+          email?: string
+          id?: string
+          ip_address?: string | null
+        }
+        Relationships: []
+      }
       products: {
         Row: {
           assistant_id: string | null
@@ -623,7 +647,7 @@ export type Database = {
           created_at?: string
           custom_gpt_link?: string | null
           description?: string | null
-          highlights?: string | null
+          highlights?: string[] | null
           id?: string
           tags?: string[] | null
           title?: string
@@ -1167,6 +1191,7 @@ export type Database = {
           content: string
           created_at: string
           id: string
+          order: number
           product_id: string
           updated_at: string
           user_id: string
@@ -1175,6 +1200,7 @@ export type Database = {
           content: string
           created_at?: string
           id?: string
+          order?: number
           product_id: string
           updated_at?: string
           user_id: string
@@ -1183,6 +1209,7 @@ export type Database = {
           content?: string
           created_at?: string
           id?: string
+          order?: number
           product_id?: string
           updated_at?: string
           user_id?: string
@@ -1287,28 +1314,26 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      approve_user_request: {
-        Args: { request_id: string }
-        Returns: undefined
-      }
-      approve_user_request_simple: {
-        Args:
-          | {
+      approve_user_request: { Args: { request_id: string }; Returns: undefined }
+      approve_user_request_simple:
+        | {
+            Args: { new_user_id: string; request_id: string }
+            Returns: undefined
+          }
+        | {
+            Args: {
               approving_user_id: string
               new_user_id: string
               request_id: string
             }
-          | { new_user_id: string; request_id: string }
-        Returns: undefined
-      }
-      assign_master_admin: {
-        Args: { user_email: string }
-        Returns: undefined
-      }
+            Returns: Json
+          }
+      assign_master_admin: { Args: { user_email: string }; Returns: undefined }
       assign_master_admin_to_clerk_user: {
         Args: { clerk_user_id: string; user_email: string }
         Returns: undefined
       }
+      cleanup_password_reset_rate_limits: { Args: never; Returns: undefined }
       create_roleplay_session: {
         Args: {
           scenario_category: string
@@ -1318,40 +1343,22 @@ export type Database = {
         }
         Returns: string
       }
-      get_signup_password: {
-        Args: { user_email: string }
-        Returns: string
-      }
-      get_user_access_tier: {
-        Args: { user_id: string }
-        Returns: string
-      }
-      get_user_admin_role: {
-        Args: { user_id: string }
-        Returns: string
-      }
-      get_user_tier: {
-        Args: { user_id: string }
-        Returns: string
-      }
+      get_signup_password: { Args: { user_email: string }; Returns: string }
+      get_user_access_tier: { Args: { user_id: string }; Returns: string }
+      get_user_admin_role: { Args: { user_id: string }; Returns: string }
+      get_user_tier: { Args: { user_id: string }; Returns: string }
       has_admin_role: {
         Args: { required_role: string; user_id: string }
         Returns: boolean
       }
-      has_role: {
-        Args: { _role: string; _user_id: string }
-        Returns: boolean
-      }
-      has_tier_access: {
-        Args:
-          | { access_type: string; resource_id: string; user_id: string }
-          | { required_tier: string; user_id: string }
-        Returns: boolean
-      }
-      reset_approval_request: {
-        Args: { _email: string }
-        Returns: Json
-      }
+      has_role: { Args: { _role: string; _user_id: string }; Returns: boolean }
+      has_tier_access:
+        | {
+            Args: { access_type: string; resource_id: string; user_id: string }
+            Returns: boolean
+          }
+        | { Args: { required_tier: string; user_id: string }; Returns: boolean }
+      reset_approval_request: { Args: { _email: string }; Returns: Json }
       store_signup_password: {
         Args: { user_email: string; user_password: string }
         Returns: undefined
@@ -1364,14 +1371,8 @@ export type Database = {
         Args: { target_user_id: string }
         Returns: undefined
       }
-      user_has_any_role: {
-        Args: { user_id: string }
-        Returns: boolean
-      }
-      verify_user_account_status: {
-        Args: { _email: string }
-        Returns: Json
-      }
+      user_has_any_role: { Args: { user_id: string }; Returns: boolean }
+      verify_user_account_status: { Args: { _email: string }; Returns: Json }
     }
     Enums: {
       [_ in never]: never

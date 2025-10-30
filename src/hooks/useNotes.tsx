@@ -8,6 +8,7 @@ export interface UserNote {
   user_id: string;
   product_id: string;
   content: string;
+  order: number;
   created_at: string;
   updated_at: string;
 }
@@ -34,7 +35,7 @@ export function useNotes(productId: string) {
           .select('*')
           .eq('user_id', userId)
           .eq('product_id', productId)
-          .order('updated_at', { ascending: false });
+          .order('order', { ascending: true });
 
         if (error) throw error;
         setNotes(data || []);
@@ -47,6 +48,43 @@ export function useNotes(productId: string) {
 
     fetchNotes();
   }, [user, productId]);
+
+  // Reorder notes
+  const reorderNotes = async (reorderedNotes: UserNote[]) => {
+    try {
+      // Update each note's order in the database
+      const updates = reorderedNotes.map((note, index) => ({
+        id: note.id,
+        order: index,
+      }));
+
+      // Batch update using Promise.all
+      await Promise.all(
+        updates.map(({ id, order }) =>
+          supabase
+            .from('user_notes')
+            .update({ order })
+            .eq('id', id)
+        )
+      );
+
+      // Update local state with new order
+      setNotes(reorderedNotes.map((note, index) => ({ ...note, order: index })));
+
+      toast({
+        title: "Notes Reordered",
+        description: "Your note order has been saved",
+      });
+    } catch (error) {
+      console.error('Error reordering notes:', error);
+      toast({
+        title: "Error",
+        description: "Failed to reorder notes",
+        variant: "destructive",
+      });
+      throw error;
+    }
+  };
 
   // Add note
   const addNote = async (content: string) => {
@@ -71,12 +109,19 @@ export function useNotes(productId: string) {
 
     try {
       const userId = user?.id || '00000000-0000-0000-0000-000000000000';
+      
+      // Calculate the next order value (max + 1)
+      const maxOrder = notes.length > 0 
+        ? Math.max(...notes.map(n => n.order || 0))
+        : -1;
+      
       const { data, error } = await supabase
         .from('user_notes')
         .insert({
           user_id: userId,
           product_id: productId,
           content: content.trim(),
+          order: maxOrder + 1,
         })
         .select()
         .single();
@@ -169,5 +214,6 @@ export function useNotes(productId: string) {
     addNote,
     updateNote,
     deleteNote,
+    reorderNotes,
   };
 }
