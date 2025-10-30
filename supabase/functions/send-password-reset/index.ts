@@ -151,25 +151,17 @@ const handler = async (req: Request): Promise<Response> => {
       .from('profiles')
       .select('user_id')
       .eq('email', trimmedEmail)
-      .single();
+      .maybeSingle();
 
-    if (profileError || !profile?.user_id) {
-      console.log('⚠️ No profile found for email:', trimmedEmail);
-      console.log('EARLY_EXIT: not sending email (no profile)');
-      // Always return success to prevent email enumeration attacks
-      return new Response(
-        JSON.stringify({ 
-          success: true, 
-          message: "If an account with this email exists, a password reset link has been sent."
-        }),
-        {
-          status: 200,
-          headers: { "Content-Type": "application/json", ...corsHeaders }
-        }
-      );
+    if (profileError) {
+      console.error('❌ Error fetching profile for email:', trimmedEmail, profileError);
+    }
+    // Proceed even if no profile; it's not required for password reset
+    if (!profile?.user_id) {
+      console.log('ℹ️ No profile found for email, proceeding with reset as long as auth user exists');
     }
 
-    console.log('✅ Profile found for user:', profile.user_id);
+    console.log('ℹ️ Profile lookup:', { hasProfile: !!profile?.user_id });
 
     // Check user approval status
     const { data: approvalRequest, error: approvalError } = await supabase
