@@ -200,9 +200,8 @@ const handler = async (req: Request): Promise<Response> => {
     });
     console.log('✅ Generating reset link for:', trimmedEmail);
 
-    // Get origin from request headers or use default
-    const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/') || 'https://56051a92-562c-4d7b-ae59-82204f8b4c20.lovableproject.com';
-    const redirectTo = `${origin}/reset-password`;
+    // Always use the production domain for password reset
+    const redirectTo = 'https://academy.finternship.com/reset-password';
     console.log('📍 Using redirect URL:', redirectTo);
 
     // Generate password reset link using Supabase Admin API
