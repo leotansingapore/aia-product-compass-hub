@@ -8,6 +8,7 @@ import { Check, X, Edit } from 'lucide-react';
 import { useAdmin } from '@/hooks/useAdmin';
 import { RichTextEditor } from './RichTextEditor';
 import ReactMarkdown from 'react-markdown';
+import DOMPurify from 'dompurify';
 
 interface EditableTextProps {
   value: string;
@@ -72,11 +73,15 @@ export function EditableText({
     if (richText && value) {
       // Check if content is HTML or markdown
       if (value.includes('<')) {
-        // Content is HTML
+        // Content is HTML - sanitize before rendering
+        const sanitizedHTML = DOMPurify.sanitize(value, {
+          ALLOWED_TAGS: ['p', 'b', 'i', 'em', 'strong', 'a', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'span', 'div'],
+          ALLOWED_ATTR: ['href', 'target', 'rel', 'class']
+        });
         return (
           <div
             className={`${className} break-words`}
-            dangerouslySetInnerHTML={{ __html: value }}
+            dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
           />
         );
       } else {

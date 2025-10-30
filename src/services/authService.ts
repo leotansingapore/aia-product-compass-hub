@@ -95,7 +95,7 @@ export class AuthService {
       const firstName = nameParts[0];
       const lastName = nameParts.slice(1).join(' ');
 
-      // Store the password directly during initial insert
+      // Store signup request without password - password will be set during provisioning
       const { error } = await supabase
         .from('user_approval_requests')
         .insert({
@@ -103,8 +103,7 @@ export class AuthService {
           first_name: firstName,
           last_name: lastName || null,
           reason: "User registration request",
-          stored_password: password, // Store the signup password directly
-          notes: `Password set during registration`
+          notes: `Registration requested on ${new Date().toLocaleDateString()}`
         });
 
       if (error) {

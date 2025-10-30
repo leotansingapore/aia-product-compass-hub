@@ -11,6 +11,7 @@ import { useAdmin } from '@/hooks/useAdmin';
 import ReactMarkdown from 'react-markdown';
 import { MediaUploadZone } from '@/components/MediaUploadZone';
 import { announceToScreenReader, getProgressAriaProps } from '@/lib/accessibility-utils';
+import DOMPurify from 'dompurify';
 
 interface MediaItem {
   id: string;
@@ -562,9 +563,14 @@ Click "Complete Step" and start your first practice session!`
                 {/* Rendered Content */}
                 <div className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground">
                   {currentStepData.content.includes('<') ? (
-                    // Content is HTML
+                    // Content is HTML - sanitize before rendering
                     <div 
-                      dangerouslySetInnerHTML={{ __html: currentStepData.content }}
+                      dangerouslySetInnerHTML={{ 
+                        __html: DOMPurify.sanitize(currentStepData.content, {
+                          ALLOWED_TAGS: ['p', 'b', 'i', 'em', 'strong', 'a', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'span', 'div'],
+                          ALLOWED_ATTR: ['href', 'target', 'rel', 'class']
+                        })
+                      }}
                       className="prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-4 prose-h1:text-primary prose-h2:text-2xl prose-h2:font-semibold prose-h2:mb-3 prose-h2:text-primary prose-h3:text-xl prose-h3:font-semibold prose-h3:mb-2 prose-h3:text-primary prose-p:mb-4 prose-p:text-foreground prose-p:leading-relaxed prose-ul:mb-4 prose-ul:space-y-2 prose-li:flex prose-li:items-start prose-li:space-x-2 prose-li:text-foreground prose-strong:font-semibold prose-strong:text-primary prose-em:italic prose-em:text-foreground [&_a]:text-blue-600 [&_a]:underline [&_a:hover]:text-blue-800"
                     />
                   ) : (
