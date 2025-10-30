@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { EditableVideos } from "@/components/EditableVideos";
 import { VideoLearningInterface } from "@/components/video-learning/VideoLearningInterface";
 import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
+import { AdminVideosByCategory } from "@/components/video-editing/AdminVideosByCategory";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { useAdmin } from "@/hooks/useAdmin";
 import { formatDuration } from "@/components/video-editing/videoUtils";
@@ -114,6 +115,19 @@ export function CMFASTutorialLectures({ videos, moduleId, moduleName, onUpdate }
               moduleType="cmfas"
             />
           </div>
+        ) : isAdminMode && processedVideos.length > 0 ? (
+          <AdminVideosByCategory
+            videos={processedVideos}
+            onVideoSelect={(index) => {
+              setSelectedVideoIndex(index);
+              setShowLearningInterface(true);
+            }}
+            getVideoProgress={getVideoProgress}
+            useIndividualPages={true}
+            moduleId={moduleId}
+            moduleType="cmfas"
+            onSave={(newVideos) => onUpdate('tutorial_lectures', newVideos)}
+          />
         ) : (
           <ErrorBoundary 
             fallback={
