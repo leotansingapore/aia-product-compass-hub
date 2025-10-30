@@ -174,10 +174,18 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log('✅ Reset link generated successfully');
 
+    // Force the redirect_to parameter to use production domain
+    const rawActionLink = data.properties?.action_link || data.action_link || '';
+    const verifyUrl = new URL(rawActionLink);
+    verifyUrl.searchParams.set('redirect_to', 'https://academy.finternship.com/reset-password');
+    const resetUrl = verifyUrl.toString();
+    
+    console.log('📍 Enforced reset URL:', resetUrl);
+
     // Render the email template with React Email
     const emailHtml = await renderAsync(
       React.createElement(PasswordResetEmail, {
-        resetUrl: data.properties?.action_link || '',
+        resetUrl: resetUrl,
         appName: 'Knowledge Portal'
       })
     );

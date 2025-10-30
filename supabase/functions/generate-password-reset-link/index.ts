@@ -124,16 +124,23 @@ serve(async (req) => {
       });
     }
 
+    // Force the redirect_to parameter to use production domain
+    const rawActionLink = (linkData.properties?.action_link || linkData.action_link) as string;
+    const verifyUrl = new URL(rawActionLink);
+    verifyUrl.searchParams.set('redirect_to', 'https://academy.finternship.com/reset-password');
+    const resetUrl = verifyUrl.toString();
+    
+    console.log('📍 Enforced reset URL:', resetUrl);
+
     // Send email via Resend with custom template if send flag is true
     if (send) {
       const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
       if (!RESEND_API_KEY) {
-        return new Response(JSON.stringify({ error: "Email sending not configured (missing RESEND_API_KEY)", resetUrl: linkData.properties?.action_link || linkData.action_link }), { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } });
+        return new Response(JSON.stringify({ error: "Email sending not configured (missing RESEND_API_KEY)", resetUrl }), { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } });
       }
       
       try {
         const resend = new Resend(RESEND_API_KEY);
-        const resetUrl = (linkData.properties?.action_link || linkData.action_link) as string;
         
         // Render the React email template
         const html = await renderAsync(
@@ -173,7 +180,7 @@ serve(async (req) => {
 
     return new Response(JSON.stringify({ 
       success: true, 
-      resetUrl: linkData.properties?.action_link || linkData.action_link,
+      resetUrl: resetUrl,
       emailSent: !!send 
     }), {
       status: 200,
