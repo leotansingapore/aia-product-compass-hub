@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo, useCallback, memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -54,7 +54,7 @@ function getVideoEmbedInfo(url: string) {
   return null;
 }
 
-export function VideoLearningInterface({
+export const VideoLearningInterface = memo(function VideoLearningInterface({
   videos,
   productId,
   onClose,
@@ -78,9 +78,9 @@ export function VideoLearningInterface({
     getCourseProgress
   } = useVideoProgress(productId);
 
-  const currentVideo = videos[currentVideoIndex];
-  const currentProgress = getVideoProgress(currentVideo?.id);
-  const courseProgress = getCourseProgress(videos.length);
+  const currentVideo = useMemo(() => videos[currentVideoIndex], [videos, currentVideoIndex]);
+  const currentProgress = useMemo(() => getVideoProgress(currentVideo?.id), [getVideoProgress, currentVideo?.id]);
+  const courseProgress = useMemo(() => getCourseProgress(videos.length), [getCourseProgress, videos.length]);
 
   // Sync state with URL changes when video is selected from sidebar
   useEffect(() => {
@@ -111,13 +111,13 @@ export function VideoLearningInterface({
     return () => clearInterval(interval);
   }, [isPlaying, currentVideo, updateWatchTime]);
 
-  const handleMarkComplete = async () => {
+  const handleMarkComplete = useCallback(async () => {
     if (currentVideo) {
       await markVideoComplete(currentVideo.id);
     }
-  };
+  }, [currentVideo, markVideoComplete]);
 
-  const navigateVideo = (direction: 'prev' | 'next') => {
+  const navigateVideo = useCallback((direction: 'prev' | 'next') => {
     let targetIndex = currentVideoIndex;
 
     if (direction === 'prev' && currentVideoIndex > 0) {
@@ -139,9 +139,9 @@ export function VideoLearningInterface({
         window.location.href = `/product/${productSlugOrId}/video/${videoSlug}`;
       }
     }
-  };
+  }, [currentVideoIndex, videos, moduleType, moduleId, productSlugOrId]);
 
-  const handleShare = async () => {
+  const handleShare = useCallback(async () => {
     if (!currentVideo) return;
 
     const videoSlug = getVideoSlug(currentVideo.title);
@@ -188,9 +188,9 @@ export function VideoLearningInterface({
         });
       }
     }
-  };
+  }, [currentVideo, moduleType, moduleId, productSlugOrId, toast]);
 
-  const videoInfo = currentVideo ? getVideoEmbedInfo(currentVideo.url) : null;
+  const videoInfo = useMemo(() => currentVideo ? getVideoEmbedInfo(currentVideo.url) : null, [currentVideo]);
 
   return (
     <div className="fixed inset-0 bg-background z-50 overflow-auto">
@@ -454,4 +454,4 @@ export function VideoLearningInterface({
       </div>
     </div>
   );
-}
+});

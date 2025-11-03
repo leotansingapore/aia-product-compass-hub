@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
 import { useToast } from './use-toast';
@@ -120,31 +120,31 @@ export function useVideoProgress(productId: string) {
   };
 
   // Mark video as complete
-  const markVideoComplete = async (videoId: string) => {
+  const markVideoComplete = useCallback(async (videoId: string) => {
     await updateVideoProgress(videoId, {
       completed: true,
       completion_percentage: 100
     });
-  };
+  }, [updateVideoProgress]);
 
   // Update watch time
-  const updateWatchTime = async (videoId: string, watchTime: number, percentage: number) => {
+  const updateWatchTime = useCallback(async (videoId: string, watchTime: number, percentage: number) => {
     await updateVideoProgress(videoId, {
       watch_time_seconds: watchTime,
       completion_percentage: percentage
     });
-  };
+  }, [updateVideoProgress]);
 
   // Get progress for specific video
-  const getVideoProgress = (videoId: string) => {
+  const getVideoProgress = useCallback((videoId: string) => {
     return videoProgress.find(p => p.video_id === videoId);
-  };
+  }, [videoProgress]);
 
   // Calculate overall course progress
-  const getCourseProgress = (totalVideos: number) => {
+  const getCourseProgress = useCallback((totalVideos: number) => {
     const completedVideos = videoProgress.filter(p => p.completed).length;
     return totalVideos > 0 ? Math.round((completedVideos / totalVideos) * 100) : 0;
-  };
+  }, [videoProgress]);
 
   return {
     videoProgress,

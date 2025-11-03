@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo, memo, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -19,7 +19,7 @@ interface VideosByCategoryProps {
   moduleType?: 'product' | 'cmfas';
 }
 
-export function VideosByCategory({
+export const VideosByCategory = memo(function VideosByCategory({
   videos,
   onVideoSelect,
   getVideoProgress,
@@ -33,35 +33,48 @@ export function VideosByCategory({
   const navigate = useNavigate();
   const { productSlugOrId } = useParams();
 
-  // Group videos by category
-  const videosByCategory = videos.reduce((acc, video, index) => {
+  // Group videos by category - memoized to prevent recalculation
+  const videosByCategory = useMemo(() => videos.reduce((acc, video, index) => {
     const category = video.category || 'Getting Started';
     if (!acc[category]) {
       acc[category] = [];
     }
     acc[category].push({ video, index });
     return acc;
-  }, {} as Record<string, Array<{ video: TrainingVideo; index: number }>>);
+  }, {} as Record<string, Array<{ video: TrainingVideo; index: number }>>), [videos]);
 
-  const toggleCategory = (category: string) => {
+  const toggleCategory = useCallback((category: string) => {
     setOpenCategories(prev => ({
       ...prev,
       [category]: !prev[category]
     }));
-  };
+  }, []);
 
-  // Calculate category completion
-  const getCategoryProgress = (videoItems: Array<{ video: TrainingVideo; index: number }>) => {
+  // Calculate category completion - memoized
+  const getCategoryProgress = useCallback((videoItems: Array<{ video: TrainingVideo; index: number }>) => {
     const completedCount = videoItems.filter(({ video }) => 
       getVideoProgress(video.id)?.completed
     ).length;
     return { completed: completedCount, total: videoItems.length };
-  };
+  }, [getVideoProgress]);
 
-  // Calculate total duration for category
-  const getCategoryDuration = (videoItems: Array<{ video: TrainingVideo; index: number }>) => {
+  // Calculate total duration for category - memoized
+  const getCategoryDuration = useCallback((videoItems: Array<{ video: TrainingVideo; index: number }>) => {
     return videoItems.reduce((sum, { video }) => sum + (video.duration || 0), 0);
-  };
+  }, []);
+
+  const handleVideoClick = useCallback((video: TrainingVideo, index: number) => {
+    if (useIndividualPages) {
+      const videoSlug = getVideoSlug(video.title);
+      if (moduleType === 'cmfas' && moduleId) {
+        navigate(`/cmfas/module/${moduleId}/video/${videoSlug}`);
+      } else if (productSlugOrId) {
+        navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
+      }
+    } else {
+      onVideoSelect?.(index);
+    }
+  }, [useIndividualPages, moduleType, moduleId, productSlugOrId, navigate, onVideoSelect]);
 
   return (
     <div className="space-y-4">
@@ -110,18 +123,7 @@ export function VideosByCategory({
                         ? 'bg-primary/10 border-primary shadow-sm'
                         : ''
                     }`}
-                    onClick={() => {
-                      if (useIndividualPages) {
-                        const videoSlug = getVideoSlug(video.title);
-                        if (moduleType === 'cmfas' && moduleId) {
-                          navigate(`/cmfas/module/${moduleId}/video/${videoSlug}`);
-                        } else if (productSlugOrId) {
-                          navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
-                        }
-                      } else {
-                        onVideoSelect?.(index);
-                      }
-                    }}
+                    onClick={() => handleVideoClick(video, index)}
                   >
                     <div className="flex-shrink-0">
                       {videoProgress?.completed ? (
@@ -158,4 +160,4 @@ export function VideosByCategory({
       })}
     </div>
   );
-}
+});
