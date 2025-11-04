@@ -55,6 +55,28 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log('Creating pending user for:', trimmedEmail);
 
+    // Check if there's already a pending approval request
+    const { data: existingRequest, error: requestError } = await supabaseServiceRole
+      .from('user_approval_requests')
+      .select('id, status, auth_user_id')
+      .eq('email', trimmedEmail)
+      .maybeSingle();
+
+    if (requestError) {
+      console.error('Error checking approval request:', requestError);
+      throw new Error('Failed to check existing registration');
+    }
+
+    // If there's a pending approval request, inform the user
+    if (existingRequest && existingRequest.status === 'pending') {
+      throw new Error('A registration request with this email is already pending approval. Please wait for admin approval or contact support.');
+    }
+
+    // If there's an active/approved request, check if they just need to login
+    if (existingRequest && existingRequest.status === 'active') {
+      throw new Error('An account with this email already exists. Please try logging in. If you forgot your password, use the "Forgot password?" link.');
+    }
+
     // Check if user already exists in auth.users
     const { data: existingUsers, error: checkError } = await supabaseServiceRole.auth.admin.listUsers();
     if (checkError) {
@@ -62,75 +84,112 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error('Failed to check existing users');
     }
 
-    const userExists = existingUsers.users.some(u => u.email?.toLowerCase() === trimmedEmail);
-    if (userExists) {
-      throw new Error('An account with this email already exists');
+    const existingUser = existingUsers.users.find(u => u.email?.toLowerCase() === trimmedEmail);
+    
+    // If user exists and email is confirmed, they should just login
+    if (existingUser && existingUser.email_confirmed_at) {
+      throw new Error('An account with this email already exists. Please try logging in. If you forgot your password, use the "Forgot password?" link.');
     }
 
-    // Check if there's already a pending approval request
-    const { data: existingRequest, error: requestError } = await supabaseServiceRole
-      .from('user_approval_requests')
-      .select('id, status')
-      .eq('email', trimmedEmail)
-      .single();
+    // If user exists but email NOT confirmed, this is an inactive/pending account
+    // Check if we should reuse it or create a new one
+    let authUserId = existingUser?.id;
 
-    if (existingRequest) {
-      if (existingRequest.status === 'pending') {
-        throw new Error('A registration request with this email is already pending approval');
-      }
-      // If rejected or other status, we can proceed with new request
-    }
+    if (!authUserId) {
+      // No existing auth account, create a new one
 
-    // Generate secure random password (user won't use this - they'll set password via reset link)
-    const tempPassword = crypto.randomUUID() + crypto.randomUUID();
+      // Generate secure random password (user won't use this - they'll set password via reset link)
+      const tempPassword = crypto.randomUUID() + crypto.randomUUID();
 
-    // Create auth account (INACTIVE - email_confirm: false blocks login)
-    const { data: newUser, error: createError } = await supabaseServiceRole.auth.admin.createUser({
-      email: trimmedEmail,
-      password: tempPassword,
-      email_confirm: false, // CRITICAL: Blocks login until admin approval
-      user_metadata: {
-        first_name: firstName,
-        last_name: lastName || '',
-        display_name: `${firstName} ${lastName || ''}`.trim()
-      }
-    });
-
-    if (createError) {
-      console.error('Error creating auth user:', createError);
-      throw new Error(`Failed to create user account: ${createError.message}`);
-    }
-
-    if (!newUser.user) {
-      throw new Error('User creation failed - no user returned');
-    }
-
-    console.log('Auth account created (inactive):', newUser.user.id);
-
-    // Create approval request linked to auth account
-    const { error: approvalError } = await supabaseServiceRole
-      .from('user_approval_requests')
-      .insert({
+      // Create auth account (INACTIVE - email_confirm: false blocks login)
+      const { data: newUser, error: createError } = await supabaseServiceRole.auth.admin.createUser({
         email: trimmedEmail,
-        first_name: firstName,
-        last_name: lastName || '',
-        reason: reason || 'User registration request',
-        status: 'pending',
-        auth_user_id: newUser.user.id // Link to auth account
+        password: tempPassword,
+        email_confirm: false, // CRITICAL: Blocks login until admin approval
+        user_metadata: {
+          first_name: firstName,
+          last_name: lastName || '',
+          display_name: `${firstName} ${lastName || ''}`.trim()
+        }
       });
 
-    if (approvalError) {
-      console.error('Error creating approval request:', approvalError);
-      // Try to clean up the auth account
-      try {
-        await supabaseServiceRole.auth.admin.deleteUser(newUser.user.id);
-      } catch (cleanupError) {
-        console.error('Failed to cleanup auth account:', cleanupError);
+      if (createError) {
+        console.error('Error creating auth user:', createError);
+        throw new Error(`Failed to create user account: ${createError.message}`);
       }
-      throw new Error('Failed to create approval request');
+
+      if (!newUser.user) {
+        throw new Error('User creation failed - no user returned');
+      }
+
+      authUserId = newUser.user.id;
+      console.log('Auth account created (inactive):', authUserId);
+    } else {
+      // Reusing existing inactive auth account
+      console.log('Reusing existing inactive auth account:', authUserId);
+      
+      // Update the metadata in case name changed
+      await supabaseServiceRole.auth.admin.updateUserById(authUserId, {
+        user_metadata: {
+          first_name: firstName,
+          last_name: lastName || '',
+          display_name: `${firstName} ${lastName || ''}`.trim()
+        }
+      });
     }
 
-    console.log('Approval request created successfully');
+    // Create or update approval request linked to auth account
+    if (existingRequest && existingRequest.status === 'rejected') {
+      // Update existing rejected request to pending
+      const { error: updateError } = await supabaseServiceRole
+        .from('user_approval_requests')
+        .update({
+          first_name: firstName,
+          last_name: lastName || '',
+          reason: reason || 'User registration request (resubmitted)',
+          status: 'pending',
+          auth_user_id: authUserId,
+          requested_at: new Date().toISOString(),
+          reviewed_at: null,
+          reviewed_by: null
+        })
+        .eq('id', existingRequest.id);
+
+      if (updateError) {
+        console.error('Error updating approval request:', updateError);
+        throw new Error('Failed to update approval request');
+      }
+      
+      console.log('Approval request updated (resubmitted)');
+    } else {
+      // Create new approval request
+      const { error: approvalError } = await supabaseServiceRole
+        .from('user_approval_requests')
+        .insert({
+          email: trimmedEmail,
+          first_name: firstName,
+          last_name: lastName || '',
+          reason: reason || 'User registration request',
+          status: 'pending',
+          auth_user_id: authUserId // Link to auth account
+        });
+
+      if (approvalError) {
+        console.error('Error creating approval request:', approvalError);
+        // Try to clean up the auth account if we just created it
+        if (!existingUser) {
+          try {
+            await supabaseServiceRole.auth.admin.deleteUser(authUserId);
+          } catch (cleanupError) {
+            console.error('Failed to cleanup auth account:', cleanupError);
+          }
+        }
+        throw new Error('Failed to create approval request');
+      }
+
+      console.log('Approval request created successfully');
+    }
+
 
     // Notify admins about new signup
     try {
