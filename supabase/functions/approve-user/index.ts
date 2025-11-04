@@ -10,7 +10,6 @@ const corsHeaders = {
 
 interface ApproveUserRequest {
   request_id: string
-  temp_password?: string
 }
 
 Deno.serve(async (req) => {
@@ -87,20 +86,11 @@ Deno.serve(async (req) => {
     }
 
 // Parse request body
-const { request_id, temp_password }: ApproveUserRequest = await req.json()
+const { request_id }: { request_id: string } = await req.json()
 
 if (!request_id) {
   return new Response(
     JSON.stringify({ error: 'Missing request_id' }),
-    { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-  )
-}
-
-// Validate temp password if provided
-const tempPassword = (temp_password && typeof temp_password === 'string') ? temp_password.trim() : ''
-if (tempPassword && tempPassword.length < 6) {
-  return new Response(
-    JSON.stringify({ error: 'temp_password must be at least 6 characters' }),
     { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
   )
 }
@@ -123,62 +113,37 @@ if (tempPassword && tempPassword.length < 6) {
 
     console.log('Processing approval for:', requestData.email)
 
-    // Check if user already exists in auth.users
-    const { data: existingUser, error: userLookupError } = await supabaseAdmin.auth.admin.listUsers({
-      page: 1,
-      perPage: 1,
-      filter: `email.eq.${requestData.email}`
-    })
-    
-    if (userLookupError) {
-      console.error('User lookup error:', userLookupError)
+    // Verify auth_user_id exists
+    if (!requestData.auth_user_id) {
+      console.error('No auth_user_id found in approval request')
       return new Response(
-        JSON.stringify({ error: 'Error checking existing user' }),
+        JSON.stringify({ error: 'Invalid approval request - no auth account linked. User must re-register.' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+
+    const userId = requestData.auth_user_id
+    console.log('Activating auth account:', userId)
+
+    // Activate the existing auth account (enable login)
+    const { error: activateError } = await supabaseAdmin.auth.admin.updateUserById(userId, {
+      email_confirm: true, // ENABLES LOGIN
+      user_metadata: {
+        first_name: requestData.first_name || '',
+        last_name: requestData.last_name || '',
+        display_name: `${requestData.first_name || ''} ${requestData.last_name || ''}`.trim() || 'User'
+      }
+    })
+
+    if (activateError) {
+      console.error('Error activating user account:', activateError)
+      return new Response(
+        JSON.stringify({ error: 'Failed to activate user account' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
-    
-    let userId = null
-    
-    // Check if user exists in auth.users
-    const userExists = existingUser && existingUser.users && existingUser.users.length > 0
-    
-    if (!userExists) {
-      // Get the stored password from the approval request (stored during signup)
-      const storedPassword = requestData.stored_password
-      if (!storedPassword) {
-        return new Response(
-          JSON.stringify({ error: 'No stored password found for user. User must sign up again.' }),
-          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        )
-      }
 
-      // Create the user account with their original password
-      const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
-        email: requestData.email,
-        password: storedPassword,
-        email_confirm: true, // Auto-confirm email since admin is approving
-        user_metadata: {
-          first_name: requestData.first_name || '',
-          last_name: requestData.last_name || ''
-        }
-      })
-
-      if (createError) {
-        console.error('User creation error:', createError)
-        return new Response(
-          JSON.stringify({ error: 'Failed to create user account' }),
-          { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        )
-      }
-
-      userId = newUser.user.id
-      console.log('Created new user account:', userId)
-    } else {
-      // User already exists
-      userId = existingUser.users[0].id
-      console.log('User already exists:', userId)
-    }
+    console.log('User account activated successfully')
 
     // Create profile if it doesn't exist
     const { error: profileError } = await supabaseAdmin
@@ -243,7 +208,25 @@ if (tempPassword && tempPassword.length < 6) {
 
     console.log('User approval completed successfully')
 
-    // Send approval notification email to the user
+    // Generate password reset link for the user to set their password
+    let passwordResetLink = '';
+    try {
+      const { data: resetData, error: resetError } = await supabaseAdmin.auth.admin.generateLink({
+        type: 'recovery',
+        email: requestData.email,
+      });
+
+      if (resetError) {
+        console.error('Error generating password reset link:', resetError);
+      } else if (resetData?.properties?.action_link) {
+        passwordResetLink = resetData.properties.action_link;
+        console.log('Password reset link generated');
+      }
+    } catch (resetLinkError) {
+      console.error('Error generating reset link:', resetLinkError);
+    }
+
+    // Send approval notification email to the user with password reset link
     try {
       const notificationResponse = await fetch(
         `${supabaseUrl}/functions/v1/notify-user-approved`,
@@ -257,6 +240,7 @@ if (tempPassword && tempPassword.length < 6) {
             email: requestData.email,
             firstName: requestData.first_name,
             lastName: requestData.last_name,
+            passwordResetLink: passwordResetLink || undefined,
           }),
         }
       )
@@ -274,10 +258,10 @@ if (tempPassword && tempPassword.length < 6) {
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: 'User approved and account created successfully',
+        message: 'User approved and account activated successfully',
         email: requestData.email,
         user_id: userId,
-        instructions: 'User can now sign in immediately with their original password'
+        instructions: 'User will receive an email with a link to set their password'
       }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )

@@ -18,7 +18,7 @@ serve(async (req) => {
     const resendApiKey = Deno.env.get('RESEND_API_KEY')!;
     const resend = new Resend(resendApiKey);
 
-    const { email, firstName, lastName } = await req.json();
+    const { email, firstName, lastName, passwordResetLink } = await req.json();
 
     if (!email) {
       throw new Error('Email is required');
@@ -34,7 +34,8 @@ serve(async (req) => {
     const html = await renderAsync(
       React.createElement(UserApprovedEmail, {
         userName,
-        loginUrl: `${Deno.env.get('SUPABASE_URL')?.replace('supabase.co', 'lovable.app')}/auth`
+        loginUrl: `${Deno.env.get('SUPABASE_URL')?.replace('supabase.co', 'lovable.app')}/auth`,
+        passwordResetLink
       })
     );
 

@@ -15,11 +15,13 @@ import * as React from 'npm:react@18.3.1';
 interface UserApprovedEmailProps {
   userName: string;
   loginUrl: string;
+  passwordResetLink?: string;
 }
 
 export const UserApprovedEmail = ({
   userName,
   loginUrl,
+  passwordResetLink,
 }: UserApprovedEmailProps) => {
   return (
     <Html>
@@ -39,9 +41,9 @@ export const UserApprovedEmail = ({
 
           <Section style={highlightBox}>
             <Text style={highlightText}>
-              ✓ Your account is now active
+              ✓ Your account has been approved
               <br />
-              ✓ You can log in immediately
+              {passwordResetLink ? '✓ Click below to set your password' : '✓ You can log in immediately'}
               <br />
               ✓ Start exploring our financial advisory training resources
             </Text>
@@ -51,14 +53,16 @@ export const UserApprovedEmail = ({
 
           <Section style={ctaSection}>
             <Text style={text}>
-              Click the button below to log in and start your learning journey:
+              {passwordResetLink 
+                ? 'Click the button below to set your password and activate your account:'
+                : 'Click the button below to log in and start your learning journey:'}
             </Text>
             <Link
-              href={loginUrl}
+              href={passwordResetLink || loginUrl}
               target="_blank"
               style={button}
             >
-              Log In to FINternship
+              {passwordResetLink ? 'Set Your Password' : 'Log In to FINternship'}
             </Link>
           </Section>
 

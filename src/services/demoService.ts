@@ -1,6 +1,11 @@
 import { supabase } from "@/integrations/supabase/client";
-import { AuthService, SignInResult } from "./authService";
 import { AUTH_CONFIG } from "@/config/authConfig";
+
+export interface SignInResult {
+  success: boolean;
+  error?: string;
+  requiresActivation?: boolean;
+}
 
 export class DemoService {
   private static readonly DEMO_ENDPOINT = `https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/ensure-demo-account`;
@@ -11,31 +16,51 @@ export class DemoService {
   }
 
   static async signInWithDemoAccount(email: string, password: string): Promise<SignInResult> {
-    const result = await AuthService.signIn(email, password);
-    
-    if (result.success) {
-      return result;
-    }
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    // If sign-in failed, try to create the demo account
-    if (result.error?.includes('Invalid login credentials')) {
-      try {
-        await this.createDemoAccount(email);
-        // Retry sign-in after account creation
-        return await AuthService.signIn(email, password);
-      } catch (error: any) {
-        return { success: false, error: error.message || 'Failed to create demo account' };
+      if (error) {
+        // If sign-in failed, try to create the demo account
+        if (error.message.includes('Invalid login credentials')) {
+          try {
+            await this.createDemoAccount(email);
+            // Retry sign-in after account creation
+            const retryResult = await supabase.auth.signInWithPassword({
+              email,
+              password,
+            });
+            
+            if (retryResult.error) {
+              return { success: false, error: retryResult.error.message };
+            }
+            
+            return { success: true };
+          } catch (createError: any) {
+            return { success: false, error: createError.message || 'Failed to create demo account' };
+          }
+        }
+
+        if (error.message.includes('Email not confirmed')) {
+          return { 
+            success: false, 
+            error: "Demo account exists but requires email confirmation. Please disable 'Confirm email' in Supabase Auth settings for instant demo access." 
+          };
+        }
+
+        return { success: false, error: error.message };
       }
-    }
 
-    if (result.error?.includes('Email not confirmed')) {
-      return { 
-        success: false, 
-        error: "Demo account exists but requires email confirmation. Please disable 'Confirm email' in Supabase Auth settings for instant demo access." 
-      };
-    }
+      if (data.user) {
+        return { success: true };
+      }
 
-    return result;
+      return { success: false, error: 'Sign in failed' };
+    } catch (error: any) {
+      return { success: false, error: error.message || 'An unexpected error occurred' };
+    }
   }
 
   private static async createDemoAccount(email: string): Promise<void> {

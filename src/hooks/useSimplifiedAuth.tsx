@@ -139,7 +139,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
   };
 
   const signUp = async (email: string, password: string, displayName?: string): Promise<{ success: boolean; email?: string }> => {
-    if (!email.trim() || !password.trim()) {
+    if (!email.trim() || !displayName?.trim()) {
       toast({
         variant: "destructive",
         title: "Missing Information",
@@ -149,70 +149,59 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
     }
 
     try {
-      // Create approval request instead of direct signup
       const [firstName, lastName] = (displayName?.trim() || '').split(' ', 2);
       
-        const { error } = await supabase
-          .from('user_approval_requests')
-          .insert({
-            email: email.trim(),
-            first_name: firstName || '',
-            last_name: lastName || '',
-            stored_password: password.trim(),
-            status: 'pending'
-          });
-
-        if (error) {
-          // Check if user already requested approval
-          if ((error as any).code === '23505') { // unique constraint violation
-            toast({
-              variant: "destructive",
-              title: "Request Already Exists",
-              description: "An approval request for this email already exists. Please wait for admin approval."
-            });
-            return { success: false };
-          }
-          
-          toast({
-            variant: "destructive",
-            title: "Registration Failed",
-            description: error.message
-          });
-          return { success: false };
+      console.log('[SimplifiedAuth] Creating pending user via edge function');
+      
+      // Call edge function to create inactive auth account
+      const { data, error } = await supabase.functions.invoke('create-pending-user', {
+        body: {
+          email: email.trim(),
+          firstName: firstName || '',
+          lastName: lastName || '',
+          reason: 'User registration request'
         }
+      });
 
-        // Notify master admins of new signup
-        try {
-          await supabase.functions.invoke('notify-admins-new-signup', {
-            body: { 
-              email: email.trim(), 
-              firstName: firstName || '',
-              lastName: lastName || '',
-              dashboardUrl: `${window.location.origin}/admin`
-            }
-          });
-        } catch (error) {
-          console.error('Failed to notify admins:', error);
-          // Don't block signup if notification fails
-        }
-
+      if (error) {
+        console.error('[SimplifiedAuth] Error from edge function:', error);
         toast({
-          title: "Registration Request Submitted!",
-          description: "Your account request has been submitted for admin approval. You'll be able to sign in once approved."
+          variant: "destructive",
+          title: "Registration Failed",
+          description: error.message || "An error occurred during registration"
         });
-        
-        // Persist email for the awaiting page
-        try { localStorage.setItem('pendingApprovalEmail', email.trim()); } catch {
-          console.log('Could not store email in localStorage');
-        }
-        
-        return { success: true, email: email.trim() };
-    } catch (error) {
+        return { success: false };
+      }
+
+      if (data?.error) {
+        console.error('[SimplifiedAuth] Server error:', data.error);
+        toast({
+          variant: "destructive",
+          title: "Registration Failed",
+          description: data.error
+        });
+        return { success: false };
+      }
+
+      console.log('[SimplifiedAuth] Pending user created successfully');
+      
+      toast({
+        title: "Registration Request Submitted!",
+        description: "Your account request has been submitted for admin approval. You'll receive an email with a link to set your password once approved."
+      });
+      
+      // Persist email for the awaiting page
+      try { localStorage.setItem('pendingApprovalEmail', email.trim()); } catch {
+        console.log('Could not store email in localStorage');
+      }
+      
+      return { success: true, email: email.trim() };
+    } catch (error: any) {
       console.error('Sign up error:', error);
       toast({
         variant: "destructive",
         title: "Registration Failed",
-        description: "An unexpected error occurred"
+        description: error.message || "An unexpected error occurred"
       });
       return { success: false };
     }

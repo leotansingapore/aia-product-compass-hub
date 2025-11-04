@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { AuthService } from '@/services/authService';
 import { useSimpleAuthOperations } from '@/hooks/useSimpleAuthOperations';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
 

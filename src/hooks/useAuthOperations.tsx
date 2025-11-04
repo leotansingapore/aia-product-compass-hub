@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { AuthService } from "@/services/authService";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { DemoService } from "@/services/demoService";
-import { AUTH_CONFIG } from "@/config/authConfig";
 
 export function useAuthOperations() {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const { signIn: authSignIn, signUp: authSignUp, resetPassword: authResetPassword } = useSimplifiedAuth();
 
   const validateFields = (fields: Record<string, string>, requiredFields: readonly string[]) => {
     const missing = requiredFields.filter(field => !fields[field]);
     if (missing.length > 0) {
       toast({
-        title: AUTH_CONFIG.messages.errors.missingInfo,
+        title: "Missing Information",
         description: "Please fill in all fields",
         variant: "destructive"
       });
@@ -22,76 +22,27 @@ export function useAuthOperations() {
   };
 
   const signIn = async (email: string, password: string) => {
-    if (!validateFields({ email, password }, AUTH_CONFIG.validation.requiredFields.signIn)) {
+    if (!validateFields({ email, password }, ['email', 'password'])) {
       return;
     }
 
     setLoading(true);
     try {
-      const result = await AuthService.signIn(email, password);
-
-      if (result.success) {
-        toast({
-          title: AUTH_CONFIG.messages.success.signIn,
-          description: "Successfully signed in"
-        });
-        window.location.href = AUTH_CONFIG.redirectUrls.afterSignIn;
-        return;
-      }
-
-      if (result.requiresActivation) {
-        const activationResult = await AuthService.activateAccount(email, password);
-        
-        if (activationResult.success) {
-          toast({
-            title: AUTH_CONFIG.messages.success.accountActivated,
-            description: "Your approved account is now ready. Welcome!"
-          });
-          window.location.href = AUTH_CONFIG.redirectUrls.afterSignIn;
-          return;
-        } else {
-          throw new Error(activationResult.error);
-        }
-      }
-
-      throw new Error(result.error);
-    } catch (error: any) {
-      toast({
-        title: AUTH_CONFIG.messages.errors.signInFailed,
-        description: error.message || "An error occurred during sign in",
-        variant: "destructive"
-      });
+      await authSignIn(email, password);
     } finally {
       setLoading(false);
     }
   };
 
   const signUp = async (email: string, password: string, displayName: string) => {
-    if (!validateFields({ email, password, displayName }, AUTH_CONFIG.validation.requiredFields.signUp)) {
-      return;
+    if (!validateFields({ email, password, displayName }, ['email', 'password', 'displayName'])) {
+      return { success: false };
     }
 
     setLoading(true);
     try {
-      const result = await AuthService.signUp(email, password, displayName);
-
-      if (result.success) {
-        toast({
-          title: AUTH_CONFIG.messages.success.signUp,
-          description: "Your request has been sent for approval. Once approved, you can sign in with the password you just entered.",
-          duration: 6000
-        });
-        return { success: true, email };
-      } else {
-        throw new Error(result.error);
-      }
-    } catch (error: any) {
-      toast({
-        title: AUTH_CONFIG.messages.errors.registrationFailed,
-        description: error.message || "An error occurred during registration",
-        variant: "destructive"
-      });
-      return { success: false };
+      const result = await authSignUp(email, password, displayName);
+      return result;
     } finally {
       setLoading(false);
     }
@@ -109,22 +60,7 @@ export function useAuthOperations() {
 
     setLoading(true);
     try {
-      const result = await AuthService.resetPassword(email);
-      
-      if (result.success) {
-        toast({
-          title: "Reset link sent",
-          description: `We emailed a password reset link to ${email}.`
-        });
-      } else {
-        throw new Error(result.error);
-      }
-    } catch (error: any) {
-      toast({
-        title: "Reset failed",
-        description: error.message || "Could not send reset email",
-        variant: "destructive"
-      });
+      await authResetPassword(email);
     } finally {
       setLoading(false);
     }
@@ -138,12 +74,16 @@ export function useAuthOperations() {
       if (result.success) {
         const demoAccount = DemoService.getDemoAccountByEmail(email);
         toast({
-          title: AUTH_CONFIG.messages.success.demoReady,
+          title: "Demo Account Ready!",
           description: `You now have ${demoAccount?.type} access`
         });
-        window.location.href = AUTH_CONFIG.redirectUrls.afterSignIn;
+        window.location.href = '/';
       } else {
-        throw new Error(result.error);
+        toast({
+          variant: "destructive",
+          title: "Demo Login Failed",
+          description: result.error || "An error occurred during demo login"
+        });
       }
     } catch (error: any) {
       toast({

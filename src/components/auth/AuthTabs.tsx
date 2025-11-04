@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2 } from "lucide-react";
-import { SimpleAuthService } from "@/services/simpleAuthService";
+// Auth tabs component - removed SimpleAuthService dependency
 
 interface AuthTabsProps {
   onSignIn: (email: string, password: string) => void;
@@ -20,11 +20,16 @@ export function AuthTabs({ onSignIn, onSignUp, onResetPassword, loading }: AuthT
   const [displayName, setDisplayName] = useState("");
 
   useEffect(() => {
-    const lastEmail = SimpleAuthService.getLastLoginEmail();
-    if (lastEmail && !email) {
-      setEmail(lastEmail);
+    // Try to get last login email from localStorage
+    try {
+      const lastEmail = localStorage.getItem('lastLoginEmail');
+      if (lastEmail && !email) {
+        setEmail(lastEmail);
+      }
+    } catch (error) {
+      console.error('Could not retrieve last login email:', error);
     }
-  }, []);
+  }, [email]);
 
   const handleSignIn = (e: React.FormEvent) => {
     e.preventDefault();
