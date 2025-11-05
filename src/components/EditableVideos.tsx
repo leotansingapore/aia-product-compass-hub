@@ -11,9 +11,10 @@ interface EditableVideosProps {
   videos: TrainingVideo[];
   onSave: (newVideos: TrainingVideo[]) => Promise<void>;
   className?: string;
+  onExitEditMode?: () => void;
 }
 
-export function EditableVideos({ videos, onSave, className = "" }: EditableVideosProps) {
+export function EditableVideos({ videos, onSave, className = "", onExitEditMode }: EditableVideosProps) {
   const { isAdmin: isAdminMode } = useAdmin();
   
   console.log('🎬 EditableVideos: Starting initialization...', { 
@@ -76,6 +77,17 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
 
   console.log('🎬 EditableVideos: Admin mode detected, rendering admin interface');
 
+  // Wrap save and cancel handlers to call onExitEditMode
+  const handleSave = async () => {
+    await videoManagement.handleSave();
+    onExitEditMode?.();
+  };
+
+  const handleCancel = () => {
+    videoManagement.handleCancel();
+    onExitEditMode?.();
+  };
+
   // Admin editing mode
   if (videoManagement.isEditing) {
     console.log('🎬 EditableVideos: Rendering VideoEditingInterface');
@@ -94,8 +106,8 @@ export function EditableVideos({ videos, onSave, className = "" }: EditableVideo
           onMoveVideo={videoManagement.moveVideo}
           onNewVideoChange={videoManagement.setNewVideo}
           onAddVideo={videoManagement.addVideo}
-          onSave={videoManagement.handleSave}
-          onCancel={videoManagement.handleCancel}
+          onSave={handleSave}
+          onCancel={handleCancel}
           onCreateCategory={handleCreateCategory}
         />
       </>

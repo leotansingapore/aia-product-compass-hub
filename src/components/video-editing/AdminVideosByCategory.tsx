@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronDown, ChevronRight, Play, Check, Clock, GripVertical } from 'lucide-react';
+import { ChevronDown, ChevronRight, Play, Check, Clock, GripVertical, Edit } from 'lucide-react';
 import { formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -38,6 +38,7 @@ interface AdminVideosByCategoryProps {
   moduleId?: string;
   moduleType?: 'product' | 'cmfas';
   onSave: (updatedVideos: TrainingVideo[]) => Promise<void>;
+  onEnterEditMode?: () => void;
 }
 
 interface SortableVideoItemProps {
@@ -156,6 +157,7 @@ export function AdminVideosByCategory({
   moduleId,
   moduleType = 'product',
   onSave,
+  onEnterEditMode,
 }: AdminVideosByCategoryProps) {
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -280,11 +282,24 @@ export function AdminVideosByCategory({
       >
         <div className="space-y-4">
           {/* Admin help text */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground bg-primary/5 border border-primary/20 rounded-lg p-3">
-            <GripVertical className="h-4 w-4 flex-shrink-0" />
-            <p className="text-micro sm:text-sm">
-              <strong>Admin Mode:</strong> Drag videos to reorder within or between categories
-            </p>
+          <div className="flex items-center justify-between gap-2 text-sm text-muted-foreground bg-primary/5 border border-primary/20 rounded-lg p-3">
+            <div className="flex items-center gap-2">
+              <GripVertical className="h-4 w-4 flex-shrink-0" />
+              <p className="text-micro sm:text-sm">
+                <strong>Admin Mode:</strong> Drag videos to reorder within or between categories
+              </p>
+            </div>
+            {onEnterEditMode && (
+              <Button 
+                onClick={onEnterEditMode}
+                variant="outline"
+                size="sm"
+                className="shrink-0"
+              >
+                <Edit className="h-4 w-4 mr-2" />
+                Manage Videos
+              </Button>
+            )}
           </div>
 
           {Object.entries(videosByCategory).map(([category, videoItems]) => {

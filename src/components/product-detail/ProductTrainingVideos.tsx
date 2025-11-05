@@ -22,6 +22,7 @@ interface ProductTrainingVideosProps {
 export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTrainingVideosProps) {
   const [showLearningInterface, setShowLearningInterface] = useState(false);
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
+  const [isEditingVideos, setIsEditingVideos] = useState(false);
   const { isAdmin: isAdminMode } = useAdmin();
   const { getCourseProgress, getVideoProgress } = useVideoProgress(productId);
 
@@ -118,7 +119,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
               useIndividualPages={true}
             />
           </div>
-        ) : isAdminMode && processedVideos.length > 0 ? (
+        ) : isAdminMode && processedVideos.length > 0 && !isEditingVideos ? (
           <AdminVideosByCategory
             videos={processedVideos}
             onVideoSelect={(index) => {
@@ -128,6 +129,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
             getVideoProgress={getVideoProgress}
             useIndividualPages={true}
             onSave={(newVideos) => onUpdate('training_videos', newVideos)}
+            onEnterEditMode={() => setIsEditingVideos(true)}
           />
         ) : (
           <ErrorBoundary 
@@ -141,6 +143,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
             <EditableVideos
               videos={processedVideos}
               onSave={(newVideos) => onUpdate('training_videos', newVideos)}
+              onExitEditMode={() => setIsEditingVideos(false)}
             />
           </ErrorBoundary>
         )}
