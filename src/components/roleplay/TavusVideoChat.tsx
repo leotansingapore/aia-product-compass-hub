@@ -172,6 +172,11 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       setIsLoading(true);
       setConnectionError(null);
 
+      // Check if user is authenticated
+      if (!user) {
+        throw new Error('You must be logged in to start a roleplay session');
+      }
+
       // Create session in our database first
       const { data: sessionData, error: sessionError } = await supabase.rpc(
         'create_roleplay_session',
@@ -623,6 +628,17 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
           </Card>
         )}
 
+        {/* Authentication Check */}
+        {!user && (
+          <Alert variant="destructive">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertTitle>Authentication Required</AlertTitle>
+            <AlertDescription>
+              You must be logged in to start a roleplay session. Please <a href="/auth" className="underline font-medium">sign in</a> to continue.
+            </AlertDescription>
+          </Alert>
+        )}
+
         {/* Video Preview & Start Session Card */}
         <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-transparent">
           <CardHeader>
@@ -659,14 +675,19 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
             <div className="flex justify-center pt-2">
               <Button
                 onClick={handleStartSession}
-                disabled={isLoading}
+                disabled={isLoading || !user}
                 size="lg"
-                className="px-12 py-6 text-lg bg-gradient-to-r from-primary to-primary-glow hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300 font-semibold"
+                className="px-12 py-6 text-lg bg-gradient-to-r from-primary to-primary-glow hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
                     Starting Session...
+                  </>
+                ) : !user ? (
+                  <>
+                    <AlertTriangle className="mr-3 h-5 w-5" />
+                    Login Required
                   </>
                 ) : (
                   <>
