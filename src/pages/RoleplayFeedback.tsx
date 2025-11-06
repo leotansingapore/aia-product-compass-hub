@@ -258,7 +258,7 @@ const RoleplayFeedback = () => {
             .on(
               'postgres_changes',
               {
-                event: 'INSERT',
+                event: '*', // Listen to both INSERT and UPDATE events
                 schema: 'public',
                 table: 'roleplay_feedback',
                 filter: `session_id=eq.${sessionId}`
@@ -267,15 +267,16 @@ const RoleplayFeedback = () => {
                 console.log('🔍 FEEDBACK DEBUG: Real-time update received:', payload);
 
                 // Type conversion for compatibility
+                const newData = payload.new as any;
                 const feedbackData: FeedbackData = {
-                  ...payload.new as any,
-                  conversation_flow_summary: Array.isArray(payload.new.conversation_flow_summary)
-                    ? payload.new.conversation_flow_summary
-                    : payload.new.conversation_flow_summary
-                      ? (typeof payload.new.conversation_flow_summary === 'string'
-                         ? JSON.parse(payload.new.conversation_flow_summary)
-                         : payload.new.conversation_flow_summary)
-                      : undefined
+                  ...newData,
+                  conversation_flow_summary: newData.conversation_flow_summary 
+                    ? (Array.isArray(newData.conversation_flow_summary)
+                        ? newData.conversation_flow_summary
+                        : (typeof newData.conversation_flow_summary === 'string'
+                           ? JSON.parse(newData.conversation_flow_summary)
+                           : newData.conversation_flow_summary))
+                    : undefined
                 };
 
                 // Only show feedback if generation is completed
@@ -313,7 +314,7 @@ const RoleplayFeedback = () => {
                 .eq('session_id', sessionId)
                 .maybeSingle();
 
-              if (data && !feedback) {
+              if (data) {
                 console.log('🔍 FEEDBACK DEBUG: Polling found feedback! Status:', data.generation_status);
 
                 // Only set feedback if generation is completed
@@ -578,7 +579,10 @@ const RoleplayFeedback = () => {
     }
   };
 
-  if (timeoutReached) {
+  // If we have feedback and it's completed, show it even if timeout was reached (state inconsistency recovery)
+  if (feedback && feedback.generation_status === 'completed') {
+    console.log('🔍 FEEDBACK DEBUG: Feedback exists and is completed - displaying it');
+  } else if (timeoutReached) {
     return (
         <div className="container mx-auto p-6 space-y-6">
           <Helmet>
