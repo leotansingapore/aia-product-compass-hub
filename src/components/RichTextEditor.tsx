@@ -311,7 +311,7 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
   return (
     <div className="border border-border rounded-lg bg-background">
       {/* Toolbar */}
-      <div className="flex items-center gap-1 p-2 border-b border-border flex-wrap">
+      <div className="sticky top-0 z-10 flex items-center gap-1 p-2 border-b border-border flex-wrap bg-background">
         {/* Headings */}
         <Button
           variant="ghost"
@@ -451,7 +451,7 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
       <div
         ref={editorRef}
         contentEditable
-        className="min-h-[200px] p-4 focus:outline-none prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline [&_a:hover]:text-blue-800 [&_blockquote]:border-l-4 [&_blockquote]:border-primary/40 [&_blockquote]:pl-4 [&_blockquote]:py-2 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_pre]:bg-muted [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:overflow-x-auto [&_code]:text-sm [&_code]:font-mono [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:my-1 empty:before:content-[attr(data-placeholder)] empty:before:text-muted-foreground [&_.video-embed]:relative [&_.video-embed]:pb-[56.25%] [&_.video-embed]:h-0 [&_.video-embed]:my-4 [&_.video-embed_iframe]:absolute [&_.video-embed_iframe]:top-0 [&_.video-embed_iframe]:left-0 [&_.video-embed_iframe]:w-full [&_.video-embed_iframe]:h-full [&_.video-embed_iframe]:rounded-lg"
+        className="min-h-[200px] max-h-[600px] overflow-y-auto p-4 focus:outline-none prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline [&_a:hover]:text-blue-800 [&_blockquote]:border-l-4 [&_blockquote]:border-primary/40 [&_blockquote]:pl-4 [&_blockquote]:py-2 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_pre]:bg-muted [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:overflow-x-auto [&_code]:text-sm [&_code]:font-mono [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:my-1 empty:before:content-[attr(data-placeholder)] empty:before:text-muted-foreground [&_.video-embed]:relative [&_.video-embed]:pb-[56.25%] [&_.video-embed]:h-0 [&_.video-embed]:my-4 [&_.video-embed_iframe]:absolute [&_.video-embed_iframe]:top-0 [&_.video-embed_iframe]:left-0 [&_.video-embed_iframe]:w-full [&_.video-embed_iframe]:h-full [&_.video-embed_iframe]:rounded-lg"
         onInput={handleContentChange}
         onBlur={handleContentChange}
         data-placeholder={placeholder}
