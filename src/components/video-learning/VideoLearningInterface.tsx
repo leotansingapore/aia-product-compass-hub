@@ -307,8 +307,19 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </CardContent>
               </Card>
 
-              {/* Notes & Transcript */}
-              {(currentVideo?.notes || currentVideo?.transcript) && (
+              {/* Rich Content or Legacy Notes & Transcript */}
+              {currentVideo?.rich_content ? (
+                // Rich editor mode - display formatted HTML
+                <Card>
+                  <CardContent className="p-6">
+                    <div 
+                      className="prose prose-sm dark:prose-invert max-w-none"
+                      dangerouslySetInnerHTML={{ __html: currentVideo.rich_content }}
+                    />
+                  </CardContent>
+                </Card>
+              ) : (currentVideo?.notes || currentVideo?.transcript) ? (
+                // Legacy mode - display tabs
                 <Collapsible open={isNotesOpen} onOpenChange={setIsNotesOpen}>
                   <Card>
                     {isMobile && (
@@ -350,7 +361,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                     </CollapsibleContent>
                   </Card>
                 </Collapsible>
-              )}
+              ) : null}
             </div>
 
             {/* Sidebar */}
