@@ -63,8 +63,14 @@ function SortableVideoItem({ video, index, onVideoSelect, onEditVideo, onDeleteV
           <GripVertical className="h-4 w-4 text-muted-foreground hover:text-foreground transition-colors" />
         </button>
         <div
-          className="flex items-center gap-2 flex-1 cursor-pointer"
-          onClick={() => onVideoSelect(index)}
+          className="flex items-center gap-2 flex-1 cursor-pointer hover:underline"
+          onClick={() => {
+            console.log('📹 FolderTreeView: Video clicked', { 
+              title: video.title, 
+              index 
+            });
+            onVideoSelect(index);
+          }}
         >
           <Play className="h-4 w-4 text-primary" />
           <span className="text-sm">{video.title}</span>

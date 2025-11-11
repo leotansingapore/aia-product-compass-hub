@@ -26,6 +26,12 @@ export function VideoEditorPanel({
   onAddVideo,
   onCreateCategory
 }: VideoEditorPanelProps) {
+  console.log('🎬 VideoEditorPanel: Rendering', {
+    editingIndex,
+    hasVideo: editingIndex !== null && editVideos[editingIndex] !== undefined,
+    videoTitle: editingIndex !== null ? editVideos[editingIndex]?.title : 'none'
+  });
+
   return (
     <div className="space-y-6">
       {editingIndex !== null ? (
