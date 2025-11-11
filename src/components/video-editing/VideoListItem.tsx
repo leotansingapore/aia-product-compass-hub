@@ -13,8 +13,6 @@ interface VideoListItemProps {
   canMoveDown: boolean;
   onEdit: () => void;
   onUpdate: (updatedVideo: TrainingVideo) => void;
-  onSave: () => void;
-  onCancel: () => void;
   onDelete: () => void;
   onMoveUp: () => void;
   onMoveDown: () => void;
@@ -29,8 +27,6 @@ export function VideoListItem({
   canMoveDown,
   onEdit,
   onUpdate,
-  onSave,
-  onCancel,
   onDelete,
   onMoveUp,
   onMoveDown,
@@ -42,8 +38,6 @@ export function VideoListItem({
         <VideoEditForm
           video={video}
           onUpdate={onUpdate}
-          onSave={onSave}
-          onCancel={onCancel}
           existingCategories={existingCategories}
         />
       </div>

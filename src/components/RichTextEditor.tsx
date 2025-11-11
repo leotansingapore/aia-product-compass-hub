@@ -14,21 +14,17 @@ import {
   Quote, 
   Image, 
   Link, 
-  Video,
-  Check,
-  X
+  Video
 } from 'lucide-react';
 
 interface RichTextEditorProps {
   value: string;
-  onSave: (content: string) => Promise<void>;
-  onCancel: () => void;
+  onChange: (content: string) => void;
   placeholder?: string;
 }
 
-export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type your content..." }: RichTextEditorProps) {
+export function RichTextEditor({ value, onChange, placeholder = "Type your content..." }: RichTextEditorProps) {
   const [content, setContent] = useState('');
-  const [saving, setSaving] = useState(false);
   const [showMediaUpload, setShowMediaUpload] = useState(false);
   const [savedSelection, setSavedSelection] = useState<Range | null>(null);
   const editorRef = useRef<HTMLDivElement>(null);
@@ -237,24 +233,15 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
     // Insert the image at the current cursor position
     document.execCommand('insertHTML', false, imageHtml);
     
-    // Update content state
+    // Update content state and notify parent
     const newContent = editorRef.current.innerHTML;
     setContent(newContent);
+    onChange(newContent);
     
-    // Auto-save the content with the new image
-    try {
-      await onSave(newContent);
-      toast({
-        title: "Image added",
-        description: "Image has been added and saved successfully",
-      });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to save image",
-        variant: "destructive",
-      });
-    }
+    toast({
+      title: "Image added",
+      description: "Image has been added successfully",
+    });
     
     // Hide the upload zone after successful insertion
     setShowMediaUpload(false);
@@ -286,29 +273,11 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
     }
   };
 
-  const handleSave = async () => {
-    setSaving(true);
-    try {
-      // Save as HTML since we're now working with HTML content
-      await onSave(content);
-      toast({
-        title: "Saved",
-        description: "Content updated successfully",
-      });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to save content",
-        variant: "destructive",
-      });
-    } finally {
-      setSaving(false);
-    }
-  };
-
   const handleContentChange = () => {
     if (editorRef.current) {
-      setContent(editorRef.current.innerHTML);
+      const newContent = editorRef.current.innerHTML;
+      setContent(newContent);
+      onChange(newContent);
     }
   };
 
@@ -465,26 +434,6 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
         }}
       />
 
-      {/* Actions */}
-      <div className="flex gap-2 p-3 border-t border-border bg-muted/50">
-        <Button
-          size="sm"
-          onClick={handleSave}
-          disabled={saving}
-        >
-          <Check className="h-4 w-4 mr-1" />
-          Save
-        </Button>
-        <Button
-          size="sm"
-          variant="outline"
-          onClick={onCancel}
-          disabled={saving}
-        >
-          <X className="h-4 w-4 mr-1" />
-          Cancel
-        </Button>
-      </div>
     </div>
   );
 }

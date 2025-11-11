@@ -7,7 +7,6 @@ import { useVideoForm } from '@/hooks/useVideoForm';
 import { VideoBasicInfo } from './VideoBasicInfo';
 import { CategorySelector } from './CategorySelector';
 import { VideoContentTabs } from './VideoContentTabs';
-import { VideoFormActions } from './VideoFormActions';
 import { RichTextEditor } from '@/components/RichTextEditor';
 import { structuredToRichHtml, createLegacyBackup } from '@/utils/videoContentConverter';
 import type { TrainingVideo } from '@/hooks/useProducts';
@@ -15,16 +14,12 @@ import type { TrainingVideo } from '@/hooks/useProducts';
 interface VideoEditFormProps {
   video: TrainingVideo;
   onUpdate: (updatedVideo: TrainingVideo) => void;
-  onSave: () => void;
-  onCancel: () => void;
   existingCategories?: string[];
 }
 
 export function VideoEditForm({ 
   video, 
   onUpdate, 
-  onSave, 
-  onCancel, 
   existingCategories = [] 
 }: VideoEditFormProps) {
   const {
@@ -34,19 +29,8 @@ export function VideoEditForm({
     showNewCategoryInput,
     setNewCategoryName,
     setShowNewCategoryInput,
-    handleChange,
-    resetForm
+    handleChange
   } = useVideoForm({ initialVideo: video, onUpdate });
-
-  const handleSave = () => {
-    onUpdate(editVideo);
-    onSave();
-  };
-
-  const handleCancel = () => {
-    resetForm();
-    onCancel();
-  };
 
   const handleCreateCategory = () => {
     // Category creation logic handled in CategorySelector
@@ -75,10 +59,9 @@ export function VideoEditForm({
 
   // Rich Editor Mode: Show rich text editor for content
   if (isRichMode) {
-    const handleRichContentSave = async (html: string) => {
+    const handleRichContentChange = (html: string) => {
       const updatedVideo = { ...editVideo, rich_content: html };
       onUpdate(updatedVideo);
-      onSave();
     };
 
     return (
@@ -104,8 +87,7 @@ export function VideoEditForm({
           <Label>Content (Rich Editor)</Label>
           <RichTextEditor
             value={editVideo.rich_content || ''}
-            onSave={handleRichContentSave}
-            onCancel={handleCancel}
+            onChange={handleRichContentChange}
             placeholder="Add video description, notes, transcript, and links..."
           />
         </div>
@@ -162,11 +144,6 @@ export function VideoEditForm({
       <VideoContentTabs
         video={editVideo}
         onChange={handleChange}
-      />
-
-      <VideoFormActions
-        onSave={handleSave}
-        onCancel={handleCancel}
       />
     </div>
   );

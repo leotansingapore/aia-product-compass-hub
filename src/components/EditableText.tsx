@@ -108,12 +108,15 @@ export function EditableText({
       return (
         <RichTextEditor
           value={editValue}
-          onSave={async (content) => {
+          onChange={(content) => {
             setEditValue(content);
-            await onSave!(content);
-            setIsEditing(false);
+            // Auto-save on change
+            onSave!(content).then(() => {
+              setIsEditing(false);
+            }).catch(() => {
+              // Error handling is done in handleSave
+            });
           }}
-          onCancel={handleCancel}
           placeholder={placeholder}
         />
       );

@@ -59,8 +59,6 @@ export function VideoEditorPanel({
           <VideoEditForm
             video={editVideos[editingIndex]}
             onUpdate={(updatedVideo) => onUpdateVideo(editingIndex, updatedVideo)}
-            onSave={() => onEditingIndexChange(null)}
-            onCancel={() => onEditingIndexChange(null)}
             existingCategories={existingCategories}
           />
         </div>
