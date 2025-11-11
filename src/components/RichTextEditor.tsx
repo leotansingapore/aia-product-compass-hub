@@ -98,30 +98,8 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
       // Focus editor first to ensure commands work
       editorRef.current?.focus();
       
-      // Use modern approach for better browser support
-      if (command === 'createLink' && value) {
-        const selection = window.getSelection();
-        if (selection && selection.rangeCount > 0) {
-          const range = selection.getRangeAt(0);
-          const link = document.createElement('a');
-          link.href = value;
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          link.className = 'text-blue-600 underline hover:text-blue-800';
-          
-          // If there's selected text, wrap it
-          if (!range.collapsed) {
-            range.surroundContents(link);
-          } else {
-            // If no selection, insert link with URL as text
-            link.textContent = value;
-            range.insertNode(link);
-          }
-        }
-      } else {
-        // Use standard execCommand for other operations
-        document.execCommand(command, false, value);
-      }
+      // Execute the command
+      document.execCommand(command, false, value);
       
       if (editorRef.current) {
         setContent(editorRef.current.innerHTML);
@@ -137,7 +115,30 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
   };
 
   const insertHeading = (level: number) => {
-    formatText('formatBlock', `h${level}`);
+    editorRef.current?.focus();
+    
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return;
+    
+    // Get the current line/block
+    const range = selection.getRangeAt(0);
+    let container = range.startContainer;
+    
+    // Find the parent element (text node -> element)
+    if (container.nodeType === Node.TEXT_NODE) {
+      container = container.parentNode!;
+    }
+    
+    // Create heading
+    const heading = document.createElement(`h${level}`);
+    heading.innerHTML = (container as HTMLElement).innerHTML || container.textContent || '';
+    
+    // Replace the current element with heading
+    (container as HTMLElement).replaceWith(heading);
+    
+    if (editorRef.current) {
+      setContent(editorRef.current.innerHTML);
+    }
   };
 
   const insertLink = () => {
@@ -157,16 +158,69 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
       let linkHtml;
       if (selectedText) {
         // If text is selected, wrap it in a link
-        linkHtml = `<a href="${formattedUrl}" target="_blank" rel="noopener noreferrer">${selectedText}</a>`;
+        linkHtml = `<a href="${formattedUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800">${selectedText}</a>`;
       } else {
-        // If no text is selected, insert the original URL as link text but use formatted URL for href
-        linkHtml = `<a href="${formattedUrl}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+        // If no text is selected, insert the URL as link text
+        linkHtml = `<a href="${formattedUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800">${url}</a>`;
       }
       
       if (editorRef.current) {
         document.execCommand('insertHTML', false, linkHtml);
         setContent(editorRef.current.innerHTML);
       }
+    }
+  };
+
+  const insertBlockquote = () => {
+    editorRef.current?.focus();
+    
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return;
+    
+    const range = selection.getRangeAt(0);
+    let container = range.startContainer;
+    
+    if (container.nodeType === Node.TEXT_NODE) {
+      container = container.parentNode!;
+    }
+    
+    // Create blockquote
+    const blockquote = document.createElement('blockquote');
+    blockquote.className = 'border-l-4 border-primary/40 pl-4 py-2 italic text-muted-foreground';
+    blockquote.innerHTML = (container as HTMLElement).innerHTML || container.textContent || '';
+    
+    (container as HTMLElement).replaceWith(blockquote);
+    
+    if (editorRef.current) {
+      setContent(editorRef.current.innerHTML);
+    }
+  };
+
+  const insertCodeBlock = () => {
+    editorRef.current?.focus();
+    
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return;
+    
+    const range = selection.getRangeAt(0);
+    let container = range.startContainer;
+    
+    if (container.nodeType === Node.TEXT_NODE) {
+      container = container.parentNode!;
+    }
+    
+    // Create code block
+    const pre = document.createElement('pre');
+    const code = document.createElement('code');
+    pre.className = 'bg-muted p-4 rounded-lg overflow-x-auto';
+    code.className = 'text-sm font-mono';
+    code.textContent = (container as HTMLElement).textContent || '';
+    pre.appendChild(code);
+    
+    (container as HTMLElement).replaceWith(pre);
+    
+    if (editorRef.current) {
+      setContent(editorRef.current.innerHTML);
     }
   };
 
@@ -288,6 +342,7 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
           size="sm"
           onClick={() => insertHeading(1)}
           className="text-sm font-bold"
+          title="Heading 1"
         >
           H1
         </Button>
@@ -296,6 +351,7 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
           size="sm"
           onClick={() => insertHeading(2)}
           className="text-sm font-bold"
+          title="Heading 2"
         >
           H2
         </Button>
@@ -304,6 +360,7 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
           size="sm"
           onClick={() => insertHeading(3)}
           className="text-sm font-bold"
+          title="Heading 3"
         >
           H3
         </Button>
@@ -312,6 +369,7 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
           size="sm"
           onClick={() => insertHeading(4)}
           className="text-sm font-bold"
+          title="Heading 4"
         >
           H4
         </Button>
@@ -323,6 +381,7 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
           variant="ghost"
           size="sm"
           onClick={() => formatText('bold')}
+          title="Bold (Ctrl+B)"
         >
           <Bold className="h-4 w-4" />
         </Button>
@@ -330,6 +389,7 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
           variant="ghost"
           size="sm"
           onClick={() => formatText('italic')}
+          title="Italic (Ctrl+I)"
         >
           <Italic className="h-4 w-4" />
         </Button>
@@ -337,13 +397,15 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
           variant="ghost"
           size="sm"
           onClick={() => formatText('strikeThrough')}
+          title="Strikethrough"
         >
           <Strikethrough className="h-4 w-4" />
         </Button>
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => formatText('formatBlock', 'pre')}
+          onClick={insertCodeBlock}
+          title="Code Block"
         >
           <Code className="h-4 w-4" />
         </Button>
@@ -355,6 +417,7 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
           variant="ghost"
           size="sm"
           onClick={() => formatText('insertUnorderedList')}
+          title="Bullet List"
         >
           <List className="h-4 w-4" />
         </Button>
@@ -362,13 +425,15 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
           variant="ghost"
           size="sm"
           onClick={() => formatText('insertOrderedList')}
+          title="Numbered List"
         >
           <ListOrdered className="h-4 w-4" />
         </Button>
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => formatText('formatBlock', 'blockquote')}
+          onClick={insertBlockquote}
+          title="Quote"
         >
           <Quote className="h-4 w-4" />
         </Button>
@@ -410,7 +475,7 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
       <div
         ref={editorRef}
         contentEditable
-        className="min-h-[200px] p-4 focus:outline-none prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline [&_a:hover]:text-blue-800 empty:before:content-[attr(data-placeholder)] empty:before:text-muted-foreground [&_.video-embed]:relative [&_.video-embed]:pb-[56.25%] [&_.video-embed]:h-0 [&_.video-embed]:my-4 [&_.video-embed_iframe]:absolute [&_.video-embed_iframe]:top-0 [&_.video-embed_iframe]:left-0 [&_.video-embed_iframe]:w-full [&_.video-embed_iframe]:h-full [&_.video-embed_iframe]:rounded-lg"
+        className="min-h-[200px] p-4 focus:outline-none prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline [&_a:hover]:text-blue-800 [&_blockquote]:border-l-4 [&_blockquote]:border-primary/40 [&_blockquote]:pl-4 [&_blockquote]:py-2 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_pre]:bg-muted [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:overflow-x-auto [&_code]:text-sm [&_code]:font-mono [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:my-1 empty:before:content-[attr(data-placeholder)] empty:before:text-muted-foreground [&_.video-embed]:relative [&_.video-embed]:pb-[56.25%] [&_.video-embed]:h-0 [&_.video-embed]:my-4 [&_.video-embed_iframe]:absolute [&_.video-embed_iframe]:top-0 [&_.video-embed_iframe]:left-0 [&_.video-embed_iframe]:w-full [&_.video-embed_iframe]:h-full [&_.video-embed_iframe]:rounded-lg"
         onInput={handleContentChange}
         onBlur={handleContentChange}
         data-placeholder={placeholder}
