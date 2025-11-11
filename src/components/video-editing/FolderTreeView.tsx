@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronDown, ChevronRight, MoreHorizontal, Folder, FolderOpen, Play, Edit, Trash2, FolderPlus, Plus, GripVertical } from 'lucide-react';
+import { ChevronDown, ChevronRight, MoreHorizontal, Folder, FolderOpen, Play, Edit, Trash2, FolderPlus, Plus, GripVertical, FileText } from 'lucide-react';
 import type { TrainingVideo } from '@/hooks/useProducts';
 import {
   DndContext,
@@ -119,6 +119,7 @@ interface FolderTreeViewProps {
   onEditVideo: (index: number) => void;
   onDeleteVideo: (index: number) => void;
   onAddVideoToFolder: (folderName: string) => void;
+  onAddPageToFolder: (folderName: string) => void;
   onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
 }
 
@@ -135,6 +136,7 @@ export function FolderTreeView({
   onEditVideo,
   onDeleteVideo,
   onAddVideoToFolder,
+  onAddPageToFolder,
   onReorderVideos
 }: FolderTreeViewProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -319,6 +321,10 @@ export function FolderTreeView({
                         <DropdownMenuItem onClick={() => onAddVideoToFolder(folderName)}>
                           <Plus className="h-4 w-4 mr-2" />
                           Add video in folder
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => onAddPageToFolder(folderName)}>
+                          <FileText className="h-4 w-4 mr-2" />
+                          Add page in folder
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem

@@ -25,6 +25,7 @@ interface VideoEditingLayoutProps {
   onDeleteFolder: (folderName: string) => void;
   onMoveVideoToFolder: (videoIndex: number, targetFolder: string) => void;
   onAddVideoToFolder: (folderName: string) => void;
+  onAddPageToFolder: (folderName: string) => void;
   onExpandedChange: (expanded: Set<string>) => void;
   onFolderDialogOpenChange: (open: boolean) => void;
   onFolderSave: (folderName: string) => void;
@@ -53,6 +54,7 @@ export function VideoEditingLayout({
   onDeleteFolder,
   onMoveVideoToFolder,
   onAddVideoToFolder,
+  onAddPageToFolder,
   onExpandedChange,
   onFolderDialogOpenChange,
   onFolderSave,
@@ -82,6 +84,7 @@ export function VideoEditingLayout({
             onEditVideo={(index) => onEditingIndexChange(index)}
             onDeleteVideo={onRemoveVideo}
             onAddVideoToFolder={onAddVideoToFolder}
+            onAddPageToFolder={onAddPageToFolder}
             onReorderVideos={onReorderVideos}
           />
         </div>

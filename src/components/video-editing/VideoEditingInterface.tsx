@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { VideoEditingLayout } from './VideoEditingLayout';
 import { VideoEditingActions } from './VideoEditingActions';
 import { VideoOrderActions } from './VideoOrderActions';
+import { AddPageDialog } from './AddPageDialog';
 import { useFolderManagement } from '@/hooks/useFolderManagement';
 import { useVideoActions } from '@/hooks/useVideoActions';
 import { useVideoOrderChanges } from '@/hooks/useVideoOrderChanges';
+import { useToast } from '@/hooks/use-toast';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoEditingInterfaceProps {
@@ -51,6 +53,9 @@ export function VideoEditingInterface({
 
   // Use empty arrays as default since this interface manages its own state
   const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
+  const [addPageDialogOpen, setAddPageDialogOpen] = useState(false);
+  const [addPageFolderName, setAddPageFolderName] = useState('');
+  const { toast } = useToast();
 
   // Track video order changes from drag-and-drop
   const videoOrderChanges = useVideoOrderChanges({
@@ -78,6 +83,42 @@ export function VideoEditingInterface({
     newVideo,
     onNewVideoChange
   });
+
+  const handleAddPageToFolder = (folderName: string) => {
+    setAddPageFolderName(folderName);
+    setAddPageDialogOpen(true);
+  };
+
+  const handleAddPage = (newPage: Partial<TrainingVideo>) => {
+    // Create a complete TrainingVideo object with rich_content
+    const completeVideo: TrainingVideo = {
+      id: newPage.id || `temp-${Date.now()}`,
+      title: newPage.title || 'Untitled Page',
+      url: newPage.url || '',
+      description: '',
+      category: newPage.category || addPageFolderName,
+      order: newPage.order || editVideos.length,
+      rich_content: newPage.rich_content || '',
+      legacy_fields: {
+        migrated_at: new Date().toISOString(),
+        notes: '',
+        transcript: '',
+        useful_links: [],
+        attachments: []
+      }
+    };
+
+    // Add the new page to the videos list
+    const updatedVideos = [...videoOrderChanges.pendingVideos, completeVideo];
+    videoOrderChanges.updatePendingVideos(updatedVideos);
+
+    toast({
+      title: 'Page Added',
+      description: `"${completeVideo.title}" has been added to "${addPageFolderName}".`,
+    });
+
+    setAddPageDialogOpen(false);
+  };
 
   try {
     console.log('🎬 VideoEditingInterface: About to render components...');
@@ -118,11 +159,20 @@ export function VideoEditingInterface({
           onDeleteFolder={folderManagement.handleDeleteFolder}
           onMoveVideoToFolder={folderManagement.handleMoveVideoToFolder}
           onAddVideoToFolder={videoActions.handleAddVideoToFolder}
+          onAddPageToFolder={handleAddPageToFolder}
           onExpandedChange={folderManagement.setExpandedFolders}
           onFolderDialogOpenChange={folderManagement.setFolderDialogOpen}
           onFolderSave={folderManagement.handleFolderSave}
           onReorderVideos={videoOrderChanges.updatePendingVideos}
         />
+        
+        <AddPageDialog
+          open={addPageDialogOpen}
+          onOpenChange={setAddPageDialogOpen}
+          folderName={addPageFolderName}
+          onAdd={handleAddPage}
+        />
+        
         {videoOrderChanges.hasPendingChanges && (
           <div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t px-6 py-4 mt-6">
             <VideoOrderActions
