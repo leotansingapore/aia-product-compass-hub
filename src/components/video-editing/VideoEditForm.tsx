@@ -47,6 +47,13 @@ export function VideoEditForm({
     // Category creation logic handled in CategorySelector
   };
 
+  // Mode detection: Determine if we should use rich editor or structured form
+  const shouldUseRichEditor = (video: TrainingVideo): boolean => {
+    return !!video.rich_content;
+  };
+
+  const isRichMode = shouldUseRichEditor(editVideo);
+
   return (
     <div className="space-y-4">
       <VideoBasicInfo
