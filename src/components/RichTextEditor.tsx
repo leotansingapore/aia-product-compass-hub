@@ -80,8 +80,39 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
       
       // Only update if different to avoid cursor jumps
       if (editorRef.current.innerHTML !== htmlContent) {
+        // Save cursor position before update
+        const selection = window.getSelection();
+        let cursorPosition: { node: Node | null; offset: number } | null = null;
+        
+        if (selection && selection.rangeCount > 0 && editorRef.current.contains(selection.anchorNode)) {
+          const range = selection.getRangeAt(0);
+          cursorPosition = {
+            node: range.startContainer,
+            offset: range.startOffset
+          };
+        }
+        
+        // Update content
         editorRef.current.innerHTML = htmlContent;
         setContent(htmlContent);
+        
+        // Restore cursor position
+        if (cursorPosition && cursorPosition.node && editorRef.current.contains(cursorPosition.node)) {
+          try {
+            const newRange = document.createRange();
+            newRange.setStart(cursorPosition.node, Math.min(cursorPosition.offset, cursorPosition.node.textContent?.length || 0));
+            newRange.collapse(true);
+            
+            const newSelection = window.getSelection();
+            if (newSelection) {
+              newSelection.removeAllRanges();
+              newSelection.addRange(newRange);
+            }
+          } catch (error) {
+            // Cursor restoration failed, that's okay
+            console.warn('Could not restore cursor position:', error);
+          }
+        }
       }
     } else if (editorRef.current && !value) {
       editorRef.current.innerHTML = '';
