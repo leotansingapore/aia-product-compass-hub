@@ -19,6 +19,16 @@ export interface TrainingVideo {
   category?: string; // folder/category name
   useful_links?: UsefulLink[];
   attachments?: VideoAttachment[];
+  // Rich text editor migration fields
+  rich_content?: string; // Rich HTML/markdown content (new editor mode)
+  legacy_fields?: {
+    description?: string;
+    notes?: string;
+    transcript?: string;
+    useful_links?: UsefulLink[];
+    attachments?: VideoAttachment[];
+    migrated_at?: string;
+  }; // Backup of original structured data when converted to rich editor
 }
 
 export interface VideoAttachment {
