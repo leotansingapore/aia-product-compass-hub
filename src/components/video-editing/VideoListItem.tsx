@@ -64,6 +64,11 @@ export function VideoListItem({
                 {formatDuration(video.duration)}
               </Badge>
             )}
+            {video.rich_content && (
+              <Badge variant="secondary" className="text-micro">
+                Rich
+              </Badge>
+            )}
           </div>
           {video.description && (
             <p className="text-sm text-muted-foreground">{video.description}</p>
