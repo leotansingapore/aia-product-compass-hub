@@ -13,6 +13,11 @@ export function useVideoForm({ initialVideo, onUpdate }: UseVideoFormProps) {
   const [newCategoryName, setNewCategoryName] = useState('');
   const [showNewCategoryInput, setShowNewCategoryInput] = useState(false);
 
+  // Sync editVideo state when initialVideo prop changes (when switching between videos)
+  useEffect(() => {
+    setEditVideo(initialVideo);
+  }, [initialVideo]);
+
   // Auto-detect duration when URL changes
   useEffect(() => {
     const detectDuration = async () => {
