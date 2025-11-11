@@ -607,6 +607,7 @@ export type Database = {
           description: string | null
           highlights: string[] | null
           id: string
+          rich_content: string | null
           tags: string[] | null
           title: string
           training_videos: Json | null
@@ -628,6 +629,7 @@ export type Database = {
           description?: string | null
           highlights?: string[] | null
           id: string
+          rich_content?: string | null
           tags?: string[] | null
           title: string
           training_videos?: Json | null
@@ -649,6 +651,7 @@ export type Database = {
           description?: string | null
           highlights?: string[] | null
           id?: string
+          rich_content?: string | null
           tags?: string[] | null
           title?: string
           training_videos?: Json | null
