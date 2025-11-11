@@ -69,7 +69,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const isMobile = useIsMobile();
   const [isNotesOpen, setIsNotesOpen] = useState(!isMobile);
-  const [isTranscriptOpen, setIsTranscriptOpen] = useState(false);
   const { toast } = useToast();
   const { productSlugOrId } = useParams();
 
@@ -325,35 +324,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                       />
                     </CardContent>
                   </Card>
-                  
-                  {/* Transcript - Always shown separately even in rich mode */}
-                  {currentVideo?.transcript && (
-                    <Collapsible open={isTranscriptOpen} onOpenChange={setIsTranscriptOpen}>
-                      <Card>
-                        <CollapsibleTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            className="w-full justify-between p-4 h-auto hover:bg-accent rounded-t-lg"
-                          >
-                            <span className="font-semibold flex items-center gap-2">
-                              <FileText className="h-4 w-4" />
-                              Transcript
-                            </span>
-                            <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isTranscriptOpen ? 'rotate-180' : ''}`} />
-                          </Button>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent>
-                          <CardContent className="p-4 max-h-[400px] overflow-y-auto">
-                            <div className="prose prose-sm max-w-none">
-                              <p className="whitespace-pre-wrap text-muted-foreground text-sm leading-relaxed">
-                                {currentVideo.transcript}
-                              </p>
-                            </div>
-                          </CardContent>
-                        </CollapsibleContent>
-                      </Card>
-                    </Collapsible>
-                  )}
                 </>
               ) : (currentVideo?.notes || currentVideo?.transcript) ? (
                 // Legacy mode - display tabs
@@ -403,25 +373,49 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
             {/* Sidebar */}
             <div className="space-y-6">
-              {/* Course Navigation */}
+              {/* Course Navigation & Transcript Tabs */}
               <Card>
-                <CardHeader>
-                  <CardTitle>Course Videos</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <VideosByCategory
-                    videos={videos}
-                    onVideoSelect={(index) => {
-                      setCurrentVideoIndex(index);
-                      setWatchTime(0);
-                    }}
-                    getVideoProgress={getVideoProgress}
-                    useIndividualPages={true}
-                    currentVideoId={currentVideo?.id}
-                    moduleId={moduleId}
-                    moduleType={moduleType}
-                  />
-                </CardContent>
+                <Tabs defaultValue="videos" className="w-full">
+                  <TabsList className="w-full grid grid-cols-2">
+                    <TabsTrigger value="videos">Course Videos</TabsTrigger>
+                    <TabsTrigger value="transcript">Transcript</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="videos" className="mt-0">
+                    <CardContent className="pt-4">
+                      <VideosByCategory
+                        videos={videos}
+                        onVideoSelect={(index) => {
+                          setCurrentVideoIndex(index);
+                          setWatchTime(0);
+                        }}
+                        getVideoProgress={getVideoProgress}
+                        useIndividualPages={true}
+                        currentVideoId={currentVideo?.id}
+                        moduleId={moduleId}
+                        moduleType={moduleType}
+                      />
+                    </CardContent>
+                  </TabsContent>
+                  
+                  <TabsContent value="transcript" className="mt-0">
+                    <CardContent className="pt-4">
+                      {currentVideo?.transcript ? (
+                        <div className="max-h-[600px] overflow-y-auto">
+                          <div className="prose prose-sm max-w-none">
+                            <p className="whitespace-pre-wrap text-muted-foreground text-sm leading-relaxed">
+                              {currentVideo.transcript}
+                            </p>
+                          </div>
+                        </div>
+                      ) : (
+                        <p className="text-sm text-muted-foreground text-center py-8">
+                          No transcript available for this video.
+                        </p>
+                      )}
+                    </CardContent>
+                  </TabsContent>
+                </Tabs>
               </Card>
 
 
