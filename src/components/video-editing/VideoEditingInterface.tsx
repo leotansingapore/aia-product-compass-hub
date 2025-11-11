@@ -103,6 +103,9 @@ export function VideoEditingInterface({
     // Add the new page to the videos array
     const updatedVideos = [...videoOrderChanges.pendingVideos, newPage];
     videoOrderChanges.updatePendingVideos(updatedVideos);
+    
+    // Sync with parent state immediately so the page exists when content updates happen
+    onSetEditVideos(updatedVideos);
 
     // Open it for editing (it will be the last item)
     const newIndex = updatedVideos.length - 1;
