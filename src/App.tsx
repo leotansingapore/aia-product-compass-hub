@@ -42,6 +42,7 @@ import KBCategory from "./pages/kb/KBCategory";
 import KBProduct from "./pages/kb/KBProduct";
 import VideoDetail from "./pages/VideoDetail";
 import AwaitingApproval from "./pages/AwaitingApproval";
+import ManageProductVideos from "./pages/ManageProductVideos";
 
 // Lazy load AI Assistant page for performance optimization
 const AIAssistant = lazy(() => import("./pages/AIAssistant"));
@@ -84,6 +85,7 @@ const App = () => (
                     <Route path="/my-account" element={<MyAccount />} />
 <Route path="/category/:categorySlugOrId" element={<ProductCategory />} />
 <Route path="/product/:productSlugOrId" element={<ProductDetail />} />
+<Route path="/product/:productSlugOrId/manage-videos" element={<ManageProductVideos />} />
 <Route path="/product/:productId/ai-assistant" element={
   <Suspense fallback={<SkeletonLoader type="product" />}>
     <AIAssistant />

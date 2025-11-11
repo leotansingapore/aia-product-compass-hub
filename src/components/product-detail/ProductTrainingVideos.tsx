@@ -1,16 +1,15 @@
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { EditableVideos } from "@/components/EditableVideos";
 import { VideoLearningInterface } from "@/components/video-learning/VideoLearningInterface";
 import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
 import { AdminVideosByCategory } from "@/components/video-editing/AdminVideosByCategory";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { useAdmin } from "@/hooks/useAdmin";
 import { formatDuration } from "@/components/video-editing/videoUtils";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { GraduationCap, Play, Check, Clock } from "lucide-react";
+import { GraduationCap, Play, Edit, Clock } from "lucide-react";
 import type { TrainingVideo } from "@/hooks/useProducts";
 
 interface ProductTrainingVideosProps {
@@ -22,9 +21,10 @@ interface ProductTrainingVideosProps {
 export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTrainingVideosProps) {
   const [showLearningInterface, setShowLearningInterface] = useState(false);
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
-  const [isEditingVideos, setIsEditingVideos] = useState(false);
   const { isAdmin: isAdminMode } = useAdmin();
   const { getCourseProgress, getVideoProgress } = useVideoProgress(productId);
+  const navigate = useNavigate();
+  const { productSlugOrId } = useParams();
 
   // Debug logging
   console.log('🎥 ProductTrainingVideos render:', {
@@ -62,18 +62,35 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
     );
   }
 
+  const handleManageVideos = () => {
+    navigate(`/product/${productSlugOrId}/manage-videos`);
+  };
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <GraduationCap className="h-5 w-5" />
-          Training Course
-          {processedVideos.length > 0 && (
-            <Badge variant="secondary" className="ml-auto text-xs px-2">
-              {completedVideos}/{processedVideos.length} completed
-            </Badge>
+        <div className="flex items-center justify-between">
+          <CardTitle className="flex items-center gap-2">
+            <GraduationCap className="h-5 w-5" />
+            Training Course
+            {processedVideos.length > 0 && (
+              <Badge variant="secondary" className="text-xs px-2">
+                {completedVideos}/{processedVideos.length} completed
+              </Badge>
+            )}
+          </CardTitle>
+          {isAdminMode && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleManageVideos}
+              className="flex items-center gap-2"
+            >
+              <Edit className="h-4 w-4" />
+              Manage Videos
+            </Button>
           )}
-        </CardTitle>
+        </div>
         <CardDescription>
           {processedVideos.length > 0 ? (
             <div className="space-y-2">
@@ -98,54 +115,56 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {!isAdminMode && processedVideos.length > 0 ? (
+        {processedVideos.length > 0 ? (
           <div className="space-y-4">
-            <Button 
-              onClick={() => setShowLearningInterface(true)}
-              className="w-full h-12"
-              size="lg"
-            >
-              <Play className="h-5 w-5 mr-2" />
-              Start Learning Course
-            </Button>
+            {!isAdminMode && (
+              <Button 
+                onClick={() => setShowLearningInterface(true)}
+                className="w-full h-12"
+                size="lg"
+              >
+                <Play className="h-5 w-5 mr-2" />
+                Start Learning Course
+              </Button>
+            )}
             
-            <VideosByCategory
-              videos={processedVideos}
-              onVideoSelect={(index) => {
-                setSelectedVideoIndex(index);
-                setShowLearningInterface(true);
-              }}
-              getVideoProgress={getVideoProgress}
-              useIndividualPages={true}
-            />
+            {isAdminMode ? (
+              <AdminVideosByCategory
+                videos={processedVideos}
+                onVideoSelect={(index) => {
+                  setSelectedVideoIndex(index);
+                  setShowLearningInterface(true);
+                }}
+                getVideoProgress={getVideoProgress}
+                useIndividualPages={true}
+                onSave={(newVideos) => onUpdate('training_videos', newVideos)}
+              />
+            ) : (
+              <VideosByCategory
+                videos={processedVideos}
+                onVideoSelect={(index) => {
+                  setSelectedVideoIndex(index);
+                  setShowLearningInterface(true);
+                }}
+                getVideoProgress={getVideoProgress}
+                useIndividualPages={true}
+              />
+            )}
           </div>
-        ) : isAdminMode && processedVideos.length > 0 && !isEditingVideos ? (
-          <AdminVideosByCategory
-            videos={processedVideos}
-            onVideoSelect={(index) => {
-              setSelectedVideoIndex(index);
-              setShowLearningInterface(true);
-            }}
-            getVideoProgress={getVideoProgress}
-            useIndividualPages={true}
-            onSave={(newVideos) => onUpdate('training_videos', newVideos)}
-            onEnterEditMode={() => setIsEditingVideos(true)}
-          />
         ) : (
-          <ErrorBoundary 
-            fallback={
-              <div className="p-4 text-center text-muted-foreground">
-                <p>Unable to load video editing interface</p>
-                <p className="text-sm mt-2">Please refresh the page and try again</p>
-              </div>
-            }
-          >
-            <EditableVideos
-              videos={processedVideos}
-              onSave={(newVideos) => onUpdate('training_videos', newVideos)}
-              onExitEditMode={() => setIsEditingVideos(false)}
-            />
-          </ErrorBoundary>
+          <div className="text-center py-8 text-muted-foreground">
+            <p>No training videos available</p>
+            {isAdminMode && (
+              <Button
+                variant="outline"
+                className="mt-4"
+                onClick={handleManageVideos}
+              >
+                <Edit className="h-4 w-4 mr-2" />
+                Add Videos
+              </Button>
+            )}
+          </div>
         )}
       </CardContent>
     </Card>
