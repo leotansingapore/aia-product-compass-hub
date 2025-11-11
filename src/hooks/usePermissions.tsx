@@ -2,14 +2,29 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
+// Version to bust cache when permission logic changes
+const PERMISSIONS_VERSION = 2; // Increment this when role logic changes
+
 // Cache for user permissions to prevent unnecessary re-fetches
 const permissionsCache = new Map<string, {
   tier: string;
   adminRole: string;
   permissions: { access_type: string; resource_id: string; }[];
   timestamp: number;
+  version: number;
 }>();
 const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes
+
+// Export function to manually clear permissions cache
+export const clearPermissionsCache = (userId?: string) => {
+  if (userId) {
+    permissionsCache.delete(userId);
+    console.log('[Permissions] Cache cleared for user:', userId);
+  } else {
+    permissionsCache.clear();
+    console.log('[Permissions] All caches cleared');
+  }
+};
 
 // Safe hook wrapper to handle auth context not being available during initialization
 const useSimplifiedAuthSafe = () => {
@@ -39,12 +54,24 @@ export function usePermissions() {
     // Check cache first
     const cacheKey = user.id;
     const cached = permissionsCache.get(cacheKey);
-    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+    if (cached && 
+        Date.now() - cached.timestamp < CACHE_DURATION && 
+        cached.version === PERMISSIONS_VERSION) {
+      console.log('[Permissions] Using cached permissions:', { 
+        tier: cached.tier, 
+        adminRole: cached.adminRole 
+      });
       setUserTier(cached.tier);
       setUserAdminRole(cached.adminRole);
       setTierPermissions(cached.permissions);
       setLoading(false);
       return;
+    }
+    
+    // Clear stale cache if version mismatch
+    if (cached && cached.version !== PERMISSIONS_VERSION) {
+      console.log('[Permissions] Cache version mismatch, clearing cache');
+      permissionsCache.delete(cacheKey);
     }
     
     try {
@@ -85,13 +112,23 @@ export function usePermissions() {
         setTierPermissions(permissions || []);
       }
 
-      // Cache the results
-      permissionsCache.set(user.id, {
+      // Cache the results with version
+      const permissionsData = {
         tier: tierData || 'basic',
         adminRole: adminRoleData || 'user',
         permissions: permissions || [],
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        version: PERMISSIONS_VERSION
+      };
+      
+      console.log('[Permissions] Fetched and cached new permissions:', {
+        userId: user.id,
+        tier: permissionsData.tier,
+        adminRole: permissionsData.adminRole,
+        version: permissionsData.version
       });
+      
+      permissionsCache.set(user.id, permissionsData);
     } catch (error) {
       console.error('Error in fetchUserPermissions:', error);
     } finally {

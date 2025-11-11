@@ -8,10 +8,19 @@ interface AdminContextType {
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
 export function AdminProvider({ children }: { children: ReactNode }) {
-  const { isMasterAdmin, hasRole, loading } = usePermissions();
+  const { isMasterAdmin, hasRole, loading, getUserAdminRole } = usePermissions();
   
   // Check if user has admin privileges - admins and master admins can access admin features
   const isAdmin = !loading && (isMasterAdmin() || hasRole('admin'));
+
+  // Debug logging to help diagnose permission issues
+  console.log('[AdminProvider] Permission check:', {
+    loading,
+    userAdminRole: getUserAdminRole(),
+    isMasterAdmin: isMasterAdmin(),
+    hasAdminRole: hasRole('admin'),
+    finalIsAdmin: isAdmin
+  });
 
   return (
     <AdminContext.Provider value={{ isAdmin }}>
