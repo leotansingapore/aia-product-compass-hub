@@ -23,15 +23,6 @@ interface VideoLearningInterfaceProps {
   moduleType?: 'product' | 'cmfas';
 }
 
-function stripTitleAndVideoFromHtml(html: string): string {
-  // Remove H1 title at the start
-  let processed = html.replace(/^<h1>.*?<\/h1>\s*/i, '');
-  
-  // Remove first video embed div (YouTube, Loom, Vimeo, Wistia, or generic video-embed)
-  processed = processed.replace(/<div class="video-embed">.*?<\/div>\s*/i, '');
-  
-  return processed;
-}
 
 function getVideoEmbedInfo(url: string) {
   // YouTube
@@ -253,22 +244,24 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                   )}
                 </CardHeader>
                 <CardContent>
-                  {videoInfo ? (
-                    <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-                      <iframe
-                        ref={iframeRef}
-                        src={videoInfo.embedUrl}
-                        title={currentVideo?.title}
-                        className="w-full h-full"
-                        allowFullScreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        onLoad={() => setIsPlaying(false)}
-                      />
-                    </div>
-                  ) : (
-                    <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                      <p className="text-muted-foreground">Invalid video URL</p>
-                    </div>
+                  {!currentVideo?.rich_content && (
+                    videoInfo ? (
+                      <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+                        <iframe
+                          ref={iframeRef}
+                          src={videoInfo.embedUrl}
+                          title={currentVideo?.title}
+                          className="w-full h-full"
+                          allowFullScreen
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          onLoad={() => setIsPlaying(false)}
+                        />
+                      </div>
+                    ) : (
+                      <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                        <p className="text-muted-foreground">Invalid video URL</p>
+                      </div>
+                    )
                   )}
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-6">
@@ -324,7 +317,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                   <CardContent className="p-6">
                     <div 
                       className="prose prose-sm dark:prose-invert max-w-none"
-                      dangerouslySetInnerHTML={{ __html: stripTitleAndVideoFromHtml(currentVideo.rich_content) }}
+                      dangerouslySetInnerHTML={{ __html: currentVideo.rich_content }}
                     />
                   </CardContent>
                 </Card>
