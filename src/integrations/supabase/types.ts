@@ -1348,7 +1348,7 @@ export type Database = {
       }
       get_signup_password: { Args: { user_email: string }; Returns: string }
       get_user_access_tier: { Args: { user_id: string }; Returns: string }
-      get_user_admin_role: { Args: { _user_id: string }; Returns: string }
+      get_user_admin_role: { Args: { user_id: string }; Returns: string }
       get_user_tier: { Args: { user_id: string }; Returns: string }
       has_admin_role: {
         Args: { required_role: string; user_id: string }
