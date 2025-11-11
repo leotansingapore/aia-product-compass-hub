@@ -5,6 +5,7 @@ import { VideoBasicInfo } from './VideoBasicInfo';
 import { CategorySelector } from './CategorySelector';
 import { VideoContentTabs } from './VideoContentTabs';
 import { VideoFormActions } from './VideoFormActions';
+import { RichTextEditor } from '@/components/RichTextEditor';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoEditFormProps {
@@ -54,6 +55,47 @@ export function VideoEditForm({
 
   const isRichMode = shouldUseRichEditor(editVideo);
 
+  // Rich Editor Mode: Show rich text editor for content
+  if (isRichMode) {
+    const handleRichContentSave = async (html: string) => {
+      const updatedVideo = { ...editVideo, rich_content: html };
+      onUpdate(updatedVideo);
+      onSave();
+    };
+
+    return (
+      <div className="space-y-4">
+        <VideoBasicInfo
+          video={editVideo}
+          isDetectingDuration={isDetectingDuration}
+          onChange={handleChange}
+        />
+
+        <CategorySelector
+          video={editVideo}
+          existingCategories={existingCategories}
+          newCategoryName={newCategoryName}
+          showNewCategoryInput={showNewCategoryInput}
+          onCategoryChange={(value) => handleChange('category', value)}
+          onNewCategoryNameChange={setNewCategoryName}
+          onShowNewCategoryInput={setShowNewCategoryInput}
+          onCreateCategory={handleCreateCategory}
+        />
+
+        <div>
+          <Label>Content (Rich Editor)</Label>
+          <RichTextEditor
+            value={editVideo.rich_content || ''}
+            onSave={handleRichContentSave}
+            onCancel={handleCancel}
+            placeholder="Add video description, notes, transcript, and links..."
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // Structured Form Mode: Show traditional form (backwards compatible)
   return (
     <div className="space-y-4">
       <VideoBasicInfo
