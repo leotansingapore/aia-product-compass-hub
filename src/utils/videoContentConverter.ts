@@ -40,7 +40,7 @@ export function structuredToRichHtml(video: TrainingVideo): string {
   if (video.useful_links && video.useful_links.length > 0) {
     html += `<h2>🔗 Useful Links</h2>\n<ul>\n`;
     video.useful_links.forEach(link => {
-      html += `  <li><a href="${escapeHtml(link.url)}">${escapeHtml(link.name)}</a></li>\n`;
+      html += `  <li><a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.name)}</a></li>\n`;
     });
     html += `</ul>\n\n`;
   }
@@ -49,7 +49,7 @@ export function structuredToRichHtml(video: TrainingVideo): string {
   if (video.attachments && video.attachments.length > 0) {
     html += `<h2>📎 Attachments</h2>\n<ul>\n`;
     video.attachments.forEach(attachment => {
-      html += `  <li><a href="${escapeHtml(attachment.url)}">${escapeHtml(attachment.name)}</a>`;
+      html += `  <li><a href="${escapeHtml(attachment.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(attachment.name)}</a>`;
       if (attachment.file_size) {
         html += ` (${formatFileSize(attachment.file_size)})`;
       }

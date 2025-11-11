@@ -74,55 +74,60 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
     }
   };
 
-  // Convert markdown to HTML for initial display
+  // Initialize editor with HTML content
   useEffect(() => {
-    // Only update if content is significantly different to avoid overwriting user changes
-    if (editorRef.current && Math.abs(editorRef.current.innerHTML.length - value.length) > 10) {
-      const convertMarkdownToHtml = (markdown: string) => {
-        return markdown
-          // Headers
-          .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-          .replace(/^## (.*$)/gm, '<h2>$1</h2>')
-          .replace(/^# (.*$)/gm, '<h1>$1</h1>')
-          // Bold
-          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-          // Italic
-          .replace(/\*(.*?)\*/g, '<em>$1</em>')
-          // Lists (handle multiple lines)
-          .replace(/^- (.*$)/gm, '<li>$1</li>')
-          .replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs, '<ul>$1</ul>')
-          // Numbered lists
-          .replace(/^\d+\. (.*$)/gm, '<li>$1</li>')
-          .replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs, (match) => {
-            if (!match.includes('<ul>')) {
-              return `<ol>${match}</ol>`;
-            }
-            return match;
-          })
-          // Line breaks and paragraphs
-          .replace(/\n\n+/g, '</p><p>')
-          .replace(/^(?!<[h|u|o|l])(.+)$/gm, '<p>$1</p>')
-          // Clean up
-          .replace(/<p><\/p>/g, '')
-          .replace(/<p>(<[h|u|o])/g, '$1')
-          .replace(/(<\/[h|u|o][^>]*>)<\/p>/g, '$1')
-          .replace(/\n/g, '<br>');
-      };
-
-      const htmlContent = convertMarkdownToHtml(value);
-      setContent(htmlContent);
+    if (editorRef.current && value) {
+      // If value is already HTML (contains tags), use it directly
+      // Otherwise treat it as plain text
+      const isHtml = /<[^>]+>/.test(value);
+      const htmlContent = isHtml ? value : value.replace(/\n/g, '<br>');
       
-      // Set initial content in editor
-      if (editorRef.current) {
+      // Only update if different to avoid cursor jumps
+      if (editorRef.current.innerHTML !== htmlContent) {
         editorRef.current.innerHTML = htmlContent;
+        setContent(htmlContent);
       }
+    } else if (editorRef.current && !value) {
+      editorRef.current.innerHTML = '';
+      setContent('');
     }
   }, [value]);
 
   const execCommand = useCallback((command: string, value?: string) => {
-    document.execCommand(command, false, value);
-    if (editorRef.current) {
-      setContent(editorRef.current.innerHTML);
+    try {
+      // Focus editor first to ensure commands work
+      editorRef.current?.focus();
+      
+      // Use modern approach for better browser support
+      if (command === 'createLink' && value) {
+        const selection = window.getSelection();
+        if (selection && selection.rangeCount > 0) {
+          const range = selection.getRangeAt(0);
+          const link = document.createElement('a');
+          link.href = value;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.className = 'text-blue-600 underline hover:text-blue-800';
+          
+          // If there's selected text, wrap it
+          if (!range.collapsed) {
+            range.surroundContents(link);
+          } else {
+            // If no selection, insert link with URL as text
+            link.textContent = value;
+            range.insertNode(link);
+          }
+        }
+      } else {
+        // Use standard execCommand for other operations
+        document.execCommand(command, false, value);
+      }
+      
+      if (editorRef.current) {
+        setContent(editorRef.current.innerHTML);
+      }
+    } catch (error) {
+      console.warn('execCommand failed:', error);
     }
   }, []);
 
@@ -229,12 +234,15 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
         const videoId = url.includes('youtu.be') 
           ? url.split('/').pop()?.split('?')[0]
           : url.split('v=')[1]?.split('&')[0];
-        embedCode = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+        embedCode = `<div class="video-embed"><iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
       } else if (url.includes('loom.com')) {
         const videoId = url.split('/').pop()?.split('?')[0];
-        embedCode = `<iframe src="https://www.loom.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+        embedCode = `<div class="video-embed"><iframe src="https://www.loom.com/embed/${videoId}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>`;
+      } else if (url.includes('vimeo.com')) {
+        const videoId = url.split('/').pop()?.split('?')[0];
+        embedCode = `<div class="video-embed"><iframe src="https://player.vimeo.com/video/${videoId}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
       } else {
-        embedCode = `<video controls><source src="${url}" type="video/mp4"></video>`;
+        embedCode = `<div class="video-embed"><video controls><source src="${url}" type="video/mp4"></video></div>`;
       }
       
       if (editorRef.current) {
@@ -402,9 +410,10 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
       <div
         ref={editorRef}
         contentEditable
-        className="min-h-[200px] p-4 focus:outline-none prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline [&_a:hover]:text-blue-800"
+        className="min-h-[200px] p-4 focus:outline-none prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline [&_a:hover]:text-blue-800 empty:before:content-[attr(data-placeholder)] empty:before:text-muted-foreground [&_.video-embed]:relative [&_.video-embed]:pb-[56.25%] [&_.video-embed]:h-0 [&_.video-embed]:my-4 [&_.video-embed_iframe]:absolute [&_.video-embed_iframe]:top-0 [&_.video-embed_iframe]:left-0 [&_.video-embed_iframe]:w-full [&_.video-embed_iframe]:h-full [&_.video-embed_iframe]:rounded-lg"
         onInput={handleContentChange}
         onBlur={handleContentChange}
+        data-placeholder={placeholder}
         suppressContentEditableWarning={true}
         style={{
           lineHeight: '1.6',
