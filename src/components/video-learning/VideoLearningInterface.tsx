@@ -388,8 +388,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
               </Card>
 
 
-              {/* Useful Links & Attachments */}
-              {(currentVideo?.useful_links?.length > 0 || currentVideo?.attachments?.length > 0) && (
+              {/* Useful Links & Attachments - Only show if not using rich content */}
+              {!currentVideo?.rich_content && (currentVideo?.useful_links?.length > 0 || currentVideo?.attachments?.length > 0) && (
                 <Card>
                   <CardHeader>
                     <CardTitle>Learning Resources</CardTitle>
