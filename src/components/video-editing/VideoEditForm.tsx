@@ -89,7 +89,18 @@ export function VideoEditForm({
           <RichTextEditor
             value={editVideo.rich_content || ''}
             onChange={handleRichContentChange}
-            placeholder="Add video description, notes, transcript, and links..."
+            placeholder="Add video description, notes, and links..."
+          />
+        </div>
+
+        <div>
+          <Label>Transcript (Separate Field)</Label>
+          <Textarea
+            value={editVideo.transcript || ''}
+            onChange={(e) => handleChange('transcript', e.target.value)}
+            placeholder="Add video transcript here..."
+            rows={8}
+            className="font-mono text-sm"
           />
         </div>
       </div>

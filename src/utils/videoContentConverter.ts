@@ -30,11 +30,7 @@ export function structuredToRichHtml(video: TrainingVideo): string {
     html += `<p>${escapeHtml(video.notes).replace(/\n/g, '<br>')}</p>\n\n`;
   }
   
-  // Transcript section
-  if (video.transcript) {
-    html += `<h2>📄 Transcript</h2>\n`;
-    html += `<p>${escapeHtml(video.transcript).replace(/\n/g, '<br>')}</p>\n\n`;
-  }
+  // Transcript is NOT included in rich HTML - it has its own separate field
   
   // Useful links
   if (video.useful_links && video.useful_links.length > 0) {

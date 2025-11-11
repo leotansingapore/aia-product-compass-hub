@@ -312,17 +312,35 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </CardContent>
               </Card>
 
-              {/* Rich Content or Legacy Notes & Transcript */}
+              {/* Rich Content or Legacy Notes */}
               {currentVideo?.rich_content ? (
-                // Rich editor mode - display formatted HTML (without title and video embed since those are shown above)
-                <Card>
-                  <CardContent className="p-6">
-                    <div 
-                      className="prose prose-sm dark:prose-invert max-w-none"
-                      dangerouslySetInnerHTML={{ __html: currentVideo.rich_content }}
-                    />
-                  </CardContent>
-                </Card>
+                // Rich editor mode - display formatted HTML
+                <>
+                  <Card>
+                    <CardContent className="p-6">
+                      <div 
+                        className="prose prose-sm dark:prose-invert max-w-none"
+                        dangerouslySetInnerHTML={{ __html: currentVideo.rich_content }}
+                      />
+                    </CardContent>
+                  </Card>
+                  
+                  {/* Transcript - Always shown separately even in rich mode */}
+                  {currentVideo?.transcript && (
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="text-lg">📄 Transcript</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="prose prose-sm max-w-none">
+                          <p className="whitespace-pre-wrap text-muted-foreground">
+                            {currentVideo.transcript}
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+                </>
               ) : (currentVideo?.notes || currentVideo?.transcript) ? (
                 // Legacy mode - display tabs
                 <Collapsible open={isNotesOpen} onOpenChange={setIsNotesOpen}>
