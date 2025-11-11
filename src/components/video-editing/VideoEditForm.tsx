@@ -64,8 +64,13 @@ export function VideoEditForm({
     const richHtml = structuredToRichHtml(editVideo);
     const backup = createLegacyBackup(editVideo);
 
-    handleChange('rich_content', richHtml);
-    handleChange('legacy_fields', backup);
+    const updatedVideo = {
+      ...editVideo,
+      rich_content: richHtml,
+      legacy_fields: backup
+    };
+    
+    onUpdate(updatedVideo);
   };
 
   // Rich Editor Mode: Show rich text editor for content
