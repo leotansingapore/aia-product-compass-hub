@@ -120,16 +120,16 @@ export function usePermissions() {
   }, [user]);
 
   const hasRole = (role: string): boolean => {
-    // Check both access tier and admin role
-    return userTier === role || userAdminRole === role;
+    // Only check admin role, not tier (tiers are for access control, not admin privileges)
+    return userAdminRole === role;
   };
 
   const isMasterAdmin = (): boolean => {
-    return userAdminRole === 'super_admin';
+    return userAdminRole === 'master_admin';
   };
 
   const isAdmin = (): boolean => {
-    return userAdminRole === 'admin' || userAdminRole === 'super_admin';
+    return userAdminRole === 'admin' || userAdminRole === 'master_admin';
   };
 
   const getUserTier = (): string | null => {
