@@ -20,7 +20,9 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
     transcript: '',
     duration: undefined,
     order: editVideos.length,
-    category: ''
+    category: '',
+    rich_content: undefined,
+    legacy_fields: undefined
   });
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
@@ -48,7 +50,9 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
       transcript: '',
       duration: undefined,
       order: editVideos.length,
-      category: ''
+      category: '',
+      rich_content: undefined,
+      legacy_fields: undefined
     });
   };
 
