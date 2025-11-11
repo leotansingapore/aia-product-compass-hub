@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { getVideoEmbedInfo } from '@/components/video-editing/videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
@@ -26,6 +26,17 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
   const [saving, setSaving] = useState(false);
   const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
   const { toast } = useToast();
+
+  // Sync editVideos when initialVideos changes (e.g., when product data loads)
+  useEffect(() => {
+    if (initialVideos && initialVideos.length > 0) {
+      console.log('📹 useVideoManagement: Syncing videos from props', {
+        count: initialVideos.length,
+        categories: Array.from(new Set(initialVideos.map(v => v.category).filter(Boolean)))
+      });
+      setEditVideos(initialVideos);
+    }
+  }, [initialVideos]);
 
   const resetNewVideo = () => {
     setNewVideo({ 

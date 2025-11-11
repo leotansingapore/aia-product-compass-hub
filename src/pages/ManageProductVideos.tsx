@@ -24,11 +24,6 @@ export default function ManageProductVideos() {
     navigate(`/product/${productSlugOrId}`);
   };
 
-  const videoManagement = useVideoManagement({
-    initialVideos: product?.training_videos || [],
-    onSave: handleVideoSave
-  });
-
   // Get unique categories from existing videos
   const existingCategories = Array.from(
     new Set(
@@ -37,6 +32,11 @@ export default function ManageProductVideos() {
         .filter(Boolean)
     )
   );
+
+  const videoManagement = useVideoManagement({
+    initialVideos: product?.training_videos || [],
+    onSave: handleVideoSave
+  });
 
   if (loading) {
     return <SkeletonLoader type="product" />;
