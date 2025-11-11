@@ -59,34 +59,50 @@ export function VideoEditingLayout({
   onReorderVideos
 }: VideoEditingLayoutProps) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <CourseStructurePanel
-        videos={editVideos}
-        emptyFolders={emptyFolders}
-        expandedFolders={expandedFolders}
-        onExpandedChange={onExpandedChange}
-        onVideoSelect={(index) => onEditingIndexChange(index)}
-        onCreateFolder={onCreateFolder}
-        onEditFolder={onEditFolder}
-        onDeleteFolder={onDeleteFolder}
-        onMoveVideoToFolder={onMoveVideoToFolder}
-        onEditVideo={(index) => onEditingIndexChange(index)}
-        onDeleteVideo={onRemoveVideo}
-        onAddVideoToFolder={onAddVideoToFolder}
-        onReorderVideos={onReorderVideos}
-      />
+    <div className="flex min-h-[calc(100vh-120px)]">
+      {/* Left Sidebar - Course Structure (SKOOL-style) */}
+      <aside className="w-80 border-r bg-muted/30 overflow-y-auto">
+        <div className="sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b px-4 py-3">
+          <h2 className="font-semibold text-sm text-foreground">Course Structure</h2>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            {editVideos.length} videos
+          </p>
+        </div>
+        <div className="p-4">
+          <CourseStructurePanel
+            videos={editVideos}
+            emptyFolders={emptyFolders}
+            expandedFolders={expandedFolders}
+            onExpandedChange={onExpandedChange}
+            onVideoSelect={(index) => onEditingIndexChange(index)}
+            onCreateFolder={onCreateFolder}
+            onEditFolder={onEditFolder}
+            onDeleteFolder={onDeleteFolder}
+            onMoveVideoToFolder={onMoveVideoToFolder}
+            onEditVideo={(index) => onEditingIndexChange(index)}
+            onDeleteVideo={onRemoveVideo}
+            onAddVideoToFolder={onAddVideoToFolder}
+            onReorderVideos={onReorderVideos}
+          />
+        </div>
+      </aside>
 
-      <VideoEditorPanel
-        editVideos={editVideos}
-        editingIndex={editingIndex}
-        newVideo={newVideo}
-        existingCategories={existingCategories}
-        onEditingIndexChange={onEditingIndexChange}
-        onUpdateVideo={onUpdateVideo}
-        onNewVideoChange={onNewVideoChange}
-        onAddVideo={onAddVideo}
-        onCreateCategory={onCreateCategory}
-      />
+      {/* Main Content Area - Video Editor */}
+      <main className="flex-1 overflow-y-auto">
+        <div className="max-w-4xl mx-auto p-6">
+          <VideoEditorPanel
+            editVideos={editVideos}
+            editingIndex={editingIndex}
+            newVideo={newVideo}
+            existingCategories={existingCategories}
+            onEditingIndexChange={onEditingIndexChange}
+            onUpdateVideo={onUpdateVideo}
+            onNewVideoChange={onNewVideoChange}
+            onAddVideo={onAddVideo}
+            onCreateCategory={onCreateCategory}
+          />
+        </div>
+      </main>
 
       {/* Folder Management Dialog */}
       <FolderManagementDialog

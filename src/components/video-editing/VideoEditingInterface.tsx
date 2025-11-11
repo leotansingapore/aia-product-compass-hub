@@ -124,20 +124,24 @@ export function VideoEditingInterface({
           onReorderVideos={videoOrderChanges.updatePendingVideos}
         />
         {videoOrderChanges.hasPendingChanges && (
-          <VideoOrderActions
-            changeCount={videoOrderChanges.getChangeCount()}
-            changeSummary={videoOrderChanges.getChangeSummary()}
-            isSaving={videoOrderChanges.isSaving}
-            onSave={videoOrderChanges.saveChanges}
-            onDiscard={videoOrderChanges.discardChanges}
-          />
+          <div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t px-6 py-4 mt-6">
+            <VideoOrderActions
+              changeCount={videoOrderChanges.getChangeCount()}
+              changeSummary={videoOrderChanges.getChangeSummary()}
+              isSaving={videoOrderChanges.isSaving}
+              onSave={videoOrderChanges.saveChanges}
+              onDiscard={videoOrderChanges.discardChanges}
+            />
+          </div>
         )}
         {!videoOrderChanges.hasPendingChanges && (
-          <VideoEditingActions
-            saving={saving}
-            onSave={onSave}
-            onCancel={onCancel}
-          />
+          <div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t px-6 py-4 mt-6">
+            <VideoEditingActions
+              saving={saving}
+              onSave={onSave}
+              onCancel={onCancel}
+            />
+          </div>
         )}
       </>
     );

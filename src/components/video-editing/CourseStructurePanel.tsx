@@ -33,30 +33,20 @@ export function CourseStructurePanel({
   onReorderVideos
 }: CourseStructurePanelProps) {
   return (
-    <div className="lg:col-span-1 space-y-4">
-      <div className="border rounded-lg p-4">
-        <div className="mb-4">
-          <h3 className="font-semibold">Course Structure</h3>
-          <p className="text-sm text-muted-foreground mt-1">
-            Organize and reorder your videos with drag-and-drop
-          </p>
-        </div>
-        <FolderTreeView
-          videos={videos}
-          emptyFolders={emptyFolders}
-          expandedFolders={expandedFolders}
-          onExpandedChange={onExpandedChange}
-          onVideoSelect={onVideoSelect}
-          onCreateFolder={onCreateFolder}
-          onEditFolder={onEditFolder}
-          onDeleteFolder={onDeleteFolder}
-          onMoveVideo={onMoveVideoToFolder}
-          onEditVideo={onEditVideo}
-          onDeleteVideo={onDeleteVideo}
-          onAddVideoToFolder={onAddVideoToFolder}
-          onReorderVideos={onReorderVideos}
-        />
-      </div>
-    </div>
+    <FolderTreeView
+      videos={videos}
+      emptyFolders={emptyFolders}
+      expandedFolders={expandedFolders}
+      onExpandedChange={onExpandedChange}
+      onVideoSelect={onVideoSelect}
+      onCreateFolder={onCreateFolder}
+      onEditFolder={onEditFolder}
+      onDeleteFolder={onDeleteFolder}
+      onMoveVideo={onMoveVideoToFolder}
+      onEditVideo={onEditVideo}
+      onDeleteVideo={onDeleteVideo}
+      onAddVideoToFolder={onAddVideoToFolder}
+      onReorderVideos={onReorderVideos}
+    />
   );
 }
