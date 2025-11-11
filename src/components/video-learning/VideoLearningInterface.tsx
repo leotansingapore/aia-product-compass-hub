@@ -227,22 +227,24 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             {/* Video Player */}
             <div className="lg:col-span-2 space-y-6">
               <Card>
-                <CardHeader>
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                    <CardTitle className="flex items-start sm:items-center gap-2 flex-wrap">
-                      <span className="break-words">{currentVideo?.title}</span>
-                      {currentProgress?.completed && (
-                        <Badge variant="secondary" className="text-xs text-green-600 flex-shrink-0">
-                          <Check className="h-3 w-3 mr-1" />
-                          Completed
-                        </Badge>
-                      )}
-                    </CardTitle>
-                  </div>
-                  {currentVideo?.description && (
-                    <p className="text-muted-foreground">{currentVideo.description}</p>
-                  )}
-                </CardHeader>
+                {!currentVideo?.rich_content && (
+                  <CardHeader>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                      <CardTitle className="flex items-start sm:items-center gap-2 flex-wrap">
+                        <span className="break-words">{currentVideo?.title}</span>
+                        {currentProgress?.completed && (
+                          <Badge variant="secondary" className="text-xs text-green-600 flex-shrink-0">
+                            <Check className="h-3 w-3 mr-1" />
+                            Completed
+                          </Badge>
+                        )}
+                      </CardTitle>
+                    </div>
+                    {currentVideo?.description && (
+                      <p className="text-muted-foreground">{currentVideo.description}</p>
+                    )}
+                  </CardHeader>
+                )}
                 <CardContent>
                   {!currentVideo?.rich_content && (
                     videoInfo ? (
