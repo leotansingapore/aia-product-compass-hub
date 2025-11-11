@@ -28,6 +28,7 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
   const [showMediaUpload, setShowMediaUpload] = useState(false);
   const [savedSelection, setSavedSelection] = useState<Range | null>(null);
   const editorRef = useRef<HTMLDivElement>(null);
+  const isUserInputRef = useRef(false); // Track if change is from user input
   const { toast } = useToast();
 
   // Save current cursor position/selection
@@ -72,47 +73,22 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
 
   // Initialize editor with HTML content
   useEffect(() => {
+    // Skip update if change came from user input to preserve cursor position
+    if (isUserInputRef.current) {
+      isUserInputRef.current = false;
+      return;
+    }
+
     if (editorRef.current && value) {
       // If value is already HTML (contains tags), use it directly
       // Otherwise treat it as plain text
       const isHtml = /<[^>]+>/.test(value);
       const htmlContent = isHtml ? value : value.replace(/\n/g, '<br>');
       
-      // Only update if different to avoid cursor jumps
+      // Only update if different to avoid unnecessary renders
       if (editorRef.current.innerHTML !== htmlContent) {
-        // Save cursor position before update
-        const selection = window.getSelection();
-        let cursorPosition: { node: Node | null; offset: number } | null = null;
-        
-        if (selection && selection.rangeCount > 0 && editorRef.current.contains(selection.anchorNode)) {
-          const range = selection.getRangeAt(0);
-          cursorPosition = {
-            node: range.startContainer,
-            offset: range.startOffset
-          };
-        }
-        
-        // Update content
         editorRef.current.innerHTML = htmlContent;
         setContent(htmlContent);
-        
-        // Restore cursor position
-        if (cursorPosition && cursorPosition.node && editorRef.current.contains(cursorPosition.node)) {
-          try {
-            const newRange = document.createRange();
-            newRange.setStart(cursorPosition.node, Math.min(cursorPosition.offset, cursorPosition.node.textContent?.length || 0));
-            newRange.collapse(true);
-            
-            const newSelection = window.getSelection();
-            if (newSelection) {
-              newSelection.removeAllRanges();
-              newSelection.addRange(newRange);
-            }
-          } catch (error) {
-            // Cursor restoration failed, that's okay
-            console.warn('Could not restore cursor position:', error);
-          }
-        }
       }
     } else if (editorRef.current && !value) {
       editorRef.current.innerHTML = '';
@@ -129,12 +105,15 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
       document.execCommand(command, false, value);
       
       if (editorRef.current) {
-        setContent(editorRef.current.innerHTML);
+        isUserInputRef.current = true; // Mark as user input
+        const newContent = editorRef.current.innerHTML;
+        setContent(newContent);
+        onChange(newContent);
       }
     } catch (error) {
       console.warn('execCommand failed:', error);
     }
-  }, []);
+  }, [onChange]);
 
   const formatText = (command: string, value?: string) => {
     editorRef.current?.focus();
@@ -149,7 +128,10 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
       document.execCommand('formatBlock', false, `<h${level}>`);
       
       if (editorRef.current) {
-        setContent(editorRef.current.innerHTML);
+        isUserInputRef.current = true; // Mark as user input
+        const newContent = editorRef.current.innerHTML;
+        setContent(newContent);
+        onChange(newContent);
       }
     } catch (error) {
       console.warn('Failed to insert heading:', error);
@@ -186,7 +168,10 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
       
       if (editorRef.current) {
         document.execCommand('insertHTML', false, linkHtml);
-        setContent(editorRef.current.innerHTML);
+        isUserInputRef.current = true; // Mark as user input
+        const newContent = editorRef.current.innerHTML;
+        setContent(newContent);
+        onChange(newContent);
       }
     }
   };
@@ -199,7 +184,10 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
       document.execCommand('formatBlock', false, '<blockquote>');
       
       if (editorRef.current) {
-        setContent(editorRef.current.innerHTML);
+        isUserInputRef.current = true; // Mark as user input
+        const newContent = editorRef.current.innerHTML;
+        setContent(newContent);
+        onChange(newContent);
       }
     } catch (error) {
       console.warn('Failed to insert blockquote:', error);
@@ -219,7 +207,10 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
       document.execCommand('formatBlock', false, '<pre>');
       
       if (editorRef.current) {
-        setContent(editorRef.current.innerHTML);
+        isUserInputRef.current = true; // Mark as user input
+        const newContent = editorRef.current.innerHTML;
+        setContent(newContent);
+        onChange(newContent);
       }
     } catch (error) {
       console.warn('Failed to insert code block:', error);
@@ -265,6 +256,7 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
     document.execCommand('insertHTML', false, imageHtml);
     
     // Update content state and notify parent
+    isUserInputRef.current = true; // Mark as user input
     const newContent = editorRef.current.innerHTML;
     setContent(newContent);
     onChange(newContent);
@@ -299,13 +291,17 @@ export function RichTextEditor({ value, onChange, placeholder = "Type your conte
       
       if (editorRef.current) {
         document.execCommand('insertHTML', false, embedCode);
-        setContent(editorRef.current.innerHTML);
+        isUserInputRef.current = true; // Mark as user input
+        const newContent = editorRef.current.innerHTML;
+        setContent(newContent);
+        onChange(newContent);
       }
     }
   };
 
   const handleContentChange = () => {
     if (editorRef.current) {
+      isUserInputRef.current = true; // Mark as user input
       const newContent = editorRef.current.innerHTML;
       setContent(newContent);
       onChange(newContent);
