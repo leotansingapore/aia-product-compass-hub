@@ -65,31 +65,8 @@ export function VideoEditorPanel({
       ) : (
         <div className="text-center py-12 text-muted-foreground border rounded-lg bg-muted/30">
           <p className="text-sm">Select a video from the sidebar to edit</p>
-          <p className="text-xs mt-1">or add a new video with the button below</p>
         </div>
       )}
-
-      <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-        <DialogTrigger asChild>
-          <Button className="w-full" size="lg">
-            <Plus className="mr-2 h-4 w-4" />
-            Add New Video
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>Add New Video</DialogTitle>
-          </DialogHeader>
-          <AddVideoForm
-            newVideo={newVideo}
-            onUpdate={onNewVideoChange}
-            onAdd={handleAddVideo}
-            disabled={!newVideo.title.trim() || !newVideo.url.trim()}
-            existingCategories={existingCategories}
-            onCreateCategory={onCreateCategory}
-          />
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
