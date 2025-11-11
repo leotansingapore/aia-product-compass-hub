@@ -310,4 +310,13 @@
   .text-card-description {
     @apply text-body-sm text-muted-foreground;
   }
+
+  /* Rich Text Content Video Embeds */
+  .prose .video-embed {
+    @apply w-full my-6;
+  }
+
+  .prose .video-embed iframe {
+    @apply w-full aspect-video rounded-lg;
+  }
 }
