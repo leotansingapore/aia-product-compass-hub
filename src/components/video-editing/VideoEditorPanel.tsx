@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { VideoEditForm } from './VideoEditForm';
 import { AddVideoForm } from './AddVideoForm';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Plus } from 'lucide-react';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoEditorPanelProps {
@@ -26,11 +29,18 @@ export function VideoEditorPanel({
   onAddVideo,
   onCreateCategory
 }: VideoEditorPanelProps) {
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+
   console.log('🎬 VideoEditorPanel: Rendering', {
     editingIndex,
     hasVideo: editingIndex !== null && editVideos[editingIndex] !== undefined,
     videoTitle: editingIndex !== null ? editVideos[editingIndex]?.title : 'none'
   });
+
+  const handleAddVideo = () => {
+    onAddVideo();
+    setIsAddDialogOpen(false);
+  };
 
   return (
     <div className="space-y-6">
@@ -57,21 +67,31 @@ export function VideoEditorPanel({
       ) : (
         <div className="text-center py-12 text-muted-foreground border rounded-lg bg-muted/30">
           <p className="text-sm">Select a video from the sidebar to edit</p>
-          <p className="text-xs mt-1">or add a new video below</p>
+          <p className="text-xs mt-1">or add a new video with the button below</p>
         </div>
       )}
 
-      <div className="border rounded-lg p-6 bg-card">
-        <h3 className="font-semibold text-lg mb-4">Add New Video</h3>
-        <AddVideoForm
-          newVideo={newVideo}
-          onUpdate={onNewVideoChange}
-          onAdd={onAddVideo}
-          disabled={!newVideo.title.trim() || !newVideo.url.trim()}
-          existingCategories={existingCategories}
-          onCreateCategory={onCreateCategory}
-        />
-      </div>
+      <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+        <DialogTrigger asChild>
+          <Button className="w-full" size="lg">
+            <Plus className="mr-2 h-4 w-4" />
+            Add New Video
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Add New Video</DialogTitle>
+          </DialogHeader>
+          <AddVideoForm
+            newVideo={newVideo}
+            onUpdate={onNewVideoChange}
+            onAdd={handleAddVideo}
+            disabled={!newVideo.title.trim() || !newVideo.url.trim()}
+            existingCategories={existingCategories}
+            onCreateCategory={onCreateCategory}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
