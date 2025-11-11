@@ -115,29 +115,22 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
   };
 
   const insertHeading = (level: number) => {
-    editorRef.current?.focus();
-    
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return;
-    
-    // Get the current line/block
-    const range = selection.getRangeAt(0);
-    let container = range.startContainer;
-    
-    // Find the parent element (text node -> element)
-    if (container.nodeType === Node.TEXT_NODE) {
-      container = container.parentNode!;
-    }
-    
-    // Create heading
-    const heading = document.createElement(`h${level}`);
-    heading.innerHTML = (container as HTMLElement).innerHTML || container.textContent || '';
-    
-    // Replace the current element with heading
-    (container as HTMLElement).replaceWith(heading);
-    
-    if (editorRef.current) {
-      setContent(editorRef.current.innerHTML);
+    try {
+      editorRef.current?.focus();
+      
+      // Use formatBlock to convert the current block to a heading
+      document.execCommand('formatBlock', false, `<h${level}>`);
+      
+      if (editorRef.current) {
+        setContent(editorRef.current.innerHTML);
+      }
+    } catch (error) {
+      console.warn('Failed to insert heading:', error);
+      toast({
+        title: "Error",
+        description: "Failed to format as heading",
+        variant: "destructive",
+      });
     }
   };
 
@@ -172,55 +165,42 @@ export function RichTextEditor({ value, onSave, onCancel, placeholder = "Type yo
   };
 
   const insertBlockquote = () => {
-    editorRef.current?.focus();
-    
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return;
-    
-    const range = selection.getRangeAt(0);
-    let container = range.startContainer;
-    
-    if (container.nodeType === Node.TEXT_NODE) {
-      container = container.parentNode!;
-    }
-    
-    // Create blockquote
-    const blockquote = document.createElement('blockquote');
-    blockquote.className = 'border-l-4 border-primary/40 pl-4 py-2 italic text-muted-foreground';
-    blockquote.innerHTML = (container as HTMLElement).innerHTML || container.textContent || '';
-    
-    (container as HTMLElement).replaceWith(blockquote);
-    
-    if (editorRef.current) {
-      setContent(editorRef.current.innerHTML);
+    try {
+      editorRef.current?.focus();
+      
+      // Use formatBlock to convert the current block to a blockquote
+      document.execCommand('formatBlock', false, '<blockquote>');
+      
+      if (editorRef.current) {
+        setContent(editorRef.current.innerHTML);
+      }
+    } catch (error) {
+      console.warn('Failed to insert blockquote:', error);
+      toast({
+        title: "Error",
+        description: "Failed to format as quote",
+        variant: "destructive",
+      });
     }
   };
 
   const insertCodeBlock = () => {
-    editorRef.current?.focus();
-    
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return;
-    
-    const range = selection.getRangeAt(0);
-    let container = range.startContainer;
-    
-    if (container.nodeType === Node.TEXT_NODE) {
-      container = container.parentNode!;
-    }
-    
-    // Create code block
-    const pre = document.createElement('pre');
-    const code = document.createElement('code');
-    pre.className = 'bg-muted p-4 rounded-lg overflow-x-auto';
-    code.className = 'text-sm font-mono';
-    code.textContent = (container as HTMLElement).textContent || '';
-    pre.appendChild(code);
-    
-    (container as HTMLElement).replaceWith(pre);
-    
-    if (editorRef.current) {
-      setContent(editorRef.current.innerHTML);
+    try {
+      editorRef.current?.focus();
+      
+      // Use formatBlock to convert the current block to a pre tag
+      document.execCommand('formatBlock', false, '<pre>');
+      
+      if (editorRef.current) {
+        setContent(editorRef.current.innerHTML);
+      }
+    } catch (error) {
+      console.warn('Failed to insert code block:', error);
+      toast({
+        title: "Error",
+        description: "Failed to format as code block",
+        variant: "destructive",
+      });
     }
   };
 
