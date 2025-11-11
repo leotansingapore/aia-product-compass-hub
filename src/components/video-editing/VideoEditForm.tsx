@@ -38,7 +38,8 @@ export function VideoEditForm({
 
   // Mode detection: Determine if we should use rich editor or structured form
   const shouldUseRichEditor = (video: TrainingVideo): boolean => {
-    return !!video.rich_content;
+    // Check if rich_content property exists (not undefined), not just if it's truthy
+    return video.rich_content !== undefined;
   };
 
   const isRichMode = shouldUseRichEditor(editVideo);
