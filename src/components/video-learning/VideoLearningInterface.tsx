@@ -23,6 +23,16 @@ interface VideoLearningInterfaceProps {
   moduleType?: 'product' | 'cmfas';
 }
 
+function stripTitleAndVideoFromHtml(html: string): string {
+  // Remove H1 title at the start
+  let processed = html.replace(/^<h1>.*?<\/h1>\s*/i, '');
+  
+  // Remove first video embed div (YouTube, Loom, Vimeo, Wistia, or generic video-embed)
+  processed = processed.replace(/<div class="video-embed">.*?<\/div>\s*/i, '');
+  
+  return processed;
+}
+
 function getVideoEmbedInfo(url: string) {
   // YouTube
   const youtubeMatch = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
@@ -309,12 +319,12 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
               {/* Rich Content or Legacy Notes & Transcript */}
               {currentVideo?.rich_content ? (
-                // Rich editor mode - display formatted HTML
+                // Rich editor mode - display formatted HTML (without title and video embed since those are shown above)
                 <Card>
                   <CardContent className="p-6">
                     <div 
                       className="prose prose-sm dark:prose-invert max-w-none"
-                      dangerouslySetInnerHTML={{ __html: currentVideo.rich_content }}
+                      dangerouslySetInnerHTML={{ __html: stripTitleAndVideoFromHtml(currentVideo.rich_content) }}
                     />
                   </CardContent>
                 </Card>
