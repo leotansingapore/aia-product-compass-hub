@@ -25,7 +25,6 @@ import {
 import { UnifiedUser } from '@/hooks/useUserManagement';
 import { useUserActions } from '@/hooks/useUserActions';
 import { getDisplayName, formatDate, getStatusConfig, getRoleBadgeVariant, getTierBadgeVariant, AVAILABLE_STATUSES, AVAILABLE_ADMIN_ROLES, AVAILABLE_ACCESS_TIERS } from '@/utils/userUtils';
-import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 
@@ -56,38 +55,12 @@ export function UserTableRow({
     updateUserStatus
   } = useUserActions();
 
-  const [adminRole, setAdminRole] = useState<string>('user');
-  const [accessTier, setAccessTier] = useState<string>('level_1');
-  const [loadingRoles, setLoadingRoles] = useState(true);
-
   const statusConfig = getStatusConfig(user.status);
   const userLoading = loading(user.id);
-
-  // Fetch current admin role and access tier
-  useEffect(() => {
-    const fetchUserPermissions = async () => {
-      setLoadingRoles(true);
-      try {
-        // Fetch admin role
-        const { data: adminRoleData } = await supabase.rpc('get_user_admin_role', {
-          user_id: user.id
-        });
-        setAdminRole(adminRoleData || 'user');
-
-        // Fetch access tier
-        const { data: tierData } = await supabase.rpc('get_user_access_tier', {
-          user_id: user.id
-        });
-        setAccessTier(tierData || 'level_1');
-      } catch (error) {
-        console.error('Error fetching user permissions:', error);
-      } finally {
-        setLoadingRoles(false);
-      }
-    };
-
-    fetchUserPermissions();
-  }, [user.id]);
+  
+  // Use admin_role and access_tier from props (single source of truth)
+  const adminRole = user.admin_role || 'user';
+  const accessTier = user.access_tier || 'level_1';
 
   const handleQuickAction = async (action: 'approve' | 'reject') => {
     const success = action === 'approve' ? 
@@ -121,7 +94,6 @@ export function UserTableRow({
 
       if (insertError) throw insertError;
 
-      setAdminRole(newRole);
       toast({
         title: "Success",
         description: `Admin role updated to ${newRole.replace('_', ' ')}`,
@@ -157,7 +129,6 @@ export function UserTableRow({
 
       if (insertError) throw insertError;
 
-      setAccessTier(newTier);
       toast({
         title: "Success",
         description: `Access tier updated to ${newTier === 'level_1' ? 'Level 1 (CMFAS Only)' : 'Level 2 (Everything)'}`,
@@ -246,8 +217,6 @@ export function UserTableRow({
             <Shield className="h-3 w-3 mr-1" />
             Master Admin
           </Badge>
-        ) : loadingRoles ? (
-          <Loader2 className="h-4 w-4 animate-spin" />
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -286,8 +255,6 @@ export function UserTableRow({
             <Layers className="h-3 w-3 mr-1" />
             All Access
           </Badge>
-        ) : loadingRoles ? (
-          <Loader2 className="h-4 w-4 animate-spin" />
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

@@ -5,19 +5,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Shield, User, Crown, Layers, Mail, Key } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface User {
   id: string;
   email: string;
   created_at: string;
+  admin_role?: string;
+  access_tier?: string;
   profile?: {
     display_name: string | null;
     first_name: string | null;
     last_name: string | null;
     avatar_url: string | null;
   };
-  roles: string[];
 }
 
 interface UserCardProps {
@@ -26,39 +27,13 @@ interface UserCardProps {
 }
 
 export function UserCard({ user, onRoleUpdate }: UserCardProps) {
-  const [adminRole, setAdminRole] = useState<string>('user');
-  const [accessTier, setAccessTier] = useState<string>('level_1');
-  const [loadingRoles, setLoadingRoles] = useState(true);
-  
   const displayName = user.profile?.display_name || 
     `${user.profile?.first_name || ''} ${user.profile?.last_name || ''}`.trim() || 
     user.email.split('@')[0];
-
-  // Fetch current admin role and access tier
-  useEffect(() => {
-    const fetchUserPermissions = async () => {
-      setLoadingRoles(true);
-      try {
-        // Fetch admin role
-        const { data: adminRoleData } = await supabase.rpc('get_user_admin_role', {
-          user_id: user.id
-        });
-        setAdminRole(adminRoleData || 'user');
-
-        // Fetch access tier
-        const { data: tierData } = await supabase.rpc('get_user_access_tier', {
-          user_id: user.id
-        });
-        setAccessTier(tierData || 'level_1');
-      } catch (error) {
-        console.error('Error fetching user permissions:', error);
-      } finally {
-        setLoadingRoles(false);
-      }
-    };
-
-    fetchUserPermissions();
-  }, [user.id]);
+  
+  // Use admin_role and access_tier from props (single source of truth)
+  const adminRole = user.admin_role || 'user';
+  const accessTier = user.access_tier || 'level_1';
 
   const handleAdminRoleChange = async (newRole: string) => {
     try {
@@ -79,7 +54,6 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
 
       if (insertError) throw insertError;
 
-      setAdminRole(newRole);
       toast({
         title: "Success",
         description: `Admin role updated to ${newRole.replace('_', ' ')}`,
@@ -115,7 +89,6 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
 
       if (insertError) throw insertError;
 
-      setAccessTier(newTier);
       toast({
         title: "Success",
         description: `Access tier updated to ${newTier === 'level_1' ? 'Level 1 (CMFAS Only)' : 'Level 2 (Everything)'}`,
@@ -238,7 +211,7 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
         </div>
 
         {/* Admin Role Selector - only show if not master admin */}
-        {adminRole !== 'master_admin' && !loadingRoles && (
+        {adminRole !== 'master_admin' && (
           <div className="flex items-center gap-1">
             <Crown className="hidden sm:inline-block h-4 w-4 text-muted-foreground" />
             <Select
@@ -259,7 +232,7 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
         )}
 
         {/* Access Tier Selector - only show if not master admin */}
-        {adminRole !== 'master_admin' && !loadingRoles && (
+        {adminRole !== 'master_admin' && (
           <div className="flex items-center gap-1">
             <Layers className="hidden sm:inline-block h-4 w-4 text-muted-foreground" />
             <Select
