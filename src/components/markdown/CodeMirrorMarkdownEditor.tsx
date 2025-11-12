@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { EditorState, StateEffect, StateField, Range } from '@codemirror/state';
 import { EditorView, keymap, lineNumbers, highlightActiveLine, highlightActiveLineGutter, Decoration, DecorationSet, ViewPlugin, ViewUpdate, WidgetType } from '@codemirror/view';
 import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands';
@@ -6,8 +6,20 @@ import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { syntaxHighlighting, defaultHighlightStyle, HighlightStyle, syntaxTree } from '@codemirror/language';
 import { tags } from '@lezer/highlight';
 import { detectVideoEmbed } from '@/lib/video-embed-utils';
-import { Bold, Italic, Heading1, Heading2, Link as LinkIcon, List } from 'lucide-react';
+import { 
+  Bold, Italic, Strikethrough, Code, Quote, Heading1, Heading2, Heading3, 
+  List, ListOrdered, CheckSquare, Link as LinkIcon, Image as ImageIcon, 
+  Video, Table, FileCode, Minus, Eye, EyeOff 
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { 
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, 
+  DialogDescription 
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface CodeMirrorMarkdownEditorProps {
   value: string;
@@ -121,23 +133,100 @@ function insertPrefix(view: EditorView, prefix: string) {
   view.focus();
 }
 
-function insertLink(view: EditorView) {
+function insertPrefixToLines(view: EditorView, prefix: string) {
   const selection = view.state.selection.main;
-  const text = view.state.doc.sliceString(selection.from, selection.to) || 'link text';
+  const doc = view.state.doc;
+  const startLine = doc.lineAt(selection.from);
+  const endLine = doc.lineAt(selection.to);
+  
+  const changes: { from: number; to: number; insert: string }[] = [];
+  
+  for (let i = startLine.number; i <= endLine.number; i++) {
+    const line = doc.line(i);
+    changes.push({
+      from: line.from,
+      to: line.from,
+      insert: prefix
+    });
+  }
+  
+  view.dispatch({ changes });
+  view.focus();
+}
+
+function insertAtCursor(view: EditorView, text: string, cursorOffset: number = 0) {
+  const selection = view.state.selection.main;
   
   view.dispatch({
     changes: {
       from: selection.from,
       to: selection.to,
-      insert: `[${text}](url)`
+      insert: text
     },
     selection: {
-      anchor: selection.from + text.length + 3,
-      head: selection.from + text.length + 6
+      anchor: selection.from + text.length + cursorOffset,
     }
   });
   
   view.focus();
+}
+
+function insertLink(view: EditorView, text: string = '', url: string = '') {
+  const selection = view.state.selection.main;
+  const selectedText = view.state.doc.sliceString(selection.from, selection.to) || text || 'link text';
+  const linkUrl = url || 'url';
+  
+  view.dispatch({
+    changes: {
+      from: selection.from,
+      to: selection.to,
+      insert: `[${selectedText}](${linkUrl})`
+    },
+    selection: {
+      anchor: selection.from + selectedText.length + 3,
+      head: selection.from + selectedText.length + 3 + linkUrl.length
+    }
+  });
+  
+  view.focus();
+}
+
+function insertImage(view: EditorView, alt: string = '', url: string = '') {
+  const altText = alt || 'image';
+  const imageUrl = url || 'url';
+  
+  insertAtCursor(view, `![${altText}](${imageUrl})`, -(imageUrl.length + 1));
+}
+
+function insertTable(view: EditorView) {
+  const table = `| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Cell 1   | Cell 2   | Cell 3   |
+| Cell 4   | Cell 5   | Cell 6   |
+
+`;
+  insertAtCursor(view, table, -table.length);
+}
+
+function insertCodeBlock(view: EditorView) {
+  const selection = view.state.selection.main;
+  const text = view.state.doc.sliceString(selection.from, selection.to);
+  
+  const codeBlock = `\`\`\`\n${text || 'code here'}\n\`\`\`\n`;
+  
+  view.dispatch({
+    changes: {
+      from: selection.from,
+      to: selection.to,
+      insert: codeBlock
+    }
+  });
+  
+  view.focus();
+}
+
+function insertHorizontalRule(view: EditorView) {
+  insertAtCursor(view, '\n---\n\n', 0);
 }
 
 // Custom keyboard shortcuts
@@ -162,7 +251,28 @@ const markdownKeymap = keymap.of([
       insertLink(view);
       return true;
     }
-  }
+  },
+  {
+    key: 'Mod-Shift-c',
+    run: (view) => {
+      insertCodeBlock(view);
+      return true;
+    }
+  },
+  {
+    key: 'Mod-Shift-l',
+    run: (view) => {
+      insertPrefix(view, '- ');
+      return true;
+    }
+  },
+  {
+    key: 'Mod-e',
+    run: (view) => {
+      wrapSelection(view, '`');
+      return true;
+    }
+  },
 ]);
 
 export function CodeMirrorMarkdownEditor({ 
@@ -172,6 +282,13 @@ export function CodeMirrorMarkdownEditor({
 }: CodeMirrorMarkdownEditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
+  const [showLinkDialog, setShowLinkDialog] = useState(false);
+  const [showImageDialog, setShowImageDialog] = useState(false);
+  const [linkText, setLinkText] = useState('');
+  const [linkUrl, setLinkUrl] = useState('');
+  const [imageAlt, setImageAlt] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [showPreview, setShowPreview] = useState(false);
 
   // Toolbar button handlers
   const handleBold = () => {
@@ -182,6 +299,14 @@ export function CodeMirrorMarkdownEditor({
     if (viewRef.current) wrapSelection(viewRef.current, '*');
   };
 
+  const handleStrikethrough = () => {
+    if (viewRef.current) wrapSelection(viewRef.current, '~~');
+  };
+
+  const handleInlineCode = () => {
+    if (viewRef.current) wrapSelection(viewRef.current, '`');
+  };
+
   const handleHeading1 = () => {
     if (viewRef.current) insertPrefix(viewRef.current, '# ');
   };
@@ -190,12 +315,83 @@ export function CodeMirrorMarkdownEditor({
     if (viewRef.current) insertPrefix(viewRef.current, '## ');
   };
 
-  const handleLink = () => {
-    if (viewRef.current) insertLink(viewRef.current);
+  const handleHeading3 = () => {
+    if (viewRef.current) insertPrefix(viewRef.current, '### ');
   };
 
-  const handleList = () => {
+  const handleBlockquote = () => {
+    if (viewRef.current) insertPrefixToLines(viewRef.current, '> ');
+  };
+
+  const handleHorizontalRule = () => {
+    if (viewRef.current) insertHorizontalRule(viewRef.current);
+  };
+
+  const handleBulletedList = () => {
     if (viewRef.current) insertPrefix(viewRef.current, '- ');
+  };
+
+  const handleNumberedList = () => {
+    if (viewRef.current) insertPrefix(viewRef.current, '1. ');
+  };
+
+  const handleTaskList = () => {
+    if (viewRef.current) insertPrefix(viewRef.current, '- [ ] ');
+  };
+
+  const handleLinkDialog = () => {
+    if (viewRef.current) {
+      const selection = viewRef.current.state.selection.main;
+      const selectedText = viewRef.current.state.doc.sliceString(selection.from, selection.to);
+      setLinkText(selectedText || '');
+      setLinkUrl('');
+      setShowLinkDialog(true);
+    }
+  };
+
+  const handleInsertLink = () => {
+    if (viewRef.current) {
+      insertLink(viewRef.current, linkText, linkUrl);
+      setShowLinkDialog(false);
+      setLinkText('');
+      setLinkUrl('');
+    }
+  };
+
+  const handleImageDialog = () => {
+    setImageAlt('');
+    setImageUrl('');
+    setShowImageDialog(true);
+  };
+
+  const handleInsertImage = () => {
+    if (viewRef.current) {
+      insertImage(viewRef.current, imageAlt, imageUrl);
+      setShowImageDialog(false);
+      setImageAlt('');
+      setImageUrl('');
+    }
+  };
+
+  const handleInsertVideo = () => {
+    if (viewRef.current) {
+      const videoUrl = prompt('Enter YouTube, Vimeo, or Loom video URL:');
+      if (videoUrl) {
+        insertAtCursor(viewRef.current, `\n${videoUrl}\n\n`, 0);
+      }
+    }
+  };
+
+  const handleTable = () => {
+    if (viewRef.current) insertTable(viewRef.current);
+  };
+
+  const handleCodeBlock = () => {
+    if (viewRef.current) insertCodeBlock(viewRef.current);
+  };
+
+  const togglePreview = () => {
+    setShowPreview(!showPreview);
   };
 
   useEffect(() => {
@@ -376,7 +572,8 @@ export function CodeMirrorMarkdownEditor({
   return (
     <div className="border border-border rounded-lg overflow-hidden bg-background">
       {/* Toolbar */}
-      <div className="border-b border-border bg-muted/30 px-3 py-2 flex items-center gap-1">
+      <div className="border-b border-border bg-muted/30 px-3 py-2 flex items-center gap-1 flex-wrap">
+        {/* Text Formatting */}
         <Button
           type="button"
           variant="ghost"
@@ -397,7 +594,30 @@ export function CodeMirrorMarkdownEditor({
         >
           <Italic className="h-4 w-4" />
         </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleStrikethrough}
+          className="h-8 w-8 p-0"
+          title="Strikethrough"
+        >
+          <Strikethrough className="h-4 w-4" />
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleInlineCode}
+          className="h-8 w-8 p-0"
+          title="Inline Code (Ctrl+E)"
+        >
+          <Code className="h-4 w-4" />
+        </Button>
+        
         <div className="w-px h-6 bg-border mx-1" />
+        
+        {/* Headings */}
         <Button
           type="button"
           variant="ghost"
@@ -418,14 +638,61 @@ export function CodeMirrorMarkdownEditor({
         >
           <Heading2 className="h-4 w-4" />
         </Button>
-        <div className="w-px h-6 bg-border mx-1" />
         <Button
           type="button"
           variant="ghost"
           size="sm"
-          onClick={handleLink}
+          onClick={handleHeading3}
           className="h-8 w-8 p-0"
-          title="Link (Ctrl+K)"
+          title="Heading 3"
+        >
+          <Heading3 className="h-4 w-4" />
+        </Button>
+        
+        <div className="w-px h-6 bg-border mx-1" />
+        
+        {/* Lists */}
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleBulletedList}
+          className="h-8 w-8 p-0"
+          title="Bulleted List (Ctrl+Shift+L)"
+        >
+          <List className="h-4 w-4" />
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleNumberedList}
+          className="h-8 w-8 p-0"
+          title="Numbered List"
+        >
+          <ListOrdered className="h-4 w-4" />
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleTaskList}
+          className="h-8 w-8 p-0"
+          title="Task List"
+        >
+          <CheckSquare className="h-4 w-4" />
+        </Button>
+        
+        <div className="w-px h-6 bg-border mx-1" />
+        
+        {/* Link & Media */}
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleLinkDialog}
+          className="h-8 w-8 p-0"
+          title="Insert Link (Ctrl+K)"
         >
           <LinkIcon className="h-4 w-4" />
         </Button>
@@ -433,11 +700,79 @@ export function CodeMirrorMarkdownEditor({
           type="button"
           variant="ghost"
           size="sm"
-          onClick={handleList}
+          onClick={handleImageDialog}
           className="h-8 w-8 p-0"
-          title="List"
+          title="Insert Image"
         >
-          <List className="h-4 w-4" />
+          <ImageIcon className="h-4 w-4" />
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleInsertVideo}
+          className="h-8 w-8 p-0"
+          title="Insert Video (YouTube/Vimeo/Loom)"
+        >
+          <Video className="h-4 w-4" />
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleTable}
+          className="h-8 w-8 p-0"
+          title="Insert Table"
+        >
+          <Table className="h-4 w-4" />
+        </Button>
+        
+        <div className="w-px h-6 bg-border mx-1" />
+        
+        {/* Code & Quotes */}
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleCodeBlock}
+          className="h-8 w-8 p-0"
+          title="Code Block (Ctrl+Shift+C)"
+        >
+          <FileCode className="h-4 w-4" />
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleBlockquote}
+          className="h-8 w-8 p-0"
+          title="Quote Block"
+        >
+          <Quote className="h-4 w-4" />
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={handleHorizontalRule}
+          className="h-8 w-8 p-0"
+          title="Horizontal Rule"
+        >
+          <Minus className="h-4 w-4" />
+        </Button>
+        
+        <div className="w-px h-6 bg-border mx-1" />
+        
+        {/* Preview Toggle */}
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={togglePreview}
+          className="h-8 w-8 p-0"
+          title={showPreview ? "Hide Preview" : "Show Preview"}
+        >
+          {showPreview ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
         </Button>
       </div>
 
@@ -445,13 +780,98 @@ export function CodeMirrorMarkdownEditor({
       <div 
         ref={editorRef} 
         className="min-h-[400px] w-full"
-        style={{ height: '500px' }}
+        style={{ height: '500px', display: showPreview ? 'none' : 'block' }}
       />
+
+      {/* Preview Container */}
+      {showPreview && (
+        <div className="p-6 prose prose-sm max-w-none dark:prose-invert min-h-[400px] overflow-auto" style={{ height: '500px' }}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {value}
+          </ReactMarkdown>
+        </div>
+      )}
+
+      {/* Link Dialog */}
+      <Dialog open={showLinkDialog} onOpenChange={setShowLinkDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Insert Link</DialogTitle>
+            <DialogDescription>
+              Add a hyperlink to your content
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="link-text">Link Text</Label>
+              <Input
+                id="link-text"
+                value={linkText}
+                onChange={(e) => setLinkText(e.target.value)}
+                placeholder="Enter link text"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="link-url">URL</Label>
+              <Input
+                id="link-url"
+                value={linkUrl}
+                onChange={(e) => setLinkUrl(e.target.value)}
+                placeholder="https://example.com"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowLinkDialog(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleInsertLink}>Insert Link</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Image Dialog */}
+      <Dialog open={showImageDialog} onOpenChange={setShowImageDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Insert Image</DialogTitle>
+            <DialogDescription>
+              Add an image to your content
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="image-alt">Alt Text</Label>
+              <Input
+                id="image-alt"
+                value={imageAlt}
+                onChange={(e) => setImageAlt(e.target.value)}
+                placeholder="Describe the image"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="image-url">Image URL</Label>
+              <Input
+                id="image-url"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="https://example.com/image.jpg"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowImageDialog(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleInsertImage}>Insert Image</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Shortcuts Info */}
       <div className="border-t border-border bg-muted/20 px-4 py-2 text-xs text-muted-foreground flex items-center justify-between">
         <span>Paste YouTube, Vimeo, or Loom links to auto-embed videos</span>
-        <span>Ctrl+B: Bold | Ctrl+I: Italic | Ctrl+K: Link</span>
+        <span>Ctrl+B: Bold | Ctrl+I: Italic | Ctrl+K: Link | Ctrl+E: Code | Ctrl+Shift+C: Code Block</span>
       </div>
     </div>
   );
