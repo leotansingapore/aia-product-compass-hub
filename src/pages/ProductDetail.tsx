@@ -66,7 +66,7 @@ export default function ProductDetail() {
           breadcrumbs={breadcrumbs}
         />
         
-        <div className="mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
 
           {/* 2-Column Grid Layout - Product Info */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 overflow-hidden mb-8">
