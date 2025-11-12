@@ -281,27 +281,6 @@ export function AdminVideosByCategory({
         onDragCancel={handleDragCancel}
       >
         <div className="space-y-4">
-          {/* Admin help text */}
-          <div className="flex items-center justify-between gap-2 text-sm text-muted-foreground bg-primary/5 border border-primary/20 rounded-lg p-3">
-            <div className="flex items-center gap-2">
-              <GripVertical className="h-4 w-4 flex-shrink-0" />
-              <p className="text-micro sm:text-sm">
-                <strong>Admin Mode:</strong> Drag videos to reorder within or between categories
-              </p>
-            </div>
-            {onEnterEditMode && (
-              <Button 
-                onClick={onEnterEditMode}
-                variant="outline"
-                size="sm"
-                className="shrink-0"
-              >
-                <Edit className="h-4 w-4 mr-2" />
-                Manage Videos
-              </Button>
-            )}
-          </div>
-
           {Object.entries(videosByCategory).map(([category, videoItems]) => {
             const progress = getCategoryProgress(videoItems);
             const duration = getCategoryDuration(videoItems);

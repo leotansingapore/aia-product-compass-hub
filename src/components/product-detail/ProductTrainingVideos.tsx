@@ -95,7 +95,6 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
           {processedVideos.length > 0 ? (
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span>Interactive video learning course</span>
                 {courseProgress > 0 && (
                   <span className="text-sm font-medium text-primary">
                     {courseProgress}% Complete
