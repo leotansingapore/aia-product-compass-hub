@@ -228,7 +228,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-24 sm:pb-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
             {/* Video Player */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-6 order-2 lg:order-2 transition-all duration-300">
               <Card>
                 {!currentVideo?.rich_content && (
                   <CardHeader>
@@ -379,7 +379,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-6">
+            <div className="space-y-6 order-1 lg:order-1 transition-all duration-300">
               {/* Course Navigation & Transcript Tabs */}
               <Card>
                 <Tabs defaultValue="videos" className="w-full">
