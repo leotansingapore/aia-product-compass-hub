@@ -116,9 +116,9 @@ export const VideosByCategory = memo(function VideosByCategory({
                 const videoProgress = getVideoProgress(video.id);
                 const isCurrentVideo = currentVideoId === video.id;
                 return (
-                    <div
+                  <div
                     key={`${category}-${index}-${video.id}`}
-                    className={`flex items-center gap-2 sm:gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors min-h-[56px] ${
+                    className={`flex items-center gap-2 sm:gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors min-h-[56px] overflow-hidden ${
                       isCurrentVideo
                         ? 'bg-primary/10 border-primary shadow-sm'
                         : ''
@@ -132,23 +132,23 @@ export const VideosByCategory = memo(function VideosByCategory({
                         <Play className="h-5 w-5 text-primary" />
                       )}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-medium text-sm sm:text-base truncate">{video.title}</h4>
+                    <div className="flex-1 min-w-0 overflow-hidden">
+                      <div className="flex items-center gap-2 mb-1 overflow-hidden">
+                        <h4 className="font-medium text-sm sm:text-base truncate flex-1">{video.title}</h4>
                         {video.duration && (
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="text-xs flex-shrink-0">
                             <Clock className="h-3 w-3 mr-1" />
                             {formatDuration(video.duration)}
                           </Badge>
                         )}
                       </div>
                       {video.description && (
-                        <p className="text-micro sm:text-sm text-muted-foreground truncate">
+                        <p className="text-micro sm:text-sm text-muted-foreground truncate overflow-hidden">
                           {video.description}
                         </p>
                       )}
                     </div>
-                    <div className="text-micro text-muted-foreground">
+                    <div className="text-micro text-muted-foreground flex-shrink-0">
                       {index + 1}/{videos.length}
                     </div>
                   </div>

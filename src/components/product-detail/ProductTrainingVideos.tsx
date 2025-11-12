@@ -67,7 +67,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
   };
 
   return (
-    <Card>
+    <Card className="overflow-hidden">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2">
@@ -113,7 +113,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
           )}
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="overflow-hidden">
         {processedVideos.length > 0 ? (
           <div className="space-y-4">
             {!isAdminMode && (
