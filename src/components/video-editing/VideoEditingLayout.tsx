@@ -3,7 +3,7 @@ import { VideoEditorPanel } from './VideoEditorPanel';
 import { FolderManagementDialog } from './FolderManagementDialog';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoreVertical, FolderPlus } from 'lucide-react';
+import { MoreVertical, FolderPlus, FilePlus } from 'lucide-react';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoEditingLayoutProps {
@@ -85,6 +85,10 @@ export function VideoEditingLayout({
                 <DropdownMenuItem onClick={onCreateFolder} className="cursor-pointer">
                   <FolderPlus className="h-4 w-4 mr-2" />
                   Add Folder
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={onAddVideo} className="cursor-pointer">
+                  <FilePlus className="h-4 w-4 mr-2" />
+                  Add Page
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
