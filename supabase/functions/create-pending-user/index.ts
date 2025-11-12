@@ -69,12 +69,28 @@ const handler = async (req: Request): Promise<Response> => {
 
     // If there's a pending approval request, inform the user
     if (existingRequest && existingRequest.status === 'pending') {
-      throw new Error('A registration request with this email is already pending approval. Please wait for admin approval or contact support.');
+      return new Response(
+        JSON.stringify({ 
+          error: 'A registration request with this email is already pending approval. Please wait for admin approval or contact support.'
+        }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        }
+      );
     }
 
     // If there's an active/approved request, check if they just need to login
     if (existingRequest && existingRequest.status === 'active') {
-      throw new Error('An account with this email already exists. Please try logging in. If you forgot your password, use the "Forgot password?" link.');
+      return new Response(
+        JSON.stringify({ 
+          error: 'An account with this email already exists. Please try logging in. If you forgot your password, use the "Forgot password?" link.'
+        }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        }
+      );
     }
 
     // Check if user already exists in auth.users
@@ -88,7 +104,15 @@ const handler = async (req: Request): Promise<Response> => {
     
     // If user exists and email is confirmed, they should just login
     if (existingUser && existingUser.email_confirmed_at) {
-      throw new Error('An account with this email already exists. Please try logging in. If you forgot your password, use the "Forgot password?" link.');
+      return new Response(
+        JSON.stringify({ 
+          error: 'An account with this email already exists. Please try logging in. If you forgot your password, use the "Forgot password?" link.'
+        }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        }
+      );
     }
 
     // If user exists but email NOT confirmed, this is an inactive/pending account
