@@ -1,7 +1,6 @@
-import { useState, useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Heading1, Heading2, Heading3, Heading4, 
   Bold, Italic, Strikethrough, Code, 
@@ -20,7 +19,6 @@ interface MarkdownEditorProps {
 
 export function MarkdownEditor({ value, onChange, placeholder }: MarkdownEditorProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit');
 
   const insertMarkdown = useCallback((before: string, after: string = '', placeholder: string = '') => {
     const textarea = textareaRef.current;
@@ -75,61 +73,49 @@ export function MarkdownEditor({ value, onChange, placeholder }: MarkdownEditorP
   ];
 
   return (
-    <div className="space-y-2">
-      <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as 'edit' | 'preview')} className="w-full">
-        <div className="flex items-center justify-between mb-2">
-          <TabsList>
-            <TabsTrigger value="edit">Edit</TabsTrigger>
-            <TabsTrigger value="preview">Preview</TabsTrigger>
-          </TabsList>
-        </div>
+    <div className="space-y-4">
+      {/* Toolbar */}
+      <div className="flex flex-wrap gap-1 p-2 border rounded-lg bg-muted/30">
+        {toolbarButtons.map((button, index) => (
+          <Button
+            key={index}
+            variant="ghost"
+            size="sm"
+            onClick={button.action}
+            className="h-8 w-8 p-0"
+            title={button.label}
+            type="button"
+          >
+            <button.icon className="h-4 w-4" />
+          </Button>
+        ))}
+      </div>
 
-        <TabsContent value="edit" className="mt-0 space-y-2">
-          {/* Toolbar */}
-          <div className="flex flex-wrap gap-1 p-2 border rounded-lg bg-muted/30">
-            {toolbarButtons.map((button, index) => (
-              <Button
-                key={index}
-                variant="ghost"
-                size="sm"
-                onClick={button.action}
-                className="h-8 w-8 p-0"
-                title={button.label}
-                type="button"
-              >
-                <button.icon className="h-4 w-4" />
-              </Button>
-            ))}
+      {/* Editor */}
+      <Textarea
+        ref={textareaRef}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder || 'Write your content using markdown...'}
+        rows={12}
+        className="font-mono text-sm resize-none"
+      />
+
+      {/* Live Preview */}
+      <div className="border rounded-lg p-6 bg-card min-h-[300px]">
+        {value ? (
+          <div className="prose prose-sm dark:prose-invert max-w-none">
+            <ReactMarkdown
+              components={markdownComponents}
+              remarkPlugins={[remarkGfm]}
+            >
+              {value}
+            </ReactMarkdown>
           </div>
-
-          {/* Editor */}
-          <Textarea
-            ref={textareaRef}
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            placeholder={placeholder || 'Write your content using markdown...'}
-            rows={20}
-            className="font-mono text-sm resize-none"
-          />
-        </TabsContent>
-
-        <TabsContent value="preview" className="mt-0">
-          <div className="border rounded-lg p-6 bg-card min-h-[500px]">
-            {value ? (
-              <div className="prose prose-sm dark:prose-invert max-w-none">
-                <ReactMarkdown
-                  components={markdownComponents}
-                  remarkPlugins={[remarkGfm]}
-                >
-                  {value}
-                </ReactMarkdown>
-              </div>
-            ) : (
-              <p className="text-muted-foreground text-sm">Nothing to preview yet. Start writing in the Edit tab.</p>
-            )}
-          </div>
-        </TabsContent>
-      </Tabs>
+        ) : (
+          <p className="text-muted-foreground text-sm">Live preview will appear here as you type...</p>
+        )}
+      </div>
     </div>
   );
 }
