@@ -7,7 +7,7 @@ import { useVideoForm } from '@/hooks/useVideoForm';
 import { VideoBasicInfo } from './VideoBasicInfo';
 import { CategorySelector } from './CategorySelector';
 import { VideoContentTabs } from './VideoContentTabs';
-import { MarkdownEditor } from '@/components/MarkdownEditor';
+import { NotionStyleEditor } from '@/components/notion-editor/NotionStyleEditor';
 import { structuredToMarkdown, createLegacyBackup } from '@/utils/videoContentConverter';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
@@ -84,14 +84,15 @@ export function VideoEditForm({
           onCreateCategory={handleCreateCategory}
         />
 
-        <div className="space-y-2">
-          <Label>Content (Markdown)</Label>
-          <MarkdownEditor
-            value={editVideo.rich_content || ''}
-            onChange={handleMarkdownChange}
-            placeholder="Add video description, notes, and links using markdown formatting..."
-          />
-        </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Content</label>
+            <NotionStyleEditor
+              value={editVideo.rich_content || ''}
+              onChange={(value) => handleChange('rich_content', value)}
+              placeholder="Type '/' for commands or start writing..."
+              autoSave={false}
+            />
+          </div>
 
         <div>
           <Label>Transcript (Separate Field)</Label>
