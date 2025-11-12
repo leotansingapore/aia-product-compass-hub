@@ -88,7 +88,7 @@ export function VideoEditingInterface({
       title: 'New Page',
       url: '',
       description: '',
-      category: folderName || 'Getting Started',
+      category: folderName || '', // Empty string means no folder (root level)
       order: videoOrderChanges.pendingVideos.length,
       rich_content: '', // Start with empty rich content
       legacy_fields: {
@@ -113,7 +113,7 @@ export function VideoEditingInterface({
 
     toast({
       title: 'New Page Created',
-      description: folderName ? `Start editing your new page in "${folderName}".` : 'Start editing your new page.',
+      description: folderName ? `Start editing your new page in "${folderName}".` : 'Start editing your new page at root level.',
     });
   };
 

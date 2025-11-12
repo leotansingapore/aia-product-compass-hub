@@ -87,14 +87,17 @@ function SortableVideoItem({ video, index, onVideoSelect, onEditVideo, onDeleteV
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" className="bg-background z-50">
           <DropdownMenuItem onClick={() => onEditVideo(index)}>
             <Edit className="h-4 w-4 mr-2" />
             Edit video
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            onClick={() => onDeleteVideo(index)}
+            onClick={() => {
+              console.log('🗑️ Delete video clicked:', { title: video.title, index });
+              onDeleteVideo(index);
+            }}
             className="text-destructive"
           >
             <Trash2 className="h-4 w-4 mr-2" />
@@ -153,9 +156,18 @@ export function FolderTreeView({
     })
   );
 
-  // Group videos by category/folder
+  // Group videos by category/folder - separate root level videos
+  const rootLevelVideos: Array<{ video: TrainingVideo; index: number }> = [];
   const videosByFolder = videos.reduce((acc, video, index) => {
-    const folder = video.category || 'Uncategorized';
+    const folder = video.category;
+    
+    // If no category, it's a root-level video
+    if (!folder || folder.trim() === '') {
+      rootLevelVideos.push({ video, index });
+      return acc;
+    }
+    
+    // Otherwise, group by folder
     if (!acc[folder]) {
       acc[folder] = [];
     }
@@ -259,6 +271,27 @@ export function FolderTreeView({
       onDragCancel={handleDragCancel}
     >
       <div className="space-y-2">
+        {/* Root Level Videos (no folder) */}
+        {rootLevelVideos.length > 0 && (
+          <div className="space-y-1">
+            <SortableContext
+              items={rootLevelVideos.map(({ video }) => video.id)}
+              strategy={verticalListSortingStrategy}
+            >
+              {rootLevelVideos.map(({ video, index }) => (
+                <SortableVideoItem
+                  key={video.id}
+                  video={video}
+                  index={index}
+                  onVideoSelect={onVideoSelect}
+                  onEditVideo={onEditVideo}
+                  onDeleteVideo={onDeleteVideo}
+                />
+              ))}
+            </SortableContext>
+          </div>
+        )}
+
         {/* Folder Tree */}
         <div className="space-y-1">
           {Object.entries(allFolders).map(([folderName, folderVideos]) => {
@@ -296,7 +329,7 @@ export function FolderTreeView({
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
+                      <DropdownMenuContent align="end" className="bg-background z-50">
                         <DropdownMenuItem onClick={() => onEditFolder(folderName)}>
                           <Edit className="h-4 w-4 mr-2" />
                           Edit folder
@@ -307,7 +340,10 @@ export function FolderTreeView({
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
-                          onClick={() => onDeleteFolder(folderName)}
+                          onClick={() => {
+                            console.log('🗑️ Delete folder clicked:', folderName);
+                            onDeleteFolder(folderName);
+                          }}
                           className="text-destructive"
                         >
                           <Trash2 className="h-4 w-4 mr-2" />
