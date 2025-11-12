@@ -8,9 +8,7 @@ import { ProductHighlights } from "@/components/product-detail/ProductHighlights
 import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLinks";
 import { SalesToolsUsefulLinks } from "@/components/product-detail/SalesToolsUsefulLinks";
 import { ProductChatbots } from "@/components/product-detail/ProductChatbots";
-import { VideoEditingInterface } from "@/components/video-editing/VideoEditingInterface";
-import { useVideoManagement } from "@/hooks/useVideoManagement";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { PersonalNotes } from "@/components/PersonalNotes";
 import { ProtectedSection } from "@/components/ProtectedSection";
@@ -19,7 +17,6 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { useProductDetail } from "@/hooks/useProductDetail";
 import { usePermissions } from "@/hooks/usePermissions";
 import { Edit } from "lucide-react";
-import type { TrainingVideo } from "@/hooks/useProducts";
 
 export default function ProductDetail() {
   const {
@@ -35,24 +32,6 @@ export default function ProductDetail() {
   const { isAdmin } = usePermissions();
   const isAdminMode = isAdmin();
   const [isChatEditing, setIsChatEditing] = useState(false);
-
-  // Video management setup
-  const handleVideoSave = async (updatedVideos: TrainingVideo[]) => {
-    await handleUpdate('training_videos', updatedVideos);
-  };
-
-  const existingCategories = Array.from(
-    new Set(
-      (product?.training_videos || [])
-        .map(v => v.category)
-        .filter(Boolean)
-    )
-  );
-
-  const videoManagement = useVideoManagement({
-    initialVideos: product?.training_videos || [],
-    onSave: handleVideoSave
-  });
 
   if (loading) {
     return <SkeletonLoader type="product" />;
@@ -188,28 +167,14 @@ export default function ProductDetail() {
 
           </div>
 
-          {/* Full Width Video Editing Interface */}
+          {/* Training Videos Section */}
           <ProtectedSection sectionId="product_videos">
             <div className="border-t pt-8">
-              <ErrorBoundary>
-                <VideoEditingInterface
-                  editVideos={videoManagement.editVideos}
-                  editingIndex={videoManagement.editingIndex}
-                  newVideo={videoManagement.newVideo}
-                  saving={videoManagement.saving}
-                  existingCategories={existingCategories}
-                  onEditingIndexChange={videoManagement.setEditingIndex}
-                  onUpdateVideo={videoManagement.updateVideo}
-                  onSetEditVideos={videoManagement.setEditVideos}
-                  onRemoveVideo={videoManagement.removeVideo}
-                  onMoveVideo={videoManagement.moveVideo}
-                  onNewVideoChange={videoManagement.setNewVideo}
-                  onAddVideo={videoManagement.addVideo}
-                  onSave={videoManagement.handleSave}
-                  onCancel={() => videoManagement.handleCancel()}
-                  onCreateCategory={videoManagement.addEmptyFolder}
-                />
-              </ErrorBoundary>
+              <ProductTrainingVideos
+                videos={product?.training_videos || []}
+                productId={product.id}
+                onUpdate={handleUpdate}
+              />
             </div>
           </ProtectedSection>
 
