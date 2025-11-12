@@ -165,7 +165,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
 
       // Check for error in response data first (this has the actual error message)
       if (data?.error) {
-        console.error('[SimplifiedAuth] Server error:', data.error);
+        console.log('[SimplifiedAuth] Registration blocked:', data.error);
         toast({
           variant: "destructive",
           title: "Registration Failed",
@@ -176,7 +176,7 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
 
       // Check for generic function error (less helpful message)
       if (error) {
-        console.error('[SimplifiedAuth] Error from edge function:', error);
+        console.log('[SimplifiedAuth] Edge function error (expected for validation)');
         toast({
           variant: "destructive",
           title: "Registration Failed",
@@ -199,11 +199,11 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       
       return { success: true, email: email.trim() };
     } catch (error: any) {
-      console.error('Sign up error:', error);
+      console.log('[SimplifiedAuth] Unexpected signup error handled');
       toast({
         variant: "destructive",
         title: "Registration Failed",
-        description: error.message || "An unexpected error occurred"
+        description: error?.message || "An unexpected error occurred"
       });
       return { success: false };
     }
