@@ -29,6 +29,7 @@ interface VideoEditingLayoutProps {
   onMoveVideoToFolder: (videoIndex: number, targetFolder: string) => void;
   onAddVideoToFolder: (folderName: string) => void;
   onAddPageToFolder: (folderName: string) => void;
+  onAddPageToRoot: () => void;
   onExpandedChange: (expanded: Set<string>) => void;
   onFolderDialogOpenChange: (open: boolean) => void;
   onFolderSave: (folderName: string) => void;
@@ -58,6 +59,7 @@ export function VideoEditingLayout({
   onMoveVideoToFolder,
   onAddVideoToFolder,
   onAddPageToFolder,
+  onAddPageToRoot,
   onExpandedChange,
   onFolderDialogOpenChange,
   onFolderSave,
@@ -86,7 +88,7 @@ export function VideoEditingLayout({
                   <FolderPlus className="h-4 w-4 mr-2" />
                   Add Folder
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={onAddVideo} className="cursor-pointer">
+                <DropdownMenuItem onClick={onAddPageToRoot} className="cursor-pointer">
                   <FilePlus className="h-4 w-4 mr-2" />
                   Add Page
                 </DropdownMenuItem>

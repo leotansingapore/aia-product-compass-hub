@@ -88,7 +88,7 @@ export function VideoEditingInterface({
       title: 'New Page',
       url: '',
       description: '',
-      category: folderName,
+      category: folderName || 'Getting Started',
       order: videoOrderChanges.pendingVideos.length,
       rich_content: '', // Start with empty rich content
       legacy_fields: {
@@ -113,8 +113,12 @@ export function VideoEditingInterface({
 
     toast({
       title: 'New Page Created',
-      description: `Start editing your new page in "${folderName}".`,
+      description: folderName ? `Start editing your new page in "${folderName}".` : 'Start editing your new page.',
     });
+  };
+
+  const handleAddPageToRoot = () => {
+    handleAddPageToFolder('');
   };
 
   try {
@@ -157,6 +161,7 @@ export function VideoEditingInterface({
           onMoveVideoToFolder={folderManagement.handleMoveVideoToFolder}
           onAddVideoToFolder={videoActions.handleAddVideoToFolder}
           onAddPageToFolder={handleAddPageToFolder}
+          onAddPageToRoot={handleAddPageToRoot}
           onExpandedChange={folderManagement.setExpandedFolders}
           onFolderDialogOpenChange={folderManagement.setFolderDialogOpen}
           onFolderSave={folderManagement.handleFolderSave}
