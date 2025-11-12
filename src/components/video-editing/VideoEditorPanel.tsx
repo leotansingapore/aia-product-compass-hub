@@ -43,9 +43,9 @@ export function VideoEditorPanel({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="flex-1 h-full">
       {editingIndex !== null ? (
-        <div className="border rounded-lg p-6 bg-card">
+        <div className="border rounded-lg p-6 bg-card h-full flex flex-col">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-lg">Edit Video</h3>
             <Button
@@ -56,14 +56,16 @@ export function VideoEditorPanel({
               Close
             </Button>
           </div>
-          <VideoEditForm
-            video={editVideos[editingIndex]}
-            onUpdate={(updatedVideo) => onUpdateVideo(editingIndex, updatedVideo)}
-            existingCategories={existingCategories}
-          />
+          <div className="flex-1 overflow-auto">
+            <VideoEditForm
+              video={editVideos[editingIndex]}
+              onUpdate={(updatedVideo) => onUpdateVideo(editingIndex, updatedVideo)}
+              existingCategories={existingCategories}
+            />
+          </div>
         </div>
       ) : (
-        <div className="text-center py-12 text-muted-foreground border rounded-lg bg-muted/30">
+        <div className="text-center py-12 text-muted-foreground border rounded-lg bg-muted/30 h-full flex items-center justify-center">
           <p className="text-sm">Select a video from the sidebar to edit</p>
         </div>
       )}
