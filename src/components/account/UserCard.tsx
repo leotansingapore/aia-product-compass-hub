@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Shield, User, Award, Star, Mail, Key } from "lucide-react";
+import { Shield, User, Crown, Layers, Mail, Key } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface User {
   id: string;
@@ -26,9 +26,109 @@ interface UserCardProps {
 }
 
 export function UserCard({ user, onRoleUpdate }: UserCardProps) {
+  const [adminRole, setAdminRole] = useState<string>('user');
+  const [accessTier, setAccessTier] = useState<string>('level_1');
+  const [loadingRoles, setLoadingRoles] = useState(true);
+  
   const displayName = user.profile?.display_name || 
     `${user.profile?.first_name || ''} ${user.profile?.last_name || ''}`.trim() || 
     user.email.split('@')[0];
+
+  // Fetch current admin role and access tier
+  useEffect(() => {
+    const fetchUserPermissions = async () => {
+      setLoadingRoles(true);
+      try {
+        // Fetch admin role
+        const { data: adminRoleData } = await supabase.rpc('get_user_admin_role', {
+          user_id: user.id
+        });
+        setAdminRole(adminRoleData || 'user');
+
+        // Fetch access tier
+        const { data: tierData } = await supabase.rpc('get_user_access_tier', {
+          user_id: user.id
+        });
+        setAccessTier(tierData || 'level_1');
+      } catch (error) {
+        console.error('Error fetching user permissions:', error);
+      } finally {
+        setLoadingRoles(false);
+      }
+    };
+
+    fetchUserPermissions();
+  }, [user.id]);
+
+  const handleAdminRoleChange = async (newRole: string) => {
+    try {
+      // Update admin role in user_admin_roles table
+      const { error: deleteError } = await supabase
+        .from('user_admin_roles')
+        .delete()
+        .eq('user_id', user.id);
+
+      if (deleteError) throw deleteError;
+
+      const { error: insertError } = await supabase
+        .from('user_admin_roles')
+        .insert({
+          user_id: user.id,
+          admin_role: newRole
+        });
+
+      if (insertError) throw insertError;
+
+      setAdminRole(newRole);
+      toast({
+        title: "Success",
+        description: `Admin role updated to ${newRole.replace('_', ' ')}`,
+      });
+      
+      onRoleUpdate(user.id, [newRole]);
+    } catch (error: any) {
+      console.error('Error updating admin role:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to update admin role",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleAccessTierChange = async (newTier: string) => {
+    try {
+      // Update access tier in user_access_tiers table
+      const { error: deleteError } = await supabase
+        .from('user_access_tiers')
+        .delete()
+        .eq('user_id', user.id);
+
+      if (deleteError) throw deleteError;
+
+      const { error: insertError } = await supabase
+        .from('user_access_tiers')
+        .insert({
+          user_id: user.id,
+          tier_level: newTier
+        });
+
+      if (insertError) throw insertError;
+
+      setAccessTier(newTier);
+      toast({
+        title: "Success",
+        description: `Access tier updated to ${newTier === 'level_1' ? 'Level 1 (CMFAS Only)' : 'Level 2 (Everything)'}`,
+      });
+    } catch (error: any) {
+      console.error('Error updating access tier:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to update access tier",
+        variant: "destructive",
+      });
+    }
+  };
 
   const getRoleBadgeVariant = (role: string) => {
     switch (role) {
@@ -36,60 +136,17 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
         return 'destructive';
       case 'admin':
         return 'default';
-      case 'advanced':
-        return 'default';
-      case 'intermediate':
-        return 'secondary';
-      case 'basic':
-        return 'outline';
-      case 'moderator':
+      case 'mentor':
+      case 'consultant':
         return 'secondary';
       default:
         return 'outline';
     }
   };
 
-  const getCurrentTier = () => {
-    if (user.roles.includes('master_admin')) return 'master_admin';
-    if (user.roles.includes('advanced')) return 'advanced';
-    if (user.roles.includes('intermediate')) return 'intermediate';
-    if (user.roles.includes('basic')) return 'basic';
-    return 'user';
+  const getTierBadgeVariant = (tier: string) => {
+    return tier === 'level_2' ? 'default' : 'secondary';
   };
-
-  const handleRoleToggle = (role: string) => {
-    const newRoles = user.roles.includes(role)
-      ? user.roles.filter(r => r !== role)
-      : [...user.roles, role];
-    
-    onRoleUpdate(user.id, newRoles);
-  };
-
-  const handleTierChange = (newTier: string) => {
-    // Remove all tier-related roles and add the new one
-    const nonTierRoles = user.roles.filter(r => !['basic', 'intermediate', 'advanced'].includes(r));
-    const newRoles = newTier === 'user' ? nonTierRoles : [...nonTierRoles, newTier];
-    
-    onRoleUpdate(user.id, newRoles);
-  };
-
-  const getTierIcon = (tier: string) => {
-    switch (tier) {
-      case 'master_admin':
-        return Shield;
-      case 'advanced':
-        return Star;
-      case 'intermediate':
-        return Award;
-      case 'basic':
-        return User;
-      default:
-        return User;
-    }
-  };
-
-  const currentTier = getCurrentTier();
-  const TierIcon = getTierIcon(currentTier);
 
   const [loadingAction, setLoadingAction] = useState<'reset' | 'set' | null>(null);
 
@@ -162,52 +219,67 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2 w-full lg-admin:w-auto">
-        <div className="flex flex-wrap gap-0.5 sm:gap-1">
-          {user.roles.map(role => (
-            <Badge
-              key={role}
-              variant={getRoleBadgeVariant(role)}
-              className="capitalize text-xs"
-            >
-              {role.replace('_', ' ')}
-            </Badge>
-          ))}
+        {/* Display Current Role & Tier Badges */}
+        <div className="flex flex-wrap gap-1">
+          <Badge
+            variant={getRoleBadgeVariant(adminRole)}
+            className="capitalize text-xs"
+          >
+            <Shield className="h-3 w-3 mr-1" />
+            {adminRole.replace('_', ' ')}
+          </Badge>
+          <Badge
+            variant={getTierBadgeVariant(accessTier)}
+            className="capitalize text-xs"
+          >
+            <Layers className="h-3 w-3 mr-1" />
+            {accessTier === 'level_1' ? 'L1: CMFAS' : 'L2: All'}
+          </Badge>
         </div>
 
-        {/* Tier Management */}
-        {!user.roles.includes('master_admin') && (
-          <div className="flex items-center gap-1 sm:gap-2">
-            <TierIcon className="hidden sm:inline-block h-4 w-4 text-muted-foreground" />
+        {/* Admin Role Selector - only show if not master admin */}
+        {adminRole !== 'master_admin' && !loadingRoles && (
+          <div className="flex items-center gap-1">
+            <Crown className="hidden sm:inline-block h-4 w-4 text-muted-foreground" />
             <Select
-              value={currentTier}
-              onValueChange={handleTierChange}
+              value={adminRole}
+              onValueChange={handleAdminRoleChange}
             >
-              <SelectTrigger className="w-24 sm:w-32 text-xs sm:text-sm">
-                <SelectValue placeholder="Select tier" />
+              <SelectTrigger className="w-32 sm:w-36 text-xs sm:text-sm">
+                <SelectValue placeholder="Admin Role" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="user">Standard</SelectItem>
-                <SelectItem value="basic">Basic</SelectItem>
-                <SelectItem value="intermediate">Intermediate</SelectItem>
-                <SelectItem value="advanced">Advanced</SelectItem>
+                <SelectItem value="user">User</SelectItem>
+                <SelectItem value="consultant">Consultant</SelectItem>
+                <SelectItem value="mentor">Mentor</SelectItem>
+                <SelectItem value="admin">Admin</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        )}
+
+        {/* Access Tier Selector - only show if not master admin */}
+        {adminRole !== 'master_admin' && !loadingRoles && (
+          <div className="flex items-center gap-1">
+            <Layers className="hidden sm:inline-block h-4 w-4 text-muted-foreground" />
+            <Select
+              value={accessTier}
+              onValueChange={handleAccessTierChange}
+            >
+              <SelectTrigger className="w-36 sm:w-40 text-xs sm:text-sm">
+                <SelectValue placeholder="Access Level" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="level_1">Level 1: CMFAS</SelectItem>
+                <SelectItem value="level_2">Level 2: Everything</SelectItem>
               </SelectContent>
             </Select>
           </div>
         )}
         
-        {/* Admin Toggle - only show if not master admin */}
-        {!user.roles.includes('master_admin') && (
+        {/* Password Management Buttons */}
+        {adminRole !== 'master_admin' && (
           <>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => handleRoleToggle('admin')}
-              className="flex-shrink-0 text-xs sm:text-sm px-2 sm:px-3"
-            >
-              <Shield className="h-3 w-3 sm:h-4 sm:w-4 mr-0.5 sm:mr-1" />
-              <span className="hidden sm:inline">{user.roles.includes('admin') ? 'Remove Admin' : 'Make Admin'}</span>
-              <span className="sm:hidden">{user.roles.includes('admin') ? 'Remove' : 'Admin'}</span>
-            </Button>
             <Button
               variant="outline"
               size="sm"
@@ -231,6 +303,14 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
               <span className="sm:hidden">Temp</span>
             </Button>
           </>
+        )}
+
+        {/* Master Admin Badge */}
+        {adminRole === 'master_admin' && (
+          <Badge variant="destructive" className="text-xs">
+            <Crown className="h-3 w-3 mr-1" />
+            Master Admin (Protected)
+          </Badge>
         )}
       </div>
     </div>
