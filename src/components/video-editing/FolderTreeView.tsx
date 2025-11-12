@@ -259,12 +259,6 @@ export function FolderTreeView({
       onDragCancel={handleDragCancel}
     >
       <div className="space-y-2">
-        {/* Help text */}
-        <p className="text-sm text-muted-foreground px-1 flex items-center gap-2">
-          <GripVertical className="h-3 w-3" />
-          Drag videos to reorder within or between folders
-        </p>
-        
         {/* Add Folder Button */}
         <Button
           onClick={onCreateFolder}
