@@ -7,7 +7,7 @@ import { useVideoForm } from '@/hooks/useVideoForm';
 import { VideoBasicInfo } from './VideoBasicInfo';
 import { CategorySelector } from './CategorySelector';
 import { VideoContentTabs } from './VideoContentTabs';
-import { EnhancedMarkdownEditor } from '@/components/markdown/EnhancedMarkdownEditor';
+import { UnifiedMarkdownEditor } from '@/components/markdown/UnifiedMarkdownEditor';
 import { structuredToMarkdown, createLegacyBackup } from '@/utils/videoContentConverter';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
@@ -86,7 +86,7 @@ export function VideoEditForm({
 
         <div className="space-y-2">
           <Label>Content (Markdown)</Label>
-          <EnhancedMarkdownEditor
+          <UnifiedMarkdownEditor
             value={editVideo.rich_content || ''}
             onChange={(value) => handleChange('rich_content', value)}
             placeholder="Write your video content using markdown..."
