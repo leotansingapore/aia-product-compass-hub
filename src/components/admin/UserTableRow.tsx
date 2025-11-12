@@ -18,11 +18,16 @@ import {
   Mail,
   Key,
   Trash2,
-  ExternalLink
+  ExternalLink,
+  Shield,
+  Layers
 } from "lucide-react";
 import { UnifiedUser } from '@/hooks/useUserManagement';
 import { useUserActions } from '@/hooks/useUserActions';
-import { getDisplayName, formatDate, getStatusConfig, getRoleBadgeVariant, AVAILABLE_STATUSES, AVAILABLE_ROLES } from '@/utils/userUtils';
+import { getDisplayName, formatDate, getStatusConfig, getRoleBadgeVariant, getTierBadgeVariant, AVAILABLE_STATUSES, AVAILABLE_ADMIN_ROLES, AVAILABLE_ACCESS_TIERS } from '@/utils/userUtils';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from '@/hooks/use-toast';
 
 interface UserTableRowProps {
   user: UnifiedUser;
@@ -48,12 +53,41 @@ export function UserTableRow({
     approveUser, 
     rejectUser, 
     deleteUser, 
-    updateUserStatus, 
-    updateUserRole 
+    updateUserStatus
   } = useUserActions();
+
+  const [adminRole, setAdminRole] = useState<string>('user');
+  const [accessTier, setAccessTier] = useState<string>('level_1');
+  const [loadingRoles, setLoadingRoles] = useState(true);
 
   const statusConfig = getStatusConfig(user.status);
   const userLoading = loading(user.id);
+
+  // Fetch current admin role and access tier
+  useEffect(() => {
+    const fetchUserPermissions = async () => {
+      setLoadingRoles(true);
+      try {
+        // Fetch admin role
+        const { data: adminRoleData } = await supabase.rpc('get_user_admin_role', {
+          user_id: user.id
+        });
+        setAdminRole(adminRoleData || 'user');
+
+        // Fetch access tier
+        const { data: tierData } = await supabase.rpc('get_user_access_tier', {
+          user_id: user.id
+        });
+        setAccessTier(tierData || 'level_1');
+      } catch (error) {
+        console.error('Error fetching user permissions:', error);
+      } finally {
+        setLoadingRoles(false);
+      }
+    };
+
+    fetchUserPermissions();
+  }, [user.id]);
 
   const handleQuickAction = async (action: 'approve' | 'reject') => {
     const success = action === 'approve' ? 
@@ -68,9 +102,76 @@ export function UserTableRow({
     if (success) onUpdate();
   };
 
-  const handleRoleChange = async (newRole: string) => {
-    const success = await updateUserRole(user, newRole);
-    if (success) onUpdate();
+  const handleAdminRoleChange = async (newRole: string) => {
+    try {
+      // Update admin role in user_admin_roles table
+      const { error: deleteError } = await supabase
+        .from('user_admin_roles')
+        .delete()
+        .eq('user_id', user.id);
+
+      if (deleteError) throw deleteError;
+
+      const { error: insertError } = await supabase
+        .from('user_admin_roles')
+        .insert({
+          user_id: user.id,
+          admin_role: newRole
+        });
+
+      if (insertError) throw insertError;
+
+      setAdminRole(newRole);
+      toast({
+        title: "Success",
+        description: `Admin role updated to ${newRole.replace('_', ' ')}`,
+      });
+      
+      onUpdate();
+    } catch (error: any) {
+      console.error('Error updating admin role:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to update admin role",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleAccessTierChange = async (newTier: string) => {
+    try {
+      // Update access tier in user_access_tiers table
+      const { error: deleteError } = await supabase
+        .from('user_access_tiers')
+        .delete()
+        .eq('user_id', user.id);
+
+      if (deleteError) throw deleteError;
+
+      const { error: insertError } = await supabase
+        .from('user_access_tiers')
+        .insert({
+          user_id: user.id,
+          tier_level: newTier
+        });
+
+      if (insertError) throw insertError;
+
+      setAccessTier(newTier);
+      toast({
+        title: "Success",
+        description: `Access tier updated to ${newTier === 'level_1' ? 'Level 1 (CMFAS Only)' : 'Level 2 (Everything)'}`,
+      });
+      
+      onUpdate();
+    } catch (error: any) {
+      console.error('Error updating access tier:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to update access tier",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleDelete = async () => {
@@ -138,38 +239,84 @@ export function UserTableRow({
         </DropdownMenu>
       </TableCell>
       
-      {/* Role Dropdown */}
+      {/* Admin Role Dropdown */}
       <TableCell>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="sm" className="h-auto p-0 hover:bg-transparent">
-              <Badge
-                variant={getRoleBadgeVariant(user.roles[0] || 'user')}
-                className={`text-micro hover:opacity-80 cursor-pointer ${
-                  getRoleBadgeVariant(user.roles[0] || 'user') === 'outline'
-                    ? 'text-black'
-                    : 'text-white'
-                }`}
-              >
-                {(user.roles[0] || 'user').replace('_', ' ')}
-              </Badge>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-40">
-            <DropdownMenuLabel>Change Role</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {AVAILABLE_ROLES.map((role) => (
-              <DropdownMenuItem
-                key={role}
-                onClick={() => handleRoleChange(role)}
-                disabled={user.roles.includes(role)}
-                className={user.roles.includes(role) ? 'opacity-50' : ''}
-              >
-                {role.replace('_', ' ')} {user.roles.includes(role) && '✓'}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {adminRole === 'master_admin' ? (
+          <Badge variant="destructive" className="text-micro">
+            <Shield className="h-3 w-3 mr-1" />
+            Master Admin
+          </Badge>
+        ) : loadingRoles ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="sm" className="h-auto p-0 hover:bg-transparent">
+                <Badge
+                  variant={getRoleBadgeVariant(adminRole)}
+                  className="text-micro hover:opacity-80 cursor-pointer"
+                >
+                  <Shield className="h-3 w-3 mr-1" />
+                  {adminRole.replace('_', ' ')}
+                </Badge>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-40">
+              <DropdownMenuLabel>Admin Role</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {AVAILABLE_ADMIN_ROLES.map((role) => (
+                <DropdownMenuItem
+                  key={role}
+                  onClick={() => handleAdminRoleChange(role)}
+                  disabled={adminRole === role}
+                  className={adminRole === role ? 'opacity-50' : ''}
+                >
+                  {role.replace('_', ' ')} {adminRole === role && '✓'}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
+      </TableCell>
+
+      {/* Access Tier Dropdown */}
+      <TableCell>
+        {adminRole === 'master_admin' ? (
+          <Badge variant="default" className="text-micro">
+            <Layers className="h-3 w-3 mr-1" />
+            All Access
+          </Badge>
+        ) : loadingRoles ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="sm" className="h-auto p-0 hover:bg-transparent">
+                <Badge
+                  variant={getTierBadgeVariant(accessTier)}
+                  className="text-micro hover:opacity-80 cursor-pointer"
+                >
+                  <Layers className="h-3 w-3 mr-1" />
+                  {accessTier === 'level_1' ? 'L1: CMFAS' : 'L2: All'}
+                </Badge>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-48">
+              <DropdownMenuLabel>Access Tier</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {AVAILABLE_ACCESS_TIERS.map((tier) => (
+                <DropdownMenuItem
+                  key={tier}
+                  onClick={() => handleAccessTierChange(tier)}
+                  disabled={accessTier === tier}
+                  className={accessTier === tier ? 'opacity-50' : ''}
+                >
+                  {tier === 'level_1' ? 'Level 1: CMFAS Only' : 'Level 2: Everything'} {accessTier === tier && '✓'}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </TableCell>
 
       {/* Actions */}

@@ -52,7 +52,8 @@ export function UserManagementTable({
               </TableHead>
               <TableHead>User</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead>Roles</TableHead>
+              <TableHead>Admin Role</TableHead>
+              <TableHead>Access Tier</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
