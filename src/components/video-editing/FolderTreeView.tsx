@@ -318,10 +318,6 @@ export function FolderTreeView({
                           <Edit className="h-4 w-4 mr-2" />
                           Edit folder
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => onAddVideoToFolder(folderName)}>
-                          <Plus className="h-4 w-4 mr-2" />
-                          Add video in folder
-                        </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => onAddPageToFolder(folderName)}>
                           <FileText className="h-4 w-4 mr-2" />
                           Add page in folder
