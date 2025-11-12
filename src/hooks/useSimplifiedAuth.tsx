@@ -2,6 +2,7 @@ import React, { useState, useEffect, createContext, useContext } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { clearPermissionsCache } from '@/hooks/usePermissions';
 
 interface AuthContextType {
   user: User | null;
@@ -61,6 +62,11 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         if (!mounted) return;
         
         console.log('[SimplifiedAuth] Auth state change:', event, 'hasUser:', !!session?.user, 'userEmail:', session?.user?.email);
+        
+        // Clear permissions cache on sign out
+        if (event === 'SIGNED_OUT') {
+          clearPermissionsCache();
+        }
         
         // Update state for all auth events
         setSession(session);
@@ -122,6 +128,10 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
 
       if (data.user) {
         console.log('[SimplifiedAuth] Sign in successful, user:', data.user.email);
+        
+        // Clear permissions cache to fetch fresh permissions
+        clearPermissionsCache(data.user.id);
+        
         toast({
           title: "Welcome back!",
           description: "Successfully signed in."
@@ -211,6 +221,9 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
 
   const signOut = async () => {
     try {
+      // Clear permissions cache before signing out
+      clearPermissionsCache();
+      
       const { error } = await supabase.auth.signOut();
       if (error) {
         console.error('Sign out error:', error);

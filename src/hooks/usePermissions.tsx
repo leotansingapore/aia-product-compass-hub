@@ -13,7 +13,7 @@ const permissionsCache = new Map<string, {
   timestamp: number;
   version: number;
 }>();
-const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes
+const CACHE_DURATION = 30 * 1000; // 30 seconds (reduced from 2 minutes for faster permission updates)
 
 // Export function to manually clear permissions cache
 export const clearPermissionsCache = (userId?: string) => {
@@ -147,6 +147,21 @@ export function usePermissions() {
       setLoading(false);
       hasInitialized.current = false;
     }
+  }, [user, fetchUserPermissions]);
+
+  // Refetch permissions when tab/window becomes visible (cross-device sync)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && user) {
+        console.log('[Permissions] Tab became visible, clearing cache and refetching');
+        clearPermissionsCache(user.id);
+        hasInitialized.current = false;
+        fetchUserPermissions();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [user, fetchUserPermissions]);
 
   // If no user, set loading to false immediately
