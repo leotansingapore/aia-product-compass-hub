@@ -15,7 +15,7 @@ import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useProductDetail } from "@/hooks/useProductDetail";
-import { useAdmin } from "@/hooks/useAdmin";
+import { usePermissions } from "@/hooks/usePermissions";
 import { Edit } from "lucide-react";
 
 export default function ProductDetail() {
@@ -29,7 +29,8 @@ export default function ProductDetail() {
     categoryName
   } = useProductDetail();
 
-  const { isAdmin: isAdminMode } = useAdmin();
+  const { isAdmin } = usePermissions();
+  const isAdminMode = isAdmin();
   const [isChatEditing, setIsChatEditing] = useState(false);
 
   if (loading) {
