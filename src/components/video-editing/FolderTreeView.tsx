@@ -259,17 +259,6 @@ export function FolderTreeView({
       onDragCancel={handleDragCancel}
     >
       <div className="space-y-2">
-        {/* Add Folder Button */}
-        <Button
-          onClick={onCreateFolder}
-          variant="outline"
-          size="sm"
-          className="w-full justify-start gap-2"
-        >
-          <FolderPlus className="h-4 w-4" />
-          Add Folder
-        </Button>
-
         {/* Folder Tree */}
         <div className="space-y-1">
           {Object.entries(allFolders).map(([folderName, folderVideos]) => {

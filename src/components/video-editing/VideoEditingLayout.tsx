@@ -1,6 +1,9 @@
 import { CourseStructurePanel } from './CourseStructurePanel';
 import { VideoEditorPanel } from './VideoEditorPanel';
 import { FolderManagementDialog } from './FolderManagementDialog';
+import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { MoreVertical, FolderPlus } from 'lucide-react';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoEditingLayoutProps {
@@ -65,10 +68,27 @@ export function VideoEditingLayout({
       {/* Left Sidebar - Course Structure (SKOOL-style) */}
       <aside className="w-80 border-r bg-muted/30 overflow-y-auto">
         <div className="sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b px-4 py-3">
-          <h2 className="font-semibold text-sm text-foreground">Course Structure</h2>
-          <p className="text-xs text-muted-foreground mt-0.5">
-            {editVideos.length} videos
-          </p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="font-semibold text-sm text-foreground">Course Structure</h2>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                {editVideos.length} videos
+              </p>
+            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                  <MoreVertical className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48 bg-background z-50">
+                <DropdownMenuItem onClick={onCreateFolder} className="cursor-pointer">
+                  <FolderPlus className="h-4 w-4 mr-2" />
+                  Add Folder
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
         <div className="p-4">
           <CourseStructurePanel
