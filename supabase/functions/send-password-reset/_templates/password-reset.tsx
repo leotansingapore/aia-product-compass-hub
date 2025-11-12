@@ -19,7 +19,7 @@ interface PasswordResetEmailProps {
 
 export const PasswordResetEmail = ({ 
   resetUrl, 
-  appName = "Knowledge Portal" 
+  appName = "FINternship Learning Platform" 
 }: PasswordResetEmailProps) => (
   <Html>
     <Head />
