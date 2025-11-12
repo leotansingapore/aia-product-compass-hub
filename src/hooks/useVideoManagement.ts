@@ -29,10 +29,10 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
   const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
   const { toast } = useToast();
 
-  // Sync editVideos when initialVideos changes (e.g., when product data loads)
+  // Sync editVideos ONLY on initial mount to prevent overwriting local changes
   useEffect(() => {
-    if (initialVideos && initialVideos.length > 0) {
-      console.log('📹 useVideoManagement: Syncing videos from props', {
+    if (initialVideos && initialVideos.length > 0 && editVideos.length === 0) {
+      console.log('📹 useVideoManagement: Initial sync from props', {
         count: initialVideos.length,
         categories: Array.from(new Set(initialVideos.map(v => v.category).filter(Boolean)))
       });
@@ -160,8 +160,8 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
         description: "Video was removed locally but not saved. Please save manually.",
         variant: "destructive",
       });
-      // Revert the local change if save failed
-      setEditVideos(editVideos);
+      // Revert to the previous state before deletion
+      setEditVideos(initialVideos);
     } finally {
       setSaving(false);
     }
