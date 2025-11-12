@@ -89,8 +89,8 @@ export default function ProductDetail() {
         
         <div className="mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
 
-          {/* 2-Column Grid Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 overflow-hidden">
+          {/* 2-Column Grid Layout - Product Info */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 overflow-hidden mb-8">
 
             {/* Left Column - Main Content */}
             <div className="lg:col-span-2 space-y-4 sm:space-y-6 md:space-y-8">
@@ -160,29 +160,6 @@ export default function ProductDetail() {
                 </div>
               </ProtectedSection>
 
-              {/* Training Videos - Full Editing Interface */}
-              <ProtectedSection sectionId="product_videos">
-                <ErrorBoundary>
-                  <VideoEditingInterface
-                    editVideos={videoManagement.editVideos}
-                    editingIndex={videoManagement.editingIndex}
-                    newVideo={videoManagement.newVideo}
-                    saving={videoManagement.saving}
-                    existingCategories={existingCategories}
-                    onEditingIndexChange={videoManagement.setEditingIndex}
-                    onUpdateVideo={videoManagement.updateVideo}
-                    onSetEditVideos={videoManagement.setEditVideos}
-                    onRemoveVideo={videoManagement.removeVideo}
-                    onMoveVideo={videoManagement.moveVideo}
-                    onNewVideoChange={videoManagement.setNewVideo}
-                    onAddVideo={videoManagement.addVideo}
-                    onSave={videoManagement.handleSave}
-                    onCancel={() => videoManagement.handleCancel()}
-                    onCreateCategory={videoManagement.addEmptyFolder}
-                  />
-                </ErrorBoundary>
-              </ProtectedSection>
-
             </div>
 
             {/* Right Column - Sidebar */}
@@ -210,6 +187,31 @@ export default function ProductDetail() {
             </div>
 
           </div>
+
+          {/* Full Width Video Editing Interface */}
+          <ProtectedSection sectionId="product_videos">
+            <div className="border-t pt-8">
+              <ErrorBoundary>
+                <VideoEditingInterface
+                  editVideos={videoManagement.editVideos}
+                  editingIndex={videoManagement.editingIndex}
+                  newVideo={videoManagement.newVideo}
+                  saving={videoManagement.saving}
+                  existingCategories={existingCategories}
+                  onEditingIndexChange={videoManagement.setEditingIndex}
+                  onUpdateVideo={videoManagement.updateVideo}
+                  onSetEditVideos={videoManagement.setEditVideos}
+                  onRemoveVideo={videoManagement.removeVideo}
+                  onMoveVideo={videoManagement.moveVideo}
+                  onNewVideoChange={videoManagement.setNewVideo}
+                  onAddVideo={videoManagement.addVideo}
+                  onSave={videoManagement.handleSave}
+                  onCancel={() => videoManagement.handleCancel()}
+                  onCreateCategory={videoManagement.addEmptyFolder}
+                />
+              </ErrorBoundary>
+            </div>
+          </ProtectedSection>
 
         </div>
       </PageLayout>
