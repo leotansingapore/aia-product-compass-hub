@@ -2,13 +2,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Type, Bold, Italic, Link as LinkIcon } from 'lucide-react';
 import { useVideoForm } from '@/hooks/useVideoForm';
 import { VideoBasicInfo } from './VideoBasicInfo';
 import { CategorySelector } from './CategorySelector';
 import { VideoContentTabs } from './VideoContentTabs';
-import { RichTextEditor } from '@/components/RichTextEditor';
-import { structuredToRichHtml, createLegacyBackup } from '@/utils/videoContentConverter';
+import { structuredToMarkdown, createLegacyBackup } from '@/utils/videoContentConverter';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoEditFormProps {
@@ -36,32 +35,32 @@ export function VideoEditForm({
     // Category creation logic handled in CategorySelector
   };
 
-  // Mode detection: Determine if we should use rich editor or structured form
-  const shouldUseRichEditor = (video: TrainingVideo): boolean => {
+  // Mode detection: Determine if we should use markdown editor or structured form
+  const shouldUseMarkdownEditor = (video: TrainingVideo): boolean => {
     // Check if rich_content property exists (not undefined), not just if it's truthy
     return video.rich_content !== undefined;
   };
 
-  const isRichMode = shouldUseRichEditor(editVideo);
+  const isMarkdownMode = shouldUseMarkdownEditor(editVideo);
 
-  // Conversion function: Switch from structured → rich editor
-  const handleSwitchToRich = () => {
-    const richHtml = structuredToRichHtml(editVideo);
+  // Conversion function: Switch from structured → markdown editor
+  const handleSwitchToMarkdown = () => {
+    const markdown = structuredToMarkdown(editVideo);
     const backup = createLegacyBackup(editVideo);
 
     const updatedVideo = {
       ...editVideo,
-      rich_content: richHtml,
+      rich_content: markdown,
       legacy_fields: backup
     };
     
     onUpdate(updatedVideo);
   };
 
-  // Rich Editor Mode: Show rich text editor for content
-  if (isRichMode) {
-    const handleRichContentChange = (html: string) => {
-      const updatedVideo = { ...editVideo, rich_content: html };
+  // Markdown Editor Mode: Show markdown textarea for content
+  if (isMarkdownMode) {
+    const handleMarkdownChange = (markdown: string) => {
+      const updatedVideo = { ...editVideo, rich_content: markdown };
       onUpdate(updatedVideo);
     };
 
@@ -84,12 +83,22 @@ export function VideoEditForm({
           onCreateCategory={handleCreateCategory}
         />
 
-        <div>
-          <Label>Content (Rich Editor)</Label>
-          <RichTextEditor
+        <div className="space-y-2">
+          <Label>Content (Markdown)</Label>
+          <div className="text-xs text-muted-foreground mb-2 flex flex-wrap gap-x-3 gap-y-1">
+            <span>**bold**</span>
+            <span>*italic*</span>
+            <span>## Heading</span>
+            <span>[link](url)</span>
+            <span>- list</span>
+            <span>`code`</span>
+          </div>
+          <Textarea
             value={editVideo.rich_content || ''}
-            onChange={handleRichContentChange}
-            placeholder="Add video description, notes, and links..."
+            onChange={(e) => handleMarkdownChange(e.target.value)}
+            placeholder="Add video description, notes, and links using markdown formatting..."
+            rows={20}
+            className="font-mono text-sm"
           />
         </div>
 
@@ -113,15 +122,15 @@ export function VideoEditForm({
       <Alert className="bg-primary/5 border-primary/20">
         <Sparkles className="h-4 w-4 text-primary" />
         <AlertDescription className="text-sm">
-          Try the new Rich Text Editor for a better editing experience!
+          Try the new Markdown Editor for a better editing experience!
           <Button
-            onClick={handleSwitchToRich}
+            onClick={handleSwitchToMarkdown}
             variant="outline"
             size="sm"
             className="ml-3"
           >
             <Sparkles className="mr-2 h-4 w-4" />
-            Switch to Rich Editor
+            Switch to Markdown Editor
           </Button>
         </AlertDescription>
       </Alert>

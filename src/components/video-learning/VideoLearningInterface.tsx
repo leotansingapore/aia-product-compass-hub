@@ -13,6 +13,9 @@ import { useToast } from '@/hooks/use-toast';
 import type { TrainingVideo } from '@/hooks/useProducts';
 import { getVideoSlug } from '@/utils/slugUtils';
 import { useParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { markdownComponents } from '@/lib/markdown-config';
 
 interface VideoLearningInterfaceProps {
   videos: TrainingVideo[];
@@ -312,16 +315,20 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </CardContent>
               </Card>
 
-              {/* Rich Content or Legacy Notes */}
+              {/* Markdown Content or Legacy Notes */}
               {currentVideo?.rich_content ? (
-                // Rich editor mode - display formatted HTML
+                // Markdown mode - display formatted markdown
                 <>
                   <Card>
                     <CardContent className="p-6">
-                      <div 
-                        className="prose prose-sm dark:prose-invert max-w-none"
-                        dangerouslySetInnerHTML={{ __html: currentVideo.rich_content }}
-                      />
+                      <div className="prose prose-sm dark:prose-invert max-w-none">
+                        <ReactMarkdown
+                          components={markdownComponents}
+                          remarkPlugins={[remarkGfm]}
+                        >
+                          {currentVideo.rich_content}
+                        </ReactMarkdown>
+                      </div>
                     </CardContent>
                   </Card>
                 </>

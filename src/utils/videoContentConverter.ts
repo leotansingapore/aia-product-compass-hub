@@ -1,8 +1,61 @@
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 /**
- * Converts structured video data to rich HTML format
- * This is used when migrating from form-based to rich text editor
+ * Converts structured video data to markdown format
+ * This is used when migrating from form-based to markdown editor
+ */
+export function structuredToMarkdown(video: TrainingVideo): string {
+  let markdown = '';
+  
+  // Title as H1
+  if (video.title) {
+    markdown += `# ${video.title}\n\n`;
+  }
+  
+  // Video link
+  if (video.url) {
+    markdown += `[🎥 Watch Video](${video.url})\n\n`;
+  }
+  
+  // Description section
+  if (video.description) {
+    markdown += `## 📋 Description\n\n${video.description}\n\n`;
+  }
+  
+  // Notes section
+  if (video.notes) {
+    markdown += `## 📝 Learning Notes\n\n${video.notes}\n\n`;
+  }
+  
+  // Transcript is NOT included in markdown - it has its own separate field
+  
+  // Useful links
+  if (video.useful_links && video.useful_links.length > 0) {
+    markdown += `## 🔗 Useful Links\n\n`;
+    video.useful_links.forEach(link => {
+      markdown += `- [${link.name}](${link.url})\n`;
+    });
+    markdown += '\n';
+  }
+  
+  // Attachments
+  if (video.attachments && video.attachments.length > 0) {
+    markdown += `## 📎 Attachments\n\n`;
+    video.attachments.forEach(attachment => {
+      markdown += `- [${attachment.name}](${attachment.url})`;
+      if (attachment.file_size) {
+        markdown += ` (${formatFileSize(attachment.file_size)})`;
+      }
+      markdown += '\n';
+    });
+  }
+  
+  return markdown.trim();
+}
+
+/**
+ * Legacy: Converts structured video data to rich HTML format
+ * Kept for backwards compatibility with existing HTML content
  */
 export function structuredToRichHtml(video: TrainingVideo): string {
   let html = '';
