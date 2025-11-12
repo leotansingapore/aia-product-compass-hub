@@ -1,4 +1,5 @@
 import { Components } from 'react-markdown';
+import { detectVideoEmbed, VideoEmbed } from './video-embed-utils';
 
 /**
  * Unified markdown component configuration for chat interfaces
@@ -103,17 +104,27 @@ export const markdownComponents: Components = {
     </blockquote>
   ),
 
-  // Links with hover effects
-  a: ({ children, href }: any) => (
-    <a
-      href={href}
-      className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {children}
-    </a>
-  ),
+  // Links with hover effects and video embed detection
+  a: ({ children, href }: any) => {
+    // Check if the link is a video URL
+    const videoInfo = detectVideoEmbed(href);
+    
+    if (videoInfo.isVideo && videoInfo.embedUrl) {
+      return <VideoEmbed embedUrl={videoInfo.embedUrl} platform={videoInfo.platform || 'video'} />;
+    }
+    
+    // Regular link
+    return (
+      <a
+        href={href}
+        className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </a>
+    );
+  },
 
   // Horizontal rules
   hr: () => (
