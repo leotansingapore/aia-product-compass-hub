@@ -88,7 +88,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
 
   const getCurrentAdminRole = () => {
     // Admin role
-    if (user.roles.includes('master_admin')) return 'super_admin';
+    if (user.roles.includes('master_admin')) return 'master_admin';
     if (user.roles.includes('admin')) return 'admin';
     if (user.roles.includes('mentor')) return 'mentor';
     return 'user';
@@ -105,7 +105,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
 
   const getAdminIcon = (role: string) => {
     switch (role) {
-      case 'super_admin': return Shield;
+      case 'master_admin': return Shield;
       case 'admin': return Shield;
       case 'mentor': return Award;
       default: return User;
@@ -280,28 +280,25 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
 
   const handleAdminRoleChange = async (newRole: string) => {
     try {
-      // Remove existing admin roles and add new one
-      await supabase
+      const currentUserId = (await supabase.auth.getUser()).data.user?.id;
+      
+      // Update admin role using upsert (handles both insert and update)
+      const { error } = await supabase
         .from('user_admin_roles')
-        .delete()
-        .eq('user_id', user.id)
-        .in('admin_role', ['admin', 'mentor']);
+        .upsert({
+          user_id: user.id,
+          admin_role: newRole,
+          granted_by: currentUserId,
+          updated_at: new Date().toISOString(),
+        }, {
+          onConflict: 'user_id'
+        });
 
-      if (newRole !== 'user') {
-        const { error } = await supabase
-          .from('user_admin_roles')
-          .insert({
-            user_id: user.id,
-            admin_role: newRole,
-            granted_by: (await supabase.auth.getUser()).data.user?.id,
-          });
-
-        if (error) throw error;
-      }
+      if (error) throw error;
 
       toast({
         title: "Success",
-        description: "User admin role updated successfully",
+        description: `User role updated to ${newRole}`,
       });
 
       onUpdate();
@@ -393,17 +390,18 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
         )}
 
         {/* Admin Role Management */}
-        {user.status === 'active' && !user.roles.includes('master_admin') && (
+        {user.status === 'active' && (
           <div className="flex items-center gap-2">
             <AdminIcon className="h-4 w-4 text-muted-foreground" />
             <Select value={currentAdminRole} onValueChange={handleAdminRoleChange}>
-              <SelectTrigger className="w-24 h-8 text-micro">
+              <SelectTrigger className="w-32 h-8 text-micro">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="user">User</SelectItem>
                 <SelectItem value="mentor">Mentor</SelectItem>
                 <SelectItem value="admin">Admin</SelectItem>
+                <SelectItem value="master_admin">Master Admin</SelectItem>
               </SelectContent>
             </Select>
           </div>
