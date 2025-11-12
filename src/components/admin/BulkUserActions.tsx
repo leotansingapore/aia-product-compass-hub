@@ -28,7 +28,7 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
 
   const pendingUsers = selectedUsers.filter(u => u.status === 'pending_approval');
   const activeUsers = selectedUsers.filter(u => u.status === 'active' || u.status === 'approved');
-  const nonAdminUsers = selectedUsers.filter(u => !u.roles.includes('master_admin'));
+  const nonAdminUsers = selectedUsers.filter(u => u.admin_role !== 'master_admin');
 
   const handleBulkApprove = async () => {
     if (pendingUsers.length === 0) {
@@ -209,19 +209,19 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
 
       for (const user of nonAdminUsers) {
         try {
-          // Add admin role to existing roles
-          const newRoles = [...user.roles, 'admin'];
+          // Update admin role to 'admin'
+          await supabase
+            .from('user_admin_roles')
+            .delete()
+            .eq('user_id', user.id);
           
-          // Remove existing roles
-          await supabase.from('user_roles').delete().eq('user_id', user.id);
+          const { error } = await supabase
+            .from('user_admin_roles')
+            .insert({
+              user_id: user.id,
+              admin_role: 'admin'
+            });
           
-          // Add new roles
-          const roleInserts = newRoles.map(role => ({
-            user_id: user.id,
-            role: role,
-          }));
-          
-          const { error } = await supabase.from('user_roles').insert(roleInserts);
           if (error) throw error;
           
           successCount++;

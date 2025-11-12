@@ -17,10 +17,12 @@ import {
   Shield,
   User,
   Award,
-  Star
+  Star,
+  Layers
 } from "lucide-react";
 import type { UnifiedUser } from "@/hooks/useUserManagement";
 import { SendEmailDialog } from "./SendEmailDialog";
+import { getRoleBadgeVariant, getTierBadgeVariant } from "@/utils/userUtils";
 
 interface UserDirectoryRowProps {
   user: UnifiedUser;
@@ -79,19 +81,11 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
   };
 
   const getCurrentTier = () => {
-    // Access tier
-    if (user.roles.includes('advanced')) return 'advanced';
-    if (user.roles.includes('intermediate')) return 'intermediate';
-    if (user.roles.includes('basic')) return 'basic';
-    return 'basic';
+    return user.access_tier || 'level_1';
   };
 
   const getCurrentAdminRole = () => {
-    // Admin role
-    if (user.roles.includes('master_admin')) return 'master_admin';
-    if (user.roles.includes('admin')) return 'admin';
-    if (user.roles.includes('mentor')) return 'mentor';
-    return 'user';
+    return user.admin_role || 'user';
   };
 
   const getTierIcon = (tier: string) => {
@@ -353,22 +347,20 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
       <div className="flex items-center gap-3">
         {/* Role Badges */}
         <div className="flex flex-wrap gap-1">
-          {user.roles.map(role => {
-            const variant = getRoleBadgeVariant(role);
-            const textColor = variant === 'outline' || variant === 'secondary'
-              ? 'text-black'
-              : 'text-white';
-
-            return (
-              <Badge
-                key={role}
-                variant={variant}
-                className={`text-micro ${textColor}`}
-              >
-                {role.replace('_', ' ')}
-              </Badge>
-            );
-          })}
+          <Badge
+            variant={getRoleBadgeVariant(user.admin_role)}
+            className="gap-1 text-micro"
+          >
+            <Shield className="h-3 w-3" />
+            {user.admin_role}
+          </Badge>
+          <Badge
+            variant={getTierBadgeVariant(user.access_tier)}
+            className="gap-1 text-micro"
+          >
+            <Layers className="h-3 w-3" />
+            {user.access_tier === 'level_1' ? 'L1: CMFAS' : 'L2: All'}
+          </Badge>
         </div>
         
         {/* Access Tier Management */}
@@ -445,13 +437,13 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
           {(user.status === 'active' || user.status === 'approved') && (
             <>
               <DropdownMenuItem onClick={handleSendResetLink} disabled={loading === 'reset'}>
-                <Mail className="h-4 w-4 mr-2" />
+              <Mail className="h-4 w-4 mr-2" />
                 Send Reset Link
               </DropdownMenuItem>
-              {!user.roles.includes('master_admin') && (
+              {user.admin_role !== 'master_admin' && (
                 <DropdownMenuItem onClick={handleToggleAdmin}>
                   <Shield className="h-4 w-4 mr-2" />
-                  {user.roles.includes('admin') ? 'Remove Admin' : 'Make Admin'}
+                  {user.admin_role === 'admin' ? 'Remove Admin' : 'Make Admin'}
                 </DropdownMenuItem>
               )}
             </>

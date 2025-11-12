@@ -13,7 +13,8 @@ export interface UnifiedUser {
     last_name: string | null;
     avatar_url: string | null;
   };
-  roles: string[];
+  admin_role: string;
+  access_tier: string;
   approval_request_id?: string;
   last_login?: string;
   can_login: boolean;
@@ -58,13 +59,22 @@ export function useUserManagement() {
         throw profilesError;
       }
 
-      // Get user roles
-      const { data: userRoles, error: rolesError } = await supabase
-        .from('user_roles')
+      // Get user admin roles
+      const { data: userAdminRoles, error: adminRolesError } = await supabase
+        .from('user_admin_roles')
         .select('*');
 
-      if (rolesError && !rolesError.message.includes('permission')) {
-        throw rolesError;
+      if (adminRolesError && !adminRolesError.message.includes('permission')) {
+        throw adminRolesError;
+      }
+
+      // Get user access tiers
+      const { data: userAccessTiers, error: tiersError } = await supabase
+        .from('user_access_tiers')
+        .select('*');
+
+      if (tiersError && !tiersError.message.includes('permission')) {
+        throw tiersError;
       }
 
       const unifiedUsers: UnifiedUser[] = [];
@@ -72,8 +82,8 @@ export function useUserManagement() {
       // Process approval requests
       approvalRequests?.forEach(request => {
         const existingProfile = profiles?.find(p => p.email === request.email);
-        const userRolesForUser = userRoles?.filter(ur => ur.user_id === existingProfile?.user_id) || [];
-        const allRoles = userRolesForUser.map(r => r.role);
+        const adminRole = userAdminRoles?.find(ur => ur.user_id === existingProfile?.user_id)?.admin_role || 'user';
+        const accessTier = userAccessTiers?.find(ut => ut.user_id === existingProfile?.user_id)?.tier_level || 'level_1';
         
         let status: UnifiedUser['status'] = 'pending_approval';
         if (request.status === 'rejected') {
@@ -100,9 +110,10 @@ export function useUserManagement() {
             last_name: request.last_name,
             avatar_url: null,
           },
-          roles: allRoles,
+          admin_role: adminRole,
+          access_tier: accessTier,
           approval_request_id: request.id,
-          can_login: existingProfile && allRoles.length > 0,
+          can_login: existingProfile && adminRole !== 'user',
         });
       });
 
@@ -110,8 +121,8 @@ export function useUserManagement() {
       profiles?.forEach(profile => {
         const hasApprovalRequest = approvalRequests?.some(req => req.email === profile.email);
         if (!hasApprovalRequest) {
-          const userRolesForUser = userRoles?.filter(ur => ur.user_id === profile.user_id) || [];
-          const allRoles = userRolesForUser.map(r => r.role);
+          const adminRole = userAdminRoles?.find(ur => ur.user_id === profile.user_id)?.admin_role || 'user';
+          const accessTier = userAccessTiers?.find(ut => ut.user_id === profile.user_id)?.tier_level || 'level_1';
           
           unifiedUsers.push({
             id: profile.user_id,
@@ -124,8 +135,9 @@ export function useUserManagement() {
               last_name: profile.last_name,
               avatar_url: profile.avatar_url,
             },
-            roles: allRoles,
-            can_login: allRoles.length > 0,
+            admin_role: adminRole,
+            access_tier: accessTier,
+            can_login: adminRole !== 'user',
           });
         }
       });
@@ -151,15 +163,16 @@ export function useUserManagement() {
         user.profile?.display_name,
         user.profile?.first_name,
         user.profile?.last_name,
-        ...user.roles
+        user.admin_role,
+        user.access_tier
       ].some(field => 
         field?.toLowerCase().includes(filters.search.toLowerCase())
       );
       
       const statusMatch = filters.status === "all" || user.status === filters.status;
       const roleMatch = filters.role === "all" || 
-        (filters.role === "no_roles" && user.roles.length === 0) ||
-        user.roles.includes(filters.role);
+        (filters.role === "no_roles" && user.admin_role === 'user') ||
+        user.admin_role === filters.role;
       
       return searchMatch && statusMatch && roleMatch;
     });

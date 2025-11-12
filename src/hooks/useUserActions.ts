@@ -84,7 +84,7 @@ export function useUserActions() {
   };
 
   const deleteUser = async (user: UnifiedUser) => {
-    if (user.roles.includes('master_admin')) {
+    if (user.admin_role === 'master_admin') {
       toast({
         title: "Cannot Delete Master Admin",
         description: "Master administrators cannot be deleted for security reasons.",
