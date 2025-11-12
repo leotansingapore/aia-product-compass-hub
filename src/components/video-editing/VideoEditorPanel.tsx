@@ -34,7 +34,7 @@ export function VideoEditorPanel({
   onCreateCategory
 }: VideoEditorPanelProps) {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-  const [isPreviewMode, setIsPreviewMode] = useState(false);
+  const [isPreviewMode, setIsPreviewMode] = useState(true);
 
   console.log('🎬 VideoEditorPanel: Rendering', {
     editingIndex,
