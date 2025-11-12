@@ -226,7 +226,7 @@ export function usePermissions() {
 
   const canAccessPage = (pageId: string): boolean => {
     // Core pages accessible to all authenticated users
-    const corePages = ['dashboard', 'search', 'my-account', 'how-to-use-portal', 'search-by-profile', 'roleplay'];
+    const corePages = ['dashboard', 'search', 'my-account', 'how-to-use-portal', 'search-by-profile', 'roleplay', 'video-detail', 'product-detail'];
 
     // Auth page should always be accessible to unauthenticated users
     if (pageId === 'auth') return true;
