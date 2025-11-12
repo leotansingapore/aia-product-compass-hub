@@ -25,7 +25,7 @@ export default function CMFASModuleDetail() {
   }
 
   return (
-    <ProtectedPage pageId="cmfas-exams">
+    <ProtectedPage pageId="cmfas-module-detail">
       <ModuleComponent />
     </ProtectedPage>
   );

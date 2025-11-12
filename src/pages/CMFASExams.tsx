@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { useUsefulLinks } from "@/hooks/useUsefulLinks";
 import type { UsefulLink } from "@/hooks/useProducts";
+import { ProtectedPage } from "@/components/ProtectedPage";
 
 export default function CMFASExams() {
   console.log('CMFASExams component loaded - no UsefulLinksSection here');
@@ -117,70 +118,72 @@ export default function CMFASExams() {
   };
 
   return (
-    <PageLayout
-      title="CMFAS Exam Preparation - FINternship Learning Platform"
-      description="Comprehensive CMFAS exam preparation materials including modules 1, 5, 6, 8, practice tests, and study materials for capital markets financial advisory services certification."
-      keywords="CMFAS exam, capital markets, financial advisory, certification, exam preparation, modules, practice tests"
-      structuredData={structuredData}
-    >
-      <BrandedPageHeader
-        title="📚 CMFAS Exam Preparation"
-        subtitle="Capital Markets Financial Advisory Services - Your path to certification"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "CMFAS Exams" }
-        ]}
-        showBackButton={true}
-        onBack={() => window.history.back()}
-      />
+    <ProtectedPage pageId="cmfas-exams">
+      <PageLayout
+        title="CMFAS Exam Preparation - FINternship Learning Platform"
+        description="Comprehensive CMFAS exam preparation materials including modules 1, 5, 6, 8, practice tests, and study materials for capital markets financial advisory services certification."
+        keywords="CMFAS exam, capital markets, financial advisory, certification, exam preparation, modules, practice tests"
+        structuredData={structuredData}
+      >
+        <BrandedPageHeader
+          title="📚 CMFAS Exam Preparation"
+          subtitle="Capital Markets Financial Advisory Services - Your path to certification"
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "CMFAS Exams" }
+          ]}
+          showBackButton={true}
+          onBack={() => window.history.back()}
+        />
 
-      <div className="mx-auto px-4 sm:px-6 py-4 sm:py-8">
+        <div className="mx-auto px-4 sm:px-6 py-4 sm:py-8">
 
-        {/* Useful Links Section - Positioned Higher */}
-        <div className={cn("mb-6", isMobile && "mb-4")}>
-          <CMFASUsefulLinks
-            links={usefulLinks}
-            onUpdate={handleUpdate}
-          />
-        </div>
-
-        {/* CMFAS AI Tutor - Below Useful Links */}
-        <div className={cn("mb-8", isMobile && "mb-6")}>
-          <CMFASChatLauncher
-            description="Get general help with CMFAS exam preparation, study strategies, and certification requirements"
-          />
-        </div>
-
-        <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {cmfasModules.map((module) => (
-            <CategoryCard
-              key={module.title}
-              title={module.title}
-              description={module.description}
-              icon={<module.icon />}
-              productCount={module.productCount}
-              gradient={module.gradient}
-              borderColor={module.borderColor}
-              onClick={() => navigate(module.route)}
+          {/* Useful Links Section - Positioned Higher */}
+          <div className={cn("mb-6", isMobile && "mb-4")}>
+            <CMFASUsefulLinks
+              links={usefulLinks}
+              onUpdate={handleUpdate}
             />
-          ))}
-        </div>
+          </div>
 
-        <div className="mt-8 sm:mt-12 bg-card rounded-lg p-6 border shadow-card">
-          <h2 className="text-xl font-semibold mb-4">About CMFAS Certification</h2>
-          <div className="space-y-4 text-muted-foreground">
-            <p>
-              The Capital Markets Financial Advisory Services (CMFAS) certification is required for financial advisors in Singapore to provide investment advice on capital market products.
-            </p>
-            <p>
-              Our comprehensive preparation materials are organized by module, each containing detailed syllabi, practice questions, and expert guidance. Start with the Getting Started module to complete your essential setup, then proceed through each exam module systematically.
-            </p>
-            <p>
-              With our support package including flashcards, personal tutoring, question banks, and AI assistance, passing on your first attempt should be highly achievable.
-            </p>
+          {/* CMFAS AI Tutor - Below Useful Links */}
+          <div className={cn("mb-8", isMobile && "mb-6")}>
+            <CMFASChatLauncher
+              description="Get general help with CMFAS exam preparation, study strategies, and certification requirements"
+            />
+          </div>
+
+          <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {cmfasModules.map((module) => (
+              <CategoryCard
+                key={module.title}
+                title={module.title}
+                description={module.description}
+                icon={<module.icon />}
+                productCount={module.productCount}
+                gradient={module.gradient}
+                borderColor={module.borderColor}
+                onClick={() => navigate(module.route)}
+              />
+            ))}
+          </div>
+
+          <div className="mt-8 sm:mt-12 bg-card rounded-lg p-6 border shadow-card">
+            <h2 className="text-xl font-semibold mb-4">About CMFAS Certification</h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p>
+                The Capital Markets Financial Advisory Services (CMFAS) certification is required for financial advisors in Singapore to provide investment advice on capital market products.
+              </p>
+              <p>
+                Our comprehensive preparation materials are organized by module, each containing detailed syllabi, practice questions, and expert guidance. Start with the Getting Started module to complete your essential setup, then proceed through each exam module systematically.
+              </p>
+              <p>
+                With our support package including flashcards, personal tutoring, question banks, and AI assistance, passing on your first attempt should be highly achievable.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </PageLayout>
+      </PageLayout>
+    </ProtectedPage>
   );
 }

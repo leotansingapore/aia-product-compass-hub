@@ -112,7 +112,7 @@ export default function CMFASVideoDetail() {
   }
 
   return (
-    <ProtectedPage pageId="cmfas-exams">
+    <ProtectedPage pageId="cmfas-video-detail">
       <PageLayout
         title={`${currentVideo.title} - ${moduleName} | FINternship`}
         description={`Watch "${currentVideo.title}" - ${currentVideo.description || 'Training video'} from the ${moduleName} course.`}

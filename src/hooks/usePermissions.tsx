@@ -82,9 +82,9 @@ export function usePermissions() {
 
       if (tierError) {
         console.error('Error fetching user access tier:', tierError);
-        setUserTier('basic');
+        setUserTier('level_1');
       } else {
-        setUserTier(tierData || 'basic');
+        setUserTier(tierData || 'level_1');
       }
 
       // Get user's admin role
@@ -100,7 +100,7 @@ export function usePermissions() {
       }
 
       // Fetch tier permissions based on access tier
-      const accessTier = tierData || 'basic';
+      const accessTier = tierData || 'level_1';
       const { data: permissions, error: permissionsError } = await supabase
         .from('tier_permissions')
         .select('access_type, resource_id')
@@ -114,7 +114,7 @@ export function usePermissions() {
 
       // Cache the results with version
       const permissionsData = {
-        tier: tierData || 'basic',
+        tier: tierData || 'level_1',
         adminRole: adminRoleData || 'user',
         permissions: permissions || [],
         timestamp: Date.now(),

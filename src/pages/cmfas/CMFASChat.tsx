@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, MessageCircle } from "lucide-react";
 import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
+import { ProtectedPage } from "@/components/ProtectedPage";
 
 const moduleNames: Record<string, string> = {
   m9: "M9 Module - Life Insurance & Investment-Linked Policies",
@@ -28,46 +29,48 @@ export default function CMFASChat() {
   };
 
   return (
-    <div className="h-screen bg-background flex flex-col">
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={`Chat with AI tutor about ${moduleName}`} />
-        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
-      </Helmet>
+    <ProtectedPage pageId="cmfas-chat">
+      <div className="h-screen bg-background flex flex-col">
+        <Helmet>
+          <title>{pageTitle}</title>
+          <meta name="description" content={`Chat with AI tutor about ${moduleName}`} />
+          <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
+        </Helmet>
 
-      {/* Mobile Header */}
-      <div className="flex items-center gap-3 p-3 md:p-4 border-b bg-card/50 backdrop-blur-sm sticky top-0 z-10 mobile-header">
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          onClick={handleBack}
-          className="shrink-0 mobile-touch-target"
-        >
-          <ArrowLeft className="h-5 w-5" />
-        </Button>
-        
-        <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
-          <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center shrink-0">
-            <MessageCircle className="h-4 w-4 text-primary-foreground" />
-          </div>
-          <div className="min-w-0">
-            <h1 className="text-sm md:text-base font-semibold text-foreground truncate">AI Tutor</h1>
-            {moduleId && (
-              <p className="text-micro md:text-sm text-muted-foreground truncate">
-                {moduleId.toUpperCase()} Module
-              </p>
-            )}
+        {/* Mobile Header */}
+        <div className="flex items-center gap-3 p-3 md:p-4 border-b bg-card/50 backdrop-blur-sm sticky top-0 z-10 mobile-header">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={handleBack}
+            className="shrink-0 mobile-touch-target"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+          
+          <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
+            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center shrink-0">
+              <MessageCircle className="h-4 w-4 text-primary-foreground" />
+            </div>
+            <div className="min-w-0">
+              <h1 className="text-sm md:text-base font-semibold text-foreground truncate">AI Tutor</h1>
+              {moduleId && (
+                <p className="text-micro md:text-sm text-muted-foreground truncate">
+                  {moduleId.toUpperCase()} Module
+                </p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Chat Interface - Full height minus header */}
-      <div className="flex-1 min-h-0">
-        <CMFASChatbot
-          moduleId={moduleId}
-          moduleName={moduleName}
-        />
+        {/* Chat Interface - Full height minus header */}
+        <div className="flex-1 min-h-0">
+          <CMFASChatbot
+            moduleId={moduleId}
+            moduleName={moduleName}
+          />
+        </div>
       </div>
-    </div>
+    </ProtectedPage>
   );
 }
