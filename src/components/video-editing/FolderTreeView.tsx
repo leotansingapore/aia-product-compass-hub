@@ -82,7 +82,7 @@ function SortableVideoItem({ video, index, onVideoSelect, onEditVideo, onDeleteV
           <Button
             variant="ghost"
             size="sm"
-            className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100"
+            className="h-6 w-6 p-0"
           >
             <MoreHorizontal className="h-4 w-4" />
           </Button>
@@ -324,7 +324,7 @@ export function FolderTreeView({
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100"
+                          className="h-6 w-6 p-0"
                         >
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
