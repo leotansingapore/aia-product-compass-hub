@@ -2,11 +2,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Sparkles, Type, Bold, Italic, Link as LinkIcon } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { useVideoForm } from '@/hooks/useVideoForm';
 import { VideoBasicInfo } from './VideoBasicInfo';
 import { CategorySelector } from './CategorySelector';
 import { VideoContentTabs } from './VideoContentTabs';
+import { MarkdownEditor } from '@/components/MarkdownEditor';
 import { structuredToMarkdown, createLegacyBackup } from '@/utils/videoContentConverter';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
@@ -85,20 +86,10 @@ export function VideoEditForm({
 
         <div className="space-y-2">
           <Label>Content (Markdown)</Label>
-          <div className="text-xs text-muted-foreground mb-2 flex flex-wrap gap-x-3 gap-y-1">
-            <span>**bold**</span>
-            <span>*italic*</span>
-            <span>## Heading</span>
-            <span>[link](url)</span>
-            <span>- list</span>
-            <span>`code`</span>
-          </div>
-          <Textarea
+          <MarkdownEditor
             value={editVideo.rich_content || ''}
-            onChange={(e) => handleMarkdownChange(e.target.value)}
+            onChange={handleMarkdownChange}
             placeholder="Add video description, notes, and links using markdown formatting..."
-            rows={20}
-            className="font-mono text-sm"
           />
         </div>
 
