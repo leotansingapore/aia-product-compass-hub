@@ -163,22 +163,24 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         }
       });
 
-      if (error) {
-        console.error('[SimplifiedAuth] Error from edge function:', error);
-        toast({
-          variant: "destructive",
-          title: "Registration Failed",
-          description: error.message || "An error occurred during registration"
-        });
-        return { success: false };
-      }
-
+      // Check for error in response data first (this has the actual error message)
       if (data?.error) {
         console.error('[SimplifiedAuth] Server error:', data.error);
         toast({
           variant: "destructive",
           title: "Registration Failed",
           description: data.error
+        });
+        return { success: false };
+      }
+
+      // Check for generic function error (less helpful message)
+      if (error) {
+        console.error('[SimplifiedAuth] Error from edge function:', error);
+        toast({
+          variant: "destructive",
+          title: "Registration Failed",
+          description: "An error occurred during registration. Please try again."
         });
         return { success: false };
       }
