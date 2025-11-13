@@ -18,14 +18,6 @@ export function QuickActions() {
 
   const actions = [
     {
-      title: "Browse Products",
-      description: "Explore all product categories",
-      icon: BookOpen,
-      href: "/",
-      color: "text-white",
-      bgColor: "bg-blue-600"
-    },
-    {
       title: "CMFAS Training",
       description: "Certification modules",
       icon: GraduationCap,
