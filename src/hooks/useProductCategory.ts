@@ -64,6 +64,10 @@ export function useProductCategory() {
     setSelectedTags([]);
   };
 
+  const handleBack = () => {
+    navigate('/');
+  };
+
   return {
     categorySlugOrId,
     categoryId,
@@ -76,6 +80,7 @@ export function useProductCategory() {
     handleSearch,
     handleProductClick,
     clearFilters,
-    setSelectedTags
+    setSelectedTags,
+    handleBack
   };
 }

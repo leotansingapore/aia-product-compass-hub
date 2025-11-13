@@ -53,7 +53,8 @@ export default function ProductCategory() {
     refetch,
     handleSearch,
     handleProductClick,
-    clearFilters
+    clearFilters,
+    handleBack
   } = useProductCategory();
   
   const { isAdmin } = usePermissions();
@@ -130,7 +131,7 @@ export default function ProductCategory() {
         title={categoryInfo?.icon ? `${categoryInfo.icon} ${categoryInfo.title}` : category.name}
         subtitle={categoryInfo?.description || category.description}
         showBackButton
-        onBack={() => window.history.back()}
+        onBack={handleBack}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: category.name }
