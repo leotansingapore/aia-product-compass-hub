@@ -149,20 +149,60 @@ export function usePermissions() {
     }
   }, [user, fetchUserPermissions]);
 
-  // Refetch permissions when tab/window becomes visible (cross-device sync)
+  // Silent refresh when tab becomes visible - doesn't trigger loading state
   useEffect(() => {
-    const handleVisibilityChange = () => {
+    const handleVisibilityChange = async () => {
       if (document.visibilityState === 'visible' && user) {
-        console.log('[Permissions] Tab became visible, clearing cache and refetching');
-        clearPermissionsCache(user.id);
-        hasInitialized.current = false;
-        fetchUserPermissions();
+        console.log('[Permissions] Tab became visible, performing silent refresh...');
+        
+        try {
+          // Fetch permissions in background without affecting loading state
+          const [tierResult, roleResult] = await Promise.all([
+            supabase.rpc('get_user_access_tier', { user_id: user.id }),
+            supabase.rpc('get_user_admin_role', { user_id: user.id })
+          ]);
+
+          const newTier = tierResult.data || 'level_1';
+          const newRole = roleResult.data || 'user';
+
+          // Only update state if values actually changed
+          if (newTier !== userTier || newRole !== userAdminRole) {
+            console.log('[Permissions] Silent refresh detected changes:', { 
+              oldTier: userTier, newTier, 
+              oldRole: userAdminRole, newRole 
+            });
+            
+            // Fetch tier permissions for the new tier
+            const { data: permissions } = await supabase
+              .from('tier_permissions')
+              .select('access_type, resource_id')
+              .eq('tier_level', newTier);
+
+            setUserTier(newTier);
+            setUserAdminRole(newRole);
+            setTierPermissions(permissions || []);
+
+            // Update cache
+            permissionsCache.set(user.id, {
+              tier: newTier,
+              adminRole: newRole,
+              permissions: permissions || [],
+              timestamp: Date.now(),
+              version: PERMISSIONS_VERSION
+            });
+          } else {
+            console.log('[Permissions] Silent refresh - no changes detected');
+          }
+        } catch (error) {
+          console.warn('[Permissions] Silent refresh failed:', error);
+          // Don't disrupt the UI on silent refresh failure
+        }
       }
     };
     
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [user, fetchUserPermissions]);
+  }, [user, userTier, userAdminRole]);
 
   // If no user, set loading to false immediately
   useEffect(() => {
