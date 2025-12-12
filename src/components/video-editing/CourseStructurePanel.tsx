@@ -16,6 +16,7 @@ interface CourseStructurePanelProps {
   onAddVideoToFolder: (folderName: string) => void;
   onAddPageToFolder: (folderName: string) => void;
   onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
+  onReorderFolders?: (folderOrder: string[]) => void;
 }
 
 export function CourseStructurePanel({
@@ -32,7 +33,8 @@ export function CourseStructurePanel({
   onDeleteVideo,
   onAddVideoToFolder,
   onAddPageToFolder,
-  onReorderVideos
+  onReorderVideos,
+  onReorderFolders
 }: CourseStructurePanelProps) {
   return (
     <FolderTreeView
@@ -50,6 +52,7 @@ export function CourseStructurePanel({
       onAddVideoToFolder={onAddVideoToFolder}
       onAddPageToFolder={onAddPageToFolder}
       onReorderVideos={onReorderVideos}
+      onReorderFolders={onReorderFolders}
     />
   );
 }

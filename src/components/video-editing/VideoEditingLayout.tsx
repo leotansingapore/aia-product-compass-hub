@@ -34,6 +34,7 @@ interface VideoEditingLayoutProps {
   onFolderDialogOpenChange: (open: boolean) => void;
   onFolderSave: (folderName: string) => void;
   onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
+  onReorderFolders?: (folderOrder: string[]) => void;
 }
 
 export function VideoEditingLayout({
@@ -63,7 +64,8 @@ export function VideoEditingLayout({
   onExpandedChange,
   onFolderDialogOpenChange,
   onFolderSave,
-  onReorderVideos
+  onReorderVideos,
+  onReorderFolders
 }: VideoEditingLayoutProps) {
   return (
     <div className="flex min-h-[calc(100vh-120px)]">
@@ -112,6 +114,7 @@ export function VideoEditingLayout({
             onAddVideoToFolder={onAddVideoToFolder}
             onAddPageToFolder={onAddPageToFolder}
             onReorderVideos={onReorderVideos}
+            onReorderFolders={onReorderFolders}
           />
         </div>
       </aside>

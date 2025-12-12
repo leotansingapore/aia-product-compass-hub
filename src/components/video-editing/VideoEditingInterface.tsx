@@ -121,6 +121,59 @@ export function VideoEditingInterface({
     handleAddPageToFolder('');
   };
 
+  const handleReorderFolders = (folderOrder: string[]) => {
+    const currentVideos = videoOrderChanges.pendingVideos;
+    
+    // Separate root-level videos and folder videos
+    const rootVideos = currentVideos.filter(v => !v.category || v.category.trim() === '');
+    const folderVideos = currentVideos.filter(v => v.category && v.category.trim() !== '');
+    
+    // Group videos by folder, preserving their internal order
+    const videosByFolder = folderVideos.reduce((acc, video) => {
+      const folder = video.category!;
+      if (!acc[folder]) acc[folder] = [];
+      acc[folder].push(video);
+      return acc;
+    }, {} as Record<string, TrainingVideo[]>);
+    
+    // Sort videos within each folder by their current order
+    Object.keys(videosByFolder).forEach(folder => {
+      videosByFolder[folder].sort((a, b) => a.order - b.order);
+    });
+    
+    // Reconstruct video array: root videos first, then folders in new order
+    const reorderedVideos: TrainingVideo[] = [];
+    let order = 0;
+    
+    // Add root videos first (maintaining their relative order)
+    rootVideos.sort((a, b) => a.order - b.order).forEach(video => {
+      reorderedVideos.push({ ...video, order: order++ });
+    });
+    
+    // Add folder videos in the new folder order
+    for (const folderName of folderOrder) {
+      const folderVids = videosByFolder[folderName] || [];
+      folderVids.forEach(video => {
+        reorderedVideos.push({ ...video, order: order++ });
+      });
+      delete videosByFolder[folderName]; // Mark as processed
+    }
+    
+    // Include any folders not in the new order (safety net)
+    Object.keys(videosByFolder).forEach(folder => {
+      videosByFolder[folder].forEach(video => {
+        reorderedVideos.push({ ...video, order: order++ });
+      });
+    });
+    
+    console.log('📁 VideoEditingInterface: Reordered folders', {
+      folderOrder,
+      totalVideos: reorderedVideos.length
+    });
+    
+    videoOrderChanges.updatePendingVideos(reorderedVideos);
+  };
+
   try {
     console.log('🎬 VideoEditingInterface: About to render components...');
     
@@ -166,6 +219,7 @@ export function VideoEditingInterface({
           onFolderDialogOpenChange={folderManagement.setFolderDialogOpen}
           onFolderSave={folderManagement.handleFolderSave}
           onReorderVideos={videoOrderChanges.updatePendingVideos}
+          onReorderFolders={handleReorderFolders}
         />
         
         {videoOrderChanges.hasPendingChanges && (
