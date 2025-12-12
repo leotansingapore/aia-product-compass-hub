@@ -85,6 +85,7 @@ const App = () => (
                     <Route path="/my-account" element={<MyAccount />} />
 <Route path="/category/:categorySlugOrId" element={<ProductCategory />} />
 <Route path="/product/:productSlugOrId" element={<ProductDetail />} />
+<Route path="/product/:productSlugOrId/:pageId" element={<ProductDetail />} />
 <Route path="/product/:productSlugOrId/manage-videos" element={<ManageProductVideos />} />
 <Route path="/product/:productId/ai-assistant" element={
   <Suspense fallback={<SkeletonLoader type="product" />}>
