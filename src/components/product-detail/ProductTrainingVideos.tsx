@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { AdminVideosByCategory } from "@/components/video-editing/AdminVideosByC
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { useAdmin } from "@/hooks/useAdmin";
 import { formatDuration } from "@/components/video-editing/videoUtils";
+import { getVideoSlug } from "@/utils/slugUtils";
 import { GraduationCap, Play, Edit, Clock } from "lucide-react";
 import type { TrainingVideo } from "@/hooks/useProducts";
 
@@ -118,7 +119,16 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
           <div className="space-y-4">
             {!isAdminMode && (
               <Button 
-                onClick={() => setShowLearningInterface(true)}
+                onClick={() => {
+                  // Navigate to first video's unique URL
+                  if (processedVideos.length > 0 && productSlugOrId) {
+                    const firstVideo = processedVideos[0];
+                    const videoSlug = getVideoSlug(firstVideo.title);
+                    navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
+                  } else {
+                    setShowLearningInterface(true);
+                  }
+                }}
                 className="w-full h-12"
                 size="lg"
               >

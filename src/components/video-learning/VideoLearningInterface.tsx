@@ -380,35 +380,45 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
             {/* Sidebar */}
             <div className="space-y-6 order-1 lg:order-1 transition-all duration-300">
-              {/* Course Navigation & Transcript Tabs */}
+              {/* Course Navigation */}
               <Card>
-                <Tabs defaultValue="videos" className="w-full">
-                  <TabsList className="w-full grid grid-cols-2">
-                    <TabsTrigger value="videos">Course Videos</TabsTrigger>
-                    <TabsTrigger value="transcript">Transcript</TabsTrigger>
-                  </TabsList>
-                  
-                  <TabsContent value="videos" className="mt-0">
-                    <CardContent className="pt-4">
-                      <VideosByCategory
-                        videos={videos}
-                        onVideoSelect={(index) => {
-                          setCurrentVideoIndex(index);
-                          setWatchTime(0);
-                        }}
-                        getVideoProgress={getVideoProgress}
-                        useIndividualPages={true}
-                        currentVideoId={currentVideo?.id}
-                        moduleId={moduleId}
-                        moduleType={moduleType}
-                      />
-                    </CardContent>
-                  </TabsContent>
-                  
-                  <TabsContent value="transcript" className="mt-0">
-                    <CardContent className="pt-4">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base">Course Videos</CardTitle>
+                </CardHeader>
+                <CardContent className="pt-2">
+                  <VideosByCategory
+                    videos={videos}
+                    onVideoSelect={(index) => {
+                      setCurrentVideoIndex(index);
+                      setWatchTime(0);
+                    }}
+                    getVideoProgress={getVideoProgress}
+                    useIndividualPages={true}
+                    currentVideoId={currentVideo?.id}
+                    moduleId={moduleId}
+                    moduleType={moduleType}
+                  />
+                </CardContent>
+              </Card>
+
+              {/* Transcript Accordion - Hidden by Default */}
+              <Collapsible defaultOpen={false}>
+                <Card>
+                  <CollapsibleTrigger className="w-full">
+                    <CardHeader className="pb-3 cursor-pointer hover:bg-muted/50 transition-colors">
+                      <CardTitle className="text-base flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <FileText className="h-4 w-4" />
+                          Transcript
+                        </div>
+                        <ChevronDown className="h-4 w-4 transition-transform duration-200 [[data-state=open]_&]:rotate-180" />
+                      </CardTitle>
+                    </CardHeader>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <CardContent className="pt-0">
                       {currentVideo?.transcript ? (
-                        <div className="max-h-[600px] overflow-y-auto">
+                        <div className="max-h-[400px] overflow-y-auto">
                           <div className="prose prose-sm max-w-none">
                             <p className="whitespace-pre-wrap text-muted-foreground text-sm leading-relaxed">
                               {currentVideo.transcript}
@@ -416,14 +426,14 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           </div>
                         </div>
                       ) : (
-                        <p className="text-sm text-muted-foreground text-center py-8">
-                          No transcript available for this video.
-                        </p>
+                        <div className="text-center py-4 text-muted-foreground">
+                          <p className="text-sm">No transcript available for this video.</p>
+                        </div>
                       )}
                     </CardContent>
-                  </TabsContent>
-                </Tabs>
-              </Card>
+                  </CollapsibleContent>
+                </Card>
+              </Collapsible>
 
 
               {/* Useful Links & Attachments - Only show if not using rich content */}
