@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { EditableTags } from "@/components/EditableTags";
@@ -35,13 +35,11 @@ export default function ProductDetail() {
     categoryName
   } = useProductDetail();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { productSlugOrId, pageId } = useParams();
+  const navigate = useNavigate();
   const { isAdmin } = usePermissions();
   const isAdminMode = isAdmin();
   const [isChatEditing, setIsChatEditing] = useState(false);
-
-  // Get initial editing index from URL param
-  const pageParam = searchParams.get('page');
 
   const [editingIndexFromUrl, setEditingIndexFromUrl] = useState<number | null>(null);
 
@@ -65,7 +63,6 @@ export default function ProductDetail() {
 
   // Update URL when editing index changes in admin mode
   const handleEditingIndexChange = (index: number | null) => {
-    // Use editVideos from videoManagement, fallback to product.training_videos if empty
     const currentVideos = videoManagement.editVideos.length > 0 
       ? videoManagement.editVideos 
       : product?.training_videos || [];
@@ -74,11 +71,9 @@ export default function ProductDetail() {
       if (index !== null && currentVideos[index]) {
         const video = currentVideos[index];
         const slug = getVideoSlug(video.title);
-        setSearchParams({ page: slug }, { replace: true });
+        navigate(`/product/${productSlugOrId}/${slug}`, { replace: true });
       } else {
-        // Remove page param when no page is selected
-        searchParams.delete('page');
-        setSearchParams(searchParams, { replace: true });
+        navigate(`/product/${productSlugOrId}`, { replace: true });
       }
     }
     setEditingIndexFromUrl(index);
@@ -86,27 +81,24 @@ export default function ProductDetail() {
 
   // Initialize editing index from URL on mount or auto-select first video
   useEffect(() => {
-    // Use editVideos from videoManagement, fallback to product.training_videos if empty
     const currentVideos = videoManagement.editVideos.length > 0 
       ? videoManagement.editVideos 
       : product?.training_videos || [];
       
     if (currentVideos.length > 0 && isAdminMode) {
-      if (pageParam) {
-        // Find video by slug in currentVideos
-        const index = currentVideos.findIndex(v => getVideoSlug(v.title) === pageParam);
+      if (pageId) {
+        const index = currentVideos.findIndex(v => getVideoSlug(v.title) === pageId);
         if (index !== -1) {
           setEditingIndexFromUrl(index);
         }
       } else if (editingIndexFromUrl === null) {
-        // Auto-select first video if no page param and nothing selected
         const firstVideo = currentVideos[0];
         const slug = getVideoSlug(firstVideo.title);
-        setSearchParams({ page: slug }, { replace: true });
+        navigate(`/product/${productSlugOrId}/${slug}`, { replace: true });
         setEditingIndexFromUrl(0);
       }
     }
-  }, [videoManagement.editVideos, product?.training_videos, pageParam, isAdminMode]);
+  }, [videoManagement.editVideos, product?.training_videos, pageId, isAdminMode, productSlugOrId, navigate]);
 
   if (loading) {
     return <SkeletonLoader type="product" />;
