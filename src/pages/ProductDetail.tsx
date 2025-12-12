@@ -42,20 +42,34 @@ export default function ProductDetail() {
 
   // Get initial editing index from URL param
   const pageParam = searchParams.get('page');
-  const getInitialEditingIndex = () => {
-    if (!pageParam || !product?.training_videos) return null;
-    const videos = product.training_videos;
-    const index = videos.findIndex(v => getVideoSlug(v.title) === pageParam);
-    return index !== -1 ? index : null;
-  };
 
   const [editingIndexFromUrl, setEditingIndexFromUrl] = useState<number | null>(null);
 
+  // Video management setup for admins - must be declared before using editVideos
+  const handleVideoSave = async (updatedVideos: TrainingVideo[]) => {
+    await handleUpdate('training_videos', updatedVideos);
+  };
+
+  const videoManagement = useVideoManagement({
+    initialVideos: product?.training_videos || [],
+    onSave: handleVideoSave
+  });
+
+  const existingCategories = Array.from(
+    new Set(
+      (product?.training_videos || [])
+        .map(v => v.category)
+        .filter(Boolean)
+    )
+  );
+
   // Update URL when editing index changes in admin mode
   const handleEditingIndexChange = (index: number | null) => {
-    if (isAdminMode && product?.training_videos) {
-      if (index !== null && product.training_videos[index]) {
-        const video = product.training_videos[index];
+    // Use editVideos from videoManagement (current editing state) instead of product.training_videos
+    const currentVideos = videoManagement.editVideos;
+    if (isAdminMode && currentVideos && currentVideos.length > 0) {
+      if (index !== null && currentVideos[index]) {
+        const video = currentVideos[index];
         const slug = getVideoSlug(video.title);
         setSearchParams({ page: slug }, { replace: true });
       } else {
@@ -69,39 +83,24 @@ export default function ProductDetail() {
 
   // Initialize editing index from URL on mount or auto-select first video
   useEffect(() => {
-    if (product?.training_videos && product.training_videos.length > 0 && isAdminMode) {
+    // Use editVideos from videoManagement as the source of truth for admin mode
+    const currentVideos = videoManagement.editVideos;
+    if (currentVideos && currentVideos.length > 0 && isAdminMode) {
       if (pageParam) {
-        const index = getInitialEditingIndex();
-        if (index !== null) {
+        // Find video by slug in editVideos
+        const index = currentVideos.findIndex(v => getVideoSlug(v.title) === pageParam);
+        if (index !== -1) {
           setEditingIndexFromUrl(index);
         }
       } else if (editingIndexFromUrl === null) {
         // Auto-select first video if no page param and nothing selected
-        const firstVideo = product.training_videos[0];
+        const firstVideo = currentVideos[0];
         const slug = getVideoSlug(firstVideo.title);
         setSearchParams({ page: slug }, { replace: true });
         setEditingIndexFromUrl(0);
       }
     }
-  }, [product?.training_videos, pageParam, isAdminMode]);
-
-  // Video management setup for admins
-  const handleVideoSave = async (updatedVideos: TrainingVideo[]) => {
-    await handleUpdate('training_videos', updatedVideos);
-  };
-
-  const existingCategories = Array.from(
-    new Set(
-      (product?.training_videos || [])
-        .map(v => v.category)
-        .filter(Boolean)
-    )
-  );
-
-  const videoManagement = useVideoManagement({
-    initialVideos: product?.training_videos || [],
-    onSave: handleVideoSave
-  });
+  }, [videoManagement.editVideos, pageParam, isAdminMode]);
 
   if (loading) {
     return <SkeletonLoader type="product" />;
