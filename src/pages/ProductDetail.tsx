@@ -65,9 +65,12 @@ export default function ProductDetail() {
 
   // Update URL when editing index changes in admin mode
   const handleEditingIndexChange = (index: number | null) => {
-    // Use editVideos from videoManagement (current editing state) instead of product.training_videos
-    const currentVideos = videoManagement.editVideos;
-    if (isAdminMode && currentVideos && currentVideos.length > 0) {
+    // Use editVideos from videoManagement, fallback to product.training_videos if empty
+    const currentVideos = videoManagement.editVideos.length > 0 
+      ? videoManagement.editVideos 
+      : product?.training_videos || [];
+      
+    if (isAdminMode && currentVideos.length > 0) {
       if (index !== null && currentVideos[index]) {
         const video = currentVideos[index];
         const slug = getVideoSlug(video.title);
@@ -83,11 +86,14 @@ export default function ProductDetail() {
 
   // Initialize editing index from URL on mount or auto-select first video
   useEffect(() => {
-    // Use editVideos from videoManagement as the source of truth for admin mode
-    const currentVideos = videoManagement.editVideos;
-    if (currentVideos && currentVideos.length > 0 && isAdminMode) {
+    // Use editVideos from videoManagement, fallback to product.training_videos if empty
+    const currentVideos = videoManagement.editVideos.length > 0 
+      ? videoManagement.editVideos 
+      : product?.training_videos || [];
+      
+    if (currentVideos.length > 0 && isAdminMode) {
       if (pageParam) {
-        // Find video by slug in editVideos
+        // Find video by slug in currentVideos
         const index = currentVideos.findIndex(v => getVideoSlug(v.title) === pageParam);
         if (index !== -1) {
           setEditingIndexFromUrl(index);
@@ -100,7 +106,7 @@ export default function ProductDetail() {
         setEditingIndexFromUrl(0);
       }
     }
-  }, [videoManagement.editVideos, pageParam, isAdminMode]);
+  }, [videoManagement.editVideos, product?.training_videos, pageParam, isAdminMode]);
 
   if (loading) {
     return <SkeletonLoader type="product" />;
