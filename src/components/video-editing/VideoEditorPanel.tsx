@@ -3,6 +3,7 @@ import { VideoEditForm } from './VideoEditForm';
 import { AddVideoForm } from './AddVideoForm';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Plus, Eye, Edit } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -105,10 +106,18 @@ export function VideoEditorPanel({
                 </ReactMarkdown>
                 {currentVideo?.transcript && (
                   <div className="mt-6 pt-6 border-t">
-                    <h3 className="text-lg font-semibold mb-2">Transcript</h3>
-                    <p className="text-sm text-muted-foreground whitespace-pre-wrap">
-                      {currentVideo.transcript}
-                    </p>
+                    <Accordion type="single" collapsible defaultValue="">
+                      <AccordionItem value="transcript" className="border-none">
+                        <AccordionTrigger className="text-lg font-semibold py-2 hover:no-underline">
+                          Transcript
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <p className="text-sm text-muted-foreground whitespace-pre-wrap">
+                            {currentVideo.transcript}
+                          </p>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
                   </div>
                 )}
               </div>
