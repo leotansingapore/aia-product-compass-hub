@@ -192,9 +192,9 @@ function SortableLinkItem({ link, index, isEditing, onEdit, onUpdate, onRemove, 
             <GripVertical className="h-5 w-5" />
           </div>
           <span className="text-2xl flex-shrink-0">{link.icon}</span>
-          <div className="min-w-0 flex-1 max-w-full overflow-hidden">
-            <div className="font-semibold truncate text-base">{link.name}</div>
-            <div className="text-xs text-muted-foreground truncate">
+          <div className="min-w-0 flex-1 max-w-full">
+            <div className="font-semibold text-base break-words">{link.name}</div>
+            <div className="text-xs text-muted-foreground break-all">
               {link.url}
             </div>
           </div>
@@ -383,7 +383,7 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
           <Button
             key={index}
             variant="outline"
-            className="justify-start min-w-0"
+            className="justify-start min-w-0 h-auto py-2 whitespace-normal text-left"
             asChild
             disabled={!isValidUrl(link.url)}
           >
@@ -394,7 +394,7 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
               className="flex items-center w-full"
             >
               <span className="mr-2 flex-shrink-0">{link.icon}</span>
-              <span className="truncate">{link.name}</span>
+              <span className="break-words whitespace-normal text-left">{link.name}</span>
               <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" />
             </a>
           </Button>
@@ -506,7 +506,7 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
             <Button
               key={index}
               variant="outline"
-              className="justify-start hover:bg-primary/90 hover:text-primary-foreground min-w-0 transition-all"
+              className="justify-start hover:bg-primary/90 hover:text-primary-foreground min-w-0 transition-all h-auto py-2 whitespace-normal text-left"
               asChild
               disabled={!isValidUrl(link.url)}
             >
@@ -517,7 +517,7 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
                 className="flex items-center w-full"
               >
                 <span className="mr-2 flex-shrink-0 text-lg">{link.icon}</span>
-                <span className="truncate font-medium">{link.name}</span>
+                <span className="break-words whitespace-normal text-left font-medium">{link.name}</span>
                 <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" />
               </a>
             </Button>
