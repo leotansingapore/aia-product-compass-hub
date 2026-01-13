@@ -74,6 +74,11 @@ export const isUUID = (str: string): boolean => {
   return uuidRegex.test(str);
 };
 
+// Check if a string is a module ID (old format: module-timestamp-randomstring)
+export const isModuleId = (str: string): boolean => {
+  return /^module-\d+-[a-z0-9]+$/i.test(str);
+};
+
 // Video slug utilities
 export const getVideoSlug = (videoTitle: string): string => {
   return createSlug(videoTitle);
@@ -82,4 +87,41 @@ export const getVideoSlug = (videoTitle: string): string => {
 // Check if a string looks like a video ID (old format: video-timestamp-randomstring)
 export const isVideoId = (str: string): boolean => {
   return /^video-\d+-[a-z0-9]+$/i.test(str);
+};
+
+// ===== SEO-Friendly URL Generation =====
+
+// Generate SEO-friendly product URL: /[category-slug]/[product-slug]
+export const getProductUrl = (categoryId: string, productTitle: string): string => {
+  const categorySlug = getCategorySlugFromId(categoryId);
+  const productSlug = getProductSlug(productTitle);
+  return `/${categorySlug}/${productSlug}`;
+};
+
+// Generate SEO-friendly product video URL: /[category-slug]/[product-slug]/[video-slug]
+export const getProductVideoUrl = (categoryId: string, productTitle: string, videoTitle: string): string => {
+  const categorySlug = getCategorySlugFromId(categoryId);
+  const productSlug = getProductSlug(productTitle);
+  const videoSlug = getVideoSlug(videoTitle);
+  return `/${categorySlug}/${productSlug}/${videoSlug}`;
+};
+
+// Parse SEO-friendly URL to extract category, product, and optional lesson slugs
+export interface ParsedProductUrl {
+  categorySlug: string;
+  productSlug: string;
+  lessonSlug?: string;
+}
+
+export const parseProductUrl = (categorySlug: string, productSlug: string, lessonSlug?: string): ParsedProductUrl => {
+  return {
+    categorySlug,
+    productSlug,
+    lessonSlug
+  };
+};
+
+// Check if a product identifier is a direct ID (UUID or module ID) vs a slug
+export const isDirectProductId = (identifier: string): boolean => {
+  return isUUID(identifier) || isModuleId(identifier);
 };

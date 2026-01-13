@@ -1,16 +1,24 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useProductBySlugOrId, getCategoryIdFromName } from "@/hooks/useProducts";
-import { getCategorySlugFromId } from "@/utils/slugUtils";
+import { getCategorySlugFromId, getProductUrl } from "@/utils/slugUtils";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { useGamification } from "@/hooks/useGamification";
 
 export function useProductDetail() {
-  const { productSlugOrId } = useParams<{ productSlugOrId: string }>();
-  const productId = productSlugOrId; // For now, treat as product ID until we implement full product slug support
+  const { productSlugOrId, categorySlug } = useParams<{ 
+    productSlugOrId?: string; 
+    productSlug?: string;
+    categorySlug?: string;
+  }>();
+  
+  // Support both old (/product/:productSlugOrId) and new (/:categorySlug/:productSlug) URL formats
+  const { productSlug } = useParams<{ productSlug?: string }>();
+  const productIdentifier = productSlugOrId || productSlug;
+  
   const navigate = useNavigate();
-  const { product, loading, silentRefetch } = useProductBySlugOrId(productId || '');
+  const { product, loading, silentRefetch } = useProductBySlugOrId(productIdentifier || '');
   const { updateProduct } = useProductUpdate();
   const { addToRecent } = useRecentlyViewed();
   const { recordPageVisit } = useGamification();
@@ -58,8 +66,9 @@ export function useProductDetail() {
     if (!product) return [];
     
     const categoryName = (product as any).categories?.name || '';
+    const catSlug = getCategorySlugFromId(product.category_id);
     
-    return productId === 'sales-tools-objections' 
+    return productIdentifier === 'sales-tools-objections' 
       ? [
           { label: 'Home', href: '/' },
           { label: 'Resources', href: '/' },
@@ -67,7 +76,7 @@ export function useProductDetail() {
         ]
       : [
           { label: 'Home', href: '/' },
-          { label: categoryName, href: `/category/${product.category_id}` },
+          { label: categoryName, href: `/category/${catSlug}` },
           { label: product.title }
         ];
   };
@@ -75,7 +84,7 @@ export function useProductDetail() {
   return {
     product,
     loading,
-    productId,
+    productId: productIdentifier,
     assistantOpen,
     setAssistantOpen,
     handleUpdate,

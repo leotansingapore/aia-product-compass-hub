@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useSearch } from "@/hooks/useSearch";
+import { getProductUrl } from "@/utils/slugUtils";
 
 interface EnhancedSearchBarProps {
   onSearch?: (query: string) => void;
@@ -86,8 +87,13 @@ export function EnhancedSearchBar({
     setShowDropdown(value.length > 0 || recentSearches.length > 0);
   };
 
-  const handleResultClick = (productId: string) => {
-    navigate(`/product/${productId}`);
+  const handleResultClick = (result: any) => {
+    // Use SEO-friendly URL if we have category_id
+    if (result.category_id && result.title) {
+      navigate(getProductUrl(result.category_id, result.title));
+    } else {
+      navigate(`/product/${result.id}`);
+    }
     setShowDropdown(false);
     setQuery('');
   };
@@ -230,7 +236,7 @@ export function EnhancedSearchBar({
                     return (
                       <button
                         key={result.id}
-                        onClick={() => handleResultClick(result.id)}
+                        onClick={() => handleResultClick(result)}
                         className={`w-full text-left p-3 rounded-lg transition-colors ${
                           selectedIndex === adjustedIndex ? 'bg-muted' : 'hover:bg-muted'
                         }`}

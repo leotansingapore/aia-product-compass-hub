@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Clock } from "lucide-react";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
+import { getProductUrl, getCategorySlugFromId } from "@/utils/slugUtils";
 
 export function RecentlyViewedSection() {
   const navigate = useNavigate();
@@ -12,6 +13,15 @@ export function RecentlyViewedSection() {
   if (recentProducts.length === 0) {
     return null;
   }
+
+  const handleProductClick = (product: any) => {
+    // Use SEO-friendly URL if we have category_id
+    if (product.category_id && product.title) {
+      navigate(getProductUrl(product.category_id, product.title));
+    } else {
+      navigate(`/product/${product.id}`);
+    }
+  };
 
   return (
     <div className="mb-12">
@@ -27,7 +37,7 @@ export function RecentlyViewedSection() {
           <Card 
             key={product.id} 
             className="hover:shadow-card transition-all cursor-pointer group"
-            onClick={() => navigate(`/product/${product.id}`)}
+            onClick={() => handleProductClick(product)}
           >
             <CardContent className="p-4">
               <h4 className="font-medium truncate group-hover:text-primary transition-colors">

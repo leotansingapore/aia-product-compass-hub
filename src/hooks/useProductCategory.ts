@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useProducts, useCategories } from '@/hooks/useProducts';
 import { useRecentlyViewed } from '@/hooks/useRecentlyViewed';
-import { getCategoryIdFromSlug, getCategorySlugFromId, isUUID } from '@/utils/slugUtils';
+import { getCategoryIdFromSlug, getCategorySlugFromId, isUUID, getProductUrl } from '@/utils/slugUtils';
 
 export function useProductCategory() {
   const { categorySlugOrId } = useParams<{ categorySlugOrId: string }>();
@@ -55,8 +55,16 @@ export function useProductCategory() {
     setSearchQuery(query);
   };
 
-  const handleProductClick = (productId: string) => {
-    navigate(`/product/${productId}`);
+  const handleProductClick = (productId: string, productTitle?: string, categoryIdOverride?: string) => {
+    // Use SEO-friendly URL if we have the necessary info
+    const catId = categoryIdOverride || categoryId;
+    if (productTitle && catId) {
+      const url = getProductUrl(catId, productTitle);
+      navigate(url);
+    } else {
+      // Fallback to legacy URL (will redirect)
+      navigate(`/product/${productId}`);
+    }
   };
 
   const clearFilters = () => {

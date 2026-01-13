@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Loader2, Plus } from 'lucide-react';
+import { createSlug } from '@/utils/slugUtils';
 
 interface CreateModuleFormProps {
   categoryId: string;
@@ -30,10 +31,26 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
     setSaving(true);
 
     try {
+      // Generate slug-based ID from title
+      let baseSlug = createSlug(moduleData.title);
+      let productId = baseSlug;
+      
+      // Check if ID already exists and add suffix if needed
+      const { data: existing } = await supabase
+        .from('products')
+        .select('id')
+        .eq('id', productId)
+        .maybeSingle();
+      
+      if (existing) {
+        // Add timestamp suffix to make unique
+        productId = `${baseSlug}-${Date.now().toString(36)}`;
+      }
+
       const { error } = await supabase
         .from('products')
         .insert({
-          id: `module-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          id: productId,
           title: moduleData.title,
           description: moduleData.description,
           category_id: categoryId,
@@ -71,7 +88,6 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
       setSaving(false);
     }
   };
-
   if (!isOpen) {
     return (
       <Button 
