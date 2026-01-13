@@ -21,6 +21,8 @@ import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
 import Index from "./pages/Index";
 import ProductCategory from "./pages/ProductCategory";
 import ProductDetail from "./pages/ProductDetail";
+import ProductRedirect from "./pages/ProductRedirect";
+import SEOProductPage from "./pages/SEOProductPage";
 import HowToUsePortal from "./pages/HowToUsePortal";
 import SearchByProfile from "./pages/SearchByProfile";
 import ForcePasswordChange from "./pages/ForcePasswordChange";
@@ -83,16 +85,23 @@ const App = () => (
                       </ProtectedAdminPage>
                     } />
                     <Route path="/my-account" element={<MyAccount />} />
-<Route path="/category/:categorySlugOrId" element={<ProductCategory />} />
-<Route path="/product/:productSlugOrId" element={<ProductDetail />} />
-<Route path="/product/:productSlugOrId/:pageId" element={<ProductDetail />} />
-<Route path="/product/:productSlugOrId/manage-videos" element={<ManageProductVideos />} />
-<Route path="/product/:productId/ai-assistant" element={
-  <Suspense fallback={<SkeletonLoader type="product" />}>
-    <AIAssistant />
-  </Suspense>
-} />
-<Route path="/product/:productSlugOrId/video/:videoId" element={<VideoDetail />} />
+                    <Route path="/category/:categorySlugOrId" element={<ProductCategory />} />
+
+                    {/* Legacy product routes - redirect to SEO-friendly URLs */}
+                    <Route path="/product/:productSlugOrId" element={<ProductRedirect />} />
+                    <Route path="/product/:productSlugOrId/:pageId" element={<ProductDetail />} />
+                    <Route path="/product/:productSlugOrId/manage-videos" element={<ManageProductVideos />} />
+                    <Route path="/product/:productId/ai-assistant" element={
+                      <Suspense fallback={<SkeletonLoader type="product" />}>
+                        <AIAssistant />
+                      </Suspense>
+                    } />
+                    <Route path="/product/:productSlugOrId/video/:videoId" element={<VideoDetail />} />
+
+                    {/* SEO-friendly product routes: /[category]/[product] and /[category]/[product]/[lesson] */}
+                    <Route path="/:categorySlug/:productSlug" element={<SEOProductPage />} />
+                    <Route path="/:categorySlug/:productSlug/:lessonSlug" element={<SEOProductPage />} />
+
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
 

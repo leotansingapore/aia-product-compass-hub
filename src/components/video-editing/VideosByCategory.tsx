@@ -69,6 +69,7 @@ export const VideosByCategory = memo(function VideosByCategory({
       if (moduleType === 'cmfas' && moduleId) {
         navigate(`/cmfas/module/${moduleId}/video/${videoSlug}`);
       } else if (productSlugOrId) {
+        // Use existing product URL pattern (redirect will handle SEO URL)
         navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
       }
     } else {
