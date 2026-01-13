@@ -158,6 +158,7 @@ export default function ProductCategory() {
         <ProductsGrid
           products={filteredProducts}
           categoryName={category.name}
+          categoryId={categoryId}
           onProductClick={handleProductClick}
           onClearFilters={clearFilters}
         />
