@@ -272,35 +272,45 @@ export function useProductBySlugOrId(slugOrId: string) {
     if (!silent) setLoading(true);
 
     try {
-      // Check if it's a UUID or module ID
-      const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(slugOrId);
-      const isModuleId = /^module-\d+-[a-z0-9]+$/i.test(slugOrId);
-      const isDirectId = isUUID || isModuleId;
+      const selectQuery = `
+        *,
+        categories:category_id (
+          id,
+          name
+        )
+      `;
 
-      let query = supabase
+      // First, try exact ID match (handles UUIDs, module IDs, AND SEO-friendly slugs)
+      const { data: exactMatch, error: exactError } = await supabase
         .from('products')
-        .select(`
-          *,
-          categories:category_id (
-            id,
-            name
-          )
-        `);
+        .select(selectQuery)
+        .eq('id', slugOrId)
+        .maybeSingle();
 
-      if (isDirectId) {
-        // Query by ID if it's a UUID or module ID
-        query = query.eq('id', slugOrId);
-      } else {
-        // Convert slug to title and query by title
-        const titleFromSlug = slugOrId
-          .split('-')
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ');
-
-        query = query.ilike('title', `%${titleFromSlug}%`);
+      if (!exactError && exactMatch) {
+        // Found by exact ID match
+        const transformedData = {
+          ...exactMatch,
+          useful_links: exactMatch.useful_links,
+          training_videos: Array.isArray(exactMatch.training_videos)
+            ? (exactMatch.training_videos as unknown as TrainingVideo[])
+            : []
+        };
+        setProduct(transformedData);
+        return;
       }
 
-      const { data, error } = await query.maybeSingle();
+      // Fall back to slug-to-title conversion for legacy URLs
+      const titleFromSlug = slugOrId
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+      const { data, error } = await supabase
+        .from('products')
+        .select(selectQuery)
+        .ilike('title', `%${titleFromSlug}%`)
+        .maybeSingle();
 
       if (error) throw error;
 
