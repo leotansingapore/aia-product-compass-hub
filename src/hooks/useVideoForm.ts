@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { fetchVideoDuration } from '@/components/video-editing/videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
@@ -13,6 +13,14 @@ export function useVideoForm({ initialVideo, onUpdate }: UseVideoFormProps) {
   const [newCategoryName, setNewCategoryName] = useState('');
   const [showNewCategoryInput, setShowNewCategoryInput] = useState(false);
 
+  // Use ref to always have latest state for async operations (prevents stale closure)
+  const editVideoRef = useRef<TrainingVideo>(editVideo);
+
+  // Keep ref in sync with state
+  useEffect(() => {
+    editVideoRef.current = editVideo;
+  }, [editVideo]);
+
   // Sync editVideo state when initialVideo prop changes (when switching between videos)
   useEffect(() => {
     setEditVideo(initialVideo);
@@ -26,7 +34,7 @@ export function useVideoForm({ initialVideo, onUpdate }: UseVideoFormProps) {
         try {
           const duration = await fetchVideoDuration(editVideo.url);
           if (duration) {
-            const updated = { ...editVideo, duration };
+            const updated = { ...editVideoRef.current, duration };
             setEditVideo(updated);
             onUpdate(updated);
           }
@@ -42,8 +50,10 @@ export function useVideoForm({ initialVideo, onUpdate }: UseVideoFormProps) {
     return () => clearTimeout(timeoutId);
   }, [editVideo.url, initialVideo.url, onUpdate]);
 
+  // Use ref to get latest state, preventing stale closure issues
   const handleChange = (field: keyof TrainingVideo, value: any) => {
-    const updated = { ...editVideo, [field]: value };
+    const current = editVideoRef.current;
+    const updated = { ...current, [field]: value };
     setEditVideo(updated);
     onUpdate(updated);
   };
