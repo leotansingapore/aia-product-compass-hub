@@ -7,15 +7,19 @@ import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { useGamification } from "@/hooks/useGamification";
 
 export function useProductDetail() {
-  const { productSlugOrId, categorySlug } = useParams<{ 
+  const params = useParams<{ 
     productSlugOrId?: string; 
     productSlug?: string;
     categorySlug?: string;
+    pageId?: string;
+    lessonSlug?: string;
   }>();
   
   // Support both old (/product/:productSlugOrId) and new (/:categorySlug/:productSlug) URL formats
-  const { productSlug } = useParams<{ productSlug?: string }>();
-  const productIdentifier = productSlugOrId || productSlug;
+  const productIdentifier = params.productSlugOrId || params.productSlug || '';
+  const pageIdentifier = params.pageId || params.lessonSlug;
+  const categorySlug = params.categorySlug;
+  const isNewUrlFormat = !!params.categorySlug && !!params.productSlug;
   
   const navigate = useNavigate();
   const { product, loading, silentRefetch } = useProductBySlugOrId(productIdentifier || '');
@@ -85,6 +89,9 @@ export function useProductDetail() {
     product,
     loading,
     productId: productIdentifier,
+    pageId: pageIdentifier,
+    isNewUrlFormat,
+    categorySlug,
     assistantOpen,
     setAssistantOpen,
     handleUpdate,
