@@ -29,15 +29,13 @@ export default function ProductDetail() {
     product,
     loading,
     productId,
-    pageId,
-    isNewUrlFormat,
-    categorySlug,
     handleUpdate,
     handleBack,
     breadcrumbs,
     categoryName
   } = useProductDetail();
 
+  const { productSlugOrId, pageId } = useParams();
   const navigate = useNavigate();
   const { isAdmin } = usePermissions();
   const isAdminMode = isAdmin();
@@ -73,18 +71,9 @@ export default function ProductDetail() {
       if (index !== null && currentVideos[index]) {
         const video = currentVideos[index];
         const slug = getVideoSlug(video.title);
-        // Use appropriate URL format based on how we arrived at this page
-        if (isNewUrlFormat && categorySlug) {
-          navigate(`/${categorySlug}/${productId}/${slug}`, { replace: true });
-        } else {
-          navigate(`/product/${productId}/${slug}`, { replace: true });
-        }
+        navigate(`/product/${productSlugOrId}/${slug}`, { replace: true });
       } else {
-        if (isNewUrlFormat && categorySlug) {
-          navigate(`/${categorySlug}/${productId}`, { replace: true });
-        } else {
-          navigate(`/product/${productId}`, { replace: true });
-        }
+        navigate(`/product/${productSlugOrId}`, { replace: true });
       }
     }
     setEditingIndexFromUrl(index);
@@ -105,16 +94,11 @@ export default function ProductDetail() {
       } else if (editingIndexFromUrl === null) {
         const firstVideo = currentVideos[0];
         const slug = getVideoSlug(firstVideo.title);
-        // Use appropriate URL format
-        if (isNewUrlFormat && categorySlug) {
-          navigate(`/${categorySlug}/${productId}/${slug}`, { replace: true });
-        } else {
-          navigate(`/product/${productId}/${slug}`, { replace: true });
-        }
+        navigate(`/product/${productSlugOrId}/${slug}`, { replace: true });
         setEditingIndexFromUrl(0);
       }
     }
-  }, [videoManagement.editVideos, product?.training_videos, pageId, isAdminMode, productId, categorySlug, isNewUrlFormat, navigate]);
+  }, [videoManagement.editVideos, product?.training_videos, pageId, isAdminMode, productSlugOrId, navigate]);
 
   if (loading) {
     return <SkeletonLoader type="product" />;

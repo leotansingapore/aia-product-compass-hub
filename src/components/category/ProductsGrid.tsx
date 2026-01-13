@@ -7,21 +7,18 @@ interface Product {
   description?: string;
   tags?: string[];
   highlights?: string[];
-  category_id?: string;
 }
 
 interface ProductsGridProps {
   products: Product[];
   categoryName: string;
-  categoryId?: string;
-  onProductClick: (productId: string, productTitle: string, categoryId?: string) => void;
+  onProductClick: (productId: string) => void;
   onClearFilters?: () => void;
 }
 
 export function ProductsGrid({ 
   products, 
-  categoryName,
-  categoryId,
+  categoryName, 
   onProductClick, 
   onClearFilters 
 }: ProductsGridProps) {
@@ -52,7 +49,7 @@ export function ProductsGrid({
             category={categoryName}
             tags={product.tags || []}
             highlights={product.highlights || []}
-            onClick={() => onProductClick(product.id, product.title, product.category_id || categoryId)}
+            onClick={() => onProductClick(product.id)}
           />
         </div>
       ))}

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ContinueLearningCard } from "@/components/ContinueLearningCard";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
-import { getProductUrl } from "@/utils/slugUtils";
 import type { Product } from "@/hooks/useProducts";
 
 interface ContinueLearningSectionProps {
@@ -16,10 +15,6 @@ export function ContinueLearningSection({ productsWithVideos, loading }: Continu
     return null;
   }
 
-  const handleNavigate = (product: Product) => {
-    navigate(getProductUrl(product.category_id, product.title));
-  };
-
   return (
     <div className="mb-12">
       <h3 className="text-xl font-semibold mb-6">Continue Learning</h3>
@@ -31,7 +26,7 @@ export function ContinueLearningSection({ productsWithVideos, loading }: Continu
             <ContinueLearningCard 
               key={product.id} 
               product={product} 
-              onNavigate={() => handleNavigate(product)}
+              onNavigate={() => navigate(`/product/${product.id}`)}
             />
           ))}
         </div>

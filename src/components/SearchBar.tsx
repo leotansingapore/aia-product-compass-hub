@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useSearch } from "@/hooks/useSearch";
-import { getProductUrl } from "@/utils/slugUtils";
 
 interface SearchBarProps {
   onSearch?: (query: string) => void;
@@ -31,13 +30,8 @@ export function SearchBar({ onSearch, placeholder = "Search products, benefits, 
     setShowDropdown(value.length > 0 && showResults);
   };
 
-  const handleResultClick = (result: any) => {
-    // Use SEO-friendly URL if we have category_id
-    if (result.category_id && result.title) {
-      navigate(getProductUrl(result.category_id, result.title));
-    } else {
-      navigate(`/product/${result.id}`);
-    }
+  const handleResultClick = (productId: string) => {
+    navigate(`/product/${productId}`);
     setShowDropdown(false);
     setQuery('');
   };
@@ -69,7 +63,7 @@ export function SearchBar({ onSearch, placeholder = "Search products, benefits, 
             {results.slice(0, 5).map((result) => (
               <button
                 key={result.id}
-                onClick={() => handleResultClick(result)}
+                onClick={() => handleResultClick(result.id)}
                 className="w-full text-left p-3 hover:bg-muted rounded-lg transition-colors"
               >
                 <div className="flex items-center justify-between">

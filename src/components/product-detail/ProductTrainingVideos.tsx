@@ -25,12 +25,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
   const { isAdmin: isAdminMode } = useAdmin();
   const { getCourseProgress, getVideoProgress } = useVideoProgress(productId);
   const navigate = useNavigate();
-  
-  // Support both old (/product/:productSlugOrId) and new (/:categorySlug/:productSlug) URL formats
-  const params = useParams<{ productSlugOrId?: string; productSlug?: string; categorySlug?: string }>();
-  const productSlugOrId = params.productSlugOrId || params.productSlug;
-  const categorySlug = params.categorySlug;
-  const isNewUrlFormat = !!params.categorySlug && !!params.productSlug;
+  const { productSlugOrId } = useParams();
 
   // Debug logging
   console.log('🎥 ProductTrainingVideos render:', {
@@ -69,12 +64,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
   }
 
   const handleManageVideos = () => {
-    // Use appropriate URL format based on how we arrived at this page
-    if (isNewUrlFormat && categorySlug) {
-      navigate(`/${categorySlug}/${productSlugOrId}/manage-videos`);
-    } else {
-      navigate(`/product/${productSlugOrId}/manage-videos`);
-    }
+    navigate(`/product/${productSlugOrId}/manage-videos`);
   };
 
   return (
@@ -134,12 +124,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
                   if (processedVideos.length > 0 && productSlugOrId) {
                     const firstVideo = processedVideos[0];
                     const videoSlug = getVideoSlug(firstVideo.title);
-                    // Use appropriate URL format
-                    if (isNewUrlFormat && categorySlug) {
-                      navigate(`/${categorySlug}/${productSlugOrId}/${videoSlug}`);
-                    } else {
-                      navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
-                    }
+                    navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
                   } else {
                     setShowLearningInterface(true);
                   }

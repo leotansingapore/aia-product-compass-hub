@@ -5,7 +5,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Filter, SlidersHorizontal, X } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
-import { getProductUrl } from "@/utils/slugUtils";
 
 interface SearchResultsProps {
   query: string;
@@ -45,16 +44,6 @@ export function SearchResults({
   onClearSearch
 }: SearchResultsProps) {
   const navigate = useNavigate();
-
-  const handleProductClick = (result: any) => {
-    // Use SEO-friendly URL if we have category_id
-    if (result.category_id && result.title) {
-      navigate(getProductUrl(result.category_id, result.title));
-    } else {
-      // Fallback to legacy URL
-      navigate(`/product/${result.id}`);
-    }
-  };
 
   return (
     <div className="flex-1">
@@ -173,7 +162,7 @@ export function SearchResults({
               category={result.categoryName}
               tags={result.tags || []}
               highlights={result.highlights || []}
-              onClick={() => handleProductClick(result)}
+              onClick={() => navigate(`/product/${result.id}`)}
             />
           ))}
         </div>

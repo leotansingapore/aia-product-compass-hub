@@ -31,12 +31,7 @@ export const VideosByCategory = memo(function VideosByCategory({
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
   const isMobile = useIsMobile();
   const navigate = useNavigate();
-  
-  // Support both old (/product/:productSlugOrId) and new (/:categorySlug/:productSlug) URL formats
-  const params = useParams<{ productSlugOrId?: string; productSlug?: string; categorySlug?: string }>();
-  const productSlugOrId = params.productSlugOrId || params.productSlug;
-  const categorySlug = params.categorySlug;
-  const isNewUrlFormat = !!params.categorySlug && !!params.productSlug;
+  const { productSlugOrId } = useParams();
 
   // Group videos by category - memoized to prevent recalculation
   const videosByCategory = useMemo(() => videos.reduce((acc, video, index) => {
@@ -74,17 +69,12 @@ export const VideosByCategory = memo(function VideosByCategory({
       if (moduleType === 'cmfas' && moduleId) {
         navigate(`/cmfas/module/${moduleId}/video/${videoSlug}`);
       } else if (productSlugOrId) {
-        // Use appropriate URL format based on how we arrived at this page
-        if (isNewUrlFormat && categorySlug) {
-          navigate(`/${categorySlug}/${productSlugOrId}/${videoSlug}`);
-        } else {
-          navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
-        }
+        navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
       }
     } else {
       onVideoSelect?.(index);
     }
-  }, [useIndividualPages, moduleType, moduleId, productSlugOrId, categorySlug, isNewUrlFormat, navigate, onVideoSelect]);
+  }, [useIndividualPages, moduleType, moduleId, productSlugOrId, navigate, onVideoSelect]);
 
   return (
     <div className="space-y-4">
