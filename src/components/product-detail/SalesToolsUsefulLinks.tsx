@@ -15,16 +15,19 @@ export function SalesToolsUsefulLinks({ links, onUpdate }: SalesToolsUsefulLinks
   const { canEditSection } = usePermissions();
   const canEdit = canEditSection('product_links');
 
+  // Ensure links is always an array
+  const safeLinks = Array.isArray(links) ? links : [];
+
   // Categorize links based on their names/descriptions
-  const categorizeLinks = (links: UsefulLink[]) => {
+  const categorizeLinks = (linksArray: UsefulLink[]) => {
     const categories = {
       'Generic Objections': [] as UsefulLink[],
       'Tactical Objections': [] as UsefulLink[],
       'Other Resources': [] as UsefulLink[]
     };
 
-    links.forEach(link => {
-      const name = link.name.toLowerCase();
+    linksArray.forEach(link => {
+      const name = (link.name || '').toLowerCase();
       if (name.includes('trust') || name.includes('cost') || name.includes('delay') || 
           name.includes('entrepreneurial') || name.includes('emotional') || 
           name.includes('loyalty') || name.includes('analytical') || name.includes('objection')) {
@@ -42,7 +45,7 @@ export function SalesToolsUsefulLinks({ links, onUpdate }: SalesToolsUsefulLinks
     return categories;
   };
 
-  const categorizedLinks = categorizeLinks(links);
+  const categorizedLinks = categorizeLinks(safeLinks);
 
   const renderCategorySection = (categoryName: string, categoryLinks: UsefulLink[], icon: string) => {
     if (categoryLinks.length === 0) return null;
@@ -120,7 +123,7 @@ export function SalesToolsUsefulLinks({ links, onUpdate }: SalesToolsUsefulLinks
           )}
           
           {/* If user can edit and no links exist */}
-          {canEdit && links.length === 0 && (
+          {canEdit && safeLinks.length === 0 && (
             <div className="bg-muted/30 rounded-xl p-8 border border-muted/50 text-center">
               <p className="text-muted-foreground mb-4">No objection handling resources added yet</p>
               <EditableLinks
