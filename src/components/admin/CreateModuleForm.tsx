@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { createSlug } from '@/utils/slugUtils';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -30,10 +31,27 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
     setSaving(true);
 
     try {
+      // Generate SEO-friendly slug from title
+      const baseSlug = createSlug(moduleData.title);
+      
+      // Check if slug already exists
+      const { data: existingProduct } = await supabase
+        .from('products')
+        .select('id')
+        .eq('id', baseSlug)
+        .maybeSingle();
+      
+      // If slug exists, append timestamp to make it unique
+      let finalSlug = baseSlug;
+      if (existingProduct) {
+        const timestamp = Date.now().toString(36);
+        finalSlug = `${baseSlug}-${timestamp}`;
+      }
+
       const { error } = await supabase
         .from('products')
         .insert({
-          id: `module-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          id: finalSlug,
           title: moduleData.title,
           description: moduleData.description,
           category_id: categoryId,
