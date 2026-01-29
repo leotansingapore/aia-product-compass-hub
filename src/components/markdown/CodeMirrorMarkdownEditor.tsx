@@ -27,7 +27,7 @@ interface CodeMirrorMarkdownEditorProps {
   placeholder?: string;
 }
 
-// Video embed widget for inline video rendering
+// Video embed widget for inline video rendering with fullscreen support
 class VideoEmbedWidget extends WidgetType {
   constructor(readonly embedUrl: string, readonly platform: string) {
     super();
@@ -35,8 +35,8 @@ class VideoEmbedWidget extends WidgetType {
 
   toDOM() {
     const wrapper = document.createElement('div');
-    wrapper.className = 'cm-video-embed my-4';
-    wrapper.style.cssText = 'position: relative; width: 100%; padding-bottom: 56.25%;';
+    wrapper.className = 'cm-video-embed my-4 group';
+    wrapper.style.cssText = 'position: relative; width: 100%; padding-bottom: 56.25%; background: black;';
     
     const iframe = document.createElement('iframe');
     iframe.src = this.embedUrl;
@@ -47,7 +47,86 @@ class VideoEmbedWidget extends WidgetType {
     iframe.setAttribute('allowfullscreen', 'true');
     iframe.setAttribute('title', `${this.platform} video`);
     
+    // Create fullscreen button
+    const fullscreenBtn = document.createElement('button');
+    fullscreenBtn.className = 'cm-video-fullscreen-btn';
+    fullscreenBtn.style.cssText = `
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: 10;
+    `;
+    fullscreenBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>`;
+    fullscreenBtn.setAttribute('aria-label', 'Enter fullscreen');
+    fullscreenBtn.setAttribute('title', 'Fullscreen');
+
+    // Show/hide on hover
+    wrapper.addEventListener('mouseenter', () => {
+      fullscreenBtn.style.opacity = '1';
+    });
+    wrapper.addEventListener('mouseleave', () => {
+      if (!document.fullscreenElement) {
+        fullscreenBtn.style.opacity = '0';
+      }
+    });
+
+    // Fullscreen toggle logic
+    let isFullscreen = false;
+    
+    const updateButtonIcon = () => {
+      if (isFullscreen) {
+        fullscreenBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6"/><path d="M20 10h-6V4"/><path d="M14 10l7-7"/><path d="M3 21l7-7"/></svg>`;
+        fullscreenBtn.setAttribute('aria-label', 'Exit fullscreen');
+      } else {
+        fullscreenBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>`;
+        fullscreenBtn.setAttribute('aria-label', 'Enter fullscreen');
+      }
+    };
+
+    fullscreenBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (isFullscreen) {
+        document.exitFullscreen().catch(console.error);
+      } else {
+        wrapper.requestFullscreen().catch(console.error);
+      }
+    });
+
+    // Listen for fullscreen changes
+    const handleFullscreenChange = () => {
+      isFullscreen = document.fullscreenElement === wrapper;
+      updateButtonIcon();
+      
+      if (isFullscreen) {
+        wrapper.style.paddingBottom = '0';
+        wrapper.style.height = '100vh';
+        iframe.style.borderRadius = '0';
+        fullscreenBtn.style.opacity = '1';
+      } else {
+        wrapper.style.paddingBottom = '56.25%';
+        wrapper.style.height = 'auto';
+        iframe.style.borderRadius = '0.5rem';
+        fullscreenBtn.style.opacity = '0';
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    
     wrapper.appendChild(iframe);
+    wrapper.appendChild(fullscreenBtn);
     return wrapper;
   }
 }
