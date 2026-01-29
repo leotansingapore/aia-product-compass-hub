@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { getVideoEmbedInfo } from '@/components/video-editing/videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
@@ -28,6 +28,9 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
   const [saving, setSaving] = useState(false);
   const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
   const { toast } = useToast();
+  
+  // Store initial state for comparison to detect changes
+  const initialVideosRef = useRef<string>(JSON.stringify(initialVideos || []));
 
   // Sync editVideos ONLY on initial mount to prevent overwriting local changes
   useEffect(() => {
@@ -37,8 +40,15 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
         categories: Array.from(new Set(initialVideos.map(v => v.category).filter(Boolean)))
       });
       setEditVideos(initialVideos);
+      initialVideosRef.current = JSON.stringify(initialVideos);
     }
   }, [initialVideos]);
+
+  // Track whether there are unsaved content changes
+  const hasContentChanges = useMemo(() => {
+    const currentState = JSON.stringify(editVideos);
+    return currentState !== initialVideosRef.current;
+  }, [editVideos]);
 
   const resetNewVideo = () => {
     setNewVideo({ 
@@ -68,6 +78,9 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
       const result = await onSave(editVideos);
       console.log('🎥 onSave returned:', result);
       
+      // Update the initial ref to reflect the saved state
+      initialVideosRef.current = JSON.stringify(editVideos);
+      
       setIsEditing(false);
       setEditingIndex(null);
       console.log('✅ VideoManagement save successful');
@@ -95,7 +108,9 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
   };
 
   const handleCancel = () => {
-    setEditVideos(initialVideos || []);
+    // Reset to initial state
+    const initialState = JSON.parse(initialVideosRef.current);
+    setEditVideos(initialState);
     resetNewVideo();
     setEditingIndex(null);
     setIsEditing(false);
@@ -197,6 +212,7 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
     editingIndex,
     saving,
     emptyFolders,
+    hasContentChanges,
 
     // Actions
     setIsEditing,
