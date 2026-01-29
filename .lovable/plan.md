@@ -1,279 +1,243 @@
 
 
-## Cross-App Authentication: Financial App Eligibility Verification
+## Fix: Cross-App Authentication Flow (Proper User Existence Check)
 
-### Overview
-Implement a feature that allows users approved in the Financial app to automatically gain access to the Academy without signing up again. When a user tries to log in but doesn't have an Academy account, we check if they're eligible via the Financial app's API and auto-provision them.
+### Problem Identified
 
----
+The current implementation has a critical bug:
 
-### Step 1: Store the Financial App API Key
+- **Current behavior**: When login fails with "Invalid login credentials", the system immediately checks Financial app eligibility and sends a magic link - even if the user EXISTS in Academy but just entered the wrong password.
+- **Root cause**: Supabase returns the same "Invalid login credentials" error for both:
+  1. User exists but wrong password
+  2. User doesn't exist at all
 
-**Action Required:** Add a new Supabase secret
+This creates a "false success" where Academy users with wrong passwords get a magic link instead of an error message.
 
-You'll need to add the `FINANCIAL_APP_API_KEY` secret to your Supabase project. This is the ACADEMY_API_KEY value shared with you from the Financial app.
+### Solution Overview
 
----
-
-### Step 2: Create Edge Function - `check-financial-eligibility`
-
-**New File:** `supabase/functions/check-financial-eligibility/index.ts`
-
-This edge function will:
-1. Receive an email from the Academy login flow
-2. Call the Financial app's `verify-academy-eligibility` endpoint
-3. Return the eligibility result to the frontend
-
-```typescript
-import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
-
-const FINANCIAL_APP_ENDPOINT = "https://dmvbzkushldwfxuipjxe.supabase.co/functions/v1/verify-academy-eligibility";
-
-Deno.serve(async (req) => {
-  if (req.method === "OPTIONS") {
-    return new Response("ok", { headers: corsHeaders });
-  }
-
-  try {
-    const { email } = await req.json();
-
-    if (!email) {
-      return new Response(
-        JSON.stringify({ error: "Email is required" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    const financialApiKey = Deno.env.get("FINANCIAL_APP_API_KEY");
-    
-    if (!financialApiKey) {
-      console.error("FINANCIAL_APP_API_KEY not configured");
-      return new Response(
-        JSON.stringify({ eligible: false, reason: "Service not configured" }),
-        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    console.log("Checking Financial app eligibility for:", email);
-
-    const response = await fetch(FINANCIAL_APP_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-API-Key": financialApiKey,
-      },
-      body: JSON.stringify({ email: email.trim().toLowerCase() }),
-    });
-
-    const result = await response.json();
-    console.log("Financial app response:", { status: response.status, result });
-
-    return new Response(
-      JSON.stringify(result),
-      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
-  } catch (error) {
-    console.error("Error checking eligibility:", error);
-    return new Response(
-      JSON.stringify({ eligible: false, reason: "Failed to check eligibility" }),
-      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
-  }
-});
-```
+We need to distinguish between "user exists with wrong password" and "user doesn't exist" by creating an edge function that checks user existence FIRST, then routing appropriately.
 
 ---
 
-### Step 3: Update Supabase Config
-
-**File:** `supabase/config.toml`
-
-Add configuration for the new edge function:
-
-```toml
-[functions.check-financial-eligibility]
-verify_jwt = false
-```
-
----
-
-### Step 4: Modify Sign-In Logic
-
-**File:** `src/hooks/useSimplifiedAuth.tsx`
-
-Update the `signIn` function to check Financial app eligibility when login fails:
-
-```typescript
-const signIn = async (email: string, password: string) => {
-  // ... existing validation ...
-
-  try {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email.trim(),
-      password: password.trim(),
-    });
-
-    // If login succeeds, user is an existing Academy user
-    if (!error && data.user) {
-      clearPermissionsCache(data.user.id);
-      toast({ title: "Welcome back!", description: "Successfully signed in." });
-      return;
-    }
-
-    // If login fails with invalid credentials, check Financial app
-    if (error?.message === "Invalid login credentials") {
-      console.log("[SimplifiedAuth] Checking Financial app eligibility...");
-      
-      const { data: eligibility, error: eligibilityError } = 
-        await supabase.functions.invoke("check-financial-eligibility", {
-          body: { email: email.trim() },
-        });
-
-      if (!eligibilityError && eligibility?.eligible) {
-        // User is eligible from Financial app - send magic link
-        const { error: otpError } = await supabase.auth.signInWithOtp({
-          email: email.trim(),
-          options: {
-            emailRedirectTo: `${window.location.origin}/`,
-            data: { full_name: eligibility.user?.full_name },
-          },
-        });
-
-        if (!otpError) {
-          toast({
-            title: "Welcome to the Academy!",
-            description: "Check your email for a login link to complete your setup.",
-          });
-          return;
-        }
-      } else if (eligibility?.reason === "User not approved") {
-        toast({
-          variant: "destructive",
-          title: "Account Pending",
-          description: "Your account is pending approval. Please contact your administrator.",
-        });
-        return;
-      }
-    }
-
-    // Fall through to default error handling
-    toast({
-      variant: "destructive",
-      title: "Sign In Failed",
-      description: error?.message || "Invalid credentials",
-    });
-  } catch (error) {
-    // ... existing error handling ...
-  }
-};
-```
-
----
-
-### Step 5: Update Profile Sync (Optional Enhancement)
-
-When a Financial app user successfully logs in via magic link, their profile should be synced. The existing `handle_new_user` database trigger already creates profiles from user metadata.
-
-If additional syncing is needed, we can add a check in the auth state listener:
-
-```typescript
-// In onAuthStateChange callback
-if (event === 'SIGNED_IN' && session?.user) {
-  // Check if user metadata indicates Financial app source
-  const metadata = session.user.user_metadata;
-  if (metadata?.source === 'financial_app') {
-    // Sync profile data
-    await supabase.from("profiles").upsert({
-      user_id: session.user.id,
-      email: session.user.email,
-      display_name: metadata.full_name,
-    }, { onConflict: 'user_id' });
-  }
-}
-```
-
----
-
-### Flow Diagram
+### Technical Implementation
 
 ```text
 User enters email/password
          │
          ▼
-┌─────────────────────┐
-│ Try Academy Login   │
-└─────────────────────┘
+┌─────────────────────────────────┐
+│ Step 1: Check if user exists   │
+│ in Academy (new edge function) │
+└─────────────────────────────────┘
          │
     ┌────┴────┐
-    │ Success │─────► User logged in (existing Academy user)
+    │ EXISTS  │─────► Try password login
+    └────┬────┘              │
+         │              ┌────┴────┐
+    DOESN'T EXIST       │ Success │──► Logged in!
+         │              └────┬────┘
+         │                   │ Wrong password
+         ▼                   ▼
+┌─────────────────────┐  ┌──────────────────────────┐
+│ Check Financial     │  │ "Invalid credentials"    │
+│ app eligibility     │  │ (existing user flow)     │
+└─────────────────────┘  └──────────────────────────┘
+         │
+    ┌────┴────┐
+    │ Eligible│──► Auto-provision account + Auto-login
     └────┬────┘
-         │ Invalid credentials
-         ▼
-┌─────────────────────────────┐
-│ Call check-financial-       │
-│ eligibility edge function   │
-└─────────────────────────────┘
+         │
+    NOT ELIGIBLE
          │
          ▼
 ┌─────────────────────────────┐
-│ Financial App API call      │
-│ verify-academy-eligibility  │
+│ "No account found" or       │
+│ "Account pending approval"  │
 └─────────────────────────────┘
-         │
-    ┌────┴────┐
-    │ Eligible│─────► Send magic link email
-    └────┬────┘       "Check your email..."
-         │
-    Not eligible
-         │
-         ▼
-┌─────────────────────┐
-│ Show error message  │
-│ based on reason     │
-└─────────────────────┘
 ```
 
 ---
 
-### Files to Create/Modify
+### Step 1: Create Edge Function - `check-academy-user-exists`
 
-| File | Action | Description |
-|------|--------|-------------|
-| `supabase/functions/check-financial-eligibility/index.ts` | **CREATE** | New edge function to call Financial app API |
-| `supabase/config.toml` | **MODIFY** | Add config for new edge function |
-| `src/hooks/useSimplifiedAuth.tsx` | **MODIFY** | Update signIn to check eligibility on failure |
+**New File:** `supabase/functions/check-academy-user-exists/index.ts`
+
+This edge function uses the admin API to check if an email exists in Academy's auth.users table.
+
+```typescript
+// Key logic:
+const { data: existingUsers } = await supabaseAdmin.auth.admin.listUsers();
+const existingUser = existingUsers.users.find(u => u.email === email);
+return { exists: !!existingUser };
+```
+
+---
+
+### Step 2: Create Edge Function - `provision-financial-user`
+
+**New File:** `supabase/functions/provision-financial-user/index.ts`
+
+This function auto-creates an Academy account for an eligible Financial app user and returns session tokens for immediate login.
+
+```typescript
+// Key logic:
+// 1. Verify eligibility with Financial app (double-check)
+// 2. Create user with admin.createUser() 
+// 3. Generate session using admin.generateLink() or signInWithPassword
+// 4. Return access_token and refresh_token
+```
+
+---
+
+### Step 3: Update `supabase/config.toml`
+
+Add configuration for the two new edge functions:
+
+```toml
+[functions.check-academy-user-exists]
+verify_jwt = false
+
+[functions.provision-financial-user]
+verify_jwt = false
+```
+
+---
+
+### Step 4: Update Sign-In Logic in `useSimplifiedAuth.tsx`
+
+**File:** `src/hooks/useSimplifiedAuth.tsx`
+
+Completely restructure the `signIn` function:
+
+```typescript
+const signIn = async (email: string, password: string) => {
+  // Step 1: Check if user exists in Academy
+  const { data: existsCheck } = await supabase.functions.invoke(
+    "check-academy-user-exists", 
+    { body: { email: email.trim() } }
+  );
+
+  if (existsCheck?.exists) {
+    // User EXISTS in Academy - try normal password login
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email.trim(),
+      password: password.trim(),
+    });
+
+    if (!error && data.user) {
+      // Success - existing Academy user logged in
+      toast({ title: "Welcome back!" });
+      return;
+    }
+
+    // Wrong password for existing user
+    toast({ 
+      variant: "destructive", 
+      title: "Invalid Credentials",
+      description: "The password you entered is incorrect." 
+    });
+    return;
+  }
+
+  // Step 2: User does NOT exist in Academy - check Financial app
+  const { data: eligibility } = await supabase.functions.invoke(
+    "check-financial-eligibility",
+    { body: { email: email.trim() } }
+  );
+
+  if (!eligibility?.eligible) {
+    // Not eligible - show appropriate error
+    if (eligibility?.reason === "User not approved") {
+      toast({ 
+        variant: "destructive",
+        title: "Account Pending",
+        description: "Your account is pending approval."
+      });
+    } else {
+      toast({ 
+        variant: "destructive",
+        title: "Account Not Found",
+        description: "No account found with this email. Please contact your administrator."
+      });
+    }
+    return;
+  }
+
+  // Step 3: User is eligible - auto-provision and login
+  const { data: provision } = await supabase.functions.invoke(
+    "provision-financial-user",
+    { body: { 
+      email: email.trim(),
+      password: password.trim(), // Use the password they entered
+      full_name: eligibility.user?.full_name 
+    } }
+  );
+
+  if (provision?.session) {
+    // Set the session manually to log them in
+    await supabase.auth.setSession({
+      access_token: provision.session.access_token,
+      refresh_token: provision.session.refresh_token,
+    });
+    
+    toast({ 
+      title: "Welcome to the Academy!",
+      description: "Your account has been created and you're now logged in." 
+    });
+    return;
+  }
+
+  // Fallback error
+  toast({ 
+    variant: "destructive",
+    title: "Login Failed",
+    description: "Unable to create your account. Please try again."
+  });
+};
+```
+
+---
+
+### Files to Create/Modify Summary
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `supabase/functions/check-academy-user-exists/index.ts` | **CREATE** | Check if email exists in Academy auth |
+| `supabase/functions/provision-financial-user/index.ts` | **CREATE** | Auto-create account & return session tokens |
+| `supabase/config.toml` | **MODIFY** | Register new functions |
+| `src/hooks/useSimplifiedAuth.tsx` | **MODIFY** | Restructure signIn flow |
 
 ---
 
 ### Security Considerations
 
-1. **API Key Protection**: The `FINANCIAL_APP_API_KEY` is only used server-side in the edge function, never exposed to the client
-2. **Rate Limiting**: The Financial app handles rate limiting; we just pass through their response
-3. **Audit Logging**: Console logs in edge function track all cross-app auth attempts
-4. **Graceful Degradation**: If the Financial app is unavailable, users see a generic error and can still use normal signup
+1. **check-academy-user-exists**: Returns only boolean (exists/not exists), never exposes user data
+2. **provision-financial-user**: 
+   - Double-checks eligibility with Financial app before creating account
+   - Uses the password provided by the user (not auto-generated)
+   - Returns session tokens only after successful account creation
+3. **Rate limiting**: Financial app handles their rate limits; we should add basic abuse prevention
 
 ---
 
-### Required Secret
+### Expected Behavior After Fix
 
-Before implementation, you need to add the secret:
-
-**Secret Name:** `FINANCIAL_APP_API_KEY`
-**Value:** The ACADEMY_API_KEY value shared from the Financial app
+| Scenario | Current Behavior | New Behavior |
+|----------|-----------------|--------------|
+| Academy user, correct password | ✅ Login works | ✅ Login works |
+| Academy user, wrong password | ❌ Sends magic link (bug) | ✅ "Invalid credentials" error |
+| Financial app user (eligible), any password | Magic link sent | ✅ Account auto-created, auto-logged in |
+| Financial app user (not approved) | Generic error | ✅ "Account pending approval" |
+| Unknown email | Magic link attempt | ✅ "Account not found" |
 
 ---
 
 ### Testing Checklist
 
-1. ✅ Existing Academy users can still log in normally
-2. ✅ Financial app users (approved) receive magic link
-3. ✅ Financial app users (not approved) see appropriate error
-4. ✅ Non-existent users see standard "invalid credentials" error
-5. ✅ Network failures handled gracefully
-6. ✅ Missing API key doesn't crash the app
+1. ✅ Existing Academy users can log in with correct password
+2. ✅ Existing Academy users see "Invalid credentials" with wrong password
+3. ✅ Financial app eligible users get auto-provisioned and logged in immediately
+4. ✅ Financial app users (not approved) see appropriate error
+5. ✅ Unknown emails see "Account not found" error
+6. ✅ No magic links sent (seamless auto-login instead)
 
