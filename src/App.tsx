@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { SimplifiedAuthProvider } from "@/hooks/useSimplifiedAuth";
+import { ViewModeProvider, AdminViewSwitcher } from "@/components/admin/AdminViewSwitcher";
 import { AdminProvider } from "@/hooks/useAdmin";
 import { OnboardingProvider } from "@/hooks/useOnboarding";
 import { ChecklistProvider } from "@/hooks/useChecklistProgress";
@@ -51,10 +52,11 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
+  <HelmetProvider>
       <SimplifiedAuthProvider>
-        <AdminProvider>
-          <TooltipProvider>
+        <ViewModeProvider>
+          <AdminProvider>
+            <TooltipProvider>
             <Toaster />
             <Sonner />
             <BrowserRouter>
@@ -109,14 +111,18 @@ const App = () => (
                   <OnboardingTutorial />
                   <OnboardingHelpButton />
                   <WelcomeModal />
+                  
+                  {/* Admin View Switcher - floating button */}
+                  <AdminViewSwitcher />
                   </AppLayout>
                 </ChecklistProvider>
               </OnboardingProvider>
             </BrowserRouter>
           </TooltipProvider>
         </AdminProvider>
-      </SimplifiedAuthProvider>
-    </HelmetProvider>
+      </ViewModeProvider>
+    </SimplifiedAuthProvider>
+  </HelmetProvider>
   </QueryClientProvider>
 );
 
