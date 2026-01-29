@@ -174,6 +174,7 @@ export default function ProductDetail() {
                     newVideo={videoManagement.newVideo}
                     saving={videoManagement.saving}
                     existingCategories={existingCategories}
+                    hasContentChanges={videoManagement.hasContentChanges}
                     onEditingIndexChange={handleEditingIndexChange}
                     onUpdateVideo={videoManagement.updateVideo}
                     onSetEditVideos={videoManagement.setEditVideos}

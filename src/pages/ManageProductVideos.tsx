@@ -104,6 +104,7 @@ export default function ManageProductVideos() {
               newVideo={videoManagement.newVideo}
               saving={videoManagement.saving}
               existingCategories={existingCategories}
+              hasContentChanges={videoManagement.hasContentChanges}
               onEditingIndexChange={videoManagement.setEditingIndex}
               onUpdateVideo={videoManagement.updateVideo}
               onSetEditVideos={videoManagement.setEditVideos}

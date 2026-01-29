@@ -14,6 +14,7 @@ interface VideoEditingInterfaceProps {
   newVideo: TrainingVideo;
   saving: boolean;
   existingCategories: string[];
+  hasContentChanges?: boolean; // Optional - when true, shows the save bar
   onEditingIndexChange: (index: number | null) => void;
   onUpdateVideo: (index: number, updatedVideo: TrainingVideo) => void;
   onSetEditVideos: (videos: TrainingVideo[]) => void;
@@ -32,6 +33,7 @@ export function VideoEditingInterface({
   newVideo,
   saving,
   existingCategories,
+  hasContentChanges = false,
   onEditingIndexChange,
   onUpdateVideo,
   onSetEditVideos,
@@ -233,7 +235,7 @@ export function VideoEditingInterface({
             />
           </div>
         )}
-        {!videoOrderChanges.hasPendingChanges && (
+        {!videoOrderChanges.hasPendingChanges && hasContentChanges && (
           <div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t px-6 py-4 mt-6">
             <VideoEditingActions
               saving={saving}
