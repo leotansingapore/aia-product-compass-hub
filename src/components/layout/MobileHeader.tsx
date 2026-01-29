@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { MobileDrawer } from "./MobileDrawer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface MobileHeaderProps {
   title?: string;
@@ -64,11 +65,10 @@ export function MobileHeader({
           </h1>
         </div>
 
-        {rightAction && (
-          <div className="flex items-center gap-2">
-            {rightAction}
-          </div>
-        )}
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          {rightAction}
+        </div>
       </div>
     </header>
   );

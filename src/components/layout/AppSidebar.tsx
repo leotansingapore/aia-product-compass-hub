@@ -16,6 +16,7 @@ import {
   MessageCircle
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   Sidebar,
   SidebarContent,
@@ -212,7 +213,13 @@ const AppSidebar = memo(function AppSidebar() {
 
       <SidebarFooter className="border-t p-4">
         {!isCollapsed && (
-          <div className="space-y-2">
+          <div className="space-y-3">
+            {/* Theme Toggle */}
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-muted-foreground">Theme</span>
+              <ThemeToggle />
+            </div>
+            
             {isAdmin() && (
               <div className="flex items-center gap-2">
                 <Badge variant="secondary" className="text-micro">
@@ -226,6 +233,7 @@ const AppSidebar = memo(function AppSidebar() {
             </div>
           </div>
         )}
+        {isCollapsed && <ThemeToggle />}
       </SidebarFooter>
     </Sidebar>
   );
