@@ -69,10 +69,10 @@ export function EnhancedUserFilters({
           />
         </div>
         
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
           <Select value={filters.status} onValueChange={(value) => updateFilter('status', value)}>
-            <SelectTrigger className="w-48">
-              <Filter className="h-4 w-4 mr-2" />
+            <SelectTrigger className="w-full sm:w-48">
+              <Filter className="h-4 w-4 mr-2 flex-shrink-0" />
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -88,7 +88,7 @@ export function EnhancedUserFilters({
           </Select>
 
           <Select value={filters.role} onValueChange={(value) => updateFilter('role', value)}>
-            <SelectTrigger className="w-40">
+            <SelectTrigger className="w-full sm:w-40">
               <SelectValue placeholder="All Roles" />
             </SelectTrigger>
             <SelectContent>
@@ -115,7 +115,7 @@ export function EnhancedUserFilters({
               onFiltersChange({ ...filters, sortBy, sortOrder });
             }}
           >
-            <SelectTrigger className="w-48">
+            <SelectTrigger className="w-full sm:w-48">
               {filters.sortOrder === 'asc' ? (
                 <SortAsc className="h-4 w-4 mr-2" />
               ) : (
@@ -159,7 +159,7 @@ export function EnhancedUserFilters({
       </div>
 
       {/* Status Overview Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pb-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 pb-3">
         {[
           { key: 'pending_approval', label: 'Pending', color: 'text-amber-600', bgColor: 'bg-amber-50 hover:bg-amber-100' },
           { key: 'approved', label: 'Approved', color: 'text-blue-600', bgColor: 'bg-blue-50 hover:bg-blue-100' },

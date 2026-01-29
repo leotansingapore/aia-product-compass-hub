@@ -52,8 +52,8 @@ export default function Roleplay() {
         onBack={() => window.history.back()}
       />
 
-      <div className="mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-8 sm:space-y-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-8 space-y-6 sm:space-y-8 md:space-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
           {scenarios.map((scenario) => (
             <RoleplayScenarioCard
               key={scenario.id}

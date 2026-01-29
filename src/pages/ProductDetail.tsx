@@ -136,10 +136,10 @@ export default function ProductDetail() {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
 
           {/* 2-Column Grid Layout - Product Info */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 overflow-hidden mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 overflow-hidden mb-8">
 
             {/* Left Column - Main Content */}
-            <div className="lg:col-span-2 space-y-4 sm:space-y-6 md:space-y-8">
+            <div className="md:col-span-1 lg:col-span-2 space-y-4 sm:space-y-6 md:space-y-8">
 
               {/* Tags and Bookmark Button */}
               <ProtectedSection sectionId="product_tags">
@@ -209,7 +209,7 @@ export default function ProductDetail() {
             </div>
 
             {/* Right Column - Sidebar */}
-            <div className="lg:col-span-1 space-y-4 sm:space-y-6 md:space-y-8">
+            <div className="md:col-span-1 lg:col-span-1 space-y-4 sm:space-y-6 md:space-y-8">
 
               {/* Useful Links */}
               {productId === 'sales-tools-objections' ? (

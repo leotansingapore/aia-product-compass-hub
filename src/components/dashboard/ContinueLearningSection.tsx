@@ -21,7 +21,7 @@ export function ContinueLearningSection({ productsWithVideos, loading }: Continu
       {loading ? (
         <SkeletonLoader type="card" count={3} />
       ) : (
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {productsWithVideos.map((product) => (
             <ContinueLearningCard 
               key={product.id} 

@@ -153,42 +153,42 @@ export function MentorDashboard() {
 
   if (loading) {
     return (
-      <div className="container mx-auto p-6 space-y-6">
+      <div className="mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6">
         <SkeletonLoader type="card" />
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
         <div>
-          <h1 className="text-3xl font-bold">Mentor Dashboard</h1>
-          <p className="text-muted-foreground">Review and provide feedback on roleplay sessions</p>
+          <h1 className="text-2xl sm:text-3xl font-bold">Mentor Dashboard</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">Review and provide feedback on roleplay sessions</p>
         </div>
       </div>
 
       {/* Filters */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Filter className="h-5 w-5" />
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <Filter className="h-4 w-4 sm:h-5 sm:w-5" />
             Filters
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-wrap gap-4">
+        <CardContent className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
           <div className="flex items-center gap-2">
-            <Search className="h-4 w-4" />
+            <Search className="h-4 w-4 flex-shrink-0" />
             <Input
               placeholder="Search sessions, students..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-64"
+              className="w-full"
             />
           </div>
           
           <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-48">
+            <SelectTrigger className="w-full">
               <SelectValue placeholder="Filter by status" />
             </SelectTrigger>
             <SelectContent>
@@ -201,7 +201,7 @@ export function MentorDashboard() {
           </Select>
 
           <Select value={difficultyFilter} onValueChange={setDifficultyFilter}>
-            <SelectTrigger className="w-48">
+            <SelectTrigger className="w-full sm:col-span-2 md:col-span-1">
               <SelectValue placeholder="Filter by difficulty" />
             </SelectTrigger>
             <SelectContent>
@@ -215,7 +215,7 @@ export function MentorDashboard() {
       </Card>
 
       {/* Sessions Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {filteredSessions.map((session) => {
           const review = session.mentor_reviews?.[0];
           const reviewStatus = review?.status || 'unassigned';
