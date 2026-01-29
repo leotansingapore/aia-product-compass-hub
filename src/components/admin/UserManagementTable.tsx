@@ -75,7 +75,7 @@ export function UserManagementTable({
         <div className="overflow-x-auto -mx-1 sm:mx-0">
           <div className="inline-block min-w-full align-middle">
             <div className="border rounded-lg">
-              <Table className="min-w-[700px]">
+              <Table className="min-w-[600px]">
                 <TableHeader>
                   <TableRow className="bg-muted/50">
                     <TableHead className="w-12">
@@ -89,7 +89,6 @@ export function UserManagementTable({
                     <TableHead>User</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead>Admin Role</TableHead>
-                    <TableHead>Access Tier</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>

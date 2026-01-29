@@ -1,19 +1,17 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
 // Version to bust cache when permission logic changes
-const PERMISSIONS_VERSION = 2; // Increment this when role logic changes
+const PERMISSIONS_VERSION = 3; // Increment this when role logic changes
 
 // Cache for user permissions to prevent unnecessary re-fetches
 const permissionsCache = new Map<string, {
-  tier: string;
   adminRole: string;
-  permissions: { access_type: string; resource_id: string; }[];
   timestamp: number;
   version: number;
 }>();
-const CACHE_DURATION = 30 * 1000; // 30 seconds (reduced from 2 minutes for faster permission updates)
+const CACHE_DURATION = 30 * 1000; // 30 seconds
 
 // Export function to manually clear permissions cache
 export const clearPermissionsCache = (userId?: string) => {
@@ -39,9 +37,7 @@ const useSimplifiedAuthSafe = () => {
 
 export function usePermissions() {
   const { user } = useSimplifiedAuthSafe();
-  const [userTier, setUserTier] = useState<string | null>(null);
   const [userAdminRole, setUserAdminRole] = useState<string | null>(null);
-  const [tierPermissions, setTierPermissions] = useState<{ access_type: string; resource_id: string; }[]>([]);
   const [loading, setLoading] = useState(true);
   const hasInitialized = useRef(false);
 
@@ -58,12 +54,9 @@ export function usePermissions() {
         Date.now() - cached.timestamp < CACHE_DURATION && 
         cached.version === PERMISSIONS_VERSION) {
       console.log('[Permissions] Using cached permissions:', { 
-        tier: cached.tier, 
         adminRole: cached.adminRole 
       });
-      setUserTier(cached.tier);
       setUserAdminRole(cached.adminRole);
-      setTierPermissions(cached.permissions);
       setLoading(false);
       return;
     }
@@ -75,18 +68,6 @@ export function usePermissions() {
     }
     
     try {
-      // Get user's access tier
-      const { data: tierData, error: tierError } = await supabase.rpc('get_user_access_tier', {
-        user_id: user.id
-      });
-
-      if (tierError) {
-        console.error('Error fetching user access tier:', tierError);
-        setUserTier('level_1');
-      } else {
-        setUserTier(tierData || 'level_1');
-      }
-
       // Get user's admin role
       const { data: adminRoleData, error: adminRoleError } = await supabase.rpc('get_user_admin_role', {
         user_id: user.id
@@ -99,31 +80,15 @@ export function usePermissions() {
         setUserAdminRole(adminRoleData || 'user');
       }
 
-      // Fetch tier permissions based on access tier
-      const accessTier = tierData || 'level_1';
-      const { data: permissions, error: permissionsError } = await supabase
-        .from('tier_permissions')
-        .select('access_type, resource_id')
-        .eq('tier_level', accessTier);
-
-      if (permissionsError) {
-        console.error('Error fetching tier permissions:', permissionsError);
-      } else {
-        setTierPermissions(permissions || []);
-      }
-
       // Cache the results with version
       const permissionsData = {
-        tier: tierData || 'level_1',
         adminRole: adminRoleData || 'user',
-        permissions: permissions || [],
         timestamp: Date.now(),
         version: PERMISSIONS_VERSION
       };
       
       console.log('[Permissions] Fetched and cached new permissions:', {
         userId: user.id,
-        tier: permissionsData.tier,
         adminRole: permissionsData.adminRole,
         version: permissionsData.version
       });
@@ -141,9 +106,7 @@ export function usePermissions() {
       fetchUserPermissions();
     } else if (!user) {
       // Reset state when user logs out
-      setUserTier(null);
       setUserAdminRole(null);
-      setTierPermissions([]);
       setLoading(false);
       hasInitialized.current = false;
     }
@@ -156,37 +119,20 @@ export function usePermissions() {
         console.log('[Permissions] Tab became visible, performing silent refresh...');
         
         try {
-          // Fetch permissions in background without affecting loading state
-          const [tierResult, roleResult] = await Promise.all([
-            supabase.rpc('get_user_access_tier', { user_id: user.id }),
-            supabase.rpc('get_user_admin_role', { user_id: user.id })
-          ]);
-
-          const newTier = tierResult.data || 'level_1';
-          const newRole = roleResult.data || 'user';
+          const { data: newRole } = await supabase.rpc('get_user_admin_role', { user_id: user.id });
+          const roleValue = newRole || 'user';
 
           // Only update state if values actually changed
-          if (newTier !== userTier || newRole !== userAdminRole) {
+          if (roleValue !== userAdminRole) {
             console.log('[Permissions] Silent refresh detected changes:', { 
-              oldTier: userTier, newTier, 
-              oldRole: userAdminRole, newRole 
+              oldRole: userAdminRole, newRole: roleValue 
             });
             
-            // Fetch tier permissions for the new tier
-            const { data: permissions } = await supabase
-              .from('tier_permissions')
-              .select('access_type, resource_id')
-              .eq('tier_level', newTier);
-
-            setUserTier(newTier);
-            setUserAdminRole(newRole);
-            setTierPermissions(permissions || []);
+            setUserAdminRole(roleValue);
 
             // Update cache
             permissionsCache.set(user.id, {
-              tier: newTier,
-              adminRole: newRole,
-              permissions: permissions || [],
+              adminRole: roleValue,
               timestamp: Date.now(),
               version: PERMISSIONS_VERSION
             });
@@ -195,14 +141,13 @@ export function usePermissions() {
           }
         } catch (error) {
           console.warn('[Permissions] Silent refresh failed:', error);
-          // Don't disrupt the UI on silent refresh failure
         }
       }
     };
     
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [user, userTier, userAdminRole]);
+  }, [user, userAdminRole]);
 
   // If no user, set loading to false immediately
   useEffect(() => {
@@ -212,7 +157,6 @@ export function usePermissions() {
   }, [user]);
 
   const hasRole = (role: string): boolean => {
-    // Only check admin role, not tier (tiers are for access control, not admin privileges)
     return userAdminRole === role;
   };
 
@@ -224,79 +168,36 @@ export function usePermissions() {
     return userAdminRole === 'admin' || userAdminRole === 'master_admin';
   };
 
-  const getUserTier = (): string | null => {
-    return userTier;
-  };
-
   const getUserAdminRole = (): string | null => {
     return userAdminRole;
   };
 
+  // Simplified: All authenticated users can access all sections
   const canAccessSection = (sectionId: string): boolean => {
-    // Core sections accessible to all authenticated users
-    const coreSections = [
-      'dashboard', 'search', 'my-account', 'how-to-use-portal', 'roleplay',
-      'dashboard-search', 'dashboard-quick-actions', 'dashboard-user-stats', 
-      'product-categories', 'dashboard-recently-viewed', 'dashboard-recommendations',
-      // Product sections should be accessible to authenticated users
-      'product_tags', 'product_summary', 'product_highlights', 'product_links', 
-      'product_ai', 'product_videos', 'product_notes'
-    ];
-
-    // Auth sections that don't require authentication
     const publicSections = ['auth', 'how_to_use'];
     if (publicSections.includes(sectionId)) return true;
-
-    // During loading, allow access to prevent flickering
     if (loading) return true;
-
-    // Require authentication for everything else
     if (!user) return false;
-
-    if (coreSections.includes(sectionId)) return true;
-    
-    // Admins (admin and master_admin) can access everything
-    if (isAdmin()) return true;
-    
-    // Check if this section is allowed for the user's tier
-    return tierPermissions.some(
-      p => p.access_type === 'section' && p.resource_id === sectionId
-    );
+    return true; // All authenticated users can view everything
   };
 
+  // Simplified: All authenticated users can access all pages
   const canAccessPage = (pageId: string): boolean => {
-    // Core pages accessible to all authenticated users
-    const corePages = ['dashboard', 'search', 'my-account', 'how-to-use-portal', 'search-by-profile', 'roleplay', 'video-detail', 'product-detail'];
-
-    // Auth page should always be accessible to unauthenticated users
     if (pageId === 'auth') return true;
-
-    // Require authentication for all other pages
     if (!user) return false;
-
-    if (corePages.includes(pageId)) return true;
-    
-    // Admins (admin and master_admin) can access everything
-    if (isAdmin()) return true;
-    
-    // Check if this page is allowed for the user's tier
-    return tierPermissions.some(
-      p => p.access_type === 'page' && p.resource_id === pageId
-    );
+    return true; // All authenticated users can access all pages
   };
 
+  // Only admins can edit
   const canEditSection = (sectionId: string): boolean => {
-    // Both admin and super_admin can edit
     return isAdmin();
   };
 
   const canEditPage = (pageId: string): boolean => {
-    // Only master admin can edit for now
     return isMasterAdmin();
   };
 
   const canAccessTab = (tabId: string): boolean => {
-    // For tabs, we'll use the same logic as pages for now
     return canAccessPage(tabId);
   };
 
@@ -304,49 +205,46 @@ export function usePermissions() {
     return isMasterAdmin();
   };
 
-  // Simplified permission getters that return basic permission objects
+  // Simplified permission getters
   const getSectionPermission = (sectionId: string) => {
     return {
       permission_type: canAccessSection(sectionId) ? 'view' : 'hidden',
-      lock_message: !canAccessSection(sectionId) ? 'Access restricted for your tier level' : undefined
+      lock_message: !canAccessSection(sectionId) ? 'Please log in to access this content' : undefined
     };
   };
 
   const getPagePermission = (pageId: string) => {
     return {
       permission_type: canAccessPage(pageId) ? 'view' : 'hidden',
-      lock_message: !canAccessPage(pageId) ? 'Access restricted for your tier level' : undefined
+      lock_message: !canAccessPage(pageId) ? 'Please log in to access this content' : undefined
     };
   };
 
   const getTabPermission = (tabId: string) => {
     return {
       permission_type: canAccessTab(tabId) ? 'view' : 'hidden',
-      lock_message: !canAccessTab(tabId) ? 'Access restricted for your tier level' : undefined
+      lock_message: !canAccessTab(tabId) ? 'Please log in to access this content' : undefined
     };
   };
 
   const isSectionLocked = (sectionId: string): boolean => {
-    return false; // No locked state in tier system, only hidden/visible
+    return false;
   };
 
   const isPageLocked = (pageId: string): boolean => {
-    return false; // No locked state in tier system
+    return false;
   };
 
   const isTabLocked = (tabId: string): boolean => {
-    return false; // No locked state in tier system
+    return false;
   };
 
   return {
-    userTier,
     userAdminRole,
-    tierPermissions,
     loading,
     hasRole,
     isMasterAdmin,
     isAdmin,
-    getUserTier,
     getUserAdminRole,
     // Section permissions
     getSectionPermission,
