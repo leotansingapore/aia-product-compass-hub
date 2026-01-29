@@ -1,99 +1,68 @@
 
-## Hide Chat Assistance & Add Floating NotebookLM Chat Button
 
-### Overview
-Remove the inline "Chat Assistance" section from the product detail page and replace it with a floating chat button in the bottom-right corner. When clicked, this button will open a slide-out chat panel that embeds the NotebookLM link in an iframe.
+## Improve Product Detail Layout - Remove Blank Space
 
----
+### Problem
+After removing the Key Highlights, Summary, and Tags sections, the left column of the 2-column grid now only contains a bookmark button, creating a large area of empty space. The current layout structure is inefficient:
 
-### Current State
-- `ProductChatbots` component displays 2 chatbot cards (chatbot2: "Chat with Chatbot", chatbot3: "Chat with Notebook")
-- These are shown in the "Chat Assistance" section on the product detail page
-- User wants to keep ONLY the NotebookLM/Notebook chat option
-- User wants it accessible via a floating button rather than inline cards
-
----
-
-### Implementation Plan
-
-#### 1. Create New FloatingNotebookChat Component
-
-Create `src/components/product-detail/FloatingNotebookChat.tsx`:
-
-- Fixed position button in bottom-right corner (bottom-6 right-6)
-- Uses the `MessageCircle` icon with a pulsing indicator when available
-- Clicking opens a slide-out sheet/drawer from the right side
-- The sheet contains an iframe that loads the NotebookLM link
-- Shows "Chat not available" tooltip if no link is configured
-- Includes close button and header with product name
-
-**Component Structure:**
 ```text
-+--------------------------------------------+
-|                                            |
-|                              [Chat Button] | <- Fixed bottom-right
-|                                            |
-+--------------------------------------------+
-
-When clicked:
-+--------------------------------------------+
-|                              +------------+|
-|                              | Sheet      ||
-|                              | +--------+ ||
-|                              | |Header  | ||
-|                              | |--------| ||
-|                              | |NotebookLM||
-|                              | |iframe  | ||
-|                              | |        | ||
-|                              | +--------+ ||
-|                              +------------+|
-+--------------------------------------------+
+Current Layout (Problematic):
++---------------------------+---------------+
+| [Bookmark Button]         | Useful Links  |
+| (EMPTY SPACE)             | Personal Notes|
+| (EMPTY SPACE)             |               |
++---------------------------+---------------+
+| Training Videos (full width)              |
++-------------------------------------------+
 ```
-
-#### 2. Update ProductDetail.tsx
-
-Remove from the page:
-- The entire "Chat Assistance Section" (`<ProtectedSection sectionId="product_chat_assistance">`)
-- The `ProductChatbots` component import
-- The `isChatEditing` state (no longer needed for inline editing)
-
-Add to the page:
-- Import `FloatingNotebookChat`
-- Render the floating button component, passing:
-  - `notebookLink={product.chatbot_link_3}` (the Notebook LM link)
-  - `productName={product.title}`
-
-#### 3. Keep Admin Edit Capability (Optional)
-
-The admin can still edit the NotebookLM link through:
-- A small edit icon on the floating button (only visible to admins)
-- Or through a dedicated settings section
 
 ---
 
-### Technical Details
+### Proposed Solution
 
-**FloatingNotebookChat Component Props:**
-```typescript
-interface FloatingNotebookChatProps {
-  notebookLink?: string;
-  productName?: string;
-}
+Restructure the layout to eliminate blank space and create a cleaner, more compact design:
+
+1. **Move Bookmark to Header Area** - Integrate the bookmark button into the ProductHeader or place it inline at the top
+2. **Convert to Single Column Layout** - Stack Useful Links and Personal Notes in a full-width or centered layout
+3. **Keep Training Videos as the Main Focus** - Since videos are the primary content now, give them prominence
+
+```text
+Proposed Layout (Compact):
++-------------------------------------------+
+| Product Header + [Bookmark]               |
++-------------------------------------------+
+| Useful Links | Personal Notes (side-by-side or stacked) |
++-------------------------------------------+
+| Training Videos (full width - main focus) |
++-------------------------------------------+
 ```
 
-**Sheet/Drawer Sizing:**
-- Width: 400px on desktop, full-width on mobile
-- Height: 70vh (viewport height)
-- Positioned on the right side
+---
 
-**Iframe Configuration:**
-```typescript
-<iframe
-  src={notebookLink}
-  className="w-full h-full border-0"
-  allow="microphone; camera"
-  title={`Chat about ${productName}`}
-/>
+### Implementation Steps
+
+#### 1. Remove the Empty Grid Structure
+- Remove the 2-column grid that's causing the blank left column
+- The current `grid-cols-1 md:grid-cols-2 lg:grid-cols-3` layout is no longer needed
+
+#### 2. Create Compact Top Section
+- Place the Bookmark Button inline at the top-right of the content area (single line)
+- Put Useful Links and Personal Notes in a responsive 2-column layout that stacks on mobile
+
+#### 3. Updated Layout Structure
+
+```text
++-------------------------------------------+
+| ProductHeader (with breadcrumbs)          |
++-------------------------------------------+
+| [Bookmark aligned right]                  |
++-------------------------------------------+
+| +---------------+ +---------------------+ |
+| | Useful Links  | | Personal Notes      | |
+| +---------------+ +---------------------+ |
++-------------------------------------------+
+| Training Videos Section                   |
++-------------------------------------------+
 ```
 
 ---
@@ -102,32 +71,53 @@ interface FloatingNotebookChatProps {
 
 | File | Changes |
 |------|---------|
-| `src/components/product-detail/FloatingNotebookChat.tsx` | **CREATE** - New floating button + sheet component |
-| `src/pages/ProductDetail.tsx` | Remove Chat Assistance section, add FloatingNotebookChat |
+| `src/pages/ProductDetail.tsx` | Restructure the grid layout to eliminate blank space |
 
 ---
 
-### Visual Design
+### Technical Changes
 
-**Floating Button:**
-- Circular button with chat icon
-- Primary color background with shadow
-- Hover effect (scale up slightly)
-- Pulse animation dot when link is available
+**Before (lines 139-176):**
+```tsx
+{/* 2-Column Grid Layout - Product Info */}
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ...">
+  {/* Left Column - Main Content (almost empty) */}
+  <div className="md:col-span-1 lg:col-span-2 space-y-4 ...">
+    <div className="flex justify-end">
+      <BookmarkButton productId={product.id} />
+    </div>
+  </div>
+  {/* Right Column - Sidebar */}
+  <div className="md:col-span-1 lg:col-span-1 space-y-4 ...">
+    {/* Useful Links */}
+    {/* Personal Notes */}
+  </div>
+</div>
+```
 
-**Chat Panel:**
-- Clean header with product name and close button
-- Full-height iframe for NotebookLM
-- Smooth slide-in animation from right
+**After:**
+```tsx
+{/* Compact Top Actions */}
+<div className="flex justify-end mb-4">
+  <BookmarkButton productId={product.id} />
+</div>
+
+{/* Resources Section - 2 columns on larger screens */}
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-8">
+  {/* Useful Links */}
+  ...
+  {/* Personal Notes */}
+  ...
+</div>
+```
 
 ---
 
-### Testing Checklist
+### Visual Comparison
 
-After implementation:
-- [ ] Verify the Chat Assistance section is no longer visible on product pages
-- [ ] Check that the floating chat button appears in the bottom-right corner
-- [ ] Click the button to open the NotebookLM panel
-- [ ] Verify the iframe loads the NotebookLM link correctly
-- [ ] Test on mobile to ensure the panel is usable
-- [ ] Check that pages without a NotebookLM link show a disabled state
+| Before | After |
+|--------|-------|
+| 2/3 of screen empty on left | No wasted space |
+| Useful Links cramped on right | Useful Links and Notes get equal space |
+| Awkward visual balance | Clean, balanced layout |
+
