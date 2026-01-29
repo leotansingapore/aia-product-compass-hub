@@ -62,7 +62,7 @@ export function QuickActions() {
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold">Quick Actions</h3>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
         {actions.map((action) => (
           <Card
             key={action.title}
