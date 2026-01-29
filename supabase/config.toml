@@ -21,3 +21,7 @@ verify_jwt = false
 
 [functions.generate-roleplay-feedback]
 verify_jwt = false
+
+# Cross-app authentication
+[functions.check-financial-eligibility]
+verify_jwt = false

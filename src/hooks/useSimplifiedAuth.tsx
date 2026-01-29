@@ -116,17 +116,8 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         errorMessage: error?.message 
       });
 
-      if (error) {
-        console.error('[SimplifiedAuth] Sign in error:', error);
-        toast({
-          variant: "destructive",
-          title: "Sign In Failed",
-          description: error.message
-        });
-        return;
-      }
-
-      if (data.user) {
+      // If login succeeds, user is an existing Academy user
+      if (!error && data.user) {
         console.log('[SimplifiedAuth] Sign in successful, user:', data.user.email);
         
         // Clear permissions cache to fetch fresh permissions
@@ -136,8 +127,60 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
           title: "Welcome back!",
           description: "Successfully signed in."
         });
-        // Let React Router handle navigation instead of hard redirect
+        return;
       }
+
+      // If login fails with invalid credentials, check Financial app eligibility
+      if (error?.message === "Invalid login credentials") {
+        console.log('[SimplifiedAuth] Checking Financial app eligibility...');
+        
+        const { data: eligibility, error: eligibilityError } = 
+          await supabase.functions.invoke("check-financial-eligibility", {
+            body: { email: email.trim() },
+          });
+
+        console.log('[SimplifiedAuth] Eligibility response:', { eligibility, eligibilityError });
+
+        if (!eligibilityError && eligibility?.eligible) {
+          // User is eligible from Financial app - send magic link
+          console.log('[SimplifiedAuth] User eligible, sending magic link...');
+          const { error: otpError } = await supabase.auth.signInWithOtp({
+            email: email.trim(),
+            options: {
+              emailRedirectTo: `https://academy.finternship.com/`,
+              data: { 
+                full_name: eligibility.user?.full_name,
+                source: 'financial_app'
+              },
+            },
+          });
+
+          if (!otpError) {
+            toast({
+              title: "Welcome to the Academy!",
+              description: "Check your email for a login link to complete your setup.",
+            });
+            return;
+          } else {
+            console.error('[SimplifiedAuth] Magic link error:', otpError);
+          }
+        } else if (eligibility?.reason === "User not approved") {
+          toast({
+            variant: "destructive",
+            title: "Account Pending",
+            description: "Your account is pending approval. Please contact your administrator.",
+          });
+          return;
+        }
+      }
+
+      // Fall through to default error handling
+      console.error('[SimplifiedAuth] Sign in error:', error);
+      toast({
+        variant: "destructive",
+        title: "Sign In Failed",
+        description: error?.message || "Invalid credentials"
+      });
     } catch (error) {
       console.error('[SimplifiedAuth] Unexpected sign in error:', error);
       toast({
