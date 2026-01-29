@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { CourseStructurePanel } from './CourseStructurePanel';
 import { VideoEditorPanel } from './VideoEditorPanel';
 import { FolderManagementDialog } from './FolderManagementDialog';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoreVertical, FolderPlus, FilePlus } from 'lucide-react';
+import { MoreVertical, FolderPlus, FilePlus, ChevronLeft } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoEditingLayoutProps {
@@ -67,6 +69,113 @@ export function VideoEditingLayout({
   onReorderVideos,
   onReorderFolders
 }: VideoEditingLayoutProps) {
+  const isMobile = useIsMobile();
+  const [showMobileEditor, setShowMobileEditor] = useState(false);
+
+  // On mobile, show editor when a video is selected
+  const handleVideoSelect = (index: number) => {
+    onEditingIndexChange(index);
+    if (isMobile) {
+      setShowMobileEditor(true);
+    }
+  };
+
+  const handleBackToList = () => {
+    setShowMobileEditor(false);
+  };
+
+  // Mobile layout: show either list or editor
+  if (isMobile) {
+    return (
+      <>
+        {!showMobileEditor ? (
+          // Mobile: Course Structure List
+          <div className="min-h-[calc(100vh-120px)]">
+            <div className="sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b px-4 py-3 z-10">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="font-semibold text-sm text-foreground">Course Structure</h2>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    {editVideos.length} videos
+                  </p>
+                </div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                      <MoreVertical className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48 bg-background z-50">
+                    <DropdownMenuItem onClick={onCreateFolder} className="cursor-pointer">
+                      <FolderPlus className="h-4 w-4 mr-2" />
+                      Add Folder
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={onAddPageToRoot} className="cursor-pointer">
+                      <FilePlus className="h-4 w-4 mr-2" />
+                      Add Page
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </div>
+            <div className="p-4">
+              <CourseStructurePanel
+                videos={editVideos}
+                emptyFolders={emptyFolders}
+                expandedFolders={expandedFolders}
+                onExpandedChange={onExpandedChange}
+                onVideoSelect={handleVideoSelect}
+                onCreateFolder={onCreateFolder}
+                onEditFolder={onEditFolder}
+                onDeleteFolder={onDeleteFolder}
+                onMoveVideoToFolder={onMoveVideoToFolder}
+                onEditVideo={handleVideoSelect}
+                onDeleteVideo={onRemoveVideo}
+                onAddVideoToFolder={onAddVideoToFolder}
+                onAddPageToFolder={onAddPageToFolder}
+                onReorderVideos={onReorderVideos}
+                onReorderFolders={onReorderFolders}
+              />
+            </div>
+          </div>
+        ) : (
+          // Mobile: Video Editor
+          <div className="min-h-[calc(100vh-120px)]">
+            <div className="sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b px-4 py-3 z-10">
+              <Button variant="ghost" size="sm" onClick={handleBackToList} className="gap-2">
+                <ChevronLeft className="h-4 w-4" />
+                Back to Course
+              </Button>
+            </div>
+            <div className="p-4">
+              <VideoEditorPanel
+                editVideos={editVideos}
+                editingIndex={editingIndex}
+                newVideo={newVideo}
+                existingCategories={existingCategories}
+                onEditingIndexChange={onEditingIndexChange}
+                onUpdateVideo={onUpdateVideo}
+                onNewVideoChange={onNewVideoChange}
+                onAddVideo={onAddVideo}
+                onCreateCategory={onCreateCategory}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Folder Management Dialog */}
+        <FolderManagementDialog
+          open={folderDialogOpen}
+          onOpenChange={onFolderDialogOpenChange}
+          mode={folderDialogMode}
+          initialName={editingFolderName}
+          onSave={onFolderSave}
+        />
+      </>
+    );
+  }
+
+  // Desktop layout: side-by-side
   return (
     <div className="flex min-h-[calc(100vh-120px)]">
       {/* Left Sidebar - Course Structure (SKOOL-style) */}
