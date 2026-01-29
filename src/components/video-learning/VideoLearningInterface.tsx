@@ -5,7 +5,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Share2, Maximize, Minimize } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Maximize, Minimize } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -181,55 +181,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     }
   }, [currentVideoIndex, videos, moduleType, moduleId, productSlugOrId]);
 
-  const handleShare = useCallback(async () => {
-    if (!currentVideo) return;
-
-    const videoSlug = getVideoSlug(currentVideo.title);
-
-    // Generate appropriate URL based on module type
-    let shareUrl: string;
-    if (moduleType === 'cmfas' && moduleId) {
-      shareUrl = `${window.location.origin}/cmfas/module/${moduleId}/video/${videoSlug}`;
-    } else if (productSlugOrId) {
-      shareUrl = `${window.location.origin}/product/${productSlugOrId}/video/${videoSlug}`;
-    } else {
-      return; // Cannot generate share URL without context
-    }
-
-    const shareData = {
-      title: currentVideo.title,
-      text: currentVideo.description || `Watch "${currentVideo.title}" on FINternship`,
-      url: shareUrl,
-    };
-
-    try {
-      // Try using Web Share API first (works on mobile and some desktop browsers)
-      if (navigator.share) {
-        await navigator.share(shareData);
-        toast({
-          title: "Shared successfully",
-          description: "Video link has been shared",
-        });
-      } else {
-        // Fallback to clipboard copy
-        await navigator.clipboard.writeText(shareUrl);
-        toast({
-          title: "Link copied",
-          description: "Video link has been copied to clipboard",
-        });
-      }
-    } catch (error) {
-      // User cancelled share or clipboard copy failed
-      if (error instanceof Error && error.name !== 'AbortError') {
-        toast({
-          title: "Share failed",
-          description: "Could not share or copy the video link",
-          variant: "destructive",
-        });
-      }
-    }
-  }, [currentVideo, moduleType, moduleId, productSlugOrId, toast]);
-
   const videoInfo = useMemo(() => currentVideo ? getVideoEmbedInfo(currentVideo.url) : null, [currentVideo]);
 
   return (
@@ -322,48 +273,27 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                     )
                   )}
 
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-6">
-                    <div className="flex gap-2 w-full sm:w-auto">
-                      <Button
-                        variant="outline"
-                        className="flex-1 sm:flex-none"
-                        onClick={() => navigateVideo('prev')}
-                        disabled={currentVideoIndex === 0}
-                      >
-                        <ChevronLeft className="h-4 w-4 mr-2" />
-                        <span className="hidden sm:inline">Previous</span>
-                        <span className="sm:hidden">Prev</span>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="flex-1 sm:flex-none"
-                        onClick={() => navigateVideo('next')}
-                        disabled={currentVideoIndex === videos.length - 1}
-                      >
-                        <span className="hidden sm:inline">Next</span>
-                        <span className="sm:hidden">Next</span>
-                        <ChevronRight className="h-4 w-4 ml-2" />
-                      </Button>
-                    </div>
-                    <div className="flex gap-2 w-full sm:w-auto">
-                      <Button
-                        variant="outline"
-                        className="flex-1 sm:flex-none"
-                        onClick={handleShare}
-                      >
-                        <Share2 className="h-4 w-4 mr-2" />
-                        Share
-                      </Button>
-                      <Button
-                        className="flex-1 sm:flex-none"
-                        onClick={handleMarkComplete}
-                        disabled={currentProgress?.completed}
-                        variant={currentProgress?.completed ? "secondary" : "default"}
-                      >
-                        <Check className="h-4 w-4 mr-2" />
-                        {currentProgress?.completed ? "Completed" : "Mark Complete"}
-                      </Button>
-                    </div>
+                  <div className="flex gap-2 mt-6">
+                    <Button
+                      variant="outline"
+                      className="flex-1 sm:flex-none"
+                      onClick={() => navigateVideo('prev')}
+                      disabled={currentVideoIndex === 0}
+                    >
+                      <ChevronLeft className="h-4 w-4 mr-2" />
+                      <span className="hidden sm:inline">Previous</span>
+                      <span className="sm:hidden">Prev</span>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="flex-1 sm:flex-none"
+                      onClick={() => navigateVideo('next')}
+                      disabled={currentVideoIndex === videos.length - 1}
+                    >
+                      <span className="hidden sm:inline">Next</span>
+                      <span className="sm:hidden">Next</span>
+                      <ChevronRight className="h-4 w-4 ml-2" />
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -561,6 +491,22 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </Card>
               )}
             </div>
+          </div>
+        </div>
+
+        {/* Sticky Mark Complete Button */}
+        <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t z-40 p-4">
+          <div className="max-w-7xl mx-auto flex justify-center">
+            <Button
+              className="w-full max-w-md"
+              size="lg"
+              onClick={handleMarkComplete}
+              disabled={currentProgress?.completed}
+              variant={currentProgress?.completed ? "secondary" : "default"}
+            >
+              <Check className="h-5 w-5 mr-2" />
+              {currentProgress?.completed ? "Completed" : "Mark Complete"}
+            </Button>
           </div>
         </div>
       </div>
