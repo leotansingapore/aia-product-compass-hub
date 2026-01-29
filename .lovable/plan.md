@@ -1,76 +1,123 @@
-## Mobile & Tablet Responsiveness - COMPLETED ✅
 
-### Changes Made
 
-The following pages and components have been updated for tablet-friendly layouts:
+## Add Fullscreen Functionality to All Video Components
 
-#### 1. QuickActions Component
-- **Before**: `grid-cols-2 md:grid-cols-3 lg:grid-cols-6`
-- **After**: `grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5`
-- Better distribution across tablet viewports
+### Overview
+Currently, the `VideoLearningInterface` already has a custom fullscreen button that appears on hover. However, other video display components (used in markdown content, video displays, and the markdown editor) only rely on the browser's built-in fullscreen controls (right-click or iframe button), which are not always visible or intuitive.
 
-#### 2. ContinueLearningSection Component
-- **Before**: `md:grid-cols-3`
-- **After**: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`
-- Added tablet breakpoint for 2-column layout
+This plan adds a consistent, user-friendly fullscreen button to all video embed locations.
 
-#### 3. MentorDashboard Component
-- Updated container padding from `container mx-auto p-6` to `mx-auto px-4 sm:px-6 py-4 sm:py-6`
-- Filter layout now uses responsive grid: `grid-cols-1 sm:grid-cols-2 md:grid-cols-3`
-- Input fields now use `w-full` instead of fixed widths
-- Sessions grid uses `sm:grid-cols-2 lg:grid-cols-3`
+---
 
-#### 4. Roleplay Page
-- Updated container padding for consistency
-- Grid layout uses `sm:grid-cols-2 lg:grid-cols-3` for tablet support
+### Components to Update
 
-#### 5. ProductDetail Page
-- **Before**: `lg:grid-cols-3` (single column until large screens)
-- **After**: `md:grid-cols-2 lg:grid-cols-3`
-- Left column now shows 2-column layout on tablets
-- Better use of screen real estate on medium devices
+| Component | Location | Current State |
+|-----------|----------|---------------|
+| `VideoEmbed` | `src/lib/video-embed-utils.tsx` | Has `allowFullScreen` but no visible button |
+| `VideoDisplay` | `src/components/video-editing/VideoDisplay.tsx` | Has `allowFullScreen` but no visible button |
+| `CodeMirrorMarkdownEditor` | `src/components/markdown/CodeMirrorMarkdownEditor.tsx` | Widget has `allowfullscreen` but no button |
 
-#### 6. EnhancedUserFilters Component
-- Status/role filters now stack vertically on mobile, horizontally on tablet+
-- Select triggers use `w-full sm:w-48` pattern
-- Sort select also uses responsive width
-- Status cards grid: `grid-cols-2 sm:grid-cols-3 md:grid-cols-5`
+---
 
-### Standard Responsive Patterns Used
+### Implementation Plan
 
-All pages now follow these consistent patterns:
+#### 1. Update VideoEmbed Component (`src/lib/video-embed-utils.tsx`)
 
-```typescript
-// Page padding
-className="mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-8"
+Add a fullscreen button overlay that appears on hover:
 
-// Responsive grids (3 columns max)
-className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+- Add state management for fullscreen
+- Add a container ref for the Fullscreen API
+- Add event listeners for fullscreen changes
+- Add a hover-triggered button with Maximize/Minimize icons
+- Style the button to appear in the bottom-right corner
 
-// Responsive grids (with tablet 2-column)
-className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6"
+**Changes:**
+- Import `useState`, `useRef`, `useEffect`, `useCallback` from React
+- Import `Maximize`, `Minimize` icons from lucide-react
+- Import `Button` from UI components
+- Add `group` class to container for hover detection
+- Add fullscreen toggle button with opacity transition
 
-// Form inputs
-className="w-full sm:w-48" // Flexible on mobile, fixed on desktop
+#### 2. Update VideoDisplay Component (`src/components/video-editing/VideoDisplay.tsx`)
 
-// Card/section spacing
-className="space-y-4 sm:space-y-6 md:space-y-8"
+Apply the same pattern to each video in the list:
+
+- Wrap each video iframe in a container with fullscreen capability
+- Add hover-triggered fullscreen button
+- Use the same styling as VideoEmbed for consistency
+
+#### 3. Update CodeMirrorMarkdownEditor Widget (`src/components/markdown/CodeMirrorMarkdownEditor.tsx`)
+
+The VideoEmbedWidget class creates DOM elements directly, so:
+
+- Add a fullscreen button element to the widget's `toDOM()` method
+- Attach click handler using addEventListener
+- Style with CSS for hover visibility
+
+---
+
+### Visual Design
+
+All fullscreen buttons will follow this consistent pattern:
+
+```
+┌─────────────────────────────────────┐
+│                                     │
+│         Video Player Area           │
+│                                     │
+│                              ┌────┐ │
+│                              │ ⛶ │ │ ← Fullscreen button (visible on hover)
+└──────────────────────────────┴────┴─┘
 ```
 
-### Pages Already Well-Optimized (No Changes Needed)
-- Dashboard
-- Bookmarks
-- HowToUsePortal
-- SearchByProfile
-- KnowledgeBase
-- CMFASExams
-- ProductCategory
-- ConsultantLanding
-- UserManagementTable (already has mobile card layout + horizontal scroll)
+- Button appears on hover with smooth opacity transition
+- Dark semi-transparent background for visibility
+- Maximize icon when not fullscreen, Minimize when fullscreen
+- Positioned at bottom-right corner
 
-### Verification Checklist
-- [x] QuickActions grid adapts smoothly from mobile to tablet to desktop
-- [x] MentorDashboard filters don't overflow on tablets
-- [x] ProductDetail shows 2-column layout on tablets
-- [x] Admin filters use full-width on mobile, fixed widths on tablet+
-- [x] Roleplay page grid adapts correctly
+---
+
+### Technical Details
+
+**Fullscreen API usage:**
+```typescript
+// Enter fullscreen
+containerRef.current.requestFullscreen();
+
+// Exit fullscreen
+document.exitFullscreen();
+
+// Detect fullscreen changes
+document.addEventListener('fullscreenchange', handleChange);
+```
+
+**Button styling:**
+```typescript
+className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 
+           transition-opacity duration-200 bg-black/70 hover:bg-black/90 
+           text-white border-0 h-9 w-9"
+```
+
+---
+
+### Files to Modify
+
+| File | Changes |
+|------|---------|
+| `src/lib/video-embed-utils.tsx` | Convert to stateful component with fullscreen toggle |
+| `src/components/video-editing/VideoDisplay.tsx` | Add fullscreen button to each video |
+| `src/components/markdown/CodeMirrorMarkdownEditor.tsx` | Add fullscreen button to video widget DOM |
+
+---
+
+### Testing Checklist
+
+After implementation:
+- [ ] Hover over a video in the learning interface - fullscreen button appears
+- [ ] Click fullscreen button - video enters fullscreen mode
+- [ ] Press Escape or click minimize - exits fullscreen
+- [ ] Test on videos embedded in markdown content
+- [ ] Test in the CodeMirror editor preview
+- [ ] Verify button visibility on both light and dark themes
+- [ ] Test on mobile (touch to show button)
+
