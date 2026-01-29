@@ -104,82 +104,115 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
     }
 
     try {
-      console.log('[SimplifiedAuth] Calling supabase.auth.signInWithPassword');
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email.trim(),
-        password: password.trim(),
-      });
+      // Step 1: Check if user exists in Academy
+      console.log('[SimplifiedAuth] Checking if user exists in Academy...');
+      const { data: existsCheck, error: existsError } = await supabase.functions.invoke(
+        "check-academy-user-exists",
+        { body: { email: email.trim() } }
+      );
 
-      console.log('[SimplifiedAuth] Sign in response:', { 
-        hasUser: !!data.user, 
-        hasError: !!error, 
-        errorMessage: error?.message 
-      });
+      console.log('[SimplifiedAuth] User exists check:', { existsCheck, existsError });
 
-      // If login succeeds, user is an existing Academy user
-      if (!error && data.user) {
-        console.log('[SimplifiedAuth] Sign in successful, user:', data.user.email);
-        
-        // Clear permissions cache to fetch fresh permissions
-        clearPermissionsCache(data.user.id);
-        
+      if (existsCheck?.exists) {
+        // User EXISTS in Academy - try normal password login
+        console.log('[SimplifiedAuth] User exists, attempting password login...');
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: email.trim(),
+          password: password.trim(),
+        });
+
+        if (!error && data.user) {
+          console.log('[SimplifiedAuth] Sign in successful, user:', data.user.email);
+          clearPermissionsCache(data.user.id);
+          toast({
+            title: "Welcome back!",
+            description: "Successfully signed in."
+          });
+          return;
+        }
+
+        // Wrong password for existing user
+        console.log('[SimplifiedAuth] Wrong password for existing user');
         toast({
-          title: "Welcome back!",
-          description: "Successfully signed in."
+          variant: "destructive",
+          title: "Invalid Credentials",
+          description: "The password you entered is incorrect."
         });
         return;
       }
 
-      // If login fails with invalid credentials, check Financial app eligibility
-      if (error?.message === "Invalid login credentials") {
-        console.log('[SimplifiedAuth] Checking Financial app eligibility...');
-        
-        const { data: eligibility, error: eligibilityError } = 
-          await supabase.functions.invoke("check-financial-eligibility", {
-            body: { email: email.trim() },
-          });
+      // Step 2: User does NOT exist in Academy - check Financial app eligibility
+      console.log('[SimplifiedAuth] User does not exist, checking Financial app eligibility...');
+      const { data: eligibility, error: eligibilityError } = await supabase.functions.invoke(
+        "check-financial-eligibility",
+        { body: { email: email.trim() } }
+      );
 
-        console.log('[SimplifiedAuth] Eligibility response:', { eligibility, eligibilityError });
+      console.log('[SimplifiedAuth] Eligibility response:', { eligibility, eligibilityError });
 
-        if (!eligibilityError && eligibility?.eligible) {
-          // User is eligible from Financial app - send magic link
-          console.log('[SimplifiedAuth] User eligible, sending magic link...');
-          const { error: otpError } = await supabase.auth.signInWithOtp({
-            email: email.trim(),
-            options: {
-              emailRedirectTo: `https://academy.finternship.com/`,
-              data: { 
-                full_name: eligibility.user?.full_name,
-                source: 'financial_app'
-              },
-            },
-          });
-
-          if (!otpError) {
-            toast({
-              title: "Welcome to the Academy!",
-              description: "Check your email for a login link to complete your setup.",
-            });
-            return;
-          } else {
-            console.error('[SimplifiedAuth] Magic link error:', otpError);
-          }
-        } else if (eligibility?.reason === "User not approved") {
+      if (!eligibility?.eligible) {
+        // Not eligible - show appropriate error
+        if (eligibility?.reason === "User not approved") {
           toast({
             variant: "destructive",
             title: "Account Pending",
-            description: "Your account is pending approval. Please contact your administrator.",
+            description: "Your account is pending approval. Please contact your administrator."
           });
-          return;
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Account Not Found",
+            description: "No account found with this email. Please sign up or contact your administrator."
+          });
         }
+        return;
       }
 
-      // Fall through to default error handling
-      console.error('[SimplifiedAuth] Sign in error:', error);
+      // Step 3: User is eligible - auto-provision and login
+      console.log('[SimplifiedAuth] User is eligible, provisioning account...');
+      const { data: provision, error: provisionError } = await supabase.functions.invoke(
+        "provision-financial-user",
+        {
+          body: {
+            email: email.trim(),
+            password: password.trim(),
+            full_name: eligibility.user?.full_name
+          }
+        }
+      );
+
+      console.log('[SimplifiedAuth] Provision response:', { provision, provisionError });
+
+      if (provision?.session) {
+        // Set the session manually to log them in
+        console.log('[SimplifiedAuth] Setting session...');
+        await supabase.auth.setSession({
+          access_token: provision.session.access_token,
+          refresh_token: provision.session.refresh_token,
+        });
+
+        toast({
+          title: "Welcome to the Academy!",
+          description: "Your account has been created and you're now logged in."
+        });
+        return;
+      }
+
+      if (provision?.user_created) {
+        // Account was created but session failed - ask them to try logging in
+        toast({
+          title: "Account Created!",
+          description: "Your account has been created. Please try logging in again."
+        });
+        return;
+      }
+
+      // Fallback error
+      console.error('[SimplifiedAuth] Provision failed:', provision?.error || provisionError);
       toast({
         variant: "destructive",
-        title: "Sign In Failed",
-        description: error?.message || "Invalid credentials"
+        title: "Login Failed",
+        description: provision?.error || "Unable to create your account. Please try again."
       });
     } catch (error) {
       console.error('[SimplifiedAuth] Unexpected sign in error:', error);

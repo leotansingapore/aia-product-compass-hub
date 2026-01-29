@@ -25,3 +25,9 @@ verify_jwt = false
 # Cross-app authentication
 [functions.check-financial-eligibility]
 verify_jwt = false
+
+[functions.check-academy-user-exists]
+verify_jwt = false
+
+[functions.provision-financial-user]
+verify_jwt = false
