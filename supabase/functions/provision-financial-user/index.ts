@@ -49,7 +49,7 @@ Deno.serve(async (req) => {
     const normalizedEmail = email.trim().toLowerCase();
     console.log("Provisioning user from Financial app:", normalizedEmail);
 
-    // Step 1: Double-check eligibility with Financial app
+    // Step 1: Double-check eligibility with Financial app (including password verification)
     console.log("Verifying eligibility with Financial app...");
     const eligibilityResponse = await fetch(FINANCIAL_APP_ENDPOINT, {
       method: "POST",
@@ -57,7 +57,7 @@ Deno.serve(async (req) => {
         "Content-Type": "application/json",
         "X-API-Key": financialApiKey,
       },
-      body: JSON.stringify({ email: normalizedEmail }),
+      body: JSON.stringify({ email: normalizedEmail, password: password }),
     });
 
     const eligibility = await eligibilityResponse.json();
