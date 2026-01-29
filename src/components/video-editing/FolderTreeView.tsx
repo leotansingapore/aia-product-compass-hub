@@ -48,33 +48,44 @@ function SortableVideoItem({ video, index, onVideoSelect, onEditVideo, onDeleteV
     opacity: isDragging ? 0.5 : 1,
   };
 
+  const handleVideoClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    console.log('📹 FolderTreeView: Video clicked', { 
+      title: video.title, 
+      index 
+    });
+    onVideoSelect(index);
+  };
+
+  const handleMenuClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
     <div
       ref={setNodeRef}
       style={style}
       className="flex items-center justify-between p-2 rounded-lg hover:bg-muted/30 group"
     >
-      <div className="flex items-center gap-2 flex-1">
+      <div className="flex items-center gap-2 flex-1 min-w-0">
         <button
-          className="cursor-grab active:cursor-grabbing touch-none"
+          type="button"
+          className="cursor-grab active:cursor-grabbing touch-none flex-shrink-0"
           {...attributes}
           {...listeners}
         >
           <GripVertical className="h-4 w-4 text-muted-foreground hover:text-foreground transition-colors" />
         </button>
-        <div
-          className="flex items-center gap-2 flex-1 cursor-pointer hover:underline"
-          onClick={() => {
-            console.log('📹 FolderTreeView: Video clicked', { 
-              title: video.title, 
-              index 
-            });
-            onVideoSelect(index);
-          }}
+        <button
+          type="button"
+          className="flex items-center gap-2 flex-1 min-w-0 cursor-pointer hover:underline text-left"
+          onClick={handleVideoClick}
+          onPointerDown={(e) => e.stopPropagation()}
         >
-          <Play className="h-4 w-4 text-primary" />
-          <span className="text-sm">{video.title}</span>
-        </div>
+          <Play className="h-4 w-4 text-primary flex-shrink-0" />
+          <span className="text-sm truncate">{video.title}</span>
+        </button>
       </div>
 
       <DropdownMenu>
@@ -82,7 +93,9 @@ function SortableVideoItem({ video, index, onVideoSelect, onEditVideo, onDeleteV
           <Button
             variant="ghost"
             size="sm"
-            className="h-6 w-6 p-0"
+            className="h-6 w-6 p-0 flex-shrink-0"
+            onClick={handleMenuClick}
+            onPointerDown={(e) => e.stopPropagation()}
           >
             <MoreHorizontal className="h-4 w-4" />
           </Button>
@@ -151,34 +164,49 @@ function SortableFolderItem({
 
   const folderVideoIds = folderVideos.map(({ video }) => video.id);
 
+  const handleToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onToggle();
+  };
+
+  const handleMenuClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
     <div ref={setNodeRef} style={style} className="space-y-1">
       <Collapsible open={isExpanded} onOpenChange={onToggle}>
         <div className="flex items-center justify-between p-2 rounded-lg hover:bg-muted/50 group">
-          <div className="flex items-center gap-2 flex-1">
+          <div className="flex items-center gap-2 flex-1 min-w-0">
             <button
-              className="cursor-grab active:cursor-grabbing touch-none"
+              type="button"
+              className="cursor-grab active:cursor-grabbing touch-none flex-shrink-0"
               {...attributes}
               {...listeners}
             >
               <GripVertical className="h-4 w-4 text-muted-foreground hover:text-foreground transition-colors" />
             </button>
-            <CollapsibleTrigger className="flex items-center gap-2 flex-1 text-left">
+            <button
+              type="button"
+              className="flex items-center gap-2 flex-1 min-w-0 text-left"
+              onClick={handleToggle}
+              onPointerDown={(e) => e.stopPropagation()}
+            >
               {isExpanded ? (
-                <ChevronDown className="h-4 w-4" />
+                <ChevronDown className="h-4 w-4 flex-shrink-0" />
               ) : (
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-4 w-4 flex-shrink-0" />
               )}
               {isExpanded ? (
-                <FolderOpen className="h-4 w-4 text-blue-500" />
+                <FolderOpen className="h-4 w-4 text-blue-500 flex-shrink-0" />
               ) : (
-                <Folder className="h-4 w-4 text-blue-500" />
+                <Folder className="h-4 w-4 text-blue-500 flex-shrink-0" />
               )}
-              <span className="font-medium">{folderName}</span>
-              <span className="text-micro text-muted-foreground">
+              <span className="font-medium truncate">{folderName}</span>
+              <span className="text-micro text-muted-foreground flex-shrink-0">
                 ({folderVideos.length} video{folderVideos.length !== 1 ? 's' : ''})
               </span>
-            </CollapsibleTrigger>
+            </button>
           </div>
 
           <DropdownMenu>
@@ -186,7 +214,9 @@ function SortableFolderItem({
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-6 w-6 p-0"
+                className="h-6 w-6 p-0 flex-shrink-0"
+                onClick={handleMenuClick}
+                onPointerDown={(e) => e.stopPropagation()}
               >
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
