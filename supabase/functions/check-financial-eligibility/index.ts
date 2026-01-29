@@ -11,11 +11,11 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { email } = await req.json();
+    const { email, password } = await req.json();
 
-    if (!email) {
+    if (!email || !password) {
       return new Response(
-        JSON.stringify({ error: "Email is required" }),
+        JSON.stringify({ error: "Email and password are required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
@@ -38,7 +38,10 @@ Deno.serve(async (req) => {
         "Content-Type": "application/json",
         "X-API-Key": financialApiKey,
       },
-      body: JSON.stringify({ email: email.trim().toLowerCase() }),
+      body: JSON.stringify({ 
+        email: email.trim().toLowerCase(),
+        password: password  // Forward password for verification
+      }),
     });
 
     const result = await response.json();

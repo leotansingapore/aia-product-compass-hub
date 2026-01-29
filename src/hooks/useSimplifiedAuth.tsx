@@ -141,11 +141,14 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         return;
       }
 
-      // Step 2: User does NOT exist in Academy - check Financial app eligibility
-      console.log('[SimplifiedAuth] User does not exist, checking Financial app eligibility...');
+      // Step 2: User does NOT exist in Academy - check Financial app eligibility (with password verification)
+      console.log('[SimplifiedAuth] User does not exist, checking Financial app eligibility with password...');
       const { data: eligibility, error: eligibilityError } = await supabase.functions.invoke(
         "check-financial-eligibility",
-        { body: { email: email.trim() } }
+        { body: { 
+          email: email.trim(),
+          password: password.trim()  // Send password for verification
+        } }
       );
 
       console.log('[SimplifiedAuth] Eligibility response:', { eligibility, eligibilityError });
