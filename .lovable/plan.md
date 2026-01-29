@@ -1,92 +1,147 @@
 
 
-## Update: Improve Error Handling for Financial App Password Verification
+## Plan: Map Financial App Roles to Academy Roles on Auto-Provisioning
 
-### Current State Analysis
+### Overview
 
-The Academy app is **already configured** to send passwords to the Financial app:
+When the Financial app returns user roles in the eligibility response, the Academy should use these roles to assign appropriate permissions in the Academy app instead of defaulting to basic user roles.
 
-1. ✅ `check-financial-eligibility/index.ts` - Already sends `email` and `password`
-2. ✅ `useSimplifiedAuth.tsx` - Already passes password to eligibility check
+### Financial App Response Format
 
-### Issue Found
-
-The error handling in `useSimplifiedAuth.tsx` doesn't specifically handle the new "Invalid credentials" response from the Financial app. Currently:
-
-```typescript
-if (!eligibility?.eligible) {
-  if (eligibility?.reason === "User not approved") {
-    // Shows "Account Pending" message
-  } else {
-    // Shows generic "Account Not Found" for ALL other cases
+```json
+{
+  "eligible": true,
+  "user": {
+    "email": "user@example.com",
+    "full_name": "John Doe",
+    "roles": ["admin", "consultant"]
   }
 }
 ```
 
-This means when the Financial app returns `{ eligible: false, reason: "Invalid credentials" }`, the user will see "Account Not Found" instead of "Invalid Credentials".
+### Academy Role Structure
 
----
+The Academy uses two separate tables for roles:
 
-### Required Change
+| Table | Column | Valid Values | Purpose |
+|-------|--------|--------------|---------|
+| `user_admin_roles` | `admin_role` | `user`, `admin`, `master_admin` | Admin access control |
+| `user_access_tiers` | `tier_level` | `level_1`, `level_2` | Feature access tiers |
+| `user_roles` | `role` | `user`, `admin`, `master_admin`, `basic`, `intermediate` | Legacy roles |
 
-**File:** `src/hooks/useSimplifiedAuth.tsx`
+### Role Mapping Strategy
 
-Update the error handling to properly distinguish between different failure reasons:
+Map Financial app roles to Academy roles:
+
+| Financial App Role | Academy Admin Role | Academy Access Tier |
+|--------------------|-------------------|---------------------|
+| `admin` | `admin` | `level_2` |
+| `master_admin` | `master_admin` | `level_2` |
+| `consultant` | `user` | `level_2` |
+| `user` (or no roles) | `user` | `level_1` |
+
+### Implementation Changes
+
+**File:** `supabase/functions/provision-financial-user/index.ts`
+
+1. **Extract roles from Financial app response**
+   - Read `eligibility.user.roles` array from the response
+   
+2. **Determine admin role**
+   - If roles contains `master_admin` → assign `master_admin`
+   - Else if roles contains `admin` → assign `admin`
+   - Else → assign `user`
+
+3. **Determine access tier**
+   - If user has `admin`, `master_admin`, or `consultant` role → assign `level_2`
+   - Else → assign `level_1`
+
+4. **Insert into correct tables**
+   - Insert into `user_admin_roles` table with mapped admin role
+   - Insert into `user_access_tiers` table with mapped tier level
+   - Keep inserting into `user_roles` for backwards compatibility
+
+### Code Changes
 
 ```typescript
-if (!eligibility?.eligible) {
-  // Handle specific error reasons from Financial app
-  if (eligibility?.reason === "Invalid credentials") {
-    toast({
-      variant: "destructive",
-      title: "Invalid Credentials",
-      description: "The email or password you entered is incorrect."
-    });
-  } else if (eligibility?.reason === "User not approved") {
-    toast({
-      variant: "destructive",
-      title: "Account Pending",
-      description: "Your account is pending approval. Please contact your administrator."
-    });
-  } else if (eligibility?.reason === "User not found") {
-    toast({
-      variant: "destructive",
-      title: "Account Not Found",
-      description: "No account found with this email. Please sign up or contact your administrator."
-    });
-  } else {
-    // Generic fallback
-    toast({
-      variant: "destructive",
-      title: "Login Failed",
-      description: eligibility?.reason || "Unable to verify your credentials. Please try again."
-    });
-  }
-  return;
+// Step 5: Assign roles based on Financial app response
+const financialRoles: string[] = eligibility.user?.roles || [];
+console.log("Roles from Financial app:", financialRoles);
+
+// Determine admin role (priority: master_admin > admin > user)
+let adminRole = 'user';
+if (financialRoles.includes('master_admin')) {
+  adminRole = 'master_admin';
+} else if (financialRoles.includes('admin')) {
+  adminRole = 'admin';
+}
+
+// Determine access tier (admin/consultant get level_2, others get level_1)
+const hasElevatedRole = financialRoles.some(r => 
+  ['admin', 'master_admin', 'consultant'].includes(r)
+);
+const accessTier = hasElevatedRole ? 'level_2' : 'level_1';
+
+console.log("Mapped roles:", { adminRole, accessTier });
+
+// Insert admin role
+const { error: adminRoleError } = await supabaseAdmin
+  .from("user_admin_roles")
+  .insert({
+    user_id: newUser.user.id,
+    admin_role: adminRole,
+  });
+
+if (adminRoleError) {
+  console.error("Error assigning admin role:", adminRoleError);
+}
+
+// Insert access tier
+const { error: tierError } = await supabaseAdmin
+  .from("user_access_tiers")
+  .insert({
+    user_id: newUser.user.id,
+    tier_level: accessTier,
+  });
+
+if (tierError) {
+  console.error("Error assigning access tier:", tierError);
+}
+
+// Also insert into user_roles for backwards compatibility
+const { error: roleError } = await supabaseAdmin
+  .from("user_roles")
+  .insert({
+    user_id: newUser.user.id,
+    role: adminRole,
+  });
+
+if (roleError) {
+  console.error("Error assigning user role:", roleError);
 }
 ```
-
----
 
 ### Files to Modify
 
 | File | Change |
 |------|--------|
-| `src/hooks/useSimplifiedAuth.tsx` | Add specific handling for "Invalid credentials" response |
+| `supabase/functions/provision-financial-user/index.ts` | Map Financial app roles to Academy roles and insert into correct tables |
 
----
+### Expected Behavior
 
-### Expected Behavior After Update
+| Financial App Roles | Academy Admin Role | Academy Tier | Result |
+|---------------------|-------------------|--------------|--------|
+| `["admin", "consultant"]` | `admin` | `level_2` | Full admin access |
+| `["master_admin"]` | `master_admin` | `level_2` | Master admin access |
+| `["consultant"]` | `user` | `level_2` | Full content access, no admin |
+| `["user"]` or `[]` | `user` | `level_1` | Basic CMFAS access only |
 
-| Financial App Response | Current Message | New Message |
-|------------------------|-----------------|-------------|
-| `{ eligible: false, reason: "Invalid credentials" }` | ❌ "Account Not Found" | ✅ "Invalid Credentials - The email or password you entered is incorrect" |
-| `{ eligible: false, reason: "User not approved" }` | ✅ "Account Pending" | ✅ "Account Pending" |
-| `{ eligible: false, reason: "User not found" }` | ✅ "Account Not Found" | ✅ "Account Not Found" |
+### Testing
 
----
-
-### Summary
-
-This is a minor update to improve error message clarity. The core integration is already complete - we just need to add proper handling for the new "Invalid credentials" error response from the Financial app.
+After implementation:
+1. Log in with a Financial app user that has `admin` role
+2. Verify they get `admin` role in Academy
+3. Verify they can access admin features
+4. Log in with a user that has only `consultant` role
+5. Verify they get `user` role but `level_2` tier access
 
