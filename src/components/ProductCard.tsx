@@ -1,6 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Bookmark, BookmarkCheck } from "lucide-react";
+import { useBookmarks } from "@/hooks/useBookmarks";
+import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
   title: string;
@@ -9,15 +12,27 @@ interface ProductCardProps {
   tags: string[];
   highlights: string[];
   onClick: () => void;
+  productId?: string;
 }
 
-export function ProductCard({ title, description, category, tags, highlights, onClick }: ProductCardProps) {
+export function ProductCard({ title, description, category, tags, highlights, onClick, productId }: ProductCardProps) {
+  const { isBookmarked, toggleBookmark, loading } = useBookmarks();
+  
   const categoryColors = {
     'Investment': 'bg-gradient-to-r from-blue-500 to-blue-600',
     'Endowment': 'bg-gradient-to-r from-green-500 to-green-600', 
     'Whole Life': 'bg-gradient-to-r from-purple-500 to-purple-600',
     'Term': 'bg-gradient-to-r from-orange-500 to-orange-600',
     'Medical': 'bg-gradient-to-r from-red-500 to-red-600'
+  };
+
+  const bookmarked = productId ? isBookmarked(productId) : false;
+
+  const handleBookmarkClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click
+    if (productId) {
+      toggleBookmark(productId);
+    }
   };
 
   return (
@@ -27,6 +42,24 @@ export function ProductCard({ title, description, category, tags, highlights, on
           <Badge variant="secondary" className={`text-xs px-2 text-white ${categoryColors[category as keyof typeof categoryColors] || 'bg-primary'}`}>
             {category}
           </Badge>
+          {productId && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleBookmarkClick}
+              disabled={loading}
+              className={cn(
+                "h-8 w-8 p-0 hover:bg-muted",
+                bookmarked && "text-primary"
+              )}
+            >
+              {bookmarked ? (
+                <BookmarkCheck className="h-4 w-4" />
+              ) : (
+                <Bookmark className="h-4 w-4" />
+              )}
+            </Button>
+          )}
         </div>
         <CardTitle className="text-card-title">{title}</CardTitle>
         <CardDescription className="text-card-description">{description}</CardDescription>

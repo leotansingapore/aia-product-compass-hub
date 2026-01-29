@@ -50,6 +50,7 @@ export function ProductsGrid({
             tags={product.tags || []}
             highlights={product.highlights || []}
             onClick={() => onProductClick(product.id)}
+            productId={product.id}
           />
         </div>
       ))}
