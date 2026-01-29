@@ -6,12 +6,15 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
-import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Loader2 } from 'lucide-react';
 
 export function SimplifiedAuthForm() {
-  const { signIn, signUp, resetPassword, loading } = useSimplifiedAuth();
+  const { signIn, signUp, resetPassword } = useSimplifiedAuth();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [isSigningUp, setIsSigningUp] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -25,20 +28,35 @@ export function SimplifiedAuthForm() {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    await signIn(formData.email, formData.password);
+    setIsSigningIn(true);
+    try {
+      await signIn(formData.email, formData.password);
+    } finally {
+      setIsSigningIn(false);
+    }
   };
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    const result = await signUp(formData.email, formData.password, formData.displayName);
-    if (result.success) {
-      navigate(`/awaiting-approval?email=${encodeURIComponent(formData.email)}`);
+    setIsSigningUp(true);
+    try {
+      const result = await signUp(formData.email, formData.password, formData.displayName);
+      if (result.success) {
+        navigate(`/awaiting-approval?email=${encodeURIComponent(formData.email)}`);
+      }
+    } finally {
+      setIsSigningUp(false);
     }
   };
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    await resetPassword(formData.resetEmail);
+    setIsResetting(true);
+    try {
+      await resetPassword(formData.resetEmail);
+    } finally {
+      setIsResetting(false);
+    }
   };
 
   return (
@@ -100,8 +118,13 @@ export function SimplifiedAuthForm() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? "Signing In..." : "Sign In"}
+              <Button type="submit" className="w-full" disabled={isSigningIn}>
+                {isSigningIn ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Signing In...
+                  </>
+                ) : "Sign In"}
               </Button>
             </form>
           </TabsContent>
@@ -164,8 +187,13 @@ export function SimplifiedAuthForm() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? "Creating Account..." : "Create Account"}
+              <Button type="submit" className="w-full" disabled={isSigningUp}>
+                {isSigningUp ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Creating Account...
+                  </>
+                ) : "Create Account"}
               </Button>
             </form>
           </TabsContent>
@@ -188,8 +216,13 @@ export function SimplifiedAuthForm() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? "Sending Reset Email..." : "Send Reset Email"}
+              <Button type="submit" className="w-full" disabled={isResetting}>
+                {isResetting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Sending Reset Email...
+                  </>
+                ) : "Send Reset Email"}
               </Button>
             </form>
           </TabsContent>
