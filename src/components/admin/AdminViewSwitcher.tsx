@@ -37,11 +37,11 @@ export function useViewMode() {
 }
 
 export function AdminViewSwitcher() {
-  const { isAdmin } = useAdmin();
+  const { isActualAdmin } = useAdmin();
   const { isViewingAsUser, toggleViewMode } = useViewMode();
 
-  // Only show for actual admins
-  if (!isAdmin) return null;
+  // Only show for actual admins (use isActualAdmin so button stays visible when viewing as user)
+  if (!isActualAdmin) return null;
 
   return (
     <div className="fixed bottom-20 md:bottom-6 left-4 z-50">
