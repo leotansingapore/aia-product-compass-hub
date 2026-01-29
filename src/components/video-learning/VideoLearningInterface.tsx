@@ -5,7 +5,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Share2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Share2, Maximize, Minimize } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -69,11 +69,47 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const [currentVideoIndex, setCurrentVideoIndex] = useState(initialVideoIndex);
   const [isPlaying, setIsPlaying] = useState(false);
   const [watchTime, setWatchTime] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const [isNotesOpen, setIsNotesOpen] = useState(!isMobile);
   const { toast } = useToast();
   const { productSlugOrId } = useParams();
+
+  // Handle fullscreen changes
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullscreen = useCallback(async () => {
+    if (!videoContainerRef.current) return;
+
+    try {
+      if (!document.fullscreenElement) {
+        await videoContainerRef.current.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch (error) {
+      console.error('Fullscreen error:', error);
+      toast({
+        title: "Fullscreen not available",
+        description: "Your browser doesn't support fullscreen mode",
+        variant: "destructive",
+      });
+    }
+  }, [toast]);
 
   const {
     getVideoProgress,
@@ -251,7 +287,10 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 <CardContent>
                   {!currentVideo?.rich_content && (
                     videoInfo ? (
-                      <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+                      <div 
+                        ref={videoContainerRef}
+                        className={`relative rounded-lg overflow-hidden bg-muted group ${isFullscreen ? 'w-full h-full' : 'aspect-video'}`}
+                      >
                         <iframe
                           ref={iframeRef}
                           src={videoInfo.embedUrl}
@@ -261,6 +300,20 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           onLoad={() => setIsPlaying(false)}
                         />
+                        {/* Fullscreen button overlay */}
+                        <Button
+                          variant="secondary"
+                          size="icon"
+                          className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/70 hover:bg-black/90 text-white border-0 h-9 w-9"
+                          onClick={toggleFullscreen}
+                          title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+                        >
+                          {isFullscreen ? (
+                            <Minimize className="h-4 w-4" />
+                          ) : (
+                            <Maximize className="h-4 w-4" />
+                          )}
+                        </Button>
                       </div>
                     ) : (
                       <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
