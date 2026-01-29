@@ -154,18 +154,31 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       console.log('[SimplifiedAuth] Eligibility response:', { eligibility, eligibilityError });
 
       if (!eligibility?.eligible) {
-        // Not eligible - show appropriate error
-        if (eligibility?.reason === "User not approved") {
+        // Handle specific error reasons from Financial app
+        if (eligibility?.reason === "Invalid credentials") {
+          toast({
+            variant: "destructive",
+            title: "Invalid Credentials",
+            description: "The email or password you entered is incorrect."
+          });
+        } else if (eligibility?.reason === "User not approved") {
           toast({
             variant: "destructive",
             title: "Account Pending",
             description: "Your account is pending approval. Please contact your administrator."
           });
-        } else {
+        } else if (eligibility?.reason === "User not found") {
           toast({
             variant: "destructive",
             title: "Account Not Found",
             description: "No account found with this email. Please sign up or contact your administrator."
+          });
+        } else {
+          // Generic fallback
+          toast({
+            variant: "destructive",
+            title: "Login Failed",
+            description: eligibility?.reason || "Unable to verify your credentials. Please try again."
           });
         }
         return;
