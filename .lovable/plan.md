@@ -1,69 +1,86 @@
 
 
-## Improve Product Detail Layout - Remove Blank Space
+## Remove Access Tier System - Simplify to Role-Based Edit Permissions
 
-### Problem
-After removing the Key Highlights, Summary, and Tags sections, the left column of the 2-column grid now only contains a bookmark button, creating a large area of empty space. The current layout structure is inefficient:
+### Overview
+Simplify the permission system by removing the tier-based access restrictions (level_1, level_2). All authenticated users will be able to view all content. The only restriction will be on **editing**:
+- **Admins** (admin, master_admin) can edit courses, links, videos, etc.
+- **Regular users** can only edit their own personal notes
 
-```text
-Current Layout (Problematic):
-+---------------------------+---------------+
-| [Bookmark Button]         | Useful Links  |
-| (EMPTY SPACE)             | Personal Notes|
-| (EMPTY SPACE)             |               |
-+---------------------------+---------------+
-| Training Videos (full width)              |
-+-------------------------------------------+
+---
+
+### Current State
+The system currently has a complex tier-based access control:
+- `user_access_tiers` table stores user tier levels (level_1, level_2)
+- `tier_permissions` table defines which resources each tier can access
+- `usePermissions` hook fetches tier data and checks access
+- Admin UI shows "Access Tier" column with dropdown to change tiers
+- `ProtectedSection` and `ProtectedPage` components enforce tier restrictions
+
+---
+
+### Changes Required
+
+#### 1. Simplify usePermissions Hook
+
+**File:** `src/hooks/usePermissions.tsx`
+
+Remove tier-based access checks and simplify permission logic:
+- Remove calls to `get_user_access_tier` RPC
+- Remove `tierPermissions` state and fetching
+- Make `canAccessSection()` return `true` for all authenticated users
+- Make `canAccessPage()` return `true` for all authenticated users  
+- Keep `canEditSection()` checking only admin roles
+- Keep `canEditPage()` checking only admin roles
+
+**Before (simplified):**
+```typescript
+const canAccessSection = (sectionId) => {
+  // Check tier permissions
+  return tierPermissions.some(p => p.resource_id === sectionId);
+}
+```
+
+**After:**
+```typescript
+const canAccessSection = (sectionId) => {
+  // All authenticated users can access all sections
+  if (!user) return false;
+  return true; // Everyone can view
+}
+
+const canEditSection = (sectionId) => {
+  // Only admins can edit
+  return isAdmin();
+}
 ```
 
 ---
 
-### Proposed Solution
+#### 2. Remove Access Tier from Admin UI
 
-Restructure the layout to eliminate blank space and create a cleaner, more compact design:
-
-1. **Move Bookmark to Header Area** - Integrate the bookmark button into the ProductHeader or place it inline at the top
-2. **Convert to Single Column Layout** - Stack Useful Links and Personal Notes in a full-width or centered layout
-3. **Keep Training Videos as the Main Focus** - Since videos are the primary content now, give them prominence
-
-```text
-Proposed Layout (Compact):
-+-------------------------------------------+
-| Product Header + [Bookmark]               |
-+-------------------------------------------+
-| Useful Links | Personal Notes (side-by-side or stacked) |
-+-------------------------------------------+
-| Training Videos (full width - main focus) |
-+-------------------------------------------+
-```
+**Files to modify:**
+- `src/components/admin/UserTableRow.tsx` - Remove Access Tier column and dropdown
+- `src/components/admin/UserMobileCard.tsx` - Remove Access Tier badge and dropdown
+- `src/components/admin/UserManagementTable.tsx` - Remove "Access Tier" table header
+- `src/components/account/UserManagementSection.tsx` - Remove "Configure Tiers" button and dialog
+- `src/utils/userUtils.ts` - Remove `getTierBadgeVariant` and `AVAILABLE_ACCESS_TIERS`
 
 ---
 
-### Implementation Steps
+#### 3. Remove TierConfigurationPanel Component
 
-#### 1. Remove the Empty Grid Structure
-- Remove the 2-column grid that's causing the blank left column
-- The current `grid-cols-1 md:grid-cols-2 lg:grid-cols-3` layout is no longer needed
+**File:** `src/components/account/TierConfigurationPanel.tsx`
 
-#### 2. Create Compact Top Section
-- Place the Bookmark Button inline at the top-right of the content area (single line)
-- Put Useful Links and Personal Notes in a responsive 2-column layout that stacks on mobile
+This component is no longer needed and can be deleted.
 
-#### 3. Updated Layout Structure
+---
 
-```text
-+-------------------------------------------+
-| ProductHeader (with breadcrumbs)          |
-+-------------------------------------------+
-| [Bookmark aligned right]                  |
-+-------------------------------------------+
-| +---------------+ +---------------------+ |
-| | Useful Links  | | Personal Notes      | |
-| +---------------+ +---------------------+ |
-+-------------------------------------------+
-| Training Videos Section                   |
-+-------------------------------------------+
-```
+#### 4. Clean Up Permission Messages
+
+**Files to modify:**
+- `src/hooks/usePermissions.tsx` - Remove tier-related lock messages
+- Update any error messages that reference "tier level"
 
 ---
 
@@ -71,53 +88,55 @@ Proposed Layout (Compact):
 
 | File | Changes |
 |------|---------|
-| `src/pages/ProductDetail.tsx` | Restructure the grid layout to eliminate blank space |
+| `src/hooks/usePermissions.tsx` | Remove tier fetching, simplify access checks to allow all authenticated users |
+| `src/components/admin/UserTableRow.tsx` | Remove Access Tier column and dropdown |
+| `src/components/admin/UserMobileCard.tsx` | Remove Access Tier badge and dropdown |
+| `src/components/admin/UserManagementTable.tsx` | Remove "Access Tier" header |
+| `src/components/account/UserManagementSection.tsx` | Remove "Configure Tiers" button and TierConfigurationPanel dialog |
+| `src/utils/userUtils.ts` | Remove tier-related utilities |
+| `src/components/account/TierConfigurationPanel.tsx` | **DELETE** this file |
 
 ---
 
-### Technical Changes
+### Permission Logic After Changes
 
-**Before (lines 139-176):**
-```tsx
-{/* 2-Column Grid Layout - Product Info */}
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ...">
-  {/* Left Column - Main Content (almost empty) */}
-  <div className="md:col-span-1 lg:col-span-2 space-y-4 ...">
-    <div className="flex justify-end">
-      <BookmarkButton productId={product.id} />
-    </div>
-  </div>
-  {/* Right Column - Sidebar */}
-  <div className="md:col-span-1 lg:col-span-1 space-y-4 ...">
-    {/* Useful Links */}
-    {/* Personal Notes */}
-  </div>
-</div>
-```
+| Action | Who Can Do It |
+|--------|---------------|
+| View all pages | Any authenticated user |
+| View all sections (videos, links, etc.) | Any authenticated user |
+| Edit courses/videos | Admin, Master Admin only |
+| Edit useful links | Admin, Master Admin only |
+| Edit personal notes | The user themselves (existing behavior) |
+| Access admin dashboard | Admin, Master Admin only |
 
-**After:**
-```tsx
-{/* Compact Top Actions */}
-<div className="flex justify-end mb-4">
-  <BookmarkButton productId={product.id} />
-</div>
+---
 
-{/* Resources Section - 2 columns on larger screens */}
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-8">
-  {/* Useful Links */}
-  ...
-  {/* Personal Notes */}
-  ...
-</div>
+### Technical Details
+
+The simplified `canAccessSection` and `canAccessPage` functions:
+
+```typescript
+const canAccessSection = (sectionId: string): boolean => {
+  const publicSections = ['auth', 'how_to_use'];
+  if (publicSections.includes(sectionId)) return true;
+  if (loading) return true;
+  if (!user) return false;
+  return true; // All authenticated users can view everything
+};
+
+const canAccessPage = (pageId: string): boolean => {
+  if (pageId === 'auth') return true;
+  if (!user) return false;
+  return true; // All authenticated users can access all pages
+};
+
+const canEditSection = (sectionId: string): boolean => {
+  return isAdmin(); // Only admins can edit
+};
 ```
 
 ---
 
-### Visual Comparison
-
-| Before | After |
-|--------|-------|
-| 2/3 of screen empty on left | No wasted space |
-| Useful Links cramped on right | Useful Links and Notes get equal space |
-| Awkward visual balance | Clean, balanced layout |
+### Database Note
+The `user_access_tiers` and `tier_permissions` tables will remain in the database but will no longer be used by the frontend. They can be cleaned up in a future database migration if desired, but removing them is not necessary for this change.
 
