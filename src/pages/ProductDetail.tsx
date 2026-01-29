@@ -136,43 +136,31 @@ export default function ProductDetail() {
             productName={product.title}
           />
 
-          {/* 2-Column Grid Layout - Product Info */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 overflow-hidden mb-8">
+          {/* Compact Top Actions */}
+          <div className="flex justify-end mb-4">
+            <BookmarkButton productId={product.id} />
+          </div>
 
-            {/* Left Column - Main Content */}
-            <div className="md:col-span-1 lg:col-span-2 space-y-4 sm:space-y-6 md:space-y-8">
+          {/* Resources Section - 2 columns on larger screens */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-8">
+            {/* Useful Links */}
+            {productId === 'sales-tools-objections' ? (
+              <SalesToolsUsefulLinks
+                links={product.useful_links || []}
+                onUpdate={handleUpdate}
+              />
+            ) : (
+              <ProductUsefulLinks
+                links={product.useful_links || []}
+                onUpdate={handleUpdate}
+                productId={productId}
+              />
+            )}
 
-              {/* Bookmark Button */}
-              <div className="flex justify-end">
-                <BookmarkButton productId={product.id} />
-              </div>
-
-            </div>
-
-            {/* Right Column - Sidebar */}
-            <div className="md:col-span-1 lg:col-span-1 space-y-4 sm:space-y-6 md:space-y-8">
-
-              {/* Useful Links */}
-              {productId === 'sales-tools-objections' ? (
-                <SalesToolsUsefulLinks
-                  links={product.useful_links || []}
-                  onUpdate={handleUpdate}
-                />
-              ) : (
-                <ProductUsefulLinks
-                  links={product.useful_links || []}
-                  onUpdate={handleUpdate}
-                  productId={productId}
-                />
-              )}
-
-              {/* Personal Notes */}
-              <ProtectedSection sectionId="product_notes">
-                <PersonalNotes productId={product.id} />
-              </ProtectedSection>
-
-            </div>
-
+            {/* Personal Notes */}
+            <ProtectedSection sectionId="product_notes">
+              <PersonalNotes productId={product.id} />
+            </ProtectedSection>
           </div>
 
           {/* Training Videos Section */}
