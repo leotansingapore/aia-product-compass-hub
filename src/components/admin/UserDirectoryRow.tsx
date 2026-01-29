@@ -16,13 +16,11 @@ import {
   AlertTriangle,
   Shield,
   User,
-  Award,
-  Star,
-  Layers
+  Award
 } from "lucide-react";
 import type { UnifiedUser } from "@/hooks/useUserManagement";
 import { SendEmailDialog } from "./SendEmailDialog";
-import { getRoleBadgeVariant, getTierBadgeVariant } from "@/utils/userUtils";
+import { getRoleBadgeVariant } from "@/utils/userUtils";
 
 interface UserDirectoryRowProps {
   user: UnifiedUser;
@@ -69,32 +67,17 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
     );
   };
 
-  const getRoleBadgeVariant = (role: string) => {
+  const getLocalRoleBadgeVariant = (role: string) => {
     switch (role) {
       case 'master_admin': return 'destructive';
       case 'admin': return 'default';
-      case 'advanced': return 'default';
-      case 'intermediate': return 'secondary';
-      case 'basic': return 'outline';
+      case 'mentor': return 'secondary';
       default: return 'outline';
     }
   };
 
-  const getCurrentTier = () => {
-    return user.access_tier || 'level_1';
-  };
-
   const getCurrentAdminRole = () => {
     return user.admin_role || 'user';
-  };
-
-  const getTierIcon = (tier: string) => {
-    switch (tier) {
-      case 'advanced': return Star;
-      case 'intermediate': return Award;
-      case 'basic': return User;
-      default: return User;
-    }
   };
 
   const getAdminIcon = (role: string) => {
@@ -243,35 +226,6 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
     }
   };
 
-  const handleTierChange = async (newTier: string) => {
-    try {
-      // Update access tier in new table
-      const { error } = await supabase
-        .from('user_access_tiers')
-        .upsert({
-          user_id: user.id,
-          tier_level: newTier,
-          granted_by: (await supabase.auth.getUser()).data.user?.id,
-        });
-
-      if (error) throw error;
-
-      toast({
-        title: "Success",
-        description: "User access tier updated successfully",
-      });
-
-      onUpdate();
-    } catch (error) {
-      console.error('Error updating access tier:', error);
-      toast({
-        title: "Error",
-        description: "Failed to update user access tier",
-        variant: "destructive",
-      });
-    }
-  };
-
   const handleAdminRoleChange = async (newRole: string) => {
     try {
       const currentUserId = (await supabase.auth.getUser()).data.user?.id;
@@ -312,9 +266,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
     await handleAdminRoleChange(newRole);
   };
 
-  const currentTier = getCurrentTier();
   const currentAdminRole = getCurrentAdminRole();
-  const TierIcon = getTierIcon(currentTier);
   const AdminIcon = getAdminIcon(currentAdminRole);
 
   return (
@@ -345,41 +297,16 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
       </div>
       
       <div className="flex items-center gap-3">
-        {/* Role Badges */}
+        {/* Role Badge */}
         <div className="flex flex-wrap gap-1">
           <Badge
-            variant={getRoleBadgeVariant(user.admin_role)}
+            variant={getLocalRoleBadgeVariant(user.admin_role || 'user')}
             className="gap-1 text-micro"
           >
             <Shield className="h-3 w-3" />
-            {user.admin_role}
-          </Badge>
-          <Badge
-            variant={getTierBadgeVariant(user.access_tier)}
-            className="gap-1 text-micro"
-          >
-            <Layers className="h-3 w-3" />
-            {user.access_tier === 'level_1' ? 'L1: CMFAS' : 'L2: All'}
+            {user.admin_role || 'user'}
           </Badge>
         </div>
-        
-        {/* Access Tier Management */}
-        {user.status === 'active' && (
-          <div className="flex items-center gap-2">
-            <TierIcon className="h-4 w-4 text-muted-foreground" />
-            <Select value={currentTier} onValueChange={handleTierChange}>
-              <SelectTrigger className="w-28 h-8 text-micro">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="basic">Basic</SelectItem>
-                <SelectItem value="intermediate">Intermediate</SelectItem>
-                <SelectItem value="advanced">Advanced</SelectItem>
-                <SelectItem value="premium">Premium</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        )}
 
         {/* Admin Role Management */}
         {user.status === 'active' && (

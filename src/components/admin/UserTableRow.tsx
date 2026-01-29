@@ -19,12 +19,11 @@ import {
   Key,
   Trash2,
   ExternalLink,
-  Shield,
-  Layers
+  Shield
 } from "lucide-react";
 import { UnifiedUser } from '@/hooks/useUserManagement';
 import { useUserActions } from '@/hooks/useUserActions';
-import { getDisplayName, formatDate, getStatusConfig, getRoleBadgeVariant, getTierBadgeVariant, AVAILABLE_STATUSES, AVAILABLE_ADMIN_ROLES, AVAILABLE_ACCESS_TIERS } from '@/utils/userUtils';
+import { getDisplayName, getStatusConfig, getRoleBadgeVariant, AVAILABLE_STATUSES, AVAILABLE_ADMIN_ROLES } from '@/utils/userUtils';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 
@@ -58,9 +57,8 @@ export function UserTableRow({
   const statusConfig = getStatusConfig(user.status);
   const userLoading = loading(user.id);
   
-  // Use admin_role and access_tier from props (single source of truth)
+  // Use admin_role from props (single source of truth)
   const adminRole = user.admin_role || 'user';
-  const accessTier = user.access_tier || 'level_1';
 
   const handleQuickAction = async (action: 'approve' | 'reject') => {
     const success = action === 'approve' ? 
@@ -105,41 +103,6 @@ export function UserTableRow({
       toast({
         title: "Error",
         description: error.message || "Failed to update admin role",
-        variant: "destructive",
-      });
-    }
-  };
-
-  const handleAccessTierChange = async (newTier: string) => {
-    try {
-      // Update access tier in user_access_tiers table
-      const { error: deleteError } = await supabase
-        .from('user_access_tiers')
-        .delete()
-        .eq('user_id', user.id);
-
-      if (deleteError) throw deleteError;
-
-      const { error: insertError } = await supabase
-        .from('user_access_tiers')
-        .insert({
-          user_id: user.id,
-          tier_level: newTier
-        });
-
-      if (insertError) throw insertError;
-
-      toast({
-        title: "Success",
-        description: `Access tier updated to ${newTier === 'level_1' ? 'Level 1 (CMFAS Only)' : 'Level 2 (Everything)'}`,
-      });
-      
-      onUpdate();
-    } catch (error: any) {
-      console.error('Error updating access tier:', error);
-      toast({
-        title: "Error",
-        description: error.message || "Failed to update access tier",
         variant: "destructive",
       });
     }
@@ -241,44 +204,6 @@ export function UserTableRow({
                   className={adminRole === role ? 'opacity-50' : ''}
                 >
                   {role.replace('_', ' ')} {adminRole === role && '✓'}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
-      </TableCell>
-
-      {/* Access Tier Dropdown */}
-      <TableCell>
-        {adminRole === 'master_admin' ? (
-          <Badge variant="default" className="text-micro">
-            <Layers className="h-3 w-3 mr-1" />
-            All Access
-          </Badge>
-        ) : (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="h-auto p-0 hover:bg-transparent">
-                <Badge
-                  variant={getTierBadgeVariant(accessTier)}
-                  className="text-micro hover:opacity-80 cursor-pointer"
-                >
-                  <Layers className="h-3 w-3 mr-1" />
-                  {accessTier === 'level_1' ? 'L1: CMFAS' : 'L2: All'}
-                </Badge>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-48">
-              <DropdownMenuLabel>Access Tier</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              {AVAILABLE_ACCESS_TIERS.map((tier) => (
-                <DropdownMenuItem
-                  key={tier}
-                  onClick={() => handleAccessTierChange(tier)}
-                  disabled={accessTier === tier}
-                  className={accessTier === tier ? 'opacity-50' : ''}
-                >
-                  {tier === 'level_1' ? 'Level 1: CMFAS Only' : 'Level 2: Everything'} {accessTier === tier && '✓'}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>

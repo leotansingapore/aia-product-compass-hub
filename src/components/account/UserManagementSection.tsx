@@ -2,14 +2,10 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Dialog } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { UserCard } from "./UserCard";
-import { TierConfigurationPanel } from "./TierConfigurationPanel";
-import { Users, Search, Settings, Trash2, Loader2 } from "lucide-react";
+import { Users, Search, Trash2, Loader2 } from "lucide-react";
 
 interface User {
   id: string;
@@ -29,7 +25,6 @@ export function UserManagementSection() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [showTierConfiguration, setShowTierConfiguration] = useState(false);
   const [selectedUsers, setSelectedUsers] = useState<Set<string>>(new Set());
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -248,7 +243,7 @@ export function UserManagementSection() {
             User Management
           </CardTitle>
           <CardDescription className="text-xs sm:text-sm">
-            Manage user accounts, roles, and permissions
+            Manage user accounts and roles
           </CardDescription>
         </CardHeader>
         <CardContent className="p-4 sm:p-6">
@@ -262,16 +257,6 @@ export function UserManagementSection() {
                 className="pl-8 sm:pl-10 text-xs sm:text-sm h-9 sm:h-10 py-1 border-0"
               />
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowTierConfiguration(true)}
-              className="flex-shrink-0 text-xs sm:text-sm px-2 sm:px-4"
-            >
-              <Settings className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-              <span className="hidden sm:inline">Configure Tiers</span>
-              <span className="sm:hidden">Tiers</span>
-            </Button>
             {selectedUsers.size > 0 && (
               <Button
                 onClick={handleBulkDelete}
@@ -339,13 +324,6 @@ export function UserManagementSection() {
           </div>
         </CardContent>
       </Card>
-
-      <Dialog open={showTierConfiguration} onOpenChange={setShowTierConfiguration}>
-        <TierConfigurationPanel
-          open={showTierConfiguration}
-          onOpenChange={setShowTierConfiguration}
-        />
-      </Dialog>
     </div>
   );
 }

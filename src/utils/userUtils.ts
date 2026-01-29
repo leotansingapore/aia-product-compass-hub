@@ -66,10 +66,5 @@ export const getRoleBadgeVariant = (role: string) => {
   }
 };
 
-export const getTierBadgeVariant = (tier: string) => {
-  return tier === 'level_2' ? 'default' : 'secondary';
-};
-
 export const AVAILABLE_STATUSES = ['pending_approval', 'approved', 'active', 'suspended', 'rejected'] as const;
 export const AVAILABLE_ADMIN_ROLES = ['user', 'consultant', 'mentor', 'admin'] as const;
-export const AVAILABLE_ACCESS_TIERS = ['level_1', 'level_2'] as const;

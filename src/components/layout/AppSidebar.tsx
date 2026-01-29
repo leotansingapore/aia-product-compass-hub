@@ -47,10 +47,8 @@ const AppSidebar = memo(function AppSidebar() {
   const location = useLocation();
   const navigate = useNavigate();
   const { categories } = useCategories();
-  const { isMasterAdmin, canAccessSection, getUserTier, hasRole } = usePermissions();
+  const { isMasterAdmin, canAccessSection, isAdmin, hasRole } = usePermissions();
   const { user } = useSimplifiedAuth();
-
-  const userTier = getUserTier();
 
   // Don't render sidebar for unauthenticated users
   if (!user) {
@@ -215,14 +213,10 @@ const AppSidebar = memo(function AppSidebar() {
       <SidebarFooter className="border-t p-4">
         {!isCollapsed && (
           <div className="space-y-2">
-            {userTier && (
+            {isAdmin() && (
               <div className="flex items-center gap-2">
                 <Badge variant="secondary" className="text-micro">
-                  {userTier === 'master_admin' ? 'Master Admin' : 
-                   userTier === 'tier_4' ? 'Tier 4' :
-                   userTier === 'tier_3' ? 'Tier 3' :
-                   userTier === 'tier_2' ? 'Tier 2' :
-                   userTier === 'tier_1' ? 'Tier 1' : 'Standard'}
+                  {isMasterAdmin() ? 'Master Admin' : 'Admin'}
                 </Badge>
               </div>
             )}

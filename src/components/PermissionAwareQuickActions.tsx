@@ -31,11 +31,9 @@ interface QuickAction {
 
 export function PermissionAwareQuickActions() {
   const navigate = useNavigate();
-  const { canAccessSection, getUserTier } = usePermissions();
+  const { canAccessSection, isAdmin } = usePermissions();
   const { categories } = useCategories();
   const [availableActions, setAvailableActions] = useState<QuickAction[]>([]);
-
-  const userTier = getUserTier();
 
   useEffect(() => {
     // Define focused quick actions (removing redundant bottom nav items)
@@ -110,13 +108,9 @@ export function PermissionAwareQuickActions() {
     <div className="w-full">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold">Quick Actions</h3>
-        {userTier && (
+        {isAdmin() && (
           <Badge variant="outline" className="text-micro">
-            {userTier === 'master_admin' ? 'Full Access' : 
-             userTier === 'tier_4' ? 'Tier 4 Access' :
-             userTier === 'tier_3' ? 'Tier 3 Access' :
-             userTier === 'tier_2' ? 'Tier 2 Access' :
-             userTier === 'tier_1' ? 'Tier 1 Access' : 'Limited Access'}
+            Admin Access
           </Badge>
         )}
       </div>
