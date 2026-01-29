@@ -187,28 +187,50 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   return (
     <div className="fixed inset-0 bg-background z-50 overflow-auto">
       <div className="min-h-screen">
-        {/* Header */}
+        {/* Header with Navigation */}
         <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div className="flex items-center justify-between gap-2 sm:gap-4">
               <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
                 <Button variant="ghost" size={isMobile ? "sm" : "default"} onClick={onClose} className="flex-shrink-0">
                   <ChevronLeft className="h-4 w-4" />
-                  <span className="hidden sm:inline ml-2">Back to Product</span>
+                  <span className="hidden sm:inline ml-2">Back</span>
                 </Button>
                 <div className="min-w-0 flex-1">
-                  <h1 className="text-base sm:text-xl font-semibold truncate">Training Course</h1>
+                  <h1 className="text-base sm:text-xl font-semibold truncate">{currentVideo?.title || 'Training Course'}</h1>
                   <p className="text-xs sm:text-sm text-muted-foreground">
-                    Video {currentVideoIndex + 1} of {videos.length}
+                    Lesson {currentVideoIndex + 1} of {videos.length}
                   </p>
                 </div>
               </div>
+              
+              {/* Navigation Buttons - Always visible in header */}
               <div className="flex items-center gap-2 flex-shrink-0">
-                <div className="text-right">
-                  <div className="text-xs sm:text-sm font-medium">{courseProgress}%</div>
-                  <Progress value={courseProgress} className="w-16 sm:w-32" />
-                </div>
+                <Button
+                  variant="outline"
+                  size={isMobile ? "sm" : "default"}
+                  onClick={() => navigateVideo('prev')}
+                  disabled={currentVideoIndex === 0}
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                  <span className="hidden sm:inline ml-1">Prev</span>
+                </Button>
+                <Button
+                  variant="default"
+                  size={isMobile ? "sm" : "default"}
+                  onClick={() => navigateVideo('next')}
+                  disabled={currentVideoIndex === videos.length - 1}
+                >
+                  <span className="hidden sm:inline mr-1">Next</span>
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
               </div>
+            </div>
+            
+            {/* Progress bar */}
+            <div className="mt-2 flex items-center gap-2">
+              <Progress value={courseProgress} className="flex-1 h-2" />
+              <span className="text-xs text-muted-foreground flex-shrink-0">{courseProgress}%</span>
             </div>
           </div>
         </div>
@@ -273,29 +295,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                       </div>
                     )
                   )}
-
-                  <div className="flex gap-2 mt-6">
-                    <Button
-                      variant="outline"
-                      className="flex-1 sm:flex-none"
-                      onClick={() => navigateVideo('prev')}
-                      disabled={currentVideoIndex === 0}
-                    >
-                      <ChevronLeft className="h-4 w-4 mr-2" />
-                      <span className="hidden sm:inline">Previous</span>
-                      <span className="sm:hidden">Prev</span>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="flex-1 sm:flex-none"
-                      onClick={() => navigateVideo('next')}
-                      disabled={currentVideoIndex === videos.length - 1}
-                    >
-                      <span className="hidden sm:inline">Next</span>
-                      <span className="sm:hidden">Next</span>
-                      <ChevronRight className="h-4 w-4 ml-2" />
-                    </Button>
-                  </div>
                 </CardContent>
               </Card>
 
