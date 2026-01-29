@@ -5,6 +5,7 @@ import { QuickActions } from "@/components/dashboard/QuickActions";
 import { ProductCategories } from "@/components/dashboard/ProductCategories";
 import { SearchFilters } from "@/components/dashboard/SearchFilters";
 import { SearchResults } from "@/components/dashboard/SearchResults";
+import { LearningProgressOverview } from "@/components/dashboard/LearningProgressOverview";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useDashboardSearch } from "@/hooks/useDashboardSearch";
 
@@ -100,6 +101,11 @@ const Dashboard = memo(() => {
 
         {!hasQuery && (
           <>
+            {/* Learning Progress Overview */}
+            <div className="mt-6">
+              <LearningProgressOverview />
+            </div>
+
             {/* Product Categories */}
             <div className="mt-6">
               <ProductCategories />
