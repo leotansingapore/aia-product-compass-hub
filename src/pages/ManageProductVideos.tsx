@@ -67,24 +67,25 @@ export default function ManageProductVideos() {
 
         {/* Fixed Header */}
         <div className="sticky top-0 z-10 bg-background border-b">
-          <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
+          <div className="max-w-[1600px] mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 sm:gap-4 min-w-0">
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={handleBack}
+                  className="flex-shrink-0 min-h-[44px] px-2 sm:px-3"
                 >
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back
+                  <ArrowLeft className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Back</span>
                 </Button>
-                <div className="flex items-center gap-2">
-                  <GraduationCap className="h-5 w-5 text-primary" />
-                  <div>
-                    <h1 className="text-lg font-semibold text-foreground">
+                <div className="flex items-center gap-2 min-w-0">
+                  <GraduationCap className="h-5 w-5 text-primary flex-shrink-0" />
+                  <div className="min-w-0">
+                    <h1 className="text-sm sm:text-lg font-semibold text-foreground truncate">
                       {product.title}
                     </h1>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground hidden sm:block">
                       Course Management
                     </p>
                   </div>

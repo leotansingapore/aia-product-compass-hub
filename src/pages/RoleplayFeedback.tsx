@@ -395,7 +395,7 @@ const RoleplayFeedback = () => {
 
   if (loading) {
     return (
-      <div className="container mx-auto p-6 space-y-6">
+      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 space-y-3 sm:space-y-6">
         <Helmet>
           <title>Roleplay Feedback - Loading</title>
           <meta name="description" content="Generating your AI roleplay feedback." />
@@ -410,7 +410,7 @@ const RoleplayFeedback = () => {
     const progressPercentage = Math.min((elapsedTime / estimatedTime) * 100, 95);
     
     return (
-      <div className="container mx-auto p-6 space-y-6">
+      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 space-y-3 sm:space-y-6">
         <Helmet>
           <title>Roleplay Feedback - Generating</title>
           <meta name="description" content="Our AI is analyzing your conversation to prepare feedback." />
@@ -584,13 +584,13 @@ const RoleplayFeedback = () => {
     console.log('🔍 FEEDBACK DEBUG: Feedback exists and is completed - displaying it');
   } else if (timeoutReached) {
     return (
-        <div className="container mx-auto p-6 space-y-6">
+        <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 space-y-3 sm:space-y-6">
           <Helmet>
             <title>Roleplay Feedback - Processing</title>
             <meta name="description" content="The AI is still preparing your detailed feedback. Please check again shortly." />
             <link rel="canonical" href={`${window.location.origin}/roleplay/feedback/${sessionId || ''}`} />
           </Helmet>
-        <div className="text-center py-12 max-w-md mx-auto">
+        <div className="text-center py-8 sm:py-12 max-w-md mx-auto">
           <MessageSquare className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
           <h2 className="text-2xl font-semibold mb-2">Feedback Not Available</h2>
           <p className="text-muted-foreground mb-6">
@@ -621,13 +621,13 @@ const RoleplayFeedback = () => {
 
   if (!feedback) {
     return (
-       <div className="container mx-auto p-6 space-y-6">
+       <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 space-y-3 sm:space-y-6">
          <Helmet>
            <title>Roleplay Feedback - Not Available</title>
            <meta name="description" content="Feedback for this session is not yet available." />
            <link rel="canonical" href={`${window.location.origin}/roleplay/feedback/${sessionId || ''}`} />
          </Helmet>
-        <div className="text-center py-12">
+        <div className="text-center py-8 sm:py-12">
           <MessageSquare className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
           <h2 className="text-2xl font-semibold mb-2">No Feedback Available</h2>
           <p className="text-muted-foreground mb-4">Feedback for this session is not yet available.</p>
