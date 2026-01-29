@@ -1,147 +1,207 @@
 
 
-## Plan: Map Financial App Roles to Academy Roles on Auto-Provisioning
+## Comprehensive Mobile Responsiveness Audit & Improvements
 
 ### Overview
 
-When the Financial app returns user roles in the eligibility response, the Academy should use these roles to assign appropriate permissions in the Academy app instead of defaulting to basic user roles.
+After reviewing all pages in the application, I've identified areas that need mobile optimization. Many pages already have good responsive design patterns, but there are specific improvements needed to ensure a consistent mobile-first experience across the entire app.
 
-### Financial App Response Format
+---
 
-```json
-{
-  "eligible": true,
-  "user": {
-    "email": "user@example.com",
-    "full_name": "John Doe",
-    "roles": ["admin", "consultant"]
-  }
-}
-```
+### Current Status Summary
 
-### Academy Role Structure
+**Pages Already Well-Optimized:**
+- Dashboard (`px-1 sm:px-4` pattern)
+- Bookmarks (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`)
+- HowToUsePortal (responsive grids, mobile spacing)
+- SearchByProfile (responsive layout patterns)
+- KnowledgeBase (collapsible sections on mobile)
+- Roleplay (responsive grid)
+- SimplifiedAuth (mobile-centered layout)
+- CMFASExams (mobile-aware spacing)
+- ProductCategory (responsive grid)
+- ProductDetail (2-column responsive grid)
 
-The Academy uses two separate tables for roles:
+**Pages Needing Improvements:**
 
-| Table | Column | Valid Values | Purpose |
-|-------|--------|--------------|---------|
-| `user_admin_roles` | `admin_role` | `user`, `admin`, `master_admin` | Admin access control |
-| `user_access_tiers` | `tier_level` | `level_1`, `level_2` | Feature access tiers |
-| `user_roles` | `role` | `user`, `admin`, `master_admin`, `basic`, `intermediate` | Legacy roles |
+| Page | Issues |
+|------|--------|
+| AdminDashboard | Table layout not mobile-friendly, no horizontal scroll |
+| RoleplayFeedback | Container padding inconsistent in loading states |
+| MyAccount | Tabs layout can overflow on mobile |
+| ForcePasswordChange | Minimal issues, consistent |
+| ResetPassword | Good, minor spacing consistency |
+| VideoDetail | Fullscreen interface already responsive |
+| ManageProductVideos | Admin-only, header could be tighter on mobile |
+| CMFAS Module Pages | Generally good, minor tab spacing |
+| ConsultantLanding | Needs review for padding consistency |
+| NotFound | Good, simple layout |
+| AwaitingApproval | Good, centered layout |
 
-### Role Mapping Strategy
+---
 
-Map Financial app roles to Academy roles:
+### Implementation Plan
 
-| Financial App Role | Academy Admin Role | Academy Access Tier |
-|--------------------|-------------------|---------------------|
-| `admin` | `admin` | `level_2` |
-| `master_admin` | `master_admin` | `level_2` |
-| `consultant` | `user` | `level_2` |
-| `user` (or no roles) | `user` | `level_1` |
+#### 1. Admin Dashboard - Table Mobile Optimization (Priority: High)
 
-### Implementation Changes
+The user management table is not mobile-friendly. Tables on mobile should either:
+- Convert to a card-based layout on mobile
+- Have horizontal scroll with sticky first column
 
-**File:** `supabase/functions/provision-financial-user/index.ts`
+**Files to modify:**
+- `src/components/admin/UserManagementTable.tsx` - Add responsive wrapper and mobile card view
+- `src/components/admin/UserTableRow.tsx` - Create mobile card variant
 
-1. **Extract roles from Financial app response**
-   - Read `eligibility.user.roles` array from the response
-   
-2. **Determine admin role**
-   - If roles contains `master_admin` → assign `master_admin`
-   - Else if roles contains `admin` → assign `admin`
-   - Else → assign `user`
-
-3. **Determine access tier**
-   - If user has `admin`, `master_admin`, or `consultant` role → assign `level_2`
-   - Else → assign `level_1`
-
-4. **Insert into correct tables**
-   - Insert into `user_admin_roles` table with mapped admin role
-   - Insert into `user_access_tiers` table with mapped tier level
-   - Keep inserting into `user_roles` for backwards compatibility
-
-### Code Changes
-
+**Changes:**
 ```typescript
-// Step 5: Assign roles based on Financial app response
-const financialRoles: string[] = eligibility.user?.roles || [];
-console.log("Roles from Financial app:", financialRoles);
-
-// Determine admin role (priority: master_admin > admin > user)
-let adminRole = 'user';
-if (financialRoles.includes('master_admin')) {
-  adminRole = 'master_admin';
-} else if (financialRoles.includes('admin')) {
-  adminRole = 'admin';
-}
-
-// Determine access tier (admin/consultant get level_2, others get level_1)
-const hasElevatedRole = financialRoles.some(r => 
-  ['admin', 'master_admin', 'consultant'].includes(r)
-);
-const accessTier = hasElevatedRole ? 'level_2' : 'level_1';
-
-console.log("Mapped roles:", { adminRole, accessTier });
-
-// Insert admin role
-const { error: adminRoleError } = await supabaseAdmin
-  .from("user_admin_roles")
-  .insert({
-    user_id: newUser.user.id,
-    admin_role: adminRole,
-  });
-
-if (adminRoleError) {
-  console.error("Error assigning admin role:", adminRoleError);
-}
-
-// Insert access tier
-const { error: tierError } = await supabaseAdmin
-  .from("user_access_tiers")
-  .insert({
-    user_id: newUser.user.id,
-    tier_level: accessTier,
-  });
-
-if (tierError) {
-  console.error("Error assigning access tier:", tierError);
-}
-
-// Also insert into user_roles for backwards compatibility
-const { error: roleError } = await supabaseAdmin
-  .from("user_roles")
-  .insert({
-    user_id: newUser.user.id,
-    role: adminRole,
-  });
-
-if (roleError) {
-  console.error("Error assigning user role:", roleError);
-}
+// Add horizontal scroll wrapper for mobile
+<div className="overflow-x-auto -mx-4 sm:mx-0">
+  <div className="inline-block min-w-full align-middle">
+    <Table>...</Table>
+  </div>
+</div>
 ```
+
+Or alternatively, create a mobile card view:
+```typescript
+// Mobile card view
+{isMobile ? (
+  <div className="space-y-4">
+    {users.map(user => (
+      <UserCard key={user.id} user={user} ... />
+    ))}
+  </div>
+) : (
+  <Table>...</Table>
+)}
+```
+
+#### 2. RoleplayFeedback - Loading State Padding (Priority: Medium)
+
+**File:** `src/pages/RoleplayFeedback.tsx`
+
+**Issues:**
+- Lines 398-406: Loading state uses `p-6` but main content uses `px-1 sm:px-4`
+- Lines 412-437: Generating state uses `p-6`
+- Lines 587-619: Timeout state uses `p-6`
+
+**Fix:** Standardize padding across all states:
+```typescript
+// Change from:
+<div className="container mx-auto p-6 space-y-6">
+
+// To:
+<div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 space-y-3 sm:space-y-6">
+```
+
+#### 3. AccountTabs - Mobile Tab Layout (Priority: Medium)
+
+**File:** `src/components/account/AccountTabs.tsx`
+
+The tabs may overflow on very small screens. Add horizontal scrolling or vertical tabs for mobile.
+
+#### 4. ManageProductVideos - Header Spacing (Priority: Low)
+
+**File:** `src/pages/ManageProductVideos.tsx`
+
+**Issue:** Header uses fixed padding that could be tighter on mobile.
+
+**Fix:**
+```typescript
+// Line 70-71: Update padding
+<div className="max-w-[1600px] mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4">
+```
+
+#### 5. ConsultantLanding Page - Review Needed
+
+**File:** `src/pages/ConsultantLanding.tsx`
+
+Need to verify mobile padding consistency.
+
+#### 6. Common Pattern Standardization
+
+Ensure all pages follow these responsive patterns:
+
+**Standard Page Padding:**
+```typescript
+className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8"
+```
+
+**Standard Grid:**
+```typescript
+className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6"
+```
+
+**Standard Card Spacing:**
+```typescript
+className="space-y-3 sm:space-y-4 md:space-y-6"
+```
+
+**Standard Button Groups:**
+```typescript
+className="flex flex-col sm:flex-row gap-2 sm:gap-3"
+```
+
+---
 
 ### Files to Modify
 
-| File | Change |
-|------|--------|
-| `supabase/functions/provision-financial-user/index.ts` | Map Financial app roles to Academy roles and insert into correct tables |
+| File | Changes | Priority |
+|------|---------|----------|
+| `src/components/admin/UserManagementTable.tsx` | Add horizontal scroll wrapper OR mobile card view | High |
+| `src/components/admin/UserTableRow.tsx` | Create mobile card variant (optional) | High |
+| `src/pages/RoleplayFeedback.tsx` | Standardize padding in loading/generating states | Medium |
+| `src/components/account/AccountTabs.tsx` | Add mobile-friendly tab layout | Medium |
+| `src/pages/ManageProductVideos.tsx` | Tighten mobile header padding | Low |
+| `src/pages/ConsultantLanding.tsx` | Review and align with standard patterns | Low |
 
-### Expected Behavior
+---
 
-| Financial App Roles | Academy Admin Role | Academy Tier | Result |
-|---------------------|-------------------|--------------|--------|
-| `["admin", "consultant"]` | `admin` | `level_2` | Full admin access |
-| `["master_admin"]` | `master_admin` | `level_2` | Master admin access |
-| `["consultant"]` | `user` | `level_2` | Full content access, no admin |
-| `["user"]` or `[]` | `user` | `level_1` | Basic CMFAS access only |
+### Mobile Design Patterns to Apply
 
-### Testing
+**1. Touch Targets:** All interactive elements should have minimum 44x44px touch targets using `min-h-[44px]` or `mobile-touch-target` class.
 
-After implementation:
-1. Log in with a Financial app user that has `admin` role
-2. Verify they get `admin` role in Academy
-3. Verify they can access admin features
-4. Log in with a user that has only `consultant` role
-5. Verify they get `user` role but `level_2` tier access
+**2. Safe Area Padding:** Bottom navigation should respect safe areas with `pb-24 md:pb-8` for main content.
+
+**3. Horizontal Scroll for Tables:**
+```typescript
+<div className="overflow-x-auto">
+  <Table className="min-w-[600px]">
+```
+
+**4. Collapsible Sections:** Use Collapsible component for long content on mobile.
+
+**5. Responsive Text Sizes:**
+- Headings: `text-xl sm:text-2xl md:text-3xl`
+- Body: `text-sm sm:text-base`
+- Micro: `text-xs sm:text-sm`
+
+---
+
+### Testing Checklist
+
+After implementation, verify:
+- [ ] Admin dashboard table is usable on mobile (320px width)
+- [ ] Roleplay feedback page has consistent padding throughout
+- [ ] Account page tabs don't overflow on small screens
+- [ ] All touch targets meet minimum size requirements
+- [ ] Bottom navigation doesn't overlap content
+- [ ] Forms are easy to fill out on mobile keyboards
+- [ ] Modals and dialogs fit within viewport on mobile
+
+---
+
+### Technical Notes
+
+The codebase already uses:
+- `useIsMobile()` hook for conditional rendering
+- Tailwind responsive prefixes (`sm:`, `md:`, `lg:`)
+- Mobile-first design approach in most components
+- `MobileBottomNav` component for mobile navigation
+- `MobileHeader` component for mobile header
+
+The main gaps are:
+1. Admin table component lacks mobile considerations
+2. Some pages have inconsistent padding between states (loading vs loaded)
+3. Minor spacing inconsistencies across the app
 
