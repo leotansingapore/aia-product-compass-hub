@@ -3,7 +3,7 @@ import { EditableLinks } from "@/components/EditableLinks";
 import { FolderBasedUsefulLinks } from "@/components/product-detail/FolderBasedUsefulLinks";
 import type { UsefulLink } from "@/hooks/useProducts";
 import { ProtectedSection } from "@/components/ProtectedSection";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 
 interface ResourceFolder {
   name: string;
@@ -18,8 +18,8 @@ interface ProductUsefulLinksProps {
 }
 
 export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUsefulLinksProps) {
-  const { canEditSection } = usePermissions();
-  const canEdit = canEditSection('product_links');
+  const { isAdmin } = useAdmin();
+  const canEdit = isAdmin;
   
   // Check if this is a Resources module that should use folder-based links
   const resourceModuleIds = [

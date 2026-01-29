@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { EditableLinks } from "@/components/EditableLinks";
 import type { UsefulLink } from "@/hooks/useProducts";
 import { ProtectedSection } from "@/components/ProtectedSection";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
@@ -12,8 +12,8 @@ interface SalesToolsUsefulLinksProps {
 }
 
 export function SalesToolsUsefulLinks({ links, onUpdate }: SalesToolsUsefulLinksProps) {
-  const { canEditSection } = usePermissions();
-  const canEdit = canEditSection('product_links');
+  const { isAdmin } = useAdmin();
+  const canEdit = isAdmin;
 
   // Ensure links is always an array
   const safeLinks = Array.isArray(links) ? links : [];

@@ -16,7 +16,7 @@ import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useProductDetail } from "@/hooks/useProductDetail";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 import type { TrainingVideo } from "@/hooks/useProducts";
 import { getVideoSlug } from "@/utils/slugUtils";
 
@@ -33,8 +33,8 @@ export default function ProductDetail() {
 
   const { productSlugOrId, pageId } = useParams();
   const navigate = useNavigate();
-  const { isAdmin } = usePermissions();
-  const isAdminMode = isAdmin();
+  const { isAdmin } = useAdmin();
+  const isAdminMode = isAdmin;
 
   const [editingIndexFromUrl, setEditingIndexFromUrl] = useState<number | null>(null);
 

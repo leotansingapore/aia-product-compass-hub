@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EditableText } from "@/components/EditableText";
 import { CheckCircle } from "lucide-react";
 import { ProtectedSection } from "@/components/ProtectedSection";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 
 interface ProductHighlightsProps {
   highlights: string[];
@@ -10,8 +10,8 @@ interface ProductHighlightsProps {
 }
 
 export function ProductHighlights({ highlights, onUpdate }: ProductHighlightsProps) {
-  const { canEditSection } = usePermissions();
-  const canEdit = canEditSection('product_highlights');
+  const { isAdmin } = useAdmin();
+  const canEdit = isAdmin;
 
   return (
     <ProtectedSection sectionId="product_highlights">

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EditableText } from "@/components/EditableText";
 import { ProtectedSection } from "@/components/ProtectedSection";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 
 interface ProductSummaryProps {
   description: string;
@@ -9,8 +9,8 @@ interface ProductSummaryProps {
 }
 
 export function ProductSummary({ description, onUpdate }: ProductSummaryProps) {
-  const { canEditSection } = usePermissions();
-  const canEdit = canEditSection('product_summary');
+  const { isAdmin } = useAdmin();
+  const canEdit = isAdmin;
 
   return (
     <ProtectedSection sectionId="product_summary">
