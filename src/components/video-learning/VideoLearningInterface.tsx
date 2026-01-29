@@ -12,7 +12,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { useToast } from '@/hooks/use-toast';
 import type { TrainingVideo } from '@/hooks/useProducts';
 import { getVideoSlug } from '@/utils/slugUtils';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { markdownComponents } from '@/lib/markdown-config';
@@ -76,6 +76,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const [isNotesOpen, setIsNotesOpen] = useState(!isMobile);
   const { toast } = useToast();
   const { productSlugOrId } = useParams();
+  const navigate = useNavigate();
 
   // Handle fullscreen changes
   useEffect(() => {
@@ -174,12 +175,12 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
       // Use appropriate URL pattern based on module type
       if (moduleType === 'cmfas' && moduleId) {
-        window.location.href = `/cmfas/module/${moduleId}/video/${videoSlug}`;
+        navigate(`/cmfas/module/${moduleId}/video/${videoSlug}`);
       } else if (productSlugOrId) {
-        window.location.href = `/product/${productSlugOrId}/video/${videoSlug}`;
+        navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
       }
     }
-  }, [currentVideoIndex, videos, moduleType, moduleId, productSlugOrId]);
+  }, [currentVideoIndex, videos, moduleType, moduleId, productSlugOrId, navigate]);
 
   const videoInfo = useMemo(() => currentVideo ? getVideoEmbedInfo(currentVideo.url) : null, [currentVideo]);
 
