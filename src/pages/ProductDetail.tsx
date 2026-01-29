@@ -141,36 +141,10 @@ export default function ProductDetail() {
             {/* Left Column - Main Content */}
             <div className="md:col-span-1 lg:col-span-2 space-y-4 sm:space-y-6 md:space-y-8">
 
-              {/* Tags and Bookmark Button */}
-              <ProtectedSection sectionId="product_tags">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-                  <div className="flex-1 w-full">
-                    <EditableTags
-                      tags={product.tags || []}
-                      onSave={(newTags) => handleUpdate('tags', newTags)}
-                    />
-                  </div>
-                  <div className="self-end sm:self-auto">
-                    <BookmarkButton productId={product.id} />
-                  </div>
-                </div>
-              </ProtectedSection>
-
-              {/* Summary - Hidden for Sales Tools */}
-              {productId !== 'sales-tools-objections' && (
-                <ProductSummary
-                  description={product.description || ''}
-                  onUpdate={handleUpdate}
-                />
-              )}
-
-              {/* Key Highlights - Hidden for Sales Tools */}
-              {productId !== 'sales-tools-objections' && (
-                <ProductHighlights
-                  highlights={product.highlights || []}
-                  onUpdate={handleUpdate}
-                />
-              )}
+              {/* Bookmark Button */}
+              <div className="flex justify-end">
+                <BookmarkButton productId={product.id} />
+              </div>
 
               {/* Chat Assistance Section */}
               <ProtectedSection sectionId="product_chat_assistance">
