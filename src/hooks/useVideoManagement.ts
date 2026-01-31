@@ -66,20 +66,23 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
     });
   };
 
-  const handleSave = async () => {
+  const handleSave = async (videosToSave?: TrainingVideo[]) => {
     setSaving(true);
-    console.log('🎥 VideoManagement handleSave called with:', editVideos);
-    console.log('🎥 Number of videos to save:', editVideos.length);
+    // Use provided videos or fall back to current editVideos state
+    const videos = videosToSave ?? editVideos;
+    console.log('🎥 VideoManagement handleSave called with:', videos);
+    console.log('🎥 Number of videos to save:', videos.length);
     console.log('🎥 onSave function:', onSave);
-    console.log('🎥 editVideos data:', JSON.stringify(editVideos, null, 2));
+    console.log('🎥 videos data:', JSON.stringify(videos, null, 2));
     
     try {
       console.log('🎥 Calling onSave function...');
-      const result = await onSave(editVideos);
+      const result = await onSave(videos);
       console.log('🎥 onSave returned:', result);
       
-      // Update the initial ref to reflect the saved state
-      initialVideosRef.current = JSON.stringify(editVideos);
+      // Update both the state and the initial ref to reflect the saved state
+      setEditVideos(videos);
+      initialVideosRef.current = JSON.stringify(videos);
       
       setIsEditing(false);
       setEditingIndex(null);
@@ -93,7 +96,7 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
       console.error('❌ Error details:', {
         message: error instanceof Error ? error.message : 'Unknown error',
         stack: error instanceof Error ? error.stack : undefined,
-        editVideos: editVideos,
+        videos: videos,
         onSaveFunction: onSave.toString()
       });
       toast({
