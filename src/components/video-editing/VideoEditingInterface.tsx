@@ -22,7 +22,7 @@ interface VideoEditingInterfaceProps {
   onMoveVideo: (index: number, direction: 'up' | 'down') => void;
   onNewVideoChange: (video: TrainingVideo) => void;
   onAddVideo: () => void;
-  onSave: () => void;
+  onSave: (videos?: TrainingVideo[]) => void;
   onCancel: () => void;
   onCreateCategory: (categoryName: string) => void;
 }
@@ -67,12 +67,33 @@ export function VideoEditingInterface({
         lastVideo: updatedVideos[updatedVideos.length - 1]?.title
       });
       onSetEditVideos(updatedVideos);
+      
+      // Also persist to database immediately - pass videos directly to avoid stale state
+      console.log('💾 VideoEditingInterface: Persisting order changes to database...');
+      await onSave(updatedVideos);
     }
   });
 
+  // Wrapper to update both pendingVideos and parent's editVideos when content is edited
+  const handleUpdateVideo = (index: number, updatedVideo: TrainingVideo) => {
+    console.log('📝 VideoEditingInterface: Updating video content', {
+      index,
+      title: updatedVideo.title,
+      hasRichContent: !!updatedVideo.rich_content
+    });
+    
+    // Update parent's editVideos (for hasContentChanges detection and save)
+    onUpdateVideo(index, updatedVideo);
+    
+    // Also update pendingVideos locally to keep UI in sync
+    const updatedPending = [...videoOrderChanges.pendingVideos];
+    updatedPending[index] = updatedVideo;
+    videoOrderChanges.updatePendingVideos(updatedPending);
+  };
+
   const folderManagement = useFolderManagement({
     editVideos: videoOrderChanges.pendingVideos,
-    onUpdateVideo,
+    onUpdateVideo: handleUpdateVideo,
     onCreateCategory,
     emptyFolders,
     setEmptyFolders
@@ -204,7 +225,7 @@ export function VideoEditingInterface({
           folderDialogMode={folderManagement.folderDialogMode}
           editingFolderName={folderManagement.editingFolderName}
           onEditingIndexChange={onEditingIndexChange}
-          onUpdateVideo={onUpdateVideo}
+          onUpdateVideo={handleUpdateVideo}
           onRemoveVideo={onRemoveVideo}
           onMoveVideo={onMoveVideo}
           onNewVideoChange={onNewVideoChange}
@@ -224,22 +245,19 @@ export function VideoEditingInterface({
           onReorderFolders={handleReorderFolders}
         />
         
-        {videoOrderChanges.hasPendingChanges && (
-          <div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t px-6 py-4 mt-6">
-            <VideoOrderActions
-              changeCount={videoOrderChanges.getChangeCount()}
-              changeSummary={videoOrderChanges.getChangeSummary()}
-              isSaving={videoOrderChanges.isSaving}
-              onSave={videoOrderChanges.saveChanges}
-              onDiscard={videoOrderChanges.discardChanges}
-            />
-          </div>
-        )}
-        {!videoOrderChanges.hasPendingChanges && hasContentChanges && (
+        {/* Unified save bar - shows when there are ANY unsaved changes */}
+        {(videoOrderChanges.hasPendingChanges || hasContentChanges) && (
           <div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t px-6 py-4 mt-6">
             <VideoEditingActions
-              saving={saving}
-              onSave={onSave}
+              saving={saving || videoOrderChanges.isSaving}
+              onSave={() => {
+                // Get the latest videos (includes order changes and content changes)
+                const currentVideos = videoOrderChanges.pendingVideos;
+                console.log('💾 Save triggered with videos:', currentVideos.length);
+                onSave(currentVideos);
+                // Clear order tracking after save
+                videoOrderChanges.discardChanges();
+              }}
               onCancel={onCancel}
             />
           </div>
