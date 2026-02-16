@@ -1,5 +1,5 @@
-import { memo, useMemo } from "react";
-import { ArrowLeft } from "lucide-react";
+import { memo, useMemo, useState, useRef, useCallback } from "react";
+import { ArrowLeft, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Breadcrumb,
@@ -27,19 +27,9 @@ interface BrandedPageHeaderProps {
   searchBar?: React.ReactNode;
   variant?: "default" | "compact";
   className?: string;
+  onTitleEdit?: (newTitle: string) => Promise<void>;
 }
 
-/**
- * Unified branded page header component with consistent styling and accessibility
- * Features:
- * - Two-color gradient background for brand consistency
- * - WCAG-compliant focus indicators
- * - Responsive typography and spacing
- * - Optional breadcrumb navigation
- * - Optional custom actions
- * - Mobile-optimized layout
- * - Performance optimized with memoization
- */
 export const BrandedPageHeader = memo(function BrandedPageHeader({
   title,
   subtitle,
@@ -49,10 +39,34 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
   actions,
   searchBar,
   variant = "default",
-  className
+  className,
+  onTitleEdit
 }: BrandedPageHeaderProps) {
 
-  // Memoize breadcrumb rendering to avoid unnecessary re-renders
+  const [isEditingTitle, setIsEditingTitle] = useState(false);
+  const [editValue, setEditValue] = useState(title);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleTitleClick = useCallback(() => {
+    if (!onTitleEdit) return;
+    setEditValue(title);
+    setIsEditingTitle(true);
+    setTimeout(() => inputRef.current?.select(), 0);
+  }, [onTitleEdit, title]);
+
+  const handleSave = useCallback(async () => {
+    const trimmed = editValue.trim();
+    setIsEditingTitle(false);
+    if (trimmed && trimmed !== title && onTitleEdit) {
+      await onTitleEdit(trimmed);
+    }
+  }, [editValue, title, onTitleEdit]);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') { e.preventDefault(); handleSave(); }
+    if (e.key === 'Escape') { setEditValue(title); setIsEditingTitle(false); }
+  }, [handleSave, title]);
+
   const breadcrumbElements = useMemo(() => {
     if (!breadcrumbs || breadcrumbs.length === 0) return null;
 
@@ -84,8 +98,6 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
       className
     )}>
       <div className="w-full">
-
-        {/* Breadcrumbs - Hidden on mobile */}
         {breadcrumbElements && (
           <div className="mb-2 md:mb-3 hidden sm:block">
             <Breadcrumb>
@@ -96,7 +108,6 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
           </div>
         )}
 
-        {/* Header Content */}
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center space-x-2 sm:space-x-3">
             {showBackButton && (
@@ -111,12 +122,36 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
               </Button>
             )}
             <div className="min-w-0 flex-1">
-              <h1 className={cn(
-                "font-bold break-words",
-                variant === "compact" ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-2xl"
-              )}>
-                {title}
-              </h1>
+              {isEditingTitle ? (
+                <input
+                  ref={inputRef}
+                  value={editValue}
+                  onChange={(e) => setEditValue(e.target.value.slice(0, 100))}
+                  onBlur={handleSave}
+                  onKeyDown={handleKeyDown}
+                  maxLength={100}
+                  autoFocus
+                  className={cn(
+                    "font-bold break-words bg-transparent border-none outline-none text-white w-full",
+                    "ring-1 ring-white/30 rounded px-1 -mx-1",
+                    variant === "compact" ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-2xl"
+                  )}
+                />
+              ) : (
+                <h1
+                  className={cn(
+                    "font-bold break-words",
+                    variant === "compact" ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-2xl",
+                    onTitleEdit && "cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-colors group/title inline-flex items-center gap-1.5"
+                  )}
+                  onClick={handleTitleClick}
+                >
+                  {title}
+                  {onTitleEdit && (
+                    <Pencil className="h-3.5 w-3.5 opacity-0 group-hover/title:opacity-70 transition-opacity shrink-0" aria-hidden="true" />
+                  )}
+                </h1>
+              )}
               {subtitle && (
                 <p className={cn(
                   "hidden sm:block text-white/90 mt-1 break-words",
@@ -134,7 +169,6 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
           )}
         </div>
 
-        {/* Search Bar */}
         {searchBar && (
           <div className="mt-4">
             {searchBar}

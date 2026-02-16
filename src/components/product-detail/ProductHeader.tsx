@@ -6,9 +6,10 @@ interface ProductHeaderProps {
   categoryName: string;
   onBack: () => void;
   breadcrumbs?: BreadcrumbItem[];
+  onTitleEdit?: (newTitle: string) => Promise<void>;
 }
 
-export function ProductHeader({ productTitle, categoryName, onBack, breadcrumbs }: ProductHeaderProps) {
+export function ProductHeader({ productTitle, categoryName, onBack, breadcrumbs, onTitleEdit }: ProductHeaderProps) {
   const defaultBreadcrumbs = [
     { label: "Home", href: "/" },
     {
@@ -25,6 +26,7 @@ export function ProductHeader({ productTitle, categoryName, onBack, breadcrumbs 
       showBackButton
       onBack={onBack}
       breadcrumbs={breadcrumbs || defaultBreadcrumbs}
+      onTitleEdit={onTitleEdit}
     />
   );
 }
