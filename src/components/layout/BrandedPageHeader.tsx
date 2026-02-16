@@ -151,20 +151,30 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
             )}
             <div className="min-w-0 flex-1">
               {isEditingTitle ? (
-                <input
-                  ref={inputRef}
-                  value={editValue}
-                  onChange={(e) => setEditValue(e.target.value.slice(0, 100))}
-                  onBlur={handleSave}
-                  onKeyDown={handleKeyDown}
-                  maxLength={100}
-                  autoFocus
-                  className={cn(
-                    "font-bold break-words bg-transparent border-none outline-none text-white w-full",
-                    "ring-1 ring-white/30 rounded px-1 -mx-1",
-                    variant === "compact" ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-2xl"
-                  )}
-                />
+                <div className="inline-grid min-w-[120px] max-w-full">
+                  <span
+                    className={cn(
+                      "invisible whitespace-pre col-start-1 row-start-1 font-bold px-1",
+                      variant === "compact" ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-2xl"
+                    )}
+                  >
+                    {editValue || " "}
+                  </span>
+                  <input
+                    ref={inputRef}
+                    value={editValue}
+                    onChange={(e) => setEditValue(e.target.value.slice(0, 100))}
+                    onBlur={handleSave}
+                    onKeyDown={handleKeyDown}
+                    maxLength={100}
+                    autoFocus
+                    className={cn(
+                      "col-start-1 row-start-1 font-bold bg-transparent border-none outline-none text-white",
+                      "ring-1 ring-white/30 rounded px-1",
+                      variant === "compact" ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-2xl"
+                    )}
+                  />
+                </div>
               ) : (
                 <h1
                   className={cn(
@@ -196,20 +206,30 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
                 </p>
               )}
               {isEditingSubtitle && (
-                <input
-                  ref={subtitleInputRef}
-                  value={subtitleEditValue}
-                  onChange={(e) => setSubtitleEditValue(e.target.value.slice(0, 200))}
-                  onBlur={handleSubtitleSave}
-                  onKeyDown={handleSubtitleKeyDown}
-                  maxLength={200}
-                  autoFocus
-                  className={cn(
-                    "hidden sm:block text-white/90 mt-1 break-words bg-transparent border-none outline-none w-full",
-                    "ring-1 ring-white/30 rounded px-1 -mx-1",
-                    variant === "compact" ? "text-micro md:text-sm" : "text-sm md:text-base"
-                  )}
-                />
+                <div className="hidden sm:inline-grid min-w-[200px] max-w-full mt-1">
+                  <span
+                    className={cn(
+                      "invisible whitespace-pre col-start-1 row-start-1 px-1",
+                      variant === "compact" ? "text-micro md:text-sm" : "text-sm md:text-base"
+                    )}
+                  >
+                    {subtitleEditValue || " "}
+                  </span>
+                  <input
+                    ref={subtitleInputRef}
+                    value={subtitleEditValue}
+                    onChange={(e) => setSubtitleEditValue(e.target.value.slice(0, 200))}
+                    onBlur={handleSubtitleSave}
+                    onKeyDown={handleSubtitleKeyDown}
+                    maxLength={200}
+                    autoFocus
+                    className={cn(
+                      "col-start-1 row-start-1 text-white/90 bg-transparent border-none outline-none",
+                      "ring-1 ring-white/30 rounded px-1",
+                      variant === "compact" ? "text-micro md:text-sm" : "text-sm md:text-base"
+                    )}
+                  />
+                </div>
               )}
             </div>
           </div>
