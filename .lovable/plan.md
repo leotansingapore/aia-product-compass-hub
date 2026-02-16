@@ -1,41 +1,28 @@
 
 
-## Fix Inline Edit Input Sizing
+## Fix: Title and Description on Separate Rows
 
-### Problem
-The subtitle (and title) inline edit inputs shrink to a small size instead of matching the text width. The `<input>` fields don't auto-expand to fit their content.
+**Problem**: The title ("Appointment Flow") and description are appearing on the same line instead of two separate rows. This is because the `h1` element uses `inline-flex`, making it an inline element that doesn't force a line break before the subtitle.
 
-### Solution
-Use a CSS technique where a hidden `<span>` measures the text content and the input stretches to match. This is done by wrapping the input in a relative container with a hidden sibling that holds the same value, pushing the width naturally.
+**Solution**: Change the `h1` from `inline-flex` to `flex` so it takes the full width of its container, naturally pushing the subtitle to the next row.
 
-### Changes
+---
 
-**File: `src/components/layout/BrandedPageHeader.tsx`**
+### Technical Details
 
-1. **Title input (lines 153-167)**: Replace the plain `<input>` with an auto-sizing wrapper:
-   - Wrap in a `<div className="relative inline-grid">`  
-   - Add a hidden `<span>` with the same text styling and `visibility: hidden` that sets the grid column width
-   - Both the `<span>` and `<input>` sit in `grid-area: 1/1` so the input stretches to match the span's width
-   - Add `min-w-[120px]` so empty fields aren't too tiny
-   - Use `max-w-full` to prevent overflow
+**File**: `src/components/layout/BrandedPageHeader.tsx` (line 184)
 
-2. **Subtitle input (lines 198-212)**: Same auto-sizing pattern:
-   - Same grid-based auto-sizing wrapper
-   - `min-w-[200px]` since descriptions tend to be longer
-   - `max-w-full` to prevent overflow
+Change the editable title's class from `inline-flex` to `flex`:
 
-This is a well-known CSS pattern (used by libraries like `react-textarea-autosize`) that keeps the input feeling natural -- it grows and shrinks with the text content, no JavaScript measurement needed.
+```tsx
+// Before
+onTitleEdit && "cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-colors group/title inline-flex items-center gap-1.5"
 
-### Technical Detail
-
-```text
-Before:  [input w-full]  -- always full width, or shrinks oddly
-
-After:   [inline-grid container]
-           [hidden span with same text styling] -- sets natural width
-           [input overlaid on span]             -- matches span width
-         min-w-[120px] max-w-full
+// After
+onTitleEdit && "cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-colors group/title flex items-center gap-1.5"
 ```
 
-Both editors independently auto-size. No layout shift, no shrinking.
+This single change ensures:
+- Row 1: Title with edit icon
+- Row 2: Description with edit icon
 
