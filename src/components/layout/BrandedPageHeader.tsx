@@ -207,7 +207,7 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
                 </p>
               )}
               {isEditingSubtitle && (
-                <div className="hidden sm:inline-grid min-w-[200px] max-w-full mt-1">
+                <div className="hidden sm:grid min-w-[200px] max-w-full mt-1" style={{ gridTemplateColumns: 'min-content' }}>
                   <span
                     className={cn(
                       "invisible whitespace-pre col-start-1 row-start-1 px-1",
