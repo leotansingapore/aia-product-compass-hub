@@ -146,7 +146,7 @@ export function ProductCard({ title, description, category, tags, highlights, on
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0 transition-all duration-300 ease-in-out hover:bg-muted/80 dark:hover:bg-muted">
+                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0 transition-all duration-300 ease-in-out hover:bg-muted/80 dark:hover:bg-muted hover:text-foreground">
                             <MoreVertical className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
