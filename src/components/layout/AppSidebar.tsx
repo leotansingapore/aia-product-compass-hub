@@ -13,7 +13,8 @@ import {
   User,
   MessageCircle,
   MoreHorizontal,
-  Pencil
+  Pencil,
+  Trash2
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -34,8 +35,10 @@ import {
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { useCategories, invalidateCategoriesCache } from "@/hooks/useProducts";
 import { usePermissions } from "@/hooks/usePermissions";
@@ -62,6 +65,7 @@ const AppSidebar = memo(function AppSidebar() {
   const [categoriesOpen, setCategoriesOpen] = useState(true);
   const [editingCategory, setEditingCategory] = useState<{ id: string; name: string } | null>(null);
   const [newCategoryName, setNewCategoryName] = useState("");
+  const [deletingCategory, setDeletingCategory] = useState<{ id: string; name: string } | null>(null);
 
   const allMainNavItems = useMemo(() => [
     { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined, sectionId: "dashboard" },
@@ -115,6 +119,25 @@ const AppSidebar = memo(function AppSidebar() {
       window.location.reload();
     }
     setEditingCategory(null);
+  };
+
+  const handleDeleteCategory = async () => {
+    if (!deletingCategory) return;
+    
+    const { error } = await supabase
+      .from('categories')
+      .delete()
+      .eq('id', deletingCategory.id);
+
+    if (error) {
+      toast({ title: "Error", description: "Failed to delete category", variant: "destructive" });
+    } else {
+      invalidateCategoriesCache();
+      toast({ title: "Success", description: "Category deleted successfully" });
+      navigate("/");
+      window.location.reload();
+    }
+    setDeletingCategory(null);
   };
 
   if (!user) return null;
@@ -208,7 +231,7 @@ const AppSidebar = memo(function AppSidebar() {
                                     <MoreHorizontal className="h-4 w-4" />
                                   </SidebarMenuAction>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent side="right" align="start">
+                <DropdownMenuContent side="right" align="start" className="shadow-sm">
                                   <DropdownMenuItem
                                     onClick={() => {
                                       setEditingCategory({ id: category.id, name: category.name });
@@ -217,6 +240,13 @@ const AppSidebar = memo(function AppSidebar() {
                                   >
                                     <Pencil className="h-4 w-4 mr-2" />
                                     Edit Name
+                                  </DropdownMenuItem>
+                                  <DropdownMenuItem
+                                    className="text-destructive focus:text-destructive"
+                                    onClick={() => setDeletingCategory({ id: category.id, name: category.name })}
+                                  >
+                                    <Trash2 className="h-4 w-4 mr-2" />
+                                    Delete
                                   </DropdownMenuItem>
                                 </DropdownMenuContent>
                               </DropdownMenu>
@@ -280,18 +310,42 @@ const AppSidebar = memo(function AppSidebar() {
           <DialogHeader>
             <DialogTitle>Rename Category</DialogTitle>
           </DialogHeader>
-          <Input
-            value={newCategoryName}
-            onChange={(e) => setNewCategoryName(e.target.value)}
-            placeholder="Category name"
-            onKeyDown={(e) => e.key === 'Enter' && handleRenameCategory()}
-          />
+          <div className="space-y-2">
+            <Label htmlFor="category-name">Name</Label>
+            <Input
+              id="category-name"
+              value={newCategoryName}
+              onChange={(e) => setNewCategoryName(e.target.value)}
+              placeholder="Category name"
+              maxLength={50}
+              onKeyDown={(e) => e.key === 'Enter' && handleRenameCategory()}
+            />
+            <p className="text-xs text-right text-muted-foreground">{newCategoryName.length} / 50</p>
+          </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setEditingCategory(null)}>Cancel</Button>
-            <Button onClick={handleRenameCategory} disabled={!newCategoryName.trim()}>Save</Button>
+            <Button variant="outline" size="default" onClick={() => setEditingCategory(null)}>Cancel</Button>
+            <Button size="default" onClick={handleRenameCategory} disabled={!newCategoryName.trim()}>Save</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Delete Category Confirmation */}
+      <AlertDialog open={!!deletingCategory} onOpenChange={(open) => !open && setDeletingCategory(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete "{deletingCategory?.name}"?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will permanently delete this category. Products in this category will need to be reassigned.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteCategory} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 });
