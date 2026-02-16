@@ -1,10 +1,8 @@
-import { useState, memo, useMemo } from "react";
+import { useState, memo, useMemo, useCallback } from "react";
 import { 
   Home, 
   BookOpen, 
-  Search, 
   Bookmark, 
-  Settings, 
   HelpCircle, 
   TrendingUp,
   Users,
@@ -13,7 +11,9 @@ import {
   GraduationCap,
   Shield,
   User,
-  MessageCircle
+  MessageCircle,
+  MoreHorizontal,
+  Pencil
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -26,16 +26,23 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuAction,
   SidebarHeader,
   SidebarFooter,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { useCategories } from "@/hooks/useProducts";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { useCategories, invalidateCategoriesCache } from "@/hooks/useProducts";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { useAdmin } from "@/hooks/useAdmin";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 
 const allResourceItems = [
   { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle, sectionId: "how-to-use" },
@@ -50,13 +57,12 @@ const AppSidebar = memo(function AppSidebar() {
   const { categories } = useCategories();
   const { isMasterAdmin, canAccessSection, isAdmin, hasRole } = usePermissions();
   const { user } = useSimplifiedAuth();
+  const { isAdmin: isAdminUser } = useAdmin();
 
-  // Don't render sidebar for unauthenticated users
-  if (!user) {
-    return null;
-  }
+  const [categoriesOpen, setCategoriesOpen] = useState(true);
+  const [editingCategory, setEditingCategory] = useState<{ id: string; name: string } | null>(null);
+  const [newCategoryName, setNewCategoryName] = useState("");
 
-  // Memoize navigation items to prevent recalculation on every render
   const allMainNavItems = useMemo(() => [
     { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined, sectionId: "dashboard" },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
@@ -66,7 +72,6 @@ const AppSidebar = memo(function AppSidebar() {
     ...(isMasterAdmin() || hasRole('admin') ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
   ], [isMasterAdmin, hasRole]);
 
-  // Filter navigation items based on user permissions - memoized
   const mainNavItems = useMemo(() => 
     allMainNavItems.filter(item => canAccessSection(item.sectionId)), 
     [allMainNavItems, canAccessSection]
@@ -76,12 +81,10 @@ const AppSidebar = memo(function AppSidebar() {
     allResourceItems.filter(item => canAccessSection(item.sectionId)), 
     [canAccessSection]
   );
-  const [categoriesOpen, setCategoriesOpen] = useState(true);
-  
+
   const isCollapsed = state === "collapsed";
   const currentPath = location.pathname;
 
-  // Memoize helper functions to prevent recreating on every render
   const isActive = useMemo(() => (path: string) => {
     if (path === "/") return currentPath === "/";
     return currentPath.startsWith(path);
@@ -96,146 +99,200 @@ const AppSidebar = memo(function AppSidebar() {
     }`;
   }, [isActive]);
 
+  const handleRenameCategory = async () => {
+    if (!editingCategory || !newCategoryName.trim()) return;
+    
+    const { error } = await supabase
+      .from('categories')
+      .update({ name: newCategoryName.trim() })
+      .eq('id', editingCategory.id);
+
+    if (error) {
+      toast({ title: "Error", description: "Failed to rename category", variant: "destructive" });
+    } else {
+      invalidateCategoriesCache();
+      toast({ title: "Success", description: "Category renamed successfully" });
+      window.location.reload();
+    }
+    setEditingCategory(null);
+  };
+
+  if (!user) return null;
+
   return (
-    <Sidebar collapsible="icon" className="border-r">
-      <SidebarHeader className="border-b py-3 px-4 group-data-[collapsible=icon]:px-2">
-        <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <BookOpen className="h-4 w-4 text-primary-foreground" />
-          </div>
-          {!isCollapsed && (
-            <div>
-              <h2 className="font-semibold text-sm">FINternship Learning</h2>
-              <p className="text-micro text-muted-foreground">Platform</p>
+    <>
+      <Sidebar collapsible="icon" className="border-r">
+        <SidebarHeader className="border-b py-3 px-4 group-data-[collapsible=icon]:px-2">
+          <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <BookOpen className="h-4 w-4 text-primary-foreground" />
             </div>
-          )}
-        </div>
-      </SidebarHeader>
-
-      <SidebarContent>
-        {/* Main Navigation */}
-        <SidebarGroup>
-          <SidebarGroupLabel>Main</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {mainNavItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
-                    <NavLink
-                      to={item.url}
-                      className={getNavClassName(item.url)}
-                      onClick={(e) => {
-                        // Clear search params when clicking Dashboard
-                        if (item.url === "/") {
-                          e.preventDefault();
-                          navigate("/", { replace: true });
-                        }
-                      }}
-                      {...(item.dataAttr && { 'data-onboarding': item.dataAttr })}
-                    >
-                      <item.icon className="h-4 w-4" />
-                      {!isCollapsed && <span>{item.title}</span>}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        {/* Product Categories */}
-        <SidebarGroup>
-          <Collapsible open={categoriesOpen} onOpenChange={setCategoriesOpen}>
-            <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="flex items-center justify-between w-full">
-                <span>Product Categories</span>
-                {!isCollapsed && (
-                  <ChevronDown className={`h-4 w-4 transition-transform ${categoriesOpen ? 'rotate-180' : ''}`} />
-                )}
-              </CollapsibleTrigger>
-            </SidebarGroupLabel>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {categories
-                    .filter((category) => {
-                      // Check if this category is accessible to the current user
-                      const sectionId = `product-category-${category.id}`;
-                      return canAccessSection(sectionId);
-                    })
-                    .map((category) => {
-                      const isActiveCategory = currentPath.includes(`/category/${category.id}`);
-                      return (
-                        <SidebarMenuItem key={category.id}>
-                          <SidebarMenuButton asChild tooltip={isCollapsed ? category.name : undefined}>
-                            <NavLink
-                              to={`/category/${category.id}`}
-                              className={`flex items-center w-full text-left transition-colors ${
-                                isActiveCategory
-                                  ? "bg-primary text-primary-foreground font-medium cursor-default hover:!bg-primary hover:!text-primary-foreground"
-                                  : "hover:bg-accent hover:text-accent-foreground"
-                              }`}
-                            >
-                              <Archive className="h-4 w-4" />
-                              {!isCollapsed && (
-                                <span className="truncate">{category.name}</span>
-                              )}
-                            </NavLink>
-                          </SidebarMenuButton>
-                        </SidebarMenuItem>
-                      );
-                    })}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </Collapsible>
-        </SidebarGroup>
-
-        {/* Resources */}
-        <SidebarGroup>
-          <SidebarGroupLabel>Resources</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {resourceItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
-                    <NavLink to={item.url} className={getNavClassName(item.url)}>
-                      <item.icon className="h-4 w-4" />
-                      {!isCollapsed && <span>{item.title}</span>}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-
-      <SidebarFooter className="border-t p-4">
-        {!isCollapsed && (
-          <div className="space-y-3">
-            {/* Theme Toggle */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Theme</span>
-              <ThemeToggle />
-            </div>
-            
-            {isAdmin() && (
-              <div className="flex items-center gap-2">
-                <Badge variant="secondary" className="text-micro">
-                  {isMasterAdmin() ? 'Master Admin' : 'Admin'}
-                </Badge>
+            {!isCollapsed && (
+              <div>
+                <h2 className="font-semibold text-sm">FINternship Learning</h2>
+                <p className="text-micro text-muted-foreground">Platform</p>
               </div>
             )}
-            <div className="text-micro text-muted-foreground">
-              <p>© 2024 FINternship Learning Platform</p>
-              <p>Version 2.0</p>
-            </div>
           </div>
-        )}
-        {isCollapsed && <ThemeToggle />}
-      </SidebarFooter>
-    </Sidebar>
+        </SidebarHeader>
+
+        <SidebarContent>
+          {/* Main Navigation */}
+          <SidebarGroup>
+            <SidebarGroupLabel>Main</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {mainNavItems.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
+                      <NavLink
+                        to={item.url}
+                        className={getNavClassName(item.url)}
+                        onClick={(e) => {
+                          if (item.url === "/") {
+                            e.preventDefault();
+                            navigate("/", { replace: true });
+                          }
+                        }}
+                        {...(item.dataAttr && { 'data-onboarding': item.dataAttr })}
+                      >
+                        <item.icon className="h-4 w-4" />
+                        {!isCollapsed && <span>{item.title}</span>}
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+
+          {/* Product Categories */}
+          <SidebarGroup>
+            <Collapsible open={categoriesOpen} onOpenChange={setCategoriesOpen}>
+              <SidebarGroupLabel asChild>
+                <CollapsibleTrigger className="flex items-center justify-between w-full">
+                  <span>Product Categories</span>
+                  {!isCollapsed && (
+                    <ChevronDown className={`h-4 w-4 transition-transform ${categoriesOpen ? 'rotate-180' : ''}`} />
+                  )}
+                </CollapsibleTrigger>
+              </SidebarGroupLabel>
+              <CollapsibleContent>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {categories
+                      .filter((category) => canAccessSection(`product-category-${category.id}`))
+                      .map((category) => {
+                        const isActiveCategory = currentPath.includes(`/category/${category.id}`);
+                        return (
+                          <SidebarMenuItem key={category.id}>
+                            <SidebarMenuButton asChild tooltip={isCollapsed ? category.name : undefined}>
+                              <NavLink
+                                to={`/category/${category.id}`}
+                                className={`flex items-center w-full text-left transition-colors ${
+                                  isActiveCategory
+                                    ? "bg-primary text-primary-foreground font-medium cursor-default hover:!bg-primary hover:!text-primary-foreground"
+                                    : "hover:bg-accent hover:text-accent-foreground"
+                                }`}
+                              >
+                                <Archive className="h-4 w-4" />
+                                {!isCollapsed && (
+                                  <span className="truncate">{category.name}</span>
+                                )}
+                              </NavLink>
+                            </SidebarMenuButton>
+                            {isAdminUser && !isCollapsed && (
+                              <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                  <SidebarMenuAction showOnHover>
+                                    <MoreHorizontal className="h-4 w-4" />
+                                  </SidebarMenuAction>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent side="right" align="start">
+                                  <DropdownMenuItem
+                                    onClick={() => {
+                                      setEditingCategory({ id: category.id, name: category.name });
+                                      setNewCategoryName(category.name);
+                                    }}
+                                  >
+                                    <Pencil className="h-4 w-4 mr-2" />
+                                    Edit Name
+                                  </DropdownMenuItem>
+                                </DropdownMenuContent>
+                              </DropdownMenu>
+                            )}
+                          </SidebarMenuItem>
+                        );
+                      })}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </CollapsibleContent>
+            </Collapsible>
+          </SidebarGroup>
+
+          {/* Resources */}
+          <SidebarGroup>
+            <SidebarGroupLabel>Resources</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {resourceItems.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
+                      <NavLink to={item.url} className={getNavClassName(item.url)}>
+                        <item.icon className="h-4 w-4" />
+                        {!isCollapsed && <span>{item.title}</span>}
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+
+        <SidebarFooter className="border-t p-4">
+          {!isCollapsed && (
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">Theme</span>
+                <ThemeToggle />
+              </div>
+              {isAdmin() && (
+                <div className="flex items-center gap-2">
+                  <Badge variant="secondary" className="text-micro">
+                    {isMasterAdmin() ? 'Master Admin' : 'Admin'}
+                  </Badge>
+                </div>
+              )}
+              <div className="text-micro text-muted-foreground">
+                <p>© 2024 FINternship Learning Platform</p>
+                <p>Version 2.0</p>
+              </div>
+            </div>
+          )}
+          {isCollapsed && <ThemeToggle />}
+        </SidebarFooter>
+      </Sidebar>
+
+      {/* Rename Category Dialog */}
+      <Dialog open={!!editingCategory} onOpenChange={(open) => !open && setEditingCategory(null)}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Rename Category</DialogTitle>
+          </DialogHeader>
+          <Input
+            value={newCategoryName}
+            onChange={(e) => setNewCategoryName(e.target.value)}
+            placeholder="Category name"
+            onKeyDown={(e) => e.key === 'Enter' && handleRenameCategory()}
+          />
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEditingCategory(null)}>Cancel</Button>
+            <Button onClick={handleRenameCategory} disabled={!newCategoryName.trim()}>Save</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 });
 
