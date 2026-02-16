@@ -21,7 +21,8 @@ export function ProductHeader({ productTitle, categoryName, onBack, breadcrumbs,
 
   return (
     <BrandedPageHeader
-      title={`🧾 ${productTitle}`}
+      title={productTitle}
+      titlePrefix="🧾 "
       subtitle={categoryName || 'Product Details'}
       showBackButton
       onBack={onBack}

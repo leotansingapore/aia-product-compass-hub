@@ -19,6 +19,7 @@ export interface BreadcrumbItem {
 
 interface BrandedPageHeaderProps {
   title: string;
+  titlePrefix?: string;
   subtitle?: string;
   showBackButton?: boolean;
   onBack?: () => void;
@@ -32,6 +33,7 @@ interface BrandedPageHeaderProps {
 
 export const BrandedPageHeader = memo(function BrandedPageHeader({
   title,
+  titlePrefix,
   subtitle,
   showBackButton,
   onBack,
@@ -146,7 +148,7 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
                   )}
                   onClick={handleTitleClick}
                 >
-                  {title}
+                  {titlePrefix && <span>{titlePrefix}</span>}{title}
                   {onTitleEdit && (
                     <Pencil className="h-3.5 w-3.5 opacity-0 group-hover/title:opacity-70 transition-opacity shrink-0" aria-hidden="true" />
                   )}
