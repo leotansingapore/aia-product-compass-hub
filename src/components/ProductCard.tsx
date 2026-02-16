@@ -125,7 +125,7 @@ export function ProductCard({ title, description, category, tags, highlights, on
                         onClick={handleBookmarkClick}
                         disabled={loading}
                         className={cn(
-                          "h-8 w-8 p-0 transition-all duration-300 ease-in-out hover:bg-muted/80 dark:hover:bg-muted",
+                          "h-8 w-8 p-0 transition-all duration-300 ease-in-out hover:bg-muted/80 dark:hover:bg-muted hover:text-foreground",
                           bookmarked && "text-primary"
                         )}
                       >
