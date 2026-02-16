@@ -14,13 +14,17 @@ interface ProductsGridProps {
   categoryName: string;
   onProductClick: (productId: string) => void;
   onClearFilters?: () => void;
+  onEditProduct?: (productId: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => void;
+  onDeleteProduct?: (productId: string) => void;
 }
 
 export function ProductsGrid({ 
   products, 
   categoryName, 
   onProductClick, 
-  onClearFilters 
+  onClearFilters,
+  onEditProduct,
+  onDeleteProduct
 }: ProductsGridProps) {
   if (products.length === 0) {
     return (
@@ -51,6 +55,8 @@ export function ProductsGrid({
             highlights={product.highlights || []}
             onClick={() => onProductClick(product.id)}
             productId={product.id}
+            onEdit={onEditProduct}
+            onDelete={onDeleteProduct}
           />
         </div>
       ))}

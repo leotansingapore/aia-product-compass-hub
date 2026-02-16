@@ -7,7 +7,8 @@ import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ProductsGrid } from "@/components/category/ProductsGrid";
 import { useProductCategory } from "@/hooks/useProductCategory";
-
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 // Helper function to get category info for backward compatibility
 function getCategoryInfo(categoryId: string) {
@@ -58,7 +59,41 @@ export default function ProductCategory() {
   } = useProductCategory();
   
   const { isAdmin } = usePermissions();
-  
+
+  const handleEditProduct = async (productId: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => {
+    const { error } = await supabase
+      .from('products')
+      .update({
+        title: data.title,
+        description: data.description,
+        tags: data.tags,
+        highlights: data.highlights,
+      })
+      .eq('id', productId);
+
+    if (error) {
+      toast.error('Failed to update module');
+      console.error(error);
+    } else {
+      toast.success('Module updated');
+      refetch();
+    }
+  };
+
+  const handleDeleteProduct = async (productId: string) => {
+    const { error } = await supabase
+      .from('products')
+      .delete()
+      .eq('id', productId);
+
+    if (error) {
+      toast.error('Failed to delete module');
+      console.error(error);
+    } else {
+      toast.success('Module deleted');
+      refetch();
+    }
+  };
   // Get category info for meta tags
   const categoryInfo = getCategoryInfo(categoryId || '');
 
@@ -160,6 +195,8 @@ export default function ProductCategory() {
           categoryName={category.name}
           onProductClick={handleProductClick}
           onClearFilters={clearFilters}
+          onEditProduct={handleEditProduct}
+          onDeleteProduct={handleDeleteProduct}
         />
       </div>
     </PageLayout>
