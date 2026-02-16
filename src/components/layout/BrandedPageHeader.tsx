@@ -1,5 +1,6 @@
 import { memo, useMemo, useState, useRef, useCallback } from "react";
-import { ArrowLeft, Pencil } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import InlineEditIcon from "@/assets/inline-edit-icon.svg";
 import { Button } from "@/components/ui/button";
 import {
   Breadcrumb,
@@ -184,10 +185,10 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
                   )}
                   onClick={handleTitleClick}
                 >
-                  {titlePrefix && <span>{titlePrefix}</span>}{title}
                   {onTitleEdit && (
-                    <Pencil className="h-3.5 w-3.5 opacity-0 group-hover/title:opacity-70 transition-opacity shrink-0" aria-hidden="true" />
+                    <img src={InlineEditIcon} alt="" className="h-3.5 w-3.5 opacity-0 group-hover/title:opacity-70 transition-opacity shrink-0 invert" aria-hidden="true" />
                   )}
+                  {titlePrefix && <span>{titlePrefix}</span>}{title}
                 </h1>
               )}
               {subtitle && !isEditingSubtitle && (
@@ -199,10 +200,10 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
                   )}
                   onClick={onSubtitleEdit ? handleSubtitleClick : undefined}
                 >
-                  {subtitle}
                   {onSubtitleEdit && (
-                    <Pencil className="h-3 w-3 opacity-0 group-hover/subtitle:opacity-70 transition-opacity shrink-0" aria-hidden="true" />
+                    <img src={InlineEditIcon} alt="" className="h-3 w-3 opacity-0 group-hover/subtitle:opacity-70 transition-opacity shrink-0 invert" aria-hidden="true" />
                   )}
+                  {subtitle}
                 </p>
               )}
               {isEditingSubtitle && (
