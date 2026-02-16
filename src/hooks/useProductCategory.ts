@@ -7,7 +7,7 @@ import { getCategoryIdFromSlug, getCategorySlugFromId, isUUID } from '@/utils/sl
 export function useProductCategory() {
   const { categorySlugOrId } = useParams<{ categorySlugOrId: string }>();
   const navigate = useNavigate();
-  const { categories } = useCategories();
+  const { categories, refetch: refetchCategories } = useCategories();
   const { addToRecent } = useRecentlyViewed();
   
   // Handle both slug and UUID routing for backward compatibility
@@ -77,6 +77,7 @@ export function useProductCategory() {
     searchQuery,
     selectedTags,
     refetch,
+    refetchCategories,
     handleSearch,
     handleProductClick,
     clearFilters,
