@@ -181,7 +181,7 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
                   className={cn(
                     "font-bold break-words",
                     variant === "compact" ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-2xl",
-                    onTitleEdit && "cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-colors group/title inline-flex items-center gap-1.5"
+                    onTitleEdit && "cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-colors group/title flex items-center gap-1.5"
                   )}
                   onClick={handleTitleClick}
                 >
