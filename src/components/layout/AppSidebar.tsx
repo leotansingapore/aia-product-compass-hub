@@ -233,7 +233,7 @@ const AppSidebar = memo(function AppSidebar() {
                                 </DropdownMenuTrigger>
                 <DropdownMenuContent side="bottom" align="start" className="shadow-sm bg-popover z-50">
                                   <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer focus:bg-muted focus:text-foreground"
                                     onClick={() => {
                                       setEditingCategory({ id: category.id, name: category.name });
                                       setNewCategoryName(category.name);
@@ -243,7 +243,7 @@ const AppSidebar = memo(function AppSidebar() {
                                     Edit Name
                                   </DropdownMenuItem>
                                   <DropdownMenuItem
-                                    className="text-destructive focus:text-destructive cursor-pointer"
+                                    className="text-destructive focus:text-destructive focus:bg-muted cursor-pointer"
                                     onClick={() => setDeletingCategory({ id: category.id, name: category.name })}
                                   >
                                     <Trash2 className="h-4 w-4 mr-2" />
