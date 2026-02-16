@@ -227,12 +227,13 @@ const AppSidebar = memo(function AppSidebar() {
                             {isAdminUser && !isCollapsed && (
                               <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                  <SidebarMenuAction showOnHover>
+                                  <SidebarMenuAction showOnHover className="h-6 w-6 cursor-pointer hover:bg-accent rounded-md transition-colors">
                                     <MoreHorizontal className="h-4 w-4" />
                                   </SidebarMenuAction>
                                 </DropdownMenuTrigger>
-                <DropdownMenuContent side="right" align="start" className="shadow-sm">
+                <DropdownMenuContent side="right" align="start" className="shadow-sm bg-popover z-50">
                                   <DropdownMenuItem
+                                    className="cursor-pointer"
                                     onClick={() => {
                                       setEditingCategory({ id: category.id, name: category.name });
                                       setNewCategoryName(category.name);
@@ -242,7 +243,7 @@ const AppSidebar = memo(function AppSidebar() {
                                     Edit Name
                                   </DropdownMenuItem>
                                   <DropdownMenuItem
-                                    className="text-destructive focus:text-destructive"
+                                    className="text-destructive focus:text-destructive cursor-pointer"
                                     onClick={() => setDeletingCategory({ id: category.id, name: category.name })}
                                   >
                                     <Trash2 className="h-4 w-4 mr-2" />
