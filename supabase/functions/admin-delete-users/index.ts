@@ -53,9 +53,22 @@ serve(async (req) => {
       });
     }
 
-    // Only master admins can delete users
-    const { data: isMaster } = await authClient.rpc('has_role', { _user_id: userRes.user.id, _role: 'master_admin' });
-    if (!isMaster) {
+    // Check admin privileges using service client to bypass RLS
+    const { data: roles, error: rolesError } = await serviceClient
+      .from('user_admin_roles')
+      .select('admin_role')
+      .eq('user_id', userRes.user.id);
+
+    if (rolesError) {
+      console.error('Error checking admin roles:', rolesError);
+      return new Response(JSON.stringify({ error: "Failed to verify permissions" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
+
+    const hasAdminRole = roles?.some(r => r.admin_role === 'admin' || r.admin_role === 'master_admin');
+    if (!hasAdminRole) {
       return new Response(JSON.stringify({ error: "Forbidden" }), {
         status: 403,
         headers: { "Content-Type": "application/json", ...corsHeaders },
