@@ -113,6 +113,11 @@ export function useCategories() {
   return { categories, loading, error };
 }
 
+export function invalidateCategoriesCache() {
+  categoriesCache = null;
+  categoriesCacheTime = 0;
+}
+
 export function useProducts(categoryId?: string) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
