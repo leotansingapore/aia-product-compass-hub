@@ -1,46 +1,62 @@
 
-## Add Ellipsis Menu to Product Cards (Edit & Delete)
 
-### Overview
-Add a three-dot (ellipsis) menu to each product card on category pages, visible only to admins. The menu will allow editing product fields (title, description, tags, highlights) and deleting products -- matching the fields used during module creation.
+## Improve Hover Effects and Add Tooltips to ProductCard
+
+### Problem
+- The bookmark button and ellipsis button have barely visible hover states (ghost variant blends in)
+- No tooltips to indicate what the icons do
+- Transitions are abrupt with no easing
 
 ### Changes
 
 **File: `src/components/ProductCard.tsx`**
-- Add an ellipsis (`MoreVertical`) icon button in the top-right area of each card (next to the bookmark icon)
-- Show the ellipsis only for admin users (using `usePermissions`)
-- Attach a `DropdownMenu` with two options: "Edit" and "Delete"
-- Use `focus:bg-muted` for gray hover (consistent with sidebar dropdown fix)
-- "Edit" opens an inline edit dialog/modal with fields: Title, Description, Tags (comma-separated), Highlights (comma-separated) -- mirroring `CreateModuleForm`
-- "Delete" shows a confirmation dialog (`AlertDialog`) before deleting
-- Add `onEdit` and `onDelete` optional callback props
 
-**File: `src/components/category/ProductsGrid.tsx`**
-- Pass `onEdit` and `onDelete` callbacks to each `ProductCard`
-- Accept these callbacks from the parent
+1. **Import Tooltip components** from `@/components/ui/tooltip` (Tooltip, TooltipTrigger, TooltipContent, TooltipProvider)
 
-**File: `src/pages/ProductCategory.tsx`**
-- Implement `handleDeleteProduct` -- calls `supabase.from('products').delete().eq('id', productId)` then refetches
-- Implement `handleEditProduct` -- calls `supabase.from('products').update({...}).eq('id', productId)` then refetches
-- Pass these handlers to `ProductsGrid`
+2. **Bookmark button** (lines 118-133):
+   - Add `transition-all duration-300 ease-in-out` for smooth hover
+   - Change hover to `hover:bg-gray-100 dark:hover:bg-gray-700` for clear visibility
+   - Wrap in `Tooltip` with content "Bookmark" / "Remove Bookmark" based on state
+
+3. **Ellipsis/MoreVertical button** (lines 137-140):
+   - Add `transition-all duration-300 ease-in-out` for smooth hover
+   - Change hover to `hover:bg-gray-100 dark:hover:bg-gray-700`
+   - Wrap in `Tooltip` with content "More options"
+
+4. **Learn More button** (line 181):
+   - Add `transition-all duration-300 ease-in-out` for smooth hover effect
+
+5. **Card itself** (line 110):
+   - Update from `transition-shadow` to `transition-all duration-300 ease-in-out` for smoother card hover
+
+6. **Wrap the card header icons area** in a `TooltipProvider` with `delayDuration={300}`
 
 ### Technical Details
 
-**Edit Dialog fields** (matching CreateModuleForm):
-- Title (Input, required)
-- Description (Textarea)
-- Tags (Input, comma-separated)
-- Highlights (Input, comma-separated)
+```typescript
+// Bookmark button with tooltip
+<TooltipProvider delayDuration={300}>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={handleBookmarkClick}
+        disabled={loading}
+        className={cn(
+          "h-8 w-8 p-0 transition-all duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-700",
+          bookmarked && "text-primary"
+        )}
+      >
+        {bookmarked ? <BookmarkCheck /> : <Bookmark />}
+      </Button>
+    </TooltipTrigger>
+    <TooltipContent>
+      <p>{bookmarked ? "Remove bookmark" : "Bookmark"}</p>
+    </TooltipContent>
+  </Tooltip>
+</TooltipProvider>
+```
 
-**Delete flow:**
-- Confirmation via `AlertDialog` ("Are you sure? This action cannot be undone.")
-- Calls `supabase.from('products').delete().eq('id', productId)`
-- Refetches product list on success
+Same pattern applied to the ellipsis button with tooltip text "More options".
 
-**Ellipsis positioning:**
-- Placed in the card header, in the `flex justify-between items-start` row alongside the bookmark button
-- Only rendered when `isAdmin()` returns true
-
-**Hover styling:**
-- Menu items use `focus:bg-muted focus:text-foreground` for simple gray hover
-- Delete item uses `text-destructive` color
