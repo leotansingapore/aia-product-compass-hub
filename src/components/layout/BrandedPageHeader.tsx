@@ -152,7 +152,7 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
             )}
             <div className="min-w-0 flex-1">
               {isEditingTitle ? (
-                <div className="inline-grid min-w-[120px] max-w-full">
+                <div className="grid min-w-[120px] max-w-full">
                   <span
                     className={cn(
                       "invisible whitespace-pre col-start-1 row-start-1 font-bold px-1",
