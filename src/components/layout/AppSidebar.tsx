@@ -227,11 +227,11 @@ const AppSidebar = memo(function AppSidebar() {
                             {isAdminUser && !isCollapsed && (
                               <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                  <SidebarMenuAction showOnHover className="h-6 w-6 cursor-pointer hover:bg-accent rounded-md transition-colors">
+                                  <SidebarMenuAction showOnHover className="h-6 w-6 cursor-pointer hover:bg-muted rounded-md transition-colors">
                                     <MoreHorizontal className="h-4 w-4" />
                                   </SidebarMenuAction>
                                 </DropdownMenuTrigger>
-                <DropdownMenuContent side="right" align="start" className="shadow-sm bg-popover z-50">
+                <DropdownMenuContent side="bottom" align="start" className="shadow-sm bg-popover z-50">
                                   <DropdownMenuItem
                                     className="cursor-pointer"
                                     onClick={() => {
