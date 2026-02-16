@@ -115,7 +115,7 @@ export function ProductCard({ title, description, category, tags, highlights, on
               {category}
             </Badge>
             <TooltipProvider delayDuration={300}>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-0">
                 {productId && (
                   <Tooltip>
                     <TooltipTrigger asChild>
