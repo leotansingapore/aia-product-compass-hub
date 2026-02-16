@@ -53,6 +53,10 @@ serve(async (req) => {
       });
     }
 
+    const serviceClient = createClient(SUPABASE_URL, SERVICE_KEY, {
+      auth: { autoRefreshToken: false, persistSession: false },
+    });
+
     // Check admin privileges using service client to bypass RLS
     const { data: roles, error: rolesError } = await serviceClient
       .from('user_admin_roles')
@@ -74,10 +78,6 @@ serve(async (req) => {
         headers: { "Content-Type": "application/json", ...corsHeaders },
       });
     }
-
-    const serviceClient = createClient(SUPABASE_URL, SERVICE_KEY, {
-      auth: { autoRefreshToken: false, persistSession: false },
-    });
 
     // Clean related data across public schema
     try {
