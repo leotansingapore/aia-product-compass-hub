@@ -186,7 +186,7 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
                   onClick={handleTitleClick}
                 >
                   {onTitleEdit && (
-                    <img src={InlineEditIcon} alt="" className="h-3.5 w-3.5 opacity-0 group-hover/title:opacity-70 transition-opacity shrink-0 invert" aria-hidden="true" />
+                    <img src={InlineEditIcon} alt="" className="h-5 w-5 opacity-0 group-hover/title:opacity-70 transition-opacity shrink-0 invert" aria-hidden="true" />
                   )}
                   {titlePrefix && <span>{titlePrefix}</span>}{title}
                 </h1>
