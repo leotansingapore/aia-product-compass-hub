@@ -1,13 +1,46 @@
 
-## Fix: Gray Hover on Category Dropdown Menu Items
+## Add Ellipsis Menu to Product Cards (Edit & Delete)
 
-The yellow hover color comes from the default `focus:bg-accent` style in the DropdownMenuItem component, where "accent" maps to the app's gold/yellow theme color. The fix is to override this on the two menu items in the sidebar category dropdown.
+### Overview
+Add a three-dot (ellipsis) menu to each product card on category pages, visible only to admins. The menu will allow editing product fields (title, description, tags, highlights) and deleting products -- matching the fields used during module creation.
 
 ### Changes
 
-**File: `src/components/layout/AppSidebar.tsx`**
+**File: `src/components/ProductCard.tsx`**
+- Add an ellipsis (`MoreVertical`) icon button in the top-right area of each card (next to the bookmark icon)
+- Show the ellipsis only for admin users (using `usePermissions`)
+- Attach a `DropdownMenu` with two options: "Edit" and "Delete"
+- Use `focus:bg-muted` for gray hover (consistent with sidebar dropdown fix)
+- "Edit" opens an inline edit dialog/modal with fields: Title, Description, Tags (comma-separated), Highlights (comma-separated) -- mirroring `CreateModuleForm`
+- "Delete" shows a confirmation dialog (`AlertDialog`) before deleting
+- Add `onEdit` and `onDelete` optional callback props
 
-- On the "Edit Name" `DropdownMenuItem` (line 236): change className to include `focus:bg-muted focus:text-foreground` to override the accent color
-- On the "Delete" `DropdownMenuItem` (line 246): change className to include `focus:bg-muted` (keep the destructive text color override already there)
+**File: `src/components/category/ProductsGrid.tsx`**
+- Pass `onEdit` and `onDelete` callbacks to each `ProductCard`
+- Accept these callbacks from the parent
 
-This ensures both menu items show a simple gray background on hover/focus instead of the yellow accent color.
+**File: `src/pages/ProductCategory.tsx`**
+- Implement `handleDeleteProduct` -- calls `supabase.from('products').delete().eq('id', productId)` then refetches
+- Implement `handleEditProduct` -- calls `supabase.from('products').update({...}).eq('id', productId)` then refetches
+- Pass these handlers to `ProductsGrid`
+
+### Technical Details
+
+**Edit Dialog fields** (matching CreateModuleForm):
+- Title (Input, required)
+- Description (Textarea)
+- Tags (Input, comma-separated)
+- Highlights (Input, comma-separated)
+
+**Delete flow:**
+- Confirmation via `AlertDialog` ("Are you sure? This action cannot be undone.")
+- Calls `supabase.from('products').delete().eq('id', productId)`
+- Refetches product list on success
+
+**Ellipsis positioning:**
+- Placed in the card header, in the `flex justify-between items-start` row alongside the bookmark button
+- Only rendered when `isAdmin()` returns true
+
+**Hover styling:**
+- Menu items use `focus:bg-muted focus:text-foreground` for simple gray hover
+- Delete item uses `text-destructive` color
