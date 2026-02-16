@@ -8,6 +8,7 @@ import { Bookmark, BookmarkCheck, MoreVertical, Pencil, Trash2 } from "lucide-re
 import { useBookmarks } from "@/hooks/useBookmarks";
 import { usePermissions } from "@/hooks/usePermissions";
 import { cn } from "@/lib/utils";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -107,38 +108,53 @@ export function ProductCard({ title, description, category, tags, highlights, on
 
   return (
     <>
-      <Card className="hover:shadow-md transition-shadow cursor-pointer mobile-card h-full flex flex-col" onClick={onClick}>
+      <Card className="hover:shadow-md transition-all duration-300 ease-in-out cursor-pointer mobile-card h-full flex flex-col" onClick={onClick}>
         <CardHeader className="p-3 md:p-6">
           <div className="flex justify-between items-start mb-2">
             <Badge variant="secondary" className={`text-xs px-2 text-white ${categoryColors[category as keyof typeof categoryColors] || 'bg-primary'}`}>
               {category}
             </Badge>
-            <div className="flex items-center gap-1">
-              {productId && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleBookmarkClick}
-                  disabled={loading}
-                  className={cn(
-                    "h-8 w-8 p-0 hover:bg-muted",
-                    bookmarked && "text-primary"
-                  )}
-                >
-                  {bookmarked ? (
-                    <BookmarkCheck className="h-4 w-4" />
-                  ) : (
-                    <Bookmark className="h-4 w-4" />
-                  )}
-                </Button>
-              )}
-              {isAdmin() && productId && (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-muted">
-                      <MoreVertical className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
+            <TooltipProvider delayDuration={300}>
+              <div className="flex items-center gap-1">
+                {productId && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={handleBookmarkClick}
+                        disabled={loading}
+                        className={cn(
+                          "h-8 w-8 p-0 transition-all duration-300 ease-in-out hover:bg-muted/80 dark:hover:bg-muted",
+                          bookmarked && "text-primary"
+                        )}
+                      >
+                        {bookmarked ? (
+                          <BookmarkCheck className="h-4 w-4" />
+                        ) : (
+                          <Bookmark className="h-4 w-4" />
+                        )}
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{bookmarked ? "Remove bookmark" : "Bookmark"}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
+                {isAdmin() && productId && (
+                  <DropdownMenu>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
+                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0 transition-all duration-300 ease-in-out hover:bg-muted/80 dark:hover:bg-muted">
+                            <MoreVertical className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>More options</p>
+                      </TooltipContent>
+                    </Tooltip>
                   <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
                     <DropdownMenuItem className="cursor-pointer focus:bg-muted focus:text-foreground" onClick={handleEditOpen}>
                       <Pencil className="h-4 w-4 mr-2" />
@@ -149,9 +165,10 @@ export function ProductCard({ title, description, category, tags, highlights, on
                       Delete
                     </DropdownMenuItem>
                   </DropdownMenuContent>
-                </DropdownMenu>
-              )}
-            </div>
+                  </DropdownMenu>
+                )}
+              </div>
+            </TooltipProvider>
           </div>
           <CardTitle className="text-card-title">{title}</CardTitle>
           <CardDescription className="text-card-description">{description}</CardDescription>
@@ -178,7 +195,7 @@ export function ProductCard({ title, description, category, tags, highlights, on
               </ul>
             </div>
             
-            <Button variant="outline" className="w-full mt-4 mobile-touch-target">
+            <Button variant="outline" className="w-full mt-4 mobile-touch-target transition-all duration-300 ease-in-out">
               Learn More
             </Button>
           </div>
