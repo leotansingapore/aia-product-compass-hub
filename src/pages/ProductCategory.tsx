@@ -197,8 +197,9 @@ export default function ProductCategory() {
       }}
     >
       <BrandedPageHeader
-        title={categoryInfo?.icon ? `${categoryInfo.icon} ${categoryInfo.title}` : category.name}
-        subtitle={categoryInfo?.description || category.description}
+        title={category.name}
+        titlePrefix={categoryInfo?.icon ? `${categoryInfo.icon} ` : undefined}
+        subtitle={category.description || categoryInfo?.description}
         showBackButton
         onBack={handleBack}
         breadcrumbs={[
