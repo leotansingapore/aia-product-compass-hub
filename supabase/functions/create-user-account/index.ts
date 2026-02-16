@@ -64,17 +64,18 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error('Unauthorized');
     }
 
-    // Check if user has admin privileges
-    const { data: roles, error: rolesError } = await supabaseAnon
-      .from('user_roles')
-      .select('role')
+    // Check if user has admin privileges using user_admin_roles (authoritative source)
+    const { data: roles, error: rolesError } = await supabaseServiceRole
+      .from('user_admin_roles')
+      .select('admin_role')
       .eq('user_id', user.id);
 
     if (rolesError) {
+      console.error('Error checking admin roles:', rolesError);
       throw new Error('Failed to check user roles');
     }
 
-    const hasAdminRole = roles?.some(r => r.role === 'admin' || r.role === 'master_admin');
+    const hasAdminRole = roles?.some(r => r.admin_role === 'admin' || r.admin_role === 'master_admin');
     if (!hasAdminRole) {
       throw new Error('Insufficient permissions. Admin role required.');
     }
