@@ -110,7 +110,28 @@ export function useCategories() {
     fetchCategories();
   }, []);
 
-  return { categories, loading, error };
+  const refetch = useCallback(async () => {
+    categoriesCache = null;
+    categoriesCacheTime = 0;
+    setLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from('categories')
+        .select('*')
+        .order('name');
+      if (error) throw error;
+      const fetched = data || [];
+      categoriesCache = fetched;
+      categoriesCacheTime = Date.now();
+      setCategories(fetched);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch categories');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  return { categories, loading, error, refetch };
 }
 
 export function invalidateCategoriesCache() {

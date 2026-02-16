@@ -29,6 +29,7 @@ interface BrandedPageHeaderProps {
   variant?: "default" | "compact";
   className?: string;
   onTitleEdit?: (newTitle: string) => Promise<void>;
+  onSubtitleEdit?: (newSubtitle: string) => Promise<void>;
 }
 
 export const BrandedPageHeader = memo(function BrandedPageHeader({
@@ -42,12 +43,17 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
   searchBar,
   variant = "default",
   className,
-  onTitleEdit
+  onTitleEdit,
+  onSubtitleEdit
 }: BrandedPageHeaderProps) {
 
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [editValue, setEditValue] = useState(title);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [isEditingSubtitle, setIsEditingSubtitle] = useState(false);
+  const [subtitleEditValue, setSubtitleEditValue] = useState(subtitle || '');
+  const subtitleInputRef = useRef<HTMLInputElement>(null);
 
   const handleTitleClick = useCallback(() => {
     if (!onTitleEdit) return;
@@ -68,6 +74,26 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
     if (e.key === 'Enter') { e.preventDefault(); handleSave(); }
     if (e.key === 'Escape') { setEditValue(title); setIsEditingTitle(false); }
   }, [handleSave, title]);
+
+  const handleSubtitleClick = useCallback(() => {
+    if (!onSubtitleEdit) return;
+    setSubtitleEditValue(subtitle || '');
+    setIsEditingSubtitle(true);
+    setTimeout(() => subtitleInputRef.current?.select(), 0);
+  }, [onSubtitleEdit, subtitle]);
+
+  const handleSubtitleSave = useCallback(async () => {
+    const trimmed = subtitleEditValue.trim();
+    setIsEditingSubtitle(false);
+    if (trimmed && trimmed !== subtitle && onSubtitleEdit) {
+      await onSubtitleEdit(trimmed);
+    }
+  }, [subtitleEditValue, subtitle, onSubtitleEdit]);
+
+  const handleSubtitleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') { e.preventDefault(); handleSubtitleSave(); }
+    if (e.key === 'Escape') { setSubtitleEditValue(subtitle || ''); setIsEditingSubtitle(false); }
+  }, [handleSubtitleSave, subtitle]);
 
   const breadcrumbElements = useMemo(() => {
     if (!breadcrumbs || breadcrumbs.length === 0) return null;
@@ -154,13 +180,36 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
                   )}
                 </h1>
               )}
-              {subtitle && (
-                <p className={cn(
-                  "hidden sm:block text-white/90 mt-1 break-words",
-                  variant === "compact" ? "text-micro md:text-sm" : "text-sm md:text-base"
-                )}>
+              {subtitle && !isEditingSubtitle && (
+                <p
+                  className={cn(
+                    "hidden sm:block text-white/90 mt-1 break-words",
+                    variant === "compact" ? "text-micro md:text-sm" : "text-sm md:text-base",
+                    onSubtitleEdit && "cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-all duration-300 ease-in-out group/subtitle inline-flex items-center gap-1.5"
+                  )}
+                  onClick={onSubtitleEdit ? handleSubtitleClick : undefined}
+                >
                   {subtitle}
+                  {onSubtitleEdit && (
+                    <Pencil className="h-3 w-3 opacity-0 group-hover/subtitle:opacity-70 transition-opacity shrink-0" aria-hidden="true" />
+                  )}
                 </p>
+              )}
+              {isEditingSubtitle && (
+                <input
+                  ref={subtitleInputRef}
+                  value={subtitleEditValue}
+                  onChange={(e) => setSubtitleEditValue(e.target.value.slice(0, 200))}
+                  onBlur={handleSubtitleSave}
+                  onKeyDown={handleSubtitleKeyDown}
+                  maxLength={200}
+                  autoFocus
+                  className={cn(
+                    "hidden sm:block text-white/90 mt-1 break-words bg-transparent border-none outline-none w-full",
+                    "ring-1 ring-white/30 rounded px-1 -mx-1",
+                    variant === "compact" ? "text-micro md:text-sm" : "text-sm md:text-base"
+                  )}
+                />
               )}
             </div>
           </div>

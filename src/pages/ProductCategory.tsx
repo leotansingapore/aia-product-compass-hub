@@ -52,6 +52,7 @@ export default function ProductCategory() {
     loading,
     searchQuery,
     refetch,
+    refetchCategories,
     handleSearch,
     handleProductClick,
     clearFilters,
@@ -94,6 +95,39 @@ export default function ProductCategory() {
       refetch();
     }
   };
+  const handleCategoryTitleEdit = async (newTitle: string) => {
+    if (!categoryId) return;
+    // Strip emoji prefix if present (e.g. "📈 Investment Products" -> "Investment Products")
+    const cleanTitle = newTitle.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
+    if (!cleanTitle) return;
+    const { error } = await supabase
+      .from('categories')
+      .update({ name: cleanTitle })
+      .eq('id', categoryId);
+    if (error) {
+      toast.error('Failed to update category title');
+      console.error(error);
+    } else {
+      toast.success('Category title updated');
+      refetchCategories();
+    }
+  };
+
+  const handleCategoryDescriptionEdit = async (newDescription: string) => {
+    if (!categoryId) return;
+    const { error } = await supabase
+      .from('categories')
+      .update({ description: newDescription })
+      .eq('id', categoryId);
+    if (error) {
+      toast.error('Failed to update category description');
+      console.error(error);
+    } else {
+      toast.success('Category description updated');
+      refetchCategories();
+    }
+  };
+
   // Get category info for meta tags
   const categoryInfo = getCategoryInfo(categoryId || '');
 
@@ -171,6 +205,8 @@ export default function ProductCategory() {
           { label: "Home", href: "/" },
           { label: category.name }
         ]}
+        onTitleEdit={isAdmin() ? handleCategoryTitleEdit : undefined}
+        onSubtitleEdit={isAdmin() ? handleCategoryDescriptionEdit : undefined}
       />
 
       <div className="mx-auto px-4 sm:px-6 py-4 sm:py-8">
