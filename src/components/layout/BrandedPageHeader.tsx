@@ -194,9 +194,9 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
               {subtitle && !isEditingSubtitle && (
                 <p
                   className={cn(
-                    "hidden sm:block text-white/90 mt-1 break-words",
+                    "hidden text-white/90 mt-1 break-words",
                     variant === "compact" ? "text-micro md:text-sm" : "text-sm md:text-base",
-                    onSubtitleEdit && "cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-all duration-300 ease-in-out group/subtitle inline-flex items-center gap-1.5"
+                    onSubtitleEdit ? "sm:inline-flex items-center gap-1.5 cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-all duration-300 ease-in-out group/subtitle" : "sm:block"
                   )}
                   onClick={onSubtitleEdit ? handleSubtitleClick : undefined}
                 >
