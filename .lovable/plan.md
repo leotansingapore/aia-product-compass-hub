@@ -1,47 +1,41 @@
 
-## Make Category Header Title and Description Editable Inline
 
-### Overview
-Add inline editing for the category page header's **title** and **description** (separately), matching the existing inline edit pattern already used for product titles. Admin-only, with smooth transitions and pencil icon hints.
+## Fix Inline Edit Input Sizing
+
+### Problem
+The subtitle (and title) inline edit inputs shrink to a small size instead of matching the text width. The `<input>` fields don't auto-expand to fit their content.
+
+### Solution
+Use a CSS technique where a hidden `<span>` measures the text content and the input stretches to match. This is done by wrapping the input in a relative container with a hidden sibling that holds the same value, pushing the width naturally.
 
 ### Changes
 
 **File: `src/components/layout/BrandedPageHeader.tsx`**
-- Add a new prop `onSubtitleEdit?: (newSubtitle: string) => Promise<void>`
-- Add subtitle editing state (`isEditingSubtitle`, `subtitleEditValue`, `subtitleInputRef`)
-- When `onSubtitleEdit` is provided and subtitle is not being edited:
-  - Show subtitle as clickable with `cursor-pointer hover:bg-white/10 rounded transition-all duration-300 ease-in-out` and a fading `Pencil` icon (same pattern as title)
-- When editing subtitle:
-  - Show an `<input>` (single line) styled to match the subtitle text size, with `ring-1 ring-white/30` focus ring
-  - Save on Enter/blur, cancel on Escape
-- Ensure title and subtitle are **separate** inline editors (independent state, independent save callbacks)
-- Add `transition-all duration-300 ease-in-out` to the title's hover state as well for consistency
 
-**File: `src/pages/ProductCategory.tsx`**
-- Add `handleCategoryTitleEdit` -- updates `categories` table `name` field via Supabase, then refetches
-- Add `handleCategoryDescriptionEdit` -- updates `categories` table `description` field via Supabase, then refetches
-- Pass `onTitleEdit` and `onSubtitleEdit` to `BrandedPageHeader` (only when `isAdmin()` is true)
-- Strip the emoji prefix from the title before passing to `onTitleEdit` so only the text name is saved
+1. **Title input (lines 153-167)**: Replace the plain `<input>` with an auto-sizing wrapper:
+   - Wrap in a `<div className="relative inline-grid">`  
+   - Add a hidden `<span>` with the same text styling and `visibility: hidden` that sets the grid column width
+   - Both the `<span>` and `<input>` sit in `grid-area: 1/1` so the input stretches to match the span's width
+   - Add `min-w-[120px]` so empty fields aren't too tiny
+   - Use `max-w-full` to prevent overflow
 
-**File: `src/hooks/useProductCategory.ts`**
-- Expose `refetchCategories` from `useCategories()` so the page can refresh category data after edits
+2. **Subtitle input (lines 198-212)**: Same auto-sizing pattern:
+   - Same grid-based auto-sizing wrapper
+   - `min-w-[200px]` since descriptions tend to be longer
+   - `max-w-full` to prevent overflow
 
-**File: `src/hooks/useProducts.tsx`**
-- Ensure `useCategories` returns a `refetch` function (check if it already does; if not, add it)
+This is a well-known CSS pattern (used by libraries like `react-textarea-autosize`) that keeps the input feeling natural -- it grows and shrinks with the text content, no JavaScript measurement needed.
 
-### Technical Details
+### Technical Detail
 
 ```text
-Category Header
-+--------------------------------------------+
-| [Back]  Title (click to edit)        [Pencil icon fades in on hover]
-|         Description (click to edit)  [Pencil icon fades in on hover]
-+--------------------------------------------+
+Before:  [input w-full]  -- always full width, or shrinks oddly
+
+After:   [inline-grid container]
+           [hidden span with same text styling] -- sets natural width
+           [input overlaid on span]             -- matches span width
+         min-w-[120px] max-w-full
 ```
 
-- Title edit saves to `categories.name` where `id = categoryId`
-- Description edit saves to `categories.description` where `id = categoryId`  
-- Both use `supabase.from('categories').update({...}).eq('id', categoryId)`
-- Toast feedback on success/error
-- Transitions: `transition-all duration-300 ease-in-out` on hover states
-- Only shown for admin users -- non-admins see static text as before
+Both editors independently auto-size. No layout shift, no shrinking.
+
