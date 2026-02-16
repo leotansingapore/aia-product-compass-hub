@@ -142,7 +142,7 @@ export function ProductCard({ title, description, category, tags, highlights, on
                   </Tooltip>
                 )}
                 {isAdmin() && productId && (
-                  <DropdownMenu>
+                  <DropdownMenu modal={false}>
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
