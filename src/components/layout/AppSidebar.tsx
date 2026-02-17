@@ -160,10 +160,15 @@ const AppSidebar = memo(function AppSidebar() {
     if (error) {
       toast({ title: "Error", description: "Failed to create category", variant: "destructive" });
     } else if (data) {
+      // Invalidate cache and wait for refetch before navigating
       invalidateCategoriesCache();
-      queryClient.invalidateQueries({ queryKey: ['categories'] });
+      await queryClient.invalidateQueries({ queryKey: ['categories'] });
       toast({ title: "Success", description: "Category created successfully" });
+      setCreatingCategory(false);
+      setNewCategoryCreateName("");
+      setNewCategoryCreateDescription("");
       navigate(`/category/${data.id}`);
+      return;
     }
     setCreatingCategory(false);
     setNewCategoryCreateName("");
