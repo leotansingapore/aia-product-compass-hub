@@ -285,6 +285,17 @@ const AppSidebar = memo(function AppSidebar() {
                           </SidebarMenuItem>
                         );
                       })}
+                    {isAdminUser && !isCollapsed && (
+                      <SidebarMenuItem>
+                        <button
+                          onClick={() => setCreatingCategory(true)}
+                          className="flex items-center gap-2 w-full rounded-md px-2 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-all duration-300 ease-in-out border border-dashed border-muted-foreground/30 hover:border-muted-foreground/50"
+                        >
+                          <Plus className="h-4 w-4" />
+                          <span>Add New Category</span>
+                        </button>
+                      </SidebarMenuItem>
+                    )}
                   </SidebarMenu>
                 </SidebarGroupContent>
               </CollapsibleContent>
