@@ -8,6 +8,7 @@ import {
   Users,
   ChevronDown,
   Archive,
+  Plus,
   GraduationCap,
   Shield,
   User,
@@ -66,6 +67,8 @@ const AppSidebar = memo(function AppSidebar() {
   const [editingCategory, setEditingCategory] = useState<{ id: string; name: string } | null>(null);
   const [newCategoryName, setNewCategoryName] = useState("");
   const [deletingCategory, setDeletingCategory] = useState<{ id: string; name: string } | null>(null);
+  const [creatingCategory, setCreatingCategory] = useState(false);
+  const [newCategoryCreateName, setNewCategoryCreateName] = useState("");
 
   const allMainNavItems = useMemo(() => [
     { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined, sectionId: "dashboard" },
@@ -140,6 +143,22 @@ const AppSidebar = memo(function AppSidebar() {
     setDeletingCategory(null);
   };
 
+  const handleCreateCategory = async () => {
+    if (!newCategoryCreateName.trim()) return;
+    const { error } = await supabase
+      .from('categories')
+      .insert({ name: newCategoryCreateName.trim() });
+    if (error) {
+      toast({ title: "Error", description: "Failed to create category", variant: "destructive" });
+    } else {
+      invalidateCategoriesCache();
+      toast({ title: "Success", description: "Category created successfully" });
+      window.location.reload();
+    }
+    setCreatingCategory(false);
+    setNewCategoryCreateName("");
+  };
+
   if (!user) return null;
 
   return (
@@ -193,11 +212,22 @@ const AppSidebar = memo(function AppSidebar() {
           <SidebarGroup>
             <Collapsible open={categoriesOpen} onOpenChange={setCategoriesOpen}>
               <SidebarGroupLabel asChild>
-                <CollapsibleTrigger className="flex items-center justify-between w-full">
+                <CollapsibleTrigger className="group/catHeader flex items-center justify-between w-full">
                   <span>Product Categories</span>
-                  {!isCollapsed && (
-                    <ChevronDown className={`h-4 w-4 transition-transform ${categoriesOpen ? 'rotate-180' : ''}`} />
-                  )}
+                  <div className="flex items-center gap-0.5">
+                    {!isCollapsed && isAdminUser && (
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setCreatingCategory(true); }}
+                        className="opacity-0 group-hover/catHeader:opacity-100 h-5 w-5 rounded hover:bg-muted flex items-center justify-center transition-all duration-300 ease-in-out"
+                        aria-label="Create new category"
+                      >
+                        <Plus className="h-3.5 w-3.5" />
+                      </button>
+                    )}
+                    {!isCollapsed && (
+                      <ChevronDown className={`h-4 w-4 transition-transform ${categoriesOpen ? 'rotate-180' : ''}`} />
+                    )}
+                  </div>
                 </CollapsibleTrigger>
               </SidebarGroupLabel>
               <CollapsibleContent>
@@ -347,6 +377,31 @@ const AppSidebar = memo(function AppSidebar() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Create Category Dialog */}
+      <Dialog open={creatingCategory} onOpenChange={(open) => { if (!open) { setCreatingCategory(false); setNewCategoryCreateName(""); } }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Create New Category</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-2">
+            <Label htmlFor="new-category-name">Name</Label>
+            <Input
+              id="new-category-name"
+              value={newCategoryCreateName}
+              onChange={(e) => setNewCategoryCreateName(e.target.value)}
+              placeholder="Category name"
+              maxLength={50}
+              onKeyDown={(e) => e.key === 'Enter' && handleCreateCategory()}
+            />
+            <p className="text-xs text-right text-muted-foreground">{newCategoryCreateName.length} / 50</p>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" size="default" onClick={() => { setCreatingCategory(false); setNewCategoryCreateName(""); }}>Cancel</Button>
+            <Button size="default" onClick={handleCreateCategory} disabled={!newCategoryCreateName.trim()}>Create</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 });
