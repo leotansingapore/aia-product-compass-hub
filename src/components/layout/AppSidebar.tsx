@@ -131,6 +131,24 @@ const AppSidebar = memo(function AppSidebar() {
   const handleDeleteCategory = async () => {
     if (!deletingCategory) return;
     
+    // First, delete all products in this category
+    const { error: productsError } = await supabase
+      .from('products')
+      .delete()
+      .eq('category_id', deletingCategory.id);
+
+    if (productsError) {
+      toast({ title: "Error", description: "Failed to remove products in this category", variant: "destructive" });
+      setDeletingCategory(null);
+      return;
+    }
+
+    // Also delete any files linked to this category
+    await supabase
+      .from('files')
+      .delete()
+      .eq('category_id', deletingCategory.id);
+
     const { error } = await supabase
       .from('categories')
       .delete()
@@ -140,9 +158,9 @@ const AppSidebar = memo(function AppSidebar() {
       toast({ title: "Error", description: "Failed to delete category", variant: "destructive" });
     } else {
       invalidateCategoriesCache();
+      queryClient.invalidateQueries({ queryKey: ['categories'] });
       toast({ title: "Success", description: "Category deleted successfully" });
       navigate("/");
-      window.location.reload();
     }
     setDeletingCategory(null);
   };
@@ -393,7 +411,7 @@ const AppSidebar = memo(function AppSidebar() {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete "{deletingCategory?.name}"?</AlertDialogTitle>
             <AlertDialogDescription>
-              This will permanently delete this category. Products in this category will need to be reassigned.
+              This will permanently delete this category and all products within it. This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
