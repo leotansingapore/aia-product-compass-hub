@@ -201,6 +201,7 @@ const AppSidebar = memo(function AppSidebar() {
       // Invalidate cache and wait for refetch before navigating
       invalidateCategoriesCache();
       await queryClient.invalidateQueries({ queryKey: ['categories'] });
+      await refetchCategories();
       toast({ title: "Success", description: "Category created successfully" });
       setCreatingCategory(false);
       setNewCategoryCreateName("");
