@@ -15,7 +15,9 @@ import {
   MessageCircle,
   MoreHorizontal,
   Pencil,
-  Trash2
+  Trash2,
+  AlertTriangle,
+  Loader2
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -69,6 +71,8 @@ const AppSidebar = memo(function AppSidebar() {
   const [editingCategory, setEditingCategory] = useState<{ id: string; name: string } | null>(null);
   const [newCategoryName, setNewCategoryName] = useState("");
   const [deletingCategory, setDeletingCategory] = useState<{ id: string; name: string } | null>(null);
+  const [deleteCategoryProductCount, setDeleteCategoryProductCount] = useState<number | null>(null);
+  const [deletingInProgress, setDeletingInProgress] = useState(false);
   const [creatingCategory, setCreatingCategory] = useState(false);
   const [newCategoryCreateName, setNewCategoryCreateName] = useState("");
   const [newCategoryCreateDescription, setNewCategoryCreateDescription] = useState("");
@@ -131,6 +135,7 @@ const AppSidebar = memo(function AppSidebar() {
 
   const handleDeleteCategory = async () => {
     if (!deletingCategory) return;
+    setDeletingInProgress(true);
     
     // First, delete all products in this category
     const { error: productsError } = await supabase
@@ -140,6 +145,7 @@ const AppSidebar = memo(function AppSidebar() {
 
     if (productsError) {
       toast({ title: "Error", description: "Failed to remove products in this category", variant: "destructive" });
+      setDeletingInProgress(false);
       setDeletingCategory(null);
       return;
     }
@@ -164,7 +170,19 @@ const AppSidebar = memo(function AppSidebar() {
       toast({ title: "Success", description: "Category deleted successfully" });
       navigate("/");
     }
+    setDeletingInProgress(false);
     setDeletingCategory(null);
+    setDeleteCategoryProductCount(null);
+  };
+
+  const handleOpenDeleteDialog = async (category: { id: string; name: string }) => {
+    setDeletingCategory(category);
+    setDeleteCategoryProductCount(null);
+    const { count } = await supabase
+      .from('products')
+      .select('id', { count: 'exact', head: true })
+      .eq('category_id', category.id);
+    setDeleteCategoryProductCount(count ?? 0);
   };
 
   const handleCreateCategory = async () => {
@@ -310,7 +328,7 @@ const AppSidebar = memo(function AppSidebar() {
                                   </DropdownMenuItem>
                                   <DropdownMenuItem
                                     className="text-destructive focus:text-destructive focus:bg-muted cursor-pointer"
-                                    onClick={() => setDeletingCategory({ id: category.id, name: category.name })}
+                                    onClick={() => handleOpenDeleteDialog({ id: category.id, name: category.name })}
                                   >
                                     <Trash2 className="h-4 w-4 mr-2" />
                                     Delete
@@ -408,18 +426,45 @@ const AppSidebar = memo(function AppSidebar() {
       </Dialog>
 
       {/* Delete Category Confirmation */}
-      <AlertDialog open={!!deletingCategory} onOpenChange={(open) => !open && setDeletingCategory(null)}>
+      <AlertDialog open={!!deletingCategory} onOpenChange={(open) => { if (!open) { setDeletingCategory(null); setDeleteCategoryProductCount(null); setDeletingInProgress(false); } }}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Delete "{deletingCategory?.name}"?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This will permanently delete this category and all products within it. This action cannot be undone.
+            <AlertDialogDescription asChild>
+              <div className="space-y-3">
+                {deleteCategoryProductCount === null ? (
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <span>Checking category contents…</span>
+                  </div>
+                ) : deleteCategoryProductCount > 0 ? (
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2 rounded-md bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 p-3 text-amber-800 dark:text-amber-300">
+                      <AlertTriangle className="h-4 w-4 mt-0.5 shrink-0" />
+                      <span className="text-sm">
+                        This category contains <strong>{deleteCategoryProductCount} product{deleteCategoryProductCount !== 1 ? 's' : ''}</strong> that will be permanently deleted along with all associated files.
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">This action cannot be undone.</p>
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground">This category is empty. It will be permanently removed.</p>
+                )}
+              </div>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDeleteCategory} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
-              Delete
+            <AlertDialogCancel disabled={deletingInProgress}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDeleteCategory}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              disabled={deleteCategoryProductCount === null || deletingInProgress}
+            >
+              {deletingInProgress ? (
+                <span className="flex items-center gap-2"><Loader2 className="h-4 w-4 animate-spin" />Deleting…</span>
+              ) : (
+                "Delete"
+              )}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
