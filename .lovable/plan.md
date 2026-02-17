@@ -1,48 +1,43 @@
 
 
-## Enhance "Create Category" Dialog with Description and Clean URL Navigation
+## Fix: Remove Full-Page Reload on Category Delete and Rename
 
-### Changes
+### Problem
+Two issues causing full-page refreshes:
+
+1. **Rename handler** (line 126) explicitly calls `window.location.reload()` — this is a leftover from before the cache invalidation was properly set up.
+2. **Delete handler** calls `invalidateCategoriesCache()` which only clears a module-level variable but does NOT trigger a re-render in components using `useCategories`. The `useCategories` hook uses a custom in-memory cache (`categoriesCache`) that is separate from React Query, so `queryClient.invalidateQueries` alone doesn't update the sidebar.
+
+### Solution
 
 **File: `src/components/layout/AppSidebar.tsx`**
 
-1. **Add description state**: New `newCategoryCreateDescription` state variable for the description field.
+1. **Rename handler**: Remove `window.location.reload()`. Instead, `await` the query invalidation and call `refetch` from `useCategories` to update the sidebar in-place.
+2. **Delete handler**: Already correct (no reload), but ensure the categories list updates by calling `refetch` after invalidation.
 
-2. **Update `handleCreateCategory`**:
-   - Insert both `name` and `description` into the `categories` table.
-   - After successful creation, generate a clean slug from the category name using `createSlug()` from `slugUtils.ts`.
-   - Use the returned category `id` to navigate to `/category/<id>` (since the route uses `categorySlugOrId`).
-   - Remove `window.location.reload()` -- navigate directly instead.
+To make `refetch` available, destructure it from `useCategories`:
+```
+const { categories, refetch: refetchCategories } = useCategories();
+```
 
-3. **Improve the Create Category Dialog UX**:
-   - Add a `Textarea` for the description field (optional, with placeholder text).
-   - Add a brief helper subtitle under the dialog title: "Add a new product category to organize your content."
-   - Keep the 50-character limit on the name field.
-   - Reset both name and description on close.
-   - Enter key on name field moves focus to description; Enter on description does not submit (since it's a textarea).
+**Updated rename handler:**
+- Remove `window.location.reload()`
+- Add `await queryClient.invalidateQueries({ queryKey: ['categories'] })`
+- The sidebar will update reactively without a page refresh
 
-4. **Clean up state on dialog close**: Reset `newCategoryCreateDescription` alongside `newCategoryCreateName`.
+**Updated delete handler:**
+- Keep existing logic (already no reload)
+- Ensure sidebar updates by also awaiting the invalidation
 
 ### Technical Details
 
-```text
-Dialog Layout:
-+----------------------------------+
-| Create New Category          [X] |
-| Add a new product category to    |
-| organize your content.           |
-|                                  |
-| Name                             |
-| [________________________] 0/50  |
-|                                  |
-| Description (optional)           |
-| [________________________]      |
-| [________________________]      |
-|                                  |
-|            [Cancel]  [Create]    |
-+----------------------------------+
+Both handlers will follow the same pattern already used in `handleCreateCategory`:
+```
+invalidateCategoriesCache();
+await queryClient.invalidateQueries({ queryKey: ['categories'] });
+toast({ ... });
+navigate("/");
 ```
 
-- Uses existing `Textarea` component from `@/components/ui/textarea`
-- After creation, navigates to `/category/<new-id>` using the ID returned from the Supabase insert (with `.select('id').single()`)
-- Invalidates categories cache so sidebar updates without full reload
+This is a minimal two-line change in the rename handler (remove `window.location.reload()`, add `await queryClient.invalidateQueries`).
+
