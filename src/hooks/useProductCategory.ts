@@ -7,13 +7,13 @@ import { getCategoryIdFromSlug, getCategorySlugFromId, isUUID } from '@/utils/sl
 export function useProductCategory() {
   const { categorySlugOrId } = useParams<{ categorySlugOrId: string }>();
   const navigate = useNavigate();
-  const { categories, refetch: refetchCategories } = useCategories();
+  const { categories, loading: categoriesLoading, refetch: refetchCategories } = useCategories();
   const { addToRecent } = useRecentlyViewed();
   
   // Handle both slug and UUID routing for backward compatibility
   const categoryId = isUUID(categorySlugOrId || '') ? categorySlugOrId : getCategoryIdFromSlug(categorySlugOrId || '');
   
-  const { products, loading, refetch } = useProducts(categoryId);
+  const { products, loading: productsLoading, refetch } = useProducts(categoryId);
   
   // Search and filter state
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,6 +21,9 @@ export function useProductCategory() {
   
   // Find the category by ID from the database
   const category = categories.find(cat => cat.id === categoryId);
+  
+  // Overall loading: still loading if categories or products haven't loaded yet
+  const loading = categoriesLoading || productsLoading;
   
   // Redirect UUID-based URLs to slug-based URLs
   useEffect(() => {
