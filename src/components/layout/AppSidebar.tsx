@@ -40,8 +40,10 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { useCategories, invalidateCategoriesCache } from "@/hooks/useProducts";
+import { useQueryClient } from "@tanstack/react-query";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -69,6 +71,8 @@ const AppSidebar = memo(function AppSidebar() {
   const [deletingCategory, setDeletingCategory] = useState<{ id: string; name: string } | null>(null);
   const [creatingCategory, setCreatingCategory] = useState(false);
   const [newCategoryCreateName, setNewCategoryCreateName] = useState("");
+  const [newCategoryCreateDescription, setNewCategoryCreateDescription] = useState("");
+  const queryClient = useQueryClient();
 
   const allMainNavItems = useMemo(() => [
     { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined, sectionId: "dashboard" },
@@ -145,18 +149,25 @@ const AppSidebar = memo(function AppSidebar() {
 
   const handleCreateCategory = async () => {
     if (!newCategoryCreateName.trim()) return;
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('categories')
-      .insert({ name: newCategoryCreateName.trim() });
+      .insert({ 
+        name: newCategoryCreateName.trim(),
+        description: newCategoryCreateDescription.trim() || null
+      })
+      .select('id')
+      .single();
     if (error) {
       toast({ title: "Error", description: "Failed to create category", variant: "destructive" });
-    } else {
+    } else if (data) {
       invalidateCategoriesCache();
+      queryClient.invalidateQueries({ queryKey: ['categories'] });
       toast({ title: "Success", description: "Category created successfully" });
-      window.location.reload();
+      navigate(`/category/${data.id}`);
     }
     setCreatingCategory(false);
     setNewCategoryCreateName("");
+    setNewCategoryCreateDescription("");
   };
 
   if (!user) return null;
@@ -390,25 +401,45 @@ const AppSidebar = memo(function AppSidebar() {
       </AlertDialog>
 
       {/* Create Category Dialog */}
-      <Dialog open={creatingCategory} onOpenChange={(open) => { if (!open) { setCreatingCategory(false); setNewCategoryCreateName(""); } }}>
+      <Dialog open={creatingCategory} onOpenChange={(open) => { if (!open) { setCreatingCategory(false); setNewCategoryCreateName(""); setNewCategoryCreateDescription(""); } }}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Create New Category</DialogTitle>
+            <p className="text-sm text-muted-foreground">Add a new product category to organize your content.</p>
           </DialogHeader>
-          <div className="space-y-2">
-            <Label htmlFor="new-category-name">Name</Label>
-            <Input
-              id="new-category-name"
-              value={newCategoryCreateName}
-              onChange={(e) => setNewCategoryCreateName(e.target.value)}
-              placeholder="Category name"
-              maxLength={50}
-              onKeyDown={(e) => e.key === 'Enter' && handleCreateCategory()}
-            />
-            <p className="text-xs text-right text-muted-foreground">{newCategoryCreateName.length} / 50</p>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="new-category-name">Name</Label>
+              <Input
+                id="new-category-name"
+                value={newCategoryCreateName}
+                onChange={(e) => setNewCategoryCreateName(e.target.value)}
+                placeholder="e.g. Investment Products"
+                maxLength={50}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    document.getElementById('new-category-description')?.focus();
+                  }
+                }}
+              />
+              <p className="text-xs text-right text-muted-foreground">{newCategoryCreateName.length} / 50</p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="new-category-description">Description <span className="text-muted-foreground font-normal">(optional)</span></Label>
+              <Textarea
+                id="new-category-description"
+                value={newCategoryCreateDescription}
+                onChange={(e) => setNewCategoryCreateDescription(e.target.value)}
+                placeholder="Briefly describe what products belong in this category..."
+                rows={3}
+                maxLength={200}
+              />
+              <p className="text-xs text-right text-muted-foreground">{newCategoryCreateDescription.length} / 200</p>
+            </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" size="default" onClick={() => { setCreatingCategory(false); setNewCategoryCreateName(""); }}>Cancel</Button>
+            <Button variant="outline" size="default" onClick={() => { setCreatingCategory(false); setNewCategoryCreateName(""); setNewCategoryCreateDescription(""); }}>Cancel</Button>
             <Button size="default" onClick={handleCreateCategory} disabled={!newCategoryCreateName.trim()}>Create</Button>
           </DialogFooter>
         </DialogContent>
