@@ -60,7 +60,7 @@ const AppSidebar = memo(function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
   const navigate = useNavigate();
-  const { categories } = useCategories();
+  const { categories, refetch: refetchCategories } = useCategories();
   const { isMasterAdmin, canAccessSection, isAdmin, hasRole } = usePermissions();
   const { user } = useSimplifiedAuth();
   const { isAdmin: isAdminUser } = useAdmin();
@@ -122,8 +122,9 @@ const AppSidebar = memo(function AppSidebar() {
       toast({ title: "Error", description: "Failed to rename category", variant: "destructive" });
     } else {
       invalidateCategoriesCache();
+      await queryClient.invalidateQueries({ queryKey: ['categories'] });
+      await refetchCategories();
       toast({ title: "Success", description: "Category renamed successfully" });
-      window.location.reload();
     }
     setEditingCategory(null);
   };
@@ -158,7 +159,8 @@ const AppSidebar = memo(function AppSidebar() {
       toast({ title: "Error", description: "Failed to delete category", variant: "destructive" });
     } else {
       invalidateCategoriesCache();
-      queryClient.invalidateQueries({ queryKey: ['categories'] });
+      await queryClient.invalidateQueries({ queryKey: ['categories'] });
+      await refetchCategories();
       toast({ title: "Success", description: "Category deleted successfully" });
       navigate("/");
     }
