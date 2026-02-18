@@ -9,6 +9,10 @@ import { ProductsGrid } from "@/components/category/ProductsGrid";
 import { useProductCategory } from "@/hooks/useProductCategory";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { Eye, EyeOff } from "lucide-react";
 
 // Helper function to get category info for backward compatibility
 function getCategoryInfo(categoryId: string) {
@@ -95,6 +99,20 @@ export default function ProductCategory() {
       refetch();
     }
   };
+
+  const handleToggleProductPublish = async (productId: string, newPublished: boolean) => {
+    const { error } = await supabase
+      .from('products')
+      .update({ published: newPublished })
+      .eq('id', productId);
+    if (error) {
+      toast.error('Failed to update product status');
+    } else {
+      toast.success(newPublished ? 'Product published' : 'Product unpublished');
+      refetch();
+    }
+  };
+
   const handleCategoryTitleEdit = async (newTitle: string) => {
     if (!categoryId) return;
     // Strip emoji prefix if present (e.g. "📈 Investment Products" -> "Investment Products")
@@ -124,6 +142,21 @@ export default function ProductCategory() {
       console.error(error);
     } else {
       toast.success('Category description updated');
+      refetchCategories();
+    }
+  };
+
+  const handleTogglePublished = async () => {
+    if (!categoryId) return;
+    const newPublished = !category?.published;
+    const { error } = await supabase
+      .from('categories')
+      .update({ published: newPublished })
+      .eq('id', categoryId);
+    if (error) {
+      toast.error('Failed to update publish status');
+    } else {
+      toast.success(newPublished ? 'Category published' : 'Category unpublished');
       refetchCategories();
     }
   };
@@ -211,6 +244,24 @@ export default function ProductCategory() {
       />
 
       <div className="mx-auto px-4 sm:px-6 py-4 sm:py-8">
+        {/* Draft Banner */}
+        {isAdmin() && category.published === false && (
+          <div className="mb-6 flex items-center justify-between rounded-lg border border-dashed border-muted-foreground/30 bg-muted/50 px-4 py-3">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <EyeOff className="h-4 w-4" />
+              <span>This category is in <strong>draft</strong> mode — only visible to admins.</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Label htmlFor="category-publish-toggle" className="text-sm cursor-pointer text-muted-foreground">Published</Label>
+              <Switch
+                id="category-publish-toggle"
+                checked={category.published ?? false}
+                onCheckedChange={handleTogglePublished}
+              />
+            </div>
+          </div>
+        )}
+
         {/* Admin Module Creation */}
         {isAdmin() && categoryId && (
           <CreateModuleForm 
@@ -234,6 +285,7 @@ export default function ProductCategory() {
           onClearFilters={clearFilters}
           onEditProduct={handleEditProduct}
           onDeleteProduct={handleDeleteProduct}
+          onTogglePublish={handleToggleProductPublish}
         />
       </div>
     </PageLayout>

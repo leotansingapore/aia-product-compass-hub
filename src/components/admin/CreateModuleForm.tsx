@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 import { Loader2, Plus } from 'lucide-react';
 
 interface CreateModuleFormProps {
@@ -23,7 +24,8 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
     title: '',
     description: '',
     tags: '',
-    highlights: ''
+    highlights: '',
+    publishImmediately: false
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -58,7 +60,8 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
           tags: moduleData.tags ? moduleData.tags.split(',').map(tag => tag.trim()) : [],
           highlights: moduleData.highlights ? moduleData.highlights.split(',').map(highlight => highlight.trim()) : [],
           training_videos: [],
-          useful_links: []
+          useful_links: [],
+          published: moduleData.publishImmediately
         });
 
       if (error) throw error;
@@ -73,7 +76,8 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
         title: '',
         description: '',
         tags: '',
-        highlights: ''
+        highlights: '',
+        publishImmediately: false
       });
       setIsOpen(false);
       onModuleCreated?.();
@@ -153,6 +157,15 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
               onChange={(e) => setModuleData(prev => ({ ...prev, highlights: e.target.value }))}
               placeholder="e.g. Interactive content, Assessment included"
               disabled={saving}
+            />
+          </div>
+
+          <div className="flex items-center justify-between">
+            <Label htmlFor="publish-module" className="text-sm cursor-pointer">Publish immediately</Label>
+            <Switch
+              id="publish-module"
+              checked={moduleData.publishImmediately}
+              onCheckedChange={(checked) => setModuleData(prev => ({ ...prev, publishImmediately: checked }))}
             />
           </div>
 

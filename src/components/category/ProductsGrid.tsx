@@ -7,6 +7,7 @@ interface Product {
   description?: string;
   tags?: string[];
   highlights?: string[];
+  published?: boolean;
 }
 
 interface ProductsGridProps {
@@ -16,6 +17,7 @@ interface ProductsGridProps {
   onClearFilters?: () => void;
   onEditProduct?: (productId: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => void;
   onDeleteProduct?: (productId: string) => void;
+  onTogglePublish?: (productId: string, published: boolean) => void;
 }
 
 export function ProductsGrid({ 
@@ -24,7 +26,8 @@ export function ProductsGrid({
   onProductClick, 
   onClearFilters,
   onEditProduct,
-  onDeleteProduct
+  onDeleteProduct,
+  onTogglePublish
 }: ProductsGridProps) {
   if (products.length === 0) {
     return (
@@ -55,8 +58,10 @@ export function ProductsGrid({
             highlights={product.highlights || []}
             onClick={() => onProductClick(product.id)}
             productId={product.id}
+            published={product.published}
             onEdit={onEditProduct}
             onDelete={onDeleteProduct}
+            onTogglePublish={onTogglePublish}
           />
         </div>
       ))}
