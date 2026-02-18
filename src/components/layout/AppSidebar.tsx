@@ -308,7 +308,7 @@ const AppSidebar = memo(function AppSidebar() {
                                   isActiveCategory
                                     ? "bg-primary text-primary-foreground font-medium cursor-default hover:!bg-primary hover:!text-primary-foreground"
                                     : "hover:bg-accent hover:text-accent-foreground"
-                                }`}
+                                } ${category.published === false ? "opacity-50" : ""}`}
                               >
                                 <Archive className="h-4 w-4" />
                                 {!isCollapsed && (
