@@ -4,12 +4,14 @@ import { getCategoryIdFromName } from "@/hooks/useProducts";
 interface ProductHeaderProps {
   productTitle: string;
   categoryName: string;
+  description?: string;
   onBack: () => void;
   breadcrumbs?: BreadcrumbItem[];
   onTitleEdit?: (newTitle: string) => Promise<void>;
+  onDescriptionEdit?: (newDescription: string) => Promise<void>;
 }
 
-export function ProductHeader({ productTitle, categoryName, onBack, breadcrumbs, onTitleEdit }: ProductHeaderProps) {
+export function ProductHeader({ productTitle, categoryName, description, onBack, breadcrumbs, onTitleEdit, onDescriptionEdit }: ProductHeaderProps) {
   const defaultBreadcrumbs = [
     { label: "Home", href: "/" },
     {
@@ -23,11 +25,12 @@ export function ProductHeader({ productTitle, categoryName, onBack, breadcrumbs,
     <BrandedPageHeader
       title={productTitle}
       titlePrefix="🧾 "
-      subtitle={categoryName || 'Product Details'}
+      subtitle={description || categoryName || 'Product Details'}
       showBackButton
       onBack={onBack}
       breadcrumbs={breadcrumbs || defaultBreadcrumbs}
       onTitleEdit={onTitleEdit}
+      onSubtitleEdit={onDescriptionEdit}
     />
   );
 }
