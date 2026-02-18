@@ -52,6 +52,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
+import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 
@@ -69,6 +70,7 @@ const AppSidebar = memo(function AppSidebar() {
   const { isMasterAdmin, canAccessSection, isAdmin, hasRole } = usePermissions();
   const { user } = useSimplifiedAuth();
   const { isAdmin: isAdminUser } = useAdmin();
+  const { isViewingAsUser } = useViewMode();
 
   const [categoriesOpen, setCategoriesOpen] = useState(true);
   const [editingCategory, setEditingCategory] = useState<{ id: string; name: string } | null>(null);
@@ -297,6 +299,7 @@ const AppSidebar = memo(function AppSidebar() {
                   <SidebarMenu>
                     {categories
                       .filter((category) => canAccessSection(`product-category-${category.id}`))
+                      .filter((category) => !isViewingAsUser || category.published !== false)
                       .map((category) => {
                         const isActiveCategory = currentPath.includes(`/category/${category.id}`);
                         return (

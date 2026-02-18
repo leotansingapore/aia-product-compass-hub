@@ -1,6 +1,7 @@
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
 import { usePermissions } from "@/hooks/usePermissions";
+import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
@@ -64,6 +65,12 @@ export default function ProductCategory() {
   } = useProductCategory();
   
   const { isAdmin } = usePermissions();
+  const { isViewingAsUser } = useViewMode();
+
+  // Filter out unpublished products when viewing as user
+  const visibleProducts = isViewingAsUser
+    ? filteredProducts.filter(p => p.published !== false)
+    : filteredProducts;
 
   const handleEditProduct = async (productId: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => {
     const { error } = await supabase
@@ -201,8 +208,8 @@ export default function ProductCategory() {
     },
     "mainEntity": {
       "@type": "ItemList",
-      "numberOfItems": filteredProducts.length,
-      "itemListElement": filteredProducts.slice(0, 10).map((product, index) => ({
+      "numberOfItems": visibleProducts.length,
+      "itemListElement": visibleProducts.slice(0, 10).map((product, index) => ({
         "@type": "ListItem",
         "position": index + 1,
         "item": {
@@ -279,7 +286,7 @@ export default function ProductCategory() {
         </div>
 
         <ProductsGrid
-          products={filteredProducts}
+          products={visibleProducts}
           categoryName={category.name}
           onProductClick={handleProductClick}
           onClearFilters={clearFilters}
