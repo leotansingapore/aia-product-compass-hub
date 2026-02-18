@@ -17,7 +17,9 @@ import {
   Pencil,
   Trash2,
   AlertTriangle,
-  Loader2
+  Loader2,
+  Eye,
+  EyeOff
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -44,6 +46,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
 import { useCategories, invalidateCategoriesCache } from "@/hooks/useProducts";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePermissions } from "@/hooks/usePermissions";
@@ -76,6 +79,7 @@ const AppSidebar = memo(function AppSidebar() {
   const [creatingCategory, setCreatingCategory] = useState(false);
   const [newCategoryCreateName, setNewCategoryCreateName] = useState("");
   const [newCategoryCreateDescription, setNewCategoryCreateDescription] = useState("");
+  const [newCategoryPublishImmediately, setNewCategoryPublishImmediately] = useState(false);
   const queryClient = useQueryClient();
 
   const allMainNavItems = useMemo(() => [
@@ -191,7 +195,8 @@ const AppSidebar = memo(function AppSidebar() {
       .from('categories')
       .insert({ 
         name: newCategoryCreateName.trim(),
-        description: newCategoryCreateDescription.trim() || null
+        description: newCategoryCreateDescription.trim() || null,
+        published: newCategoryPublishImmediately
       })
       .select('id')
       .single();
@@ -206,12 +211,14 @@ const AppSidebar = memo(function AppSidebar() {
       setCreatingCategory(false);
       setNewCategoryCreateName("");
       setNewCategoryCreateDescription("");
+      setNewCategoryPublishImmediately(false);
       navigate(`/category/${data.id}`);
       return;
     }
     setCreatingCategory(false);
     setNewCategoryCreateName("");
     setNewCategoryCreateDescription("");
+    setNewCategoryPublishImmediately(false);
   };
 
   if (!user) return null;
@@ -305,7 +312,14 @@ const AppSidebar = memo(function AppSidebar() {
                               >
                                 <Archive className="h-4 w-4" />
                                 {!isCollapsed && (
-                                  <span className="truncate">{category.name}</span>
+                                  <span className="truncate flex items-center gap-1.5">
+                                    {category.name}
+                                    {category.published === false && (
+                                      <Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4 font-normal text-muted-foreground border-muted-foreground/30">
+                                        Draft
+                                      </Badge>
+                                    )}
+                                  </span>
                                 )}
                               </NavLink>
                             </SidebarMenuButton>
@@ -317,6 +331,27 @@ const AppSidebar = memo(function AppSidebar() {
                                   </SidebarMenuAction>
                                 </DropdownMenuTrigger>
                 <DropdownMenuContent side="bottom" align="start" className="shadow-sm bg-popover z-50">
+                                  <DropdownMenuItem
+                                    className="cursor-pointer focus:bg-muted focus:text-foreground"
+                                    onClick={async () => {
+                                      const newPublished = !category.published;
+                                      const { error } = await supabase
+                                        .from('categories')
+                                        .update({ published: newPublished })
+                                        .eq('id', category.id);
+                                      if (error) {
+                                        toast({ title: "Error", description: "Failed to update status", variant: "destructive" });
+                                      } else {
+                                        invalidateCategoriesCache();
+                                        await queryClient.invalidateQueries({ queryKey: ['categories'] });
+                                        await refetchCategories();
+                                        toast({ title: "Success", description: newPublished ? "Category published" : "Category unpublished" });
+                                      }
+                                    }}
+                                  >
+                                    {category.published ? <EyeOff className="h-4 w-4 mr-2" /> : <Eye className="h-4 w-4 mr-2" />}
+                                    {category.published ? "Unpublish" : "Publish"}
+                                  </DropdownMenuItem>
                                   <DropdownMenuItem
                                     className="cursor-pointer focus:bg-muted focus:text-foreground"
                                     onClick={() => {
@@ -472,7 +507,7 @@ const AppSidebar = memo(function AppSidebar() {
       </AlertDialog>
 
       {/* Create Category Dialog */}
-      <Dialog open={creatingCategory} onOpenChange={(open) => { if (!open) { setCreatingCategory(false); setNewCategoryCreateName(""); setNewCategoryCreateDescription(""); } }}>
+      <Dialog open={creatingCategory} onOpenChange={(open) => { if (!open) { setCreatingCategory(false); setNewCategoryCreateName(""); setNewCategoryCreateDescription(""); setNewCategoryPublishImmediately(false); } }}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Create New Category</DialogTitle>
@@ -508,9 +543,17 @@ const AppSidebar = memo(function AppSidebar() {
               />
               <p className="text-xs text-right text-muted-foreground">{newCategoryCreateDescription.length} / 200</p>
             </div>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="publish-immediately" className="text-sm cursor-pointer">Publish immediately</Label>
+              <Switch
+                id="publish-immediately"
+                checked={newCategoryPublishImmediately}
+                onCheckedChange={setNewCategoryPublishImmediately}
+              />
+            </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" size="default" onClick={() => { setCreatingCategory(false); setNewCategoryCreateName(""); setNewCategoryCreateDescription(""); }}>Cancel</Button>
+            <Button variant="outline" size="default" onClick={() => { setCreatingCategory(false); setNewCategoryCreateName(""); setNewCategoryCreateDescription(""); setNewCategoryPublishImmediately(false); }}>Cancel</Button>
             <Button size="default" onClick={handleCreateCategory} disabled={!newCategoryCreateName.trim()}>Create</Button>
           </DialogFooter>
         </DialogContent>

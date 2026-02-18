@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Bookmark, BookmarkCheck, MoreVertical, Pencil, Trash2 } from "lucide-react";
+import { Bookmark, BookmarkCheck, MoreVertical, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
 import { useBookmarks } from "@/hooks/useBookmarks";
 import { usePermissions } from "@/hooks/usePermissions";
 import { cn } from "@/lib/utils";
@@ -42,11 +42,13 @@ interface ProductCardProps {
   highlights: string[];
   onClick: () => void;
   productId?: string;
+  published?: boolean;
   onEdit?: (productId: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => void;
   onDelete?: (productId: string) => void;
+  onTogglePublish?: (productId: string, published: boolean) => void;
 }
 
-export function ProductCard({ title, description, category, tags, highlights, onClick, productId, onEdit, onDelete }: ProductCardProps) {
+export function ProductCard({ title, description, category, tags, highlights, onClick, productId, published, onEdit, onDelete, onTogglePublish }: ProductCardProps) {
   const { isBookmarked, toggleBookmark, loading } = useBookmarks();
   const { isAdmin } = usePermissions();
   const [showEditDialog, setShowEditDialog] = useState(false);
@@ -111,9 +113,16 @@ export function ProductCard({ title, description, category, tags, highlights, on
       <Card className="hover:shadow-md transition-all duration-300 ease-in-out cursor-pointer mobile-card h-full flex flex-col" onClick={onClick}>
         <CardHeader className="p-3 md:p-6">
           <div className="flex justify-between items-start mb-2">
-            <Badge variant="secondary" className={`text-xs px-2 text-white ${categoryColors[category as keyof typeof categoryColors] || 'bg-primary'}`}>
-              {category}
-            </Badge>
+            <div className="flex items-center gap-1.5">
+              <Badge variant="secondary" className={`text-xs px-2 text-white ${categoryColors[category as keyof typeof categoryColors] || 'bg-primary'}`}>
+                {category}
+              </Badge>
+              {published === false && isAdmin() && (
+                <Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4 font-normal text-muted-foreground border-muted-foreground/30">
+                  Draft
+                </Badge>
+              )}
+            </div>
             <TooltipProvider delayDuration={300}>
               <div className="flex items-center gap-0">
                 {productId && (
@@ -156,6 +165,15 @@ export function ProductCard({ title, description, category, tags, highlights, on
                       </TooltipContent>
                     </Tooltip>
                   <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
+                    {onTogglePublish && (
+                      <DropdownMenuItem
+                        className="cursor-pointer focus:bg-muted focus:text-foreground"
+                        onClick={(e) => { e.stopPropagation(); if (productId) onTogglePublish(productId, !published); }}
+                      >
+                        {published ? <EyeOff className="h-4 w-4 mr-2" /> : <Eye className="h-4 w-4 mr-2" />}
+                        {published ? "Unpublish" : "Publish"}
+                      </DropdownMenuItem>
+                    )}
                     <DropdownMenuItem className="cursor-pointer focus:bg-muted focus:text-foreground" onClick={handleEditOpen}>
                       <Pencil className="h-4 w-4 mr-2" />
                       Edit

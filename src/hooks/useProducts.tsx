@@ -57,6 +57,7 @@ export interface Product {
   chatbot_2_name?: string;
   chatbot_3_name?: string;
   chatbot_button_text?: string;
+  published?: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -65,6 +66,7 @@ export interface Category {
   id: string;
   name: string;
   description: string;
+  published?: boolean;
   created_at: string;
   updated_at: string;
 }
