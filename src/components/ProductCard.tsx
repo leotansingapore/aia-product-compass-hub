@@ -110,7 +110,7 @@ export function ProductCard({ title, description, category, tags, highlights, on
 
   return (
     <>
-      <Card className="hover:shadow-md transition-all duration-300 ease-in-out cursor-pointer mobile-card h-full flex flex-col" onClick={onClick}>
+      <Card className={`hover:shadow-md transition-all duration-300 ease-in-out cursor-pointer mobile-card h-full flex flex-col ${published === false && isAdmin() ? "opacity-50" : ""}`} onClick={onClick}>
         <CardHeader className="p-3 md:p-6">
           <div className="flex justify-between items-start mb-2">
             <div className="flex items-center gap-1.5">
