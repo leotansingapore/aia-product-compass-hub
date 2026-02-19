@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "MultiEdit",
+      "Write",
+      "Bash(npm run lint)",
+      "Bash(npm run build)",
+      "Bash(npm run build:dev)",
+      "Bash(npm run dev)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)",
+      "Edit(src/components/ui/*)",
+      "Write(src/components/ui/*)",
+      "Edit(src/integrations/supabase/*)",
+      "Write(src/integrations/supabase/*)",
+      "Edit(src/lib/utils.ts)",
+      "Write(src/lib/utils.ts)",
+      "Edit(.env)",
+      "Write(.env)"
+    ]
+  }
+}
