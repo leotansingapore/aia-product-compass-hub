@@ -86,6 +86,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 20,
   },
   {
+    id: "faq-what-is-moneybees",
+    stage: "What type of business is The Moneybees Academy?",
+    category: "faq",
+    target_audience: "general",
+    versions: [
+      { author: "Standard Answer", content: "**Q: What type of business is The Moneybees Academy? What does it do?**\n\n**A:** Moneybees Academy offers targeted financial education through courses and workshops on personal finance, investment strategies, and budgeting.\n\nOur goal is to boost financial literacy, empowering individuals and businesses to make informed decisions and achieve their financial objectives." },
+    ],
+    sort_order: 20.5,
+  },
+  {
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
