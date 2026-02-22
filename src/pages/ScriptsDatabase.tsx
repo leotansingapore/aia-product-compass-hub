@@ -135,6 +135,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 7,
   },
+  {
+    id: "confirmation-fb-cpf-meeting-v2",
+    stage: "Meeting Confirmation Text V2 — Zoom Consultation",
+    category: "confirmation",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Golden Year Partners Script V2", content: "Hi [name]\n\nI've scheduled your Retirement Planning Consultation session on\n\n**Time:** [date and time]\n**Location:** [insert location]\n\nHere's a brief overview of the meeting agenda for our discussion:\n\n• We'll be running you through our retirement readiness assessment to help you better ascertain your retirement readiness\n• We'll be covering how you could potentially optimise your CPF and resources to generate additional passive income streams for retirement, and\n• Address any questions you may have with regards to retirement planning.\n\nTo find out more: consult.goldenyearpartners.com and https://consult.goldenyearpartners.com/checklist\n\nA reminder will be sent to you 1 day before the session, and Zoom link will be sent to you on the date of the session itself 😊\n\nIf anything comes up and you need to reschedule, kindly let us know in advance so we can make the arrangement for you.\n\nLook forward to a productive session and wishing you a great day ahead!" },
+    ],
+    sort_order: 8,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
