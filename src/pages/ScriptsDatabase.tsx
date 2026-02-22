@@ -255,6 +255,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 6.17,
   },
   {
+    id: "follow-up-recruitment-fb-webinar-post-call",
+    stage: "Post-Call Text — FB Webinar Leads (After Telemarketer Call)",
+    category: "follow-up",
+    target_audience: "recruitment",
+    versions: [
+      { author: "Post-Call WhatsApp — FB Webinar Lead", content: "## 📲 Post-Call Text — Facebook Webinar Leads\n\n*Send this after the telemarketer has called the lead who opted in from Facebook*\n\n---\n\n> Hey **[Name]**,\n>\n> As what my colleague mentioned just now over the call, this is about a **free seminar** where we teach motivated people how to **build additional income streams**.\n>\n> Rather than being a motivational talk, we want to also give the **\"what\"** and the **\"how\"** and help you do it with as little friction as possible. We also provide access to our **online learning platform**.\n>\n> The seminar is a **30-min Zoom call** where we'll cover:\n>\n> ✅ The opportunities of a **franchise business**\n>\n> ✅ **Success stories** → how the speaker personally built a **7-figure business as a fresh graduate**\n>\n> ✅ How to **get started** even with **limited time/capital**\n>\n> **No obligation** — just valuable info you can use right away.\n>\n> The Zoom session (**first of 4 rounds**) will be scheduled for **[date and time]**.\n>\n> Please **reply to acknowledge** so I can secure your slot 🙏" },
+    ],
+    sort_order: 6.175,
+  },
+  {
     id: "follow-up-recruitment-fb-initial-text",
     stage: "Initial Text — Facebook Leads (Recruitment)",
     category: "follow-up",
