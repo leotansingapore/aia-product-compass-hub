@@ -230,6 +230,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 16,
   },
+  {
+    id: "callback-young-adult-consultant",
+    stage: "Callback Script — Consultant Follow-Up Call (Young Adults)",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "Kenny's Script", content: "Hi [Name], this is Kenny. My assistant may have reached out to you yesterday. This is just a quick 5 mins call for me to personally follow up with a few details from you to ensure this opportunity can truly be of value to you. This opportunity is specifically for individuals under the age of 25, so just to confirm, are you below 25?\n\n---\n\n**After they confirm:**\n\nThat's great! Then this financial planning course would be incredibly useful for helping you take control of your finances and plan for the future. It's great that young people like you are starting to think about how they can better optimise their finances, and this is designed to guide you through that process.\n\n---\n\n**Fact-finding / rapport building:**\n\nTo gain a better knowledge of where you are right now, may I ask when's your birthday?\n\nAlso, what milestones which are important are coming up for you? Like your ORD? Or graduation or even bigger plans for the future?" },
+    ],
+    sort_order: 17,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
