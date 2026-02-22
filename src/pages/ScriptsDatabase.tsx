@@ -155,6 +155,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 9,
   },
+  {
+    id: "confirmation-fb-cpf-meeting-v4-financial",
+    stage: "Meeting Confirmation Text V4 — Financial Planning Angle",
+    category: "confirmation",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Golden Year Partners Script V4", content: "Hello (Lead Name)!\n\nGreat chat just now, and I've scheduled our meeting to be on:\n\n*Date/Time:*\n\n*Location:*\n\n*Duration:*\n\nJust a brief overview of what we will go through:\n\n1) Changes in hospital plans and coverage\n\n2) How to potentially optimise your income and expenses to generate additional passive income streams\n\n3) Inefficiencies in your portfolio and potential risks that might derail your financial plans\n\nWorst case is that you get more clarity on your financial options and best case is that we can help to improve your situation :)\n\nI've reserved the slot on my calendar, do kindly reply this message \"ok\" to acknowledge\n\nLooking forward to our chat!" },
+    ],
+    sort_order: 10,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
