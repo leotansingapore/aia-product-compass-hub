@@ -1101,6 +1101,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 31.5,
   },
+  {
+    id: "tips-fyc-calling-math",
+    stage: "FYC Formula — Calling Rate & Activity Math",
+    category: "tips",
+    target_audience: "general",
+    versions: [
+      { author: "Team Guide — Activity Math V1", content: "## 💰 FYC = How Many Cases You Close\n\n> Your **FYC** (First Year Commission) is in **direct proportion** to how many cases you close.\n\n---\n\n### The Chain Reaction\n\n| Step | Depends On |\n|---|---|\n| 💰 **FYC** | How many **cases you close** |\n| 📋 **Cases closed** | How many **appointments you set** |\n| 📞 **Appointments set** | Your **calling rate** and **calling duration** |\n\n---\n\n### 📊 The Numbers — Part-Time vs Full-Time\n\n| Metric | Part-Time | Full-Time |\n|---|---|---|\n| **Dials per hour** | 10 | 70 |\n| **Sessions per week** | 2 | 40 hrs (8h × 5 days) |\n| **Dials per week** | **20** | **2,500** |\n\n---\n\n💡 **The takeaway:** Activity is the #1 driver of results. If you want more FYC, increase your **calling rate** and **calling duration** — everything else follows." },
+    ],
+    sort_order: 31.7,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
