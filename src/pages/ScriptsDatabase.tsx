@@ -106,6 +106,56 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 20.6,
   },
   {
+    id: "faq-is-it-free",
+    stage: "Is this really free?",
+    category: "faq",
+    target_audience: "general",
+    versions: [
+      { author: "Standard Answer", content: "**Q: Is this really free? What's the catch?**\n\n**A:** Yes, it's 100% free! There's no catch and no obligation at all. We genuinely believe in empowering young adults with financial knowledge early on.\n\nThe free 20-minute Zoom consultation and access to our financial planning course are part of our mission to raise financial literacy among youths in Singapore. We've been doing this for over 10 years and have helped thousands of young adults get started on their financial journey.\n\nAll we ask is that you come with an open mind and a willingness to learn 😊" },
+    ],
+    sort_order: 20.7,
+  },
+  {
+    id: "faq-how-long-course",
+    stage: "How long is the course?",
+    category: "faq",
+    target_audience: "general",
+    versions: [
+      { author: "Standard Answer", content: "**Q: How long is the course?**\n\n**A:** The course is entirely **self-paced** — you can go through it at your own speed, whenever it's convenient for you.\n\nThe initial Zoom consultation is just **20–30 minutes**, where we'll walk you through the key highlights and personalise the content to your situation.\n\nAfter that, you'll have **unlimited access** to the full course on our Skool community platform, which includes hours of materials covering budgeting, investing, housing, and more. Most people complete it within a few weeks, but there's no deadline!" },
+    ],
+    sort_order: 20.8,
+  },
+  {
+    id: "faq-do-i-need-money",
+    stage: "Do I need a lot of money to start?",
+    category: "faq",
+    target_audience: "general",
+    versions: [
+      { author: "Standard Answer", content: "**Q: Do I need a lot of money to start investing or benefit from this?**\n\n**A:** Not at all! That's actually one of the biggest misconceptions we address in the course.\n\nMany of the strategies we teach are designed for people who are **just starting out** — whether you're a student, serving NS, or in your first job. You can begin with as little as **$100/month**.\n\nThe earlier you start, even with small amounts, the more powerful **compound interest** works in your favour. That's exactly why we focus on young adults — time is your biggest asset! 💪" },
+    ],
+    sort_order: 20.9,
+  },
+  {
+    id: "faq-why-zoom",
+    stage: "Why do I need a Zoom call? Can't I just take the course?",
+    category: "faq",
+    target_audience: "general",
+    versions: [
+      { author: "Standard Answer", content: "**Q: Why do I need a Zoom call? Can't I just take the course on my own?**\n\n**A:** Great question! The Zoom session is actually what makes this programme so much more valuable than just a regular online course.\n\nDuring the call, we'll:\n\n✅ Do a quick **financial health check** based on your current situation\n✅ **Personalise** the course content to your specific goals and life stage\n✅ Answer any questions you have about savings, investing, or financial planning\n\nThink of it as a **free consultation** with a financial planning professional — something that normally costs money elsewhere. The course on its own is great, but the Zoom session helps you apply it to *your* life specifically 😊" },
+    ],
+    sort_order: 21.0,
+  },
+  {
+    id: "faq-are-you-selling",
+    stage: "Are you going to sell me something?",
+    category: "faq",
+    target_audience: "general",
+    versions: [
+      { author: "Standard Answer", content: "**Q: Are you going to try to sell me insurance or something?**\n\n**A:** We totally understand the concern — and no, this isn't a sales pitch.\n\nOur primary goal is **education**. The Zoom session is a genuine financial literacy consultation where we help you understand your current financial position and what steps you can take.\n\nWe're a financial education platform first and foremost. If after the session you'd like to explore specific financial products, that's entirely up to you — but there's **zero pressure or obligation** to buy anything. Many of our participants just take the course, learn something new, and that's perfectly fine with us! 🙏" },
+    ],
+    sort_order: 21.1,
+  },
+  {
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
