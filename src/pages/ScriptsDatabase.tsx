@@ -534,6 +534,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 13.7,
   },
   {
+    id: "cold-calling-young-adult-voucher",
+    stage: "Cold Calling — Voucher Leads (Young Adults)",
+    category: "cold-calling",
+    target_audience: "nsf",
+    versions: [
+      { author: "Gabriel's Script — Voucher Leads", content: "## 📞 Cold Calling Script — Voucher Leads (Young Adults)\n\n### Opening\n\n> Heyy, is this _____?\n>\n> *(Wait for response)*\n>\n> Heyy, this is Gabriel from **TheMoneyBees**. Recently you clicked on one of our Instagram ads about **[voucher name]**.\n\n---\n\n### Value Prop\n\n> Okay, our team has been helping **[fresh grads / NSFs / regulars]** get more clarity on investments and being able to **grow their money faster than the bank**.\n\n---\n\n### Fact-Finding\n\n> Have you started investing already?\n\n**If No:**\n> Ah okay, no worries — that's actually very common. Can I ask what's been holding you back?\n>\n> *(Relate to them, build rapport, understand their pain point)*\n\n**If Yes:**\n> Oh nice! What do you invest in? And how's it been going for you so far?\n>\n> *(Dig deeper — find gaps or frustrations to set your agenda)*\n\n💡 *The goal here is to uncover their pain point to set your agenda for the appointment.*\n\n---\n\n### Setting the Appointment\n\n> You free next **Sat 10am** for me to share some insights on investments and how to **build up your wealth from scratch** — even without a lot of money?\n>\n> Because there's a misconception that in order to become rich or build up your wealth, you need to earn like **$10k a month** — but you actually don't, if you have the **right strategies**.\n\n**If Yes:** Great, let me set that on the calendar! 📅\n\n**If No:** No worries — check availability and **set tentatively**.\n\n---\n\n### Closing & WhatsApp Confirmation\n\n> Okay, I'll send you a **WhatsApp message** — then you just help me to reply to confirm, ah?\n>\n> See you, bye! 👋" },
+    ],
+    sort_order: 13.75,
+  },
+  {
     id: "faq-young-adult-objections",
     stage: "Objection Handling — Young Adults Cold Call",
     category: "faq",
