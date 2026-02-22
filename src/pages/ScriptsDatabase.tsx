@@ -361,6 +361,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 16,
   },
   {
+    id: "confirmation-before-zoom",
+    stage: "Before Zoom Call — Confirmation Text (Fact-Finding)",
+    category: "confirmation",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Great! I'll see you next **[Date and Time]** for our short 20-min chat after which you will get access to our financial planning course 📚\n\nJust to get a better idea of which stage of life you are currently in and for us to prepare for the upcoming meeting, may I ask:\n\n1️⃣ Are you currently 25 years old or younger?\n\n2️⃣ Are you currently working / at university / serving NS?\n\n3️⃣ Are you expecting any significant milestones, e.g., graduation, ORD, new job, marriage?\n\nFinally, please do save my number so that you know when it's me when I share new resources or any updates in the future. Thank you! ☺️" },
+    ],
+    sort_order: 16.5,
+  },
+  {
     id: "callback-young-adult-consultant",
     stage: "Callback Script — Consultant Follow-Up Call (Young Adults)",
     category: "follow-up",
