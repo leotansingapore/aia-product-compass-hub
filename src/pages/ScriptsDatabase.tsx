@@ -347,6 +347,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 31,
   },
   {
+    id: "tips-voucher-procedure",
+    stage: "Physical Voucher Procedure & Lead Follow-Up",
+    category: "tips",
+    target_audience: "general",
+    versions: [
+      { author: "Voucher SOP + Follow-Up Rules", content: "## 🎫 Physical Voucher Procedure\n\n### Overview\n\nCollate all the people that actually need the vouchers at the **end of the 4 months / end of campaign** and post it to them.\n\n---\n\n### 📋 Procedure (e.g. Yakun Leads)\n\n> Regarding the Yakun leads — the vouchers will be **mailed out** to them. At the end of the 3 months, please collate all the people that you have met up with, then **mail out to them all at one shot**.\n\n- If you **meet up with them physically** → yes, you can just pass it to them directly\n- If they are **super not qualified** and there's no need for a physical meeting → tell them that after 3 months, we will collate all the vouchers and **send them out all at once** (saves time)\n\n---\n\n### 📞 Lead Follow-Up Rules\n\n| Scenario | Action |\n|---|---|\n| **Lead replies** | Give a **call immediately** to set an opening appointment **on the same day** |\n| **Lead does not reply** | Give a call after **2–3 days** to try and set an opening appointment |" },
+    ],
+    sort_order: 32,
+  },
+  {
     id: "tips-dual-phone",
     stage: "Double Your Calling Power — Two-Phone Strategy",
     category: "tips",
