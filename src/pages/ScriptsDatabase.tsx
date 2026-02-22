@@ -9,12 +9,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X } from "lucide-react";
+import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useScripts, useScriptsMutations } from "@/hooks/useScripts";
-import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
+import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useScripts";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 type CategoryKey = "cold-calling" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips" | "post-meeting";
@@ -221,7 +221,12 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     category: "confirmation",
     target_audience: "nsf",
     versions: [
-      { author: "MoneyBees Script", content: "Hi [Name], this is [Your Name]\nThanks for taking the call just now with my assistant 😊\n\nAs spoken we're scheduled for a financial literacy zoom session.\n\n**Date:** [DATE]\n**Time:** [TIME]\n**Duration:** 30 minutes\n**Location:** Zoom\n\nHere's what you'll gain after the 30 minute zoom session:\n\n🔥 Access to hours of materials from the world's best minds in our community at https://www.skool.com/finternship/about\n\n🧠 Learn the money language schools never teach\n\n🌟 Strategies to fast-track your wealth, passively.\n\nJust reply \"Yes\" to confirm this timing and we're all set!\n\nLooking forward to chatting with you then! 👍\n\n---\n\nAs a bonus, you will also get these resources after the consultation. And you can even redeem a $20 voucher after the session!\n\n📚 **Resources to include with this message:**\n- Free Ultimate Guide to Adulting (MoneyBees eBook)\n- Free Ultimate Guide to Investing (First-Time Investor)\n- MoneyBees Crash Course & Financial Planning materials bundle\n\n*(Attach the 3 promotional images when sending this text)*" },
+      { author: "MoneyBees Script", content: "Hi [Name], this is [Your Name]\nThanks for taking the call just now with my assistant 😊\n\nAs spoken we're scheduled for a financial literacy zoom session.\n\n**Date:** [DATE]\n**Time:** [TIME]\n**Duration:** 30 minutes\n**Location:** Zoom\n\nHere's what you'll gain after the 30 minute zoom session:\n\n🔥 Access to hours of materials from the world's best minds in our community at https://www.skool.com/finternship/about\n\n🧠 Learn the money language schools never teach\n\n🌟 Strategies to fast-track your wealth, passively.\n\nJust reply \"Yes\" to confirm this timing and we're all set!\n\nLooking forward to chatting with you then! 👍\n\n---\n\nAs a bonus, you will also get these resources after the consultation. And you can even redeem a $20 voucher after the session!\n\n*(Attach the 3 promotional images below when sending this text)*" },
+    ],
+    attachments: [
+      { label: "Free Ultimate Guide to Adulting", url: "/scripts/adulting-guide.png", type: "image" },
+      { label: "Free Ultimate Guide to Investing", url: "/scripts/investing-guide.png", type: "image" },
+      { label: "MoneyBees Crash Course Bundle", url: "/scripts/moneybees-bundle.png", type: "image" },
     ],
     sort_order: 16,
   },
@@ -320,6 +325,45 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete }: { script: ScriptEntry
                   {script.versions[0]?.content}
                 </div>
               </>
+            )}
+
+            {/* Image Attachments Gallery */}
+            {script.attachments && script.attachments.length > 0 && (
+              <div className="mt-4 pt-4 border-t">
+                <div className="flex items-center gap-2 mb-3">
+                  <ImageIcon className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm font-medium">Attachments to send with this message</span>
+                  <Badge variant="secondary" className="text-[10px]">{script.attachments.length}</Badge>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {script.attachments.map((att, i) => (
+                    <div key={i} className="group relative border rounded-lg overflow-hidden bg-background">
+                      {att.type === 'image' && (
+                        <img
+                          src={att.url}
+                          alt={att.label}
+                          className="w-full h-40 object-cover"
+                          loading="lazy"
+                        />
+                      )}
+                      <div className="p-2 flex items-center justify-between gap-2">
+                        <span className="text-xs font-medium truncate">{att.label}</span>
+                        <a
+                          href={att.url}
+                          download={att.label}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" title="Download">
+                            <Download className="h-3.5 w-3.5" />
+                          </Button>
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
           </CardContent>
         </CollapsibleContent>
