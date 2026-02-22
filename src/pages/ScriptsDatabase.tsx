@@ -332,6 +332,18 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 15.5,
   },
   {
+    id: "follow-up-young-adult-scheduled",
+    stage: "Scheduled Follow-Up Texts — Young Adults (Every 2 Days)",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "1st Follow-Up (Day 2)", content: "Hey [Name]! Hope you're doing well. I understand things can get busy.\n\nJust wanted to follow up on my previous message about helping young adults like yourself with their finances. I truly believe in the importance of financial literacy, especially for individuals in your age group.\n\nI would love to meet with you on Zoom next week on **Saturday at 11am or 2pm** or **Sunday at 2pm** to touch on points like early retirement, savings, and investments. I'll pass you the free financial planning course during our short 20-minute consultation.\n\nI'm confident you'll learn something new 😊" },
+      { author: "2nd Follow-Up (Day 4)", content: "Hey [Name]! Just wanted to reach out one more time to make sure you didn't miss my previous messages. I know life gets busy, but I'd love to connect and share some valuable financial insights that could really set you up for the future.\n\nThis isn't just about completing a financial planning/literacy course — during our **free 20-minute Zoom session**, I'll help you look at your financial goals and provide personalised advice that's relevant to your current situation. Many young adults and NSFs have found it to be eye-opening and really helpful, and I think you'd benefit too! 💪\n\nWould you be available next **Saturday at either 10am or 2pm** or **Sunday at 2pm**? If another time works better, feel free to let me know!\n\nLooking forward to the chance to chat and empower you with some great financial tools 😊" },
+      { author: "3rd Follow-Up (Day 6 — Final)", content: "Hi [Name], I hope you're doing well! 😊\n\nJust wanted to follow up one last time about our free financial planning course and consultation. I completely understand if you've been busy, but I didn't want you to miss out on this opportunity.\n\nThis free Zoom session isn't just about finances — it's about helping young adults like you take control of your future. Whether it's learning how to save smarter, plan for early retirement, or start investing, we'll cover it all in just 20 minutes.\n\nIf you're interested, I have availability next **Saturday at 10am or 2pm** and **Sunday at 2pm**. If another time works better, let me know!\n\nLooking forward to helping you kick-start your financial journey 💪\n\n---\n\n*📝 After 2 follow-ups with no reply → mark lead as \"Texting but no reply\" in CRM.*" },
+    ],
+    sort_order: 15.7,
+  },
+  {
     id: "confirmation-young-adult-zoom",
     stage: "Post-Call Text — Young Adults Agreed to Zoom",
     category: "confirmation",
