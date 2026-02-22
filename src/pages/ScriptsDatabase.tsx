@@ -1,4 +1,7 @@
 import { useState, useMemo } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { markdownComponents } from "@/lib/markdown-config";
 import { ScriptsChatWidget } from "@/components/scripts/ScriptsChatWidget";
 import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
 import { KnowledgeManagement } from "@/components/scripts/KnowledgeManagement";
@@ -840,8 +843,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete }: { script: ScriptEntry
                     <div className="flex justify-end mb-2">
                       <CopyButton text={v.content} />
                     </div>
-                    <div className="bg-muted/50 rounded-lg p-4 text-sm whitespace-pre-wrap leading-relaxed border">
-                      {v.content}
+                    <div className="bg-muted/50 rounded-lg p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{v.content}</ReactMarkdown>
                     </div>
                   </TabsContent>
                 ))}
@@ -852,8 +855,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete }: { script: ScriptEntry
                   <span className="text-xs text-muted-foreground font-medium">{script.versions[0]?.author}</span>
                   <CopyButton text={script.versions[0]?.content || ""} />
                 </div>
-                <div className="bg-muted/50 rounded-lg p-4 text-sm whitespace-pre-wrap leading-relaxed border">
-                  {script.versions[0]?.content}
+                <div className="bg-muted/50 rounded-lg p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{script.versions[0]?.content || ""}</ReactMarkdown>
                 </div>
               </>
             )}
