@@ -319,6 +319,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 18,
   },
+  {
+    id: "followup-next-steps-call",
+    stage: "Next Steps — Schedule a Quick Call",
+    category: "follow-up",
+    target_audience: "general",
+    versions: [
+      { author: "MoneyBees Script", content: "Hi [Name]! 😊\n\nWould you be available tomorrow for a quick 5-min call to discuss the next steps? Let me know if that timing works, or feel free to suggest another time that's more convenient." },
+    ],
+    sort_order: 19,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
