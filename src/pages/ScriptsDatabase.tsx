@@ -186,6 +186,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 12,
   },
   {
+    id: "cold-calling-working-adult-policy-review",
+    stage: "Cold Calling — Policy Optimisation (Working Adults / Cold Leads)",
+    category: "cold-calling",
+    target_audience: "cold-lead",
+    versions: [
+      { author: "Gabriel's Script", content: "I'm [Name] from TheMoneyBees!\n\nI'll keep this call short, less than 1 minute! I understand that you have purchased some insurance or investment policies previously?\n\nThis is to inform you that we can help you **optimise your policies** from various companies — whether it's AIA, Great Eastern, Prudential, or Manulife — and send you a **financial report** after the session!\n\nAs most people attend, if they like the ideas, they will arrange a 2nd call. Anyway it's only a short meeting.\n\nWe have some slots still available for this — would weekdays or weekends work for you?\n\n---\n\n**After they reply:**\n\nAlright great, so I will schedule the session tentatively for this Saturday 10am. After this call, I will send you a text message, and all you have to do is to reply and acknowledge — is that okay?\n\nAlright great. So just one last thing, this session is just for you to find out more, and as long as you learn something, then that's good enough!\n\n---\n\n**If no name:**\n\nWhat is your name? / How do I address you?" },
+    ],
+    sort_order: 12.5,
+  },
+  {
     id: "cold-calling-ord-direct-agent",
     stage: "Cold Calling — ORD Personnel (Agent Direct Call)",
     category: "cold-calling",
