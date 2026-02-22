@@ -35,6 +35,7 @@ const audienceLabels: Record<string, string> = {
   nsf: "NSF / NS",
   "working-adult": "Working Adults",
   parent: "Parents",
+  "pre-retiree": "Pre-Retirees (50-65)",
   hnw: "High Net Worth",
   referral: "Referrals",
   "cold-lead": "Cold Leads",

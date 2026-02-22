@@ -24,6 +24,7 @@ const TARGET_AUDIENCES = [
   { value: "nsf", label: "NSF / NS" },
   { value: "working-adult", label: "Working Adults" },
   { value: "parent", label: "Parents" },
+  { value: "pre-retiree", label: "Pre-Retirees (50-65)" },
   { value: "hnw", label: "High Net Worth" },
   { value: "referral", label: "Referrals" },
   { value: "cold-lead", label: "Cold Leads" },
