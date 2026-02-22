@@ -207,6 +207,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 13.5,
   },
   {
+    id: "cold-calling-young-adult-ads",
+    stage: "Cold Calling — Instagram Ad Lead (Young Adults / NSF)",
+    category: "cold-calling",
+    target_audience: "nsf",
+    versions: [
+      { author: "Gabriel's Script — Ads", content: "Hey good evening, is this [Name]? How's your day today?\n\nThis is Gabriel from TheMoneyBees and I'm calling because you recently clicked on one of our Instagram ads about growing your money. Do you remember?\n\nThis call will only take 3 minutes of your time, can I check if that's okay for you? *(pause)*\n\n---\n\nOver the years, our team has helped many NSFs and regulars with their financial planning as well as investments — because these are things that you typically don't learn in school.\n\nI wanted to check on your availability sometime this week for a quick Zoom for me to share some insights regarding:\n\n• Proper financial planning\n• How to properly allocate your NS allowance\n• How to build up your wealth from scratch\n\nOf course I understand that army can be busy at times — that's why the sharing will be held over Zoom for about 30 minutes to make things more convenient for you!\n\nWould Saturday or Sunday at 7pm work for you?\n\n*(Alternative: How about Saturday/Sunday when you book out?)*" },
+    ],
+    sort_order: 13.7,
+  },
+  {
     id: "faq-young-adult-objections",
     stage: "Objection Handling — Young Adults Cold Call",
     category: "faq",
