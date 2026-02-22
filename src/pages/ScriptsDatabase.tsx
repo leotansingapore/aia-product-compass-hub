@@ -90,6 +90,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 3.5,
   },
   {
+    id: "cold-calling-qualified-retiree",
+    stage: "Cold Calling — Qualified Lead, Non-Voucher (Pre-Retirees)",
+    category: "cold-calling",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Golden Year Partners — Qualified Lead + Custom Report", content: "## 📞 Cold Calling Script — Qualified Pre-Retiree Lead (Non-Voucher)\n\n*For more qualified leads who opted in for retirement planning resources (not voucher campaigns)*\n\n---\n\n### Opening\n\n> Hi, is this **[Name]**?\n>\n> I'm **[Your Name]**, from **Golden Year Partners**. This is a courtesy call to inform you that we have received your interest in our **retirement planning resources** recently.\n\n---\n\n### Value Proposition\n\n> What we do is that we specialise in helping Singaporeans and pre-retirees create a **simple and secure passive income**, and discover ways to **maximize their CPF and other assets**, ensuring that they're on track to meet their retirement goals.\n\n---\n\n### Soft Close\n\n> Would you be opposed to exploring how we can help you create a **personalised plan**? After the session, we will send over a **customised retirement report**.\n>\n> Would sometime **this or next weekend** work better for you?\n\n---\n\n### Objection Handling\n\n| Objection | Response |\n|---|---|\n| **\"No time\"** | Perhaps we can have a chat over a phone call — would **[date/time]** work to run through this with you? |\n| **\"Not sure of schedule\"** | Can I set a tentative timing, perhaps at **[date/time]**? Just to check — where is your nearest MRT? |\n\n---\n\n### Booking Confirmation\n\n> Alright, for now I'll tentatively place it on **[date/time]** at **[nearest mall/café]**, to run through your retirement planning.\n>\n> So just one last thing — this session is just for you to learn more about growing a **simple and secure passive income**, and as long as you learn something, then that's good enough!\n\n---\n\n### If Asked \"What's This About?\"\n\n> It's a **retirement planning consultation** — we will share more details in the WhatsApp. You can also read more here:\n>\n> 🔗 https://consult.goldenyearpartners.com/" },
+    ],
+    sort_order: 3.7,
+  },
+  {
     id: "faq-company",
     stage: "Which company are you from?",
     category: "faq",
