@@ -196,6 +196,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 13,
   },
   {
+    id: "cold-calling-young-adult-consultant",
+    stage: "Cold Calling — Consultant Call (Young Adults)",
+    category: "cold-calling",
+    target_audience: "nsf",
+    versions: [
+      { author: "Gabriel's Script", content: "Hello, is this [Name]?\n\nThis is Gabriel from TheMoneyBees Academy.\n\nWe are currently having a financial literacy campaign and we are giving away a free adulting guidebook specially for young adults, because we don't learn stuff like how to manage your money, budgeting and you know CPF in school.\n\nCan I send you more details on WhatsApp?\n\n---\n\n**If Yes:**\n\nAlright awesome, I'll send you a text later on, and we can chat there. 👍\n\n---\n\n**If Not Interested:**\n\nIt's a free adulting guidebook so there's no harm in finding out more. 😊" },
+    ],
+    sort_order: 13.5,
+  },
+  {
     id: "faq-young-adult-objections",
     stage: "Objection Handling — Young Adults Cold Call",
     category: "faq",
