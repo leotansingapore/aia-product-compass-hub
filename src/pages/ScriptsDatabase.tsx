@@ -546,6 +546,57 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 37,
   },
+  {
+    id: "fact-find-current-situation",
+    stage: "Fact-Finding — Current Situation Questions",
+    category: "faq",
+    target_audience: "general",
+    versions: [
+      { author: "Working Adults", content: "**Opening question:**\n\nCould I ask what you are currently doing / working as?\n\n---\n\n### If Working:\n\n- What are you working as currently? Which company are you working for?\n- How long have you been working for?\n- When did you graduate?\n- What did you study?\n\n### If Studying:\n\n- What and where are you studying?\n- When will you be graduating?\n\n### If Serving NS:\n\n- Which phase are you in now?\n- Which unit are you in now?\n- Do you plan to go for command school?" },
+    ],
+    sort_order: 38,
+  },
+  {
+    id: "fact-find-insurance-status",
+    stage: "Fact-Finding — Insurance Coverage Check",
+    category: "faq",
+    target_audience: "general",
+    versions: [
+      { author: "MoneyBees Script", content: "**Ask:** Do you currently have insurance to protect yourself?\n\n---\n\n### ✅ If Yes:\n\nThat's great! What kind of insurance do you currently have and what do they cover?\n\nIf you would allow me, I would love to help you **review your policies** to check if there are any overlapping policies or any gaps which you have missed out!\n\n### ❌ If No:\n\nI see, what is currently holding you back from getting insurance coverage to protect yourself?\n\nDo you think that it is important to have insurance to protect yourself and your loved ones?\n\n### 🤷 If Not Sure:\n\nNo worries! This is what this session is for — I could have a call with you and we can look through if you have any coverage currently and what they are covering!" },
+    ],
+    sort_order: 39,
+  },
+  {
+    id: "fact-find-investing-status",
+    stage: "Fact-Finding — Investment Status Check",
+    category: "faq",
+    target_audience: "general",
+    versions: [
+      { author: "MoneyBees Script", content: "**Ask:** Are you currently investing?\n\n---\n\n### ✅ If Yes:\n\nWhat do you invest in?\n\n### ❌ If No:\n\nWhat's holding you back?\n\nYep, I agree with your [pain point], especially as schools don't teach us about investing and how to grow our money." },
+    ],
+    sort_order: 40,
+  },
+  {
+    id: "objection-not-interested-insurance",
+    stage: "Objection — \"Not Interested in Insurance\"",
+    category: "faq",
+    target_audience: "general",
+    versions: [
+      { author: "MoneyBees Script — V1 (Redirect to Planning)", content: "**Q: I'm not interested in insurance.**\n\n**A:** I understand where you are coming from. Most people that I speak to have the same sentiment and do not want to delve into this matter until much later.\n\nHowever, most people also agree that financial planning is important and needs to be done regularly. This is why I would love to have a quick **30-minute Zoom call** for both of us to analyse this and see how we can plan for your success.\n\nIs **[date, time]** or **[date, time]** good for you?" },
+      { author: "MoneyBees Script — V2 (Pivot to Investing)", content: "**Q: Not interested in insurance.**\n\nI see, do you do your own investment?\n\n**If Yes:** What do you invest in? What are some of the struggles or challenges you face currently?\n\n**If No:** Are you looking to learn more about investments?\n\n---\n\n**If still not interested:**\n\nI see, can I ask why you are no longer interested?\n\n> *Try to still add them into a nurturing machine — send resources, keep the relationship warm.*" },
+    ],
+    sort_order: 41,
+  },
+  {
+    id: "tips-general-calling",
+    stage: "General Calling Tips & Tonality",
+    category: "tips",
+    target_audience: "general",
+    versions: [
+      { author: "Team Guide", content: "## 🗣️ Tonality & Language Tips\n\n- **Don't use \"ads\"** — use words such as **\"campaigns\"** instead\n- Talk in a more **cheerful and friendly tone**\n- When giving dates or setting new dates for appointments, **take your own time** and try to make it sound like you're busy — this **creates scarcity**\n\n---\n\n## 📋 Objection Handling Reminder\n\n- If they say \"Not interested\", always ask: **\"May I ask why you will not be interested in the session?\"**\n- Try to still set the call, especially if they are **on the fence**\n- Even if they decline, try to **add them into a nurturing machine** — send resources, keep the relationship warm\n- Never give up on the first objection — most people need a gentle push" },
+    ],
+    sort_order: 31,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
