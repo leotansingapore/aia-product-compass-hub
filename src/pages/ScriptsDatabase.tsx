@@ -207,6 +207,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 12.6,
   },
   {
+    id: "cold-call-working-adult-nasa",
+    stage: "Cold Call — Working Adults (NASA / Campaign Version)",
+    category: "cold-calling",
+    target_audience: "working-adult",
+    versions: [
+      { author: "MoneyBees Script", content: "Hello! Is this [Name]?\n\nI'm [Name] from TheMoneybees!\n\nI'll keep this call short, less than 1 minute! Understand that you recently took part in a **[campaign]**?\n\nThis is a courtesy call to inform you that we have received your interest in participating in this campaign! To qualify, we will need to schedule a short **20–30 minute session**, where I will do a **financial health review** for you and send you a **report** afterwards.\n\nWould you prefer to meet on weekdays or weekends?\n\n---\n\n**After they reply:**\n\nAlright great, so I will schedule the session tentatively for this **Saturday 10am**. After this call, I will send you a text message, and all you have to do is to reply and acknowledge — is that okay?\n\nAlright great. So just one last thing, this session is just for you to find out more, and as long as you learn something, then that's good enough!" },
+    ],
+    sort_order: 12.7,
+  },
+  {
     id: "cold-calling-ord-direct-agent",
     stage: "Cold Calling — ORD Personnel (Agent Direct Call)",
     category: "cold-calling",
