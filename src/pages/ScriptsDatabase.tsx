@@ -329,6 +329,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 19,
   },
+  {
+    id: "closing-graceful-exit",
+    stage: "Graceful Close — Not Interested / End of Conversation",
+    category: "follow-up",
+    target_audience: "general",
+    versions: [
+      { author: "MoneyBees Script", content: "No worries [Name]. If you have any questions regarding personal finance, feel free to reach out. All the best and take care. 🙏" },
+    ],
+    sort_order: 20,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
