@@ -643,6 +643,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 13.75,
   },
   {
+    id: "cold-calling-young-adult-non-voucher-fb",
+    stage: "Cold Calling — Facebook Leads, Non-Voucher (Young Adults)",
+    category: "cold-calling",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees — FB Non-Voucher Cold Call (NS Allowance)", content: "## 📞 Cold Calling Script — Facebook Leads, Non-Voucher (Young Adults)\n\n*For young adults who opted in from Facebook ads about growing their NS allowance / financial literacy (no free voucher)*\n\n---\n\n### Opening\n\n> Hi, is this **[Name]**?\n>\n> Hi, this is **[Your Name]** from the **Moneybees**, an authorised representative of **AIA**! This is a courtesy call to inform you that we have received your interest in learning about how to **grow your NS allowance** and I believe we have texted you previously about it! Do you remember?\n>\n> *(Wait for reply)*\n\n---\n\n### The Hook — Zoom + Guidebooks\n\n> Great, in order to redeem it, you can attend a short **20-minute Zoom session**, whereby one of our consultants will share more about getting started on **growing your money and investing**.\n>\n> After the call, you will get the **investing guidebook** and **adulting book** specially compiled by our organisation!\n\n---\n\n### Setting the Appointment\n\n> Would next **Saturday 9.30am** or **Sunday at 9.30am** be better for you for a quick call?\n>\n> *(Wait for reply)*\n\n**If both cannot make it:**\n> Ok, how about **next week** instead?\n\n**If still cannot:**\n> Ok we shall set it as **10am on Saturday** tentatively first, one of our consultants will drop you a text and follow up with your availability!\n\n---\n\n### Booking Confirmation\n\n> Alright great, so I will schedule the session tentatively for next **Saturday 10am** first, if this timing does not work for you anymore, you can just drop him a text and we can help you rearrange it!\n>\n> After this call, my manager will send you a text message, and all you have to do, is to **reply and acknowledge**, is that okay?\n>\n> *(Wait for reply)*\n\n---\n\n### No-Obligation Close\n\n> Alright great! So just one last thing, there is **no obligation** for you to start anything beyond this session, so long as you learn something, that's good enough for us!\n>\n> Ok thank you and have a nice day! 👋" },
+    ],
+    sort_order: 13.8,
+  },
+  {
     id: "faq-young-adult-objections",
     stage: "Objection Handling — Young Adults Cold Call",
     category: "faq",
