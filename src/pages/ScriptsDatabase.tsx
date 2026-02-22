@@ -200,6 +200,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 5.8,
   },
   {
+    id: "follow-up-recruitment-reminder",
+    stage: "Follow-Up Reminder Texts — Recruitment Leads",
+    category: "follow-up",
+    target_audience: "recruitment",
+    versions: [
+      { author: "1st Follow-Up (Day 2)", content: "## 📩 1st Follow-Up Text — Recruitment Leads\n\n⏰ **Send:** Day 2 after initial contact\n\n> Hey **[Name]**,\n>\n> I hope you're doing well! I completely understand that things can get busy, so I just wanted to follow up on my previous message.\n>\n> I'm really passionate about helping young adults like yourself gain financial knowledge, especially when it comes to important topics like **early retirement, savings, and investments**. I believe financial literacy is key to setting yourself up for success.\n>\n> I'd love to invite you to a quick interview-style meeting on Zoom next week, where we can dive into these topics. How does **Saturday at 11am or 2pm**, or **Sunday at 2pm** sound for a 20-minute chat? During our session, I'll also pass along a **free financial planning course** that I think you'll find really valuable.\n>\n> Looking forward to connecting with you soon!\n\n---\n\n⚠️ **SOP:** 1 follow-up every 2 days. After 2 follow-up texts with no reply → mark as **\"texting but no reply\"** in CRM." },
+    ],
+    sort_order: 5.9,
+  },
+  {
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
