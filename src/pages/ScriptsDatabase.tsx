@@ -350,6 +350,18 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 17.3,
   },
   {
+    id: "nudge-post-callback-no-reply",
+    stage: "No-Reply Nudge — After Consultant Post-Callback WhatsApp",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script — Day 1", content: "Hey [Name]! 👋\n\nJust following up on my message earlier — wanted to make sure it came through!\n\nI've tentatively reserved a slot for you on **[DATE] at [TIME]** for our quick Zoom session. It's only 20 minutes and you'll walk away with some practical tips on growing your money + free access to our financial literacy course 📚\n\nJust reply **\"Yes\"** to lock in the timing and I'll send you the Zoom link! 😊" },
+      { author: "MoneyBees Script — Day 3", content: "Hey [Name]! 😄\n\nI know things can get busy (especially with **[NS / school / work]**!) so just a quick nudge.\n\nThe free financial literacy session is still open for you — it's a short 20-min Zoom call where I'll share:\n\n💡 How to start investing even with small amounts\n📊 Strategies to grow your wealth faster than the bank\n🎯 A personalised look at your financial situation\n\nPlus you'll get **free course access** and a **$20 voucher** just for attending 🎁\n\nWould **[DATE] at [TIME]** work better for you? Just let me know and I'll adjust! 👍" },
+      { author: "MoneyBees Script — Day 7 (Final)", content: "Hey [Name]! Last message from me, I promise 😂\n\nJust wanted to give you one last chance to grab a spot for our free session before I move on to the next batch.\n\nHonestly, most people who attend tell me they wish they'd started learning about money earlier. It's just a 20-min Zoom call — no obligations, no pressure.\n\n✅ Free financial consultation\n✅ Free course access\n✅ Walk away anytime if it's not for you\n\nIf you're keen, just drop me a **\"Yes\"** and I'll sort everything out. If not, totally cool too — all the best! 🙏\n\n— [Your Name]" },
+    ],
+    sort_order: 17.4,
+  },
+  {
     id: "whatsapp-callback-overview",
     stage: "WhatsApp Message — Sent During Callback Call (\"I've just sent it to you\")",
     category: "follow-up",
