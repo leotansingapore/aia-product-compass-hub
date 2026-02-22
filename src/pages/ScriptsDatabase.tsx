@@ -175,6 +175,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 11,
   },
+  {
+    id: "cold-calling-young-adult-guidebook",
+    stage: "Cold Calling — Financial Literacy Guidebook",
+    category: "cold-calling",
+    target_audience: "working-adult",
+    versions: [
+      { author: "Kenny's Script", content: "Hi XXX, I understand that you're currently studying or working now?\n\nOkay I'll just keep this call short, less than a minute.\n\nI'm Kenny from MoneyBees.\n\nWe are currently having a financial literacy campaign and we are giving away a free adulting guidebook specially for young adults, because we don't learn stuff like how to manage your money, budgeting and CPF in school.\n\nCan I send you more details on WhatsApp?\n\nAnd, on top of that, we can also do a quick zoom session with you this Saturday at 10am, and I'll be going through with you our adulting guidebook.\n\nOkay great, I'll send you a text after this call to confirm, and all you have to do is just to reply my WhatsApp, is that okay?\n\nSo just one last thing, this session is just for you to learn more, and as long as you learn something, then that's good enough.\n\nJust to check, how do I address you? (if no name).\n\n---\n\n## 📝 Notes\n\n- Please continually wish them all the best for their book in, book out, build rapport\n- Even after the call, you still need to text them, wish them, etc.\n- Also, our consultant will give a quick call later on to run through the materials. Will sometime later at 5/6pm be good?" },
+    ],
+    sort_order: 12,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
