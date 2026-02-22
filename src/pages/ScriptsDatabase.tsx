@@ -341,6 +341,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 20,
   },
+  {
+    id: "referral-young-adult",
+    stage: "Referral Request — Young Adults",
+    category: "referral",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Hi [Name]! 😊\n\nIf you know anyone under 25 who could benefit from learning how to save, invest, or plan their finances, feel free to share this with them. Here's a quick script you can use to introduce it to your friends:\n\n---\n\n*\"Hey, I found this free financial consultation that helps young adults like us learn to grow their money. They also provide access to a great ebook afterwards. Let me know if you're interested!\"*\n\n---\n\nIf they're keen, they can join your Zoom session or book their own time. Let me know if I can help set that up!" },
+    ],
+    sort_order: 21,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
