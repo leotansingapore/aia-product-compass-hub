@@ -212,6 +212,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 5.9,
   },
   {
+    id: "confirmation-recruitment-zoom",
+    stage: "Pre-Zoom Confirmation Text — Recruitment Leads",
+    category: "confirmation",
+    target_audience: "recruitment",
+    versions: [
+      { author: "Pre-Zoom Confirmation + Fact-Finding", content: "## ✅ Pre-Zoom Confirmation Text — Recruitment Leads\n\n⏰ **Send:** After lead confirms a Zoom slot\n\n> Great! I'll see you next **[date and time]** for our short 20-min chat, after which you will get access to our **financial planning course**.\n>\n> Just to get a better idea of which stage of life you are currently in and for us to prepare for the upcoming meeting, may I ask:\n>\n> 1️⃣ Are you currently **25 years old or younger**?\n>\n> 2️⃣ Are you currently **working / at university / serving NS**?\n>\n> 3️⃣ Are you expecting any **significant milestones**, e.g., graduation, ORD, new job, marriage?\n>\n> Finally, please do **save my number** so that you know when it's me when I share new resources or any updates in the future. Thank you! ☺️" },
+    ],
+    sort_order: 6.0,
+  },
+  {
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
