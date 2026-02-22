@@ -96,6 +96,19 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 30,
   },
   {
+    id: "tips-dual-phone",
+    stage: "Double Your Calling Power — Two-Phone Strategy",
+    category: "tips",
+    target_audience: "general",
+    versions: [
+      { author: "Team Guide", content: "## 📱📱 Double Your Calling Power: The Two-Phone Strategy\n\nIf you're serious about cold calling, use **two phones simultaneously**. It's basic maths that gives you an unfair advantage.\n\n---\n\n### 🛠️ Setup (2 Minutes)\n\n- 2 phones (primary + a second device)\n- Lark on web mode on your computer\n- WhatsApp on web mode on your computer\n- Your prospect list ready to go\n\n---\n\n### ⚡ How It Works\n\n1. Dial **two numbers simultaneously** — one on each device\n2. See which prospect picks up first\n3. After 10 rings with no answer → cut both calls, move to next two numbers\n4. If one picks up → immediately cut the other call, take the conversation\n5. After the call → move to the next two rows on your list\n\n> ⚠️ **Important:** Don't redial the number that didn't pick up — keep moving forward\n\n---\n\n### 📊 The Maths (In Your Favour)\n\nWaiting time follows a Poisson distribution. Running two queues cuts waiting time by **30–40%**.\n\n| Metric | Impact |\n|---|---|\n| 1 hour dual-phone | = 2 hours single-phone |\n| Weekly savings | 5+ extra hours |\n| Monthly savings | 20+ extra hours |\n| Yearly savings | **240+ hours (6 work weeks!)** |\n\n---\n\n### 🔑 The One Rule That Matters\n\n**Always text AFTER your calling session ends — NOT after each individual call.**\n\nStopping to text after every call destroys your momentum. You're a machine during calling time. Texting comes later, in **batch mode**, after you've crushed your calling block.\n\n---\n\n### ❓ FAQ\n\n**Q: Won't I get confused?**\nA: You will for the first 10 minutes. Then it becomes automatic.\n\n**Q: What if both pick up?**\nA: Extremely rare. If it happens, cut one and take the other. Good problem to have.\n\n**Q: Isn't it disrespectful to cut off?**\nA: They never knew you called. You hung up before they answered. Zero impact.\n\n**Q: What about the person who didn't pick up?**\nA: Move on. Don't look back. Forward momentum beats second-guessing every time.\n\n---\n\n### 💡 Bottom Line\n\nEvery hour you call with one phone when you could be using two is an hour you're choosing to work at **50% capacity**.\n\nSet it up today. Your future self — the one with a calendar full of appointments — will thank you." },
+    ],
+    attachments: [
+      { label: "Dual Phone Setup Example", url: "/scripts/dual-phone-setup.png", type: "image" },
+    ],
+    sort_order: 30.5,
+  },
+  {
     id: "follow-up-fb-cpf-post-call",
     stage: "Post-Call Text — Facebook Ad CPF Lead",
     category: "follow-up",
