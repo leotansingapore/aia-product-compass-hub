@@ -37,3 +37,6 @@ verify_jwt = false
 
 [functions.process-knowledge]
 verify_jwt = false
+
+[functions.seed-scripts]
+verify_jwt = false
