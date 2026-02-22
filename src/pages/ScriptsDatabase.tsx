@@ -185,6 +185,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 12,
   },
+  {
+    id: "cold-calling-ord-direct-agent",
+    stage: "Cold Calling — ORD Personnel (Agent Direct Call)",
+    category: "cold-calling",
+    target_audience: "nsf",
+    versions: [
+      { author: "Agent Direct Script", content: "Hi, Is this _____?\n\nHello _____, My name is ____, and I'm a financial planner for many ORD-Personels, I understand you have completed your NS right?\n\n*(If Haven't Finished NS, check when and say we will call back in future)*\n\nAre you currently studying at UNI or working? *(Fact find a little — what are they studying, which school, which year, etc)*\n\nAlright, I'll keep this call short and let you know the purpose of the call. I'm calling because a few years ago, you indicated an interest in finding out more about ways to grow money faster than the bank. So, we currently have a free adulting and investing guidebook specially for ORD personnel. So if you're keen on receiving a copy of this book, there will be a fully online zoom session sometime this Saturday and Sunday 10am for us to go through, and afterwards we will be passing you a copy of the ebook.\n\n*[Always give them a choice of Yes or Yes, don't ask open-ended questions]*\n\n## If Not Sure of Schedule\n\nTell them: Ok, how about we tentatively set a time first on [date and time] — if you have any changes, you can update us on WhatsApp.\n\n**Example:** So would Wed 7pm work better for you?\n\n*(If they genuinely sound like they cannot set a time, tell them no worries, we will call them back next time.)*\n\nHow about Friday 2pm or Saturday 10am? *[prompt one more time if no]*\n\n## After Agreeing on Time\n\nAlright, what will happen next is that I'll drop you a WhatsApp text, and from there do acknowledge me through WhatsApp Ok? *(Pause 1 Second)*\n\nAnd do make sure to come for this session where time slots are specially allocated for you as most ORD Personnel do find it beneficial for them after they have attended!\n\nAlright then, see you this coming [date time]" },
+    ],
+    sort_order: 13,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
