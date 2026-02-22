@@ -165,6 +165,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 10,
   },
+  {
+    id: "ad-campaign-fb-cpf-initial-text",
+    stage: "Initial Text — Qualified Facebook Lead",
+    category: "ad-campaign",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Golden Year Partners Script", content: "Hey [name],\n\nHi [name], I'm [your name] from Golden Year Partners. This is to let you know we've received your interest in our retirement planning resources.\n\nWe specialize in helping Singaporeans build simple and secure passive income and maximize their CPF and other assets to stay on track for retirement goals.\n\nFor more info on what are the topics we can discuss, you can refer here: https://consult.goldenyearpartners.com/ and https://consult.goldenyearpartners.com/checklist\n\nJust to check if I got the right person?\n\nCan I give you a quick callback around 6pm tonight to share more details?" },
+    ],
+    sort_order: 11,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
