@@ -167,6 +167,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 5.5,
   },
   {
+    id: "faq-recruitment-objections",
+    stage: "Objection Handling — Recruitment (Telemarketer)",
+    category: "faq",
+    target_audience: "recruitment",
+    versions: [
+      { author: "Catalyst Recruitment — All Objections", content: "## 🛡️ Recruitment Objection Handling\n\n**Available timings:** Thursday 5:30pm, Friday 2pm, or Saturday 10am\n\n---\n\n### 1️⃣ \"Not interested\"\n\n> I understand, but I think there's no harm going for the group interview, just to find out more! There are actually a total of 4 rounds of interviews, so the first round is just a briefing.\n>\n> Don't worry, it's just a short Zoom session to help you understand more about internship opportunities as well as your career options — and it's just a 20-min session out of your 24 hours a day.\n>\n> So would **[date and time]** work for you?\n\n---\n\n### 2️⃣ \"Is this compulsory?\"\n\n> No, however most young adults who have already attended this session found it to be very beneficial right after they attended. So it will be beneficial for you to attend now that you have finished NS.\n>\n> We can set a tentative date on say **[date and time]** — which is more convenient for you? Do try to attend as time slots are specially allocated for you.\n\n---\n\n### 3️⃣ \"What is the session about?\"\n\n> This would be a group briefing for you to learn more about the various job opportunities we currently have.\n>\n> So would **[date and time]** work better for you?\n\n---\n\n### 4️⃣ \"Is this a sharing session? 1:1? Do you have a link?\"\n\n> Yes, this will be a group session — it'll be quite an interactive session to go through some of the potential career options for you, of which many other young adults have found it to be really beneficial for them.\n>\n> So would **[date and time]** work better for you?\n\n---\n\n### 5️⃣ \"How did you get my number?\"\n\n> I'm not sure as it's in my system, but you might have placed your details on one of the job portals.\n\n---\n\n### 6️⃣ \"Which organisation are you calling from?\"\n\n> I'm actually calling from Catalyst Recruitment — we are a recruitment agency.\n\n---\n\n### 7️⃣ \"What is your name? I want to complain.\"\n\n⚠️ *At most give your first name. Do NOT give your contact or mobile number.*\n\n> Hi, my name is [First Name]. I understand your frustration, however this is just a service call to check if you are keen to understand how to better explore your internship and career options. I apologise for the inconvenience caused, if any.\n\n*Then **HANG UP** — the more you talk, the more they will try to find trouble.*" },
+    ],
+    sort_order: 5.6,
+  },
+  {
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
