@@ -555,6 +555,17 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 14,
   },
   {
+    id: "follow-up-fb-voucher-opt-in",
+    stage: "Initial Text — Facebook Voucher Lead (Just Opted In)",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "McDonald's Voucher — Initial Text", content: "## 📲 Initial Text — McDonald's Voucher FB Lead\n\n*Send immediately when the Facebook lead opts in*\n\n---\n\n> Hey! Just checking — is this **[Name]**? I'm checking regarding this **McDonald's campaign survey** you recently completed!\n\n---\n\n### 📎 Attach This Ad Flyer\n\n![McDonald's Voucher Ad](/scripts/mcdonalds-voucher-ad.png)" },
+      { author: "Yakun Voucher — Initial Text", content: "## 📲 Initial Text — Yakun Voucher FB Lead\n\n*Send immediately when the Facebook lead opts in*\n\n---\n\n> Hi **[Name]**,\n>\n> This is Gerald from **TheMoneyBees Academy**!\n>\n> You did a quick survey online for you to redeem **Yakun Vouchers**.\n>\n> Just want to check if I got the right person?" },
+    ],
+    sort_order: 14.5,
+  },
+  {
     id: "follow-up-young-adult-post-call",
     stage: "Post-Call Text — Young Adults Cold Call",
     category: "follow-up",
