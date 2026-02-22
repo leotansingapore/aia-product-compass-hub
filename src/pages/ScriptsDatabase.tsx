@@ -238,6 +238,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 15,
   },
   {
+    id: "follow-up-young-adult-free-course",
+    stage: "Post-Call Text — Free Course Angle (WhatsApp Follow-Up)",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "Gabriel's Script", content: "Hey [Name]! Thanks for taking my call just now 😊\n\nAs mentioned, we just launched a **free financial planning course** for young adults under 30 — it's completely self-study so you can go at your own pace.\n\n📚 **Here's your free access link:**\nhttps://www.skool.com/finternship/about\n\nInside the course you'll learn:\n• How to budget and manage your money properly\n• The basics of investing (even with small amounts)\n• How to make your CPF work harder for you\n• Wealth-building strategies that don't require a high salary\n\n---\n\nOn top of the course, I'd also love to do a quick **30-min Zoom session** with you to go through some personalised insights based on your situation.\n\nWould [DATE] at [TIME] work for you? Just reply \"Yes\" to confirm and I'll get it sorted! 👍\n\nIn the meantime, feel free to check out the course and our community — we're also on Instagram: https://www.instagram.com/moneybeesacademy\n\nChat soon!\n— Gabriel" },
+    ],
+    sort_order: 15.2,
+  },
+  {
     id: "nudge-young-adult-no-reply",
     stage: "No-Reply Nudge — Young Adults (After Post-Call Text)",
     category: "follow-up",
