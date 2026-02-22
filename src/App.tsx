@@ -101,6 +101,7 @@ const App = () => (
 
 {/* Scripts Database */}
 <Route path="/scripts" element={<ScriptsDatabase />} />
+<Route path="/scripts/:scriptId" element={<ScriptsDatabase />} />
 
 {/* Knowledge Base */}
 <Route path="/kb" element={<KnowledgeBase />} />

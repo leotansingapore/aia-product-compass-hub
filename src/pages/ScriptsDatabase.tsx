@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { markdownComponents } from "@/lib/markdown-config";
@@ -14,7 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import { useScripts, useScriptsMutations } from "@/hooks/useScripts";
 import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useScripts";
@@ -1129,13 +1129,27 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void }) {
-  const [open, setOpen] = useState(false);
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void }) {
+  const [open, setOpen] = useState(isOpenByUrl);
+  const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
 
+  useEffect(() => {
+    if (isOpenByUrl) {
+      setOpen(true);
+      setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+    }
+  }, [isOpenByUrl]);
+
+  const handleToggle = (newOpen: boolean) => {
+    setOpen(newOpen);
+    onToggle(newOpen);
+  };
+
   return (
-    <Collapsible open={open} onOpenChange={setOpen}>
-      <Card className="overflow-hidden">
+    <div ref={cardRef} id={`script-${script.id}`}>
+    <Collapsible open={open} onOpenChange={handleToggle}>
+      <Card className={`overflow-hidden ${isOpenByUrl ? "ring-2 ring-primary/50" : ""}`}>
         <CollapsibleTrigger asChild>
           <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-4">
             <div className="flex items-center justify-between">
@@ -1266,6 +1280,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete }: { script: ScriptEntry
         </CollapsibleContent>
       </Card>
     </Collapsible>
+    </div>
   );
 }
 
@@ -1274,6 +1289,7 @@ export default function ScriptsDatabase() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [activeAudience, setActiveAudience] = useState<string>("all");
   const navigate = useNavigate();
+  const { scriptId } = useParams();
   
   const { scripts: dbScripts, loading, refetch } = useScripts();
   const { createScript, updateScript, deleteScript, isAdmin } = useScriptsMutations();
@@ -1455,8 +1471,16 @@ export default function ScriptsDatabase() {
                   key={script.id}
                   script={script}
                   isAdmin={isAdmin}
+                  isOpenByUrl={scriptId === script.id}
                   onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                   onDelete={() => setDeleteTarget(script)}
+                  onToggle={(open) => {
+                    if (open) {
+                      navigate(`/scripts/${script.id}`, { replace: true });
+                    } else if (scriptId === script.id) {
+                      navigate('/scripts', { replace: true });
+                    }
+                  }}
                 />
               ))
             ) : (
