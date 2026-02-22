@@ -401,6 +401,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 26,
   },
+  {
+    id: "cold-call-nsf-direct",
+    stage: "Cold Call — NSF Direct (In-Person Meet)",
+    category: "cold-calling",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Hello, understand that you're currently serving NS?\n\nI'll just keep this call short less than 1 minute.\n\nBasically we work with many NSFs to grow their savings **60 times faster** than the bank during NS. So if you're interested in growing your money faster than the bank during NS, we can have a meetup to go through more.\n\n**Where is your nearest MRT?**\n\nAlright, so I'll do a sharing session with you next Saturday 10am at [nearest mall], and after this call, I'll send you a WhatsApp, and all you have to do is to reply, is that okay?\n\nSo just one last thing, this session is just for you to learn more, and as long as you learn something beneficial for you, then that's good enough.\n\nHave a good day!" },
+    ],
+    sort_order: 27,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
