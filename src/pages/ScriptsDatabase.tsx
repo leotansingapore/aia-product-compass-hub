@@ -125,6 +125,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 6,
   },
+  {
+    id: "confirmation-fb-cpf-meeting-cn",
+    stage: "Meeting Confirmation Text (Chinese) — Facebook Ad CPF Lead",
+    category: "confirmation",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Golden Year Partners Script (中文)", content: "刚才的聊天很愉快，我这边已经为我们安排了会面时间：\n\n*日期/时间：*\n\n*地点：*\n\n*时长：*\n\n以下是我们将会讨论的内容简介：\n\n1) 如何在退休期间提升被动收入\n\n2) 如何减少退休后的不必要开支\n\n3) 如何更好地优化 CPF 及现有资源\n\n更多资讯可参考： http://consult.goldenyearpartners.com/\n\n最糟的情况是，你获得更多资讯和一张 Ya Kun 礼券；最好的情况是，我们能帮助你进一步改善目前的状况！\n\n我已经在行事历保留了这个时段，请回复\"ok\"以确认。\n\n期待与您的交流！" },
+    ],
+    sort_order: 7,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
