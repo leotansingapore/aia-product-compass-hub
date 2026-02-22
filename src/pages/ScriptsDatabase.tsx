@@ -457,6 +457,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 7,
   },
   {
+    id: "reschedule-pre-retiree",
+    stage: "Rescheduling Text — Pre-Retiree (Missed Session)",
+    category: "follow-up",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Leo's Script — Reschedule Nudge", content: "## 📲 Rescheduling Text — Missed Session\n\n*Use when the prospect didn't show up or the session couldn't be arranged*\n\n---\n\n> Hey **[Name]**, as we didn't manage to arrange a session with you, can we schedule another time slot at another time if you're not opposed to have more clarity on your retirement planning?\n>\n> There are recent changes in **CPF + Hospital plans** which will affect your retirement\n>\n> Just reply **\"ok\"** so that we can follow up further.\n>\n> ~Leo" },
+    ],
+    sort_order: 7.5,
+  },
+  {
     id: "confirmation-fb-cpf-meeting-v2",
     stage: "Meeting Confirmation Text V2 — Zoom Consultation",
     category: "confirmation",
