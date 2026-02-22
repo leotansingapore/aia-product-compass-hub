@@ -255,6 +255,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 6.17,
   },
   {
+    id: "follow-up-recruitment-fb-initial-text",
+    stage: "Initial Text — Facebook Leads (Recruitment)",
+    category: "follow-up",
+    target_audience: "recruitment",
+    versions: [
+      { author: "FB Leads Initial WhatsApp Text", content: "## 📲 Initial Text — Facebook Leads for Recruitment\n\n### First Text (Verification)\n\n> Hey **[Name]**, received your interest recently for our **free seminar** 🎉\n>\n> Just to check if I got the right person before I send more details?\n\n---\n\n### 📎 Attach These Flyers\n\n![Hit Your First $10K](/scripts/hit-first-10k.png)\n\n![Free Seminar — Sign Up Now](/scripts/free-seminar-signup.png)\n\n---\n\n### 💡 Notes\n\n- Send this as the **first touchpoint** before calling\n- Wait for them to confirm identity before sending full details\n- If they reply \"yes\" → follow up with the **seminar details + Zoom booking**\n- If no reply after 24h → proceed with a **cold call**" },
+    ],
+    sort_order: 6.18,
+  },
+  {
     id: "follow-up-recruitment-nsf-post-call",
     stage: "Post-Call Text — Recruitment NSF Leads (Zoom Confirmation)",
     category: "follow-up",
