@@ -238,6 +238,18 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 15,
   },
   {
+    id: "nudge-young-adult-no-reply",
+    stage: "No-Reply Nudge — Young Adults (After Post-Call Text)",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script — Day 1", content: "Hey [Name]! 👋\n\nJust following up on my earlier message — did you manage to check it out?\n\nNo pressure at all, just wanted to make sure you didn't miss it! We're running the free financial literacy session this week and I thought it'd be really useful for you.\n\nLet me know if you're keen and I'll sort out a time that works for you 😊" },
+      { author: "MoneyBees Script — Day 3", content: "Hey [Name], just me again! 😄\n\nI know life gets busy (especially in camp 😅) so just a quick nudge — the free financial literacy session is still open for you.\n\nHonestly, most of the guys who attend tell me they wish they'd started learning about money earlier. It's only 30 mins on Zoom and you'll walk away with:\n\n• A clearer picture of how to grow your money\n• Access to our free course on investing & personal finance\n• A $20 voucher just for attending\n\nWorth a shot right? Just reply with a day/time that works and I'll lock it in for you 👍" },
+      { author: "MoneyBees Script — Day 7 (Final)", content: "Hey [Name]! Last message from me, I promise 😂\n\nJust wanted to give you one last chance to grab a spot for our free financial literacy session before I move on to the next batch.\n\nNo strings attached — it's a 30-min Zoom session where I share how young adults can start building wealth even with a small amount. Plus you get free access to our course and a $20 voucher.\n\nIf you're interested, just drop me a \"Yes\" and I'll arrange everything. If not, totally cool too — all the best! 🙏" },
+    ],
+    sort_order: 15.5,
+  },
+  {
     id: "confirmation-young-adult-zoom",
     stage: "Post-Call Text — Young Adults Agreed to Zoom",
     category: "confirmation",
