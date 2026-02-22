@@ -8,6 +8,12 @@ export interface ScriptVersion {
   content: string;
 }
 
+export interface ScriptAttachment {
+  label: string;
+  url: string;
+  type?: 'image' | 'pdf' | 'link';
+}
+
 export interface ScriptEntry {
   id: string;
   stage: string;
@@ -15,6 +21,7 @@ export interface ScriptEntry {
   target_audience: string;
   versions: ScriptVersion[];
   sort_order: number;
+  attachments?: ScriptAttachment[];
   created_at?: string;
   updated_at?: string;
 }
