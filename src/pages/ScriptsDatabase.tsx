@@ -1091,6 +1091,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 31,
   },
+  {
+    id: "tips-phrasing-dos-donts",
+    stage: "Phrasing Tips — What to Avoid & What to Say Instead",
+    category: "tips",
+    target_audience: "general",
+    versions: [
+      { author: "Team Guide — Phrasing V1", content: "## 🚫 Try to Avoid\n\nThese phrases put the prospect in a position to say **no** or create awkwardness:\n\n| ❌ Don't Say |\n|---|\n| \"Do you still recall?\" |\n| \"Are you interested?\" |\n| \"Are you free at this time?\" |\n| \"Are you free to speak to?\" |\n| \"Is this a convenient time to speak now?\" |\n\n---\n\n## ✅ Try This Instead\n\nUse **assumptive and confident language** that keeps the conversation moving forward:\n\n| ✅ Say This Instead |\n|---|\n| \"I understand that you are…\" |\n| \"This is a courtesy call to inform you…\" |\n| \"I'll just keep this call short — less than a minute\" |\n| \"We'll just set a tentative time slot at **[date/time]**, then after this call, I'll give you a WhatsApp, and you just need to reply and confirm — is that alright? We can reconfirm closer to the date.\" |\n\n---\n\n💡 **Key Principle:** Avoid asking **permission-based questions** that invite rejection. Instead, use **assumptive statements** that guide the prospect naturally into the next step." },
+    ],
+    sort_order: 31.5,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
