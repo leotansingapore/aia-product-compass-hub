@@ -190,6 +190,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 5.7,
   },
   {
+    id: "follow-up-recruitment-post-call",
+    stage: "Post-Call Text — Recruitment Leads",
+    category: "follow-up",
+    target_audience: "recruitment",
+    versions: [
+      { author: "FINternship Post-Call Text", content: "## 📲 Post-Call Text — Recruitment Leads\n\n> Hey, is this **[Name]**? I think my assistant gave you a call just now. We are currently opening a new batch of applicants for our **financial internship and course**.\n>\n> Here are the details of it:\n>\n> 🔗 https://masterclass.finternship.com/apply\n>\n> Anyway, you should be quite young also right? I mostly speak to young adults about **self-improvement, entrepreneurship, and personal finance**.\n>\n> People who sign up are usually pretty motivated to learn about **financial literacy**, learning a **high-income skill**, or **entrepreneurship**. We only have a few slots left as registration will be closing soon.\n>\n> Will give you a call later at **5pm** to go through an overview of the program." },
+    ],
+    sort_order: 5.8,
+  },
+  {
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
