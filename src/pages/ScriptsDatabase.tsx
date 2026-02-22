@@ -196,6 +196,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 12.5,
   },
   {
+    id: "cold-call-working-adult-existing-agent",
+    stage: "Cold Call — Working Adults (Existing Agent / Follow-Up)",
+    category: "cold-calling",
+    target_audience: "cold-lead",
+    versions: [
+      { author: "MoneyBees Script", content: "Hi Sir/Mdm,\n\nI am doing a follow up call on behalf of my AIA consultant regarding financial planning. Previously he has called you and you were busy.\n\nI would like to help you schedule a short one-to-one Zoom call with my consultant on some new ideas on the topics of **saving and investment** which help people to achieve financial goals such as:\n\n- **Early retirement**\n- **Children's education**\n- **Holiday planning**\n\nHe has been in the industry for **10 years**.\n\nAs most people attend, if they like the ideas, they will arrange a 2nd call. Anyway it's only a short meeting.\n\n**Are you usually available on weekdays or weekends?**\n\n> *Proceed to lead prospect to a date and time.*" },
+    ],
+    sort_order: 12.6,
+  },
+  {
     id: "cold-calling-ord-direct-agent",
     stage: "Cold Calling — ORD Personnel (Agent Direct Call)",
     category: "cold-calling",
