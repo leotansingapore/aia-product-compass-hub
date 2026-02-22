@@ -657,6 +657,18 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 16.5,
   },
   {
+    id: "reminder-before-appointment",
+    stage: "Appointment Reminder Texts — Young Adults (D-7 / D-1 / Day Of)",
+    category: "confirmation",
+    target_audience: "nsf",
+    versions: [
+      { author: "Reminder 1 — Week Before", content: "## 📲 Reminder — 1 Week Before Appointment\n\n---\n\n> Hey **[Name]**! Just a quick reminder that our Zoom session is coming up next week on **[date, time]**. Super excited to meet you to share more about how to grow your wealth and help you redeem your **McDonald's voucher**! 🙌\n>\n> Let me know if the time still works for you! 😊" },
+      { author: "Reminder 2 — Day Before (D-1)", content: "## 📲 Reminder — Day Before Appointment\n\n---\n\n> Hello **[Name]**! Just a reminder that our Zoom session is happening **tomorrow at [time]**! Looking forward to meeting you soon!\n>\n> Do let me know if you are unable to attend the meeting later and we can reschedule it if necessary!" },
+      { author: "Reminder 3 — Few Hours Before", content: "## 📲 Reminder — Few Hours Before Appointment\n\n---\n\n> Hey **[Name]**! Our meeting will be starting in a few hours! Can't wait to meet you and share with you more regarding investments and growing your wealth! Do inform me if you are no longer able to attend the meeting!\n>\n> See you soon!" },
+    ],
+    sort_order: 16.7,
+  },
+  {
     id: "callback-young-adult-consultant",
     stage: "Callback Script — Consultant Follow-Up Call (Young Adults)",
     category: "follow-up",
