@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { ScriptsChatWidget } from "@/components/scripts/ScriptsChatWidget";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
@@ -929,6 +930,9 @@ export default function ScriptsDatabase() {
           )}
         </div>
       </div>
+
+      {/* Floating AI Chat Widget */}
+      <ScriptsChatWidget />
     </PageLayout>
   );
 }

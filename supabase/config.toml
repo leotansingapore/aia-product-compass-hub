@@ -31,3 +31,6 @@ verify_jwt = false
 
 [functions.provision-financial-user]
 verify_jwt = false
+
+[functions.scripts-chat]
+verify_jwt = false
