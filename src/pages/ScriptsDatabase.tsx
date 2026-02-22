@@ -730,6 +730,32 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 15.5,
   },
   {
+    id: "ad-campaign-mcd-young-adult-initial",
+    stage: "Facebook Ad — McDonald's Campaign Initial Text (Young Adults)",
+    category: "ad-campaign",
+    target_audience: "nsf",
+    versions: [
+      { author: "Gerald's Script — Initial Text", content: "Hey! just checking is this **[Name]**? I'm checking regarding this McDonald's campaign survey you recently completed!" },
+      { author: "Gerald's Script — Campaign Intro", content: "Hi! Gerald here, I am from Moneybees Academy. I just wanted to share with you more about what this campaign is about. Basically we're doing a **free investment sharing** and as a bonus you will be able to get a **free McDonald's voucher**!\n\n---\n\n### 📝 SOP\n\n- **If the lead replies** → Give a call to set an opening appointment **on the same day**\n- **If the lead does not reply** → Give a call after **2–3 days** to try and set an opening appointment" },
+    ],
+    attachments: [
+      { label: "McDonald's Voucher Ad", url: "/scripts/mcdonalds-voucher-ad.png", type: "image" },
+    ],
+    sort_order: 11.5,
+  },
+  {
+    id: "follow-up-mcd-young-adult-post-call",
+    stage: "McDonald's Campaign — Post-Call & No-Pickup Texts (Young Adults)",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "Acknowledgement Text (Mcd2) — After Pickup", content: "Hi **[Name]**, thank you for picking up the call with me just now, I have set our appointment for **[Date, Time]**. As mentioned, the call will take around 20-30mins. During the call, I will share with you some practical tips on how to invest and grow your money faster than if you left it in the bank.\n\nAdditionally, I will share with you 2 resources that my team has produced which will share with you what schools never taught you about money, and smart strategies to start investing and building wealth.\n\nAlso, our team aims to help young adults with investments and teach them useful money tips!\n\nThis is our website and Instagram! 😁😁\n\nhttps://themoneybees.co/\n\nhttps://www.instagram.com/moneybeesacademy/?hl=en" },
+      { author: "No-Pickup Text — V1 (Open-Ended)", content: "Hey! Just dropped you a call just now! I wanted to share with you more about this campaign and what we're doing! I would love to share more with you about what we are doing! Do let me know if I caught you at a bad time and if there is a better time to call back!" },
+      { author: "No-Pickup Text — V2 (Suggest Callback Time)", content: "Hey! Just dropped you a call just now! I wanted to share with you more about this campaign and what we're doing! I would love to share more with you about what we are doing! Do let me know if I caught you at a bad time! Could I also give you another call at **[time, date]**?" },
+    ],
+    sort_order: 15.3,
+  },
+  {
     id: "follow-up-young-adult-scheduled",
     stage: "Scheduled Follow-Up Texts — Young Adults (Every 2 Days)",
     category: "follow-up",
