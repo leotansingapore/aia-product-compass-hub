@@ -241,6 +241,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 17,
   },
   {
+    id: "whatsapp-callback-overview",
+    stage: "WhatsApp Message — Sent During Callback Call (\"I've just sent it to you\")",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Hey [Name]! 👋\n\nGreat speaking with you just now! As mentioned, here's a quick overview of what we'll be covering in our upcoming session:\n\n💡 **What You'll Learn:**\n\n1️⃣ **Personal Finance Basics** — How to manage your money smarter, even on a tight budget\n2️⃣ **Investing 101** — How to start growing your money with as little as $100/month\n3️⃣ **The Power of Compounding** — Why starting at 20–25 gives you a massive advantage over someone starting at 40\n4️⃣ **Goal Planning** — Whether it's your first car, travelling, or building long-term wealth\n\n📊 Here's a simple example:\nIf you invest just **$200/month** starting at age 21, by the time you're 55 you could have over **$500,000** — but if you start at 35, you'd only have around **$170,000** with the same amount. That's the power of starting early! 🚀\n\n---\n\n🗓️ I'll be setting up a short Zoom session where I'll walk you through everything in detail — personalised to your situation.\n\nIn the meantime, feel free to save my number so I can send you more resources! 😊\n\nTalk soon!\n— [Your Name]" },
+    ],
+    sort_order: 17.5,
+  },
+  {
     id: "post-zoom-young-adult-followup",
     stage: "Post-Zoom Follow-Up — Young Adults After Consultation",
     category: "post-meeting",
