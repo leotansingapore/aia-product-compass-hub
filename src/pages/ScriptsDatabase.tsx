@@ -1298,6 +1298,36 @@ export default function ScriptsDatabase() {
   const [editingScript, setEditingScript] = useState<ScriptEntry | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<ScriptEntry | null>(null);
 
+  // Auto-seed DB when empty
+  const [seeding, setSeeding] = useState(false);
+  useEffect(() => {
+    if (!loading && dbScripts.length === 0 && !seeding) {
+      setSeeding(true);
+      const seedScripts = async () => {
+        try {
+          const resp = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/seed-scripts`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+            },
+            body: JSON.stringify({ scripts: FALLBACK_SCRIPTS }),
+          });
+          const result = await resp.json();
+          if (result.count > 0) {
+            toast.success(`Seeded ${result.count} scripts to database`);
+            refetch();
+          }
+        } catch (e) {
+          console.error("Failed to seed scripts:", e);
+        } finally {
+          setSeeding(false);
+        }
+      };
+      seedScripts();
+    }
+  }, [loading, dbScripts.length, seeding, refetch]);
+
   // Use DB scripts if available, otherwise fallback
   const scriptsData = dbScripts.length > 0 ? dbScripts : FALLBACK_SCRIPTS;
 
