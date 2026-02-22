@@ -643,6 +643,11 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     versions: [
       { author: "MoneyBees — Qualified FB Lead + A/B Scheduling", content: "## 📲 Initial Text — Qualified Young Adult FB Lead\n\n*Send when a young adult opts in from Facebook ads (non-voucher, qualified lead)*\n\n---\n\n> Hey **[Name]**! We're from the @moneybeesacademy! 👋\n> 🔗 https://www.instagram.com/moneybeesacademy\n>\n> Think you saw our ads just recently about helping young adults grow their money.\n>\n> We help young adults & NSFs develop a greater understanding of **financial literacy**, that's why we are giving away this **free adulting guidebook**, and also created an online community:\n> 🔗 https://www.skool.com/finternship/about\n>\n> We are offering a **free 20-minute Zoom consultation** alongside our guidebook.\n>\n> **This is what you will be getting after the 20min session:**\n>\n> 🔥 Clarity from doing a **comprehensive financial health check**\n>\n> 🧠 Walk you through the **key financial concepts** from the guidebook\n>\n> 🌟 Explore how these concepts directly apply to **your personal circumstances**\n>\n> Our goal is to ensure you leave the session empowered with **actionable knowledge** tailored to your needs.\n>\n> There's absolutely **no obligation** beyond this free consultation.\n>\n> Would you be free for a quick **30 min Zoom session**? Best to do it now rather than next time when things get even busier.\n>\n> I've scheduled your session for **[Confirmed Date & Time A]**, or **[Confirmed Date & Time B]** — will any of these timings work for you?\n>\n> Do reply **\"A\"** or **\"B\"** to indicate which time you prefer 😊\n>\n> I'll also pass you these books, I think you'll learn a lot from it 😊\n>\n> *[Insert the books]*" },
     ],
+    attachments: [
+      { label: "Free Ultimate Guide to Adulting", url: "/scripts/free-adulting-guide-ebook.png", type: "image" },
+      { label: "Free Ultimate Guide to Investing", url: "/scripts/free-investing-guide-ebook.png", type: "image" },
+      { label: "MoneyBees Crash Course Bundle", url: "/scripts/moneybees-crash-course-bundle.png", type: "image" },
+    ],
     sort_order: 14.5,
   },
   {
