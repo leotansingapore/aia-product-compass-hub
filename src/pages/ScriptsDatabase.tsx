@@ -559,6 +559,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 12.7,
   },
   {
+    id: "cold-calling-working-adult-fb-voucher",
+    stage: "Cold Calling — Facebook Voucher Ad Opt-In (Working Adults)",
+    category: "cold-calling",
+    target_audience: "working-adult",
+    versions: [
+      { author: "Golden Year Partners — Voucher Lead V1", content: "## 📞 Cold Calling Script — FB Voucher Leads (Working Adults)\n\n---\n\n### Opening\n\n> Hi, is this **[Name]**?\n>\n> I'm **[Your Name]**, a Retirement Specialist from **Golden Year Partners**. This is a courtesy call to inform you that we have received your interest in redeeming some **[voucher name]** vouchers recently! Is it a convenient time to speak now?\n\n---\n\n### Value Proposition\n\n> So I'll just keep this call short — I'm a retirement specialist and I help many people around your age to **retire earlier and faster**, by:\n>\n> ✅ Increasing your **passive income streams**\n> ✅ Reducing your **expenses**\n>\n> We specialise in helping Singaporeans create a **simple and secure passive income**, and discover ways to supplement their **CPF and other assets**, ensuring they're on track to meet their retirement goals.\n\n---\n\n### Policy Optimisation\n\n> And I believe you should have purchased many policies over the years, but these policies may not be effective for your retirement needs.\n>\n> So, we can help you **optimise some of them** and use these resources to create **additional streams of passive income**.\n\n---\n\n### Soft Close\n\n> The **worst case** is that this is an info session to get more clarity and insights about your situation — and the **best case** is that we can do something to actually **improve your situation**.\n>\n> Would sometime **this or next weekend** work better for you for a meetup?\n\n---\n\n### Objection Handling\n\n| Objection | Response |\n|---|---|\n| **\"No time\"** | Perhaps we can have a chat over a phone call — would **[date/time]** work to run through this with you? |\n| **\"Not sure of schedule\"** | Can I set a tentative timing, perhaps at **[date/time]**? Just to check — where is your nearest MRT? |\n\n---\n\n### Booking Confirmation\n\n> Alright, for now I'll tentatively place it on **[date/time]** at **[nearest mall/café]**, to run through your retirement planning.\n>\n> So just one last thing — this session is just for you to learn more about growing a **simple and secure passive income**, and as long as you learn something, then that's good enough!\n\n---\n\n### If Asked \"What's This About?\"\n\n> It's a **retirement planning consultation**. You can also read more here:\n>\n> 🔗 https://consult.goldenyearpartners.com/" },
+    ],
+    sort_order: 12.8,
+  },
+  {
     id: "cold-calling-ord-direct-agent",
     stage: "Cold Calling — ORD Personnel (Agent Direct Call)",
     category: "cold-calling",
