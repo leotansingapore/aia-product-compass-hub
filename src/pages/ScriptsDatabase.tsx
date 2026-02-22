@@ -265,6 +265,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 6.2,
   },
   {
+    id: "follow-up-recruitment-job-portal-post-call",
+    stage: "Post-Call Text — Job Portal Recruitment Leads",
+    category: "follow-up",
+    target_audience: "recruitment",
+    versions: [
+      { author: "Job Portal Post-Call Text + Zoom Confirmation", content: "## 📲 Post-Call Text — Job Portal Recruitment Leads\n\n### Text 1: Initial WhatsApp After Call\n\n> Hi **[Name]**, thanks for taking the call just now from my assistant! 😊\n>\n> This is **[Your Name]** from **Catalyst Recruitment** — as discussed, I've scheduled you for the career session on **[Day]**, **[Time]** via Zoom.\n>\n> Do acknowledge this message so I can secure your slot. See you then!\n>\n> 🔗 **Zoom Link:** https://us06web.zoom.us/j/2516308666?pwd=SzdZUHF5M2hVRlM5NE95dngyUWsxdz09\n\n---\n\n### Text 2: Zoom Interview Confirmation\n\n> **Subject: Zoom Interview Confirmation**\n>\n> Hey **[Name]**,\n>\n> Thank you for your confirmation! Below are the details for your scheduled Zoom interview:\n>\n> **Role:** [insert role]\n>\n> **Date:** [insert date, e.g. 23 May 2025, Friday]\n>\n> **Time:** [insert time, e.g. 2.00pm]\n>\n> **Zoom Link:** https://us06web.zoom.us/j/2516308666?pwd=SzdZUHF5M2hVRlM5NE95dngyUWsxdz09\n>\n> Looking forward to speaking with you soon! ☺\n>\n> Best regards,\n> **[Your Name]**" },
+    ],
+    sort_order: 6.25,
+  },
+  {
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
