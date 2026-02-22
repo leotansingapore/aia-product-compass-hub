@@ -205,6 +205,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 14,
   },
+  {
+    id: "follow-up-young-adult-post-call",
+    stage: "Post-Call Text — Young Adults Cold Call",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Hey [name]! I think my assistant gave you a call earlier today. We are doing a financial literacy campaign for young adults and ORD personnel. You can find out more here and we will explain more about it during a quick 5min interview call. https://www.skool.com/finternship/about\n\nAnyways we are from the @moneybeesacademy! https://www.instagram.com/moneybeesacademy\n\nBased on the call we had with you earlier, you should be quite young also right? I mostly speak to young adults about financial literacy, money management, and self improvement. These are things not taught in school or commonly discussed.\n\nPeople who sign up are usually pretty motivated to learn about investing & financial literacy. Do let me know if the quick 5 minute call [INSERT DATE] as mentioned is fine with you later on!" },
+    ],
+    sort_order: 15,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
