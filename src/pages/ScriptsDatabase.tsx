@@ -115,6 +115,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 5,
   },
+  {
+    id: "follow-up-fb-cpf-info-only",
+    stage: "Post-Call Text — FB Lead Wants Info Only (No Meeting)",
+    category: "follow-up",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Golden Year Partners Script", content: "Hello (Lead Name)!\n\nCalled you earlier\n\nJust a brief overview of what we can go through:\n\n1) Ways to increase passive income during retirement\n\n2) Ways to reduce unnecessary expenses during retirement\n\n3) How to potentially optimise your CPF and existing resources\n\nWhich of these 1), 2), 3) are your retirement concerns?\n\nFor more info: http://consult.goldenyearpartners.com/\n\nWorst case is that you get more info and a yakun voucher, and the best case is that we can improve your current situation!" },
+    ],
+    sort_order: 6,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
