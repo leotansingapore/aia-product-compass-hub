@@ -95,6 +95,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 30,
   },
+  {
+    id: "follow-up-fb-cpf-post-call",
+    stage: "Post-Call Text — Facebook Ad CPF Lead",
+    category: "follow-up",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Retiresmart Script", content: "## Message 1 — Send right after the call\n\nHi (Lead Name), this is Xenia here from Retiresmart\n\nPleasure speaking to you earlier\n\nAs mentioned, I'll be sending over the resource guide on retirement planning:\n\nHope you find the information to be useful.\n\n[insert guidebook]\n\n## Message 2 — Send right after Message 1\n\nI'll also get our retirement specialist to drop you a call at (date/time) to schedule for your complimentary zoom session :)\n\nWishing you a pleasant day/evening/weekend/week ahead!" },
+    ],
+    sort_order: 4,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
