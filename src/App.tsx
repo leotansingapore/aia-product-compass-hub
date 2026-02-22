@@ -44,6 +44,7 @@ import KBProduct from "./pages/kb/KBProduct";
 import VideoDetail from "./pages/VideoDetail";
 import AwaitingApproval from "./pages/AwaitingApproval";
 import ManageProductVideos from "./pages/ManageProductVideos";
+import ScriptsDatabase from "./pages/ScriptsDatabase";
 
 // Lazy load AI Assistant page for performance optimization
 const AIAssistant = lazy(() => import("./pages/AIAssistant"));
@@ -97,6 +98,9 @@ const App = () => (
 <Route path="/product/:productSlugOrId/video/:videoId" element={<VideoDetail />} />
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
+
+{/* Scripts Database */}
+<Route path="/scripts" element={<ScriptsDatabase />} />
 
 {/* Knowledge Base */}
 <Route path="/kb" element={<KnowledgeBase />} />
