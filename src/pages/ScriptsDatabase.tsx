@@ -96,6 +96,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 20.5,
   },
   {
+    id: "faq-course-content",
+    stage: "What's this course about?",
+    category: "faq",
+    target_audience: "general",
+    versions: [
+      { author: "Standard Answer", content: "**Q: What's this course about?**\n\n**A:** This is a non-exhaustive list of what the financial planning course covers:\n\n📌 **Budgeting** — Money and risk management fundamentals\n\n📈 **Investing** — How to pick stocks, unit trust investing, value investing\n\n🏠 **Housing** — Fundamentals about purchasing your first home in Singapore\n\n🎯 **Planning for Major Life Stages** — Critical illness, marriage, starting a family, and big-ticket purchases\n\nOf course, there are more sections and educational content to be unlocked, but the list above is just a small teaser into the value you will be getting from the course!" },
+    ],
+    sort_order: 20.6,
+  },
+  {
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
