@@ -423,6 +423,87 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 28,
   },
+  {
+    id: "objection-not-interested",
+    stage: "Objection — \"I'm Not Interested\"",
+    category: "faq",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "**Q: I'm not interested.**\n\n**A:** That's the case with most people even before I call. Many NSFs we work with also feel the same way at first. But when they meet us they find our ideas very useful. Just so that you can give yourself a chance to decide — would tomorrow morning OR afternoon be better to meet you?" },
+    ],
+    sort_order: 30,
+  },
+  {
+    id: "objection-compulsory",
+    stage: "Objection — \"Is This Compulsory?\"",
+    category: "faq",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "**Q: Is this compulsory?**\n\n**A:** You can opt out.\n\n> *If not keen, just end the call politely. If no objection, continue with your script as normal — \"Where do you stay?\" etc.*" },
+    ],
+    sort_order: 31,
+  },
+  {
+    id: "objection-where-number",
+    stage: "Objection — \"Where Did You Get My Number?\"",
+    category: "faq",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script — V1 (Ad Response)", content: "**Q: Where did you get my number?**\n\n**A:** You did an ad on Instagram a while back.\n\n> *Don't say what company you're from.*" },
+      { author: "MoneyBees Script — V2 (Telemarketer Angle)", content: "**Q: How did you get my number?**\n\n**A:** I am just a telemarketer for my manager. My manager reaches out to many people and some find his services very helpful and want to refer some of their friends to speak to us. I believe you are one of the contacts that he received, so I am calling in to check whether you would be keen to have a session with my manager.\n\n*If they press further:*\n\nI do not have access to the entire database so I am not too sure about that — maybe you can ask my manager when he contacts you." },
+    ],
+    sort_order: 32,
+  },
+  {
+    id: "objection-not-sure-free",
+    stage: "Objection — \"Not Sure If I'm Free\"",
+    category: "faq",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "**Q: I'm not sure if I'm free on that day. Can you send me more details and I get back to you once I confirm my schedule?**\n\n**A:** No worries. I'll send you some info through WhatsApp after this call, and you just help me to confirm the timing again okay?\n\n*PAUSE.*\n\nSo one last thing… this session is just for you to learn more, and I'm just doing my job…\n\n> *Continue with the rest of your script.*" },
+    ],
+    sort_order: 33,
+  },
+  {
+    id: "objection-send-details",
+    stage: "Objection — \"Can You Send Me More Details First?\"",
+    category: "faq",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "**Q: Can you send me more details first?**\n\n**A:** No worries. I'll send you some info through WhatsApp after this call. And you just help me to reply the WhatsApp to confirm, okay?\n\nAlright, so one last thing… this session is only for NSFs…\n\n> *Continue with the rest of your script.*" },
+    ],
+    sort_order: 34,
+  },
+  {
+    id: "objection-not-free",
+    stage: "Objection — \"I'm Not Free on That Day\"",
+    category: "faq",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "**Q: I'm not free on that day.**\n\n**A:** No worries. I'll just put the slot 2 weeks from now then. I'll send you a WhatsApp to confirm the timing again, okay?\n\nAlright, so one last thing… this session is only for NSFs.\n\n> *Continue with the rest of your script.*" },
+    ],
+    sort_order: 35,
+  },
+  {
+    id: "objection-hesitant",
+    stage: "Objection — Hesitant / Unsure",
+    category: "faq",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "**Q: If prospect is hesitant…**\n\n**A:** My manager has worked with many clients over the years and a lot of them found this sharing very helpful. There are no obligations, **BUT**, to set aside just 30 mins of your time. You can always walk away from the session at any time if you don't think it is suitable for you.\n\nThe takeaway is that as long as you can learn something beneficial from this session, then that is good enough for me. Is that fine?" },
+    ],
+    sort_order: 36,
+  },
+  {
+    id: "objection-have-agent",
+    stage: "Objection — \"I Already Have an Agent / Plan\"",
+    category: "faq",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "**Q: I already have an agent / investment plan.**\n\n**A:** Would you like to have an alternative opinion? The reason why I ask is because many of our clients also have more than one financial agent — this allows them to have multiple opinions as well as giving them different perspectives of their financial situation.\n\nFurthermore, this will only take 30 mins of your time, and it's a free learning opportunity for yourself. You can walk away anytime with no obligation if you don't think the session helps you.\n\nThe takeaway is that as long as you can learn something beneficial from this session, then that is good enough for me. Will that be okay?" },
+    ],
+    sort_order: 37,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
