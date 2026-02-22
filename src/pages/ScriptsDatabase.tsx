@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { ScriptsChatWidget } from "@/components/scripts/ScriptsChatWidget";
 import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
+import { KnowledgeManagement } from "@/components/scripts/KnowledgeManagement";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
@@ -373,6 +374,13 @@ export default function ScriptsDatabase() {
                 <p className="text-sm">Try adjusting your search or category filter.</p>
               </div>
             )}
+          </div>
+        )}
+
+        {/* Knowledge Base Management (admin only) */}
+        {isAdmin && (
+          <div className="mt-8">
+            <KnowledgeManagement />
           </div>
         )}
       </div>

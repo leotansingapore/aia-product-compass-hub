@@ -25,60 +25,87 @@ When analyzing screenshots or client messages:
 
 Always be practical, friendly, and action-oriented. Use emojis sparingly. Keep responses concise unless detail is requested.`;
 
-// Cache scripts for 5 minutes to avoid hitting DB on every request
-let cachedScripts: string | null = null;
-let cacheTimestamp = 0;
-const CACHE_DURATION = 5 * 60 * 1000;
-
-async function getScriptsKnowledgeBase(): Promise<string> {
-  const now = Date.now();
-  if (cachedScripts && now - cacheTimestamp < CACHE_DURATION) {
-    return cachedScripts;
-  }
-
+async function getRAGContext(supabase: any, userQuery: string): Promise<string> {
   try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // Use full-text search to find relevant chunks
+    const searchTerms = userQuery
+      .toLowerCase()
+      .replace(/[^\w\s]/g, "")
+      .split(/\s+/)
+      .filter(w => w.length > 2)
+      .slice(0, 8);
 
-    const { data, error } = await supabase
-      .from("scripts")
-      .select("stage, category, versions")
-      .order("sort_order", { ascending: true });
-
-    if (error || !data || data.length === 0) {
-      console.log("No scripts in DB or error, using fallback");
-      return FALLBACK_KNOWLEDGE;
+    if (searchTerms.length === 0) {
+      // No meaningful search terms, return all scripts
+      return await getAllScriptsContext(supabase);
     }
 
-    // Build knowledge base from DB scripts
-    const categoryMap: Record<string, string[]> = {};
-    for (const script of data) {
-      const cat = script.category.toUpperCase().replace(/-/g, " ");
-      if (!categoryMap[cat]) categoryMap[cat] = [];
-      
-      let entry = `### ${script.stage}\n`;
-      const versions = script.versions as Array<{ author: string; content: string }>;
-      for (const v of versions) {
-        entry += `**${v.author}:**\n${v.content}\n\n`;
+    const tsQuery = searchTerms.join(" | ");
+    
+    const { data: chunks, error } = await supabase
+      .from("knowledge_chunks")
+      .select("content, source_type, metadata")
+      .textSearch("content", tsQuery, { type: "plain" })
+      .limit(15);
+
+    if (error || !chunks || chunks.length === 0) {
+      // Fallback: get all scripts + recent docs
+      return await getAllScriptsContext(supabase);
+    }
+
+    let context = "\n--- RELEVANT KNOWLEDGE ---\n\n";
+    
+    const scriptChunks = chunks.filter((c: any) => c.source_type === "script");
+    const docChunks = chunks.filter((c: any) => c.source_type === "document");
+
+    if (scriptChunks.length > 0) {
+      context += "## From Scripts:\n\n";
+      for (const chunk of scriptChunks) {
+        context += chunk.content + "\n\n";
       }
-      categoryMap[cat].push(entry);
     }
 
-    let kb = "\n--- SCRIPTS KNOWLEDGE BASE ---\n\n";
-    for (const [cat, entries] of Object.entries(categoryMap)) {
-      kb += `## ${cat}\n\n`;
-      kb += entries.join("\n");
+    if (docChunks.length > 0) {
+      context += "## From Knowledge Documents:\n\n";
+      for (const chunk of docChunks) {
+        const title = chunk.metadata?.title || "Unknown Document";
+        context += `[Source: ${title}]\n${chunk.content}\n\n`;
+      }
     }
-    kb += "\n--- END OF SCRIPTS KNOWLEDGE BASE ---";
 
-    cachedScripts = kb;
-    cacheTimestamp = now;
-    return kb;
+    context += "--- END OF RELEVANT KNOWLEDGE ---";
+    return context;
   } catch (e) {
-    console.error("Error fetching scripts:", e);
-    return FALLBACK_KNOWLEDGE;
+    console.error("RAG search error:", e);
+    return await getAllScriptsContext(supabase);
   }
+}
+
+async function getAllScriptsContext(supabase: any): Promise<string> {
+  const { data: scripts } = await supabase
+    .from("scripts")
+    .select("stage, category, target_audience, versions")
+    .order("sort_order", { ascending: true });
+
+  if (!scripts || scripts.length === 0) return FALLBACK_KNOWLEDGE;
+
+  let kb = "\n--- SCRIPTS KNOWLEDGE BASE ---\n\n";
+  const categoryMap: Record<string, string[]> = {};
+  for (const script of scripts) {
+    const cat = script.category.toUpperCase().replace(/-/g, " ");
+    if (!categoryMap[cat]) categoryMap[cat] = [];
+    let entry = `### ${script.stage}\nTarget Audience: ${script.target_audience || 'general'}\n`;
+    const versions = script.versions as Array<{ author: string; content: string }>;
+    for (const v of versions) {
+      entry += `**${v.author}:**\n${v.content}\n\n`;
+    }
+    categoryMap[cat].push(entry);
+  }
+  for (const [cat, entries] of Object.entries(categoryMap)) {
+    kb += `## ${cat}\n\n${entries.join("\n")}`;
+  }
+  kb += "\n--- END OF SCRIPTS KNOWLEDGE BASE ---";
+  return kb;
 }
 
 const FALLBACK_KNOWLEDGE = `
@@ -88,14 +115,9 @@ const FALLBACK_KNOWLEDGE = `
 ### Original Script (Script A)
 First start by SMSing them: "is this XXX?" Then call with intro about themoneybees helping young adults save money 60 times faster.
 
-### Jamie's Cold Calling Script
-Text first, then call. Key: FREE adulting guidebook for NSFs. Get permission to send details on WhatsApp.
-
 ## FAQ / OBJECTION HANDLING
 - "How did you get my number?": Survey at bus interchange / previous survey
-- "Which company?": "We're from themoneybees, a financial education platform." Never say AIA.
-- When customers turn nasty: "Sorry to bother you, have a nice day."
-- "What's the catch?": Pair guidebook with complimentary consultation.
+- "Which company?": "We're from themoneybees, a financial education platform."
 
 ## TIPS
 - Key emphasis: FREE adulting book + WhatsApp permission
@@ -113,8 +135,20 @@ serve(async (req) => {
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
-    const knowledgeBase = await getScriptsKnowledgeBase();
-    const systemPrompt = BASE_SYSTEM_PROMPT + knowledgeBase + "\n\nWhen users share additional knowledge documents, incorporate that context into your responses as well.";
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // Extract the latest user query for RAG search
+    const lastUserMsg = [...messages].reverse().find((m: any) => m.role === "user");
+    const userQuery = typeof lastUserMsg?.content === "string" 
+      ? lastUserMsg.content 
+      : (Array.isArray(lastUserMsg?.content) 
+          ? lastUserMsg.content.find((c: any) => c.type === "text")?.text || ""
+          : "");
+
+    const ragContext = await getRAGContext(supabase, userQuery);
+    const systemPrompt = BASE_SYSTEM_PROMPT + ragContext;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
