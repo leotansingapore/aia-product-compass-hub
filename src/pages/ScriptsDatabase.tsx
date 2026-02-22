@@ -245,6 +245,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 6.15,
   },
   {
+    id: "cold-calling-recruitment-fb-webinar",
+    stage: "Cold Calling — Facebook Leads (Recruitment Webinar)",
+    category: "cold-calling",
+    target_audience: "recruitment",
+    versions: [
+      { author: "Catalyst Recruitment — FB Leads Webinar Script", content: "## 📞 Cold Calling Script — Facebook Leads (Recruitment Webinar)\n\n### Opening\n\n> Hi, is this **[First Name]**?\n>\n> Hi **[First Name]**, I'm **[YOUR NAME]** from **Catalyst Recruitment**, and to keep this really quick — we have recently received your interest in attending our **free seminar**!\n\n---\n\n### The Pitch\n\n> It's about helping people learn how to **build additional income streams**.\n>\n> It's **not a motivational talk** — it's a **30-minute Zoom call** where we'll cover:\n>\n> - What is a **franchise business** about\n> - How the speaker personally built a **7-figure business as a fresh graduate**\n> - How to **get started** even with **limited time/capital**\n\n---\n\n### Booking\n\n> Will you be available on either this **Thursday 5pm**, **Friday 2pm**, or **Saturday 10am** for the Zoom session?\n>\n> There will be a total of **3 rounds of interviews** after the session if you're shortlisted after the first session.\n\n---\n\n### Closing & WhatsApp Confirmation\n\n> Alright, I'll send you a message on **WhatsApp** — please **acknowledge me** once you receive it, okay?\n\n---\n\n### 📅 Available Timings\n\n- **Thursday** — 5:00 PM\n- **Friday** — 2:00 PM\n- **Saturday** — 10:00 AM" },
+    ],
+    sort_order: 6.17,
+  },
+  {
     id: "follow-up-recruitment-nsf-post-call",
     stage: "Post-Call Text — Recruitment NSF Leads (Zoom Confirmation)",
     category: "follow-up",
