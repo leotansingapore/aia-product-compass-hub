@@ -337,6 +337,17 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 17,
   },
   {
+    id: "whatsapp-post-callback-consultant",
+    stage: "Post-Callback WhatsApp — Consultant After Telemarketer Sets Appointment",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script — V1 (Warm Intro + Session Details)", content: "Hi [Name]! 😊\n\nThis is [Consultant Name] from MoneyBees Academy. My assistant spoke with you earlier and mentioned you'd be keen to learn more about growing your money — great to connect with you!\n\nhttps://www.instagram.com/moneybeesacademy\n\nAs mentioned, I'd love to do a quick **20-minute Zoom session** with you where we'll cover:\n\n💡 How to start investing even with small amounts\n📊 Simple strategies to grow your wealth faster than the bank\n🎯 Personalised tips based on your current situation\n\nI've scheduled our session for:\n\n🗓️ **Date:** [DATE]\n⏰ **Time:** [TIME]\n📍 **Location:** Zoom\n\nJust reply **\"Yes\"** to confirm this timing and we're all set! 👍\n\nYou'll also get **free access** to our financial literacy course after the session: https://www.skool.com/finternship/about\n\nLooking forward to chatting with you! Feel free to save my number so you know it's me when I reach out. 😊\n\n— [Consultant Name]" },
+      { author: "MoneyBees Script — V2 (Short + Direct)", content: "Hey [Name]! 👋\n\nThis is [Consultant Name] — my colleague spoke with you earlier today about our free financial literacy session.\n\nJust wanted to personally reach out and confirm our quick Zoom chat:\n\n📅 **[DATE] at [TIME]**\n\nDuring the session, I'll share some practical insights on saving, investing, and making your money work harder — tailored to where you're at right now.\n\nNo obligations — just come, learn something useful, and you'll also get access to our **free online course** 📚\n\nJust reply **\"Confirmed\"** and I'll send you the Zoom link closer to the date!\n\nChat soon 😊" },
+    ],
+    sort_order: 17.3,
+  },
+  {
     id: "whatsapp-callback-overview",
     stage: "WhatsApp Message — Sent During Callback Call (\"I've just sent it to you\")",
     category: "follow-up",
