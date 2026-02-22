@@ -413,6 +413,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 27,
   },
+  {
+    id: "cold-call-fb-ads-ebook",
+    stage: "Cold Call — Facebook Ads (Ebook Angle)",
+    category: "ad-campaign",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Hello [Name]!\n\nWe're from the @moneybeesacademy! [www.instagram.com/moneybeesacademy](https://www.instagram.com/moneybeesacademy)\n\nI think you might have seen our Instagram Ads recently regarding the pre-launch of a financial book that we're giving away for the **first 100 young adults**.\n\nAnyway, you should be quite young right?\n\nI mostly speak to young adults about better financial planning and investing!\n\nThe reason why I'm doing this is that I have gone through the entire education system in Singapore and they actually didn't really teach anything much about personal finance, and hence I was pretty frustrated about this, and wrote a book:\n\n📘 [The Ultimate Guide to Adulting](https://leotanfinancial.sg/the-ultimate-guide-to-adulting/)\n\nIt aims to empower and educate more young people about investing and financial literacy! I conduct workshops too :)" },
+    ],
+    sort_order: 28,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
