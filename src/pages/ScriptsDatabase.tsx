@@ -559,6 +559,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 12.7,
   },
   {
+    id: "cold-calling-working-adult-fb-family",
+    stage: "Cold Calling — Facebook Ad Lead (Working Adults / Parents)",
+    category: "cold-calling",
+    target_audience: "working-adult",
+    versions: [
+      { author: "Family Financial Planning Specialist V1", content: "## 📞 Cold Calling Script — FB Family Financial Planning Leads\n\n---\n\n### Opening\n\n> Hey, is this **[Name]**?\n>\n> We've received your interest via our **Facebook ad on family financial planning** — not sure if you recall that?\n>\n> Are you available now for a few mins quick chat?\n\n---\n\n### Personal Introduction + Value Proposition\n\n> I'm a **family financial planning specialist**, who is also a **mummy of two young kids**. I work very closely with many parents to help them optimize their **children's education fund** and **retirement setup** — both on the income side and the expense side. For example:\n>\n> ✅ Creating additional streams of **passive income** to fund their retirement or **children's education**\n>\n> ✅ Reviewing existing **insurance or retirement policies**\n>\n> ✅ Minimizing **unnecessary costs** that tend to creep up as we age\n\n---\n\n### Fact-Finding (Family & Education Fund)\n\n> Currently are you married and how many kids do you have? How old are they?\n>\n> Have you started saving for their **education fund**?\n>\n> - **If yes:** How are you saving it — via bank or investment?\n> - **If no:** What's holding you back from doing that?\n\n---\n\n### Insight Hook — Conservative Parents\n\n> Throughout our **20+ years of experience** in working with parents like yourself, we realized that many parents are afraid to lose money — hence have been very conservative when it comes to accumulating wealth.\n>\n> So we have curated some **insights and strategies** to help parents **reduce their investment risks** and at the same time **grow their money at a faster rate**.\n\n---\n\n### Zoom Session Pitch\n\n> Normally we do this over a **Zoom call**, where we show you different **options and variations** so you can see what's most suitable for your situation.\n>\n> At the very least, it's an **information-sharing session**. Worst-case, you walk away with the **NTUC voucher**. Best-case, you get insights that meaningfully improve your retirement strategy.\n>\n> Think of it like **window-shopping** before you buy a pair of shoes — you just want to explore options, compare, and see what fits you best.\n\n---\n\n### Booking\n\n> Not sure — would you prefer to have this Zoom call on a **weekday or weekend**? **Morning or afternoon**?\n\n---\n\n💡 *Confirm the time slot and send a WhatsApp message to lock in the appointment.*" },
+    ],
+    sort_order: 12.75,
+  },
+  {
     id: "cold-calling-working-adult-fb-voucher",
     stage: "Cold Calling — Facebook Voucher Ad Opt-In (Working Adults)",
     category: "cold-calling",
