@@ -737,9 +737,12 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     versions: [
       { author: "Gerald's Script — Initial Text", content: "Hey! just checking is this **[Name]**? I'm checking regarding this McDonald's campaign survey you recently completed!" },
       { author: "Gerald's Script — Campaign Intro", content: "Hi! Gerald here, I am from Moneybees Academy. I just wanted to share with you more about what this campaign is about. Basically we're doing a **free investment sharing** and as a bonus you will be able to get a **free McDonald's voucher**!\n\n---\n\n### 📝 SOP\n\n- **If the lead replies** → Give a call to set an opening appointment **on the same day**\n- **If the lead does not reply** → Give a call after **2–3 days** to try and set an opening appointment" },
+      { author: "Chris's Script — Full FB Ad Texting Sequence", content: "## 📱 Full Texting Sequence — McDonald's / Ya Kun FB Ad (Young Adults)\n\n---\n\n### Text 1 — Initial Check\n\n> Hi is this **[Name]**?\n>\n> This is Chris from the MoneyBees, an authorised representative of AIA 😊\n>\n> You recently indicated interest in our financial literacy campaign to redeem some free McDonald's vouchers. Where you can learn about investing and learn ways to grow your money faster than the bank.\n>\n> Just to confirm—is this the right person?\n\n---\n\n### Text 2\n\n*[Wait for reply]*\n\n---\n\n### Text 3 — Rapport Building\n\n> Hi **[Name]**, Nice to meet u! May I ask what u are doing in life rn?\n\n---\n\n### Text 4 — Personal Introduction\n\n> Ya so as for myself, I actually just ORDed last year, so I'm probably about the same age as you! I started working full-time with AIA as a financial advisor, and now I help NSFs & young Singaporeans like you figure out how to save, invest, and manage money smarter! My organisation, the MoneyBees aims to help young adults and teenagers with investments and teach them useful money tips!\n\n---\n\n### Text 5 — Credibility Links\n\n> This is our website and Instagram!\n>\n> https://themoneybees.co/\n>\n> https://www.instagram.com/moneybeesacademy/?hl=en\n\n---\n\n### Text 6 — Campaign Pitch\n\n> Ya haha so the ad u clicked is actually part of financial literacy campaign aimed to help young adults like yourself! You're eligible to redeem your Ya Kun voucher through a quick completely free 20-minute Zoom session where I'll share a quick introduction on how you can grow your money through investing!\n\n---\n\n### Text 7 — Booking\n\n> Would you be available for a short call next **Saturday at 9.30am** or **Sunday at 9.30am** to redeem it?\n\n---\n\n### Text 8 — Confirmation\n\n> Great see you then! If closer to the date, you need to reschedule just let me know! I will send out the meeting details closer to the date!\n\n---\n\n### Text 9 — E-Book Teaser (After Reminder)\n\n> During the call, you will also receive **2 free E-books** specially compiled by our company that we feel is greatly beneficial to help young Singaporeans out financially! 1 is about adulting and another is about investing!\n\n---\n\n### Text 10\n\n> **Adulting book:**\n> *(Attach adulting ebook image)*\n\n---\n\n### Text 11\n\n> **Investing book:**\n> *(Attach investing ebook image)*\n\n---\n\n### Text 12 — Warm Close\n\n> I am looking forward to chatting with you and sharing money tips to grow your wealth and the steps to redeem your free McDonald's voucher! Let me know if the time still works or if you need to shift it slightly!\n>\n> Hope to see you soon! Have a nice day! :)" },
     ],
     attachments: [
       { label: "McDonald's Voucher Ad", url: "/scripts/mcdonalds-voucher-ad.png", type: "image" },
+      { label: "Free Ultimate Guide to Adulting", url: "/scripts/adulting-guide.png", type: "image" },
+      { label: "Free Ultimate Guide to Investing", url: "/scripts/investing-guide.png", type: "image" },
     ],
     sort_order: 11.5,
   },
@@ -754,6 +757,19 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
       { author: "No-Pickup Text — V2 (Suggest Callback Time)", content: "Hey! Just dropped you a call just now! I wanted to share with you more about this campaign and what we're doing! I would love to share more with you about what we are doing! Do let me know if I caught you at a bad time! Could I also give you another call at **[time, date]**?" },
     ],
     sort_order: 15.3,
+  },
+  {
+    id: "follow-up-mcd-young-adult-reminders-noreply",
+    stage: "McDonald's Campaign — Reminders & No-Reply Texts (Young Adults)",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "Chris's Reminder 1 — Week Before", content: "Hey **[Name]**! Just a quick reminder that our Zoom session is coming up next week on **[date, time]**. Super excited to share money tips with you to grow your money and help you redeem your McDonald's voucher! 🙌\n\nLet me know if the time still works for you! 😊" },
+      { author: "Chris's Reminder 2 — Day Before", content: "Hey **[Name]**! Just a reminder that our Zoom session is happening soon at **[time]**! Looking forward to chatting with you and sharing money tips to grow your wealth and the steps to redeem your free McDonald's voucher ✨\n\nLet me know if the time still works or if you need to shift it slightly!" },
+      { author: "Chris's No-Reply 1 — NSF Angle", content: "Hey **[Name]**! Just wanted to follow up in case you missed my last message. Totally understand if you're busy!\n\nJust to let you know what it is that I do, I am a certified financial consultant with AIA who helps NSFs and young adults with growing their wealth faster than the bank!\n\nOver the years, my company has helped many NSFs kickstart their investment journey by growing their NS allowance after they ORD. So if u would like to explore more about investments and take this chance to redeem a free McDonald's voucher, we can schedule a zoom call sometime this weekend when u book out for you to find out more! 😊😊" },
+      { author: "Chris's No-Reply 2 — Voucher Angle", content: "Hey **[Name]**! Just wanted to follow up in case you missed my last message. Totally understand if you're busy!\n\nI just didn't want you to miss this—you're eligible to win a McDonald's voucher, and all it takes is one short Zoom session.\n\nDuring the session, I'll share simple strategies on growing your money even if you're just getting started, and you'll get access to some free resources that have helped many others too.\n\nWould sometime next week work for a quick chat on Zoom? 😊" },
+    ],
+    sort_order: 15.35,
   },
   {
     id: "follow-up-young-adult-scheduled",
