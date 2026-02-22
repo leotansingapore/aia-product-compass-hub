@@ -569,6 +569,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 12.8,
   },
   {
+    id: "callback-working-adult-parent",
+    stage: "Callback Call — Working Adult / Parent Consultation (Telemarketer Set)",
+    category: "follow-up",
+    target_audience: "working-adult",
+    versions: [
+      { author: "Consultant Callback — Parent Angle + Shoe Analogy", content: "## 📞 Callback Script — Working Adult / Parent Consultation\n\n*Use when the telemarketer has already set a callback appointment with a working adult / parent prospect*\n\n---\n\n**Opening:**\n\n> Hey, is this **[Name]**?\n>\n> Great. This is regarding the **retirement planning consultation**. I believe my assistant spoke with you yesterday to arrange this call. I tried giving you a ring earlier, but you might've been tied up, so let me just give a quick introduction.\n\n---\n\n**Personal Introduction + Value Proposition:**\n\n> I'm a retirement specialist, who is also a **mummy of two young kids**, and I work very closely with many parents to help them optimize their retirement setup — both on the **income side** and the **expense side**. For example:\n>\n> ✅ Creating additional streams of **passive income** to fund their retirement or **children's education**\n>\n> ✅ Reviewing existing **insurance or retirement policies**\n>\n> ✅ Minimizing **unnecessary costs** that tend to creep up as we age\n\n---\n\n**Fact-Finding (Family):**\n\n> Are you married? How many kids do you have now? How old are they?\n>\n> Have you started planning for their **education fund**?\n\n---\n\n**Emotional Hook — Gift to Your Children:**\n\n> Many people know that retirement planning is important, but what many do not know is that **proper retirement planning is actually the greatest gift you can give to your children** — it helps ease their burden in supporting your future expenses when they need money the most.\n>\n> Imagine **10–20 years down the road**, your children will be getting married / BTO / forming their own family. That's the period where they need money the most, and if you do proper planning now, we can help you create an **asset** that generates a sum of money for you to help them with their expenses — or help yourself to **retire early**.\n\n---\n\n**Soft Close (Shoe Analogy):**\n\n> At the very least, it's an **information-sharing session**. Worst-case, you walk away with the **NTUC voucher**. Best-case, you get insights that meaningfully improve your retirement strategy.\n>\n> Think of it like **window-shopping** before you buy a pair of shoes — you just want to explore options, compare, and see what fits you best.\n>\n> That's what this consultation is about: showing you the different **options and variations** so you can see what's most suitable for your situation.\n\n---\n\n**Booking:**\n\n> For this kind of conversation, it works best to **meet in person**. Which area do you stay around?\n\n---\n\n💡 *Set the meeting at the nearest mall café and confirm via WhatsApp.*" },
+    ],
+    sort_order: 12.9,
+  },
+  {
     id: "cold-calling-ord-direct-agent",
     stage: "Cold Calling — ORD Personnel (Agent Direct Call)",
     category: "cold-calling",
