@@ -233,6 +233,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 6.1,
   },
   {
+    id: "follow-up-recruitment-nsf-post-call",
+    stage: "Post-Call Text — Recruitment NSF Leads (Zoom Confirmation)",
+    category: "follow-up",
+    target_audience: "recruitment",
+    versions: [
+      { author: "NSF Interview Zoom Confirmation", content: "## 📲 Post-Call Text — NSF Recruitment Leads\n\n**Subject: Interview Zoom Confirmation**\n\n> Hey **[Name]**,\n>\n> My assistant gave you a call just now! Understand that you're going to **ORD this year**, and I think this is a good chance for you to find out more about potential **internship/job opportunities after NS** :)\n>\n> As spoken, we will be conducting a **group interview session** this Saturday at 10am for you to find out more about post-NS job/internship opportunities.\n>\n> **Date/Time:** This Saturday 10am\n>\n> **Where:** Zoom — https://us06web.zoom.us/j/2516308666?pwd=SzdZUHF5M2hVRlM5NE95dngyUWsxdz09\n>\n> **Duration:** 30 minutes\n>\n> Do reply **\"OK\"** to confirm or suggest another time slot if you can't make it!\n>\n> This will be the **first of 4 rounds of interviews**. This will be suitable for you if you're self-motivated and want to increase your exposure in the **finance and business sector**!" },
+    ],
+    sort_order: 6.2,
+  },
+  {
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
