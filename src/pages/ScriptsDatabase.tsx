@@ -589,6 +589,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 12.9,
   },
   {
+    id: "confirmation-working-adult-consultation",
+    stage: "Post-Call Text — Working Adult Consultation Confirmed",
+    category: "confirmation",
+    target_audience: "working-adult",
+    versions: [
+      { author: "Consultation Confirmation — Parent Angle V1", content: "Hey **[Name]**! 😊\n\nGreat chatting with you just now! I've marked my calendar for our meeting as per the following:\n\n📅 **Date/Time:** [Date/Time]\n\n📍 **Location:** [Location]\n\n⏱️ **Duration:** 30–60 min\n\n---\n\nWe'll be going through some of the following:\n\n✅ Creating additional streams of **passive income** to fund retirement or **children's education**\n\n✅ Reviewing existing **insurance or retirement policies**\n\n✅ Minimizing **unnecessary costs** that tend to creep up as we age\n\n---\n\nI've reserved the slot on my calendar — do kindly reply this message **\"ok\"** to acknowledge 🙏\n\nLooking forward to our chat!" },
+    ],
+    sort_order: 12.95,
+  },
+  {
     id: "cold-calling-ord-direct-agent",
     stage: "Cold Calling — ORD Personnel (Agent Direct Call)",
     category: "cold-calling",
