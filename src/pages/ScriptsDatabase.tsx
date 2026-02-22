@@ -275,6 +275,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 6.25,
   },
   {
+    id: "referral-recruitment-skool-community",
+    stage: "Referral Text — Lead to Friends (Skool Community Sign-Up)",
+    category: "referral",
+    target_audience: "recruitment",
+    versions: [
+      { author: "Skool Community Referral Template", content: "## 🔗 Referral Text — For Leads to Send to Friends\n\n### Template Message (Copy & Send to Friends)\n\n> Hey guys!\n>\n> Just sharing with you something! I'm in this community. It has many online **personal growth resources**, **webinars**, and **events**. If you're keen you can also sign up here 👇\n>\n> 🔗 https://www.skool.com/finternship/about\n>\n> It's **free**!\n\n---\n\n### 📎 Attach This Flyer\n\n![Build Your Financial Sandwich](/scripts/financial-sandwich-referral.png)\n\n---\n\n### 💡 Instructions for the Referrer\n\n> You can send the above template message to your friends, and you'll get **$10 for each successful sign-up** under you." },
+    ],
+    sort_order: 6.3,
+  },
+  {
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
