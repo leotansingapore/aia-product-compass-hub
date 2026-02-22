@@ -337,6 +337,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 30,
   },
   {
+    id: "tips-google-calendar",
+    stage: "Google Calendar Tips — Scheduling Best Practices",
+    category: "tips",
+    target_audience: "general",
+    versions: [
+      { author: "Calendar SOP", content: "## 📅 Google Calendar Tips — Scheduling Best Practices\n\n### 1. Calendar Event Naming Convention\n\nUse this format for your Zoom calendar events:\n\n**Zoom/Location — Name — Number — Source of Leads**\n\nExample: `Zoom - +65 8313 5494 - Sky (Gab FB Leads)`\n\n![Google Calendar Example](/scripts/google-calendar-example.png)\n\n---\n\n### 2. Always Invite the Training Calendar\n\nAdd **meetingtrainingcalendar@gmail.com** as a guest to every meeting event so it shows up on the shared team calendar.\n\n---\n\n### 3. Check Team Availability\n\nAsk **Gabriel**, **Ben**, and **Leo** for access to their Google Calendar → so you know their availability before booking slots.\n\n---\n\n### 4. Create Customised Follow-Up Texts\n\nDon't just copy-paste — personalise your follow-up messages based on the lead's situation, source, and conversation.\n\n---\n\n### 5. Save as Quick Replies\n\nSave your customised follow-up texts as **WhatsApp Business Quick Replies** so you can send them instantly without retyping." },
+    ],
+    sort_order: 31,
+  },
+  {
     id: "tips-dual-phone",
     stage: "Double Your Calling Power — Two-Phone Strategy",
     category: "tips",
