@@ -568,6 +568,17 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 14.5,
   },
   {
+    id: "missed-call-fb-lead",
+    stage: "Missed Call Text — Facebook Ad Lead (Didn't Pick Up)",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "V1 — Open-Ended Callback", content: "## 📲 Missed Call Text — FB Lead Didn't Pick Up\n\n*Send immediately after a missed call attempt*\n\n---\n\n> Hey! Just dropped you a call just now! I wanted to share with you more about this campaign and what we're doing! I would love to share more with you about what we are doing!\n>\n> Do let me know if I caught you at a bad time and if there is a better time to call back!" },
+      { author: "V2 — Suggest Callback Time", content: "## 📲 Missed Call Text — FB Lead (With Suggested Time)\n\n*Send immediately after a missed call attempt — propose a specific callback time*\n\n---\n\n> Hey! Just dropped you a call just now! I wanted to share with you more about this campaign and what we're doing! I would love to share more with you about what we are doing!\n>\n> Do let me know if I caught you at a bad time! Could I also give you another call at **[time, date]**?" },
+    ],
+    sort_order: 14.6,
+  },
+  {
     id: "follow-up-young-adult-post-call",
     stage: "Post-Call Text — Young Adults Cold Call",
     category: "follow-up",
