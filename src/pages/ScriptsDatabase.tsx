@@ -222,6 +222,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 6.0,
   },
   {
+    id: "cold-calling-recruitment-nsf",
+    stage: "Cold Calling — Recruitment NSF Leads (Telemarketer)",
+    category: "cold-calling",
+    target_audience: "recruitment",
+    versions: [
+      { author: "Catalyst Recruitment — NSF Script", content: "## 📞 Cold Calling Script — NSF Leads (Recruitment)\n\n### Opening\n\n> Hi, is this _____?\n>\n> Hello _____, my name is ____, I'm a recruitment officer from Catalyst Recruitment. I understand that you are going to **ORD this year**?\n\n---\n\n### The Pitch\n\n> Great — I'll keep this call short. I'm calling because we currently have **internship opportunities specifically for NSFs** after they complete their NS, and I wanted to check if this would be relevant for you.\n\n---\n\n### Fact-Finding\n\n> Just to confirm, are you planning to go to **university after NS**?\n\n*(If yes, continue below)*\n\n---\n\n### Booking the Session\n\n> Alright, what we usually do is arrange a short sharing session to walk you through the opportunities. This would be a **group briefing** for you to learn more about the various job opportunities we currently have.\n>\n> How about we tentatively set a time first, and you can update us later if anything changes via WhatsApp.\n>\n> Would **Thursday at 5:30pm** work better for you, or **Friday at 2:00pm**?\n\n---\n\n### Closing\n\n> What will happen next is that I'll send you a **WhatsApp message** shortly. Once you receive it, please acknowledge me on WhatsApp, okay?\n>\n> Also, do make sure to attend this session as **time slots are specially allocated**, and many university-bound students find it very beneficial after attending.\n>\n> Have a great day ahead! 👋" },
+    ],
+    sort_order: 6.1,
+  },
+  {
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
