@@ -967,6 +967,7 @@ export type Database = {
           id: string
           sort_order: number
           stage: string
+          target_audience: string | null
           updated_at: string
           versions: Json
         }
@@ -976,6 +977,7 @@ export type Database = {
           id?: string
           sort_order?: number
           stage: string
+          target_audience?: string | null
           updated_at?: string
           versions?: Json
         }
@@ -985,6 +987,7 @@ export type Database = {
           id?: string
           sort_order?: number
           stage?: string
+          target_audience?: string | null
           updated_at?: string
           versions?: Json
         }

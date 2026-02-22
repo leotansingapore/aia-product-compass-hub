@@ -12,6 +12,7 @@ export interface ScriptEntry {
   id: string;
   stage: string;
   category: string;
+  target_audience: string;
   versions: ScriptVersion[];
   sort_order: number;
   created_at?: string;
@@ -36,6 +37,7 @@ export function useScripts() {
     } else {
       setScripts((data || []).map(d => ({
         ...d,
+        target_audience: (d.target_audience as string) || 'general',
         versions: (d.versions as unknown as ScriptVersion[]) || [],
       })));
     }
@@ -59,6 +61,7 @@ export function useScriptsMutations() {
       .insert([{
         stage: script.stage,
         category: script.category,
+        target_audience: script.target_audience,
         versions: JSON.parse(JSON.stringify(script.versions)),
         sort_order: script.sort_order,
       }])
@@ -74,6 +77,7 @@ export function useScriptsMutations() {
     const payload: Record<string, unknown> = {};
     if (updates.stage !== undefined) payload.stage = updates.stage;
     if (updates.category !== undefined) payload.category = updates.category;
+    if (updates.target_audience !== undefined) payload.target_audience = updates.target_audience;
     if (updates.versions !== undefined) payload.versions = JSON.parse(JSON.stringify(updates.versions));
     if (updates.sort_order !== undefined) payload.sort_order = updates.sort_order;
 
