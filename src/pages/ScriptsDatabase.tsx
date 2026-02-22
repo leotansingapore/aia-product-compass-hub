@@ -240,6 +240,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 17,
   },
+  {
+    id: "post-zoom-young-adult-followup",
+    stage: "Post-Zoom Follow-Up — Young Adults After Consultation",
+    category: "post-meeting",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Hey [Name]! 😊\n\nThanks so much for taking the time to join today's session — really great chatting with you!\n\nAs promised, here's what you'll be getting:\n\n📚 **Free access to the MoneyBees course**\nHere's your link to join: https://www.skool.com/finternship/about\n\nInside you'll find modules on:\n• Personal finance fundamentals\n• How to start investing with small amounts\n• Productivity & self-improvement strategies\n• And a community of like-minded young adults\n\n---\n\n**Quick recap of what we discussed today:**\n\n1️⃣ Your current financial situation and goals\n2️⃣ How to start building wealth early through the power of compounding\n3️⃣ The options available to help you grow your money\n\n---\n\n**Next steps:**\n\nI'll be putting together a personalised plan based on what we discussed. I'll share it with you by [DATE] so you can review it at your own pace.\n\nIn the meantime, feel free to explore the course materials — the earlier you start learning, the bigger the head start you'll have! 🚀\n\nIf you have any questions at all, just drop me a message here anytime. Happy to help!\n\nChat soon,\n[Your Name]" },
+    ],
+    sort_order: 18,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
