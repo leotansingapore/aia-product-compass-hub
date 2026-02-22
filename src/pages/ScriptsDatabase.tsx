@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2 } from "lucide-react";
+import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -29,12 +29,23 @@ const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; c
   "tips": { label: "Tips & Best Practices", icon: Lightbulb, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
 };
 
+const audienceLabels: Record<string, string> = {
+  general: "General",
+  nsf: "NSF / NS",
+  "working-adult": "Working Adults",
+  parent: "Parents",
+  hnw: "High Net Worth",
+  referral: "Referrals",
+  "cold-lead": "Cold Leads",
+};
+
 // ===== FALLBACK HARDCODED SCRIPTS (used when DB is empty) =====
 const FALLBACK_SCRIPTS: ScriptEntry[] = [
   {
     id: "cold-calling-original",
     stage: "Cold Calling — Original Script",
     category: "cold-calling",
+    target_audience: "nsf",
     versions: [
       { author: "Script A", content: "First start by SMSing them: \"is this XXX?\"\n\nThen, give them a call:\n\nHello, is this XXX?\nUnderstand that you're currently serving NS?\n\nXXX here from themoneybees. I'll just keep this call short, less than a minute. Basically we help young adults, including NSFs, save their money 60 times faster than the bank during their national service, and we meet many of them over their weekends.\n\nSo if you're interested to grow your savings faster, we can set a short session for you to find out more. Just to check, around where do you stay?\n\nOkay, we will set a meeting sometime this/next weekend at (XXX mall) at 10am, and you can reply after this call to confirm the meeting, is that okay?\n\nAlright so just one last thing, this session is just for you to learn more, so as long as you come down and learn something beneficial for you, then that's good enough!" },
       { author: "Jamie's Script", content: "Text first: \"Good morning/afternoon! is this xxx?\"\n\n**The CALL:**\n\nHi, [Name]! This is Jamie from themoneybees.\nDo you have a quick moment?\n\n**If No:** When is a better time for me to call you back?\n\n**If Yes:**\nI'll keep this call short, less than a minute.\nMay I know if you are currently serving NS?\n\n**If Yes (NS):**\nWe are giving away a FREE adulting guidebook to help NSFs learn about saving, investing and other personal finance skills.\nWould this be something you'd be interested in receiving?\n\n**If Interested:** Great! Would you mind me sharing more details about this with you over WA?" },
@@ -45,6 +56,7 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     id: "faq-company",
     stage: "Which company are you from?",
     category: "faq",
+    target_audience: "general",
     versions: [
       { author: "Jamie's Script", content: "\"We're from themoneybees, we're a financial education platform.\"" },
       { author: "Alternative", content: "Never say AIA, or whatever insurance company. \"Actually I just started this job a while back, I'm just helping my friend, not sure which company he's from actually.\"" },
@@ -55,6 +67,7 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     id: "tips-calling",
     stage: "Calling Tips & Best Practices",
     category: "tips",
+    target_audience: "general",
     versions: [
       { author: "Team Guide", content: "**Key emphasis:** Giving away FREE adulting book + share more details on WhatsApp.\n\n**Call duration:** Good to call 1-2hrs a day. Usually about 40-50 dials an hour.\n\n**After getting \"Yes to WA\":** Follow up to try and set appointment using the message templates." },
     ],
@@ -92,9 +105,16 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete }: { script: ScriptEntry
                 <cat.icon className="h-5 w-5 text-muted-foreground shrink-0" />
                 <div className="min-w-0">
                   <CardTitle className="text-base truncate">{script.stage}</CardTitle>
-                  <Badge variant="secondary" className={`mt-1 text-[10px] ${cat.color}`}>
-                    {cat.label}
-                  </Badge>
+                  <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                    <Badge variant="secondary" className={`text-[10px] ${cat.color}`}>
+                      {cat.label}
+                    </Badge>
+                    {script.target_audience && script.target_audience !== "general" && (
+                      <Badge variant="outline" className="text-[10px]">
+                        {audienceLabels[script.target_audience] || script.target_audience}
+                      </Badge>
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="flex items-center gap-2 shrink-0 ml-2">
@@ -159,6 +179,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete }: { script: ScriptEntry
 export default function ScriptsDatabase() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [activeAudience, setActiveAudience] = useState<string>("all");
   const navigate = useNavigate();
   
   const { scripts: dbScripts, loading, refetch } = useScripts();
@@ -176,6 +197,9 @@ export default function ScriptsDatabase() {
     if (activeCategory !== "all") {
       result = result.filter((s) => s.category === activeCategory);
     }
+    if (activeAudience !== "all") {
+      result = result.filter((s) => s.target_audience === activeAudience);
+    }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       result = result.filter(
@@ -185,7 +209,7 @@ export default function ScriptsDatabase() {
       );
     }
     return result;
-  }, [searchQuery, activeCategory, scriptsData]);
+  }, [searchQuery, activeCategory, activeAudience, scriptsData]);
 
   const counts = useMemo(() => {
     const c: Record<string, number> = { all: scriptsData.length };
@@ -195,12 +219,20 @@ export default function ScriptsDatabase() {
     return c;
   }, [scriptsData]);
 
+  const audienceCounts = useMemo(() => {
+    const c: Record<string, number> = { all: scriptsData.length };
+    Object.keys(audienceLabels).forEach((key) => {
+      c[key] = scriptsData.filter((s) => s.target_audience === key).length;
+    });
+    return c;
+  }, [scriptsData]);
+
   const activeCategoriesWithData = useMemo(() => 
     (Object.keys(categoryLabels) as CategoryKey[]).filter(key => counts[key] > 0),
     [counts]
   );
 
-  const handleSave = async (data: { stage: string; category: string; versions: ScriptVersion[]; sort_order: number }) => {
+  const handleSave = async (data: { stage: string; category: string; target_audience: string; versions: ScriptVersion[]; sort_order: number }) => {
     if (editingScript) {
       await updateScript(editingScript.id, data);
     } else {
@@ -242,21 +274,76 @@ export default function ScriptsDatabase() {
           )}
         </div>
 
-        {/* Category filter tabs */}
-        <div className="mb-6 overflow-x-auto">
-          <Tabs value={activeCategory} onValueChange={setActiveCategory}>
-            <TabsList className="flex-wrap h-auto gap-1 p-1">
-              <TabsTrigger value="all" className="text-xs">All ({counts.all})</TabsTrigger>
+        {/* Filters */}
+        <div className="mb-6 space-y-3">
+          {/* Category filter - horizontal scrollable bar */}
+          <div>
+            <div className="flex items-center gap-2 mb-1.5">
+              <Filter className="h-3.5 w-3.5 text-muted-foreground" />
+              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
+              {(activeCategory !== "all" || activeAudience !== "all") && (
+                <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground ml-auto" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); }}>
+                  <X className="h-3 w-3 mr-0.5" /> Clear filters
+                </Button>
+              )}
+            </div>
+            <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+              <Button
+                variant={activeCategory === "all" ? "default" : "outline"}
+                size="sm"
+                className="text-xs shrink-0 h-8"
+                onClick={() => setActiveCategory("all")}
+              >
+                All ({counts.all})
+              </Button>
               {activeCategoriesWithData.map((key) => {
                 const cat = categoryLabels[key];
+                const Icon = cat.icon;
                 return (
-                  <TabsTrigger key={key} value={key} className="text-xs">
-                    <cat.icon className="h-3 w-3 mr-1" /> {cat.label} ({counts[key]})
-                  </TabsTrigger>
+                  <Button
+                    key={key}
+                    variant={activeCategory === key ? "default" : "outline"}
+                    size="sm"
+                    className="text-xs shrink-0 h-8 gap-1"
+                    onClick={() => setActiveCategory(key)}
+                  >
+                    <Icon className="h-3 w-3" /> {cat.label} ({counts[key]})
+                  </Button>
                 );
               })}
-            </TabsList>
-          </Tabs>
+            </div>
+          </div>
+
+          {/* Target audience filter */}
+          <div>
+            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1.5 block">Target Audience</span>
+            <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+              <Button
+                variant={activeAudience === "all" ? "default" : "outline"}
+                size="sm"
+                className="text-xs shrink-0 h-7"
+                onClick={() => setActiveAudience("all")}
+              >
+                All
+              </Button>
+              {Object.entries(audienceLabels).filter(([key]) => audienceCounts[key] > 0).map(([key, label]) => (
+                <Button
+                  key={key}
+                  variant={activeAudience === key ? "default" : "outline"}
+                  size="sm"
+                  className="text-xs shrink-0 h-7"
+                  onClick={() => setActiveAudience(key)}
+                >
+                  {label} ({audienceCounts[key]})
+                </Button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Results count */}
+        <div className="mb-3 text-xs text-muted-foreground">
+          {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
         </div>
 
         {/* Loading state */}

@@ -19,16 +19,27 @@ const CATEGORIES = [
   { value: "tips", label: "Tips & Best Practices" },
 ];
 
+const TARGET_AUDIENCES = [
+  { value: "general", label: "General" },
+  { value: "nsf", label: "NSF / NS" },
+  { value: "working-adult", label: "Working Adults" },
+  { value: "parent", label: "Parents" },
+  { value: "hnw", label: "High Net Worth" },
+  { value: "referral", label: "Referrals" },
+  { value: "cold-lead", label: "Cold Leads" },
+];
+
 interface Props {
   open: boolean;
   onClose: () => void;
-  onSave: (data: { stage: string; category: string; versions: ScriptVersion[]; sort_order: number }) => Promise<void>;
+  onSave: (data: { stage: string; category: string; target_audience: string; versions: ScriptVersion[]; sort_order: number }) => Promise<void>;
   script?: ScriptEntry | null;
 }
 
 export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   const [stage, setStage] = useState("");
   const [category, setCategory] = useState("cold-calling");
+  const [targetAudience, setTargetAudience] = useState("general");
   const [versions, setVersions] = useState<ScriptVersion[]>([{ author: "", content: "" }]);
   const [sortOrder, setSortOrder] = useState(0);
   const [saving, setSaving] = useState(false);
@@ -37,11 +48,13 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     if (script) {
       setStage(script.stage);
       setCategory(script.category);
+      setTargetAudience(script.target_audience || "general");
       setVersions(script.versions.length > 0 ? script.versions : [{ author: "", content: "" }]);
       setSortOrder(script.sort_order);
     } else {
       setStage("");
       setCategory("cold-calling");
+      setTargetAudience("general");
       setVersions([{ author: "", content: "" }]);
       setSortOrder(0);
     }
@@ -52,7 +65,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     const validVersions = versions.filter(v => v.content.trim());
     if (validVersions.length === 0) return;
     setSaving(true);
-    await onSave({ stage, category, versions: validVersions, sort_order: sortOrder });
+    await onSave({ stage, category, target_audience: targetAudience, versions: validVersions, sort_order: sortOrder });
     setSaving(false);
     onClose();
   };
@@ -77,8 +90,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
             <Input value={stage} onChange={e => setStage(e.target.value)} placeholder="e.g. Cold Calling — Original Script" />
           </div>
 
-          <div className="flex gap-4">
-            <div className="flex-1">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
               <Label>Category</Label>
               <Select value={category} onValueChange={setCategory}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
@@ -89,7 +102,18 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                 </SelectContent>
               </Select>
             </div>
-            <div className="w-24">
+            <div>
+              <Label>Target Audience</Label>
+              <Select value={targetAudience} onValueChange={setTargetAudience}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {TARGET_AUDIENCES.map(a => (
+                    <SelectItem key={a.value} value={a.value}>{a.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
               <Label>Order</Label>
               <Input type="number" value={sortOrder} onChange={e => setSortOrder(Number(e.target.value))} />
             </div>
