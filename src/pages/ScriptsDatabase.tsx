@@ -39,6 +39,7 @@ const audienceLabels: Record<string, string> = {
   hnw: "High Net Worth",
   referral: "Referrals",
   "cold-lead": "Cold Leads",
+  recruitment: "Recruitment",
 };
 
 // ===== FALLBACK HARDCODED SCRIPTS (used when DB is empty) =====
@@ -154,6 +155,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
       { author: "Standard Answer", content: "**Q: Are you going to try to sell me insurance or something?**\n\n**A:** We totally understand the concern — and no, this isn't a sales pitch.\n\nOur primary goal is **education**. The Zoom session is a genuine financial literacy consultation where we help you understand your current financial position and what steps you can take.\n\nWe're a financial education platform first and foremost. If after the session you'd like to explore specific financial products, that's entirely up to you — but there's **zero pressure or obligation** to buy anything. Many of our participants just take the course, learn something new, and that's perfectly fine with us! 🙏" },
     ],
     sort_order: 21.1,
+  },
+  {
+    id: "cold-calling-recruitment",
+    stage: "Cold Calling — Recruitment (Telemarketer Script)",
+    category: "cold-calling",
+    target_audience: "recruitment",
+    versions: [
+      { author: "Catalyst Recruitment Script", content: "## 📞 Cold Calling Script — Recruitment\n\n**Opening:**\n\n> Hi, is this _____?\n>\n> Hello _____, my name is ____, I'm a recruitment officer from Catalyst Recruitment. I understand that you may be looking out for career or internship opportunities at the moment?\n\n*(If not looking, ask: \"How about opportunities in the future?\")*\n\n---\n\n**Fact-Finding:**\n\n> Are you currently studying at uni or working?\n\n*(Find out: what they're studying, which school, which year, or where they're working now)*\n\n---\n\n**The Pitch:**\n\n> Alright, I'll keep this call short. I'm calling because currently we have some job and internship opportunities for young adults that are **flexible and also work from home!**\n\n*(If already working: \"It's suitable for mid-career switchers also.\")*\n\n---\n\n**Booking the Interview:**\n\n> So if you're keen to find out more, we are currently conducting **group interviews**. Will either **Thursday 5:30pm**, **Friday 2pm**, or **Saturday 10am** work for you?\n>\n> There will be a total of 3 rounds of interviews, so this will just be the first round and it will take 30 mins.\n\n⚠️ *Always give them a choice of Yes or Yes — don't ask open-ended questions.*\n\n---\n\n**If they're unsure of their schedule:**\n\n> No worries! How about we tentatively set a time first on **[date and time]** — if you have any changes, you can update us on WhatsApp.\n>\n> So would **Thursday 5:30pm** work better for you?\n\n*(If they genuinely can't commit: \"No worries, we will call you back next time.\")*\n\n> How about **Friday 2pm** or **Saturday 10am**?\n\n*(Prompt one more time if no)*\n\n---\n\n**After agreeing on a time:**\n\n> Alright! What will happen next is that I'll drop you a **WhatsApp text**, and from there do acknowledge me through WhatsApp, OK?\n>\n> *(Pause 1 second)*\n>\n> And do make sure to come for this session where time slots are specially allocated for you — most uni students do find it beneficial for them after they have attended!\n>\n> Alright then, see you this coming **[date and time]**! 👋" },
+    ],
+    sort_order: 5.5,
   },
   {
     id: "tips-calling",
