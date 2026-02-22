@@ -145,6 +145,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 8,
   },
+  {
+    id: "confirmation-fb-cpf-meeting-v3-medical",
+    stage: "Meeting Confirmation Text V3 — Medical Insurance Angle",
+    category: "confirmation",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Golden Year Partners Script V3", content: "Hello (Lead Name)!\n\nGreat chat just now, and I've scheduled our meeting to be on:\n\n*Date/Time:*\n\n*Location:*\n\n*Duration:*\n\nJust a brief overview of what we will go through:\n\n• Go through the total expected impact of rising medical insurance premiums for your retirement\n\n• How to potentially optimise your CPF and resources to generate additional passive income streams to offset these rising costs\n\nFor more info: http://consult.goldenyearpartners.com/\n\nWorst case is that you can see how all these medical insurance premiums affect your retirement and best case is that we can help you offset these premiums during retirement!\n\nI've reserved the slot on my calendar, do kindly reply this message \"ok\" to acknowledge\n\nLooking forward to our chat!" },
+    ],
+    sort_order: 9,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
