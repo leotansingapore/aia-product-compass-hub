@@ -401,6 +401,20 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 4,
   },
   {
+    id: "texting-fb-ebook-retiree",
+    stage: "Texting Sequence — Facebook eBook Lead (Pre-Retirees)",
+    category: "follow-up",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Derek's Script — Lead Entry (Day 0)", content: "## 📲 Lead Entry Text — eBook Request\n\n*Send immediately when the lead opts in from the Facebook eBook ad*\n\n---\n\n> Hi **[Name]**,\n>\n> Derek here from **Golden Year Partners**, I received your request for our ebook **\"Are You Truly Ready for Retirement?\"** from Facebook. May I check if I am texting the right person?\n>\n> Please reply with a **'yes'** in this chat to confirm. Thank you!" },
+      { author: "Derek's Script — 1st Follow-Up (Day 2)", content: "## 📲 1st Follow-Up — No Reply After 2 Days\n\n---\n\n> Hi **[Name]**,\n>\n> Just following up in case my earlier message got missed. You recently requested for our retirement ebook **\"Are You Truly Ready for Retirement?\"** on Facebook. May I confirm if this is the right person?\n>\n> Just reply with a **'yes'** in this chat to confirm and I'll send it over. Thank you!" },
+      { author: "Derek's Script — 2nd Follow-Up (Day 4, Called No Answer)", content: "## 📲 2nd Follow-Up — Called But No Answer\n\n---\n\n> Hi **[Name]**,\n>\n> I tried calling earlier but may have caught you at a busy time.\n>\n> Please reply with a **'yes'** in this chat to confirm, or let me know a suitable time and I'll arrange a quick call back. Thank you!" },
+      { author: "Derek's Script — After Prospect Replies 'Yes'", content: "## 📲 After Prospect Confirms — Send eBook + Offer Zoom\n\n---\n\n> Hi **[Name]**,\n>\n> Thank you for your reply and confirmation. This is the copy of the ebook for your reading. Do feel free to drop me a text about anything should you have any questions pertaining to your retirement.\n>\n> I would also like to arrange a **quick Zoom call** to walk you through the key points of the book and share how these strategies can be applied to your retirement plans. Kindly let me know which of the following date and time slots works best for you:\n>\n> 1️⃣ **[XX] Feb 2026, [XX:XX]am**\n>\n> 2️⃣ **[XX] Feb 2026, [XX:XX]am**\n>\n> 3️⃣ **[XX] Feb 2026, [XX:XX]am**\n>\n> 4️⃣ These slots do not work for me, give me more slots\n>\n> You can just reply **1, 2, 3 or 4** to confirm your availability, thank you." },
+      { author: "Derek's Script — After Prospect Agrees to Zoom (Post-Call)", content: "## 📲 Post-Call Confirmation — Zoom Booked\n\n*Send after the prospect agrees to a Zoom session during the call*\n\n---\n\n> Hi **[Name]**,\n>\n> Derek here, thank you for your time on the call earlier, it was nice talking to you. As mentioned, I have marked my calendar for our meeting as per the following:\n>\n> **Date/Time:** DD Feb 2026 (Day), HH:MM am/pm\n>\n> **Location:** Zoom\n>\n> **Duration:** 30–45 min\n>\n> We'll be going through the following:\n>\n> ✅ Reviewing existing insurance and retirement policies\n>\n> ✅ Ways to create additional streams of passive income for retirement\n>\n> ✅ Minimizing unnecessary costs that tend to creep up as we age\n>\n> Just respond to this message with a quick **'👍'** once you've seen this.\n>\n> Looking forward to our chat!" },
+    ],
+    sort_order: 4.5,
+  },
+  {
     id: "confirmation-fb-cpf-meeting",
     stage: "Meeting Confirmation Text — Facebook Ad CPF Lead",
     category: "confirmation",
