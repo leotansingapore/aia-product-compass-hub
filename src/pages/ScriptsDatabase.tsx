@@ -215,6 +215,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 15,
   },
+  {
+    id: "confirmation-young-adult-zoom",
+    stage: "Post-Call Text — Young Adults Agreed to Zoom",
+    category: "confirmation",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Hi [Name], this is [Your Name]\nThanks for taking the call just now with my assistant 😊\n\nAs spoken we're scheduled for a financial literacy zoom session.\n\n**Date:** [DATE]\n**Time:** [TIME]\n**Duration:** 30 minutes\n**Location:** Zoom\n\nHere's what you'll gain after the 30 minute zoom session:\n\n🔥 Access to hours of materials from the world's best minds in our community at https://www.skool.com/finternship/about\n\n🧠 Learn the money language schools never teach\n\n🌟 Strategies to fast-track your wealth, passively.\n\nJust reply \"Yes\" to confirm this timing and we're all set!\n\nLooking forward to chatting with you then! 👍\n\n---\n\nAs a bonus, you will also get these resources after the consultation. And you can even redeem a $20 voucher after the session!\n\n📚 **Resources to include with this message:**\n- Free Ultimate Guide to Adulting (MoneyBees eBook)\n- Free Ultimate Guide to Investing (First-Time Investor)\n- MoneyBees Crash Course & Financial Planning materials bundle\n\n*(Attach the 3 promotional images when sending this text)*" },
+    ],
+    sort_order: 16,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
