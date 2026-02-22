@@ -415,6 +415,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 4.5,
   },
   {
+    id: "callback-pre-retiree-consultation",
+    stage: "Callback Call — Pre-Retiree Consultation (Telemarketer Set)",
+    category: "follow-up",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Consultant Callback Script — Shoe Analogy V1", content: "## 📞 Callback Script — Pre-Retiree Consultation\n\n*Use when the telemarketer has already set a callback appointment with the prospect*\n\n---\n\n**Opening:**\n\n> Hey, is this **[Name]**?\n>\n> Great. This is regarding the **retirement planning consultation**. I believe my assistant spoke with you yesterday to arrange this call. I tried giving you a ring earlier, but you might've been tied up, so let me just give a quick introduction.\n\n---\n\n**Value Proposition:**\n\n> I'm a **retirement specialist**, and I work closely with many pre-retirees to help them optimize their retirement setup — both on the **income side** and the **expense side**. For example:\n>\n> ✅ Creating additional streams of **passive income**\n>\n> ✅ Reviewing existing **insurance or retirement policies**\n>\n> ✅ Minimizing **unnecessary costs** that tend to creep up as we age\n\n---\n\n**Fact-Finding:**\n\n> Have you started any retirement planning so far?\n>\n> Are you currently working?\n>\n> Do you already have some existing investment policies that can help fund your retirement?\n\n---\n\n**Policy Optimisation Pitch:**\n\n> Many people I meet have **older insurance policies** they bought years ago that no longer match their needs. Hospital plans also get **more expensive with age** — sometimes hitting the 4- or even 5-figure range yearly.\n>\n> What we do is help you **optimize all of this**. In the right scenario, instead of paying hundreds of thousands to insurers over your lifetime, we can restructure things so these costs become an **asset for you** — potentially even getting you a hospital plan at **no additional cost** and creating **passive income** for retirement.\n\n---\n\n**Soft Close (Shoe Analogy):**\n\n> At the very least, it's an **information-sharing session**. Worst-case, you walk away with the Yakun voucher. Best-case, you get insights that meaningfully improve your retirement strategy.\n>\n> Think of it like **window-shopping** before you buy a pair of shoes — you just want to explore options, compare, and see what fits you best.\n>\n> That's what this consultation is about: showing you the different **options and variations** so you can see what's most suitable for your situation.\n\n---\n\n**Booking:**\n\n> For this kind of conversation, it works best to **meet in person**. Which area do you stay around?\n\n---\n\n💡 *Set the meeting at the nearest mall café and confirm via WhatsApp.*" },
+    ],
+    sort_order: 4.7,
+  },
+  {
     id: "confirmation-fb-cpf-meeting",
     stage: "Meeting Confirmation Text — Facebook Ad CPF Lead",
     category: "confirmation",
