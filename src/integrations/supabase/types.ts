@@ -960,6 +960,36 @@ export type Database = {
         }
         Relationships: []
       }
+      scripts: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          sort_order: number
+          stage: string
+          updated_at: string
+          versions: Json
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          sort_order?: number
+          stage: string
+          updated_at?: string
+          versions?: Json
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          sort_order?: number
+          stage?: string
+          updated_at?: string
+          versions?: Json
+        }
+        Relationships: []
+      }
       speech_metrics: {
         Row: {
           created_at: string
