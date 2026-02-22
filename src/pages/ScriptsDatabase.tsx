@@ -391,10 +391,26 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete }: { script: ScriptEntry
                         <span className="text-xs font-medium truncate">{att.label}</span>
                         <a
                           href={att.url}
-                          download={att.label}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
+                          download={att.label + (att.url.match(/\.\w+$/)?.[0] || '')}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            // Force download via fetch for same-origin files
+                            e.preventDefault();
+                            fetch(att.url)
+                              .then(res => res.blob())
+                              .then(blob => {
+                                const url = URL.createObjectURL(blob);
+                                const a = document.createElement('a');
+                                a.href = url;
+                                a.download = att.label + (att.url.match(/\.\w+$/)?.[0] || '');
+                                document.body.appendChild(a);
+                                a.click();
+                                document.body.removeChild(a);
+                                URL.revokeObjectURL(url);
+                                toast.success(`Downloaded ${att.label}`);
+                              })
+                              .catch(() => toast.error('Download failed'));
+                          }}
                         >
                           <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" title="Download">
                             <Download className="h-3.5 w-3.5" />
