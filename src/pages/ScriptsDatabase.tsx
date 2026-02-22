@@ -79,6 +79,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 3,
   },
   {
+    id: "cold-calling-fb-voucher-retiree",
+    stage: "Cold Calling — Facebook Voucher Ad Opt-In (Pre-Retirees)",
+    category: "cold-calling",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Golden Year Partners — Voucher Lead V1", content: "## 📞 Cold Calling Script — FB Voucher Leads (Pre-Retirees)\n\n### 🎥 Loom Walkthrough\n\n[▶️ Watch the Loom video](https://www.loom.com/share/9f8aa0fb23b64ed78e30986a4f31619b)\n\n---\n\n### Opening\n\n> Hi, is this **[Name]**?\n>\n> I'm **[Your Name]**, a Retirement Specialist from **Golden Year Partners**. This is a courtesy call to inform you that we have received your interest in redeeming some **[voucher name]** vouchers recently!\n\n---\n\n### Value Proposition\n\n> So I'll just keep this call short — I'm a retirement specialist and I help many people around your age to **retire earlier and faster**, by:\n>\n> ✅ Increasing your **passive income streams**\n> ✅ Reducing your **expenses**\n>\n> We specialise in helping Singaporeans create a **simple and secure passive income**, and discover ways to supplement their **CPF and other assets**, ensuring they're on track to meet their retirement goals.\n\n---\n\n### Policy Optimisation\n\n> And I believe you should have purchased many policies over the years, but these policies may not be effective for your retirement needs.\n>\n> So, we can help you **optimise some of them** and use these resources to create **additional streams of passive income**.\n\n---\n\n### Soft Close\n\n> The **worst case** is that this is an info session to get more clarity and insights about your situation — and the **best case** is that we can do something to actually **improve your situation**.\n>\n> Would sometime **this or next weekend** work better for you for a meetup/Zoom?\n\n---\n\n### Objection Handling\n\n| Objection | Response |\n|---|---|\n| **\"No time\"** | Perhaps we can have a chat over a phone call — would **[date/time]** work to run through this with you? |\n| **\"Not sure of schedule\"** | Can I set a tentative timing, perhaps at **[date/time]** to run through? Just to check — where is your nearest MRT? |\n\n---\n\n### Booking Confirmation\n\n> Alright, for now I'll tentatively place it on **[date/time]** at **[nearest mall/café]**, to run through your retirement planning.\n>\n> So just one last thing — this session is just for you to learn more about growing a **simple and secure passive income**, and as long as you learn something, then that's good enough!\n\n---\n\n### If Asked \"What's This About?\"\n\n> It's a **retirement planning consultation**. You can also read more here if needed:\n>\n> 🔗 https://consult.goldenyearpartners.com/" },
+    ],
+    sort_order: 3.5,
+  },
+  {
     id: "faq-company",
     stage: "Which company are you from?",
     category: "faq",
