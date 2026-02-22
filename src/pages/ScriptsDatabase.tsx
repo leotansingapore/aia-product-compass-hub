@@ -105,6 +105,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 4,
   },
+  {
+    id: "confirmation-fb-cpf-meeting",
+    stage: "Meeting Confirmation Text — Facebook Ad CPF Lead",
+    category: "confirmation",
+    target_audience: "pre-retiree",
+    versions: [
+      { author: "Golden Year Partners Script", content: "Hello\n\nCalled you earlier, and I've scheduled our meeting to be on:\n\n*Date/Time:*\n\n*Location:*\n\n*Duration:*\n\nJust a brief overview of what we can go through:\n\n1) Ways to increase passive income during retirement\n\n2) Ways to reduce unnecessary expenses during retirement\n\n3) How to potentially optimise your CPF and existing resources\n\n*Which of these 1), 2), 3)* are your retirement concerns?\n\nFor more info: http://consult.goldenyearpartners.com/\n\nWorst case is that you get more info and a yakun voucher, and the best case is that we can improve your current situation!\n\nI've reserved the slot on my calendar, do kindly reply this message \"ok\" to acknowledge\n\nLooking forward to our chat and God Bless! 😊" },
+    ],
+    sort_order: 5,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
