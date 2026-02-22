@@ -452,6 +452,83 @@ export type Database = {
           },
         ]
       }
+      knowledge_chunks: {
+        Row: {
+          content: string
+          created_at: string
+          document_id: string | null
+          id: string
+          metadata: Json | null
+          source_id: string | null
+          source_type: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          document_id?: string | null
+          id?: string
+          metadata?: Json | null
+          source_id?: string | null
+          source_type?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          document_id?: string | null
+          id?: string
+          metadata?: Json | null
+          source_id?: string | null
+          source_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "knowledge_chunks_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "knowledge_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      knowledge_documents: {
+        Row: {
+          chunk_count: number | null
+          created_at: string
+          file_path: string
+          file_size: number
+          file_type: string
+          id: string
+          status: string
+          title: string
+          updated_at: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          chunk_count?: number | null
+          created_at?: string
+          file_path: string
+          file_size?: number
+          file_type: string
+          id?: string
+          status?: string
+          title: string
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          chunk_count?: number | null
+          created_at?: string
+          file_path?: string
+          file_size?: number
+          file_type?: string
+          id?: string
+          status?: string
+          title?: string
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
       learning_progress: {
         Row: {
           category_id: string
