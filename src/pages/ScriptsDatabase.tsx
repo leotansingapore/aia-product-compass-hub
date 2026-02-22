@@ -343,6 +343,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 18,
   },
   {
+    id: "follow-up-nasa-lucky-draw",
+    stage: "Post-Call Text — NASA Lucky Draw Lead",
+    category: "follow-up",
+    target_audience: "working-adult",
+    versions: [
+      { author: "MoneyBees Script", content: "Hi [Name], this is [Your Name]\nThanks for taking the call just now! 😊\n\nIn order to redeem your chance to win a **[insert campaign]**, we will need to schedule a short **15-minute session**, where we will go through your current financial policies from different companies and give you a **financial report** after the session.\n\nI've scheduled your session for **[Confirmed Date & Time]**.\nJust reply **\"Yes\"** to confirm this timing.\n\nLooking forward to chatting with you then! 👍\n\n---\n\nAs a bonus, you will also get these resources after the consultation!\n\n*(Attach relevant resources / guidebook images)*\n\n---\n\nWould sometime next **Saturday or Sunday at 10am or 2pm** work for you?" },
+    ],
+    sort_order: 18.5,
+  },
+  {
     id: "followup-next-steps-call",
     stage: "Next Steps — Schedule a Quick Call",
     category: "follow-up",
