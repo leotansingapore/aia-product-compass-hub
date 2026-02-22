@@ -195,6 +195,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 13,
   },
+  {
+    id: "faq-young-adult-objections",
+    stage: "Objection Handling — Young Adults Cold Call",
+    category: "faq",
+    target_audience: "nsf",
+    versions: [
+      { author: "Team Objection Scripts", content: "## 1. \"Not interested\"\n\nI understand you may have some concerns. However, my main intention here is to just to help you get a financial headstart.\n\nDon't worry, it is just a short zoom session to help you understand more about financial literacy concepts and it is just a 20 mins session out of your 24 hours a day. So would [date and time] work?\n\n## 2. \"Is this compulsory?\"\n\nNo, however most ORD Personnel and Students who have already attended this session found it to be very beneficial right after they have attended. So it will be beneficial for you to attend now that you have finished NS. We can set a tentative date on say [date and time]. Which is more convenient for you? Do try to attend it as well as time slots are specially allocated for you.\n\n## 3. \"What is the session about?\"\n\nThis would be a session to learn more ways you can grow your money faster, so that you can gain a headstart in your career compared to your peers.\n\nSo would [date and time] work better for you?\n\n## 4. \"Is this a sharing session? Or a 1:1 session? Do you have any link?\"\n\nYes this will be a group session whereby it will be quite an interactive session to go through some of the potential career options for you, of which many other ORD Personnel or Students have found it to be really beneficial for them. So would [date and time] work better for you?\n\n## 5. \"How did you get my number?\"\n\nYou actually signed up for an interest form about 2 years back, either during your enlistment or nearing your ORD. Do you still recall?\n\n*If they say No:* Oh, many of the other guys do actually remember signing up for this, but no worries haha *(then go back to setting a time)*\n\n## 6. \"Which organisation are you calling from?\"\n\nI'm actually calling from AIA, it's one of the largest financial institutions in Singapore and Asia, where we have been in the financial services industry for almost 100 years.\n\n## 7. \"What is your name, want to complain\"\n\n*(At most give your first name — do NOT give your contact or mobile number)*\n\nHi Joshua XXX, I understand your frustration however this is just a service call to check if you are keen to understand how to better explore your internship and career options. I apologise for the inconvenience caused, if any.\n\n**Then HANG UP** — the more you talk the more they will try to find trouble." },
+    ],
+    sort_order: 14,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
