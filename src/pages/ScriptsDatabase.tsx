@@ -351,6 +351,56 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 21,
   },
+  {
+    id: "reminder-2nd-meeting",
+    stage: "Reminder — 2nd Zoom Meeting",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Hi [Name]! Just a quick reminder about our second Zoom meeting scheduled for [Day] at [Time]. 👌 Looking forward to continuing our discussion and building on the progress we've made! Let me know if any adjustments are needed." },
+    ],
+    sort_order: 22,
+  },
+  {
+    id: "reminder-2nd-meeting-short",
+    stage: "Reminder — 2nd Meeting (Short)",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Please let me know if the time still works for you or if any adjustments are needed. 🙂 Just a quick reminder about our second meeting scheduled this [day and time] 👌 Looking forward to continuing our discussion!" },
+    ],
+    sort_order: 23,
+  },
+  {
+    id: "reminder-gentle-followup",
+    stage: "Reminder — Gentle Follow-Up",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Hey [Name]! Hope you're doing well. I understand things can get busy.\n\nJust wanted to follow up on my previous message about helping young adults like yourself with their finances. I truly believe in the importance of financial literacy, especially for individuals in your age group.\n\nI would love to meet with you on Zoom next week on Saturday at 11am or 2pm or Sunday at 2pm to touch on points like early retirement, savings, and investments. I'll pass you the free financial planning course during our short 20-minute consultation. I'm confident you'll learn something new :)" },
+    ],
+    sort_order: 24,
+  },
+  {
+    id: "reminder-persistent-followup",
+    stage: "Reminder — Persistent Follow-Up",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Hey [Name]! Just wanted to reach out one more time to make sure you didn't miss my previous messages. I know life gets busy, but I'd love to connect and share some valuable financial insights that could really set you up for the future.\n\nThis isn't just about completing a financial planning/literacy course—during our free 20-minute Zoom session, I'll help you look at your financial goals and provide personalized advice that's relevant to your current situation. Many young adults and NSFs have found it to be eye-opening and really helpful, and I think you'd benefit too! 💪\n\nWould you be available next Saturday at either 10am or 2pm or Sunday at 2pm? If another time works better, feel free to let me know!\n\nLooking forward to the chance to chat and empower you with some great financial tools." },
+    ],
+    sort_order: 25,
+  },
+  {
+    id: "reminder-final-followup",
+    stage: "Reminder — Final Follow-Up",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "MoneyBees Script", content: "Hi [Name], I hope you're doing well! 😊\n\nJust wanted to follow up one last time about our free financial planning course and consultation. I completely understand if you've been busy, but I didn't want you to miss out on this opportunity.\n\nThis free Zoom session isn't just about finances—it's about helping young adults like you take control of your future. Whether it's learning how to save smarter, plan for early retirement, or start investing, we'll cover it all in just 20 minutes.\n\nIf you're interested, I have availability next Saturday at 10am or 2pm and Sunday at 2pm. If another time works better, let me know!\n\nLooking forward to helping you kick-start your financial journey 💪" },
+    ],
+    sort_order: 26,
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
