@@ -15,9 +15,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 import { useScripts, useScriptsMutations } from "@/hooks/useScripts";
+import { usePlaybooks } from "@/hooks/usePlaybooks";
+import { supabase } from "@/integrations/supabase/client";
 import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useScripts";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
@@ -1258,7 +1261,7 @@ function getSearchSnippet(versions: ScriptVersion[], query: string): string | nu
   return null;
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "" }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string }) {
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
@@ -1316,6 +1319,22 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 </div>
               </div>
               <div className="flex items-center gap-2 shrink-0 ml-2">
+                {myPlaybooks && myPlaybooks.length > 0 && onAddToPlaybook && (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon" className="h-7 w-7" onClick={(e) => e.stopPropagation()} title="Add to playbook">
+                        <Plus className="h-3.5 w-3.5" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
+                      {myPlaybooks.map(pb => (
+                        <DropdownMenuItem key={pb.id} onClick={() => onAddToPlaybook(pb.id, script.id)}>
+                          {pb.title}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
                 {isAdmin && (
                   <>
                     <Button variant="ghost" size="icon" className="h-7 w-7" onClick={(e) => { e.stopPropagation(); onEdit(); }} title="Edit script">
@@ -1457,6 +1476,24 @@ export default function ScriptsDatabase() {
   
   const { scripts: dbScripts, loading, refetch } = useScripts();
   const { createScript, updateScript, deleteScript, isAdmin } = useScriptsMutations();
+
+  // Playbook integration
+  const { myPlaybooks } = usePlaybooks();
+  const handleAddToPlaybook = useCallback(async (playbookId: string, scriptId: string) => {
+    const maxOrder = 999; // Will be corrected by the hook
+    const { error } = await supabase
+      .from('script_playbook_items')
+      .insert({ playbook_id: playbookId, script_id: scriptId, sort_order: maxOrder });
+    if (error) {
+      if (error.code === '23505') {
+        toast.error('Script already in this playbook');
+      } else {
+        toast.error('Failed to add script');
+      }
+    } else {
+      toast.success('Script added to playbook');
+    }
+  }, []);
   
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingScript, setEditingScript] = useState<ScriptEntry | null>(null);
@@ -1858,6 +1895,8 @@ export default function ScriptsDatabase() {
                   isAdmin={isAdmin}
                   isOpenByUrl={scriptId === script.id}
                   searchQuery={searchQuery}
+                  myPlaybooks={myPlaybooks}
+                  onAddToPlaybook={handleAddToPlaybook}
                   onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                   onDelete={() => setDeleteTarget(script)}
                   onToggle={(open) => {

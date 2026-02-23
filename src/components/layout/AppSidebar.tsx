@@ -62,6 +62,7 @@ const allResourceItems = [
   { title: "Search by Client Profile", url: "/search-by-profile", icon: Users, sectionId: "search-by-profile" },
   { title: "Sales Tools & Objection Handling", url: "/product/sales-tools-objections", icon: TrendingUp, sectionId: "sales-tools" },
   { title: "Scripts Database", url: "/scripts", icon: FileText, sectionId: "scripts-database" },
+  { title: "Script Playbooks", url: "/playbooks", icon: BookOpen, sectionId: "script-playbooks" },
 ];
 
 const AppSidebar = memo(function AppSidebar() {
