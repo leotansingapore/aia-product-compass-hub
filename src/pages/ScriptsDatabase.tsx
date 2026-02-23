@@ -1542,9 +1542,9 @@ export default function ScriptsDatabase() {
                 value={searchInput}
                 onChange={(e) => {
                   setSearchInput(e.target.value);
+                  setSearchQuery(e.target.value);
                   setShowSuggestions(true);
                   setSelectedSuggestion(-1);
-                  if (!e.target.value.trim()) setSearchQuery("");
                 }}
                 onFocus={() => setShowSuggestions(searchInput.length >= 2)}
                 onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
