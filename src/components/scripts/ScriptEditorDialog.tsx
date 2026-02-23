@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil } from "lucide-react";
+import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, ExternalLink } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
@@ -41,6 +41,14 @@ const SCRIPT_ROLES = [
   { value: "telemarketer", label: "Telemarketer" },
 ];
 
+interface SimilarScript {
+  id: string;
+  stage: string;
+  category: string;
+  target_audience: string;
+  similarity: string; // reason why it's similar
+}
+
 interface Props {
   open: boolean;
   onClose: () => void;
@@ -48,7 +56,7 @@ interface Props {
   script?: ScriptEntry | null;
 }
 
-type EditorStep = "paste" | "review";
+type EditorStep = "paste" | "duplicates" | "review";
 
 export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   // Step state (only for new scripts)
@@ -80,6 +88,10 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   const [pasteContent, setPasteContent] = useState("");
   const [isClassifying, setIsClassifying] = useState(false);
 
+  // Duplicate detection state
+  const [similarScripts, setSimilarScripts] = useState<SimilarScript[]>([]);
+  const [isCheckingDuplicates, setIsCheckingDuplicates] = useState(false);
+
   // Review/edit step state
   const [stage, setStage] = useState("");
   const [category, setCategory] = useState("cold-calling");
@@ -107,6 +119,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     } else {
       setStep("paste");
       setPasteContent("");
+      setSimilarScripts([]);
       
       setStage("");
       setCategory("cold-calling");
@@ -119,6 +132,64 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       setShowAdvanced(false);
     }
   }, [script, open]);
+
+  const checkForDuplicates = async (classifiedCategory: string, content: string, title: string) => {
+    setIsCheckingDuplicates(true);
+    try {
+      // Fetch existing scripts in the same category
+      const { data: existing } = await supabase
+        .from("scripts")
+        .select("id, stage, category, target_audience, versions")
+        .eq("category", classifiedCategory);
+
+      if (!existing || existing.length === 0) {
+        setIsCheckingDuplicates(false);
+        return [];
+      }
+
+      // Simple similarity check: compare content words overlap
+      const inputWords = new Set(content.toLowerCase().split(/\s+/).filter(w => w.length > 3));
+      const inputTitle = title.toLowerCase();
+
+      const matches: SimilarScript[] = [];
+      for (const script of existing) {
+        const versions = script.versions as unknown as ScriptVersion[];
+        const scriptContent = versions.map(v => v.content).join(" ").toLowerCase();
+        const scriptTitle = script.stage.toLowerCase();
+
+        // Check title similarity
+        const titleWords = inputTitle.split(/\s+/).filter(w => w.length > 3);
+        const titleOverlap = titleWords.filter(w => scriptTitle.includes(w)).length;
+        const titleSimilar = titleWords.length > 0 && titleOverlap / titleWords.length > 0.5;
+
+        // Check content similarity (shared meaningful words)
+        const scriptWords = new Set(scriptContent.split(/\s+/).filter(w => w.length > 3));
+        const shared = [...inputWords].filter(w => scriptWords.has(w)).length;
+        const overlapRatio = inputWords.size > 0 ? shared / inputWords.size : 0;
+
+        if (titleSimilar || overlapRatio > 0.4) {
+          matches.push({
+            id: script.id,
+            stage: script.stage,
+            category: script.category,
+            target_audience: (script.target_audience as string) || "general",
+            similarity: titleSimilar && overlapRatio > 0.4
+              ? "Very similar title and content"
+              : titleSimilar
+              ? "Similar title"
+              : `~${Math.round(overlapRatio * 100)}% content overlap`,
+          });
+        }
+      }
+
+      setIsCheckingDuplicates(false);
+      return matches.slice(0, 5); // Max 5 matches
+    } catch (err) {
+      console.error("Duplicate check error:", err);
+      setIsCheckingDuplicates(false);
+      return [];
+    }
+  };
 
   const handleClassify = async () => {
     if (!pasteContent.trim()) {
@@ -138,17 +209,27 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       }
 
       // Apply AI results
-      setStage(data.suggested_title || "");
-      setCategory(data.category || "cold-calling");
+      const classifiedTitle = data.suggested_title || "";
+      const classifiedCategory = data.category || "cold-calling";
+      setStage(classifiedTitle);
+      setCategory(classifiedCategory);
       setTargetAudience(data.target_audience || "general");
       setScriptRole(data.script_role || "consultant");
       setTags(data.tags || []);
       setVersions([{ author: userName, content: pasteContent }]);
-      setStep("review");
-      toast.success("AI classified your script! Review and save.");
+
+      // Check for duplicates before proceeding
+      const duplicates = await checkForDuplicates(classifiedCategory, pasteContent, classifiedTitle);
+      if (duplicates.length > 0) {
+        setSimilarScripts(duplicates);
+        setStep("duplicates");
+        toast.info("Found similar existing scripts — please review.");
+      } else {
+        setStep("review");
+        toast.success("AI classified your script! Review and save.");
+      }
     } catch (err: any) {
       console.error("Classification error:", err);
-      // Fallback: just move to review with defaults
       setVersions([{ author: userName, content: pasteContent }]);
       setStep("review");
       toast.info("AI classification unavailable — please fill in details manually.");
@@ -183,6 +264,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
               <><Pencil className="h-4 w-4" /> Edit Script</>
             ) : step === "paste" ? (
               <><Sparkles className="h-4 w-4 text-primary" /> Quick Add Script</>
+            ) : step === "duplicates" ? (
+              <><AlertTriangle className="h-4 w-4 text-amber-500" /> Similar Scripts Found</>
             ) : (
               <><Sparkles className="h-4 w-4 text-primary" /> Review & Save</>
             )}
@@ -209,7 +292,51 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
           </div>
         )}
 
-        {/* === STEP 2: Review (or Edit mode) === */}
+        {/* === STEP 2: Duplicates warning === */}
+        {step === "duplicates" && (
+          <div className="space-y-4">
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4">
+              <p className="text-sm font-medium text-amber-700 dark:text-amber-400 mb-1">
+                We found {similarScripts.length} similar script{similarScripts.length > 1 ? "s" : ""} already in the database.
+              </p>
+              <p className="text-xs text-muted-foreground">
+                To keep a single source of truth, please review these first. You can still add yours as a new variation if needed.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              {similarScripts.map((s) => (
+                <div key={s.id} className="border rounded-lg p-3 flex items-start justify-between gap-3 bg-muted/30">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium truncate">{s.stage}</p>
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      <Badge variant="secondary" className="text-[10px]">
+                        {CATEGORIES.find(c => c.value === s.category)?.label}
+                      </Badge>
+                      <Badge variant="secondary" className="text-[10px]">
+                        {TARGET_AUDIENCES.find(a => a.value === s.target_audience)?.label}
+                      </Badge>
+                    </div>
+                    <p className="text-[10px] text-muted-foreground mt-1">{s.similarity}</p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="shrink-0 gap-1 text-xs"
+                    onClick={() => {
+                      // Navigate to the script in the scripts page
+                      window.open(`/scripts?highlight=${s.id}`, "_blank");
+                    }}
+                  >
+                    <ExternalLink className="h-3 w-3" /> View
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* === STEP 3: Review (or Edit mode) === */}
         {step === "review" && (
           <div className="space-y-4">
             {/* AI-detected badges */}
@@ -366,6 +493,11 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
         <DialogFooter className="flex-row justify-between sm:justify-between">
           <div>
             {step === "review" && !isEditing && (
+              <Button variant="ghost" size="sm" onClick={() => setStep(similarScripts.length > 0 ? "duplicates" : "paste")}>
+                ← Back
+              </Button>
+            )}
+            {step === "duplicates" && (
               <Button variant="ghost" size="sm" onClick={() => setStep("paste")}>
                 ← Back
               </Button>
@@ -380,6 +512,10 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                 ) : (
                   <><Sparkles className="h-4 w-4" /> Classify & Continue</>
                 )}
+              </Button>
+            ) : step === "duplicates" ? (
+              <Button onClick={() => setStep("review")} variant="secondary" className="gap-1.5">
+                Add Anyway <ArrowRight className="h-3.5 w-3.5" />
               </Button>
             ) : (
               <Button onClick={handleSubmit} disabled={saving || !stage.trim()}>
