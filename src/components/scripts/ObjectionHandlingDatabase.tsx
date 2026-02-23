@@ -20,6 +20,7 @@ import { useObjections, useObjectionMutations } from "@/hooks/useObjections";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useIsMobile } from "@/hooks/use-mobile";
 import type { ObjectionEntry, ObjectionResponse } from "@/hooks/useObjections";
+import { ObjectionEditorDialog } from "./ObjectionEditorDialog";
 
 // Fuzzy matching: checks if all characters of query appear in order in target
 function fuzzyMatch(target: string, query: string): { match: boolean; score: number } {
