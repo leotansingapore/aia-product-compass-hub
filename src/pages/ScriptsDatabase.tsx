@@ -2308,7 +2308,7 @@ export default function ScriptsDatabase() {
               </Button>
             )}
           </div>
-          </div>
+          
           {/* Audience flow indicator — shown when viewing a single category */}
           {activeCategory !== "all" && (
             <div className="flex items-center gap-1 flex-wrap">
