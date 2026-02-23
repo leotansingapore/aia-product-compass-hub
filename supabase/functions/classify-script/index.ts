@@ -6,12 +6,12 @@ const corsHeaders = {
 };
 
 const CATEGORIES = [
-  "cold-calling", "warm-market", "follow-up", "ad-campaign",
+  "cold-calling", "follow-up", "ad-campaign",
   "referral", "confirmation", "faq", "tips"
 ];
 
 const TARGET_AUDIENCES = [
-  "general", "young-adult", "nsf", "working-adult",
+  "general", "warm-market", "young-adult", "nsf", "working-adult",
   "parent", "pre-retiree", "hnw", "referral", "cold-lead"
 ];
 
@@ -34,8 +34,7 @@ serve(async (req) => {
     const systemPrompt = `You are a classifier for a financial advisory scripts database. Given a script's title and content, determine:
 
 1. **category** — one of: ${CATEGORIES.join(", ")}
-   - cold-calling: phone scripts for cold outreach
-   - warm-market: reaching out to known contacts
+   - cold-calling: phone scripts or initial outreach messages for cold or warm contacts
    - follow-up: any follow-up messages (WhatsApp, SMS, post-call, reminders)
    - ad-campaign: Facebook/Instagram ad scripts, lead gen campaigns
    - referral: asking for or handling referrals
@@ -44,6 +43,7 @@ serve(async (req) => {
    - tips: best practices, general advice
 
 2. **target_audience** — one of: ${TARGET_AUDIENCES.join(", ")}
+   - warm-market: people you already know — friends, family, acquaintances, ex-classmates
    - nsf: National Servicemen (18-20)
    - young-adult: 18-25 year olds
    - working-adult: 25-50 professionals
