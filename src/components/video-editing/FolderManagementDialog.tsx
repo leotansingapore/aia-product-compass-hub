@@ -37,7 +37,7 @@ export function FolderManagementDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md" onCloseAutoFocus={() => { document.body.style.pointerEvents = ''; }}>
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             {mode === 'create' ? (
