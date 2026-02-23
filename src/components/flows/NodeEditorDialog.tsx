@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
+import { MinimalRichEditor } from '@/components/MinimalRichEditor';
 import type { FlowNode } from '@/hooks/useScriptFlows';
 import type { ScriptEntry } from '@/hooks/useScripts';
 
@@ -70,7 +70,14 @@ export function NodeEditorDialog({ open, onClose, onSave, node, scripts }: Props
           </div>
           <div>
             <Label>Notes / Custom Text</Label>
-            <Textarea value={customText} onChange={e => setCustomText(e.target.value)} placeholder="Optional notes..." rows={3} />
+            <div className="border rounded-md overflow-hidden">
+              <MinimalRichEditor
+                value={customText}
+                onChange={setCustomText}
+                placeholder="Add formatted notes, tips, or talking points..."
+                showToolbar={true}
+              />
+            </div>
           </div>
         </div>
         <DialogFooter>
