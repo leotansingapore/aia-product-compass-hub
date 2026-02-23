@@ -21,14 +21,81 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useIsMobile } from "@/hooks/use-mobile";
 import type { ObjectionEntry, ObjectionResponse } from "@/hooks/useObjections";
 
+// Fuzzy matching: checks if all characters of query appear in order in target
+function fuzzyMatch(target: string, query: string): { match: boolean; score: number } {
+  const t = target.toLowerCase();
+  const q = query.toLowerCase();
+  if (!q) return { match: true, score: 0 };
+  if (t.includes(q)) return { match: true, score: 100 + q.length }; // Exact substring = highest
+  let ti = 0;
+  let qi = 0;
+  let score = 0;
+  let consecutiveBonus = 0;
+  while (ti < t.length && qi < q.length) {
+    if (t[ti] === q[qi]) {
+      score += 1 + consecutiveBonus;
+      consecutiveBonus += 1;
+      qi++;
+    } else {
+      consecutiveBonus = 0;
+    }
+    ti++;
+  }
+  return { match: qi === q.length, score };
+}
+
+function fuzzyIncludes(target: string, query: string): boolean {
+  return fuzzyMatch(target, query).match;
+}
+
 function highlightText(text: string, query: string): React.ReactNode {
   if (!query.trim()) return text;
-  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  // Try exact substring highlight first
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escaped})`, 'gi');
   const parts = text.split(regex);
-  if (parts.length === 1) return text;
-  return parts.map((part, i) =>
-    regex.test(part) ? <mark key={i} className="bg-yellow-200 dark:bg-yellow-700/60 rounded-sm px-0.5">{part}</mark> : part
-  );
+  if (parts.length > 1) {
+    return parts.map((part, i) =>
+      regex.test(part) ? <mark key={i} className="bg-yellow-200 dark:bg-yellow-700/60 rounded-sm px-0.5">{part}</mark> : part
+    );
+  }
+  // Fuzzy highlight: mark individual matched characters
+  const t = text.toLowerCase();
+  const q = query.toLowerCase();
+  let qi = 0;
+  const result: React.ReactNode[] = [];
+  let buffer = "";
+  for (let i = 0; i < text.length && qi < q.length; i++) {
+    if (t[i] === q[qi]) {
+      if (buffer) { result.push(buffer); buffer = ""; }
+      result.push(<mark key={`f${i}`} className="bg-yellow-200/70 dark:bg-yellow-700/40 rounded-sm">{text[i]}</mark>);
+      qi++;
+    } else {
+      buffer += text[i];
+    }
+  }
+  if (qi < q.length) return text; // No fuzzy match
+  if (buffer) result.push(buffer);
+  // Append remaining text
+  const lastMatchIndex = text.toLowerCase().indexOf(q[q.length - 1], text.length - (text.length - result.length));
+  // Simpler: rebuild with remaining chars
+  let matchedCount = 0;
+  const finalResult: React.ReactNode[] = [];
+  let buf = "";
+  let qj = 0;
+  for (let i = 0; i < text.length; i++) {
+    if (qj < q.length && t[i] === q[qj]) {
+      if (buf) { finalResult.push(buf); buf = ""; }
+      finalResult.push(<mark key={`h${i}`} className="bg-yellow-200/70 dark:bg-yellow-700/40 rounded-sm">{text[i]}</mark>);
+      qj++;
+      matchedCount++;
+    } else {
+      buf += text[i];
+    }
+  }
+  if (buf) finalResult.push(buf);
+  if (matchedCount < q.length) return text;
+  return finalResult;
 }
 
 const categoryConfig: Record<string, { label: string; icon: string; color: string }> = {
