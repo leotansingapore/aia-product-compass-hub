@@ -1654,11 +1654,23 @@ export default function ScriptsDatabase() {
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      result = result.filter(
-        (s) =>
-          s.stage.toLowerCase().includes(q) ||
-          s.versions.some((v) => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q))
-      );
+      result = result.filter((s) => {
+        // Title
+        if (s.stage.toLowerCase().includes(q)) return true;
+        // Version content & author
+        if (s.versions.some((v) => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q))) return true;
+        // Tags
+        if ((s.tags || []).some((t: string) => t.toLowerCase().includes(q))) return true;
+        // Category label
+        const catLabel = categoryLabels[s.category as CategoryKey]?.label || s.category;
+        if (s.category.toLowerCase().includes(q) || catLabel.toLowerCase().includes(q)) return true;
+        // Audience & role labels
+        const audLabel = audienceLabels[s.target_audience || ""] || s.target_audience || "";
+        if (audLabel.toLowerCase().includes(q)) return true;
+        const rlLabel = roleLabels[s.script_role || "consultant"] || s.script_role || "";
+        if (rlLabel.toLowerCase().includes(q)) return true;
+        return false;
+      });
     }
     return result;
   }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, scriptsData]);
@@ -1684,7 +1696,11 @@ export default function ScriptsDatabase() {
       .filter(v => v.author.toLowerCase().includes(q))
       .slice(0, 3)
       .map(v => ({ type: "version" as const, label: v.author, id: v.scriptId }));
-    return [...categoryMatches, ...audienceMatches, ...roleMatches, ...titleMatches.slice(0, 5), ...authorMatches].slice(0, 8);
+    const tagMatches = Array.from(new Set(scriptsData.flatMap(s => s.tags || [])))
+      .filter(t => t.toLowerCase().includes(q))
+      .slice(0, 3)
+      .map(t => ({ type: "script" as const, label: `🏷️ ${t}`, id: t }));
+    return [...categoryMatches, ...audienceMatches, ...roleMatches, ...tagMatches, ...titleMatches.slice(0, 5), ...authorMatches].slice(0, 8);
   }, [searchInput, scriptsData]);
 
   const handleSearchSelect = useCallback((suggestion: typeof suggestions[0]) => {
