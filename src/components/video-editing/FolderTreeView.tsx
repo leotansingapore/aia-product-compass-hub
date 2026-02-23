@@ -88,14 +88,15 @@ function SortableVideoItem({ video, index, onVideoSelect, onEditVideo, onDeleteV
         </button>
       </div>
 
-      <DropdownMenu>
+      <DropdownMenu modal>
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
             size="sm"
             className="h-6 w-6 p-0 flex-shrink-0"
+            data-no-dnd="true"
             onClick={handleMenuClick}
-            onPointerDown={(e) => e.stopPropagation()}
+            onPointerDown={(e) => { e.stopPropagation(); e.nativeEvent.stopImmediatePropagation(); }}
           >
             <MoreHorizontal className="h-4 w-4" />
           </Button>
@@ -209,14 +210,15 @@ function SortableFolderItem({
             </button>
           </div>
 
-          <DropdownMenu>
+          <DropdownMenu modal>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
                 size="sm"
                 className="h-6 w-6 p-0 flex-shrink-0"
+                data-no-dnd="true"
                 onClick={handleMenuClick}
-                onPointerDown={(e) => e.stopPropagation()}
+                onPointerDown={(e) => { e.stopPropagation(); e.nativeEvent.stopImmediatePropagation(); }}
               >
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
@@ -316,6 +318,14 @@ export function FolderTreeView({
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
+
+  // Filter DnD events to ignore interactions on menu triggers
+  const handlePointerDown = (event: React.PointerEvent) => {
+    const target = event.target as HTMLElement;
+    if (target.closest('[data-no-dnd="true"]')) {
+      return;
+    }
+  };
 
   // Group videos by category/folder - separate root level videos
   const rootLevelVideos: Array<{ video: TrainingVideo; index: number }> = [];
