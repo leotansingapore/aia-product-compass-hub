@@ -677,6 +677,16 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     sort_order: 14.5,
   },
   {
+    id: "post-call-reminders-voucher-lead-young-adult",
+    stage: "Post-Call & Reminders — Voucher Lead Full Sequence (Young Adults)",
+    category: "follow-up",
+    target_audience: "nsf",
+    versions: [
+      { author: "Gerald's Voucher Lead Sequence — Post-Call + Reminders", content: "## 📲 Full Voucher Lead Texting Sequence — Post-Call & Reminders\n\n*For young adult freebie/voucher Facebook leads. Replace **[voucher name]** with the relevant voucher (Yakun, McDonald's, etc.)*\n\n---\n\n### 📞 Initial Text — After Lead Opts In\n\n> Hi **[Name]**,\n>\n> This is Gerald from **TheMoneyBees Academy**!\n>\n> You did a quick survey online for you to redeem **[Voucher Name]** Vouchers.\n>\n> Just want to check if I got the right person?\n\n---\n\n### 📋 Follow-Up Rules\n\n| Scenario | Action |\n|---|---|\n| **Lead replies** | Give a **call immediately** to set an opening appointment **on the same day** |\n| **Lead does not reply** | Give a call after **2–3 days** to try and set an opening appointment |\n\n---\n\n### 📲 Text 2 — Post-Call Acknowledgement\n\n*Send immediately after the cold call*\n\n> Hi **[Name]**, thank you for picking up the call with me just now, I have set our appointment for **[Date, Time]**. As mentioned, the call will take around **20–30 mins**. During the call, I will share with you some practical tips on how to **invest and grow your money** faster than if you left it in the bank.\n>\n> Additionally, I will share with you **2 resources** that my team has produced which will share with you what schools never taught you about money, and smart strategies to start investing and building wealth.\n>\n> Also, our team aims to help young adults with investments and teach them useful money tips!\n>\n> This is our website and Instagram! 😁😁\n>\n> 🔗 https://themoneybees.co/\n>\n> 📸 https://www.instagram.com/moneybeesacademy/?hl=en\n\n---\n\n### 📲 Text 3 — Reminder 1 (Week Before)\n\n> Hey **[Name]**! Just a quick reminder that our Zoom session is coming up next week on **[date, time]**. Super excited to meet you to share more about how to grow your wealth and help you redeem your **[voucher name]** voucher! 🙌\n>\n> Let me know if the time still works for you! 😊\n\n---\n\n### 📲 Text 4 — Reminder 2 (Day Before)\n\n> Hello **[Name]**! Just a reminder that our Zoom session is happening tomorrow at **[time]**! Looking forward to meeting you soon!\n>\n> Do let me know if you are unable to attend the meeting later and we can reschedule it if necessary!\n\n---\n\n### 📲 Text 5 — Reminder 3 (Few Hours Before)\n\n> Hey **[Name]**! Our meeting will be starting in a few hours! Can't wait to meet you and share with you more regarding **investments and growing your wealth**! Do inform me if you are no longer able to attend the meeting!\n>\n> See you soon! 👋" },
+    ],
+    sort_order: 14.55,
+  },
+  {
     id: "missed-call-fb-lead",
     stage: "Missed Call Text — Facebook Ad Lead (Didn't Pick Up)",
     category: "follow-up",
