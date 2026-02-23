@@ -19,7 +19,7 @@ import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, C
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { useScripts, useScriptsMutations } from "@/hooks/useScripts";
 import { usePlaybooks } from "@/hooks/usePlaybooks";
@@ -1614,7 +1614,31 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
 
 export default function ScriptsDatabase() {
   const isMobile = useIsMobile();
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { scriptId } = useParams();
+
+  // Derive active tab from URL path
+  const isObjectionsRoute = location.pathname.startsWith('/objections');
+  const [activeTab, setActiveTabState] = useState<string>(isObjectionsRoute ? "objections" : "scripts");
+
+  // Keep tab in sync with route
+  useEffect(() => {
+    const shouldBeObjections = location.pathname.startsWith('/objections');
+    setActiveTabState(shouldBeObjections ? "objections" : "scripts");
+  }, [location.pathname]);
+
+  // Navigate when tab changes
+  const setActiveTab = (tab: string) => {
+    setActiveTabState(tab);
+    if (tab === "objections") {
+      navigate('/objections', { replace: true });
+    } else {
+      navigate('/scripts', { replace: true });
+    }
+  };
+
   const getInitialValue = (paramKey: string, storageKey: string, defaultVal: string) => {
     const fromUrl = searchParams.get(paramKey);
     if (fromUrl) return fromUrl;
@@ -1624,7 +1648,6 @@ export default function ScriptsDatabase() {
     } catch {}
     return defaultVal;
   };
-  const [activeTab, setActiveTab] = useState<string>(getInitialValue("view", "tab", "scripts"));
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -1656,17 +1679,16 @@ export default function ScriptsDatabase() {
     } catch {}
   }, [activeTab, activeCategory, activeAudience, activeRole, activeTag]);
 
-  // Sync filter state to URL search params
+  // Sync filter state to URL search params (without the view param now)
   useEffect(() => {
     const params = new URLSearchParams();
-    if (activeTab !== "scripts") params.set("view", activeTab);
     if (searchQuery) params.set("q", searchQuery);
     if (activeCategory !== "all") params.set("category", activeCategory);
     if (activeAudience !== "all") params.set("audience", activeAudience);
     if (activeRole !== "all") params.set("role", activeRole);
     if (activeTag !== "all") params.set("tag", activeTag);
     setSearchParams(params, { replace: true });
-  }, [activeTab, searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
+  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
   const navigate = useNavigate();
   const { scriptId } = useParams();
   
