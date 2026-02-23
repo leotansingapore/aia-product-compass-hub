@@ -21,6 +21,7 @@ const CATEGORIES = [
 
 const TARGET_AUDIENCES = [
   { value: "general", label: "General" },
+  { value: "young-adult", label: "Young Adults" },
   { value: "nsf", label: "NSF / NS" },
   { value: "working-adult", label: "Working Adults" },
   { value: "parent", label: "Parents" },

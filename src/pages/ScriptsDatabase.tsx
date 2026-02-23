@@ -35,6 +35,7 @@ const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; c
 
 const audienceLabels: Record<string, string> = {
   general: "General",
+  "young-adult": "Young Adults",
   nsf: "NSF / NS",
   "working-adult": "Working Adults",
   parent: "Parents",
