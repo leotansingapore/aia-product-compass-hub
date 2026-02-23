@@ -1324,8 +1324,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 {myPlaybooks && myPlaybooks.length > 0 && onAddToPlaybook && (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon" className="h-7 w-7" onClick={(e) => e.stopPropagation()} title="Add to playbook">
-                        <Plus className="h-3.5 w-3.5" />
+                      <Button variant="outline" size="sm" className="h-7 gap-1.5 text-xs font-medium" onClick={(e) => e.stopPropagation()}>
+                        <Plus className="h-3 w-3" /> Playbook
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
