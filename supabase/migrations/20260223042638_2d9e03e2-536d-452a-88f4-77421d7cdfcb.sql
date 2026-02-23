@@ -1,0 +1,7 @@
+INSERT INTO scripts (stage, category, target_audience, sort_order, versions) VALUES (
+  'Cold Calling — Telemarketer Script for Guidebook Leads (Young Adults / NSF)',
+  'cold-calling',
+  'young-adult',
+  18,
+  '[{"author": "Telemarketer Script — Qualified Lead, Guidebook Campaign (Non-Voucher)", "content": "Hi, is this (name)?\n\nI''ll just keep this call short less than 1 minute!\n\nUnderstand that you''re currently studying or serving your national service?\n\nHi I''m [name] from themoneybees!\n\nThis is a courtesy call to inform you that we have received your interest in getting our adulting and investing guidebook.\n\nSo I believe we have texted you previously about it! In order to redeem it, we will need to schedule a short 20minute zoom session, whereby one of our consultants will share more about growing your money and investing. After the call, you will get a free adulting and investing guidebook.\n\n**Would you prefer to call weekends or weekdays?**\n\n[wait for reply]\n\nAlright great, so I will schedule the session tentatively for this saturday 10am and after this call, my manager will send you a text, and all you have to do, is to reply and acknowledge, is that okay?\n\nAlright great. so just one last thing, this session is just for you to learn more about growing your money, and as long as you learn something, then that''s good enough!"}]'::jsonb
+);
