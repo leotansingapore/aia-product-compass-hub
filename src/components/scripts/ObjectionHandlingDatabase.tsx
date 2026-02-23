@@ -276,38 +276,24 @@ export function ObjectionHandlingDatabase() {
   const [editingEntry, setEditingEntry] = useState<ObjectionEntry | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<ObjectionEntry | null>(null);
 
-  // Editor form state
-  const [formTitle, setFormTitle] = useState("");
-  const [formCategory, setFormCategory] = useState("generic");
-  const [formDescription, setFormDescription] = useState("");
-  const [formTags, setFormTags] = useState("");
+  // Editor form state (now managed by ObjectionEditorDialog)
 
   const openEditor = (entry?: ObjectionEntry) => {
-    if (entry) {
-      setEditingEntry(entry);
-      setFormTitle(entry.title);
-      setFormCategory(entry.category);
-      setFormDescription(entry.description || "");
-      setFormTags((entry.tags || []).join(", "));
-    } else {
-      setEditingEntry(null);
-      setFormTitle("");
-      setFormCategory("generic");
-      setFormDescription("");
-      setFormTags("");
-    }
+    setEditingEntry(entry || null);
     setEditorOpen(true);
   };
 
-  const handleSave = async () => {
-    if (!formTitle.trim()) return;
-    const tags = formTags.split(",").map(t => t.trim()).filter(Boolean);
+  const handleSave = async (data: { title: string; category: string; description?: string; tags?: string[]; initialResponse?: string }) => {
     if (editingEntry) {
-      await updateEntry(editingEntry.id, { title: formTitle, category: formCategory, description: formDescription || null, tags });
+      await updateEntry(editingEntry.id, { title: data.title, category: data.category, description: data.description || null, tags: data.tags });
     } else {
-      await createEntry({ title: formTitle, category: formCategory, description: formDescription || undefined, tags });
+      const created = await createEntry({ title: data.title, category: data.category, description: data.description, tags: data.tags });
+      // If there's an initial response and user is logged in, add it
+      if (created && data.initialResponse && user) {
+        const displayName = user.user_metadata?.display_name || user.email?.split("@")[0] || "Anonymous";
+        await addResponse(created.id, data.initialResponse, displayName, user.id);
+      }
     }
-    setEditorOpen(false);
     refetch();
   };
 
