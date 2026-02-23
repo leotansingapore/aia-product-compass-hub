@@ -14,7 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart } from "lucide-react";
+import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
@@ -1798,6 +1798,18 @@ export default function ScriptsDatabase() {
               </div>
             )}
           </div>
+          <Button
+            variant="outline"
+            size="icon"
+            className="h-10 w-10 shrink-0"
+            title="Copy link to current view"
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              toast.success("Link copied to clipboard");
+            }}
+          >
+            <Share2 className="h-4 w-4" />
+          </Button>
           {isAdmin && (
             <Button onClick={() => { setEditingScript(null); setEditorOpen(true); }} size="sm" className="gap-1.5 shrink-0 h-10">
               <Plus className="h-4 w-4" /> <span className="hidden sm:inline">Add Script</span>
