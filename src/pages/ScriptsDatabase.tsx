@@ -14,7 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search } from "lucide-react";
+import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
@@ -24,6 +24,7 @@ import { usePlaybooks } from "@/hooks/usePlaybooks";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useScripts";
+import { useScriptFavourites } from "@/hooks/useScriptFavourites";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 type CategoryKey = "cold-calling" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips" | "post-meeting";
@@ -1263,7 +1264,7 @@ function getSearchSnippet(versions: ScriptVersion[], query: string): string | nu
   return null;
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string }) {
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
@@ -1320,7 +1321,18 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-2 shrink-0 ml-2">
+              <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                {onToggleFavourite && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7"
+                    onClick={(e) => { e.stopPropagation(); onToggleFavourite(); }}
+                    title={isFavourite ? "Remove from favourites" : "Add to favourites"}
+                  >
+                    <Heart className={`h-3.5 w-3.5 ${isFavourite ? 'fill-red-500 text-red-500' : ''}`} />
+                  </Button>
+                )}
                 {myPlaybooks && myPlaybooks.length > 0 && onAddToPlaybook && (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -1489,6 +1501,7 @@ export default function ScriptsDatabase() {
 
   // Playbook integration
   const { myPlaybooks } = usePlaybooks();
+  const { favouriteIds, toggleFavourite } = useScriptFavourites();
   const handleAddToPlaybook = useCallback(async (playbookId: string, scriptId: string) => {
     const maxOrder = 999; // Will be corrected by the hook
     const { error } = await supabase
@@ -1944,6 +1957,8 @@ export default function ScriptsDatabase() {
                   onAddToPlaybook={handleAddToPlaybook}
                   isAuthenticated={!!user}
                   userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
+                  isFavourite={favouriteIds.has(script.id)}
+                  onToggleFavourite={() => toggleFavourite.mutate(script.id)}
                   onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                   onDelete={() => setDeleteTarget(script)}
                   onToggle={(open) => {

@@ -1037,6 +1037,35 @@ export type Database = {
         }
         Relationships: []
       }
+      script_favourites: {
+        Row: {
+          created_at: string
+          id: string
+          script_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          script_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          script_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "script_favourites_script_id_fkey"
+            columns: ["script_id"]
+            isOneToOne: false
+            referencedRelation: "scripts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       script_flows: {
         Row: {
           created_at: string
