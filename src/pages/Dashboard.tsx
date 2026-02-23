@@ -32,7 +32,6 @@ const Dashboard = memo(() => {
     clearSearch
   } = useDashboardSearch();
 
-
   return (
     <PageLayout
       title="Dashboard - Your Learning Hub | FINternship"
@@ -55,66 +54,55 @@ const Dashboard = memo(() => {
       </div>
 
       {/* Main Content */}
-      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 md:pb-8">
+      <div className="mx-auto px-1 sm:px-4 md:px-6 py-4 md:py-8 space-y-8">
 
-        {hasQuery && (
-          <div className="mt-6 mb-6">
-            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
-              
-              {/* Filters Sidebar */}
-              <div className={`${showFilters ? 'block' : 'hidden'} lg:block w-full lg:w-80 space-y-4 sm:space-y-6`}>
-                <SearchFilters
-                  filters={filters}
-                  activeFilterCount={activeFilterCount}
-                  hasActiveFilters={hasActiveFilters}
-                  availableCategories={availableCategories}
-                  availableTags={availableTags}
-                  onCategoryFilter={(categoryId, checked) => handleCategoryFilter(categoryId, Boolean(checked))}
-                  onTagFilter={(tag, checked) => handleTagFilter(tag, Boolean(checked))}
-                  onContentFilter={(type, checked) => handleContentFilter(type, Boolean(checked))}
-                  onClearFilters={clearFilters}
-                />
-              </div>
-
-              {/* Results */}
-              <SearchResults
-                query={query}
-                results={results}
-                isSearching={isSearching}
-                hasQuery={hasQuery}
-                hasActiveFilters={hasActiveFilters}
+        {hasQuery ? (
+          <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
+            {/* Filters Sidebar */}
+            <div className={`${showFilters ? 'block' : 'hidden'} lg:block w-full lg:w-80 space-y-4 sm:space-y-6`}>
+              <SearchFilters
                 filters={filters}
-                showFilters={showFilters}
-                sortBy={sortBy}
                 activeFilterCount={activeFilterCount}
+                hasActiveFilters={hasActiveFilters}
                 availableCategories={availableCategories}
-                onShowFilters={setShowFilters}
-                onSortBy={setSortBy}
+                availableTags={availableTags}
+                onCategoryFilter={(categoryId, checked) => handleCategoryFilter(categoryId, Boolean(checked))}
                 onTagFilter={(tag, checked) => handleTagFilter(tag, Boolean(checked))}
                 onContentFilter={(type, checked) => handleContentFilter(type, Boolean(checked))}
-                onSetFilters={() => {}} // This will be handled by the filters component
-                onClearSearch={clearSearch}
+                onClearFilters={clearFilters}
               />
             </div>
+
+            {/* Results */}
+            <SearchResults
+              query={query}
+              results={results}
+              isSearching={isSearching}
+              hasQuery={hasQuery}
+              hasActiveFilters={hasActiveFilters}
+              filters={filters}
+              showFilters={showFilters}
+              sortBy={sortBy}
+              activeFilterCount={activeFilterCount}
+              availableCategories={availableCategories}
+              onShowFilters={setShowFilters}
+              onSortBy={setSortBy}
+              onTagFilter={(tag, checked) => handleTagFilter(tag, Boolean(checked))}
+              onContentFilter={(type, checked) => handleContentFilter(type, Boolean(checked))}
+              onSetFilters={() => {}}
+              onClearSearch={clearSearch}
+            />
           </div>
-        )}
-
-        {!hasQuery && (
+        ) : (
           <>
-            {/* Learning Progress Overview */}
-            <div className="mt-6">
-              <LearningProgressOverview />
-            </div>
+            {/* 1. Learning progress — personalised context */}
+            <LearningProgressOverview />
 
-            {/* Product Categories */}
-            <div className="mt-6">
-              <ProductCategories />
-            </div>
+            {/* 2. Product Categories — primary navigation */}
+            <ProductCategories />
 
-            {/* Quick Actions */}
-            <div className="mt-6">
-              <QuickActions />
-            </div>
+            {/* 3. Quick Actions — secondary tools */}
+            <QuickActions />
           </>
         )}
 
