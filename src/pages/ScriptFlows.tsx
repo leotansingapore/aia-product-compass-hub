@@ -336,6 +336,33 @@ export default function ScriptFlows() {
             {/* Title */}
             <Input value={flowTitle} onChange={e => { setFlowTitle(e.target.value); setHasUnsaved(true); }} className="font-semibold text-base max-w-md" placeholder="Flow title" />
 
+            {/* Selected node info panel */}
+            {selectedNode && (
+              <div className="flex items-center gap-3 bg-muted/40 border rounded-lg px-4 py-2.5 text-sm">
+                <span className="font-medium truncate">{selectedNode.label}</span>
+                <Badge variant="outline" className="text-[10px] shrink-0">{selectedNode.type}</Badge>
+                {selectedNode.scriptId ? (() => {
+                  const linked = scripts.find(s => s.id === selectedNode.scriptId);
+                  return linked ? (
+                    <>
+                      <span className="text-muted-foreground text-xs">→</span>
+                      <span className="text-xs text-muted-foreground truncate">📄 {linked.stage}</span>
+                      <Button
+                        variant="outline" size="sm" className="ml-auto shrink-0 gap-1.5 text-xs h-7"
+                        onClick={() => navigate(`/scripts?highlight=${selectedNode.scriptId}`)}
+                      >
+                        <FileText className="h-3 w-3" /> View Script
+                      </Button>
+                    </>
+                  ) : (
+                    <span className="text-xs text-muted-foreground italic">Linked script not found</span>
+                  );
+                })() : (
+                  <span className="text-xs text-muted-foreground italic">No linked script — double-click to edit</span>
+                )}
+              </div>
+            )}
+
             {/* Canvas */}
             <div className="h-[calc(100vh-260px)] min-h-[400px]">
               <FlowCanvas
