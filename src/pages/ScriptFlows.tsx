@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
-import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Save, Undo2, Redo2, Keyboard, Sparkles, Link } from 'lucide-react';
+import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Save, Undo2, Redo2, Keyboard, Sparkles, Link, Grid3x3 } from 'lucide-react';
 import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
 import { useScripts } from '@/hooks/useScripts';
 import ReactFlowCanvas, { type FlowCanvasControls } from '@/components/flows/ReactFlowCanvas';
@@ -19,6 +19,7 @@ import { ExportControls } from '@/components/flows/controls/ExportControls';
 import { KeyboardShortcutsHelp } from '@/components/flows/controls/KeyboardShortcutsHelp';
 import { FLOW_TEMPLATES } from '@/utils/flowTemplates';
 import { AIFlowWizard } from '@/components/flows/AIFlowWizard';
+import { NodeSearch } from '@/components/flows/controls/NodeSearch';
 import { toast } from 'sonner';
 
 function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDelete, userId, onOpenAIWizard }: {
@@ -331,6 +332,39 @@ export default function ScriptFlows() {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>Keyboard shortcuts</TooltipContent>
+              </Tooltip>
+
+              <div className="w-px h-6 bg-border" />
+
+              {/* Grid snap toggle */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant={controlsRef.current?.snapToGrid ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => {
+                      const current = controlsRef.current?.snapToGrid ?? false;
+                      controlsRef.current?.setSnapToGrid(!current);
+                      toast.success(!current ? 'Snap to grid enabled' : 'Snap to grid disabled');
+                    }}
+                  >
+                    <Grid3x3 className="h-3.5 w-3.5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Toggle snap to grid</TooltipContent>
+              </Tooltip>
+
+              {/* Node search */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span>
+                    <NodeSearch
+                      nodes={localNodes}
+                      onFocusNode={(id) => controlsRef.current?.focusNode(id)}
+                    />
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent>Search nodes</TooltipContent>
               </Tooltip>
 
               <div className="flex-1" />

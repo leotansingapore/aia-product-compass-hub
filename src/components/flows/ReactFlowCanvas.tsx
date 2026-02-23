@@ -57,6 +57,9 @@ export interface FlowCanvasControls {
   getNodes: () => FlowNode[];
   getEdges: () => FlowEdge[];
   save: () => { nodes: FlowNode[]; edges: FlowEdge[] };
+  snapToGrid: boolean;
+  setSnapToGrid: (val: boolean) => void;
+  focusNode: (nodeId: string) => void;
 }
 
 const DEFAULT_EDGE_OPTIONS = {
@@ -103,6 +106,7 @@ function ReactFlowCanvasInner({
 
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [selectedEdgeId, setSelectedEdgeId] = useState<string | null>(null);
+  const [snapToGrid, setSnapToGrid] = useState(false);
 
   // Hooks
   const history = useFlowHistory();
@@ -510,6 +514,18 @@ function ReactFlowCanvasInner({
         nodes: fromReactFlowNodes(rfGetNodes()),
         edges: fromReactFlowEdges(rfGetEdges()),
       }),
+      snapToGrid,
+      setSnapToGrid,
+      focusNode: (nodeId: string) => {
+        const node = rfGetNodes().find((n) => n.id === nodeId);
+        if (node) {
+          fitView({ nodes: [node], padding: 0.5, duration: 400 });
+          // Select the node
+          setNodes((nds) => nds.map((n) => ({ ...n, selected: n.id === nodeId })));
+          setSelectedNodeId(nodeId);
+          setSelectedEdgeId(null);
+        }
+      },
     };
   });
 
@@ -530,6 +546,8 @@ function ReactFlowCanvasInner({
         fitView
         fitViewOptions={{ padding: 0.15 }}
         proOptions={PROPTIONS}
+        snapToGrid={snapToGrid}
+        snapGrid={[20, 20]}
         deleteKeyCode={null} // We handle deletion ourselves
         multiSelectionKeyCode="Shift"
         selectionOnDrag={false}
