@@ -1638,6 +1638,32 @@ export default function ScriptsDatabase() {
   // Use DB scripts if available, otherwise fallback
   const scriptsData = dbScripts.length > 0 ? dbScripts : FALLBACK_SCRIPTS;
 
+  // Fuzzy match: checks if all characters of query appear in order in target
+  const fuzzyMatch = useCallback((target: string, query: string): { match: boolean; score: number } => {
+    const t = target.toLowerCase();
+    const q = query.toLowerCase();
+    if (t.includes(q)) return { match: true, score: 2 };
+    let qi = 0;
+    let consecutiveBonus = 0;
+    let lastMatchIndex = -2;
+    for (let ti = 0; ti < t.length && qi < q.length; ti++) {
+      if (t[ti] === q[qi]) {
+        if (ti === lastMatchIndex + 1) consecutiveBonus += 0.1;
+        lastMatchIndex = ti;
+        qi++;
+      }
+    }
+    if (qi === q.length) {
+      const score = 1 + consecutiveBonus - (t.length - q.length) * 0.01;
+      return { match: true, score: Math.max(0.1, score) };
+    }
+    return { match: false, score: 0 };
+  }, []);
+
+  const fuzzyIncludes = useCallback((target: string, query: string): boolean => {
+    return fuzzyMatch(target, query).match;
+  }, [fuzzyMatch]);
+
   const filteredScripts = useMemo(() => {
     let result = scriptsData;
     if (activeCategory !== "all") {
@@ -1655,53 +1681,50 @@ export default function ScriptsDatabase() {
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       result = result.filter((s) => {
-        // Title
-        if (s.stage.toLowerCase().includes(q)) return true;
-        // Version content & author
-        if (s.versions.some((v) => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q))) return true;
-        // Tags
-        if ((s.tags || []).some((t: string) => t.toLowerCase().includes(q))) return true;
-        // Category label
+        if (fuzzyIncludes(s.stage, q)) return true;
+        if (s.versions.some((v) => fuzzyIncludes(v.content, q) || fuzzyIncludes(v.author, q))) return true;
+        if ((s.tags || []).some((t: string) => fuzzyIncludes(t, q))) return true;
         const catLabel = categoryLabels[s.category as CategoryKey]?.label || s.category;
-        if (s.category.toLowerCase().includes(q) || catLabel.toLowerCase().includes(q)) return true;
-        // Audience & role labels
+        if (fuzzyIncludes(s.category, q) || fuzzyIncludes(catLabel, q)) return true;
         const audLabel = audienceLabels[s.target_audience || ""] || s.target_audience || "";
-        if (audLabel.toLowerCase().includes(q)) return true;
+        if (fuzzyIncludes(audLabel, q)) return true;
         const rlLabel = roleLabels[s.script_role || "consultant"] || s.script_role || "";
-        if (rlLabel.toLowerCase().includes(q)) return true;
+        if (fuzzyIncludes(rlLabel, q)) return true;
         return false;
       });
     }
     return result;
-  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, scriptsData]);
+  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, scriptsData, fuzzyIncludes]);
 
   // Script search suggestions
   const suggestions = useMemo(() => {
     if (!searchInput.trim() || searchInput.length < 2) return [];
     const q = searchInput.toLowerCase();
     const titleMatches = scriptsData
-      .filter(s => s.stage.toLowerCase().includes(q))
-      .map(s => ({ type: "script" as const, label: s.stage, id: s.id }));
+      .map(s => ({ s, fm: fuzzyMatch(s.stage, q) }))
+      .filter(({ fm }) => fm.match)
+      .sort((a, b) => b.fm.score - a.fm.score)
+      .map(({ s }) => ({ type: "script" as const, label: s.stage, id: s.id }));
     const categoryMatches = Object.entries(categoryLabels)
-      .filter(([key, val]) => val.label.toLowerCase().includes(q))
+      .filter(([, val]) => fuzzyIncludes(val.label, q))
       .map(([key, val]) => ({ type: "category" as const, label: val.label, id: key }));
     const audienceMatches = Object.entries(audienceLabels)
-      .filter(([key, val]) => val.toLowerCase().includes(q))
+      .filter(([, val]) => fuzzyIncludes(val, q))
       .map(([key, val]) => ({ type: "audience" as const, label: val, id: key }));
     const roleMatches = Object.entries(roleLabels)
-      .filter(([key, val]) => val.toLowerCase().includes(q))
+      .filter(([, val]) => fuzzyIncludes(val, q))
       .map(([key, val]) => ({ type: "role" as const, label: val, id: key }));
     const authorMatches = scriptsData
       .flatMap(s => s.versions.map(v => ({ author: v.author, scriptId: s.id, scriptTitle: s.stage })))
-      .filter(v => v.author.toLowerCase().includes(q))
+      .filter(v => fuzzyIncludes(v.author, q))
       .slice(0, 3)
       .map(v => ({ type: "version" as const, label: v.author, id: v.scriptId }));
     const tagMatches = Array.from(new Set(scriptsData.flatMap(s => s.tags || [])))
-      .filter(t => t.toLowerCase().includes(q))
+      .filter(t => fuzzyIncludes(t, q))
       .slice(0, 3)
       .map(t => ({ type: "script" as const, label: `🏷️ ${t}`, id: t }));
     return [...categoryMatches, ...audienceMatches, ...roleMatches, ...tagMatches, ...titleMatches.slice(0, 5), ...authorMatches].slice(0, 8);
-  }, [searchInput, scriptsData]);
+  }, [searchInput, scriptsData, fuzzyMatch, fuzzyIncludes]);
 
   const handleSearchSelect = useCallback((suggestion: typeof suggestions[0]) => {
     if (suggestion.type === "category") {
@@ -1764,12 +1787,12 @@ export default function ScriptsDatabase() {
       const q = searchQuery.toLowerCase();
       result = result.filter(
         (s) =>
-          s.stage.toLowerCase().includes(q) ||
-          s.versions.some((v) => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q))
+          fuzzyIncludes(s.stage, q) ||
+          s.versions.some((v) => fuzzyIncludes(v.content, q) || fuzzyIncludes(v.author, q))
       );
     }
     return result;
-  }, [scriptsData, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
+  }, [scriptsData, activeCategory, activeAudience, activeRole, activeTag, searchQuery, fuzzyIncludes]);
 
   const counts = useMemo(() => {
     const base = filterExcluding('category');
