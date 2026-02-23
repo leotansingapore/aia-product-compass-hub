@@ -1,0 +1,1 @@
+UPDATE scripts SET target_audience = 'general' WHERE id = 'ca109b93-179e-44c7-87d6-8be09da552dd';
