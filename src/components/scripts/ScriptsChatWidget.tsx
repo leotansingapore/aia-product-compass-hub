@@ -239,7 +239,8 @@ export function ScriptsChatWidget({ initialMode = "scripts" }: ScriptsChatWidget
       <button
         onClick={() => setOpen(!open)}
         className={cn(
-          "fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300",
+          "fixed right-4 z-50 h-14 w-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300",
+          "bottom-20 md:bottom-6",
           "bg-primary text-primary-foreground hover:scale-105",
           open && "scale-0 opacity-0 pointer-events-none"
         )}
@@ -251,8 +252,9 @@ export function ScriptsChatWidget({ initialMode = "scripts" }: ScriptsChatWidget
       {/* Chat panel */}
       <div
         className={cn(
-          "fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] rounded-2xl shadow-2xl border bg-card flex flex-col transition-all duration-300 origin-bottom-right",
-          open ? "scale-100 opacity-100 h-[min(600px,80vh)]" : "scale-0 opacity-0 h-0 pointer-events-none"
+          "fixed z-50 rounded-2xl shadow-2xl border bg-card flex flex-col transition-all duration-300 origin-bottom-right",
+          "bottom-20 right-2 md:bottom-6 md:right-6 w-[calc(100vw-1rem)] md:w-[380px] md:max-w-[calc(100vw-2rem)]",
+          open ? "scale-100 opacity-100 h-[min(600px,70vh)] md:h-[min(600px,80vh)]" : "scale-0 opacity-0 h-0 pointer-events-none"
         )}
       >
         {/* Header */}
