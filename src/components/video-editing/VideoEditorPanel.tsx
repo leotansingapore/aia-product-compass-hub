@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { VideoEditForm } from './VideoEditForm';
 import { Button } from '@/components/ui/button';
-import { Pencil } from 'lucide-react';
+import { SquarePen } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -70,13 +70,14 @@ export function VideoEditorPanel({
                   {currentVideo.title || 'Untitled'}
                 </h1>
                 <Button
-                  variant="ghost"
+                  variant="default"
                   size="sm"
                   onClick={() => setIsEditing(true)}
-                  className="shrink-0 h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
+                  className="shrink-0"
                   title="Edit"
                 >
-                  <Pencil className="h-4 w-4" />
+                  <SquarePen className="h-4 w-4" />
+                  Edit
                 </Button>
               </div>
 
