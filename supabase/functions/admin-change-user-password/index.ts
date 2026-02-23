@@ -29,7 +29,7 @@ serve(async (req) => {
       });
     }
 
-    // Verify requester
+    // Verify requester is admin
     const authClient = createClient(SUPABASE_URL, ANON_KEY, {
       global: { headers: { Authorization: req.headers.get("Authorization") || "" } },
     });
@@ -45,13 +45,63 @@ serve(async (req) => {
     }
 
     const serviceClient = createClient(SUPABASE_URL, SERVICE_KEY);
+
+    // Try to update the user's password
     const { error: updErr } = await serviceClient.auth.admin.updateUserById(userId, { password: newPassword });
+
     if (updErr) {
+      // If user not found in auth, check profiles and create auth user first
+      if (updErr.message?.includes("User not found") || updErr.status === 404) {
+        console.log(`User ${userId} not found in auth, checking profiles...`);
+
+        const { data: profile } = await serviceClient
+          .from("profiles")
+          .select("email, first_name, last_name, display_name")
+          .eq("user_id", userId)
+          .single();
+
+        if (!profile?.email) {
+          return new Response(JSON.stringify({ error: "User not found in auth or profiles" }), {
+            status: 404,
+            headers: { "Content-Type": "application/json", ...corsHeaders },
+          });
+        }
+
+        console.log(`Creating auth user for ${profile.email}...`);
+
+        // Create the auth user with the given password
+        const { error: createErr } = await serviceClient.auth.admin.createUser({
+          email: profile.email,
+          password: newPassword,
+          email_confirm: true,
+          user_metadata: {
+            first_name: profile.first_name || "",
+            last_name: profile.last_name || "",
+            display_name: profile.display_name || "",
+          },
+        });
+
+        if (createErr) {
+          console.error(`Failed to create auth user: ${createErr.message}`);
+          return new Response(JSON.stringify({ error: `Failed to create auth user: ${createErr.message}` }), {
+            status: 400,
+            headers: { "Content-Type": "application/json", ...corsHeaders },
+          });
+        }
+
+        console.log(`Auth user created and password set for ${profile.email}`);
+        return new Response(JSON.stringify({ success: true, created: true }), {
+          status: 200,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        });
+      }
+
       return new Response(JSON.stringify({ error: updErr.message }), { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } });
     }
 
     return new Response(JSON.stringify({ success: true }), { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } });
   } catch (e: any) {
+    console.error("Unexpected error:", e?.message);
     return new Response(JSON.stringify({ error: e?.message || 'Unexpected error' }), {
       status: 500,
       headers: { "Content-Type": "application/json", ...corsHeaders },
