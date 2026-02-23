@@ -49,8 +49,13 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import { useCategories, invalidateCategoriesCache } from "@/hooks/useProducts";
+import { useCategories, invalidateCategoriesCache, useProducts } from "@/hooks/useProducts";
 import { useQueryClient } from "@tanstack/react-query";
+import {
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
+} from "@/components/ui/sidebar";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -66,6 +71,33 @@ const allResourceItems = [
   { title: "Script Playbooks", url: "/playbooks", icon: BookOpen, sectionId: "script-playbooks" },
   { title: "Script Flows", url: "/flows", icon: GitBranch, sectionId: "script-flows" },
 ];
+
+/** Sub-component that fetches and renders products for a single category */
+const CategoryProductsSub = memo(function CategoryProductsSub({ categoryId, isCollapsed }: { categoryId: string; isCollapsed: boolean }) {
+  const { products, loading } = useProducts(categoryId);
+  const location = useLocation();
+
+  if (isCollapsed || loading || products.length === 0) return null;
+
+  return (
+    <SidebarMenuSub>
+      {products
+        .filter(p => p.published !== false)
+        .map(product => {
+          const isActiveProduct = location.pathname.includes(`/product/${product.id}`);
+          return (
+            <SidebarMenuSubItem key={product.id}>
+              <SidebarMenuSubButton asChild isActive={isActiveProduct}>
+                <NavLink to={`/product/${product.id}`}>
+                  <span className="truncate">{product.title}</span>
+                </NavLink>
+              </SidebarMenuSubButton>
+            </SidebarMenuSubItem>
+          );
+        })}
+    </SidebarMenuSub>
+  );
+});
 
 const AppSidebar = memo(function AppSidebar() {
   const { state } = useSidebar();
@@ -308,79 +340,89 @@ const AppSidebar = memo(function AppSidebar() {
                       .map((category) => {
                         const isActiveCategory = currentPath.includes(`/category/${category.id}`);
                         return (
-                          <SidebarMenuItem key={category.id}>
-                            <SidebarMenuButton asChild tooltip={isCollapsed ? category.name : undefined}>
-                              <NavLink
-                                to={`/category/${category.id}`}
-                                className={`flex items-center w-full text-left transition-colors ${
-                                  isActiveCategory
-                                    ? "bg-primary text-primary-foreground font-medium cursor-default hover:!bg-primary hover:!text-primary-foreground"
-                                    : "hover:bg-accent hover:text-accent-foreground"
-                                } ${category.published === false ? "opacity-60" : ""}`}
-                              >
-                                <div className="relative shrink-0">
-                                  <Archive className="h-4 w-4" />
-                                  {category.published === false && (
-                                    <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-amber-400 border border-background" title="Draft" />
+                          <Collapsible key={category.id} asChild defaultOpen={isActiveCategory} className="group/collapsible">
+                            <SidebarMenuItem>
+                              <CollapsibleTrigger asChild>
+                                <SidebarMenuButton tooltip={isCollapsed ? category.name : undefined}
+                                  className={`${category.published === false ? "opacity-60" : ""}`}
+                                >
+                                  <div className="relative shrink-0">
+                                    <Archive className="h-4 w-4" />
+                                    {category.published === false && (
+                                      <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-amber-400 border border-background" title="Draft" />
+                                    )}
+                                  </div>
+                                  {!isCollapsed && (
+                                    <>
+                                      <span className={`truncate flex-1 ${category.published === false ? "italic" : ""}`}>
+                                        {category.name}
+                                      </span>
+                                      <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
+                                    </>
                                   )}
-                                </div>
-                                {!isCollapsed && (
-                                  <span className={`truncate ${category.published === false ? "italic" : ""}`}>
-                                    {category.name}
-                                  </span>
-                                )}
-                              </NavLink>
-                            </SidebarMenuButton>
-                            {isAdminUser && !isCollapsed && (
-                              <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                  <SidebarMenuAction showOnHover className="h-6 w-6 cursor-pointer hover:bg-muted rounded-md transition-colors">
-                                    <MoreHorizontal className="h-4 w-4" />
-                                  </SidebarMenuAction>
-                                </DropdownMenuTrigger>
-                <DropdownMenuContent side="bottom" align="start" className="shadow-sm bg-popover z-50">
-                                  <DropdownMenuItem
-                                    className="cursor-pointer focus:bg-muted focus:text-foreground"
-                                    onClick={async () => {
-                                      const newPublished = !category.published;
-                                      const { error } = await supabase
-                                        .from('categories')
-                                        .update({ published: newPublished })
-                                        .eq('id', category.id);
-                                      if (error) {
-                                        toast({ title: "Error", description: "Failed to update status", variant: "destructive" });
-                                      } else {
-                                        invalidateCategoriesCache();
-                                        await queryClient.invalidateQueries({ queryKey: ['categories'] });
-                                        await refetchCategories();
-                                        toast({ title: "Success", description: newPublished ? "Category published" : "Category unpublished" });
-                                      }
-                                    }}
-                                  >
-                                    {category.published ? <EyeOff className="h-4 w-4 mr-2" /> : <Eye className="h-4 w-4 mr-2" />}
-                                    {category.published ? "Unpublish" : "Publish"}
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem
-                                    className="cursor-pointer focus:bg-muted focus:text-foreground"
-                                    onClick={() => {
-                                      setEditingCategory({ id: category.id, name: category.name });
-                                      setNewCategoryName(category.name);
-                                    }}
-                                  >
-                                    <Pencil className="h-4 w-4 mr-2" />
-                                    Edit Name
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem
-                                    className="text-destructive focus:text-destructive focus:bg-muted cursor-pointer"
-                                    onClick={() => handleOpenDeleteDialog({ id: category.id, name: category.name })}
-                                  >
-                                    <Trash2 className="h-4 w-4 mr-2" />
-                                    Delete
-                                  </DropdownMenuItem>
-                                </DropdownMenuContent>
-                              </DropdownMenu>
-                            )}
-                          </SidebarMenuItem>
+                                </SidebarMenuButton>
+                              </CollapsibleTrigger>
+                              {isAdminUser && !isCollapsed && (
+                                <DropdownMenu>
+                                  <DropdownMenuTrigger asChild>
+                                    <SidebarMenuAction showOnHover className="h-6 w-6 cursor-pointer hover:bg-muted rounded-md transition-colors">
+                                      <MoreHorizontal className="h-4 w-4" />
+                                    </SidebarMenuAction>
+                                  </DropdownMenuTrigger>
+                                  <DropdownMenuContent side="bottom" align="start" className="shadow-sm bg-popover z-50">
+                                    <DropdownMenuItem
+                                      className="cursor-pointer focus:bg-muted focus:text-foreground"
+                                      onClick={() => navigate(`/category/${category.id}`)}
+                                    >
+                                      <Eye className="h-4 w-4 mr-2" />
+                                      View Category
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem
+                                      className="cursor-pointer focus:bg-muted focus:text-foreground"
+                                      onClick={async () => {
+                                        const newPublished = !category.published;
+                                        const { error } = await supabase
+                                          .from('categories')
+                                          .update({ published: newPublished })
+                                          .eq('id', category.id);
+                                        if (error) {
+                                          toast({ title: "Error", description: "Failed to update status", variant: "destructive" });
+                                        } else {
+                                          invalidateCategoriesCache();
+                                          await queryClient.invalidateQueries({ queryKey: ['categories'] });
+                                          await refetchCategories();
+                                          toast({ title: "Success", description: newPublished ? "Category published" : "Category unpublished" });
+                                        }
+                                      }}
+                                    >
+                                      {category.published ? <EyeOff className="h-4 w-4 mr-2" /> : <Eye className="h-4 w-4 mr-2" />}
+                                      {category.published ? "Unpublish" : "Publish"}
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem
+                                      className="cursor-pointer focus:bg-muted focus:text-foreground"
+                                      onClick={() => {
+                                        setEditingCategory({ id: category.id, name: category.name });
+                                        setNewCategoryName(category.name);
+                                      }}
+                                    >
+                                      <Pencil className="h-4 w-4 mr-2" />
+                                      Edit Name
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem
+                                      className="text-destructive focus:text-destructive focus:bg-muted cursor-pointer"
+                                      onClick={() => handleOpenDeleteDialog({ id: category.id, name: category.name })}
+                                    >
+                                      <Trash2 className="h-4 w-4 mr-2" />
+                                      Delete
+                                    </DropdownMenuItem>
+                                  </DropdownMenuContent>
+                                </DropdownMenu>
+                              )}
+                              <CollapsibleContent>
+                                <CategoryProductsSub categoryId={category.id} isCollapsed={isCollapsed} />
+                              </CollapsibleContent>
+                            </SidebarMenuItem>
+                          </Collapsible>
                         );
                       })}
                     {isAdminUser && !isCollapsed && (
