@@ -14,6 +14,7 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
 const CATEGORIES = [
   { value: "cold-calling", label: "Cold Calling" },
+  { value: "initial-text", label: "Initial Texts" },
   { value: "follow-up", label: "Follow-Up Messages" },
   { value: "ad-campaign", label: "Ad Campaign / Lead Gen" },
   { value: "referral", label: "Referral Scripts" },
