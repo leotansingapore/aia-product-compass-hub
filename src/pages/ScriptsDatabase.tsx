@@ -1301,6 +1301,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         {roleLabels[script.script_role] || script.script_role}
                       </Badge>
                     )}
+                    {script.tags && script.tags.length > 0 && script.tags.map((tag) => (
+                      <Badge key={tag} variant="outline" className="text-[10px] bg-accent/30">
+                        {tag}
+                      </Badge>
+                    ))}
                   </div>
                   {/* Search snippet preview when collapsed */}
                   {!open && snippet && (
@@ -1434,6 +1439,7 @@ export default function ScriptsDatabase() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [activeAudience, setActiveAudience] = useState<string>("all");
   const [activeRole, setActiveRole] = useState<string>("all");
+  const [activeTag, setActiveTag] = useState<string>("all");
   const navigate = useNavigate();
   const { scriptId } = useParams();
   
@@ -1488,6 +1494,9 @@ export default function ScriptsDatabase() {
     if (activeRole !== "all") {
       result = result.filter((s) => (s.script_role || "consultant") === activeRole);
     }
+    if (activeTag !== "all") {
+      result = result.filter((s) => (s.tags || []).includes(activeTag));
+    }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       result = result.filter(
@@ -1497,7 +1506,7 @@ export default function ScriptsDatabase() {
       );
     }
     return result;
-  }, [searchQuery, activeCategory, activeAudience, activeRole, scriptsData]);
+  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, scriptsData]);
 
   // Script search suggestions
   const suggestions = useMemo(() => {
@@ -1589,12 +1598,26 @@ export default function ScriptsDatabase() {
     return c;
   }, [scriptsData]);
 
+  const allTags = useMemo(() => {
+    const tagSet = new Set<string>();
+    scriptsData.forEach(s => (s.tags || []).forEach(t => tagSet.add(t)));
+    return Array.from(tagSet).sort();
+  }, [scriptsData]);
+
+  const tagCounts = useMemo(() => {
+    const c: Record<string, number> = {};
+    allTags.forEach(tag => {
+      c[tag] = scriptsData.filter(s => (s.tags || []).includes(tag)).length;
+    });
+    return c;
+  }, [scriptsData, allTags]);
+
   const activeCategoriesWithData = useMemo(() => 
     (Object.keys(categoryLabels) as CategoryKey[]).filter(key => counts[key] > 0),
     [counts]
   );
 
-  const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; versions: ScriptVersion[]; sort_order: number }) => {
+  const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number }) => {
     if (editingScript) {
       await updateScript(editingScript.id, data);
     } else {
@@ -1686,8 +1709,8 @@ export default function ScriptsDatabase() {
             <div className="flex items-center gap-2 mb-1.5">
               <Filter className="h-3.5 w-3.5 text-muted-foreground" />
               <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
-              {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all") && (
-                <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground ml-auto" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); }}>
+              {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all") && (
+                <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground ml-auto" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); }}>
                   <X className="h-3 w-3 mr-0.5" /> Clear filters
                 </Button>
               )}
@@ -1770,6 +1793,34 @@ export default function ScriptsDatabase() {
               ))}
             </div>
           </div>
+
+          {/* Tags filter */}
+          {allTags.length > 0 && (
+            <div>
+              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1.5 block">Tags</span>
+              <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+                <Button
+                  variant={activeTag === "all" ? "default" : "outline"}
+                  size="sm"
+                  className="text-xs shrink-0 h-7"
+                  onClick={() => setActiveTag("all")}
+                >
+                  All
+                </Button>
+                {allTags.map((tag) => (
+                  <Button
+                    key={tag}
+                    variant={activeTag === tag ? "default" : "outline"}
+                    size="sm"
+                    className="text-xs shrink-0 h-7"
+                    onClick={() => setActiveTag(tag)}
+                  >
+                    {tag} ({tagCounts[tag]})
+                  </Button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Results count */}

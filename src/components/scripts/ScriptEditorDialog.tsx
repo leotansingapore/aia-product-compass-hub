@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 import { Plus, Trash2 } from "lucide-react";
 import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
 
@@ -40,7 +41,7 @@ const SCRIPT_ROLES = [
 interface Props {
   open: boolean;
   onClose: () => void;
-  onSave: (data: { stage: string; category: string; target_audience: string; script_role: string; versions: ScriptVersion[]; sort_order: number }) => Promise<void>;
+  onSave: (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number }) => Promise<void>;
   script?: ScriptEntry | null;
 }
 
@@ -49,6 +50,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   const [category, setCategory] = useState("cold-calling");
   const [targetAudience, setTargetAudience] = useState("general");
   const [scriptRole, setScriptRole] = useState("consultant");
+  const [tags, setTags] = useState<string[]>([]);
+  const [tagInput, setTagInput] = useState("");
   const [versions, setVersions] = useState<ScriptVersion[]>([{ author: "", content: "" }]);
   const [sortOrder, setSortOrder] = useState(0);
   const [saving, setSaving] = useState(false);
@@ -59,6 +62,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       setCategory(script.category);
       setTargetAudience(script.target_audience || "general");
       setScriptRole(script.script_role || "consultant");
+      setTags(script.tags || []);
+      setTagInput("");
       setVersions(script.versions.length > 0 ? script.versions : [{ author: "", content: "" }]);
       setSortOrder(script.sort_order);
     } else {
@@ -66,6 +71,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       setCategory("cold-calling");
       setTargetAudience("general");
       setScriptRole("consultant");
+      setTags([]);
+      setTagInput("");
       setVersions([{ author: "", content: "" }]);
       setSortOrder(0);
     }
@@ -76,7 +83,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     const validVersions = versions.filter(v => v.content.trim());
     if (validVersions.length === 0) return;
     setSaving(true);
-    await onSave({ stage, category, target_audience: targetAudience, script_role: scriptRole, versions: validVersions, sort_order: sortOrder });
+    await onSave({ stage, category, target_audience: targetAudience, script_role: scriptRole, tags, versions: validVersions, sort_order: sortOrder });
     setSaving(false);
     onClose();
   };
@@ -138,6 +145,46 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
             <div>
               <Label>Order</Label>
               <Input type="number" value={sortOrder} onChange={e => setSortOrder(Number(e.target.value))} />
+            </div>
+          </div>
+
+          {/* Tags input */}
+          <div>
+            <Label>Tags</Label>
+            <div className="flex flex-wrap gap-1.5 mb-2">
+              {tags.map((tag, i) => (
+                <Badge key={i} variant="secondary" className="text-xs gap-1 pr-1">
+                  {tag}
+                  <button type="button" className="ml-0.5 hover:text-destructive" onClick={() => setTags(prev => prev.filter((_, idx) => idx !== i))}>
+                    <Trash2 className="h-2.5 w-2.5" />
+                  </button>
+                </Badge>
+              ))}
+            </div>
+            <div className="flex gap-2">
+              <Input
+                value={tagInput}
+                onChange={e => setTagInput(e.target.value)}
+                placeholder="Type a tag and press Enter (e.g. voucher, ebook, passive-income)"
+                className="flex-1"
+                onKeyDown={e => {
+                  if (e.key === "Enter" || e.key === ",") {
+                    e.preventDefault();
+                    const val = tagInput.trim().toLowerCase().replace(/,/g, "");
+                    if (val && !tags.includes(val)) {
+                      setTags(prev => [...prev, val]);
+                    }
+                    setTagInput("");
+                  }
+                }}
+              />
+              <Button type="button" variant="outline" size="sm" onClick={() => {
+                const val = tagInput.trim().toLowerCase();
+                if (val && !tags.includes(val)) setTags(prev => [...prev, val]);
+                setTagInput("");
+              }}>
+                <Plus className="h-3 w-3" />
+              </Button>
             </div>
           </div>
 
