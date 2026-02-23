@@ -21,14 +21,81 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useIsMobile } from "@/hooks/use-mobile";
 import type { ObjectionEntry, ObjectionResponse } from "@/hooks/useObjections";
 
+// Fuzzy matching: checks if all characters of query appear in order in target
+function fuzzyMatch(target: string, query: string): { match: boolean; score: number } {
+  const t = target.toLowerCase();
+  const q = query.toLowerCase();
+  if (!q) return { match: true, score: 0 };
+  if (t.includes(q)) return { match: true, score: 100 + q.length }; // Exact substring = highest
+  let ti = 0;
+  let qi = 0;
+  let score = 0;
+  let consecutiveBonus = 0;
+  while (ti < t.length && qi < q.length) {
+    if (t[ti] === q[qi]) {
+      score += 1 + consecutiveBonus;
+      consecutiveBonus += 1;
+      qi++;
+    } else {
+      consecutiveBonus = 0;
+    }
+    ti++;
+  }
+  return { match: qi === q.length, score };
+}
+
+function fuzzyIncludes(target: string, query: string): boolean {
+  return fuzzyMatch(target, query).match;
+}
+
 function highlightText(text: string, query: string): React.ReactNode {
   if (!query.trim()) return text;
-  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  // Try exact substring highlight first
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escaped})`, 'gi');
   const parts = text.split(regex);
-  if (parts.length === 1) return text;
-  return parts.map((part, i) =>
-    regex.test(part) ? <mark key={i} className="bg-yellow-200 dark:bg-yellow-700/60 rounded-sm px-0.5">{part}</mark> : part
-  );
+  if (parts.length > 1) {
+    return parts.map((part, i) =>
+      regex.test(part) ? <mark key={i} className="bg-yellow-200 dark:bg-yellow-700/60 rounded-sm px-0.5">{part}</mark> : part
+    );
+  }
+  // Fuzzy highlight: mark individual matched characters
+  const t = text.toLowerCase();
+  const q = query.toLowerCase();
+  let qi = 0;
+  const result: React.ReactNode[] = [];
+  let buffer = "";
+  for (let i = 0; i < text.length && qi < q.length; i++) {
+    if (t[i] === q[qi]) {
+      if (buffer) { result.push(buffer); buffer = ""; }
+      result.push(<mark key={`f${i}`} className="bg-yellow-200/70 dark:bg-yellow-700/40 rounded-sm">{text[i]}</mark>);
+      qi++;
+    } else {
+      buffer += text[i];
+    }
+  }
+  if (qi < q.length) return text; // No fuzzy match
+  if (buffer) result.push(buffer);
+  // Append remaining text
+  const lastMatchIndex = text.toLowerCase().indexOf(q[q.length - 1], text.length - (text.length - result.length));
+  // Simpler: rebuild with remaining chars
+  let matchedCount = 0;
+  const finalResult: React.ReactNode[] = [];
+  let buf = "";
+  let qj = 0;
+  for (let i = 0; i < text.length; i++) {
+    if (qj < q.length && t[i] === q[qj]) {
+      if (buf) { finalResult.push(buf); buf = ""; }
+      finalResult.push(<mark key={`h${i}`} className="bg-yellow-200/70 dark:bg-yellow-700/40 rounded-sm">{text[i]}</mark>);
+      qj++;
+      matchedCount++;
+    } else {
+      buf += text[i];
+    }
+  }
+  if (buf) finalResult.push(buf);
+  if (matchedCount < q.length) return text;
+  return finalResult;
 }
 
 const categoryConfig: Record<string, { label: string; icon: string; color: string }> = {
@@ -268,7 +335,7 @@ export function ObjectionHandlingDatabase() {
     if (!searchQuery.trim()) return map;
     const q = searchQuery.toLowerCase();
     responses.forEach(r => {
-      if (r.content.toLowerCase().includes(q) || r.author_name.toLowerCase().includes(q)) {
+      if (fuzzyIncludes(r.content, q) || fuzzyIncludes(r.author_name, q)) {
         if (!map[r.objection_id]) map[r.objection_id] = new Set();
         map[r.objection_id].add(r.id);
       }
@@ -282,20 +349,29 @@ export function ObjectionHandlingDatabase() {
       result = result.filter(e => e.category === activeCategory);
     }
     if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      result = result.filter(e => {
-        // Search title & description
-        if (e.title.toLowerCase().includes(q)) return true;
-        if ((e.description || "").toLowerCase().includes(q)) return true;
-        // Search tags
-        if ((e.tags || []).some(t => t.toLowerCase().includes(q))) return true;
-        // Search category label (e.g. "pricing", "trust")
+      const q = searchQuery.trim();
+      // Score each entry and filter by fuzzy match
+      const scored = result.map(e => {
+        let score = 0;
+        const titleMatch = fuzzyMatch(e.title, q);
+        if (titleMatch.match) score += titleMatch.score * 3; // Title weighted highest
+        const descMatch = fuzzyMatch(e.description || "", q);
+        if (descMatch.match) score += descMatch.score * 2;
+        // Tags
+        (e.tags || []).forEach(t => {
+          const tm = fuzzyMatch(t, q);
+          if (tm.match) score += tm.score * 2;
+        });
+        // Category label
         const catLabel = categoryConfig[e.category]?.label || e.category;
-        if (e.category.toLowerCase().includes(q) || catLabel.toLowerCase().includes(q)) return true;
-        // Search response content & author names
-        if (matchedResponseIdsMap[e.id]) return true;
-        return false;
-      });
+        if (fuzzyIncludes(e.category, q) || fuzzyIncludes(catLabel, q)) score += 50;
+        // Response matches
+        if (matchedResponseIdsMap[e.id]) score += 30 * matchedResponseIdsMap[e.id].size;
+        return { entry: e, score };
+      }).filter(s => s.score > 0);
+      // Sort by relevance score descending
+      scored.sort((a, b) => b.score - a.score);
+      result = scored.map(s => s.entry);
     }
     return result;
   }, [entries, activeCategory, searchQuery, matchedResponseIdsMap]);
