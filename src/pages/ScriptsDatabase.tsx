@@ -30,7 +30,7 @@ import { useScriptFavourites } from "@/hooks/useScriptFavourites";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
 
-type CategoryKey = "cold-calling" | "warm-market" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips" | "post-meeting";
+type CategoryKey = "cold-calling" | "warm-market" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips";
 
 const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; color: string }> = {
   "cold-calling": { label: "Cold Calling", icon: Phone, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
@@ -39,9 +39,33 @@ const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; c
   "ad-campaign": { label: "Ad Campaign / Lead Gen", icon: Megaphone, color: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300" },
   "referral": { label: "Referral Scripts", icon: UserPlus, color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300" },
   "confirmation": { label: "Appointment Confirmation", icon: CalendarCheck, color: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300" },
-  "post-meeting": { label: "Post-Meeting", icon: Users, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
   "faq": { label: "FAQ / Objections", icon: HelpCircle, color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
   "tips": { label: "Tips & Best Practices", icon: Lightbulb, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
+};
+
+// Sub-type labels for Follow-Up grouping
+const followUpSubTypeLabels: Record<string, { label: string; icon: string; description: string }> = {
+  "initial-text": { label: "Initial Contact", icon: "📨", description: "First texts after lead opt-in" },
+  "post-call": { label: "Post-Call Texts", icon: "📲", description: "Messages sent after a phone call" },
+  "callback": { label: "Callback Scripts", icon: "📞", description: "Actual phone call scripts" },
+  "reminder-sequence": { label: "Reminder Sequences", icon: "🔔", description: "Drip / nudge follow-ups" },
+  "post-meeting": { label: "Post-Meeting", icon: "🤝", description: "After consultation resources & referrals" },
+  "closing": { label: "Closing Scripts", icon: "🎯", description: "End-of-funnel & rescheduling" },
+  "other": { label: "Other Follow-Ups", icon: "💬", description: "General follow-up messages" },
+};
+
+// Standard audience sort order
+const audienceSortOrder: Record<string, number> = {
+  "nsf": 1,
+  "young-adult": 2,
+  "working-adult": 3,
+  "pre-retiree": 4,
+  "parent": 5,
+  "cold-lead": 6,
+  "recruitment": 7,
+  "general": 8,
+  "hnw": 9,
+  "referral": 10,
 };
 
 const audienceLabels: Record<string, string> = {
@@ -1520,6 +1544,74 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   );
 }
 
+function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate }: {
+  subType: string;
+  config: { label: string; icon: string; description: string };
+  scripts: ScriptEntry[];
+  isAdmin: boolean;
+  scriptId?: string;
+  searchQuery: string;
+  myPlaybooks?: { id: string; title: string }[];
+  handleAddToPlaybook: (playbookId: string, scriptId: string) => void;
+  user: any;
+  favouriteIds: Set<string>;
+  toggleFavourite: { mutate: (id: string) => void };
+  isMobile: boolean;
+  setEditingScript: (s: ScriptEntry) => void;
+  setEditorOpen: (open: boolean) => void;
+  setDeleteTarget: (s: ScriptEntry) => void;
+  navigate: (path: string, opts?: { replace?: boolean }) => void;
+}) {
+  const [open, setOpen] = useState(true);
+  return (
+    <Collapsible open={open} onOpenChange={setOpen}>
+      <div className="border rounded-lg overflow-hidden">
+        <CollapsibleTrigger asChild>
+          <button className="w-full flex items-center justify-between px-4 py-3 bg-muted/40 hover:bg-muted/60 transition-colors text-left">
+            <div className="flex items-center gap-2.5">
+              <span className="text-base">{config.icon}</span>
+              <div>
+                <span className="font-semibold text-sm text-foreground">{config.label}</span>
+                <span className="text-xs text-muted-foreground ml-2">{config.description}</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <Badge variant="secondary" className="text-xs font-medium">{scripts.length}</Badge>
+              <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+            </div>
+          </button>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <div className="space-y-2 p-2">
+            {scripts.map((script) => (
+              <ScriptCard
+                key={script.id}
+                script={script}
+                isAdmin={isAdmin}
+                isOpenByUrl={scriptId === script.id}
+                searchQuery={searchQuery}
+                myPlaybooks={myPlaybooks}
+                onAddToPlaybook={handleAddToPlaybook}
+                isAuthenticated={!!user}
+                userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
+                isFavourite={favouriteIds.has(script.id)}
+                onToggleFavourite={() => toggleFavourite.mutate(script.id)}
+                isMobile={isMobile}
+                onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
+                onDelete={() => setDeleteTarget(script)}
+                onToggle={(open) => {
+                  if (open) navigate(`/scripts/${script.id}`, { replace: true });
+                  else if (scriptId === script.id) navigate('/scripts', { replace: true });
+                }}
+              />
+            ))}
+          </div>
+        </CollapsibleContent>
+      </div>
+    </Collapsible>
+  );
+}
+
 export default function ScriptsDatabase() {
   const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -2222,9 +2314,36 @@ export default function ScriptsDatabase() {
           </div>
         )}
 
-        {/* Results count */}
-        <div className="mb-3 text-xs text-muted-foreground">
-          {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
+        {/* Results count + audience flow indicator */}
+        <div className="mb-3 flex items-center justify-between gap-2 flex-wrap">
+          <div className="text-xs text-muted-foreground">
+            {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
+          </div>
+          {/* Audience flow indicator — shown when viewing a single category */}
+          {activeCategory !== "all" && (
+            <div className="flex items-center gap-1 flex-wrap">
+              {(["nsf", "young-adult", "working-adult", "pre-retiree", "parent", "recruitment", "general"] as const)
+                .filter(aud => filteredScripts.some(s => s.target_audience === aud))
+                .map((aud, idx, arr) => {
+                  const count = filteredScripts.filter(s => s.target_audience === aud).length;
+                  return (
+                    <span key={aud} className="flex items-center gap-1">
+                      <button
+                        onClick={() => setActiveAudience(aud)}
+                        className={`text-[10px] px-1.5 py-0.5 rounded-full border transition-colors ${
+                          activeAudience === aud
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-muted text-muted-foreground border-border hover:border-primary/50"
+                        }`}
+                      >
+                        {audienceLabels[aud] || aud} <span className="opacity-70">({count})</span>
+                      </button>
+                      {idx < arr.length - 1 && <span className="text-muted-foreground/40 text-[10px]">→</span>}
+                    </span>
+                  );
+                })}
+            </div>
+          )}
         </div>
 
         {/* Loading state */}
@@ -2238,31 +2357,83 @@ export default function ScriptsDatabase() {
         {!loading && (
           <div className="space-y-3">
             {filteredScripts.length > 0 ? (
-              filteredScripts.map((script) => (
-                <ScriptCard
-                  key={script.id}
-                  script={script}
-                  isAdmin={isAdmin}
-                  isOpenByUrl={scriptId === script.id}
-                  searchQuery={searchQuery}
-                  myPlaybooks={myPlaybooks}
-                  onAddToPlaybook={handleAddToPlaybook}
-                  isAuthenticated={!!user}
-                  userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
-                  isFavourite={favouriteIds.has(script.id)}
-                  onToggleFavourite={() => toggleFavourite.mutate(script.id)}
-                  isMobile={isMobile}
-                  onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
-                  onDelete={() => setDeleteTarget(script)}
-                  onToggle={(open) => {
-                    if (open) {
-                      navigate(`/scripts/${script.id}`, { replace: true });
-                    } else if (scriptId === script.id) {
-                      navigate('/scripts', { replace: true });
-                    }
-                  }}
-                />
-              ))
+              (() => {
+                // If viewing Follow-Up category specifically (no other category filter mixing things), show sub-grouped view
+                const isFollowUpView = activeCategory === "follow-up" || (activeCategory === "all" && filteredScripts.every(s => s.category === "follow-up"));
+                const hasFollowUpScripts = filteredScripts.some(s => s.category === "follow-up");
+                const showSubGroups = (activeCategory === "follow-up") && !searchQuery && activeAudience === "all" && activeRole === "all" && activeTag === "all";
+
+                if (showSubGroups) {
+                  // Group follow-up scripts by their stage_type tag
+                  const subTypeOrder = ["initial-text", "post-call", "callback", "reminder-sequence", "closing", "post-meeting", "other"];
+                  const grouped: Record<string, ScriptEntry[]> = {};
+                  filteredScripts.forEach(script => {
+                    const tags = script.tags || [];
+                    const subType = subTypeOrder.find(st => tags.includes(st)) || "other";
+                    if (!grouped[subType]) grouped[subType] = [];
+                    grouped[subType].push(script);
+                  });
+
+                  return (
+                    <div className="space-y-4">
+                      {subTypeOrder.filter(st => grouped[st]?.length > 0).map(subType => {
+                        const config = followUpSubTypeLabels[subType];
+                        return (
+                          <FollowUpSubGroup
+                            key={subType}
+                            subType={subType}
+                            config={config}
+                            scripts={grouped[subType]}
+                            isAdmin={isAdmin}
+                            scriptId={scriptId}
+                            searchQuery={searchQuery}
+                            myPlaybooks={myPlaybooks}
+                            handleAddToPlaybook={handleAddToPlaybook}
+                            user={user}
+                            favouriteIds={favouriteIds}
+                            toggleFavourite={toggleFavourite}
+                            isMobile={isMobile}
+                            setEditingScript={setEditingScript}
+                            setEditorOpen={setEditorOpen}
+                            setDeleteTarget={setDeleteTarget}
+                            navigate={navigate}
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                }
+
+                return (
+                  <>
+                    {filteredScripts.map((script) => (
+                      <ScriptCard
+                        key={script.id}
+                        script={script}
+                        isAdmin={isAdmin}
+                        isOpenByUrl={scriptId === script.id}
+                        searchQuery={searchQuery}
+                        myPlaybooks={myPlaybooks}
+                        onAddToPlaybook={handleAddToPlaybook}
+                        isAuthenticated={!!user}
+                        userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
+                        isFavourite={favouriteIds.has(script.id)}
+                        onToggleFavourite={() => toggleFavourite.mutate(script.id)}
+                        isMobile={isMobile}
+                        onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
+                        onDelete={() => setDeleteTarget(script)}
+                        onToggle={(open) => {
+                          if (open) {
+                            navigate(`/scripts/${script.id}`, { replace: true });
+                          } else if (scriptId === script.id) {
+                            navigate('/scripts', { replace: true });
+                          }
+                        }}
+                      />
+                    ))}
+                  </>
+                );
+              })()
             ) : (
               <div className="text-center py-12 text-muted-foreground">
                 <MessageSquare className="h-10 w-10 mx-auto mb-3 opacity-40" />
