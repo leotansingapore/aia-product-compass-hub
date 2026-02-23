@@ -15,6 +15,7 @@ const Dashboard = memo(() => {
     query,
     filters,
     results,
+    resultCounts,
     isSearching,
     hasQuery,
     hasActiveFilters,
@@ -29,6 +30,7 @@ const Dashboard = memo(() => {
     handleCategoryFilter,
     handleTagFilter,
     handleContentFilter,
+    handleTypeFilter,
     clearFilters,
     clearSearch
   } = useDashboardSearch();
@@ -78,6 +80,7 @@ const Dashboard = memo(() => {
             <SearchResults
               query={query}
               results={results}
+              resultCounts={resultCounts}
               isSearching={isSearching}
               hasQuery={hasQuery}
               hasActiveFilters={hasActiveFilters}
@@ -90,6 +93,7 @@ const Dashboard = memo(() => {
               onSortBy={setSortBy}
               onTagFilter={(tag, checked) => handleTagFilter(tag, Boolean(checked))}
               onContentFilter={(type, checked) => handleContentFilter(type, Boolean(checked))}
+              onTypeFilter={handleTypeFilter}
               onSetFilters={() => {}}
               onClearSearch={clearSearch}
             />

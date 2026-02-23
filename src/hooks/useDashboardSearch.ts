@@ -1,23 +1,25 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useSearch } from '@/hooks/useSearch';
+import { useUnifiedSearch } from '@/hooks/useUnifiedSearch';
 
 export function useDashboardSearch() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialQuery = searchParams.get("q") || "";
-  
+
   const {
     query,
     setQuery,
     filters,
     setFilters,
     results,
+    groupedResults,
+    resultCounts,
     isSearching,
     hasQuery,
     hasActiveFilters,
     getAvailableCategories,
-    getAvailableTags
-  } = useSearch();
+    getAvailableTags,
+  } = useUnifiedSearch();
 
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState("relevance");
@@ -32,7 +34,6 @@ export function useDashboardSearch() {
   const handleSearch = (newQuery: string) => {
     setQuery(newQuery);
     setFilters({}); // Clear filters on new search
-    // Update URL
     const newSearchParams = new URLSearchParams(searchParams);
     if (newQuery) {
       newSearchParams.set("q", newQuery);
@@ -52,7 +53,7 @@ export function useDashboardSearch() {
   const handleTagFilter = (tag: string, checked: boolean) => {
     setFilters(prev => ({
       ...prev,
-      tags: checked 
+      tags: checked
         ? [...(prev.tags || []), tag]
         : (prev.tags || []).filter(t => t !== tag)
     }));
@@ -63,6 +64,16 @@ export function useDashboardSearch() {
       ...prev,
       [type]: checked
     }));
+  };
+
+  const handleTypeFilter = (type: string, checked: boolean) => {
+    setFilters(prev => {
+      const current = prev.types || [];
+      const updated = checked
+        ? [...current, type as any]
+        : current.filter(t => t !== type);
+      return { ...prev, types: updated.length > 0 ? updated : undefined };
+    });
   };
 
   const clearFilters = () => {
@@ -80,18 +91,17 @@ export function useDashboardSearch() {
   const activeFilterCount = [
     filters.category,
     filters.tags?.length,
-    filters.hasVideos,
-    filters.hasLinks
+    filters.types?.length,
   ].filter(Boolean).length;
 
   const sortedResults = [...results].sort((a, b) => {
     switch (sortBy) {
       case "title":
         return a.title.localeCompare(b.title);
-      case "category":
-        return a.categoryName.localeCompare(b.categoryName);
+      case "type":
+        return a.typeLabel.localeCompare(b.typeLabel);
       default:
-        return 0; // Keep original order for relevance
+        return 0; // Keep relevance order
     }
   });
 
@@ -99,6 +109,8 @@ export function useDashboardSearch() {
     query,
     filters,
     results: sortedResults,
+    groupedResults,
+    resultCounts,
     isSearching,
     hasQuery,
     hasActiveFilters,
@@ -113,6 +125,7 @@ export function useDashboardSearch() {
     handleCategoryFilter,
     handleTagFilter,
     handleContentFilter,
+    handleTypeFilter,
     clearFilters,
     clearSearch
   };
