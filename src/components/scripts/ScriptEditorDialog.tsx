@@ -14,7 +14,6 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
 const CATEGORIES = [
   { value: "cold-calling", label: "Cold Calling" },
-  { value: "warm-market", label: "Warm Market Outreach" },
   { value: "follow-up", label: "Follow-Up Messages" },
   { value: "ad-campaign", label: "Ad Campaign / Lead Gen" },
   { value: "referral", label: "Referral Scripts" },
@@ -24,6 +23,7 @@ const CATEGORIES = [
 ];
 
 const TARGET_AUDIENCES = [
+  { value: "warm-market", label: "Warm Market / Friends & Family" },
   { value: "general", label: "General" },
   { value: "young-adult", label: "Young Adults" },
   { value: "nsf", label: "NSF / NS" },
