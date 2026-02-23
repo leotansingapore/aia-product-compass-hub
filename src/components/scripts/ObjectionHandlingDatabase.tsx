@@ -283,12 +283,19 @@ export function ObjectionHandlingDatabase() {
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      result = result.filter(e =>
-        e.title.toLowerCase().includes(q) ||
-        (e.description || "").toLowerCase().includes(q) ||
-        (e.tags || []).some(t => t.toLowerCase().includes(q)) ||
-        !!matchedResponseIdsMap[e.id]
-      );
+      result = result.filter(e => {
+        // Search title & description
+        if (e.title.toLowerCase().includes(q)) return true;
+        if ((e.description || "").toLowerCase().includes(q)) return true;
+        // Search tags
+        if ((e.tags || []).some(t => t.toLowerCase().includes(q))) return true;
+        // Search category label (e.g. "pricing", "trust")
+        const catLabel = categoryConfig[e.category]?.label || e.category;
+        if (e.category.toLowerCase().includes(q) || catLabel.toLowerCase().includes(q)) return true;
+        // Search response content & author names
+        if (matchedResponseIdsMap[e.id]) return true;
+        return false;
+      });
     }
     return result;
   }, [entries, activeCategory, searchQuery, matchedResponseIdsMap]);
