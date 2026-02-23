@@ -115,13 +115,12 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
           )}
         </CardDescription>
       </CardHeader>
-      <CardContent className="overflow-hidden">
+      <CardContent className="overflow-hidden p-3 sm:p-4 md:p-6 pt-0">
         {processedVideos.length > 0 ? (
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {!isAdminMode && (
               <Button 
                 onClick={() => {
-                  // Navigate to first video's unique URL
                   if (processedVideos.length > 0 && productSlugOrId) {
                     const firstVideo = processedVideos[0];
                     const videoSlug = getVideoSlug(firstVideo.title);
@@ -130,10 +129,10 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
                     setShowLearningInterface(true);
                   }
                 }}
-                className="w-full h-12"
+                className="w-full h-10 sm:h-12 text-sm"
                 size="lg"
               >
-                <Play className="h-5 w-5 mr-2" />
+                <Play className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 Start Learning Course
               </Button>
             )}
