@@ -1,0 +1,7 @@
+INSERT INTO scripts (stage, category, target_audience, sort_order, versions) VALUES (
+  'Cold Calling — Telemarketer Script for Voucher Leads (Parents)',
+  'cold-calling',
+  'parent',
+  17,
+  '[{"author": "Telemarketer Script — Voucher Freebie Campaign (Parents)", "content": "Hi, is this (name)?\n\nI''m [name], from the moneybees. This is a courtesy call to inform you that we have received your interest in redeeming some [name of vouchers] vouchers recently!\n\nWe might have called previously, but you were busy.\n\nIn order to redeem it, we will need to schedule a quick callback with one of our financial consultants.\n\nWe help many young parents in Singapore to grow their money faster than the bank, and plan better for their family.\n\nSo if you''re interested in growing and protecting your money better, can my consultant give you a callback later at around [XX] timing to share more about it?\n\nOkay great, after this call, my manager will send you a text message, and all you have to do, is to reply and acknowledge, is that okay?\n\nAlright great. So just one last thing, this session is just for you to learn more about planning better for your money and your family, and as long as you learn something, then that''s good enough!"}]'::jsonb
+);
