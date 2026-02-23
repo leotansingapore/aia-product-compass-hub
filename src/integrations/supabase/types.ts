@@ -1037,6 +1037,45 @@ export type Database = {
         }
         Relationships: []
       }
+      script_flows: {
+        Row: {
+          created_at: string
+          created_by: string
+          description: string | null
+          edges: Json
+          id: string
+          is_template: boolean
+          nodes: Json
+          template_category: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          description?: string | null
+          edges?: Json
+          id?: string
+          is_template?: boolean
+          nodes?: Json
+          template_category?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          edges?: Json
+          id?: string
+          is_template?: boolean
+          nodes?: Json
+          template_category?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       script_playbook_items: {
         Row: {
           created_at: string
