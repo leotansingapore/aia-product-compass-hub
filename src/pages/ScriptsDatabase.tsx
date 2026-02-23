@@ -2149,125 +2149,86 @@ export default function ScriptsDatabase() {
               )}
             </div>
           ) : (
-            /* ===== DESKTOP: Horizontal pill buttons ===== */
-            <>
-              {/* Category filter */}
+            /* ===== DESKTOP: Compact dropdown filters (same pattern as mobile) ===== */
+            <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
+              {/* Category dropdown */}
               <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <Filter className="h-3.5 w-3.5 text-muted-foreground" />
-                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
-                </div>
-                <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-                  <Button
-                    variant={activeCategory === "all" ? "default" : "outline"}
-                    size="sm"
-                    className="text-xs shrink-0 h-8 px-3"
-                    onClick={() => setActiveCategory("all")}
-                  >
-                    All ({counts.all})
-                  </Button>
-                  {activeCategoriesWithData.map((key) => {
-                    const cat = categoryLabels[key];
-                    const Icon = cat.icon;
-                    return (
-                      <Button
-                        key={key}
-                        variant={activeCategory === key ? "default" : "outline"}
-                        size="sm"
-                        className="text-xs shrink-0 h-8 gap-1 px-3"
-                        onClick={() => setActiveCategory(key)}
-                      >
-                        <Icon className="h-3 w-3" /> {cat.label} ({counts[key]})
-                      </Button>
-                    );
-                  })}
-                </div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Category</span>
+                <Select value={activeCategory} onValueChange={setActiveCategory}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All categories" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All ({counts.all})</SelectItem>
+                    {activeCategoriesWithData.map((key) => (
+                      <SelectItem key={key} value={key}>
+                        {categoryLabels[key].label} ({counts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
-              {/* Target audience filter */}
+              {/* Audience dropdown */}
               <div>
-                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
-                <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-                  <Button
-                    variant={activeAudience === "all" ? "default" : "outline"}
-                    size="sm"
-                    className="text-xs shrink-0 h-7 px-3"
-                    onClick={() => setActiveAudience("all")}
-                  >
-                    All
-                  </Button>
-                  {Object.entries(audienceLabels).filter(([key]) => {
-                    return scriptsData.some(s => s.target_audience === key);
-                  }).map(([key, label]) => (
-                    <Button
-                      key={key}
-                      variant={activeAudience === key ? "default" : "outline"}
-                      size="sm"
-                      className="text-xs shrink-0 h-7 px-3"
-                      onClick={() => setActiveAudience(key)}
-                    >
-                      {label} ({audienceCounts[key]})
-                    </Button>
-                  ))}
-                </div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
+                <Select value={activeAudience} onValueChange={setActiveAudience}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All audiences" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All</SelectItem>
+                    {Object.entries(audienceLabels).filter(([key]) =>
+                      scriptsData.some(s => s.target_audience === key)
+                    ).map(([key, label]) => (
+                      <SelectItem key={key} value={key}>
+                        {label} ({audienceCounts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
-              {/* Role filter */}
+              {/* Role dropdown */}
               <div>
-                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
-                <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-                  <Button
-                    variant={activeRole === "all" ? "default" : "outline"}
-                    size="sm"
-                    className="text-xs shrink-0 h-7 px-3"
-                    onClick={() => setActiveRole("all")}
-                  >
-                    All
-                  </Button>
-                  {Object.entries(roleLabels).filter(([key]) => {
-                    return scriptsData.some(s => (s.script_role || 'consultant') === key);
-                  }).map(([key, label]) => (
-                    <Button
-                      key={key}
-                      variant={activeRole === key ? "default" : "outline"}
-                      size="sm"
-                      className="text-xs shrink-0 h-7 px-3"
-                      onClick={() => setActiveRole(key)}
-                    >
-                      {label} ({roleCounts[key]})
-                    </Button>
-                  ))}
-                </div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
+                <Select value={activeRole} onValueChange={setActiveRole}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All roles" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All</SelectItem>
+                    {Object.entries(roleLabels).filter(([key]) =>
+                      scriptsData.some(s => (s.script_role || 'consultant') === key)
+                    ).map(([key, label]) => (
+                      <SelectItem key={key} value={key}>
+                        {label} ({roleCounts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
-              {/* Tags filter */}
+              {/* Tags dropdown */}
               {allTags.length > 0 && (
                 <div>
-                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tags</span>
-                  <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-                    <Button
-                      variant={activeTag === "all" ? "default" : "outline"}
-                      size="sm"
-                      className="text-xs shrink-0 h-7 px-3"
-                      onClick={() => setActiveTag("all")}
-                    >
-                      All
-                    </Button>
-                    {allTags.map((tag) => (
-                      <Button
-                        key={tag}
-                        variant={activeTag === tag ? "default" : "outline"}
-                        size="sm"
-                        className="text-xs shrink-0 h-7 px-3"
-                        onClick={() => setActiveTag(tag)}
-                      >
-                        {tag} ({tagCounts[tag]})
-                      </Button>
-                    ))}
-                  </div>
+                  <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tag</span>
+                  <Select value={activeTag} onValueChange={setActiveTag}>
+                    <SelectTrigger className="h-9 text-xs bg-background">
+                      <SelectValue placeholder="All tags" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover z-50 max-h-60">
+                      <SelectItem value="all">All</SelectItem>
+                      {allTags.map((tag) => (
+                        <SelectItem key={tag} value={tag}>
+                          {tag} ({tagCounts[tag]})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               )}
-            </>
+            </div>
           )}
         </div>
 
