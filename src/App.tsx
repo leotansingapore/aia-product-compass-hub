@@ -44,6 +44,10 @@ import KBProduct from "./pages/kb/KBProduct";
 import VideoDetail from "./pages/VideoDetail";
 import AwaitingApproval from "./pages/AwaitingApproval";
 import ManageProductVideos from "./pages/ManageProductVideos";
+import ScriptsDatabase from "./pages/ScriptsDatabase";
+import Playbooks from "./pages/Playbooks";
+import PlaybookDetail from "./pages/PlaybookDetail";
+import ScriptFlows from "./pages/ScriptFlows";
 
 // Lazy load AI Assistant page for performance optimization
 const AIAssistant = lazy(() => import("./pages/AIAssistant"));
@@ -97,6 +101,17 @@ const App = () => (
 <Route path="/product/:productSlugOrId/video/:videoId" element={<VideoDetail />} />
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
+
+{/* Scripts Database */}
+<Route path="/scripts" element={<ScriptsDatabase />} />
+<Route path="/scripts/:scriptId" element={<ScriptsDatabase />} />
+
+{/* Script Playbooks */}
+<Route path="/playbooks" element={<Playbooks />} />
+<Route path="/playbooks/:playbookId" element={<PlaybookDetail />} />
+
+{/* Script Flows */}
+<Route path="/flows" element={<ScriptFlows />} />
 
 {/* Knowledge Base */}
 <Route path="/kb" element={<KnowledgeBase />} />

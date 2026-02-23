@@ -1,0 +1,1 @@
+ALTER TABLE public.scripts ADD COLUMN target_audience text DEFAULT 'general';

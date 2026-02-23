@@ -338,6 +338,35 @@ export type Database = {
           },
         ]
       }
+      contribution_kudos: {
+        Row: {
+          contribution_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          contribution_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          contribution_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contribution_kudos_contribution_id_fkey"
+            columns: ["contribution_id"]
+            isOneToOne: false
+            referencedRelation: "script_user_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       conversation_transcripts: {
         Row: {
           confidence: number | null
@@ -451,6 +480,83 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      knowledge_chunks: {
+        Row: {
+          content: string
+          created_at: string
+          document_id: string | null
+          id: string
+          metadata: Json | null
+          source_id: string | null
+          source_type: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          document_id?: string | null
+          id?: string
+          metadata?: Json | null
+          source_id?: string | null
+          source_type?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          document_id?: string | null
+          id?: string
+          metadata?: Json | null
+          source_id?: string | null
+          source_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "knowledge_chunks_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "knowledge_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      knowledge_documents: {
+        Row: {
+          chunk_count: number | null
+          created_at: string
+          file_path: string
+          file_size: number
+          file_type: string
+          id: string
+          status: string
+          title: string
+          updated_at: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          chunk_count?: number | null
+          created_at?: string
+          file_path: string
+          file_size?: number
+          file_type: string
+          id?: string
+          status?: string
+          title: string
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          chunk_count?: number | null
+          created_at?: string
+          file_path?: string
+          file_size?: number
+          file_type?: string
+          id?: string
+          status?: string
+          title?: string
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Relationships: []
       }
       learning_progress: {
         Row: {
@@ -957,6 +1063,217 @@ export type Database = {
           user_id?: string
           video_duration_seconds?: number | null
           video_url?: string | null
+        }
+        Relationships: []
+      }
+      script_favourites: {
+        Row: {
+          created_at: string
+          id: string
+          script_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          script_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          script_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "script_favourites_script_id_fkey"
+            columns: ["script_id"]
+            isOneToOne: false
+            referencedRelation: "scripts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      script_flows: {
+        Row: {
+          created_at: string
+          created_by: string
+          description: string | null
+          edges: Json
+          id: string
+          is_template: boolean
+          nodes: Json
+          template_category: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          description?: string | null
+          edges?: Json
+          id?: string
+          is_template?: boolean
+          nodes?: Json
+          template_category?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          edges?: Json
+          id?: string
+          is_template?: boolean
+          nodes?: Json
+          template_category?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      script_playbook_items: {
+        Row: {
+          created_at: string
+          id: string
+          playbook_id: string
+          script_id: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          playbook_id: string
+          script_id: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          playbook_id?: string
+          script_id?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "script_playbook_items_playbook_id_fkey"
+            columns: ["playbook_id"]
+            isOneToOne: false
+            referencedRelation: "script_playbooks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "script_playbook_items_script_id_fkey"
+            columns: ["script_id"]
+            isOneToOne: false
+            referencedRelation: "scripts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      script_playbooks: {
+        Row: {
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      script_user_versions: {
+        Row: {
+          author_name: string
+          content: string
+          created_at: string
+          id: string
+          script_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          author_name?: string
+          content: string
+          created_at?: string
+          id?: string
+          script_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          author_name?: string
+          content?: string
+          created_at?: string
+          id?: string
+          script_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "script_user_versions_script_id_fkey"
+            columns: ["script_id"]
+            isOneToOne: false
+            referencedRelation: "scripts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scripts: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          script_role: string | null
+          sort_order: number
+          stage: string
+          tags: string[] | null
+          target_audience: string | null
+          updated_at: string
+          versions: Json
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          script_role?: string | null
+          sort_order?: number
+          stage: string
+          tags?: string[] | null
+          target_audience?: string | null
+          updated_at?: string
+          versions?: Json
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          script_role?: string | null
+          sort_order?: number
+          stage?: string
+          tags?: string[] | null
+          target_audience?: string | null
+          updated_at?: string
+          versions?: Json
         }
         Relationships: []
       }

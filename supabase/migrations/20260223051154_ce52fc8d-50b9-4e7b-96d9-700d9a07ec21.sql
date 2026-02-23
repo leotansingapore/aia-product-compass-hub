@@ -1,0 +1,10 @@
+INSERT INTO scripts (stage, category, target_audience, script_role, tags, versions, sort_order)
+VALUES (
+  'Telemarketer — Cold Leads (Multi-Version)',
+  'cold-calling',
+  'cold-lead',
+  'telemarketer',
+  ARRAY['cold-call', 'text-message', 'hospital-plan', 'free-course'],
+  '[{"author": "Version 1: Changes in Hospital Plan Rider", "content": "Hi, understand that you''re currently studying or working now?\n\nOkay, I''ll just keep this call is just for less than a minute.\n\nIts regarding the recent changes in the hospital plan rider. We may have called you previously, but I think you were quite busy.\n\nSo, its important to understand these changes as it will affect how much you can claim for any hospital bills.\n\nIs it okay if my manager calls you back later on to share with you more information?\n\nWill sometime later at 5/6pm be good?\n\nThank you so much for your time and have a great day!\n\n---\n\n**If they have no name:**\n\"By the way, how do I address you?\" → then place their name in the CRM"},{"author": "Version 2: Free Online Course", "content": "Hi, are you currently studying or working?\n\nNo worries — I''ll keep this really quick, less than a minute.\n\nMy name is Pamela from MoneyBees. We work with many young adults to help them strengthen their financial planning, especially since these things aren''t really covered in school. After speaking with a lot of people from your age group, we put together a free online course that shows simple ways to grow your money more effectively.\n\nI understand you''re busy, so I''ll send the full details to you on WhatsApp — would that be alright?\n\nOur consultant will also give you a quick call to walk you through the materials. Would [insert date/time] be good for you?\n\nGreat! As long as you gain something useful from this, that''s already a win.\n\nThank you for your time, and I hope you have a wonderful day!"}]'::jsonb,
+  21
+);
