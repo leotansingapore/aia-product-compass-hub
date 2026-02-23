@@ -168,17 +168,18 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3 sm:space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold">Personal Notes</h3>
+        <h3 className="text-sm sm:text-lg font-semibold">Personal Notes</h3>
         <Button 
           onClick={() => setShowNewNoteEditor(true)}
           size="sm"
-          className="gap-2"
+          className="gap-1.5 text-xs sm:text-sm h-7 sm:h-9"
         >
-          <Plus className="w-4 h-4" />
-          New Note
+          <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <span className="hidden sm:inline">New Note</span>
+          <span className="sm:hidden">Add</span>
         </Button>
       </div>
 
@@ -227,22 +228,23 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
 
       {/* Notes list */}
       {notes.length === 0 ? (
-        <Card className="p-6 text-center">
-          <div className="w-16 h-16 mx-auto mb-4 bg-muted rounded-full flex items-center justify-center">
-            <Plus className="w-8 h-8 text-muted-foreground" />
+        <Card className="p-3 sm:p-6 text-center">
+          <div className="w-10 h-10 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-4 bg-muted rounded-full flex items-center justify-center">
+            <Plus className="w-5 h-5 sm:w-8 sm:h-8 text-muted-foreground" />
           </div>
-          <p className="text-muted-foreground mb-4 text-lg">
+          <p className="text-muted-foreground mb-1 sm:mb-4 text-sm sm:text-lg">
             No personal notes yet
           </p>
-          <p className="text-sm text-muted-foreground mb-6">
+          <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-6 hidden sm:block">
             Capture your thoughts, insights, and important information about this product.
           </p>
           {!showNewNoteEditor && (
             <Button 
               onClick={() => setShowNewNoteEditor(true)}
-              className="gap-2"
+              className="gap-2 text-xs sm:text-sm h-8 sm:h-10"
+              size="sm"
             >
-              <Plus className="w-4 h-4" />
+              <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               Create Your First Note
             </Button>
           )}
