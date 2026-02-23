@@ -1218,19 +1218,36 @@ function HighlightedTitle({ text, query }: { text: string; query: string }) {
   );
 }
 
-function getSearchSnippet(versions: ScriptVersion[], query: string, maxLen = 120): string | null {
+function getSearchSnippet(versions: ScriptVersion[], query: string): string | null {
   if (!query || query.trim().length < 2) return null;
   const q = query.toLowerCase();
   for (const v of versions) {
     // Strip markdown syntax for a cleaner snippet
-    const plain = v.content.replace(/[#*_~`>\[\]()!|]/g, '').replace(/\n+/g, ' ').replace(/\s+/g, ' ');
+    const plain = v.content.replace(/[#*_~`>\[\]()!|]/g, '').replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim();
     const idx = plain.toLowerCase().indexOf(q);
-    if (idx !== -1) {
-      const start = Math.max(0, idx - 40);
-      const end = Math.min(plain.length, idx + query.length + 80);
-      const snippet = (start > 0 ? '…' : '') + plain.slice(start, end).trim() + (end < plain.length ? '…' : '');
-      return snippet;
+    if (idx === -1) continue;
+
+    // Find word boundaries around the match for a natural-feeling snippet
+    // Go back ~6 words before the match
+    let start = idx;
+    let wordsBefore = 0;
+    while (start > 0 && wordsBefore < 6) {
+      start--;
+      if (plain[start] === ' ') wordsBefore++;
     }
+    if (start > 0) start++; // skip the space we landed on
+
+    // Go forward ~6 words after the match
+    let end = idx + query.length;
+    let wordsAfter = 0;
+    while (end < plain.length && wordsAfter < 6) {
+      end++;
+      if (plain[end] === ' ') wordsAfter++;
+    }
+
+    const before = start > 0 ? '…' : '';
+    const after = end < plain.length ? '…' : '';
+    return before + plain.slice(start, end).trim() + after;
   }
   return null;
 }
