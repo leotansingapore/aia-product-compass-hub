@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -15,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2 } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
@@ -1474,6 +1476,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
 }
 
 export default function ScriptsDatabase() {
+  const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();
   const getInitialValue = (paramKey: string, storageKey: string, defaultVal: string) => {
     const fromUrl = searchParams.get(paramKey);
@@ -1877,126 +1880,218 @@ export default function ScriptsDatabase() {
 
         {/* Filters */}
         <div className="mb-4 sm:mb-6 space-y-2 sm:space-y-3">
-          {/* Category filter */}
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <Filter className="h-3.5 w-3.5 text-muted-foreground" />
-              <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
-              {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all") && (
-                <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground ml-auto" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); }}>
-                  <X className="h-3 w-3 mr-0.5" /> Clear
-                </Button>
+          {/* Clear all button */}
+          {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all") && (
+            <div className="flex justify-end">
+              <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); }}>
+                <X className="h-3 w-3 mr-0.5" /> Clear all filters
+              </Button>
+            </div>
+          )}
+
+          {isMobile ? (
+            /* ===== MOBILE: Compact dropdown selects ===== */
+            <div className="grid grid-cols-2 gap-2">
+              {/* Category dropdown */}
+              <div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">
+                  <Filter className="h-3 w-3 inline mr-1" />Category
+                </span>
+                <Select value={activeCategory} onValueChange={setActiveCategory}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All categories" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All ({counts.all})</SelectItem>
+                    {activeCategoriesWithData.map((key) => (
+                      <SelectItem key={key} value={key}>
+                        {categoryLabels[key].label} ({counts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Audience dropdown */}
+              <div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
+                <Select value={activeAudience} onValueChange={setActiveAudience}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All audiences" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All</SelectItem>
+                    {Object.entries(audienceLabels).filter(([key]) =>
+                      scriptsData.some(s => s.target_audience === key)
+                    ).map(([key, label]) => (
+                      <SelectItem key={key} value={key}>
+                        {label} ({audienceCounts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Role dropdown */}
+              <div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
+                <Select value={activeRole} onValueChange={setActiveRole}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All roles" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All</SelectItem>
+                    {Object.entries(roleLabels).filter(([key]) =>
+                      scriptsData.some(s => (s.script_role || 'consultant') === key)
+                    ).map(([key, label]) => (
+                      <SelectItem key={key} value={key}>
+                        {label} ({roleCounts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Tags dropdown */}
+              {allTags.length > 0 && (
+                <div>
+                  <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tag</span>
+                  <Select value={activeTag} onValueChange={setActiveTag}>
+                    <SelectTrigger className="h-9 text-xs bg-background">
+                      <SelectValue placeholder="All tags" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover z-50 max-h-60">
+                      <SelectItem value="all">All</SelectItem>
+                      {allTags.map((tag) => (
+                        <SelectItem key={tag} value={tag}>
+                          {tag} ({tagCounts[tag]})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               )}
             </div>
-            <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-              <Button
-                variant={activeCategory === "all" ? "default" : "outline"}
-                size="sm"
-                className="text-[11px] sm:text-xs shrink-0 h-7 sm:h-8 px-2 sm:px-3"
-                onClick={() => setActiveCategory("all")}
-              >
-                All ({counts.all})
-              </Button>
-              {activeCategoriesWithData.map((key) => {
-                const cat = categoryLabels[key];
-                const Icon = cat.icon;
-                return (
+          ) : (
+            /* ===== DESKTOP: Horizontal pill buttons ===== */
+            <>
+              {/* Category filter */}
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <Filter className="h-3.5 w-3.5 text-muted-foreground" />
+                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
+                </div>
+                <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
                   <Button
-                    key={key}
-                    variant={activeCategory === key ? "default" : "outline"}
+                    variant={activeCategory === "all" ? "default" : "outline"}
                     size="sm"
-                    className="text-[11px] sm:text-xs shrink-0 h-7 sm:h-8 gap-1 px-2 sm:px-3"
-                    onClick={() => setActiveCategory(key)}
+                    className="text-xs shrink-0 h-8 px-3"
+                    onClick={() => setActiveCategory("all")}
                   >
-                    <Icon className="h-3 w-3" /> <span className="hidden xs:inline">{cat.label}</span><span className="xs:hidden">{cat.label.split(' ')[0]}</span> ({counts[key]})
+                    All ({counts.all})
                   </Button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Target audience filter */}
-          <div>
-            <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
-            <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-              <Button
-                variant={activeAudience === "all" ? "default" : "outline"}
-                size="sm"
-                className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                onClick={() => setActiveAudience("all")}
-              >
-                All
-              </Button>
-              {Object.entries(audienceLabels).filter(([key]) => {
-                return scriptsData.some(s => s.target_audience === key);
-              }).map(([key, label]) => (
-                <Button
-                  key={key}
-                  variant={activeAudience === key ? "default" : "outline"}
-                  size="sm"
-                  className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                  onClick={() => setActiveAudience(key)}
-                >
-                  {label} ({audienceCounts[key]})
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          {/* Role filter */}
-          <div>
-            <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
-            <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-              <Button
-                variant={activeRole === "all" ? "default" : "outline"}
-                size="sm"
-                className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                onClick={() => setActiveRole("all")}
-              >
-                All
-              </Button>
-              {Object.entries(roleLabels).filter(([key]) => {
-                return scriptsData.some(s => (s.script_role || 'consultant') === key);
-              }).map(([key, label]) => (
-                <Button
-                  key={key}
-                  variant={activeRole === key ? "default" : "outline"}
-                  size="sm"
-                  className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                  onClick={() => setActiveRole(key)}
-                >
-                  {label} ({roleCounts[key]})
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          {/* Tags filter */}
-          {allTags.length > 0 && (
-            <div>
-              <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tags</span>
-              <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-                <Button
-                  variant={activeTag === "all" ? "default" : "outline"}
-                  size="sm"
-                  className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                  onClick={() => setActiveTag("all")}
-                >
-                  All
-                </Button>
-                {allTags.map((tag) => (
-                  <Button
-                    key={tag}
-                    variant={activeTag === tag ? "default" : "outline"}
-                    size="sm"
-                    className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                    onClick={() => setActiveTag(tag)}
-                  >
-                    {tag} ({tagCounts[tag]})
-                  </Button>
-                ))}
+                  {activeCategoriesWithData.map((key) => {
+                    const cat = categoryLabels[key];
+                    const Icon = cat.icon;
+                    return (
+                      <Button
+                        key={key}
+                        variant={activeCategory === key ? "default" : "outline"}
+                        size="sm"
+                        className="text-xs shrink-0 h-8 gap-1 px-3"
+                        onClick={() => setActiveCategory(key)}
+                      >
+                        <Icon className="h-3 w-3" /> {cat.label} ({counts[key]})
+                      </Button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+
+              {/* Target audience filter */}
+              <div>
+                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
+                <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
+                  <Button
+                    variant={activeAudience === "all" ? "default" : "outline"}
+                    size="sm"
+                    className="text-xs shrink-0 h-7 px-3"
+                    onClick={() => setActiveAudience("all")}
+                  >
+                    All
+                  </Button>
+                  {Object.entries(audienceLabels).filter(([key]) => {
+                    return scriptsData.some(s => s.target_audience === key);
+                  }).map(([key, label]) => (
+                    <Button
+                      key={key}
+                      variant={activeAudience === key ? "default" : "outline"}
+                      size="sm"
+                      className="text-xs shrink-0 h-7 px-3"
+                      onClick={() => setActiveAudience(key)}
+                    >
+                      {label} ({audienceCounts[key]})
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Role filter */}
+              <div>
+                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
+                <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
+                  <Button
+                    variant={activeRole === "all" ? "default" : "outline"}
+                    size="sm"
+                    className="text-xs shrink-0 h-7 px-3"
+                    onClick={() => setActiveRole("all")}
+                  >
+                    All
+                  </Button>
+                  {Object.entries(roleLabels).filter(([key]) => {
+                    return scriptsData.some(s => (s.script_role || 'consultant') === key);
+                  }).map(([key, label]) => (
+                    <Button
+                      key={key}
+                      variant={activeRole === key ? "default" : "outline"}
+                      size="sm"
+                      className="text-xs shrink-0 h-7 px-3"
+                      onClick={() => setActiveRole(key)}
+                    >
+                      {label} ({roleCounts[key]})
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tags filter */}
+              {allTags.length > 0 && (
+                <div>
+                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tags</span>
+                  <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
+                    <Button
+                      variant={activeTag === "all" ? "default" : "outline"}
+                      size="sm"
+                      className="text-xs shrink-0 h-7 px-3"
+                      onClick={() => setActiveTag("all")}
+                    >
+                      All
+                    </Button>
+                    {allTags.map((tag) => (
+                      <Button
+                        key={tag}
+                        variant={activeTag === tag ? "default" : "outline"}
+                        size="sm"
+                        className="text-xs shrink-0 h-7 px-3"
+                        onClick={() => setActiveTag(tag)}
+                      >
+                        {tag} ({tagCounts[tag]})
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
 
