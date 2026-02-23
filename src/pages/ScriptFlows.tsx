@@ -10,13 +10,14 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
-import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Circle, Diamond, Zap, Square, FileText, Save, Undo2 } from 'lucide-react';
+import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Circle, Diamond, Zap, Square, FileText, Save, Undo2, Sparkles } from 'lucide-react';
 import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
 import { useScripts } from '@/hooks/useScripts';
 import { FlowCanvas } from '@/components/flows/FlowCanvas';
 import { NodeEditorDialog } from '@/components/flows/NodeEditorDialog';
 import { EdgeEditorDialog } from '@/components/flows/EdgeEditorDialog';
 import { FLOW_TEMPLATES } from '@/utils/flowTemplates';
+import { AIFlowWizard } from '@/components/flows/AIFlowWizard';
 import { toast } from 'sonner';
 
 const NODE_TYPE_OPTIONS: { type: FlowNode['type']; label: string; icon: React.ReactNode; desc: string }[] = [
@@ -26,22 +27,28 @@ const NODE_TYPE_OPTIONS: { type: FlowNode['type']; label: string; icon: React.Re
   { type: 'end', label: 'End', icon: <Square className="h-4 w-4" />, desc: 'End of the flow' },
 ];
 
-function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDelete, userId }: {
+function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDelete, userId, onOpenAIWizard }: {
   flows: ReturnType<typeof useScriptFlows>['flows'];
   onSelect: (id: string) => void;
   onCreateNew: () => void;
   onCreateFromTemplate: (templateIndex: number) => void;
   onDelete: (id: string) => void;
   userId?: string;
+  onOpenAIWizard: () => void;
 }) {
   return (
     <div className="space-y-8">
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">My Flows</h2>
-          <Button onClick={onCreateNew} size="sm" className="gap-1.5">
-            <Plus className="h-4 w-4" /> New Flow
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button onClick={onOpenAIWizard} size="sm" variant="outline" className="gap-1.5">
+              <Sparkles className="h-4 w-4" /> AI Builder
+            </Button>
+            <Button onClick={onCreateNew} size="sm" className="gap-1.5">
+              <Plus className="h-4 w-4" /> New Flow
+            </Button>
+          </div>
         </div>
         {flows.filter(f => !f.is_template).length === 0 ? (
           <Card className="border-dashed">
@@ -126,6 +133,7 @@ export default function ScriptFlows() {
   const [newDesc, setNewDesc] = useState('');
   const [hasUnsaved, setHasUnsaved] = useState(false);
   const [addNodeOpen, setAddNodeOpen] = useState(false);
+  const [showAIWizard, setShowAIWizard] = useState(false);
 
   const openFlow = useCallback((id: string) => {
     const flow = flows.find(f => f.id === id);
@@ -174,6 +182,23 @@ export default function ScriptFlows() {
       setLocalEdges([]);
       setFlowTitle(newTitle);
       setFlowDescription(newDesc);
+      setHasUnsaved(false);
+    }
+  };
+
+  const handleAIFlowGenerated = async (data: { title: string; description: string; nodes: any[]; edges: any[] }) => {
+    const result = await createFlow.mutateAsync({
+      title: data.title,
+      description: data.description,
+      nodes: data.nodes,
+      edges: data.edges,
+    });
+    if (result) {
+      setActiveFlowId((result as any).id);
+      setLocalNodes([...data.nodes]);
+      setLocalEdges([...data.edges]);
+      setFlowTitle(data.title);
+      setFlowDescription(data.description || '');
       setHasUnsaved(false);
     }
   };
@@ -413,6 +438,7 @@ export default function ScriptFlows() {
         <FlowListView
           flows={flows} onSelect={openFlow} onCreateNew={() => setShowNewDialog(true)}
           onCreateFromTemplate={createFromTemplate} onDelete={id => deleteFlow.mutate(id)} userId={userId}
+          onOpenAIWizard={() => setShowAIWizard(true)}
         />
       )}
 
@@ -435,6 +461,12 @@ export default function ScriptFlows() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <AIFlowWizard
+        open={showAIWizard}
+        onClose={() => setShowAIWizard(false)}
+        onFlowGenerated={handleAIFlowGenerated}
+      />
     </PageLayout>
   );
 }

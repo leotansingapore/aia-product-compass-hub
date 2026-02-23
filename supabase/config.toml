@@ -40,3 +40,6 @@ verify_jwt = false
 
 [functions.seed-scripts]
 verify_jwt = false
+
+[functions.generate-flow]
+verify_jwt = false
