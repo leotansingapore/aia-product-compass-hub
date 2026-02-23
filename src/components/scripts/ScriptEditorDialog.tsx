@@ -326,12 +326,9 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                 {versions.map((v, i) => (
                   <div key={i} className="border rounded-lg p-3 space-y-2 bg-muted/30">
                     <div className="flex items-center gap-2">
-                      <Input
-                        value={v.author}
-                        onChange={e => updateVersion(i, "author", e.target.value)}
-                        placeholder="Author / Version name"
-                        className="flex-1"
-                      />
+                      <div className="flex-1 text-sm text-muted-foreground">
+                        By: {v.author || userName || "You"}
+                      </div>
                       {versions.length > 1 && (
                         <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive" onClick={() => removeVersion(i)}>
                           <Trash2 className="h-4 w-4" />
