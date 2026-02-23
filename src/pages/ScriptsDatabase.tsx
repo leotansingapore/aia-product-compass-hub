@@ -1287,91 +1287,92 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     <Collapsible open={open} onOpenChange={handleToggle}>
       <Card className={`overflow-hidden ${isOpenByUrl ? "ring-2 ring-primary/50" : ""}`}>
         <CollapsibleTrigger asChild>
-          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 min-w-0">
-                <cat.icon className="h-5 w-5 text-muted-foreground shrink-0" />
-                <div className="min-w-0">
-                  <CardTitle className="text-base truncate"><HighlightedTitle text={script.stage} query={searchQuery} /></CardTitle>
-                  <div className="flex items-center gap-1.5 mt-1 flex-wrap">
-                    <Badge variant="secondary" className={`text-[10px] ${cat.color}`}>
-                      {cat.label}
+          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6">
+            <div className="flex items-start sm:items-center gap-2 sm:gap-3">
+              <cat.icon className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground shrink-0 mt-0.5 sm:mt-0" />
+              <div className="min-w-0 flex-1">
+                <div className="flex items-start justify-between gap-2">
+                  <CardTitle className="text-sm sm:text-base leading-snug"><HighlightedTitle text={script.stage} query={searchQuery} /></CardTitle>
+                  <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform shrink-0 mt-0.5 ${open ? "rotate-180" : ""}`} />
+                </div>
+                <div className="flex items-center gap-1 sm:gap-1.5 mt-1.5 flex-wrap">
+                  <Badge variant="secondary" className={`text-[10px] ${cat.color}`}>
+                    {cat.label}
+                  </Badge>
+                  {script.target_audience && script.target_audience !== "general" && (
+                    <Badge variant="outline" className="text-[10px]">
+                      {audienceLabels[script.target_audience] || script.target_audience}
                     </Badge>
-                    {script.target_audience && script.target_audience !== "general" && (
-                      <Badge variant="outline" className="text-[10px]">
-                        {audienceLabels[script.target_audience] || script.target_audience}
-                      </Badge>
-                    )}
-                    {script.script_role && script.script_role !== "consultant" && (
-                      <Badge variant="outline" className="text-[10px] border-dashed">
-                        {roleLabels[script.script_role] || script.script_role}
-                      </Badge>
-                    )}
-                    {script.tags && script.tags.length > 0 && script.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-[10px] bg-accent/30">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  {/* Search snippet preview when collapsed */}
-                  {!open && snippet && (
-                    <p className="text-xs text-muted-foreground mt-1.5 line-clamp-2">
-                      <HighlightedTitle text={snippet} query={searchQuery} />
-                    </p>
+                  )}
+                  {script.script_role && script.script_role !== "consultant" && (
+                    <Badge variant="outline" className="text-[10px] border-dashed">
+                      {roleLabels[script.script_role] || script.script_role}
+                    </Badge>
+                  )}
+                  {script.tags && script.tags.length > 0 && script.tags.map((tag) => (
+                    <Badge key={tag} variant="outline" className="text-[10px] bg-accent/30">
+                      {tag}
+                    </Badge>
+                  ))}
+                  <Badge variant="outline" className="text-[10px]">
+                    {script.versions.length}v
+                  </Badge>
+                </div>
+                {/* Search snippet preview when collapsed */}
+                {!open && snippet && (
+                  <p className="text-xs text-muted-foreground mt-1.5 line-clamp-2">
+                    <HighlightedTitle text={snippet} query={searchQuery} />
+                  </p>
+                )}
+                {/* Mobile-friendly action row */}
+                <div className="flex items-center gap-1 mt-2 -ml-1" onClick={(e) => e.stopPropagation()}>
+                  {onToggleFavourite && (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 sm:h-7 sm:w-7"
+                      onClick={(e) => { e.stopPropagation(); onToggleFavourite(); }}
+                      title={isFavourite ? "Remove from favourites" : "Add to favourites"}
+                    >
+                      <Heart className={`h-4 w-4 sm:h-3.5 sm:w-3.5 ${isFavourite ? 'fill-red-500 text-red-500' : ''}`} />
+                    </Button>
+                  )}
+                  {myPlaybooks && myPlaybooks.length > 0 && onAddToPlaybook && (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="outline" size="sm" className="h-8 sm:h-7 gap-1.5 text-xs font-medium" onClick={(e) => e.stopPropagation()}>
+                          <Plus className="h-3 w-3" /> Playbook
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="start" onClick={(e) => e.stopPropagation()}>
+                        {myPlaybooks.map(pb => (
+                          <DropdownMenuItem key={pb.id} onClick={() => onAddToPlaybook(pb.id, script.id)}>
+                            {pb.title}
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  )}
+                  {isAdmin && (
+                    <>
+                      <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); onEdit(); }} title="Edit script">
+                        <Pencil className="h-3.5 w-3.5" />
+                      </Button>
+                      <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
+                        <Trash2 className="h-3.5 w-3.5" />
+                      </Button>
+                    </>
                   )}
                 </div>
-              </div>
-              <div className="flex items-center gap-1.5 shrink-0 ml-2">
-                {onToggleFavourite && (
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-7 w-7"
-                    onClick={(e) => { e.stopPropagation(); onToggleFavourite(); }}
-                    title={isFavourite ? "Remove from favourites" : "Add to favourites"}
-                  >
-                    <Heart className={`h-3.5 w-3.5 ${isFavourite ? 'fill-red-500 text-red-500' : ''}`} />
-                  </Button>
-                )}
-                {myPlaybooks && myPlaybooks.length > 0 && onAddToPlaybook && (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm" className="h-7 gap-1.5 text-xs font-medium" onClick={(e) => e.stopPropagation()}>
-                        <Plus className="h-3 w-3" /> Playbook
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
-                      {myPlaybooks.map(pb => (
-                        <DropdownMenuItem key={pb.id} onClick={() => onAddToPlaybook(pb.id, script.id)}>
-                          {pb.title}
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                )}
-                {isAdmin && (
-                  <>
-                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={(e) => { e.stopPropagation(); onEdit(); }} title="Edit script">
-                      <Pencil className="h-3.5 w-3.5" />
-                    </Button>
-                    <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
-                      <Trash2 className="h-3.5 w-3.5" />
-                    </Button>
-                  </>
-                )}
-                <Badge variant="outline" className="text-[10px]">
-                  {script.versions.length} version{script.versions.length > 1 ? "s" : ""}
-                </Badge>
-                <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`} />
               </div>
             </div>
           </CardHeader>
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <CardContent className="pt-0 pb-4">
+          <CardContent className="pt-0 pb-4 px-3 sm:px-6">
             {script.versions.length > 1 ? (
               <Tabs defaultValue="0">
-                <TabsList className="mb-3 flex-wrap h-auto gap-1">
+                <TabsList className="mb-3 flex-wrap h-auto gap-1 w-full justify-start">
                   {script.versions.map((v, i) => (
                     <TabsTrigger key={i} value={String(i)} className="text-xs">
                       {v.author}
@@ -1383,7 +1384,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     <div className="flex justify-end mb-2">
                       <CopyButton text={v.content} />
                     </div>
-                     <div className="bg-muted/50 rounded-lg p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none">
+                     <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
                       <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
                     </div>
                   </TabsContent>
@@ -1395,7 +1396,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   <span className="text-xs text-muted-foreground font-medium">{script.versions[0]?.author}</span>
                   <CopyButton text={script.versions[0]?.content || ""} />
                 </div>
-                <div className="bg-muted/50 rounded-lg p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none">
+                <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
                   <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
                 </div>
               </>
@@ -1748,15 +1749,15 @@ export default function ScriptsDatabase() {
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Scripts Database" }]}
       />
 
-      <div className="mx-auto px-4 sm:px-6 py-4 sm:py-8 max-w-4xl">
+      <div className="mx-auto px-3 sm:px-6 py-3 sm:py-8 max-w-4xl">
         {/* Search + Add button */}
-        <div className="mb-6 flex gap-3 items-start">
+        <div className="mb-4 sm:mb-6 flex gap-2 sm:gap-3 items-start">
           <div className="flex-1 relative" ref={searchRef}>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 type="text"
-                placeholder="Search by title, content, keyword, or author..."
+                placeholder="Search scripts..."
                 value={searchInput}
                 onChange={(e) => {
                   setSearchInput(e.target.value);
@@ -1767,7 +1768,7 @@ export default function ScriptsDatabase() {
                 onFocus={() => setShowSuggestions(searchInput.length >= 2)}
                 onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                 onKeyDown={handleSearchKeyDown}
-                className="pl-10 pr-10 h-10 md:h-12 text-sm md:text-base border-2 focus:border-primary transition-colors"
+                className="pl-10 pr-10 h-10 text-sm border-2 focus:border-primary transition-colors"
               />
               {searchInput && (
                 <button
@@ -1798,30 +1799,30 @@ export default function ScriptsDatabase() {
             )}
           </div>
           {isAdmin && (
-            <Button onClick={() => { setEditingScript(null); setEditorOpen(true); }} className="gap-1.5 shrink-0">
-              <Plus className="h-4 w-4" /> Add Script
+            <Button onClick={() => { setEditingScript(null); setEditorOpen(true); }} size="sm" className="gap-1.5 shrink-0 h-10">
+              <Plus className="h-4 w-4" /> <span className="hidden sm:inline">Add Script</span>
             </Button>
           )}
         </div>
 
         {/* Filters */}
-        <div className="mb-6 space-y-3">
-          {/* Category filter - horizontal scrollable bar */}
+        <div className="mb-4 sm:mb-6 space-y-2 sm:space-y-3">
+          {/* Category filter */}
           <div>
-            <div className="flex items-center gap-2 mb-1.5">
+            <div className="flex items-center gap-2 mb-1">
               <Filter className="h-3.5 w-3.5 text-muted-foreground" />
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
+              <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
               {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all") && (
                 <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground ml-auto" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); }}>
-                  <X className="h-3 w-3 mr-0.5" /> Clear filters
+                  <X className="h-3 w-3 mr-0.5" /> Clear
                 </Button>
               )}
             </div>
-            <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+            <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
               <Button
                 variant={activeCategory === "all" ? "default" : "outline"}
                 size="sm"
-                className="text-xs shrink-0 h-8"
+                className="text-[11px] sm:text-xs shrink-0 h-7 sm:h-8 px-2 sm:px-3"
                 onClick={() => setActiveCategory("all")}
               >
                 All ({counts.all})
@@ -1834,10 +1835,10 @@ export default function ScriptsDatabase() {
                     key={key}
                     variant={activeCategory === key ? "default" : "outline"}
                     size="sm"
-                    className="text-xs shrink-0 h-8 gap-1"
+                    className="text-[11px] sm:text-xs shrink-0 h-7 sm:h-8 gap-1 px-2 sm:px-3"
                     onClick={() => setActiveCategory(key)}
                   >
-                    <Icon className="h-3 w-3" /> {cat.label} ({counts[key]})
+                    <Icon className="h-3 w-3" /> <span className="hidden xs:inline">{cat.label}</span><span className="xs:hidden">{cat.label.split(' ')[0]}</span> ({counts[key]})
                   </Button>
                 );
               })}
@@ -1846,25 +1847,24 @@ export default function ScriptsDatabase() {
 
           {/* Target audience filter */}
           <div>
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1.5 block">Target Audience</span>
-            <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+            <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
+            <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
               <Button
                 variant={activeAudience === "all" ? "default" : "outline"}
                 size="sm"
-                className="text-xs shrink-0 h-7"
+                className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
                 onClick={() => setActiveAudience("all")}
               >
                 All
               </Button>
               {Object.entries(audienceLabels).filter(([key]) => {
-                // Show if it has scripts in the full dataset (not just current filter)
                 return scriptsData.some(s => s.target_audience === key);
               }).map(([key, label]) => (
                 <Button
                   key={key}
                   variant={activeAudience === key ? "default" : "outline"}
                   size="sm"
-                  className="text-xs shrink-0 h-7"
+                  className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
                   onClick={() => setActiveAudience(key)}
                 >
                   {label} ({audienceCounts[key]})
@@ -1875,12 +1875,12 @@ export default function ScriptsDatabase() {
 
           {/* Role filter */}
           <div>
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1.5 block">Role</span>
-            <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+            <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
+            <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
               <Button
                 variant={activeRole === "all" ? "default" : "outline"}
                 size="sm"
-                className="text-xs shrink-0 h-7"
+                className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
                 onClick={() => setActiveRole("all")}
               >
                 All
@@ -1892,7 +1892,7 @@ export default function ScriptsDatabase() {
                   key={key}
                   variant={activeRole === key ? "default" : "outline"}
                   size="sm"
-                  className="text-xs shrink-0 h-7"
+                  className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
                   onClick={() => setActiveRole(key)}
                 >
                   {label} ({roleCounts[key]})
@@ -1904,12 +1904,12 @@ export default function ScriptsDatabase() {
           {/* Tags filter */}
           {allTags.length > 0 && (
             <div>
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1.5 block">Tags</span>
-              <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+              <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tags</span>
+              <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
                 <Button
                   variant={activeTag === "all" ? "default" : "outline"}
                   size="sm"
-                  className="text-xs shrink-0 h-7"
+                  className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
                   onClick={() => setActiveTag("all")}
                 >
                   All
@@ -1919,7 +1919,7 @@ export default function ScriptsDatabase() {
                     key={tag}
                     variant={activeTag === tag ? "default" : "outline"}
                     size="sm"
-                    className="text-xs shrink-0 h-7"
+                    className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
                     onClick={() => setActiveTag(tag)}
                   >
                     {tag} ({tagCounts[tag]})
