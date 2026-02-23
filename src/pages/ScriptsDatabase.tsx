@@ -30,7 +30,7 @@ import { useScriptFavourites } from "@/hooks/useScriptFavourites";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
 
-type CategoryKey = "cold-calling" | "warm-market" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips" | "post-meeting";
+type CategoryKey = "cold-calling" | "warm-market" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips";
 
 const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; color: string }> = {
   "cold-calling": { label: "Cold Calling", icon: Phone, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
@@ -39,9 +39,33 @@ const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; c
   "ad-campaign": { label: "Ad Campaign / Lead Gen", icon: Megaphone, color: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300" },
   "referral": { label: "Referral Scripts", icon: UserPlus, color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300" },
   "confirmation": { label: "Appointment Confirmation", icon: CalendarCheck, color: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300" },
-  "post-meeting": { label: "Post-Meeting", icon: Users, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
   "faq": { label: "FAQ / Objections", icon: HelpCircle, color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
   "tips": { label: "Tips & Best Practices", icon: Lightbulb, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
+};
+
+// Sub-type labels for Follow-Up grouping
+const followUpSubTypeLabels: Record<string, { label: string; icon: string; description: string }> = {
+  "initial-text": { label: "Initial Contact", icon: "📨", description: "First texts after lead opt-in" },
+  "post-call": { label: "Post-Call Texts", icon: "📲", description: "Messages sent after a phone call" },
+  "callback": { label: "Callback Scripts", icon: "📞", description: "Actual phone call scripts" },
+  "reminder-sequence": { label: "Reminder Sequences", icon: "🔔", description: "Drip / nudge follow-ups" },
+  "post-meeting": { label: "Post-Meeting", icon: "🤝", description: "After consultation resources & referrals" },
+  "closing": { label: "Closing Scripts", icon: "🎯", description: "End-of-funnel & rescheduling" },
+  "other": { label: "Other Follow-Ups", icon: "💬", description: "General follow-up messages" },
+};
+
+// Standard audience sort order
+const audienceSortOrder: Record<string, number> = {
+  "nsf": 1,
+  "young-adult": 2,
+  "working-adult": 3,
+  "pre-retiree": 4,
+  "parent": 5,
+  "cold-lead": 6,
+  "recruitment": 7,
+  "general": 8,
+  "hnw": 9,
+  "referral": 10,
 };
 
 const audienceLabels: Record<string, string> = {
