@@ -11,17 +11,48 @@ serve(async (req) => {
 
   try {
     const body = await req.json();
-    const { scripts, mode } = body;
+    const { scripts, mode, targetId, newVersion } = body;
+
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // Mode: append-version — add a version to an existing script
+    if (mode === "append-version" && targetId && newVersion) {
+      const { data: existing, error: fetchErr } = await supabase
+        .from("scripts")
+        .select("versions")
+        .eq("id", targetId)
+        .single();
+      if (fetchErr || !existing) {
+        return new Response(JSON.stringify({ error: fetchErr?.message || "Script not found" }), {
+          status: 404,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const versions = Array.isArray(existing.versions) ? existing.versions : [];
+      versions.push(newVersion);
+      const { error: updateErr } = await supabase
+        .from("scripts")
+        .update({ versions, updated_at: new Date().toISOString() })
+        .eq("id", targetId);
+      if (updateErr) {
+        return new Response(JSON.stringify({ error: updateErr.message }), {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      return new Response(JSON.stringify({ message: "Version appended", scriptId: targetId, totalVersions: versions.length }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     if (!scripts || !Array.isArray(scripts) || scripts.length === 0) {
       return new Response(JSON.stringify({ error: "No scripts provided" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseKey);
 
     // If mode is "add", skip the existing data check and just insert
     if (mode !== "add") {
