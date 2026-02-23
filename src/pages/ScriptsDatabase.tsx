@@ -1689,8 +1689,6 @@ export default function ScriptsDatabase() {
     if (activeTag !== "all") params.set("tag", activeTag);
     setSearchParams(params, { replace: true });
   }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
-  const navigate = useNavigate();
-  const { scriptId } = useParams();
   
   const { scripts: dbScripts, loading, refetch } = useScripts();
   const { createScript, updateScript, deleteScript, isAdmin } = useScriptsMutations();
