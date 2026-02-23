@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, LogOut, Home } from "lucide-react";
+import { Menu, X, LogOut, Home, Bookmark, GraduationCap, MessageCircle, User, HelpCircle, Users, TrendingUp, FileText, BookOpen, GitBranch } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
@@ -17,10 +17,21 @@ export function MobileDrawer() {
   const { isAdmin } = useAdmin();
   const { categories, loading: categoriesLoading } = useCategories();
 
+  const mainNavItems = [
+    { name: "Dashboard", href: "/", icon: Home },
+    { name: "Bookmarks", href: "/bookmarks", icon: Bookmark },
+    { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap },
+    { name: "Roleplay Training", href: "/roleplay", icon: MessageCircle },
+    { name: "My Account", href: "/my-account", icon: User },
+  ];
+
   const resourceItems = [
-    { name: "How to Use Portal", href: "/how-to-use" },
-    { name: "Search by Client Profile", href: "/search-by-profile" },
-    { name: "Roleplay Training", href: "/roleplay" },
+    { name: "How to Use Portal", href: "/how-to-use", icon: HelpCircle },
+    { name: "Search by Client Profile", href: "/search-by-profile", icon: Users },
+    { name: "Sales Tools & Objection Handling", href: "/product/sales-tools-objections", icon: TrendingUp },
+    { name: "Scripts Database", href: "/scripts", icon: FileText },
+    { name: "Script Playbooks", href: "/playbooks", icon: BookOpen },
+    { name: "Script Flows", href: "/flows", icon: GitBranch },
   ];
 
   const handleLinkClick = () => {
@@ -48,16 +59,31 @@ export function MobileDrawer() {
                 Main
               </h3>
               <div className="space-y-1">
-                <button
-                  onClick={() => {
-                    navigate("/", { replace: true });
-                    handleLinkClick();
-                  }}
-                  className="flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted text-muted-foreground w-full text-left"
-                >
-                  <Home className="h-4 w-4" />
-                  <span>Dashboard</span>
-                </button>
+                {mainNavItems.map((item) => (
+                  <NavLink
+                    key={item.name}
+                    to={item.href}
+                    onClick={(e) => {
+                      if (item.href === "/") {
+                        e.preventDefault();
+                        navigate("/", { replace: true });
+                      }
+                      handleLinkClick();
+                    }}
+                    className={({ isActive }) =>
+                      cn(
+                        "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
+                        "hover:bg-muted",
+                        isActive
+                          ? "bg-muted text-primary font-medium"
+                          : "text-muted-foreground"
+                      )
+                    }
+                  >
+                    <item.icon className="h-4 w-4 shrink-0" />
+                    <span>{item.name}</span>
+                  </NavLink>
+                ))}
               </div>
             </div>
 
@@ -125,7 +151,8 @@ export function MobileDrawer() {
                       )
                     }
                   >
-                    {item.name}
+                    <item.icon className="h-4 w-4 shrink-0" />
+                    <span>{item.name}</span>
                   </NavLink>
                 ))}
               </div>
