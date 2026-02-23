@@ -88,6 +88,10 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   const [pasteContent, setPasteContent] = useState("");
   const [isClassifying, setIsClassifying] = useState(false);
 
+  // Duplicate detection state
+  const [similarScripts, setSimilarScripts] = useState<SimilarScript[]>([]);
+  const [isCheckingDuplicates, setIsCheckingDuplicates] = useState(false);
+
   // Review/edit step state
   const [stage, setStage] = useState("");
   const [category, setCategory] = useState("cold-calling");
