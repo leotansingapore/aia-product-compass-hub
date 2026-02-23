@@ -493,6 +493,11 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
         <DialogFooter className="flex-row justify-between sm:justify-between">
           <div>
             {step === "review" && !isEditing && (
+              <Button variant="ghost" size="sm" onClick={() => setStep(similarScripts.length > 0 ? "duplicates" : "paste")}>
+                ← Back
+              </Button>
+            )}
+            {step === "duplicates" && (
               <Button variant="ghost" size="sm" onClick={() => setStep("paste")}>
                 ← Back
               </Button>
@@ -507,6 +512,10 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                 ) : (
                   <><Sparkles className="h-4 w-4" /> Classify & Continue</>
                 )}
+              </Button>
+            ) : step === "duplicates" ? (
+              <Button onClick={() => setStep("review")} variant="secondary" className="gap-1.5">
+                Add Anyway <ArrowRight className="h-3.5 w-3.5" />
               </Button>
             ) : (
               <Button onClick={handleSubmit} disabled={saving || !stage.trim()}>
