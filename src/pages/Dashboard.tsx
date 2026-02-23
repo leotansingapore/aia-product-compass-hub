@@ -57,7 +57,7 @@ const Dashboard = memo(() => {
       </div>
 
       {/* Main Content */}
-      <div className="mx-auto px-1 sm:px-4 md:px-6 py-4 md:py-8 space-y-8">
+      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 space-y-4 sm:space-y-6 md:space-y-8">
 
         {hasQuery ? (
           <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">

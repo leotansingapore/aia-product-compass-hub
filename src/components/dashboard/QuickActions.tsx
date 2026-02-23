@@ -28,7 +28,7 @@ export function QuickActions() {
     <>
       <div className="space-y-3">
         <h3 className="text-base font-semibold text-foreground">Quick Actions</h3>
-        <div className="grid grid-cols-4 sm:grid-cols-8 gap-3">
+        <div className="grid grid-cols-4 sm:grid-cols-8 gap-2 sm:gap-3">
           {shortcuts.map((item) => (
             <button
               key={item.title}

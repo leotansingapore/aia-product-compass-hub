@@ -78,16 +78,16 @@ export function ProductCategories() {
         <span className="text-xs text-muted-foreground">{categories.length} categories</span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
         {categories.map((category) => (
           <button
             key={category.id}
             onClick={() => navigate(`/category/${getCategorySlugFromId(category.id)}`)}
-            className="group text-left flex items-center gap-4 rounded-xl border border-border bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200 p-4"
+            className="group text-left flex items-center gap-3 sm:gap-4 rounded-xl border border-border bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200 p-3 sm:p-4"
           >
             {/* Icon */}
-            <div className={`shrink-0 h-11 w-11 rounded-xl ${category.lightBg} flex items-center justify-center group-hover:scale-105 transition-transform duration-200`}>
-              <category.icon className={`h-5 w-5 ${category.iconColor}`} />
+            <div className={`shrink-0 h-9 w-9 sm:h-11 sm:w-11 rounded-lg sm:rounded-xl ${category.lightBg} flex items-center justify-center group-hover:scale-105 transition-transform duration-200`}>
+              <category.icon className={`h-4 w-4 sm:h-5 sm:w-5 ${category.iconColor}`} />
             </div>
 
             {/* Text */}
