@@ -2,6 +2,7 @@ import { memo } from "react";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { SearchHero } from "@/components/dashboard/SearchHero";
 import { QuickActions } from "@/components/dashboard/QuickActions";
+import { WhatsNewSection } from "@/components/dashboard/WhatsNewSection";
 import { ProductCategories } from "@/components/dashboard/ProductCategories";
 import { SearchFilters } from "@/components/dashboard/SearchFilters";
 import { SearchResults } from "@/components/dashboard/SearchResults";
