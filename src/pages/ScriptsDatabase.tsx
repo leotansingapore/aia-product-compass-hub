@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { ScriptsChatWidget } from "@/components/scripts/ScriptsChatWidget";
 import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
@@ -1196,7 +1197,28 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void }) {
+function highlightText(text: string, query: string): string {
+  if (!query || query.trim().length < 2) return text;
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark class="bg-yellow-200 dark:bg-yellow-700/60 rounded-sm px-0.5">$1</mark>');
+}
+
+function HighlightedTitle({ text, query }: { text: string; query: string }) {
+  if (!query || query.trim().length < 2) return <>{text}</>;
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const parts = text.split(new RegExp(`(${escaped})`, 'gi'));
+  return (
+    <>
+      {parts.map((part, i) =>
+        part.toLowerCase() === query.toLowerCase()
+          ? <mark key={i} className="bg-yellow-200 dark:bg-yellow-700/60 rounded-sm px-0.5">{part}</mark>
+          : part
+      )}
+    </>
+  );
+}
+
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "" }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
@@ -1223,7 +1245,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle }
               <div className="flex items-center gap-3 min-w-0">
                 <cat.icon className="h-5 w-5 text-muted-foreground shrink-0" />
                 <div className="min-w-0">
-                  <CardTitle className="text-base truncate">{script.stage}</CardTitle>
+                  <CardTitle className="text-base truncate"><HighlightedTitle text={script.stage} query={searchQuery} /></CardTitle>
                   <div className="flex items-center gap-1.5 mt-1 flex-wrap">
                     <Badge variant="secondary" className={`text-[10px] ${cat.color}`}>
                       {cat.label}
@@ -1271,8 +1293,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle }
                     <div className="flex justify-end mb-2">
                       <CopyButton text={v.content} />
                     </div>
-                    <div className="bg-muted/50 rounded-lg p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{v.content}</ReactMarkdown>
+                     <div className="bg-muted/50 rounded-lg p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
                     </div>
                   </TabsContent>
                 ))}
@@ -1284,7 +1306,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle }
                   <CopyButton text={script.versions[0]?.content || ""} />
                 </div>
                 <div className="bg-muted/50 rounded-lg p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{script.versions[0]?.content || ""}</ReactMarkdown>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
                 </div>
               </>
             )}
@@ -1675,6 +1697,7 @@ export default function ScriptsDatabase() {
                   script={script}
                   isAdmin={isAdmin}
                   isOpenByUrl={scriptId === script.id}
+                  searchQuery={searchQuery}
                   onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                   onDelete={() => setDeleteTarget(script)}
                   onToggle={(open) => {
