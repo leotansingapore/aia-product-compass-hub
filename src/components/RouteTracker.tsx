@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
 
 const ROUTE_STORAGE_KEY = 'lastVisitedRoute';
 
@@ -8,16 +9,17 @@ const EXCLUDED_ROUTES = ['/auth', '/force-password', '/reset-password', '/awaiti
 
 /**
  * Tracks the current route in localStorage so the app can restore it after a refresh.
- * On first mount, if the user lands on "/" but was previously on another page, redirect there.
+ * Only tracks/restores for authenticated users to prevent stale redirects after sign-out.
  */
 export function RouteTracker() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { user, loading } = useSimplifiedAuth();
 
-  // On mount: restore last route if we landed on "/"
+  // On mount: restore last route if authenticated user lands on "/"
   useEffect(() => {
+    if (loading || !user) return;
     const currentPath = window.location.pathname;
-    // Only restore if we're at the root and there's a stored route
     if (currentPath === '/' || currentPath === '') {
       try {
         const stored = localStorage.getItem(ROUTE_STORAGE_KEY);
@@ -28,10 +30,11 @@ export function RouteTracker() {
         // localStorage unavailable
       }
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [loading, user]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Save current route on every navigation
+  // Save current route on every navigation (only for authenticated users)
   useEffect(() => {
+    if (!user) return;
     const fullPath = location.pathname + location.search;
     if (!EXCLUDED_ROUTES.some(r => location.pathname.startsWith(r))) {
       try {
@@ -40,7 +43,7 @@ export function RouteTracker() {
         // localStorage unavailable
       }
     }
-  }, [location.pathname, location.search]);
+  }, [location.pathname, location.search, user]);
 
   return null;
 }

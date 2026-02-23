@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -15,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2 } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
@@ -28,7 +30,7 @@ import { useScriptFavourites } from "@/hooks/useScriptFavourites";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
 
-type CategoryKey = "cold-calling" | "warm-market" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips" | "post-meeting";
+type CategoryKey = "cold-calling" | "warm-market" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips";
 
 const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; color: string }> = {
   "cold-calling": { label: "Cold Calling", icon: Phone, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
@@ -37,9 +39,33 @@ const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; c
   "ad-campaign": { label: "Ad Campaign / Lead Gen", icon: Megaphone, color: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300" },
   "referral": { label: "Referral Scripts", icon: UserPlus, color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300" },
   "confirmation": { label: "Appointment Confirmation", icon: CalendarCheck, color: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300" },
-  "post-meeting": { label: "Post-Meeting", icon: Users, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
   "faq": { label: "FAQ / Objections", icon: HelpCircle, color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
   "tips": { label: "Tips & Best Practices", icon: Lightbulb, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
+};
+
+// Sub-type labels for Follow-Up grouping
+const followUpSubTypeLabels: Record<string, { label: string; icon: string; description: string }> = {
+  "initial-text": { label: "Initial Contact", icon: "📨", description: "First texts after lead opt-in" },
+  "post-call": { label: "Post-Call Texts", icon: "📲", description: "Messages sent after a phone call" },
+  "callback": { label: "Callback Scripts", icon: "📞", description: "Actual phone call scripts" },
+  "reminder-sequence": { label: "Reminder Sequences", icon: "🔔", description: "Drip / nudge follow-ups" },
+  "post-meeting": { label: "Post-Meeting", icon: "🤝", description: "After consultation resources & referrals" },
+  "closing": { label: "Closing Scripts", icon: "🎯", description: "End-of-funnel & rescheduling" },
+  "other": { label: "Other Follow-Ups", icon: "💬", description: "General follow-up messages" },
+};
+
+// Standard audience sort order
+const audienceSortOrder: Record<string, number> = {
+  "nsf": 1,
+  "young-adult": 2,
+  "working-adult": 3,
+  "pre-retiree": 4,
+  "parent": 5,
+  "cold-lead": 6,
+  "recruitment": 7,
+  "general": 8,
+  "hnw": 9,
+  "referral": 10,
 };
 
 const audienceLabels: Record<string, string> = {
@@ -1265,8 +1291,34 @@ function getSearchSnippet(versions: ScriptVersion[], query: string): string | nu
   }
   return null;
 }
+function MobileVersionSelector({ versions, searchQuery }: { versions: ScriptVersion[]; searchQuery: string }) {
+  const [activeVersion, setActiveVersion] = useState("0");
+  const v = versions[parseInt(activeVersion)] || versions[0];
+  return (
+    <div>
+      <div className="flex items-center justify-between gap-2 mb-3">
+        <Select value={activeVersion} onValueChange={setActiveVersion}>
+          <SelectTrigger className="h-8 text-xs bg-background flex-1">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent className="bg-popover z-50">
+            {versions.map((ver, i) => (
+              <SelectItem key={i} value={String(i)} className="text-xs">
+                {ver.author}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <CopyButton text={v.content} />
+      </div>
+      <div className="bg-muted/50 rounded-lg p-3 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
+      </div>
+    </div>
+  );
+}
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void }) {
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
@@ -1311,11 +1363,25 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       {roleLabels[script.script_role] || script.script_role}
                     </Badge>
                   )}
-                  {script.tags && script.tags.length > 0 && script.tags.map((tag) => (
-                    <Badge key={tag} variant="outline" className="text-[10px] bg-accent/30">
-                      {tag}
-                    </Badge>
-                  ))}
+                  {script.tags && script.tags.length > 0 && (() => {
+                    const maxTags = isMobile ? 2 : script.tags.length;
+                    const visible = script.tags.slice(0, maxTags);
+                    const remaining = script.tags.length - maxTags;
+                    return (
+                      <>
+                        {visible.map((tag) => (
+                          <Badge key={tag} variant="outline" className="text-[10px] bg-accent/30">
+                            {tag}
+                          </Badge>
+                        ))}
+                        {remaining > 0 && (
+                          <Badge variant="outline" className="text-[10px] text-muted-foreground">
+                            +{remaining}
+                          </Badge>
+                        )}
+                      </>
+                    );
+                  })()}
                   <Badge variant="outline" className="text-[10px]">
                     {script.versions.length}v
                   </Badge>
@@ -1373,25 +1439,30 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
         <CollapsibleContent>
           <CardContent className="pt-0 pb-4 px-3 sm:px-6">
             {script.versions.length > 1 ? (
-              <Tabs defaultValue="0">
-                <TabsList className="mb-3 flex-wrap h-auto gap-1 w-full justify-start">
+              isMobile ? (
+                /* Mobile: dropdown version selector */
+                <MobileVersionSelector versions={script.versions} searchQuery={searchQuery} />
+              ) : (
+                <Tabs defaultValue="0">
+                  <TabsList className="mb-3 flex-wrap h-auto gap-1 w-full justify-start">
+                    {script.versions.map((v, i) => (
+                      <TabsTrigger key={i} value={String(i)} className="text-xs">
+                        {v.author}
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
                   {script.versions.map((v, i) => (
-                    <TabsTrigger key={i} value={String(i)} className="text-xs">
-                      {v.author}
-                    </TabsTrigger>
+                    <TabsContent key={i} value={String(i)}>
+                      <div className="flex justify-end mb-2">
+                        <CopyButton text={v.content} />
+                      </div>
+                       <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
+                      </div>
+                    </TabsContent>
                   ))}
-                </TabsList>
-                {script.versions.map((v, i) => (
-                  <TabsContent key={i} value={String(i)}>
-                    <div className="flex justify-end mb-2">
-                      <CopyButton text={v.content} />
-                    </div>
-                     <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
-                    </div>
-                  </TabsContent>
-                ))}
-              </Tabs>
+                </Tabs>
+              )
             ) : (
               <>
                 <div className="flex justify-between items-center mb-2">
@@ -1473,7 +1544,76 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   );
 }
 
+function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate }: {
+  subType: string;
+  config: { label: string; icon: string; description: string };
+  scripts: ScriptEntry[];
+  isAdmin: boolean;
+  scriptId?: string;
+  searchQuery: string;
+  myPlaybooks?: { id: string; title: string }[];
+  handleAddToPlaybook: (playbookId: string, scriptId: string) => void;
+  user: any;
+  favouriteIds: Set<string>;
+  toggleFavourite: { mutate: (id: string) => void };
+  isMobile: boolean;
+  setEditingScript: (s: ScriptEntry) => void;
+  setEditorOpen: (open: boolean) => void;
+  setDeleteTarget: (s: ScriptEntry) => void;
+  navigate: (path: string, opts?: { replace?: boolean }) => void;
+}) {
+  const [open, setOpen] = useState(true);
+  return (
+    <Collapsible open={open} onOpenChange={setOpen}>
+      <div className="border rounded-lg overflow-hidden">
+        <CollapsibleTrigger asChild>
+          <button className="w-full flex items-center justify-between px-4 py-3 bg-muted/40 hover:bg-muted/60 transition-colors text-left">
+            <div className="flex items-center gap-2.5">
+              <span className="text-base">{config.icon}</span>
+              <div>
+                <span className="font-semibold text-sm text-foreground">{config.label}</span>
+                <span className="text-xs text-muted-foreground ml-2">{config.description}</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <Badge variant="secondary" className="text-xs font-medium">{scripts.length}</Badge>
+              <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+            </div>
+          </button>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <div className="space-y-2 p-2">
+            {scripts.map((script) => (
+              <ScriptCard
+                key={script.id}
+                script={script}
+                isAdmin={isAdmin}
+                isOpenByUrl={scriptId === script.id}
+                searchQuery={searchQuery}
+                myPlaybooks={myPlaybooks}
+                onAddToPlaybook={handleAddToPlaybook}
+                isAuthenticated={!!user}
+                userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
+                isFavourite={favouriteIds.has(script.id)}
+                onToggleFavourite={() => toggleFavourite.mutate(script.id)}
+                isMobile={isMobile}
+                onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
+                onDelete={() => setDeleteTarget(script)}
+                onToggle={(open) => {
+                  if (open) navigate(`/scripts/${script.id}`, { replace: true });
+                  else if (scriptId === script.id) navigate('/scripts', { replace: true });
+                }}
+              />
+            ))}
+          </div>
+        </CollapsibleContent>
+      </div>
+    </Collapsible>
+  );
+}
+
 export default function ScriptsDatabase() {
+  const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();
   const getInitialValue = (paramKey: string, storageKey: string, defaultVal: string) => {
     const fromUrl = searchParams.get(paramKey);
@@ -1590,6 +1730,32 @@ export default function ScriptsDatabase() {
   // Use DB scripts if available, otherwise fallback
   const scriptsData = dbScripts.length > 0 ? dbScripts : FALLBACK_SCRIPTS;
 
+  // Fuzzy match: checks if all characters of query appear in order in target
+  const fuzzyMatch = useCallback((target: string, query: string): { match: boolean; score: number } => {
+    const t = target.toLowerCase();
+    const q = query.toLowerCase();
+    if (t.includes(q)) return { match: true, score: 2 };
+    let qi = 0;
+    let consecutiveBonus = 0;
+    let lastMatchIndex = -2;
+    for (let ti = 0; ti < t.length && qi < q.length; ti++) {
+      if (t[ti] === q[qi]) {
+        if (ti === lastMatchIndex + 1) consecutiveBonus += 0.1;
+        lastMatchIndex = ti;
+        qi++;
+      }
+    }
+    if (qi === q.length) {
+      const score = 1 + consecutiveBonus - (t.length - q.length) * 0.01;
+      return { match: true, score: Math.max(0.1, score) };
+    }
+    return { match: false, score: 0 };
+  }, []);
+
+  const fuzzyIncludes = useCallback((target: string, query: string): boolean => {
+    return fuzzyMatch(target, query).match;
+  }, [fuzzyMatch]);
+
   const filteredScripts = useMemo(() => {
     let result = scriptsData;
     if (activeCategory !== "all") {
@@ -1606,38 +1772,51 @@ export default function ScriptsDatabase() {
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      result = result.filter(
-        (s) =>
-          s.stage.toLowerCase().includes(q) ||
-          s.versions.some((v) => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q))
-      );
+      result = result.filter((s) => {
+        if (fuzzyIncludes(s.stage, q)) return true;
+        if (s.versions.some((v) => fuzzyIncludes(v.content, q) || fuzzyIncludes(v.author, q))) return true;
+        if ((s.tags || []).some((t: string) => fuzzyIncludes(t, q))) return true;
+        const catLabel = categoryLabels[s.category as CategoryKey]?.label || s.category;
+        if (fuzzyIncludes(s.category, q) || fuzzyIncludes(catLabel, q)) return true;
+        const audLabel = audienceLabels[s.target_audience || ""] || s.target_audience || "";
+        if (fuzzyIncludes(audLabel, q)) return true;
+        const rlLabel = roleLabels[s.script_role || "consultant"] || s.script_role || "";
+        if (fuzzyIncludes(rlLabel, q)) return true;
+        return false;
+      });
     }
     return result;
-  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, scriptsData]);
+  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, scriptsData, fuzzyIncludes]);
 
   // Script search suggestions
   const suggestions = useMemo(() => {
     if (!searchInput.trim() || searchInput.length < 2) return [];
     const q = searchInput.toLowerCase();
     const titleMatches = scriptsData
-      .filter(s => s.stage.toLowerCase().includes(q))
-      .map(s => ({ type: "script" as const, label: s.stage, id: s.id }));
+      .map(s => ({ s, fm: fuzzyMatch(s.stage, q) }))
+      .filter(({ fm }) => fm.match)
+      .sort((a, b) => b.fm.score - a.fm.score)
+      .map(({ s }) => ({ type: "script" as const, label: s.stage, id: s.id }));
     const categoryMatches = Object.entries(categoryLabels)
-      .filter(([key, val]) => val.label.toLowerCase().includes(q))
+      .filter(([, val]) => fuzzyIncludes(val.label, q))
       .map(([key, val]) => ({ type: "category" as const, label: val.label, id: key }));
     const audienceMatches = Object.entries(audienceLabels)
-      .filter(([key, val]) => val.toLowerCase().includes(q))
+      .filter(([, val]) => fuzzyIncludes(val, q))
       .map(([key, val]) => ({ type: "audience" as const, label: val, id: key }));
     const roleMatches = Object.entries(roleLabels)
-      .filter(([key, val]) => val.toLowerCase().includes(q))
+      .filter(([, val]) => fuzzyIncludes(val, q))
       .map(([key, val]) => ({ type: "role" as const, label: val, id: key }));
     const authorMatches = scriptsData
       .flatMap(s => s.versions.map(v => ({ author: v.author, scriptId: s.id, scriptTitle: s.stage })))
-      .filter(v => v.author.toLowerCase().includes(q))
+      .filter(v => fuzzyIncludes(v.author, q))
       .slice(0, 3)
       .map(v => ({ type: "version" as const, label: v.author, id: v.scriptId }));
-    return [...categoryMatches, ...audienceMatches, ...roleMatches, ...titleMatches.slice(0, 5), ...authorMatches].slice(0, 8);
-  }, [searchInput, scriptsData]);
+    const tagMatches = Array.from(new Set(scriptsData.flatMap(s => s.tags || [])))
+      .filter(t => fuzzyIncludes(t, q))
+      .slice(0, 3)
+      .map(t => ({ type: "script" as const, label: `🏷️ ${t}`, id: t }));
+    return [...categoryMatches, ...audienceMatches, ...roleMatches, ...tagMatches, ...titleMatches.slice(0, 5), ...authorMatches].slice(0, 8);
+  }, [searchInput, scriptsData, fuzzyMatch, fuzzyIncludes]);
 
   const handleSearchSelect = useCallback((suggestion: typeof suggestions[0]) => {
     if (suggestion.type === "category") {
@@ -1700,12 +1879,12 @@ export default function ScriptsDatabase() {
       const q = searchQuery.toLowerCase();
       result = result.filter(
         (s) =>
-          s.stage.toLowerCase().includes(q) ||
-          s.versions.some((v) => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q))
+          fuzzyIncludes(s.stage, q) ||
+          s.versions.some((v) => fuzzyIncludes(v.content, q) || fuzzyIncludes(v.author, q))
       );
     }
     return result;
-  }, [scriptsData, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
+  }, [scriptsData, activeCategory, activeAudience, activeRole, activeTag, searchQuery, fuzzyIncludes]);
 
   const counts = useMemo(() => {
     const base = filterExcluding('category');
@@ -1784,8 +1963,8 @@ export default function ScriptsDatabase() {
       />
 
       <div className="mx-auto px-3 sm:px-6 py-3 sm:py-8 max-w-4xl">
-        {/* Tab Switcher */}
-        <div className="flex gap-1 mb-5 p-1 bg-muted/50 rounded-lg w-fit">
+        {/* Tab Switcher — sticky on mobile */}
+        <div className="flex gap-1 mb-5 p-1 bg-background/95 backdrop-blur-sm rounded-lg w-fit sticky top-0 z-30 sm:static sm:z-auto border sm:border-0">
           <Button
             variant={activeTab === "scripts" ? "default" : "ghost"}
             size="sm"
@@ -1877,125 +2056,178 @@ export default function ScriptsDatabase() {
 
         {/* Filters */}
         <div className="mb-4 sm:mb-6 space-y-2 sm:space-y-3">
-          {/* Category filter */}
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <Filter className="h-3.5 w-3.5 text-muted-foreground" />
-              <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
-              {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all") && (
-                <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground ml-auto" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); }}>
-                  <X className="h-3 w-3 mr-0.5" /> Clear
-                </Button>
+          {/* Clear all button */}
+          {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all") && (
+            <div className="flex justify-end">
+              <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); }}>
+                <X className="h-3 w-3 mr-0.5" /> Clear all filters
+              </Button>
+            </div>
+          )}
+
+          {isMobile ? (
+            /* ===== MOBILE: Compact dropdown selects ===== */
+            <div className="grid grid-cols-2 gap-2">
+              {/* Category dropdown */}
+              <div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">
+                  <Filter className="h-3 w-3 inline mr-1" />Category
+                </span>
+                <Select value={activeCategory} onValueChange={setActiveCategory}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All categories" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All ({counts.all})</SelectItem>
+                    {activeCategoriesWithData.map((key) => (
+                      <SelectItem key={key} value={key}>
+                        {categoryLabels[key].label} ({counts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Audience dropdown */}
+              <div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
+                <Select value={activeAudience} onValueChange={setActiveAudience}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All audiences" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All</SelectItem>
+                    {Object.entries(audienceLabels).filter(([key]) =>
+                      scriptsData.some(s => s.target_audience === key)
+                    ).map(([key, label]) => (
+                      <SelectItem key={key} value={key}>
+                        {label} ({audienceCounts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Role dropdown */}
+              <div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
+                <Select value={activeRole} onValueChange={setActiveRole}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All roles" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All</SelectItem>
+                    {Object.entries(roleLabels).filter(([key]) =>
+                      scriptsData.some(s => (s.script_role || 'consultant') === key)
+                    ).map(([key, label]) => (
+                      <SelectItem key={key} value={key}>
+                        {label} ({roleCounts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Tags dropdown */}
+              {allTags.length > 0 && (
+                <div>
+                  <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tag</span>
+                  <Select value={activeTag} onValueChange={setActiveTag}>
+                    <SelectTrigger className="h-9 text-xs bg-background">
+                      <SelectValue placeholder="All tags" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover z-50 max-h-60">
+                      <SelectItem value="all">All</SelectItem>
+                      {allTags.map((tag) => (
+                        <SelectItem key={tag} value={tag}>
+                          {tag} ({tagCounts[tag]})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               )}
             </div>
-            <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-              <Button
-                variant={activeCategory === "all" ? "default" : "outline"}
-                size="sm"
-                className="text-[11px] sm:text-xs shrink-0 h-7 sm:h-8 px-2 sm:px-3"
-                onClick={() => setActiveCategory("all")}
-              >
-                All ({counts.all})
-              </Button>
-              {activeCategoriesWithData.map((key) => {
-                const cat = categoryLabels[key];
-                const Icon = cat.icon;
-                return (
-                  <Button
-                    key={key}
-                    variant={activeCategory === key ? "default" : "outline"}
-                    size="sm"
-                    className="text-[11px] sm:text-xs shrink-0 h-7 sm:h-8 gap-1 px-2 sm:px-3"
-                    onClick={() => setActiveCategory(key)}
-                  >
-                    <Icon className="h-3 w-3" /> <span className="hidden xs:inline">{cat.label}</span><span className="xs:hidden">{cat.label.split(' ')[0]}</span> ({counts[key]})
-                  </Button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Target audience filter */}
-          <div>
-            <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
-            <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-              <Button
-                variant={activeAudience === "all" ? "default" : "outline"}
-                size="sm"
-                className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                onClick={() => setActiveAudience("all")}
-              >
-                All
-              </Button>
-              {Object.entries(audienceLabels).filter(([key]) => {
-                return scriptsData.some(s => s.target_audience === key);
-              }).map(([key, label]) => (
-                <Button
-                  key={key}
-                  variant={activeAudience === key ? "default" : "outline"}
-                  size="sm"
-                  className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                  onClick={() => setActiveAudience(key)}
-                >
-                  {label} ({audienceCounts[key]})
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          {/* Role filter */}
-          <div>
-            <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
-            <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-              <Button
-                variant={activeRole === "all" ? "default" : "outline"}
-                size="sm"
-                className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                onClick={() => setActiveRole("all")}
-              >
-                All
-              </Button>
-              {Object.entries(roleLabels).filter(([key]) => {
-                return scriptsData.some(s => (s.script_role || 'consultant') === key);
-              }).map(([key, label]) => (
-                <Button
-                  key={key}
-                  variant={activeRole === key ? "default" : "outline"}
-                  size="sm"
-                  className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                  onClick={() => setActiveRole(key)}
-                >
-                  {label} ({roleCounts[key]})
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          {/* Tags filter */}
-          {allTags.length > 0 && (
-            <div>
-              <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tags</span>
-              <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-                <Button
-                  variant={activeTag === "all" ? "default" : "outline"}
-                  size="sm"
-                  className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                  onClick={() => setActiveTag("all")}
-                >
-                  All
-                </Button>
-                {allTags.map((tag) => (
-                  <Button
-                    key={tag}
-                    variant={activeTag === tag ? "default" : "outline"}
-                    size="sm"
-                    className="text-[11px] sm:text-xs shrink-0 h-7 px-2 sm:px-3"
-                    onClick={() => setActiveTag(tag)}
-                  >
-                    {tag} ({tagCounts[tag]})
-                  </Button>
-                ))}
+          ) : (
+            /* ===== DESKTOP: Compact dropdown filters (same pattern as mobile) ===== */
+            <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
+              {/* Category dropdown */}
+              <div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Category</span>
+                <Select value={activeCategory} onValueChange={setActiveCategory}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All categories" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All ({counts.all})</SelectItem>
+                    {activeCategoriesWithData.map((key) => (
+                      <SelectItem key={key} value={key}>
+                        {categoryLabels[key].label} ({counts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
+
+              {/* Audience dropdown */}
+              <div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
+                <Select value={activeAudience} onValueChange={setActiveAudience}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All audiences" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All</SelectItem>
+                    {Object.entries(audienceLabels).filter(([key]) =>
+                      scriptsData.some(s => s.target_audience === key)
+                    ).map(([key, label]) => (
+                      <SelectItem key={key} value={key}>
+                        {label} ({audienceCounts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Role dropdown */}
+              <div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
+                <Select value={activeRole} onValueChange={setActiveRole}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All roles" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="all">All</SelectItem>
+                    {Object.entries(roleLabels).filter(([key]) =>
+                      scriptsData.some(s => (s.script_role || 'consultant') === key)
+                    ).map(([key, label]) => (
+                      <SelectItem key={key} value={key}>
+                        {label} ({roleCounts[key]})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Tags dropdown */}
+              {allTags.length > 0 && (
+                <div>
+                  <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tag</span>
+                  <Select value={activeTag} onValueChange={setActiveTag}>
+                    <SelectTrigger className="h-9 text-xs bg-background">
+                      <SelectValue placeholder="All tags" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover z-50 max-h-60">
+                      <SelectItem value="all">All</SelectItem>
+                      {allTags.map((tag) => (
+                        <SelectItem key={tag} value={tag}>
+                          {tag} ({tagCounts[tag]})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -2043,9 +2275,36 @@ export default function ScriptsDatabase() {
           </div>
         )}
 
-        {/* Results count */}
-        <div className="mb-3 text-xs text-muted-foreground">
-          {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
+        {/* Results count + audience flow indicator */}
+        <div className="mb-3 flex items-center justify-between gap-2 flex-wrap">
+          <div className="text-xs text-muted-foreground">
+            {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
+          </div>
+          {/* Audience flow indicator — shown when viewing a single category */}
+          {activeCategory !== "all" && (
+            <div className="flex items-center gap-1 flex-wrap">
+              {(["nsf", "young-adult", "working-adult", "pre-retiree", "parent", "recruitment", "general"] as const)
+                .filter(aud => filteredScripts.some(s => s.target_audience === aud))
+                .map((aud, idx, arr) => {
+                  const count = filteredScripts.filter(s => s.target_audience === aud).length;
+                  return (
+                    <span key={aud} className="flex items-center gap-1">
+                      <button
+                        onClick={() => setActiveAudience(aud)}
+                        className={`text-[10px] px-1.5 py-0.5 rounded-full border transition-colors ${
+                          activeAudience === aud
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-muted text-muted-foreground border-border hover:border-primary/50"
+                        }`}
+                      >
+                        {audienceLabels[aud] || aud} <span className="opacity-70">({count})</span>
+                      </button>
+                      {idx < arr.length - 1 && <span className="text-muted-foreground/40 text-[10px]">→</span>}
+                    </span>
+                  );
+                })}
+            </div>
+          )}
         </div>
 
         {/* Loading state */}
@@ -2059,30 +2318,83 @@ export default function ScriptsDatabase() {
         {!loading && (
           <div className="space-y-3">
             {filteredScripts.length > 0 ? (
-              filteredScripts.map((script) => (
-                <ScriptCard
-                  key={script.id}
-                  script={script}
-                  isAdmin={isAdmin}
-                  isOpenByUrl={scriptId === script.id}
-                  searchQuery={searchQuery}
-                  myPlaybooks={myPlaybooks}
-                  onAddToPlaybook={handleAddToPlaybook}
-                  isAuthenticated={!!user}
-                  userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
-                  isFavourite={favouriteIds.has(script.id)}
-                  onToggleFavourite={() => toggleFavourite.mutate(script.id)}
-                  onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
-                  onDelete={() => setDeleteTarget(script)}
-                  onToggle={(open) => {
-                    if (open) {
-                      navigate(`/scripts/${script.id}`, { replace: true });
-                    } else if (scriptId === script.id) {
-                      navigate('/scripts', { replace: true });
-                    }
-                  }}
-                />
-              ))
+              (() => {
+                // If viewing Follow-Up category specifically (no other category filter mixing things), show sub-grouped view
+                const isFollowUpView = activeCategory === "follow-up" || (activeCategory === "all" && filteredScripts.every(s => s.category === "follow-up"));
+                const hasFollowUpScripts = filteredScripts.some(s => s.category === "follow-up");
+                const showSubGroups = (activeCategory === "follow-up") && !searchQuery && activeAudience === "all" && activeRole === "all" && activeTag === "all";
+
+                if (showSubGroups) {
+                  // Group follow-up scripts by their stage_type tag
+                  const subTypeOrder = ["initial-text", "post-call", "callback", "reminder-sequence", "closing", "post-meeting", "other"];
+                  const grouped: Record<string, ScriptEntry[]> = {};
+                  filteredScripts.forEach(script => {
+                    const tags = script.tags || [];
+                    const subType = subTypeOrder.find(st => tags.includes(st)) || "other";
+                    if (!grouped[subType]) grouped[subType] = [];
+                    grouped[subType].push(script);
+                  });
+
+                  return (
+                    <div className="space-y-4">
+                      {subTypeOrder.filter(st => grouped[st]?.length > 0).map(subType => {
+                        const config = followUpSubTypeLabels[subType];
+                        return (
+                          <FollowUpSubGroup
+                            key={subType}
+                            subType={subType}
+                            config={config}
+                            scripts={grouped[subType]}
+                            isAdmin={isAdmin}
+                            scriptId={scriptId}
+                            searchQuery={searchQuery}
+                            myPlaybooks={myPlaybooks}
+                            handleAddToPlaybook={handleAddToPlaybook}
+                            user={user}
+                            favouriteIds={favouriteIds}
+                            toggleFavourite={toggleFavourite}
+                            isMobile={isMobile}
+                            setEditingScript={setEditingScript}
+                            setEditorOpen={setEditorOpen}
+                            setDeleteTarget={setDeleteTarget}
+                            navigate={navigate}
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                }
+
+                return (
+                  <>
+                    {filteredScripts.map((script) => (
+                      <ScriptCard
+                        key={script.id}
+                        script={script}
+                        isAdmin={isAdmin}
+                        isOpenByUrl={scriptId === script.id}
+                        searchQuery={searchQuery}
+                        myPlaybooks={myPlaybooks}
+                        onAddToPlaybook={handleAddToPlaybook}
+                        isAuthenticated={!!user}
+                        userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
+                        isFavourite={favouriteIds.has(script.id)}
+                        onToggleFavourite={() => toggleFavourite.mutate(script.id)}
+                        isMobile={isMobile}
+                        onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
+                        onDelete={() => setDeleteTarget(script)}
+                        onToggle={(open) => {
+                          if (open) {
+                            navigate(`/scripts/${script.id}`, { replace: true });
+                          } else if (scriptId === script.id) {
+                            navigate('/scripts', { replace: true });
+                          }
+                        }}
+                      />
+                    ))}
+                  </>
+                );
+              })()
             ) : (
               <div className="text-center py-12 text-muted-foreground">
                 <MessageSquare className="h-10 w-10 mx-auto mb-3 opacity-40" />
@@ -2130,7 +2442,7 @@ export default function ScriptsDatabase() {
       </AlertDialog>
 
       {/* Floating AI Chat Widget */}
-      <ScriptsChatWidget />
+      <ScriptsChatWidget initialMode={activeTab === "objections" ? "objections" : "scripts"} />
     </PageLayout>
   );
 }

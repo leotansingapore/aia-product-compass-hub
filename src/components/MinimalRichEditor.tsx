@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
-import { Bold, Italic, Link, Type } from "lucide-react";
+import { Bold, Italic, Link, Type, List } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface MinimalRichEditorProps {
@@ -61,6 +61,11 @@ export function MinimalRichEditor({
     if (!html) return '';
     
     return html
+      // Convert list items to markdown bullets
+      .replace(/<li>(.*?)<\/li>/g, '- $1\n')
+      // Remove list wrappers
+      .replace(/<\/?ul[^>]*>/g, '')
+      .replace(/<\/?ol[^>]*>/g, '')
       // Convert links back to URLs
       .replace(/<a[^>]*href="([^"]*)"[^>]*>.*?<\/a>/g, '$1')
       // Convert <strong> to **bold**
@@ -186,8 +191,18 @@ export function MinimalRichEditor({
           <Button
             variant="ghost"
             size="sm"
+            onClick={() => execCommand('insertUnorderedList')}
+            className="h-8 w-8 p-0"
+            title="Bullet list"
+          >
+            <List className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => execCommand('formatBlock', 'h3')}
             className="h-8 w-8 p-0"
+            title="Heading"
           >
             <Type className="h-4 w-4" />
           </Button>

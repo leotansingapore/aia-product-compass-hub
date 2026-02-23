@@ -93,7 +93,9 @@ export function DragDropDashboard({ onCategoryClick }: DragDropDashboardProps) {
     product.training_videos && Array.isArray(product.training_videos) && product.training_videos.length > 0
   ).slice(0, 3);
 
-  const [sections, setSections] = useState<DashboardSection[]>([
+  const STORAGE_KEY = 'dashboard_layout';
+
+  const defaultSections: DashboardSection[] = [
     {
       id: 'analytics',
       title: 'Learning Analytics',
@@ -139,7 +141,39 @@ export function DragDropDashboard({ onCategoryClick }: DragDropDashboardProps) {
       visible: true,
       required: false
     }
-  ]);
+  ];
+
+  // Restore layout from localStorage
+  const getInitialSections = (): DashboardSection[] => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const layout: { id: string; visible: boolean }[] = JSON.parse(stored);
+        // Reorder defaultSections based on stored order, preserving component refs
+        const ordered: DashboardSection[] = [];
+        for (const item of layout) {
+          const found = defaultSections.find(s => s.id === item.id);
+          if (found) ordered.push({ ...found, visible: item.visible });
+        }
+        // Add any new sections not in stored layout
+        for (const s of defaultSections) {
+          if (!ordered.find(o => o.id === s.id)) ordered.push(s);
+        }
+        return ordered;
+      }
+    } catch {}
+    return defaultSections;
+  };
+
+  const [sections, setSections] = useState<DashboardSection[]>(getInitialSections);
+
+  // Persist layout changes
+  const persistLayout = useCallback((updated: DashboardSection[]) => {
+    try {
+      const layout = updated.map(s => ({ id: s.id, visible: s.visible }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(layout));
+    } catch {}
+  }, []);
 
   const [customizeMode, setCustomizeMode] = useState(false);
 
@@ -159,6 +193,7 @@ export function DragDropDashboard({ onCategoryClick }: DragDropDashboardProps) {
         const newIndex = items.findIndex(item => item.id === over.id);
         
         const newOrder = arrayMove(items, oldIndex, newIndex);
+        persistLayout(newOrder);
         
         toast({
           title: "Dashboard Updated",
@@ -168,20 +203,24 @@ export function DragDropDashboard({ onCategoryClick }: DragDropDashboardProps) {
         return newOrder;
       });
     }
-  }, [toast]);
+  }, [toast, persistLayout]);
 
   const handleToggleVisibility = useCallback((id: string) => {
-    setSections(prev => prev.map(section => 
-      section.id === id 
-        ? { ...section, visible: !section.visible }
-        : section
-    ));
+    setSections(prev => {
+      const updated = prev.map(section => 
+        section.id === id 
+          ? { ...section, visible: !section.visible }
+          : section
+      );
+      persistLayout(updated);
+      return updated;
+    });
     
     toast({
       title: "Dashboard Updated",
       description: "Section visibility has been changed.",
     });
-  }, [toast]);
+  }, [toast, persistLayout]);
 
   const visibleSections = sections.filter(section => section.visible);
 

@@ -3,11 +3,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
+import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
@@ -18,6 +18,7 @@ import { Separator } from "@/components/ui/separator";
 import { ChevronDown, Plus, Pencil, Trash2, Search, X, Filter, Loader2, MessageSquare, Shield, Send, User } from "lucide-react";
 import { useObjections, useObjectionMutations } from "@/hooks/useObjections";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { useIsMobile } from "@/hooks/use-mobile";
 import type { ObjectionEntry, ObjectionResponse } from "@/hooks/useObjections";
 
 function highlightText(text: string, query: string): React.ReactNode {
@@ -90,11 +91,14 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
                   <Badge variant="outline" className="text-[10px]">
                     {responses.length} {responses.length === 1 ? "response" : "responses"}
                   </Badge>
-                  {(entry.tags || []).map(tag => (
+                  {(entry.tags || []).slice(0, 3).map(tag => (
                     <Badge key={tag} variant="outline" className="text-[10px] font-normal">#{tag}</Badge>
                   ))}
+                  {(entry.tags || []).length > 3 && (
+                    <Badge variant="outline" className="text-[10px] font-normal text-muted-foreground">+{(entry.tags || []).length - 3}</Badge>
+                  )}
                 </div>
-                {entry.description && (
+                {entry.description && !open && !hasResponseMatch && (
                   <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{highlightText(entry.description, searchQuery)}</p>
                 )}
               </div>
@@ -151,12 +155,14 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
                 <Separator className="my-4" />
                 <div className="space-y-2">
                   <Label className="text-xs font-medium text-muted-foreground">Add your response</Label>
-                  <Textarea
-                    placeholder="Share how you handle this objection... (Markdown supported)"
-                    value={newResponse}
-                    onChange={(e) => setNewResponse(e.target.value)}
-                    className="min-h-[80px] text-sm"
-                  />
+                  <div className="border rounded-lg overflow-hidden">
+                    <MinimalRichEditor
+                      value={newResponse}
+                      onChange={setNewResponse}
+                      placeholder="Share how you handle this objection..."
+                      onSave={handleSubmit}
+                    />
+                  </div>
                   <div className="flex justify-end">
                     <Button
                       size="sm"
@@ -194,6 +200,7 @@ export function ObjectionHandlingDatabase() {
   const { entries, responses, loading, refetch } = useObjections();
   const { createEntry, updateEntry, deleteEntry, addResponse, deleteResponse, isAdmin } = useObjectionMutations();
   const { user } = useSimplifiedAuth();
+  const isMobile = useIsMobile();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
@@ -276,12 +283,19 @@ export function ObjectionHandlingDatabase() {
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      result = result.filter(e =>
-        e.title.toLowerCase().includes(q) ||
-        (e.description || "").toLowerCase().includes(q) ||
-        (e.tags || []).some(t => t.toLowerCase().includes(q)) ||
-        !!matchedResponseIdsMap[e.id]
-      );
+      result = result.filter(e => {
+        // Search title & description
+        if (e.title.toLowerCase().includes(q)) return true;
+        if ((e.description || "").toLowerCase().includes(q)) return true;
+        // Search tags
+        if ((e.tags || []).some(t => t.toLowerCase().includes(q))) return true;
+        // Search category label (e.g. "pricing", "trust")
+        const catLabel = categoryConfig[e.category]?.label || e.category;
+        if (e.category.toLowerCase().includes(q) || catLabel.toLowerCase().includes(q)) return true;
+        // Search response content & author names
+        if (matchedResponseIdsMap[e.id]) return true;
+        return false;
+      });
     }
     return result;
   }, [entries, activeCategory, searchQuery, matchedResponseIdsMap]);
@@ -334,40 +348,78 @@ export function ObjectionHandlingDatabase() {
 
       {/* Category filter */}
       <div className="mb-4 sm:mb-6">
-        <div className="flex items-center gap-2 mb-1">
-          <Filter className="h-3.5 w-3.5 text-muted-foreground" />
-          <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
-        </div>
-        <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-          <Button
-            variant={activeCategory === "all" ? "default" : "outline"}
-            size="sm"
-            className="text-[11px] sm:text-xs shrink-0 h-7 sm:h-8 px-2 sm:px-3"
-            onClick={() => setActiveCategory("all")}
-          >
-            All ({categoryCounts.all})
-          </Button>
-          {Object.entries(categoryConfig).filter(([key]) => categoryCounts[key] > 0).map(([key, config]) => (
-            <Button
-              key={key}
-              variant={activeCategory === key ? "default" : "outline"}
-              size="sm"
-              className="text-[11px] sm:text-xs shrink-0 h-7 sm:h-8 gap-1 px-2 sm:px-3"
-              onClick={() => setActiveCategory(key)}
-            >
-              {config.icon} {config.label} ({categoryCounts[key]})
-            </Button>
-          ))}
-        </div>
+        {isMobile ? (
+          /* Mobile: dropdown select */
+          <div>
+            <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 flex items-center gap-1">
+              <Filter className="h-3 w-3" /> Category
+            </span>
+            <Select value={activeCategory} onValueChange={setActiveCategory}>
+              <SelectTrigger className="h-9 text-xs bg-background">
+                <SelectValue placeholder="All categories" />
+              </SelectTrigger>
+              <SelectContent className="bg-popover z-50">
+                <SelectItem value="all">All ({categoryCounts.all})</SelectItem>
+                {Object.entries(categoryConfig).filter(([key]) => categoryCounts[key] > 0).map(([key, config]) => (
+                  <SelectItem key={key} value={key}>
+                    {config.icon} {config.label} ({categoryCounts[key]})
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        ) : (
+          /* Desktop: pill buttons */
+          <>
+            <div className="flex items-center gap-2 mb-1">
+              <Filter className="h-3.5 w-3.5 text-muted-foreground" />
+              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
+            </div>
+            <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
+              <Button
+                variant={activeCategory === "all" ? "default" : "outline"}
+                size="sm"
+                className="text-xs shrink-0 h-8 px-3"
+                onClick={() => setActiveCategory("all")}
+              >
+                All ({categoryCounts.all})
+              </Button>
+              {Object.entries(categoryConfig).filter(([key]) => categoryCounts[key] > 0).map(([key, config]) => (
+                <Button
+                  key={key}
+                  variant={activeCategory === key ? "default" : "outline"}
+                  size="sm"
+                  className="text-xs shrink-0 h-8 gap-1 px-3"
+                  onClick={() => setActiveCategory(key)}
+                >
+                  {config.icon} {config.label} ({categoryCounts[key]})
+                </Button>
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       {/* Results count */}
-      <div className="mb-3 text-xs text-muted-foreground">
-        {filteredEntries.length} objection{filteredEntries.length !== 1 ? "s" : ""} found
+      <div className="mb-3 flex items-center gap-2 flex-wrap">
+        <Badge variant="secondary" className="text-xs font-medium px-2.5 py-1">
+          {filteredEntries.length} objection{filteredEntries.length !== 1 ? "s" : ""}
+          {entries.length > 0 && filteredEntries.length !== entries.length && (
+            <span className="text-muted-foreground ml-1">of {entries.length}</span>
+          )}
+        </Badge>
         {searchQuery.trim() && (
-          <span className="ml-1">
-            for "<span className="font-medium text-foreground">{searchQuery}</span>"
-          </span>
+          <>
+            <span className="text-xs text-muted-foreground">
+              matching "<span className="font-medium text-foreground">{searchQuery}</span>"
+            </span>
+            {Object.keys(matchedResponseIdsMap).length > 0 && (
+              <Badge variant="outline" className="text-xs px-2 py-0.5">
+                <MessageSquare className="h-3 w-3 mr-1" />
+                {Object.values(matchedResponseIdsMap).reduce((sum, s) => sum + s.size, 0)} response match{Object.values(matchedResponseIdsMap).reduce((sum, s) => sum + s.size, 0) !== 1 ? "es" : ""}
+              </Badge>
+            )}
+          </>
         )}
       </div>
 
@@ -441,12 +493,13 @@ export function ObjectionHandlingDatabase() {
             </div>
             <div>
               <Label>Description (optional)</Label>
-              <Textarea
-                value={formDescription}
-                onChange={(e) => setFormDescription(e.target.value)}
-                placeholder="Brief context about this objection..."
-                className="min-h-[60px]"
-              />
+              <div className="border rounded-lg overflow-hidden">
+                <MinimalRichEditor
+                  value={formDescription}
+                  onChange={setFormDescription}
+                  placeholder="Brief context about this objection..."
+                />
+              </div>
             </div>
             <div>
               <Label>Tags (comma-separated)</Label>

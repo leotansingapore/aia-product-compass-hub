@@ -1,85 +1,78 @@
 import { useNavigate } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { 
-  BookOpen, 
-  Users, 
-  BarChart3, 
-  MessageSquare,
-  FileText,
-  GraduationCap
-} from "lucide-react";
+import { BookOpen, Users, MessageSquare, FileText, HelpCircle, GraduationCap } from "lucide-react";
 
 export function QuickActions() {
   const navigate = useNavigate();
 
-  // Debug logging to help identify visibility issues
-  console.log('[QuickActions] Rendering QuickActions component');
-
   const actions = [
     {
       title: "CMFAS Training",
-      description: "Certification modules",
+      description: "Study for your certification exams",
       icon: GraduationCap,
       href: "/cmfas-exams",
-      color: "text-white",
-      bgColor: "bg-green-600"
+      iconColor: "text-emerald-600 dark:text-emerald-400",
+      lightBg: "bg-emerald-50 dark:bg-emerald-950/30",
     },
     {
-      title: "Client Profiles",
-      description: "Search by client needs",
+      title: "Search by Client",
+      description: "Find products that match a client's profile",
       icon: Users,
       href: "/search-by-profile",
-      color: "text-white",
-      bgColor: "bg-purple-600"
+      iconColor: "text-violet-600 dark:text-violet-400",
+      lightBg: "bg-violet-50 dark:bg-violet-950/30",
     },
     {
       title: "Roleplay Practice",
-      description: "Practice sales scenarios",
+      description: "Rehearse sales conversations with AI",
       icon: MessageSquare,
       href: "/roleplay",
-      color: "text-white",
-      bgColor: "bg-orange-600"
+      iconColor: "text-orange-600 dark:text-orange-400",
+      lightBg: "bg-orange-50 dark:bg-orange-950/30",
     },
     {
       title: "My Bookmarks",
-      description: "Saved materials",
+      description: "Revisit your saved products and resources",
       icon: FileText,
       href: "/bookmarks",
-      color: "text-white",
-      bgColor: "bg-red-600"
+      iconColor: "text-rose-600 dark:text-rose-400",
+      lightBg: "bg-rose-50 dark:bg-rose-950/30",
+    },
+    {
+      title: "Scripts & Objections",
+      description: "Access curated sales scripts and rebuttals",
+      icon: BookOpen,
+      href: "/scripts",
+      iconColor: "text-blue-600 dark:text-blue-400",
+      lightBg: "bg-blue-50 dark:bg-blue-950/30",
     },
     {
       title: "How to Use",
-      description: "Portal guide",
-      icon: BarChart3,
+      description: "Learn how to navigate this portal",
+      icon: HelpCircle,
       href: "/how-to-use",
-      color: "text-white",
-      bgColor: "bg-teal-600"
-    }
+      iconColor: "text-teal-600 dark:text-teal-400",
+      lightBg: "bg-teal-50 dark:bg-teal-950/30",
+    },
   ];
 
   return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-semibold">Quick Actions</h3>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+    <div className="space-y-3">
+      <h3 className="text-base font-semibold text-foreground">Quick Actions</h3>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         {actions.map((action) => (
-          <Card
+          <button
             key={action.title}
-            className="hover:shadow-md transition-shadow cursor-pointer"
             onClick={() => navigate(action.href)}
+            className="group flex flex-col items-center text-center gap-2.5 rounded-xl border border-border bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200 p-4"
           >
-            <CardContent className="!p-6">
-              <div className="flex items-center space-x-3">
-                <div className={`p-2 rounded-lg ${action.bgColor} shadow-md`}>
-                  <action.icon className={`h-5 w-5 ${action.color}`} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-medium text-sm truncate">{action.title}</h4>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+            <div className={`h-10 w-10 rounded-xl ${action.lightBg} flex items-center justify-center group-hover:scale-105 transition-transform duration-200`}>
+              <action.icon className={`h-5 w-5 ${action.iconColor}`} />
+            </div>
+            <div>
+              <div className="font-semibold text-xs text-foreground leading-tight">{action.title}</div>
+              <div className="text-[11px] text-muted-foreground mt-0.5 leading-snug hidden sm:block">{action.description}</div>
+            </div>
+          </button>
         ))}
       </div>
     </div>
