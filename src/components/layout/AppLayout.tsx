@@ -164,7 +164,21 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
             </div>
             
             <div className="flex items-center gap-2">
-              {/* Login/Signup Button - shown when user is not logged in */}
+              {user && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => navigate('/my-account')}
+                  className="rounded-full h-8 w-8 p-0"
+                  aria-label="My Account"
+                >
+                  <Avatar className="h-8 w-8">
+                    <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
+                      {user.email?.charAt(0).toUpperCase() || "U"}
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              )}
               {!user ? (
                 <Button
                   variant="default"
