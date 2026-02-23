@@ -2,77 +2,64 @@ import { memo } from 'react';
 import { Handle, Position } from 'reactflow';
 import type { NodeProps } from 'reactflow';
 import { FileText } from 'lucide-react';
+import { getNodeColors } from '@/utils/flowColorUtils';
 import { cn } from '@/lib/utils';
 
-const handleClass = '!w-2.5 !h-2.5 !bg-primary/70 !border-2 !border-background';
-
 function ScriptNodeInner({ data, selected, isConnectable }: NodeProps) {
+  const { bg, text, handleBorder } = getNodeColors('scriptNode', data.color);
+  const opacity = data.opacity ?? 1;
+  const shadow = data.shadow !== false;
+  const borderStyle = data.borderStyle || 'solid';
+  const fontSize = data.fontSize || 14;
+
+  const handleClass = '!w-3 !h-3 !bg-white !border-2';
+
   return (
     <div
       className={cn(
         'flex flex-col items-center gap-0.5 px-4 py-2 rounded-lg border-2 min-w-[160px]',
-        'bg-primary/10 border-primary',
         'transition-all',
-        selected && 'ring-2 ring-primary ring-offset-2'
+        selected && 'ring-2 ring-primary ring-offset-2 ring-offset-background'
       )}
+      style={{
+        backgroundColor: bg,
+        borderColor: bg,
+        borderStyle,
+        opacity,
+        filter: shadow ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.15))' : undefined,
+      }}
     >
       <div className="flex items-center gap-1.5 w-full justify-center">
-        <FileText className="w-3.5 h-3.5 text-primary shrink-0" />
-        <span className="text-xs font-semibold text-foreground truncate">
+        <FileText className="w-3.5 h-3.5 shrink-0" style={{ color: text }} />
+        <span
+          className="font-semibold truncate"
+          style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
+        >
           {data.label || 'Script'}
         </span>
       </div>
 
       {data.scriptId && data.scriptName && (
-        <span className="text-[10px] text-muted-foreground truncate max-w-[140px]">
+        <span
+          className="text-[10px] truncate max-w-[140px]"
+          style={{ color: text, opacity: 0.8 }}
+        >
           {'\uD83D\uDCC4'} {data.scriptName}
         </span>
       )}
 
-      {/* Target: top */}
-      <Handle
-        type="target"
-        position={Position.Top}
-        isConnectable={isConnectable}
-        className={handleClass}
-      />
-      {/* Source: bottom */}
-      <Handle
-        type="source"
-        position={Position.Bottom}
-        isConnectable={isConnectable}
-        className={handleClass}
-      />
-      {/* Left: both source and target */}
-      <Handle
-        type="target"
-        position={Position.Left}
-        id="left-target"
-        isConnectable={isConnectable}
-        className={handleClass}
-      />
-      <Handle
-        type="source"
-        position={Position.Left}
-        id="left-source"
-        isConnectable={isConnectable}
-        className={handleClass}
-      />
-      {/* Right: both source and target */}
-      <Handle
-        type="target"
-        position={Position.Right}
-        id="right-target"
-        isConnectable={isConnectable}
-        className={handleClass}
-      />
-      <Handle
-        type="source"
-        position={Position.Right}
-        id="right-source"
-        isConnectable={isConnectable}
-        className={handleClass}
-      />
+      <Handle type="target" position={Position.Top} isConnectable={isConnectable}
+        className={handleClass} style={{ borderColor: handleBorder }} />
+      <Handle type="source" position={Position.Bottom} isConnectable={isConnectable}
+        className={handleClass} style={{ borderColor: handleBorder }} />
+      <Handle type="target" position={Position.Left} id="left-target" isConnectable={isConnectable}
+        className={handleClass} style={{ borderColor: handleBorder }} />
+      <Handle type="source" position={Position.Left} id="left-source" isConnectable={isConnectable}
+        className={handleClass} style={{ borderColor: handleBorder }} />
+      <Handle type="target" position={Position.Right} id="right-target" isConnectable={isConnectable}
+        className={handleClass} style={{ borderColor: handleBorder }} />
+      <Handle type="source" position={Position.Right} id="right-source" isConnectable={isConnectable}
+        className={handleClass} style={{ borderColor: handleBorder }} />
     </div>
   );
 }

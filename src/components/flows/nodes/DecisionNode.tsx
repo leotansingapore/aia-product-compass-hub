@@ -2,81 +2,82 @@ import { memo } from 'react';
 import { Handle, Position } from 'reactflow';
 import type { NodeProps } from 'reactflow';
 import { GitBranch } from 'lucide-react';
+import { getNodeColors } from '@/utils/flowColorUtils';
 import { cn } from '@/lib/utils';
 
-const handleClass = '!w-2.5 !h-2.5 !bg-primary/70 !border-2 !border-background';
-
 function DecisionNodeInner({ data, selected, isConnectable }: NodeProps) {
-  return (
-    <div className="relative" style={{ width: 100, height: 100 }}>
-      {/* Rotated diamond container */}
-      <div
-        className={cn(
-          'absolute inset-0 border-2 rounded-sm',
-          'bg-amber-500/15 border-amber-500',
-          'transition-all',
-          selected && 'ring-2 ring-primary ring-offset-2'
-        )}
-        style={{ transform: 'rotate(45deg)' }}
-      />
+  const { bg, text, handleBorder } = getNodeColors('decisionNode', data.color);
+  const opacity = data.opacity ?? 1;
+  const shadow = data.shadow !== false;
+  const fontSize = data.fontSize || 14;
 
-      {/* Counter-rotated content so text reads normally */}
-      <div
-        className="absolute inset-0 flex flex-col items-center justify-center gap-0.5 pointer-events-none"
+  const handleClass = '!w-3 !h-3 !bg-white !border-2';
+  const size = 110;
+  const half = size / 2;
+  const points = `${half},0 ${size},${half} ${half},${size} 0,${half}`;
+
+  return (
+    <div
+      className="relative"
+      style={{ width: size, height: size, opacity }}
+    >
+      {/* SVG diamond shape */}
+      <svg
+        width={size}
+        height={size}
+        className="absolute inset-0"
+        style={{
+          filter: shadow ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.15))' : undefined,
+        }}
       >
-        <GitBranch className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-        <span className="text-xs font-semibold text-foreground text-center leading-tight max-w-[80px] truncate">
+        <polygon
+          points={points}
+          fill={bg}
+          stroke={selected ? 'hsl(var(--primary))' : bg}
+          strokeWidth={selected ? 3 : 2}
+        />
+      </svg>
+
+      {/* Content overlay */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5 pointer-events-none">
+        <GitBranch className="w-3.5 h-3.5 shrink-0" style={{ color: text }} />
+        <span
+          className={cn(
+            'font-semibold text-center leading-tight max-w-[70px] truncate',
+          )}
+          style={{ color: text, fontSize: `${fontSize}px` }}
+        >
           {data.label || 'Decision'}
         </span>
       </div>
 
+      {/* Selection ring */}
+      {selected && (
+        <div
+          className="absolute -inset-1.5 rounded-sm ring-2 ring-primary ring-offset-2 ring-offset-background pointer-events-none"
+          style={{ transform: 'rotate(45deg)', width: size * 0.72, height: size * 0.72, top: '50%', left: '50%', marginTop: -(size * 0.72) / 2, marginLeft: -(size * 0.72) / 2 }}
+        />
+      )}
+
       {/* Handles on all 4 sides (positioned at diamond tips) */}
-      <Handle
-        type="target"
-        position={Position.Top}
-        isConnectable={isConnectable}
+      <Handle type="target" position={Position.Top} isConnectable={isConnectable}
         className={handleClass}
-        style={{ top: 0, left: '50%', transform: 'translate(-50%, -50%)' }}
-      />
-      <Handle
-        type="source"
-        position={Position.Bottom}
-        isConnectable={isConnectable}
+        style={{ top: 0, left: '50%', transform: 'translate(-50%, -50%)', borderColor: handleBorder }} />
+      <Handle type="source" position={Position.Bottom} isConnectable={isConnectable}
         className={handleClass}
-        style={{ bottom: 0, left: '50%', transform: 'translate(-50%, 50%)' }}
-      />
-      <Handle
-        type="target"
-        position={Position.Left}
-        id="left-target"
-        isConnectable={isConnectable}
+        style={{ bottom: 0, left: '50%', transform: 'translate(-50%, 50%)', borderColor: handleBorder }} />
+      <Handle type="target" position={Position.Left} id="left-target" isConnectable={isConnectable}
         className={handleClass}
-        style={{ left: 0, top: '50%', transform: 'translate(-50%, -50%)' }}
-      />
-      <Handle
-        type="source"
-        position={Position.Left}
-        id="left-source"
-        isConnectable={isConnectable}
+        style={{ left: 0, top: '50%', transform: 'translate(-50%, -50%)', borderColor: handleBorder }} />
+      <Handle type="source" position={Position.Left} id="left-source" isConnectable={isConnectable}
         className={handleClass}
-        style={{ left: 0, top: '50%', transform: 'translate(-50%, -50%)' }}
-      />
-      <Handle
-        type="target"
-        position={Position.Right}
-        id="right-target"
-        isConnectable={isConnectable}
+        style={{ left: 0, top: '50%', transform: 'translate(-50%, -50%)', borderColor: handleBorder }} />
+      <Handle type="target" position={Position.Right} id="right-target" isConnectable={isConnectable}
         className={handleClass}
-        style={{ right: 0, top: '50%', transform: 'translate(50%, -50%)' }}
-      />
-      <Handle
-        type="source"
-        position={Position.Right}
-        id="right-source"
-        isConnectable={isConnectable}
+        style={{ right: 0, top: '50%', transform: 'translate(50%, -50%)', borderColor: handleBorder }} />
+      <Handle type="source" position={Position.Right} id="right-source" isConnectable={isConnectable}
         className={handleClass}
-        style={{ right: 0, top: '50%', transform: 'translate(50%, -50%)' }}
-      />
+        style={{ right: 0, top: '50%', transform: 'translate(50%, -50%)', borderColor: handleBorder }} />
     </div>
   );
 }
