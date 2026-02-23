@@ -46,3 +46,6 @@ verify_jwt = false
 
 [functions.suggest-playbook-scripts]
 verify_jwt = false
+
+[functions.classify-script]
+verify_jwt = false
