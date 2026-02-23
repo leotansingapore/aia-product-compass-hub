@@ -316,6 +316,9 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
       // Clear permissions cache before signing out
       clearPermissionsCache();
       
+      // Clear last visited route so user doesn't get redirected back after logout
+      try { localStorage.removeItem('lastVisitedRoute'); } catch {}
+      
       const { error } = await supabase.auth.signOut();
       if (error) {
         console.error('Sign out error:', error);

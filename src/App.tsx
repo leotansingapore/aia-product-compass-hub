@@ -15,6 +15,7 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { ProtectedAdminPage } from "@/components/ProtectedAdminPage";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
+import { RouteTracker } from "@/components/RouteTracker";
 
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
@@ -68,6 +69,7 @@ const App = () => (
               <OnboardingProvider>
                 <ChecklistProvider>
                   <AppLayout>
+                  <RouteTracker />
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/auth" element={<SimplifiedAuth />} />

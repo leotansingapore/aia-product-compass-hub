@@ -1475,16 +1475,46 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
 
 export default function ScriptsDatabase() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [activeTab, setActiveTab] = useState<string>(searchParams.get("view") || "scripts");
+  const getInitialValue = (paramKey: string, storageKey: string, defaultVal: string) => {
+    const fromUrl = searchParams.get(paramKey);
+    if (fromUrl) return fromUrl;
+    try {
+      const stored = localStorage.getItem(`scripts_filter_${storageKey}`);
+      if (stored) return stored;
+    } catch {}
+    return defaultVal;
+  };
+  const [activeTab, setActiveTab] = useState<string>(getInitialValue("view", "tab", "scripts"));
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   const searchRef = useRef<HTMLDivElement>(null);
-  const [activeCategory, setActiveCategory] = useState<string>(searchParams.get("category") || "all");
-  const [activeAudience, setActiveAudience] = useState<string>(searchParams.get("audience") || "all");
-  const [activeRole, setActiveRole] = useState<string>(searchParams.get("role") || "all");
-  const [activeTag, setActiveTag] = useState<string>(searchParams.get("tag") || "all");
+  // Restore filters from URL params first, then localStorage, then default
+  const getInitialFilter = (paramKey: string, storageKey: string) => {
+    const fromUrl = searchParams.get(paramKey);
+    if (fromUrl) return fromUrl;
+    try {
+      const stored = localStorage.getItem(`scripts_filter_${storageKey}`);
+      if (stored) return stored;
+    } catch {}
+    return "all";
+  };
+  const [activeCategory, setActiveCategory] = useState<string>(getInitialFilter("category", "category"));
+  const [activeAudience, setActiveAudience] = useState<string>(getInitialFilter("audience", "audience"));
+  const [activeRole, setActiveRole] = useState<string>(getInitialFilter("role", "role"));
+  const [activeTag, setActiveTag] = useState<string>(getInitialFilter("tag", "tag"));
+
+  // Persist filters to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem('scripts_filter_tab', activeTab);
+      localStorage.setItem('scripts_filter_category', activeCategory);
+      localStorage.setItem('scripts_filter_audience', activeAudience);
+      localStorage.setItem('scripts_filter_role', activeRole);
+      localStorage.setItem('scripts_filter_tag', activeTag);
+    } catch {}
+  }, [activeTab, activeCategory, activeAudience, activeRole, activeTag]);
 
   // Sync filter state to URL search params
   useEffect(() => {
