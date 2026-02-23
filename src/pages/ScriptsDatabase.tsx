@@ -1267,8 +1267,34 @@ function getSearchSnippet(versions: ScriptVersion[], query: string): string | nu
   }
   return null;
 }
+function MobileVersionSelector({ versions, searchQuery }: { versions: ScriptVersion[]; searchQuery: string }) {
+  const [activeVersion, setActiveVersion] = useState("0");
+  const v = versions[parseInt(activeVersion)] || versions[0];
+  return (
+    <div>
+      <div className="flex items-center justify-between gap-2 mb-3">
+        <Select value={activeVersion} onValueChange={setActiveVersion}>
+          <SelectTrigger className="h-8 text-xs bg-background flex-1">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent className="bg-popover z-50">
+            {versions.map((ver, i) => (
+              <SelectItem key={i} value={String(i)} className="text-xs">
+                {ver.author}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <CopyButton text={v.content} />
+      </div>
+      <div className="bg-muted/50 rounded-lg p-3 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
+      </div>
+    </div>
+  );
+}
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void }) {
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
@@ -1375,25 +1401,30 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
         <CollapsibleContent>
           <CardContent className="pt-0 pb-4 px-3 sm:px-6">
             {script.versions.length > 1 ? (
-              <Tabs defaultValue="0">
-                <TabsList className="mb-3 flex-wrap h-auto gap-1 w-full justify-start">
+              isMobile ? (
+                /* Mobile: dropdown version selector */
+                <MobileVersionSelector versions={script.versions} searchQuery={searchQuery} />
+              ) : (
+                <Tabs defaultValue="0">
+                  <TabsList className="mb-3 flex-wrap h-auto gap-1 w-full justify-start">
+                    {script.versions.map((v, i) => (
+                      <TabsTrigger key={i} value={String(i)} className="text-xs">
+                        {v.author}
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
                   {script.versions.map((v, i) => (
-                    <TabsTrigger key={i} value={String(i)} className="text-xs">
-                      {v.author}
-                    </TabsTrigger>
+                    <TabsContent key={i} value={String(i)}>
+                      <div className="flex justify-end mb-2">
+                        <CopyButton text={v.content} />
+                      </div>
+                       <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
+                      </div>
+                    </TabsContent>
                   ))}
-                </TabsList>
-                {script.versions.map((v, i) => (
-                  <TabsContent key={i} value={String(i)}>
-                    <div className="flex justify-end mb-2">
-                      <CopyButton text={v.content} />
-                    </div>
-                     <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
-                    </div>
-                  </TabsContent>
-                ))}
-              </Tabs>
+                </Tabs>
+              )
             ) : (
               <>
                 <div className="flex justify-between items-center mb-2">
@@ -2167,6 +2198,7 @@ export default function ScriptsDatabase() {
                   userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
                   isFavourite={favouriteIds.has(script.id)}
                   onToggleFavourite={() => toggleFavourite.mutate(script.id)}
+                  isMobile={isMobile}
                   onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                   onDelete={() => setDeleteTarget(script)}
                   onToggle={(open) => {

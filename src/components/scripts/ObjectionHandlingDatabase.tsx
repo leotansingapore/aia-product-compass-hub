@@ -18,6 +18,7 @@ import { Separator } from "@/components/ui/separator";
 import { ChevronDown, Plus, Pencil, Trash2, Search, X, Filter, Loader2, MessageSquare, Shield, Send, User } from "lucide-react";
 import { useObjections, useObjectionMutations } from "@/hooks/useObjections";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { useIsMobile } from "@/hooks/use-mobile";
 import type { ObjectionEntry, ObjectionResponse } from "@/hooks/useObjections";
 
 function highlightText(text: string, query: string): React.ReactNode {
@@ -194,6 +195,7 @@ export function ObjectionHandlingDatabase() {
   const { entries, responses, loading, refetch } = useObjections();
   const { createEntry, updateEntry, deleteEntry, addResponse, deleteResponse, isAdmin } = useObjectionMutations();
   const { user } = useSimplifiedAuth();
+  const isMobile = useIsMobile();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
@@ -334,31 +336,56 @@ export function ObjectionHandlingDatabase() {
 
       {/* Category filter */}
       <div className="mb-4 sm:mb-6">
-        <div className="flex items-center gap-2 mb-1">
-          <Filter className="h-3.5 w-3.5 text-muted-foreground" />
-          <span className="text-[11px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
-        </div>
-        <div className="flex gap-1 sm:gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
-          <Button
-            variant={activeCategory === "all" ? "default" : "outline"}
-            size="sm"
-            className="text-[11px] sm:text-xs shrink-0 h-7 sm:h-8 px-2 sm:px-3"
-            onClick={() => setActiveCategory("all")}
-          >
-            All ({categoryCounts.all})
-          </Button>
-          {Object.entries(categoryConfig).filter(([key]) => categoryCounts[key] > 0).map(([key, config]) => (
-            <Button
-              key={key}
-              variant={activeCategory === key ? "default" : "outline"}
-              size="sm"
-              className="text-[11px] sm:text-xs shrink-0 h-7 sm:h-8 gap-1 px-2 sm:px-3"
-              onClick={() => setActiveCategory(key)}
-            >
-              {config.icon} {config.label} ({categoryCounts[key]})
-            </Button>
-          ))}
-        </div>
+        {isMobile ? (
+          /* Mobile: dropdown select */
+          <div>
+            <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 flex items-center gap-1">
+              <Filter className="h-3 w-3" /> Category
+            </span>
+            <Select value={activeCategory} onValueChange={setActiveCategory}>
+              <SelectTrigger className="h-9 text-xs bg-background">
+                <SelectValue placeholder="All categories" />
+              </SelectTrigger>
+              <SelectContent className="bg-popover z-50">
+                <SelectItem value="all">All ({categoryCounts.all})</SelectItem>
+                {Object.entries(categoryConfig).filter(([key]) => categoryCounts[key] > 0).map(([key, config]) => (
+                  <SelectItem key={key} value={key}>
+                    {config.icon} {config.label} ({categoryCounts[key]})
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        ) : (
+          /* Desktop: pill buttons */
+          <>
+            <div className="flex items-center gap-2 mb-1">
+              <Filter className="h-3.5 w-3.5 text-muted-foreground" />
+              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
+            </div>
+            <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
+              <Button
+                variant={activeCategory === "all" ? "default" : "outline"}
+                size="sm"
+                className="text-xs shrink-0 h-8 px-3"
+                onClick={() => setActiveCategory("all")}
+              >
+                All ({categoryCounts.all})
+              </Button>
+              {Object.entries(categoryConfig).filter(([key]) => categoryCounts[key] > 0).map(([key, config]) => (
+                <Button
+                  key={key}
+                  variant={activeCategory === key ? "default" : "outline"}
+                  size="sm"
+                  className="text-xs shrink-0 h-8 gap-1 px-3"
+                  onClick={() => setActiveCategory(key)}
+                >
+                  {config.icon} {config.label} ({categoryCounts[key]})
+                </Button>
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       {/* Results count */}
