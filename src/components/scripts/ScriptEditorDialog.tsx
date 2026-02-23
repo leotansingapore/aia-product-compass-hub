@@ -10,6 +10,7 @@ import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil } from "lucide-reac
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
 const CATEGORIES = [
   { value: "cold-calling", label: "Cold Calling" },
@@ -51,12 +52,32 @@ type EditorStep = "paste" | "review";
 
 export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   // Step state (only for new scripts)
+  const { user } = useSimplifiedAuth();
   const isEditing = !!script;
   const [step, setStep] = useState<EditorStep>(isEditing ? "review" : "paste");
+  const [userName, setUserName] = useState("");
+
+  // Fetch user's display name
+  useEffect(() => {
+    if (!user) return;
+    const fetchName = async () => {
+      const { data } = await supabase
+        .from("profiles")
+        .select("display_name, first_name, last_name")
+        .eq("user_id", user.id)
+        .maybeSingle();
+      if (data) {
+        const name = data.display_name || [data.first_name, data.last_name].filter(Boolean).join(" ") || user.email || "";
+        setUserName(name);
+      } else {
+        setUserName(user.email || "");
+      }
+    };
+    fetchName();
+  }, [user]);
 
   // Paste step state
   const [pasteContent, setPasteContent] = useState("");
-  const [pasteAuthor, setPasteAuthor] = useState("");
   const [isClassifying, setIsClassifying] = useState(false);
 
   // Review/edit step state
