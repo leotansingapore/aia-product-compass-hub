@@ -9,6 +9,7 @@ import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ProductsGrid } from "@/components/category/ProductsGrid";
 import { useProductCategory } from "@/hooks/useProductCategory";
 import { supabase } from "@/integrations/supabase/client";
+import { invalidateCategoriesCache } from "@/hooks/useProducts";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
@@ -164,6 +165,7 @@ export default function ProductCategory() {
       toast.error('Failed to update publish status');
     } else {
       toast.success(newPublished ? 'Category published' : 'Category unpublished');
+      invalidateCategoriesCache();
       refetchCategories();
     }
   };

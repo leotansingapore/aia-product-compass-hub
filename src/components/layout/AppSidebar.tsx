@@ -316,17 +316,17 @@ const AppSidebar = memo(function AppSidebar() {
                                   isActiveCategory
                                     ? "bg-primary text-primary-foreground font-medium cursor-default hover:!bg-primary hover:!text-primary-foreground"
                                     : "hover:bg-accent hover:text-accent-foreground"
-                                } ${category.published === false ? "opacity-50" : ""}`}
+                                } ${category.published === false ? "opacity-60" : ""}`}
                               >
-                                <Archive className="h-4 w-4" />
+                                <div className="relative shrink-0">
+                                  <Archive className="h-4 w-4" />
+                                  {category.published === false && (
+                                    <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-amber-400 border border-background" title="Draft" />
+                                  )}
+                                </div>
                                 {!isCollapsed && (
-                                  <span className="truncate flex items-center gap-1.5">
+                                  <span className={`truncate ${category.published === false ? "italic" : ""}`}>
                                     {category.name}
-                                    {category.published === false && (
-                                      <Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4 font-normal text-muted-foreground border-muted-foreground/30">
-                                        Draft
-                                      </Badge>
-                                    )}
                                   </span>
                                 )}
                               </NavLink>
