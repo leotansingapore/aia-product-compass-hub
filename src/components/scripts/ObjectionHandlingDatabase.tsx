@@ -333,9 +333,15 @@ export function ObjectionHandlingDatabase() {
   const matchedResponseIdsMap = useMemo(() => {
     const map: Record<string, Set<string>> = {};
     if (!searchQuery.trim()) return map;
-    const q = searchQuery.toLowerCase();
+    const qLower = searchQuery.trim().toLowerCase();
+    const words = qLower.split(/\s+/).filter(w => w.length > 0);
     responses.forEach(r => {
-      if (fuzzyIncludes(r.content, q) || fuzzyIncludes(r.author_name, q)) {
+      const content = r.content.toLowerCase();
+      const author = r.author_name.toLowerCase();
+      const allText = content + " " + author;
+      // Full phrase or all words must appear
+      const matches = allText.includes(qLower) || (words.length > 1 && words.every(w => allText.includes(w)));
+      if (matches) {
         if (!map[r.objection_id]) map[r.objection_id] = new Set();
         map[r.objection_id].add(r.id);
       }
