@@ -133,6 +133,64 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     }
   }, [script, open]);
 
+  const checkForDuplicates = async (classifiedCategory: string, content: string, title: string) => {
+    setIsCheckingDuplicates(true);
+    try {
+      // Fetch existing scripts in the same category
+      const { data: existing } = await supabase
+        .from("scripts")
+        .select("id, stage, category, target_audience, versions")
+        .eq("category", classifiedCategory);
+
+      if (!existing || existing.length === 0) {
+        setIsCheckingDuplicates(false);
+        return [];
+      }
+
+      // Simple similarity check: compare content words overlap
+      const inputWords = new Set(content.toLowerCase().split(/\s+/).filter(w => w.length > 3));
+      const inputTitle = title.toLowerCase();
+
+      const matches: SimilarScript[] = [];
+      for (const script of existing) {
+        const versions = script.versions as unknown as ScriptVersion[];
+        const scriptContent = versions.map(v => v.content).join(" ").toLowerCase();
+        const scriptTitle = script.stage.toLowerCase();
+
+        // Check title similarity
+        const titleWords = inputTitle.split(/\s+/).filter(w => w.length > 3);
+        const titleOverlap = titleWords.filter(w => scriptTitle.includes(w)).length;
+        const titleSimilar = titleWords.length > 0 && titleOverlap / titleWords.length > 0.5;
+
+        // Check content similarity (shared meaningful words)
+        const scriptWords = new Set(scriptContent.split(/\s+/).filter(w => w.length > 3));
+        const shared = [...inputWords].filter(w => scriptWords.has(w)).length;
+        const overlapRatio = inputWords.size > 0 ? shared / inputWords.size : 0;
+
+        if (titleSimilar || overlapRatio > 0.4) {
+          matches.push({
+            id: script.id,
+            stage: script.stage,
+            category: script.category,
+            target_audience: (script.target_audience as string) || "general",
+            similarity: titleSimilar && overlapRatio > 0.4
+              ? "Very similar title and content"
+              : titleSimilar
+              ? "Similar title"
+              : `~${Math.round(overlapRatio * 100)}% content overlap`,
+          });
+        }
+      }
+
+      setIsCheckingDuplicates(false);
+      return matches.slice(0, 5); // Max 5 matches
+    } catch (err) {
+      console.error("Duplicate check error:", err);
+      setIsCheckingDuplicates(false);
+      return [];
+    }
+  };
+
   const handleClassify = async () => {
     if (!pasteContent.trim()) {
       toast.error("Please paste your script content first");
@@ -151,17 +209,27 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       }
 
       // Apply AI results
-      setStage(data.suggested_title || "");
-      setCategory(data.category || "cold-calling");
+      const classifiedTitle = data.suggested_title || "";
+      const classifiedCategory = data.category || "cold-calling";
+      setStage(classifiedTitle);
+      setCategory(classifiedCategory);
       setTargetAudience(data.target_audience || "general");
       setScriptRole(data.script_role || "consultant");
       setTags(data.tags || []);
       setVersions([{ author: userName, content: pasteContent }]);
-      setStep("review");
-      toast.success("AI classified your script! Review and save.");
+
+      // Check for duplicates before proceeding
+      const duplicates = await checkForDuplicates(classifiedCategory, pasteContent, classifiedTitle);
+      if (duplicates.length > 0) {
+        setSimilarScripts(duplicates);
+        setStep("duplicates");
+        toast.info("Found similar existing scripts — please review.");
+      } else {
+        setStep("review");
+        toast.success("AI classified your script! Review and save.");
+      }
     } catch (err: any) {
       console.error("Classification error:", err);
-      // Fallback: just move to review with defaults
       setVersions([{ author: userName, content: pasteContent }]);
       setStep("review");
       toast.info("AI classification unavailable — please fill in details manually.");
