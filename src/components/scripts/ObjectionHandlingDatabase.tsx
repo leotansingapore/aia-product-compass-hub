@@ -91,11 +91,14 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
                   <Badge variant="outline" className="text-[10px]">
                     {responses.length} {responses.length === 1 ? "response" : "responses"}
                   </Badge>
-                  {(entry.tags || []).map(tag => (
+                  {(entry.tags || []).slice(0, 3).map(tag => (
                     <Badge key={tag} variant="outline" className="text-[10px] font-normal">#{tag}</Badge>
                   ))}
+                  {(entry.tags || []).length > 3 && (
+                    <Badge variant="outline" className="text-[10px] font-normal text-muted-foreground">+{(entry.tags || []).length - 3}</Badge>
+                  )}
                 </div>
-                {entry.description && (
+                {entry.description && !open && !hasResponseMatch && (
                   <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{highlightText(entry.description, searchQuery)}</p>
                 )}
               </div>

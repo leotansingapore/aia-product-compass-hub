@@ -1339,11 +1339,25 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       {roleLabels[script.script_role] || script.script_role}
                     </Badge>
                   )}
-                  {script.tags && script.tags.length > 0 && script.tags.map((tag) => (
-                    <Badge key={tag} variant="outline" className="text-[10px] bg-accent/30">
-                      {tag}
-                    </Badge>
-                  ))}
+                  {script.tags && script.tags.length > 0 && (() => {
+                    const maxTags = isMobile ? 2 : script.tags.length;
+                    const visible = script.tags.slice(0, maxTags);
+                    const remaining = script.tags.length - maxTags;
+                    return (
+                      <>
+                        {visible.map((tag) => (
+                          <Badge key={tag} variant="outline" className="text-[10px] bg-accent/30">
+                            {tag}
+                          </Badge>
+                        ))}
+                        {remaining > 0 && (
+                          <Badge variant="outline" className="text-[10px] text-muted-foreground">
+                            +{remaining}
+                          </Badge>
+                        )}
+                      </>
+                    );
+                  })()}
                   <Badge variant="outline" className="text-[10px]">
                     {script.versions.length}v
                   </Badge>
@@ -1818,8 +1832,8 @@ export default function ScriptsDatabase() {
       />
 
       <div className="mx-auto px-3 sm:px-6 py-3 sm:py-8 max-w-4xl">
-        {/* Tab Switcher */}
-        <div className="flex gap-1 mb-5 p-1 bg-muted/50 rounded-lg w-fit">
+        {/* Tab Switcher — sticky on mobile */}
+        <div className="flex gap-1 mb-5 p-1 bg-background/95 backdrop-blur-sm rounded-lg w-fit sticky top-0 z-30 sm:static sm:z-auto border sm:border-0">
           <Button
             variant={activeTab === "scripts" ? "default" : "ghost"}
             size="sm"
