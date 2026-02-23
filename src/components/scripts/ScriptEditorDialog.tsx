@@ -119,6 +119,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     } else {
       setStep("paste");
       setPasteContent("");
+      setSimilarScripts([]);
       
       setStage("");
       setCategory("cold-calling");
