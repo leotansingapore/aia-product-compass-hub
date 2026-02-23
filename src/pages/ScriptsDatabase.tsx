@@ -1633,29 +1633,58 @@ export default function ScriptsDatabase() {
     }
   }, [suggestions, selectedSuggestion, searchInput, handleSearchSelect]);
 
+  // Helper: apply all filters EXCEPT a given dimension
+  const filterExcluding = useCallback((exclude: 'category' | 'audience' | 'role' | 'tag') => {
+    let result = scriptsData;
+    if (exclude !== 'category' && activeCategory !== "all") {
+      result = result.filter((s) => s.category === activeCategory);
+    }
+    if (exclude !== 'audience' && activeAudience !== "all") {
+      result = result.filter((s) => s.target_audience === activeAudience);
+    }
+    if (exclude !== 'role' && activeRole !== "all") {
+      result = result.filter((s) => (s.script_role || "consultant") === activeRole);
+    }
+    if (exclude !== 'tag' && activeTag !== "all") {
+      result = result.filter((s) => (s.tags || []).includes(activeTag));
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(
+        (s) =>
+          s.stage.toLowerCase().includes(q) ||
+          s.versions.some((v) => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q))
+      );
+    }
+    return result;
+  }, [scriptsData, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
+
   const counts = useMemo(() => {
-    const c: Record<string, number> = { all: scriptsData.length };
+    const base = filterExcluding('category');
+    const c: Record<string, number> = { all: base.length };
     Object.keys(categoryLabels).forEach((key) => {
-      c[key] = scriptsData.filter((s) => s.category === key).length;
+      c[key] = base.filter((s) => s.category === key).length;
     });
     return c;
-  }, [scriptsData]);
+  }, [filterExcluding]);
 
   const audienceCounts = useMemo(() => {
-    const c: Record<string, number> = { all: scriptsData.length };
+    const base = filterExcluding('audience');
+    const c: Record<string, number> = { all: base.length };
     Object.keys(audienceLabels).forEach((key) => {
-      c[key] = scriptsData.filter((s) => s.target_audience === key).length;
+      c[key] = base.filter((s) => s.target_audience === key).length;
     });
     return c;
-  }, [scriptsData]);
+  }, [filterExcluding]);
 
   const roleCounts = useMemo(() => {
-    const c: Record<string, number> = { all: scriptsData.length };
+    const base = filterExcluding('role');
+    const c: Record<string, number> = { all: base.length };
     Object.keys(roleLabels).forEach((key) => {
-      c[key] = scriptsData.filter((s) => (s.script_role || 'consultant') === key).length;
+      c[key] = base.filter((s) => (s.script_role || 'consultant') === key).length;
     });
     return c;
-  }, [scriptsData]);
+  }, [filterExcluding]);
 
   const allTags = useMemo(() => {
     const tagSet = new Set<string>();
@@ -1664,12 +1693,13 @@ export default function ScriptsDatabase() {
   }, [scriptsData]);
 
   const tagCounts = useMemo(() => {
+    const base = filterExcluding('tag');
     const c: Record<string, number> = {};
     allTags.forEach(tag => {
-      c[tag] = scriptsData.filter(s => (s.tags || []).includes(tag)).length;
+      c[tag] = base.filter(s => (s.tags || []).includes(tag)).length;
     });
     return c;
-  }, [scriptsData, allTags]);
+  }, [filterExcluding, allTags]);
 
   const activeCategoriesWithData = useMemo(() => 
     (Object.keys(categoryLabels) as CategoryKey[]).filter(key => counts[key] > 0),
@@ -1813,7 +1843,10 @@ export default function ScriptsDatabase() {
               >
                 All
               </Button>
-              {Object.entries(audienceLabels).filter(([key]) => audienceCounts[key] > 0).map(([key, label]) => (
+              {Object.entries(audienceLabels).filter(([key]) => {
+                // Show if it has scripts in the full dataset (not just current filter)
+                return scriptsData.some(s => s.target_audience === key);
+              }).map(([key, label]) => (
                 <Button
                   key={key}
                   variant={activeAudience === key ? "default" : "outline"}
@@ -1839,7 +1872,9 @@ export default function ScriptsDatabase() {
               >
                 All
               </Button>
-              {Object.entries(roleLabels).filter(([key]) => roleCounts[key] > 0).map(([key, label]) => (
+              {Object.entries(roleLabels).filter(([key]) => {
+                return scriptsData.some(s => (s.script_role || 'consultant') === key);
+              }).map(([key, label]) => (
                 <Button
                   key={key}
                   variant={activeRole === key ? "default" : "outline"}
