@@ -49,3 +49,6 @@ verify_jwt = false
 
 [functions.classify-script]
 verify_jwt = false
+
+[functions.classify-objection]
+verify_jwt = false
