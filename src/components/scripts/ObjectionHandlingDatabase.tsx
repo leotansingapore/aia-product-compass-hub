@@ -3,11 +3,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
+import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
@@ -155,12 +155,14 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
                 <Separator className="my-4" />
                 <div className="space-y-2">
                   <Label className="text-xs font-medium text-muted-foreground">Add your response</Label>
-                  <Textarea
-                    placeholder="Share how you handle this objection... (Markdown supported)"
-                    value={newResponse}
-                    onChange={(e) => setNewResponse(e.target.value)}
-                    className="min-h-[80px] text-sm"
-                  />
+                  <div className="border rounded-lg overflow-hidden">
+                    <MinimalRichEditor
+                      value={newResponse}
+                      onChange={setNewResponse}
+                      placeholder="Share how you handle this objection..."
+                      onSave={handleSubmit}
+                    />
+                  </div>
                   <div className="flex justify-end">
                     <Button
                       size="sm"
@@ -471,12 +473,13 @@ export function ObjectionHandlingDatabase() {
             </div>
             <div>
               <Label>Description (optional)</Label>
-              <Textarea
-                value={formDescription}
-                onChange={(e) => setFormDescription(e.target.value)}
-                placeholder="Brief context about this objection..."
-                className="min-h-[60px]"
-              />
+              <div className="border rounded-lg overflow-hidden">
+                <MinimalRichEditor
+                  value={formDescription}
+                  onChange={setFormDescription}
+                  placeholder="Brief context about this objection..."
+                />
+              </div>
             </div>
             <div>
               <Label>Tags (comma-separated)</Label>
