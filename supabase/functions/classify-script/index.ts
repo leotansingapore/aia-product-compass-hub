@@ -6,7 +6,7 @@ const corsHeaders = {
 };
 
 const CATEGORIES = [
-  "cold-calling", "initial-text", "post-call-text", "follow-up", "ad-campaign",
+  "cold-calling", "initial-text", "post-call-text", "callback", "follow-up", "ad-campaign",
   "referral", "confirmation", "faq", "tips"
 ];
 
@@ -37,6 +37,7 @@ serve(async (req) => {
    - cold-calling: phone scripts or initial outreach messages for cold or warm contacts
    - initial-text: first contact text messages sent to new leads (e.g. after Facebook opt-in, voucher claim, or first outreach — NOT phone calls)
    - post-call-text: text/WhatsApp messages sent AFTER a phone call (e.g. post-call summaries, meeting confirmations, resources sent after speaking)
+   - callback: actual phone call scripts for calling leads back (e.g. consultant callback after telemarketer sets appointment)
    - follow-up: ongoing follow-up messages (reminders, nudges, drip sequences) — NOT post-call texts or initial first-contact texts
    - ad-campaign: Facebook/Instagram ad scripts, lead gen campaigns
    - referral: asking for or handling referrals
