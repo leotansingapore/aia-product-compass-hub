@@ -122,15 +122,15 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
   return (
     <ProtectedSection sectionId="product_links">
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+        <CardHeader className="p-3 sm:p-4 md:p-6">
+          <CardTitle className="flex items-center gap-2 text-sm sm:text-base md:text-lg">
             <span>🔗</span> Useful Links
           </CardTitle>
-          <CardDescription>
-            Additional resources and materials for this product
+          <CardDescription className="text-xs sm:text-sm">
+            Resources and materials for this product
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-3 sm:p-4 md:p-6 pt-0">
           {isResourcesModule ? (
             <FolderBasedUsefulLinks
               folders={resourceFolders}

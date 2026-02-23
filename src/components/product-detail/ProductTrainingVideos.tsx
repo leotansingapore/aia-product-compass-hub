@@ -69,14 +69,14 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
 
   return (
     <Card className="overflow-hidden">
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-2">
-            <GraduationCap className="h-5 w-5" />
+      <CardHeader className="p-3 sm:p-4 md:p-6">
+        <div className="flex items-center justify-between gap-2">
+          <CardTitle className="flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base md:text-lg">
+            <GraduationCap className="h-4 w-4 sm:h-5 sm:w-5" />
             Training Course
             {processedVideos.length > 0 && (
-              <Badge variant="secondary" className="text-xs px-2">
-                {completedVideos}/{processedVideos.length} completed
+              <Badge variant="secondary" className="text-[10px] sm:text-xs px-1.5 sm:px-2">
+                {completedVideos}/{processedVideos.length}
               </Badge>
             )}
           </CardTitle>
@@ -85,27 +85,28 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
               variant="outline"
               size="sm"
               onClick={handleManageVideos}
-              className="flex items-center gap-2"
+              className="flex items-center gap-1.5 text-xs h-7 sm:h-8 px-2 sm:px-3"
             >
-              <Edit className="h-4 w-4" />
-              Manage Videos
+              <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">Manage Videos</span>
+              <span className="sm:hidden">Manage</span>
             </Button>
           )}
         </div>
-        <CardDescription>
+        <CardDescription className="text-xs sm:text-sm">
           {processedVideos.length > 0 ? (
-            <div className="space-y-2">
+            <div className="space-y-1 sm:space-y-2">
               <div className="flex items-center justify-between">
                 {courseProgress > 0 && (
-                  <span className="text-sm font-medium text-primary">
+                  <span className="text-xs sm:text-sm font-medium text-primary">
                     {courseProgress}% Complete
                   </span>
                 )}
               </div>
               {totalDuration > 0 && (
-                <div className="flex items-center gap-1 text-micro text-muted-foreground">
+                <div className="flex items-center gap-1 text-[10px] sm:text-micro text-muted-foreground">
                   <Clock className="h-3 w-3" />
-                  Total duration: {formatDuration(totalDuration)}
+                  Total: {formatDuration(totalDuration)}
                 </div>
               )}
             </div>
@@ -114,13 +115,12 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
           )}
         </CardDescription>
       </CardHeader>
-      <CardContent className="overflow-hidden">
+      <CardContent className="overflow-hidden p-3 sm:p-4 md:p-6 pt-0">
         {processedVideos.length > 0 ? (
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {!isAdminMode && (
               <Button 
                 onClick={() => {
-                  // Navigate to first video's unique URL
                   if (processedVideos.length > 0 && productSlugOrId) {
                     const firstVideo = processedVideos[0];
                     const videoSlug = getVideoSlug(firstVideo.title);
@@ -129,10 +129,10 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
                     setShowLearningInterface(true);
                   }
                 }}
-                className="w-full h-12"
+                className="w-full h-10 sm:h-12 text-sm"
                 size="lg"
               >
-                <Play className="h-5 w-5 mr-2" />
+                <Play className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 Start Learning Course
               </Button>
             )}

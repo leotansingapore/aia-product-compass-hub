@@ -131,7 +131,7 @@ export default function ProductDetail() {
           onDescriptionEdit={isAdminMode ? (newDesc) => handleUpdate('description', newDesc) : undefined}
         />
         
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
 
           {/* Floating NotebookLM Chat Button */}
           <FloatingNotebookChat
@@ -140,12 +140,12 @@ export default function ProductDetail() {
           />
 
           {/* Compact Top Actions */}
-          <div className="flex justify-end mb-4">
+          <div className="flex justify-end mb-2 sm:mb-4">
             <BookmarkButton productId={product.id} />
           </div>
 
           {/* Resources Section - 2 columns on larger screens */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-8">
             {/* Useful Links */}
             {productId === 'sales-tools-objections' ? (
               <SalesToolsUsefulLinks
@@ -168,7 +168,7 @@ export default function ProductDetail() {
 
           {/* Training Videos Section */}
           <ProtectedSection sectionId="product_videos">
-            <div className="border-t pt-8">
+            <div className="border-t pt-4 sm:pt-8">
               {isAdminMode ? (
                 <ErrorBoundary>
                   <VideoEditingInterface
