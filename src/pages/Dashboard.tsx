@@ -104,6 +104,9 @@ const Dashboard = memo(() => {
 
             {/* 3. Quick Actions — secondary tools */}
             <QuickActions />
+
+            {/* 4. What's New — latest product updates */}
+            <WhatsNewSection />
           </>
         )}
 
