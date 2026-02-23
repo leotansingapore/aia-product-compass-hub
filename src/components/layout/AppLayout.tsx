@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, memo, useMemo } from "react";
+import React, { ReactNode, useEffect, memo, useMemo } from "react";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { MobileBottomNav } from "./MobileBottomNav";
@@ -44,6 +44,15 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const { autoSync } = useAppStructureSync();
   const { loading: permissionsLoading } = usePermissions();
   const isMobile = useIsMobile();
+
+  // Read sidebar state from cookie for persistence
+  const sidebarDefaultOpen = React.useMemo(() => {
+    try {
+      const match = document.cookie.match(/(?:^|;\s*)sidebar:state=([^;]*)/);
+      if (match) return match[1] === 'true';
+    } catch {}
+    return true;
+  }, []);
 
   // Auto-sync disabled to improve performance
   // useEffect(() => {
@@ -141,7 +150,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
 
   // Desktop Layout for authenticated users
   return (
-    <SidebarProvider defaultOpen={true}>
+    <SidebarProvider defaultOpen={sidebarDefaultOpen}>
       <div className="min-h-screen flex w-full">
         <AppSidebar />
         
