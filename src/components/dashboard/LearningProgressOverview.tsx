@@ -58,41 +58,41 @@ export const LearningProgressOverview = memo(function LearningProgressOverview()
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 sm:space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold flex items-center gap-2">
-          <TrendingUp className="h-5 w-5 text-primary" />
+        <h2 className="text-base sm:text-lg font-semibold flex items-center gap-2">
+          <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
           Your Learning Journey
         </h2>
       </div>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
         <Card className="bg-gradient-to-br from-primary/10 to-primary/5">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-primary">
+          <CardContent className="p-2.5 sm:p-4 text-center">
+            <div className="text-xl sm:text-2xl font-bold text-primary">
               {progressData.totalCourses}
             </div>
-            <div className="text-xs text-muted-foreground">Courses</div>
+            <div className="text-[10px] sm:text-xs text-muted-foreground">Courses</div>
           </CardContent>
         </Card>
         <Card className="bg-gradient-to-br from-secondary/50 to-secondary/30">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold">
+          <CardContent className="p-2.5 sm:p-4 text-center">
+            <div className="text-xl sm:text-2xl font-bold">
               {progressData.totalVideos}
             </div>
-            <div className="text-xs text-muted-foreground">Lessons</div>
+            <div className="text-[10px] sm:text-xs text-muted-foreground">Lessons</div>
           </CardContent>
         </Card>
         <Card className="bg-gradient-to-br from-muted to-muted/50">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold">
+          <CardContent className="p-2.5 sm:p-4 text-center">
+            <div className="text-xl sm:text-2xl font-bold">
               {progressData.totalDuration > 0 
                 ? formatDuration(progressData.totalDuration)
                 : "—"
               }
             </div>
-            <div className="text-xs text-muted-foreground">Total Time</div>
+            <div className="text-[10px] sm:text-xs text-muted-foreground">Total Time</div>
           </CardContent>
         </Card>
       </div>
@@ -100,13 +100,13 @@ export const LearningProgressOverview = memo(function LearningProgressOverview()
       {/* Continue Learning */}
       {progressData.topCourses.length > 0 && (
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <BookOpen className="h-4 w-4" />
+          <CardHeader className="p-3 sm:p-6 pb-1 sm:pb-2">
+            <CardTitle className="text-xs sm:text-sm font-medium flex items-center gap-2">
+              <BookOpen className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               Continue Learning
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3">
+          <CardContent className="p-3 sm:p-6 pt-0 space-y-1 sm:space-y-3">
             {progressData.topCourses.map((course) => {
               const videoCount = course.training_videos?.length || 0;
               const totalDuration = course.training_videos?.reduce(
@@ -114,10 +114,10 @@ export const LearningProgressOverview = memo(function LearningProgressOverview()
               ) || 0;
               
               return (
-                <Button
+                  <Button
                   key={course.id}
                   variant="ghost"
-                  className="w-full justify-between h-auto py-3 px-3"
+                  className="w-full justify-between h-auto py-2 sm:py-3 px-2 sm:px-3"
                   onClick={() => navigate(`/product/${getProductSlug(course.title)}`)}
                 >
                   <div className="flex items-center gap-3 text-left">
