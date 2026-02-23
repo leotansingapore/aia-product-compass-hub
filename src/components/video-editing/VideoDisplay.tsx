@@ -16,7 +16,7 @@ interface VideoItemProps {
 function VideoItem({ video }: VideoItemProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const videoInfo = getVideoEmbedInfo(video.url);
+  const videoInfo = video?.url ? getVideoEmbedInfo(video.url) : null;
 
   const handleFullscreenChange = useCallback(() => {
     setIsFullscreen(document.fullscreenElement === containerRef.current);

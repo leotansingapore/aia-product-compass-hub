@@ -7,6 +7,7 @@ export interface VideoEmbedInfo {
 
 // Function to get video embed URL and type
 export function getVideoEmbedInfo(url: string): VideoEmbedInfo | null {
+  if (!url) return null;
   // YouTube
   const youtubeMatch = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
   if (youtubeMatch) {

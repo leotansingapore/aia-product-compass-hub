@@ -44,7 +44,7 @@ export function VideoListItem({
     );
   }
 
-  const videoInfo = getVideoEmbedInfo(video.url);
+  const videoInfo = video?.url ? getVideoEmbedInfo(video.url) : null;
 
   return (
     <div className="border rounded-lg p-4 space-y-3">
@@ -67,7 +67,7 @@ export function VideoListItem({
           {video.description && (
             <p className="text-sm text-muted-foreground">{video.description}</p>
           )}
-          <p className="text-micro text-muted-foreground truncate max-w-[300px]">{video.url}</p>
+          {video.url && <p className="text-micro text-muted-foreground truncate max-w-[300px]">{video.url}</p>}
         </div>
         <div className="flex gap-2">
           <Button size="sm" variant="ghost" onClick={onMoveUp} disabled={!canMoveUp}>

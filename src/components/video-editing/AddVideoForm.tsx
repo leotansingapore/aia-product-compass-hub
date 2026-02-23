@@ -27,7 +27,7 @@ export function AddVideoForm({ newVideo, onUpdate, onAdd, disabled, existingCate
   // Auto-detect duration when URL changes
   useEffect(() => {
     const detectDuration = async () => {
-      if (newVideo.url.trim()) {
+      if (newVideo?.url?.trim()) {
         setIsDetectingDuration(true);
         try {
           const duration = await fetchVideoDuration(newVideo.url);
@@ -44,7 +44,7 @@ export function AddVideoForm({ newVideo, onUpdate, onAdd, disabled, existingCate
 
     const timeoutId = setTimeout(detectDuration, 500); // Debounce URL changes
     return () => clearTimeout(timeoutId);
-  }, [newVideo.url, onUpdate]);
+  }, [newVideo?.url, onUpdate]);
 
   return (
     <div className="border-2 border-dashed border-primary/30 rounded-lg p-4 space-y-4">

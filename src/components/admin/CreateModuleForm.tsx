@@ -50,24 +50,6 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
         finalSlug = `${baseSlug}-${timestamp}`;
       }
 
-      // Create a preset first page so the module isn't empty
-      const presetPage = {
-        id: `page-${Date.now()}`,
-        title: 'Getting Started',
-        url: '',
-        description: '',
-        category: '',
-        order: 0,
-        rich_content: `<h2>Welcome to ${moduleData.title}</h2>\n<p>Start adding content to this page using the editor.</p>`,
-        legacy_fields: {
-          migrated_at: new Date().toISOString(),
-          notes: '',
-          transcript: '',
-          useful_links: [],
-          attachments: []
-        }
-      };
-
       const { error } = await supabase
         .from('products')
         .insert({
@@ -77,7 +59,7 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
           category_id: categoryId,
           tags: moduleData.tags ? moduleData.tags.split(',').map(tag => tag.trim()) : [],
           highlights: moduleData.highlights ? moduleData.highlights.split(',').map(highlight => highlight.trim()) : [],
-          training_videos: [presetPage],
+          training_videos: [],
           useful_links: [],
           published: moduleData.publishImmediately
         });
