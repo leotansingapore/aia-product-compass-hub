@@ -5,16 +5,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus } from "lucide-react";
+import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles } from "lucide-react";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
 import { useScripts } from "@/hooks/useScripts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 import {
   DndContext,
   closestCenter,
@@ -150,6 +152,9 @@ export default function PlaybookDetail() {
 
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [addSearch, setAddSearch] = useState("");
+  const [aiSuggestions, setAiSuggestions] = useState<{ script_id: string; reason: string; suggested_position: string }[] | null>(null);
+  const [aiSummary, setAiSummary] = useState("");
+  const [isAiLoading, setIsAiLoading] = useState(false);
 
   const playbook = playbooks.find(p => p.id === playbookId);
   const isOwner = user?.id === playbook?.created_by;
@@ -194,6 +199,53 @@ export default function PlaybookDetail() {
     reorderItems.mutate(updates);
   };
 
+  const handleAISuggest = async () => {
+    const usedIds = new Set(items.map(i => i.script_id));
+    const available = scripts.filter(s => !usedIds.has(s.id));
+    if (available.length === 0) {
+      toast.info("All scripts are already in this playbook");
+      return;
+    }
+
+    setIsAiLoading(true);
+    setAiSuggestions(null);
+    setAiSummary("");
+    try {
+      const existingScripts = itemsWithScripts.map(i => ({
+        stage: i.script?.stage,
+        category: i.script?.category,
+        target_audience: i.script?.target_audience,
+      }));
+      const availableScripts = available.map(s => ({
+        id: s.id,
+        stage: s.stage,
+        category: s.category,
+        target_audience: s.target_audience,
+        tags: s.tags,
+      }));
+
+      const { data, error } = await supabase.functions.invoke("suggest-playbook-scripts", {
+        body: {
+          playbookTitle: playbook?.title,
+          playbookDescription: playbook?.description,
+          existingScripts,
+          availableScripts,
+        },
+      });
+
+      if (error) throw error;
+      if (data?.error) { toast.error(data.error); return; }
+
+      setAiSuggestions(data.suggestions || []);
+      setAiSummary(data.summary || "");
+    } catch (err: any) {
+      console.error("AI suggestion error:", err);
+      toast.error(err.message || "Failed to get AI suggestions");
+    } finally {
+      setIsAiLoading(false);
+    }
+  };
+
   if (!playbook && !isLoading) {
     return (
       <PageLayout title="Playbook Not Found" description="The requested playbook was not found">
@@ -227,11 +279,74 @@ export default function PlaybookDetail() {
             </div>
           </div>
           {isOwner && (
-            <Button onClick={() => setAddDialogOpen(true)} className="gap-2 w-full sm:w-auto shrink-0">
-              <Plus className="h-4 w-4" /> Add Scripts
-            </Button>
+            <div className="flex gap-2 w-full sm:w-auto">
+              <Button variant="outline" onClick={handleAISuggest} disabled={isAiLoading} className="gap-1.5 flex-1 sm:flex-initial">
+                {isAiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
+                AI Suggest
+              </Button>
+              <Button onClick={() => setAddDialogOpen(true)} className="gap-2 flex-1 sm:flex-initial">
+                <Plus className="h-4 w-4" /> Add Scripts
+              </Button>
+            </div>
           )}
         </div>
+
+        {/* AI Suggestions Panel */}
+        {(aiSuggestions || isAiLoading) && (
+          <Card className="mb-6 border-primary/20 bg-primary/5">
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-sm flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  AI Suggestions
+                </CardTitle>
+                <Button variant="ghost" size="sm" className="h-7 text-xs" onClick={() => { setAiSuggestions(null); setAiSummary(""); }}>
+                  Dismiss
+                </Button>
+              </div>
+              {aiSummary && <p className="text-xs text-muted-foreground mt-1">{aiSummary}</p>}
+            </CardHeader>
+            <CardContent className="pt-0">
+              {isAiLoading ? (
+                <div className="flex items-center gap-2 py-4 text-sm text-muted-foreground">
+                  <Loader2 className="h-4 w-4 animate-spin" /> Analyzing your playbook and finding the best scripts...
+                </div>
+              ) : aiSuggestions && aiSuggestions.length > 0 ? (
+                <div className="space-y-2">
+                  {aiSuggestions.map((suggestion, i) => {
+                    const script = scripts.find(s => s.id === suggestion.script_id);
+                    if (!script) return null;
+                    return (
+                      <div key={i} className="flex items-start gap-3 p-3 rounded-lg border bg-background">
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium">{script.stage}</p>
+                          <div className="flex gap-1.5 mt-1 flex-wrap">
+                            <Badge variant="secondary" className="text-[10px]">{script.category}</Badge>
+                            <Badge variant="outline" className="text-[10px]">{suggestion.suggested_position}</Badge>
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-1.5">{suggestion.reason}</p>
+                        </div>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="shrink-0 gap-1"
+                          onClick={() => {
+                            addItem.mutate({ scriptId: suggestion.script_id });
+                            setAiSuggestions(prev => prev?.filter(s => s.script_id !== suggestion.script_id) || null);
+                          }}
+                        >
+                          <Plus className="h-3 w-3" /> Add
+                        </Button>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground py-2">No additional scripts suggested for this playbook.</p>
+              )}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Scripts List */}
         {isLoading || scriptsLoading ? (

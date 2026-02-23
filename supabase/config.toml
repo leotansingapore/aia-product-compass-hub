@@ -43,3 +43,6 @@ verify_jwt = false
 
 [functions.generate-flow]
 verify_jwt = false
+
+[functions.suggest-playbook-scripts]
+verify_jwt = false
