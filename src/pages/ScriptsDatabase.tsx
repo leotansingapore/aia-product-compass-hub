@@ -1667,6 +1667,7 @@ export default function ScriptsDatabase() {
   const [activeAudience, setActiveAudience] = useState<string>(getInitialFilter("audience", "audience"));
   const [activeRole, setActiveRole] = useState<string>(getInitialFilter("role", "role"));
   const [activeTag, setActiveTag] = useState<string>(getInitialFilter("tag", "tag"));
+  const [showFavouritesOnly, setShowFavouritesOnly] = useState(false);
 
   // Persist filters to localStorage whenever they change
   useEffect(() => {
@@ -1796,8 +1797,11 @@ export default function ScriptsDatabase() {
         return false;
       });
     }
+    if (showFavouritesOnly) {
+      result = result.filter((s) => favouriteIds.has(s.id));
+    }
     return result;
-  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, scriptsData, strictIncludes]);
+  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, showFavouritesOnly, favouriteIds, scriptsData, strictIncludes]);
 
   // Script search suggestions
   const suggestions = useMemo(() => {
@@ -2070,7 +2074,7 @@ export default function ScriptsDatabase() {
           {/* Clear all button */}
           {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all") && (
             <div className="flex justify-end">
-              <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); }}>
+              <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); setShowFavouritesOnly(false); }}>
                 <X className="h-3 w-3 mr-0.5" /> Clear all filters
               </Button>
             </div>
@@ -2244,9 +2248,15 @@ export default function ScriptsDatabase() {
         </div>
 
         {/* Active filter breadcrumbs */}
-        {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all" || searchQuery) && (
+        {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all" || searchQuery || showFavouritesOnly) && (
           <div className="mb-3 flex items-center gap-1.5 flex-wrap">
             <span className="text-[11px] text-muted-foreground mr-0.5">Filters:</span>
+            {showFavouritesOnly && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                ❤️ Favourites
+                <button onClick={() => setShowFavouritesOnly(false)} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
             {searchQuery && (
               <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
                 Search: "{searchQuery}"
@@ -2278,7 +2288,7 @@ export default function ScriptsDatabase() {
               </Badge>
             )}
             <button
-              onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); setSearchInput(""); setSearchQuery(""); }}
+              onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); setSearchInput(""); setSearchQuery(""); setShowFavouritesOnly(false); }}
               className="text-[10px] text-muted-foreground hover:text-foreground underline ml-1"
             >
               Clear all
@@ -2288,9 +2298,23 @@ export default function ScriptsDatabase() {
 
         {/* Results count + audience flow indicator */}
         <div className="mb-3 flex items-center justify-between gap-2 flex-wrap">
-          <div className="text-xs text-muted-foreground">
-            {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
+          <div className="flex items-center gap-3">
+            <div className="text-xs text-muted-foreground">
+              {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
+            </div>
+            {user && (
+              <Button
+                variant={showFavouritesOnly ? "default" : "outline"}
+                size="sm"
+                className="h-6 px-2 text-[11px] gap-1"
+                onClick={() => setShowFavouritesOnly(prev => !prev)}
+              >
+                <Heart className={`h-3 w-3 ${showFavouritesOnly ? "fill-current" : ""}`} />
+                Favourites{showFavouritesOnly ? ` (${filteredScripts.length})` : ""}
+              </Button>
+            )}
           </div>
+          
           {/* Audience flow indicator — shown when viewing a single category */}
           {activeCategory !== "all" && (
             <div className="flex items-center gap-1 flex-wrap">
