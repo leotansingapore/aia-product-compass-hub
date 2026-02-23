@@ -1,5 +1,4 @@
-import { useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,25 +7,19 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
-import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Circle, Diamond, Zap, Square, FileText, Save, Undo2, Sparkles, Eye, EyeOff } from 'lucide-react';
+import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Save, Undo2, Redo2, Keyboard, Sparkles } from 'lucide-react';
 import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
 import { useScripts } from '@/hooks/useScripts';
-import { FlowCanvas } from '@/components/flows/FlowCanvas';
+import ReactFlowCanvas, { type FlowCanvasControls } from '@/components/flows/ReactFlowCanvas';
 import { NodeEditorDialog } from '@/components/flows/NodeEditorDialog';
 import { EdgeEditorDialog } from '@/components/flows/EdgeEditorDialog';
+import { AutoLayoutControls } from '@/components/flows/controls/AutoLayoutControls';
+import { ExportControls } from '@/components/flows/controls/ExportControls';
+import { KeyboardShortcutsHelp } from '@/components/flows/controls/KeyboardShortcutsHelp';
 import { FLOW_TEMPLATES } from '@/utils/flowTemplates';
 import { AIFlowWizard } from '@/components/flows/AIFlowWizard';
-import { InlineScriptPreview } from '@/components/flows/InlineScriptPreview';
 import { toast } from 'sonner';
-
-const NODE_TYPE_OPTIONS: { type: FlowNode['type']; label: string; icon: React.ReactNode; desc: string }[] = [
-  { type: 'script', label: 'Script', icon: <FileText className="h-4 w-4" />, desc: 'Link to a script card' },
-  { type: 'decision', label: 'Decision', icon: <Diamond className="h-4 w-4" />, desc: 'Yes/No branching point' },
-  { type: 'action', label: 'Action', icon: <Zap className="h-4 w-4" />, desc: 'Wait or follow-up step' },
-  { type: 'end', label: 'End', icon: <Square className="h-4 w-4" />, desc: 'End of the flow' },
-];
 
 function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDelete, userId, onOpenAIWizard }: {
   flows: ReturnType<typeof useScriptFlows>['flows'];
@@ -116,7 +109,6 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
 }
 
 export default function ScriptFlows() {
-  const navigate = useNavigate();
   const { flows, isLoading, createFlow, updateFlow, deleteFlow, userId } = useScriptFlows();
   const { scripts } = useScripts();
 
@@ -125,17 +117,16 @@ export default function ScriptFlows() {
   const [localEdges, setLocalEdges] = useState<FlowEdge[]>([]);
   const [flowTitle, setFlowTitle] = useState('');
   const [flowDescription, setFlowDescription] = useState('');
-  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
-  const [connectingFrom, setConnectingFrom] = useState<string | null>(null);
   const [editingNode, setEditingNode] = useState<FlowNode | null>(null);
   const [editingEdge, setEditingEdge] = useState<FlowEdge | null>(null);
   const [showNewDialog, setShowNewDialog] = useState(false);
   const [newTitle, setNewTitle] = useState('');
   const [newDesc, setNewDesc] = useState('');
   const [hasUnsaved, setHasUnsaved] = useState(false);
-  const [addNodeOpen, setAddNodeOpen] = useState(false);
+  const [showShortcuts, setShowShortcuts] = useState(false);
   const [showAIWizard, setShowAIWizard] = useState(false);
-  const [previewScriptId, setPreviewScriptId] = useState<string | null>(null);
+
+  const controlsRef = useRef<FlowCanvasControls | null>(null);
 
   const openFlow = useCallback((id: string) => {
     const flow = flows.find(f => f.id === id);
@@ -146,7 +137,6 @@ export default function ScriptFlows() {
     setFlowTitle(flow.title);
     setFlowDescription(flow.description || '');
     setHasUnsaved(false);
-    setSelectedNodeId(null);
   }, [flows]);
 
   const createFromTemplate = useCallback(async (index: number) => {
@@ -205,87 +195,66 @@ export default function ScriptFlows() {
     }
   };
 
-  const handleSave = async () => {
+  const handleSave = useCallback(async () => {
     if (!activeFlowId) return;
-    await updateFlow.mutateAsync({ id: activeFlowId, title: flowTitle, description: flowDescription, nodes: localNodes, edges: localEdges });
+    const data = controlsRef.current?.save();
+    const nodes = data?.nodes ?? localNodes;
+    const edges = data?.edges ?? localEdges;
+    await updateFlow.mutateAsync({ id: activeFlowId, title: flowTitle, description: flowDescription, nodes, edges });
+    setLocalNodes(nodes);
+    setLocalEdges(edges);
     setHasUnsaved(false);
-  };
+  }, [activeFlowId, flowTitle, flowDescription, localNodes, localEdges, updateFlow]);
 
-  const addNodeOfType = (type: FlowNode['type'], x?: number, y?: number) => {
-    const id = `n${Date.now()}`;
-    const labels: Record<string, string> = { script: 'New Script', decision: 'Decision?', action: 'Follow-up', end: 'End', start: 'Start' };
-    const newNode: FlowNode = {
-      id, scriptId: null, label: labels[type] || 'New Step', type,
-      x: x ?? 300 + Math.random() * 200,
-      y: y ?? 200 + Math.random() * 200,
+  // Ctrl+S for save
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's' && activeFlowId) {
+        e.preventDefault();
+        handleSave();
+      }
     };
-    setLocalNodes(prev => [...prev, newNode]);
-    setSelectedNodeId(id);
-    setEditingNode(newNode);
-    setHasUnsaved(true);
-    setAddNodeOpen(false);
-  };
-
-  const handleDoubleClickCanvas = useCallback((x: number, y: number) => {
-    // Quick-add a script node at the clicked position
-    const id = `n${Date.now()}`;
-    const newNode: FlowNode = { id, scriptId: null, label: 'New Step', type: 'script', x: x - 90, y: y - 28 };
-    setLocalNodes(prev => [...prev, newNode]);
-    setSelectedNodeId(id);
-    setEditingNode(newNode);
-    setHasUnsaved(true);
-  }, []);
-
-  const handleMoveNode = useCallback((id: string, x: number, y: number) => {
-    setLocalNodes(prev => prev.map(n => n.id === id ? { ...n, x, y } : n));
-    setHasUnsaved(true);
-  }, []);
-
-  const handleDeleteNode = () => {
-    if (!selectedNodeId) return;
-    setLocalNodes(prev => prev.filter(n => n.id !== selectedNodeId));
-    setLocalEdges(prev => prev.filter(e => e.from !== selectedNodeId && e.to !== selectedNodeId));
-    setSelectedNodeId(null);
-    setHasUnsaved(true);
-  };
-
-  const handleCompleteConnect = useCallback((toId: string) => {
-    if (!connectingFrom || connectingFrom === toId) {
-      setConnectingFrom(null);
-      return;
-    }
-    const exists = localEdges.some(e => e.from === connectingFrom && e.to === toId);
-    if (!exists) {
-      const newEdge: FlowEdge = { id: `e${Date.now()}`, from: connectingFrom, to: toId };
-      setLocalEdges(prev => [...prev, newEdge]);
-      setEditingEdge(newEdge);
-      setHasUnsaved(true);
-    }
-    setConnectingFrom(null);
-  }, [connectingFrom, localEdges]);
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [activeFlowId, handleSave]);
 
   const handleNodeSave = (updates: Partial<FlowNode>) => {
-    if (editingNode) {
-      setLocalNodes(prev => prev.map(n => n.id === editingNode.id ? { ...n, ...updates } : n));
-      setHasUnsaved(true);
-    }
+    if (!editingNode) return;
+    // Update local state
+    const updatedNodes = localNodes.map(n => n.id === editingNode.id ? { ...n, ...updates } : n);
+    setLocalNodes(updatedNodes);
+    setHasUnsaved(true);
+    // Re-mount canvas with updated data by forcing key change
+    setActiveFlowId(prev => prev); // trigger re-render
   };
 
   const handleEdgeSave = (updates: Partial<FlowEdge>) => {
-    if (editingEdge) {
-      setLocalEdges(prev => prev.map(e => e.id === editingEdge.id ? { ...e, ...updates } : e));
-      setHasUnsaved(true);
-    }
-  };
-
-  const handleDeleteEdge = () => {
     if (!editingEdge) return;
-    setLocalEdges(prev => prev.filter(e => e.id !== editingEdge.id));
-    setEditingEdge(null);
+    setLocalEdges(prev => prev.map(e => e.id === editingEdge.id ? { ...e, ...updates } : e));
     setHasUnsaved(true);
   };
 
-  const selectedNode = localNodes.find(n => n.id === selectedNodeId) || null;
+  const handleExport = useCallback(async (format: 'png' | 'pdf' | 'json') => {
+    if (!controlsRef.current) return;
+    try {
+      switch (format) {
+        case 'png':
+          await controlsRef.current.exportPng(flowTitle || 'flow');
+          toast.success('Exported as PNG');
+          break;
+        case 'pdf':
+          await controlsRef.current.exportPdf(flowTitle || 'flow');
+          toast.success('Exported as PDF');
+          break;
+        case 'json':
+          await controlsRef.current.exportJson(flowTitle || 'flow');
+          toast.success('Exported as JSON');
+          break;
+      }
+    } catch {
+      toast.error('Export failed');
+    }
+  }, [flowTitle]);
 
   if (activeFlowId) {
     return (
@@ -294,151 +263,107 @@ export default function ScriptFlows() {
           <div className="space-y-3">
             {/* Toolbar */}
             <div className="flex items-center gap-2 flex-wrap bg-muted/30 border rounded-lg px-3 py-2">
-              <Button variant="ghost" size="sm" onClick={() => { setActiveFlowId(null); setSelectedNodeId(null); }}>
+              <Button variant="ghost" size="sm" onClick={() => setActiveFlowId(null)}>
                 <ArrowLeft className="h-4 w-4 mr-1" /> Back
               </Button>
 
               <div className="w-px h-6 bg-border" />
 
-              {/* Quick-add node palette */}
-              <Popover open={addNodeOpen} onOpenChange={setAddNodeOpen}>
-                <PopoverTrigger asChild>
-                  <Button variant="outline" size="sm" className="gap-1.5">
-                    <Plus className="h-3.5 w-3.5" /> Add Node
+              {/* Undo/Redo */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline" size="sm"
+                    onClick={() => controlsRef.current?.undo()}
+                    disabled={!controlsRef.current?.canUndo}
+                  >
+                    <Undo2 className="h-3.5 w-3.5" />
                   </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-56 p-2" align="start">
-                  <p className="text-xs text-muted-foreground px-2 pb-2 font-medium">Choose node type</p>
-                  {NODE_TYPE_OPTIONS.map(opt => (
-                    <button
-                      key={opt.type}
-                      onClick={() => addNodeOfType(opt.type)}
-                      className="flex items-center gap-3 w-full px-2 py-2 rounded-md text-sm hover:bg-muted transition-colors text-left"
-                    >
-                      <span className="text-primary">{opt.icon}</span>
-                      <div>
-                        <div className="font-medium text-sm">{opt.label}</div>
-                        <div className="text-[11px] text-muted-foreground">{opt.desc}</div>
-                      </div>
-                    </button>
-                  ))}
-                </PopoverContent>
-              </Popover>
+                </TooltipTrigger>
+                <TooltipContent>Undo (Ctrl+Z)</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline" size="sm"
+                    onClick={() => controlsRef.current?.redo()}
+                    disabled={!controlsRef.current?.canRedo}
+                  >
+                    <Redo2 className="h-3.5 w-3.5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Redo (Ctrl+Shift+Z)</TooltipContent>
+              </Tooltip>
 
-              {/* Selected node actions */}
-              {selectedNode && (
-                <>
-                  <div className="w-px h-6 bg-border" />
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="outline" size="sm" onClick={() => setEditingNode(selectedNode)} className="gap-1">
-                        ✏️ Edit
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Edit selected node (or double-click)</TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="outline" size="sm" className="text-destructive gap-1" onClick={handleDeleteNode}>
-                        <Trash2 className="h-3.5 w-3.5" /> Delete
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Delete selected node</TooltipContent>
-                  </Tooltip>
-                  <Badge variant="secondary" className="text-[10px] ml-1">
-                    Selected: {selectedNode.label}
-                  </Badge>
-                </>
-              )}
+              <div className="w-px h-6 bg-border" />
+
+              {/* Auto-layout */}
+              <AutoLayoutControls onLayout={(dir) => controlsRef.current?.autoLayout(dir)} />
+
+              {/* Export */}
+              <ExportControls onExport={handleExport} />
+
+              <div className="w-px h-6 bg-border" />
+
+              {/* Keyboard shortcuts */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size="sm" onClick={() => setShowShortcuts(true)}>
+                    <Keyboard className="h-3.5 w-3.5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Keyboard shortcuts</TooltipContent>
+              </Tooltip>
 
               <div className="flex-1" />
 
               {/* Save */}
               <Button size="sm" onClick={handleSave} disabled={!hasUnsaved || updateFlow.isPending} className="gap-1.5">
                 <Save className="h-3.5 w-3.5" />
-                {updateFlow.isPending ? 'Saving...' : hasUnsaved ? 'Save' : 'Saved ✓'}
+                {updateFlow.isPending ? 'Saving...' : hasUnsaved ? 'Save' : 'Saved'}
               </Button>
             </div>
 
             {/* Title */}
-            <Input value={flowTitle} onChange={e => { setFlowTitle(e.target.value); setHasUnsaved(true); }} className="font-semibold text-base max-w-md" placeholder="Flow title" />
+            <Input
+              value={flowTitle}
+              onChange={e => { setFlowTitle(e.target.value); setHasUnsaved(true); }}
+              className="font-semibold text-base max-w-md"
+              placeholder="Flow title"
+            />
 
-            {/* Selected node info panel */}
-            {selectedNode && (
-              <div className="flex items-center gap-3 bg-muted/40 border rounded-lg px-4 py-2.5 text-sm">
-                <span className="font-medium truncate">{selectedNode.label}</span>
-                <Badge variant="outline" className="text-[10px] shrink-0">{selectedNode.type}</Badge>
-                {selectedNode.scriptId ? (() => {
-                  const linked = scripts.find(s => s.id === selectedNode.scriptId);
-                  return linked ? (
-                    <>
-                      <span className="text-muted-foreground text-xs">→</span>
-                      <span className="text-xs text-muted-foreground truncate">📄 {linked.stage}</span>
-                      <Button
-                        variant="outline" size="sm" className="ml-auto shrink-0 gap-1.5 text-xs h-7"
-                        onClick={() => setPreviewScriptId(prev => prev === selectedNode.scriptId ? null : selectedNode.scriptId!)}
-                      >
-                        {previewScriptId === selectedNode.scriptId ? (
-                          <><EyeOff className="h-3 w-3" /> Hide Script</>
-                        ) : (
-                          <><Eye className="h-3 w-3" /> View Script</>
-                        )}
-                      </Button>
-                    </>
-                  ) : (
-                    <span className="text-xs text-muted-foreground italic">Linked script not found</span>
-                  );
-                })() : (
-                  <span className="text-xs text-muted-foreground italic">No linked script — double-click to edit</span>
-                )}
-              </div>
-            )}
-
-            {/* Inline script preview */}
-            {previewScriptId && (() => {
-              const previewScript = scripts.find(s => s.id === previewScriptId);
-              return previewScript ? (
-                <InlineScriptPreview script={previewScript} onClose={() => setPreviewScriptId(null)} />
-              ) : null;
-            })()}
-
-            {/* Canvas */}
-            <div className={`${previewScriptId ? 'h-[calc(100vh-520px)]' : 'h-[calc(100vh-260px)]'} min-h-[300px] transition-all`}>
-              <FlowCanvas
-                nodes={localNodes}
-                edges={localEdges}
+            {/* React Flow Canvas */}
+            <div className="h-[calc(100vh-260px)] min-h-[400px] rounded-xl border overflow-hidden">
+              <ReactFlowCanvas
+                key={activeFlowId}
+                initialNodes={localNodes}
+                initialEdges={localEdges}
                 scripts={scripts}
-                selectedNodeId={selectedNodeId}
-                onSelectNode={id => { setSelectedNodeId(id); if (!id) setPreviewScriptId(null); if (connectingFrom && !id) setConnectingFrom(null); }}
-                onMoveNode={handleMoveNode}
-                onStartConnect={setConnectingFrom}
-                connectingFrom={connectingFrom}
-                onCompleteConnect={handleCompleteConnect}
+                onNodesChange={(nodes) => { setLocalNodes(nodes); setHasUnsaved(true); }}
+                onEdgesChange={(edges) => { setLocalEdges(edges); setHasUnsaved(true); }}
                 onDoubleClickNode={node => setEditingNode(node)}
-                onDoubleClickEdge={edge => setEditingEdge(edge)}
-                onDoubleClickCanvas={handleDoubleClickCanvas}
+                controlsRef={controlsRef}
               />
             </div>
-
-            {/* Edge list */}
-            {localEdges.length > 0 && (
-              <div className="flex flex-wrap gap-1.5 items-center">
-                <span className="text-xs text-muted-foreground py-1">Connections:</span>
-                {localEdges.map(e => {
-                  const from = localNodes.find(n => n.id === e.from);
-                  const to = localNodes.find(n => n.id === e.to);
-                  return (
-                    <Badge key={e.id} variant="outline" className="text-[10px] cursor-pointer hover:bg-muted gap-1" onClick={() => setEditingEdge(e)}>
-                      {from?.label || '?'} → {to?.label || '?'} {e.label ? `(${e.label})` : ''}
-                    </Badge>
-                  );
-                })}
-              </div>
-            )}
           </div>
 
-          <NodeEditorDialog open={!!editingNode} onClose={() => setEditingNode(null)} onSave={handleNodeSave} node={editingNode} scripts={scripts} />
-          <EdgeEditorDialog open={!!editingEdge} onClose={() => setEditingEdge(null)} onSave={handleEdgeSave} edge={editingEdge} />
+          <NodeEditorDialog
+            open={!!editingNode}
+            onClose={() => setEditingNode(null)}
+            onSave={handleNodeSave}
+            node={editingNode}
+            scripts={scripts}
+          />
+          <EdgeEditorDialog
+            open={!!editingEdge}
+            onClose={() => setEditingEdge(null)}
+            onSave={handleEdgeSave}
+            edge={editingEdge}
+          />
+          <KeyboardShortcutsHelp
+            open={showShortcuts}
+            onOpenChange={setShowShortcuts}
+          />
         </PageLayout>
       </TooltipProvider>
     );
