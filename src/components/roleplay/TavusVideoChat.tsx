@@ -700,20 +700,20 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
         {/* Learning Objectives */}
         <Card className="border-border/50">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
+          <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-2">
+            <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+              <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 dark:text-green-400" />
               Learning Objectives
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <ul className="space-y-3">
+          <CardContent className="p-4 sm:p-6 pt-2 sm:pt-2">
+            <ul className="space-y-2 sm:space-y-3">
               {scenario.objectives.map((objective, index) => (
-                <li key={index} className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
-                  <div className="p-1 rounded-full bg-green-100 dark:bg-green-900 mt-0.5">
-                    <CheckCircle className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
+                <li key={index} className="flex items-start gap-2 sm:gap-3 p-1.5 sm:p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="p-0.5 sm:p-1 rounded-full bg-green-100 dark:bg-green-900 mt-0.5">
+                    <CheckCircle className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-green-600 dark:text-green-400" />
                   </div>
-                  <span className="text-sm flex-1">{objective}</span>
+                  <span className="text-xs sm:text-sm flex-1">{objective}</span>
                 </li>
               ))}
             </ul>
@@ -743,18 +743,18 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   return (
     <div className="fixed inset-0 bg-black z-50">
       {/* Top Overlay - Session Info */}
-      <div className="absolute top-0 left-0 right-0 z-10 bg-black/50 backdrop-blur-sm p-4">
+      <div className="absolute top-0 left-0 right-0 z-10 bg-black/50 backdrop-blur-sm p-2 sm:p-4 safe-area-pt">
         <div className="flex items-center justify-between text-white">
-          <div className="flex items-center space-x-4">
-            <h1 className="text-lg font-semibold">{scenario.title}</h1>
-            <Badge variant="outline" className="border-white/20 text-white">
+          <div className="flex items-center gap-2 sm:space-x-4 min-w-0">
+            <h1 className="text-sm sm:text-lg font-semibold truncate">{scenario.title}</h1>
+            <Badge variant="outline" className="border-white/20 text-white text-[10px] sm:text-xs shrink-0 hidden sm:inline-flex">
               {scenario.category}
             </Badge>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-1.5 sm:space-x-2 shrink-0">
             <div className="h-2 w-2 bg-red-500 rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium">LIVE</span>
-            <span className="text-sm">{formatTime(sessionDuration)}</span>
+            <span className="text-xs sm:text-sm font-medium">LIVE</span>
+            <span className="text-xs sm:text-sm">{formatTime(sessionDuration)}</span>
           </div>
         </div>
       </div>
