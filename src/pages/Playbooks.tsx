@@ -72,11 +72,11 @@ export default function Playbooks() {
         subtitle="Create curated collections of scripts for different scenarios"
       />
 
-      <div className="px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto pb-20">
+      <div className="px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto pb-20">
         {/* Create Button */}
         {user && (
-          <div className="mb-6">
-            <Button onClick={() => { setTitle(""); setDescription(""); setCreateOpen(true); }} className="gap-2">
+          <div className="mb-4 sm:mb-6">
+            <Button onClick={() => { setTitle(""); setDescription(""); setCreateOpen(true); }} className="gap-2 w-full sm:w-auto">
               <Plus className="h-4 w-4" />
               New Playbook
             </Button>
@@ -85,11 +85,11 @@ export default function Playbooks() {
 
         {/* Playbooks Grid */}
         {playbooks.length === 0 ? (
-          <Card className="text-center py-12">
+          <Card className="text-center py-10 sm:py-12">
             <CardContent>
-              <FileText className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-              <h3 className="font-semibold text-lg mb-2">No playbooks yet</h3>
-              <p className="text-muted-foreground mb-4">Create your first playbook to curate scripts for different scenarios.</p>
+              <FileText className="h-10 w-10 sm:h-12 sm:w-12 mx-auto text-muted-foreground mb-3 sm:mb-4" />
+              <h3 className="font-semibold text-base sm:text-lg mb-2">No playbooks yet</h3>
+              <p className="text-muted-foreground text-sm mb-4">Create your first playbook to curate scripts for different scenarios.</p>
               {user && (
                 <Button onClick={() => { setTitle(""); setDescription(""); setCreateOpen(true); }}>
                   <Plus className="h-4 w-4 mr-2" /> Create Playbook
@@ -98,22 +98,22 @@ export default function Playbooks() {
             </CardContent>
           </Card>
         ) : (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {playbooks.map((pb) => (
               <Card
                 key={pb.id}
-                className="cursor-pointer hover:shadow-md transition-shadow group"
+                className="cursor-pointer hover:shadow-md transition-shadow active:scale-[0.98] group"
                 onClick={() => navigate(`/playbooks/${pb.id}`)}
               >
-                <CardHeader className="pb-2">
-                  <div className="flex items-start justify-between">
-                    <CardTitle className="text-base">{pb.title}</CardTitle>
+                <CardHeader className="pb-2 px-4 sm:px-6">
+                  <div className="flex items-start justify-between gap-2">
+                    <CardTitle className="text-sm sm:text-base leading-snug">{pb.title}</CardTitle>
                     {userId === pb.created_by && (
-                      <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex gap-1 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-7 w-7"
+                          className="h-8 w-8 sm:h-7 sm:w-7"
                           onClick={(e) => {
                             e.stopPropagation();
                             setEditPlaybook({ id: pb.id, title: pb.title, description: pb.description || "" });
@@ -126,7 +126,7 @@ export default function Playbooks() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-7 w-7 text-destructive"
+                          className="h-8 w-8 sm:h-7 sm:w-7 text-destructive"
                           onClick={(e) => {
                             e.stopPropagation();
                             setDeleteTarget(pb.id);
@@ -138,10 +138,10 @@ export default function Playbooks() {
                     )}
                   </div>
                   {pb.description && (
-                    <CardDescription className="line-clamp-2">{pb.description}</CardDescription>
+                    <CardDescription className="line-clamp-2 text-xs sm:text-sm">{pb.description}</CardDescription>
                   )}
                 </CardHeader>
-                <CardContent className="pt-0">
+                <CardContent className="pt-0 px-4 sm:px-6">
                   <div className="flex items-center gap-3 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <User className="h-3 w-3" />
@@ -149,7 +149,7 @@ export default function Playbooks() {
                     </span>
                     <span className="flex items-center gap-1">
                       <Clock className="h-3 w-3" />
-                      {format(new Date(pb.updated_at), "MMM d, yyyy")}
+                      {format(new Date(pb.updated_at), "MMM d")}
                     </span>
                   </div>
                 </CardContent>

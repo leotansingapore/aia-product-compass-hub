@@ -81,50 +81,52 @@ function SortableScriptCard({ item, index, isOwner, onRemove }: SortableScriptCa
     <Card ref={setNodeRef} style={style} className={isDragging ? "shadow-lg ring-2 ring-primary/30" : ""}>
       <Collapsible>
         <CollapsibleTrigger asChild>
-          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3">
-            <div className="flex items-center gap-3">
+          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:px-6">
+            <div className="flex items-start gap-2 sm:gap-3">
               {isOwner && (
                 <button
                   {...attributes}
                   {...listeners}
-                  className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 -ml-1"
+                  className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 -ml-1 mt-0.5"
                   onClick={e => e.stopPropagation()}
                 >
                   <GripVertical className="h-4 w-4" />
                 </button>
               )}
-              <span className="text-xs text-muted-foreground font-mono w-6 text-center">{index + 1}</span>
+              <span className="text-xs text-muted-foreground font-mono w-5 text-center mt-0.5 shrink-0">{index + 1}</span>
               <div className="flex-1 min-w-0">
-                <CardTitle className="text-sm font-medium truncate">
-                  {item.script?.stage}
-                </CardTitle>
-                <div className="flex gap-2 mt-1">
+                <div className="flex items-start justify-between gap-2">
+                  <CardTitle className="text-sm font-medium leading-snug">
+                    {item.script?.stage}
+                  </CardTitle>
+                  <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                </div>
+                <div className="flex gap-1.5 mt-1.5 flex-wrap">
                   <Badge variant="secondary" className="text-[10px]">{item.script?.category}</Badge>
                   {item.script?.target_audience && item.script.target_audience !== 'general' && (
                     <Badge variant="outline" className="text-[10px]">{item.script.target_audience}</Badge>
                   )}
                 </div>
+                {isOwner && (
+                  <div className="mt-2" onClick={e => e.stopPropagation()}>
+                    <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs text-destructive hover:text-destructive" onClick={() => onRemove(item.id)}>
+                      <Trash2 className="h-3 w-3" /> Remove
+                    </Button>
+                  </div>
+                )}
               </div>
-              {isOwner && (
-                <div className="flex items-center gap-1" onClick={e => e.stopPropagation()}>
-                  <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={() => onRemove(item.id)}>
-                    <Trash2 className="h-3.5 w-3.5" />
-                  </Button>
-                </div>
-              )}
-              <ChevronDown className="h-4 w-4 text-muted-foreground" />
             </div>
           </CardHeader>
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <CardContent className="pt-0 pb-4">
+          <CardContent className="pt-0 pb-4 px-3 sm:px-6">
             {item.script?.versions?.map((version: any, vi: number) => (
               <div key={vi} className="mb-4 last:mb-0">
                 <div className="flex items-center justify-between mb-2">
                   <Badge variant="outline" className="text-xs">{version.author || `Version ${vi + 1}`}</Badge>
                   <CopyButton text={version.content || ""} />
                 </div>
-                <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 rounded-lg p-4">
+                <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 rounded-lg p-3 sm:p-4 overflow-x-auto">
                   <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
                     {version.content || ""}
                   </ReactMarkdown>
@@ -207,23 +209,25 @@ export default function PlaybookDetail() {
 
   return (
     <PageLayout title={playbook?.title || "Playbook"} description={playbook?.description || "Script playbook detail"}>
-      <div className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pb-20">
+      <div className="px-3 sm:px-6 lg:px-8 max-w-4xl mx-auto pb-20">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-6 pt-6">
-          <Button variant="ghost" size="icon" onClick={() => navigate("/playbooks")}>
-            <ArrowLeft className="h-4 w-4" />
-          </Button>
-          <div className="flex-1">
-            <h1 className="text-2xl font-bold">{playbook?.title}</h1>
-            {playbook?.description && (
-              <p className="text-muted-foreground mt-1">{playbook.description}</p>
-            )}
-            <p className="text-xs text-muted-foreground mt-1">
-              By {playbook?.creator_name} · {items.length} script{items.length !== 1 ? 's' : ''}
-            </p>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 pt-4 sm:pt-6">
+          <div className="flex items-center gap-3">
+            <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={() => navigate("/playbooks")}>
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+            <div className="flex-1 min-w-0">
+              <h1 className="text-xl sm:text-2xl font-bold leading-snug">{playbook?.title}</h1>
+              {playbook?.description && (
+                <p className="text-muted-foreground text-sm mt-1">{playbook.description}</p>
+              )}
+              <p className="text-xs text-muted-foreground mt-1">
+                By {playbook?.creator_name} · {items.length} script{items.length !== 1 ? 's' : ''}
+              </p>
+            </div>
           </div>
           {isOwner && (
-            <Button onClick={() => setAddDialogOpen(true)} className="gap-2">
+            <Button onClick={() => setAddDialogOpen(true)} className="gap-2 w-full sm:w-auto shrink-0">
               <Plus className="h-4 w-4" /> Add Scripts
             </Button>
           )}
@@ -270,7 +274,7 @@ export default function PlaybookDetail() {
 
       {/* Add Scripts Dialog */}
       <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
-        <DialogContent className="max-w-lg max-h-[80vh]">
+        <DialogContent className="max-w-lg max-h-[85vh] mx-2 sm:mx-auto">
           <DialogHeader>
             <DialogTitle>Add Scripts to Playbook</DialogTitle>
           </DialogHeader>
@@ -287,7 +291,7 @@ export default function PlaybookDetail() {
               </p>
             ) : (
               availableScripts.map(script => (
-                <div key={script.id} className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors">
+                <div key={script.id} className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors gap-2">
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium truncate">{script.stage}</p>
                     <div className="flex gap-1 mt-1">
