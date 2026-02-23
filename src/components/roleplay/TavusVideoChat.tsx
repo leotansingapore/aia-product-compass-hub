@@ -639,24 +639,24 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
         {/* Video Preview & Start Session Card */}
         <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-transparent">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Video className="h-5 w-5 text-primary" />
+          <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-2">
+            <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+              <Video className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
               Session Preview
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
-            {/* Video Previews */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <h4 className="text-sm font-medium text-muted-foreground">AI Trainer Preview</h4>
-                <div className="aspect-video bg-black rounded-lg overflow-hidden flex items-center justify-center text-white/60 text-sm">
-                  <p>AI trainer will appear here when session starts</p>
+          <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6 pt-2 sm:pt-2">
+            {/* Video Previews — stack on mobile */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="space-y-1.5 sm:space-y-2">
+                <h4 className="text-xs sm:text-sm font-medium text-muted-foreground">AI Trainer</h4>
+                <div className="aspect-video bg-black rounded-lg overflow-hidden flex items-center justify-center text-white/60 text-xs sm:text-sm">
+                  <p className="px-4 text-center">AI trainer will appear when session starts</p>
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <h4 className="text-sm font-medium text-muted-foreground">Your Video Preview</h4>
+              <div className="space-y-1.5 sm:space-y-2">
+                <h4 className="text-xs sm:text-sm font-medium text-muted-foreground">Your Camera</h4>
                 <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden">
                   <video
                     ref={videoRef}
@@ -670,27 +670,27 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
             </div>
 
             {/* Start Button */}
-            <div className="flex justify-center pt-2">
+            <div className="flex justify-center pt-1 sm:pt-2">
               <Button
                 onClick={handleStartSession}
                 disabled={isLoading || !user}
                 size="lg"
-                className="px-12 py-6 text-lg bg-gradient-to-r from-primary to-primary-glow hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full sm:w-auto px-8 sm:px-12 py-5 sm:py-6 text-base sm:text-lg bg-gradient-to-r from-primary to-primary-glow hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-                    Starting Session...
+                    Starting...
                   </>
                 ) : !user ? (
                   <>
-                    <AlertTriangle className="mr-3 h-5 w-5" />
+                    <AlertTriangle className="mr-2 h-5 w-5" />
                     Login Required
                   </>
                 ) : (
                   <>
-                    <Play className="mr-3 h-5 w-5" />
-                    Start Roleplay Session
+                    <Play className="mr-2 h-5 w-5" />
+                    Start Roleplay
                   </>
                 )}
               </Button>
