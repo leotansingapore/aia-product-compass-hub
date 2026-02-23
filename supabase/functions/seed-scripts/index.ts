@@ -47,6 +47,39 @@ serve(async (req) => {
       });
     }
 
+    // Mode: create-playbook — create a playbook with items
+    if (mode === "create-playbook" && body.playbook) {
+      const { title, description, created_by, script_ids } = body.playbook;
+      const { data: pb, error: pbErr } = await supabase
+        .from("script_playbooks")
+        .insert({ title, description: description || null, created_by })
+        .select("id")
+        .single();
+      if (pbErr) {
+        return new Response(JSON.stringify({ error: pbErr.message }), {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      if (script_ids && script_ids.length > 0) {
+        const items = script_ids.map((sid: string, i: number) => ({
+          playbook_id: pb.id,
+          script_id: sid,
+          sort_order: i,
+        }));
+        const { error: itemErr } = await supabase.from("script_playbook_items").insert(items);
+        if (itemErr) {
+          return new Response(JSON.stringify({ error: itemErr.message }), {
+            status: 500,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
+        }
+      }
+      return new Response(JSON.stringify({ message: "Playbook created", playbookId: pb.id, itemCount: script_ids?.length || 0 }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     if (!scripts || !Array.isArray(scripts) || scripts.length === 0) {
       return new Response(JSON.stringify({ error: "No scripts provided" }), {
         status: 400,
