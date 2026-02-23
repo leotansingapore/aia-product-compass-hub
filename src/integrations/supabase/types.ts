@@ -1042,6 +1042,7 @@ export type Database = {
           category: string
           created_at: string
           id: string
+          script_role: string | null
           sort_order: number
           stage: string
           target_audience: string | null
@@ -1052,6 +1053,7 @@ export type Database = {
           category: string
           created_at?: string
           id?: string
+          script_role?: string | null
           sort_order?: number
           stage: string
           target_audience?: string | null
@@ -1062,6 +1064,7 @@ export type Database = {
           category?: string
           created_at?: string
           id?: string
+          script_role?: string | null
           sort_order?: number
           stage?: string
           target_audience?: string | null
