@@ -2074,7 +2074,7 @@ export default function ScriptsDatabase() {
           {/* Clear all button */}
           {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all") && (
             <div className="flex justify-end">
-              <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); }}>
+              <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); setShowFavouritesOnly(false); }}>
                 <X className="h-3 w-3 mr-0.5" /> Clear all filters
               </Button>
             </div>
