@@ -53,6 +53,10 @@ export function NodeEditorDialog({ open, onClose, onSave, node, scripts }: Props
                 <SelectItem value="decision">🔀 Decision</SelectItem>
                 <SelectItem value="action">⏳ Action / Wait</SelectItem>
                 <SelectItem value="end">🔴 End</SelectItem>
+                <SelectItem value="hexagon">⬡ Hexagon</SelectItem>
+                <SelectItem value="parallelogram">▱ Input/Output</SelectItem>
+                <SelectItem value="cylinder">🛢 Storage</SelectItem>
+                <SelectItem value="document">📋 Document</SelectItem>
               </SelectContent>
             </Select>
           </div>

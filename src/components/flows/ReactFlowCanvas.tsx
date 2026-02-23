@@ -190,10 +190,12 @@ function ReactFlowCanvasInner({
   // Add node (from palette click or drag)
   const addNode = useCallback((type: FlowNode['type'], position?: { x: number; y: number }) => {
     const labels: Record<string, string> = {
-      start: 'Start', script: 'New Script', decision: 'Decision?', action: 'Follow-up', end: 'End'
+      start: 'Start', script: 'New Script', decision: 'Decision?', action: 'Follow-up', end: 'End',
+      hexagon: 'Process', parallelogram: 'Input/Output', cylinder: 'Storage', document: 'Document',
     };
     const nodeTypeMap: Record<string, string> = {
-      start: 'scriptStart', script: 'scriptNode', decision: 'decisionNode', action: 'actionNode', end: 'scriptEnd'
+      start: 'scriptStart', script: 'scriptNode', decision: 'decisionNode', action: 'actionNode', end: 'scriptEnd',
+      hexagon: 'hexagonNode', parallelogram: 'parallelogramNode', cylinder: 'cylinderNode', document: 'documentNode',
     };
 
     const newNode: Node = {
@@ -543,9 +545,10 @@ function ReactFlowCanvasInner({
           nodeColor={(n) => {
             const type = n.data?.nodeType || '';
             const map: Record<string, string> = {
-              start: '#22c55e', end: '#ef4444', decision: '#f59e0b', script: '#3b82f6', action: '#60a5fa',
+              start: '#16a34a', end: '#dc2626', decision: '#d97706', script: '#2563eb', action: '#7c3aed',
+              hexagon: '#0891b2', parallelogram: '#ea580c', cylinder: '#4f46e5', document: '#0d9488',
             };
-            return map[type] || '#94a3b8';
+            return n.data?.color || map[type] || '#94a3b8';
           }}
           maskColor="rgba(0,0,0,0.1)"
           pannable
