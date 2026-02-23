@@ -47,6 +47,12 @@ const audienceLabels: Record<string, string> = {
   recruitment: "Recruitment",
 };
 
+const roleLabels: Record<string, string> = {
+  consultant: "Consultant",
+  va: "VA",
+  telemarketer: "Telemarketer",
+};
+
 // ===== FALLBACK HARDCODED SCRIPTS (used when DB is empty) =====
 const FALLBACK_SCRIPTS: ScriptEntry[] = [
   {
@@ -1290,6 +1296,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         {audienceLabels[script.target_audience] || script.target_audience}
                       </Badge>
                     )}
+                    {script.script_role && script.script_role !== "consultant" && (
+                      <Badge variant="outline" className="text-[10px] border-dashed">
+                        {roleLabels[script.script_role] || script.script_role}
+                      </Badge>
+                    )}
                   </div>
                   {/* Search snippet preview when collapsed */}
                   {!open && snippet && (
@@ -1422,6 +1433,7 @@ export default function ScriptsDatabase() {
   const searchRef = useRef<HTMLDivElement>(null);
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [activeAudience, setActiveAudience] = useState<string>("all");
+  const [activeRole, setActiveRole] = useState<string>("all");
   const navigate = useNavigate();
   const { scriptId } = useParams();
   
@@ -1473,6 +1485,9 @@ export default function ScriptsDatabase() {
     if (activeAudience !== "all") {
       result = result.filter((s) => s.target_audience === activeAudience);
     }
+    if (activeRole !== "all") {
+      result = result.filter((s) => (s.script_role || "consultant") === activeRole);
+    }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       result = result.filter(
@@ -1482,7 +1497,7 @@ export default function ScriptsDatabase() {
       );
     }
     return result;
-  }, [searchQuery, activeCategory, activeAudience, scriptsData]);
+  }, [searchQuery, activeCategory, activeAudience, activeRole, scriptsData]);
 
   // Script search suggestions
   const suggestions = useMemo(() => {
@@ -1497,12 +1512,15 @@ export default function ScriptsDatabase() {
     const audienceMatches = Object.entries(audienceLabels)
       .filter(([key, val]) => val.toLowerCase().includes(q))
       .map(([key, val]) => ({ type: "audience" as const, label: val, id: key }));
+    const roleMatches = Object.entries(roleLabels)
+      .filter(([key, val]) => val.toLowerCase().includes(q))
+      .map(([key, val]) => ({ type: "role" as const, label: val, id: key }));
     const authorMatches = scriptsData
       .flatMap(s => s.versions.map(v => ({ author: v.author, scriptId: s.id, scriptTitle: s.stage })))
       .filter(v => v.author.toLowerCase().includes(q))
       .slice(0, 3)
       .map(v => ({ type: "version" as const, label: v.author, id: v.scriptId }));
-    return [...categoryMatches, ...audienceMatches, ...titleMatches.slice(0, 5), ...authorMatches].slice(0, 8);
+    return [...categoryMatches, ...audienceMatches, ...roleMatches, ...titleMatches.slice(0, 5), ...authorMatches].slice(0, 8);
   }, [searchInput, scriptsData]);
 
   const handleSearchSelect = useCallback((suggestion: typeof suggestions[0]) => {
@@ -1512,6 +1530,10 @@ export default function ScriptsDatabase() {
       setSearchQuery("");
     } else if (suggestion.type === "audience") {
       setActiveAudience(suggestion.id);
+      setSearchInput("");
+      setSearchQuery("");
+    } else if (suggestion.type === "role") {
+      setActiveRole(suggestion.id);
       setSearchInput("");
       setSearchQuery("");
     } else {
@@ -1559,12 +1581,20 @@ export default function ScriptsDatabase() {
     return c;
   }, [scriptsData]);
 
+  const roleCounts = useMemo(() => {
+    const c: Record<string, number> = { all: scriptsData.length };
+    Object.keys(roleLabels).forEach((key) => {
+      c[key] = scriptsData.filter((s) => (s.script_role || 'consultant') === key).length;
+    });
+    return c;
+  }, [scriptsData]);
+
   const activeCategoriesWithData = useMemo(() => 
     (Object.keys(categoryLabels) as CategoryKey[]).filter(key => counts[key] > 0),
     [counts]
   );
 
-  const handleSave = async (data: { stage: string; category: string; target_audience: string; versions: ScriptVersion[]; sort_order: number }) => {
+  const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; versions: ScriptVersion[]; sort_order: number }) => {
     if (editingScript) {
       await updateScript(editingScript.id, data);
     } else {
@@ -1634,7 +1664,7 @@ export default function ScriptsDatabase() {
                     }`}
                   >
                     <Badge variant="outline" className="text-[10px] shrink-0 font-normal">
-                      {s.type === "category" ? "Category" : s.type === "audience" ? "Audience" : s.type === "version" ? "Version" : "Script"}
+                      {s.type === "category" ? "Category" : s.type === "audience" ? "Audience" : s.type === "role" ? "Role" : s.type === "version" ? "Version" : "Script"}
                     </Badge>
                     <span className="truncate">{s.label}</span>
                   </button>
@@ -1656,8 +1686,8 @@ export default function ScriptsDatabase() {
             <div className="flex items-center gap-2 mb-1.5">
               <Filter className="h-3.5 w-3.5 text-muted-foreground" />
               <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</span>
-              {(activeCategory !== "all" || activeAudience !== "all") && (
-                <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground ml-auto" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); }}>
+              {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all") && (
+                <Button variant="ghost" size="sm" className="h-5 px-1.5 text-[10px] text-muted-foreground ml-auto" onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); }}>
                   <X className="h-3 w-3 mr-0.5" /> Clear filters
                 </Button>
               )}
@@ -1710,6 +1740,32 @@ export default function ScriptsDatabase() {
                   onClick={() => setActiveAudience(key)}
                 >
                   {label} ({audienceCounts[key]})
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          {/* Role filter */}
+          <div>
+            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1.5 block">Role</span>
+            <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+              <Button
+                variant={activeRole === "all" ? "default" : "outline"}
+                size="sm"
+                className="text-xs shrink-0 h-7"
+                onClick={() => setActiveRole("all")}
+              >
+                All
+              </Button>
+              {Object.entries(roleLabels).filter(([key]) => roleCounts[key] > 0).map(([key, label]) => (
+                <Button
+                  key={key}
+                  variant={activeRole === key ? "default" : "outline"}
+                  size="sm"
+                  className="text-xs shrink-0 h-7"
+                  onClick={() => setActiveRole(key)}
+                >
+                  {label} ({roleCounts[key]})
                 </Button>
               ))}
             </div>
