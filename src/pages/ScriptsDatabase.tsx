@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { markdownComponents } from "@/lib/markdown-config";
@@ -7,12 +7,12 @@ import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
 import { KnowledgeManagement } from "@/components/scripts/KnowledgeManagement";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
-import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
+import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon } from "lucide-react";
+import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
@@ -1353,6 +1353,10 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle }
 
 export default function ScriptsDatabase() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
+  const searchRef = useRef<HTMLDivElement>(null);
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [activeAudience, setActiveAudience] = useState<string>("all");
   const navigate = useNavigate();
@@ -1417,6 +1421,65 @@ export default function ScriptsDatabase() {
     return result;
   }, [searchQuery, activeCategory, activeAudience, scriptsData]);
 
+  // Script search suggestions
+  const suggestions = useMemo(() => {
+    if (!searchInput.trim() || searchInput.length < 2) return [];
+    const q = searchInput.toLowerCase();
+    const titleMatches = scriptsData
+      .filter(s => s.stage.toLowerCase().includes(q))
+      .map(s => ({ type: "script" as const, label: s.stage, id: s.id }));
+    const categoryMatches = Object.entries(categoryLabels)
+      .filter(([key, val]) => val.label.toLowerCase().includes(q))
+      .map(([key, val]) => ({ type: "category" as const, label: val.label, id: key }));
+    const audienceMatches = Object.entries(audienceLabels)
+      .filter(([key, val]) => val.toLowerCase().includes(q))
+      .map(([key, val]) => ({ type: "audience" as const, label: val, id: key }));
+    const authorMatches = scriptsData
+      .flatMap(s => s.versions.map(v => ({ author: v.author, scriptId: s.id, scriptTitle: s.stage })))
+      .filter(v => v.author.toLowerCase().includes(q))
+      .slice(0, 3)
+      .map(v => ({ type: "version" as const, label: v.author, id: v.scriptId }));
+    return [...categoryMatches, ...audienceMatches, ...titleMatches.slice(0, 5), ...authorMatches].slice(0, 8);
+  }, [searchInput, scriptsData]);
+
+  const handleSearchSelect = useCallback((suggestion: typeof suggestions[0]) => {
+    if (suggestion.type === "category") {
+      setActiveCategory(suggestion.id);
+      setSearchInput("");
+      setSearchQuery("");
+    } else if (suggestion.type === "audience") {
+      setActiveAudience(suggestion.id);
+      setSearchInput("");
+      setSearchQuery("");
+    } else {
+      navigate(`/scripts/${suggestion.id}`);
+      setSearchInput("");
+      setSearchQuery("");
+    }
+    setShowSuggestions(false);
+    setSelectedSuggestion(-1);
+  }, [navigate]);
+
+  const handleSearchKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedSuggestion(prev => Math.min(prev + 1, suggestions.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedSuggestion(prev => Math.max(prev - 1, -1));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (selectedSuggestion >= 0 && suggestions[selectedSuggestion]) {
+        handleSearchSelect(suggestions[selectedSuggestion]);
+      } else {
+        setSearchQuery(searchInput);
+        setShowSuggestions(false);
+      }
+    } else if (e.key === "Escape") {
+      setShowSuggestions(false);
+    }
+  }, [suggestions, selectedSuggestion, searchInput, handleSearchSelect]);
+
   const counts = useMemo(() => {
     const c: Record<string, number> = { all: scriptsData.length };
     Object.keys(categoryLabels).forEach((key) => {
@@ -1470,8 +1533,51 @@ export default function ScriptsDatabase() {
       <div className="mx-auto px-4 sm:px-6 py-4 sm:py-8 max-w-4xl">
         {/* Search + Add button */}
         <div className="mb-6 flex gap-3 items-start">
-          <div className="flex-1">
-            <EnhancedSearchBar onSearch={setSearchQuery} placeholder="Search scripts..." showResults={false} />
+          <div className="flex-1 relative" ref={searchRef}>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search scripts by title, category, or author..."
+                value={searchInput}
+                onChange={(e) => {
+                  setSearchInput(e.target.value);
+                  setShowSuggestions(true);
+                  setSelectedSuggestion(-1);
+                  if (!e.target.value.trim()) setSearchQuery("");
+                }}
+                onFocus={() => setShowSuggestions(searchInput.length >= 2)}
+                onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                onKeyDown={handleSearchKeyDown}
+                className="pl-10 pr-10 h-10 md:h-12 text-sm md:text-base border-2 focus:border-primary transition-colors"
+              />
+              {searchInput && (
+                <button
+                  onClick={() => { setSearchInput(""); setSearchQuery(""); setShowSuggestions(false); }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+            {showSuggestions && suggestions.length > 0 && (
+              <div className="absolute z-50 w-full mt-1 bg-popover border rounded-lg shadow-lg overflow-hidden">
+                {suggestions.map((s, i) => (
+                  <button
+                    key={`${s.type}-${s.id}-${i}`}
+                    onMouseDown={() => handleSearchSelect(s)}
+                    className={`w-full text-left px-3 py-2.5 text-sm flex items-center gap-2 transition-colors ${
+                      i === selectedSuggestion ? "bg-accent text-accent-foreground" : "hover:bg-muted"
+                    }`}
+                  >
+                    <Badge variant="outline" className="text-[10px] shrink-0 font-normal">
+                      {s.type === "category" ? "Category" : s.type === "audience" ? "Audience" : s.type === "version" ? "Version" : "Script"}
+                    </Badge>
+                    <span className="truncate">{s.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
           {isAdmin && (
             <Button onClick={() => { setEditingScript(null); setEditorOpen(true); }} className="gap-1.5 shrink-0">
