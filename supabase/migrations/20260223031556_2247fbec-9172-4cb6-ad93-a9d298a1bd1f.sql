@@ -1,0 +1,8 @@
+INSERT INTO public.scripts (stage, category, target_audience, versions, sort_order)
+VALUES (
+  'Cold Calling — Freebie Lead from Facebook ($20 Voucher)',
+  'cold-calling',
+  'young-adult',
+  '[{"author":"Default","content":"Hello, is this XXX?\n\nI''ll just keep this call short, less than a minute. Understand that you are studying or working now?\nI''m calling to inform you that you have qualified to win a $20 Capitaland vouchers from us.\n\nIt might have been some time back, and you are one of the lucky winners.\n\nI know you''re very busy, so to help you redeem the $20 voucher, all we have to do is just to conduct a quick zoom session with you on how to grow your money faster than the bank.\n\nAfter the session, we will also pass you a copy of our free investment guidebook.\n\nI''ll just set the session tentatively this saturday morning at 10am over zoom, and we can always confirm closer to the date, is that okay?\n\nAnd after this call, I''ll send you a whatsapp to confirm, and you just need to help me to reply the message is that okay?\n\nSo just one last thing, this session is just for you to learn more, So as long as you learn something that''s beneficial for you, then that''s good enough! Just to check, how do I address you? (if no name). (key it into the CRM)\n\nOne last thing, as long as you learn something from the session, then that''s good enough! So see you this [date/time], and have a good day!\n\n---\n\n**Where are we from / how you get my number:**\nWe are from themoneybees, we are a financial education platform for young adults. You might have clicked on an ad a while back."}]'::jsonb,
+  15
+);
