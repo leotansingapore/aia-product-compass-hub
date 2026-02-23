@@ -37,6 +37,7 @@ interface VideoEditingLayoutProps {
   onFolderSave: (folderName: string) => void;
   onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
   onReorderFolders?: (folderOrder: string[]) => void;
+  lastSavedAt?: number;
 }
 
 export function VideoEditingLayout({
@@ -67,7 +68,8 @@ export function VideoEditingLayout({
   onFolderDialogOpenChange,
   onFolderSave,
   onReorderVideos,
-  onReorderFolders
+  onReorderFolders,
+  lastSavedAt
 }: VideoEditingLayoutProps) {
   const isMobile = useIsMobile();
   const [showMobileEditor, setShowMobileEditor] = useState(false);
@@ -158,6 +160,7 @@ export function VideoEditingLayout({
                 onNewVideoChange={onNewVideoChange}
                 onAddVideo={onAddVideo}
                 onCreateCategory={onCreateCategory}
+                lastSavedAt={lastSavedAt}
               />
             </div>
           </div>
@@ -241,6 +244,7 @@ export function VideoEditingLayout({
             onNewVideoChange={onNewVideoChange}
             onAddVideo={onAddVideo}
             onCreateCategory={onCreateCategory}
+            lastSavedAt={lastSavedAt}
           />
         </div>
       </main>

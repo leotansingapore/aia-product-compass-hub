@@ -15,6 +15,7 @@ import { getVideoSlug } from '@/utils/slugUtils';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { markdownComponents } from '@/lib/markdown-config';
 
 interface VideoLearningInterfaceProps {
@@ -235,7 +236,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             {/* Video Player */}
             <div className="lg:col-span-2 space-y-6 order-2 lg:order-2 transition-all duration-300">
               <Card>
-                {!currentVideo?.rich_content && (
+                {/* Show header when there's no rich content, OR when there's a video URL */}
+                {(!currentVideo?.rich_content || videoInfo) && (
                   <CardHeader>
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                       <CardTitle className="flex items-start sm:items-center gap-2 flex-wrap">
@@ -248,53 +250,52 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                         )}
                       </CardTitle>
                     </div>
-                    {currentVideo?.description && (
+                    {!currentVideo?.rich_content && currentVideo?.description && (
                       <p className="text-muted-foreground">{currentVideo.description}</p>
                     )}
                   </CardHeader>
                 )}
                 <CardContent>
-                  {!currentVideo?.rich_content && (
-                    videoInfo ? (
-                      <div 
-                        ref={videoContainerRef}
-                        className={`relative rounded-lg overflow-hidden bg-muted group ${isFullscreen ? 'w-full h-full' : 'aspect-video'}`}
+                  {/* Show video player when there's a valid video URL, regardless of rich_content */}
+                  {videoInfo ? (
+                    <div
+                      ref={videoContainerRef}
+                      className={`relative rounded-lg overflow-hidden bg-muted group ${isFullscreen ? 'w-full h-full' : 'aspect-video'}`}
+                    >
+                      <iframe
+                        ref={iframeRef}
+                        src={videoInfo.embedUrl}
+                        title={currentVideo?.title}
+                        className="w-full h-full"
+                        allowFullScreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        onLoad={() => setIsPlaying(false)}
+                      />
+                      {/* Fullscreen button overlay */}
+                      <Button
+                        variant="secondary"
+                        size="icon"
+                        className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/70 hover:bg-black/90 text-white border-0 h-9 w-9"
+                        onClick={toggleFullscreen}
+                        title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
                       >
-                        <iframe
-                          ref={iframeRef}
-                          src={videoInfo.embedUrl}
-                          title={currentVideo?.title}
-                          className="w-full h-full"
-                          allowFullScreen
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          onLoad={() => setIsPlaying(false)}
-                        />
-                        {/* Fullscreen button overlay */}
-                        <Button
-                          variant="secondary"
-                          size="icon"
-                          className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/70 hover:bg-black/90 text-white border-0 h-9 w-9"
-                          onClick={toggleFullscreen}
-                          title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-                        >
-                          {isFullscreen ? (
-                            <Minimize className="h-4 w-4" />
-                          ) : (
-                            <Maximize className="h-4 w-4" />
-                          )}
-                        </Button>
-                      </div>
-                    ) : (
-                      <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                        <p className="text-muted-foreground">Invalid video URL</p>
-                      </div>
-                    )
-                  )}
+                        {isFullscreen ? (
+                          <Minimize className="h-4 w-4" />
+                        ) : (
+                          <Maximize className="h-4 w-4" />
+                        )}
+                      </Button>
+                    </div>
+                  ) : !currentVideo?.rich_content ? (
+                    <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                      <p className="text-muted-foreground">Invalid video URL</p>
+                    </div>
+                  ) : null}
                 </CardContent>
               </Card>
 
               {/* Markdown Content or Legacy Notes */}
-              {currentVideo?.rich_content ? (
+              {currentVideo?.rich_content?.trim() ? (
                 // Markdown mode - display formatted markdown
                 <>
                   <Card>
@@ -303,6 +304,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                         <ReactMarkdown
                           components={markdownComponents}
                           remarkPlugins={[remarkGfm]}
+                          rehypePlugins={[rehypeRaw]}
                         >
                           {currentVideo.rich_content}
                         </ReactMarkdown>

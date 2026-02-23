@@ -3,13 +3,20 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Sparkles } from 'lucide-react';
+import { Suspense, lazy } from 'react';
 import { useVideoForm } from '@/hooks/useVideoForm';
 import { VideoBasicInfo } from './VideoBasicInfo';
-import { CategorySelector } from './CategorySelector';
 import { VideoContentTabs } from './VideoContentTabs';
-import { CodeMirrorMarkdownEditor } from '@/components/markdown/CodeMirrorMarkdownEditor';
 import { structuredToMarkdown, createLegacyBackup } from '@/utils/videoContentConverter';
 import type { TrainingVideo } from '@/hooks/useProducts';
+import { Skeleton } from '@/components/ui/skeleton';
+
+// Lazy-load the rich editor for performance
+const RichContentEditor = lazy(() =>
+  import('@/components/markdown/RichContentEditor').then((m) => ({
+    default: m.RichContentEditor,
+  }))
+);
 
 interface VideoEditFormProps {
   video: TrainingVideo;
@@ -17,10 +24,10 @@ interface VideoEditFormProps {
   existingCategories?: string[];
 }
 
-export function VideoEditForm({ 
-  video, 
-  onUpdate, 
-  existingCategories = [] 
+export function VideoEditForm({
+  video,
+  onUpdate,
+  existingCategories = [],
 }: VideoEditFormProps) {
   const {
     editVideo,
@@ -32,20 +39,15 @@ export function VideoEditForm({
     handleChange
   } = useVideoForm({ initialVideo: video, onUpdate });
 
-  const handleCreateCategory = () => {
-    // Category creation logic handled in CategorySelector
-  };
-
-  // Mode detection: Determine if we should use markdown editor or structured form
-  const shouldUseMarkdownEditor = (video: TrainingVideo): boolean => {
-    // Check if rich_content property exists (not undefined), not just if it's truthy
+  // Mode detection: Determine if we should use rich editor or structured form
+  const shouldUseRichEditor = (video: TrainingVideo): boolean => {
     return video.rich_content !== undefined;
   };
 
-  const isMarkdownMode = shouldUseMarkdownEditor(editVideo);
+  const isRichMode = shouldUseRichEditor(editVideo);
 
-  // Conversion function: Switch from structured → markdown editor
-  const handleSwitchToMarkdown = () => {
+  // Conversion function: Switch from structured → rich editor
+  const handleSwitchToRichEditor = () => {
     const markdown = structuredToMarkdown(editVideo);
     const backup = createLegacyBackup(editVideo);
 
@@ -54,56 +56,24 @@ export function VideoEditForm({
       rich_content: markdown,
       legacy_fields: backup
     };
-    
+
     onUpdate(updatedVideo);
   };
 
-  // Markdown Editor Mode: Show markdown textarea for content
-  if (isMarkdownMode) {
-    const handleMarkdownChange = (markdown: string) => {
-      const updatedVideo = { ...editVideo, rich_content: markdown };
-      onUpdate(updatedVideo);
-    };
-
+  // Rich Editor Mode — Skool-style: inline title + content + transcript all in one card
+  if (isRichMode) {
     return (
-      <div className="space-y-4">
-        <VideoBasicInfo
-          video={editVideo}
-          isDetectingDuration={isDetectingDuration}
-          onChange={handleChange}
+      <Suspense fallback={<Skeleton className="h-[500px] w-full rounded-lg" />}>
+        <RichContentEditor
+          value={editVideo.rich_content || ''}
+          onChange={(value) => handleChange('rich_content', value)}
+          placeholder="Start writing, or type '/' for commands..."
+          title={editVideo.title || ''}
+          onTitleChange={(title) => handleChange('title', title)}
+          transcript={editVideo.transcript || ''}
+          onTranscriptChange={(transcript) => handleChange('transcript', transcript)}
         />
-
-        <CategorySelector
-          video={editVideo}
-          existingCategories={existingCategories}
-          newCategoryName={newCategoryName}
-          showNewCategoryInput={showNewCategoryInput}
-          onCategoryChange={(value) => handleChange('category', value)}
-          onNewCategoryNameChange={setNewCategoryName}
-          onShowNewCategoryInput={setShowNewCategoryInput}
-          onCreateCategory={handleCreateCategory}
-        />
-
-        <div className="space-y-2">
-          <Label>Content (Markdown)</Label>
-          <CodeMirrorMarkdownEditor
-            value={editVideo.rich_content || ''}
-            onChange={(value) => handleChange('rich_content', value)}
-            placeholder="Write your video content using markdown..."
-          />
-        </div>
-
-        <div>
-          <Label>Transcript (Separate Field)</Label>
-          <Textarea
-            value={editVideo.transcript || ''}
-            onChange={(e) => handleChange('transcript', e.target.value)}
-            placeholder="Add video transcript here..."
-            rows={8}
-            className="font-mono text-sm"
-          />
-        </div>
-      </div>
+      </Suspense>
     );
   }
 
@@ -113,15 +83,15 @@ export function VideoEditForm({
       <Alert className="bg-primary/5 border-primary/20">
         <Sparkles className="h-4 w-4 text-primary" />
         <AlertDescription className="text-sm">
-          Try the new Markdown Editor for a better editing experience!
+          Try the new Rich Editor for a better editing experience!
           <Button
-            onClick={handleSwitchToMarkdown}
+            onClick={handleSwitchToRichEditor}
             variant="outline"
             size="sm"
             className="ml-3"
           >
             <Sparkles className="mr-2 h-4 w-4" />
-            Switch to Markdown Editor
+            Switch to Rich Editor
           </Button>
         </AlertDescription>
       </Alert>
@@ -130,17 +100,6 @@ export function VideoEditForm({
         video={editVideo}
         isDetectingDuration={isDetectingDuration}
         onChange={handleChange}
-      />
-
-      <CategorySelector
-        video={editVideo}
-        existingCategories={existingCategories}
-        newCategoryName={newCategoryName}
-        showNewCategoryInput={showNewCategoryInput}
-        onCategoryChange={(value) => handleChange('category', value)}
-        onNewCategoryNameChange={setNewCategoryName}
-        onShowNewCategoryInput={setShowNewCategoryInput}
-        onCreateCategory={handleCreateCategory}
       />
 
       <div>

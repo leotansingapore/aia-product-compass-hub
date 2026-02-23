@@ -45,10 +45,14 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
   }, [initialVideos]);
 
   // Track whether there are unsaved content changes
+  // Use a forced override flag for immediately after save (before React re-renders)
+  const [saveJustCompleted, setSaveJustCompleted] = useState(false);
+
   const hasContentChanges = useMemo(() => {
+    if (saveJustCompleted) return false;
     const currentState = JSON.stringify(editVideos);
     return currentState !== initialVideosRef.current;
-  }, [editVideos]);
+  }, [editVideos, saveJustCompleted]);
 
   const resetNewVideo = () => {
     setNewVideo({ 
@@ -83,9 +87,10 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
       // Update both the state and the initial ref to reflect the saved state
       setEditVideos(videos);
       initialVideosRef.current = JSON.stringify(videos);
-      
+      // Immediately mark save as complete so save bar hides
+      setSaveJustCompleted(true);
+
       setIsEditing(false);
-      setEditingIndex(null);
       console.log('✅ VideoManagement save successful');
       toast({
         title: "Saved",
@@ -157,6 +162,8 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
     const updated = [...editVideos];
     updated[index] = updatedVideo;
     setEditVideos(updated);
+    // Clear the save-complete flag so changes are detected again
+    if (saveJustCompleted) setSaveJustCompleted(false);
   };
 
   const removeVideo = async (index: number) => {

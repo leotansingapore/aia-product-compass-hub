@@ -319,4 +319,189 @@
   .prose .video-embed iframe {
     @apply w-full aspect-video rounded-lg;
   }
+
+  /* ===== Tiptap Rich Content Editor ===== */
+
+  .rich-content-editor .ProseMirror {
+    @apply p-6 min-h-[400px] outline-none;
+    font-family: var(--font-sans, 'Montserrat', ui-sans-serif, system-ui, sans-serif);
+  }
+
+  .rich-content-editor .ProseMirror p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    @apply text-muted-foreground pointer-events-none float-left h-0;
+  }
+
+  /* Headings */
+  .rich-content-editor .ProseMirror h1 {
+    @apply text-2xl font-bold mb-3 mt-6 first:mt-0;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+
+  .rich-content-editor .ProseMirror h2 {
+    @apply text-xl font-semibold mb-2 mt-5 first:mt-0;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+  }
+
+  .rich-content-editor .ProseMirror h3 {
+    @apply text-lg font-semibold mb-2 mt-4 first:mt-0;
+    line-height: 1.4;
+  }
+
+  /* Paragraphs */
+  .rich-content-editor .ProseMirror p {
+    @apply mb-3 last:mb-0 leading-relaxed;
+  }
+
+  /* Lists */
+  .rich-content-editor .ProseMirror ul {
+    @apply list-disc ml-6 mb-3 space-y-1;
+  }
+
+  .rich-content-editor .ProseMirror ol {
+    @apply list-decimal ml-6 mb-3 space-y-1;
+  }
+
+  .rich-content-editor .ProseMirror li {
+    @apply leading-relaxed;
+  }
+
+  .rich-content-editor .ProseMirror li p {
+    @apply mb-0;
+  }
+
+  /* Task lists */
+  .rich-content-editor .ProseMirror ul[data-type="taskList"] {
+    @apply list-none ml-0;
+  }
+
+  .rich-content-editor .ProseMirror ul[data-type="taskList"] li {
+    @apply flex items-start gap-2;
+  }
+
+  .rich-content-editor .ProseMirror ul[data-type="taskList"] li > label {
+    @apply mt-1;
+  }
+
+  .rich-content-editor .ProseMirror ul[data-type="taskList"] li > label input[type="checkbox"] {
+    @apply rounded border-border;
+  }
+
+  .rich-content-editor .ProseMirror ul[data-type="taskList"] li > div {
+    @apply flex-1;
+  }
+
+  /* Blockquotes */
+  .rich-content-editor .ProseMirror blockquote {
+    @apply border-l-4 border-primary/50 pl-4 py-2 my-3 italic bg-muted/30 rounded-r;
+  }
+
+  /* Code */
+  .rich-content-editor .ProseMirror code {
+    @apply bg-muted px-1.5 py-0.5 rounded text-[0.9em] font-mono border border-border;
+  }
+
+  .rich-content-editor .ProseMirror pre {
+    @apply bg-muted border border-border p-4 rounded-lg text-sm font-mono overflow-x-auto mb-3;
+  }
+
+  .rich-content-editor .ProseMirror pre code {
+    @apply bg-transparent border-0 p-0 rounded-none text-sm;
+  }
+
+  /* Links */
+  .rich-content-editor .ProseMirror a {
+    @apply text-primary underline underline-offset-2 cursor-pointer;
+  }
+
+  /* Images */
+  .rich-content-editor .ProseMirror .tiptap-image {
+    @apply rounded-lg max-w-full h-auto my-4 mx-auto block;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .rich-content-editor .ProseMirror .tiptap-image.ProseMirror-selectednode {
+    @apply ring-2 ring-primary;
+  }
+
+  /* Tables */
+  .rich-content-editor .ProseMirror table {
+    @apply w-full border-collapse mb-4 rounded-lg overflow-hidden;
+    border: 1px solid hsl(var(--border));
+  }
+
+  .rich-content-editor .ProseMirror table th {
+    @apply bg-muted px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider;
+    border: 1px solid hsl(var(--border));
+    min-width: 80px;
+  }
+
+  .rich-content-editor .ProseMirror table td {
+    @apply px-4 py-2.5 text-sm;
+    border: 1px solid hsl(var(--border));
+    min-width: 80px;
+    vertical-align: top;
+  }
+
+  .rich-content-editor .ProseMirror table th p,
+  .rich-content-editor .ProseMirror table td p {
+    @apply mb-0;
+  }
+
+  .rich-content-editor .ProseMirror table td.selectedCell,
+  .rich-content-editor .ProseMirror table th.selectedCell {
+    @apply bg-primary/10;
+  }
+
+  .rich-content-editor .ProseMirror table .column-resize-handle {
+    @apply absolute top-0 right-[-2px] bottom-[-2px] w-1 bg-primary/50 pointer-events-auto cursor-col-resize;
+  }
+
+  .rich-content-editor .ProseMirror table td:hover,
+  .rich-content-editor .ProseMirror table th:hover {
+    background-color: hsl(var(--muted) / 0.3);
+  }
+
+  /* Horizontal Rule */
+  .rich-content-editor .ProseMirror hr {
+    @apply my-6 border-t border-border;
+  }
+
+  /* Highlight */
+  .rich-content-editor .ProseMirror mark {
+    @apply bg-yellow-200 dark:bg-yellow-800/50 rounded px-0.5;
+  }
+
+  /* Strikethrough */
+  .rich-content-editor .ProseMirror s {
+    @apply line-through opacity-60;
+  }
+
+  /* Focus ring for the editor container */
+  .rich-content-editor:focus-within {
+    @apply ring-2 ring-primary/20 border-primary/50;
+  }
+
+  /* Callout content */
+  .rich-content-editor .callout-content p {
+    @apply mb-0;
+  }
+
+  /* Selection styling */
+  .rich-content-editor .ProseMirror ::selection {
+    @apply bg-primary/20;
+  }
+
+  /* Drag handle */
+  .rich-content-editor .ProseMirror .ProseMirror-selectednode {
+    @apply outline-2 outline-primary/40 outline-dashed outline-offset-2 rounded;
+  }
+
+  /* Table cells need relative positioning for resize handles */
+  .rich-content-editor .ProseMirror table td,
+  .rich-content-editor .ProseMirror table th {
+    position: relative;
+  }
 }

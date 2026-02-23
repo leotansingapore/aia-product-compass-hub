@@ -54,6 +54,7 @@ export function VideoEditingInterface({
 
   // Use empty arrays as default since this interface manages its own state
   const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
+  const [lastSavedAt, setLastSavedAt] = useState(0);
   const { toast } = useToast();
 
   // Track video order changes from drag-and-drop
@@ -243,6 +244,7 @@ export function VideoEditingInterface({
           onFolderSave={folderManagement.handleFolderSave}
           onReorderVideos={videoOrderChanges.updatePendingVideos}
           onReorderFolders={handleReorderFolders}
+          lastSavedAt={lastSavedAt}
         />
         
         {/* Unified save bar - shows when there are ANY unsaved changes */}
@@ -250,13 +252,16 @@ export function VideoEditingInterface({
           <div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t px-6 py-4 mt-6">
             <VideoEditingActions
               saving={saving || videoOrderChanges.isSaving}
-              onSave={() => {
+              onSave={async () => {
                 // Get the latest videos (includes order changes and content changes)
                 const currentVideos = videoOrderChanges.pendingVideos;
                 console.log('💾 Save triggered with videos:', currentVideos.length);
-                onSave(currentVideos);
+                // Wait for save to complete before clearing state
+                await onSave(currentVideos);
                 // Clear order tracking after save
                 videoOrderChanges.discardChanges();
+                // Signal editor to switch back to preview mode
+                setLastSavedAt(Date.now());
               }}
               onCancel={onCancel}
             />
