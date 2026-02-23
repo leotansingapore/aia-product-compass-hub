@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
-import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Circle, Diamond, Zap, Square, FileText, Save, Undo2, Sparkles } from 'lucide-react';
+import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Circle, Diamond, Zap, Square, FileText, Save, Undo2, Sparkles, Eye, EyeOff } from 'lucide-react';
 import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
 import { useScripts } from '@/hooks/useScripts';
 import { FlowCanvas } from '@/components/flows/FlowCanvas';
@@ -18,6 +18,7 @@ import { NodeEditorDialog } from '@/components/flows/NodeEditorDialog';
 import { EdgeEditorDialog } from '@/components/flows/EdgeEditorDialog';
 import { FLOW_TEMPLATES } from '@/utils/flowTemplates';
 import { AIFlowWizard } from '@/components/flows/AIFlowWizard';
+import { InlineScriptPreview } from '@/components/flows/InlineScriptPreview';
 import { toast } from 'sonner';
 
 const NODE_TYPE_OPTIONS: { type: FlowNode['type']; label: string; icon: React.ReactNode; desc: string }[] = [
@@ -134,6 +135,7 @@ export default function ScriptFlows() {
   const [hasUnsaved, setHasUnsaved] = useState(false);
   const [addNodeOpen, setAddNodeOpen] = useState(false);
   const [showAIWizard, setShowAIWizard] = useState(false);
+  const [previewScriptId, setPreviewScriptId] = useState<string | null>(null);
 
   const openFlow = useCallback((id: string) => {
     const flow = flows.find(f => f.id === id);
@@ -374,9 +376,13 @@ export default function ScriptFlows() {
                       <span className="text-xs text-muted-foreground truncate">📄 {linked.stage}</span>
                       <Button
                         variant="outline" size="sm" className="ml-auto shrink-0 gap-1.5 text-xs h-7"
-                        onClick={() => navigate(`/scripts?highlight=${selectedNode.scriptId}`)}
+                        onClick={() => setPreviewScriptId(prev => prev === selectedNode.scriptId ? null : selectedNode.scriptId!)}
                       >
-                        <FileText className="h-3 w-3" /> View Script
+                        {previewScriptId === selectedNode.scriptId ? (
+                          <><EyeOff className="h-3 w-3" /> Hide Script</>
+                        ) : (
+                          <><Eye className="h-3 w-3" /> View Script</>
+                        )}
                       </Button>
                     </>
                   ) : (
@@ -388,14 +394,22 @@ export default function ScriptFlows() {
               </div>
             )}
 
+            {/* Inline script preview */}
+            {previewScriptId && (() => {
+              const previewScript = scripts.find(s => s.id === previewScriptId);
+              return previewScript ? (
+                <InlineScriptPreview script={previewScript} onClose={() => setPreviewScriptId(null)} />
+              ) : null;
+            })()}
+
             {/* Canvas */}
-            <div className="h-[calc(100vh-260px)] min-h-[400px]">
+            <div className={`${previewScriptId ? 'h-[calc(100vh-520px)]' : 'h-[calc(100vh-260px)]'} min-h-[300px] transition-all`}>
               <FlowCanvas
                 nodes={localNodes}
                 edges={localEdges}
                 scripts={scripts}
                 selectedNodeId={selectedNodeId}
-                onSelectNode={id => { setSelectedNodeId(id); if (connectingFrom && !id) setConnectingFrom(null); }}
+                onSelectNode={id => { setSelectedNodeId(id); if (!id) setPreviewScriptId(null); if (connectingFrom && !id) setConnectingFrom(null); }}
                 onMoveNode={handleMoveNode}
                 onStartConnect={setConnectingFrom}
                 connectingFrom={connectingFrom}
