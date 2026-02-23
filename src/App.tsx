@@ -45,6 +45,8 @@ import VideoDetail from "./pages/VideoDetail";
 import AwaitingApproval from "./pages/AwaitingApproval";
 import ManageProductVideos from "./pages/ManageProductVideos";
 import ScriptsDatabase from "./pages/ScriptsDatabase";
+import Playbooks from "./pages/Playbooks";
+import PlaybookDetail from "./pages/PlaybookDetail";
 
 // Lazy load AI Assistant page for performance optimization
 const AIAssistant = lazy(() => import("./pages/AIAssistant"));
@@ -102,6 +104,10 @@ const App = () => (
 {/* Scripts Database */}
 <Route path="/scripts" element={<ScriptsDatabase />} />
 <Route path="/scripts/:scriptId" element={<ScriptsDatabase />} />
+
+{/* Script Playbooks */}
+<Route path="/playbooks" element={<Playbooks />} />
+<Route path="/playbooks/:playbookId" element={<PlaybookDetail />} />
 
 {/* Knowledge Base */}
 <Route path="/kb" element={<KnowledgeBase />} />

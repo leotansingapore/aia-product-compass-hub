@@ -1037,6 +1037,72 @@ export type Database = {
         }
         Relationships: []
       }
+      script_playbook_items: {
+        Row: {
+          created_at: string
+          id: string
+          playbook_id: string
+          script_id: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          playbook_id: string
+          script_id: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          playbook_id?: string
+          script_id?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "script_playbook_items_playbook_id_fkey"
+            columns: ["playbook_id"]
+            isOneToOne: false
+            referencedRelation: "script_playbooks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "script_playbook_items_script_id_fkey"
+            columns: ["script_id"]
+            isOneToOne: false
+            referencedRelation: "scripts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      script_playbooks: {
+        Row: {
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       scripts: {
         Row: {
           category: string
