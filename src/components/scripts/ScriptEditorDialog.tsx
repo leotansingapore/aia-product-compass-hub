@@ -187,9 +187,9 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
               <Textarea
                 value={pasteContent}
                 onChange={e => setPasteContent(e.target.value)}
-                placeholder="Paste your full script here... (supports markdown)"
+                placeholder="Paste your full script here..."
                 rows={12}
-                className="font-mono text-sm"
+                className="text-sm"
               />
             </div>
           </div>
@@ -327,7 +327,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                     <Textarea
                       value={v.content}
                       onChange={e => updateVersion(i, "content", e.target.value)}
-                      placeholder="Script content... (supports markdown)"
+                      placeholder="Script content..."
                       rows={8}
                     />
                   </div>
