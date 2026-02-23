@@ -15,6 +15,7 @@ const Dashboard = memo(() => {
     query,
     filters,
     results,
+    resultCounts,
     isSearching,
     hasQuery,
     hasActiveFilters,
@@ -29,6 +30,7 @@ const Dashboard = memo(() => {
     handleCategoryFilter,
     handleTagFilter,
     handleContentFilter,
+    handleTypeFilter,
     clearFilters,
     clearSearch
   } = useDashboardSearch();
