@@ -41,6 +41,14 @@ const SCRIPT_ROLES = [
   { value: "telemarketer", label: "Telemarketer" },
 ];
 
+interface SimilarScript {
+  id: string;
+  stage: string;
+  category: string;
+  target_audience: string;
+  similarity: string; // reason why it's similar
+}
+
 interface Props {
   open: boolean;
   onClose: () => void;
@@ -48,7 +56,7 @@ interface Props {
   script?: ScriptEntry | null;
 }
 
-type EditorStep = "paste" | "review";
+type EditorStep = "paste" | "duplicates" | "review";
 
 export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   // Step state (only for new scripts)
