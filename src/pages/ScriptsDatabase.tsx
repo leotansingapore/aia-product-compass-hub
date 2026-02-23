@@ -1544,6 +1544,74 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   );
 }
 
+function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate }: {
+  subType: string;
+  config: { label: string; icon: string; description: string };
+  scripts: ScriptEntry[];
+  isAdmin: boolean;
+  scriptId?: string;
+  searchQuery: string;
+  myPlaybooks?: { id: string; title: string }[];
+  handleAddToPlaybook: (playbookId: string, scriptId: string) => void;
+  user: any;
+  favouriteIds: Set<string>;
+  toggleFavourite: { mutate: (id: string) => void };
+  isMobile: boolean;
+  setEditingScript: (s: ScriptEntry) => void;
+  setEditorOpen: (open: boolean) => void;
+  setDeleteTarget: (s: ScriptEntry) => void;
+  navigate: (path: string, opts?: { replace?: boolean }) => void;
+}) {
+  const [open, setOpen] = useState(true);
+  return (
+    <Collapsible open={open} onOpenChange={setOpen}>
+      <div className="border rounded-lg overflow-hidden">
+        <CollapsibleTrigger asChild>
+          <button className="w-full flex items-center justify-between px-4 py-3 bg-muted/40 hover:bg-muted/60 transition-colors text-left">
+            <div className="flex items-center gap-2.5">
+              <span className="text-base">{config.icon}</span>
+              <div>
+                <span className="font-semibold text-sm text-foreground">{config.label}</span>
+                <span className="text-xs text-muted-foreground ml-2">{config.description}</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <Badge variant="secondary" className="text-xs font-medium">{scripts.length}</Badge>
+              <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+            </div>
+          </button>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <div className="space-y-2 p-2">
+            {scripts.map((script) => (
+              <ScriptCard
+                key={script.id}
+                script={script}
+                isAdmin={isAdmin}
+                isOpenByUrl={scriptId === script.id}
+                searchQuery={searchQuery}
+                myPlaybooks={myPlaybooks}
+                onAddToPlaybook={handleAddToPlaybook}
+                isAuthenticated={!!user}
+                userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
+                isFavourite={favouriteIds.has(script.id)}
+                onToggleFavourite={() => toggleFavourite.mutate(script.id)}
+                isMobile={isMobile}
+                onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
+                onDelete={() => setDeleteTarget(script)}
+                onToggle={(open) => {
+                  if (open) navigate(`/scripts/${script.id}`, { replace: true });
+                  else if (scriptId === script.id) navigate('/scripts', { replace: true });
+                }}
+              />
+            ))}
+          </div>
+        </CollapsibleContent>
+      </div>
+    </Collapsible>
+  );
+}
+
 export default function ScriptsDatabase() {
   const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();
