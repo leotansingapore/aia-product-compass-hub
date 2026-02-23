@@ -1,22 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getCategorySlugFromId } from "@/utils/slugUtils";
 import { useAllProducts } from "@/hooks/useProducts";
 import { useMemo } from "react";
-import {
-  TrendingUp,
-  Shield,
-  Heart,
-  Clock,
-  Stethoscope
-} from "lucide-react";
+import { TrendingUp, Shield, Heart, Clock, Stethoscope, ArrowRight } from "lucide-react";
 
 export function ProductCategories() {
   const navigate = useNavigate();
   const { allProducts, loading } = useAllProducts();
 
-  // Calculate product counts per category from database
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     allProducts.forEach(product => {
@@ -28,82 +20,90 @@ export function ProductCategories() {
 
   const categories = [
     {
-      id: "c7cde8f4-12d4-4ddc-9150-7b32008a4e19", // Investment Products
+      id: "c7cde8f4-12d4-4ddc-9150-7b32008a4e19",
       name: "Investment Products",
-      description: "Build wealth and achieve financial goals",
+      description: "Build wealth and achieve long-term financial goals",
       icon: TrendingUp,
-      color: "text-white",
-      bgColor: "bg-green-600",
-      borderColor: "group-hover:border-green-300",
-      count: categoryCounts["c7cde8f4-12d4-4ddc-9150-7b32008a4e19"] || 0
+      gradient: "from-emerald-500 to-green-600",
+      lightBg: "bg-emerald-50 dark:bg-emerald-950/30",
+      iconColor: "text-emerald-600 dark:text-emerald-400",
+      count: categoryCounts["c7cde8f4-12d4-4ddc-9150-7b32008a4e19"] || 0,
     },
     {
-      id: "3adb6155-c158-408d-b910-9b3db532d435", // Endowment Products
+      id: "3adb6155-c158-408d-b910-9b3db532d435",
       name: "Endowment Products",
-      description: "Savings with insurance protection",
+      description: "Savings plans with built-in insurance protection",
       icon: Shield,
-      color: "text-white",
-      bgColor: "bg-blue-600",
-      borderColor: "group-hover:border-blue-300",
-      count: categoryCounts["3adb6155-c158-408d-b910-9b3db532d435"] || 0
+      gradient: "from-blue-500 to-blue-600",
+      lightBg: "bg-blue-50 dark:bg-blue-950/30",
+      iconColor: "text-blue-600 dark:text-blue-400",
+      count: categoryCounts["3adb6155-c158-408d-b910-9b3db532d435"] || 0,
     },
     {
-      id: "19b8c528-f36e-4731-827c-0cdb1de25059", // Whole Life Products
+      id: "19b8c528-f36e-4731-827c-0cdb1de25059",
       name: "Whole Life Products",
-      description: "Lifelong protection and savings",
+      description: "Lifetime coverage with a cash value component",
       icon: Heart,
-      color: "text-white",
-      bgColor: "bg-red-600",
-      borderColor: "group-hover:border-red-300",
-      count: categoryCounts["19b8c528-f36e-4731-827c-0cdb1de25059"] || 0
+      gradient: "from-rose-500 to-red-600",
+      lightBg: "bg-rose-50 dark:bg-rose-950/30",
+      iconColor: "text-rose-600 dark:text-rose-400",
+      count: categoryCounts["19b8c528-f36e-4731-827c-0cdb1de25059"] || 0,
     },
     {
-      id: "291cf475-d918-40c0-b37d-33794534d469", // Term Products
+      id: "291cf475-d918-40c0-b37d-33794534d469",
       name: "Term Products",
-      description: "Affordable protection coverage",
+      description: "Affordable, no-frills protection for a fixed period",
       icon: Clock,
-      color: "text-white",
-      bgColor: "bg-orange-600",
-      borderColor: "group-hover:border-orange-300",
-      count: categoryCounts["291cf475-d918-40c0-b37d-33794534d469"] || 0
+      gradient: "from-orange-500 to-amber-600",
+      lightBg: "bg-orange-50 dark:bg-orange-950/30",
+      iconColor: "text-orange-600 dark:text-orange-400",
+      count: categoryCounts["291cf475-d918-40c0-b37d-33794534d469"] || 0,
     },
     {
-      id: "b1024527-481f-4d85-9192-b43633e9be4a", // Medical Insurance Products
+      id: "b1024527-481f-4d85-9192-b43633e9be4a",
       name: "Medical Insurance",
-      description: "Healthcare protection solutions",
+      description: "Healthcare cover for hospitalisation and illness",
       icon: Stethoscope,
-      color: "text-white",
-      bgColor: "bg-purple-600",
-      borderColor: "group-hover:border-purple-300",
-      count: categoryCounts["b1024527-481f-4d85-9192-b43633e9be4a"] || 0
-    }
+      gradient: "from-violet-500 to-purple-600",
+      lightBg: "bg-violet-50 dark:bg-violet-950/30",
+      iconColor: "text-violet-600 dark:text-violet-400",
+      count: categoryCounts["b1024527-481f-4d85-9192-b43633e9be4a"] || 0,
+    },
   ];
 
   return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-semibold">Product Categories</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 auto-rows-fr">
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <h3 className="text-base font-semibold text-foreground">Browse by Product Category</h3>
+        <span className="text-xs text-muted-foreground">{categories.length} categories</span>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {categories.map((category) => (
-          <Card
+          <button
             key={category.id}
-            className="h-full hover:shadow-md transition-shadow cursor-pointer group"
             onClick={() => navigate(`/category/${getCategorySlugFromId(category.id)}`)}
+            className="group text-left flex items-center gap-4 rounded-xl border border-border bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200 p-4"
           >
-            <CardContent className="h-full !p-4 flex items-center justify-center relative">
-              <Badge variant="secondary" className="absolute top-2 right-2 text-micro">
-                {loading ? "..." : category.count}
-              </Badge>
-              <div className="flex flex-col items-center text-center space-y-2 w-full">
-                <div className={`p-2.5 rounded-xl ${category.bgColor} ${category.borderColor} group-hover:scale-105 transition-all duration-200 shadow-md border-2 border-transparent`}>
-                  <category.icon className={`h-6 w-6 ${category.color} stroke-[2]`} />
-                </div>
-                <div>
-                  <div className="font-medium text-sm sm:text-base">{category.name}</div>
-                  <div className="text-micro sm:text-sm text-muted-foreground mt-1">{category.description}</div>
-                </div>
+            {/* Icon */}
+            <div className={`shrink-0 h-11 w-11 rounded-xl ${category.lightBg} flex items-center justify-center group-hover:scale-105 transition-transform duration-200`}>
+              <category.icon className={`h-5 w-5 ${category.iconColor}`} />
+            </div>
+
+            {/* Text */}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-sm text-foreground">{category.name}</span>
+                <Badge variant="secondary" className="text-[10px] h-4 px-1.5 shrink-0">
+                  {loading ? "…" : category.count}
+                </Badge>
               </div>
-            </CardContent>
-          </Card>
+              <p className="text-xs text-muted-foreground mt-0.5 leading-snug">{category.description}</p>
+            </div>
+
+            {/* Arrow */}
+            <ArrowRight className="shrink-0 h-4 w-4 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
+          </button>
         ))}
       </div>
     </div>
