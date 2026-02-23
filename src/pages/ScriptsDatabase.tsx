@@ -2262,31 +2262,83 @@ export default function ScriptsDatabase() {
         {!loading && (
           <div className="space-y-3">
             {filteredScripts.length > 0 ? (
-              filteredScripts.map((script) => (
-                <ScriptCard
-                  key={script.id}
-                  script={script}
-                  isAdmin={isAdmin}
-                  isOpenByUrl={scriptId === script.id}
-                  searchQuery={searchQuery}
-                  myPlaybooks={myPlaybooks}
-                  onAddToPlaybook={handleAddToPlaybook}
-                  isAuthenticated={!!user}
-                  userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
-                  isFavourite={favouriteIds.has(script.id)}
-                  onToggleFavourite={() => toggleFavourite.mutate(script.id)}
-                  isMobile={isMobile}
-                  onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
-                  onDelete={() => setDeleteTarget(script)}
-                  onToggle={(open) => {
-                    if (open) {
-                      navigate(`/scripts/${script.id}`, { replace: true });
-                    } else if (scriptId === script.id) {
-                      navigate('/scripts', { replace: true });
-                    }
-                  }}
-                />
-              ))
+              (() => {
+                // If viewing Follow-Up category specifically (no other category filter mixing things), show sub-grouped view
+                const isFollowUpView = activeCategory === "follow-up" || (activeCategory === "all" && filteredScripts.every(s => s.category === "follow-up"));
+                const hasFollowUpScripts = filteredScripts.some(s => s.category === "follow-up");
+                const showSubGroups = (activeCategory === "follow-up") && !searchQuery && activeAudience === "all" && activeRole === "all" && activeTag === "all";
+
+                if (showSubGroups) {
+                  // Group follow-up scripts by their stage_type tag
+                  const subTypeOrder = ["initial-text", "post-call", "callback", "reminder-sequence", "closing", "post-meeting", "other"];
+                  const grouped: Record<string, ScriptEntry[]> = {};
+                  filteredScripts.forEach(script => {
+                    const tags = script.tags || [];
+                    const subType = subTypeOrder.find(st => tags.includes(st)) || "other";
+                    if (!grouped[subType]) grouped[subType] = [];
+                    grouped[subType].push(script);
+                  });
+
+                  return (
+                    <div className="space-y-4">
+                      {subTypeOrder.filter(st => grouped[st]?.length > 0).map(subType => {
+                        const config = followUpSubTypeLabels[subType];
+                        return (
+                          <FollowUpSubGroup
+                            key={subType}
+                            subType={subType}
+                            config={config}
+                            scripts={grouped[subType]}
+                            isAdmin={isAdmin}
+                            scriptId={scriptId}
+                            searchQuery={searchQuery}
+                            myPlaybooks={myPlaybooks}
+                            handleAddToPlaybook={handleAddToPlaybook}
+                            user={user}
+                            favouriteIds={favouriteIds}
+                            toggleFavourite={toggleFavourite}
+                            isMobile={isMobile}
+                            setEditingScript={setEditingScript}
+                            setEditorOpen={setEditorOpen}
+                            setDeleteTarget={setDeleteTarget}
+                            navigate={navigate}
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                }
+
+                return (
+                  <>
+                    {filteredScripts.map((script) => (
+                      <ScriptCard
+                        key={script.id}
+                        script={script}
+                        isAdmin={isAdmin}
+                        isOpenByUrl={scriptId === script.id}
+                        searchQuery={searchQuery}
+                        myPlaybooks={myPlaybooks}
+                        onAddToPlaybook={handleAddToPlaybook}
+                        isAuthenticated={!!user}
+                        userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
+                        isFavourite={favouriteIds.has(script.id)}
+                        onToggleFavourite={() => toggleFavourite.mutate(script.id)}
+                        isMobile={isMobile}
+                        onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
+                        onDelete={() => setDeleteTarget(script)}
+                        onToggle={(open) => {
+                          if (open) {
+                            navigate(`/scripts/${script.id}`, { replace: true });
+                          } else if (scriptId === script.id) {
+                            navigate('/scripts', { replace: true });
+                          }
+                        }}
+                      />
+                    ))}
+                  </>
+                );
+              })()
             ) : (
               <div className="text-center py-12 text-muted-foreground">
                 <MessageSquare className="h-10 w-10 mx-auto mb-3 opacity-40" />
