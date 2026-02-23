@@ -4,7 +4,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Check, X, Edit } from 'lucide-react';
+import { Check, X, Pencil } from 'lucide-react';
 import { useAdmin } from '@/hooks/useAdmin';
 import { RichTextEditor } from './RichTextEditor';
 import ReactMarkdown from 'react-markdown';
@@ -167,7 +167,17 @@ export function EditableText({
         <span className={`${value ? "" : "text-muted-foreground italic"} break-words flex-1 min-w-0`}>
           {value || placeholder}
         </span>
-        <Edit className="h-4 w-4 opacity-60 group-hover:opacity-100 text-primary transition-opacity flex-shrink-0" />
+        <Button
+          variant="default"
+          size="sm"
+          className="shrink-0 h-7 w-7 p-0 opacity-70 group-hover:opacity-100 transition-opacity"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsEditing(true);
+          }}
+        >
+          <Pencil className="h-3.5 w-3.5" />
+        </Button>
       </div>
     </div>
   );
