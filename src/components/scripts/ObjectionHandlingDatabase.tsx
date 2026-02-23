@@ -20,6 +20,16 @@ import { useObjections, useObjectionMutations } from "@/hooks/useObjections";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import type { ObjectionEntry, ObjectionResponse } from "@/hooks/useObjections";
 
+function highlightText(text: string, query: string): React.ReactNode {
+  if (!query.trim()) return text;
+  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  const parts = text.split(regex);
+  if (parts.length === 1) return text;
+  return parts.map((part, i) =>
+    regex.test(part) ? <mark key={i} className="bg-yellow-200 dark:bg-yellow-700/60 rounded-sm px-0.5">{part}</mark> : part
+  );
+}
+
 const categoryConfig: Record<string, { label: string; icon: string; color: string }> = {
   generic: { label: "Generic Objections", icon: "🧠", color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
   tactical: { label: "Tactical Objections", icon: "⚡", color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
@@ -40,13 +50,18 @@ interface ObjectionCardProps {
   onDelete: () => void;
   onAddResponse: (objectionId: string, content: string) => Promise<void>;
   onDeleteResponse: (id: string) => Promise<void>;
+  searchQuery?: string;
+  matchedResponseIds?: Set<string>;
 }
 
-function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, userDisplayName, onEdit, onDelete, onAddResponse, onDeleteResponse }: ObjectionCardProps) {
+function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, userDisplayName, onEdit, onDelete, onAddResponse, onDeleteResponse, searchQuery = "", matchedResponseIds }: ObjectionCardProps) {
   const [open, setOpen] = useState(false);
   const [newResponse, setNewResponse] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const cat = categoryConfig[entry.category] || categoryConfig.generic;
+
+  // Auto-expand when search matches response content
+  const hasResponseMatch = matchedResponseIds && matchedResponseIds.size > 0;
 
   const handleSubmit = async () => {
     if (!newResponse.trim()) return;
@@ -57,7 +72,7 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
   };
 
   return (
-    <Collapsible open={open} onOpenChange={setOpen}>
+    <Collapsible open={open || !!hasResponseMatch} onOpenChange={setOpen}>
       <Card className={`overflow-hidden transition-shadow ${open ? "shadow-md ring-1 ring-primary/20" : ""}`}>
         <CollapsibleTrigger asChild>
           <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6">
@@ -65,7 +80,7 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
               <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground shrink-0 mt-0.5 sm:mt-0" />
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
-                  <CardTitle className="text-sm sm:text-base leading-snug">{entry.title}</CardTitle>
+                  <CardTitle className="text-sm sm:text-base leading-snug">{highlightText(entry.title, searchQuery)}</CardTitle>
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform shrink-0 mt-0.5 ${open ? "rotate-180" : ""}`} />
                 </div>
                 <div className="flex items-center gap-1 sm:gap-1.5 mt-1.5 flex-wrap">
@@ -80,7 +95,7 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
                   ))}
                 </div>
                 {entry.description && (
-                  <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{entry.description}</p>
+                  <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{highlightText(entry.description, searchQuery)}</p>
                 )}
               </div>
             </div>
@@ -101,7 +116,7 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
                 <p className="text-sm text-muted-foreground text-center py-4">No responses yet. Be the first to contribute!</p>
               )}
               {responses.map((resp) => (
-                <div key={resp.id} className="border rounded-lg p-3 bg-card">
+                <div key={resp.id} className={`border rounded-lg p-3 bg-card ${matchedResponseIds?.has(resp.id) ? 'ring-2 ring-yellow-400/60 dark:ring-yellow-500/40' : ''}`}>
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <User className="h-3.5 w-3.5 text-muted-foreground" />
@@ -240,6 +255,20 @@ export function ObjectionHandlingDatabase() {
     refetch();
   }, [deleteResponse, refetch]);
 
+  // Track which response IDs matched the search for highlighting
+  const matchedResponseIdsMap = useMemo(() => {
+    const map: Record<string, Set<string>> = {};
+    if (!searchQuery.trim()) return map;
+    const q = searchQuery.toLowerCase();
+    responses.forEach(r => {
+      if (r.content.toLowerCase().includes(q) || r.author_name.toLowerCase().includes(q)) {
+        if (!map[r.objection_id]) map[r.objection_id] = new Set();
+        map[r.objection_id].add(r.id);
+      }
+    });
+    return map;
+  }, [responses, searchQuery]);
+
   const filteredEntries = useMemo(() => {
     let result = entries;
     if (activeCategory !== "all") {
@@ -250,11 +279,12 @@ export function ObjectionHandlingDatabase() {
       result = result.filter(e =>
         e.title.toLowerCase().includes(q) ||
         (e.description || "").toLowerCase().includes(q) ||
-        responses.filter(r => r.objection_id === e.id).some(r => r.content.toLowerCase().includes(q))
+        (e.tags || []).some(t => t.toLowerCase().includes(q)) ||
+        !!matchedResponseIdsMap[e.id]
       );
     }
     return result;
-  }, [entries, responses, activeCategory, searchQuery]);
+  }, [entries, activeCategory, searchQuery, matchedResponseIdsMap]);
 
   const categoryCounts = useMemo(() => {
     const c: Record<string, number> = { all: entries.length };
@@ -281,7 +311,7 @@ export function ObjectionHandlingDatabase() {
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             type="text"
-            placeholder="Search objections..."
+            placeholder="Search objections, responses, tags..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10 pr-10 h-10 text-sm border-2 focus:border-primary transition-colors"
@@ -334,6 +364,11 @@ export function ObjectionHandlingDatabase() {
       {/* Results count */}
       <div className="mb-3 text-xs text-muted-foreground">
         {filteredEntries.length} objection{filteredEntries.length !== 1 ? "s" : ""} found
+        {searchQuery.trim() && (
+          <span className="ml-1">
+            for "<span className="font-medium text-foreground">{searchQuery}</span>"
+          </span>
+        )}
       </div>
 
       {/* Loading */}
@@ -360,6 +395,8 @@ export function ObjectionHandlingDatabase() {
                 onDelete={() => setDeleteTarget(entry)}
                 onAddResponse={handleAddResponse}
                 onDeleteResponse={handleDeleteResponse}
+                searchQuery={searchQuery}
+                matchedResponseIds={matchedResponseIdsMap[entry.id]}
               />
             ))
           ) : (
