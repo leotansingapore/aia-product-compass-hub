@@ -74,14 +74,14 @@ export function KnowledgeManagement() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <input
               ref={fileRef}
               type="file"
               accept=".pdf,.doc,.docx,.txt,.md,.csv,.xlsx,.xls"
-              className="text-sm file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 flex-1"
+              className="text-sm file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 min-w-0 flex-1"
             />
-            <Button onClick={handleUpload} disabled={uploading} size="sm" className="gap-1.5">
+            <Button onClick={handleUpload} disabled={uploading} size="sm" className="gap-1.5 shrink-0">
               {uploading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />}
               {uploading ? "Uploading..." : "Upload"}
             </Button>
