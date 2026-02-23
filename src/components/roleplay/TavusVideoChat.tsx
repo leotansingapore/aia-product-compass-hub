@@ -807,11 +807,11 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
       {/* Live Transcript Overlay */}
       {showTranscripts && transcripts.length > 0 && (
-        <div className="absolute bottom-24 right-6 z-20 w-80 max-h-60 bg-black/80 backdrop-blur-sm rounded-lg p-4 overflow-hidden">
-          <div className="flex items-center justify-between mb-3">
+        <div className="absolute bottom-20 sm:bottom-24 right-2 sm:right-6 left-2 sm:left-auto z-20 sm:w-80 max-h-48 sm:max-h-60 bg-black/80 backdrop-blur-sm rounded-lg p-3 sm:p-4 overflow-hidden">
+          <div className="flex items-center justify-between mb-2 sm:mb-3">
             <div className="flex items-center space-x-2">
-              <Subtitles className="h-4 w-4 text-white" />
-              <span className="text-white text-sm font-medium">Live Transcript</span>
+              <Subtitles className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
+              <span className="text-white text-xs sm:text-sm font-medium">Live Transcript</span>
             </div>
             <Button
               onClick={() => setShowTranscripts(false)}
@@ -822,15 +822,15 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
               <X className="h-3 w-3" />
             </Button>
           </div>
-          <div className="space-y-2 overflow-y-auto max-h-36 scrollbar-thin scrollbar-thumb-white/20">
+          <div className="space-y-1.5 sm:space-y-2 overflow-y-auto max-h-28 sm:max-h-36 scrollbar-thin scrollbar-thumb-white/20">
             {transcripts.slice(-6).map((transcript, index) => (
-              <div key={index} className="text-sm">
+              <div key={index} className="text-xs sm:text-sm">
                 <span className={`font-medium ${
                   transcript.speaker === 'user' ? 'text-blue-300' : 'text-green-300'
                 }`}>
-                  {transcript.speaker === 'user' ? 'You' : 'AI Trainer'}:
+                  {transcript.speaker === 'user' ? 'You' : 'AI'}:
                 </span>
-                <span className="text-white/90 ml-2">
+                <span className="text-white/90 ml-1.5 sm:ml-2">
                   {transcript.text}
                 </span>
               </div>
@@ -841,7 +841,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
       {/* Transcript Toggle Button */}
       {!showTranscripts && transcripts.length > 0 && (
-        <div className="absolute bottom-24 right-6 z-20">
+        <div className="absolute bottom-20 sm:bottom-24 right-3 sm:right-6 z-20">
           <Button
             onClick={() => setShowTranscripts(true)}
             variant="secondary"
@@ -854,53 +854,55 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       )}
 
       {/* Bottom Floating Controls */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
-        <div className="bg-black/70 backdrop-blur-sm rounded-full px-6 py-3 flex items-center space-x-3">
-          <Button
-            onClick={toggleMute}
-            variant={isMuted ? "destructive" : "secondary"}
-            size="sm"
-            className="rounded-full"
-          >
-            {isMuted ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
-          </Button>
-          
-          <Button
-            onClick={toggleVideo}
-            variant={!isVideoOn ? "destructive" : "secondary"}
-            size="sm"
-            className="rounded-full"
-          >
-            {isVideoOn ? <Video className="h-4 w-4" /> : <VideoOff className="h-4 w-4" />}
-          </Button>
-          
-          <Button
-            onClick={toggleSpeaker}
-            variant={!isSpeakerOn ? "destructive" : "secondary"}
-            size="sm"
-            className="rounded-full"
-          >
-            {isSpeakerOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-          </Button>
+      <div className="absolute bottom-0 left-0 right-0 z-10 safe-area-pb">
+        <div className="flex justify-center pb-4 sm:pb-6">
+          <div className="bg-black/70 backdrop-blur-sm rounded-full px-3 sm:px-6 py-2.5 sm:py-3 flex items-center gap-2 sm:space-x-3">
+            <Button
+              onClick={toggleMute}
+              variant={isMuted ? "destructive" : "secondary"}
+              size="sm"
+              className="rounded-full h-9 w-9 sm:h-auto sm:w-auto p-0 sm:px-3"
+            >
+              {isMuted ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+            </Button>
+            
+            <Button
+              onClick={toggleVideo}
+              variant={!isVideoOn ? "destructive" : "secondary"}
+              size="sm"
+              className="rounded-full h-9 w-9 sm:h-auto sm:w-auto p-0 sm:px-3"
+            >
+              {isVideoOn ? <Video className="h-4 w-4" /> : <VideoOff className="h-4 w-4" />}
+            </Button>
+            
+            <Button
+              onClick={toggleSpeaker}
+              variant={!isSpeakerOn ? "destructive" : "secondary"}
+              size="sm"
+              className="rounded-full h-9 w-9 sm:h-auto sm:w-auto p-0 sm:px-3 hidden sm:flex"
+            >
+              {isSpeakerOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+            </Button>
 
-          <Button
-            onClick={handleEndSession}
-            variant="destructive"
-            size="sm"
-            className="rounded-full px-4"
-          >
-            <Square className="mr-2 h-3 w-3" />
-            End Session
-          </Button>
+            <Button
+              onClick={handleEndSession}
+              variant="destructive"
+              size="sm"
+              className="rounded-full px-3 sm:px-4 text-xs sm:text-sm"
+            >
+              <Square className="mr-1.5 sm:mr-2 h-3 w-3" />
+              End
+            </Button>
 
-          <Button
-            onClick={handleRestart}
-            variant="secondary"
-            size="sm"
-            className="rounded-full"
-          >
-            <RotateCcw className="h-4 w-4" />
-          </Button>
+            <Button
+              onClick={handleRestart}
+              variant="secondary"
+              size="sm"
+              className="rounded-full h-9 w-9 sm:h-auto sm:w-auto p-0 sm:px-3 hidden sm:flex"
+            >
+              <RotateCcw className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>
