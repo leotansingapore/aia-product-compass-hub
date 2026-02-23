@@ -338,6 +338,35 @@ export type Database = {
           },
         ]
       }
+      contribution_kudos: {
+        Row: {
+          contribution_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          contribution_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          contribution_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contribution_kudos_contribution_id_fkey"
+            columns: ["contribution_id"]
+            isOneToOne: false
+            referencedRelation: "script_user_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       conversation_transcripts: {
         Row: {
           confidence: number | null
