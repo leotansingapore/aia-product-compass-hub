@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useSearch } from "@/hooks/useSearch";
-import { useSemanticSearch } from "@/hooks/useSemanticSearch";
 
 interface SearchHeroProps {
   onSearch: (query: string) => void;
@@ -18,9 +17,6 @@ export function SearchHero({ onSearch, variant = "default" }: SearchHeroProps) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const { getSearchSuggestions } = useSearch();
-  const { searchHistory } = useSemanticSearch();
-
-  const recentSearches = searchHistory.slice(0, 3);
   const suggestions = query.length > 0 ? getSearchSuggestions(query).slice(0, 5) : [];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -83,12 +79,9 @@ export function SearchHero({ onSearch, variant = "default" }: SearchHeroProps) {
   }, []);
 
   const content = (
-    <div className={variant === "compact" ? "space-y-3" : "space-y-4"}>
+    <div className={variant === "compact" ? "space-y-2" : "space-y-3"}>
       {variant === "default" && (
-        <div className="text-center">
-          <h2 className="text-xl font-bold mb-2">Find What You Need</h2>
-          <p className="text-sm text-muted-foreground">Search products, documents, and training materials</p>
-        </div>
+        <p className="text-sm text-muted-foreground text-center">Search products, documents, and training materials</p>
       )}
 
       <form onSubmit={handleSubmit} className="flex gap-2">
@@ -141,29 +134,6 @@ export function SearchHero({ onSearch, variant = "default" }: SearchHeroProps) {
           </Button>
         </form>
 
-      {recentSearches.length > 0 && (
-        <div className="space-y-2">
-          <div className={`flex items-center gap-1 text-micro ${variant === "compact" ? "text-white/70" : "text-muted-foreground"}`}>
-            <Clock className="h-3 w-3" />
-            <span>Recent searches</span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {recentSearches.map((search) => (
-              <Badge
-                key={search}
-                variant="secondary"
-                className={`cursor-pointer text-micro text-primary ${variant === "compact" ? "bg-white/90 hover:bg-white" : "bg-white hover:bg-white/90"}`}
-                onClick={() => {
-                  console.log("SearchHero: Clicked recent search:", search);
-                  onSearch(search);
-                }}
-              >
-                {search}
-              </Badge>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 
@@ -172,7 +142,7 @@ export function SearchHero({ onSearch, variant = "default" }: SearchHeroProps) {
   }
 
   return (
-    <Card className="p-6 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
+    <Card className="p-4 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
       {content}
     </Card>
   );
