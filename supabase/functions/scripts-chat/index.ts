@@ -6,7 +6,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const BASE_SYSTEM_PROMPT = `You are a Scripts Coach AI for TheMoneyBees Academy — a financial education platform helping young adults (especially NSFs and young professionals in Singapore) with financial literacy.
+const SCRIPTS_SYSTEM_PROMPT = `You are a Scripts Coach AI for TheMoneyBees Academy — a financial education platform helping young adults (especially NSFs and young professionals in Singapore) with financial literacy.
 
 You have deep knowledge of all the sales scripts, cold calling templates, follow-up messages, referral scripts, appointment confirmations, FAQ/objection handling, and tips used by the team.
 
@@ -25,9 +25,28 @@ When analyzing screenshots or client messages:
 
 Always be practical, friendly, and action-oriented. Use emojis sparingly. Keep responses concise unless detail is requested.`;
 
+const OBJECTIONS_SYSTEM_PROMPT = `You are an Objection Handling Coach AI for TheMoneyBees Academy — a financial education platform helping young adults (especially NSFs and young professionals in Singapore) with financial literacy.
+
+You specialize in helping financial consultants handle prospect objections with confidence and empathy.
+
+Your role:
+1. **Identify the objection type** — classify it (generic, tactical, product-specific, pricing, trust, timing)
+2. **Suggest 2-3 response options** — a direct rebuttal, an empathetic redirect, and an educational approach
+3. **Explain the psychology** behind the objection and why your suggested response works
+4. **Role-play practice** — if asked, simulate a prospect so the consultant can practice
+5. **Analyze client screenshots** — when a consultant shares what a prospect said, break down the objection and suggest tailored responses
+
+When handling objections:
+- Always acknowledge the prospect's concern first
+- Never be aggressive or dismissive
+- Reference specific rebuttals from the database when available
+- Suggest follow-up questions to keep the conversation going
+- Adapt tone based on whether the prospect is warm or cold
+
+Always be practical, empathetic, and action-oriented. Keep responses concise unless detail is requested.`;
+
 async function getRAGContext(supabase: any, userQuery: string): Promise<string> {
   try {
-    // Use full-text search to find relevant chunks
     const searchTerms = userQuery
       .toLowerCase()
       .replace(/[^\w\s]/g, "")
@@ -36,7 +55,6 @@ async function getRAGContext(supabase: any, userQuery: string): Promise<string> 
       .slice(0, 8);
 
     if (searchTerms.length === 0) {
-      // No meaningful search terms, return all scripts
       return await getAllScriptsContext(supabase);
     }
 
@@ -49,7 +67,6 @@ async function getRAGContext(supabase: any, userQuery: string): Promise<string> 
       .limit(15);
 
     if (error || !chunks || chunks.length === 0) {
-      // Fallback: get all scripts + recent docs
       return await getAllScriptsContext(supabase);
     }
 
@@ -108,6 +125,62 @@ async function getAllScriptsContext(supabase: any): Promise<string> {
   return kb;
 }
 
+async function getObjectionsContext(supabase: any, userQuery: string): Promise<string> {
+  try {
+    // Fetch all objection entries with their responses
+    const { data: entries } = await supabase
+      .from("objection_entries")
+      .select("title, category, description, tags")
+      .order("sort_order", { ascending: true });
+
+    const { data: responses } = await supabase
+      .from("objection_responses")
+      .select("objection_id, content, author_name")
+      .order("upvotes", { ascending: false });
+
+    if (!entries || entries.length === 0) return "";
+
+    // Build a response map
+    const responseMap: Record<string, any[]> = {};
+    if (responses) {
+      for (const r of responses) {
+        if (!responseMap[r.objection_id]) responseMap[r.objection_id] = [];
+        responseMap[r.objection_id].push(r);
+      }
+    }
+
+    let ctx = "\n--- OBJECTION HANDLING DATABASE ---\n\n";
+    const catMap: Record<string, any[]> = {};
+    for (const e of entries) {
+      const cat = e.category || "generic";
+      if (!catMap[cat]) catMap[cat] = [];
+      catMap[cat].push(e);
+    }
+
+    for (const [cat, objs] of Object.entries(catMap)) {
+      ctx += `## ${cat.toUpperCase()}\n\n`;
+      for (const obj of objs) {
+        ctx += `### "${obj.title}"\n`;
+        if (obj.description) ctx += `Context: ${obj.description}\n`;
+        if (obj.tags?.length) ctx += `Tags: ${obj.tags.join(", ")}\n`;
+        const resps = responseMap[obj.id] || [];
+        if (resps.length > 0) {
+          ctx += "Responses:\n";
+          for (const r of resps.slice(0, 3)) {
+            ctx += `- **${r.author_name}:** ${r.content}\n`;
+          }
+        }
+        ctx += "\n";
+      }
+    }
+    ctx += "--- END OF OBJECTION HANDLING DATABASE ---";
+    return ctx;
+  } catch (e) {
+    console.error("Objections context error:", e);
+    return "";
+  }
+}
+
 const FALLBACK_KNOWLEDGE = `
 --- SCRIPTS KNOWLEDGE BASE ---
 
@@ -131,7 +204,7 @@ serve(async (req) => {
   }
 
   try {
-    const { messages } = await req.json();
+    const { messages, mode } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
@@ -147,8 +220,13 @@ serve(async (req) => {
           ? lastUserMsg.content.find((c: any) => c.type === "text")?.text || ""
           : "");
 
+    const isObjectionMode = mode === "objections";
+    const basePrompt = isObjectionMode ? OBJECTIONS_SYSTEM_PROMPT : SCRIPTS_SYSTEM_PROMPT;
+
+    // Always get scripts context; add objections context in objections mode
     const ragContext = await getRAGContext(supabase, userQuery);
-    const systemPrompt = BASE_SYSTEM_PROMPT + ragContext;
+    const objectionsContext = isObjectionMode ? await getObjectionsContext(supabase, userQuery) : "";
+    const systemPrompt = basePrompt + ragContext + objectionsContext;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",

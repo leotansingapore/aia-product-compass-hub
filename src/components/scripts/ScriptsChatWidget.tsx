@@ -1,20 +1,23 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { MessageCircle, X, Send, Image, Trash2, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send, Image, Loader2, ScrollText, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 
+type ChatMode = "scripts" | "objections";
 type Msg = { role: "user" | "assistant"; content: string; image?: string };
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/scripts-chat`;
 
 async function streamChat({
   messages,
+  mode,
   onDelta,
   onDone,
 }: {
   messages: Msg[];
+  mode: ChatMode;
   onDelta: (deltaText: string) => void;
   onDone: () => void;
 }) {
@@ -37,7 +40,7 @@ async function streamChat({
       "Content-Type": "application/json",
       Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
     },
-    body: JSON.stringify({ messages: apiMessages }),
+    body: JSON.stringify({ messages: apiMessages, mode }),
   });
 
   if (!resp.ok || !resp.body) {
@@ -76,7 +79,6 @@ async function streamChat({
     }
   }
 
-  // Final flush
   if (textBuffer.trim()) {
     for (let raw of textBuffer.split("\n")) {
       if (!raw) continue;
@@ -96,15 +98,46 @@ async function streamChat({
   onDone();
 }
 
-const QUICK_PROMPTS = [
+const SCRIPTS_PROMPTS = [
   "Which script should I use for a cold call to an NSF?",
-  "How do I handle the 'what's the catch' objection?",
   "Give me a 2nd follow-up message for someone who hasn't replied",
   "How should I respond if they ask which company I'm from?",
+  "What's a good opening text for warm market outreach?",
 ];
 
-export function ScriptsChatWidget() {
+const OBJECTION_PROMPTS = [
+  "They said 'I need to check with my spouse first'",
+  "How do I handle 'I already have an advisor'?",
+  "They ghosted after the first meeting, what do I say?",
+  "Client says 'insurance is a scam', help me respond",
+];
+
+const MODE_CONFIG = {
+  scripts: {
+    label: "Scripts",
+    icon: ScrollText,
+    title: "Scripts AI Coach",
+    subtitle: "Paste screenshots • Ask about scripts",
+    placeholder: "Ask about scripts or paste a screenshot...",
+    emptyText: "Ask about scripts, paste client screenshots, or get help crafting responses.",
+  },
+  objections: {
+    label: "Objections",
+    icon: Shield,
+    title: "Objection Coach",
+    subtitle: "Practice rebuttals • Handle objections",
+    placeholder: "Describe the objection you're facing...",
+    emptyText: "Share a prospect's objection, paste a screenshot, or practice your rebuttals.",
+  },
+};
+
+interface ScriptsChatWidgetProps {
+  initialMode?: ChatMode;
+}
+
+export function ScriptsChatWidget({ initialMode = "scripts" }: ScriptsChatWidgetProps) {
   const [open, setOpen] = useState(false);
+  const [mode, setMode] = useState<ChatMode>(initialMode);
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -112,6 +145,11 @@ export function ScriptsChatWidget() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Sync mode with initialMode when it changes (e.g. tab switch)
+  useEffect(() => {
+    setMode(initialMode);
+  }, [initialMode]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -141,6 +179,14 @@ export function ScriptsChatWidget() {
       }
     }
   }, [handleImageUpload]);
+
+  const switchMode = useCallback((newMode: ChatMode) => {
+    if (newMode === mode) return;
+    setMode(newMode);
+    setMessages([]);
+    setInput("");
+    setPastedImage(null);
+  }, [mode]);
 
   const send = async (text?: string) => {
     const content = text || input.trim();
@@ -172,6 +218,7 @@ export function ScriptsChatWidget() {
     try {
       await streamChat({
         messages: [...messages, userMsg],
+        mode,
         onDelta: (chunk) => upsertAssistant(chunk),
         onDone: () => setIsLoading(false),
       });
@@ -181,6 +228,10 @@ export function ScriptsChatWidget() {
       toast.error("Failed to get response. Please try again.");
     }
   };
+
+  const cfg = MODE_CONFIG[mode];
+  const quickPrompts = mode === "scripts" ? SCRIPTS_PROMPTS : OBJECTION_PROMPTS;
+  const ModeIcon = cfg.icon;
 
   return (
     <>
@@ -192,7 +243,7 @@ export function ScriptsChatWidget() {
           "bg-primary text-primary-foreground hover:scale-105",
           open && "scale-0 opacity-0 pointer-events-none"
         )}
-        aria-label="Open Scripts AI Coach"
+        aria-label="Open AI Coach"
       >
         <MessageCircle className="h-6 w-6" />
       </button>
@@ -207,10 +258,10 @@ export function ScriptsChatWidget() {
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b bg-primary rounded-t-2xl">
           <div className="flex items-center gap-2">
-            <MessageCircle className="h-5 w-5 text-primary-foreground" />
+            <ModeIcon className="h-5 w-5 text-primary-foreground" />
             <div>
-              <h3 className="text-sm font-semibold text-primary-foreground">Scripts AI Coach</h3>
-              <p className="text-[10px] text-primary-foreground/70">Paste screenshots • Ask anything</p>
+              <h3 className="text-sm font-semibold text-primary-foreground">{cfg.title}</h3>
+              <p className="text-[10px] text-primary-foreground/70">{cfg.subtitle}</p>
             </div>
           </div>
           <Button variant="ghost" size="icon" className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/10" onClick={() => setOpen(false)}>
@@ -218,15 +269,37 @@ export function ScriptsChatWidget() {
           </Button>
         </div>
 
+        {/* Mode toggle */}
+        <div className="flex border-b bg-muted/30 p-1 gap-1">
+          {(["scripts", "objections"] as const).map((m) => {
+            const Icon = MODE_CONFIG[m].icon;
+            return (
+              <button
+                key={m}
+                onClick={() => switchMode(m)}
+                className={cn(
+                  "flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium transition-all",
+                  mode === m
+                    ? "bg-background shadow-sm text-foreground"
+                    : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                )}
+              >
+                <Icon className="h-3.5 w-3.5" />
+                {MODE_CONFIG[m].label}
+              </button>
+            );
+          })}
+        </div>
+
         {/* Messages */}
         <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 space-y-3">
           {messages.length === 0 && (
             <div className="space-y-3 pt-2">
               <p className="text-xs text-muted-foreground text-center">
-                Ask about scripts, paste client screenshots, or get help crafting responses.
+                {cfg.emptyText}
               </p>
               <div className="space-y-1.5">
-                {QUICK_PROMPTS.map((q, i) => (
+                {quickPrompts.map((q, i) => (
                   <button
                     key={i}
                     onClick={() => send(q)}
@@ -321,7 +394,7 @@ export function ScriptsChatWidget() {
                   send();
                 }
               }}
-              placeholder="Ask about scripts or paste a screenshot..."
+              placeholder={cfg.placeholder}
               className="flex-1 resize-none border rounded-lg px-3 py-2 text-sm bg-background focus:outline-none focus:ring-1 focus:ring-ring min-h-[36px] max-h-[100px]"
               rows={1}
             />
