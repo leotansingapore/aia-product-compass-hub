@@ -42,38 +42,40 @@ export function RoleplayScenarioCard({ scenario, onStart }: RoleplayScenarioCard
   
   return (
     <Card className="hover:shadow-md transition-shadow flex flex-col group border-border/50">
-      <CardHeader>
-        <div className="flex items-start justify-between mb-3">
-          <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 border-2 border-transparent group-hover:border-primary group-hover:scale-105 transition-all duration-200 shadow-md">
-            <CategoryIcon className="h-8 w-8 text-primary" />
+      <CardHeader className="p-4 sm:p-6">
+        <div className="flex items-start gap-3 mb-2 sm:mb-3">
+          <div className="p-2 sm:p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 border-2 border-transparent group-hover:border-primary group-hover:scale-105 transition-all duration-200 shadow-md shrink-0">
+            <CategoryIcon className="h-5 w-5 sm:h-8 sm:w-8 text-primary" />
           </div>
-          <div className="flex gap-2">
-            <Badge className={`${categoryColors[scenario.category]} text-xs px-2 transition-none pointer-events-none`}>
-              {scenario.category}
-            </Badge>
-            <Badge className={`${difficultyColors[scenario.difficulty]} text-xs px-2 transition-none pointer-events-none`}>
-              {scenario.difficulty}
-            </Badge>
+          <div className="min-w-0 flex-1">
+            <CardTitle className="text-base sm:text-lg group-hover:text-primary transition-colors leading-tight">{scenario.title}</CardTitle>
+            <div className="flex flex-wrap gap-1.5 mt-1.5">
+              <Badge className={`${categoryColors[scenario.category]} text-[10px] sm:text-xs px-1.5 sm:px-2 transition-none pointer-events-none`}>
+                {scenario.category}
+              </Badge>
+              <Badge className={`${difficultyColors[scenario.difficulty]} text-[10px] sm:text-xs px-1.5 sm:px-2 transition-none pointer-events-none`}>
+                {scenario.difficulty}
+              </Badge>
+            </div>
           </div>
         </div>
-        <CardTitle className="text-lg group-hover:text-primary transition-colors">{scenario.title}</CardTitle>
-        <CardDescription className="line-clamp-2">{scenario.description}</CardDescription>
+        <CardDescription className="line-clamp-2 text-xs sm:text-sm">{scenario.description}</CardDescription>
       </CardHeader>
 
-      <CardContent className="flex flex-col flex-1">
+      <CardContent className="flex flex-col flex-1 p-4 pt-0 sm:p-6 sm:pt-0">
         <div className="flex-1" />
 
-        <div className="space-y-4 pt-4 border-t border-border/50">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+        <div className="space-y-3 sm:space-y-4 pt-3 sm:pt-4 border-t border-border/50">
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
             <div className="h-1.5 w-1.5 rounded-full bg-primary/60" />
             <strong>Duration:</strong> {scenario.duration}
           </div>
 
           <div>
-            <h4 className="font-medium mb-2 text-sm">Learning Objectives:</h4>
-            <ul className="text-sm space-y-1.5">
+            <h4 className="font-medium mb-1.5 sm:mb-2 text-xs sm:text-sm">Learning Objectives:</h4>
+            <ul className="text-xs sm:text-sm space-y-1 sm:space-y-1.5">
               {scenario.objectives.map((objective, index) => (
-                <li key={index} className="flex items-start gap-2">
+                <li key={index} className="flex items-start gap-1.5 sm:gap-2">
                   <span className="text-primary mt-0.5">✓</span>
                   <span className="flex-1">{objective}</span>
                 </li>
@@ -82,7 +84,7 @@ export function RoleplayScenarioCard({ scenario, onStart }: RoleplayScenarioCard
           </div>
 
           <Button
-            className="w-full min-h-[44px] bg-gradient-to-r from-primary to-primary-glow hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+            className="w-full min-h-[44px] bg-gradient-to-r from-primary to-primary-glow hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 text-sm"
             onClick={() => onStart(scenario)}
           >
             <Play className="h-4 w-4 mr-2" />
