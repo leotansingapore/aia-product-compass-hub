@@ -8,7 +8,9 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, GitBranch, Trash2, Copy, Layout, ArrowLeft } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
+import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Circle, Diamond, Zap, Square, FileText, Save, Undo2 } from 'lucide-react';
 import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
 import { useScripts } from '@/hooks/useScripts';
 import { FlowCanvas } from '@/components/flows/FlowCanvas';
@@ -16,6 +18,13 @@ import { NodeEditorDialog } from '@/components/flows/NodeEditorDialog';
 import { EdgeEditorDialog } from '@/components/flows/EdgeEditorDialog';
 import { FLOW_TEMPLATES } from '@/utils/flowTemplates';
 import { toast } from 'sonner';
+
+const NODE_TYPE_OPTIONS: { type: FlowNode['type']; label: string; icon: React.ReactNode; desc: string }[] = [
+  { type: 'script', label: 'Script', icon: <FileText className="h-4 w-4" />, desc: 'Link to a script card' },
+  { type: 'decision', label: 'Decision', icon: <Diamond className="h-4 w-4" />, desc: 'Yes/No branching point' },
+  { type: 'action', label: 'Action', icon: <Zap className="h-4 w-4" />, desc: 'Wait or follow-up step' },
+  { type: 'end', label: 'End', icon: <Square className="h-4 w-4" />, desc: 'End of the flow' },
+];
 
 function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDelete, userId }: {
   flows: ReturnType<typeof useScriptFlows>['flows'];
@@ -27,7 +36,6 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
 }) {
   return (
     <div className="space-y-8">
-      {/* My Flows */}
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">My Flows</h2>
@@ -73,7 +81,6 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
         )}
       </div>
 
-      {/* Templates */}
       <div>
         <h2 className="text-lg font-semibold mb-4">Templates</h2>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -118,6 +125,7 @@ export default function ScriptFlows() {
   const [newTitle, setNewTitle] = useState('');
   const [newDesc, setNewDesc] = useState('');
   const [hasUnsaved, setHasUnsaved] = useState(false);
+  const [addNodeOpen, setAddNodeOpen] = useState(false);
 
   const openFlow = useCallback((id: string) => {
     const flow = flows.find(f => f.id === id);
@@ -134,13 +142,10 @@ export default function ScriptFlows() {
   const createFromTemplate = useCallback(async (index: number) => {
     const tpl = FLOW_TEMPLATES[index];
     const result = await createFlow.mutateAsync({
-      title: tpl.title,
-      description: tpl.description,
-      nodes: tpl.nodes,
-      edges: tpl.edges,
+      title: tpl.title, description: tpl.description,
+      nodes: tpl.nodes, edges: tpl.edges,
     });
     if (result) {
-      // Open after creation
       setTimeout(() => {
         const created = flows.find(f => f.id === (result as any).id);
         if (created) openFlow(created.id);
@@ -179,14 +184,30 @@ export default function ScriptFlows() {
     setHasUnsaved(false);
   };
 
-  const handleAddNode = () => {
+  const addNodeOfType = (type: FlowNode['type'], x?: number, y?: number) => {
     const id = `n${Date.now()}`;
-    const newNode: FlowNode = { id, scriptId: null, label: 'New Step', type: 'script', x: 300 + Math.random() * 200, y: 200 + Math.random() * 200 };
+    const labels: Record<string, string> = { script: 'New Script', decision: 'Decision?', action: 'Follow-up', end: 'End', start: 'Start' };
+    const newNode: FlowNode = {
+      id, scriptId: null, label: labels[type] || 'New Step', type,
+      x: x ?? 300 + Math.random() * 200,
+      y: y ?? 200 + Math.random() * 200,
+    };
     setLocalNodes(prev => [...prev, newNode]);
     setSelectedNodeId(id);
     setEditingNode(newNode);
     setHasUnsaved(true);
+    setAddNodeOpen(false);
   };
+
+  const handleDoubleClickCanvas = useCallback((x: number, y: number) => {
+    // Quick-add a script node at the clicked position
+    const id = `n${Date.now()}`;
+    const newNode: FlowNode = { id, scriptId: null, label: 'New Step', type: 'script', x: x - 90, y: y - 28 };
+    setLocalNodes(prev => [...prev, newNode]);
+    setSelectedNodeId(id);
+    setEditingNode(newNode);
+    setHasUnsaved(true);
+  }, []);
 
   const handleMoveNode = useCallback((id: string, x: number, y: number) => {
     setLocalNodes(prev => prev.map(n => n.id === id ? { ...n, x, y } : n));
@@ -206,7 +227,6 @@ export default function ScriptFlows() {
       setConnectingFrom(null);
       return;
     }
-    // Check duplicate
     const exists = localEdges.some(e => e.from === connectingFrom && e.to === toId);
     if (!exists) {
       const newEdge: FlowEdge = { id: `e${Date.now()}`, from: connectingFrom, to: toId };
@@ -240,98 +260,138 @@ export default function ScriptFlows() {
 
   const selectedNode = localNodes.find(n => n.id === selectedNodeId) || null;
 
-  // Editor view
   if (activeFlowId) {
     return (
-      <PageLayout title={flowTitle} description="Script Flow Builder">
-        <div className="space-y-3">
-          {/* Toolbar */}
-          <div className="flex items-center gap-2 flex-wrap">
-            <Button variant="ghost" size="sm" onClick={() => { setActiveFlowId(null); setSelectedNodeId(null); }}>
-              <ArrowLeft className="h-4 w-4 mr-1" /> Back
-            </Button>
-            <div className="flex-1" />
-            <Button variant="outline" size="sm" onClick={handleAddNode} className="gap-1">
-              <Plus className="h-3.5 w-3.5" /> Add Node
-            </Button>
-            {selectedNode && (
-              <>
-                <Button variant="outline" size="sm" onClick={() => setEditingNode(selectedNode)}>Edit Node</Button>
-                <Button variant="outline" size="sm" className="text-destructive" onClick={handleDeleteNode}>
-                  <Trash2 className="h-3.5 w-3.5" />
-                </Button>
-              </>
-            )}
-            <Button size="sm" onClick={handleSave} disabled={!hasUnsaved || updateFlow.isPending}>
-              {updateFlow.isPending ? 'Saving...' : hasUnsaved ? 'Save Changes' : 'Saved ✓'}
-            </Button>
-          </div>
+      <TooltipProvider>
+        <PageLayout title={flowTitle} description="Script Flow Builder">
+          <div className="space-y-3">
+            {/* Toolbar */}
+            <div className="flex items-center gap-2 flex-wrap bg-muted/30 border rounded-lg px-3 py-2">
+              <Button variant="ghost" size="sm" onClick={() => { setActiveFlowId(null); setSelectedNodeId(null); }}>
+                <ArrowLeft className="h-4 w-4 mr-1" /> Back
+              </Button>
 
-          {/* Title edit */}
-          <div className="flex gap-2">
-            <Input value={flowTitle} onChange={e => { setFlowTitle(e.target.value); setHasUnsaved(true); }} className="font-semibold text-base" placeholder="Flow title" />
-          </div>
+              <div className="w-px h-6 bg-border" />
 
-          {/* Canvas */}
-          <div className="h-[calc(100vh-240px)] min-h-[400px]">
-            <FlowCanvas
-              nodes={localNodes}
-              edges={localEdges}
-              scripts={scripts}
-              selectedNodeId={selectedNodeId}
-              onSelectNode={id => { setSelectedNodeId(id); if (connectingFrom && !id) setConnectingFrom(null); }}
-              onMoveNode={handleMoveNode}
-              onStartConnect={setConnectingFrom}
-              connectingFrom={connectingFrom}
-              onCompleteConnect={handleCompleteConnect}
-            />
-          </div>
+              {/* Quick-add node palette */}
+              <Popover open={addNodeOpen} onOpenChange={setAddNodeOpen}>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" size="sm" className="gap-1.5">
+                    <Plus className="h-3.5 w-3.5" /> Add Node
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-56 p-2" align="start">
+                  <p className="text-xs text-muted-foreground px-2 pb-2 font-medium">Choose node type</p>
+                  {NODE_TYPE_OPTIONS.map(opt => (
+                    <button
+                      key={opt.type}
+                      onClick={() => addNodeOfType(opt.type)}
+                      className="flex items-center gap-3 w-full px-2 py-2 rounded-md text-sm hover:bg-muted transition-colors text-left"
+                    >
+                      <span className="text-primary">{opt.icon}</span>
+                      <div>
+                        <div className="font-medium text-sm">{opt.label}</div>
+                        <div className="text-[11px] text-muted-foreground">{opt.desc}</div>
+                      </div>
+                    </button>
+                  ))}
+                </PopoverContent>
+              </Popover>
 
-          {/* Edge list for editing */}
-          {localEdges.length > 0 && (
-            <div className="flex flex-wrap gap-1.5">
-              <span className="text-xs text-muted-foreground py-1">Connections:</span>
-              {localEdges.map(e => {
-                const from = localNodes.find(n => n.id === e.from);
-                const to = localNodes.find(n => n.id === e.to);
-                return (
-                  <Badge key={e.id} variant="outline" className="text-[10px] cursor-pointer hover:bg-muted gap-1" onClick={() => setEditingEdge(e)}>
-                    {from?.label || '?'} → {to?.label || '?'} {e.label ? `(${e.label})` : ''}
+              {/* Selected node actions */}
+              {selectedNode && (
+                <>
+                  <div className="w-px h-6 bg-border" />
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button variant="outline" size="sm" onClick={() => setEditingNode(selectedNode)} className="gap-1">
+                        ✏️ Edit
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Edit selected node (or double-click)</TooltipContent>
+                  </Tooltip>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button variant="outline" size="sm" className="text-destructive gap-1" onClick={handleDeleteNode}>
+                        <Trash2 className="h-3.5 w-3.5" /> Delete
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Delete selected node</TooltipContent>
+                  </Tooltip>
+                  <Badge variant="secondary" className="text-[10px] ml-1">
+                    Selected: {selectedNode.label}
                   </Badge>
-                );
-              })}
-            </div>
-          )}
-        </div>
+                </>
+              )}
 
-        <NodeEditorDialog open={!!editingNode} onClose={() => setEditingNode(null)} onSave={handleNodeSave} node={editingNode} scripts={scripts} />
-        <EdgeEditorDialog open={!!editingEdge} onClose={() => setEditingEdge(null)} onSave={handleEdgeSave} edge={editingEdge} />
-      </PageLayout>
+              <div className="flex-1" />
+
+              {/* Save */}
+              <Button size="sm" onClick={handleSave} disabled={!hasUnsaved || updateFlow.isPending} className="gap-1.5">
+                <Save className="h-3.5 w-3.5" />
+                {updateFlow.isPending ? 'Saving...' : hasUnsaved ? 'Save' : 'Saved ✓'}
+              </Button>
+            </div>
+
+            {/* Title */}
+            <Input value={flowTitle} onChange={e => { setFlowTitle(e.target.value); setHasUnsaved(true); }} className="font-semibold text-base max-w-md" placeholder="Flow title" />
+
+            {/* Canvas */}
+            <div className="h-[calc(100vh-260px)] min-h-[400px]">
+              <FlowCanvas
+                nodes={localNodes}
+                edges={localEdges}
+                scripts={scripts}
+                selectedNodeId={selectedNodeId}
+                onSelectNode={id => { setSelectedNodeId(id); if (connectingFrom && !id) setConnectingFrom(null); }}
+                onMoveNode={handleMoveNode}
+                onStartConnect={setConnectingFrom}
+                connectingFrom={connectingFrom}
+                onCompleteConnect={handleCompleteConnect}
+                onDoubleClickNode={node => setEditingNode(node)}
+                onDoubleClickEdge={edge => setEditingEdge(edge)}
+                onDoubleClickCanvas={handleDoubleClickCanvas}
+              />
+            </div>
+
+            {/* Edge list */}
+            {localEdges.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 items-center">
+                <span className="text-xs text-muted-foreground py-1">Connections:</span>
+                {localEdges.map(e => {
+                  const from = localNodes.find(n => n.id === e.from);
+                  const to = localNodes.find(n => n.id === e.to);
+                  return (
+                    <Badge key={e.id} variant="outline" className="text-[10px] cursor-pointer hover:bg-muted gap-1" onClick={() => setEditingEdge(e)}>
+                      {from?.label || '?'} → {to?.label || '?'} {e.label ? `(${e.label})` : ''}
+                    </Badge>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          <NodeEditorDialog open={!!editingNode} onClose={() => setEditingNode(null)} onSave={handleNodeSave} node={editingNode} scripts={scripts} />
+          <EdgeEditorDialog open={!!editingEdge} onClose={() => setEditingEdge(null)} onSave={handleEdgeSave} edge={editingEdge} />
+        </PageLayout>
+      </TooltipProvider>
     );
   }
 
-  // List view
   return (
     <PageLayout title="Script Flows" description="Build visual flowcharts for your sales and prospecting processes">
       {isLoading ? (
         <div className="text-center py-12 text-muted-foreground">Loading flows...</div>
       ) : (
         <FlowListView
-          flows={flows}
-          onSelect={openFlow}
-          onCreateNew={() => setShowNewDialog(true)}
-          onCreateFromTemplate={createFromTemplate}
-          onDelete={id => deleteFlow.mutate(id)}
-          userId={userId}
+          flows={flows} onSelect={openFlow} onCreateNew={() => setShowNewDialog(true)}
+          onCreateFromTemplate={createFromTemplate} onDelete={id => deleteFlow.mutate(id)} userId={userId}
         />
       )}
 
-      {/* New Flow Dialog */}
       <Dialog open={showNewDialog} onOpenChange={setShowNewDialog}>
         <DialogContent className="max-w-sm">
-          <DialogHeader>
-            <DialogTitle>Create New Flow</DialogTitle>
-          </DialogHeader>
+          <DialogHeader><DialogTitle>Create New Flow</DialogTitle></DialogHeader>
           <div className="space-y-3">
             <div>
               <Label>Title</Label>
