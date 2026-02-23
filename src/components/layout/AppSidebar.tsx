@@ -68,6 +68,7 @@ const allResourceItems = [
   { title: "Search by Client Profile", url: "/search-by-profile", icon: Users, sectionId: "search-by-profile" },
   { title: "Sales Tools & Objection Handling", url: "/product/sales-tools-objections", icon: TrendingUp, sectionId: "sales-tools" },
   { title: "Scripts Database", url: "/scripts", icon: FileText, sectionId: "scripts-database" },
+  { title: "Objection Handling", url: "/objections", icon: Shield, sectionId: "objection-handling" },
   { title: "Script Playbooks", url: "/playbooks", icon: BookOpen, sectionId: "script-playbooks" },
   { title: "Script Flows", url: "/flows", icon: GitBranch, sectionId: "script-flows" },
 ];
