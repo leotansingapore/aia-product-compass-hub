@@ -2292,8 +2292,22 @@ export default function ScriptsDatabase() {
 
         {/* Results count + audience flow indicator */}
         <div className="mb-3 flex items-center justify-between gap-2 flex-wrap">
-          <div className="text-xs text-muted-foreground">
-            {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
+          <div className="flex items-center gap-3">
+            <div className="text-xs text-muted-foreground">
+              {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
+            </div>
+            {user && (
+              <Button
+                variant={showFavouritesOnly ? "default" : "outline"}
+                size="sm"
+                className="h-6 px-2 text-[11px] gap-1"
+                onClick={() => setShowFavouritesOnly(prev => !prev)}
+              >
+                <Heart className={`h-3 w-3 ${showFavouritesOnly ? "fill-current" : ""}`} />
+                Favourites{showFavouritesOnly ? ` (${filteredScripts.length})` : ""}
+              </Button>
+            )}
+          </div>
           </div>
           {/* Audience flow indicator — shown when viewing a single category */}
           {activeCategory !== "all" && (
