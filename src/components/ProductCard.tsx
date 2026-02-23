@@ -111,10 +111,10 @@ export function ProductCard({ title, description, category, tags, highlights, on
   return (
     <>
       <Card className={`hover:shadow-md transition-all duration-300 ease-in-out cursor-pointer mobile-card h-full flex flex-col ${published === false && isAdmin() ? "opacity-50" : ""}`} onClick={onClick}>
-        <CardHeader className="p-3 md:p-6">
-          <div className="flex justify-between items-start mb-2">
+        <CardHeader className="p-2.5 sm:p-3 md:p-6 pb-1.5 sm:pb-2 md:pb-3">
+          <div className="flex justify-between items-start mb-1 sm:mb-2">
             <div className="flex items-center gap-1.5">
-              <Badge variant="secondary" className={`text-xs px-2 text-white ${categoryColors[category as keyof typeof categoryColors] || 'bg-primary'}`}>
+              <Badge variant="secondary" className={`text-[10px] sm:text-xs px-1.5 sm:px-2 text-white ${categoryColors[category as keyof typeof categoryColors] || 'bg-primary'}`}>
                 {category}
               </Badge>
               {published === false && isAdmin() && (
@@ -134,14 +134,14 @@ export function ProductCard({ title, description, category, tags, highlights, on
                         onClick={handleBookmarkClick}
                         disabled={loading}
                         className={cn(
-                          "h-8 w-8 p-0 transition-all duration-300 ease-in-out hover:bg-muted/80 dark:hover:bg-muted hover:text-foreground",
+                          "h-7 w-7 sm:h-8 sm:w-8 p-0 transition-all duration-300 ease-in-out hover:bg-muted/80 dark:hover:bg-muted hover:text-foreground",
                           bookmarked && "text-primary"
                         )}
                       >
                         {bookmarked ? (
-                          <BookmarkCheck className="h-4 w-4" />
+                          <BookmarkCheck className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                         ) : (
-                          <Bookmark className="h-4 w-4" />
+                          <Bookmark className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                         )}
                       </Button>
                     </TooltipTrigger>
@@ -155,8 +155,8 @@ export function ProductCard({ title, description, category, tags, highlights, on
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0 transition-all duration-300 ease-in-out hover:bg-muted/80 dark:hover:bg-muted hover:text-foreground">
-                            <MoreVertical className="h-4 w-4" />
+                          <Button variant="ghost" size="sm" className="h-7 w-7 sm:h-8 sm:w-8 p-0 transition-all duration-300 ease-in-out hover:bg-muted/80 dark:hover:bg-muted hover:text-foreground">
+                            <MoreVertical className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                           </Button>
                         </DropdownMenuTrigger>
                       </TooltipTrigger>
@@ -188,20 +188,26 @@ export function ProductCard({ title, description, category, tags, highlights, on
               </div>
             </TooltipProvider>
           </div>
-          <CardTitle className="text-card-title">{title}</CardTitle>
-          <CardDescription className="text-card-description">{description}</CardDescription>
+          <CardTitle className="text-sm sm:text-base md:text-card-title leading-snug">{title}</CardTitle>
+          <CardDescription className="text-xs sm:text-sm line-clamp-2">{description}</CardDescription>
         </CardHeader>
-        <CardContent className="p-3 md:p-6 flex-1 flex flex-col justify-end">
-          <div className="space-y-3">
+        <CardContent className="p-2.5 sm:p-3 md:p-6 pt-0 flex-1 flex flex-col justify-end">
+          <div className="space-y-2 sm:space-y-3">
             <div className="flex flex-wrap gap-1">
-              {tags.map((tag, index) => (
-                <Badge key={index} variant="outline" className="text-xs px-2">
+              {tags.slice(0, 3).map((tag, index) => (
+                <Badge key={index} variant="outline" className="text-[10px] sm:text-xs px-1.5 sm:px-2">
                   {tag}
                 </Badge>
               ))}
+              {tags.length > 3 && (
+                <Badge variant="outline" className="text-[10px] sm:text-xs px-1.5 text-muted-foreground">
+                  +{tags.length - 3}
+                </Badge>
+              )}
             </div>
             
-            <div>
+            {/* Hide highlights on mobile, show on sm+ */}
+            <div className="hidden sm:block">
               <h4 className="font-medium text-micro md:text-sm mb-2">Key Highlights:</h4>
               <ul className="text-micro md:text-sm text-muted-foreground space-y-1">
                 {highlights.slice(0, 3).map((highlight, index) => (
@@ -213,7 +219,7 @@ export function ProductCard({ title, description, category, tags, highlights, on
               </ul>
             </div>
             
-            <Button variant="outline" className="w-full mt-4 mobile-touch-target transition-all duration-300 ease-in-out">
+            <Button variant="outline" className="w-full mt-2 sm:mt-4 h-8 sm:h-10 text-xs sm:text-sm mobile-touch-target transition-all duration-300 ease-in-out">
               Learn More
             </Button>
           </div>
