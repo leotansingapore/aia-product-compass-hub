@@ -80,6 +80,25 @@ serve(async (req) => {
       });
     }
 
+    // Mode: bulk-update — update fields on multiple scripts by ID
+    if (mode === "bulk-update" && body.updates && Array.isArray(body.updates)) {
+      let updated = 0;
+      for (const u of body.updates) {
+        const { id, ...fields } = u;
+        if (!id) continue;
+        fields.updated_at = new Date().toISOString();
+        const { error: uErr } = await supabase.from("scripts").update(fields).eq("id", id);
+        if (uErr) {
+          console.error(`bulk-update error for ${id}:`, uErr);
+        } else {
+          updated++;
+        }
+      }
+      return new Response(JSON.stringify({ message: "Bulk update complete", updated }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     if (!scripts || !Array.isArray(scripts) || scripts.length === 0) {
       return new Response(JSON.stringify({ error: "No scripts provided" }), {
         status: 400,
