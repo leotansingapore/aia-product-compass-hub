@@ -1,121 +1,161 @@
 
 
-## Bulk Tag All 54 Untagged Scripts
+## Re-Categorize and Re-Sort All 81 Scripts
 
-There are **81 scripts** in the database. **27 already have tags**, and **54 are missing tags**. This plan will add contextually appropriate tags to every untagged script using the `seed-scripts` edge function (or direct updates).
+After auditing every script, here's what needs to change:
 
-### Approach
+### Current State
 
-Create a one-time edge function (`bulk-tag-scripts`) that accepts a mapping of `{ id: string, tags: string[] }` entries and runs batch `UPDATE` statements. This avoids 54 individual API calls.
+| Category | Count |
+|----------|-------|
+| cold-calling | 20 |
+| follow-up | 25 |
+| faq | 15 |
+| tips | 8 |
+| confirmation | 5 |
+| ad-campaign | 3 |
+| referral | 3 |
+| post-meeting | 2 |
+| **Total** | **81** |
 
-### Tag Assignments
+All 81 scripts already have tags -- no empty tags remain. The issues are:
 
-Below is the complete tagging for all 54 untagged scripts, organized by category:
+1. **Misplaced scripts** that belong in different categories
+2. **Inconsistent sort_order** values (duplicates, gaps, decimal values like 3.5)
+3. **Missing tags on some scripts** that should reflect their lead source or channel
 
-**Ad Campaign (3 scripts)**
+---
 
-| Script | Tags |
-|--------|------|
-| Initial Text -- Qualified Facebook Lead (pre-retiree) | `facebook-ad`, `qualified-lead`, `text-message`, `cpf` |
-| Initial Text -- Facebook Qualified Lead (Young Adults) | `facebook-ad`, `qualified-lead`, `text-message` |
-| Cold Call -- Facebook Ads (Ebook Angle) | `facebook-ad`, `ebook`, `cold-call` |
+### Category Reassignments (7 scripts moving)
 
-**Cold Calling (9 scripts)**
+| Script | Current Category | New Category | Reason |
+|--------|-----------------|--------------|--------|
+| Cold Call -- Facebook Ads (Ebook Angle) | ad-campaign | cold-calling | It's a cold call script, not an ad |
+| Initial Text -- Qualified Facebook Lead (pre-retiree) | ad-campaign | follow-up | It's a text message sent after lead opts in |
+| Initial Text -- Facebook Qualified Lead (Young Adults) | ad-campaign | follow-up | Same -- it's a follow-up text |
+| Post-Meeting -- Client Resources & Referral | post-meeting | follow-up | Contains referral ask + resources, fits follow-up flow better |
+| Fact-Finding -- Current Situation Questions | faq | faq | Keep (fact-finding is a sub-type of FAQ/discovery) |
+| Fact-Finding -- Insurance Coverage Check | faq | faq | Keep |
+| Fact-Finding -- Investment Status Check | faq | faq | Keep |
 
-| Script | Tags |
-|--------|------|
-| Cold Call -- Working Adults (Existing Agent / Follow-Up) | `cold-call`, `follow-up`, `existing-agent` |
-| Cold Calling -- Policy Optimisation (Working Adults / Cold Leads) | `cold-call`, `policy-review` |
-| Cold Calling -- ORD Personnel (Agent Direct Call) | `cold-call`, `nsf`, `ord` |
-| Cold Calling -- Voucher Leads (Young Adults) | `cold-call`, `voucher` |
-| Cold Calling -- Consultant Call (Young Adults) | `cold-call`, `consultation` |
-| Cold Calling -- Instagram Ad Lead (Young Adults / NSF) | `cold-call`, `instagram-ad` |
-| Cold Calling -- Freebie Lead from Facebook ($20 Voucher) | `cold-call`, `voucher`, `facebook-ad` |
-| Cold Calling -- Telemarketer Script for Voucher Leads (Parents) | `cold-call`, `voucher`, `family` |
-| Cold Call -- NSF Direct (In-Person Meet) | `cold-call`, `nsf`, `in-person` |
-| Cold Call -- NSF Telemarketer (Zoom Meet) | `cold-call`, `nsf`, `zoom` |
+This dissolves the **ad-campaign** category entirely (0 scripts left) and reduces **post-meeting** to 1.
 
-**Confirmation (3 scripts)**
+**New counts after reassignment:**
 
-| Script | Tags |
-|--------|------|
-| Post-Call Text -- Working Adult Consultation Confirmed | `confirmation`, `text-message` |
-| Appointment Reminder Texts -- Young Adults (D-7/D-1/Day Of) | `confirmation`, `reminder`, `text-message` |
-| Before Zoom Call -- Confirmation Text (Fact-Finding) | `confirmation`, `zoom`, `fact-finding` |
+| Category | Count |
+|----------|-------|
+| follow-up | 28 |
+| cold-calling | 21 |
+| faq | 15 |
+| tips | 8 |
+| confirmation | 5 |
+| referral | 3 |
+| post-meeting | 1 |
+| ad-campaign | 0 (remove from UI) |
 
-**FAQ (14 scripts)**
+---
 
-| Script | Tags |
-|--------|------|
-| Which company are you from? | `faq`, `objection-handling` |
-| Why do I need a Zoom call? | `faq`, `objection-handling`, `zoom` |
-| What type of business is The Moneybees Academy? | `faq`, `objection-handling`, `moneybees` |
-| What's this course about? | `faq`, `objection-handling`, `free-course` |
-| Is this really free? | `faq`, `objection-handling`, `free-course` |
-| How long is the course? | `faq`, `objection-handling`, `free-course` |
-| Do I need a lot of money to start? | `faq`, `objection-handling` |
-| Are you going to sell me something? | `faq`, `objection-handling` |
-| Objection Handling -- Young Adults (All Objections) | `objection-handling`, `comprehensive` |
-| Objection Handling -- NSF (All Objections) | `objection-handling`, `nsf`, `comprehensive` |
-| Fact-Finding -- Current Situation Questions | `fact-finding`, `discovery` |
-| Fact-Finding -- Insurance Coverage Check | `fact-finding`, `insurance` |
-| Fact-Finding -- Investment Status Check | `fact-finding`, `investment` |
-| Objection -- "Not Interested in Insurance" | `objection-handling`, `insurance` |
+### Sort Order Reset
 
-**Follow-Up (15 scripts)**
+Re-number every script within each category starting from 1, ordered logically:
 
-| Script | Tags |
-|--------|------|
-| Rescheduling Text -- Pre-Retiree (Missed Session) | `follow-up`, `reschedule`, `text-message` |
-| Callback Call -- Working Adult / Parent (Telemarketer Set) | `callback`, `follow-up` |
-| Missed Call Text -- Facebook Ad Lead | `follow-up`, `missed-call`, `facebook-ad`, `text-message` |
-| Initial Text -- Facebook Voucher Lead (Just Opted In) | `text-message`, `voucher`, `facebook-ad` |
-| Post-Call Text -- $20 Voucher Freebie Lead | `post-call`, `voucher`, `text-message` |
-| Scheduled Follow-Up Texts -- Young Adults (Every 2 Days) | `follow-up`, `text-sequence`, `text-message` |
-| Callback Script -- Consultant Follow-Up Call | `callback`, `follow-up` |
-| Post-Call Text -- Working Adult Meeting Confirmed | `post-call`, `text-message`, `confirmation` |
-| Post-Callback WhatsApp -- After Telemarketer Sets Appointment | `whatsapp`, `callback`, `text-message` |
-| WhatsApp Message -- Sent During Callback Call | `whatsapp`, `callback`, `text-message` |
-| Next Steps -- Schedule a Quick Call | `follow-up`, `scheduling` |
-| Post-Call Text -- NASA Lucky Draw Lead | `post-call`, `text-message`, `lucky-draw` |
-| Graceful Close -- Not Interested / End of Conversation | `follow-up`, `closing`, `graceful-exit` |
-| Reminder -- 2nd Meeting (All Versions) | `reminder`, `follow-up`, `2nd-meeting` |
+**Cold Calling (21 scripts)** -- ordered by audience flow: NSF first, then Young Adults, Working Adults, Pre-Retirees, Cold Leads, Parents, Recruitment
 
-**Post-Meeting (1 script)**
+| # | Script | Audience |
+|---|--------|----------|
+| 1 | Cold Calling -- Original Script | NSF |
+| 2 | Cold Calling -- ORD Personnel (Agent Direct Call) | NSF |
+| 3 | Cold Call -- NSF Direct (In-Person Meet) | NSF |
+| 4 | Cold Call -- NSF Telemarketer (Zoom Meet) | NSF |
+| 5 | Cold Calling -- Voucher Leads (Young Adults) | Young Adult |
+| 6 | Cold Calling -- Consultant Call (Young Adults) | Young Adult |
+| 7 | Cold Calling -- Instagram Ad Lead (Young Adults / NSF) | Young Adult |
+| 8 | Cold Calling -- Freebie Lead from Facebook ($20 Voucher) | Young Adult |
+| 9 | Cold Call -- Facebook Ads (Ebook Angle) | Young Adult |
+| 10 | Cold Calling -- Working Adults (All Angles) | Working Adult |
+| 11 | Cold Call -- Working Adults (Existing Agent / Follow-Up) | Cold Lead |
+| 12 | Cold Calling -- Policy Optimisation (Working Adults / Cold Leads) | Cold Lead |
+| 13 | Cold Calling -- CPF Retirement Changes | Pre-Retiree |
+| 14 | Cold Calling -- Facebook Ad Opt-In (CPF eBook) | Pre-Retiree |
+| 15 | Cold Calling -- Facebook Voucher Ad Opt-In (Pre-Retirees) | Pre-Retiree |
+| 16 | Cold Calling -- Qualified Lead, Non-Voucher (Pre-Retirees) | Pre-Retiree |
+| 17 | Cold Calling -- Telemarketer Script for Voucher Leads (Parents) | Parent |
+| 18 | Telemarketer -- Young Adults / NSF (All Lead Types) | Young Adult |
+| 19 | Telemarketer -- Cold Leads (Multi-Version) | Cold Lead |
+| 20 | Telemarketer -- Golden Year Partners (All Lead Types) | Pre-Retiree |
+| 21 | Cold Calling -- Recruitment (All Lead Sources) | Recruitment |
 
-| Script | Tags |
-|--------|------|
-| Post-Zoom Follow-Up -- Young Adults After Consultation | `post-meeting`, `resources`, `referral`, `socials` |
+**Follow-Up (28 scripts)** -- ordered: Pre-Retiree texts, Recruitment texts, Young Adult texts, Working Adult texts, General texts
 
-**Referral (1 script)**
+| # | Script |
+|---|--------|
+| 1 | Post-Call Text -- Facebook Ad CPF Lead |
+| 2 | Texting Sequence -- Facebook eBook Lead (Pre-Retirees) |
+| 3 | Post-Call Text -- FB Lead Wants Info Only |
+| 4 | Callback Call -- Pre-Retiree Consultation (Telemarketer Set) |
+| 5 | Rescheduling Text -- Pre-Retiree (Missed Session) |
+| 6 | Initial Text -- Qualified Facebook Lead |
+| 7 | Initial Text -- Facebook Leads (Recruitment) |
+| 8 | Post-Call Text -- Recruitment (All Sources) |
+| 9 | Post-Call Text -- FB Webinar Leads |
+| 10 | Follow-Up Reminder Texts -- Recruitment Leads |
+| 11 | Initial Text -- Facebook Qualified Lead (Young Adults) |
+| 12 | Initial Text -- Facebook Voucher Lead (Just Opted In) |
+| 13 | Missed Call Text -- Facebook Ad Lead |
+| 14 | Post-Call Text -- Young Adults (All Angles) |
+| 15 | Post-Call Text -- $20 Voucher Freebie Lead |
+| 16 | Scheduled Follow-Up Texts -- Young Adults (Every 2 Days) |
+| 17 | No-Reply Nudge -- Young Adults (Day 1/3/7) |
+| 18 | Reminder Follow-Up -- Young Adults (Gentle/Persistent/Final) |
+| 19 | Callback Script -- Consultant Follow-Up Call |
+| 20 | Post-Callback WhatsApp -- After Telemarketer Sets Appointment |
+| 21 | WhatsApp Message -- Sent During Callback Call |
+| 22 | Callback Call -- Working Adult / Parent (Telemarketer Set) |
+| 23 | Post-Call Text -- Working Adult Meeting Confirmed |
+| 24 | Post-Call Text -- NASA Lucky Draw Lead |
+| 25 | Next Steps -- Schedule a Quick Call |
+| 26 | Reminder -- 2nd Meeting (All Versions) |
+| 27 | Post-Meeting -- Client Resources & Referral |
+| 28 | Graceful Close -- Not Interested / End of Conversation |
 
-| Script | Tags |
-|--------|------|
-| Referral Request -- Young Adults | `referral`, `text-message` |
+**FAQ (15 scripts)** -- ordered: quick FAQs first, then comprehensive objection handling, then fact-finding
 
-**Tips (8 scripts)**
+| # | Script |
+|---|--------|
+| 1-8 | Individual FAQ questions (company, course, free, etc.) |
+| 9 | Objection Handling -- Young Adults (All) |
+| 10 | Objection Handling -- NSF (All) |
+| 11 | Objection Handling -- Recruitment (Telemarketer) |
+| 12 | Objection -- "Not Interested in Insurance" |
+| 13-15 | Fact-Finding scripts |
 
-| Script | Tags |
-|--------|------|
-| Calling Tips & Best Practices | `tips`, `best-practices`, `calling` |
-| Callback Checklist -- Step-by-Step Guide | `tips`, `checklist`, `callback` |
-| Double Your Calling Power -- Two-Phone Strategy | `tips`, `productivity`, `two-phone` |
-| Google Calendar Tips -- Scheduling Best Practices | `tips`, `scheduling`, `productivity` |
-| General Calling Tips & Tonality | `tips`, `tonality`, `calling` |
-| Phrasing Tips -- What to Avoid & What to Say Instead | `tips`, `phrasing`, `communication` |
-| Physical Voucher Procedure & Lead Follow-Up | `tips`, `voucher`, `procedure` |
-| FYC Formula -- Calling Rate & Activity Math | `tips`, `fyc`, `activity-math` |
+**Confirmation (5)**, **Tips (8)**, **Referral (3)**, **Post-Meeting (1)** -- sequential 1-N within each.
+
+---
+
+### Tag Corrections
+
+Also add missing contextual tags to a few scripts:
+
+| Script | Tags to Add |
+|--------|-------------|
+| Cold Calling -- Original Script | `young-adult` (it covers both) |
+| Post-Meeting -- Client Resources & Referral | `text-message`, `follow-up` |
+| Cold Call -- Facebook Ads (Ebook Angle) | `young-adult` |
+
+---
 
 ### Implementation
 
-1. **Create a temporary edge function** `bulk-tag-scripts` that accepts an array of `{ id, tags }` objects and runs batch UPDATE queries on the `scripts` table.
-2. **Call the function** with all 54 tag assignments above in a single request.
-3. **Verify** the update count matches 54.
-4. **Clean up** by removing the temporary edge function and its `config.toml` entry.
+1. **Create a temporary edge function** `bulk-update-scripts` that accepts an array of `{ id, category?, tags?, sort_order? }` objects and runs batch UPDATEs.
+2. **Call it once** with all 81 updates (category moves + sort resets + tag fixes).
+3. **Verify** update count = 81.
+4. **Remove the ad-campaign category** from the UI `categoryLabels` in `ScriptsDatabase.tsx` (or keep it -- it will simply show 0 scripts and auto-hide).
+5. **Clean up** -- delete the temporary edge function.
 
 ### Technical Details
 
-- The function uses `SUPABASE_SERVICE_ROLE_KEY` to bypass RLS
-- Each update sets `tags = $tags, updated_at = now()` for the given ID
-- No schema changes needed -- the `tags` column already exists as `text[]`
+- Uses `SUPABASE_SERVICE_ROLE_KEY` to bypass RLS
+- Each update sets `category`, `sort_order`, `tags`, and `updated_at = now()`
+- No schema changes needed
 
