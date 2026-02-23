@@ -11,6 +11,7 @@ import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
 
 const CATEGORIES = [
   { value: "cold-calling", label: "Cold Calling" },
+  { value: "warm-market", label: "Warm Market Outreach" },
   { value: "follow-up", label: "Follow-Up Messages" },
   { value: "ad-campaign", label: "Ad Campaign / Lead Gen" },
   { value: "referral", label: "Referral Scripts" },
