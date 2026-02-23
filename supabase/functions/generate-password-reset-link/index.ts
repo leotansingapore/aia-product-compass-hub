@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.50.0";
 import { Resend } from "npm:resend@4.0.0";
-import { renderAsync } from "npm:@react-email/components@0.0.31";
+import { renderAsync } from "npm:@react-email/components@0.0.30";
 import React from "npm:react@18.3.1";
 import { PasswordResetEmail } from "./_templates/password-reset.tsx";
 
