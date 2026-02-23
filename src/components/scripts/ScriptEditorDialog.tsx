@@ -10,6 +10,7 @@ import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil } from "lucide-reac
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
 const CATEGORIES = [
   { value: "cold-calling", label: "Cold Calling" },
@@ -51,12 +52,32 @@ type EditorStep = "paste" | "review";
 
 export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   // Step state (only for new scripts)
+  const { user } = useSimplifiedAuth();
   const isEditing = !!script;
   const [step, setStep] = useState<EditorStep>(isEditing ? "review" : "paste");
+  const [userName, setUserName] = useState("");
+
+  // Fetch user's display name
+  useEffect(() => {
+    if (!user) return;
+    const fetchName = async () => {
+      const { data } = await supabase
+        .from("profiles")
+        .select("display_name, first_name, last_name")
+        .eq("user_id", user.id)
+        .maybeSingle();
+      if (data) {
+        const name = data.display_name || [data.first_name, data.last_name].filter(Boolean).join(" ") || user.email || "";
+        setUserName(name);
+      } else {
+        setUserName(user.email || "");
+      }
+    };
+    fetchName();
+  }, [user]);
 
   // Paste step state
   const [pasteContent, setPasteContent] = useState("");
-  const [pasteAuthor, setPasteAuthor] = useState("");
   const [isClassifying, setIsClassifying] = useState(false);
 
   // Review/edit step state
@@ -86,7 +107,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     } else {
       setStep("paste");
       setPasteContent("");
-      setPasteAuthor("");
+      
       setStage("");
       setCategory("cold-calling");
       setTargetAudience("general");
@@ -122,13 +143,13 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       setTargetAudience(data.target_audience || "general");
       setScriptRole(data.script_role || "consultant");
       setTags(data.tags || []);
-      setVersions([{ author: pasteAuthor || "", content: pasteContent }]);
+      setVersions([{ author: userName, content: pasteContent }]);
       setStep("review");
       toast.success("AI classified your script! Review and save.");
     } catch (err: any) {
       console.error("Classification error:", err);
       // Fallback: just move to review with defaults
-      setVersions([{ author: pasteAuthor || "", content: pasteContent }]);
+      setVersions([{ author: userName, content: pasteContent }]);
       setStep("review");
       toast.info("AI classification unavailable — please fill in details manually.");
     } finally {
@@ -150,7 +171,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     setVersions(prev => prev.map((v, i) => i === index ? { ...v, [field]: value } : v));
   };
 
-  const addVersion = () => setVersions(prev => [...prev, { author: "", content: "" }]);
+  const addVersion = () => setVersions(prev => [...prev, { author: userName, content: "" }]);
   const removeVersion = (index: number) => setVersions(prev => prev.filter((_, i) => i !== index));
 
   return (
@@ -174,14 +195,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
             <p className="text-sm text-muted-foreground">
               Paste your script below. AI will auto-detect the category, audience, role, and tags.
             </p>
-            <div>
-              <Label>Author / Version name <span className="text-muted-foreground text-xs">(optional)</span></Label>
-              <Input
-                value={pasteAuthor}
-                onChange={e => setPasteAuthor(e.target.value)}
-                placeholder="e.g. Jamie's Script, V2, Original"
-              />
-            </div>
+            
             <div>
               <Label>Script Content</Label>
               <Textarea
@@ -312,12 +326,9 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                 {versions.map((v, i) => (
                   <div key={i} className="border rounded-lg p-3 space-y-2 bg-muted/30">
                     <div className="flex items-center gap-2">
-                      <Input
-                        value={v.author}
-                        onChange={e => updateVersion(i, "author", e.target.value)}
-                        placeholder="Author / Version name"
-                        className="flex-1"
-                      />
+                      <div className="flex-1 text-sm text-muted-foreground">
+                        By: {v.author || userName || "You"}
+                      </div>
                       {versions.length > 1 && (
                         <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive" onClick={() => removeVersion(i)}>
                           <Trash2 className="h-4 w-4" />
