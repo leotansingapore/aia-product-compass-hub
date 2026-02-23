@@ -401,12 +401,25 @@ export function ObjectionHandlingDatabase() {
       </div>
 
       {/* Results count */}
-      <div className="mb-3 text-xs text-muted-foreground">
-        {filteredEntries.length} objection{filteredEntries.length !== 1 ? "s" : ""} found
+      <div className="mb-3 flex items-center gap-2 flex-wrap">
+        <Badge variant="secondary" className="text-xs font-medium px-2.5 py-1">
+          {filteredEntries.length} objection{filteredEntries.length !== 1 ? "s" : ""}
+          {entries.length > 0 && filteredEntries.length !== entries.length && (
+            <span className="text-muted-foreground ml-1">of {entries.length}</span>
+          )}
+        </Badge>
         {searchQuery.trim() && (
-          <span className="ml-1">
-            for "<span className="font-medium text-foreground">{searchQuery}</span>"
-          </span>
+          <>
+            <span className="text-xs text-muted-foreground">
+              matching "<span className="font-medium text-foreground">{searchQuery}</span>"
+            </span>
+            {Object.keys(matchedResponseIdsMap).length > 0 && (
+              <Badge variant="outline" className="text-xs px-2 py-0.5">
+                <MessageSquare className="h-3 w-3 mr-1" />
+                {Object.values(matchedResponseIdsMap).reduce((sum, s) => sum + s.size, 0)} response match{Object.values(matchedResponseIdsMap).reduce((sum, s) => sum + s.size, 0) !== 1 ? "es" : ""}
+              </Badge>
+            )}
+          </>
         )}
       </div>
 
