@@ -1,0 +1,28 @@
+
+UPDATE scripts SET tags = ARRAY['ebook', 'passive-income', 'qualified-lead', 'facebook-ad'] WHERE id = 'ae7285e5-cf61-4444-8c13-d9674ab8f13e';
+UPDATE scripts SET tags = ARRAY['nsf', 'cold-call'] WHERE id = 'ece7aeb2-21a0-49c4-bb97-af5b26bce87b';
+UPDATE scripts SET tags = ARRAY['cpf', 'retirement'] WHERE id = '2fe1105d-67c4-42e1-b845-783c61b59fde';
+UPDATE scripts SET tags = ARRAY['cpf', 'ebook', 'facebook-ad'] WHERE id = '3ecca8db-a586-491c-a11d-2b11aa05b7f0';
+UPDATE scripts SET tags = ARRAY['cpf', 'facebook-ad', 'text-message'] WHERE id = '4c786d33-6c1b-4abe-aa29-27842dbec65e';
+UPDATE scripts SET tags = ARRAY['voucher', 'facebook-ad', 'cpf'] WHERE id = 'b18d6db2-4f83-4e3e-b558-7ccd2ce3a02c';
+UPDATE scripts SET tags = ARRAY['qualified-lead', 'cpf'] WHERE id = 'fbf0c647-0863-4a4a-ae22-44fe5407f5b5';
+UPDATE scripts SET tags = ARRAY['callback', 'cpf'] WHERE id = 'b9935127-356b-4a76-8590-27b61cc7c9cb';
+UPDATE scripts SET tags = ARRAY['confirmation', 'facebook-ad', 'cpf'] WHERE id = '00880d97-72d7-4ab6-9def-3d5aab1bb2ac';
+UPDATE scripts SET tags = ARRAY['ebook', 'text-sequence', 'facebook-ad', 'cpf'] WHERE id = '44bb7f60-da42-4f2a-9293-a20f851647cf';
+UPDATE scripts SET tags = ARRAY['recruitment', 'zoom'] WHERE id = 'c2744711-3cb8-44bb-9b05-65e63feef264';
+UPDATE scripts SET tags = ARRAY['recruitment', 'facebook-ad', 'masterclass', 'text-message'] WHERE id = '0895933a-d049-4f95-b366-d6c56673c787';
+UPDATE scripts SET tags = ARRAY['recruitment', 'text-message'] WHERE id = '2ccff6e6-3f52-4d66-9e0c-6f47730b90d2';
+UPDATE scripts SET tags = ARRAY['recruitment', 'reminder', 'text-message'] WHERE id = 'ca1c05dc-0416-48f9-bcfa-f610a8261743';
+UPDATE scripts SET tags = ARRAY['recruitment', 'zoom', 'confirmation'] WHERE id = '0b53c613-7d1c-402c-81ea-f19015c8aea0';
+UPDATE scripts SET tags = ARRAY['recruitment', 'facebook-ad', 'webinar'] WHERE id = 'b958bc7a-ffb0-4851-abe3-68a0ecae5401';
+UPDATE scripts SET tags = ARRAY['recruitment', 'facebook-ad', 'text-message'] WHERE id = '7fd5f0a0-d50e-4d6a-a0be-946d25bfdc49';
+UPDATE scripts SET tags = ARRAY['recruitment', 'nsf', 'zoom', 'text-message'] WHERE id = 'd7a19c8e-63d1-4796-b164-56ae54a79745';
+UPDATE scripts SET tags = ARRAY['recruitment', 'nsf'] WHERE id = 'be14ec69-5b21-46b0-b031-f9f2c676fba0';
+UPDATE scripts SET tags = ARRAY['recruitment', 'facebook-ad', 'webinar', 'text-message'] WHERE id = 'da69b2e6-dee5-4e30-b388-6f95e686b6db';
+UPDATE scripts SET tags = ARRAY['recruitment', 'job-portal', 'text-message'] WHERE id = '26f70980-b35a-4902-a240-8409afddb696';
+UPDATE scripts SET tags = ARRAY['recruitment', 'referral', 'skool'] WHERE id = '01b5e7b4-2b85-4d2a-9894-eea916de62a2';
+UPDATE scripts SET tags = ARRAY['recruitment', 'referral'] WHERE id = '078a1e61-fa89-4caf-9a88-a0ab093c4d4e';
+UPDATE scripts SET tags = ARRAY['recruitment', 'job-portal'] WHERE id = 'c87854a0-66ba-4668-a8f4-676f614fea1d';
+UPDATE scripts SET tags = ARRAY['recruitment', 'objection-handling', 'faq'] WHERE id = 'c0598441-903a-4dd1-a733-6884b43889b0';
+UPDATE scripts SET tags = ARRAY['facebook-ad', 'cpf', 'info-only', 'text-message'] WHERE id = '059a1192-459f-4d01-be8d-19346483c663';
+UPDATE scripts SET tags = ARRAY['confirmation', 'chinese', 'facebook-ad', 'cpf'] WHERE id = '5807f287-47bb-4a77-9a37-f6d1f460fe09';
