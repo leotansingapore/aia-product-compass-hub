@@ -5,8 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Plus, Pencil, Trash2, Check, X, Copy, Users } from "lucide-react";
+import { Plus, Pencil, Trash2, Check, X, Copy, Users, ThumbsUp } from "lucide-react";
 import { useScriptUserVersions, type ScriptUserVersion } from "@/hooks/useScriptUserVersions";
+import { useContributionKudos } from "@/hooks/useContributionKudos";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -40,6 +41,7 @@ interface Props {
 
 export function ScriptUserContributions({ scriptId, isAuthenticated, displayName }: Props) {
   const { userVersions, addVersion, updateVersion, deleteVersion, userId } = useScriptUserVersions(scriptId);
+  const { kudosMap, toggleKudos } = useContributionKudos(scriptId);
 
   const [showAddForm, setShowAddForm] = useState(false);
   const [newContent, setNewContent] = useState("");
@@ -167,6 +169,28 @@ export function ScriptUserContributions({ scriptId, isAuthenticated, displayName
                     </span>
                   </div>
                   <div className="flex items-center gap-1">
+                    {isAuthenticated && userId !== v.user_id && (
+                      <Button
+                        variant={kudosMap[v.id]?.userGave ? "secondary" : "ghost"}
+                        size="sm"
+                        className="h-7 gap-1 text-xs"
+                        onClick={() => toggleKudos.mutate(v.id)}
+                        disabled={toggleKudos.isPending}
+                      >
+                        <ThumbsUp className={`h-3 w-3 ${kudosMap[v.id]?.userGave ? 'fill-current' : ''}`} />
+                        {kudosMap[v.id]?.count || 0}
+                      </Button>
+                    )}
+                    {!isAuthenticated && (kudosMap[v.id]?.count || 0) > 0 && (
+                      <span className="text-xs text-muted-foreground flex items-center gap-1 px-2">
+                        <ThumbsUp className="h-3 w-3" /> {kudosMap[v.id]?.count}
+                      </span>
+                    )}
+                    {isAuthenticated && userId === v.user_id && (kudosMap[v.id]?.count || 0) > 0 && (
+                      <span className="text-xs text-muted-foreground flex items-center gap-1 px-2">
+                        <ThumbsUp className="h-3 w-3" /> {kudosMap[v.id]?.count}
+                      </span>
+                    )}
                     <CopyBtn text={v.content} />
                     {userId === v.user_id && (
                       <>
