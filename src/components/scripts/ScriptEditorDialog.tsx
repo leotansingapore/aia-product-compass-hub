@@ -107,7 +107,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     } else {
       setStep("paste");
       setPasteContent("");
-      setPasteAuthor("");
+      
       setStage("");
       setCategory("cold-calling");
       setTargetAudience("general");
@@ -143,13 +143,13 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       setTargetAudience(data.target_audience || "general");
       setScriptRole(data.script_role || "consultant");
       setTags(data.tags || []);
-      setVersions([{ author: pasteAuthor || "", content: pasteContent }]);
+      setVersions([{ author: userName, content: pasteContent }]);
       setStep("review");
       toast.success("AI classified your script! Review and save.");
     } catch (err: any) {
       console.error("Classification error:", err);
       // Fallback: just move to review with defaults
-      setVersions([{ author: pasteAuthor || "", content: pasteContent }]);
+      setVersions([{ author: userName, content: pasteContent }]);
       setStep("review");
       toast.info("AI classification unavailable — please fill in details manually.");
     } finally {
@@ -195,14 +195,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
             <p className="text-sm text-muted-foreground">
               Paste your script below. AI will auto-detect the category, audience, role, and tags.
             </p>
-            <div>
-              <Label>Author / Version name <span className="text-muted-foreground text-xs">(optional)</span></Label>
-              <Input
-                value={pasteAuthor}
-                onChange={e => setPasteAuthor(e.target.value)}
-                placeholder="e.g. Jamie's Script, V2, Original"
-              />
-            </div>
+            
             <div>
               <Label>Script Content</Label>
               <Textarea
