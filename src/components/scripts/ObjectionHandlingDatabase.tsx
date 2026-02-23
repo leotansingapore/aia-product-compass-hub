@@ -560,58 +560,12 @@ export function ObjectionHandlingDatabase() {
       )}
 
       {/* Editor Dialog */}
-      <Dialog open={editorOpen} onOpenChange={setEditorOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle>{editingEntry ? "Edit Objection" : "Add Objection"}</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
-            <div>
-              <Label>Objection Title</Label>
-              <Input
-                value={formTitle}
-                onChange={(e) => setFormTitle(e.target.value)}
-                placeholder='e.g. "I already have an agent"'
-              />
-            </div>
-            <div>
-              <Label>Category</Label>
-              <Select value={formCategory} onValueChange={setFormCategory}>
-                <SelectTrigger><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  {Object.entries(categoryConfig).map(([key, config]) => (
-                    <SelectItem key={key} value={key}>{config.icon} {config.label}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <Label>Description (optional)</Label>
-              <div className="border rounded-lg overflow-hidden">
-                <MinimalRichEditor
-                  value={formDescription}
-                  onChange={setFormDescription}
-                  placeholder="Brief context about this objection..."
-                />
-              </div>
-            </div>
-            <div>
-              <Label>Tags (comma-separated)</Label>
-              <Input
-                value={formTags}
-                onChange={(e) => setFormTags(e.target.value)}
-                placeholder="e.g. common, nsf, pre-retiree"
-              />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setEditorOpen(false)}>Cancel</Button>
-            <Button onClick={handleSave} disabled={!formTitle.trim()}>
-              {editingEntry ? "Save Changes" : "Create"}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <ObjectionEditorDialog
+        open={editorOpen}
+        onClose={() => setEditorOpen(false)}
+        onSave={handleSave}
+        editingEntry={editingEntry}
+      />
 
       {/* Delete Confirmation */}
       <AlertDialog open={!!deleteTarget} onOpenChange={(o) => !o && setDeleteTarget(null)}>
