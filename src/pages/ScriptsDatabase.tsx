@@ -2314,9 +2314,36 @@ export default function ScriptsDatabase() {
           </div>
         )}
 
-        {/* Results count */}
-        <div className="mb-3 text-xs text-muted-foreground">
-          {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
+        {/* Results count + audience flow indicator */}
+        <div className="mb-3 flex items-center justify-between gap-2 flex-wrap">
+          <div className="text-xs text-muted-foreground">
+            {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
+          </div>
+          {/* Audience flow indicator — shown when viewing a single category */}
+          {activeCategory !== "all" && (
+            <div className="flex items-center gap-1 flex-wrap">
+              {(["nsf", "young-adult", "working-adult", "pre-retiree", "parent", "recruitment", "general"] as const)
+                .filter(aud => filteredScripts.some(s => s.target_audience === aud))
+                .map((aud, idx, arr) => {
+                  const count = filteredScripts.filter(s => s.target_audience === aud).length;
+                  return (
+                    <span key={aud} className="flex items-center gap-1">
+                      <button
+                        onClick={() => setActiveAudience(aud)}
+                        className={`text-[10px] px-1.5 py-0.5 rounded-full border transition-colors ${
+                          activeAudience === aud
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-muted text-muted-foreground border-border hover:border-primary/50"
+                        }`}
+                      >
+                        {audienceLabels[aud] || aud} <span className="opacity-70">({count})</span>
+                      </button>
+                      {idx < arr.length - 1 && <span className="text-muted-foreground/40 text-[10px]">→</span>}
+                    </span>
+                  );
+                })}
+            </div>
+          )}
         </div>
 
         {/* Loading state */}
