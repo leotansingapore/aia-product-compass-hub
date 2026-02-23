@@ -2287,7 +2287,7 @@ export default function ScriptsDatabase() {
       </AlertDialog>
 
       {/* Floating AI Chat Widget */}
-      <ScriptsChatWidget />
+      <ScriptsChatWidget initialMode={activeTab === "objections" ? "objections" : "scripts"} />
     </PageLayout>
   );
 }
