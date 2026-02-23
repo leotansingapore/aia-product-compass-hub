@@ -3,13 +3,20 @@ import {
   BaseEdge,
   EdgeLabelRenderer,
   getSmoothStepPath,
+  getBezierPath,
+  getStraightPath,
   useReactFlow,
   type EdgeProps,
-  MarkerType,
 } from 'reactflow';
 import { CONDITION_COLORS } from '@/utils/flowColorUtils';
 
 const DEFAULT_EDGE_COLOR = 'hsl(var(--muted-foreground))';
+
+const LINE_STYLE_DASHARRAY: Record<string, string | undefined> = {
+  solid: undefined,
+  dashed: '8 4',
+  dotted: '2 4',
+};
 
 export default function ScriptFlowEdge({
   id,
@@ -33,18 +40,32 @@ export default function ScriptFlowEdge({
 
   const condition = data?.condition as string | undefined;
   const label = data?.label as string | undefined;
-  const edgeColor = condition ? CONDITION_COLORS[condition] ?? DEFAULT_EDGE_COLOR : DEFAULT_EDGE_COLOR;
-  const isDashed = condition === 'no-reply';
+  const edgeType = (data?.edgeType as string) || 'smoothstep';
+  const lineStyle = (data?.lineStyle as string) || 'solid';
+  const animated = !!data?.animated;
+  const customColor = data?.color as string | undefined;
 
-  const [edgePath, labelX, labelY] = getSmoothStepPath({
-    sourceX,
-    sourceY,
-    targetX,
-    targetY,
-    sourcePosition,
-    targetPosition,
-    borderRadius: 16,
-  });
+  // Color priority: custom color > condition color > default
+  const edgeColor = customColor || (condition ? CONDITION_COLORS[condition] ?? DEFAULT_EDGE_COLOR : DEFAULT_EDGE_COLOR);
+
+  // Compute dash array from lineStyle (condition-based dashing is fallback)
+  const dashArray = lineStyle !== 'solid'
+    ? LINE_STYLE_DASHARRAY[lineStyle]
+    : (condition === 'no-reply' ? '8 4' : undefined);
+
+  // Select path function based on edgeType
+  const pathArgs = { sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition };
+  let edgePath: string;
+  let labelX: number;
+  let labelY: number;
+
+  if (edgeType === 'bezier') {
+    [edgePath, labelX, labelY] = getBezierPath(pathArgs);
+  } else if (edgeType === 'straight') {
+    [edgePath, labelX, labelY] = getStraightPath(pathArgs);
+  } else {
+    [edgePath, labelX, labelY] = getSmoothStepPath({ ...pathArgs, borderRadius: 16 });
+  }
 
   useEffect(() => {
     if (isEditing && inputRef.current) {
@@ -97,7 +118,7 @@ export default function ScriptFlowEdge({
 
   return (
     <>
-      {/* Wider invisible hit area for easier clicking */}
+      {/* Wider invisible hit area */}
       <path
         d={edgePath}
         fill="none"
@@ -114,11 +135,21 @@ export default function ScriptFlowEdge({
         style={{
           stroke: strokeColor,
           strokeWidth: selected ? 2.5 : 2,
-          strokeDasharray: isDashed ? '8 4' : undefined,
+          strokeDasharray: dashArray,
           transition: 'stroke 0.15s ease, stroke-width 0.15s ease',
+          animation: animated ? 'flow-dash 0.5s linear infinite' : undefined,
         }}
         markerEnd={markerEnd}
       />
+
+      {/* Animated dash keyframes (injected once) */}
+      {animated && (
+        <style>{`
+          @keyframes flow-dash {
+            to { stroke-dashoffset: -12; }
+          }
+        `}</style>
+      )}
 
       <EdgeLabelRenderer>
         <div
@@ -163,7 +194,6 @@ export default function ScriptFlowEdge({
                 )}
               </button>
 
-              {/* Delete button on hover */}
               {isHovered && (
                 <button
                   onClick={handleDelete}

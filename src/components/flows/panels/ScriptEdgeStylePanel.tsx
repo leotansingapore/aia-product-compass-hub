@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
+import { NODE_COLOR_PRESETS, getContrastTextColor } from '@/utils/flowColorUtils';
 import { cn } from '@/lib/utils';
 
 interface ScriptEdgeStylePanelProps {
@@ -28,13 +30,20 @@ export function ScriptEdgeStylePanel({
 }: ScriptEdgeStylePanelProps) {
   const [label, setLabel] = useState('');
   const [condition, setCondition] = useState('_none');
+  const [edgeType, setEdgeType] = useState('smoothstep');
+  const [lineStyle, setLineStyle] = useState('solid');
+  const [animated, setAnimated] = useState(false);
+  const [color, setColor] = useState('');
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  // Sync local state when the selected edge changes
   useEffect(() => {
     if (edge) {
       setLabel(edge.data?.label || edge.label || '');
       setCondition(edge.data?.condition || '_none');
+      setEdgeType(edge.data?.edgeType || 'smoothstep');
+      setLineStyle(edge.data?.lineStyle || 'solid');
+      setAnimated(!!edge.data?.animated);
+      setColor(edge.data?.color || '');
       setConfirmDelete(false);
     }
   }, [edge?.id]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -48,9 +57,27 @@ export function ScriptEdgeStylePanel({
 
   const handleConditionChange = (val: string) => {
     setCondition(val);
-    onUpdateEdge(edge.id, {
-      condition: val === '_none' ? undefined : val,
-    });
+    onUpdateEdge(edge.id, { condition: val === '_none' ? undefined : val });
+  };
+
+  const handleEdgeTypeChange = (val: string) => {
+    setEdgeType(val);
+    onUpdateEdge(edge.id, { edgeType: val });
+  };
+
+  const handleLineStyleChange = (val: string) => {
+    setLineStyle(val);
+    onUpdateEdge(edge.id, { lineStyle: val });
+  };
+
+  const handleAnimatedChange = (val: boolean) => {
+    setAnimated(val);
+    onUpdateEdge(edge.id, { animated: val });
+  };
+
+  const handleColorChange = (val: string) => {
+    setColor(val);
+    onUpdateEdge(edge.id, { color: val || undefined });
   };
 
   const handleDelete = () => {
@@ -64,7 +91,7 @@ export function ScriptEdgeStylePanel({
   return (
     <div
       className={cn(
-        'absolute right-2 top-2 w-64 bg-background border rounded-lg shadow-lg p-3 z-20',
+        'absolute right-2 top-2 w-64 bg-background border rounded-lg shadow-lg p-3 z-20 max-h-[calc(100vh-300px)] overflow-y-auto',
         'animate-in fade-in-0 slide-in-from-right-2 duration-200'
       )}
     >
@@ -115,6 +142,89 @@ export function ScriptEdgeStylePanel({
               ))}
             </SelectContent>
           </Select>
+        </div>
+
+        {/* Edge type */}
+        <div>
+          <Label className="text-xs">Path Type</Label>
+          <div className="flex gap-1 mt-1">
+            {[
+              { value: 'smoothstep', label: 'Smooth' },
+              { value: 'bezier', label: 'Bezier' },
+              { value: 'straight', label: 'Straight' },
+            ].map((t) => (
+              <button
+                key={t.value}
+                onClick={() => handleEdgeTypeChange(t.value)}
+                className={cn(
+                  'flex-1 py-1 text-[10px] rounded border transition-colors',
+                  edgeType === t.value
+                    ? 'bg-primary text-primary-foreground border-primary'
+                    : 'bg-muted/50 border-border hover:bg-muted'
+                )}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Line style */}
+        <div>
+          <Label className="text-xs">Line Style</Label>
+          <div className="flex gap-1 mt-1">
+            {(['solid', 'dashed', 'dotted'] as const).map((s) => (
+              <button
+                key={s}
+                onClick={() => handleLineStyleChange(s)}
+                className={cn(
+                  'flex-1 py-1 text-[10px] rounded border transition-colors capitalize',
+                  lineStyle === s
+                    ? 'bg-primary text-primary-foreground border-primary'
+                    : 'bg-muted/50 border-border hover:bg-muted'
+                )}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Color presets */}
+        <div>
+          <Label className="text-xs">Color Override</Label>
+          <div className="flex flex-wrap gap-1.5 mt-1">
+            {NODE_COLOR_PRESETS.map((preset) => (
+              <button
+                key={preset.label}
+                onClick={() => handleColorChange(preset.value)}
+                className={cn(
+                  'w-5 h-5 rounded-full border-2 transition-all',
+                  'hover:scale-110 focus:outline-none',
+                  color === preset.value
+                    ? 'border-foreground scale-110'
+                    : 'border-border'
+                )}
+                style={{ backgroundColor: preset.value || 'hsl(var(--muted))' }}
+                title={preset.label}
+              >
+                {color === preset.value && (
+                  <span
+                    className="flex items-center justify-center text-[8px] font-bold"
+                    style={{ color: preset.value ? getContrastTextColor(preset.value) : 'hsl(var(--foreground))' }}
+                  >
+                    &#10003;
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Animated */}
+        <div className="flex items-center justify-between">
+          <Label className="text-xs">Animated</Label>
+          <Switch checked={animated} onCheckedChange={handleAnimatedChange} />
         </div>
 
         {/* Delete */}
