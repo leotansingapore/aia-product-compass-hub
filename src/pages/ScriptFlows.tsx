@@ -10,13 +10,15 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
-import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Circle, Diamond, Zap, Square, FileText, Save, Undo2 } from 'lucide-react';
+import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Circle, Diamond, Zap, Square, FileText, Save, Undo2, Sparkles, Eye, EyeOff } from 'lucide-react';
 import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
 import { useScripts } from '@/hooks/useScripts';
 import { FlowCanvas } from '@/components/flows/FlowCanvas';
 import { NodeEditorDialog } from '@/components/flows/NodeEditorDialog';
 import { EdgeEditorDialog } from '@/components/flows/EdgeEditorDialog';
 import { FLOW_TEMPLATES } from '@/utils/flowTemplates';
+import { AIFlowWizard } from '@/components/flows/AIFlowWizard';
+import { InlineScriptPreview } from '@/components/flows/InlineScriptPreview';
 import { toast } from 'sonner';
 
 const NODE_TYPE_OPTIONS: { type: FlowNode['type']; label: string; icon: React.ReactNode; desc: string }[] = [
@@ -26,22 +28,28 @@ const NODE_TYPE_OPTIONS: { type: FlowNode['type']; label: string; icon: React.Re
   { type: 'end', label: 'End', icon: <Square className="h-4 w-4" />, desc: 'End of the flow' },
 ];
 
-function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDelete, userId }: {
+function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDelete, userId, onOpenAIWizard }: {
   flows: ReturnType<typeof useScriptFlows>['flows'];
   onSelect: (id: string) => void;
   onCreateNew: () => void;
   onCreateFromTemplate: (templateIndex: number) => void;
   onDelete: (id: string) => void;
   userId?: string;
+  onOpenAIWizard: () => void;
 }) {
   return (
     <div className="space-y-8">
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">My Flows</h2>
-          <Button onClick={onCreateNew} size="sm" className="gap-1.5">
-            <Plus className="h-4 w-4" /> New Flow
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button onClick={onOpenAIWizard} size="sm" variant="outline" className="gap-1.5">
+              <Sparkles className="h-4 w-4" /> AI Builder
+            </Button>
+            <Button onClick={onCreateNew} size="sm" className="gap-1.5">
+              <Plus className="h-4 w-4" /> New Flow
+            </Button>
+          </div>
         </div>
         {flows.filter(f => !f.is_template).length === 0 ? (
           <Card className="border-dashed">
@@ -126,6 +134,8 @@ export default function ScriptFlows() {
   const [newDesc, setNewDesc] = useState('');
   const [hasUnsaved, setHasUnsaved] = useState(false);
   const [addNodeOpen, setAddNodeOpen] = useState(false);
+  const [showAIWizard, setShowAIWizard] = useState(false);
+  const [previewScriptId, setPreviewScriptId] = useState<string | null>(null);
 
   const openFlow = useCallback((id: string) => {
     const flow = flows.find(f => f.id === id);
@@ -174,6 +184,23 @@ export default function ScriptFlows() {
       setLocalEdges([]);
       setFlowTitle(newTitle);
       setFlowDescription(newDesc);
+      setHasUnsaved(false);
+    }
+  };
+
+  const handleAIFlowGenerated = async (data: { title: string; description: string; nodes: any[]; edges: any[] }) => {
+    const result = await createFlow.mutateAsync({
+      title: data.title,
+      description: data.description,
+      nodes: data.nodes,
+      edges: data.edges,
+    });
+    if (result) {
+      setActiveFlowId((result as any).id);
+      setLocalNodes([...data.nodes]);
+      setLocalEdges([...data.edges]);
+      setFlowTitle(data.title);
+      setFlowDescription(data.description || '');
       setHasUnsaved(false);
     }
   };
@@ -336,14 +363,53 @@ export default function ScriptFlows() {
             {/* Title */}
             <Input value={flowTitle} onChange={e => { setFlowTitle(e.target.value); setHasUnsaved(true); }} className="font-semibold text-base max-w-md" placeholder="Flow title" />
 
+            {/* Selected node info panel */}
+            {selectedNode && (
+              <div className="flex items-center gap-3 bg-muted/40 border rounded-lg px-4 py-2.5 text-sm">
+                <span className="font-medium truncate">{selectedNode.label}</span>
+                <Badge variant="outline" className="text-[10px] shrink-0">{selectedNode.type}</Badge>
+                {selectedNode.scriptId ? (() => {
+                  const linked = scripts.find(s => s.id === selectedNode.scriptId);
+                  return linked ? (
+                    <>
+                      <span className="text-muted-foreground text-xs">→</span>
+                      <span className="text-xs text-muted-foreground truncate">📄 {linked.stage}</span>
+                      <Button
+                        variant="outline" size="sm" className="ml-auto shrink-0 gap-1.5 text-xs h-7"
+                        onClick={() => setPreviewScriptId(prev => prev === selectedNode.scriptId ? null : selectedNode.scriptId!)}
+                      >
+                        {previewScriptId === selectedNode.scriptId ? (
+                          <><EyeOff className="h-3 w-3" /> Hide Script</>
+                        ) : (
+                          <><Eye className="h-3 w-3" /> View Script</>
+                        )}
+                      </Button>
+                    </>
+                  ) : (
+                    <span className="text-xs text-muted-foreground italic">Linked script not found</span>
+                  );
+                })() : (
+                  <span className="text-xs text-muted-foreground italic">No linked script — double-click to edit</span>
+                )}
+              </div>
+            )}
+
+            {/* Inline script preview */}
+            {previewScriptId && (() => {
+              const previewScript = scripts.find(s => s.id === previewScriptId);
+              return previewScript ? (
+                <InlineScriptPreview script={previewScript} onClose={() => setPreviewScriptId(null)} />
+              ) : null;
+            })()}
+
             {/* Canvas */}
-            <div className="h-[calc(100vh-260px)] min-h-[400px]">
+            <div className={`${previewScriptId ? 'h-[calc(100vh-520px)]' : 'h-[calc(100vh-260px)]'} min-h-[300px] transition-all`}>
               <FlowCanvas
                 nodes={localNodes}
                 edges={localEdges}
                 scripts={scripts}
                 selectedNodeId={selectedNodeId}
-                onSelectNode={id => { setSelectedNodeId(id); if (connectingFrom && !id) setConnectingFrom(null); }}
+                onSelectNode={id => { setSelectedNodeId(id); if (!id) setPreviewScriptId(null); if (connectingFrom && !id) setConnectingFrom(null); }}
                 onMoveNode={handleMoveNode}
                 onStartConnect={setConnectingFrom}
                 connectingFrom={connectingFrom}
@@ -386,6 +452,7 @@ export default function ScriptFlows() {
         <FlowListView
           flows={flows} onSelect={openFlow} onCreateNew={() => setShowNewDialog(true)}
           onCreateFromTemplate={createFromTemplate} onDelete={id => deleteFlow.mutate(id)} userId={userId}
+          onOpenAIWizard={() => setShowAIWizard(true)}
         />
       )}
 
@@ -408,6 +475,12 @@ export default function ScriptFlows() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <AIFlowWizard
+        open={showAIWizard}
+        onClose={() => setShowAIWizard(false)}
+        onFlowGenerated={handleAIFlowGenerated}
+      />
     </PageLayout>
   );
 }

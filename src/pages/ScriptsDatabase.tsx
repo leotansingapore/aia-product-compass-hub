@@ -1942,6 +1942,49 @@ export default function ScriptsDatabase() {
           )}
         </div>
 
+        {/* Active filter breadcrumbs */}
+        {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all" || searchQuery) && (
+          <div className="mb-3 flex items-center gap-1.5 flex-wrap">
+            <span className="text-[11px] text-muted-foreground mr-0.5">Filters:</span>
+            {searchQuery && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                Search: "{searchQuery}"
+                <button onClick={() => { setSearchInput(""); setSearchQuery(""); }} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
+            {activeCategory !== "all" && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                {categoryLabels[activeCategory as CategoryKey]?.label || activeCategory}
+                <button onClick={() => setActiveCategory("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
+            {activeAudience !== "all" && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                {audienceLabels[activeAudience] || activeAudience}
+                <button onClick={() => setActiveAudience("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
+            {activeRole !== "all" && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                {roleLabels[activeRole] || activeRole}
+                <button onClick={() => setActiveRole("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
+            {activeTag !== "all" && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                #{activeTag}
+                <button onClick={() => setActiveTag("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
+            <button
+              onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); setSearchInput(""); setSearchQuery(""); }}
+              className="text-[10px] text-muted-foreground hover:text-foreground underline ml-1"
+            >
+              Clear all
+            </button>
+          </div>
+        )}
+
         {/* Results count */}
         <div className="mb-3 text-xs text-muted-foreground">
           {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
