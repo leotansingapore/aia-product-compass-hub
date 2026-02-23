@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, ChevronDown, ChevronUp, Trash2, Loader2, GripVertical, Copy, Check, Plus } from "lucide-react";
+import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus } from "lucide-react";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
 import { useScripts } from "@/hooks/useScripts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
@@ -15,6 +15,23 @@ import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -36,6 +53,91 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
+interface SortableScriptCardProps {
+  item: any;
+  index: number;
+  isOwner: boolean;
+  onRemove: (id: string) => void;
+}
+
+function SortableScriptCard({ item, index, isOwner, onRemove }: SortableScriptCardProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: item.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 50 : undefined,
+    opacity: isDragging ? 0.8 : 1,
+  };
+
+  return (
+    <Card ref={setNodeRef} style={style} className={isDragging ? "shadow-lg ring-2 ring-primary/30" : ""}>
+      <Collapsible>
+        <CollapsibleTrigger asChild>
+          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3">
+            <div className="flex items-center gap-3">
+              {isOwner && (
+                <button
+                  {...attributes}
+                  {...listeners}
+                  className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 -ml-1"
+                  onClick={e => e.stopPropagation()}
+                >
+                  <GripVertical className="h-4 w-4" />
+                </button>
+              )}
+              <span className="text-xs text-muted-foreground font-mono w-6 text-center">{index + 1}</span>
+              <div className="flex-1 min-w-0">
+                <CardTitle className="text-sm font-medium truncate">
+                  {item.script?.stage}
+                </CardTitle>
+                <div className="flex gap-2 mt-1">
+                  <Badge variant="secondary" className="text-[10px]">{item.script?.category}</Badge>
+                  {item.script?.target_audience && item.script.target_audience !== 'general' && (
+                    <Badge variant="outline" className="text-[10px]">{item.script.target_audience}</Badge>
+                  )}
+                </div>
+              </div>
+              {isOwner && (
+                <div className="flex items-center gap-1" onClick={e => e.stopPropagation()}>
+                  <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={() => onRemove(item.id)}>
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </Button>
+                </div>
+              )}
+              <ChevronDown className="h-4 w-4 text-muted-foreground" />
+            </div>
+          </CardHeader>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <CardContent className="pt-0 pb-4">
+            {item.script?.versions?.map((version: any, vi: number) => (
+              <div key={vi} className="mb-4 last:mb-0">
+                <div className="flex items-center justify-between mb-2">
+                  <Badge variant="outline" className="text-xs">{version.author || `Version ${vi + 1}`}</Badge>
+                  <CopyButton text={version.content || ""} />
+                </div>
+                <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 rounded-lg p-4">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+                    {version.content || ""}
+                  </ReactMarkdown>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </CollapsibleContent>
+      </Collapsible>
+    </Card>
+  );
+}
+
 export default function PlaybookDetail() {
   const { playbookId } = useParams();
   const navigate = useNavigate();
@@ -50,7 +152,6 @@ export default function PlaybookDetail() {
   const playbook = playbooks.find(p => p.id === playbookId);
   const isOwner = user?.id === playbook?.created_by;
 
-  // Map script data to items
   const itemsWithScripts = useMemo(() => {
     return items.map(item => ({
       ...item,
@@ -58,7 +159,6 @@ export default function PlaybookDetail() {
     })).filter(item => item.script);
   }, [items, scripts]);
 
-  // Scripts not yet in playbook for the add dialog
   const availableScripts = useMemo(() => {
     const usedIds = new Set(items.map(i => i.script_id));
     let filtered = scripts.filter(s => !usedIds.has(s.id));
@@ -71,13 +171,25 @@ export default function PlaybookDetail() {
 
   const { addItem } = usePlaybookItems(playbookId || null);
 
-  const moveItem = (index: number, direction: 'up' | 'down') => {
-    const newItems = [...itemsWithScripts];
-    const swapIndex = direction === 'up' ? index - 1 : index + 1;
-    if (swapIndex < 0 || swapIndex >= newItems.length) return;
-    [newItems[index], newItems[swapIndex]] = [newItems[swapIndex], newItems[index]];
-    const reordered = newItems.map((item, i) => ({ id: item.id, sort_order: i }));
-    reorderItems.mutate(reordered);
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    const oldIndex = itemsWithScripts.findIndex(i => i.id === active.id);
+    const newIndex = itemsWithScripts.findIndex(i => i.id === over.id);
+    if (oldIndex === -1 || newIndex === -1) return;
+
+    const reordered = [...itemsWithScripts];
+    const [moved] = reordered.splice(oldIndex, 1);
+    reordered.splice(newIndex, 0, moved);
+
+    const updates = reordered.map((item, i) => ({ id: item.id, sort_order: i }));
+    reorderItems.mutate(updates);
   };
 
   if (!playbook && !isLoading) {
@@ -134,63 +246,25 @@ export default function PlaybookDetail() {
             </CardContent>
           </Card>
         ) : (
-          <div className="space-y-3">
-            {itemsWithScripts.map((item, index) => (
-              <Card key={item.id}>
-                <Collapsible>
-                  <CollapsibleTrigger asChild>
-                    <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3">
-                      <div className="flex items-center gap-3">
-                        <span className="text-xs text-muted-foreground font-mono w-6 text-center">{index + 1}</span>
-                        <div className="flex-1 min-w-0">
-                          <CardTitle className="text-sm font-medium truncate">
-                            {item.script?.stage}
-                          </CardTitle>
-                          <div className="flex gap-2 mt-1">
-                            <Badge variant="secondary" className="text-[10px]">{item.script?.category}</Badge>
-                            {item.script?.target_audience && item.script.target_audience !== 'general' && (
-                              <Badge variant="outline" className="text-[10px]">{item.script.target_audience}</Badge>
-                            )}
-                          </div>
-                        </div>
-                        {isOwner && (
-                          <div className="flex items-center gap-1" onClick={e => e.stopPropagation()}>
-                            <Button variant="ghost" size="icon" className="h-7 w-7" disabled={index === 0} onClick={() => moveItem(index, 'up')}>
-                              <ChevronUp className="h-3.5 w-3.5" />
-                            </Button>
-                            <Button variant="ghost" size="icon" className="h-7 w-7" disabled={index === itemsWithScripts.length - 1} onClick={() => moveItem(index, 'down')}>
-                              <ChevronDown className="h-3.5 w-3.5" />
-                            </Button>
-                            <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={() => removeItem.mutate(item.id)}>
-                              <Trash2 className="h-3.5 w-3.5" />
-                            </Button>
-                          </div>
-                        )}
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                      </div>
-                    </CardHeader>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <CardContent className="pt-0 pb-4">
-                      {item.script?.versions?.map((version: any, vi: number) => (
-                        <div key={vi} className="mb-4 last:mb-0">
-                          <div className="flex items-center justify-between mb-2">
-                            <Badge variant="outline" className="text-xs">{version.author || `Version ${vi + 1}`}</Badge>
-                            <CopyButton text={version.content || ""} />
-                          </div>
-                          <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 rounded-lg p-4">
-                            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
-                              {version.content || ""}
-                            </ReactMarkdown>
-                          </div>
-                        </div>
-                      ))}
-                    </CardContent>
-                  </CollapsibleContent>
-                </Collapsible>
-              </Card>
-            ))}
-          </div>
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext items={itemsWithScripts.map(i => i.id)} strategy={verticalListSortingStrategy}>
+              <div className="space-y-3">
+                {itemsWithScripts.map((item, index) => (
+                  <SortableScriptCard
+                    key={item.id}
+                    item={item}
+                    index={index}
+                    isOwner={isOwner}
+                    onRemove={(id) => removeItem.mutate(id)}
+                  />
+                ))}
+              </div>
+            </SortableContext>
+          </DndContext>
         )}
       </div>
 
