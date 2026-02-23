@@ -35,7 +35,7 @@ export function MobileBottomNav() {
             const isActive = location.pathname === item.href ||
               (item.href === "/roleplay" && location.pathname.startsWith("/roleplay")) ||
               (item.href === "/kb" && (location.pathname === "/kb" || location.pathname.startsWith("/kb/"))) ||
-              (item.href === "/scripts" && location.pathname.startsWith("/scripts"));
+              (item.href === "/scripts" && (location.pathname.startsWith("/scripts") || location.pathname.startsWith("/objections")));
 
             return (
               <NavLink
