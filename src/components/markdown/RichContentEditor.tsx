@@ -379,7 +379,7 @@ export function RichContentEditor({
       lastExternalValue.current = value;
       isInternalUpdate.current = true;
       const html = markdownToHtml(value);
-      editor.commands.setContent(html, { emitUpdate: false });
+      editor.commands.setContent(html, false);
       isInternalUpdate.current = false;
     }
   }, [value, editor]);
@@ -507,7 +507,7 @@ export function RichContentEditor({
     } else {
       if (editor) {
         const html = markdownToHtml(sourceValue);
-        editor.commands.setContent(html, { emitUpdate: false });
+        editor.commands.setContent(html, false);
         onChange(sourceValue);
       }
     }
@@ -557,6 +557,11 @@ export function RichContentEditor({
       {editor && !showSourceView && (
         <BubbleMenu
           editor={editor}
+          tippyOptions={{
+            duration: 150,
+            animation: 'fade',
+            placement: 'top',
+          }}
           shouldShow={({ editor, state }) => {
             const { from, to } = state.selection;
             return from !== to && !editor.isActive('codeBlock');
