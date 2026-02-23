@@ -1218,10 +1218,28 @@ function HighlightedTitle({ text, query }: { text: string; query: string }) {
   );
 }
 
+function getSearchSnippet(versions: ScriptVersion[], query: string, maxLen = 120): string | null {
+  if (!query || query.trim().length < 2) return null;
+  const q = query.toLowerCase();
+  for (const v of versions) {
+    // Strip markdown syntax for a cleaner snippet
+    const plain = v.content.replace(/[#*_~`>\[\]()!|]/g, '').replace(/\n+/g, ' ').replace(/\s+/g, ' ');
+    const idx = plain.toLowerCase().indexOf(q);
+    if (idx !== -1) {
+      const start = Math.max(0, idx - 40);
+      const end = Math.min(plain.length, idx + query.length + 80);
+      const snippet = (start > 0 ? '…' : '') + plain.slice(start, end).trim() + (end < plain.length ? '…' : '');
+      return snippet;
+    }
+  }
+  return null;
+}
+
 function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "" }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
+  const snippet = useMemo(() => getSearchSnippet(script.versions, searchQuery), [script.versions, searchQuery]);
 
   useEffect(() => {
     if (isOpenByUrl) {
@@ -1256,6 +1274,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       </Badge>
                     )}
                   </div>
+                  {/* Search snippet preview when collapsed */}
+                  {!open && snippet && (
+                    <p className="text-xs text-muted-foreground mt-1.5 line-clamp-2">
+                      <HighlightedTitle text={snippet} query={searchQuery} />
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="flex items-center gap-2 shrink-0 ml-2">
