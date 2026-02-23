@@ -6,6 +6,7 @@ import { markdownComponents } from "@/lib/markdown-config";
 import { ScriptsChatWidget } from "@/components/scripts/ScriptsChatWidget";
 import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
 import { KnowledgeManagement } from "@/components/scripts/KnowledgeManagement";
+import { ScriptUserContributions } from "@/components/scripts/ScriptUserContributions";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { Input } from "@/components/ui/input";
@@ -21,6 +22,7 @@ import { toast } from "sonner";
 import { useScripts, useScriptsMutations } from "@/hooks/useScripts";
 import { usePlaybooks } from "@/hooks/usePlaybooks";
 import { supabase } from "@/integrations/supabase/client";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useScripts";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
@@ -1261,7 +1263,7 @@ function getSearchSnippet(versions: ScriptVersion[], query: string): string | nu
   return null;
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void }) {
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
@@ -1441,6 +1443,13 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 </div>
               </div>
             )}
+
+            {/* User Contributions */}
+            <ScriptUserContributions
+              scriptId={script.id}
+              isAuthenticated={!!isAuthenticated}
+              displayName={userDisplayName}
+            />
           </CardContent>
         </CollapsibleContent>
       </Card>
@@ -1476,6 +1485,7 @@ export default function ScriptsDatabase() {
   
   const { scripts: dbScripts, loading, refetch } = useScripts();
   const { createScript, updateScript, deleteScript, isAdmin } = useScriptsMutations();
+  const { user } = useSimplifiedAuth();
 
   // Playbook integration
   const { myPlaybooks } = usePlaybooks();
@@ -1897,6 +1907,8 @@ export default function ScriptsDatabase() {
                   searchQuery={searchQuery}
                   myPlaybooks={myPlaybooks}
                   onAddToPlaybook={handleAddToPlaybook}
+                  isAuthenticated={!!user}
+                  userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
                   onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                   onDelete={() => setDeleteTarget(script)}
                   onToggle={(open) => {
