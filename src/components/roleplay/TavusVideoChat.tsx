@@ -465,25 +465,23 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   // Setup State - Before session starts
   if (!isConnected) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* Session Info */}
         <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div className="space-y-2">
-                <CardTitle className="text-xl font-bold">{scenario.title}</CardTitle>
-                <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-                  <Badge variant="outline" className={`${categoryColors[scenario.category]} border-current`}>
-                    {scenario.category}
-                  </Badge>
-                  <Badge variant="outline" className={`${difficultyColors[scenario.difficulty]} border-current`}>
-                    {scenario.difficulty}
-                  </Badge>
-                  <span className="flex items-center gap-1.5">
-                    <div className="h-1 w-1 rounded-full bg-muted-foreground/50" />
-                    Duration: {scenario.duration}
-                  </span>
-                </div>
+          <CardHeader className="p-4 sm:p-6">
+            <div className="space-y-2">
+              <CardTitle className="text-base sm:text-xl font-bold">{scenario.title}</CardTitle>
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
+                <Badge variant="outline" className={`${categoryColors[scenario.category]} border-current text-[10px] sm:text-xs`}>
+                  {scenario.category}
+                </Badge>
+                <Badge variant="outline" className={`${difficultyColors[scenario.difficulty]} border-current text-[10px] sm:text-xs`}>
+                  {scenario.difficulty}
+                </Badge>
+                <span className="flex items-center gap-1.5">
+                  <div className="h-1 w-1 rounded-full bg-muted-foreground/50" />
+                  {scenario.duration}
+                </span>
               </div>
             </div>
           </CardHeader>
@@ -491,24 +489,24 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
         {/* Permission Status */}
         <Card className="border-border/50">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <Settings className="h-5 w-5 text-primary" />
+          <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-2">
+            <CardTitle className="flex items-center gap-2 text-sm sm:text-lg">
+              <Settings className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
               Camera & Microphone Setup
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-4 sm:p-6 pt-2 sm:pt-2">
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-full ${
+              <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className={`p-1.5 sm:p-2 rounded-full ${
                     permissionStatus.camera === 'granted' ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' :
                     permissionStatus.camera === 'denied' ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' :
                     'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
                   }`}>
-                    <Camera className="h-4 w-4" />
+                    <Camera className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   </div>
-                  <span className="font-medium">Camera Access</span>
+                  <span className="font-medium text-sm">Camera</span>
                 </div>
                 <div className="flex items-center gap-2">
                   {permissionStatus.camera === 'checking' && (
@@ -524,16 +522,16 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-full ${
+              <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className={`p-1.5 sm:p-2 rounded-full ${
                     permissionStatus.microphone === 'granted' ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' :
                     permissionStatus.microphone === 'denied' ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' :
                     'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
                   }`}>
-                    <Mic className="h-4 w-4" />
+                    <Mic className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   </div>
-                  <span className="font-medium">Microphone Access</span>
+                  <span className="font-medium text-sm">Microphone</span>
                 </div>
                 <div className="flex items-center gap-2">
                   {permissionStatus.microphone === 'checking' && (
