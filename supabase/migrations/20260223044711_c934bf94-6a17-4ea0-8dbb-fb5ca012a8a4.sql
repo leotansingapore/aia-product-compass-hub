@@ -1,0 +1,1 @@
+ALTER TABLE scripts ADD COLUMN tags text[] DEFAULT '{}'::text[];

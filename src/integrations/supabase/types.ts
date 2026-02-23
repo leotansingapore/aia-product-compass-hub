@@ -1045,6 +1045,7 @@ export type Database = {
           script_role: string | null
           sort_order: number
           stage: string
+          tags: string[] | null
           target_audience: string | null
           updated_at: string
           versions: Json
@@ -1056,6 +1057,7 @@ export type Database = {
           script_role?: string | null
           sort_order?: number
           stage: string
+          tags?: string[] | null
           target_audience?: string | null
           updated_at?: string
           versions?: Json
@@ -1067,6 +1069,7 @@ export type Database = {
           script_role?: string | null
           sort_order?: number
           stage?: string
+          tags?: string[] | null
           target_audience?: string | null
           updated_at?: string
           versions?: Json

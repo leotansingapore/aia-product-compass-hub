@@ -20,6 +20,7 @@ export interface ScriptEntry {
   category: string;
   target_audience: string;
   script_role?: string;
+  tags?: string[];
   versions: ScriptVersion[];
   sort_order: number;
   attachments?: ScriptAttachment[];
@@ -47,6 +48,7 @@ export function useScripts() {
         ...d,
         target_audience: (d.target_audience as string) || 'general',
         script_role: (d as any).script_role || 'consultant',
+        tags: (d as any).tags || [],
         versions: (d.versions as unknown as ScriptVersion[]) || [],
       })));
     }
@@ -72,6 +74,7 @@ export function useScriptsMutations() {
         category: script.category,
         target_audience: script.target_audience,
         script_role: (script as any).script_role || 'consultant',
+        tags: script.tags || [],
         versions: JSON.parse(JSON.stringify(script.versions)),
         sort_order: script.sort_order,
       } as any])
@@ -89,6 +92,7 @@ export function useScriptsMutations() {
     if (updates.category !== undefined) payload.category = updates.category;
     if (updates.target_audience !== undefined) payload.target_audience = updates.target_audience;
     if (updates.script_role !== undefined) payload.script_role = updates.script_role;
+    if (updates.tags !== undefined) payload.tags = updates.tags;
     if (updates.versions !== undefined) payload.versions = JSON.parse(JSON.stringify(updates.versions));
     if (updates.sort_order !== undefined) payload.sort_order = updates.sort_order;
 
