@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -20,6 +19,7 @@ import { useObjections, useObjectionMutations } from "@/hooks/useObjections";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useIsMobile } from "@/hooks/use-mobile";
 import type { ObjectionEntry, ObjectionResponse } from "@/hooks/useObjections";
+import { ObjectionEditorDialog } from "./ObjectionEditorDialog";
 
 // Fuzzy matching: checks if all characters of query appear in order in target
 function fuzzyMatch(target: string, query: string): { match: boolean; score: number } {
@@ -275,38 +275,24 @@ export function ObjectionHandlingDatabase() {
   const [editingEntry, setEditingEntry] = useState<ObjectionEntry | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<ObjectionEntry | null>(null);
 
-  // Editor form state
-  const [formTitle, setFormTitle] = useState("");
-  const [formCategory, setFormCategory] = useState("generic");
-  const [formDescription, setFormDescription] = useState("");
-  const [formTags, setFormTags] = useState("");
+  // Editor form state (now managed by ObjectionEditorDialog)
 
   const openEditor = (entry?: ObjectionEntry) => {
-    if (entry) {
-      setEditingEntry(entry);
-      setFormTitle(entry.title);
-      setFormCategory(entry.category);
-      setFormDescription(entry.description || "");
-      setFormTags((entry.tags || []).join(", "));
-    } else {
-      setEditingEntry(null);
-      setFormTitle("");
-      setFormCategory("generic");
-      setFormDescription("");
-      setFormTags("");
-    }
+    setEditingEntry(entry || null);
     setEditorOpen(true);
   };
 
-  const handleSave = async () => {
-    if (!formTitle.trim()) return;
-    const tags = formTags.split(",").map(t => t.trim()).filter(Boolean);
+  const handleSave = async (data: { title: string; category: string; description?: string; tags?: string[]; initialResponse?: string }) => {
     if (editingEntry) {
-      await updateEntry(editingEntry.id, { title: formTitle, category: formCategory, description: formDescription || null, tags });
+      await updateEntry(editingEntry.id, { title: data.title, category: data.category, description: data.description || null, tags: data.tags });
     } else {
-      await createEntry({ title: formTitle, category: formCategory, description: formDescription || undefined, tags });
+      const created = await createEntry({ title: data.title, category: data.category, description: data.description, tags: data.tags });
+      // If there's an initial response and user is logged in, add it
+      if (created && data.initialResponse && user) {
+        const displayName = user.user_metadata?.display_name || user.email?.split("@")[0] || "Anonymous";
+        await addResponse(created.id, data.initialResponse, displayName, user.id);
+      }
     }
-    setEditorOpen(false);
     refetch();
   };
 
@@ -573,58 +559,12 @@ export function ObjectionHandlingDatabase() {
       )}
 
       {/* Editor Dialog */}
-      <Dialog open={editorOpen} onOpenChange={setEditorOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle>{editingEntry ? "Edit Objection" : "Add Objection"}</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
-            <div>
-              <Label>Objection Title</Label>
-              <Input
-                value={formTitle}
-                onChange={(e) => setFormTitle(e.target.value)}
-                placeholder='e.g. "I already have an agent"'
-              />
-            </div>
-            <div>
-              <Label>Category</Label>
-              <Select value={formCategory} onValueChange={setFormCategory}>
-                <SelectTrigger><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  {Object.entries(categoryConfig).map(([key, config]) => (
-                    <SelectItem key={key} value={key}>{config.icon} {config.label}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <Label>Description (optional)</Label>
-              <div className="border rounded-lg overflow-hidden">
-                <MinimalRichEditor
-                  value={formDescription}
-                  onChange={setFormDescription}
-                  placeholder="Brief context about this objection..."
-                />
-              </div>
-            </div>
-            <div>
-              <Label>Tags (comma-separated)</Label>
-              <Input
-                value={formTags}
-                onChange={(e) => setFormTags(e.target.value)}
-                placeholder="e.g. common, nsf, pre-retiree"
-              />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setEditorOpen(false)}>Cancel</Button>
-            <Button onClick={handleSave} disabled={!formTitle.trim()}>
-              {editingEntry ? "Save Changes" : "Create"}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <ObjectionEditorDialog
+        open={editorOpen}
+        onClose={() => setEditorOpen(false)}
+        onSave={handleSave}
+        editingEntry={editingEntry}
+      />
 
       {/* Delete Confirmation */}
       <AlertDialog open={!!deleteTarget} onOpenChange={(o) => !o && setDeleteTarget(null)}>
