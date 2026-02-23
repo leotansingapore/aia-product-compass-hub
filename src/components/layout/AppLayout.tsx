@@ -14,6 +14,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAppStructureSync } from "@/hooks/useAppStructureSync";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 // Safe fallback to avoid crash if AdminProvider isn't mounted (e.g., during boot/HMR)
 const useAdminSafe = () => {
