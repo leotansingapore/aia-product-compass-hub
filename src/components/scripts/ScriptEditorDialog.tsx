@@ -23,6 +23,7 @@ const TARGET_AUDIENCES = [
   { value: "general", label: "General" },
   { value: "young-adult", label: "Young Adults" },
   { value: "nsf", label: "NSF / NS" },
+  { value: "young-adult", label: "Young Adults" },
   { value: "working-adult", label: "Working Adults" },
   { value: "parent", label: "Parents" },
   { value: "pre-retiree", label: "Pre-Retirees (50-65)" },
