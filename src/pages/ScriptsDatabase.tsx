@@ -26,6 +26,7 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useScripts";
 import { useScriptFavourites } from "@/hooks/useScriptFavourites";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
 
 type CategoryKey = "cold-calling" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips" | "post-meeting";
 
@@ -1473,6 +1474,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
 
 export default function ScriptsDatabase() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState<string>(searchParams.get("view") || "scripts");
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -1486,13 +1488,14 @@ export default function ScriptsDatabase() {
   // Sync filter state to URL search params
   useEffect(() => {
     const params = new URLSearchParams();
+    if (activeTab !== "scripts") params.set("view", activeTab);
     if (searchQuery) params.set("q", searchQuery);
     if (activeCategory !== "all") params.set("category", activeCategory);
     if (activeAudience !== "all") params.set("audience", activeAudience);
     if (activeRole !== "all") params.set("role", activeRole);
     if (activeTag !== "all") params.set("tag", activeTag);
     setSearchParams(params, { replace: true });
-  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
+  }, [activeTab, searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
   const navigate = useNavigate();
   const { scriptId } = useParams();
   
@@ -1742,14 +1745,38 @@ export default function ScriptsDatabase() {
       description="Reference scripts for cold calling, follow-up messages, referrals, appointment confirmations, and handling common objections."
     >
       <BrandedPageHeader
-        title="📝 Scripts Database"
-        subtitle="Reference scripts for cold calling, follow-ups, referrals, confirmations, and objection handling"
+        title="📝 Scripts & Objections"
+        subtitle="Reference scripts, objection handling, and team knowledge base"
         showBackButton
         onBack={() => navigate("/")}
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Scripts Database" }]}
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Scripts & Objections" }]}
       />
 
       <div className="mx-auto px-3 sm:px-6 py-3 sm:py-8 max-w-4xl">
+        {/* Tab Switcher */}
+        <div className="flex gap-1 mb-5 p-1 bg-muted/50 rounded-lg w-fit">
+          <Button
+            variant={activeTab === "scripts" ? "default" : "ghost"}
+            size="sm"
+            className="gap-1.5 text-sm"
+            onClick={() => setActiveTab("scripts")}
+          >
+            📝 Scripts
+          </Button>
+          <Button
+            variant={activeTab === "objections" ? "default" : "ghost"}
+            size="sm"
+            className="gap-1.5 text-sm"
+            onClick={() => setActiveTab("objections")}
+          >
+            🛡️ Objection Handling
+          </Button>
+        </div>
+
+        {activeTab === "objections" ? (
+          <ObjectionHandlingDatabase />
+        ) : (
+        <>
         {/* Search + Add button */}
         <div className="mb-4 sm:mb-6 flex gap-2 sm:gap-3 items-start">
           <div className="flex-1 relative" ref={searchRef}>
@@ -2040,6 +2067,8 @@ export default function ScriptsDatabase() {
           <div className="mt-8">
             <KnowledgeManagement />
           </div>
+        )}
+      </>
         )}
       </div>
 
