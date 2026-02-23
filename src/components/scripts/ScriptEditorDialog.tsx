@@ -264,6 +264,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
               <><Pencil className="h-4 w-4" /> Edit Script</>
             ) : step === "paste" ? (
               <><Sparkles className="h-4 w-4 text-primary" /> Quick Add Script</>
+            ) : step === "duplicates" ? (
+              <><AlertTriangle className="h-4 w-4 text-amber-500" /> Similar Scripts Found</>
             ) : (
               <><Sparkles className="h-4 w-4 text-primary" /> Review & Save</>
             )}
