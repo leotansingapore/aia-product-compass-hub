@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 import { useScripts, useScriptsMutations } from "@/hooks/useScripts";
 import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useScripts";
@@ -1431,15 +1431,27 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
 }
 
 export default function ScriptsDatabase() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchInput, setSearchInput] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
+  const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   const searchRef = useRef<HTMLDivElement>(null);
-  const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [activeAudience, setActiveAudience] = useState<string>("all");
-  const [activeRole, setActiveRole] = useState<string>("all");
-  const [activeTag, setActiveTag] = useState<string>("all");
+  const [activeCategory, setActiveCategory] = useState<string>(searchParams.get("category") || "all");
+  const [activeAudience, setActiveAudience] = useState<string>(searchParams.get("audience") || "all");
+  const [activeRole, setActiveRole] = useState<string>(searchParams.get("role") || "all");
+  const [activeTag, setActiveTag] = useState<string>(searchParams.get("tag") || "all");
+
+  // Sync filter state to URL search params
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (searchQuery) params.set("q", searchQuery);
+    if (activeCategory !== "all") params.set("category", activeCategory);
+    if (activeAudience !== "all") params.set("audience", activeAudience);
+    if (activeRole !== "all") params.set("role", activeRole);
+    if (activeTag !== "all") params.set("tag", activeTag);
+    setSearchParams(params, { replace: true });
+  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
   const navigate = useNavigate();
   const { scriptId } = useParams();
   
