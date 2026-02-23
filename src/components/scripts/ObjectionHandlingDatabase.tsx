@@ -349,41 +349,52 @@ export function ObjectionHandlingDatabase() {
       result = result.filter(e => e.category === activeCategory);
     }
     if (searchQuery.trim()) {
-      const q = searchQuery.trim();
-      // Minimum score threshold: require meaningful match quality relative to query length
-      // Exact substring matches score 100+, so threshold filters out weak fuzzy noise
-      const minScore = Math.max(q.length * 2, 5);
-      // Score each entry and filter by fuzzy match
+      const qLower = searchQuery.trim().toLowerCase();
+      // Split into individual words for multi-word matching
+      const words = qLower.split(/\s+/).filter(w => w.length > 0);
+
       const scored = result.map(e => {
         let score = 0;
-        // Exact substring checks first (most reliable)
         const titleLower = e.title.toLowerCase();
-        const qLower = q.toLowerCase();
-        if (titleLower.includes(qLower)) {
-          score += 300; // Strong title substring match
-        } else {
-          const titleMatch = fuzzyMatch(e.title, q);
-          if (titleMatch.match) score += titleMatch.score * 3;
+        const descLower = (e.description || "").toLowerCase();
+        const tagsLower = (e.tags || []).map(t => t.toLowerCase());
+        const catLabel = (categoryConfig[e.category]?.label || e.category).toLowerCase();
+
+        // Full phrase exact match (highest priority)
+        if (titleLower.includes(qLower)) score += 500;
+        if (descLower.includes(qLower)) score += 300;
+        tagsLower.forEach(t => { if (t.includes(qLower)) score += 200; });
+        if (catLabel.includes(qLower)) score += 100;
+
+        // If no full-phrase match, try individual word matching (all words must appear somewhere)
+        if (score === 0 && words.length > 1) {
+          const allFields = [titleLower, descLower, ...tagsLower, catLabel].join(" ");
+          const allWordsMatch = words.every(w => allFields.includes(w));
+          if (allWordsMatch) {
+            // Boost based on where words appear
+            words.forEach(w => {
+              if (titleLower.includes(w)) score += 100;
+              if (descLower.includes(w)) score += 60;
+              tagsLower.forEach(t => { if (t.includes(w)) score += 40; });
+            });
+          }
         }
-        const desc = (e.description || "").toLowerCase();
-        if (desc.includes(qLower)) {
-          score += 200;
-        } else {
-          const descMatch = fuzzyMatch(e.description || "", q);
-          if (descMatch.match && descMatch.score >= q.length) score += descMatch.score * 2;
+
+        // Single-word query: require substring match in at least one field
+        if (score === 0 && words.length === 1) {
+          const w = words[0];
+          if (titleLower.includes(w)) score += 100;
+          if (descLower.includes(w)) score += 60;
+          tagsLower.forEach(t => { if (t.includes(w)) score += 40; });
+          if (catLabel.includes(w)) score += 30;
         }
-        // Tags — exact substring only (tags are short)
-        (e.tags || []).forEach(t => {
-          if (t.toLowerCase().includes(qLower)) score += 150;
-        });
-        // Category label
-        const catLabel = categoryConfig[e.category]?.label || e.category;
-        if (catLabel.toLowerCase().includes(qLower) || e.category.toLowerCase().includes(qLower)) score += 50;
-        // Response matches
-        if (matchedResponseIdsMap[e.id]) score += 30 * matchedResponseIdsMap[e.id].size;
+
+        // Response content matches
+        if (matchedResponseIdsMap[e.id]) score += 50 * matchedResponseIdsMap[e.id].size;
+
         return { entry: e, score };
-      }).filter(s => s.score >= minScore);
-      // Sort by relevance score descending
+      }).filter(s => s.score > 0);
+
       scored.sort((a, b) => b.score - a.score);
       result = scored.map(s => s.entry);
     }
