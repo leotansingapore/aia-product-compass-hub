@@ -10,7 +10,8 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { scripts } = await req.json();
+    const body = await req.json();
+    const { scripts, mode } = body;
     if (!scripts || !Array.isArray(scripts) || scripts.length === 0) {
       return new Response(JSON.stringify({ error: "No scripts provided" }), {
         status: 400,
@@ -22,22 +23,26 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Check if scripts table already has data
-    const { count } = await supabase
-      .from("scripts")
-      .select("*", { count: "exact", head: true });
+    // If mode is "add", skip the existing data check and just insert
+    if (mode !== "add") {
+      const { count } = await supabase
+        .from("scripts")
+        .select("*", { count: "exact", head: true });
 
-    if (count && count > 0) {
-      return new Response(JSON.stringify({ message: "Scripts already seeded", count }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      if (count && count > 0) {
+        return new Response(JSON.stringify({ message: "Scripts already seeded", count }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
     }
 
-    // Insert all scripts
+    // Insert scripts
     const rows = scripts.map((s: any) => ({
       stage: s.stage,
       category: s.category,
       target_audience: s.target_audience || "general",
+      script_role: s.script_role || "consultant",
+      tags: s.tags || [],
       versions: s.versions,
       sort_order: Math.round(s.sort_order || 0),
     }));
