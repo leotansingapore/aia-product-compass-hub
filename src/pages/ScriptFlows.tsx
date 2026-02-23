@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
-import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Save, Undo2, Redo2, Keyboard, Sparkles } from 'lucide-react';
+import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Save, Undo2, Redo2, Keyboard, Sparkles, Link } from 'lucide-react';
 import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
 import { useScripts } from '@/hooks/useScripts';
 import ReactFlowCanvas, { type FlowCanvasControls } from '@/components/flows/ReactFlowCanvas';
@@ -302,6 +302,24 @@ export default function ScriptFlows() {
 
               {/* Export */}
               <ExportControls onExport={handleExport} />
+
+              {/* Share */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline" size="sm"
+                    onClick={() => {
+                      const url = `${window.location.origin}/flows/view/${activeFlowId}`;
+                      navigator.clipboard.writeText(url).then(() => {
+                        toast.success('Share link copied to clipboard!');
+                      });
+                    }}
+                  >
+                    <Link className="h-3.5 w-3.5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Copy share link</TooltipContent>
+              </Tooltip>
 
               <div className="w-px h-6 bg-border" />
 

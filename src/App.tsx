@@ -48,6 +48,7 @@ import ScriptsDatabase from "./pages/ScriptsDatabase";
 import Playbooks from "./pages/Playbooks";
 import PlaybookDetail from "./pages/PlaybookDetail";
 import ScriptFlows from "./pages/ScriptFlows";
+import PublicFlowView from "./pages/PublicFlowView";
 
 // Lazy load AI Assistant page for performance optimization
 const AIAssistant = lazy(() => import("./pages/AIAssistant"));
@@ -112,6 +113,7 @@ const App = () => (
 
 {/* Script Flows */}
 <Route path="/flows" element={<ScriptFlows />} />
+<Route path="/flows/view/:flowId" element={<PublicFlowView />} />
 
 {/* Knowledge Base */}
 <Route path="/kb" element={<KnowledgeBase />} />
