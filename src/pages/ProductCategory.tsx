@@ -252,16 +252,16 @@ export default function ProductCategory() {
         onSubtitleEdit={isAdmin() ? handleCategoryDescriptionEdit : undefined}
       />
 
-      <div className="mx-auto px-4 sm:px-6 py-4 sm:py-8">
+      <div className="mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8">
         {/* Draft Banner */}
         {isAdmin() && category.published === false && (
-          <div className="mb-6 flex items-center justify-between rounded-lg border border-dashed border-muted-foreground/30 bg-muted/50 px-4 py-3">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <EyeOff className="h-4 w-4" />
-              <span>This category is in <strong>draft</strong> mode — only visible to admins.</span>
+          <div className="mb-3 sm:mb-6 flex items-center justify-between rounded-lg border border-dashed border-muted-foreground/30 bg-muted/50 px-3 sm:px-4 py-2 sm:py-3">
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+              <EyeOff className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span>Draft — only visible to admins</span>
             </div>
             <div className="flex items-center gap-2">
-              <Label htmlFor="category-publish-toggle" className="text-sm cursor-pointer text-muted-foreground">Published</Label>
+              <Label htmlFor="category-publish-toggle" className="text-xs sm:text-sm cursor-pointer text-muted-foreground hidden sm:inline">Published</Label>
               <Switch
                 id="category-publish-toggle"
                 checked={category.published ?? false}
@@ -280,7 +280,7 @@ export default function ProductCategory() {
         )}
 
         {/* Search and Filters */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-3 sm:mb-6 md:mb-8">
           <EnhancedSearchBar
             onSearch={handleSearch}
             placeholder={`Search ${category.name.toLowerCase()}...`}
