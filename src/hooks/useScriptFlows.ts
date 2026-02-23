@@ -7,10 +7,16 @@ export interface FlowNode {
   id: string;
   scriptId: string | null;
   label: string;
-  type: 'start' | 'script' | 'decision' | 'action' | 'end';
+  type: 'start' | 'script' | 'decision' | 'action' | 'end'
+        | 'hexagon' | 'parallelogram' | 'cylinder' | 'document';
   x: number;
   y: number;
   customText?: string;
+  color?: string;
+  borderStyle?: 'solid' | 'dashed' | 'dotted';
+  fontSize?: number;
+  opacity?: number;
+  shadow?: boolean;
 }
 
 export interface FlowEdge {
@@ -19,6 +25,10 @@ export interface FlowEdge {
   to: string;
   label?: string;
   condition?: 'yes' | 'no' | 'no-reply' | 'custom';
+  edgeType?: 'smoothstep' | 'bezier' | 'straight';
+  lineStyle?: 'solid' | 'dashed' | 'dotted';
+  animated?: boolean;
+  color?: string;
 }
 
 export interface ScriptFlow {

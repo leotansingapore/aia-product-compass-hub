@@ -16,7 +16,12 @@ export function toReactFlowNodes(dbNodes: FlowNode[]): Node[] {
       label: n.label,
       scriptId: n.scriptId,
       customText: n.customText,
-      nodeType: n.type, // preserve original type for rendering
+      nodeType: n.type,
+      color: n.color,
+      borderStyle: n.borderStyle,
+      fontSize: n.fontSize,
+      opacity: n.opacity,
+      shadow: n.shadow,
     },
   }));
 }
@@ -30,6 +35,10 @@ export function toReactFlowEdges(dbEdges: FlowEdge[]): Edge[] {
     data: {
       label: e.label,
       condition: e.condition,
+      edgeType: e.edgeType,
+      lineStyle: e.lineStyle,
+      animated: e.animated,
+      color: e.color,
     },
     label: e.label,
   }));
@@ -46,6 +55,11 @@ export function fromReactFlowNodes(rfNodes: Node[]): FlowNode[] {
     customText: n.data?.customText,
     x: Math.round(n.position.x),
     y: Math.round(n.position.y),
+    color: n.data?.color || undefined,
+    borderStyle: n.data?.borderStyle || undefined,
+    fontSize: n.data?.fontSize || undefined,
+    opacity: n.data?.opacity || undefined,
+    shadow: n.data?.shadow,
   }));
 }
 
@@ -56,6 +70,10 @@ export function fromReactFlowEdges(rfEdges: Edge[]): FlowEdge[] {
     to: e.target,
     label: e.data?.label || (typeof e.label === 'string' ? e.label : undefined),
     condition: e.data?.condition,
+    edgeType: e.data?.edgeType || undefined,
+    lineStyle: e.data?.lineStyle || undefined,
+    animated: e.data?.animated || undefined,
+    color: e.data?.color || undefined,
   }));
 }
 
@@ -68,6 +86,10 @@ function mapNodeType(dbType: FlowNode['type']): string {
     script: 'scriptNode',
     decision: 'decisionNode',
     action: 'actionNode',
+    hexagon: 'hexagonNode',
+    parallelogram: 'parallelogramNode',
+    cylinder: 'cylinderNode',
+    document: 'documentNode',
   };
   return map[dbType] || 'scriptNode';
 }
@@ -79,6 +101,10 @@ function reverseMapNodeType(rfType: string | undefined): FlowNode['type'] {
     scriptNode: 'script',
     decisionNode: 'decision',
     actionNode: 'action',
+    hexagonNode: 'hexagon',
+    parallelogramNode: 'parallelogram',
+    cylinderNode: 'cylinder',
+    documentNode: 'document',
   };
   return map[rfType || ''] || 'script';
 }

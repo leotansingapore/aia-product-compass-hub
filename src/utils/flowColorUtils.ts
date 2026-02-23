@@ -38,3 +38,27 @@ export const CONDITION_COLORS: Record<string, string> = {
   'no-reply': '#f59e0b',
   custom: '#8b5cf6',
 };
+
+/** Default solid fill colors per React Flow node type */
+export const NODE_TYPE_DEFAULTS: Record<string, string> = {
+  scriptStart: '#16a34a',
+  scriptEnd: '#dc2626',
+  scriptNode: '#2563eb',
+  decisionNode: '#d97706',
+  actionNode: '#7c3aed',
+  hexagonNode: '#0891b2',
+  parallelogramNode: '#ea580c',
+  cylinderNode: '#4f46e5',
+  documentNode: '#0d9488',
+};
+
+/**
+ * Returns computed colors for a node based on its React Flow type and optional custom color.
+ */
+export function getNodeColors(rfType: string, customColor?: string) {
+  const bg = customColor || NODE_TYPE_DEFAULTS[rfType] || '#64748b';
+  const text = getContrastTextColor(bg);
+  const border = bg;
+  const handleBorder = bg;
+  return { bg, border, text, handleBorder };
+}
