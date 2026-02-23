@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { createSlug } from '@/utils/slugUtils';
 import { useToast } from '@/hooks/use-toast';
@@ -19,6 +20,7 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
   const [isOpen, setIsOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const [moduleData, setModuleData] = useState({
     title: '',
@@ -50,6 +52,24 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
         finalSlug = `${baseSlug}-${timestamp}`;
       }
 
+      // Create a default first page so the module isn't empty
+      const defaultPage = {
+        id: `page-${Date.now()}`,
+        title: 'Page 1',
+        url: '',
+        description: '',
+        category: '',
+        order: 0,
+        rich_content: '',
+        legacy_fields: {
+          migrated_at: new Date().toISOString(),
+          notes: '',
+          transcript: '',
+          useful_links: [],
+          attachments: []
+        }
+      };
+
       const { error } = await supabase
         .from('products')
         .insert({
@@ -59,7 +79,7 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
           category_id: categoryId,
           tags: moduleData.tags ? moduleData.tags.split(',').map(tag => tag.trim()) : [],
           highlights: moduleData.highlights ? moduleData.highlights.split(',').map(highlight => highlight.trim()) : [],
-          training_videos: [],
+          training_videos: [defaultPage],
           useful_links: [],
           published: moduleData.publishImmediately
         });
@@ -81,6 +101,9 @@ export function CreateModuleForm({ categoryId, onModuleCreated }: CreateModuleFo
       });
       setIsOpen(false);
       onModuleCreated?.();
+
+      // Navigate to the newly created module
+      navigate(`/product/${finalSlug}`);
 
     } catch (error) {
       console.error('Error creating module:', error);
