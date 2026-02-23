@@ -86,9 +86,9 @@ export function MobileDrawer() {
                         )
                       }
                     >
-                      <span className="text-lg">{config.icon}</span>
-                      <span className="truncate">{category.name}</span>
-                      <span className="ml-auto text-micro bg-muted text-muted-foreground px-2 py-1 rounded-full">
+                      <span className="text-lg shrink-0">{config.icon}</span>
+                      <span className="break-words leading-snug">{category.name}</span>
+                      <span className="ml-auto shrink-0 text-micro bg-muted text-muted-foreground px-2 py-1 rounded-full">
                         {config.productCount}
                       </span>
                     </NavLink>
