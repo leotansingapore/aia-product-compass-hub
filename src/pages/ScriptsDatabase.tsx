@@ -1471,7 +1471,7 @@ export default function ScriptsDatabase() {
         {/* Search + Add button */}
         <div className="mb-6 flex gap-3 items-start">
           <div className="flex-1">
-            <EnhancedSearchBar onSearch={setSearchQuery} placeholder="Search scripts..." />
+            <EnhancedSearchBar onSearch={setSearchQuery} placeholder="Search scripts..." showResults={false} />
           </div>
           {isAdmin && (
             <Button onClick={() => { setEditingScript(null); setEditorOpen(true); }} className="gap-1.5 shrink-0">
