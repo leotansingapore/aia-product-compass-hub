@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { EditorState, StateEffect, StateField, Range } from '@codemirror/state';
 import { EditorView, keymap, lineNumbers, highlightActiveLine, highlightActiveLineGutter, Decoration, DecorationSet, ViewPlugin, ViewUpdate, WidgetType } from '@codemirror/view';
 import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands';
@@ -9,7 +9,7 @@ import { detectVideoEmbed } from '@/lib/video-embed-utils';
 import { 
   Bold, Italic, Strikethrough, Code, Quote, Heading1, Heading2, Heading3, 
   List, ListOrdered, CheckSquare, Link as LinkIcon, Image as ImageIcon, 
-  Video, Table, FileCode, Minus, Eye, EyeOff 
+  Video, Table, FileCode, Minus, Eye, EyeOff, Upload, Loader2 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { 
@@ -18,8 +18,11 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 interface CodeMirrorMarkdownEditorProps {
   value: string;
@@ -368,6 +371,9 @@ export function CodeMirrorMarkdownEditor({
   const [imageAlt, setImageAlt] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [showPreview, setShowPreview] = useState(false);
+  const [imageTab, setImageTab] = useState<'upload' | 'url'>('upload');
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Toolbar button handlers
   const handleBold = () => {
@@ -440,8 +446,40 @@ export function CodeMirrorMarkdownEditor({
   const handleImageDialog = () => {
     setImageAlt('');
     setImageUrl('');
+    setImageTab('upload');
+    setIsUploadingImage(false);
     setShowImageDialog(true);
   };
+
+  const handleImageUpload = useCallback(async (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      toast.error('Only image files are allowed');
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error('Image must be under 10MB');
+      return;
+    }
+    setIsUploadingImage(true);
+    try {
+      const ext = file.name.split('.').pop() || 'png';
+      const filePath = `editor-images/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { data, error } = await supabase.storage
+        .from('knowledge-files')
+        .upload(filePath, file);
+      if (error) throw error;
+      const { data: urlData } = supabase.storage
+        .from('knowledge-files')
+        .getPublicUrl(data.path);
+      setImageUrl(urlData.publicUrl);
+      setImageTab('url');
+      toast.success('Image uploaded successfully');
+    } catch (err: any) {
+      toast.error(err.message || 'Upload failed');
+    } finally {
+      setIsUploadingImage(false);
+    }
+  }, []);
 
   const handleInsertImage = () => {
     if (viewRef.current) {
@@ -915,34 +953,85 @@ export function CodeMirrorMarkdownEditor({
           <DialogHeader>
             <DialogTitle>Insert Image</DialogTitle>
             <DialogDescription>
-              Add an image to your content
+              Upload an image or paste a URL
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4 py-4">
+          <Tabs value={imageTab} onValueChange={(v) => setImageTab(v as 'upload' | 'url')} className="py-2">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="upload">Upload</TabsTrigger>
+              <TabsTrigger value="url">URL</TabsTrigger>
+            </TabsList>
+            <TabsContent value="upload" className="space-y-4 pt-2">
+              <div
+                className="border-2 border-dashed border-border rounded-lg p-8 text-center cursor-pointer hover:border-primary/50 transition-colors"
+                onClick={() => fileInputRef.current?.click()}
+                onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  const file = e.dataTransfer.files?.[0];
+                  if (file) handleImageUpload(file);
+                }}
+              >
+                {isUploadingImage ? (
+                  <div className="flex flex-col items-center gap-2">
+                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                    <p className="text-sm text-muted-foreground">Uploading...</p>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center gap-2">
+                    <Upload className="h-8 w-8 text-muted-foreground" />
+                    <p className="text-sm text-muted-foreground">
+                      Drag & drop an image here, or click to browse
+                    </p>
+                    <p className="text-xs text-muted-foreground">Max 10MB · PNG, JPG, GIF, WebP</p>
+                  </div>
+                )}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleImageUpload(file);
+                    e.target.value = '';
+                  }}
+                />
+              </div>
+            </TabsContent>
+            <TabsContent value="url" className="space-y-4 pt-2">
+              <div className="space-y-2">
+                <Label htmlFor="image-url">Image URL</Label>
+                <Input
+                  id="image-url"
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  placeholder="https://example.com/image.jpg"
+                />
+              </div>
+            </TabsContent>
+          </Tabs>
+          {imageUrl && (
             <div className="space-y-2">
-              <Label htmlFor="image-alt">Alt Text</Label>
-              <Input
-                id="image-alt"
-                value={imageAlt}
-                onChange={(e) => setImageAlt(e.target.value)}
-                placeholder="Describe the image"
-              />
+              <Label>Preview</Label>
+              <img src={imageUrl} alt="Preview" className="max-h-32 rounded border object-contain" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="image-url">Image URL</Label>
-              <Input
-                id="image-url"
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-                placeholder="https://example.com/image.jpg"
-              />
-            </div>
+          )}
+          <div className="space-y-2">
+            <Label htmlFor="image-alt">Alt Text</Label>
+            <Input
+              id="image-alt"
+              value={imageAlt}
+              onChange={(e) => setImageAlt(e.target.value)}
+              placeholder="Describe the image"
+            />
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowImageDialog(false)}>
               Cancel
             </Button>
-            <Button onClick={handleInsertImage}>Insert Image</Button>
+            <Button onClick={handleInsertImage} disabled={!imageUrl}>Insert Image</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
