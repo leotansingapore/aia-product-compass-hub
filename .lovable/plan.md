@@ -1,55 +1,47 @@
 
 
-## Reclassify "Warm Market" from Category to Target Audience
-
-Currently, "Warm Market" is a **category** (like Cold Calling, Follow-Up, Tips, etc.). You want it to become a **target audience** instead (like NSF, Working Adults, Cold Leads), so that warm market scripts get properly distributed across the functional categories.
-
----
+## Add "Initial Texts" Category and Move Scripts
 
 ### What Changes
 
-**1. Add "warm-market" as a new target audience option**
+**1. Add a new "initial-text" category across the app**
 
-Add it to all audience lists across the app (UI labels, AI classifier, editor dialog) with the label "Warm Market / Friends & Family".
+A new category called "Initial Texts" will be added to all three places where categories are defined:
 
-It will appear in the audience breadcrumb navigation alongside NSF, Young Adults, Working Adults, etc.
+- `src/pages/ScriptsDatabase.tsx` -- add to `CategoryKey` type, `categoryLabels` map (with a suitable icon like `MessageCircle` and an indigo/cyan color scheme)
+- `src/components/scripts/ScriptEditorDialog.tsx` -- add to `CATEGORIES` array
+- `supabase/functions/classify-script/index.ts` -- add to `CATEGORIES` array and add a description line in the system prompt: *"initial-text: first contact messages sent to new leads (e.g. after Facebook opt-in, voucher claim, or first outreach)"*
 
-**2. Remove "warm-market" from categories**
+**2. Move 4 scripts from "follow-up" to "initial-text"**
 
-Remove it from category definitions in ScriptsDatabase, ScriptEditorDialog, and the classify-script edge function. The category list becomes: Cold Calling, Follow-Up, Ad Campaign, Referral, Confirmation, FAQ, and Tips.
+These scripts are first-contact messages, not follow-ups. They will be re-categorized via a database UPDATE:
 
-**3. Recategorize the 8 existing warm-market scripts**
+| Script | Audience |
+|--------|----------|
+| Initial Text -- Qualified Facebook Lead | pre-retiree |
+| Initial Text -- Facebook Leads (Recruitment) | recruitment |
+| Initial Text -- Facebook Qualified Lead (Young Adults, Non-Voucher) | young-adult |
+| Initial Text -- Facebook Voucher Lead (Just Opted In) | young-adult |
 
-Each script gets `target_audience` set to `"warm-market"` and a new functional `category`:
-
-| Script | New Category |
-|--------|-------------|
-| Introduction Text (New Consultant) | cold-calling |
-| New Agent Announcement — Soft Launch | cold-calling |
-| Texting EQ — 11 Rules for Warm Outreach | tips |
-| Texting EQ — 4-Step Objection Handling Framework | faq |
-| Conversation Openers (by Life Stage) | cold-calling |
-| Outreach Flow (Step-by-Step) | tips |
-| Handling Ghosting & Non-Replies | follow-up |
-| "Already Have an Advisor" — Objection Script | faq |
-
-**4. Update the AI classifier prompt**
-
-The classify-script edge function's system prompt will describe "warm-market" as an audience (people you already know -- friends, family, acquaintances) and remove it from the category list.
-
----
+SQL:
+```sql
+UPDATE scripts SET category = 'initial-text'
+WHERE id IN (
+  '00d64a23-61c4-4e60-90dd-a5772262f15f',
+  '7fd5f0a0-d50e-4d6a-a0be-946d25bfdc49',
+  '6c299eb0-da74-4712-bbec-8a2ba38114f3',
+  '8433b860-7444-4a07-a2c2-c66bacb5b8d3'
+);
+```
 
 ### Files to Change
 
-- **`src/pages/ScriptsDatabase.tsx`** -- Remove warm-market from `categoryLabels`, add to `audienceLabels` and `audienceSortOrder`
-- **`src/components/scripts/ScriptEditorDialog.tsx`** -- Remove from CATEGORIES, add to TARGET_AUDIENCES
-- **`supabase/functions/classify-script/index.ts`** -- Move warm-market from CATEGORIES to TARGET_AUDIENCES, update prompt descriptions
-- **`supabase/functions/classify-objection/index.ts`** -- Already has warm-market in tags (no change needed)
-- **Database update** -- UPDATE all 8 scripts to set new category and `target_audience = 'warm-market'`
+- **`src/pages/ScriptsDatabase.tsx`** -- Add `"initial-text"` to `CategoryKey` type union and `categoryLabels` record
+- **`src/components/scripts/ScriptEditorDialog.tsx`** -- Add `{ value: "initial-text", label: "Initial Texts" }` to `CATEGORIES`
+- **`supabase/functions/classify-script/index.ts`** -- Add `"initial-text"` to `CATEGORIES` array and update the system prompt description
+- **Database** -- UPDATE the 4 scripts to `category = 'initial-text'`
 
----
+### Result
 
-### User Experience After
-
-When you select "Warm Market" in the audience breadcrumbs, you'll see all warm-market scripts organized by their functional categories (Cold Calling openers, Follow-Up messages, Tips, FAQ/Objections) -- giving a much clearer workflow view. New scripts pasted in will also be classified this way by the AI.
+The Scripts Database will show a new "Initial Texts" tab containing the 4 first-contact message scripts, keeping "Follow-Up Messages" focused on post-contact communication. The AI classifier will also correctly route new initial-text scripts to this category.
 
