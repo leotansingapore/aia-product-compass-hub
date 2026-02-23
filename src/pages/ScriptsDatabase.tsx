@@ -1667,6 +1667,7 @@ export default function ScriptsDatabase() {
   const [activeAudience, setActiveAudience] = useState<string>(getInitialFilter("audience", "audience"));
   const [activeRole, setActiveRole] = useState<string>(getInitialFilter("role", "role"));
   const [activeTag, setActiveTag] = useState<string>(getInitialFilter("tag", "tag"));
+  const [showFavouritesOnly, setShowFavouritesOnly] = useState(false);
 
   // Persist filters to localStorage whenever they change
   useEffect(() => {
@@ -1796,8 +1797,11 @@ export default function ScriptsDatabase() {
         return false;
       });
     }
+    if (showFavouritesOnly) {
+      result = result.filter((s) => favouriteIds.has(s.id));
+    }
     return result;
-  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, scriptsData, strictIncludes]);
+  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, showFavouritesOnly, favouriteIds, scriptsData, strictIncludes]);
 
   // Script search suggestions
   const suggestions = useMemo(() => {
