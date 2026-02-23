@@ -171,7 +171,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     setVersions(prev => prev.map((v, i) => i === index ? { ...v, [field]: value } : v));
   };
 
-  const addVersion = () => setVersions(prev => [...prev, { author: "", content: "" }]);
+  const addVersion = () => setVersions(prev => [...prev, { author: userName, content: "" }]);
   const removeVersion = (index: number) => setVersions(prev => prev.filter((_, i) => i !== index));
 
   return (
