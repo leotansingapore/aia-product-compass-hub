@@ -350,25 +350,39 @@ export function ObjectionHandlingDatabase() {
     }
     if (searchQuery.trim()) {
       const q = searchQuery.trim();
+      // Minimum score threshold: require meaningful match quality relative to query length
+      // Exact substring matches score 100+, so threshold filters out weak fuzzy noise
+      const minScore = Math.max(q.length * 2, 5);
       // Score each entry and filter by fuzzy match
       const scored = result.map(e => {
         let score = 0;
-        const titleMatch = fuzzyMatch(e.title, q);
-        if (titleMatch.match) score += titleMatch.score * 3; // Title weighted highest
-        const descMatch = fuzzyMatch(e.description || "", q);
-        if (descMatch.match) score += descMatch.score * 2;
-        // Tags
+        // Exact substring checks first (most reliable)
+        const titleLower = e.title.toLowerCase();
+        const qLower = q.toLowerCase();
+        if (titleLower.includes(qLower)) {
+          score += 300; // Strong title substring match
+        } else {
+          const titleMatch = fuzzyMatch(e.title, q);
+          if (titleMatch.match) score += titleMatch.score * 3;
+        }
+        const desc = (e.description || "").toLowerCase();
+        if (desc.includes(qLower)) {
+          score += 200;
+        } else {
+          const descMatch = fuzzyMatch(e.description || "", q);
+          if (descMatch.match && descMatch.score >= q.length) score += descMatch.score * 2;
+        }
+        // Tags — exact substring only (tags are short)
         (e.tags || []).forEach(t => {
-          const tm = fuzzyMatch(t, q);
-          if (tm.match) score += tm.score * 2;
+          if (t.toLowerCase().includes(qLower)) score += 150;
         });
         // Category label
         const catLabel = categoryConfig[e.category]?.label || e.category;
-        if (fuzzyIncludes(e.category, q) || fuzzyIncludes(catLabel, q)) score += 50;
+        if (catLabel.toLowerCase().includes(qLower) || e.category.toLowerCase().includes(qLower)) score += 50;
         // Response matches
         if (matchedResponseIdsMap[e.id]) score += 30 * matchedResponseIdsMap[e.id].size;
         return { entry: e, score };
-      }).filter(s => s.score > 0);
+      }).filter(s => s.score >= minScore);
       // Sort by relevance score descending
       scored.sort((a, b) => b.score - a.score);
       result = scored.map(s => s.entry);
