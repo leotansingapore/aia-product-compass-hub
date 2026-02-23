@@ -292,7 +292,51 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
           </div>
         )}
 
-        {/* === STEP 2: Review (or Edit mode) === */}
+        {/* === STEP 2: Duplicates warning === */}
+        {step === "duplicates" && (
+          <div className="space-y-4">
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4">
+              <p className="text-sm font-medium text-amber-700 dark:text-amber-400 mb-1">
+                We found {similarScripts.length} similar script{similarScripts.length > 1 ? "s" : ""} already in the database.
+              </p>
+              <p className="text-xs text-muted-foreground">
+                To keep a single source of truth, please review these first. You can still add yours as a new variation if needed.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              {similarScripts.map((s) => (
+                <div key={s.id} className="border rounded-lg p-3 flex items-start justify-between gap-3 bg-muted/30">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium truncate">{s.stage}</p>
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      <Badge variant="secondary" className="text-[10px]">
+                        {CATEGORIES.find(c => c.value === s.category)?.label}
+                      </Badge>
+                      <Badge variant="secondary" className="text-[10px]">
+                        {TARGET_AUDIENCES.find(a => a.value === s.target_audience)?.label}
+                      </Badge>
+                    </div>
+                    <p className="text-[10px] text-muted-foreground mt-1">{s.similarity}</p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="shrink-0 gap-1 text-xs"
+                    onClick={() => {
+                      // Navigate to the script in the scripts page
+                      window.open(`/scripts?highlight=${s.id}`, "_blank");
+                    }}
+                  >
+                    <ExternalLink className="h-3 w-3" /> View
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* === STEP 3: Review (or Edit mode) === */}
         {step === "review" && (
           <div className="space-y-4">
             {/* AI-detected badges */}
