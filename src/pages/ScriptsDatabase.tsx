@@ -2248,9 +2248,15 @@ export default function ScriptsDatabase() {
         </div>
 
         {/* Active filter breadcrumbs */}
-        {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all" || searchQuery) && (
+        {(activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all" || searchQuery || showFavouritesOnly) && (
           <div className="mb-3 flex items-center gap-1.5 flex-wrap">
             <span className="text-[11px] text-muted-foreground mr-0.5">Filters:</span>
+            {showFavouritesOnly && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                ❤️ Favourites
+                <button onClick={() => setShowFavouritesOnly(false)} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
             {searchQuery && (
               <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
                 Search: "{searchQuery}"
@@ -2282,7 +2288,7 @@ export default function ScriptsDatabase() {
               </Badge>
             )}
             <button
-              onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); setSearchInput(""); setSearchQuery(""); }}
+              onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); setSearchInput(""); setSearchQuery(""); setShowFavouritesOnly(false); }}
               className="text-[10px] text-muted-foreground hover:text-foreground underline ml-1"
             >
               Clear all
