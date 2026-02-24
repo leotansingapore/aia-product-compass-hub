@@ -66,10 +66,6 @@ export default function ProductDetail() {
     productId: product?.id
   });
 
-  // Reset local editing state when navigating to a different product via sidebar
-  useEffect(() => {
-    setEditingIndexFromUrl(null);
-  }, [productSlugOrId]);
 
   const existingCategories = Array.from(
     new Set(
