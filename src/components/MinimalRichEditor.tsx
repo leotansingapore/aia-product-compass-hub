@@ -160,7 +160,7 @@ export function MinimalRichEditor({
       .replace(/~~(.*?)~~/g, '<del>$1</del>');
   };
 
-  // Convert HTML back to plain text with markdown
+  // Convert HTML back to markdown text
   const convertHtmlToText = (html: string): string => {
     if (!html) return '';
     
@@ -170,14 +170,29 @@ export function MinimalRichEditor({
       // Remove list wrappers
       .replace(/<\/?ul[^>]*>/g, '')
       .replace(/<\/?ol[^>]*>/g, '')
-      // Convert links back to URLs
-      .replace(/<a[^>]*href="([^"]*)"[^>]*>.*?<\/a>/g, '$1')
+      // Convert links to markdown links
+      .replace(/<a[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/g, (_, url, text) => {
+        return text === url ? url : `[${text}](${url})`;
+      })
       // Convert <strong> to **bold**
       .replace(/<strong>(.*?)<\/strong>/g, '**$1**')
+      .replace(/<b>(.*?)<\/b>/g, '**$1**')
       // Convert <em> to *italic*
       .replace(/<em>(.*?)<\/em>/g, '*$1*')
-      // Convert <br> to line breaks
+      .replace(/<i>(.*?)<\/i>/g, '*$1*')
+      // Convert <del> to ~~strikethrough~~
+      .replace(/<del>(.*?)<\/del>/g, '~~$1~~')
+      // Convert <code> to `code`
+      .replace(/<code[^>]*>(.*?)<\/code>/g, '`$1`')
+      // Convert headings
+      .replace(/<h([1-6])[^>]*>(.*?)<\/h\1>/g, (_, level, text) => '#'.repeat(Number(level)) + ' ' + text + '\n')
+      // Convert <br> and <hr> 
       .replace(/<br\s*\/?>/g, '\n')
+      .replace(/<hr[^>]*>/g, '---\n')
+      // Convert divs to newlines (our rendered blocks)
+      .replace(/<\/div>\s*<div/g, '</div>\n<div')
+      .replace(/<div[^>]*>/g, '')
+      .replace(/<\/div>/g, '\n')
       // Remove any remaining HTML tags
       .replace(/<[^>]*>/g, '')
       // Decode HTML entities
@@ -185,7 +200,10 @@ export function MinimalRichEditor({
       .replace(/&amp;/g, '&')
       .replace(/&lt;/g, '<')
       .replace(/&gt;/g, '>')
-      .replace(/&quot;/g, '"');
+      .replace(/&quot;/g, '"')
+      // Clean up extra newlines
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
   };
 
   const handleInput = useCallback(() => {
