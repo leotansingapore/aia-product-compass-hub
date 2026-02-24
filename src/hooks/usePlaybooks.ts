@@ -17,7 +17,9 @@ export interface Playbook {
 export interface PlaybookItem {
   id: string;
   playbook_id: string;
-  script_id: string;
+  script_id: string | null;
+  objection_id: string | null;
+  item_type: 'script' | 'objection';
   sort_order: number;
   created_at: string;
 }
@@ -129,22 +131,28 @@ export function usePlaybookItems(playbookId: string | null) {
   });
 
   const addItem = useMutation({
-    mutationFn: async ({ scriptId }: { scriptId: string }) => {
+    mutationFn: async ({ scriptId, objectionId, itemType = 'script' }: { scriptId?: string; objectionId?: string; itemType?: 'script' | 'objection' }) => {
       if (!playbookId) throw new Error('No playbook selected');
       const maxOrder = items.length > 0 ? Math.max(...items.map(i => i.sort_order)) + 1 : 0;
       const { error } = await supabase
         .from('script_playbook_items')
-        .insert({ playbook_id: playbookId, script_id: scriptId, sort_order: maxOrder });
+        .insert({
+          playbook_id: playbookId,
+          script_id: itemType === 'script' ? scriptId! : null,
+          objection_id: itemType === 'objection' ? objectionId! : null,
+          item_type: itemType,
+          sort_order: maxOrder,
+        } as any);
       if (error) {
-        if (error.code === '23505') throw new Error('Script already in playbook');
+        if (error.code === '23505') throw new Error('Item already in playbook');
         throw error;
       }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
-      toast.success('Script added to playbook');
+      toast.success('Added to playbook');
     },
-    onError: (e: Error) => toast.error(e.message || 'Failed to add script'),
+    onError: (e: Error) => toast.error(e.message || 'Failed to add item'),
   });
 
   const removeItem = useMutation({
