@@ -276,13 +276,18 @@ export function ProductFileUpload({
               className="flex items-center gap-2 border rounded-lg p-3 bg-card hover:shadow-sm transition-shadow"
             >
               <FileText className="h-5 w-5 text-red-500 flex-shrink-0" />
-              <div className="min-w-0 flex-1">
-                <div className="font-medium text-sm truncate">{file.name}</div>
+              <a
+                href={file.file_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-w-0 flex-1 group cursor-pointer"
+              >
+                <div className="font-medium text-sm truncate group-hover:text-primary group-hover:underline transition-colors">{file.name}</div>
                 <div className="text-xs text-muted-foreground">
                   {formatFileSize(file.file_size)}
                   {file.knowledge_doc_id && " · Synced to AI"}
                 </div>
-              </div>
+              </a>
               <div className="flex gap-1 flex-shrink-0">
                 <Button
                   size="sm"
