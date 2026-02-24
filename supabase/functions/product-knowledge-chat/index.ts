@@ -68,28 +68,60 @@ serve(async (req) => {
         ? latestUserMessage.content.find((c: any) => c.type === "text")?.text || ""
         : "";
 
-    // Try semantic search first
-    let relevantChunks: { content: string; source_type: string; similarity: number; metadata: any }[] = [];
+    // Hybrid search: combines vector similarity with keyword matching
+    let relevantChunks: { content: string; source_type: string; similarity: number; keyword_rank?: number; combined_score?: number; metadata: any }[] = [];
     
     const queryEmbedding = await embedQuery(queryText, supabaseUrl);
     
     if (queryEmbedding) {
       const embeddingStr = `[${queryEmbedding.join(",")}]`;
       const { data: matches, error: matchError } = await supabase.rpc(
-        "match_knowledge_chunks",
+        "hybrid_search_knowledge_chunks",
         {
           query_embedding: embeddingStr,
+          query_text: queryText,
           match_count: 10,
           filter_product_id: productId,
+          vector_weight: 0.6,
+          keyword_weight: 0.4,
         }
       );
 
       if (!matchError && matches && matches.length > 0) {
         relevantChunks = matches;
+        console.log(`Hybrid search returned ${matches.length} results (top combined_score: ${matches[0]?.combined_score?.toFixed(4)})`);
+      } else if (matchError) {
+        console.error("Hybrid search error, falling back to vector-only:", matchError.message);
+        // Fallback to original vector-only search
+        const { data: vecMatches } = await supabase.rpc("match_knowledge_chunks", {
+          query_embedding: embeddingStr,
+          match_count: 10,
+          filter_product_id: productId,
+        });
+        if (vecMatches) relevantChunks = vecMatches;
       }
     }
 
-    // Fallback: if no vector results, fetch recent chunks by product_id or source_id
+    // If no vector results (embedding failed), try keyword-only search
+    if (relevantChunks.length === 0 && queryText.trim()) {
+      const words = queryText.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+      if (words.length > 0) {
+        const ilikeFilters = words.map(w => `content.ilike.%${w}%`).join(",");
+        const { data: keywordChunks } = await supabase
+          .from("knowledge_chunks")
+          .select("content, source_type, source_id, metadata")
+          .or(`source_id.eq.${productId},product_id.eq.${productId}`)
+          .or(ilikeFilters)
+          .limit(10);
+
+        if (keywordChunks && keywordChunks.length > 0) {
+          relevantChunks = keywordChunks.map(c => ({ ...c, similarity: 0 }));
+          console.log(`Keyword-only fallback returned ${keywordChunks.length} results`);
+        }
+      }
+    }
+
+    // Final fallback: fetch recent chunks by product_id
     if (relevantChunks.length === 0) {
       const { data: fallbackChunks } = await supabase
         .from("knowledge_chunks")
