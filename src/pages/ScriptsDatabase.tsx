@@ -1452,15 +1452,15 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       </DropdownMenuContent>
                     </DropdownMenu>
                   )}
+                  {isAuthenticated && onInlineSave && (
+                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); if (!open) handleToggle(true); setTimeout(() => startInlineEdit(0), 100); }} title="Edit content inline">
+                      <Pencil className="h-3.5 w-3.5" />
+                    </Button>
+                  )}
                   {isAdmin && (
-                    <>
-                      <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); if (!open) handleToggle(true); setTimeout(() => startInlineEdit(0), 100); }} title="Edit content inline">
-                        <Pencil className="h-3.5 w-3.5" />
-                      </Button>
-                      <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
-                        <Trash2 className="h-3.5 w-3.5" />
-                      </Button>
-                    </>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </Button>
                   )}
                 </div>
               </div>
@@ -1506,7 +1506,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       ) : (
                         <>
                           <div className="flex justify-end mb-2 gap-1">
-                            {isAdmin && onInlineSave && (
+                            {isAuthenticated && onInlineSave && (
                               <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(i)}>
                                 <Pencil className="h-3 w-3" /> Edit
                               </Button>
@@ -1547,7 +1547,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-xs text-muted-foreground font-medium">{script.versions[0]?.author}</span>
                     <div className="flex items-center gap-1">
-                      {isAdmin && onInlineSave && (
+                      {isAuthenticated && onInlineSave && (
                         <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(0)}>
                           <Pencil className="h-3 w-3" /> Edit
                         </Button>
