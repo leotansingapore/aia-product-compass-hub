@@ -1986,9 +1986,15 @@ export default function ScriptsDatabase() {
       setSearchInput("");
       setSearchQuery("");
     } else {
-      navigate(`/scripts/${suggestion.id}`);
+      // Reset all filters so the target script is guaranteed to be visible
+      setActiveCategory("all");
+      setActiveAudience("all");
+      setActiveRole("all");
+      setActiveTag("all");
+      setShowFavouritesOnly(false);
       setSearchInput("");
       setSearchQuery("");
+      navigate(`/scripts/${suggestion.id}`);
     }
     setShowSuggestions(false);
     setSelectedSuggestion(-1);
