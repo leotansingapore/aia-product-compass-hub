@@ -1814,7 +1814,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   );
 }
 
-function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, onScriptNavigate, allScripts, onInlineSave }: {
+function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, handleCreatePlaybookAndAdd, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, onScriptNavigate, allScripts, onInlineSave }: {
   subType: string;
   config: { label: string; icon: string; description: string };
   scripts: ScriptEntry[];
@@ -1823,6 +1823,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
   searchQuery: string;
   myPlaybooks?: { id: string; title: string }[];
   handleAddToPlaybook: (playbookId: string, scriptId: string) => void;
+  handleCreatePlaybookAndAdd?: (title: string, scriptId: string) => void;
   user: any;
   favouriteIds: Set<string>;
   toggleFavourite: { mutate: (id: string) => void };
@@ -2008,10 +2009,10 @@ export default function ScriptsDatabase() {
   const { user } = useSimplifiedAuth();
 
   // Playbook integration
-  const { myPlaybooks } = usePlaybooks();
+  const { myPlaybooks, createPlaybook } = usePlaybooks();
   const { favouriteIds, toggleFavourite } = useScriptFavourites();
   const handleAddToPlaybook = useCallback(async (playbookId: string, scriptId: string) => {
-    const maxOrder = 999; // Will be corrected by the hook
+    const maxOrder = 999;
     const { error } = await supabase
       .from('script_playbook_items')
       .insert({ playbook_id: playbookId, script_id: scriptId, sort_order: maxOrder });
@@ -2025,6 +2026,23 @@ export default function ScriptsDatabase() {
       toast.success('Script added to playbook');
     }
   }, []);
+
+  const handleCreatePlaybookAndAdd = useCallback(async (title: string, scriptId: string) => {
+    createPlaybook.mutate({ title }, {
+      onSuccess: async (data: any) => {
+        if (data?.id) {
+          const { error } = await supabase
+            .from('script_playbook_items')
+            .insert({ playbook_id: data.id, script_id: scriptId, sort_order: 0 });
+          if (error) {
+            toast.error('Playbook created but failed to add script');
+          } else {
+            toast.success(`Created "${title}" and added script`);
+          }
+        }
+      }
+    });
+  }, [createPlaybook]);
   
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingScript, setEditingScript] = useState<ScriptEntry | null>(null);
