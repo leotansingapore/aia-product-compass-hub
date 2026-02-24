@@ -32,8 +32,22 @@ function createTurndown() {
     codeBlockStyle: 'fenced',
     emDelimiter: '*',
     strongDelimiter: '**',
+    hr: '---',
+    blankReplacement: (_content: string, node: any) => {
+      if (node.nodeName === 'BR') return '\n';
+      return '\n\n';
+    },
   });
   td.use(gfm);
+  // Keep line breaks inside blockquotes
+  td.addRule('blockquoteParagraph', {
+    filter: (node: any) => {
+      return node.nodeName === 'P' && node.parentNode?.nodeName === 'BLOCKQUOTE';
+    },
+    replacement: (content: string) => {
+      return content + '\n>\n';
+    },
+  });
   return td;
 }
 
