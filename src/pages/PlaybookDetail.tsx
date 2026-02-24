@@ -212,7 +212,8 @@ export default function PlaybookDetail() {
   const { user } = useSimplifiedAuth();
   const { playbooks } = usePlaybooks();
   const { items, isLoading, removeItem, reorderItems } = usePlaybookItems(playbookId || null);
-  const { scripts, loading: scriptsLoading } = useScripts();
+  const { scripts, loading: scriptsLoading, refetch } = useScripts();
+  const { updateScript } = useScriptsMutations();
 
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [addSearch, setAddSearch] = useState("");
@@ -443,6 +444,8 @@ export default function PlaybookDetail() {
                     index={index}
                     isOwner={isOwner}
                     onRemove={(id) => removeItem.mutate(id)}
+                    onInlineSave={handleInlineSave}
+                    isAuthenticated={!!user}
                   />
                 ))}
               </div>
