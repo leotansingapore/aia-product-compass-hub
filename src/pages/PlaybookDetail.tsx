@@ -214,9 +214,9 @@ export default function PlaybookDetail() {
   const { items, isLoading, removeItem, reorderItems } = usePlaybookItems(playbookId || null);
   const { scripts, loading: scriptsLoading, refetch } = useScripts();
   const { updateScript } = useScriptsMutations();
+  const { entries: objections, loading: objectionsLoading } = useObjections();
 
   const [addDialogOpen, setAddDialogOpen] = useState(false);
-  const [addSearch, setAddSearch] = useState("");
   const [aiSuggestions, setAiSuggestions] = useState<{ script_id: string; reason: string; suggested_position: string }[] | null>(null);
   const [aiSummary, setAiSummary] = useState("");
   const [isAiLoading, setIsAiLoading] = useState(false);
@@ -224,22 +224,13 @@ export default function PlaybookDetail() {
   const playbook = playbooks.find(p => p.id === playbookId);
   const isOwner = user?.id === playbook?.created_by;
 
-  const itemsWithScripts = useMemo(() => {
+  const itemsWithData = useMemo(() => {
     return items.map(item => ({
       ...item,
-      script: scripts.find(s => s.id === item.script_id),
-    })).filter(item => item.script);
-  }, [items, scripts]);
-
-  const availableScripts = useMemo(() => {
-    const usedIds = new Set(items.map(i => i.script_id));
-    let filtered = scripts.filter(s => !usedIds.has(s.id));
-    if (addSearch.trim()) {
-      const q = addSearch.toLowerCase();
-      filtered = filtered.filter(s => s.stage.toLowerCase().includes(q) || s.category.toLowerCase().includes(q));
-    }
-    return filtered;
-  }, [scripts, items, addSearch]);
+      script: item.item_type === 'script' ? scripts.find(s => s.id === item.script_id) : undefined,
+      objection: item.item_type === 'objection' ? objections.find(o => o.id === item.objection_id) : undefined,
+    })).filter(item => item.script || item.objection);
+  }, [items, scripts, objections]);
 
   const { addItem } = usePlaybookItems(playbookId || null);
 
