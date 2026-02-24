@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Bookmark, BookmarkCheck, MoreVertical, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
+import { Bookmark, BookmarkCheck, MoreVertical, Pencil, Trash2, Globe, ArchiveRestore } from "lucide-react";
 import { useBookmarks } from "@/hooks/useBookmarks";
 import { usePermissions } from "@/hooks/usePermissions";
 import { cn } from "@/lib/utils";
@@ -170,7 +170,7 @@ export function ProductCard({ title, description, category, tags, highlights, on
                         className="cursor-pointer focus:bg-muted focus:text-foreground"
                         onClick={(e) => { e.stopPropagation(); if (productId) onTogglePublish(productId, !published); }}
                       >
-                        {published ? <EyeOff className="h-4 w-4 mr-2" /> : <Eye className="h-4 w-4 mr-2" />}
+                        {published ? <ArchiveRestore className="h-4 w-4 mr-2" /> : <Globe className="h-4 w-4 mr-2" />}
                         {published ? "Unpublish" : "Publish"}
                       </DropdownMenuItem>
                     )}
