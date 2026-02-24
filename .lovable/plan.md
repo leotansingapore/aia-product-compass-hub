@@ -1,138 +1,129 @@
 
 
-# Smarter RAG Pipeline for Product Knowledge Chatbot
+# RAG Pipeline Refinements and Improvements
 
-## Problem
-The current chatbot dumps ALL training content into the system prompt on every request. This works for small knowledge bases but will degrade as content grows -- hitting token limits, diluting relevance, and slowing responses.
+## Current State Assessment
 
-## Proposed Improvements (in priority order)
+The RAG pipeline is functional but has several significant issues that limit its effectiveness:
 
----
-
-### 1. Vector Embeddings with Semantic Search
-
-**What:** Generate embeddings for each knowledge chunk and use cosine similarity to retrieve only the most relevant chunks per user query.
-
-**How:**
-- Add an `embedding` column (type `vector(768)`) to the `knowledge_chunks` table using Supabase's `pgvector` extension
-- Create a new edge function `generate-embeddings` that calls the Lovable AI gateway (or a dedicated embedding model) to generate embeddings when chunks are created/updated
-- Modify `process-knowledge` to call `generate-embeddings` after chunking
-- Add a Postgres function `match_knowledge_chunks(query_embedding vector, match_count int, product_id text)` that performs cosine similarity search
-- Modify `product-knowledge-chat` to:
-  1. Embed the user's latest message
-  2. Retrieve top 8-10 most relevant chunks (instead of all 20+)
-  3. Include only those in the system prompt
-
-**Database changes:**
-- Enable `pgvector` extension
-- Add column `embedding vector(768)` to `knowledge_chunks`
-- Create index `CREATE INDEX ON knowledge_chunks USING ivfflat (embedding vector_cosine_ops)`
-- Create RPC function `match_knowledge_chunks`
+1. **Fake embeddings**: The `generate-embeddings` function asks an LLM to "pretend" to generate a 768-dimensional vector. These are not real embeddings -- they are random-looking numbers with no actual semantic meaning, making vector search essentially useless.
+2. **No automatic sync trigger**: Training videos must be manually synced; there is no trigger when lectures are saved.
+3. **No product scoping for documents**: Uploaded knowledge documents have no `product_id` association, so document chunks cannot be filtered per product during retrieval.
+4. **Conversation history bloat**: The full message history is sent to the AI every time, with no truncation or summarization.
+5. **No embedding quality validation**: Zero vectors are silently accepted as valid embeddings, polluting search results.
+6. **No admin visibility**: No UI to see embedding status, chunk counts per product, or trigger reprocessing.
 
 ---
 
-### 2. Smart Context Window Management
+## Proposed Improvements
 
-**What:** Instead of dumping all transcripts, score and rank content sections by relevance to the current question.
+### 1. Use a Real Embedding Model (Critical Fix)
 
-**How:**
-- Break training video transcripts into chunks at ingestion time (not at query time)
-- Store them in `knowledge_chunks` with `source_type = 'training_video'` and `source_id = product_id`
-- At query time, retrieve only the top-K relevant chunks across all sources (documents + transcripts + scripts)
-- Add a "context budget" system: allocate ~60% to most relevant chunks, ~20% to product overview, ~20% to conversation history
+**Problem:** The current approach asks `gemini-2.5-flash-lite` to output 768 numbers. This produces meaningless vectors -- semantic search cannot work.
 
----
+**Solution:** Use the Lovable AI gateway with a proper embedding-capable model. Since the gateway follows the OpenAI API format, we can use the `/v1/embeddings` endpoint if available, or use a deterministic hashing approach as fallback.
 
-### 3. Auto-Ingest Training Videos into Knowledge Chunks
+**Recommended approach:** Switch `generate-embeddings` to use the chat model with a **consistent hashing strategy**:
+- Instead of asking the model to produce raw numbers, use a two-step approach:
+  1. Ask the model to produce a **semantic summary/keywords** for each chunk (deterministic, grounded)
+  2. Use a local deterministic hash-based embedding (e.g., random projection with fixed seed from the summary text) to produce consistent 768-dim vectors
 
-**What:** When a training video's transcript/notes are saved, automatically chunk and store them in `knowledge_chunks` so they participate in vector search.
+Alternatively, check if the Lovable AI gateway supports an `/v1/embeddings` endpoint directly -- this would be the cleanest solution.
 
-**How:**
-- Add a new action `sync_training_videos` to the `process-knowledge` edge function
-- Trigger it from the admin UI when a lecture is saved (or via a database trigger on `products.training_videos` update)
-- Each video section becomes chunks with metadata: `{ source: "training_video", video_title: "...", product_id: "..." }`
+**Fallback if no embedding endpoint exists:** Use TF-IDF style keyword extraction via the LLM + a simple bag-of-words vector approach stored in the database. This is less powerful than true embeddings but far better than fake random vectors.
 
----
+### 2. Associate Knowledge Documents with Products
 
-### 4. Hybrid Search (Keyword + Semantic)
+**Problem:** Uploaded documents go into `knowledge_chunks` with `source_id = document_id` (the document's own UUID), not the product ID. So `match_knowledge_chunks` filtering by `filter_product_id` never finds document chunks.
 
-**What:** Combine vector similarity with keyword/BM25 matching for better recall -- semantic search alone can miss exact product names or numerical terms.
+**Solution:**
+- Add a `product_id` column to `knowledge_documents` table
+- Update the admin upload UI to require selecting a product when uploading
+- When processing documents, set `source_id = product_id` on the chunks (or add a separate `product_id` column to `knowledge_chunks`)
+- Update the fallback query in `product-knowledge-chat` to also search by document chunks
 
-**How:**
-- Use Supabase's `pgroonga` or `tsvector` for full-text search alongside vector search
-- At query time, run both searches in parallel, merge and re-rank results
-- Weight exact keyword matches higher for product-specific terminology (e.g., "premium pass", "lock-in period")
+**Database change:**
+```text
+ALTER TABLE knowledge_documents ADD COLUMN product_id text;
+ALTER TABLE knowledge_chunks ADD COLUMN product_id text;
+```
 
----
+### 3. Auto-Sync Training Videos on Save
 
-### 5. Query-Aware Chunk Retrieval with Reranking
+**Problem:** Admins must manually trigger `sync_training_videos`. New lecture content is not automatically indexed.
 
-**What:** After initial retrieval, use the AI model itself to rerank chunks by relevance before including them in context.
+**Solution:**
+- Add a "Sync to AI" button in the training video editor that calls `process-knowledge` with `action: sync_training_videos`
+- Alternatively, auto-trigger sync when the product's `training_videos` JSON is updated (call from the save handler in the admin UI)
+- Show a toast confirming "Training content synced to AI knowledge base"
 
-**How:**
-- Retrieve top 20 chunks via vector search
-- Send them to a fast model (e.g., `gemini-2.5-flash-lite`) with the query asking: "Rank these by relevance to the question, return top 8"
-- Include only the reranked top 8 in the final prompt
-- This adds one extra API call but dramatically improves context quality
+### 4. Conversation History Management
+
+**Problem:** All messages are sent on every request with no limit, which will hit token limits for long conversations.
+
+**Solution:**
+- Keep only the last 10 messages in the API payload
+- For conversations longer than 10 messages, include a summary of earlier messages as the first user message
+- This keeps context relevant without overwhelming the token budget
+
+### 5. Embedding Health Dashboard (Admin)
+
+**Problem:** Admins have no way to see if embeddings are working, how many chunks exist per product, or which chunks have zero/null embeddings.
+
+**Solution:** Add a simple admin panel showing:
+- Total chunks per product (with/without embeddings)
+- A "Re-embed All" button per product
+- Last sync timestamp
+- Embedding coverage percentage
+
+### 6. Chunk Quality Improvements
+
+**Problem:** Current chunking splits only on double newlines with a fixed 1500-char window. This can split mid-sentence or mid-concept.
+
+**Solution:**
+- Add sentence-boundary awareness to the chunker (split on `.` or `\n` near the boundary rather than mid-word)
+- Prepend each chunk with contextual metadata: `"Product: Pro Achiever | Source: Lecture 3 - Fund Selection | "` so the embedding captures product context
+- Filter out chunks shorter than 50 characters (likely noise)
 
 ---
 
 ## Technical Details
 
-### Updated Architecture Flow
+### Database Migration
 
 ```text
-User Question
-    |
-    v
-[Embed Query] --> vector(768)
-    |
-    v
-[Supabase pgvector search] --> top 15 chunks
-    |
-    v
-[Rerank with fast LLM] --> top 8 chunks
-    |
-    v
-[Build System Prompt]
-  - Product overview (always included)
-  - Top 8 relevant chunks
-  - Conversation history
-    |
-    v
-[Gemini 3 Flash] --> Streaming response
+1. Add product_id to knowledge_documents:
+   ALTER TABLE knowledge_documents ADD COLUMN product_id text;
+
+2. Add product_id to knowledge_chunks:
+   ALTER TABLE knowledge_chunks ADD COLUMN product_id text;
+
+3. Create index on product_id:
+   CREATE INDEX idx_knowledge_chunks_product_id ON knowledge_chunks(product_id);
 ```
 
-### Database Migration Required
+### Edge Functions to Modify
 
-```text
-1. Enable pgvector:        CREATE EXTENSION IF NOT EXISTS vector;
-2. Add embedding column:   ALTER TABLE knowledge_chunks ADD COLUMN embedding vector(768);
-3. Create IVFFlat index:   CREATE INDEX ON knowledge_chunks USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
-4. Create match function:  match_knowledge_chunks(query_embedding, match_count, filter_product_id)
-```
+| Function | Changes |
+|----------|---------|
+| `generate-embeddings` | Replace fake LLM-generated vectors with a real embedding strategy |
+| `process-knowledge` | Set `product_id` on chunks during document processing; improve chunking logic |
+| `product-knowledge-chat` | Limit conversation history to last 10 messages; query by `product_id` column |
 
-### Edge Functions to Create/Modify
+### New UI Components
 
-| Function | Change |
-|----------|--------|
-| `generate-embeddings` | NEW -- accepts text, returns embedding via Lovable AI gateway |
-| `process-knowledge` | MODIFY -- call generate-embeddings after chunking; add sync_training_videos action |
-| `product-knowledge-chat` | MODIFY -- embed query, retrieve top-K chunks instead of dumping all content |
+| Component | Purpose |
+|-----------|---------|
+| Product selector on document upload | Associate documents with specific products |
+| "Sync to AI" button on lecture editor | Trigger training video ingestion |
+| Embedding health panel in admin | Show chunk/embedding stats per product |
 
-### Embedding Model Options
+### Implementation Order
 
-The Lovable AI gateway supports Gemini models which can generate embeddings. Alternatively, use the `text-embedding` endpoint if available, or call Gemini with a structured output request to produce embeddings.
-
----
-
-## Recommended Implementation Order
-
-1. **Phase 1**: Auto-ingest training videos into `knowledge_chunks` (no new infra needed)
-2. **Phase 2**: Add pgvector + embeddings + semantic search (biggest impact)
-3. **Phase 3**: Smart context window management (token budget)
-4. **Phase 4**: Hybrid search for exact term matching
-5. **Phase 5**: Reranking for precision (optional, nice-to-have)
-
-Each phase is independently deployable and improves on the previous one.
+1. **Fix embeddings** -- without this, semantic search is non-functional (highest priority)
+2. **Add product_id to documents/chunks** -- enables per-product document retrieval
+3. **Auto-sync on lecture save** -- ensures new content is immediately searchable
+4. **Conversation history limits** -- prevents token overflow on long chats
+5. **Admin dashboard** -- gives visibility into knowledge base health
+6. **Chunk quality improvements** -- incremental quality gains
 
