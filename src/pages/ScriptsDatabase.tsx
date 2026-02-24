@@ -1396,6 +1396,66 @@ function ScriptVersionHistory({ scriptId, onRollback }: { scriptId: string; onRo
   );
 }
 
+function PlaybookDropdown({ myPlaybooks, scriptId, onAddToPlaybook, onCreatePlaybookAndAdd }: {
+  myPlaybooks: { id: string; title: string }[];
+  scriptId: string;
+  onAddToPlaybook?: (playbookId: string, scriptId: string) => void;
+  onCreatePlaybookAndAdd?: (title: string, scriptId: string) => void;
+}) {
+  const [isCreating, setIsCreating] = useState(false);
+  const [newTitle, setNewTitle] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleCreate = () => {
+    if (!newTitle.trim() || !onCreatePlaybookAndAdd) return;
+    onCreatePlaybookAndAdd(newTitle.trim(), scriptId);
+    setNewTitle("");
+    setIsCreating(false);
+    setMenuOpen(false);
+  };
+
+  return (
+    <DropdownMenu open={menuOpen} onOpenChange={(open) => { setMenuOpen(open); if (!open) { setIsCreating(false); setNewTitle(""); } }}>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="sm" className="h-8 sm:h-7 gap-1.5 text-xs font-medium" onClick={(e) => e.stopPropagation()}>
+          <Plus className="h-3 w-3" /> Playbook
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="start" className="min-w-[200px]" onClick={(e) => e.stopPropagation()}>
+        {myPlaybooks.map(pb => (
+          <DropdownMenuItem key={pb.id} onClick={() => { onAddToPlaybook?.(pb.id, scriptId); setMenuOpen(false); }}>
+            {pb.title}
+          </DropdownMenuItem>
+        ))}
+        {isCreating ? (
+          <div className="p-2 space-y-2" onClick={(e) => e.stopPropagation()}>
+            <Input
+              placeholder="Playbook name"
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+              onKeyDown={(e) => { if (e.key === "Enter") handleCreate(); if (e.key === "Escape") { setIsCreating(false); setNewTitle(""); } }}
+              autoFocus
+              className="h-8 text-sm"
+            />
+            <div className="flex gap-1.5">
+              <Button size="sm" className="h-7 text-xs flex-1" onClick={handleCreate} disabled={!newTitle.trim()}>
+                Create & Add
+              </Button>
+              <Button size="sm" variant="ghost" className="h-7 text-xs" onClick={() => { setIsCreating(false); setNewTitle(""); }}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <DropdownMenuItem onClick={(e) => { e.preventDefault(); setIsCreating(true); }} className="text-primary font-medium">
+            <Plus className="h-3.5 w-3.5 mr-1.5" /> New Playbook
+          </DropdownMenuItem>
+        )}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, onCreatePlaybookAndAdd, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; onCreatePlaybookAndAdd?: (title: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void> }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
