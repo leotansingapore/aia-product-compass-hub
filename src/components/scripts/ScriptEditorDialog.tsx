@@ -6,11 +6,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, ExternalLink } from "lucide-react";
+import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, ExternalLink, GitMerge, ShieldAlert } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 const CATEGORIES = [
   { value: "cold-calling", label: "Cold Calling" },
@@ -44,12 +54,17 @@ const SCRIPT_ROLES = [
   { value: "telemarketer", label: "Telemarketer" },
 ];
 
+type SimilarityTier = "near-identical" | "similar" | "none";
+
 interface SimilarScript {
   id: string;
   stage: string;
   category: string;
   target_audience: string;
-  similarity: string; // reason why it's similar
+  similarity: string;
+  overlapPercent: number;
+  searchTier: "tier1" | "tier2";
+  similarityTier: SimilarityTier;
 }
 
 interface Props {
@@ -61,14 +76,51 @@ interface Props {
 
 type EditorStep = "paste" | "duplicates" | "review";
 
+function computeSimilarity(
+  inputTitle: string,
+  inputContent: string,
+  scriptTitle: string,
+  scriptContent: string
+): { overlapPercent: number; reason: string; titleSimilar: boolean } {
+  const inputWords = new Set(inputContent.toLowerCase().split(/\s+/).filter(w => w.length > 3));
+  const titleWords = inputTitle.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+  const titleOverlap = titleWords.length > 0
+    ? titleWords.filter(w => scriptTitle.toLowerCase().includes(w)).length / titleWords.length
+    : 0;
+  const titleSimilar = titleOverlap > 0.5;
+
+  const scriptWords = new Set(scriptContent.toLowerCase().split(/\s+/).filter(w => w.length > 3));
+  const shared = [...inputWords].filter(w => scriptWords.has(w)).length;
+  const overlapRatio = inputWords.size > 0 ? shared / inputWords.size : 0;
+  const overlapPercent = Math.round(overlapRatio * 100);
+
+  let reason: string;
+  if (titleSimilar && overlapRatio > 0.4) {
+    reason = "Very similar title and content";
+  } else if (titleSimilar) {
+    reason = "Similar title";
+  } else {
+    reason = `~${overlapPercent}% content overlap`;
+  }
+
+  // Use the higher of title or content overlap for the tier
+  const effectivePercent = titleSimilar ? Math.max(overlapPercent, 60) : overlapPercent;
+
+  return { overlapPercent: effectivePercent, reason, titleSimilar };
+}
+
+function getSimilarityTier(overlapPercent: number): SimilarityTier {
+  if (overlapPercent >= 80) return "near-identical";
+  if (overlapPercent >= 40) return "similar";
+  return "none";
+}
+
 export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
-  // Step state (only for new scripts)
   const { user } = useSimplifiedAuth();
   const isEditing = !!script;
   const [step, setStep] = useState<EditorStep>(isEditing ? "review" : "paste");
   const [userName, setUserName] = useState("");
 
-  // Fetch user's display name
   useEffect(() => {
     if (!user) return;
     const fetchName = async () => {
@@ -94,6 +146,9 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   // Duplicate detection state
   const [similarScripts, setSimilarScripts] = useState<SimilarScript[]>([]);
   const [isCheckingDuplicates, setIsCheckingDuplicates] = useState(false);
+  const [isMerging, setIsMerging] = useState(false);
+  const [showOverrideConfirm, setShowOverrideConfirm] = useState(false);
+  const [highestSimilarityTier, setHighestSimilarityTier] = useState<SimilarityTier>("none");
 
   // Review/edit step state
   const [stage, setStage] = useState("");
@@ -123,7 +178,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       setStep("paste");
       setPasteContent("");
       setSimilarScripts([]);
-      
+      setHighestSimilarityTier("none");
       setStage("");
       setCategory("cold-calling");
       setTargetAudience("general");
@@ -136,62 +191,66 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     }
   }, [script, open]);
 
-  const checkForDuplicates = async (classifiedCategory: string, content: string, title: string) => {
+  const checkForDuplicates = async (classifiedCategory: string, classifiedAudience: string, content: string, title: string) => {
     setIsCheckingDuplicates(true);
     try {
-      // Fetch existing scripts in the same category
-      const { data: existing } = await supabase
+      // TIER 1: Same pipeline stage + same audience
+      const { data: tier1Data } = await supabase
         .from("scripts")
         .select("id, stage, category, target_audience, versions")
-        .eq("category", classifiedCategory);
+        .eq("category", classifiedCategory)
+        .eq("target_audience", classifiedAudience);
 
-      if (!existing || existing.length === 0) {
-        setIsCheckingDuplicates(false);
-        return [];
-      }
+      let matches = findMatches(tier1Data || [], content, title, "tier1");
 
-      // Simple similarity check: compare content words overlap
-      const inputWords = new Set(content.toLowerCase().split(/\s+/).filter(w => w.length > 3));
-      const inputTitle = title.toLowerCase();
+      // TIER 2: Same pipeline stage, any audience (only if Tier 1 found nothing)
+      if (matches.length === 0) {
+        const { data: tier2Data } = await supabase
+          .from("scripts")
+          .select("id, stage, category, target_audience, versions")
+          .eq("category", classifiedCategory)
+          .neq("target_audience", classifiedAudience);
 
-      const matches: SimilarScript[] = [];
-      for (const script of existing) {
-        const versions = script.versions as unknown as ScriptVersion[];
-        const scriptContent = versions.map(v => v.content).join(" ").toLowerCase();
-        const scriptTitle = script.stage.toLowerCase();
-
-        // Check title similarity
-        const titleWords = inputTitle.split(/\s+/).filter(w => w.length > 3);
-        const titleOverlap = titleWords.filter(w => scriptTitle.includes(w)).length;
-        const titleSimilar = titleWords.length > 0 && titleOverlap / titleWords.length > 0.5;
-
-        // Check content similarity (shared meaningful words)
-        const scriptWords = new Set(scriptContent.split(/\s+/).filter(w => w.length > 3));
-        const shared = [...inputWords].filter(w => scriptWords.has(w)).length;
-        const overlapRatio = inputWords.size > 0 ? shared / inputWords.size : 0;
-
-        if (titleSimilar || overlapRatio > 0.4) {
-          matches.push({
-            id: script.id,
-            stage: script.stage,
-            category: script.category,
-            target_audience: (script.target_audience as string) || "general",
-            similarity: titleSimilar && overlapRatio > 0.4
-              ? "Very similar title and content"
-              : titleSimilar
-              ? "Similar title"
-              : `~${Math.round(overlapRatio * 100)}% content overlap`,
-          });
-        }
+        matches = findMatches(tier2Data || [], content, title, "tier2");
       }
 
       setIsCheckingDuplicates(false);
-      return matches.slice(0, 5); // Max 5 matches
+      return matches.slice(0, 5);
     } catch (err) {
       console.error("Duplicate check error:", err);
       setIsCheckingDuplicates(false);
       return [];
     }
+  };
+
+  const findMatches = (
+    scripts: { id: string; stage: string; category: string; target_audience: string | null; versions: unknown }[],
+    content: string,
+    title: string,
+    searchTier: "tier1" | "tier2"
+  ): SimilarScript[] => {
+    const results: SimilarScript[] = [];
+    for (const s of scripts) {
+      const vers = s.versions as unknown as ScriptVersion[];
+      const scriptContent = vers.map(v => v.content).join(" ");
+      const { overlapPercent, reason } = computeSimilarity(title, content, s.stage, scriptContent);
+      const similarityTier = getSimilarityTier(overlapPercent);
+
+      if (similarityTier !== "none") {
+        results.push({
+          id: s.id,
+          stage: s.stage,
+          category: s.category,
+          target_audience: (s.target_audience as string) || "general",
+          similarity: reason,
+          overlapPercent,
+          searchTier,
+          similarityTier,
+        });
+      }
+    }
+    // Sort by overlap descending
+    return results.sort((a, b) => b.overlapPercent - a.overlapPercent);
   };
 
   const handleClassify = async () => {
@@ -211,22 +270,27 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
         return;
       }
 
-      // Apply AI results
       const classifiedTitle = data.suggested_title || "";
       const classifiedCategory = data.category || "cold-calling";
+      const classifiedAudience = data.target_audience || "general";
       setStage(classifiedTitle);
       setCategory(classifiedCategory);
-      setTargetAudience(data.target_audience || "general");
+      setTargetAudience(classifiedAudience);
       setScriptRole(data.script_role || "consultant");
       setTags(data.tags || []);
       setVersions([{ author: userName, content: pasteContent }]);
 
-      // Check for duplicates before proceeding
-      const duplicates = await checkForDuplicates(classifiedCategory, pasteContent, classifiedTitle);
+      const duplicates = await checkForDuplicates(classifiedCategory, classifiedAudience, pasteContent, classifiedTitle);
       if (duplicates.length > 0) {
+        const highest = duplicates[0].similarityTier;
+        setHighestSimilarityTier(highest);
         setSimilarScripts(duplicates);
         setStep("duplicates");
-        toast.info("Found similar existing scripts — please review.");
+        if (highest === "near-identical") {
+          toast.warning("Near-identical script found — consider adding as a version instead.");
+        } else {
+          toast.info("Found similar existing scripts — please review.");
+        }
       } else {
         setStep("review");
         toast.success("AI classified your script! Review and save.");
@@ -238,6 +302,36 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       toast.info("AI classification unavailable — please fill in details manually.");
     } finally {
       setIsClassifying(false);
+    }
+  };
+
+  const handleAddAsVersion = async (targetScriptId: string, targetTitle: string) => {
+    setIsMerging(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("seed-scripts", {
+        body: {
+          mode: "append-version",
+          targetId: targetScriptId,
+          newVersion: { author: userName, content: pasteContent },
+        },
+      });
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+      toast.success(`Added as a new version to "${targetTitle}" (${data.totalVersions} versions total)`);
+      onClose();
+    } catch (err: any) {
+      console.error("Merge error:", err);
+      toast.error("Failed to merge: " + (err.message || "Unknown error"));
+    } finally {
+      setIsMerging(false);
+    }
+  };
+
+  const handleProceedToReview = () => {
+    if (highestSimilarityTier === "near-identical") {
+      setShowOverrideConfirm(true);
+    } else {
+      setStep("review");
     }
   };
 
@@ -259,275 +353,351 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   const removeVersion = (index: number) => setVersions(prev => prev.filter((_, i) => i !== index));
 
   return (
-    <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            {isEditing ? (
-              <><Pencil className="h-4 w-4" /> Edit Script</>
-            ) : step === "paste" ? (
-              <><Sparkles className="h-4 w-4 text-primary" /> Quick Add Script</>
-            ) : step === "duplicates" ? (
-              <><AlertTriangle className="h-4 w-4 text-amber-500" /> Similar Scripts Found</>
-            ) : (
-              <><Sparkles className="h-4 w-4 text-primary" /> Review & Save</>
-            )}
-          </DialogTitle>
-        </DialogHeader>
+    <>
+      <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
+        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              {isEditing ? (
+                <><Pencil className="h-4 w-4" /> Edit Script</>
+              ) : step === "paste" ? (
+                <><Sparkles className="h-4 w-4 text-primary" /> Quick Add Script</>
+              ) : step === "duplicates" ? (
+                highestSimilarityTier === "near-identical" ? (
+                  <><ShieldAlert className="h-4 w-4 text-destructive" /> Near-Identical Script Found</>
+                ) : (
+                  <><AlertTriangle className="h-4 w-4 text-amber-500" /> Similar Scripts Found</>
+                )
+              ) : (
+                <><Sparkles className="h-4 w-4 text-primary" /> Review & Save</>
+              )}
+            </DialogTitle>
+          </DialogHeader>
 
-        {/* === STEP 1: Paste (new scripts only) === */}
-        {step === "paste" && !isEditing && (
-          <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">
-              Paste your script below. AI will auto-detect the category, audience, role, and tags.
-            </p>
-            
-            <div>
-              <Label>Script Content</Label>
-              <Textarea
-                value={pasteContent}
-                onChange={e => setPasteContent(e.target.value)}
-                placeholder="Paste your full script here..."
-                rows={12}
-                className="text-sm"
-              />
-            </div>
-          </div>
-        )}
-
-        {/* === STEP 2: Duplicates warning === */}
-        {step === "duplicates" && (
-          <div className="space-y-4">
-            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4">
-              <p className="text-sm font-medium text-amber-700 dark:text-amber-400 mb-1">
-                We found {similarScripts.length} similar script{similarScripts.length > 1 ? "s" : ""} already in the database.
+          {/* === STEP 1: Paste === */}
+          {step === "paste" && !isEditing && (
+            <div className="space-y-4">
+              <p className="text-sm text-muted-foreground">
+                Paste your script below. AI will auto-detect the category, audience, role, and tags.
               </p>
-              <p className="text-xs text-muted-foreground">
-                To keep a single source of truth, please review these first. You can still add yours as a new variation if needed.
-              </p>
+              <div>
+                <Label>Script Content</Label>
+                <Textarea
+                  value={pasteContent}
+                  onChange={e => setPasteContent(e.target.value)}
+                  placeholder="Paste your full script here..."
+                  rows={12}
+                  className="text-sm"
+                />
+              </div>
             </div>
+          )}
 
-            <div className="space-y-2">
-              {similarScripts.map((s) => (
-                <div key={s.id} className="border rounded-lg p-3 flex items-start justify-between gap-3 bg-muted/30">
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate">{s.stage}</p>
-                    <div className="flex flex-wrap gap-1 mt-1">
-                      <Badge variant="secondary" className="text-[10px]">
-                        {CATEGORIES.find(c => c.value === s.category)?.label}
-                      </Badge>
-                      <Badge variant="secondary" className="text-[10px]">
-                        {TARGET_AUDIENCES.find(a => a.value === s.target_audience)?.label}
-                      </Badge>
+          {/* === STEP 2: Duplicates === */}
+          {step === "duplicates" && (
+            <div className="space-y-4">
+              {/* Warning banner */}
+              <div className={`rounded-lg p-4 border ${
+                highestSimilarityTier === "near-identical"
+                  ? "bg-destructive/10 border-destructive/30"
+                  : "bg-amber-500/10 border-amber-500/30"
+              }`}>
+                <p className={`text-sm font-medium mb-1 ${
+                  highestSimilarityTier === "near-identical"
+                    ? "text-destructive"
+                    : "text-amber-700 dark:text-amber-400"
+                }`}>
+                  {highestSimilarityTier === "near-identical"
+                    ? `This looks like a duplicate of an existing script.`
+                    : `We found ${similarScripts.length} similar script${similarScripts.length > 1 ? "s" : ""} already in the database.`
+                  }
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {highestSimilarityTier === "near-identical"
+                    ? "To keep a single source of truth, add yours as a new version to the existing script instead."
+                    : "Review these first. You can merge as a version or add as a separate script."
+                  }
+                </p>
+              </div>
+
+              {/* Match cards */}
+              <div className="space-y-2">
+                {similarScripts.map((s) => (
+                  <div key={s.id} className={`border rounded-lg p-3 space-y-2 ${
+                    s.similarityTier === "near-identical" ? "bg-destructive/5 border-destructive/20" : "bg-muted/30"
+                  }`}>
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">{s.stage}</p>
+                        <div className="flex flex-wrap gap-1 mt-1">
+                          <Badge variant="secondary" className="text-[10px]">
+                            {CATEGORIES.find(c => c.value === s.category)?.label}
+                          </Badge>
+                          <Badge variant="secondary" className="text-[10px]">
+                            {TARGET_AUDIENCES.find(a => a.value === s.target_audience)?.label}
+                          </Badge>
+                          <Badge variant={s.similarityTier === "near-identical" ? "destructive" : "outline"} className="text-[10px]">
+                            {s.overlapPercent}% match
+                          </Badge>
+                          <Badge variant="outline" className="text-[10px]">
+                            {s.searchTier === "tier1" ? "Same stage & audience" : "Same stage, diff. audience"}
+                          </Badge>
+                        </div>
+                        <p className="text-[10px] text-muted-foreground mt-1">{s.similarity}</p>
+                      </div>
                     </div>
-                    <p className="text-[10px] text-muted-foreground mt-1">{s.similarity}</p>
+                    <div className="flex gap-2 justify-end">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="gap-1 text-xs"
+                        onClick={() => window.open(`/scripts?highlight=${s.id}`, "_blank")}
+                      >
+                        <ExternalLink className="h-3 w-3" /> View
+                      </Button>
+                      <Button
+                        size="sm"
+                        className="gap-1 text-xs"
+                        disabled={isMerging}
+                        onClick={() => handleAddAsVersion(s.id, s.stage)}
+                      >
+                        {isMerging ? (
+                          <Loader2 className="h-3 w-3 animate-spin" />
+                        ) : (
+                          <GitMerge className="h-3 w-3" />
+                        )}
+                        Add as Version
+                      </Button>
+                    </div>
                   </div>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="shrink-0 gap-1 text-xs"
-                    onClick={() => {
-                      // Navigate to the script in the scripts page
-                      window.open(`/scripts?highlight=${s.id}`, "_blank");
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* === STEP 3: Review === */}
+          {step === "review" && (
+            <div className="space-y-4">
+              {!isEditing && (
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-3">
+                  <p className="text-xs font-medium text-primary mb-2 flex items-center gap-1">
+                    <Sparkles className="h-3 w-3" /> AI-detected — edit if needed
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    <Badge variant="secondary" className="text-[10px]">
+                      {CATEGORIES.find(c => c.value === category)?.label}
+                    </Badge>
+                    <Badge variant="secondary" className="text-[10px]">
+                      {TARGET_AUDIENCES.find(a => a.value === targetAudience)?.label}
+                    </Badge>
+                    <Badge variant="secondary" className="text-[10px]">
+                      {SCRIPT_ROLES.find(r => r.value === scriptRole)?.label}
+                    </Badge>
+                    {tags.map((t, i) => (
+                      <Badge key={i} variant="outline" className="text-[10px]">{t}</Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div>
+                <Label>Script Title / Stage</Label>
+                <Input value={stage} onChange={e => setStage(e.target.value)} placeholder="e.g. Cold Calling — Original Script" />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <Label>Category</Label>
+                  <Select value={category} onValueChange={setCategory}>
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      {CATEGORIES.map(c => (
+                        <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label>Target Audience</Label>
+                  <Select value={targetAudience} onValueChange={setTargetAudience}>
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      {TARGET_AUDIENCES.map(a => (
+                        <SelectItem key={a.value} value={a.value}>{a.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label>Role</Label>
+                  <Select value={scriptRole} onValueChange={setScriptRole}>
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      {SCRIPT_ROLES.map(r => (
+                        <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              {/* Tags */}
+              <div>
+                <Label>Tags</Label>
+                <div className="flex flex-wrap gap-1.5 mb-2">
+                  {tags.map((tag, i) => (
+                    <Badge key={i} variant="secondary" className="text-xs gap-1 pr-1">
+                      {tag}
+                      <button type="button" className="ml-0.5 hover:text-destructive" onClick={() => setTags(prev => prev.filter((_, idx) => idx !== i))}>
+                        <Trash2 className="h-2.5 w-2.5" />
+                      </button>
+                    </Badge>
+                  ))}
+                </div>
+                <div className="flex gap-2">
+                  <Input
+                    value={tagInput}
+                    onChange={e => setTagInput(e.target.value)}
+                    placeholder="Type a tag and press Enter"
+                    className="flex-1"
+                    onKeyDown={e => {
+                      if (e.key === "Enter" || e.key === ",") {
+                        e.preventDefault();
+                        const val = tagInput.trim().toLowerCase().replace(/,/g, "");
+                        if (val && !tags.includes(val)) setTags(prev => [...prev, val]);
+                        setTagInput("");
+                      }
                     }}
-                  >
-                    <ExternalLink className="h-3 w-3" /> View
+                  />
+                  <Button type="button" variant="outline" size="sm" onClick={() => {
+                    const val = tagInput.trim().toLowerCase();
+                    if (val && !tags.includes(val)) setTags(prev => [...prev, val]);
+                    setTagInput("");
+                  }}>
+                    <Plus className="h-3 w-3" />
                   </Button>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
+              </div>
 
-        {/* === STEP 3: Review (or Edit mode) === */}
-        {step === "review" && (
-          <div className="space-y-4">
-            {/* AI-detected badges */}
-            {!isEditing && (
-              <div className="bg-primary/5 border border-primary/20 rounded-lg p-3">
-                <p className="text-xs font-medium text-primary mb-2 flex items-center gap-1">
-                  <Sparkles className="h-3 w-3" /> AI-detected — edit if needed
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  <Badge variant="secondary" className="text-[10px]">
-                    {CATEGORIES.find(c => c.value === category)?.label}
-                  </Badge>
-                  <Badge variant="secondary" className="text-[10px]">
-                    {TARGET_AUDIENCES.find(a => a.value === targetAudience)?.label}
-                  </Badge>
-                  <Badge variant="secondary" className="text-[10px]">
-                    {SCRIPT_ROLES.find(r => r.value === scriptRole)?.label}
-                  </Badge>
-                  {tags.map((t, i) => (
-                    <Badge key={i} variant="outline" className="text-[10px]">{t}</Badge>
+              {/* Script Versions */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <Label>Script Versions</Label>
+                  <Button variant="outline" size="sm" onClick={addVersion} className="gap-1">
+                    <Plus className="h-3 w-3" /> Add Version
+                  </Button>
+                </div>
+                <div className="space-y-4">
+                  {versions.map((v, i) => (
+                    <div key={i} className="border rounded-lg p-3 space-y-2 bg-muted/30">
+                      <div className="flex items-center gap-2">
+                        <div className="flex-1 text-sm text-muted-foreground">
+                          By: {v.author || userName || "You"}
+                        </div>
+                        {versions.length > 1 && (
+                          <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive" onClick={() => removeVersion(i)}>
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        )}
+                      </div>
+                      <Textarea
+                        value={v.content}
+                        onChange={e => updateVersion(i, "content", e.target.value)}
+                        placeholder="Script content..."
+                        rows={8}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
-            )}
 
-            <div>
-              <Label>Script Title / Stage</Label>
-              <Input value={stage} onChange={e => setStage(e.target.value)} placeholder="e.g. Cold Calling — Original Script" />
+              {/* Advanced */}
+              <button
+                type="button"
+                onClick={() => setShowAdvanced(!showAdvanced)}
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {showAdvanced ? "▾ Hide advanced" : "▸ Advanced options"}
+              </button>
+              {showAdvanced && (
+                <div className="pl-3 border-l-2 border-muted">
+                  <Label className="text-xs">Sort Order <span className="text-muted-foreground">(lower = higher position)</span></Label>
+                  <Input type="number" value={sortOrder} onChange={e => setSortOrder(Number(e.target.value))} className="w-24" />
+                </div>
+              )}
             </div>
+          )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div>
-                <Label>Category</Label>
-                <Select value={category} onValueChange={setCategory}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    {CATEGORIES.map(c => (
-                      <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label>Target Audience</Label>
-                <Select value={targetAudience} onValueChange={setTargetAudience}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    {TARGET_AUDIENCES.map(a => (
-                      <SelectItem key={a.value} value={a.value}>{a.label}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label>Role</Label>
-                <Select value={scriptRole} onValueChange={setScriptRole}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    {SCRIPT_ROLES.map(r => (
-                      <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            {/* Tags */}
+          <DialogFooter className="flex-row justify-between sm:justify-between">
             <div>
-              <Label>Tags</Label>
-              <div className="flex flex-wrap gap-1.5 mb-2">
-                {tags.map((tag, i) => (
-                  <Badge key={i} variant="secondary" className="text-xs gap-1 pr-1">
-                    {tag}
-                    <button type="button" className="ml-0.5 hover:text-destructive" onClick={() => setTags(prev => prev.filter((_, idx) => idx !== i))}>
-                      <Trash2 className="h-2.5 w-2.5" />
-                    </button>
-                  </Badge>
-                ))}
-              </div>
-              <div className="flex gap-2">
-                <Input
-                  value={tagInput}
-                  onChange={e => setTagInput(e.target.value)}
-                  placeholder="Type a tag and press Enter"
-                  className="flex-1"
-                  onKeyDown={e => {
-                    if (e.key === "Enter" || e.key === ",") {
-                      e.preventDefault();
-                      const val = tagInput.trim().toLowerCase().replace(/,/g, "");
-                      if (val && !tags.includes(val)) setTags(prev => [...prev, val]);
-                      setTagInput("");
-                    }
-                  }}
-                />
-                <Button type="button" variant="outline" size="sm" onClick={() => {
-                  const val = tagInput.trim().toLowerCase();
-                  if (val && !tags.includes(val)) setTags(prev => [...prev, val]);
-                  setTagInput("");
-                }}>
-                  <Plus className="h-3 w-3" />
+              {step === "review" && !isEditing && (
+                <Button variant="ghost" size="sm" onClick={() => setStep(similarScripts.length > 0 ? "duplicates" : "paste")}>
+                  ← Back
                 </Button>
-              </div>
-            </div>
-
-            {/* Script Versions */}
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <Label>Script Versions</Label>
-                <Button variant="outline" size="sm" onClick={addVersion} className="gap-1">
-                  <Plus className="h-3 w-3" /> Add Version
+              )}
+              {step === "duplicates" && (
+                <Button variant="ghost" size="sm" onClick={() => setStep("paste")}>
+                  ← Back
                 </Button>
-              </div>
-              <div className="space-y-4">
-                {versions.map((v, i) => (
-                  <div key={i} className="border rounded-lg p-3 space-y-2 bg-muted/30">
-                    <div className="flex items-center gap-2">
-                      <div className="flex-1 text-sm text-muted-foreground">
-                        By: {v.author || userName || "You"}
-                      </div>
-                      {versions.length > 1 && (
-                        <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive" onClick={() => removeVersion(i)}>
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      )}
-                    </div>
-                    <Textarea
-                      value={v.content}
-                      onChange={e => updateVersion(i, "content", e.target.value)}
-                      placeholder="Script content..."
-                      rows={8}
-                    />
-                  </div>
-                ))}
-              </div>
+              )}
             </div>
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={onClose}>Cancel</Button>
+              {step === "paste" ? (
+                <Button onClick={handleClassify} disabled={isClassifying || !pasteContent.trim()} className="gap-1.5">
+                  {isClassifying ? (
+                    <><Loader2 className="h-4 w-4 animate-spin" /> Classifying...</>
+                  ) : (
+                    <><Sparkles className="h-4 w-4" /> Classify & Continue</>
+                  )}
+                </Button>
+              ) : step === "duplicates" ? (
+                <Button
+                  onClick={handleProceedToReview}
+                  variant={highestSimilarityTier === "near-identical" ? "outline" : "secondary"}
+                  className="gap-1.5"
+                  disabled={isMerging}
+                >
+                  {highestSimilarityTier === "near-identical" ? "Override & Add Anyway" : "Add as Separate Script"}
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Button>
+              ) : (
+                <Button onClick={handleSubmit} disabled={saving || !stage.trim()}>
+                  {saving ? "Saving..." : isEditing ? "Save Changes" : "Create Script"}
+                </Button>
+              )}
+            </div>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
-            {/* Advanced toggle for sort order */}
-            <button
-              type="button"
-              onClick={() => setShowAdvanced(!showAdvanced)}
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+      {/* Override confirmation for near-identical scripts */}
+      <AlertDialog open={showOverrideConfirm} onOpenChange={setShowOverrideConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <ShieldAlert className="h-5 w-5 text-destructive" />
+              Are you sure?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              This script is very similar to "<span className="font-medium">{similarScripts[0]?.stage}</span>" ({similarScripts[0]?.overlapPercent}% match).
+              Adding it separately may create confusion. Consider merging it as a version instead.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Go Back</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                setShowOverrideConfirm(false);
+                setStep("review");
+              }}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >
-              {showAdvanced ? "▾ Hide advanced" : "▸ Advanced options"}
-            </button>
-            {showAdvanced && (
-              <div className="pl-3 border-l-2 border-muted">
-                <Label className="text-xs">Sort Order <span className="text-muted-foreground">(lower = higher position)</span></Label>
-                <Input type="number" value={sortOrder} onChange={e => setSortOrder(Number(e.target.value))} className="w-24" />
-              </div>
-            )}
-          </div>
-        )}
-
-        <DialogFooter className="flex-row justify-between sm:justify-between">
-          <div>
-            {step === "review" && !isEditing && (
-              <Button variant="ghost" size="sm" onClick={() => setStep(similarScripts.length > 0 ? "duplicates" : "paste")}>
-                ← Back
-              </Button>
-            )}
-            {step === "duplicates" && (
-              <Button variant="ghost" size="sm" onClick={() => setStep("paste")}>
-                ← Back
-              </Button>
-            )}
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={onClose}>Cancel</Button>
-            {step === "paste" ? (
-              <Button onClick={handleClassify} disabled={isClassifying || !pasteContent.trim()} className="gap-1.5">
-                {isClassifying ? (
-                  <><Loader2 className="h-4 w-4 animate-spin" /> Classifying...</>
-                ) : (
-                  <><Sparkles className="h-4 w-4" /> Classify & Continue</>
-                )}
-              </Button>
-            ) : step === "duplicates" ? (
-              <Button onClick={() => setStep("review")} variant="secondary" className="gap-1.5">
-                Add Anyway <ArrowRight className="h-3.5 w-3.5" />
-              </Button>
-            ) : (
-              <Button onClick={handleSubmit} disabled={saving || !stage.trim()}>
-                {saving ? "Saving..." : isEditing ? "Save Changes" : "Create Script"}
-              </Button>
-            )}
-          </div>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+              Add Anyway
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 }
