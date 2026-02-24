@@ -713,6 +713,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
             <AlertDialogCancel>Go Back</AlertDialogCancel>
             <AlertDialogAction
               onClick={() => {
+                const topMatch = similarScripts[0];
+                trackDuplicateDecision("override_near_identical", topMatch?.overlapPercent, topMatch?.searchTier);
                 setShowOverrideConfirm(false);
                 setStep("review");
               }}
