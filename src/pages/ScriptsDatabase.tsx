@@ -1842,7 +1842,12 @@ export default function ScriptsDatabase() {
   const { scriptId } = useParams();
   const internalNavRef = useRef(false);
 
-  // Derive active tab from URL path
+  // Helper for in-page card toggle navigation (preserves filters)
+  const navigateToScriptInternal = useCallback((id: string) => {
+    internalNavRef.current = true;
+    navigate(`/scripts/${id}`, { replace: true });
+  }, [navigate]);
+
   const isObjectionsRoute = location.pathname.startsWith('/objections');
   const [activeTab, setActiveTabState] = useState<string>(isObjectionsRoute ? "objections" : "scripts");
 
