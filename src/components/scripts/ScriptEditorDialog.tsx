@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert } from "lucide-react";
+import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert, Link2, X } from "lucide-react";
+import { useScripts } from "@/hooks/useScripts";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
@@ -72,7 +73,7 @@ interface SimilarScript {
 interface Props {
   open: boolean;
   onClose: () => void;
-  onSave: (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number }) => Promise<void>;
+  onSave: (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null }) => Promise<void>;
   script?: ScriptEntry | null;
 }
 
@@ -120,6 +121,7 @@ function getSimilarityTier(overlapPercent: number): SimilarityTier {
 export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   const { user } = useSimplifiedAuth();
   const navigate = useNavigate();
+  const { scripts: allScriptsRaw } = useScripts();
   const isEditing = !!script;
   const [step, setStep] = useState<EditorStep>(isEditing ? "review" : "paste");
   const [userName, setUserName] = useState("");
@@ -162,8 +164,22 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   const [tagInput, setTagInput] = useState("");
   const [versions, setVersions] = useState<ScriptVersion[]>([{ author: "", content: "" }]);
   const [sortOrder, setSortOrder] = useState(0);
+  const [relatedScriptId, setRelatedScriptId] = useState<string | null>(null);
+  const [relatedSearch, setRelatedSearch] = useState("");
   const [saving, setSaving] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
+
+  // Filter out current script from related options, and apply search
+  const relatedScriptOptions = useMemo(() => {
+    const filtered = allScriptsRaw.filter(s => s.id !== script?.id);
+    if (!relatedSearch.trim()) return filtered.slice(0, 20);
+    const q = relatedSearch.toLowerCase();
+    return filtered.filter(s =>
+      s.stage.toLowerCase().includes(q) ||
+      s.category.toLowerCase().includes(q) ||
+      (s.target_audience || "").toLowerCase().includes(q)
+    ).slice(0, 20);
+  }, [allScriptsRaw, script?.id, relatedSearch]);
 
   useEffect(() => {
     if (script) {
@@ -176,7 +192,9 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       setTagInput("");
       setVersions(script.versions.length > 0 ? script.versions : [{ author: "", content: "" }]);
       setSortOrder(script.sort_order);
-      setShowAdvanced(false);
+      setRelatedScriptId(script.related_script_id || null);
+      setRelatedSearch("");
+      setShowAdvanced(!!script.related_script_id);
     } else {
       setStep("paste");
       setPasteContent("");
@@ -190,6 +208,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       setTagInput("");
       setVersions([{ author: "", content: "" }]);
       setSortOrder(0);
+      setRelatedScriptId(null);
+      setRelatedSearch("");
       setShowAdvanced(false);
     }
   }, [script, open]);
@@ -373,7 +393,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     const validVersions = versions.filter(v => v.content.trim());
     if (validVersions.length === 0) return;
     setSaving(true);
-    await onSave({ stage, category, target_audience: targetAudience, script_role: scriptRole, tags, versions: validVersions, sort_order: sortOrder });
+    await onSave({ stage, category, target_audience: targetAudience, script_role: scriptRole, tags, versions: validVersions, sort_order: sortOrder, related_script_id: relatedScriptId });
     setSaving(false);
     onClose();
   };
@@ -653,9 +673,69 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                 {showAdvanced ? "▾ Hide advanced" : "▸ Advanced options"}
               </button>
               {showAdvanced && (
-                <div className="pl-3 border-l-2 border-muted">
-                  <Label className="text-xs">Sort Order <span className="text-muted-foreground">(lower = higher position)</span></Label>
-                  <Input type="number" value={sortOrder} onChange={e => setSortOrder(Number(e.target.value))} className="w-24" />
+                <div className="pl-3 border-l-2 border-muted space-y-3">
+                  <div>
+                    <Label className="text-xs">Sort Order <span className="text-muted-foreground">(lower = higher position)</span></Label>
+                    <Input type="number" value={sortOrder} onChange={e => setSortOrder(Number(e.target.value))} className="w-24" />
+                  </div>
+                  <div>
+                    <Label className="text-xs flex items-center gap-1.5">
+                      <Link2 className="h-3 w-3" />
+                      Related Script <span className="text-muted-foreground">(link to parent/child)</span>
+                    </Label>
+                    {relatedScriptId ? (
+                      <div className="flex items-center gap-2 mt-1 p-2 rounded-md border bg-muted/40">
+                        <Link2 className="h-3.5 w-3.5 text-primary shrink-0" />
+                        <span className="text-sm truncate flex-1">
+                          {allScriptsRaw.find(s => s.id === relatedScriptId)?.stage || "Unknown script"}
+                        </span>
+                        <Badge variant="secondary" className="text-[9px] shrink-0">
+                          {CATEGORIES.find(c => c.value === allScriptsRaw.find(s => s.id === relatedScriptId)?.category)?.label || ""}
+                        </Badge>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="h-6 w-6 shrink-0"
+                          onClick={() => setRelatedScriptId(null)}
+                        >
+                          <X className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    ) : (
+                      <div className="mt-1 space-y-1">
+                        <Input
+                          value={relatedSearch}
+                          onChange={e => setRelatedSearch(e.target.value)}
+                          placeholder="Search scripts by title, category..."
+                          className="text-sm"
+                        />
+                        {relatedSearch.trim() && relatedScriptOptions.length > 0 && (
+                          <div className="border rounded-md bg-popover shadow-md max-h-48 overflow-y-auto z-50">
+                            {relatedScriptOptions.map(s => (
+                              <button
+                                key={s.id}
+                                type="button"
+                                className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors flex items-center gap-2"
+                                onClick={() => {
+                                  setRelatedScriptId(s.id);
+                                  setRelatedSearch("");
+                                }}
+                              >
+                                <span className="truncate flex-1">{s.stage}</span>
+                                <Badge variant="secondary" className="text-[9px] shrink-0">
+                                  {CATEGORIES.find(c => c.value === s.category)?.label || s.category}
+                                </Badge>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                        {relatedSearch.trim() && relatedScriptOptions.length === 0 && (
+                          <p className="text-xs text-muted-foreground px-2 py-1">No matching scripts found</p>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
