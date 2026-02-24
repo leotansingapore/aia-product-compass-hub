@@ -2117,9 +2117,25 @@ export default function ScriptsDatabase() {
   );
 
   const handleInlineSave = useCallback(async (scriptId: string, versions: ScriptVersion[]) => {
+    // Save a snapshot of the current versions before updating
+    const currentScript = dbScripts.find(s => s.id === scriptId);
+    if (currentScript && user) {
+      try {
+        await supabase
+          .from('script_version_history' as any)
+          .insert({
+            script_id: scriptId,
+            versions: JSON.parse(JSON.stringify(currentScript.versions)),
+            edited_by: user.id,
+            editor_name: user.user_metadata?.display_name || user.email?.split('@')[0] || 'Unknown',
+          } as any);
+      } catch (e) {
+        console.error('Failed to save version history:', e);
+      }
+    }
     await updateScript(scriptId, { versions });
     refetch();
-  }, [updateScript, refetch]);
+  }, [updateScript, refetch, dbScripts, user]);
 
   const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null }) => {
     if (editingScript) {
