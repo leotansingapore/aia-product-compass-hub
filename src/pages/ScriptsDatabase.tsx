@@ -2765,6 +2765,7 @@ export default function ScriptsDatabase() {
                             searchQuery={searchQuery}
                             myPlaybooks={myPlaybooks}
                             handleAddToPlaybook={handleAddToPlaybook}
+                            handleCreatePlaybookAndAdd={handleCreatePlaybookAndAdd}
                             user={user}
                             favouriteIds={favouriteIds}
                             toggleFavourite={toggleFavourite}
@@ -2794,6 +2795,7 @@ export default function ScriptsDatabase() {
                         searchQuery={searchQuery}
                         myPlaybooks={myPlaybooks}
                         onAddToPlaybook={handleAddToPlaybook}
+                        onCreatePlaybookAndAdd={handleCreatePlaybookAndAdd}
                         isAuthenticated={!!user}
                         userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
                         isFavourite={favouriteIds.has(script.id)}
