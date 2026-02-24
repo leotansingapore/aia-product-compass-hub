@@ -12,9 +12,9 @@ interface ScriptEntry {
   id: string;
   stage: string;
   category: string;
-  target_audience: string | null;
-  script_role: string | null;
-  tags: string[] | null;
+  target_audience: string;
+  script_role?: string;
+  tags?: string[];
 }
 
 interface AddToPlaybookDialogProps {
