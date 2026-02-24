@@ -1840,6 +1840,7 @@ export default function ScriptsDatabase() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const { scriptId } = useParams();
+  const internalNavRef = useRef(false);
 
   // Derive active tab from URL path
   const isObjectionsRoute = location.pathname.startsWith('/objections');
@@ -1913,9 +1914,14 @@ export default function ScriptsDatabase() {
     setSearchParams(params, { replace: true });
   }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
 
-  // When navigating to a specific script via URL, reset filters so it's always visible
+  // When navigating to a specific script via URL (external), reset filters so it's always visible
+  // Skip reset for in-page card toggles (internal navigation)
   useEffect(() => {
     if (scriptId) {
+      if (internalNavRef.current) {
+        internalNavRef.current = false;
+        return;
+      }
       setActiveCategory("all");
       setActiveAudience("all");
       setActiveRole("all");
