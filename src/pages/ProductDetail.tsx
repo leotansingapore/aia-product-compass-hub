@@ -13,6 +13,7 @@ import { useVideoManagement } from "@/hooks/useVideoManagement";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { PersonalNotes } from "@/components/PersonalNotes";
+import { toast } from "@/hooks/use-toast";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { PageLayout } from "@/components/layout/PageLayout";
