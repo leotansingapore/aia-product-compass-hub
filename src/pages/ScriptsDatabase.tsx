@@ -1397,8 +1397,8 @@ function ScriptVersionHistory({ scriptId, onRollback }: { scriptId: string; onRo
 }
 
 function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void> }) {
+  const [open, setOpen] = useState(isOpenByUrl);
 
-  const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const navigate = useNavigate();
