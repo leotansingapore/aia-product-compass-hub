@@ -219,6 +219,7 @@ const AppSidebar = memo(function AppSidebar() {
     setDeletingInProgress(false);
     setDeletingCategory(null);
     setDeleteCategoryProductCount(null);
+    setDeleteConfirmName("");
   };
 
   const handleOpenDeleteDialog = async (category: { id: string; name: string }) => {
