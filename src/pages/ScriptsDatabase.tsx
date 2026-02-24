@@ -1323,7 +1323,79 @@ function MobileVersionSelector({ versions, searchQuery }: { versions: ScriptVers
   );
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void> }) {
+function ScriptVersionHistory({ scriptId, onRollback }: { scriptId: string; onRollback: (versions: ScriptVersion[]) => Promise<void> }) {
+  const [showHistory, setShowHistory] = useState(false);
+  const [history, setHistory] = useState<any[]>([]);
+  const [loadingHistory, setLoadingHistory] = useState(false);
+  const [rollingBack, setRollingBack] = useState(false);
+
+  const loadHistory = async () => {
+    if (showHistory) { setShowHistory(false); return; }
+    setLoadingHistory(true);
+    const { data, error } = await supabase
+      .from('script_version_history' as any)
+      .select('*')
+      .eq('script_id', scriptId)
+      .order('created_at', { ascending: false })
+      .limit(20);
+    if (!error) setHistory(data || []);
+    setLoadingHistory(false);
+    setShowHistory(true);
+  };
+
+  const handleRollback = async (entry: any) => {
+    if (!confirm('Are you sure you want to rollback to this version? The current content will be saved to history first.')) return;
+    setRollingBack(true);
+    const versions = (entry.versions as unknown as ScriptVersion[]) || [];
+    await onRollback(versions);
+    // Reload history
+    const { data } = await supabase
+      .from('script_version_history' as any)
+      .select('*')
+      .eq('script_id', scriptId)
+      .order('created_at', { ascending: false })
+      .limit(20);
+    setHistory(data || []);
+    setRollingBack(false);
+  };
+
+  return (
+    <div className="mt-4 pt-4 border-t">
+      <Button variant="ghost" size="sm" className="gap-1.5 text-xs text-muted-foreground" onClick={loadHistory} disabled={loadingHistory}>
+        <History className="h-3.5 w-3.5" />
+        {loadingHistory ? 'Loading...' : showHistory ? 'Hide History' : 'Version History'}
+      </Button>
+      {showHistory && history.length > 0 && (
+        <div className="mt-3 space-y-2 max-h-[300px] overflow-y-auto">
+          {history.map((entry: any) => (
+            <div key={entry.id} className="flex items-center justify-between gap-2 p-2 rounded-md border bg-muted/30 text-xs">
+              <div className="min-w-0">
+                <span className="font-medium">{entry.editor_name}</span>
+                <span className="text-muted-foreground ml-2">
+                  {new Date(entry.created_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}
+                </span>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-6 gap-1 text-[10px] shrink-0"
+                onClick={() => handleRollback(entry)}
+                disabled={rollingBack}
+              >
+                <RotateCcw className="h-3 w-3" />
+                Rollback
+              </Button>
+            </div>
+          ))}
+        </div>
+      )}
+      {showHistory && history.length === 0 && (
+        <p className="text-xs text-muted-foreground mt-2 italic">No edit history yet.</p>
+      )}
+    </div>
+  );
+}
+
   const [open, setOpen] = useState(isOpenByUrl);
   const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
