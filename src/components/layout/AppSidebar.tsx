@@ -117,6 +117,7 @@ const AppSidebar = memo(function AppSidebar() {
   const [deletingCategory, setDeletingCategory] = useState<{ id: string; name: string } | null>(null);
   const [deleteCategoryProductCount, setDeleteCategoryProductCount] = useState<number | null>(null);
   const [deletingInProgress, setDeletingInProgress] = useState(false);
+  const [deleteConfirmName, setDeleteConfirmName] = useState("");
   const [creatingCategory, setCreatingCategory] = useState(false);
   const [newCategoryCreateName, setNewCategoryCreateName] = useState("");
   const [newCategoryCreateDescription, setNewCategoryCreateDescription] = useState("");
@@ -218,6 +219,7 @@ const AppSidebar = memo(function AppSidebar() {
     setDeletingInProgress(false);
     setDeletingCategory(null);
     setDeleteCategoryProductCount(null);
+    setDeleteConfirmName("");
   };
 
   const handleOpenDeleteDialog = async (category: { id: string; name: string }) => {
@@ -514,7 +516,7 @@ const AppSidebar = memo(function AppSidebar() {
       </Dialog>
 
       {/* Delete Category Confirmation */}
-      <AlertDialog open={!!deletingCategory} onOpenChange={(open) => { if (!open) { setDeletingCategory(null); setDeleteCategoryProductCount(null); setDeletingInProgress(false); } }}>
+      <AlertDialog open={!!deletingCategory} onOpenChange={(open) => { if (!open) { setDeletingCategory(null); setDeleteCategoryProductCount(null); setDeletingInProgress(false); setDeleteConfirmName(""); } }}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Delete "{deletingCategory?.name}"?</AlertDialogTitle>
@@ -526,7 +528,7 @@ const AppSidebar = memo(function AppSidebar() {
                     <span>Checking category contents…</span>
                   </div>
                 ) : deleteCategoryProductCount > 0 ? (
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="flex items-start gap-2 rounded-md bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 p-3 text-amber-800 dark:text-amber-300">
                       <AlertTriangle className="h-4 w-4 mt-0.5 shrink-0" />
                       <span className="text-sm">
@@ -534,6 +536,20 @@ const AppSidebar = memo(function AppSidebar() {
                       </span>
                     </div>
                     <p className="text-sm text-muted-foreground">This action cannot be undone.</p>
+                    <div className="space-y-1.5">
+                      <label htmlFor="delete-confirm-input" className="text-sm text-muted-foreground">
+                        Type <strong className="text-foreground">{deletingCategory?.name}</strong> to confirm:
+                      </label>
+                      <input
+                        id="delete-confirm-input"
+                        type="text"
+                        className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        placeholder={deletingCategory?.name}
+                        value={deleteConfirmName}
+                        onChange={(e) => setDeleteConfirmName(e.target.value)}
+                        autoComplete="off"
+                      />
+                    </div>
                   </div>
                 ) : (
                   <p className="text-sm text-muted-foreground">This category is empty. It will be permanently removed.</p>
@@ -546,7 +562,7 @@ const AppSidebar = memo(function AppSidebar() {
             <AlertDialogAction
               onClick={handleDeleteCategory}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              disabled={deleteCategoryProductCount === null || deletingInProgress}
+              disabled={deleteCategoryProductCount === null || deletingInProgress || (deleteCategoryProductCount > 0 && deleteConfirmName !== deletingCategory?.name)}
             >
               {deletingInProgress ? (
                 <span className="flex items-center gap-2"><Loader2 className="h-4 w-4 animate-spin" />Deleting…</span>
