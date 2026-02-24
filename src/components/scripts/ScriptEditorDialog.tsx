@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, ExternalLink, GitMerge, ShieldAlert } from "lucide-react";
+import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
@@ -66,6 +66,7 @@ interface SimilarScript {
   overlapPercent: number;
   searchTier: "tier1" | "tier2";
   similarityTier: SimilarityTier;
+  contentPreview: string;
 }
 
 interface Props {
@@ -239,6 +240,12 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       const similarityTier = getSimilarityTier(overlapPercent);
 
       if (similarityTier !== "none") {
+        // Build a content preview: first version's content, stripped of markdown, truncated
+        const preview = (vers[0]?.content || "")
+          .replace(/[#*_~`>\-|[\]()!]/g, "")
+          .replace(/\s+/g, " ")
+          .trim()
+          .slice(0, 300);
         results.push({
           id: s.id,
           stage: s.stage,
@@ -248,6 +255,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
           overlapPercent,
           searchTier,
           similarityTier,
+          contentPreview: preview,
         });
       }
     }
@@ -451,7 +459,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                   <div key={s.id} className={`border rounded-lg p-3 space-y-2 ${
                     s.similarityTier === "near-identical" ? "bg-destructive/5 border-destructive/20" : "bg-muted/30"
                   }`}>
-                    <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium truncate">{s.stage}</p>
                         <div className="flex flex-wrap gap-1 mt-1">
@@ -471,15 +479,15 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                         <p className="text-[10px] text-muted-foreground mt-1">{s.similarity}</p>
                       </div>
                     </div>
+
+                    {/* Inline content preview */}
+                    {s.contentPreview && (
+                      <div className="rounded-md bg-muted/50 border p-2.5 text-xs text-muted-foreground leading-relaxed max-h-32 overflow-y-auto">
+                        {s.contentPreview}{s.contentPreview.length >= 300 ? "…" : ""}
+                      </div>
+                    )}
+
                     <div className="flex gap-2 justify-end">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="gap-1 text-xs"
-                        onClick={() => window.open(`/scripts?highlight=${s.id}`, "_blank")}
-                      >
-                        <ExternalLink className="h-3 w-3" /> View
-                      </Button>
                       <Button
                         size="sm"
                         className="gap-1 text-xs"
