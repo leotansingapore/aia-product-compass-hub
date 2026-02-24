@@ -6,9 +6,10 @@ import type { TrainingVideo } from '@/hooks/useProducts';
 interface UseVideoManagementProps {
   initialVideos: TrainingVideo[];
   onSave: (newVideos: TrainingVideo[]) => Promise<void>;
+  productId?: string;
 }
 
-export function useVideoManagement({ initialVideos, onSave }: UseVideoManagementProps) {
+export function useVideoManagement({ initialVideos, onSave, productId }: UseVideoManagementProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editVideos, setEditVideos] = useState<TrainingVideo[]>(initialVideos || []);
   const [newVideo, setNewVideo] = useState<TrainingVideo>({ 
@@ -32,17 +33,18 @@ export function useVideoManagement({ initialVideos, onSave }: UseVideoManagement
   // Store initial state for comparison to detect changes
   const initialVideosRef = useRef<string>(JSON.stringify(initialVideos || []));
 
-  // Sync editVideos ONLY on initial mount to prevent overwriting local changes
+  // Reset state when product changes (productId switches)
   useEffect(() => {
-    if (initialVideos && initialVideos.length > 0 && editVideos.length === 0) {
-      console.log('📹 useVideoManagement: Initial sync from props', {
-        count: initialVideos.length,
-        categories: Array.from(new Set(initialVideos.map(v => v.category).filter(Boolean)))
-      });
-      setEditVideos(initialVideos);
-      initialVideosRef.current = JSON.stringify(initialVideos);
-    }
-  }, [initialVideos]);
+    console.log('📹 useVideoManagement: Product changed, resetting state', {
+      productId,
+      count: initialVideos?.length || 0,
+    });
+    setEditVideos(initialVideos || []);
+    initialVideosRef.current = JSON.stringify(initialVideos || []);
+    setEditingIndex(null);
+    setEmptyFolders([]);
+    setSaveJustCompleted(false);
+  }, [productId]);
 
   // Track whether there are unsaved content changes
   // Use a forced override flag for immediately after save (before React re-renders)
