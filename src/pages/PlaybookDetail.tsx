@@ -1,16 +1,18 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles } from "lucide-react";
+import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil } from "lucide-react";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
 import { useScripts } from "@/hooks/useScripts";
+import { useScriptsMutations } from "@/hooks/useScripts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from "react-markdown";
+import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
@@ -60,9 +62,11 @@ interface SortableScriptCardProps {
   index: number;
   isOwner: boolean;
   onRemove: (id: string) => void;
+  onInlineSave: (scriptId: string, versions: any[]) => Promise<void>;
+  isAuthenticated: boolean;
 }
 
-function SortableScriptCard({ item, index, isOwner, onRemove }: SortableScriptCardProps) {
+function SortableScriptCard({ item, index, isOwner, onRemove, onInlineSave, isAuthenticated }: SortableScriptCardProps) {
   const {
     attributes,
     listeners,
@@ -72,11 +76,37 @@ function SortableScriptCard({ item, index, isOwner, onRemove }: SortableScriptCa
     isDragging,
   } = useSortable({ id: item.id });
 
+  const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
+  const [editContent, setEditContent] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
     zIndex: isDragging ? 50 : undefined,
     opacity: isDragging ? 0.8 : 1,
+  };
+
+  const startInlineEdit = (versionIdx: number) => {
+    setEditingVersionIdx(versionIdx);
+    setEditContent(item.script?.versions?.[versionIdx]?.content || "");
+  };
+
+  const cancelInlineEdit = () => {
+    setEditingVersionIdx(null);
+    setEditContent("");
+  };
+
+  const saveInlineEdit = async () => {
+    if (editingVersionIdx === null) return;
+    setIsSaving(true);
+    const updatedVersions = item.script.versions.map((v: any, i: number) =>
+      i === editingVersionIdx ? { ...v, content: editContent } : v
+    );
+    await onInlineSave(item.script_id, updatedVersions);
+    setEditingVersionIdx(null);
+    setEditContent("");
+    setIsSaving(false);
   };
 
   return (
@@ -101,7 +131,14 @@ function SortableScriptCard({ item, index, isOwner, onRemove }: SortableScriptCa
                   <CardTitle className="text-sm font-medium leading-snug">
                     {item.script?.stage}
                   </CardTitle>
-                  <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                  <div className="flex items-center gap-1">
+                    {isAuthenticated && (
+                      <Button variant="ghost" size="icon" className="h-7 w-7" onClick={(e) => { e.stopPropagation(); startInlineEdit(0); }} title="Edit script">
+                        <Pencil className="h-3.5 w-3.5" />
+                      </Button>
+                    )}
+                    <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                  </div>
                 </div>
                 <div className="flex gap-1.5 mt-1.5 flex-wrap">
                   <Badge variant="secondary" className="text-[10px]">{item.script?.category}</Badge>
@@ -126,13 +163,41 @@ function SortableScriptCard({ item, index, isOwner, onRemove }: SortableScriptCa
               <div key={vi} className="mb-4 last:mb-0">
                 <div className="flex items-center justify-between mb-2">
                   <Badge variant="outline" className="text-xs">{version.author || `Version ${vi + 1}`}</Badge>
-                  <CopyButton text={version.content || ""} />
+                  <div className="flex items-center gap-1">
+                    {isAuthenticated && editingVersionIdx !== vi && (
+                      <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(vi)}>
+                        <Pencil className="h-3 w-3" /> Edit
+                      </Button>
+                    )}
+                    <CopyButton text={version.content || ""} />
+                  </div>
                 </div>
-                <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 rounded-lg p-3 sm:p-4 overflow-x-auto">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
-                    {version.content || ""}
-                  </ReactMarkdown>
-                </div>
+                {editingVersionIdx === vi ? (
+                  <div className="space-y-2">
+                    <div className="border rounded-lg overflow-hidden">
+                      <MinimalRichEditor
+                        value={editContent}
+                        onChange={setEditContent}
+                        onSave={saveInlineEdit}
+                        onCancel={cancelInlineEdit}
+                        autoFocus
+                      />
+                    </div>
+                    <div className="flex items-center gap-2 justify-end">
+                      <Button variant="ghost" size="sm" onClick={cancelInlineEdit} disabled={isSaving}>Cancel</Button>
+                      <Button size="sm" onClick={saveInlineEdit} disabled={isSaving}>
+                        {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
+                        Save
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 rounded-lg p-3 sm:p-4 overflow-x-auto">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+                      {version.content || ""}
+                    </ReactMarkdown>
+                  </div>
+                )}
               </div>
             ))}
           </CardContent>
@@ -141,14 +206,14 @@ function SortableScriptCard({ item, index, isOwner, onRemove }: SortableScriptCa
     </Card>
   );
 }
-
 export default function PlaybookDetail() {
   const { playbookId } = useParams();
   const navigate = useNavigate();
   const { user } = useSimplifiedAuth();
   const { playbooks } = usePlaybooks();
   const { items, isLoading, removeItem, reorderItems } = usePlaybookItems(playbookId || null);
-  const { scripts, loading: scriptsLoading } = useScripts();
+  const { scripts, loading: scriptsLoading, refetch } = useScripts();
+  const { updateScript } = useScriptsMutations();
 
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [addSearch, setAddSearch] = useState("");
@@ -198,6 +263,27 @@ export default function PlaybookDetail() {
     const updates = reordered.map((item, i) => ({ id: item.id, sort_order: i }));
     reorderItems.mutate(updates);
   };
+
+  const handleInlineSave = useCallback(async (scriptId: string, versions: any[]) => {
+    // Save version history snapshot before updating
+    const currentScript = scripts.find(s => s.id === scriptId);
+    if (currentScript && user) {
+      try {
+        await supabase
+          .from('script_version_history' as any)
+          .insert({
+            script_id: scriptId,
+            versions: JSON.parse(JSON.stringify(currentScript.versions)),
+            edited_by: user.id,
+            editor_name: user.user_metadata?.display_name || user.email?.split('@')[0] || 'Unknown',
+          } as any);
+      } catch (e) {
+        console.error('Failed to save version history:', e);
+      }
+    }
+    await updateScript(scriptId, { versions });
+    refetch();
+  }, [updateScript, refetch, scripts, user]);
 
   const handleAISuggest = async () => {
     const usedIds = new Set(items.map(i => i.script_id));
@@ -379,6 +465,8 @@ export default function PlaybookDetail() {
                     index={index}
                     isOwner={isOwner}
                     onRemove={(id) => removeItem.mutate(id)}
+                    onInlineSave={handleInlineSave}
+                    isAuthenticated={!!user}
                   />
                 ))}
               </div>
