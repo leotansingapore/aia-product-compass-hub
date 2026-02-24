@@ -8,7 +8,7 @@ import { TableRow } from '@tiptap/extension-table-row';
 import { TableCell } from '@tiptap/extension-table-cell';
 import { TableHeader } from '@tiptap/extension-table-header';
 import { Button } from "@/components/ui/button";
-import { Bold, Italic, Link as LinkIcon, Type, List, Quote, Minus } from "lucide-react";
+import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Minus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { marked } from 'marked';
 import TurndownService from 'turndown';
@@ -114,12 +114,16 @@ export function MinimalRichEditor({
         class: cn(
           'min-h-[120px] p-3 text-sm leading-relaxed focus:outline-none',
           'prose prose-sm dark:prose-invert max-w-none',
+          '[&_h1]:text-xl [&_h1]:font-bold [&_h1]:mt-4 [&_h1]:mb-2 [&_h1]:text-foreground [&_h1]:border-b [&_h1]:border-border/50 [&_h1]:pb-1',
+          '[&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mt-3 [&_h2]:mb-1.5 [&_h2]:text-foreground',
+          '[&_h3]:text-base [&_h3]:font-semibold [&_h3]:mt-2 [&_h3]:mb-1 [&_h3]:text-foreground',
           '[&_a]:text-primary [&_a]:no-underline hover:[&_a]:underline',
           '[&_blockquote]:border-l-2 [&_blockquote]:border-primary/40 [&_blockquote]:pl-3 [&_blockquote]:text-muted-foreground [&_blockquote]:italic [&_blockquote]:not-italic',
           '[&_table]:border-collapse [&_table]:w-full [&_table]:text-sm',
           '[&_th]:border [&_th]:border-border [&_th]:px-2 [&_th]:py-1 [&_th]:bg-muted/50 [&_th]:text-left [&_th]:font-medium',
           '[&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1',
           '[&_hr]:my-3 [&_hr]:border-border',
+          '[&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5',
         ),
       },
       handleKeyDown: (_, event) => {
@@ -208,11 +212,29 @@ export function MinimalRichEditor({
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-            className={cn("h-7 w-7 p-0", editor.isActive('heading') && "bg-muted")}
-            title="Heading"
+            onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+            className={cn("h-7 px-1.5 text-xs font-bold", editor.isActive('heading', { level: 1 }) && "bg-muted")}
+            title="Heading 1"
           >
-            <Type className="h-3.5 w-3.5" />
+            <Heading1 className="h-3.5 w-3.5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+            className={cn("h-7 px-1.5 text-xs font-bold", editor.isActive('heading', { level: 2 }) && "bg-muted")}
+            title="Heading 2"
+          >
+            <Heading2 className="h-3.5 w-3.5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+            className={cn("h-7 px-1.5 text-xs font-bold", editor.isActive('heading', { level: 3 }) && "bg-muted")}
+            title="Heading 3"
+          >
+            <Heading3 className="h-3.5 w-3.5" />
           </Button>
           <Button
             variant="ghost"
@@ -222,6 +244,15 @@ export function MinimalRichEditor({
             title="Bullet list"
           >
             <List className="h-3.5 w-3.5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => editor.chain().focus().toggleOrderedList().run()}
+            className={cn("h-7 w-7 p-0", editor.isActive('orderedList') && "bg-muted")}
+            title="Numbered list"
+          >
+            <ListOrdered className="h-3.5 w-3.5" />
           </Button>
           <Button
             variant="ghost"
