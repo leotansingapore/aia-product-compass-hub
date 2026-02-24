@@ -589,7 +589,7 @@ export const ProductKnowledgeChat = memo(function ProductKnowledgeChat({
             value={currentMessage}
             onChange={(e) => setCurrentMessage(e.target.value)}
             onKeyDown={handleKeyPress}
-            placeholder={`Ask about ${productName}...`}
+            placeholder={modePlaceholders[chatMode](productName)}
             className={`${
               isMobile ? "min-h-[80px]" : "min-h-[50px]"
             } max-h-[120px] resize-none flex-1 border-2 border-border hover:border-primary/50 focus:border-primary transition-colors`}
