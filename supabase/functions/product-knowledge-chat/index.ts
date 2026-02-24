@@ -7,6 +7,28 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+async function embedQuery(text: string, supabaseUrl: string): Promise<number[] | null> {
+  try {
+    const response = await fetch(
+      `${supabaseUrl}/functions/v1/generate-embeddings`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")}`,
+        },
+        body: JSON.stringify({ texts: [text] }),
+      }
+    );
+
+    if (!response.ok) return null;
+    const data = await response.json();
+    return data.embeddings?.[0] || null;
+  } catch {
+    return null;
+  }
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -22,7 +44,7 @@ serve(async (req) => {
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Fetch product with all training videos
+    // Fetch product overview (always included)
     const { data: product, error: productError } = await supabase
       .from("products")
       .select("*, categories(name)")
@@ -33,48 +55,62 @@ serve(async (req) => {
       throw new Error(`Product not found: ${productId}`);
     }
 
-    // Extract all transcript content from training videos
-    const trainingVideos = (product.training_videos || []) as any[];
-    const transcriptSections: string[] = [];
+    // Get the user's latest message for semantic search
+    const latestUserMessage = [...messages].reverse().find((m: any) => m.role === "user");
+    const queryText = typeof latestUserMessage?.content === "string"
+      ? latestUserMessage.content
+      : Array.isArray(latestUserMessage?.content)
+        ? latestUserMessage.content.find((c: any) => c.type === "text")?.text || ""
+        : "";
 
-    for (const video of trainingVideos) {
-      const title = video.title || "Untitled Video";
-      const transcript = video.transcript || "";
-      const richContent = video.rich_content || "";
-      const notes = video.notes || "";
+    // Try semantic search first
+    let relevantChunks: { content: string; source_type: string; similarity: number; metadata: any }[] = [];
+    
+    const queryEmbedding = await embedQuery(queryText, supabaseUrl);
+    
+    if (queryEmbedding && queryEmbedding.length === 768) {
+      // Use pgvector semantic search
+      const embeddingStr = `[${queryEmbedding.join(",")}]`;
+      const { data: matches, error: matchError } = await supabase.rpc(
+        "match_knowledge_chunks",
+        {
+          query_embedding: embeddingStr,
+          match_count: 10,
+          filter_product_id: productId,
+        }
+      );
 
-      if (transcript || richContent || notes) {
-        let section = `\n--- LECTURE: ${title} ---\n`;
-        if (richContent) {
-          // Strip markdown formatting for cleaner context
-          section += `\nLearning Notes:\n${richContent}\n`;
-        }
-        if (transcript) {
-          section += `\nFull Transcript:\n${transcript}\n`;
-        }
-        if (notes) {
-          section += `\nAdditional Notes:\n${notes}\n`;
-        }
-        transcriptSections.push(section);
+      if (!matchError && matches && matches.length > 0) {
+        relevantChunks = matches;
       }
     }
 
-    // Also fetch knowledge chunks for this product if any exist
-    const { data: kbChunks } = await supabase
-      .from("knowledge_chunks")
-      .select("content")
-      .eq("source_id", productId)
-      .limit(20);
+    // Fallback: if no vector results, fetch recent chunks directly
+    if (relevantChunks.length === 0) {
+      const { data: fallbackChunks } = await supabase
+        .from("knowledge_chunks")
+        .select("content, source_type, metadata")
+        .eq("source_id", productId)
+        .limit(15);
 
-    let kbContext = "";
-    if (kbChunks && kbChunks.length > 0) {
-      kbContext = "\n\n--- KNOWLEDGE BASE DOCUMENTS ---\n" +
-        kbChunks.map((c: any) => c.content).join("\n\n");
+      if (fallbackChunks) {
+        relevantChunks = fallbackChunks.map(c => ({ ...c, similarity: 0 }));
+      }
     }
 
-    const knowledgeBase = transcriptSections.join("\n") + kbContext;
+    // Build context from relevant chunks
+    const chunkContext = relevantChunks
+      .map((c, i) => {
+        const source = c.source_type === "training_video"
+          ? `Lecture: ${c.metadata?.video_title || "Unknown"}`
+          : c.source_type === "document"
+            ? `Document: ${c.metadata?.title || "Unknown"}`
+            : `Source: ${c.source_type}`;
+        return `--- ${source} (relevance: ${(c.similarity * 100).toFixed(0)}%) ---\n${c.content}`;
+      })
+      .join("\n\n");
 
-    // Build system prompt
+    // Build system prompt with smart context
     const systemPrompt = `You are **${product.title} Expert** — an AI sales coach and product specialist for AIA's ${product.title} product.
 
 ## YOUR ROLE
@@ -90,10 +126,10 @@ You help financial advisors and sales consultants:
 - **Description:** ${product.description || "N/A"}
 - **Key Highlights:** ${product.highlights?.join(", ") || "N/A"}
 
-## COMPLETE PRODUCT KNOWLEDGE BASE
-The following contains ALL lecture transcripts, learning notes, and training materials. This is your primary source of truth. Always reference this material when answering questions.
+## RELEVANT KNOWLEDGE (Semantic Search Results)
+The following are the most relevant sections from training materials, transcripts, and documents based on the user's question. Use these as your primary source of truth.
 
-${knowledgeBase}
+${chunkContext || "No specific knowledge chunks found for this query. Use the product overview to answer."}
 
 ## RESPONSE GUIDELINES
 - **Be practical and actionable** — give specific talking points, not generic advice
@@ -110,7 +146,6 @@ ${knowledgeBase}
 - Always ground answers in the training material provided above
 - If a question requires specific numerical data (e.g., exact fund performance), recommend checking the latest AIA factsheets`;
 
-    // Build messages for the API, including image content if present
     const apiMessages = [
       { role: "system", content: systemPrompt },
       ...messages,
