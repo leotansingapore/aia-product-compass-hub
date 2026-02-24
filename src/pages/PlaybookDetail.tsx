@@ -285,7 +285,7 @@ export default function PlaybookDetail() {
     refetch();
   }, [updateScript, refetch, scripts, user]);
 
-
+  const handleAISuggest = async () => {
     const usedIds = new Set(items.map(i => i.script_id));
     const available = scripts.filter(s => !usedIds.has(s.id));
     if (available.length === 0) {
