@@ -1535,6 +1535,54 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
               </div>
             )}
 
+            {/* Related Script Link */}
+            {script.related_script_id && allScripts && (() => {
+              const related = allScripts.find(s => s.id === script.related_script_id);
+              if (!related) return null;
+              const relCat = categoryLabels[related.category as CategoryKey] || categoryLabels["faq"];
+              return (
+                <div className="mt-4 pt-3 border-t">
+                  <button
+                    onClick={() => navigate(`/scripts/${related.id}`)}
+                    className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors group w-full text-left"
+                  >
+                    <Link2 className="h-3.5 w-3.5 shrink-0 text-primary/60 group-hover:text-primary" />
+                    <span>Related:</span>
+                    <span className="font-medium text-foreground group-hover:text-primary truncate">{related.stage}</span>
+                    <Badge variant="secondary" className={`text-[9px] shrink-0 ${relCat.color}`}>{relCat.label}</Badge>
+                  </button>
+                </div>
+              );
+            })()}
+
+            {/* Reverse related: show scripts that link TO this script */}
+            {allScripts && (() => {
+              const children = allScripts.filter(s => s.related_script_id === script.id);
+              if (children.length === 0) return null;
+              return (
+                <div className="mt-4 pt-3 border-t">
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                    <Link2 className="h-3 w-3" /> Follow-up scripts
+                  </p>
+                  <div className="space-y-1">
+                    {children.map(child => {
+                      const childCat = categoryLabels[child.category as CategoryKey] || categoryLabels["faq"];
+                      return (
+                        <button
+                          key={child.id}
+                          onClick={() => navigate(`/scripts/${child.id}`)}
+                          className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors group w-full text-left"
+                        >
+                          <span className="font-medium text-foreground group-hover:text-primary truncate">{child.stage}</span>
+                          <Badge variant="secondary" className={`text-[9px] shrink-0 ${childCat.color}`}>{childCat.label}</Badge>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* User Contributions */}
             <ScriptUserContributions
               scriptId={script.id}
