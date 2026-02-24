@@ -2,6 +2,8 @@
  * Type definitions for the accessible AI chat interface
  */
 
+export type ChatMode = 'knowledge' | 'sales' | 'objections';
+
 export interface ChatMessage {
   id: string;
   role: 'user' | 'assistant';

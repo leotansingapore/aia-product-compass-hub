@@ -1,12 +1,19 @@
 import { Bot, RotateCcw, Settings, CheckCircle, XCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ProductData, ChatStatus } from './types';
+import { ProductData, ChatStatus, ChatMode } from './types';
 import { cn } from '@/lib/utils';
+
+const modeLabels: Record<ChatMode, string> = {
+  knowledge: 'Knowledge Q&A',
+  sales: 'Sales Coach',
+  objections: 'Objection Handling',
+};
 
 interface ChatHeaderProps {
   productData?: ProductData;
   status: ChatStatus;
+  chatMode?: ChatMode;
   onNewChat: () => void;
   onSettingsClick?: () => void;
   isMobile?: boolean;
@@ -16,6 +23,7 @@ interface ChatHeaderProps {
 export function ChatHeader({
   productData,
   status,
+  chatMode,
   onNewChat,
   onSettingsClick,
   isMobile = false,
@@ -86,9 +94,9 @@ export function ChatHeader({
                 </Badge>
               ) : null}
 
-              {productData?.category && !isMobile && (
+              {chatMode && !isMobile && (
                 <Badge variant="secondary" className="text-xs">
-                  {productData.category}
+                  {modeLabels[chatMode]}
                 </Badge>
               )}
             </div>
