@@ -2007,7 +2007,17 @@ export default function ScriptsDatabase() {
       setShowFavouritesOnly(false);
       setSearchInput("");
       setSearchQuery("");
-      navigate(`/scripts/${suggestion.id}`);
+      navigate(`/scripts/${suggestion.id}`, { replace: true });
+      // If already on this script's URL, force scroll into view
+      setTimeout(() => {
+        const el = document.getElementById(`script-${suggestion.id}`);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          // Find and open the collapsible by clicking the trigger if not already open
+          const trigger = el.querySelector('[data-state="closed"]');
+          if (trigger instanceof HTMLElement) trigger.click();
+        }
+      }, 200);
     }
     setShowSuggestions(false);
     setSelectedSuggestion(-1);
