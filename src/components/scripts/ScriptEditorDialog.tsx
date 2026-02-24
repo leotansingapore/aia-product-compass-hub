@@ -459,7 +459,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                   <div key={s.id} className={`border rounded-lg p-3 space-y-2 ${
                     s.similarityTier === "near-identical" ? "bg-destructive/5 border-destructive/20" : "bg-muted/30"
                   }`}>
-                    <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium truncate">{s.stage}</p>
                         <div className="flex flex-wrap gap-1 mt-1">
@@ -479,15 +479,15 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                         <p className="text-[10px] text-muted-foreground mt-1">{s.similarity}</p>
                       </div>
                     </div>
+
+                    {/* Inline content preview */}
+                    {s.contentPreview && (
+                      <div className="rounded-md bg-muted/50 border p-2.5 text-xs text-muted-foreground leading-relaxed max-h-32 overflow-y-auto">
+                        {s.contentPreview}{s.contentPreview.length >= 300 ? "…" : ""}
+                      </div>
+                    )}
+
                     <div className="flex gap-2 justify-end">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="gap-1 text-xs"
-                        onClick={() => window.open(`/scripts?highlight=${s.id}`, "_blank")}
-                      >
-                        <ExternalLink className="h-3 w-3" /> View
-                      </Button>
                       <Button
                         size="sm"
                         className="gap-1 text-xs"
