@@ -308,9 +308,28 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   };
 
 
+  const trackDuplicateDecision = async (action: string, overlapPercent?: number, searchTier?: string) => {
+    if (!user?.id) return;
+    try {
+      await supabase.from("script_duplicate_analytics" as any).insert({
+        user_id: user.id,
+        action,
+        similarity_score: overlapPercent ?? null,
+        search_tier: searchTier ?? null,
+        category,
+        target_audience: targetAudience,
+      });
+    } catch (e) {
+      console.error("Analytics tracking error:", e);
+    }
+  };
+
   const handleAddAsVersion = async (targetScriptId: string, targetTitle: string) => {
     setIsMerging(true);
     try {
+      const match = similarScripts.find(s => s.id === targetScriptId);
+      await trackDuplicateDecision("merge_as_version", match?.overlapPercent, match?.searchTier);
+
       const { data, error } = await supabase.functions.invoke("seed-scripts", {
         body: {
           mode: "append-version",
@@ -322,7 +341,6 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       if (data?.error) throw new Error(data.error);
       toast.success(`Added as a new version to "${targetTitle}" (${data.totalVersions} versions total)`);
       onClose();
-      // Navigate to the merged script so user can verify
       setTimeout(() => navigate(`/scripts/${targetScriptId}`, { replace: true }), 150);
     } catch (err: any) {
       console.error("Merge error:", err);
@@ -336,6 +354,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     if (highestSimilarityTier === "near-identical") {
       setShowOverrideConfirm(true);
     } else {
+      const topMatch = similarScripts[0];
+      trackDuplicateDecision("add_separate", topMatch?.overlapPercent, topMatch?.searchTier);
       setStep("review");
     }
   };
@@ -693,6 +713,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
             <AlertDialogCancel>Go Back</AlertDialogCancel>
             <AlertDialogAction
               onClick={() => {
+                const topMatch = similarScripts[0];
+                trackDuplicateDecision("override_near_identical", topMatch?.overlapPercent, topMatch?.searchTier);
                 setShowOverrideConfirm(false);
                 setStep("review");
               }}

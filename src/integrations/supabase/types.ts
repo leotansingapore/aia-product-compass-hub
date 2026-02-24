@@ -1143,6 +1143,39 @@ export type Database = {
         }
         Relationships: []
       }
+      script_duplicate_analytics: {
+        Row: {
+          action: string
+          category: string | null
+          created_at: string
+          id: string
+          search_tier: string | null
+          similarity_score: number | null
+          target_audience: string | null
+          user_id: string
+        }
+        Insert: {
+          action: string
+          category?: string | null
+          created_at?: string
+          id?: string
+          search_tier?: string | null
+          similarity_score?: number | null
+          target_audience?: string | null
+          user_id: string
+        }
+        Update: {
+          action?: string
+          category?: string | null
+          created_at?: string
+          id?: string
+          search_tier?: string | null
+          similarity_score?: number | null
+          target_audience?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       script_favourites: {
         Row: {
           created_at: string
