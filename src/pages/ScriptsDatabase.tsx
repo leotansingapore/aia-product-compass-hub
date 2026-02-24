@@ -6,6 +6,7 @@ import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { ScriptsChatWidget } from "@/components/scripts/ScriptsChatWidget";
 import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
+import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 import { KnowledgeManagement } from "@/components/scripts/KnowledgeManagement";
 import { ScriptUserContributions } from "@/components/scripts/ScriptUserContributions";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -1322,12 +1323,37 @@ function MobileVersionSelector({ versions, searchQuery }: { versions: ScriptVers
   );
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[] }) {
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void> }) {
   const [open, setOpen] = useState(isOpenByUrl);
+  const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
+  const [editContent, setEditContent] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
   const navigate = useNavigate();
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
   const snippet = useMemo(() => getSearchSnippet(script.versions, searchQuery), [script.versions, searchQuery]);
+
+  const startInlineEdit = (versionIdx: number) => {
+    setEditingVersionIdx(versionIdx);
+    setEditContent(script.versions[versionIdx]?.content || "");
+  };
+
+  const cancelInlineEdit = () => {
+    setEditingVersionIdx(null);
+    setEditContent("");
+  };
+
+  const saveInlineEdit = async () => {
+    if (editingVersionIdx === null || !onInlineSave) return;
+    setIsSaving(true);
+    const updatedVersions = script.versions.map((v, i) =>
+      i === editingVersionIdx ? { ...v, content: editContent } : v
+    );
+    await onInlineSave(script.id, updatedVersions);
+    setEditingVersionIdx(null);
+    setEditContent("");
+    setIsSaving(false);
+  };
 
   useEffect(() => {
     if (isOpenByUrl) {
@@ -1428,7 +1454,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   )}
                   {isAdmin && (
                     <>
-                      <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); onEdit(); }} title="Edit script">
+                      <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); if (!open) handleToggle(true); setTimeout(() => startInlineEdit(0), 100); }} title="Edit content inline">
                         <Pencil className="h-3.5 w-3.5" />
                       </Button>
                       <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
@@ -1458,26 +1484,82 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   </TabsList>
                   {script.versions.map((v, i) => (
                     <TabsContent key={i} value={String(i)}>
-                      <div className="flex justify-end mb-2">
-                        <CopyButton text={v.content} />
-                      </div>
-                       <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
-                      </div>
+                      {editingVersionIdx === i ? (
+                        <div className="space-y-2">
+                          <div className="border rounded-lg overflow-hidden">
+                            <MinimalRichEditor
+                              value={editContent}
+                              onChange={setEditContent}
+                              onSave={saveInlineEdit}
+                              onCancel={cancelInlineEdit}
+                              autoFocus
+                            />
+                          </div>
+                          <div className="flex items-center gap-2 justify-end">
+                            <Button variant="ghost" size="sm" onClick={cancelInlineEdit} disabled={isSaving}>Cancel</Button>
+                            <Button size="sm" onClick={saveInlineEdit} disabled={isSaving}>
+                              {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
+                              Save
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="flex justify-end mb-2 gap-1">
+                            {isAdmin && onInlineSave && (
+                              <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(i)}>
+                                <Pencil className="h-3 w-3" /> Edit
+                              </Button>
+                            )}
+                            <CopyButton text={v.content} />
+                          </div>
+                          <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
+                          </div>
+                        </>
+                      )}
                     </TabsContent>
                   ))}
                 </Tabs>
               )
             ) : (
-              <>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs text-muted-foreground font-medium">{script.versions[0]?.author}</span>
-                  <CopyButton text={script.versions[0]?.content || ""} />
+              editingVersionIdx === 0 ? (
+                <div className="space-y-2">
+                  <div className="border rounded-lg overflow-hidden">
+                    <MinimalRichEditor
+                      value={editContent}
+                      onChange={setEditContent}
+                      onSave={saveInlineEdit}
+                      onCancel={cancelInlineEdit}
+                      autoFocus
+                    />
+                  </div>
+                  <div className="flex items-center gap-2 justify-end">
+                    <Button variant="ghost" size="sm" onClick={cancelInlineEdit} disabled={isSaving}>Cancel</Button>
+                    <Button size="sm" onClick={saveInlineEdit} disabled={isSaving}>
+                      {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
+                      Save
+                    </Button>
+                  </div>
                 </div>
-                <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
-                </div>
-              </>
+              ) : (
+                <>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-xs text-muted-foreground font-medium">{script.versions[0]?.author}</span>
+                    <div className="flex items-center gap-1">
+                      {isAdmin && onInlineSave && (
+                        <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(0)}>
+                          <Pencil className="h-3 w-3" /> Edit
+                        </Button>
+                      )}
+                      <CopyButton text={script.versions[0]?.content || ""} />
+                    </div>
+                  </div>
+                  <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
+                  </div>
+                </>
+              )
             )}
 
             {/* Image Attachments Gallery */}
@@ -1597,7 +1679,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   );
 }
 
-function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, allScripts }: {
+function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, allScripts, onInlineSave }: {
   subType: string;
   config: { label: string; icon: string; description: string };
   scripts: ScriptEntry[];
@@ -1615,6 +1697,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
   setDeleteTarget: (s: ScriptEntry) => void;
   navigate: (path: string, opts?: { replace?: boolean }) => void;
   allScripts?: ScriptEntry[];
+  onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>;
 }) {
   const [open, setOpen] = useState(true);
   return (
@@ -1654,6 +1737,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
                 allScripts={allScripts}
                 onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                 onDelete={() => setDeleteTarget(script)}
+                onInlineSave={onInlineSave}
                 onToggle={(open) => {
                   if (open) navigate(`/scripts/${script.id}`, { replace: true });
                   else if (scriptId === script.id) navigate('/scripts', { replace: true });
@@ -2002,6 +2086,11 @@ export default function ScriptsDatabase() {
     (Object.keys(categoryLabels) as CategoryKey[]).filter(key => counts[key] > 0),
     [counts]
   );
+
+  const handleInlineSave = useCallback(async (scriptId: string, versions: ScriptVersion[]) => {
+    await updateScript(scriptId, { versions });
+    refetch();
+  }, [updateScript, refetch]);
 
   const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null }) => {
     if (editingScript) {
@@ -2461,6 +2550,7 @@ export default function ScriptsDatabase() {
                             setDeleteTarget={setDeleteTarget}
                             navigate={navigate}
                             allScripts={dbScripts}
+                            onInlineSave={handleInlineSave}
                           />
                         );
                       })}
@@ -2487,6 +2577,7 @@ export default function ScriptsDatabase() {
                         allScripts={dbScripts}
                         onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                         onDelete={() => setDeleteTarget(script)}
+                        onInlineSave={handleInlineSave}
                         onToggle={(open) => {
                           if (open) {
                             navigate(`/scripts/${script.id}`, { replace: true });
