@@ -354,6 +354,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     if (highestSimilarityTier === "near-identical") {
       setShowOverrideConfirm(true);
     } else {
+      const topMatch = similarScripts[0];
+      trackDuplicateDecision("add_separate", topMatch?.overlapPercent, topMatch?.searchTier);
       setStep("review");
     }
   };
