@@ -20,8 +20,8 @@ import {
   Trash2,
   AlertTriangle,
   Loader2,
-  Eye,
-  EyeOff
+   Globe,
+   ArchiveRestore
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -375,8 +375,8 @@ const AppSidebar = memo(function AppSidebar() {
                                       className="cursor-pointer focus:bg-muted focus:text-foreground"
                                       onClick={() => navigate(`/category/${category.id}`)}
                                     >
-                                      <Eye className="h-4 w-4 mr-2" />
-                                      View Category
+                                       <Globe className="h-4 w-4 mr-2" />
+                                       View Category
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
                                       className="cursor-pointer focus:bg-muted focus:text-foreground"
@@ -396,7 +396,7 @@ const AppSidebar = memo(function AppSidebar() {
                                         }
                                       }}
                                     >
-                                      {category.published ? <EyeOff className="h-4 w-4 mr-2" /> : <Eye className="h-4 w-4 mr-2" />}
+                                      {category.published ? <ArchiveRestore className="h-4 w-4 mr-2" /> : <Globe className="h-4 w-4 mr-2" />}
                                       {category.published ? "Unpublish" : "Publish"}
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
