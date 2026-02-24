@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Upload, FileText, Trash2, ExternalLink, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
@@ -14,6 +16,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export interface ProductFile {
   name: string;
@@ -33,20 +43,17 @@ interface ProductFileUploadProps {
 }
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
-const ALLOWED_TYPES = [
-  "application/pdf",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  "text/plain",
-  "text/markdown",
-  "text/csv",
-];
-
 const ALLOWED_EXTENSIONS = [".pdf", ".docx", ".txt", ".md", ".csv"];
 
 function formatFileSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function getDisplayNameDefault(fileName: string): string {
+  // Remove extension and clean up for a nice default
+  return fileName.replace(/\.[^.]+$/, "").replace(/[_-]/g, " ");
 }
 
 export function ProductFileUpload({
@@ -58,9 +65,12 @@ export function ProductFileUpload({
 }: ProductFileUploadProps) {
   const [uploading, setUploading] = useState(false);
   const [deletingIndex, setDeletingIndex] = useState<number | null>(null);
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
+  const [displayName, setDisplayName] = useState("");
+  const [namingOpen, setNamingOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -83,7 +93,30 @@ export function ProductFileUpload({
       return;
     }
 
+    // Show naming dialog
+    setPendingFile(file);
+    setDisplayName(getDisplayNameDefault(file.name));
+    setNamingOpen(true);
+
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  const handleNamingCancel = () => {
+    setNamingOpen(false);
+    setPendingFile(null);
+    setDisplayName("");
+  };
+
+  const handleNamingConfirm = async () => {
+    if (!pendingFile) return;
+    const file = pendingFile;
+    const finalName = displayName.trim() || getDisplayNameDefault(file.name);
+
+    setNamingOpen(false);
+    setPendingFile(null);
+    setDisplayName("");
     setUploading(true);
+
     try {
       // Upload to Supabase storage
       const fileName = `${productId}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
@@ -102,7 +135,7 @@ export function ProductFileUpload({
       const { data: docRecord, error: docError } = await supabase
         .from("knowledge_documents")
         .insert({
-          title: file.name,
+          title: finalName,
           file_path: fileName,
           file_type: file.type,
           file_size: file.size,
@@ -118,7 +151,7 @@ export function ProductFileUpload({
 
       // Add to product files list
       const newFile: ProductFile = {
-        name: file.name,
+        name: finalName,
         file_path: fileName,
         file_url: urlData.publicUrl,
         file_size: file.size,
@@ -129,7 +162,7 @@ export function ProductFileUpload({
       const updatedFiles = [...files, newFile];
       await onFilesChange(updatedFiles);
 
-      toast({ title: "File uploaded ✓", description: file.name });
+      toast({ title: "File uploaded ✓", description: finalName });
 
       // Auto-sync to AI knowledge base (fire-and-forget)
       if (docRecord?.id) {
@@ -142,7 +175,7 @@ export function ProductFileUpload({
             if (error) throw error;
             toast({
               title: "AI knowledge base updated ✓",
-              description: `${data?.chunks_created ?? 0} chunks indexed from "${file.name}"`,
+              description: `${data?.chunks_created ?? 0} chunks indexed from "${finalName}"`,
             });
           })
           .catch((err: any) => {
@@ -163,7 +196,6 @@ export function ProductFileUpload({
       });
     } finally {
       setUploading(false);
-      if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
 
@@ -200,6 +232,41 @@ export function ProductFileUpload({
 
   return (
     <div className="space-y-3">
+      {/* Naming dialog */}
+      <Dialog open={namingOpen} onOpenChange={(open) => { if (!open) handleNamingCancel(); }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Name this file</DialogTitle>
+            <DialogDescription>
+              Give this file a descriptive name so users know what it contains.
+              {pendingFile && (
+                <span className="block mt-1 text-xs font-mono text-muted-foreground truncate">
+                  {pendingFile.name} · {formatFileSize(pendingFile.size)}
+                </span>
+              )}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-2">
+            <Label htmlFor="file-display-name">Display name</Label>
+            <Input
+              id="file-display-name"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              placeholder="e.g. Product Brochure, Benefit Illustration"
+              onKeyDown={(e) => { if (e.key === "Enter") handleNamingConfirm(); }}
+              autoFocus
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={handleNamingCancel}>Cancel</Button>
+            <Button onClick={handleNamingConfirm} disabled={!displayName.trim()}>
+              <Upload className="h-4 w-4 mr-2" />
+              Upload
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       {/* File list */}
       {files.length > 0 && (
         <div className="space-y-2">
