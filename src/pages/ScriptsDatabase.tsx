@@ -1322,12 +1322,37 @@ function MobileVersionSelector({ versions, searchQuery }: { versions: ScriptVers
   );
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[] }) {
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void> }) {
   const [open, setOpen] = useState(isOpenByUrl);
+  const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
+  const [editContent, setEditContent] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
   const navigate = useNavigate();
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
   const snippet = useMemo(() => getSearchSnippet(script.versions, searchQuery), [script.versions, searchQuery]);
+
+  const startInlineEdit = (versionIdx: number) => {
+    setEditingVersionIdx(versionIdx);
+    setEditContent(script.versions[versionIdx]?.content || "");
+  };
+
+  const cancelInlineEdit = () => {
+    setEditingVersionIdx(null);
+    setEditContent("");
+  };
+
+  const saveInlineEdit = async () => {
+    if (editingVersionIdx === null || !onInlineSave) return;
+    setIsSaving(true);
+    const updatedVersions = script.versions.map((v, i) =>
+      i === editingVersionIdx ? { ...v, content: editContent } : v
+    );
+    await onInlineSave(script.id, updatedVersions);
+    setEditingVersionIdx(null);
+    setEditContent("");
+    setIsSaving(false);
+  };
 
   useEffect(() => {
     if (isOpenByUrl) {
