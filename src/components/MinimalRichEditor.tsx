@@ -41,22 +41,126 @@ export function MinimalRichEditor({
     }
   }, [autoFocus]);
 
-  // Convert plain text with basic markdown to HTML
+  // Convert markdown text to HTML for display
   const convertTextToHtml = (text: string): string => {
     if (!text) return '';
-    
-    return text
-      // Convert URLs to links
-      .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">$1</a>')
-      // Convert **bold** to <strong>
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      // Convert *italic* to <em>
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      // Convert line breaks
-      .replace(/\n/g, '<br>');
+
+    const lines = text.split('\n');
+    const htmlLines: string[] = [];
+    let inTable = false;
+    let tableRows: string[] = [];
+
+    const flushTable = () => {
+      if (tableRows.length > 0) {
+        // First row = header, second row = separator (skip), rest = body
+        const headerCells = tableRows[0].split('|').map(c => c.trim()).filter(Boolean);
+        let html = '<table class="border-collapse w-full text-sm my-2"><thead><tr>';
+        headerCells.forEach(c => { html += `<th class="border border-border px-2 py-1 bg-muted/50 text-left font-medium">${inlineMarkdown(c)}</th>`; });
+        html += '</tr></thead><tbody>';
+        for (let r = 2; r < tableRows.length; r++) {
+          const cells = tableRows[r].split('|').map(c => c.trim()).filter(Boolean);
+          html += '<tr>';
+          cells.forEach(c => { html += `<td class="border border-border px-2 py-1">${inlineMarkdown(c)}</td>`; });
+          html += '</tr>';
+        }
+        html += '</tbody></table>';
+        htmlLines.push(html);
+        tableRows = [];
+      }
+      inTable = false;
+    };
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+
+      // Table row detection
+      if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
+        // Skip separator rows like |---|---|
+        if (/^\|[\s\-:|]+\|$/.test(trimmed)) {
+          if (!inTable) { inTable = true; }
+          tableRows.push(trimmed);
+          continue;
+        }
+        inTable = true;
+        tableRows.push(trimmed);
+        continue;
+      } else if (inTable) {
+        flushTable();
+      }
+
+      // Horizontal rule
+      if (/^(-{3,}|\*{3,}|_{3,})$/.test(trimmed)) {
+        htmlLines.push('<hr class="my-3 border-border">');
+        continue;
+      }
+
+      // Headings
+      const headingMatch = trimmed.match(/^(#{1,6})\s+(.*)/);
+      if (headingMatch) {
+        const level = headingMatch[1].length;
+        const sizes: Record<number, string> = { 1: 'text-xl font-bold', 2: 'text-lg font-semibold', 3: 'text-base font-semibold', 4: 'text-sm font-semibold', 5: 'text-sm font-medium', 6: 'text-xs font-medium' };
+        htmlLines.push(`<div class="${sizes[level] || sizes[3]} mt-2 mb-1">${inlineMarkdown(headingMatch[2])}</div>`);
+        continue;
+      }
+
+      // Blockquote
+      if (trimmed.startsWith('>')) {
+        const content = trimmed.replace(/^>\s?/, '');
+        htmlLines.push(`<div class="border-l-2 border-primary/40 pl-3 text-muted-foreground italic my-0.5">${inlineMarkdown(content)}</div>`);
+        continue;
+      }
+
+      // Unordered list
+      if (/^[-*+]\s/.test(trimmed)) {
+        const content = trimmed.replace(/^[-*+]\s+/, '');
+        htmlLines.push(`<div class="flex gap-1.5 ml-2"><span class="text-muted-foreground">•</span><span>${inlineMarkdown(content)}</span></div>`);
+        continue;
+      }
+
+      // Checkbox items
+      if (/^[-*]\s\[[ x]\]/.test(trimmed)) {
+        const checked = trimmed.includes('[x]');
+        const content = trimmed.replace(/^[-*]\s\[[ x]\]\s*/, '');
+        htmlLines.push(`<div class="flex gap-1.5 ml-2"><span>${checked ? '✅' : '☐'}</span><span>${inlineMarkdown(content)}</span></div>`);
+        continue;
+      }
+
+      // Empty line
+      if (!trimmed) {
+        htmlLines.push('<br>');
+        continue;
+      }
+
+      // Regular paragraph
+      htmlLines.push(`<div>${inlineMarkdown(trimmed)}</div>`);
+    }
+
+    flushTable();
+    return htmlLines.join('');
   };
 
-  // Convert HTML back to plain text with markdown
+  // Convert inline markdown (bold, italic, links, code)
+  const inlineMarkdown = (text: string): string => {
+    return text
+      // Markdown links [text](url)
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">$1</a>')
+      // Bare URLs
+      .replace(/(?<!\])\((https?:\/\/[^\s)]+)\)|(?<!["\w/])(https?:\/\/[^\s<]+)/g, (match, g1, g2) => {
+        const url = g1 || g2;
+        if (!url) return match;
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">${url}</a>`;
+      })
+      // Inline code
+      .replace(/`([^`]+)`/g, '<code class="bg-muted px-1 py-0.5 rounded text-xs">$1</code>')
+      // Bold
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      // Italic
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      // Strikethrough
+      .replace(/~~(.*?)~~/g, '<del>$1</del>');
+  };
+
+  // Convert HTML back to markdown text
   const convertHtmlToText = (html: string): string => {
     if (!html) return '';
     
@@ -66,14 +170,29 @@ export function MinimalRichEditor({
       // Remove list wrappers
       .replace(/<\/?ul[^>]*>/g, '')
       .replace(/<\/?ol[^>]*>/g, '')
-      // Convert links back to URLs
-      .replace(/<a[^>]*href="([^"]*)"[^>]*>.*?<\/a>/g, '$1')
+      // Convert links to markdown links
+      .replace(/<a[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/g, (_, url, text) => {
+        return text === url ? url : `[${text}](${url})`;
+      })
       // Convert <strong> to **bold**
       .replace(/<strong>(.*?)<\/strong>/g, '**$1**')
+      .replace(/<b>(.*?)<\/b>/g, '**$1**')
       // Convert <em> to *italic*
       .replace(/<em>(.*?)<\/em>/g, '*$1*')
-      // Convert <br> to line breaks
+      .replace(/<i>(.*?)<\/i>/g, '*$1*')
+      // Convert <del> to ~~strikethrough~~
+      .replace(/<del>(.*?)<\/del>/g, '~~$1~~')
+      // Convert <code> to `code`
+      .replace(/<code[^>]*>(.*?)<\/code>/g, '`$1`')
+      // Convert headings
+      .replace(/<h([1-6])[^>]*>(.*?)<\/h\1>/g, (_, level, text) => '#'.repeat(Number(level)) + ' ' + text + '\n')
+      // Convert <br> and <hr> 
       .replace(/<br\s*\/?>/g, '\n')
+      .replace(/<hr[^>]*>/g, '---\n')
+      // Convert divs to newlines (our rendered blocks)
+      .replace(/<\/div>\s*<div/g, '</div>\n<div')
+      .replace(/<div[^>]*>/g, '')
+      .replace(/<\/div>/g, '\n')
       // Remove any remaining HTML tags
       .replace(/<[^>]*>/g, '')
       // Decode HTML entities
@@ -81,7 +200,10 @@ export function MinimalRichEditor({
       .replace(/&amp;/g, '&')
       .replace(/&lt;/g, '<')
       .replace(/&gt;/g, '>')
-      .replace(/&quot;/g, '"');
+      .replace(/&quot;/g, '"')
+      // Clean up extra newlines
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
   };
 
   const handleInput = useCallback(() => {
