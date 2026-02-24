@@ -116,18 +116,28 @@ export const ProductKnowledgeChat = memo(function ProductKnowledgeChat({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const isMobile = useIsMobile();
 
+  const quickQuestions = getQuickQuestions(chatMode, productName);
+
   // Initialize with welcome message
   useEffect(() => {
     if (messages.length === 0) {
       setMessages([
         {
           role: "assistant",
-          content: `👋 **Hey! I'm your ${productName} Expert.**\n\nI've studied all the training lectures and product materials. Ask me anything about:\n\n- 📊 **Product features** — bonuses, charges, fund selection, premium pass\n- 🎯 **Sales strategies** — positioning, target market, closing techniques\n- 🛡️ **Objection handling** — how to address common pushbacks\n- 🔢 **Technical details** — calculations, lock-in periods, comparisons\n\nYou can also **paste images** of benefit illustrations or documents for me to analyze.\n\n**Try a quick question below or ask me anything!**`,
+          content: getModeWelcome(chatMode, productName),
           timestamp: new Date(),
         },
       ]);
     }
-  }, [productName]);
+  }, [productName, chatMode]);
+
+  const handleModeChange = useCallback((newMode: ChatMode) => {
+    setChatMode(newMode);
+    setMessages([]);
+    setShowScrollButton(false);
+    setAttachedImage(null);
+    setAttachedFileName(null);
+  }, []);
 
   const scrollToBottom = useCallback((smooth = true) => {
     if (!scrollAreaRef.current) return;
