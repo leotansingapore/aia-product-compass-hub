@@ -443,6 +443,31 @@ export const ProductKnowledgeChat = memo(function ProductKnowledgeChat({
         </Button>
       </div>
 
+      {/* Mode Selector */}
+      <div className="px-3 py-2 border-b bg-muted/30 flex justify-center">
+        <ToggleGroup
+          type="single"
+          value={chatMode}
+          onValueChange={(v) => { if (v) handleModeChange(v as ChatMode); }}
+          className="gap-0.5"
+        >
+          {modeConfig.map(({ value, label, icon: Icon }) => (
+            <ToggleGroupItem
+              key={value}
+              value={value}
+              aria-label={label}
+              className={cn(
+                "gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors",
+                "data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+              )}
+            >
+              <Icon className="h-3 w-3" />
+              <span>{label}</span>
+            </ToggleGroupItem>
+          ))}
+        </ToggleGroup>
+      </div>
+
       {/* Messages */}
       <div className="flex-1 relative overflow-hidden">
         <ScrollArea className="h-full" ref={scrollAreaRef}>
