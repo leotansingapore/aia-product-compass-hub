@@ -1320,6 +1320,7 @@ export type Database = {
           category: string
           created_at: string
           id: string
+          related_script_id: string | null
           script_role: string | null
           sort_order: number
           stage: string
@@ -1332,6 +1333,7 @@ export type Database = {
           category: string
           created_at?: string
           id?: string
+          related_script_id?: string | null
           script_role?: string | null
           sort_order?: number
           stage: string
@@ -1344,6 +1346,7 @@ export type Database = {
           category?: string
           created_at?: string
           id?: string
+          related_script_id?: string | null
           script_role?: string | null
           sort_order?: number
           stage?: string
@@ -1352,7 +1355,15 @@ export type Database = {
           updated_at?: string
           versions?: Json
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "scripts_related_script_id_fkey"
+            columns: ["related_script_id"]
+            isOneToOne: false
+            referencedRelation: "scripts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       speech_metrics: {
         Row: {
