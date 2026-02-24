@@ -15,6 +15,7 @@ export { QuickActions } from './QuickActions';
 
 export type {
   ChatMessage,
+  ChatMode,
   QuickAction,
   ProductData,
   ChatStatus,
