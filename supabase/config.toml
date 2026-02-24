@@ -52,3 +52,6 @@ verify_jwt = false
 
 [functions.classify-objection]
 verify_jwt = false
+
+[functions.product-knowledge-chat]
+verify_jwt = false

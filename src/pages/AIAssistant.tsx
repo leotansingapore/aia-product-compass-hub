@@ -5,7 +5,7 @@ import { SkeletonLoader } from '@/components/SkeletonLoader';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { ProtectedPage } from '@/components/ProtectedPage';
 import { BrandedPageHeader, BreadcrumbItem } from '@/components/layout/BrandedPageHeader';
-import { EnhancedAIChat } from '@/components/product-detail/EnhancedAIChat';
+import { ProductKnowledgeChat } from '@/components/product-detail/ProductKnowledgeChat';
 
 export default function AIAssistant() {
   const { productId } = useParams<{ productId: string }>();
@@ -83,16 +83,9 @@ export default function AIAssistant() {
 
           {/* Full-Width AI Chat */}
           <div className="flex-1 min-h-0">
-            <EnhancedAIChat
-              productData={{
-                id: product.id,
-                name: product.title,
-                category: product.category_id,
-                summary: product.description,
-                highlights: product.highlights,
-                assistant_id: product.assistant_id,
-                assistant_instructions: product.assistant_instructions,
-              }}
+            <ProductKnowledgeChat
+              productId={product.id}
+              productName={product.title}
             />
           </div>
         </div>
