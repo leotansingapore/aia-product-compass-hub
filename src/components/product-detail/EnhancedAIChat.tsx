@@ -4,10 +4,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Send, MessageCircle, Loader2, ArrowDown, Bell, RotateCcw } from "lucide-react";
+import { Send, MessageCircle, Loader2, ArrowDown, Bell, RotateCcw, Search, TrendingUp, Shield, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ChatMessage } from "./ChatMessage";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { cn } from "@/lib/utils";
+import type { ChatMode } from "@/components/chat/types";
 
 interface ChatMessageType {
   role: 'user' | 'assistant';
@@ -33,27 +36,56 @@ interface EnhancedAIChatProps {
   };
 }
 
-export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
-  const [messages, setMessages] = useState<ChatMessageType[]>([]);
-  const [currentMessage, setCurrentMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [threadId, setThreadId] = useState<string | null>(null);
-  const [showScrollButton, setShowScrollButton] = useState(false);
-  const [hasNewMessage, setHasNewMessage] = useState(false);
-  const [userScrolledUp, setUserScrolledUp] = useState(false);
-  const { toast } = useToast();
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
+const modeConfig = [
+  { value: 'knowledge' as ChatMode, label: 'Q&A', icon: Search },
+  { value: 'sales' as ChatMode, label: 'Sales', icon: TrendingUp },
+  { value: 'objections' as ChatMode, label: 'Objections', icon: Shield },
+  { value: 'roleplay' as ChatMode, label: 'Role Play', icon: Users },
+];
 
-  // Product-specific quick questions
-  const quickQuestions: QuickQuestion[] = [
-    { question: `What are the key benefits of ${productData?.name}?`, category: "Benefits" },
-    { question: `Who is the ideal customer for ${productData?.name}?`, category: "Target Market" },
-    { question: `How does ${productData?.name} compare to competitors?`, category: "Comparison" },
-    { question: `What are common objections for ${productData?.name} and how to handle them?`, category: "Sales Tips" },
-    { question: `What documentation do I need for ${productData?.name} applications?`, category: "Process" },
-    { question: `What are the premium payment options for ${productData?.name}?`, category: "Pricing" }
-  ];
+const modeWelcome: Record<ChatMode, (name: string) => string> = {
+  knowledge: (name) => `🔍 **${name} — Knowledge Q&A**\n\nAsk me anything about this product. I'll give you concise, factual answers.\n\n**Try a quick question below or ask me anything!** ⚡`,
+  sales: (name) => `📈 **${name} — Sales Coach**\n\nI'll help you position this product, craft pitches, and close deals.\n\n**Pick a prompt below to get started.**`,
+  objections: (name) => `🛡️ **${name} — Objection Handling**\n\nPractice handling client pushbacks using the 4-step framework:\n1. **Acknowledge** 2. **Common Ground** 3. **Different Perspective** 4. **Safety Valve**\n\n**Choose a scenario below!**`,
+  roleplay: (name) => `🎭 **${name} — Role Play**\n\nI'll act as a **skeptical client**. Pitch me ${name} and handle my pushbacks.\n\nType **"end session"** when done for your scorecard.\n\n**Pick a client profile or just start pitching!**`,
+};
+
+function getQuickQuestions(mode: ChatMode, name: string): QuickQuestion[] {
+  const qs: Record<ChatMode, QuickQuestion[]> = {
+    knowledge: [
+      { question: `What are the key features of ${name}?`, category: "Features" },
+      { question: `What are the charges and fees?`, category: "Charges" },
+      { question: `How does the premium payment work?`, category: "Premiums" },
+      { question: `What are the fund options available?`, category: "Funds" },
+      { question: `What is the lock-in period?`, category: "Terms" },
+      { question: `What bonuses or boosters are included?`, category: "Bonuses" },
+    ],
+    sales: [
+      { question: `Give me a 2-minute elevator pitch for ${name}`, category: "Pitch" },
+      { question: `Who is the ideal customer for ${name}?`, category: "Target" },
+      { question: `How to position ${name} against competitors?`, category: "Positioning" },
+      { question: `What closing techniques work best?`, category: "Closing" },
+      { question: `Give me 3 talking points for a client meeting`, category: "Talking Points" },
+      { question: `What analogies can I use to explain ${name}?`, category: "Analogies" },
+    ],
+    objections: [
+      { question: `Client says "${name} is too expensive"`, category: "Price" },
+      { question: `Client says "I want to wait and think about it"`, category: "Timing" },
+      { question: `Client says "I already have a similar policy"`, category: "Existing" },
+      { question: `Client says "I don't trust insurance companies"`, category: "Trust" },
+      { question: `Client says "My friend recommended a different product"`, category: "Competition" },
+      { question: `Client says "I'd rather invest on my own"`, category: "DIY" },
+    ],
+    roleplay: [
+      { question: `I'm a 30-year-old professional saving for retirement. Pitch me ${name}.`, category: "Young Pro" },
+      { question: `I'm a parent wanting to save for my child's education. Why ${name}?`, category: "Parent" },
+      { question: `I already have investments. Convince me I need ${name} too.`, category: "Experienced" },
+      { question: `I'm risk-averse and prefer fixed deposits. Why should I consider ${name}?`, category: "Conservative" },
+      { question: `end session`, category: "Score Me" },
+    ],
+  };
+  return qs[mode];
+}
 
   // Smart scroll detection - check if user is near bottom
   const isNearBottom = () => {
