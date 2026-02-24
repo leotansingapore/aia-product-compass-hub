@@ -243,11 +243,11 @@ export default function PlaybookDetail() {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
 
-    const oldIndex = itemsWithScripts.findIndex(i => i.id === active.id);
-    const newIndex = itemsWithScripts.findIndex(i => i.id === over.id);
+    const oldIndex = itemsWithData.findIndex(i => i.id === active.id);
+    const newIndex = itemsWithData.findIndex(i => i.id === over.id);
     if (oldIndex === -1 || newIndex === -1) return;
 
-    const reordered = [...itemsWithScripts];
+    const reordered = [...itemsWithData];
     const [moved] = reordered.splice(oldIndex, 1);
     reordered.splice(newIndex, 0, moved);
 
@@ -288,7 +288,7 @@ export default function PlaybookDetail() {
     setAiSuggestions(null);
     setAiSummary("");
     try {
-      const existingScripts = itemsWithScripts.map(i => ({
+      const existingScripts = itemsWithData.filter(i => i.script).map(i => ({
         stage: i.script?.stage,
         category: i.script?.category,
         target_audience: i.script?.target_audience,
@@ -425,18 +425,18 @@ export default function PlaybookDetail() {
           </Card>
         )}
 
-        {/* Scripts List */}
-        {isLoading || scriptsLoading ? (
+        {/* Items List */}
+        {isLoading || scriptsLoading || objectionsLoading ? (
           <div className="flex justify-center py-12">
             <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
           </div>
-        ) : itemsWithScripts.length === 0 ? (
+        ) : itemsWithData.length === 0 ? (
           <Card className="text-center py-12">
             <CardContent>
-              <p className="text-muted-foreground mb-4">No scripts in this playbook yet.</p>
+              <p className="text-muted-foreground mb-4">No items in this playbook yet.</p>
               {isOwner && (
                 <Button onClick={() => setAddDialogOpen(true)}>
-                  <Plus className="h-4 w-4 mr-2" /> Add Scripts
+                  <Plus className="h-4 w-4 mr-2" /> Add Items
                 </Button>
               )}
             </CardContent>
@@ -447,17 +447,26 @@ export default function PlaybookDetail() {
             collisionDetection={closestCenter}
             onDragEnd={handleDragEnd}
           >
-            <SortableContext items={itemsWithScripts.map(i => i.id)} strategy={verticalListSortingStrategy}>
+            <SortableContext items={itemsWithData.map(i => i.id)} strategy={verticalListSortingStrategy}>
               <div className="space-y-3">
-                {itemsWithScripts.map((item, index) => (
-                  <SortableScriptCard
-                    key={item.id}
-                    item={item}
-                    index={index}
-                    isOwner={isOwner}
-                    onRemove={(id) => removeItem.mutate(id)}
-                    onInlineSave={handleInlineSave}
-                    isAuthenticated={!!user}
+                {itemsWithData.map((item, index) => (
+                  item.item_type === 'objection' && item.objection ? (
+                    <SortableObjectionCard
+                      key={item.id}
+                      item={item}
+                      index={index}
+                      isOwner={isOwner}
+                      onRemove={(id) => removeItem.mutate(id)}
+                    />
+                  ) : (
+                    <SortableScriptCard
+                      key={item.id}
+                      item={item}
+                      index={index}
+                      isOwner={isOwner}
+                      onRemove={(id) => removeItem.mutate(id)}
+                      onInlineSave={handleInlineSave}
+                      isAuthenticated={!!user}
                   />
                 ))}
               </div>
