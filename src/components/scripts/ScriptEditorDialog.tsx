@@ -308,16 +308,16 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   };
 
 
-  const trackDuplicateDecision = async (action: string, similarityScore?: number, searchTier?: string) => {
+  const trackDuplicateDecision = async (action: string, overlapPercent?: number, searchTier?: string) => {
     if (!user?.id) return;
     try {
       await supabase.from("script_duplicate_analytics" as any).insert({
         user_id: user.id,
         action,
-        similarity_score: similarityScore ?? null,
+        similarity_score: overlapPercent ?? null,
         search_tier: searchTier ?? null,
-        category: classifiedCategory || category,
-        target_audience: classifiedAudience || targetAudience,
+        category,
+        target_audience: targetAudience,
       });
     } catch (e) {
       console.error("Analytics tracking error:", e);
