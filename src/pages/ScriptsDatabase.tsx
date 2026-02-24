@@ -2003,7 +2003,7 @@ export default function ScriptsDatabase() {
     [counts]
   );
 
-  const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number }) => {
+  const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null }) => {
     if (editingScript) {
       await updateScript(editingScript.id, data);
       refetch();
