@@ -66,6 +66,7 @@ interface SimilarScript {
   overlapPercent: number;
   searchTier: "tier1" | "tier2";
   similarityTier: SimilarityTier;
+  contentPreview: string;
 }
 
 interface Props {
@@ -239,6 +240,12 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       const similarityTier = getSimilarityTier(overlapPercent);
 
       if (similarityTier !== "none") {
+        // Build a content preview: first version's content, stripped of markdown, truncated
+        const preview = (vers[0]?.content || "")
+          .replace(/[#*_~`>\-|[\]()!]/g, "")
+          .replace(/\s+/g, " ")
+          .trim()
+          .slice(0, 300);
         results.push({
           id: s.id,
           stage: s.stage,
@@ -248,6 +255,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
           overlapPercent,
           searchTier,
           similarityTier,
+          contentPreview: preview,
         });
       }
     }
