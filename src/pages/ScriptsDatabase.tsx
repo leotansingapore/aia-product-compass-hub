@@ -1396,7 +1396,7 @@ function ScriptVersionHistory({ scriptId, onRollback }: { scriptId: string; onRo
   );
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void> }) {
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, onCreatePlaybookAndAdd, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; onCreatePlaybookAndAdd?: (title: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void> }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
@@ -1509,21 +1509,13 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       <Heart className={`h-4 w-4 sm:h-3.5 sm:w-3.5 ${isFavourite ? 'fill-red-500 text-red-500' : ''}`} />
                     </Button>
                   )}
-                  {myPlaybooks && myPlaybooks.length > 0 && onAddToPlaybook && (
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="sm" className="h-8 sm:h-7 gap-1.5 text-xs font-medium" onClick={(e) => e.stopPropagation()}>
-                          <Plus className="h-3 w-3" /> Playbook
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="start" onClick={(e) => e.stopPropagation()}>
-                        {myPlaybooks.map(pb => (
-                          <DropdownMenuItem key={pb.id} onClick={() => onAddToPlaybook(pb.id, script.id)}>
-                            {pb.title}
-                          </DropdownMenuItem>
-                        ))}
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                  {isAuthenticated && (onAddToPlaybook || onCreatePlaybookAndAdd) && (
+                    <PlaybookDropdown
+                      myPlaybooks={myPlaybooks || []}
+                      scriptId={script.id}
+                      onAddToPlaybook={onAddToPlaybook}
+                      onCreatePlaybookAndAdd={onCreatePlaybookAndAdd}
+                    />
                   )}
                   {isAuthenticated && onInlineSave && (
                     <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); if (!open) handleToggle(true); setTimeout(() => startInlineEdit(0), 100); }} title="Edit content inline">
