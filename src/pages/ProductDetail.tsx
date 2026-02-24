@@ -141,7 +141,8 @@ export default function ProductDetail() {
           />
 
           {/* Compact Top Actions */}
-          <div className="flex justify-end mb-2 sm:mb-4">
+          <div className="flex justify-end gap-2 mb-2 sm:mb-4">
+            {isAdminMode && <ProductSyncButton productId={product.id} productName={product.title} />}
             <BookmarkButton productId={product.id} />
           </div>
 
