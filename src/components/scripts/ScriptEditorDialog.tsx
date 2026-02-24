@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
