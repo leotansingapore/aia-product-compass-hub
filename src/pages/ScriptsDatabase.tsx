@@ -1762,7 +1762,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   );
 }
 
-function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, allScripts, onInlineSave }: {
+function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, onScriptNavigate, allScripts, onInlineSave }: {
   subType: string;
   config: { label: string; icon: string; description: string };
   scripts: ScriptEntry[];
@@ -1779,6 +1779,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
   setEditorOpen: (open: boolean) => void;
   setDeleteTarget: (s: ScriptEntry) => void;
   navigate: (path: string, opts?: { replace?: boolean }) => void;
+  onScriptNavigate: (id: string) => void;
   allScripts?: ScriptEntry[];
   onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>;
 }) {
@@ -2688,6 +2689,7 @@ export default function ScriptsDatabase() {
                             setEditorOpen={setEditorOpen}
                             setDeleteTarget={setDeleteTarget}
                             navigate={navigate}
+                            onScriptNavigate={navigateToScriptInternal}
                             allScripts={dbScripts}
                             onInlineSave={handleInlineSave}
                           />
