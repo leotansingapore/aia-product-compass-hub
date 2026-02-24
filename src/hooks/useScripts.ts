@@ -68,7 +68,6 @@ export function useScriptsMutations() {
   const { isAdmin } = useAdmin();
 
   const createScript = async (script: Omit<ScriptEntry, 'id' | 'created_at' | 'updated_at'>) => {
-    if (!isAdmin) { toast.error('Admin access required'); return null; }
     const { data, error } = await supabase
       .from('scripts')
       .insert([{
