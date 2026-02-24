@@ -163,7 +163,7 @@ You help financial advisors and sales consultants:
 - **Description:** ${product.description || "N/A"}
 - **Key Highlights:** ${product.highlights?.join(", ") || "N/A"}
 
-## RELEVANT KNOWLEDGE (Semantic Search Results)
+## RELEVANT KNOWLEDGE (Hybrid Search: Vector Similarity + Keyword Matching)
 The following are the most relevant sections from training materials, transcripts, and documents based on the user's question. Use these as your primary source of truth.
 
 ${chunkContext || "No specific knowledge chunks found for this query. Use the product overview to answer."}
