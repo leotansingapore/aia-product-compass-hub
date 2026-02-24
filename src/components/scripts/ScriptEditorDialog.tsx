@@ -118,6 +118,7 @@ function getSimilarityTier(overlapPercent: number): SimilarityTier {
 
 export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   const { user } = useSimplifiedAuth();
+  const navigate = useNavigate();
   const isEditing = !!script;
   const [step, setStep] = useState<EditorStep>(isEditing ? "review" : "paste");
   const [userName, setUserName] = useState("");
