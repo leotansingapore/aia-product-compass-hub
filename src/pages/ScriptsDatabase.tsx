@@ -2462,6 +2462,7 @@ export default function ScriptsDatabase() {
                             setEditorOpen={setEditorOpen}
                             setDeleteTarget={setDeleteTarget}
                             navigate={navigate}
+                            allScripts={dbScripts}
                           />
                         );
                       })}
