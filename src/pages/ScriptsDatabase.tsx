@@ -1483,26 +1483,82 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   </TabsList>
                   {script.versions.map((v, i) => (
                     <TabsContent key={i} value={String(i)}>
-                      <div className="flex justify-end mb-2">
-                        <CopyButton text={v.content} />
-                      </div>
-                       <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
-                      </div>
+                      {editingVersionIdx === i ? (
+                        <div className="space-y-2">
+                          <div className="border rounded-lg overflow-hidden">
+                            <MinimalRichEditor
+                              value={editContent}
+                              onChange={setEditContent}
+                              onSave={saveInlineEdit}
+                              onCancel={cancelInlineEdit}
+                              autoFocus
+                            />
+                          </div>
+                          <div className="flex items-center gap-2 justify-end">
+                            <Button variant="ghost" size="sm" onClick={cancelInlineEdit} disabled={isSaving}>Cancel</Button>
+                            <Button size="sm" onClick={saveInlineEdit} disabled={isSaving}>
+                              {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
+                              Save
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="flex justify-end mb-2 gap-1">
+                            {isAdmin && onInlineSave && (
+                              <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(i)}>
+                                <Pencil className="h-3 w-3" /> Edit
+                              </Button>
+                            )}
+                            <CopyButton text={v.content} />
+                          </div>
+                          <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
+                          </div>
+                        </>
+                      )}
                     </TabsContent>
                   ))}
                 </Tabs>
               )
             ) : (
-              <>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs text-muted-foreground font-medium">{script.versions[0]?.author}</span>
-                  <CopyButton text={script.versions[0]?.content || ""} />
+              editingVersionIdx === 0 ? (
+                <div className="space-y-2">
+                  <div className="border rounded-lg overflow-hidden">
+                    <MinimalRichEditor
+                      value={editContent}
+                      onChange={setEditContent}
+                      onSave={saveInlineEdit}
+                      onCancel={cancelInlineEdit}
+                      autoFocus
+                    />
+                  </div>
+                  <div className="flex items-center gap-2 justify-end">
+                    <Button variant="ghost" size="sm" onClick={cancelInlineEdit} disabled={isSaving}>Cancel</Button>
+                    <Button size="sm" onClick={saveInlineEdit} disabled={isSaving}>
+                      {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
+                      Save
+                    </Button>
+                  </div>
                 </div>
-                <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
-                </div>
-              </>
+              ) : (
+                <>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-xs text-muted-foreground font-medium">{script.versions[0]?.author}</span>
+                    <div className="flex items-center gap-1">
+                      {isAdmin && onInlineSave && (
+                        <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(0)}>
+                          <Pencil className="h-3 w-3" /> Edit
+                        </Button>
+                      )}
+                      <CopyButton text={script.versions[0]?.content || ""} />
+                    </div>
+                  </div>
+                  <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
+                  </div>
+                </>
+              )
             )}
 
             {/* Image Attachments Gallery */}
