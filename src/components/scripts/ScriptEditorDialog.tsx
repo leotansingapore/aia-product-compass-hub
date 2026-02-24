@@ -681,12 +681,14 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                           </Button>
                         )}
                       </div>
-                      <Textarea
-                        value={v.content}
-                        onChange={e => updateVersion(i, "content", e.target.value)}
-                        placeholder="Script content..."
-                        rows={8}
-                      />
+                      <div className="border rounded-md overflow-hidden">
+                        <MinimalRichEditor
+                          value={v.content}
+                          onChange={(val) => updateVersion(i, "content", val)}
+                          placeholder="Script content..."
+                          minHeight="180px"
+                        />
+                      </div>
                     </div>
                   ))}
                 </div>
