@@ -489,7 +489,7 @@ export default function PlaybookDetail() {
                           variant="outline"
                           className="shrink-0 gap-1"
                           onClick={() => {
-                            addItem.mutate({ scriptId: suggestion.script_id });
+                            addItem.mutate({ scriptId: suggestion.script_id, itemType: 'script' });
                             setAiSuggestions(prev => prev?.filter(s => s.script_id !== suggestion.script_id) || null);
                           }}
                         >
