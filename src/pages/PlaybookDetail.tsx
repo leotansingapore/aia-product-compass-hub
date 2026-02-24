@@ -206,6 +206,87 @@ function SortableScriptCard({ item, index, isOwner, onRemove, onInlineSave, isAu
     </Card>
   );
 }
+
+interface SortableObjectionCardProps {
+  item: any;
+  index: number;
+  isOwner: boolean;
+  onRemove: (id: string) => void;
+}
+
+function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjectionCardProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: item.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 50 : undefined,
+    opacity: isDragging ? 0.8 : 1,
+  };
+
+  return (
+    <Card ref={setNodeRef} style={style} className={isDragging ? "shadow-lg ring-2 ring-primary/30" : ""}>
+      <Collapsible>
+        <CollapsibleTrigger asChild>
+          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:px-6">
+            <div className="flex items-start gap-2 sm:gap-3">
+              {isOwner && (
+                <button
+                  {...attributes}
+                  {...listeners}
+                  className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 -ml-1 mt-0.5"
+                  onClick={e => e.stopPropagation()}
+                >
+                  <GripVertical className="h-4 w-4" />
+                </button>
+              )}
+              <span className="text-xs text-muted-foreground font-mono w-5 text-center mt-0.5 shrink-0">{index + 1}</span>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-start justify-between gap-2">
+                  <CardTitle className="text-sm font-medium leading-snug flex items-center gap-1.5">
+                    <MessageSquare className="h-3.5 w-3.5 text-amber-500 shrink-0" />
+                    {item.objection?.title}
+                  </CardTitle>
+                  <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                </div>
+                <div className="flex gap-1.5 mt-1.5 flex-wrap">
+                  <Badge variant="secondary" className="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">Objection</Badge>
+                  <Badge variant="outline" className="text-[10px]">{item.objection?.category}</Badge>
+                  {item.objection?.tags?.map((tag: string) => (
+                    <Badge key={tag} variant="outline" className="text-[10px]">{tag}</Badge>
+                  ))}
+                </div>
+                {isOwner && (
+                  <div className="mt-2" onClick={e => e.stopPropagation()}>
+                    <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs text-destructive hover:text-destructive" onClick={() => onRemove(item.id)}>
+                      <Trash2 className="h-3 w-3" /> Remove
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </CardHeader>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <CardContent className="pt-0 pb-4 px-3 sm:px-6">
+            {item.objection?.description && (
+              <p className="text-sm text-muted-foreground mb-3">{item.objection.description}</p>
+            )}
+            <p className="text-xs text-muted-foreground italic">View full objection responses in the Objection Handling database.</p>
+          </CardContent>
+        </CollapsibleContent>
+      </Collapsible>
+    </Card>
+  );
+}
+
 export default function PlaybookDetail() {
   const { playbookId } = useParams();
   const navigate = useNavigate();
