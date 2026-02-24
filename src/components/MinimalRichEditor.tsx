@@ -71,6 +71,7 @@ export function MinimalRichEditor({
 }: MinimalRichEditorProps) {
   const isUpdatingRef = useRef(false);
   const lastValueRef = useRef(value);
+  const isInitializedRef = useRef(false);
 
   const editor = useEditor({
     extensions: [
