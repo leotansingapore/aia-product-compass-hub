@@ -307,7 +307,6 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     }
   };
 
-  const navigate = useNavigate();
 
   const handleAddAsVersion = async (targetScriptId: string, targetTitle: string) => {
     setIsMerging(true);
