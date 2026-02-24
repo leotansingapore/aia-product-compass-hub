@@ -1454,7 +1454,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   )}
                   {isAdmin && (
                     <>
-                      <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); onEdit(); }} title="Edit script">
+                      <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); if (!open) handleToggle(true); setTimeout(() => startInlineEdit(0), 100); }} title="Edit content inline">
                         <Pencil className="h-3.5 w-3.5" />
                       </Button>
                       <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
