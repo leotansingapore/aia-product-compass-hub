@@ -24,6 +24,7 @@ export interface ScriptEntry {
   versions: ScriptVersion[];
   sort_order: number;
   attachments?: ScriptAttachment[];
+  related_script_id?: string | null;
   created_at?: string;
   updated_at?: string;
 }
@@ -50,6 +51,7 @@ export function useScripts() {
         script_role: (d as any).script_role || 'consultant',
         tags: (d as any).tags || [],
         versions: (d.versions as unknown as ScriptVersion[]) || [],
+        related_script_id: (d as any).related_script_id || null,
       })));
     }
     setLoading(false);

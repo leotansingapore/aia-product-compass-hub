@@ -15,7 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2 } from "lucide-react";
+import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2, Link2 } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -1322,8 +1322,9 @@ function MobileVersionSelector({ versions, searchQuery }: { versions: ScriptVers
   );
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean }) {
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[] }) {
   const [open, setOpen] = useState(isOpenByUrl);
+  const navigate = useNavigate();
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
   const snippet = useMemo(() => getSearchSnippet(script.versions, searchQuery), [script.versions, searchQuery]);
@@ -1534,6 +1535,54 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
               </div>
             )}
 
+            {/* Related Script Link */}
+            {script.related_script_id && allScripts && (() => {
+              const related = allScripts.find(s => s.id === script.related_script_id);
+              if (!related) return null;
+              const relCat = categoryLabels[related.category as CategoryKey] || categoryLabels["faq"];
+              return (
+                <div className="mt-4 pt-3 border-t">
+                  <button
+                    onClick={() => navigate(`/scripts/${related.id}`)}
+                    className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors group w-full text-left"
+                  >
+                    <Link2 className="h-3.5 w-3.5 shrink-0 text-primary/60 group-hover:text-primary" />
+                    <span>Related:</span>
+                    <span className="font-medium text-foreground group-hover:text-primary truncate">{related.stage}</span>
+                    <Badge variant="secondary" className={`text-[9px] shrink-0 ${relCat.color}`}>{relCat.label}</Badge>
+                  </button>
+                </div>
+              );
+            })()}
+
+            {/* Reverse related: show scripts that link TO this script */}
+            {allScripts && (() => {
+              const children = allScripts.filter(s => s.related_script_id === script.id);
+              if (children.length === 0) return null;
+              return (
+                <div className="mt-4 pt-3 border-t">
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                    <Link2 className="h-3 w-3" /> Follow-up scripts
+                  </p>
+                  <div className="space-y-1">
+                    {children.map(child => {
+                      const childCat = categoryLabels[child.category as CategoryKey] || categoryLabels["faq"];
+                      return (
+                        <button
+                          key={child.id}
+                          onClick={() => navigate(`/scripts/${child.id}`)}
+                          className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors group w-full text-left"
+                        >
+                          <span className="font-medium text-foreground group-hover:text-primary truncate">{child.stage}</span>
+                          <Badge variant="secondary" className={`text-[9px] shrink-0 ${childCat.color}`}>{childCat.label}</Badge>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* User Contributions */}
             <ScriptUserContributions
               scriptId={script.id}
@@ -1548,7 +1597,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   );
 }
 
-function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate }: {
+function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, allScripts }: {
   subType: string;
   config: { label: string; icon: string; description: string };
   scripts: ScriptEntry[];
@@ -1565,6 +1614,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
   setEditorOpen: (open: boolean) => void;
   setDeleteTarget: (s: ScriptEntry) => void;
   navigate: (path: string, opts?: { replace?: boolean }) => void;
+  allScripts?: ScriptEntry[];
 }) {
   const [open, setOpen] = useState(true);
   return (
@@ -1601,6 +1651,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
                 isFavourite={favouriteIds.has(script.id)}
                 onToggleFavourite={() => toggleFavourite.mutate(script.id)}
                 isMobile={isMobile}
+                allScripts={allScripts}
                 onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                 onDelete={() => setDeleteTarget(script)}
                 onToggle={(open) => {
@@ -2411,6 +2462,7 @@ export default function ScriptsDatabase() {
                             setEditorOpen={setEditorOpen}
                             setDeleteTarget={setDeleteTarget}
                             navigate={navigate}
+                            allScripts={dbScripts}
                           />
                         );
                       })}
@@ -2434,6 +2486,7 @@ export default function ScriptsDatabase() {
                         isFavourite={favouriteIds.has(script.id)}
                         onToggleFavourite={() => toggleFavourite.mutate(script.id)}
                         isMobile={isMobile}
+                        allScripts={dbScripts}
                         onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                         onDelete={() => setDeleteTarget(script)}
                         onToggle={(open) => {
