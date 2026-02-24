@@ -248,6 +248,15 @@ export function MinimalRichEditor({
           <Button
             variant="ghost"
             size="sm"
+            onClick={() => editor.chain().focus().toggleOrderedList().run()}
+            className={cn("h-7 w-7 p-0", editor.isActive('orderedList') && "bg-muted")}
+            title="Numbered list"
+          >
+            <ListOrdered className="h-3.5 w-3.5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => editor.chain().focus().toggleBlockquote().run()}
             className={cn("h-7 w-7 p-0", editor.isActive('blockquote') && "bg-muted")}
             title="Quote"
