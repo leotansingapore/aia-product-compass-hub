@@ -20,6 +20,7 @@ import {
   Trash2,
   AlertTriangle,
   Loader2,
+   Eye,
    Globe,
    ArchiveRestore
 } from "lucide-react";
@@ -375,7 +376,7 @@ const AppSidebar = memo(function AppSidebar() {
                                       className="cursor-pointer focus:bg-muted focus:text-foreground"
                                       onClick={() => navigate(`/category/${category.id}`)}
                                     >
-                                       <Globe className="h-4 w-4 mr-2" />
+                                       <Eye className="h-4 w-4 mr-2" />
                                        View Category
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
