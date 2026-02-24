@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -117,6 +118,7 @@ function getSimilarityTier(overlapPercent: number): SimilarityTier {
 
 export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   const { user } = useSimplifiedAuth();
+  const navigate = useNavigate();
   const isEditing = !!script;
   const [step, setStep] = useState<EditorStep>(isEditing ? "review" : "paste");
   const [userName, setUserName] = useState("");
@@ -305,6 +307,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     }
   };
 
+
   const handleAddAsVersion = async (targetScriptId: string, targetTitle: string) => {
     setIsMerging(true);
     try {
@@ -319,6 +322,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       if (data?.error) throw new Error(data.error);
       toast.success(`Added as a new version to "${targetTitle}" (${data.totalVersions} versions total)`);
       onClose();
+      // Navigate to the merged script so user can verify
+      setTimeout(() => navigate(`/scripts/${targetScriptId}`, { replace: true }), 150);
     } catch (err: any) {
       console.error("Merge error:", err);
       toast.error("Failed to merge: " + (err.message || "Unknown error"));

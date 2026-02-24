@@ -1955,10 +1955,24 @@ export default function ScriptsDatabase() {
   const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number }) => {
     if (editingScript) {
       await updateScript(editingScript.id, data);
+      refetch();
     } else {
-      await createScript(data);
+      const created = await createScript(data);
+      await refetch();
+      if (created?.id) {
+        // Switch filters so the new script is visible, then navigate to it
+        setActiveCategory(data.category || "all");
+        setActiveAudience("all");
+        setActiveRole("all");
+        setActiveTag("all");
+        setSearchQuery("");
+        setSearchInput("");
+        // Small delay to let the list re-render with new filters before navigating
+        setTimeout(() => {
+          navigate(`/scripts/${created.id}`, { replace: true });
+        }, 150);
+      }
     }
-    refetch();
   };
 
   const handleDelete = async () => {
