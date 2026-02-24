@@ -1843,18 +1843,6 @@ export default function ScriptsDatabase() {
   const { scriptId } = useParams();
   const internalNavRef = useRef(false);
 
-  // Helper for in-page card toggle navigation (preserves filters including query params)
-  const navigateToScriptInternal = useCallback((id: string) => {
-    internalNavRef.current = true;
-    const params = new URLSearchParams();
-    if (activeCategory !== "all") params.set("category", activeCategory);
-    if (activeAudience !== "all") params.set("audience", activeAudience);
-    if (activeRole !== "all") params.set("role", activeRole);
-    if (activeTag !== "all") params.set("tag", activeTag);
-    if (searchQuery) params.set("q", searchQuery);
-    const qs = params.toString();
-    navigate(`/scripts/${id}${qs ? `?${qs}` : ''}`, { replace: true });
-  }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
 
   const isObjectionsRoute = location.pathname.startsWith('/objections');
   const [activeTab, setActiveTabState] = useState<string>(isObjectionsRoute ? "objections" : "scripts");
