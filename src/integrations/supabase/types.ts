@@ -1357,6 +1357,44 @@ export type Database = {
           },
         ]
       }
+      script_version_history: {
+        Row: {
+          created_at: string
+          edit_summary: string | null
+          edited_by: string
+          editor_name: string
+          id: string
+          script_id: string
+          versions: Json
+        }
+        Insert: {
+          created_at?: string
+          edit_summary?: string | null
+          edited_by: string
+          editor_name?: string
+          id?: string
+          script_id: string
+          versions?: Json
+        }
+        Update: {
+          created_at?: string
+          edit_summary?: string | null
+          edited_by?: string
+          editor_name?: string
+          id?: string
+          script_id?: string
+          versions?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "script_version_history_script_id_fkey"
+            columns: ["script_id"]
+            isOneToOne: false
+            referencedRelation: "scripts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       scripts: {
         Row: {
           category: string

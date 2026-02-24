@@ -16,7 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2, Link2 } from "lucide-react";
+import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2, Link2, History, RotateCcw } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -1323,6 +1323,79 @@ function MobileVersionSelector({ versions, searchQuery }: { versions: ScriptVers
   );
 }
 
+function ScriptVersionHistory({ scriptId, onRollback }: { scriptId: string; onRollback: (versions: ScriptVersion[]) => Promise<void> }) {
+  const [showHistory, setShowHistory] = useState(false);
+  const [history, setHistory] = useState<any[]>([]);
+  const [loadingHistory, setLoadingHistory] = useState(false);
+  const [rollingBack, setRollingBack] = useState(false);
+
+  const loadHistory = async () => {
+    if (showHistory) { setShowHistory(false); return; }
+    setLoadingHistory(true);
+    const { data, error } = await supabase
+      .from('script_version_history' as any)
+      .select('*')
+      .eq('script_id', scriptId)
+      .order('created_at', { ascending: false })
+      .limit(20);
+    if (!error) setHistory(data || []);
+    setLoadingHistory(false);
+    setShowHistory(true);
+  };
+
+  const handleRollback = async (entry: any) => {
+    if (!confirm('Are you sure you want to rollback to this version? The current content will be saved to history first.')) return;
+    setRollingBack(true);
+    const versions = (entry.versions as unknown as ScriptVersion[]) || [];
+    await onRollback(versions);
+    // Reload history
+    const { data } = await supabase
+      .from('script_version_history' as any)
+      .select('*')
+      .eq('script_id', scriptId)
+      .order('created_at', { ascending: false })
+      .limit(20);
+    setHistory(data || []);
+    setRollingBack(false);
+  };
+
+  return (
+    <div className="mt-4 pt-4 border-t">
+      <Button variant="ghost" size="sm" className="gap-1.5 text-xs text-muted-foreground" onClick={loadHistory} disabled={loadingHistory}>
+        <History className="h-3.5 w-3.5" />
+        {loadingHistory ? 'Loading...' : showHistory ? 'Hide History' : 'Version History'}
+      </Button>
+      {showHistory && history.length > 0 && (
+        <div className="mt-3 space-y-2 max-h-[300px] overflow-y-auto">
+          {history.map((entry: any) => (
+            <div key={entry.id} className="flex items-center justify-between gap-2 p-2 rounded-md border bg-muted/30 text-xs">
+              <div className="min-w-0">
+                <span className="font-medium">{entry.editor_name}</span>
+                <span className="text-muted-foreground ml-2">
+                  {new Date(entry.created_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}
+                </span>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-6 gap-1 text-[10px] shrink-0"
+                onClick={() => handleRollback(entry)}
+                disabled={rollingBack}
+              >
+                <RotateCcw className="h-3 w-3" />
+                Rollback
+              </Button>
+            </div>
+          ))}
+        </div>
+      )}
+      {showHistory && history.length === 0 && (
+        <p className="text-xs text-muted-foreground mt-2 italic">No edit history yet.</p>
+      )}
+    </div>
+  );
+}
+
 function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void> }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
@@ -1452,15 +1525,15 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       </DropdownMenuContent>
                     </DropdownMenu>
                   )}
+                  {isAuthenticated && onInlineSave && (
+                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); if (!open) handleToggle(true); setTimeout(() => startInlineEdit(0), 100); }} title="Edit content inline">
+                      <Pencil className="h-3.5 w-3.5" />
+                    </Button>
+                  )}
                   {isAdmin && (
-                    <>
-                      <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); if (!open) handleToggle(true); setTimeout(() => startInlineEdit(0), 100); }} title="Edit content inline">
-                        <Pencil className="h-3.5 w-3.5" />
-                      </Button>
-                      <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
-                        <Trash2 className="h-3.5 w-3.5" />
-                      </Button>
-                    </>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </Button>
                   )}
                 </div>
               </div>
@@ -1506,7 +1579,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       ) : (
                         <>
                           <div className="flex justify-end mb-2 gap-1">
-                            {isAdmin && onInlineSave && (
+                            {isAuthenticated && onInlineSave && (
                               <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(i)}>
                                 <Pencil className="h-3 w-3" /> Edit
                               </Button>
@@ -1547,7 +1620,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-xs text-muted-foreground font-medium">{script.versions[0]?.author}</span>
                     <div className="flex items-center gap-1">
-                      {isAdmin && onInlineSave && (
+                      {isAuthenticated && onInlineSave && (
                         <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(0)}>
                           <Pencil className="h-3 w-3" /> Edit
                         </Button>
@@ -1671,6 +1744,16 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
               isAuthenticated={!!isAuthenticated}
               displayName={userDisplayName}
             />
+
+            {/* Version History (Admin Only) */}
+            {isAdmin && (
+              <ScriptVersionHistory scriptId={script.id} onRollback={async (versions) => {
+                if (onInlineSave) {
+                  await onInlineSave(script.id, versions);
+                  toast.success('Script rolled back to selected version');
+                }
+              }} />
+            )}
           </CardContent>
         </CollapsibleContent>
       </Card>
@@ -2117,9 +2200,25 @@ export default function ScriptsDatabase() {
   );
 
   const handleInlineSave = useCallback(async (scriptId: string, versions: ScriptVersion[]) => {
+    // Save a snapshot of the current versions before updating
+    const currentScript = dbScripts.find(s => s.id === scriptId);
+    if (currentScript && user) {
+      try {
+        await supabase
+          .from('script_version_history' as any)
+          .insert({
+            script_id: scriptId,
+            versions: JSON.parse(JSON.stringify(currentScript.versions)),
+            edited_by: user.id,
+            editor_name: user.user_metadata?.display_name || user.email?.split('@')[0] || 'Unknown',
+          } as any);
+      } catch (e) {
+        console.error('Failed to save version history:', e);
+      }
+    }
     await updateScript(scriptId, { versions });
     refetch();
-  }, [updateScript, refetch]);
+  }, [updateScript, refetch, dbScripts, user]);
 
   const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null }) => {
     if (editingScript) {

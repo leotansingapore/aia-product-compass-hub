@@ -88,7 +88,6 @@ export function useScriptsMutations() {
   };
 
   const updateScript = async (id: string, updates: Partial<Omit<ScriptEntry, 'id' | 'created_at' | 'updated_at'>>) => {
-    if (!isAdmin) { toast.error('Admin access required'); return false; }
     const payload: Record<string, unknown> = {};
     if (updates.stage !== undefined) payload.stage = updates.stage;
     if (updates.category !== undefined) payload.category = updates.category;
