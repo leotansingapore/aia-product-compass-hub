@@ -1866,6 +1866,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
                 searchQuery={searchQuery}
                 myPlaybooks={myPlaybooks}
                 onAddToPlaybook={handleAddToPlaybook}
+                onCreatePlaybookAndAdd={handleCreatePlaybookAndAdd}
                 isAuthenticated={!!user}
                 userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
                 isFavourite={favouriteIds.has(script.id)}
