@@ -2714,6 +2714,7 @@ export default function ScriptsDatabase() {
                         onInlineSave={handleInlineSave}
                         onToggle={(open) => {
                           if (open) {
+                            internalNavRef.current = true;
                             navigate(`/scripts/${script.id}`, { replace: true });
                           } else if (scriptId === script.id) {
                             navigate('/scripts', { replace: true });
