@@ -687,7 +687,6 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                           value={v.content}
                           onChange={(val) => updateVersion(i, "content", val)}
                           placeholder="Script content..."
-                          minHeight="180px"
                         />
                       </div>
                     </div>
