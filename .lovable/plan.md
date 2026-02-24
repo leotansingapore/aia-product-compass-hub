@@ -1,67 +1,42 @@
 
+# Fix: Sidebar Navigation Shows Stale Product Content
 
-# Chat Modes for the Product AI Assistant
+## Problem
+When navigating between products via sidebar links, the training videos (Course Structure) from the **previous** product persist and display on the **new** product page. This happens because the video management hook only syncs videos on initial mount (when `editVideos` is empty), not when switching products.
 
-## Overview
+**Root Cause**: In `useVideoManagement.ts`, the sync condition checks `editVideos.length === 0`, which is false after the first product loads -- so when you click a different product in the sidebar, the old videos stay.
 
-Add a mode selector to the product AI chat so advisors can switch between different conversation styles depending on their need -- quick factual lookups vs. sales coaching vs. objection handling practice.
+**Why cards work but sidebar doesn't**: Clicking a card from the category page causes a fresh mount of ProductDetail. Sidebar navigation only changes the URL param, so the component **re-renders** without unmounting, and the stale guard prevents video refresh.
 
-## Three Chat Modes
+## Solution
 
-| Mode | Icon | Purpose | AI Behavior |
-|------|------|---------|-------------|
-| **Knowledge Q&A** | Search | Quick factual answers about product features, charges, mechanics | Concise, direct answers. Bullet points. No sales fluff. Like a product encyclopedia. |
-| **Sales Coach** | TrendingUp | Positioning, target market, closing strategies, talking points | Conversational, actionable. Provides scripts, analogies, and role-play scenarios. |
-| **Objection Handling** | Shield | Practice handling client pushbacks and objections | Uses the 4-step framework (Acknowledge, Common Ground, Different Perspective, Safety Valve). Gives the objection, then a reframe. |
+### 1. Reset video state when product changes (`useVideoManagement.ts`)
+- Accept a `productId` (or key) prop so the hook can detect when the product changes
+- When the key changes, reset `editVideos` to the new `initialVideos`
+- Reset `editingIndex`, `emptyFolders`, and `initialVideosRef` accordingly
 
-## How It Works
+### 2. Pass product ID into useVideoManagement (`ProductDetail.tsx`)
+- Pass `product.id` as a dependency key to the video management hook
 
-- A **toggle group** (pill-style selector) sits between the chat header and the message area
-- Switching modes:
-  - Clears the conversation and starts fresh with a mode-specific welcome message
-  - Updates quick action suggestions to match the mode
-  - Changes the input placeholder text
-- The selected mode is sent to the backend edge function, which adjusts the system prompt accordingly
-
-## UI Changes
-
-### Mode Selector Component (New)
-- A `ToggleGroup` with 3 options, each with an icon and label
-- Compact on mobile (icons only), full labels on desktop
-- Sits just below the `ChatHeader`
-
-### Quick Actions per Mode
-- **Knowledge Q&A**: "What are the fund options?", "What are the charges?", "How does premium pass work?"
-- **Sales Coach**: "Give me a 2-minute elevator pitch", "Who is the ideal customer?", "How to position against competitors?"
-- **Objection Handling**: "Client says it's too expensive", "Client wants to wait", "Client already has a policy"
-
-### ChatHeader Update
-- Shows the current mode name as a subtitle badge (e.g., "Knowledge Q&A")
-
-## Backend Changes
-
-### Edge Function (`product-knowledge-chat/index.ts`)
-- Accept a new `mode` parameter from the request body
-- Append a mode-specific instruction block to the system prompt:
-  - **knowledge**: "Be concise and factual. Use bullet points. Answer directly without sales language. If the answer isn't in your knowledge base, say so."
-  - **sales**: "Be a sales coach. Provide scripts, talking points, analogies. Help the advisor sell effectively. Use role-play when helpful."
-  - **objections**: "Focus on objection handling using the 4-step framework: Acknowledge, Common Ground, Different Perspective, Safety Valve. Always structure responses as: Objection -> Acknowledgment -> Reframe -> Suggested Response."
+### 3. Reset local UI state on product change (`ProductDetail.tsx`)
+- Reset `editingIndexFromUrl` to `null` when `productSlugOrId` changes so the auto-select logic re-runs for the new product
 
 ## Technical Details
 
-### Files to Create
-- `src/components/chat/ChatModeSelector.tsx` -- the toggle group UI component
+**File: `src/hooks/useVideoManagement.ts`**
+- Add a `key` or `productId` field to the props interface
+- Replace the mount-only sync `useEffect` with one that also triggers when `key` changes:
+  ```
+  useEffect(() => {
+    setEditVideos(initialVideos || []);
+    initialVideosRef.current = JSON.stringify(initialVideos || []);
+    setEditingIndex(null);
+    setEmptyFolders([]);
+  }, [key]); // re-sync whenever the product changes
+  ```
 
-### Files to Modify
-- `src/components/chat/types.ts` -- add `ChatMode` type (`'knowledge' | 'sales' | 'objections'`)
-- `src/components/chat/AccessibleAIChat.tsx` -- add mode state, wire mode selector, update quick actions per mode, pass mode to edge function call, reset chat on mode switch
-- `src/components/chat/ChatHeader.tsx` -- show current mode badge
-- `supabase/functions/product-knowledge-chat/index.ts` -- read `mode` from request body, append mode-specific instructions to system prompt
+**File: `src/pages/ProductDetail.tsx`**
+- Pass `product?.id` as a key/identifier to `useVideoManagement`
+- Add a `useEffect` keyed on `productSlugOrId` to reset `editingIndexFromUrl` to `null`
 
-### Data Flow
-1. User taps a mode in the toggle group
-2. Chat clears, welcome message updates, quick actions update
-3. User sends a message -- the `mode` string is included in the edge function payload
-4. Backend appends mode-specific instructions to the existing system prompt
-5. AI responds in the appropriate style
-
+This is a minimal, targeted fix that preserves the existing "don't overwrite local edits" behavior while correctly resetting state on product switches.
