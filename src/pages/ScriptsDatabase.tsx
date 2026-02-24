@@ -1679,7 +1679,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   );
 }
 
-function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, allScripts }: {
+function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, allScripts, onInlineSave }: {
   subType: string;
   config: { label: string; icon: string; description: string };
   scripts: ScriptEntry[];
@@ -1697,6 +1697,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
   setDeleteTarget: (s: ScriptEntry) => void;
   navigate: (path: string, opts?: { replace?: boolean }) => void;
   allScripts?: ScriptEntry[];
+  onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>;
 }) {
   const [open, setOpen] = useState(true);
   return (
@@ -1736,6 +1737,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
                 allScripts={allScripts}
                 onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                 onDelete={() => setDeleteTarget(script)}
+                onInlineSave={onInlineSave}
                 onToggle={(open) => {
                   if (open) navigate(`/scripts/${script.id}`, { replace: true });
                   else if (scriptId === script.id) navigate('/scripts', { replace: true });
