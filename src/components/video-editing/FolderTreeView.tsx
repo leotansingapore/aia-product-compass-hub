@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -127,6 +127,7 @@ interface SortableFolderItemProps {
   folderName: string;
   folderVideos: Array<{ video: TrainingVideo; index: number }>;
   isExpanded: boolean;
+  isDropTarget: boolean;
   onToggle: () => void;
   onEditFolder: (folderName: string) => void;
   onDeleteFolder: (folderName: string) => void;
@@ -140,6 +141,7 @@ function SortableFolderItem({
   folderName,
   folderVideos,
   isExpanded,
+  isDropTarget,
   onToggle,
   onEditFolder,
   onDeleteFolder,
@@ -177,7 +179,13 @@ function SortableFolderItem({
   return (
     <div ref={setNodeRef} style={style} className="space-y-1">
       <Collapsible open={isExpanded} onOpenChange={onToggle}>
-        <div className="flex items-center justify-between p-2 rounded-lg hover:bg-muted/50 group">
+        <div
+          className={`flex items-center justify-between p-2 rounded-lg group transition-all duration-200 ease-in-out ${
+            isDropTarget
+              ? 'ring-2 ring-primary/60 bg-primary/5 scale-[1.01]'
+              : 'hover:bg-muted/50'
+          }`}
+        >
           <div className="flex items-center gap-2 flex-1 min-w-0">
             <button
               type="button"
@@ -199,9 +207,9 @@ function SortableFolderItem({
                 <ChevronRight className="h-4 w-4 flex-shrink-0" />
               )}
               {isExpanded ? (
-                <FolderOpen className="h-4 w-4 text-blue-500 flex-shrink-0" />
+                <FolderOpen className={`h-4 w-4 flex-shrink-0 transition-colors duration-200 ${isDropTarget ? 'text-primary' : 'text-blue-500'}`} />
               ) : (
-                <Folder className="h-4 w-4 text-blue-500 flex-shrink-0" />
+                <Folder className={`h-4 w-4 flex-shrink-0 transition-colors duration-200 ${isDropTarget ? 'text-primary' : 'text-blue-500'}`} />
               )}
               <span className="font-medium truncate">{folderName}</span>
               <span className="text-micro text-muted-foreground flex-shrink-0">
@@ -307,6 +315,8 @@ export function FolderTreeView({
   const [activeId, setActiveId] = useState<string | null>(null);
   const [overId, setOverId] = useState<string | null>(null);
   const [activeType, setActiveType] = useState<'video' | 'folder' | null>(null);
+  const [dropTargetFolder, setDropTargetFolder] = useState<string | null>(null);
+  const autoExpandTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -319,26 +329,14 @@ export function FolderTreeView({
     })
   );
 
-  // Filter DnD events to ignore interactions on menu triggers
-  const handlePointerDown = (event: React.PointerEvent) => {
-    const target = event.target as HTMLElement;
-    if (target.closest('[data-no-dnd="true"]')) {
-      return;
-    }
-  };
-
-  // Group videos by category/folder - separate root level videos
+  // Group videos by category/folder
   const rootLevelVideos: Array<{ video: TrainingVideo; index: number }> = [];
   const videosByFolder = videos.reduce((acc, video, index) => {
     const folder = video.category;
-    
-    // If no category, it's a root-level video
     if (!folder || folder.trim() === '') {
       rootLevelVideos.push({ video, index });
       return acc;
     }
-    
-    // Otherwise, group by folder
     if (!acc[folder]) {
       acc[folder] = [];
     }
@@ -346,7 +344,6 @@ export function FolderTreeView({
     return acc;
   }, {} as Record<string, Array<{ video: TrainingVideo; index: number }>>);
 
-  // Add empty folders to the display
   const allFolders: Record<string, Array<{ video: TrainingVideo; index: number }>> = { ...videosByFolder };
   emptyFolders.forEach(folder => {
     if (!allFolders[folder]) {
@@ -354,10 +351,9 @@ export function FolderTreeView({
     }
   });
 
-  // Get ordered list of folders
   const folderNames = Object.keys(allFolders);
 
-  const toggleFolder = (folderName: string) => {
+  const toggleFolder = useCallback((folderName: string) => {
     const newExpanded = new Set(expandedFolders);
     if (newExpanded.has(folderName)) {
       newExpanded.delete(folderName);
@@ -365,7 +361,19 @@ export function FolderTreeView({
       newExpanded.add(folderName);
     }
     onExpandedChange(newExpanded);
-  };
+  }, [expandedFolders, onExpandedChange]);
+
+  const clearAutoExpandTimer = useCallback(() => {
+    if (autoExpandTimerRef.current) {
+      clearTimeout(autoExpandTimerRef.current);
+      autoExpandTimerRef.current = null;
+    }
+  }, []);
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => clearAutoExpandTimer();
+  }, [clearAutoExpandTimer]);
 
   const handleDragStart = (event: DragStartEvent) => {
     const id = event.active.id as string;
@@ -374,21 +382,72 @@ export function FolderTreeView({
   };
 
   const handleDragOver = (event: DragOverEvent) => {
-    setOverId(event.over?.id as string | null);
+    const overIdStr = event.over?.id as string | null;
+    setOverId(overIdStr);
+
+    // Track folder drop target when dragging a video over a folder
+    if (activeType === 'video' && overIdStr?.startsWith('folder-')) {
+      const folderName = overIdStr.replace('folder-', '');
+
+      if (dropTargetFolder !== folderName) {
+        setDropTargetFolder(folderName);
+        clearAutoExpandTimer();
+
+        // Auto-expand closed folders after 500ms
+        if (!expandedFolders.has(folderName)) {
+          autoExpandTimerRef.current = setTimeout(() => {
+            toggleFolder(folderName);
+          }, 500);
+        }
+      }
+    } else {
+      if (dropTargetFolder !== null) {
+        setDropTargetFolder(null);
+        clearAutoExpandTimer();
+      }
+    }
+  };
+
+  const resetDragState = () => {
+    setActiveId(null);
+    setOverId(null);
+    setActiveType(null);
+    setDropTargetFolder(null);
+    clearAutoExpandTimer();
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
     if (!over) {
-      setActiveId(null);
-      setOverId(null);
-      setActiveType(null);
+      resetDragState();
       return;
     }
 
     const activeIdStr = active.id as string;
     const overIdStr = over.id as string;
+
+    // Handle VIDEO dropped on a FOLDER
+    if (activeType === 'video' && overIdStr.startsWith('folder-')) {
+      const targetFolder = overIdStr.replace('folder-', '');
+      const activeVideo = videos.find(v => v.id === activeIdStr);
+
+      if (activeVideo && activeVideo.category !== targetFolder && onReorderVideos) {
+        console.log('📁 FolderTreeView: Dropping video into folder', {
+          video: activeVideo.title,
+          from: activeVideo.category || '(root)',
+          to: targetFolder
+        });
+
+        const updatedVideos = videos.map((v, i) =>
+          v.id === activeIdStr ? { ...v, category: targetFolder, order: i } : { ...v, order: i }
+        );
+        onReorderVideos(updatedVideos);
+      }
+
+      resetDragState();
+      return;
+    }
 
     // Handle folder reordering
     if (activeIdStr.startsWith('folder-') && overIdStr.startsWith('folder-')) {
@@ -407,17 +466,13 @@ export function FolderTreeView({
         }
       }
 
-      setActiveId(null);
-      setOverId(null);
-      setActiveType(null);
+      resetDragState();
       return;
     }
 
     // Handle video reordering
     if (!onReorderVideos) {
-      setActiveId(null);
-      setOverId(null);
-      setActiveType(null);
+      resetDragState();
       return;
     }
 
@@ -425,13 +480,10 @@ export function FolderTreeView({
     const overVideo = videos.find(v => v.id === over.id);
 
     if (!activeVideo) {
-      setActiveId(null);
-      setOverId(null);
-      setActiveType(null);
+      resetDragState();
       return;
     }
 
-    // If dropped on a video (reordering within or between categories)
     if (overVideo && active.id !== over.id) {
       const oldIndex = videos.findIndex(v => v.id === active.id);
       const newIndex = videos.findIndex(v => v.id === over.id);
@@ -439,7 +491,6 @@ export function FolderTreeView({
       const newVideos = [...videos];
       const [movedVideo] = newVideos.splice(oldIndex, 1);
 
-      // Update category if different
       if (overVideo.category !== movedVideo.category) {
         console.log('📁 FolderTreeView: Moving video between categories', {
           video: movedVideo.title,
@@ -451,36 +502,19 @@ export function FolderTreeView({
 
       newVideos.splice(newIndex, 0, movedVideo);
 
-      // Reorder all videos
       const reordered = newVideos.map((video, i) => ({ ...video, order: i }));
-      console.log('🔄 FolderTreeView: Calling onReorderVideos', {
-        movedVideo: movedVideo.title,
-        oldIndex,
-        newIndex,
-        totalVideos: reordered.length
-      });
       onReorderVideos(reordered);
     }
 
-    setActiveId(null);
-    setOverId(null);
-    setActiveType(null);
+    resetDragState();
   };
 
   const handleDragCancel = () => {
-    setActiveId(null);
-    setOverId(null);
-    setActiveType(null);
+    resetDragState();
   };
 
   const activeVideo = activeId && !activeId.startsWith('folder-') ? videos.find(v => v.id === activeId) : null;
   const activeFolderName = activeId?.startsWith('folder-') ? activeId.replace('folder-', '') : null;
-
-  // All sortable items (folders + root videos)
-  const allSortableIds = [
-    ...folderNames.map(name => `folder-${name}`),
-    ...rootLevelVideos.map(({ video }) => video.id)
-  ];
 
   return (
     <DndContext
@@ -529,6 +563,7 @@ export function FolderTreeView({
                   folderName={folderName}
                   folderVideos={folderVideos}
                   isExpanded={isExpanded}
+                  isDropTarget={dropTargetFolder === folderName && activeType === 'video'}
                   onToggle={() => toggleFolder(folderName)}
                   onEditFolder={onEditFolder}
                   onDeleteFolder={onDeleteFolder}
