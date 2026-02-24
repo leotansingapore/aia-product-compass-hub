@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { KnowledgeSyncButton } from "@/components/admin/KnowledgeSyncButton";
 import { useKnowledgeDocuments } from "@/hooks/useKnowledgeDocuments";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
