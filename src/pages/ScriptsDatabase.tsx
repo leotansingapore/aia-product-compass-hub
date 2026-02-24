@@ -1762,7 +1762,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   );
 }
 
-function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, allScripts, onInlineSave }: {
+function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, onScriptNavigate, allScripts, onInlineSave }: {
   subType: string;
   config: { label: string; icon: string; description: string };
   scripts: ScriptEntry[];
@@ -1779,6 +1779,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
   setEditorOpen: (open: boolean) => void;
   setDeleteTarget: (s: ScriptEntry) => void;
   navigate: (path: string, opts?: { replace?: boolean }) => void;
+  onScriptNavigate: (id: string) => void;
   allScripts?: ScriptEntry[];
   onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>;
 }) {
@@ -1822,7 +1823,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
                 onDelete={() => setDeleteTarget(script)}
                 onInlineSave={onInlineSave}
                 onToggle={(open) => {
-                  if (open) navigate(`/scripts/${script.id}`, { replace: true });
+                  if (open) onScriptNavigate(script.id);
                   else if (scriptId === script.id) navigate('/scripts', { replace: true });
                 }}
               />
@@ -1840,8 +1841,14 @@ export default function ScriptsDatabase() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const { scriptId } = useParams();
+  const internalNavRef = useRef(false);
 
-  // Derive active tab from URL path
+  // Helper for in-page card toggle navigation (preserves filters)
+  const navigateToScriptInternal = useCallback((id: string) => {
+    internalNavRef.current = true;
+    navigate(`/scripts/${id}`, { replace: true });
+  }, [navigate]);
+
   const isObjectionsRoute = location.pathname.startsWith('/objections');
   const [activeTab, setActiveTabState] = useState<string>(isObjectionsRoute ? "objections" : "scripts");
 
@@ -1913,9 +1920,14 @@ export default function ScriptsDatabase() {
     setSearchParams(params, { replace: true });
   }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
 
-  // When navigating to a specific script via URL, reset filters so it's always visible
+  // When navigating to a specific script via URL (external), reset filters so it's always visible
+  // Skip reset for in-page card toggles (internal navigation)
   useEffect(() => {
     if (scriptId) {
+      if (internalNavRef.current) {
+        internalNavRef.current = false;
+        return;
+      }
       setActiveCategory("all");
       setActiveAudience("all");
       setActiveRole("all");
@@ -2677,6 +2689,7 @@ export default function ScriptsDatabase() {
                             setEditorOpen={setEditorOpen}
                             setDeleteTarget={setDeleteTarget}
                             navigate={navigate}
+                            onScriptNavigate={navigateToScriptInternal}
                             allScripts={dbScripts}
                             onInlineSave={handleInlineSave}
                           />
@@ -2708,7 +2721,7 @@ export default function ScriptsDatabase() {
                         onInlineSave={handleInlineSave}
                         onToggle={(open) => {
                           if (open) {
-                            navigate(`/scripts/${script.id}`, { replace: true });
+                            navigateToScriptInternal(script.id);
                           } else if (scriptId === script.id) {
                             navigate('/scripts', { replace: true });
                           }
