@@ -467,7 +467,8 @@ export default function PlaybookDetail() {
                       onRemove={(id) => removeItem.mutate(id)}
                       onInlineSave={handleInlineSave}
                       isAuthenticated={!!user}
-                  />
+                    />
+                  )
                 ))}
               </div>
             </SortableContext>
@@ -475,49 +476,16 @@ export default function PlaybookDetail() {
         )}
       </div>
 
-      {/* Add Scripts Dialog */}
-      <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
-        <DialogContent className="max-w-lg max-h-[85vh] mx-2 sm:mx-auto">
-          <DialogHeader>
-            <DialogTitle>Add Scripts to Playbook</DialogTitle>
-          </DialogHeader>
-          <Input
-            placeholder="Search scripts..."
-            value={addSearch}
-            onChange={e => setAddSearch(e.target.value)}
-            className="mb-3"
-          />
-          <div className="overflow-y-auto max-h-[50vh] space-y-2">
-            {availableScripts.length === 0 ? (
-              <p className="text-sm text-muted-foreground text-center py-4">
-                {addSearch ? "No matching scripts found" : "All scripts are already in this playbook"}
-              </p>
-            ) : (
-              availableScripts.map(script => (
-                <div key={script.id} className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors gap-2">
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium truncate">{script.stage}</p>
-                    <div className="flex gap-1 mt-1">
-                      <Badge variant="secondary" className="text-[10px]">{script.category}</Badge>
-                      {script.target_audience && script.target_audience !== 'general' && (
-                        <Badge variant="outline" className="text-[10px]">{script.target_audience}</Badge>
-                      )}
-                    </div>
-                  </div>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="ml-2 shrink-0"
-                    onClick={() => addItem.mutate({ scriptId: script.id })}
-                  >
-                    <Plus className="h-3.5 w-3.5 mr-1" /> Add
-                  </Button>
-                </div>
-              ))
-            )}
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* Add to Playbook Dialog */}
+      <AddToPlaybookDialog
+        open={addDialogOpen}
+        onOpenChange={setAddDialogOpen}
+        scripts={scripts}
+        objections={objections}
+        items={items}
+        onAddScript={(id) => addItem.mutate({ scriptId: id, itemType: 'script' })}
+        onAddObjection={(id) => addItem.mutate({ objectionId: id, itemType: 'objection' })}
+      />
     </PageLayout>
   );
 }
