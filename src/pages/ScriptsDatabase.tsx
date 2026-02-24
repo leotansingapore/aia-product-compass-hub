@@ -1843,11 +1843,18 @@ export default function ScriptsDatabase() {
   const { scriptId } = useParams();
   const internalNavRef = useRef(false);
 
-  // Helper for in-page card toggle navigation (preserves filters)
+  // Helper for in-page card toggle navigation (preserves filters including query params)
   const navigateToScriptInternal = useCallback((id: string) => {
     internalNavRef.current = true;
-    navigate(`/scripts/${id}`, { replace: true });
-  }, [navigate]);
+    const params = new URLSearchParams();
+    if (activeCategory !== "all") params.set("category", activeCategory);
+    if (activeAudience !== "all") params.set("audience", activeAudience);
+    if (activeRole !== "all") params.set("role", activeRole);
+    if (activeTag !== "all") params.set("tag", activeTag);
+    if (searchQuery) params.set("q", searchQuery);
+    const qs = params.toString();
+    navigate(`/scripts/${id}${qs ? `?${qs}` : ''}`, { replace: true });
+  }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
 
   const isObjectionsRoute = location.pathname.startsWith('/objections');
   const [activeTab, setActiveTabState] = useState<string>(isObjectionsRoute ? "objections" : "scripts");
@@ -1920,7 +1927,7 @@ export default function ScriptsDatabase() {
     setSearchParams(params, { replace: true });
   }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
 
-  // When navigating to a specific script via URL (external), reset filters so it's always visible
+  // When navigating to a specific script via URL (external), apply URL params if present, else reset
   // Skip reset for in-page card toggles (internal navigation)
   useEffect(() => {
     if (scriptId) {
@@ -1928,13 +1935,19 @@ export default function ScriptsDatabase() {
         internalNavRef.current = false;
         return;
       }
-      setActiveCategory("all");
-      setActiveAudience("all");
-      setActiveRole("all");
-      setActiveTag("all");
+      // Read filters from URL params — if present, apply them; otherwise reset to "all"
+      const urlCategory = searchParams.get("category");
+      const urlAudience = searchParams.get("audience");
+      const urlRole = searchParams.get("role");
+      const urlTag = searchParams.get("tag");
+      const urlQ = searchParams.get("q");
+      setActiveCategory(urlCategory || "all");
+      setActiveAudience(urlAudience || "all");
+      setActiveRole(urlRole || "all");
+      setActiveTag(urlTag || "all");
       setShowFavouritesOnly(false);
-      setSearchQuery("");
-      setSearchInput("");
+      setSearchQuery(urlQ || "");
+      setSearchInput(urlQ || "");
     }
   }, [scriptId]);
   
