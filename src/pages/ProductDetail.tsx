@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
@@ -39,10 +39,31 @@ export default function ProductDetail() {
 
   const [editingIndexFromUrl, setEditingIndexFromUrl] = useState<number | null>(null);
 
-  // Video management setup for admins - must be declared before using editVideos
-  const handleVideoSave = async (updatedVideos: TrainingVideo[]) => {
+  // Video management setup for admins - auto-syncs to AI knowledge base after save
+  const handleVideoSave = useCallback(async (updatedVideos: TrainingVideo[]) => {
     await handleUpdate('training_videos', updatedVideos);
-  };
+    
+    // Auto-sync to AI knowledge base (fire-and-forget, admin only)
+    if (isAdminMode && product?.id) {
+      try {
+        const { supabase } = await import("@/integrations/supabase/client");
+        const { toast } = await import("@/hooks/use-toast");
+        toast.call(null, { title: "Syncing training videos to AI…" });
+        const { data, error } = await supabase.functions.invoke("process-knowledge", {
+          body: { action: "sync_training_videos", product_id: product.id },
+        });
+        if (error) throw error;
+        toast.call(null, {
+          title: "AI knowledge base updated ✓",
+          description: `${data?.chunks_created ?? 0} chunks synced`,
+        });
+      } catch (e: any) {
+        console.error("Auto-sync to AI failed:", e);
+        const { toast } = await import("@/hooks/use-toast");
+        toast.call(null, { title: "AI sync failed", description: e.message, variant: "destructive" as const });
+      }
+    }
+  }, [handleUpdate, isAdminMode, product?.id]);
 
   const videoManagement = useVideoManagement({
     initialVideos: product?.training_videos || [],
