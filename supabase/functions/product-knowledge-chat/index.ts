@@ -7,6 +7,8 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+const MAX_HISTORY_MESSAGES = 10;
+
 async function embedQuery(text: string, supabaseUrl: string): Promise<number[] | null> {
   try {
     const response = await fetch(
@@ -23,7 +25,10 @@ async function embedQuery(text: string, supabaseUrl: string): Promise<number[] |
 
     if (!response.ok) return null;
     const data = await response.json();
-    return data.embeddings?.[0] || null;
+    const emb = data.embeddings?.[0];
+    // Validate: not all zeros
+    if (emb && emb.length === 768 && emb.some((v: number) => v !== 0)) return emb;
+    return null;
   } catch {
     return null;
   }
@@ -68,8 +73,7 @@ serve(async (req) => {
     
     const queryEmbedding = await embedQuery(queryText, supabaseUrl);
     
-    if (queryEmbedding && queryEmbedding.length === 768) {
-      // Use pgvector semantic search
+    if (queryEmbedding) {
       const embeddingStr = `[${queryEmbedding.join(",")}]`;
       const { data: matches, error: matchError } = await supabase.rpc(
         "match_knowledge_chunks",
@@ -85,12 +89,12 @@ serve(async (req) => {
       }
     }
 
-    // Fallback: if no vector results, fetch recent chunks directly
+    // Fallback: if no vector results, fetch recent chunks by product_id or source_id
     if (relevantChunks.length === 0) {
       const { data: fallbackChunks } = await supabase
         .from("knowledge_chunks")
         .select("content, source_type, metadata")
-        .eq("source_id", productId)
+        .or(`source_id.eq.${productId},product_id.eq.${productId}`)
         .limit(15);
 
       if (fallbackChunks) {
@@ -100,17 +104,18 @@ serve(async (req) => {
 
     // Build context from relevant chunks
     const chunkContext = relevantChunks
-      .map((c, i) => {
+      .map((c) => {
         const source = c.source_type === "training_video"
           ? `Lecture: ${c.metadata?.video_title || "Unknown"}`
           : c.source_type === "document"
             ? `Document: ${c.metadata?.title || "Unknown"}`
             : `Source: ${c.source_type}`;
-        return `--- ${source} (relevance: ${(c.similarity * 100).toFixed(0)}%) ---\n${c.content}`;
+        const sim = c.similarity > 0 ? ` (relevance: ${(c.similarity * 100).toFixed(0)}%)` : "";
+        return `--- ${source}${sim} ---\n${c.content}`;
       })
       .join("\n\n");
 
-    // Build system prompt with smart context
+    // Build system prompt
     const systemPrompt = `You are **${product.title} Expert** — an AI sales coach and product specialist for AIA's ${product.title} product.
 
 ## YOUR ROLE
@@ -146,9 +151,15 @@ ${chunkContext || "No specific knowledge chunks found for this query. Use the pr
 - Always ground answers in the training material provided above
 - If a question requires specific numerical data (e.g., exact fund performance), recommend checking the latest AIA factsheets`;
 
+    // Conversation history management: keep only last N messages to prevent token bloat
+    const userMessages = messages.filter((m: any) => m.role !== "system");
+    const trimmedMessages = userMessages.length > MAX_HISTORY_MESSAGES
+      ? userMessages.slice(-MAX_HISTORY_MESSAGES)
+      : userMessages;
+
     const apiMessages = [
       { role: "system", content: systemPrompt },
-      ...messages,
+      ...trimmedMessages,
     ];
 
     const response = await fetch(

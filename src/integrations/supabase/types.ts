@@ -489,6 +489,7 @@ export type Database = {
           embedding: string | null
           id: string
           metadata: Json | null
+          product_id: string | null
           source_id: string | null
           source_type: string
         }
@@ -499,6 +500,7 @@ export type Database = {
           embedding?: string | null
           id?: string
           metadata?: Json | null
+          product_id?: string | null
           source_id?: string | null
           source_type?: string
         }
@@ -509,6 +511,7 @@ export type Database = {
           embedding?: string | null
           id?: string
           metadata?: Json | null
+          product_id?: string | null
           source_id?: string | null
           source_type?: string
         }
@@ -530,6 +533,7 @@ export type Database = {
           file_size: number
           file_type: string
           id: string
+          product_id: string | null
           status: string
           title: string
           updated_at: string
@@ -542,6 +546,7 @@ export type Database = {
           file_size?: number
           file_type: string
           id?: string
+          product_id?: string | null
           status?: string
           title: string
           updated_at?: string
@@ -554,6 +559,7 @@ export type Database = {
           file_size?: number
           file_type?: string
           id?: string
+          product_id?: string | null
           status?: string
           title?: string
           updated_at?: string
