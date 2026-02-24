@@ -40,7 +40,7 @@ serve(async (req) => {
   }
 
   try {
-    const { messages, productId } = await req.json();
+    const { messages, productId, mode } = await req.json();
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
@@ -147,6 +147,30 @@ serve(async (req) => {
       })
       .join("\n\n");
 
+    // Mode-specific instructions
+    const modeInstructions: Record<string, string> = {
+      knowledge: `\n\n## MODE: KNOWLEDGE Q&A
+- Be concise and factual. Use bullet points and tables where appropriate.
+- Answer directly without sales language or persuasive framing.
+- If the answer isn't in your knowledge base, say so clearly.
+- Think of yourself as a product encyclopedia — accurate, structured, brief.`,
+      sales: `\n\n## MODE: SALES COACH
+- Be a sales coach. Provide scripts, talking points, and analogies the advisor can use verbatim.
+- Help the advisor sell effectively with positioning strategies and closing techniques.
+- Use role-play scenarios when helpful — e.g. "Here's how you could say it..."
+- Be conversational, motivating, and actionable.`,
+      objections: `\n\n## MODE: OBJECTION HANDLING
+- Focus on objection handling using the 4-step framework:
+  1. **Acknowledge** — validate the client's concern casually
+  2. **Common Ground** — establish relatability
+  3. **Different Perspective** — pivot the value proposition
+  4. **Safety Valve** — give the client control
+- Always structure responses as: **Objection → Acknowledgment → Reframe → Suggested Response**
+- Provide word-for-word scripts the advisor can adapt.`,
+    };
+
+    const activeMode = mode || 'knowledge';
+
     // Build system prompt
     const systemPrompt = `You are **${product.title} Expert** — an AI sales coach and product specialist for AIA's ${product.title} product.
 
@@ -172,8 +196,6 @@ ${chunkContext || "No specific knowledge chunks found for this query. Use the pr
 - **Be practical and actionable** — give specific talking points, not generic advice
 - **Use examples from the lectures** — reference what the trainer said, use their analogies
 - **Format with markdown** — use headers, bullet points, bold for emphasis
-- **For objection handling** — provide the objection, acknowledge it, then give a reframe/response
-- **For comparisons** — reference the competitive advantages mentioned in training
 - **If asked about something not in your knowledge base** — say so honestly and suggest consulting official AIA documentation
 - **Keep it conversational** — you're a helpful colleague, not a textbook
 - When users share images of documents, benefit illustrations, or product materials, analyze them in the context of ${product.title}
@@ -181,7 +203,7 @@ ${chunkContext || "No specific knowledge chunks found for this query. Use the pr
 ## IMPORTANT
 - Never make up product features, numbers, or charges that aren't in your knowledge base
 - Always ground answers in the training material provided above
-- If a question requires specific numerical data (e.g., exact fund performance), recommend checking the latest AIA factsheets`;
+- If a question requires specific numerical data (e.g., exact fund performance), recommend checking the latest AIA factsheets${modeInstructions[activeMode] || modeInstructions.knowledge}`;
 
     // Conversation history management: keep only last N messages to prevent token bloat
     const userMessages = messages.filter((m: any) => m.role !== "system");
