@@ -8,7 +8,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil } from "lucide-react";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
 import { useScripts } from "@/hooks/useScripts";
-import { useScriptActions } from "@/hooks/useScripts";
+import { useScriptsMutations } from "@/hooks/useScripts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from "react-markdown";
