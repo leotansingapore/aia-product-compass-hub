@@ -6,6 +6,7 @@ import { ProductHeader } from "@/components/product-detail/ProductHeader";
 import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLinks";
 import { SalesToolsUsefulLinks } from "@/components/product-detail/SalesToolsUsefulLinks";
 import { FloatingAIChat } from "@/components/product-detail/FloatingAIChat";
+import { ProductSyncButton } from "@/components/product-detail/ProductSyncButton";
 import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
 import { VideoEditingInterface } from "@/components/video-editing/VideoEditingInterface";
 import { useVideoManagement } from "@/hooks/useVideoManagement";
