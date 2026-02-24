@@ -486,6 +486,7 @@ export type Database = {
           content: string
           created_at: string
           document_id: string | null
+          embedding: string | null
           id: string
           metadata: Json | null
           source_id: string | null
@@ -495,6 +496,7 @@ export type Database = {
           content: string
           created_at?: string
           document_id?: string | null
+          embedding?: string | null
           id?: string
           metadata?: Json | null
           source_id?: string | null
@@ -504,6 +506,7 @@ export type Database = {
           content?: string
           created_at?: string
           document_id?: string | null
+          embedding?: string | null
           id?: string
           metadata?: Json | null
           source_id?: string | null
@@ -1805,6 +1808,21 @@ export type Database = {
             Returns: boolean
           }
         | { Args: { required_tier: string; user_id: string }; Returns: boolean }
+      match_knowledge_chunks: {
+        Args: {
+          filter_product_id?: string
+          match_count?: number
+          query_embedding: string
+        }
+        Returns: {
+          content: string
+          id: string
+          metadata: Json
+          similarity: number
+          source_id: string
+          source_type: string
+        }[]
+      }
       reset_approval_request: { Args: { _email: string }; Returns: Json }
       store_signup_password: {
         Args: { user_email: string; user_password: string }
