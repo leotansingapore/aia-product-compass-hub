@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { KnowledgeSyncButton } from "@/components/admin/KnowledgeSyncButton";
 import { useKnowledgeDocuments } from "@/hooks/useKnowledgeDocuments";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -53,14 +54,17 @@ export function KnowledgeManagement() {
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <CardTitle className="text-lg flex items-center gap-2">
             <Database className="h-5 w-5" /> Knowledge Base Management
           </CardTitle>
-          <Button variant="outline" size="sm" onClick={handleSync} disabled={syncing} className="gap-1.5">
-            <RefreshCw className={`h-3.5 w-3.5 ${syncing ? "animate-spin" : ""}`} />
-            {syncing ? "Syncing..." : "Sync Scripts"}
-          </Button>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="outline" size="sm" onClick={handleSync} disabled={syncing} className="gap-1.5">
+              <RefreshCw className={`h-3.5 w-3.5 ${syncing ? "animate-spin" : ""}`} />
+              {syncing ? "Syncing..." : "Sync Scripts"}
+            </Button>
+            <KnowledgeSyncButton />
+          </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
