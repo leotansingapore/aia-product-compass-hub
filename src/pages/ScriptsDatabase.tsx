@@ -2550,6 +2550,7 @@ export default function ScriptsDatabase() {
                             setDeleteTarget={setDeleteTarget}
                             navigate={navigate}
                             allScripts={dbScripts}
+                            onInlineSave={handleInlineSave}
                           />
                         );
                       })}
@@ -2576,6 +2577,7 @@ export default function ScriptsDatabase() {
                         allScripts={dbScripts}
                         onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                         onDelete={() => setDeleteTarget(script)}
+                        onInlineSave={handleInlineSave}
                         onToggle={(open) => {
                           if (open) {
                             navigate(`/scripts/${script.id}`, { replace: true });
