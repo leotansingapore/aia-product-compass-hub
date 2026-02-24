@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
@@ -13,6 +13,8 @@ import { useVideoManagement } from "@/hooks/useVideoManagement";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { PersonalNotes } from "@/components/PersonalNotes";
+import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -39,10 +41,24 @@ export default function ProductDetail() {
 
   const [editingIndexFromUrl, setEditingIndexFromUrl] = useState<number | null>(null);
 
-  // Video management setup for admins - must be declared before using editVideos
-  const handleVideoSave = async (updatedVideos: TrainingVideo[]) => {
+  // Video management setup for admins - auto-syncs to AI knowledge base after save
+  const handleVideoSave = useCallback(async (updatedVideos: TrainingVideo[]) => {
     await handleUpdate('training_videos', updatedVideos);
-  };
+    
+    // Auto-sync to AI knowledge base (fire-and-forget, admin only)
+    if (isAdminMode && product?.id) {
+      toast({ title: "Syncing training videos to AI…" });
+      supabase.functions.invoke("process-knowledge", {
+        body: { action: "sync_training_videos", product_id: product.id },
+      }).then(({ data, error }) => {
+        if (error) throw error;
+        toast({ title: "AI knowledge base updated ✓", description: `${data?.chunks_created ?? 0} chunks synced` });
+      }).catch((e: any) => {
+        console.error("Auto-sync to AI failed:", e);
+        toast({ title: "AI sync failed", description: e.message, variant: "destructive" });
+      });
+    }
+  }, [handleUpdate, isAdminMode, product?.id]);
 
   const videoManagement = useVideoManagement({
     initialVideos: product?.training_videos || [],
