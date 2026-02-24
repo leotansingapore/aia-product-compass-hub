@@ -8,8 +8,12 @@ const corsHeaders = {
 
 const CHUNK_SIZE = 1500;
 const CHUNK_OVERLAP = 200;
+const MIN_CHUNK_LENGTH = 50;
 
-function chunkText(text: string): string[] {
+/**
+ * Improved chunking: sentence-boundary aware, filters noise, prepends context metadata.
+ */
+function chunkText(text: string, contextPrefix?: string): string[] {
   const chunks: string[] = [];
   if (!text || text.trim().length === 0) return chunks;
   
@@ -19,9 +23,13 @@ function chunkText(text: string): string[] {
   for (const para of paragraphs) {
     if ((currentChunk + "\n\n" + para).length > CHUNK_SIZE && currentChunk.length > 0) {
       chunks.push(currentChunk.trim());
-      const words = currentChunk.split(/\s+/);
-      const overlapWords = words.slice(-Math.floor(CHUNK_OVERLAP / 5));
-      currentChunk = overlapWords.join(" ") + "\n\n" + para;
+      // Overlap: find last sentence boundary in the chunk
+      const lastSentenceEnd = currentChunk.lastIndexOf(". ");
+      const overlapStart = lastSentenceEnd > currentChunk.length - CHUNK_OVERLAP 
+        ? lastSentenceEnd + 2 
+        : Math.max(0, currentChunk.length - CHUNK_OVERLAP);
+      const overlapText = currentChunk.slice(overlapStart);
+      currentChunk = overlapText + "\n\n" + para;
     } else {
       currentChunk = currentChunk ? currentChunk + "\n\n" + para : para;
     }
@@ -31,7 +39,10 @@ function chunkText(text: string): string[] {
     chunks.push(currentChunk.trim());
   }
   
-  return chunks.length > 0 ? chunks : [text.trim()];
+  // Filter out tiny noise chunks and prepend context
+  return (chunks.length > 0 ? chunks : [text.trim()])
+    .filter(c => c.length >= MIN_CHUNK_LENGTH)
+    .map(c => contextPrefix ? `${contextPrefix}\n${c}` : c);
 }
 
 async function generateEmbeddings(texts: string[], supabaseUrl: string): Promise<number[][]> {
@@ -58,6 +69,34 @@ async function generateEmbeddings(texts: string[], supabaseUrl: string): Promise
   } catch (e) {
     console.error("Embedding generation failed:", e);
     return texts.map(() => []);
+  }
+}
+
+// Validate embedding: must be 768-dim with actual non-zero values
+function isValidEmbedding(emb: number[]): boolean {
+  if (!emb || emb.length !== 768) return false;
+  const nonZero = emb.filter(v => v !== 0 && !isNaN(v)).length;
+  return nonZero > 10; // At least some meaningful values
+}
+
+async function embedAndStore(supabase: any, insertedChunks: any[], supabaseUrl: string) {
+  if (!insertedChunks || insertedChunks.length === 0) return;
+  
+  const batchSize = 5;
+  for (let i = 0; i < insertedChunks.length; i += batchSize) {
+    const batch = insertedChunks.slice(i, i + batchSize);
+    const texts = batch.map((c: any) => c.content);
+    const embeddings = await generateEmbeddings(texts, supabaseUrl);
+
+    for (let j = 0; j < batch.length; j++) {
+      if (isValidEmbedding(embeddings[j])) {
+        const embeddingStr = `[${embeddings[j].join(",")}]`;
+        await supabase
+          .from("knowledge_chunks")
+          .update({ embedding: embeddingStr })
+          .eq("id", batch[j].id);
+      }
+    }
   }
 }
 
@@ -115,7 +154,8 @@ serve(async (req) => {
         .eq("source_type", "training_video")
         .eq("source_id", product_id);
 
-      const allChunks: { content: string; source_type: string; source_id: string; metadata: any }[] = [];
+      const categoryName = (product as any).categories?.name || "Unknown";
+      const allChunks: { content: string; source_type: string; source_id: string; product_id: string; metadata: any }[] = [];
 
       for (const video of trainingVideos) {
         const title = video.title || "Untitled Video";
@@ -130,49 +170,32 @@ serve(async (req) => {
 
         if (fullText.trim().length === 0) continue;
 
-        const textChunks = chunkText(fullText);
+        const contextPrefix = `Product: ${product.title} | Category: ${categoryName} | Source: ${title}`;
+        const textChunks = chunkText(fullText, contextPrefix);
+        
         for (const chunk of textChunks) {
           allChunks.push({
             content: chunk,
             source_type: "training_video",
             source_id: product_id,
+            product_id: product_id,
             metadata: {
               video_title: title,
               product_title: product.title,
-              category: (product as any).categories?.name || "Unknown",
+              category: categoryName,
             },
           });
         }
       }
 
       if (allChunks.length > 0) {
-        // Insert chunks first
         const { data: insertedChunks, error: insertError } = await supabase
           .from("knowledge_chunks")
           .insert(allChunks)
           .select("id, content");
 
         if (insertError) throw new Error(`Failed to insert chunks: ${insertError.message}`);
-
-        // Generate embeddings in batches of 5
-        if (insertedChunks && insertedChunks.length > 0) {
-          const batchSize = 5;
-          for (let i = 0; i < insertedChunks.length; i += batchSize) {
-            const batch = insertedChunks.slice(i, i + batchSize);
-            const texts = batch.map((c: any) => c.content);
-            const embeddings = await generateEmbeddings(texts, supabaseUrl);
-
-            for (let j = 0; j < batch.length; j++) {
-              if (embeddings[j] && embeddings[j].length === 768) {
-                const embeddingStr = `[${embeddings[j].join(",")}]`;
-                await supabase
-                  .from("knowledge_chunks")
-                  .update({ embedding: embeddingStr })
-                  .eq("id", batch[j].id);
-              }
-            }
-          }
-        }
+        await embedAndStore(supabase, insertedChunks, supabaseUrl);
       }
 
       return new Response(JSON.stringify({ success: true, chunks_created: allChunks.length }), {
@@ -219,25 +242,7 @@ serve(async (req) => {
           .insert(chunks)
           .select("id, content");
         if (insertError) throw new Error(`Failed to insert script chunks: ${insertError.message}`);
-
-        // Generate embeddings
-        if (insertedChunks) {
-          const batchSize = 5;
-          for (let i = 0; i < insertedChunks.length; i += batchSize) {
-            const batch = insertedChunks.slice(i, i + batchSize);
-            const texts = batch.map((c: any) => c.content);
-            const embeddings = await generateEmbeddings(texts, supabaseUrl);
-            for (let j = 0; j < batch.length; j++) {
-              if (embeddings[j] && embeddings[j].length === 768) {
-                const embeddingStr = `[${embeddings[j].join(",")}]`;
-                await supabase
-                  .from("knowledge_chunks")
-                  .update({ embedding: embeddingStr })
-                  .eq("id", batch[j].id);
-              }
-            }
-          }
-        }
+        await embedAndStore(supabase, insertedChunks, supabaseUrl);
       }
 
       return new Response(JSON.stringify({ success: true, chunks_created: chunks.length }), {
@@ -262,7 +267,11 @@ serve(async (req) => {
 
       try {
         const text = await extractTextFromFile(supabase, doc.file_path, doc.file_type);
-        const textChunks = chunkText(text);
+        
+        const contextPrefix = doc.product_id
+          ? `Document: ${doc.title} | Product: ${doc.product_id}`
+          : `Document: ${doc.title}`;
+        const textChunks = chunkText(text, contextPrefix);
         
         await supabase
           .from("knowledge_chunks")
@@ -272,7 +281,8 @@ serve(async (req) => {
         const chunks = textChunks.map(chunk => ({
           document_id,
           source_type: "document",
-          source_id: document_id,
+          source_id: doc.product_id || document_id,
+          product_id: doc.product_id || null,
           content: chunk,
           metadata: { title: doc.title, file_type: doc.file_type },
         }));
@@ -283,25 +293,7 @@ serve(async (req) => {
             .insert(chunks)
             .select("id, content");
           if (insertError) throw new Error(`Failed to insert chunks: ${insertError.message}`);
-
-          // Generate embeddings
-          if (insertedChunks) {
-            const batchSize = 5;
-            for (let i = 0; i < insertedChunks.length; i += batchSize) {
-              const batch = insertedChunks.slice(i, i + batchSize);
-              const texts = batch.map((c: any) => c.content);
-              const embeddings = await generateEmbeddings(texts, supabaseUrl);
-              for (let j = 0; j < batch.length; j++) {
-                if (embeddings[j] && embeddings[j].length === 768) {
-                  const embeddingStr = `[${embeddings[j].join(",")}]`;
-                  await supabase
-                    .from("knowledge_chunks")
-                    .update({ embedding: embeddingStr })
-                    .eq("id", batch[j].id);
-                }
-              }
-            }
-          }
+          await embedAndStore(supabase, insertedChunks, supabaseUrl);
         }
 
         await supabase
