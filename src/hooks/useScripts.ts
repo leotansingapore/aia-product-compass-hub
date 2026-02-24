@@ -79,6 +79,7 @@ export function useScriptsMutations() {
         tags: script.tags || [],
         versions: JSON.parse(JSON.stringify(script.versions)),
         sort_order: script.sort_order,
+        related_script_id: script.related_script_id || null,
       } as any])
       .select()
       .single();
@@ -97,6 +98,7 @@ export function useScriptsMutations() {
     if (updates.tags !== undefined) payload.tags = updates.tags;
     if (updates.versions !== undefined) payload.versions = JSON.parse(JSON.stringify(updates.versions));
     if (updates.sort_order !== undefined) payload.sort_order = updates.sort_order;
+    if (updates.related_script_id !== undefined) payload.related_script_id = updates.related_script_id || null;
 
     const { error } = await supabase.from('scripts').update(payload).eq('id', id);
     if (error) { toast.error('Failed to update script'); console.error(error); return false; }
