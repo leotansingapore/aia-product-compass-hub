@@ -2016,7 +2016,7 @@ export default function ScriptsDatabase() {
     const maxOrder = 999;
     const { error } = await supabase
       .from('script_playbook_items')
-      .insert({ playbook_id: playbookId, script_id: scriptId, sort_order: maxOrder });
+      .insert({ playbook_id: playbookId, script_id: scriptId, sort_order: maxOrder, item_type: 'script' } as any);
     if (error) {
       if (error.code === '23505') {
         toast.error('Script already in this playbook');
@@ -2034,7 +2034,7 @@ export default function ScriptsDatabase() {
         if (data?.id) {
           const { error } = await supabase
             .from('script_playbook_items')
-            .insert({ playbook_id: data.id, script_id: scriptId, sort_order: 0 });
+            .insert({ playbook_id: data.id, script_id: scriptId, sort_order: 0, item_type: 'script' } as any);
           if (error) {
             toast.error('Playbook created but failed to add script');
           } else {

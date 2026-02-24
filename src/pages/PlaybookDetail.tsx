@@ -5,10 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil } from "lucide-react";
+import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare } from "lucide-react";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
 import { useScripts } from "@/hooks/useScripts";
 import { useScriptsMutations } from "@/hooks/useScripts";
+import { useObjections } from "@/hooks/useObjections";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from "react-markdown";
@@ -16,8 +17,7 @@ import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+import { AddToPlaybookDialog } from "@/components/playbooks/AddToPlaybookDialog";
 import { toast } from "sonner";
 import {
   DndContext,
@@ -206,6 +206,87 @@ function SortableScriptCard({ item, index, isOwner, onRemove, onInlineSave, isAu
     </Card>
   );
 }
+
+interface SortableObjectionCardProps {
+  item: any;
+  index: number;
+  isOwner: boolean;
+  onRemove: (id: string) => void;
+}
+
+function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjectionCardProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: item.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 50 : undefined,
+    opacity: isDragging ? 0.8 : 1,
+  };
+
+  return (
+    <Card ref={setNodeRef} style={style} className={isDragging ? "shadow-lg ring-2 ring-primary/30" : ""}>
+      <Collapsible>
+        <CollapsibleTrigger asChild>
+          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:px-6">
+            <div className="flex items-start gap-2 sm:gap-3">
+              {isOwner && (
+                <button
+                  {...attributes}
+                  {...listeners}
+                  className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 -ml-1 mt-0.5"
+                  onClick={e => e.stopPropagation()}
+                >
+                  <GripVertical className="h-4 w-4" />
+                </button>
+              )}
+              <span className="text-xs text-muted-foreground font-mono w-5 text-center mt-0.5 shrink-0">{index + 1}</span>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-start justify-between gap-2">
+                  <CardTitle className="text-sm font-medium leading-snug flex items-center gap-1.5">
+                    <MessageSquare className="h-3.5 w-3.5 text-amber-500 shrink-0" />
+                    {item.objection?.title}
+                  </CardTitle>
+                  <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                </div>
+                <div className="flex gap-1.5 mt-1.5 flex-wrap">
+                  <Badge variant="secondary" className="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">Objection</Badge>
+                  <Badge variant="outline" className="text-[10px]">{item.objection?.category}</Badge>
+                  {item.objection?.tags?.map((tag: string) => (
+                    <Badge key={tag} variant="outline" className="text-[10px]">{tag}</Badge>
+                  ))}
+                </div>
+                {isOwner && (
+                  <div className="mt-2" onClick={e => e.stopPropagation()}>
+                    <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs text-destructive hover:text-destructive" onClick={() => onRemove(item.id)}>
+                      <Trash2 className="h-3 w-3" /> Remove
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </CardHeader>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <CardContent className="pt-0 pb-4 px-3 sm:px-6">
+            {item.objection?.description && (
+              <p className="text-sm text-muted-foreground mb-3">{item.objection.description}</p>
+            )}
+            <p className="text-xs text-muted-foreground italic">View full objection responses in the Objection Handling database.</p>
+          </CardContent>
+        </CollapsibleContent>
+      </Collapsible>
+    </Card>
+  );
+}
+
 export default function PlaybookDetail() {
   const { playbookId } = useParams();
   const navigate = useNavigate();
@@ -214,9 +295,9 @@ export default function PlaybookDetail() {
   const { items, isLoading, removeItem, reorderItems } = usePlaybookItems(playbookId || null);
   const { scripts, loading: scriptsLoading, refetch } = useScripts();
   const { updateScript } = useScriptsMutations();
+  const { entries: objections, loading: objectionsLoading } = useObjections();
 
   const [addDialogOpen, setAddDialogOpen] = useState(false);
-  const [addSearch, setAddSearch] = useState("");
   const [aiSuggestions, setAiSuggestions] = useState<{ script_id: string; reason: string; suggested_position: string }[] | null>(null);
   const [aiSummary, setAiSummary] = useState("");
   const [isAiLoading, setIsAiLoading] = useState(false);
@@ -224,22 +305,13 @@ export default function PlaybookDetail() {
   const playbook = playbooks.find(p => p.id === playbookId);
   const isOwner = user?.id === playbook?.created_by;
 
-  const itemsWithScripts = useMemo(() => {
+  const itemsWithData = useMemo(() => {
     return items.map(item => ({
       ...item,
-      script: scripts.find(s => s.id === item.script_id),
-    })).filter(item => item.script);
-  }, [items, scripts]);
-
-  const availableScripts = useMemo(() => {
-    const usedIds = new Set(items.map(i => i.script_id));
-    let filtered = scripts.filter(s => !usedIds.has(s.id));
-    if (addSearch.trim()) {
-      const q = addSearch.toLowerCase();
-      filtered = filtered.filter(s => s.stage.toLowerCase().includes(q) || s.category.toLowerCase().includes(q));
-    }
-    return filtered;
-  }, [scripts, items, addSearch]);
+      script: item.item_type === 'script' ? scripts.find(s => s.id === item.script_id) : undefined,
+      objection: item.item_type === 'objection' ? objections.find(o => o.id === item.objection_id) : undefined,
+    })).filter(item => item.script || item.objection);
+  }, [items, scripts, objections]);
 
   const { addItem } = usePlaybookItems(playbookId || null);
 
@@ -252,11 +324,11 @@ export default function PlaybookDetail() {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
 
-    const oldIndex = itemsWithScripts.findIndex(i => i.id === active.id);
-    const newIndex = itemsWithScripts.findIndex(i => i.id === over.id);
+    const oldIndex = itemsWithData.findIndex(i => i.id === active.id);
+    const newIndex = itemsWithData.findIndex(i => i.id === over.id);
     if (oldIndex === -1 || newIndex === -1) return;
 
-    const reordered = [...itemsWithScripts];
+    const reordered = [...itemsWithData];
     const [moved] = reordered.splice(oldIndex, 1);
     reordered.splice(newIndex, 0, moved);
 
@@ -297,7 +369,7 @@ export default function PlaybookDetail() {
     setAiSuggestions(null);
     setAiSummary("");
     try {
-      const existingScripts = itemsWithScripts.map(i => ({
+      const existingScripts = itemsWithData.filter(i => i.script).map(i => ({
         stage: i.script?.stage,
         category: i.script?.category,
         target_audience: i.script?.target_audience,
@@ -371,7 +443,7 @@ export default function PlaybookDetail() {
                 AI Suggest
               </Button>
               <Button onClick={() => setAddDialogOpen(true)} className="gap-2 flex-1 sm:flex-initial">
-                <Plus className="h-4 w-4" /> Add Scripts
+                <Plus className="h-4 w-4" /> Add Items
               </Button>
             </div>
           )}
@@ -417,7 +489,7 @@ export default function PlaybookDetail() {
                           variant="outline"
                           className="shrink-0 gap-1"
                           onClick={() => {
-                            addItem.mutate({ scriptId: suggestion.script_id });
+                            addItem.mutate({ scriptId: suggestion.script_id, itemType: 'script' });
                             setAiSuggestions(prev => prev?.filter(s => s.script_id !== suggestion.script_id) || null);
                           }}
                         >
@@ -434,18 +506,18 @@ export default function PlaybookDetail() {
           </Card>
         )}
 
-        {/* Scripts List */}
-        {isLoading || scriptsLoading ? (
+        {/* Items List */}
+        {isLoading || scriptsLoading || objectionsLoading ? (
           <div className="flex justify-center py-12">
             <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
           </div>
-        ) : itemsWithScripts.length === 0 ? (
+        ) : itemsWithData.length === 0 ? (
           <Card className="text-center py-12">
             <CardContent>
-              <p className="text-muted-foreground mb-4">No scripts in this playbook yet.</p>
+              <p className="text-muted-foreground mb-4">No items in this playbook yet.</p>
               {isOwner && (
                 <Button onClick={() => setAddDialogOpen(true)}>
-                  <Plus className="h-4 w-4 mr-2" /> Add Scripts
+                  <Plus className="h-4 w-4 mr-2" /> Add Items
                 </Button>
               )}
             </CardContent>
@@ -456,18 +528,28 @@ export default function PlaybookDetail() {
             collisionDetection={closestCenter}
             onDragEnd={handleDragEnd}
           >
-            <SortableContext items={itemsWithScripts.map(i => i.id)} strategy={verticalListSortingStrategy}>
+            <SortableContext items={itemsWithData.map(i => i.id)} strategy={verticalListSortingStrategy}>
               <div className="space-y-3">
-                {itemsWithScripts.map((item, index) => (
-                  <SortableScriptCard
-                    key={item.id}
-                    item={item}
-                    index={index}
-                    isOwner={isOwner}
-                    onRemove={(id) => removeItem.mutate(id)}
-                    onInlineSave={handleInlineSave}
-                    isAuthenticated={!!user}
-                  />
+                {itemsWithData.map((item, index) => (
+                  item.item_type === 'objection' && item.objection ? (
+                    <SortableObjectionCard
+                      key={item.id}
+                      item={item}
+                      index={index}
+                      isOwner={isOwner}
+                      onRemove={(id) => removeItem.mutate(id)}
+                    />
+                  ) : (
+                    <SortableScriptCard
+                      key={item.id}
+                      item={item}
+                      index={index}
+                      isOwner={isOwner}
+                      onRemove={(id) => removeItem.mutate(id)}
+                      onInlineSave={handleInlineSave}
+                      isAuthenticated={!!user}
+                    />
+                  )
                 ))}
               </div>
             </SortableContext>
@@ -475,49 +557,16 @@ export default function PlaybookDetail() {
         )}
       </div>
 
-      {/* Add Scripts Dialog */}
-      <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
-        <DialogContent className="max-w-lg max-h-[85vh] mx-2 sm:mx-auto">
-          <DialogHeader>
-            <DialogTitle>Add Scripts to Playbook</DialogTitle>
-          </DialogHeader>
-          <Input
-            placeholder="Search scripts..."
-            value={addSearch}
-            onChange={e => setAddSearch(e.target.value)}
-            className="mb-3"
-          />
-          <div className="overflow-y-auto max-h-[50vh] space-y-2">
-            {availableScripts.length === 0 ? (
-              <p className="text-sm text-muted-foreground text-center py-4">
-                {addSearch ? "No matching scripts found" : "All scripts are already in this playbook"}
-              </p>
-            ) : (
-              availableScripts.map(script => (
-                <div key={script.id} className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors gap-2">
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium truncate">{script.stage}</p>
-                    <div className="flex gap-1 mt-1">
-                      <Badge variant="secondary" className="text-[10px]">{script.category}</Badge>
-                      {script.target_audience && script.target_audience !== 'general' && (
-                        <Badge variant="outline" className="text-[10px]">{script.target_audience}</Badge>
-                      )}
-                    </div>
-                  </div>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="ml-2 shrink-0"
-                    onClick={() => addItem.mutate({ scriptId: script.id })}
-                  >
-                    <Plus className="h-3.5 w-3.5 mr-1" /> Add
-                  </Button>
-                </div>
-              ))
-            )}
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* Add to Playbook Dialog */}
+      <AddToPlaybookDialog
+        open={addDialogOpen}
+        onOpenChange={setAddDialogOpen}
+        scripts={scripts}
+        objections={objections}
+        items={items}
+        onAddScript={(id) => addItem.mutate({ scriptId: id, itemType: 'script' })}
+        onAddObjection={(id) => addItem.mutate({ objectionId: id, itemType: 'objection' })}
+      />
     </PageLayout>
   );
 }

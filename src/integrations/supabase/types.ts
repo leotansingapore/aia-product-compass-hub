@@ -1257,25 +1257,38 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          item_type: string
+          objection_id: string | null
           playbook_id: string
-          script_id: string
+          script_id: string | null
           sort_order: number
         }
         Insert: {
           created_at?: string
           id?: string
+          item_type?: string
+          objection_id?: string | null
           playbook_id: string
-          script_id: string
+          script_id?: string | null
           sort_order?: number
         }
         Update: {
           created_at?: string
           id?: string
+          item_type?: string
+          objection_id?: string | null
           playbook_id?: string
-          script_id?: string
+          script_id?: string | null
           sort_order?: number
         }
         Relationships: [
+          {
+            foreignKeyName: "script_playbook_items_objection_id_fkey"
+            columns: ["objection_id"]
+            isOneToOne: false
+            referencedRelation: "objection_entries"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "script_playbook_items_playbook_id_fkey"
             columns: ["playbook_id"]
