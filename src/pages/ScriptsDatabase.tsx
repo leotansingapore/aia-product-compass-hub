@@ -1650,6 +1650,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
                 isFavourite={favouriteIds.has(script.id)}
                 onToggleFavourite={() => toggleFavourite.mutate(script.id)}
                 isMobile={isMobile}
+                allScripts={allScripts}
                 onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                 onDelete={() => setDeleteTarget(script)}
                 onToggle={(open) => {
@@ -2483,6 +2484,7 @@ export default function ScriptsDatabase() {
                         isFavourite={favouriteIds.has(script.id)}
                         onToggleFavourite={() => toggleFavourite.mutate(script.id)}
                         isMobile={isMobile}
+                        allScripts={dbScripts}
                         onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                         onDelete={() => setDeleteTarget(script)}
                         onToggle={(open) => {
