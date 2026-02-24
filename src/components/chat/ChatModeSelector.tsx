@@ -1,4 +1,4 @@
-import { Search, TrendingUp, Shield } from 'lucide-react';
+import { Search, TrendingUp, Shield, Users } from 'lucide-react';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { ChatMode } from './types';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -14,6 +14,7 @@ const modes = [
   { value: 'knowledge' as const, label: 'Knowledge Q&A', icon: Search },
   { value: 'sales' as const, label: 'Sales Coach', icon: TrendingUp },
   { value: 'objections' as const, label: 'Objection Handling', icon: Shield },
+  { value: 'roleplay' as const, label: 'Role Play', icon: Users },
 ];
 
 export function ChatModeSelector({ mode, onModeChange, className }: ChatModeSelectorProps) {
