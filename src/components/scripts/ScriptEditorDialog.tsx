@@ -328,7 +328,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
     setIsMerging(true);
     try {
       const match = similarScripts.find(s => s.id === targetScriptId);
-      await trackDuplicateDecision("merge_as_version", match?.similarity, match?.searchTier);
+      await trackDuplicateDecision("merge_as_version", match?.overlapPercent, match?.searchTier);
 
       const { data, error } = await supabase.functions.invoke("seed-scripts", {
         body: {
