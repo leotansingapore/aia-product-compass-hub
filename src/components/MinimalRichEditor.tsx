@@ -32,8 +32,22 @@ function createTurndown() {
     codeBlockStyle: 'fenced',
     emDelimiter: '*',
     strongDelimiter: '**',
+    hr: '---',
+    blankReplacement: (_content: string, node: any) => {
+      if (node.nodeName === 'BR') return '\n';
+      return '\n\n';
+    },
   });
   td.use(gfm);
+  // Keep line breaks inside blockquotes
+  td.addRule('blockquoteParagraph', {
+    filter: (node: any) => {
+      return node.nodeName === 'P' && node.parentNode?.nodeName === 'BLOCKQUOTE';
+    },
+    replacement: (content: string) => {
+      return content + '\n>\n';
+    },
+  });
   return td;
 }
 
@@ -71,6 +85,7 @@ export function MinimalRichEditor({
 }: MinimalRichEditorProps) {
   const isUpdatingRef = useRef(false);
   const lastValueRef = useRef(value);
+  const isInitializedRef = useRef(false);
 
   const editor = useEditor({
     extensions: [
@@ -123,6 +138,11 @@ export function MinimalRichEditor({
     },
     onUpdate: ({ editor: ed }) => {
       if (isUpdatingRef.current) return;
+      // Skip the initial onUpdate that fires when TipTap first renders content
+      if (!isInitializedRef.current) {
+        isInitializedRef.current = true;
+        return;
+      }
       const md = htmlToMd(ed.getHTML());
       lastValueRef.current = md;
       onChange(md);
