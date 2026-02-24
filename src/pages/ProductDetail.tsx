@@ -5,7 +5,7 @@ import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { ProductHeader } from "@/components/product-detail/ProductHeader";
 import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLinks";
 import { SalesToolsUsefulLinks } from "@/components/product-detail/SalesToolsUsefulLinks";
-import { FloatingNotebookChat } from "@/components/product-detail/FloatingNotebookChat";
+import { FloatingAIChat } from "@/components/product-detail/FloatingAIChat";
 import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
 import { VideoEditingInterface } from "@/components/video-editing/VideoEditingInterface";
 import { useVideoManagement } from "@/hooks/useVideoManagement";
@@ -133,9 +133,9 @@ export default function ProductDetail() {
         
         <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
 
-          {/* Floating NotebookLM Chat Button */}
-          <FloatingNotebookChat
-            notebookLink={product.chatbot_link_3}
+          {/* Floating AI Assistant Chat */}
+          <FloatingAIChat
+            productId={product.id}
             productName={product.title}
           />
 
