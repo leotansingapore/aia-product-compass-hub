@@ -1829,6 +1829,19 @@ export default function ScriptsDatabase() {
     if (activeTag !== "all") params.set("tag", activeTag);
     setSearchParams(params, { replace: true });
   }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
+
+  // When navigating to a specific script via URL, reset filters so it's always visible
+  useEffect(() => {
+    if (scriptId) {
+      setActiveCategory("all");
+      setActiveAudience("all");
+      setActiveRole("all");
+      setActiveTag("all");
+      setShowFavouritesOnly(false);
+      setSearchQuery("");
+      setSearchInput("");
+    }
+  }, [scriptId]);
   
   const { scripts: dbScripts, loading, refetch } = useScripts();
   const { createScript, updateScript, deleteScript, isAdmin } = useScriptsMutations();
@@ -1986,9 +1999,15 @@ export default function ScriptsDatabase() {
       setSearchInput("");
       setSearchQuery("");
     } else {
-      navigate(`/scripts/${suggestion.id}`);
+      // Reset all filters so the target script is guaranteed to be visible
+      setActiveCategory("all");
+      setActiveAudience("all");
+      setActiveRole("all");
+      setActiveTag("all");
+      setShowFavouritesOnly(false);
       setSearchInput("");
       setSearchQuery("");
+      navigate(`/scripts/${suggestion.id}`);
     }
     setShowSuggestions(false);
     setSelectedSuggestion(-1);
