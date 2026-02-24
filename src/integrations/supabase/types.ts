@@ -1814,6 +1814,27 @@ export type Database = {
             Returns: boolean
           }
         | { Args: { required_tier: string; user_id: string }; Returns: boolean }
+      hybrid_search_knowledge_chunks: {
+        Args: {
+          filter_product_id?: string
+          keyword_weight?: number
+          match_count?: number
+          query_embedding: string
+          query_text?: string
+          rrf_k?: number
+          vector_weight?: number
+        }
+        Returns: {
+          combined_score: number
+          content: string
+          id: string
+          keyword_rank: number
+          metadata: Json
+          similarity: number
+          source_id: string
+          source_type: string
+        }[]
+      }
       match_knowledge_chunks: {
         Args: {
           filter_product_id?: string
