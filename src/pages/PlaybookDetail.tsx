@@ -443,7 +443,7 @@ export default function PlaybookDetail() {
                 AI Suggest
               </Button>
               <Button onClick={() => setAddDialogOpen(true)} className="gap-2 flex-1 sm:flex-initial">
-                <Plus className="h-4 w-4" /> Add Scripts
+                <Plus className="h-4 w-4" /> Add Items
               </Button>
             </div>
           )}
