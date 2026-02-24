@@ -10,13 +10,19 @@ import {
   ArrowDown,
   RotateCcw,
   ImagePlus,
-  FileText,
   X,
   Bot,
   Sparkles,
+  Search,
+  TrendingUp,
+  Shield,
+  Users,
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ChatMessage } from "./ChatMessage";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { cn } from "@/lib/utils";
+import type { ChatMode } from "@/components/chat/types";
 
 interface ChatMessageType {
   role: "user" | "assistant";
@@ -33,14 +39,66 @@ interface ProductKnowledgeChatProps {
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/product-knowledge-chat`;
 
-const quickQuestions = [
-  { question: "What are the key selling points I should highlight?", category: "Sales" },
-  { question: "How do I handle the objection 'your charges are too high'?", category: "Objections" },
-  { question: "Explain the welcome bonus structure", category: "Product" },
-  { question: "How does the premium pass work?", category: "Features" },
-  { question: "Compare this to competitors with 1% perpetual charge", category: "Comparison" },
-  { question: "What's the best way to pitch this to a fresh grad?", category: "Sales" },
+const modeConfig = [
+  { value: 'knowledge' as ChatMode, label: 'Q&A', icon: Search },
+  { value: 'sales' as ChatMode, label: 'Sales', icon: TrendingUp },
+  { value: 'objections' as ChatMode, label: 'Objections', icon: Shield },
+  { value: 'roleplay' as ChatMode, label: 'Role Play', icon: Users },
 ];
+
+function getModeWelcome(mode: ChatMode, name: string): string {
+  const welcomes: Record<ChatMode, string> = {
+    knowledge: `🔍 **${name} — Knowledge Q&A**\n\nAsk me anything about this product. I'll give you concise, factual answers.\n\n**Try a quick question below or ask me anything!**`,
+    sales: `📈 **${name} — Sales Coach**\n\nI'll help you position this product, craft pitches, and close deals.\n\n**Pick a prompt below to get started.**`,
+    objections: `🛡️ **${name} — Objection Handling**\n\nPractice handling client pushbacks using the 4-step framework:\n1. **Acknowledge** 2. **Common Ground** 3. **Different Perspective** 4. **Safety Valve**\n\n**Choose a scenario below!**`,
+    roleplay: `🎭 **${name} — Role Play**\n\nI'll act as a **skeptical client**. Pitch me ${name} and handle my pushbacks.\n\nType **"end session"** when done for your scorecard.\n\n**Pick a client profile or just start pitching!**`,
+  };
+  return welcomes[mode];
+}
+
+function getQuickQuestions(mode: ChatMode, name: string) {
+  const qs: Record<ChatMode, { question: string; category: string }[]> = {
+    knowledge: [
+      { question: `What are the key features of ${name}?`, category: "Features" },
+      { question: "What are the charges and fees?", category: "Charges" },
+      { question: "How does the premium payment work?", category: "Premiums" },
+      { question: "What are the fund options available?", category: "Funds" },
+      { question: "What is the lock-in period?", category: "Terms" },
+      { question: "What bonuses or boosters are included?", category: "Bonuses" },
+    ],
+    sales: [
+      { question: `Give me a 2-minute elevator pitch for ${name}`, category: "Pitch" },
+      { question: `Who is the ideal customer for ${name}?`, category: "Target" },
+      { question: `How to position ${name} against competitors?`, category: "Positioning" },
+      { question: "What closing techniques work best?", category: "Closing" },
+      { question: "Give me 3 talking points for a client meeting", category: "Talking Points" },
+      { question: `What analogies can I use to explain ${name}?`, category: "Analogies" },
+    ],
+    objections: [
+      { question: `Client says "${name} is too expensive"`, category: "Price" },
+      { question: 'Client says "I want to wait and think about it"', category: "Timing" },
+      { question: 'Client says "I already have a similar policy"', category: "Existing" },
+      { question: 'Client says "I don\'t trust insurance companies"', category: "Trust" },
+      { question: 'Client says "My friend recommended a different product"', category: "Competition" },
+      { question: 'Client says "I\'d rather invest on my own"', category: "DIY" },
+    ],
+    roleplay: [
+      { question: `I'm a 30-year-old professional saving for retirement. Pitch me ${name}.`, category: "Young Pro" },
+      { question: `I'm a parent wanting to save for my child's education. Why ${name}?`, category: "Parent" },
+      { question: `I already have investments. Convince me I need ${name} too.`, category: "Experienced" },
+      { question: `I'm risk-averse and prefer fixed deposits. Why should I consider ${name}?`, category: "Conservative" },
+      { question: "end session", category: "Score Me" },
+    ],
+  };
+  return qs[mode];
+}
+
+const modePlaceholders: Record<ChatMode, (name: string) => string> = {
+  knowledge: (n) => `Ask about ${n}...`,
+  sales: (n) => `How do I sell ${n}?`,
+  objections: () => 'Type a client objection to practice...',
+  roleplay: () => 'Start your pitch or respond to the client...',
+};
 
 export const ProductKnowledgeChat = memo(function ProductKnowledgeChat({
   productId,
