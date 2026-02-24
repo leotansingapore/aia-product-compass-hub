@@ -62,8 +62,14 @@ export default function ProductDetail() {
 
   const videoManagement = useVideoManagement({
     initialVideos: product?.training_videos || [],
-    onSave: handleVideoSave
+    onSave: handleVideoSave,
+    productId: product?.id
   });
+
+  // Reset local editing state when navigating to a different product via sidebar
+  useEffect(() => {
+    setEditingIndexFromUrl(null);
+  }, [productSlugOrId]);
 
   const existingCategories = Array.from(
     new Set(
