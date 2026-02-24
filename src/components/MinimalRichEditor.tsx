@@ -124,6 +124,11 @@ export function MinimalRichEditor({
     },
     onUpdate: ({ editor: ed }) => {
       if (isUpdatingRef.current) return;
+      // Skip the initial onUpdate that fires when TipTap first renders content
+      if (!isInitializedRef.current) {
+        isInitializedRef.current = true;
+        return;
+      }
       const md = htmlToMd(ed.getHTML());
       lastValueRef.current = md;
       onChange(md);
