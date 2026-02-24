@@ -308,9 +308,28 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
   };
 
 
+  const trackDuplicateDecision = async (action: string, similarityScore?: number, searchTier?: string) => {
+    if (!user?.id) return;
+    try {
+      await supabase.from("script_duplicate_analytics" as any).insert({
+        user_id: user.id,
+        action,
+        similarity_score: similarityScore ?? null,
+        search_tier: searchTier ?? null,
+        category: classifiedCategory || category,
+        target_audience: classifiedAudience || targetAudience,
+      });
+    } catch (e) {
+      console.error("Analytics tracking error:", e);
+    }
+  };
+
   const handleAddAsVersion = async (targetScriptId: string, targetTitle: string) => {
     setIsMerging(true);
     try {
+      const match = similarScripts.find(s => s.id === targetScriptId);
+      await trackDuplicateDecision("merge_as_version", match?.similarity, match?.searchTier);
+
       const { data, error } = await supabase.functions.invoke("seed-scripts", {
         body: {
           mode: "append-version",
@@ -322,7 +341,6 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       if (data?.error) throw new Error(data.error);
       toast.success(`Added as a new version to "${targetTitle}" (${data.totalVersions} versions total)`);
       onClose();
-      // Navigate to the merged script so user can verify
       setTimeout(() => navigate(`/scripts/${targetScriptId}`, { replace: true }), 150);
     } catch (err: any) {
       console.error("Merge error:", err);
