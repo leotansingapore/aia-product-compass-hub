@@ -46,17 +46,15 @@ export default function ProductDetail() {
     
     // Auto-sync to AI knowledge base (fire-and-forget, admin only)
     if (isAdminMode && product?.id) {
-      import("@/integrations/supabase/client").then(({ supabase }) => {
-        toast({ title: "Syncing training videos to AI…" });
-        supabase.functions.invoke("process-knowledge", {
-          body: { action: "sync_training_videos", product_id: product.id },
-        }).then(({ data, error }) => {
-          if (error) throw error;
-          toast({ title: "AI knowledge base updated ✓", description: `${data?.chunks_created ?? 0} chunks synced` });
-        }).catch((e: any) => {
-          console.error("Auto-sync to AI failed:", e);
-          toast({ title: "AI sync failed", description: e.message, variant: "destructive" });
-        });
+      toast({ title: "Syncing training videos to AI…" });
+      supabase.functions.invoke("process-knowledge", {
+        body: { action: "sync_training_videos", product_id: product.id },
+      }).then(({ data, error }) => {
+        if (error) throw error;
+        toast({ title: "AI knowledge base updated ✓", description: `${data?.chunks_created ?? 0} chunks synced` });
+      }).catch((e: any) => {
+        console.error("Auto-sync to AI failed:", e);
+        toast({ title: "AI sync failed", description: e.message, variant: "destructive" });
       });
     }
   }, [handleUpdate, isAdminMode, product?.id]);
