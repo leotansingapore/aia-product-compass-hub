@@ -2,7 +2,7 @@
  * Type definitions for the accessible AI chat interface
  */
 
-export type ChatMode = 'knowledge' | 'sales' | 'objections';
+export type ChatMode = 'knowledge' | 'sales' | 'objections' | 'roleplay';
 
 export interface ChatMessage {
   id: string;

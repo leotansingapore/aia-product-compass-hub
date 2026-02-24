@@ -28,12 +28,15 @@ const modeWelcome: Record<ChatMode, (name: string) => string> = {
     `📈 **${name} — Sales Coach**\n\nI'll help you position this product, craft elevator pitches, and close deals. Let's sharpen your sales game!\n\n**Pick a prompt below to get started.**`,
   objections: (name) =>
     `🛡️ **${name} — Objection Handling**\n\nPractice handling client pushbacks using the 4-step framework:\n1. **Acknowledge** — validate the concern\n2. **Common Ground** — relate to them\n3. **Different Perspective** — reframe the value\n4. **Safety Valve** — give them control\n\n**Choose a scenario below!**`,
+  roleplay: (name) =>
+    `🎭 **${name} — Role Play**\n\nI'll act as a **skeptical client**. Your job is to pitch ${name} and handle my questions and pushbacks.\n\nWhen you're done, type **"end session"** and I'll score your performance across key areas.\n\n**Pick a client profile below or just start pitching!**`,
 };
 
 const modePlaceholder: Record<ChatMode, (name?: string) => string> = {
   knowledge: (n) => n ? `Ask a question about ${n}...` : 'Ask a factual question...',
   sales: (n) => n ? `How do I sell ${n}?` : 'Ask for sales tips...',
   objections: () => 'Type a client objection to practice...',
+  roleplay: () => 'Start your pitch or respond to the client...',
 };
 
 function getQuickActions(mode: ChatMode, productData?: ProductData): QuickAction[] {
@@ -62,6 +65,14 @@ function getQuickActions(mode: ChatMode, productData?: ProductData): QuickAction
       { id: 'o4', question: `Client says "I don't trust insurance companies"`, category: 'Trust' },
       { id: 'o5', question: `Client says "My friend recommended a different product"`, category: 'Competition' },
       { id: 'o6', question: `Client says "I'd rather invest on my own"`, category: 'DIY' },
+    ],
+    roleplay: [
+      { id: 'r1', question: `I'm a 30-year-old professional saving for retirement. Pitch me ${name}.`, category: 'Young Pro' },
+      { id: 'r2', question: `I'm a parent wanting to save for my child's education. Why ${name}?`, category: 'Parent' },
+      { id: 'r3', question: `I already have investments. Convince me I need ${name} too.`, category: 'Experienced' },
+      { id: 'r4', question: `I'm risk-averse and prefer fixed deposits. Why should I consider ${name}?`, category: 'Conservative' },
+      { id: 'r5', question: `I'm a high-net-worth individual. Is ${name} worth my time?`, category: 'HNW' },
+      { id: 'r6', question: `end session`, category: 'Score Me' },
     ],
   };
   return actions[mode];

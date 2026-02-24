@@ -8,6 +8,7 @@ const modeLabels: Record<ChatMode, string> = {
   knowledge: 'Knowledge Q&A',
   sales: 'Sales Coach',
   objections: 'Objection Handling',
+  roleplay: 'Role Play',
 };
 
 interface ChatHeaderProps {
