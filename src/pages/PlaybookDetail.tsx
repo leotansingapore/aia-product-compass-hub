@@ -264,7 +264,28 @@ export default function PlaybookDetail() {
     reorderItems.mutate(updates);
   };
 
-  const handleAISuggest = async () => {
+  const handleInlineSave = useCallback(async (scriptId: string, versions: any[]) => {
+    // Save version history snapshot before updating
+    const currentScript = scripts.find(s => s.id === scriptId);
+    if (currentScript && user) {
+      try {
+        await supabase
+          .from('script_version_history' as any)
+          .insert({
+            script_id: scriptId,
+            versions: JSON.parse(JSON.stringify(currentScript.versions)),
+            edited_by: user.id,
+            editor_name: user.user_metadata?.display_name || user.email?.split('@')[0] || 'Unknown',
+          } as any);
+      } catch (e) {
+        console.error('Failed to save version history:', e);
+      }
+    }
+    await updateScript(scriptId, { versions });
+    refetch();
+  }, [updateScript, refetch, scripts, user]);
+
+
     const usedIds = new Set(items.map(i => i.script_id));
     const available = scripts.filter(s => !usedIds.has(s.id));
     if (available.length === 0) {
