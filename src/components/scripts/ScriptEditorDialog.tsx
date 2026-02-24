@@ -310,6 +310,34 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       setTags(data.tags || []);
       setVersions([{ author: userName, content: pasteContent }]);
 
+      // Auto-suggest related script: follow-up → post-call-text, post-call-text → follow-up
+      const relatedCategory = classifiedCategory === "follow-up" ? "post-call-text"
+        : classifiedCategory === "post-call-text" ? "follow-up"
+        : null;
+      if (relatedCategory) {
+        try {
+          let query = supabase
+            .from("scripts")
+            .select("id, stage, category, target_audience")
+            .eq("category", relatedCategory);
+          // Try same audience first, fall back to any
+          if (classifiedAudience !== "general") {
+            query = query.or(`target_audience.eq.${classifiedAudience},target_audience.eq.general`);
+          }
+          const { data: candidates } = await query.limit(10);
+          if (candidates && candidates.length > 0) {
+            // Prefer exact audience match
+            const exactMatch = candidates.find(c => c.target_audience === classifiedAudience);
+            const bestMatch = exactMatch || candidates[0];
+            setRelatedScriptId(bestMatch.id);
+            setShowAdvanced(true);
+            toast.info(`Auto-linked to "${bestMatch.stage}" as related ${relatedCategory.replace("-", " ")} script`);
+          }
+        } catch (e) {
+          console.error("Related script suggestion error:", e);
+        }
+      }
+
       const duplicates = await checkForDuplicates(classifiedCategory, classifiedAudience, pasteContent, classifiedTitle);
       if (duplicates.length > 0) {
         const highest = duplicates[0].similarityTier;
