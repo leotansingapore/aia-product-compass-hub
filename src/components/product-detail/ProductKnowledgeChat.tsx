@@ -110,6 +110,7 @@ export const ProductKnowledgeChat = memo(function ProductKnowledgeChat({
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [attachedImage, setAttachedImage] = useState<string | null>(null);
   const [attachedFileName, setAttachedFileName] = useState<string | null>(null);
+  const [chatMode, setChatMode] = useState<ChatMode>('knowledge');
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
