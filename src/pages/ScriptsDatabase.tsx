@@ -1823,7 +1823,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
                 onDelete={() => setDeleteTarget(script)}
                 onInlineSave={onInlineSave}
                 onToggle={(open) => {
-                  if (open) { internalNavRef.current = true; navigate(`/scripts/${script.id}`, { replace: true }); }
+                  if (open) onScriptNavigate(script.id);
                   else if (scriptId === script.id) navigate('/scripts', { replace: true });
                 }}
               />
