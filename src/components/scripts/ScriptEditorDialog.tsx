@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -681,12 +682,13 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
                           </Button>
                         )}
                       </div>
-                      <Textarea
-                        value={v.content}
-                        onChange={e => updateVersion(i, "content", e.target.value)}
-                        placeholder="Script content..."
-                        rows={8}
-                      />
+                      <div className="border rounded-md overflow-hidden">
+                        <MinimalRichEditor
+                          value={v.content}
+                          onChange={(val) => updateVersion(i, "content", val)}
+                          placeholder="Script content..."
+                        />
+                      </div>
                     </div>
                   ))}
                 </div>
