@@ -2085,6 +2085,11 @@ export default function ScriptsDatabase() {
     [counts]
   );
 
+  const handleInlineSave = useCallback(async (scriptId: string, versions: ScriptVersion[]) => {
+    await updateScript(scriptId, { versions });
+    refetch();
+  }, [updateScript, refetch]);
+
   const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null }) => {
     if (editingScript) {
       await updateScript(editingScript.id, data);
