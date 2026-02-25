@@ -15,7 +15,8 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Plus, Search, X, ChevronDown, Pencil, Trash2, Copy, Heart, Users, Filter } from "lucide-react";
+import { Plus, Search, X, ChevronDown, Pencil, Trash2, Copy, Heart, Users, Filter, GripVertical, GitMerge } from "lucide-react";
+import { useMergeScripts } from "@/hooks/useMergeScripts";
 import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -68,6 +69,7 @@ const roleLabels: Record<string, string> = {
 
 function ServicingScriptCard({
   script, isAdmin, onEdit, onDelete, isOpenByUrl, onInlineSave, onMetadataSave, isFavourite, onToggleFavourite, categorySlugs,
+  mergeSourceId, mergeOverId, onMergeDragStart, onMergeDragEnd, onMergeOver, onMergeLeave, onMergeDrop,
 }: {
   script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void;
   isOpenByUrl: boolean;
@@ -75,6 +77,9 @@ function ServicingScriptCard({
   onMetadataSave?: (scriptId: string, updates: Partial<ScriptEntry>) => Promise<void>;
   isFavourite?: boolean; onToggleFavourite?: () => void;
   categorySlugs?: Set<string>;
+  mergeSourceId?: string | null; mergeOverId?: string | null;
+  onMergeDragStart?: (id: string) => void; onMergeDragEnd?: () => void;
+  onMergeOver?: (id: string) => void; onMergeLeave?: () => void; onMergeDrop?: (targetId: string) => void;
 }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
@@ -110,11 +115,30 @@ function ServicingScriptCard({
   const categoryLabel = categoryTag ? slugToLabel(categoryTag) : null;
 
   return (
-    <Card ref={cardRef} className="overflow-hidden">
+    <Card
+      ref={cardRef}
+      className={`overflow-hidden transition-all duration-200 ${mergeSourceId && mergeSourceId !== script.id && mergeOverId === script.id ? "ring-2 ring-primary shadow-lg scale-[1.01]" : ""} ${mergeSourceId && mergeSourceId !== script.id ? "cursor-copy" : ""}`}
+      draggable={!!onMergeDragStart}
+      onDragStart={(e) => { e.dataTransfer.effectAllowed = "move"; onMergeDragStart?.(script.id); }}
+      onDragEnd={onMergeDragEnd}
+      onDragOver={(e) => { if (mergeSourceId && mergeSourceId !== script.id) { e.preventDefault(); e.dataTransfer.dropEffect = "move"; onMergeOver?.(script.id); } }}
+      onDragLeave={onMergeLeave}
+      onDrop={(e) => { e.preventDefault(); if (mergeSourceId && mergeSourceId !== script.id) onMergeDrop?.(script.id); }}
+    >
       <Collapsible open={open} onOpenChange={setOpen}>
         <CollapsibleTrigger asChild>
           <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6">
             <div className="flex items-start sm:items-center gap-2 sm:gap-3">
+              {onMergeDragStart && (
+                <div
+                  className={`shrink-0 mt-0.5 sm:mt-0 p-0.5 rounded cursor-grab active:cursor-grabbing transition-colors ${mergeSourceId === script.id ? "text-primary" : "text-muted-foreground/40 hover:text-muted-foreground"}`}
+                  title="Drag to merge versions into another script"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <GripVertical className="h-4 w-4" />
+                </div>
+              )}
               <Users className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground shrink-0 mt-0.5 sm:mt-0" />
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
@@ -415,6 +439,11 @@ export default function ServicingPage() {
     refetch();
   }, [updateScript, refetch]);
 
+  const { mergeState, pendingMerge, startDrag, endDrag, onDragOver, onDragLeave, onDrop, confirmMerge, cancelMerge } = useMergeScripts(
+    servicingBase,
+    async (scriptId, versions) => { await updateScript(scriptId, { versions }); refetch(); }
+  );
+
   const handleMetadataSave = useCallback(async (scriptId: string, updates: Partial<ScriptEntry>) => {
     await updateScript(scriptId, updates);
     refetch();
@@ -616,16 +645,47 @@ export default function ServicingPage() {
                 isOpenByUrl={scriptId === script.id}
                 onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                 onDelete={() => setDeleteTarget(script)}
-                onInlineSave={handleInlineSave}
-                onMetadataSave={handleMetadataSave}
-                isFavourite={favouriteIds.has(script.id)}
-                onToggleFavourite={user ? () => toggleFavourite.mutate(script.id) : undefined}
-                categorySlugs={new Set(allCategorySlugs)}
+                 onInlineSave={handleInlineSave}
+                 onMetadataSave={handleMetadataSave}
+                 isFavourite={favouriteIds.has(script.id)}
+                 onToggleFavourite={user ? () => toggleFavourite.mutate(script.id) : undefined}
+                 categorySlugs={new Set(allCategorySlugs)}
+                 mergeSourceId={mergeState.sourceId}
+                 mergeOverId={mergeState.dragOverId}
+                 onMergeDragStart={startDrag}
+                 onMergeDragEnd={endDrag}
+                 onMergeOver={onDragOver}
+                 onMergeLeave={onDragLeave}
+                 onMergeDrop={onDrop}
               />
             ))}
           </div>
         )}
       </div>
+
+      {/* Merge confirmation dialog */}
+      <AlertDialog open={!!pendingMerge} onOpenChange={(open) => !open && cancelMerge()}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <GitMerge className="h-5 w-5 text-primary" />
+              Merge versions?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="space-y-1">
+              <span className="block">Add all versions from <strong>"{pendingMerge?.source.stage}"</strong> into <strong>"{pendingMerge?.target.stage}"</strong>?</span>
+              <span className="block text-xs text-muted-foreground">
+                {pendingMerge?.source.versions.length} version{pendingMerge?.source.versions.length !== 1 ? "s" : ""} will be appended. The source script will remain unchanged.
+              </span>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmMerge} className="gap-1.5">
+              <GitMerge className="h-4 w-4" /> Merge versions
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       {/* Editor Dialog — locked to servicing context */}
       <ScriptEditorDialog
