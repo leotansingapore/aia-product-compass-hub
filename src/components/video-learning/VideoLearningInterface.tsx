@@ -309,55 +309,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           {currentVideo.rich_content}
                         </ReactMarkdown>
                       </div>
-
-                      {/* Resources inline below content */}
-                      {((currentVideo?.useful_links?.length ?? 0) > 0 || (currentVideo?.attachments?.length ?? 0) > 0) && (
-                        <div className="mt-6 pt-6 border-t space-y-3">
-                          <h3 className="text-sm font-bold">Resources</h3>
-                          <div className="space-y-1.5">
-                            {currentVideo?.useful_links?.map((link, index) => (
-                              <div key={`link-${index}`} className="flex items-center gap-2">
-                                <Link2 className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                                <a
-                                  href={link.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-sm text-primary hover:underline truncate"
-                                >
-                                  {link.name}
-                                </a>
-                              </div>
-                            ))}
-                            {currentVideo?.attachments?.map((attachment) => (
-                              <div key={`file-${attachment.id}`} className="flex items-center gap-2">
-                                {(attachment.file_type || '').toLowerCase() === 'pdf' ? (
-                                  <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-red-100 text-red-600 text-xs font-bold flex-shrink-0">PDF</span>
-                                ) : (
-                                  <FileText className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                                )}
-                                <a
-                                  href={attachment.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-sm text-primary hover:underline truncate"
-                                >
-                                  {attachment.name}
-                                </a>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Transcript inline below resources */}
-                      {currentVideo?.transcript?.trim() && (
-                        <div className="mt-6 pt-6 border-t">
-                          <h3 className="text-sm font-bold mb-2">Transcript</h3>
-                          <p className="whitespace-pre-wrap text-muted-foreground text-sm leading-relaxed">
-                            {currentVideo.transcript}
-                          </p>
-                        </div>
-                      )}
                     </CardContent>
                   </Card>
                 </>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { VideoEditForm } from './VideoEditForm';
 import { Button } from '@/components/ui/button';
-import { SquarePen } from 'lucide-react';
+import { SquarePen, Link2, FileText } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -108,6 +108,45 @@ export function VideoEditorPanel({
                   {currentVideo.rich_content || currentVideo.description || ''}
                 </ReactMarkdown>
               </div>
+
+              {/* Resources (if exists) */}
+              {((currentVideo.useful_links?.length ?? 0) > 0 || (currentVideo.attachments?.length ?? 0) > 0) && (
+                <div className="mt-8 pt-6 border-t border-border space-y-3">
+                  <h3 className="text-sm font-semibold text-foreground">Resources</h3>
+                  <div className="space-y-1.5">
+                    {currentVideo.useful_links?.map((link, index) => (
+                      <div key={`link-${index}`} className="flex items-center gap-2">
+                        <Link2 className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                        <a
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-primary hover:underline truncate"
+                        >
+                          {link.name}
+                        </a>
+                      </div>
+                    ))}
+                    {currentVideo.attachments?.map((attachment) => (
+                      <div key={`file-${attachment.id}`} className="flex items-center gap-2">
+                        {(attachment.file_type || '').toLowerCase() === 'pdf' ? (
+                          <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-red-100 text-red-600 text-xs font-bold flex-shrink-0">PDF</span>
+                        ) : (
+                          <FileText className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                        )}
+                        <a
+                          href={attachment.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-primary hover:underline truncate"
+                        >
+                          {attachment.name}
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Transcript (if exists) */}
               {currentVideo.transcript && (
