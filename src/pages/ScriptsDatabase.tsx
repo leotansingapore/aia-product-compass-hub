@@ -1665,25 +1665,15 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       {roleLabels[script.script_role] || script.script_role}
                     </Badge>
                   )}
-                  {script.tags && script.tags.length > 0 && (() => {
-                    const maxTags = isMobile ? 2 : script.tags.length;
-                    const visible = script.tags.slice(0, maxTags);
-                    const remaining = script.tags.length - maxTags;
-                    return (
-                      <>
-                        {visible.map((tag) => (
-                          <Badge key={tag} variant="outline" className="text-[10px] bg-accent/30">
-                            {tag}
-                          </Badge>
-                        ))}
-                        {remaining > 0 && (
-                          <Badge variant="outline" className="text-[10px] text-muted-foreground">
-                            +{remaining}
-                          </Badge>
-                        )}
-                      </>
-                    );
-                  })()}
+                  {script.tags && script.tags.length > 0 && (
+                    <span className="hidden sm:contents">
+                      {script.tags.map((tag) => (
+                        <Badge key={tag} variant="outline" className="text-[10px] bg-accent/30">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </span>
+                  )}
                   <Badge variant="outline" className="text-[10px]">
                     {script.versions.length}v
                   </Badge>
