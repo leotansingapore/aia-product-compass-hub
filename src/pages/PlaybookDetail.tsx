@@ -145,6 +145,11 @@ function SortableScriptCard({ item, index, isOwner, onRemove, onInlineSave, isAu
                   {item.script?.target_audience && item.script.target_audience !== 'general' && (
                     <Badge variant="outline" className="text-[10px]">{item.script.target_audience}</Badge>
                   )}
+                  {item.custom_content?.version_index !== undefined && item.script?.versions?.[item.custom_content.version_index] && (
+                    <Badge variant="outline" className="text-[10px] border-primary/30 text-primary">
+                      {item.script.versions[item.custom_content.version_index].author || `Version ${item.custom_content.version_index + 1}`}
+                    </Badge>
+                  )}
                 </div>
                 {isOwner && (
                   <div className="mt-2" onClick={e => e.stopPropagation()}>
@@ -159,47 +164,53 @@ function SortableScriptCard({ item, index, isOwner, onRemove, onInlineSave, isAu
         </CollapsibleTrigger>
         <CollapsibleContent>
           <CardContent className="pt-0 pb-4 px-3 sm:px-6">
-            {item.script?.versions?.map((version: any, vi: number) => (
-              <div key={vi} className="mb-4 last:mb-0">
-                <div className="flex items-center justify-between mb-2">
-                  <Badge variant="outline" className="text-xs">{version.author || `Version ${vi + 1}`}</Badge>
-                  <div className="flex items-center gap-1">
-                    {isAuthenticated && editingVersionIdx !== vi && (
-                      <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(vi)}>
-                        <Pencil className="h-3 w-3" /> Edit
-                      </Button>
-                    )}
-                    <CopyButton text={version.content || ""} />
+            {(() => {
+              const versionIndex = item.custom_content?.version_index;
+              const versionsToRender = versionIndex !== undefined && item.script?.versions?.[versionIndex]
+                ? [{ version: item.script.versions[versionIndex], originalIndex: versionIndex }]
+                : (item.script?.versions || []).map((v: any, i: number) => ({ version: v, originalIndex: i }));
+              return versionsToRender.map(({ version, originalIndex }: { version: any; originalIndex: number }) => (
+                <div key={originalIndex} className="mb-4 last:mb-0">
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant="outline" className="text-xs">{version.author || `Version ${originalIndex + 1}`}</Badge>
+                    <div className="flex items-center gap-1">
+                      {isAuthenticated && editingVersionIdx !== originalIndex && (
+                        <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(originalIndex)}>
+                          <Pencil className="h-3 w-3" /> Edit
+                        </Button>
+                      )}
+                      <CopyButton text={version.content || ""} />
+                    </div>
                   </div>
+                  {editingVersionIdx === originalIndex ? (
+                    <div className="space-y-2">
+                      <div className="border rounded-lg overflow-hidden">
+                        <MinimalRichEditor
+                          value={editContent}
+                          onChange={setEditContent}
+                          onSave={saveInlineEdit}
+                          onCancel={cancelInlineEdit}
+                          autoFocus
+                        />
+                      </div>
+                      <div className="flex items-center gap-2 justify-end">
+                        <Button variant="ghost" size="sm" onClick={cancelInlineEdit} disabled={isSaving}>Cancel</Button>
+                        <Button size="sm" onClick={saveInlineEdit} disabled={isSaving}>
+                          {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
+                          Save
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 rounded-lg p-3 sm:p-4 overflow-x-auto">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+                        {version.content || ""}
+                      </ReactMarkdown>
+                    </div>
+                  )}
                 </div>
-                {editingVersionIdx === vi ? (
-                  <div className="space-y-2">
-                    <div className="border rounded-lg overflow-hidden">
-                      <MinimalRichEditor
-                        value={editContent}
-                        onChange={setEditContent}
-                        onSave={saveInlineEdit}
-                        onCancel={cancelInlineEdit}
-                        autoFocus
-                      />
-                    </div>
-                    <div className="flex items-center gap-2 justify-end">
-                      <Button variant="ghost" size="sm" onClick={cancelInlineEdit} disabled={isSaving}>Cancel</Button>
-                      <Button size="sm" onClick={saveInlineEdit} disabled={isSaving}>
-                        {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
-                        Save
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 rounded-lg p-3 sm:p-4 overflow-x-auto">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
-                      {version.content || ""}
-                    </ReactMarkdown>
-                  </div>
-                )}
-              </div>
-            ))}
+              ));
+            })()}
           </CardContent>
         </CollapsibleContent>
       </Collapsible>
@@ -609,7 +620,7 @@ export default function PlaybookDetail() {
         scripts={scripts}
         objections={objections}
         items={items}
-        onAddScript={(id) => addItem.mutate({ scriptId: id, itemType: 'script' })}
+        onAddScript={(id, versionIndex) => addItem.mutate({ scriptId: id, itemType: 'script', versionIndex })}
         onAddObjection={(id) => addItem.mutate({ objectionId: id, itemType: 'objection' })}
       />
     </PageLayout>

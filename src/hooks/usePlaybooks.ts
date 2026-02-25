@@ -25,6 +25,7 @@ export interface PlaybookItem {
   item_type: 'script' | 'objection';
   sort_order: number;
   created_at: string;
+  custom_content?: { version_index?: number } | null;
 }
 
 export function usePlaybooks() {
@@ -164,9 +165,10 @@ export function usePlaybookItems(playbookId: string | null) {
   });
 
   const addItem = useMutation({
-    mutationFn: async ({ scriptId, objectionId, itemType = 'script' }: { scriptId?: string; objectionId?: string; itemType?: 'script' | 'objection' }) => {
+    mutationFn: async ({ scriptId, objectionId, itemType = 'script', versionIndex }: { scriptId?: string; objectionId?: string; itemType?: 'script' | 'objection'; versionIndex?: number }) => {
       if (!playbookId) throw new Error('No playbook selected');
       const maxOrder = items.length > 0 ? Math.max(...items.map(i => i.sort_order)) + 1 : 0;
+      const customContent = versionIndex !== undefined ? { version_index: versionIndex } : null;
       const { error } = await supabase
         .from('script_playbook_items')
         .insert({
@@ -175,6 +177,7 @@ export function usePlaybookItems(playbookId: string | null) {
           objection_id: itemType === 'objection' ? objectionId! : null,
           item_type: itemType,
           sort_order: maxOrder,
+          custom_content: customContent,
         } as any);
       if (error) {
         if (error.code === '23505') throw new Error('Item already in playbook');
