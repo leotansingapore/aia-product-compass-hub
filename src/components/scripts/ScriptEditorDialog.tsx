@@ -697,38 +697,16 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
           {/* === STEP 3: Review === */}
           {step === "review" && (
             <div className="space-y-4">
-              {!isEditing && (() => {
-                const servicingSubcategory = lockedCategory === "servicing"
-                  ? tags.find(t => t.includes("-") || Object.keys({
-                      "premium-payments":1,"new-business":1,"claims":1,"policy-services":1,
-                      "travel-insurance":1,"texting-campaigns":1,"festive-greetings":1,
-                      "referrals":1,"annual-reviews":1,"general-education":1,
-                    }).includes(t))
-                  : null;
-                return (
-                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 space-y-2">
-                    <p className="text-xs font-medium text-primary flex items-center gap-1">
-                      <Sparkles className="h-3 w-3" /> AI-detected — edit if needed
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      <Badge variant="secondary" className="text-[10px]">
-                        {CATEGORIES.find(c => c.value === category)?.label}
-                      </Badge>
-                      <Badge variant="secondary" className="text-[10px]">
-                        {TARGET_AUDIENCES.find(a => a.value === targetAudience)?.label}
-                      </Badge>
-                      <Badge variant="secondary" className="text-[10px]">
-                        {SCRIPT_ROLES.find(r => r.value === scriptRole)?.label}
-                      </Badge>
-                      {tags.filter(t => t !== servicingSubcategory).map((t, i) => (
-                        <Badge key={i} variant="outline" className="text-[10px]">{t}</Badge>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })()}
 
-              {/* === Servicing subcategory — clickable to override === */}
+              {/* === AI Summary header === */}
+              {!isEditing && (
+                <div className="flex items-center gap-1.5 text-xs text-primary font-medium">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  AI-detected — tap any field to change it
+                </div>
+              )}
+
+              {/* === Servicing: Filed Under (clickable) === */}
               {lockedCategory === "servicing" && !isEditing && (() => {
                 const KNOWN_SLUGS = ["premium-payments","new-business","claims","policy-services",
                   "travel-insurance","texting-campaigns","festive-greetings",
@@ -738,103 +716,163 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                 const displaySlug = servicingSubcategory || aiSuggestedNewCategory || "";
                 const isNew = !!(aiSuggestedNewCategory && !servicingSubcategory);
                 const allSlugs = Array.from(new Set([...KNOWN_SLUGS, ...existingCategorySlugs])).filter(s => s !== displaySlug);
-
                 return (
                   <CategoryOverridePicker
                     displaySlug={displaySlug}
                     isNew={isNew}
                     allSlugs={allSlugs}
                     onSelect={(slug) => {
-                      setTags(prev => {
-                        const filtered = prev.filter(t => t !== displaySlug);
-                        return [slug, ...filtered];
-                      });
+                      setTags(prev => [slug, ...prev.filter(t => t !== displaySlug)]);
                       setAiSuggestedNewCategory(null);
                     }}
                   />
                 );
               })()}
 
+              {/* === Script Title === */}
               <div>
-                <Label>Script Title / Stage</Label>
+                <Label className="text-xs text-muted-foreground uppercase tracking-wide mb-1.5 block">Script Title / Stage</Label>
                 <Input value={stage} onChange={e => setStage(e.target.value)} placeholder="e.g. Cold Calling — Original Script" />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {!lockedCategory && (
-                  <div>
-                    <Label>Category</Label>
-                    <Select value={category} onValueChange={setCategory}>
-                      <SelectTrigger><SelectValue /></SelectTrigger>
-                      <SelectContent>
-                        {CATEGORIES.map(c => (
-                          <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+              {/* === Inline editable metadata chips === */}
+              {!isEditing && (
+                <div className="rounded-lg border border-border bg-muted/30 p-3 space-y-3">
+                  <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">Classification</p>
+                  <div className="flex flex-wrap gap-2">
+
+                    {/* Category chip */}
+                    {!lockedCategory && (
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <button type="button" className="group flex items-center gap-1.5 rounded-full border border-dashed border-border bg-background hover:border-primary hover:bg-primary/5 transition-all px-3 py-1.5 text-xs font-medium">
+                            <span className="text-[9px] uppercase tracking-widest text-muted-foreground">Category</span>
+                            <span className="text-foreground">{CATEGORIES.find(c => c.value === category)?.label ?? "—"}</span>
+                            <Pencil className="h-2.5 w-2.5 text-muted-foreground group-hover:text-primary transition-colors" />
+                          </button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-52 p-1.5" align="start">
+                          {CATEGORIES.map(c => (
+                            <button key={c.value} type="button" onClick={() => setCategory(c.value)}
+                              className={`w-full text-left px-3 py-1.5 rounded-md text-xs hover:bg-accent transition-colors ${category === c.value ? "font-semibold text-primary" : ""}`}>
+                              {c.label}
+                            </button>
+                          ))}
+                        </PopoverContent>
+                      </Popover>
+                    )}
+
+                    {/* Audience chip */}
+                    {!lockedAudience && (
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <button type="button" className="group flex items-center gap-1.5 rounded-full border border-dashed border-border bg-background hover:border-primary hover:bg-primary/5 transition-all px-3 py-1.5 text-xs font-medium">
+                            <span className="text-[9px] uppercase tracking-widest text-muted-foreground">Audience</span>
+                            <span className="text-foreground">{TARGET_AUDIENCES.find(a => a.value === targetAudience)?.label ?? "—"}</span>
+                            <Pencil className="h-2.5 w-2.5 text-muted-foreground group-hover:text-primary transition-colors" />
+                          </button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-56 p-1.5" align="start">
+                          {TARGET_AUDIENCES.map(a => (
+                            <button key={a.value} type="button" onClick={() => setTargetAudience(a.value)}
+                              className={`w-full text-left px-3 py-1.5 rounded-md text-xs hover:bg-accent transition-colors ${targetAudience === a.value ? "font-semibold text-primary" : ""}`}>
+                              {a.label}
+                            </button>
+                          ))}
+                        </PopoverContent>
+                      </Popover>
+                    )}
+
+                    {/* Role chip */}
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <button type="button" className="group flex items-center gap-1.5 rounded-full border border-dashed border-border bg-background hover:border-primary hover:bg-primary/5 transition-all px-3 py-1.5 text-xs font-medium">
+                          <span className="text-[9px] uppercase tracking-widest text-muted-foreground">Role</span>
+                          <span className="text-foreground">{(lockedRoles || SCRIPT_ROLES).find(r => r.value === scriptRole)?.label ?? "—"}</span>
+                          <Pencil className="h-2.5 w-2.5 text-muted-foreground group-hover:text-primary transition-colors" />
+                        </button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-44 p-1.5" align="start">
+                        {(lockedRoles || SCRIPT_ROLES).map(r => (
+                          <button key={r.value} type="button" onClick={() => setScriptRole(r.value)}
+                            className={`w-full text-left px-3 py-1.5 rounded-md text-xs hover:bg-accent transition-colors ${scriptRole === r.value ? "font-semibold text-primary" : ""}`}>
+                            {r.label}
+                          </button>
                         ))}
-                      </SelectContent>
-                    </Select>
+                      </PopoverContent>
+                    </Popover>
                   </div>
-                )}
-                {!lockedAudience && (
-                  <div>
-                    <Label>Target Audience</Label>
-                    <Select value={targetAudience} onValueChange={setTargetAudience}>
-                      <SelectTrigger><SelectValue /></SelectTrigger>
-                      <SelectContent>
-                        {TARGET_AUDIENCES.map(a => (
-                          <SelectItem key={a.value} value={a.value}>{a.label}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-                <div>
-                  <Label>Role</Label>
-                  <Select value={scriptRole} onValueChange={setScriptRole}>
-                    <SelectTrigger><SelectValue /></SelectTrigger>
-                    <SelectContent>
-                      {(lockedRoles || SCRIPT_ROLES).map(r => (
-                        <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
                 </div>
-              </div>
+              )}
+
+              {/* Fallback selects when editing */}
+              {isEditing && (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {!lockedCategory && (
+                    <div>
+                      <Label>Category</Label>
+                      <Select value={category} onValueChange={setCategory}>
+                        <SelectTrigger><SelectValue /></SelectTrigger>
+                        <SelectContent>
+                          {CATEGORIES.map(c => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+                  {!lockedAudience && (
+                    <div>
+                      <Label>Target Audience</Label>
+                      <Select value={targetAudience} onValueChange={setTargetAudience}>
+                        <SelectTrigger><SelectValue /></SelectTrigger>
+                        <SelectContent>
+                          {TARGET_AUDIENCES.map(a => <SelectItem key={a.value} value={a.value}>{a.label}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+                  <div>
+                    <Label>Role</Label>
+                    <Select value={scriptRole} onValueChange={setScriptRole}>
+                      <SelectTrigger><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {(lockedRoles || SCRIPT_ROLES).map(r => <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              )}
 
               {/* Tags */}
               <div>
-                <Label>Tags</Label>
+                <div className="flex items-center justify-between mb-2">
+                  <Label className="text-xs text-muted-foreground uppercase tracking-wide">Tags</Label>
+                </div>
                 <div className="flex flex-wrap gap-1.5 mb-2">
                   {tags.map((tag, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs gap-1 pr-1">
+                    <Badge key={i} variant="secondary" className="text-xs gap-1 pr-1 group">
                       {tag}
-                      <button type="button" className="ml-0.5 hover:text-destructive" onClick={() => setTags(prev => prev.filter((_, idx) => idx !== i))}>
-                        <Trash2 className="h-2.5 w-2.5" />
+                      <button type="button" className="ml-0.5 opacity-50 group-hover:opacity-100 hover:text-destructive transition-opacity" onClick={() => setTags(prev => prev.filter((_, idx) => idx !== i))}>
+                        <X className="h-2.5 w-2.5" />
                       </button>
                     </Badge>
                   ))}
-                </div>
-                <div className="flex gap-2">
-                  <Input
-                    value={tagInput}
-                    onChange={e => setTagInput(e.target.value)}
-                    placeholder="Type a tag and press Enter"
-                    className="flex-1"
-                    onKeyDown={e => {
-                      if (e.key === "Enter" || e.key === ",") {
-                        e.preventDefault();
-                        const val = tagInput.trim().toLowerCase().replace(/,/g, "");
-                        if (val && !tags.includes(val)) setTags(prev => [...prev, val]);
-                        setTagInput("");
-                      }
-                    }}
-                  />
-                  <Button type="button" variant="outline" size="sm" onClick={() => {
-                    const val = tagInput.trim().toLowerCase();
-                    if (val && !tags.includes(val)) setTags(prev => [...prev, val]);
-                    setTagInput("");
-                  }}>
-                    <Plus className="h-3 w-3" />
-                  </Button>
+                  {/* inline add tag */}
+                  <div className="flex items-center gap-1">
+                    <Input
+                      value={tagInput}
+                      onChange={e => setTagInput(e.target.value)}
+                      placeholder="+ add tag"
+                      className="h-6 text-xs w-24 border-dashed focus:w-32 transition-all"
+                      onKeyDown={e => {
+                        if (e.key === "Enter" || e.key === ",") {
+                          e.preventDefault();
+                          const val = tagInput.trim().toLowerCase().replace(/,/g, "");
+                          if (val && !tags.includes(val)) setTags(prev => [...prev, val]);
+                          setTagInput("");
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
 
