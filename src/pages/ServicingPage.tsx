@@ -6,10 +6,7 @@ import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
 import { useScripts, useScriptsMutations, ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
-import { useAdmin } from "@/hooks/useAdmin";
 import { useScriptFavourites } from "@/hooks/useScriptFavourites";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { supabase } from "@/integrations/supabase/client";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -26,16 +23,14 @@ import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 
-const audienceLabels: Record<string, string> = {
-  general: "General",
-  clients: "Clients",
-  "warm-market": "Warm Market",
-  "young-adult": "Young Adults",
-  nsf: "NSF",
-  "working-adult": "Working Adults",
-  "pre-retiree": "Pre-Retirees",
-  parent: "Parents",
-  "cold-lead": "Cold Leads",
+const SERVICING_ROLES = [
+  { value: "consultant", label: "Consultant" },
+  { value: "va", label: "VA" },
+];
+
+const roleColors: Record<string, string> = {
+  consultant: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  va: "bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300",
 };
 
 type ServicingSubcategory = "all" | "premium-payments" | "new-business" | "claims" | "policy-services" | "travel-insurance" | "texting-campaigns" | "festive-greetings" | "referrals" | "annual-reviews" | "general-education";
@@ -122,14 +117,14 @@ function ServicingScriptCard({
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform shrink-0 mt-0.5 ${open ? "rotate-180" : ""}`} />
                 </div>
                 <div className="flex items-center gap-1 sm:gap-1.5 mt-1.5 flex-wrap">
-                  {/* Editable audience badge */}
+                  {/* Role badge — editable for admin */}
                   {editingAudience && isAdmin ? (
                     <div onClick={(e) => e.stopPropagation()}>
-                      <Select value={script.target_audience || "general"} onValueChange={async (val) => { await saveMetaField({ target_audience: val }); setEditingAudience(false); }} open={true} onOpenChange={(o) => { if (!o) setEditingAudience(false); }}>
+                      <Select value={script.script_role || "consultant"} onValueChange={async (val) => { await saveMetaField({ script_role: val }); setEditingAudience(false); }} open={true} onOpenChange={(o) => { if (!o) setEditingAudience(false); }}>
                         <SelectTrigger className="h-5 text-[10px] w-auto min-w-[100px]"><SelectValue /></SelectTrigger>
                         <SelectContent>
-                          {Object.entries(audienceLabels).map(([key, label]) => (
-                            <SelectItem key={key} value={key} className="text-xs">{label}</SelectItem>
+                          {SERVICING_ROLES.map(({ value, label }) => (
+                            <SelectItem key={value} value={value} className="text-xs">{label}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -137,10 +132,10 @@ function ServicingScriptCard({
                   ) : (
                     <Badge
                       variant="outline"
-                      className={`text-[10px] ${isAdmin && onMetadataSave ? 'cursor-pointer hover:ring-1 ring-primary/40' : ''}`}
+                      className={`text-[10px] ${roleColors[script.script_role || "consultant"] || ""} ${isAdmin && onMetadataSave ? 'cursor-pointer hover:ring-1 ring-primary/40' : ''}`}
                       onClick={(e) => { if (isAdmin && onMetadataSave) { e.stopPropagation(); setEditingAudience(true); } }}
                     >
-                      {audienceLabels[script.target_audience || "general"] || script.target_audience || "General"}
+                      {SERVICING_ROLES.find(r => r.value === (script.script_role || "consultant"))?.label || "Consultant"}
                     </Badge>
                   )}
                   {script.versions.length > 1 && (
@@ -263,7 +258,6 @@ export default function ServicingPage() {
   const { scripts: dbScripts, loading, refetch } = useScripts();
   const { updateScript, deleteScript, createScript, isAdmin } = useScriptsMutations();
   const { user } = useSimplifiedAuth();
-  const isMobile = useIsMobile();
   const { favouriteIds, toggleFavourite } = useScriptFavourites();
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -415,16 +409,19 @@ export default function ServicingPage() {
         )}
       </div>
 
-      {/* Editor Dialog — default category to servicing */}
+      {/* Editor Dialog — locked to servicing context */}
       <ScriptEditorDialog
         open={editorOpen}
         onClose={() => { setEditorOpen(false); setEditingScript(null); }}
         script={editingScript}
+        lockedAudience="clients"
+        lockedCategory="servicing"
+        lockedRoles={SERVICING_ROLES}
         onSave={async (scriptData) => {
           if (editingScript) {
             await updateScript(editingScript.id, scriptData);
           } else {
-            await createScript({ ...scriptData, category: scriptData.category || "servicing" } as any);
+            await createScript({ ...scriptData, category: "servicing", target_audience: "clients" } as any);
           }
           refetch();
           setEditorOpen(false);

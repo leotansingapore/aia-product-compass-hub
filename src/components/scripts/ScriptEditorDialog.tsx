@@ -77,6 +77,9 @@ interface Props {
   onClose: () => void;
   onSave: (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null }) => Promise<void>;
   script?: ScriptEntry | null;
+  lockedAudience?: string;
+  lockedRoles?: { value: string; label: string }[];
+  lockedCategory?: string;
 }
 
 type EditorStep = "paste" | "duplicates" | "review";
@@ -120,7 +123,7 @@ function getSimilarityTier(overlapPercent: number): SimilarityTier {
   return "none";
 }
 
-export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
+export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudience, lockedRoles, lockedCategory }: Props) {
   const { user } = useSimplifiedAuth();
   const navigate = useNavigate();
   const { scripts: allScriptsRaw } = useScripts();
@@ -203,9 +206,9 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       setSimilarScripts([]);
       setHighestSimilarityTier("none");
       setStage("");
-      setCategory("cold-calling");
-      setTargetAudience("general");
-      setScriptRole("consultant");
+      setCategory(lockedCategory || "cold-calling");
+      setTargetAudience(lockedAudience || "general");
+      setScriptRole(lockedRoles?.[0]?.value || "consultant");
       setTags([]);
       setTagInput("");
       setVersions([{ author: "", content: "" }]);
@@ -303,12 +306,14 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
       }
 
       const classifiedTitle = data.suggested_title || "";
-      const classifiedCategory = data.category || "cold-calling";
-      const classifiedAudience = data.target_audience || "general";
+      const classifiedCategory = lockedCategory || data.category || "cold-calling";
+      const classifiedAudience = lockedAudience || data.target_audience || "general";
       setStage(classifiedTitle);
       setCategory(classifiedCategory);
       setTargetAudience(classifiedAudience);
-      setScriptRole(data.script_role || "consultant");
+      const availableRoles = lockedRoles || SCRIPT_ROLES;
+      const suggestedRole = data.script_role || "consultant";
+      setScriptRole(availableRoles.find(r => r.value === suggestedRole) ? suggestedRole : availableRoles[0].value);
       setTags(data.tags || []);
       setVersions([{ author: userName, content: pasteContent }]);
 
@@ -589,34 +594,38 @@ export function ScriptEditorDialog({ open, onClose, onSave, script }: Props) {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div>
-                  <Label>Category</Label>
-                  <Select value={category} onValueChange={setCategory}>
-                    <SelectTrigger><SelectValue /></SelectTrigger>
-                    <SelectContent>
-                      {CATEGORIES.map(c => (
-                        <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label>Target Audience</Label>
-                  <Select value={targetAudience} onValueChange={setTargetAudience}>
-                    <SelectTrigger><SelectValue /></SelectTrigger>
-                    <SelectContent>
-                      {TARGET_AUDIENCES.map(a => (
-                        <SelectItem key={a.value} value={a.value}>{a.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                {!lockedCategory && (
+                  <div>
+                    <Label>Category</Label>
+                    <Select value={category} onValueChange={setCategory}>
+                      <SelectTrigger><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {CATEGORIES.map(c => (
+                          <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+                {!lockedAudience && (
+                  <div>
+                    <Label>Target Audience</Label>
+                    <Select value={targetAudience} onValueChange={setTargetAudience}>
+                      <SelectTrigger><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {TARGET_AUDIENCES.map(a => (
+                          <SelectItem key={a.value} value={a.value}>{a.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
                 <div>
                   <Label>Role</Label>
                   <Select value={scriptRole} onValueChange={setScriptRole}>
                     <SelectTrigger><SelectValue /></SelectTrigger>
                     <SelectContent>
-                      {SCRIPT_ROLES.map(r => (
+                      {(lockedRoles || SCRIPT_ROLES).map(r => (
                         <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>
                       ))}
                     </SelectContent>
