@@ -618,7 +618,6 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
           {step === "review" && (
             <div className="space-y-4">
               {!isEditing && (() => {
-                // Derive the active servicing subcategory from the first tag that looks like a category slug
                 const servicingSubcategory = lockedCategory === "servicing"
                   ? tags.find(t => t.includes("-") || Object.keys({
                       "premium-payments":1,"new-business":1,"claims":1,"policy-services":1,
@@ -645,13 +644,29 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                         <Badge key={i} variant="outline" className="text-[10px]">{t}</Badge>
                       ))}
                     </div>
-                    {servicingSubcategory && (
-                      <div className="flex items-center gap-2 pt-1 border-t border-primary/10">
-                        <span className="text-[10px] text-muted-foreground">Filed under:</span>
-                        <Badge className="text-[10px] gap-1 bg-primary/15 text-primary border-primary/30 hover:bg-primary/20">
-                          📂 {servicingSubcategory.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
-                        </Badge>
-                      </div>
+                  </div>
+                );
+              })()}
+
+              {/* === Servicing subcategory — prominent standalone field === */}
+              {lockedCategory === "servicing" && !isEditing && (() => {
+                const servicingSubcategory = tags.find(t => t.includes("-") || Object.keys({
+                  "premium-payments":1,"new-business":1,"claims":1,"policy-services":1,
+                  "travel-insurance":1,"texting-campaigns":1,"festive-greetings":1,
+                  "referrals":1,"annual-reviews":1,"general-education":1,
+                }).includes(t));
+                if (!servicingSubcategory && !aiSuggestedNewCategory) return null;
+                const displaySlug = servicingSubcategory || aiSuggestedNewCategory || "";
+                return (
+                  <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-3">
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                      📂 This script will be filed under
+                    </p>
+                    <p className="text-lg font-bold text-foreground leading-tight">
+                      {displaySlug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+                    </p>
+                    {aiSuggestedNewCategory && (
+                      <p className="text-xs text-amber-600 dark:text-amber-400 mt-1">New category — doesn't exist yet</p>
                     )}
                   </div>
                 );
@@ -662,23 +677,21 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                 <div className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-3 space-y-2">
                   <p className="text-xs font-medium text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
                     <AlertCircle className="h-3.5 w-3.5" />
-                    AI suggested a new category: <span className="font-bold">"{aiSuggestedNewCategory.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}"</span>
+                    Override: assign to an existing category instead?
                   </p>
-                  <p className="text-xs text-muted-foreground">Choose an existing category instead, or keep the new one.</p>
                   <div className="flex flex-wrap gap-1.5 mt-1">
                     {existingCategorySlugs.map(slug => (
                       <button
                         key={slug}
                         type="button"
                         onClick={() => {
-                          // Swap the new category slug with the chosen existing one in tags
                           setTags(prev => {
                             const filtered = prev.filter(t => t !== aiSuggestedNewCategory);
                             return [slug, ...filtered];
                           });
                           setAiSuggestedNewCategory(null);
                         }}
-                        className="px-2 py-0.5 rounded-full text-xs border border-border bg-background hover:bg-accent hover:border-primary transition-colors"
+                        className="px-2.5 py-1 rounded-md text-xs border border-border bg-background hover:bg-accent hover:border-primary transition-colors font-medium"
                       >
                         {slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
                       </button>
@@ -686,9 +699,9 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                     <button
                       type="button"
                       onClick={() => setAiSuggestedNewCategory(null)}
-                      className="px-2 py-0.5 rounded-full text-xs border border-amber-500/50 bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20 transition-colors"
+                      className="px-2.5 py-1 rounded-md text-xs border border-amber-500/50 bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20 transition-colors font-medium"
                     >
-                      ✓ Keep "{aiSuggestedNewCategory}"
+                      ✓ Keep as new
                     </button>
                   </div>
                 </div>
