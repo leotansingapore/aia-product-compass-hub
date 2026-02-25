@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -605,22 +606,27 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
     }
   };
 
-  const handleAddAsVersion = async (targetScriptId: string, targetTitle: string) => {
+  const handleAddAsVersion = async (targetScriptId: string, targetTitle: string, addMode: "current" | "all" = "current") => {
     setIsMerging(true);
     try {
       const match = similarScripts.find(s => s.id === targetScriptId);
-      await trackDuplicateDecision("merge_as_version", match?.overlapPercent, match?.searchTier);
+      const versionsToAdd = addMode === "all" && versions.length > 1
+        ? versions
+        : [{ author: userName, content: pasteContent }];
 
-      const { data, error } = await supabase.functions.invoke("seed-scripts", {
-        body: {
-          mode: "append-version",
-          targetId: targetScriptId,
-          newVersion: { author: userName, content: pasteContent },
-        },
-      });
-      if (error) throw error;
-      if (data?.error) throw new Error(data.error);
-      toast.success(`Added as a new version to "${targetTitle}" (${data.totalVersions} versions total)`);
+      for (const ver of versionsToAdd) {
+        const { data, error } = await supabase.functions.invoke("seed-scripts", {
+          body: {
+            mode: "append-version",
+            targetId: targetScriptId,
+            newVersion: { author: ver.author || userName, content: ver.content },
+          },
+        });
+        if (error || data?.error) throw new Error(data?.error || error?.message);
+      }
+
+      const addedCount = versionsToAdd.length;
+      toast.success(`Added ${addedCount > 1 ? `${addedCount} versions` : "as a new version"} to "${targetTitle}"`);
       onClose();
       const basePath = mergeNavigateBase || "/scripts";
       setTimeout(() => navigate(`${basePath}/${targetScriptId}`, { replace: true }), 150);
@@ -809,19 +815,42 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                     )}
 
                     <div className="flex gap-2 justify-end">
-                      <Button
-                        size="sm"
-                        className="gap-1 text-xs"
-                        disabled={isMerging}
-                        onClick={() => handleAddAsVersion(s.id, s.stage)}
-                      >
-                        {isMerging ? (
-                          <Loader2 className="h-3 w-3 animate-spin" />
-                        ) : (
-                          <GitMerge className="h-3 w-3" />
-                        )}
-                        Add as Version
-                      </Button>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="gap-1 text-xs"
+                            disabled={isMerging}
+                          >
+                            {isMerging ? (
+                              <Loader2 className="h-3 w-3 animate-spin" />
+                            ) : (
+                              <GitMerge className="h-3 w-3" />
+                            )}
+                            Add as Version
+                            <ChevronDown className="h-3 w-3 ml-0.5" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-56">
+                          <DropdownMenuItem onClick={() => handleAddAsVersion(s.id, s.stage, "current")}>
+                            <GitMerge className="h-3.5 w-3.5 mr-2 shrink-0" />
+                            <div>
+                              <div className="font-medium text-xs">Current version only</div>
+                              <div className="text-[10px] text-muted-foreground">Add just this pasted content</div>
+                            </div>
+                          </DropdownMenuItem>
+                          {versions.length > 1 && (
+                            <DropdownMenuItem onClick={() => handleAddAsVersion(s.id, s.stage, "all")}>
+                              <GitMerge className="h-3.5 w-3.5 mr-2 shrink-0" />
+                              <div>
+                                <div className="font-medium text-xs">All versions ({versions.length})</div>
+                                <div className="text-[10px] text-muted-foreground">Add every version tab</div>
+                              </div>
+                            </DropdownMenuItem>
+                          )}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
                     </div>
                   </div>
                 ))}
