@@ -2206,6 +2206,7 @@ export default function ScriptsDatabase() {
   const [activeRole, setActiveRole] = useState<string>(getInitialFilter("role", "role"));
   const [activeTag, setActiveTag] = useState<string>(getInitialFilter("tag", "tag"));
   const [showFavouritesOnly, setShowFavouritesOnly] = useState(false);
+  const [showMobileExtraFilters, setShowMobileExtraFilters] = useState(false);
 
   // Helper for in-page card toggle navigation (preserves filters including query params)
   const navigateToScriptInternal = useCallback((id: string) => {
@@ -2716,85 +2717,105 @@ export default function ScriptsDatabase() {
           )}
 
           {isMobile ? (
-            /* ===== MOBILE: Compact dropdown selects ===== */
-            <div className="grid grid-cols-2 gap-2">
-              {/* Category dropdown */}
-              <div>
-                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">
-                  <Filter className="h-3 w-3 inline mr-1" />Category
-                </span>
-                <Select value={activeCategory} onValueChange={setActiveCategory}>
-                  <SelectTrigger className="h-9 text-xs bg-background">
-                    <SelectValue placeholder="All categories" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-popover z-50">
-                    <SelectItem value="all">All ({counts.all})</SelectItem>
-                    {activeCategoriesWithData.map((key) => (
-                      <SelectItem key={key} value={key}>
-                        {categoryLabels[key].label} ({counts[key]})
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Audience dropdown */}
-              <div>
-                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
-                <Select value={activeAudience} onValueChange={setActiveAudience}>
-                  <SelectTrigger className="h-9 text-xs bg-background">
-                    <SelectValue placeholder="All audiences" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-popover z-50">
-                    <SelectItem value="all">All</SelectItem>
-                    {Object.entries(audienceLabels).filter(([key]) =>
-                      scriptsData.some(s => s.target_audience === key)
-                    ).map(([key, label]) => (
-                      <SelectItem key={key} value={key}>
-                        {label} ({audienceCounts[key]})
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Role dropdown */}
-              <div>
-                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
-                <Select value={activeRole} onValueChange={setActiveRole}>
-                  <SelectTrigger className="h-9 text-xs bg-background">
-                    <SelectValue placeholder="All roles" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-popover z-50">
-                    <SelectItem value="all">All</SelectItem>
-                    {Object.entries(roleLabels).filter(([key]) =>
-                      scriptsData.some(s => (s.script_role || 'consultant') === key)
-                    ).map(([key, label]) => (
-                      <SelectItem key={key} value={key}>
-                        {label} ({roleCounts[key]})
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Tags dropdown */}
-              {allTags.length > 0 && (
+            /* ===== MOBILE: Category + Audience always visible; Role + Tag behind toggle ===== */
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
+                {/* Category dropdown */}
                 <div>
-                  <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tag</span>
-                  <Select value={activeTag} onValueChange={setActiveTag}>
+                  <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">
+                    <Filter className="h-3 w-3 inline mr-1" />Category
+                  </span>
+                  <Select value={activeCategory} onValueChange={setActiveCategory}>
                     <SelectTrigger className="h-9 text-xs bg-background">
-                      <SelectValue placeholder="All tags" />
+                      <SelectValue placeholder="All categories" />
                     </SelectTrigger>
-                    <SelectContent className="bg-popover z-50 max-h-60">
-                      <SelectItem value="all">All</SelectItem>
-                      {allTags.map((tag) => (
-                        <SelectItem key={tag} value={tag}>
-                          {tag} ({tagCounts[tag]})
+                    <SelectContent className="bg-popover z-50">
+                      <SelectItem value="all">All ({counts.all})</SelectItem>
+                      {activeCategoriesWithData.map((key) => (
+                        <SelectItem key={key} value={key}>
+                          {categoryLabels[key].label} ({counts[key]})
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+
+                {/* Audience dropdown */}
+                <div>
+                  <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
+                  <Select value={activeAudience} onValueChange={setActiveAudience}>
+                    <SelectTrigger className="h-9 text-xs bg-background">
+                      <SelectValue placeholder="All audiences" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover z-50">
+                      <SelectItem value="all">All</SelectItem>
+                      {Object.entries(audienceLabels).filter(([key]) =>
+                        scriptsData.some(s => s.target_audience === key)
+                      ).map(([key, label]) => (
+                        <SelectItem key={key} value={key}>
+                          {label} ({audienceCounts[key]})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              {/* More filters toggle */}
+              <button
+                className="flex items-center gap-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => setShowMobileExtraFilters(v => !v)}
+              >
+                <Filter className="h-3 w-3" />
+                {showMobileExtraFilters ? "Hide" : "More"} filters
+                {(activeRole !== "all" || activeTag !== "all") && (
+                  <span className="ml-1 bg-primary text-primary-foreground rounded-full text-[9px] px-1.5 py-0.5 font-medium">
+                    {(activeRole !== "all" ? 1 : 0) + (activeTag !== "all" ? 1 : 0)}
+                  </span>
+                )}
+              </button>
+
+              {showMobileExtraFilters && (
+                <div className="grid grid-cols-2 gap-2">
+                  {/* Role dropdown */}
+                  <div>
+                    <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
+                    <Select value={activeRole} onValueChange={setActiveRole}>
+                      <SelectTrigger className="h-9 text-xs bg-background">
+                        <SelectValue placeholder="All roles" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-popover z-50">
+                        <SelectItem value="all">All</SelectItem>
+                        {Object.entries(roleLabels).filter(([key]) =>
+                          scriptsData.some(s => (s.script_role || 'consultant') === key)
+                        ).map(([key, label]) => (
+                          <SelectItem key={key} value={key}>
+                            {label} ({roleCounts[key]})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Tags dropdown */}
+                  {allTags.length > 0 && (
+                    <div>
+                      <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tag</span>
+                      <Select value={activeTag} onValueChange={setActiveTag}>
+                        <SelectTrigger className="h-9 text-xs bg-background">
+                          <SelectValue placeholder="All tags" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-popover z-50 max-h-60">
+                          <SelectItem value="all">All</SelectItem>
+                          {allTags.map((tag) => (
+                            <SelectItem key={tag} value={tag}>
+                              {tag} ({tagCounts[tag]})
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
