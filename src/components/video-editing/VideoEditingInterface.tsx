@@ -258,8 +258,8 @@ export function VideoEditingInterface({
                 console.log('💾 Save triggered with videos:', currentVideos.length);
                 // Wait for save to complete before clearing state
                 await onSave(currentVideos);
-                // Clear order tracking after save
-                videoOrderChanges.discardChanges();
+                // Clear change tracking but keep pendingVideos as-is (they have the saved state)
+                videoOrderChanges.clearChangeTracking();
                 // Signal editor to switch back to preview mode
                 setLastSavedAt(Date.now());
               }}

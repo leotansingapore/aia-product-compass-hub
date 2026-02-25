@@ -106,6 +106,11 @@ export function useVideoOrderChanges({ videos, onSave }: UseVideoOrderChangesPro
     setChanges(new Map());
   }, [videos]);
 
+  // Clear change tracking without resetting pendingVideos (used after successful save)
+  const clearChangeTracking = useCallback(() => {
+    setChanges(new Map());
+  }, []);
+
   const getChangeCount = useCallback(() => {
     return changes.size;
   }, [changes]);
@@ -139,6 +144,7 @@ export function useVideoOrderChanges({ videos, onSave }: UseVideoOrderChangesPro
     hasPendingChanges,
     saveChanges,
     discardChanges,
+    clearChangeTracking,
     isSaving,
     getChangeCount,
     getChangeSummary,
