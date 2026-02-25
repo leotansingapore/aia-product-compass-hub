@@ -1460,7 +1460,7 @@ function PlaybookDropdown({ myPlaybooks, scriptId, onAddToPlaybook, onCreatePlay
   );
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, onCreatePlaybookAndAdd, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; onCreatePlaybookAndAdd?: (title: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void> }) {
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, onCreatePlaybookAndAdd, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave, onMetadataSave }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; onCreatePlaybookAndAdd?: (title: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>; onMetadataSave?: (scriptId: string, updates: Partial<ScriptEntry>) => Promise<void> }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
@@ -1469,6 +1469,21 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
   const snippet = useMemo(() => getSearchSnippet(script.versions, searchQuery), [script.versions, searchQuery]);
+
+  // Inline metadata editing state (admin only)
+  const [editingTitle, setEditingTitle] = useState(false);
+  const [titleDraft, setTitleDraft] = useState(script.stage);
+  const [editingCategory, setEditingCategory] = useState(false);
+  const [editingAudience, setEditingAudience] = useState(false);
+  const [editingVersionTitle, setEditingVersionTitle] = useState<number | null>(null);
+  const [versionTitleDraft, setVersionTitleDraft] = useState("");
+
+  const saveMetaField = async (updates: Partial<ScriptEntry>) => {
+    if (!onMetadataSave) return;
+    setIsSaving(true);
+    await onMetadataSave(script.id, updates);
+    setIsSaving(false);
+  };
 
   const startInlineEdit = (versionIdx: number) => {
     setEditingVersionIdx(versionIdx);
@@ -1514,16 +1529,116 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
               <cat.icon className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground shrink-0 mt-0.5 sm:mt-0" />
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
-                  <CardTitle className="text-sm sm:text-base leading-snug"><HighlightedTitle text={script.stage} query={searchQuery} /></CardTitle>
+                  {editingTitle && isAdmin ? (
+                    <div className="flex items-center gap-1.5 flex-1" onClick={(e) => e.stopPropagation()}>
+                      <Input
+                        value={titleDraft}
+                        onChange={(e) => setTitleDraft(e.target.value)}
+                        className="h-7 text-sm font-semibold"
+                        autoFocus
+                        onKeyDown={async (e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            await saveMetaField({ stage: titleDraft });
+                            setEditingTitle(false);
+                          } else if (e.key === 'Escape') {
+                            setTitleDraft(script.stage);
+                            setEditingTitle(false);
+                          }
+                        }}
+                        onBlur={async () => {
+                          if (titleDraft !== script.stage) await saveMetaField({ stage: titleDraft });
+                          setEditingTitle(false);
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <CardTitle
+                      className={`text-sm sm:text-base leading-snug ${isAdmin && onMetadataSave ? 'cursor-text hover:underline decoration-dashed decoration-muted-foreground/40 underline-offset-4' : ''}`}
+                      onClick={(e) => {
+                        if (isAdmin && onMetadataSave) {
+                          e.stopPropagation();
+                          setTitleDraft(script.stage);
+                          setEditingTitle(true);
+                        }
+                      }}
+                    >
+                      <HighlightedTitle text={script.stage} query={searchQuery} />
+                    </CardTitle>
+                  )}
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform shrink-0 mt-0.5 ${open ? "rotate-180" : ""}`} />
                 </div>
                 <div className="flex items-center gap-1 sm:gap-1.5 mt-1.5 flex-wrap">
-                  <Badge variant="secondary" className={`text-[10px] ${cat.color}`}>
-                    {cat.label}
-                  </Badge>
-                  {script.target_audience && script.target_audience !== "general" && (
-                    <Badge variant="outline" className="text-[10px]">
-                      {audienceLabels[script.target_audience] || script.target_audience}
+                  {/* Editable category badge */}
+                  {editingCategory && isAdmin ? (
+                    <div onClick={(e) => e.stopPropagation()}>
+                      <Select
+                        value={script.category}
+                        onValueChange={async (val) => {
+                          await saveMetaField({ category: val });
+                          setEditingCategory(false);
+                        }}
+                        open={true}
+                        onOpenChange={(o) => { if (!o) setEditingCategory(false); }}
+                      >
+                        <SelectTrigger className="h-5 text-[10px] w-auto min-w-[100px]">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {(Object.keys(categoryLabels) as CategoryKey[]).map((key) => (
+                            <SelectItem key={key} value={key} className="text-xs">{categoryLabels[key].label}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  ) : (
+                    <Badge
+                      variant="secondary"
+                      className={`text-[10px] ${cat.color} ${isAdmin && onMetadataSave ? 'cursor-pointer hover:ring-1 ring-primary/40' : ''}`}
+                      onClick={(e) => {
+                        if (isAdmin && onMetadataSave) {
+                          e.stopPropagation();
+                          setEditingCategory(true);
+                        }
+                      }}
+                    >
+                      {cat.label}
+                    </Badge>
+                  )}
+                  {/* Editable audience badge */}
+                  {editingAudience && isAdmin ? (
+                    <div onClick={(e) => e.stopPropagation()}>
+                      <Select
+                        value={script.target_audience || "general"}
+                        onValueChange={async (val) => {
+                          await saveMetaField({ target_audience: val });
+                          setEditingAudience(false);
+                        }}
+                        open={true}
+                        onOpenChange={(o) => { if (!o) setEditingAudience(false); }}
+                      >
+                        <SelectTrigger className="h-5 text-[10px] w-auto min-w-[100px]">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {Object.entries(audienceLabels).map(([key, label]) => (
+                            <SelectItem key={key} value={key} className="text-xs">{label}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  ) : (
+                    <Badge
+                      variant="outline"
+                      className={`text-[10px] ${isAdmin && onMetadataSave ? 'cursor-pointer hover:ring-1 ring-primary/40' : ''}`}
+                      onClick={(e) => {
+                        if (isAdmin && onMetadataSave) {
+                          e.stopPropagation();
+                          setEditingAudience(true);
+                        }
+                      }}
+                    >
+                      {audienceLabels[script.target_audience || "general"] || script.target_audience || "General"}
                     </Badge>
                   )}
                   {script.script_role && script.script_role !== "consultant" && (
@@ -1606,8 +1721,51 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 <Tabs defaultValue="0">
                   <TabsList className="mb-3 flex-wrap h-auto gap-1 w-full justify-start">
                     {script.versions.map((v, i) => (
-                      <TabsTrigger key={i} value={String(i)} className="text-xs">
-                        {v.author}
+                      <TabsTrigger key={i} value={String(i)} className="text-xs relative group">
+                        {editingVersionTitle === i && isAdmin ? (
+                          <span onClick={(e) => e.stopPropagation()}>
+                            <Input
+                              value={versionTitleDraft}
+                              onChange={(e) => setVersionTitleDraft(e.target.value)}
+                              className="h-5 text-[11px] w-24 px-1"
+                              autoFocus
+                              onKeyDown={async (e) => {
+                                if (e.key === 'Enter') {
+                                  e.preventDefault();
+                                  const newVersions = script.versions.map((ver, idx) =>
+                                    idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver
+                                  );
+                                  if (onInlineSave) await onInlineSave(script.id, newVersions);
+                                  setEditingVersionTitle(null);
+                                } else if (e.key === 'Escape') {
+                                  setEditingVersionTitle(null);
+                                }
+                              }}
+                              onBlur={async () => {
+                                if (versionTitleDraft !== v.author) {
+                                  const newVersions = script.versions.map((ver, idx) =>
+                                    idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver
+                                  );
+                                  if (onInlineSave) await onInlineSave(script.id, newVersions);
+                                }
+                                setEditingVersionTitle(null);
+                              }}
+                            />
+                          </span>
+                        ) : (
+                          <span
+                            className={isAdmin && onMetadataSave ? 'cursor-text' : ''}
+                            onDoubleClick={(e) => {
+                              if (isAdmin && onMetadataSave) {
+                                e.stopPropagation();
+                                setVersionTitleDraft(v.title || v.author);
+                                setEditingVersionTitle(i);
+                              }
+                            }}
+                          >
+                            {v.title || v.author}
+                          </span>
+                        )}
                       </TabsTrigger>
                     ))}
                   </TabsList>
@@ -1818,7 +1976,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   );
 }
 
-function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, handleCreatePlaybookAndAdd, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, onScriptNavigate, allScripts, onInlineSave }: {
+function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQuery, myPlaybooks, handleAddToPlaybook, handleCreatePlaybookAndAdd, user, favouriteIds, toggleFavourite, isMobile, setEditingScript, setEditorOpen, setDeleteTarget, navigate, onScriptNavigate, allScripts, onInlineSave, onMetadataSave }: {
   subType: string;
   config: { label: string; icon: string; description: string };
   scripts: ScriptEntry[];
@@ -1839,6 +1997,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
   onScriptNavigate: (id: string) => void;
   allScripts?: ScriptEntry[];
   onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>;
+  onMetadataSave?: (scriptId: string, updates: Partial<ScriptEntry>) => Promise<void>;
 }) {
   const [open, setOpen] = useState(true);
   return (
@@ -1880,6 +2039,7 @@ function FollowUpSubGroup({ subType, config, scripts, isAdmin, scriptId, searchQ
                 onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                 onDelete={() => setDeleteTarget(script)}
                 onInlineSave={onInlineSave}
+                onMetadataSave={onMetadataSave}
                 onToggle={(open) => {
                   if (open) onScriptNavigate(script.id);
                   else if (scriptId === script.id) navigate('/scripts', { replace: true });
@@ -2319,6 +2479,11 @@ export default function ScriptsDatabase() {
     await updateScript(scriptId, { versions });
     refetch();
   }, [updateScript, refetch, dbScripts, user]);
+
+  const handleMetadataSave = useCallback(async (scriptId: string, updates: Partial<ScriptEntry>) => {
+    await updateScript(scriptId, updates);
+    refetch();
+  }, [updateScript, refetch]);
 
   const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null }) => {
     if (editingScript) {
@@ -2764,6 +2929,7 @@ export default function ScriptsDatabase() {
                             onScriptNavigate={navigateToScriptInternal}
                             allScripts={dbScripts}
                             onInlineSave={handleInlineSave}
+                            onMetadataSave={handleMetadataSave}
                           />
                         );
                       })}
@@ -2792,6 +2958,7 @@ export default function ScriptsDatabase() {
                         onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                         onDelete={() => setDeleteTarget(script)}
                         onInlineSave={handleInlineSave}
+                        onMetadataSave={handleMetadataSave}
                         onToggle={(open) => {
                           if (open) {
                             navigateToScriptInternal(script.id);

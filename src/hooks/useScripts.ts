@@ -6,6 +6,7 @@ import { useAdmin } from '@/hooks/useAdmin';
 export interface ScriptVersion {
   author: string;
   content: string;
+  title?: string;
 }
 
 export interface ScriptAttachment {
