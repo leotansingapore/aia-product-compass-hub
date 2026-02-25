@@ -258,9 +258,12 @@ serve(async (req) => {
 
       const chunks: any[] = [];
       for (const script of scripts || []) {
-        const versions = script.versions as Array<{ author: string; content: string }>;
+        const versions = script.versions as Array<{ author: string; content: string; title?: string }>;
         let content = `## ${script.stage}\nCategory: ${script.category}\nTarget Audience: ${script.target_audience || 'general'}\n\n`;
-        for (const v of versions) content += `**${v.author}:**\n${v.content}\n\n`;
+        for (const v of versions) {
+          const label = v.title || v.author || "Version";
+          content += `**${label}:**\n${v.content}\n\n`;
+        }
         
         for (const chunk of chunkText(content)) {
           chunks.push({
@@ -271,10 +274,13 @@ serve(async (req) => {
       }
 
       if (chunks.length > 0) {
-        const { data: inserted, error: insErr } = await supabase
-          .from("knowledge_chunks").insert(chunks).select("id, content");
+        const { error: insErr } = await supabase
+          .from("knowledge_chunks").insert(chunks);
         if (insErr) throw new Error(`Failed to insert script chunks: ${insErr.message}`);
-        await embedAndStore(supabase, inserted, supabaseUrl);
+        // Embedding happens asynchronously via reembed_missing to avoid timeout
+        supabase.functions.invoke("process-knowledge", {
+          body: { action: "reembed_missing" },
+        }).catch(() => {/* fire-and-forget */});
       }
 
       return new Response(JSON.stringify({ success: true, chunks_created: chunks.length }), {
