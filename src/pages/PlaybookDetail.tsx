@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare } from "lucide-react";
+import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare, Share2, Globe, Lock } from "lucide-react";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
 import { useScripts } from "@/hooks/useScripts";
 import { useScriptsMutations } from "@/hooks/useScripts";
@@ -291,7 +291,7 @@ export default function PlaybookDetail() {
   const { playbookId } = useParams();
   const navigate = useNavigate();
   const { user } = useSimplifiedAuth();
-  const { playbooks } = usePlaybooks();
+  const { playbooks, togglePublic } = usePlaybooks();
   const { items, isLoading, removeItem, reorderItems } = usePlaybookItems(playbookId || null);
   const { scripts, loading: scriptsLoading, refetch } = useScripts();
   const { updateScript } = useScriptsMutations();
@@ -437,7 +437,36 @@ export default function PlaybookDetail() {
             </div>
           </div>
           {isOwner && (
-            <div className="flex gap-2 w-full sm:w-auto">
+            <div className="flex gap-2 w-full sm:w-auto flex-wrap">
+              <Button
+                variant={playbook?.is_public ? "secondary" : "outline"}
+                size="sm"
+                className="gap-1.5 flex-1 sm:flex-initial"
+                onClick={() => {
+                  if (!playbook) return;
+                  if (playbook.is_public && playbook.share_token) {
+                    // Copy share link
+                    const url = `${window.location.origin}/playbooks/share/${playbook.share_token}`;
+                    navigator.clipboard.writeText(url);
+                    toast.success('Share link copied to clipboard');
+                  } else {
+                    togglePublic.mutate({ id: playbook.id, isPublic: true });
+                  }
+                }}
+              >
+                {playbook?.is_public ? <Globe className="h-4 w-4" /> : <Share2 className="h-4 w-4" />}
+                {playbook?.is_public ? "Copy Link" : "Share"}
+              </Button>
+              {playbook?.is_public && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="gap-1.5 text-xs"
+                  onClick={() => togglePublic.mutate({ id: playbook.id, isPublic: false })}
+                >
+                  <Lock className="h-3.5 w-3.5" /> Make Private
+                </Button>
+              )}
               <Button variant="outline" onClick={handleAISuggest} disabled={isAiLoading} className="gap-1.5 flex-1 sm:flex-initial">
                 {isAiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
                 AI Suggest

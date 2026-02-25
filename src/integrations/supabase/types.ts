@@ -1311,6 +1311,8 @@ export type Database = {
           created_by: string
           description: string | null
           id: string
+          is_public: boolean
+          share_token: string | null
           title: string
           updated_at: string
         }
@@ -1319,6 +1321,8 @@ export type Database = {
           created_by: string
           description?: string | null
           id?: string
+          is_public?: boolean
+          share_token?: string | null
           title: string
           updated_at?: string
         }
@@ -1327,6 +1331,8 @@ export type Database = {
           created_by?: string
           description?: string | null
           id?: string
+          is_public?: boolean
+          share_token?: string | null
           title?: string
           updated_at?: string
         }

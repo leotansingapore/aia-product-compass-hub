@@ -10,6 +10,8 @@ export interface Playbook {
   created_by: string;
   created_at: string;
   updated_at: string;
+  is_public: boolean;
+  share_token: string | null;
   items?: PlaybookItem[];
   creator_name?: string;
 }
@@ -109,7 +111,37 @@ export function usePlaybooks() {
     onError: () => toast.error('Failed to delete playbook'),
   });
 
-  return { playbooks, myPlaybooks, isLoading, createPlaybook, updatePlaybook, deletePlaybook, userId: user?.id };
+  const togglePublic = useMutation({
+    mutationFn: async ({ id, isPublic }: { id: string; isPublic: boolean }) => {
+      const updates: any = { is_public: isPublic };
+      if (isPublic) {
+        // Generate a share token if making public
+        const playbook = playbooks.find(p => p.id === id);
+        if (!playbook?.share_token) {
+          updates.share_token = crypto.randomUUID().replace(/-/g, '').substring(0, 16);
+        }
+      }
+      const { data, error } = await supabase
+        .from('script_playbooks')
+        .update(updates)
+        .eq('id', id)
+        .select()
+        .single();
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['playbooks'] });
+      if (data.is_public) {
+        toast.success('Playbook is now public');
+      } else {
+        toast.success('Playbook is now private');
+      }
+    },
+    onError: () => toast.error('Failed to update sharing'),
+  });
+
+  return { playbooks, myPlaybooks, isLoading, createPlaybook, updatePlaybook, deletePlaybook, togglePublic, userId: user?.id };
 }
 
 export function usePlaybookItems(playbookId: string | null) {
