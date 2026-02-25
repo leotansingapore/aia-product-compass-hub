@@ -18,7 +18,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Plus, Search, X, ChevronDown, Pencil, Trash2, Copy, Heart, Users } from "lucide-react";
+import { Plus, Search, X, ChevronDown, Pencil, Trash2, Copy, Heart, Users, CreditCard, Briefcase, ShieldCheck, FileText, Plane, MessageSquare, PartyPopper, Gift, Megaphone, BookOpen } from "lucide-react";
 import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -37,6 +37,22 @@ const audienceLabels: Record<string, string> = {
   parent: "Parents",
   "cold-lead": "Cold Leads",
 };
+
+type ServicingSubcategory = "all" | "premium-payments" | "new-business" | "claims" | "policy-services" | "travel-insurance" | "texting-campaigns" | "festive-greetings" | "referrals" | "annual-reviews" | "general-education";
+
+const servicingSubcategories: { key: ServicingSubcategory; label: string; icon: typeof CreditCard; color: string }[] = [
+  { key: "all", label: "All", icon: FileText, color: "bg-secondary text-secondary-foreground" },
+  { key: "premium-payments", label: "Premium Payments", icon: CreditCard, color: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300" },
+  { key: "new-business", label: "New Business", icon: Briefcase, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
+  { key: "claims", label: "Claims", icon: ShieldCheck, color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300" },
+  { key: "policy-services", label: "Policy Services", icon: FileText, color: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300" },
+  { key: "travel-insurance", label: "Travel Insurance", icon: Plane, color: "bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-300" },
+  { key: "texting-campaigns", label: "Texting Campaigns", icon: MessageSquare, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
+  { key: "festive-greetings", label: "Festive Greetings", icon: PartyPopper, color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300" },
+  { key: "referrals", label: "Referrals", icon: Gift, color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
+  { key: "annual-reviews", label: "Annual Reviews", icon: BookOpen, color: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300" },
+  { key: "general-education", label: "General Education", icon: Megaphone, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
+];
 
 function ServicingScriptCard({
   script, isAdmin, onEdit, onDelete, isOpenByUrl, searchQuery, onInlineSave, onMetadataSave, isFavourite, onToggleFavourite,
@@ -251,6 +267,7 @@ export default function ServicingPage() {
   const { favouriteIds, toggleFavourite } = useScriptFavourites();
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeSubcategory, setActiveSubcategory] = useState<ServicingSubcategory>("all");
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingScript, setEditingScript] = useState<ScriptEntry | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<ScriptEntry | null>(null);
@@ -258,6 +275,9 @@ export default function ServicingPage() {
   // Only servicing scripts
   const servicingScripts = useMemo(() => {
     let result = dbScripts.filter((s) => s.category === "servicing");
+    if (activeSubcategory !== "all") {
+      result = result.filter((s) => (s.tags || []).includes(activeSubcategory));
+    }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       result = result.filter((s) =>
@@ -267,7 +287,18 @@ export default function ServicingPage() {
       );
     }
     return result;
-  }, [dbScripts, searchQuery]);
+  }, [dbScripts, searchQuery, activeSubcategory]);
+
+  // Count scripts per subcategory
+  const subcategoryCounts = useMemo(() => {
+    const allServicing = dbScripts.filter((s) => s.category === "servicing");
+    const counts: Record<string, number> = { all: allServicing.length };
+    for (const sub of servicingSubcategories) {
+      if (sub.key === "all") continue;
+      counts[sub.key] = allServicing.filter((s) => (s.tags || []).includes(sub.key)).length;
+    }
+    return counts;
+  }, [dbScripts]);
 
   const handleInlineSave = useCallback(async (scriptId: string, versions: ScriptVersion[]) => {
     await updateScript(scriptId, { versions });
@@ -326,6 +357,30 @@ export default function ServicingPage() {
               <Plus className="h-4 w-4" /> <span className="hidden sm:inline">Add Template</span>
             </Button>
           )}
+        </div>
+
+        {/* Subcategory filter chips */}
+        <div className="mb-4 flex flex-wrap gap-1.5">
+          {servicingSubcategories
+            .filter((sub) => sub.key === "all" || subcategoryCounts[sub.key] > 0 || isAdmin)
+            .map((sub) => {
+              const isActive = activeSubcategory === sub.key;
+              const count = subcategoryCounts[sub.key] || 0;
+              const IconComp = sub.icon;
+              return (
+                <Button
+                  key={sub.key}
+                  variant={isActive ? "default" : "outline"}
+                  size="sm"
+                  className={`h-7 text-xs gap-1 ${!isActive ? sub.color + ' border-transparent' : ''}`}
+                  onClick={() => setActiveSubcategory(sub.key)}
+                >
+                  <IconComp className="h-3 w-3" />
+                  {sub.label}
+                  {count > 0 && <span className="opacity-70">({count})</span>}
+                </Button>
+              );
+            })}
         </div>
 
         {/* Script count */}
