@@ -473,7 +473,7 @@ export default function ServicingPage() {
 
         {/* ── Filter dropdowns ── */}
         <div className="mb-4 p-3 sm:p-4 rounded-lg border bg-muted/30">
-          <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
             {/* Category */}
             <div>
               <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 flex items-center gap-1">

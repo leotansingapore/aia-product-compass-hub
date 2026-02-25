@@ -33,16 +33,18 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
   onOpenAIWizard: () => void;
 }) {
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">My Flows</h2>
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <h2 className="text-base sm:text-lg font-semibold">My Flows</h2>
           <div className="flex items-center gap-2">
-            <Button onClick={onOpenAIWizard} size="sm" variant="outline" className="gap-1.5">
-              <Sparkles className="h-4 w-4" /> AI Builder
+            <Button onClick={onOpenAIWizard} size="sm" variant="outline" className="gap-1.5 h-8 sm:h-9 text-xs sm:text-sm">
+              <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span className="hidden xs:inline">AI </span>Builder
             </Button>
-            <Button onClick={onCreateNew} size="sm" className="gap-1.5">
-              <Plus className="h-4 w-4" /> New Flow
+            <Button onClick={onCreateNew} size="sm" className="gap-1.5 h-8 sm:h-9 text-xs sm:text-sm">
+              <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span>New Flow</span>
             </Button>
           </div>
         </div>
@@ -64,7 +66,7 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
                     {userId === flow.created_by && (
                       <button
                         onClick={e => { e.stopPropagation(); onDelete(flow.id); }}
-                        className="opacity-0 group-hover:opacity-100 text-destructive hover:bg-destructive/10 p-1 rounded transition-all"
+                        className="sm:opacity-0 sm:group-hover:opacity-100 text-destructive hover:bg-destructive/10 p-1 rounded transition-all"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                       </button>
@@ -85,8 +87,8 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
       </div>
 
       <div>
-        <h2 className="text-lg font-semibold mb-4">Templates</h2>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Templates</h2>
+        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {FLOW_TEMPLATES.map((tpl, i) => (
             <Card key={i} className="cursor-pointer hover:border-primary/50 transition-colors" onClick={() => onCreateFromTemplate(i)}>
               <CardHeader className="pb-2">
@@ -424,6 +426,7 @@ export default function ScriptFlows() {
 
   return (
     <PageLayout title="Script Flows" description="Build visual flowcharts for your sales and prospecting processes">
+      <div className="px-3 sm:px-6 max-w-5xl mx-auto pb-20">
       <ScriptsTabBar />
       {isLoading ? (
         <div className="text-center py-12 text-muted-foreground">Loading flows...</div>
@@ -434,6 +437,7 @@ export default function ScriptFlows() {
           onOpenAIWizard={() => setShowAIWizard(true)}
         />
       )}
+      </div>
 
       <Dialog open={showNewDialog} onOpenChange={setShowNewDialog}>
         <DialogContent className="max-w-sm">

@@ -1,33 +1,46 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const tabs = [
-  { key: "scripts", label: "📝 Scripts", path: "/scripts" },
-  { key: "servicing", label: "🛎️ Servicing", path: "/servicing" },
-  { key: "objections", label: "🛡️ Objections", path: "/objections" },
-  { key: "playbooks", label: "📚 Playbooks", path: "/playbooks" },
-  { key: "flows", label: "🔀 Flows", path: "/flows" },
+  { key: "scripts",    label: "Scripts",    emoji: "📝", path: "/scripts" },
+  { key: "servicing",  label: "Servicing",  emoji: "🛎️", path: "/servicing" },
+  { key: "objections", label: "Objections", emoji: "🛡️", path: "/objections" },
+  { key: "playbooks",  label: "Playbooks",  emoji: "📚", path: "/playbooks" },
+  { key: "flows",      label: "Flows",      emoji: "🔀", path: "/flows" },
 ];
 
 export function ScriptsTabBar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const isMobile = useIsMobile();
 
   const currentKey = tabs.find(t => location.pathname.startsWith(t.path))?.key ?? "scripts";
 
   return (
-    <div className="flex gap-1 mb-5 p-1 bg-background/95 backdrop-blur-sm rounded-lg w-fit sticky top-0 z-30 sm:static sm:z-auto border sm:border-0 overflow-x-auto">
-      {tabs.map(tab => (
-        <Button
-          key={tab.key}
-          variant={currentKey === tab.key ? "default" : "ghost"}
-          size="sm"
-          className="gap-1.5 text-sm shrink-0"
-          onClick={() => navigate(tab.path)}
-        >
-          {tab.label}
-        </Button>
-      ))}
+    <div className="mb-4 sm:mb-5 -mx-3 sm:mx-0">
+      {/* Mobile: full-width scrollable strip */}
+      <div className="flex overflow-x-auto scrollbar-hide border-b border-border sm:border-0 sm:overflow-visible sm:flex-wrap sm:gap-1 sm:p-1 sm:bg-background/95 sm:backdrop-blur-sm sm:rounded-lg sm:w-fit sm:sticky sm:top-0 sm:z-30 sm:border sm:border-border">
+        {tabs.map(tab => {
+          const isActive = currentKey === tab.key;
+          return (
+            <button
+              key={tab.key}
+              onClick={() => navigate(tab.path)}
+              className={[
+                "flex-1 sm:flex-none shrink-0 flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-0.5 sm:gap-1.5",
+                "px-3 sm:px-3 py-2.5 sm:py-1.5 text-[10px] sm:text-sm font-medium transition-all",
+                "border-b-2 sm:border-0 sm:rounded-md",
+                isActive
+                  ? "border-primary text-primary sm:bg-primary sm:text-primary-foreground sm:border-transparent"
+                  : "border-transparent text-muted-foreground hover:text-foreground sm:hover:bg-accent",
+              ].join(" ")}
+            >
+              <span className="text-base sm:text-sm leading-none">{tab.emoji}</span>
+              <span className="leading-none mt-0.5 sm:mt-0 whitespace-nowrap">{tab.label}</span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
