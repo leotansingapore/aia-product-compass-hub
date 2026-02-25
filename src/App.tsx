@@ -46,6 +46,7 @@ import VideoDetail from "./pages/VideoDetail";
 import AwaitingApproval from "./pages/AwaitingApproval";
 import ManageProductVideos from "./pages/ManageProductVideos";
 import ScriptsDatabase from "./pages/ScriptsDatabase";
+import ServicingPage from "./pages/ServicingPage";
 import Playbooks from "./pages/Playbooks";
 import PlaybookDetail from "./pages/PlaybookDetail";
 import ScriptFlows from "./pages/ScriptFlows";
@@ -110,6 +111,10 @@ const App = () => (
 <Route path="/scripts" element={<ScriptsDatabase />} />
 <Route path="/scripts/:scriptId" element={<ScriptsDatabase />} />
 <Route path="/objections" element={<ScriptsDatabase />} />
+
+{/* Servicing Templates */}
+<Route path="/servicing" element={<ServicingPage />} />
+<Route path="/servicing/:scriptId" element={<ServicingPage />} />
 
 {/* Script Playbooks */}
 <Route path="/playbooks" element={<Playbooks />} />

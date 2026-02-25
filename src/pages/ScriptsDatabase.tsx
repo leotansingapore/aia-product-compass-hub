@@ -2264,7 +2264,8 @@ export default function ScriptsDatabase() {
   }, [strictMatch]);
 
   const filteredScripts = useMemo(() => {
-    let result = scriptsData;
+    // Exclude servicing scripts from the main Scripts tab (they have their own tab)
+    let result = scriptsData.filter((s) => s.category !== "servicing");
     if (activeCategory !== "all") {
       result = result.filter((s) => s.category === activeCategory);
     }

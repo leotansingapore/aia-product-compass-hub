@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const tabs = [
   { key: "scripts", label: "📝 Scripts", path: "/scripts" },
+  { key: "servicing", label: "🛎️ Servicing", path: "/servicing" },
   { key: "objections", label: "🛡️ Objections", path: "/objections" },
   { key: "playbooks", label: "📚 Playbooks", path: "/playbooks" },
   { key: "flows", label: "🔀 Flows", path: "/flows" },
