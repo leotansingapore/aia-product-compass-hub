@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert, Link2, X } from "lucide-react";
+import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert, Link2, X, AlertCircle } from "lucide-react";
 import { useScripts } from "@/hooks/useScripts";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -162,6 +162,10 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
   const [showOverrideConfirm, setShowOverrideConfirm] = useState(false);
   const [highestSimilarityTier, setHighestSimilarityTier] = useState<SimilarityTier>("none");
 
+  // Servicing category override state
+  const [aiSuggestedNewCategory, setAiSuggestedNewCategory] = useState<string | null>(null);
+  const [existingCategorySlugs, setExistingCategorySlugs] = useState<string[]>([]);
+
   // Review/edit step state
   const [stage, setStage] = useState("");
   const [category, setCategory] = useState("cold-calling");
@@ -215,9 +219,10 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       setTagInput("");
       setVersions([{ author: "", content: "" }]);
       setSortOrder(0);
-      setRelatedScriptId(null);
+    setRelatedScriptId(null);
       setRelatedSearch("");
       setShowAdvanced(false);
+      setAiSuggestedNewCategory(null);
     }
   }, [script, open]);
 
@@ -351,9 +356,12 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       if (isServicing && data.servicing_category) {
         const catSlug = data.servicing_category.toLowerCase().replace(/\s+/g, "-");
         if (!aiTags.includes(catSlug)) aiTags.unshift(catSlug);
-        // Toast if it's a brand-new category
+        // Track if this is a brand-new category so we can show the override UI
         if (!existingCategories.includes(catSlug)) {
-          toast.info(`New category created: "${catSlug}"`);
+          setAiSuggestedNewCategory(catSlug);
+          setExistingCategorySlugs(existingCategories);
+        } else {
+          setAiSuggestedNewCategory(null);
         }
       }
       setTags(aiTags);
@@ -627,6 +635,43 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                     {tags.map((t, i) => (
                       <Badge key={i} variant="outline" className="text-[10px]">{t}</Badge>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {/* === New servicing category override banner === */}
+              {aiSuggestedNewCategory && lockedCategory === "servicing" && !isEditing && (
+                <div className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-3 space-y-2">
+                  <p className="text-xs font-medium text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
+                    <AlertCircle className="h-3.5 w-3.5" />
+                    AI suggested a new category: <span className="font-bold">"{aiSuggestedNewCategory.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}"</span>
+                  </p>
+                  <p className="text-xs text-muted-foreground">Choose an existing category instead, or keep the new one.</p>
+                  <div className="flex flex-wrap gap-1.5 mt-1">
+                    {existingCategorySlugs.map(slug => (
+                      <button
+                        key={slug}
+                        type="button"
+                        onClick={() => {
+                          // Swap the new category slug with the chosen existing one in tags
+                          setTags(prev => {
+                            const filtered = prev.filter(t => t !== aiSuggestedNewCategory);
+                            return [slug, ...filtered];
+                          });
+                          setAiSuggestedNewCategory(null);
+                        }}
+                        className="px-2 py-0.5 rounded-full text-xs border border-border bg-background hover:bg-accent hover:border-primary transition-colors"
+                      >
+                        {slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+                      </button>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={() => setAiSuggestedNewCategory(null)}
+                      className="px-2 py-0.5 rounded-full text-xs border border-amber-500/50 bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20 transition-colors"
+                    >
+                      ✓ Keep "{aiSuggestedNewCategory}"
+                    </button>
                   </div>
                 </div>
               )}
