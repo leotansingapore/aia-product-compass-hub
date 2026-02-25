@@ -91,6 +91,48 @@ function slugToLabel(slug: string) {
   return slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 }
 
+/**
+ * Strips the first line if it looks like a human annotation/heading used to
+ * prompt the AI (e.g. "Asking clients to pay overdue policies"), rather than
+ * being part of the actual script body.
+ *
+ * A line is considered an annotation when it:
+ *  - Is the very first non-empty line
+ *  - Contains no punctuation typical of script content (colons, commas, dots, !, ?)
+ *  - Does NOT start like a greeting or body line (Dear, Hi, Hello, I , We , To )
+ *  - Is reasonably short (≤ 80 chars)
+ *  - Is followed by a blank line OR a greeting/salutation line
+ */
+function stripHeaderAnnotation(raw: string): { cleaned: string; stripped: string | null } {
+  const lines = raw.split("\n");
+  // Find first non-empty line index
+  const firstNonEmpty = lines.findIndex(l => l.trim().length > 0);
+  if (firstNonEmpty === -1) return { cleaned: raw, stripped: null };
+
+  const firstLine = lines[firstNonEmpty].trim();
+
+  // Must be short
+  if (firstLine.length > 80) return { cleaned: raw, stripped: null };
+
+  // Should NOT look like a greeting or script opener
+  const scriptOpenerRx = /^(dear|hi\b|hello|hey|i |we |to |re:|subject:|from:|cc:)/i;
+  if (scriptOpenerRx.test(firstLine)) return { cleaned: raw, stripped: null };
+
+  // Should NOT contain typical script punctuation mid-sentence
+  const hasPunctuation = /[,!?]/.test(firstLine) || (firstLine.includes(":") && !firstLine.endsWith(":"));
+  if (hasPunctuation) return { cleaned: raw, stripped: null };
+
+  // Should be followed by a blank line OR a greeting
+  const nextLine = lines[firstNonEmpty + 1]?.trim() ?? "";
+  const followedByBlankOrGreeting = nextLine === "" || scriptOpenerRx.test(nextLine);
+  if (!followedByBlankOrGreeting) return { cleaned: raw, stripped: null };
+
+  // Strip the annotation line (and the blank line right after it if present)
+  const rest = lines.slice(firstNonEmpty + 1);
+  if (rest[0]?.trim() === "") rest.shift();
+  return { cleaned: rest.join("\n").trim(), stripped: firstLine };
+}
+
 function CategoryOverridePicker({
   displaySlug, isNew, allSlugs, onSelect,
 }: {
@@ -384,6 +426,16 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
     }
     setIsClassifying(true);
     try {
+      // Strip header annotation (e.g. "Asking clients to pay overdue policies")
+      // before sending to AI and before storing the script body
+      const { cleaned: cleanedContent, stripped: strippedAnnotation } = stripHeaderAnnotation(pasteContent);
+      if (strippedAnnotation) {
+        // Update the paste box too so what's stored is clean
+        setPasteContent(cleanedContent);
+        toast.info(`Removed annotation: "${strippedAnnotation}"`, { duration: 4000 });
+      }
+      const contentForClassify = strippedAnnotation ? cleanedContent : pasteContent;
+
       // Gather existing servicing category slugs from the database to help the AI reuse them
       const isServicing = lockedCategory === "servicing";
       let existingCategories: string[] = [];
@@ -407,9 +459,10 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       }
 
       const { data, error } = await supabase.functions.invoke("classify-script", {
+
         body: {
           title: "",
-          content: pasteContent,
+          content: contentForClassify,
           context: isServicing ? "servicing" : undefined,
           existingCategories: isServicing ? existingCategories : undefined,
         },
@@ -445,7 +498,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
         }
       }
       setTags(aiTags);
-      setVersions([{ author: userName, content: pasteContent }]);
+      setVersions([{ author: userName, content: contentForClassify }]);
 
       // Auto-suggest related script: follow-up → post-call-text, post-call-text → follow-up
       const relatedCategory = classifiedCategory === "follow-up" ? "post-call-text"
