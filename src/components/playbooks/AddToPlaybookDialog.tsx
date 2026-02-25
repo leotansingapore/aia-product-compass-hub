@@ -4,9 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Plus, Filter, X } from "lucide-react";
+import { Plus, Filter, X, ChevronDown, ChevronRight } from "lucide-react";
 import { PlaybookItem } from "@/hooks/usePlaybooks";
 import type { ObjectionEntry } from "@/hooks/useObjections";
+import type { ScriptVersion } from "@/hooks/useScripts";
 
 interface ScriptEntry {
   id: string;
@@ -15,6 +16,7 @@ interface ScriptEntry {
   target_audience: string;
   script_role?: string;
   tags?: string[];
+  versions: ScriptVersion[];
 }
 
 interface AddToPlaybookDialogProps {
@@ -23,7 +25,7 @@ interface AddToPlaybookDialogProps {
   scripts: ScriptEntry[];
   objections: ObjectionEntry[];
   items: PlaybookItem[];
-  onAddScript: (scriptId: string) => void;
+  onAddScript: (scriptId: string, versionIndex?: number) => void;
   onAddObjection: (objectionId: string) => void;
 }
 
@@ -61,6 +63,47 @@ function FilterChips({
   );
 }
 
+function ScriptVersionPicker({ script, onAdd }: { script: ScriptEntry; onAdd: (scriptId: string, versionIndex?: number) => void }) {
+  const [expanded, setExpanded] = useState(false);
+  const hasMultipleVersions = script.versions && script.versions.length > 1;
+
+  if (!hasMultipleVersions) {
+    return (
+      <Button size="sm" variant="outline" className="ml-2 shrink-0" onClick={() => onAdd(script.id)}>
+        <Plus className="h-3.5 w-3.5 mr-1" /> Add
+      </Button>
+    );
+  }
+
+  return (
+    <div className="ml-2 shrink-0 flex flex-col items-end gap-1">
+      <Button size="sm" variant="outline" className="gap-1" onClick={() => setExpanded(!expanded)}>
+        {expanded ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />}
+        Add Version
+      </Button>
+      {expanded && (
+        <div className="flex flex-col gap-1 mt-1 w-full">
+          <Button size="sm" variant="ghost" className="h-7 text-xs justify-start" onClick={() => { onAdd(script.id); setExpanded(false); }}>
+            <Plus className="h-3 w-3 mr-1" /> All versions
+          </Button>
+          {script.versions.map((v, i) => (
+            <Button
+              key={i}
+              size="sm"
+              variant="ghost"
+              className="h-7 text-xs justify-start truncate"
+              onClick={() => { onAdd(script.id, i); setExpanded(false); }}
+            >
+              <Plus className="h-3 w-3 mr-1 shrink-0" />
+              <span className="truncate">{v.author || `Version ${i + 1}`}</span>
+            </Button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function AddToPlaybookDialog({
   open,
   onOpenChange,
@@ -81,12 +124,9 @@ export function AddToPlaybookDialog({
   const usedScriptIds = useMemo(() => new Set(items.filter(i => i.item_type === 'script').map(i => i.script_id)), [items]);
   const usedObjectionIds = useMemo(() => new Set(items.filter(i => i.item_type === 'objection').map(i => i.objection_id)), [items]);
 
-  // Script filter options
   const scriptCategories = useMemo(() => [...new Set(scripts.map(s => s.category))].sort(), [scripts]);
   const scriptAudiences = useMemo(() => [...new Set(scripts.map(s => s.target_audience).filter(Boolean) as string[])].sort(), [scripts]);
   const scriptRoles = useMemo(() => [...new Set(scripts.map(s => s.script_role).filter(Boolean) as string[])].sort(), [scripts]);
-
-  // Objection filter options
   const objCategories = useMemo(() => [...new Set(objections.map(o => o.category))].sort(), [objections]);
 
   const filteredScripts = useMemo(() => {
@@ -181,7 +221,7 @@ export function AddToPlaybookDialog({
                 </p>
               ) : (
                 filteredScripts.map(script => (
-                  <div key={script.id} className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors gap-2">
+                  <div key={script.id} className="flex items-start justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors gap-2">
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-medium truncate">{script.stage}</p>
                       <div className="flex gap-1 mt-1 flex-wrap">
@@ -192,11 +232,14 @@ export function AddToPlaybookDialog({
                         {script.script_role && script.script_role !== 'consultant' && (
                           <Badge variant="outline" className="text-[10px]">{script.script_role}</Badge>
                         )}
+                        {script.versions.length > 1 && (
+                          <Badge variant="outline" className="text-[10px] text-muted-foreground">
+                            {script.versions.length} versions
+                          </Badge>
+                        )}
                       </div>
                     </div>
-                    <Button size="sm" variant="outline" className="ml-2 shrink-0" onClick={() => onAddScript(script.id)}>
-                      <Plus className="h-3.5 w-3.5 mr-1" /> Add
-                    </Button>
+                    <ScriptVersionPicker script={script} onAdd={onAddScript} />
                   </div>
                 ))
               )}
