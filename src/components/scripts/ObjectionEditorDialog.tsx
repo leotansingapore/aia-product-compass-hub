@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, ExternalLink, Check } from "lucide-react";
+import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, ExternalLink, Check, ImagePlus, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { ObjectionEntry } from "@/hooks/useObjections";
@@ -52,6 +52,40 @@ export function ObjectionEditorDialog({ open, onClose, onSave, editingEntry }: P
   // Paste step
   const [pasteContent, setPasteContent] = useState("");
   const [isClassifying, setIsClassifying] = useState(false);
+  const [pasteImages, setPasteImages] = useState<Array<{ url: string; name: string }>>([]);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const imageInputRef = useRef<HTMLInputElement>(null);
+
+  const uploadImage = useCallback(async (file: File) => {
+    if (file.size > 10 * 1024 * 1024) { toast.error("Image too large. Max 10MB."); return; }
+    setIsUploadingImage(true);
+    try {
+      const ext = file.name.split(".").pop() || "png";
+      const path = `script-images/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { error } = await supabase.storage.from("knowledge-files").upload(path, file, { contentType: file.type });
+      if (error) throw error;
+      const { data: urlData } = supabase.storage.from("knowledge-files").getPublicUrl(path);
+      setPasteImages(prev => [...prev, { url: urlData.publicUrl, name: file.name }]);
+      toast.success("Image added");
+    } catch (e) {
+      toast.error("Failed to upload image");
+    } finally {
+      setIsUploadingImage(false);
+    }
+  }, []);
+
+  const handlePasteImages = useCallback((e: React.ClipboardEvent) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+    for (const item of Array.from(items)) {
+      if (item.type.startsWith("image/")) {
+        e.preventDefault();
+        const file = item.getAsFile();
+        if (file) uploadImage(file);
+        return;
+      }
+    }
+  }, [uploadImage]);
 
   // Classified results (can be multiple)
   const [classifiedItems, setClassifiedItems] = useState<ClassifiedObjection[]>([]);
@@ -80,6 +114,7 @@ export function ObjectionEditorDialog({ open, onClose, onSave, editingEntry }: P
     } else {
       setStep("paste");
       setPasteContent("");
+      setPasteImages([]);
       setClassifiedItems([]);
       setSimilarEntries([]);
       setFormTitle("");
@@ -266,10 +301,56 @@ export function ObjectionEditorDialog({ open, onClose, onSave, editingEntry }: P
               <Textarea
                 value={pasteContent}
                 onChange={e => setPasteContent(e.target.value)}
+                onPaste={handlePasteImages}
                 placeholder={`e.g. "I already have an agent"\nor paste a full list of objections...`}
                 rows={10}
                 className="text-sm"
               />
+            </div>
+            {/* Image attachments */}
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <Label className="text-xs text-muted-foreground">Images / Screenshots</Label>
+                <input
+                  ref={imageInputRef}
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  className="hidden"
+                  onChange={e => {
+                    Array.from(e.target.files || []).forEach(uploadImage);
+                    e.target.value = "";
+                  }}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="h-7 gap-1.5 text-xs"
+                  onClick={() => imageInputRef.current?.click()}
+                  disabled={isUploadingImage}
+                >
+                  {isUploadingImage ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ImagePlus className="h-3.5 w-3.5" />}
+                  Add Image
+                </Button>
+                <span className="text-[11px] text-muted-foreground">or paste an image above</span>
+              </div>
+              {pasteImages.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {pasteImages.map((img, i) => (
+                    <div key={i} className="relative group">
+                      <img src={img.url} alt={img.name} className="h-20 w-20 object-cover rounded-lg border" />
+                      <button
+                        type="button"
+                        onClick={() => setPasteImages(prev => prev.filter((_, j) => j !== i))}
+                        className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}
