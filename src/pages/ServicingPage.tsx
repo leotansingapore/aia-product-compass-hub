@@ -445,11 +445,9 @@ export default function ServicingPage() {
               </button>
             )}
           </div>
-          {isAdmin && (
-            <Button onClick={() => { setEditingScript(null); setEditorOpen(true); }} size="sm" className="gap-1.5 shrink-0 h-10">
-              <Plus className="h-4 w-4" /> <span className="hidden sm:inline">Add Template</span>
-            </Button>
-          )}
+          <Button onClick={() => { setEditingScript(null); setEditorOpen(true); }} size="sm" className="gap-1.5 shrink-0 h-10">
+            <Plus className="h-4 w-4" /> <span className="hidden sm:inline">Add Template</span>
+          </Button>
         </div>
 
         {/* ── Filter dropdowns ── */}
