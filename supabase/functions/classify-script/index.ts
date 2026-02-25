@@ -42,9 +42,15 @@ serve(async (req) => {
 Given a servicing script's title and content, determine:
 
 1. **servicing_category** — A lowercase kebab-case slug for the servicing subcategory.
-   Prefer reusing one of these existing categories if it fits: ${existingCatList.length > 0 ? existingCatList.join(", ") : "(none yet — suggest a new one)"}
-   Common servicing categories: premium-payments, policy-services, new-business, claims, travel-insurance, annual-reviews, festive-greetings, referrals, general-education, texting-campaigns
-   If none of the above fit well, invent a clear new kebab-case slug (e.g. "surrender-policy", "nomination-update", "medical-card-replacement").
+
+   PRIORITY ORDER — follow strictly:
+   a) FIRST, check if any of these existing categories fit the script: ${existingCatList.length > 0 ? existingCatList.join(", ") : "(none yet)"}. If any of them fit even loosely, USE THAT ONE. Do NOT create a new category when an existing one fits.
+   b) SECOND, check these standard categories if none of the existing ones fit: premium-payments, policy-services, new-business, claims, travel-insurance, annual-reviews, festive-greetings, referrals, general-education, texting-campaigns
+   c) ONLY create a brand-new slug if the script clearly does not fit ANY of the above. New slugs should be specific (e.g. "surrender-policy", "nomination-update", "medical-card-replacement").
+   
+   A script about paying premiums, outstanding amounts, or payment reminders → use "premium-payments".
+   A script about changing servicing agent, policy transfers, or admin changes → use "policy-services".
+   A script about new policy applications or new business → use "new-business".
 
 2. **script_role** — one of: consultant, va
    - consultant: the financial advisor sends/says this directly
