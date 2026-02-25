@@ -21,6 +21,7 @@ import { FLOW_TEMPLATES } from '@/utils/flowTemplates';
 import { AIFlowWizard } from '@/components/flows/AIFlowWizard';
 import { NodeSearch } from '@/components/flows/controls/NodeSearch';
 import { toast } from 'sonner';
+import { ScriptsTabBar } from '@/components/scripts/ScriptsTabBar';
 
 function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDelete, userId, onOpenAIWizard }: {
   flows: ReturnType<typeof useScriptFlows>['flows'];
@@ -423,6 +424,7 @@ export default function ScriptFlows() {
 
   return (
     <PageLayout title="Script Flows" description="Build visual flowcharts for your sales and prospecting processes">
+      <ScriptsTabBar />
       {isLoading ? (
         <div className="text-center py-12 text-muted-foreground">Loading flows...</div>
       ) : (
