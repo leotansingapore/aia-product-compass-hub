@@ -15,7 +15,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Plus, Search, X, ChevronDown, Pencil, Trash2, Copy, Heart, Users, Filter, GripVertical, GitMerge } from "lucide-react";
+import { Plus, Search, X, ChevronDown, Pencil, Trash2, Copy, Heart, Users, Filter, GripVertical, GitMerge, Loader2 } from "lucide-react";
 import { useMergeScripts } from "@/hooks/useMergeScripts";
 import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
@@ -68,10 +68,10 @@ const roleLabels: Record<string, string> = {
 // ─── Script Card ──────────────────────────────────────────────────────────────
 
 function ServicingScriptCard({
-  script, isAdmin, onEdit, onDelete, isOpenByUrl, onInlineSave, onMetadataSave, isFavourite, onToggleFavourite, categorySlugs,
+  script, isAdmin, isAuthenticated, onEdit, onDelete, isOpenByUrl, onInlineSave, onMetadataSave, isFavourite, onToggleFavourite, categorySlugs,
   mergeSourceId, mergeOverId, onMergeDragStart, onMergeDragEnd, onMergeOver, onMergeLeave, onMergeDrop,
 }: {
-  script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void;
+  script: ScriptEntry; isAdmin: boolean; isAuthenticated?: boolean; onEdit: () => void; onDelete: () => void;
   isOpenByUrl: boolean;
   onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>;
   onMetadataSave?: (scriptId: string, updates: Partial<ScriptEntry>) => Promise<void>;
@@ -208,9 +208,14 @@ function ServicingScriptCard({
                     <Heart className={`h-3.5 w-3.5 ${isFavourite ? 'fill-red-500 text-red-500' : ''}`} />
                   </Button>
                 )}
+                {isAuthenticated && onInlineSave && (
+                  <Button variant="ghost" size="icon" className="h-7 w-7" title="Edit content inline" onClick={(e) => { e.stopPropagation(); if (!open) setOpen(true); setTimeout(() => setEditingVersionIdx(0), 100); setEditContent(script.versions[0]?.content || ""); }}>
+                    <Pencil className="h-3.5 w-3.5" />
+                  </Button>
+                )}
                 {isAdmin && (
                   <>
-                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={onEdit}><Pencil className="h-3.5 w-3.5" /></Button>
+                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={onEdit} title="Open full editor"><Pencil className="h-3.5 w-3.5 text-primary" /></Button>
                     <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={onDelete}><Trash2 className="h-3.5 w-3.5" /></Button>
                   </>
                 )}
@@ -273,7 +278,7 @@ function ServicingScriptCard({
                           if (onInlineSave) await onInlineSave(script.id, updatedVersions);
                           setEditingVersionIdx(null); setEditContent(""); setIsSaving(false);
                         }}>
-                          {isSaving ? "Saving..." : "Save"}
+                          {isSaving ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Saving…</> : "Save"}
                         </Button>
                         <Button size="sm" variant="outline" onClick={() => { setEditingVersionIdx(null); setEditContent(""); }}>Cancel</Button>
                       </div>
@@ -292,7 +297,7 @@ function ServicingScriptCard({
                         }}>
                           <Copy className="h-3 w-3" /> Copy
                         </Button>
-                        {isAdmin && (
+                        {isAuthenticated && onInlineSave && (
                           <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={() => { setEditingVersionIdx(i); setEditContent(v.content); }}>
                             <Pencil className="h-3 w-3" /> Edit
                           </Button>
@@ -642,6 +647,7 @@ export default function ServicingPage() {
                 key={script.id}
                 script={script}
                 isAdmin={isAdmin}
+                isAuthenticated={!!user}
                 isOpenByUrl={scriptId === script.id}
                 onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                 onDelete={() => setDeleteTarget(script)}
