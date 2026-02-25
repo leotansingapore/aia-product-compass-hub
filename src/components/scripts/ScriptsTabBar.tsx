@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const tabs = [
-  { key: "scripts",    label: "Scripts",    emoji: "📝", path: "/scripts" },
+  { key: "scripts",    label: "Sales Scripts", emoji: "📝", path: "/scripts" },
   { key: "servicing",  label: "Servicing",  emoji: "🛎️", path: "/servicing" },
   { key: "objections", label: "Objections", emoji: "🛡️", path: "/objections" },
   { key: "playbooks",  label: "Playbooks",  emoji: "📚", path: "/playbooks" },
