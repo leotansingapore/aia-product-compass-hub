@@ -14,6 +14,7 @@ import { usePlaybooks } from "@/hooks/usePlaybooks";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { Loader2 } from "lucide-react";
 import { format } from "date-fns";
+import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 
 export default function Playbooks() {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ export default function Playbooks() {
       />
 
       <div className="px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto pb-20">
+        <ScriptsTabBar />
         {/* Create Button */}
         {user && (
           <div className="mb-4 sm:mb-6">

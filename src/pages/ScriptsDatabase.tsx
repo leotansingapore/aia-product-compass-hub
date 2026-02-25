@@ -30,6 +30,7 @@ import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useSc
 import { useScriptFavourites } from "@/hooks/useScriptFavourites";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
+import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 
 type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips";
 
@@ -2361,24 +2362,7 @@ export default function ScriptsDatabase() {
 
       <div className="mx-auto px-3 sm:px-6 py-3 sm:py-8 max-w-4xl">
         {/* Tab Switcher — sticky on mobile */}
-        <div className="flex gap-1 mb-5 p-1 bg-background/95 backdrop-blur-sm rounded-lg w-fit sticky top-0 z-30 sm:static sm:z-auto border sm:border-0">
-          <Button
-            variant={activeTab === "scripts" ? "default" : "ghost"}
-            size="sm"
-            className="gap-1.5 text-sm"
-            onClick={() => setActiveTab("scripts")}
-          >
-            📝 Scripts
-          </Button>
-          <Button
-            variant={activeTab === "objections" ? "default" : "ghost"}
-            size="sm"
-            className="gap-1.5 text-sm"
-            onClick={() => setActiveTab("objections")}
-          >
-            🛡️ Objection Handling
-          </Button>
-        </div>
+        <ScriptsTabBar />
 
         {activeTab === "objections" ? (
           <ObjectionHandlingDatabase />
