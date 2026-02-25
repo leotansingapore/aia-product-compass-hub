@@ -80,6 +80,8 @@ interface Props {
   lockedAudience?: string;
   lockedRoles?: { value: string; label: string }[];
   lockedCategory?: string;
+  /** Path prefix to navigate to after a merge-as-version action, e.g. "/servicing" */
+  mergeNavigateBase?: string;
 }
 
 type EditorStep = "paste" | "duplicates" | "review";
@@ -123,7 +125,7 @@ function getSimilarityTier(overlapPercent: number): SimilarityTier {
   return "none";
 }
 
-export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudience, lockedRoles, lockedCategory }: Props) {
+export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudience, lockedRoles, lockedCategory, mergeNavigateBase }: Props) {
   const { user } = useSimplifiedAuth();
   const navigate = useNavigate();
   const { scripts: allScriptsRaw } = useScripts();
@@ -221,22 +223,24 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
 
   const checkForDuplicates = async (classifiedCategory: string, classifiedAudience: string, content: string, title: string) => {
     setIsCheckingDuplicates(true);
+    // When a category is locked (e.g. servicing), only search within that category
+    const searchCategory = lockedCategory || classifiedCategory;
     try {
-      // TIER 1: Same pipeline stage + same audience
+      // TIER 1: Same category + same audience
       const { data: tier1Data } = await supabase
         .from("scripts")
         .select("id, stage, category, target_audience, versions")
-        .eq("category", classifiedCategory)
+        .eq("category", searchCategory)
         .eq("target_audience", classifiedAudience);
 
       let matches = findMatches(tier1Data || [], content, title, "tier1");
 
-      // TIER 2: Same pipeline stage, any audience (only if Tier 1 found nothing)
+      // TIER 2: Same category, any audience (only if Tier 1 found nothing)
       if (matches.length === 0) {
         const { data: tier2Data } = await supabase
           .from("scripts")
           .select("id, stage, category, target_audience, versions")
-          .eq("category", classifiedCategory)
+          .eq("category", searchCategory)
           .neq("target_audience", classifiedAudience);
 
         matches = findMatches(tier2Data || [], content, title, "tier2");
@@ -404,7 +408,8 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       if (data?.error) throw new Error(data.error);
       toast.success(`Added as a new version to "${targetTitle}" (${data.totalVersions} versions total)`);
       onClose();
-      setTimeout(() => navigate(`/scripts/${targetScriptId}`, { replace: true }), 150);
+      const basePath = mergeNavigateBase || "/scripts";
+      setTimeout(() => navigate(`${basePath}/${targetScriptId}`, { replace: true }), 150);
     } catch (err: any) {
       console.error("Merge error:", err);
       toast.error("Failed to merge: " + (err.message || "Unknown error"));
