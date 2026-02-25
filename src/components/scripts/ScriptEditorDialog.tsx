@@ -617,27 +617,45 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
           {/* === STEP 3: Review === */}
           {step === "review" && (
             <div className="space-y-4">
-              {!isEditing && (
-                <div className="bg-primary/5 border border-primary/20 rounded-lg p-3">
-                  <p className="text-xs font-medium text-primary mb-2 flex items-center gap-1">
-                    <Sparkles className="h-3 w-3" /> AI-detected — edit if needed
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    <Badge variant="secondary" className="text-[10px]">
-                      {CATEGORIES.find(c => c.value === category)?.label}
-                    </Badge>
-                    <Badge variant="secondary" className="text-[10px]">
-                      {TARGET_AUDIENCES.find(a => a.value === targetAudience)?.label}
-                    </Badge>
-                    <Badge variant="secondary" className="text-[10px]">
-                      {SCRIPT_ROLES.find(r => r.value === scriptRole)?.label}
-                    </Badge>
-                    {tags.map((t, i) => (
-                      <Badge key={i} variant="outline" className="text-[10px]">{t}</Badge>
-                    ))}
+              {!isEditing && (() => {
+                // Derive the active servicing subcategory from the first tag that looks like a category slug
+                const servicingSubcategory = lockedCategory === "servicing"
+                  ? tags.find(t => t.includes("-") || Object.keys({
+                      "premium-payments":1,"new-business":1,"claims":1,"policy-services":1,
+                      "travel-insurance":1,"texting-campaigns":1,"festive-greetings":1,
+                      "referrals":1,"annual-reviews":1,"general-education":1,
+                    }).includes(t))
+                  : null;
+                return (
+                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 space-y-2">
+                    <p className="text-xs font-medium text-primary flex items-center gap-1">
+                      <Sparkles className="h-3 w-3" /> AI-detected — edit if needed
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      <Badge variant="secondary" className="text-[10px]">
+                        {CATEGORIES.find(c => c.value === category)?.label}
+                      </Badge>
+                      <Badge variant="secondary" className="text-[10px]">
+                        {TARGET_AUDIENCES.find(a => a.value === targetAudience)?.label}
+                      </Badge>
+                      <Badge variant="secondary" className="text-[10px]">
+                        {SCRIPT_ROLES.find(r => r.value === scriptRole)?.label}
+                      </Badge>
+                      {tags.filter(t => t !== servicingSubcategory).map((t, i) => (
+                        <Badge key={i} variant="outline" className="text-[10px]">{t}</Badge>
+                      ))}
+                    </div>
+                    {servicingSubcategory && (
+                      <div className="flex items-center gap-2 pt-1 border-t border-primary/10">
+                        <span className="text-[10px] text-muted-foreground">Filed under:</span>
+                        <Badge className="text-[10px] gap-1 bg-primary/15 text-primary border-primary/30 hover:bg-primary/20">
+                          📂 {servicingSubcategory.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+                        </Badge>
+                      </div>
+                    )}
                   </div>
-                </div>
-              )}
+                );
+              })()}
 
               {/* === New servicing category override banner === */}
               {aiSuggestedNewCategory && lockedCategory === "servicing" && !isEditing && (
