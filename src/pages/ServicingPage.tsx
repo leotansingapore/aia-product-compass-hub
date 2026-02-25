@@ -15,13 +15,15 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Plus, Search, X, ChevronDown, Pencil, Trash2, Copy, Heart, Users, CreditCard, Briefcase, ShieldCheck, FileText, Plane, MessageSquare, PartyPopper, Gift, Megaphone, BookOpen } from "lucide-react";
+import { Plus, Search, X, ChevronDown, Pencil, Trash2, Copy, Heart, Users, Filter } from "lucide-react";
 import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { MinimalRichEditor } from "@/components/MinimalRichEditor";
+
+// ─── Constants ────────────────────────────────────────────────────────────────
 
 const SERVICING_ROLES = [
   { value: "consultant", label: "Consultant" },
@@ -33,27 +35,35 @@ const roleColors: Record<string, string> = {
   va: "bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300",
 };
 
-type ServicingSubcategory = "all" | "premium-payments" | "new-business" | "claims" | "policy-services" | "travel-insurance" | "texting-campaigns" | "festive-greetings" | "referrals" | "annual-reviews" | "general-education";
+const categoryLabels: Record<string, string> = {
+  "premium-payments": "Premium Payments",
+  "new-business": "New Business",
+  "claims": "Claims",
+  "policy-services": "Policy Services",
+  "travel-insurance": "Travel Insurance",
+  "texting-campaigns": "Texting Campaigns",
+  "festive-greetings": "Festive Greetings",
+  "referrals": "Referrals",
+  "annual-reviews": "Annual Reviews",
+  "general-education": "General Education",
+};
 
-const servicingSubcategories: { key: ServicingSubcategory; label: string; icon: typeof CreditCard; color: string }[] = [
-  { key: "all", label: "All", icon: FileText, color: "bg-secondary text-secondary-foreground" },
-  { key: "premium-payments", label: "Premium Payments", icon: CreditCard, color: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300" },
-  { key: "new-business", label: "New Business", icon: Briefcase, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
-  { key: "claims", label: "Claims", icon: ShieldCheck, color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300" },
-  { key: "policy-services", label: "Policy Services", icon: FileText, color: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300" },
-  { key: "travel-insurance", label: "Travel Insurance", icon: Plane, color: "bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-300" },
-  { key: "texting-campaigns", label: "Texting Campaigns", icon: MessageSquare, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
-  { key: "festive-greetings", label: "Festive Greetings", icon: PartyPopper, color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300" },
-  { key: "referrals", label: "Referrals", icon: Gift, color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
-  { key: "annual-reviews", label: "Annual Reviews", icon: BookOpen, color: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300" },
-  { key: "general-education", label: "General Education", icon: Megaphone, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
-];
+const audienceLabels: Record<string, string> = {
+  clients: "Clients",
+};
+
+const roleLabels: Record<string, string> = {
+  consultant: "Consultant",
+  va: "VA",
+};
+
+// ─── Script Card ──────────────────────────────────────────────────────────────
 
 function ServicingScriptCard({
-  script, isAdmin, onEdit, onDelete, isOpenByUrl, searchQuery, onInlineSave, onMetadataSave, isFavourite, onToggleFavourite,
+  script, isAdmin, onEdit, onDelete, isOpenByUrl, onInlineSave, onMetadataSave, isFavourite, onToggleFavourite,
 }: {
   script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void;
-  isOpenByUrl: boolean; searchQuery: string;
+  isOpenByUrl: boolean;
   onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>;
   onMetadataSave?: (scriptId: string, updates: Partial<ScriptEntry>) => Promise<void>;
   isFavourite?: boolean; onToggleFavourite?: () => void;
@@ -64,7 +74,7 @@ function ServicingScriptCard({
   const [isSaving, setIsSaving] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
   const [titleDraft, setTitleDraft] = useState(script.stage);
-  const [editingAudience, setEditingAudience] = useState(false);
+  const [editingRole, setEditingRole] = useState(false);
   const [editingVersionTitle, setEditingVersionTitle] = useState<number | null>(null);
   const [versionTitleDraft, setVersionTitleDraft] = useState("");
   const cardRef = useRef<HTMLDivElement>(null);
@@ -82,6 +92,13 @@ function ServicingScriptCard({
       setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
     }
   }, [isOpenByUrl]);
+
+  const currentRole = script.script_role || "consultant";
+  const currentRoleLabel = SERVICING_ROLES.find(r => r.value === currentRole)?.label || "Consultant";
+
+  // Derive a readable category tag from the script's tags
+  const categoryTag = (script.tags || []).find(t => categoryLabels[t]);
+  const categoryLabel = categoryTag ? categoryLabels[categoryTag] : null;
 
   return (
     <Card ref={cardRef} className="overflow-hidden">
@@ -118,9 +135,14 @@ function ServicingScriptCard({
                 </div>
                 <div className="flex items-center gap-1 sm:gap-1.5 mt-1.5 flex-wrap">
                   {/* Role badge — editable for admin */}
-                  {editingAudience && isAdmin ? (
+                  {editingRole && isAdmin ? (
                     <div onClick={(e) => e.stopPropagation()}>
-                      <Select value={script.script_role || "consultant"} onValueChange={async (val) => { await saveMetaField({ script_role: val }); setEditingAudience(false); }} open={true} onOpenChange={(o) => { if (!o) setEditingAudience(false); }}>
+                      <Select
+                        value={currentRole}
+                        onValueChange={async (val) => { await saveMetaField({ script_role: val }); setEditingRole(false); }}
+                        open={true}
+                        onOpenChange={(o) => { if (!o) setEditingRole(false); }}
+                      >
                         <SelectTrigger className="h-5 text-[10px] w-auto min-w-[100px]"><SelectValue /></SelectTrigger>
                         <SelectContent>
                           {SERVICING_ROLES.map(({ value, label }) => (
@@ -132,11 +154,14 @@ function ServicingScriptCard({
                   ) : (
                     <Badge
                       variant="outline"
-                      className={`text-[10px] ${roleColors[script.script_role || "consultant"] || ""} ${isAdmin && onMetadataSave ? 'cursor-pointer hover:ring-1 ring-primary/40' : ''}`}
-                      onClick={(e) => { if (isAdmin && onMetadataSave) { e.stopPropagation(); setEditingAudience(true); } }}
+                      className={`text-[10px] border-0 ${roleColors[currentRole] || ""} ${isAdmin && onMetadataSave ? 'cursor-pointer hover:ring-1 ring-primary/40' : ''}`}
+                      onClick={(e) => { if (isAdmin && onMetadataSave) { e.stopPropagation(); setEditingRole(true); } }}
                     >
-                      {SERVICING_ROLES.find(r => r.value === (script.script_role || "consultant"))?.label || "Consultant"}
+                      {currentRoleLabel}
                     </Badge>
+                  )}
+                  {categoryLabel && (
+                    <Badge variant="outline" className="text-[10px] text-muted-foreground">{categoryLabel}</Badge>
                   )}
                   {script.versions.length > 1 && (
                     <Badge variant="secondary" className="text-[10px]">{script.versions.length} versions</Badge>
@@ -252,6 +277,8 @@ function ServicingScriptCard({
   );
 }
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
 export default function ServicingPage() {
   const navigate = useNavigate();
   const { scriptId } = useParams();
@@ -261,38 +288,106 @@ export default function ServicingPage() {
   const { favouriteIds, toggleFavourite } = useScriptFavourites();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeSubcategory, setActiveSubcategory] = useState<ServicingSubcategory>("all");
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeAudience, setActiveAudience] = useState("all");
+  const [activeRole, setActiveRole] = useState("all");
+  const [activeTag, setActiveTag] = useState("all");
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingScript, setEditingScript] = useState<ScriptEntry | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<ScriptEntry | null>(null);
 
-  // Only servicing scripts
-  const servicingScripts = useMemo(() => {
-    let result = dbScripts.filter((s) => s.category === "servicing");
-    if (activeSubcategory !== "all") {
-      result = result.filter((s) => (s.tags || []).includes(activeSubcategory));
+  // Base: all servicing scripts
+  const servicingBase = useMemo(() => dbScripts.filter(s => s.category === "servicing"), [dbScripts]);
+
+  // Dynamic tags derived from the live database
+  const allTags = useMemo(() => {
+    const set = new Set<string>();
+    servicingBase.forEach(s => (s.tags || []).forEach(t => {
+      // Exclude tags that are also category keys or redundant meta-tags
+      if (!categoryLabels[t] && t !== "servicing") set.add(t);
+    }));
+    return Array.from(set).sort();
+  }, [servicingBase]);
+
+  // filterExcluding: apply all filters except one dimension (for dynamic counts)
+  const filterExcluding = useCallback((exclude: 'category' | 'audience' | 'role' | 'tag') => {
+    let result = servicingBase;
+    if (exclude !== 'category' && activeCategory !== "all") {
+      result = result.filter(s => (s.tags || []).includes(activeCategory));
+    }
+    if (exclude !== 'audience' && activeAudience !== "all") {
+      result = result.filter(s => (s.target_audience || "clients") === activeAudience);
+    }
+    if (exclude !== 'role' && activeRole !== "all") {
+      result = result.filter(s => (s.script_role || "consultant") === activeRole);
+    }
+    if (exclude !== 'tag' && activeTag !== "all") {
+      result = result.filter(s => (s.tags || []).includes(activeTag));
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      result = result.filter((s) =>
+      result = result.filter(s =>
         s.stage.toLowerCase().includes(q) ||
-        s.versions.some((v) => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q)) ||
-        (s.tags || []).some((t: string) => t.toLowerCase().includes(q))
+        s.versions.some(v => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q))
       );
     }
     return result;
-  }, [dbScripts, searchQuery, activeSubcategory]);
+  }, [servicingBase, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
 
-  // Count scripts per subcategory
-  const subcategoryCounts = useMemo(() => {
-    const allServicing = dbScripts.filter((s) => s.category === "servicing");
-    const counts: Record<string, number> = { all: allServicing.length };
-    for (const sub of servicingSubcategories) {
-      if (sub.key === "all") continue;
-      counts[sub.key] = allServicing.filter((s) => (s.tags || []).includes(sub.key)).length;
+  // Counts per dimension
+  const categoryCounts = useMemo(() => {
+    const base = filterExcluding('category');
+    const c: Record<string, number> = { all: base.length };
+    Object.keys(categoryLabels).forEach(key => {
+      c[key] = base.filter(s => (s.tags || []).includes(key)).length;
+    });
+    return c;
+  }, [filterExcluding]);
+
+  const audienceCounts = useMemo(() => {
+    const base = filterExcluding('audience');
+    const c: Record<string, number> = { all: base.length };
+    Object.keys(audienceLabels).forEach(key => {
+      c[key] = base.filter(s => (s.target_audience || "clients") === key).length;
+    });
+    return c;
+  }, [filterExcluding]);
+
+  const roleCounts = useMemo(() => {
+    const base = filterExcluding('role');
+    const c: Record<string, number> = { all: base.length };
+    Object.keys(roleLabels).forEach(key => {
+      c[key] = base.filter(s => (s.script_role || "consultant") === key).length;
+    });
+    return c;
+  }, [filterExcluding]);
+
+  const tagCounts = useMemo(() => {
+    const base = filterExcluding('tag');
+    const c: Record<string, number> = {};
+    allTags.forEach(tag => { c[tag] = base.filter(s => (s.tags || []).includes(tag)).length; });
+    return c;
+  }, [filterExcluding, allTags]);
+
+  // Final filtered list
+  const filteredScripts = useMemo(() => {
+    let result = servicingBase;
+    if (activeCategory !== "all") result = result.filter(s => (s.tags || []).includes(activeCategory));
+    if (activeAudience !== "all") result = result.filter(s => (s.target_audience || "clients") === activeAudience);
+    if (activeRole !== "all") result = result.filter(s => (s.script_role || "consultant") === activeRole);
+    if (activeTag !== "all") result = result.filter(s => (s.tags || []).includes(activeTag));
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(s =>
+        s.stage.toLowerCase().includes(q) ||
+        s.versions.some(v => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q)) ||
+        (s.tags || []).some(t => t.toLowerCase().includes(q))
+      );
     }
-    return counts;
-  }, [dbScripts]);
+    return result;
+  }, [servicingBase, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
+
+  const hasActiveFilters = activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all" || !!searchQuery;
 
   const handleInlineSave = useCallback(async (scriptId: string, versions: ScriptVersion[]) => {
     await updateScript(scriptId, { versions });
@@ -311,6 +406,12 @@ export default function ServicingPage() {
     setDeleteTarget(null);
   };
 
+  // Active categories that actually have scripts
+  const activeCategoriesWithData = useMemo(() =>
+    Object.keys(categoryLabels).filter(key => categoryCounts[key] > 0 || isAdmin),
+    [categoryCounts, isAdmin]
+  );
+
   return (
     <PageLayout
       title="Servicing Templates - FINternship"
@@ -328,23 +429,21 @@ export default function ServicingPage() {
         <ScriptsTabBar />
 
         {/* Search + Add */}
-        <div className="mb-4 sm:mb-6 flex gap-2 sm:gap-3 items-start">
+        <div className="mb-4 sm:mb-5 flex gap-2 sm:gap-3 items-start">
           <div className="flex-1 relative">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search servicing templates..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-10 h-10 text-sm border-2 focus:border-primary transition-colors"
-              />
-              {searchQuery && (
-                <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
-                  <X className="h-4 w-4" />
-                </button>
-              )}
-            </div>
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search servicing templates..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 pr-10 h-10 text-sm border-2 focus:border-primary transition-colors"
+            />
+            {searchQuery && (
+              <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                <X className="h-4 w-4" />
+              </button>
+            )}
           </div>
           {isAdmin && (
             <Button onClick={() => { setEditingScript(null); setEditorOpen(true); }} size="sm" className="gap-1.5 shrink-0 h-10">
@@ -353,50 +452,149 @@ export default function ServicingPage() {
           )}
         </div>
 
-        {/* Subcategory filter chips */}
-        <div className="mb-4 flex flex-wrap gap-1.5">
-          {servicingSubcategories
-            .filter((sub) => sub.key === "all" || subcategoryCounts[sub.key] > 0 || isAdmin)
-            .map((sub) => {
-              const isActive = activeSubcategory === sub.key;
-              const count = subcategoryCounts[sub.key] || 0;
-              const IconComp = sub.icon;
-              return (
-                <Button
-                  key={sub.key}
-                  variant={isActive ? "default" : "outline"}
-                  size="sm"
-                  className={`h-7 text-xs gap-1 ${!isActive ? sub.color + ' border-transparent' : ''}`}
-                  onClick={() => setActiveSubcategory(sub.key)}
-                >
-                  <IconComp className="h-3 w-3" />
-                  {sub.label}
-                  {count > 0 && <span className="opacity-70">({count})</span>}
-                </Button>
-              );
-            })}
+        {/* ── Filter dropdowns ── */}
+        <div className="mb-4 p-3 sm:p-4 rounded-lg border bg-muted/30">
+          <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
+            {/* Category */}
+            <div>
+              <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 flex items-center gap-1">
+                <Filter className="h-3 w-3" />Category
+              </span>
+              <Select value={activeCategory} onValueChange={setActiveCategory}>
+                <SelectTrigger className="h-9 text-xs bg-background">
+                  <SelectValue placeholder="All categories" />
+                </SelectTrigger>
+                <SelectContent className="bg-popover z-50">
+                  <SelectItem value="all">All ({categoryCounts.all})</SelectItem>
+                  {activeCategoriesWithData.map(key => (
+                    <SelectItem key={key} value={key}>
+                      {categoryLabels[key]} ({categoryCounts[key] ?? 0})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Audience */}
+            <div>
+              <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
+              <Select value={activeAudience} onValueChange={setActiveAudience}>
+                <SelectTrigger className="h-9 text-xs bg-background">
+                  <SelectValue placeholder="All audiences" />
+                </SelectTrigger>
+                <SelectContent className="bg-popover z-50">
+                  <SelectItem value="all">All</SelectItem>
+                  {Object.entries(audienceLabels).map(([key, label]) => (
+                    <SelectItem key={key} value={key}>
+                      {label} ({audienceCounts[key] ?? 0})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Role */}
+            <div>
+              <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
+              <Select value={activeRole} onValueChange={setActiveRole}>
+                <SelectTrigger className="h-9 text-xs bg-background">
+                  <SelectValue placeholder="All roles" />
+                </SelectTrigger>
+                <SelectContent className="bg-popover z-50">
+                  <SelectItem value="all">All</SelectItem>
+                  {Object.entries(roleLabels).map(([key, label]) => (
+                    <SelectItem key={key} value={key}>
+                      {label} ({roleCounts[key] ?? 0})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Tag */}
+            {allTags.length > 0 && (
+              <div>
+                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tag</span>
+                <Select value={activeTag} onValueChange={setActiveTag}>
+                  <SelectTrigger className="h-9 text-xs bg-background">
+                    <SelectValue placeholder="All tags" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50 max-h-60">
+                    <SelectItem value="all">All</SelectItem>
+                    {allTags.map(tag => (
+                      <SelectItem key={tag} value={tag}>
+                        {tag} ({tagCounts[tag] ?? 0})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Script count */}
-        <p className="text-xs text-muted-foreground mb-3">{servicingScripts.length} template{servicingScripts.length !== 1 ? "s" : ""}</p>
+        {/* Active filter breadcrumbs */}
+        {hasActiveFilters && (
+          <div className="mb-3 flex items-center gap-1.5 flex-wrap">
+            <span className="text-[11px] text-muted-foreground mr-0.5">Filters:</span>
+            {searchQuery && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                Search: "{searchQuery}"
+                <button onClick={() => setSearchQuery("")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
+            {activeCategory !== "all" && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                {categoryLabels[activeCategory] || activeCategory}
+                <button onClick={() => setActiveCategory("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
+            {activeAudience !== "all" && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                {audienceLabels[activeAudience] || activeAudience}
+                <button onClick={() => setActiveAudience("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
+            {activeRole !== "all" && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                {roleLabels[activeRole] || activeRole}
+                <button onClick={() => setActiveRole("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
+            {activeTag !== "all" && (
+              <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
+                #{activeTag}
+                <button onClick={() => setActiveTag("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+              </Badge>
+            )}
+            <button
+              onClick={() => { setActiveCategory("all"); setActiveAudience("all"); setActiveRole("all"); setActiveTag("all"); setSearchQuery(""); }}
+              className="text-[10px] text-muted-foreground hover:text-foreground underline ml-1"
+            >
+              Clear all
+            </button>
+          </div>
+        )}
+
+        {/* Count */}
+        <p className="text-xs text-muted-foreground mb-3">{filteredScripts.length} template{filteredScripts.length !== 1 ? "s" : ""}</p>
 
         {/* Scripts list */}
         {loading ? (
           <div className="text-center py-12 text-muted-foreground">Loading...</div>
-        ) : servicingScripts.length === 0 ? (
+        ) : filteredScripts.length === 0 ? (
           <div className="text-center py-12 text-muted-foreground">
-            <p className="text-sm">No servicing templates yet.</p>
+            <p className="text-sm">No servicing templates found.</p>
             {isAdmin && <p className="text-xs mt-1">Click "Add Template" to create one.</p>}
           </div>
         ) : (
           <div className="space-y-3">
-            {servicingScripts.map((script) => (
+            {filteredScripts.map((script) => (
               <ServicingScriptCard
                 key={script.id}
                 script={script}
                 isAdmin={isAdmin}
                 isOpenByUrl={scriptId === script.id}
-                searchQuery={searchQuery}
                 onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                 onDelete={() => setDeleteTarget(script)}
                 onInlineSave={handleInlineSave}
