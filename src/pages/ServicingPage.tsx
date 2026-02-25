@@ -35,7 +35,8 @@ const roleColors: Record<string, string> = {
   va: "bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300",
 };
 
-const categoryLabels: Record<string, string> = {
+// Known category labels — new ones auto-added from DB slugs
+const KNOWN_CATEGORY_LABELS: Record<string, string> = {
   "premium-payments": "Premium Payments",
   "new-business": "New Business",
   "claims": "Claims",
@@ -47,6 +48,12 @@ const categoryLabels: Record<string, string> = {
   "annual-reviews": "Annual Reviews",
   "general-education": "General Education",
 };
+
+// Convert a kebab-case slug to a Title Case label
+function slugToLabel(slug: string): string {
+  return KNOWN_CATEGORY_LABELS[slug]
+    ?? slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+}
 
 const audienceLabels: Record<string, string> = {
   clients: "Clients",
@@ -60,13 +67,14 @@ const roleLabels: Record<string, string> = {
 // ─── Script Card ──────────────────────────────────────────────────────────────
 
 function ServicingScriptCard({
-  script, isAdmin, onEdit, onDelete, isOpenByUrl, onInlineSave, onMetadataSave, isFavourite, onToggleFavourite,
+  script, isAdmin, onEdit, onDelete, isOpenByUrl, onInlineSave, onMetadataSave, isFavourite, onToggleFavourite, categorySlugs,
 }: {
   script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void;
   isOpenByUrl: boolean;
   onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>;
   onMetadataSave?: (scriptId: string, updates: Partial<ScriptEntry>) => Promise<void>;
   isFavourite?: boolean; onToggleFavourite?: () => void;
+  categorySlugs?: Set<string>;
 }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
@@ -97,8 +105,9 @@ function ServicingScriptCard({
   const currentRoleLabel = SERVICING_ROLES.find(r => r.value === currentRole)?.label || "Consultant";
 
   // Derive a readable category tag from the script's tags
-  const categoryTag = (script.tags || []).find(t => categoryLabels[t]);
-  const categoryLabel = categoryTag ? categoryLabels[categoryTag] : null;
+  const catSlugsSet = categorySlugs ?? new Set(Object.keys(KNOWN_CATEGORY_LABELS));
+  const categoryTag = (script.tags || []).find(t => catSlugsSet.has(t));
+  const categoryLabel = categoryTag ? slugToLabel(categoryTag) : null;
 
   return (
     <Card ref={cardRef} className="overflow-hidden">
@@ -299,15 +308,27 @@ export default function ServicingPage() {
   // Base: all servicing scripts
   const servicingBase = useMemo(() => dbScripts.filter(s => s.category === "servicing"), [dbScripts]);
 
-  // Dynamic tags derived from the live database
-  const allTags = useMemo(() => {
+  // All category slugs found in servicing scripts (dynamic — picks up AI-created ones)
+  const allCategorySlugs = useMemo(() => {
     const set = new Set<string>();
     servicingBase.forEach(s => (s.tags || []).forEach(t => {
-      // Exclude tags that are also category keys or redundant meta-tags
-      if (!categoryLabels[t] && t !== "servicing") set.add(t);
+      // A tag is treated as a "category" if it looks like a slug (contains a hyphen or is in known list)
+      if (t !== "servicing" && (Object.prototype.hasOwnProperty.call(KNOWN_CATEGORY_LABELS, t) || /^[a-z]+-[a-z]/.test(t))) {
+        set.add(t);
+      }
     }));
     return Array.from(set).sort();
   }, [servicingBase]);
+
+  // Dynamic tags derived from the live database (non-category tags)
+  const allTags = useMemo(() => {
+    const catSet = new Set(allCategorySlugs);
+    const set = new Set<string>();
+    servicingBase.forEach(s => (s.tags || []).forEach(t => {
+      if (!catSet.has(t) && t !== "servicing") set.add(t);
+    }));
+    return Array.from(set).sort();
+  }, [servicingBase, allCategorySlugs]);
 
   // filterExcluding: apply all filters except one dimension (for dynamic counts)
   const filterExcluding = useCallback((exclude: 'category' | 'audience' | 'role' | 'tag') => {
@@ -338,11 +359,11 @@ export default function ServicingPage() {
   const categoryCounts = useMemo(() => {
     const base = filterExcluding('category');
     const c: Record<string, number> = { all: base.length };
-    Object.keys(categoryLabels).forEach(key => {
+    allCategorySlugs.forEach(key => {
       c[key] = base.filter(s => (s.tags || []).includes(key)).length;
     });
     return c;
-  }, [filterExcluding]);
+  }, [filterExcluding, allCategorySlugs]);
 
   const audienceCounts = useMemo(() => {
     const base = filterExcluding('audience');
@@ -406,10 +427,10 @@ export default function ServicingPage() {
     setDeleteTarget(null);
   };
 
-  // Active categories that actually have scripts
+  // Active categories that actually have scripts (fully dynamic — includes AI-created ones)
   const activeCategoriesWithData = useMemo(() =>
-    Object.keys(categoryLabels).filter(key => categoryCounts[key] > 0 || isAdmin),
-    [categoryCounts, isAdmin]
+    allCategorySlugs.filter(key => (categoryCounts[key] ?? 0) > 0),
+    [allCategorySlugs, categoryCounts]
   );
 
   return (
@@ -466,7 +487,7 @@ export default function ServicingPage() {
                   <SelectItem value="all">All ({categoryCounts.all})</SelectItem>
                   {activeCategoriesWithData.map(key => (
                     <SelectItem key={key} value={key}>
-                      {categoryLabels[key]} ({categoryCounts[key] ?? 0})
+                      {slugToLabel(key)} ({categoryCounts[key] ?? 0})
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -543,7 +564,7 @@ export default function ServicingPage() {
             )}
             {activeCategory !== "all" && (
               <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
-                {categoryLabels[activeCategory] || activeCategory}
+                {slugToLabel(activeCategory)}
                 <button onClick={() => setActiveCategory("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
               </Badge>
             )}
@@ -599,6 +620,7 @@ export default function ServicingPage() {
                 onMetadataSave={handleMetadataSave}
                 isFavourite={favouriteIds.has(script.id)}
                 onToggleFavourite={user ? () => toggleFavourite.mutate(script.id) : undefined}
+                categorySlugs={new Set(allCategorySlugs)}
               />
             ))}
           </div>

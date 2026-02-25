@@ -21,7 +21,7 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { title, content } = await req.json();
+    const { title, content, context, existingCategories } = await req.json();
     if (!content?.trim()) {
       return new Response(JSON.stringify({ error: "Content is required" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -31,7 +31,30 @@ serve(async (req) => {
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
-    const systemPrompt = `You are a classifier for a financial advisory scripts database. Given a script's title and content, determine:
+    // ── Servicing context: specialized classification ──────────────────────────
+    const isServicing = context === "servicing";
+
+    const existingCatList: string[] = Array.isArray(existingCategories) ? existingCategories : [];
+
+    const systemPrompt = isServicing
+      ? `You are a classifier for a financial advisory CLIENT SERVICING scripts database. These are templates used to communicate with existing clients — NOT for prospecting new ones.
+
+Given a servicing script's title and content, determine:
+
+1. **servicing_category** — A lowercase kebab-case slug for the servicing subcategory.
+   Prefer reusing one of these existing categories if it fits: ${existingCatList.length > 0 ? existingCatList.join(", ") : "(none yet — suggest a new one)"}
+   Common servicing categories: premium-payments, policy-services, new-business, claims, travel-insurance, annual-reviews, festive-greetings, referrals, general-education, texting-campaigns
+   If none of the above fit well, invent a clear new kebab-case slug (e.g. "surrender-policy", "nomination-update", "medical-card-replacement").
+
+2. **script_role** — one of: consultant, va
+   - consultant: the financial advisor sends/says this directly
+   - va: a virtual assistant or admin sends this on behalf of the consultant
+
+3. **tags** — 2-5 relevant lowercase tags describing the content. Good tags: authentication, cosa, transfer, healthshield, whatsapp, sms, phone-call, policy-transfer, owner-change, cpf, claims, premium, renewal, appointment, annual-review, referral-ask, birthday, festive, lapse, reinstatement, nomination, beneficiary, medical-card. Add 1-2 custom tags if strongly relevant.
+
+4. **suggested_title** — A clear, concise title for this template (e.g. "Change of Servicing Agent (COSA)", "Premium Lapse Reminder"). If the title is already good, return it as-is.`
+
+      : `You are a classifier for a financial advisory scripts database. Given a script's title and content, determine:
 
 1. **category** — one of: ${CATEGORIES.join(", ")}
    - cold-calling: phone scripts or initial outreach messages for cold or warm contacts
@@ -66,6 +89,32 @@ serve(async (req) => {
 
 5. **suggested_title** — if the provided title is empty or generic, suggest a clear descriptive title (e.g. "Cold Calling — CPF Retirement Changes"). If the title is already good, return it as-is.`;
 
+    // ── Tool schema (branched by context) ─────────────────────────────────────
+    const toolParameters = isServicing
+      ? {
+          type: "object",
+          properties: {
+            servicing_category: { type: "string" },
+            script_role: { type: "string", enum: ["consultant", "va"] },
+            tags: { type: "array", items: { type: "string" } },
+            suggested_title: { type: "string" },
+          },
+          required: ["servicing_category", "script_role", "tags", "suggested_title"],
+          additionalProperties: false,
+        }
+      : {
+          type: "object",
+          properties: {
+            category: { type: "string", enum: CATEGORIES },
+            target_audience: { type: "string", enum: TARGET_AUDIENCES },
+            script_role: { type: "string", enum: SCRIPT_ROLES },
+            tags: { type: "array", items: { type: "string" } },
+            suggested_title: { type: "string" },
+          },
+          required: ["category", "target_audience", "script_role", "tags", "suggested_title"],
+          additionalProperties: false,
+        };
+
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -73,6 +122,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        model: "google/gemini-3-flash-preview",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: `Title: ${title || "(none)"}\n\nScript content:\n${content.slice(0, 3000)}` },
@@ -81,19 +131,8 @@ serve(async (req) => {
           type: "function",
           function: {
             name: "classify_script",
-            description: "Classify a financial advisory script into category, audience, role, and tags.",
-            parameters: {
-              type: "object",
-              properties: {
-                category: { type: "string", enum: CATEGORIES },
-                target_audience: { type: "string", enum: TARGET_AUDIENCES },
-                script_role: { type: "string", enum: SCRIPT_ROLES },
-                tags: { type: "array", items: { type: "string" } },
-                suggested_title: { type: "string" },
-              },
-              required: ["category", "target_audience", "script_role", "tags", "suggested_title"],
-              additionalProperties: false,
-            },
+            description: "Classify a financial advisory script.",
+            parameters: toolParameters,
           },
         }],
         tool_choice: { type: "function", function: { name: "classify_script" } },
