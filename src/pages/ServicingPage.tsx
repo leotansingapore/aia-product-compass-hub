@@ -417,6 +417,7 @@ export default function ServicingPage() {
         lockedAudience="clients"
         lockedCategory="servicing"
         lockedRoles={SERVICING_ROLES}
+        mergeNavigateBase="/servicing"
         onSave={async (scriptData) => {
           if (editingScript) {
             await updateScript(editingScript.id, scriptData);
