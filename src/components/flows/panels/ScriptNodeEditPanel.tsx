@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react';
 import type { Node } from 'reactflow';
-import { X, Expand, Trash2, ChevronDown, RotateCcw } from 'lucide-react';
+import { X, Expand, Trash2, ChevronDown, RotateCcw, FileText, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Badge } from '@/components/ui/badge';
 import { NODE_COLOR_PRESETS, getContrastTextColor } from '@/utils/flowColorUtils';
 import { cn } from '@/lib/utils';
+import type { ScriptEntry } from '@/hooks/useScripts';
 
 interface ScriptNodeEditPanelProps {
   node: Node | null;
-  scripts: { id: string; stage: string }[];
+  scripts: ScriptEntry[];
   onUpdateNode: (id: string, data: Record<string, any>) => void;
   onDeleteNode: (id: string) => void;
   onOpenFullEditor: (nodeId: string) => void;
@@ -34,6 +37,7 @@ export function ScriptNodeEditPanel({
   const [shadow, setShadow] = useState(true);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({ basic: true, colors: false, style: false });
+  const [expandedVersion, setExpandedVersion] = useState<number>(0);
 
   useEffect(() => {
     if (node) {
@@ -45,6 +49,7 @@ export function ScriptNodeEditPanel({
       setOpacity(node.data?.opacity ?? 1);
       setShadow(node.data?.shadow !== false);
       setConfirmDelete(false);
+      setExpandedVersion(0);
     }
   }, [node?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -52,6 +57,7 @@ export function ScriptNodeEditPanel({
 
   const nodeType = node.data?.nodeType || node.type;
   const showScriptLink = ['script', 'action', 'hexagon', 'parallelogram', 'cylinder', 'document'].includes(nodeType);
+  const linkedScript = scriptId ? scripts.find(s => s.id === scriptId) : null;
 
   const toggleSection = (key: string) => {
     setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -65,7 +71,10 @@ export function ScriptNodeEditPanel({
   const handleScriptChange = (val: string) => {
     const resolved = val === '_none' ? '' : val;
     setScriptId(resolved);
-    onUpdateNode(node.id, { scriptId: resolved || null });
+    setExpandedVersion(0);
+    // Also store the script name on the node for display
+    const selected = scripts.find(s => s.id === resolved);
+    onUpdateNode(node.id, { scriptId: resolved || null, scriptName: selected?.stage || null });
   };
 
   const handleColorChange = (val: string) => {
@@ -106,7 +115,7 @@ export function ScriptNodeEditPanel({
   return (
     <div
       className={cn(
-        'absolute right-2 top-2 w-64 bg-background border rounded-lg shadow-lg z-20 max-h-[calc(100vh-300px)] overflow-y-auto',
+        'absolute right-2 top-2 w-72 bg-background border rounded-lg shadow-lg z-20 max-h-[calc(100vh-200px)] overflow-y-auto',
         'animate-in fade-in-0 slide-in-from-right-2 duration-200'
       )}
     >
@@ -144,7 +153,7 @@ export function ScriptNodeEditPanel({
             </div>
 
             {showScriptLink && (
-              <div>
+              <div className="space-y-2">
                 <Label className="text-xs">Link to Script</Label>
                 <Select value={scriptId || '_none'} onValueChange={handleScriptChange}>
                   <SelectTrigger className="h-8 text-sm">
@@ -157,6 +166,49 @@ export function ScriptNodeEditPanel({
                     ))}
                   </SelectContent>
                 </Select>
+
+                {/* Inline script preview — shows automatically when a script is linked */}
+                {linkedScript && (
+                  <div className="rounded-md border border-primary/20 bg-muted/30 overflow-hidden">
+                    {/* Script meta */}
+                    <div className="flex items-center gap-1.5 px-2.5 py-2 border-b border-border/40 bg-primary/5">
+                      <FileText className="h-3 w-3 text-primary shrink-0" />
+                      <span className="text-xs font-medium text-foreground truncate flex-1">{linkedScript.stage}</span>
+                      <Badge variant="secondary" className="text-[9px] shrink-0 px-1">{linkedScript.category}</Badge>
+                    </div>
+
+                    {/* Versions */}
+                    {linkedScript.versions.length === 0 ? (
+                      <p className="text-[11px] text-muted-foreground italic px-2.5 py-2">No content yet.</p>
+                    ) : (
+                      <div>
+                        {(linkedScript.versions as Array<{ author: string; content: string }>).map((version, i) => (
+                          <div key={i} className="border-b border-border/30 last:border-0">
+                            <button
+                              onClick={() => setExpandedVersion(expandedVersion === i ? -1 : i)}
+                              className="flex items-center justify-between w-full px-2.5 py-1.5 text-left hover:bg-muted/50 transition-colors"
+                            >
+                              <span className="text-[11px] font-medium text-foreground">
+                                {version.author || `Version ${i + 1}`}
+                              </span>
+                              <ChevronRight className={cn(
+                                'h-3 w-3 text-muted-foreground transition-transform shrink-0',
+                                expandedVersion === i && 'rotate-90'
+                              )} />
+                            </button>
+                            {expandedVersion === i && (
+                              <ScrollArea className="max-h-[220px]">
+                                <div className="px-2.5 pb-2.5 text-[11px] leading-relaxed text-muted-foreground whitespace-pre-wrap">
+                                  {version.content || <em>No content.</em>}
+                                </div>
+                              </ScrollArea>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             )}
 
@@ -297,7 +349,7 @@ export function ScriptNodeEditPanel({
           size="sm"
           className={cn(
             'w-full justify-start gap-2 text-xs mt-2',
-            !confirmDelete && 'text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30'
+            !confirmDelete && 'text-destructive hover:text-destructive hover:bg-destructive/10'
           )}
           onClick={handleDelete}
         >

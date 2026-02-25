@@ -585,7 +585,7 @@ function ReactFlowCanvasInner({
       {!readOnly && selectedNode && !selectedEdge && (
         <ScriptNodeEditPanel
           node={selectedNode}
-          scripts={scripts.map((s) => ({ id: s.id, stage: s.stage }))}
+          scripts={scripts}
           onUpdateNode={handleUpdateNode}
           onDeleteNode={handleDeleteNode}
           onOpenFullEditor={handleOpenFullEditor}
