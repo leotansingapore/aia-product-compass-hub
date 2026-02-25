@@ -32,7 +32,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 
-type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips";
+type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips" | "servicing";
 
 const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; color: string }> = {
   "cold-calling": { label: "Cold Calling", icon: Phone, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
@@ -45,6 +45,7 @@ const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; c
   "confirmation": { label: "Appointment Confirmation", icon: CalendarCheck, color: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300" },
   "faq": { label: "FAQ / Objections", icon: HelpCircle, color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
   "tips": { label: "Tips & Best Practices", icon: Lightbulb, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
+  "servicing": { label: "Servicing", icon: Users, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
 };
 
 // Sub-type labels for Follow-Up grouping
@@ -71,6 +72,7 @@ const audienceSortOrder: Record<string, number> = {
   "general": 9,
   "hnw": 10,
   "referral": 11,
+  "clients": 12,
 };
 
 const audienceLabels: Record<string, string> = {
@@ -85,6 +87,7 @@ const audienceLabels: Record<string, string> = {
   referral: "Referrals",
   "cold-lead": "Cold Leads",
   recruitment: "Recruitment",
+  clients: "Clients",
 };
 
 const roleLabels: Record<string, string> = {

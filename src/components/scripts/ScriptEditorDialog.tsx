@@ -36,6 +36,7 @@ const CATEGORIES = [
   { value: "confirmation", label: "Appointment Confirmation" },
   { value: "faq", label: "FAQ / Objections" },
   { value: "tips", label: "Tips & Best Practices" },
+  { value: "servicing", label: "Servicing" },
 ];
 
 const TARGET_AUDIENCES = [
