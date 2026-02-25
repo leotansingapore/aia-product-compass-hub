@@ -29,6 +29,9 @@ import { VideoEmbedPopover } from './editor/VideoEmbedPopover';
 import { TableControls } from './editor/TableControls';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import type { UsefulLink, VideoAttachment } from '@/hooks/useProducts';
+import { ModuleResourcesSection } from '@/components/video-editing/ModuleResourcesSection';
+import { AddResourceDropdown } from '@/components/video-editing/AddResourceDropdown';
 
 interface RichContentEditorProps {
   value: string;
@@ -43,6 +46,13 @@ interface RichContentEditorProps {
   // Transcript below content
   transcript?: string;
   onTranscriptChange?: (transcript: string) => void;
+  // Resources
+  usefulLinks?: UsefulLink[];
+  attachments?: VideoAttachment[];
+  onAddLink?: (label: string, url: string) => void;
+  onAddFile?: (attachment: VideoAttachment) => void;
+  onDeleteLink?: (index: number) => void;
+  onDeleteAttachment?: (id: string) => void;
 }
 
 // Configure marked for GFM
@@ -145,8 +155,15 @@ export function RichContentEditor({
   onTitleChange,
   transcript,
   onTranscriptChange,
+  usefulLinks,
+  attachments,
+  onAddLink,
+  onAddFile,
+  onDeleteLink,
+  onDeleteAttachment,
 }: RichContentEditorProps) {
   const [showSlashMenu, setShowSlashMenu] = useState(false);
+  const [showTranscript, setShowTranscript] = useState(!!(transcript && transcript.trim()));
   const [slashMenuPos, setSlashMenuPos] = useState({ top: 0, left: 0 });
   const [slashQuery, setSlashQuery] = useState('');
   const [showVideoPopover, setShowVideoPopover] = useState(false);
@@ -585,8 +602,30 @@ export function RichContentEditor({
         </div>
       )}
 
-      {/* Transcript — below content, inside the card */}
-      {onTranscriptChange !== undefined && (
+      {/* Resources Section */}
+      {(onAddLink || (usefulLinks?.length || 0) > 0 || (attachments?.length || 0) > 0) && (
+        <div className="px-6 py-4 border-t border-border mt-2 space-y-4">
+          <ModuleResourcesSection
+            links={usefulLinks || []}
+            attachments={attachments || []}
+            isAdmin={!!onAddLink}
+            onDeleteLink={onDeleteLink}
+            onDeleteAttachment={onDeleteAttachment}
+          />
+          {onAddLink && onAddFile && (
+            <div className="flex justify-end">
+              <AddResourceDropdown
+                onAddLink={onAddLink}
+                onAddFile={onAddFile}
+                onShowTranscript={() => setShowTranscript(true)}
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Transcript — below resources, inside the card */}
+      {onTranscriptChange !== undefined && showTranscript && (
         <div className="px-6 pb-4 pt-2 border-t border-border mt-2">
           <label className="text-sm font-semibold text-foreground block mb-2">
             Transcript
