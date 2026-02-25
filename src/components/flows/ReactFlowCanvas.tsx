@@ -2,6 +2,7 @@ import { useCallback, useRef, useMemo, useEffect, useState } from 'react';
 import ReactFlow, {
   Background,
   Controls,
+  reconnectEdge,
   MiniMap,
   useNodesState,
   useEdgesState,
@@ -549,6 +550,11 @@ function ReactFlowCanvasInner({
         onNodesChange={handleNodesChange}
         onEdgesChange={handleEdgesChange}
         onConnect={onConnect}
+        onReconnect={(oldEdge, newConnection) => {
+          setEdges((eds) => reconnectEdge(oldEdge, newConnection, eds));
+          notifyParent();
+        }}
+        edgeUpdaterRadius={20}
         onNodeDoubleClick={onNodeDoubleClick}
         onDragOver={onDragOver}
         onDrop={onDrop}
