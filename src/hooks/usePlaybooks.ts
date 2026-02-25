@@ -12,6 +12,7 @@ export interface Playbook {
   updated_at: string;
   is_public: boolean;
   share_token: string | null;
+  allow_public_edit: boolean;
   items?: PlaybookItem[];
   creator_name?: string;
 }
