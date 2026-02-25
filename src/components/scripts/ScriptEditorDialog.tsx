@@ -299,8 +299,35 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
     }
     setIsClassifying(true);
     try {
+      // Gather existing servicing category slugs from the database to help the AI reuse them
+      const isServicing = lockedCategory === "servicing";
+      let existingCategories: string[] = [];
+      if (isServicing) {
+        const { data: servicingScripts } = await supabase
+          .from("scripts")
+          .select("tags")
+          .eq("category", "servicing");
+        if (servicingScripts) {
+          const knownServicingCategories = [
+            "premium-payments","new-business","claims","policy-services",
+            "travel-insurance","texting-campaigns","festive-greetings",
+            "referrals","annual-reviews","general-education",
+          ];
+          const slugSet = new Set<string>();
+          servicingScripts.forEach(s => (s.tags || []).forEach((t: string) => {
+            if (knownServicingCategories.includes(t) || t.includes("-")) slugSet.add(t);
+          }));
+          existingCategories = Array.from(slugSet);
+        }
+      }
+
       const { data, error } = await supabase.functions.invoke("classify-script", {
-        body: { title: "", content: pasteContent },
+        body: {
+          title: "",
+          content: pasteContent,
+          context: isServicing ? "servicing" : undefined,
+          existingCategories: isServicing ? existingCategories : undefined,
+        },
       });
       if (error) throw error;
       if (data?.error) {
@@ -318,7 +345,18 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       const availableRoles = lockedRoles || SCRIPT_ROLES;
       const suggestedRole = data.script_role || "consultant";
       setScriptRole(availableRoles.find(r => r.value === suggestedRole) ? suggestedRole : availableRoles[0].value);
-      setTags(data.tags || []);
+
+      // Merge servicing_category into tags so the Servicing page can filter by it
+      const aiTags: string[] = data.tags || [];
+      if (isServicing && data.servicing_category) {
+        const catSlug = data.servicing_category.toLowerCase().replace(/\s+/g, "-");
+        if (!aiTags.includes(catSlug)) aiTags.unshift(catSlug);
+        // Toast if it's a brand-new category
+        if (!existingCategories.includes(catSlug)) {
+          toast.info(`New category created: "${catSlug}"`);
+        }
+      }
+      setTags(aiTags);
       setVersions([{ author: userName, content: pasteContent }]);
 
       // Auto-suggest related script: follow-up → post-call-text, post-call-text → follow-up
