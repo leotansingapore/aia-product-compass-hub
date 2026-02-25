@@ -1,0 +1,30 @@
+{
+  "projectName": "aia-academy",
+  "lastSynced": "2026-02-25T05:57:54.637Z",
+  "tasks": [
+    {
+      "title": "[PLAN] \"Create New Module\" card in product category grid",
+      "description": "Category: Features / Improvements\n- Add a dashed-border card at the end of the ProductsGrid (same height/width as product cards)\n- Card shows a \"+\" icon and \"Create New Module\" label — admin-only visibility\n- Clicking it opens an inline form or modal with proper UX:\n- Title field (required)\n- Description field (optional textarea)\n- Category auto-filled from current category page\n- Tags input (comma-separated or chip-style)\n- Highlights input (comma-separated or chip-style)\n- Draft by default (`published: false`) — no publish toggle, always starts as draft\n- On submit: creates product in Supabase with default \"Getting Started\" page\n- Navigates to new module's manage-videos page after creation\n- Replaces or supplements the existing `CreateModuleForm` button above the grid\n- Plan should cover: input field UX, validation, error states, mobile layout, loading state",
+      "status": "todo",
+      "priority": "medium",
+      "source": "tasks.md",
+      "sourceRef": "line:14",
+      "createdAt": "2026-02-25T05:07:29.096Z",
+      "updatedAt": "2026-02-25T05:07:29.096Z",
+      "id": "8ca77f6a-0195-47bd-94a6-525fdce1681a",
+      "order": 1
+    },
+    {
+      "title": "[PLAN] YouTube transcript auto-fetch for rich editor",
+      "description": "Category: Features / Improvements\n- Transcript section in RichContentEditor should only show when page has a video URL\n- When video URL is YouTube, show a \"Fetch from YouTube\" button next to transcript label\n- Button calls a new Supabase Edge Function (`fetch-youtube-transcript`) that:\n- Extracts video ID from URL\n- Fetches YouTube page → extracts captionTracks from ytInitialPlayerResponse\n- Downloads caption XML → parses into timestamped segments (~20s chunks)\n- Returns formatted text: `0:00 Text here...\\n0:16 Next segment...`\n- Fetched transcript populates the editable textarea (admin can edit/clean up)\n- Add `videoUrl` prop to RichContentEditor, pass `editVideo.url` from VideoEditForm\n- Loom support deferred (needs API key)\n- Edge function needs deployment: `supabase functions deploy fetch-youtube-transcript`",
+      "status": "todo",
+      "priority": "medium",
+      "source": "tasks.md",
+      "sourceRef": "line:29",
+      "createdAt": "2026-02-25T05:07:29.097Z",
+      "updatedAt": "2026-02-25T05:07:29.097Z",
+      "id": "4b8b8cb7-0df8-4268-8344-1497425ac1e1",
+      "order": 2
+    }
+  ]
+}

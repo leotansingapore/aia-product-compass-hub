@@ -618,31 +618,10 @@ export function RichContentEditor({
             onDeleteLink={onDeleteLink}
             onDeleteAttachment={onDeleteAttachment}
           />
-          {onAddLink && onAddFile && (
-            <div className="flex items-center justify-between">
-              <AddResourceDropdown
-                onAddLink={onAddLink}
-                onAddFile={onAddFile}
-                onShowTranscript={() => setShowTranscript(true)}
-              />
-              {onPublishedChange !== undefined && (
-                <div className="flex items-center gap-2">
-                  <span className={cn("text-sm font-medium", published ? "text-emerald-600 dark:text-emerald-400" : "text-muted-foreground")}>
-                    {published ? 'Published' : 'Draft'}
-                  </span>
-                  <Switch
-                    checked={!!published}
-                    onCheckedChange={onPublishedChange}
-                    className="data-[state=checked]:bg-emerald-500"
-                  />
-                </div>
-              )}
-            </div>
-          )}
         </div>
       )}
 
-      {/* Transcript — below resources, inside the card */}
+      {/* Transcript — below resources, above action bar */}
       {onTranscriptChange !== undefined && showTranscript && (
         <div className="px-6 pb-4 pt-2 border-t border-border mt-2">
           <label className="text-sm font-semibold text-foreground block mb-2">
@@ -655,6 +634,29 @@ export function RichContentEditor({
             rows={6}
             className="w-full bg-muted/20 border border-border rounded-lg p-3 text-sm text-foreground resize-y focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 placeholder:text-muted-foreground/50"
           />
+        </div>
+      )}
+
+      {/* ADD button + Published toggle — always at the bottom */}
+      {onAddLink && onAddFile && (
+        <div className="px-6 py-4 border-t border-border mt-2 flex items-center justify-between">
+          <AddResourceDropdown
+            onAddLink={onAddLink}
+            onAddFile={onAddFile}
+            onShowTranscript={() => setShowTranscript(true)}
+          />
+          {onPublishedChange !== undefined && (
+            <div className="flex items-center gap-2">
+              <span className={cn("text-sm font-medium", published ? "text-emerald-600 dark:text-emerald-400" : "text-muted-foreground")}>
+                {published ? 'Published' : 'Draft'}
+              </span>
+              <Switch
+                checked={!!published}
+                onCheckedChange={onPublishedChange}
+                className="data-[state=checked]:bg-emerald-500"
+              />
+            </div>
+          )}
         </div>
       )}
 
