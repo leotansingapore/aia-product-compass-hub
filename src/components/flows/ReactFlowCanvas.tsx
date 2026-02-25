@@ -31,11 +31,15 @@ import { useFlowExport } from './hooks/useFlowExport';
 import { ShapePalette } from './panels/ShapePalette';
 import { ScriptNodeEditPanel } from './panels/ScriptNodeEditPanel';
 import { ScriptEdgeStylePanel } from './panels/ScriptEdgeStylePanel';
+import { AnnotationLayer } from './annotations/AnnotationLayer';
+import { AnnotationToolbar, type AnnotationTool } from './annotations/AnnotationToolbar';
+import { PenLine } from 'lucide-react';
 
 interface ReactFlowCanvasProps {
   initialNodes: FlowNode[];
   initialEdges: FlowEdge[];
   scripts: ScriptEntry[];
+  flowId?: string;
   readOnly?: boolean;
   onNodesChange?: (nodes: FlowNode[]) => void;
   onEdgesChange?: (edges: FlowEdge[]) => void;
@@ -77,6 +81,7 @@ function ReactFlowCanvasInner({
   initialNodes: dbNodes,
   initialEdges: dbEdges,
   scripts,
+  flowId,
   readOnly = false,
   onNodesChange: onNodesChangeProp,
   onEdgesChange: onEdgesChangeProp,
@@ -85,6 +90,13 @@ function ReactFlowCanvasInner({
 }: ReactFlowCanvasProps) {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
   const { fitView, screenToFlowPosition, getNodes: rfGetNodes, getEdges: rfGetEdges } = useReactFlow();
+
+  // Annotation state
+  const [annotationMode, setAnnotationMode] = useState(false);
+  const [activeTool, setActiveTool] = useState<AnnotationTool>('none');
+  const [annotationColor, setAnnotationColor] = useState('#fef08a');
+  const [penWidth, setPenWidth] = useState(3);
+  const [canvasTransform, setCanvasTransform] = useState({ x: 0, y: 0, zoom: 1 });
 
   // Convert DB format to React Flow format for initial load
   const rfInitialNodes = useMemo(() => {
@@ -549,6 +561,8 @@ function ReactFlowCanvasInner({
         snapToGrid={snapToGrid}
         snapGrid={[20, 20]}
         deleteKeyCode={null} // We handle deletion ourselves
+        onMove={(_, viewport) => setCanvasTransform({ x: viewport.x, y: viewport.y, zoom: viewport.zoom })}
+        onMoveEnd={(_, viewport) => setCanvasTransform({ x: viewport.x, y: viewport.y, zoom: viewport.zoom })}
         multiSelectionKeyCode="Shift"
         selectionOnDrag={false}
         nodesDraggable={!readOnly}
@@ -599,6 +613,46 @@ function ReactFlowCanvasInner({
           onUpdateEdge={handleUpdateEdge}
           onDeleteEdge={handleDeleteEdge}
         />
+      )}
+
+      {/* Annotation layer overlay — always visible, interactive only when annotationMode is on */}
+      {flowId && (
+        <AnnotationLayer
+          flowId={flowId}
+          activeTool={annotationMode ? activeTool : 'none'}
+          activeColor={annotationColor}
+          penWidth={penWidth}
+          zoom={canvasTransform.zoom}
+          panX={canvasTransform.x}
+          panY={canvasTransform.y}
+          containerRef={reactFlowWrapper}
+          onToolUsed={() => {}}
+        />
+      )}
+
+      {/* Annotation toolbar */}
+      {annotationMode && (
+        <AnnotationToolbar
+          activeTool={activeTool}
+          onToolChange={setActiveTool}
+          activeColor={annotationColor}
+          onColorChange={setAnnotationColor}
+          penWidth={penWidth}
+          onPenWidthChange={setPenWidth}
+          onClose={() => { setAnnotationMode(false); setActiveTool('none'); }}
+        />
+      )}
+
+      {/* Annotate toggle button */}
+      {flowId && !readOnly && !annotationMode && (
+        <button
+          onClick={() => setAnnotationMode(true)}
+          className="absolute bottom-4 left-4 z-20 flex items-center gap-1.5 bg-background/95 backdrop-blur border border-border rounded-xl px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/50 shadow transition-all"
+          title="Open annotation tools"
+        >
+          <PenLine className="h-3.5 w-3.5" />
+          Annotate
+        </button>
       )}
     </div>
   );

@@ -481,6 +481,78 @@ export type Database = {
           },
         ]
       }
+      flow_annotations: {
+        Row: {
+          author_name: string
+          color: string
+          content: string | null
+          created_at: string
+          drawing_paths: Json | null
+          flow_id: string
+          height: number
+          id: string
+          parent_id: string | null
+          resolved: boolean
+          type: string
+          updated_at: string
+          user_id: string
+          width: number
+          x: number
+          y: number
+        }
+        Insert: {
+          author_name?: string
+          color?: string
+          content?: string | null
+          created_at?: string
+          drawing_paths?: Json | null
+          flow_id: string
+          height?: number
+          id?: string
+          parent_id?: string | null
+          resolved?: boolean
+          type: string
+          updated_at?: string
+          user_id: string
+          width?: number
+          x?: number
+          y?: number
+        }
+        Update: {
+          author_name?: string
+          color?: string
+          content?: string | null
+          created_at?: string
+          drawing_paths?: Json | null
+          flow_id?: string
+          height?: number
+          id?: string
+          parent_id?: string | null
+          resolved?: boolean
+          type?: string
+          updated_at?: string
+          user_id?: string
+          width?: number
+          x?: number
+          y?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "flow_annotations_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
+            referencedRelation: "script_flows"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "flow_annotations_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "flow_annotations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       knowledge_chunks: {
         Row: {
           content: string

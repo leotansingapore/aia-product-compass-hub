@@ -394,6 +394,7 @@ export default function ScriptFlows() {
                 initialNodes={localNodes}
                 initialEdges={localEdges}
                 scripts={scripts}
+                flowId={activeFlowId}
                 onNodesChange={(nodes) => { setLocalNodes(nodes); setHasUnsaved(true); }}
                 onEdgesChange={(edges) => { setLocalEdges(edges); setHasUnsaved(true); }}
                 onDoubleClickNode={node => setEditingNode(node)}
