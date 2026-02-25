@@ -613,7 +613,7 @@ export function RichContentEditor({
             onDeleteAttachment={onDeleteAttachment}
           />
           {onAddLink && onAddFile && (
-            <div className="flex justify-end">
+            <div className="flex justify-start">
               <AddResourceDropdown
                 onAddLink={onAddLink}
                 onAddFile={onAddFile}
