@@ -1,18 +1,21 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
+import Image from '@tiptap/extension-image';
 import { Table } from '@tiptap/extension-table';
 import { TableRow } from '@tiptap/extension-table-row';
 import { TableCell } from '@tiptap/extension-table-cell';
 import { TableHeader } from '@tiptap/extension-table-header';
 import { Button } from "@/components/ui/button";
-import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Minus } from "lucide-react";
+import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Minus, Loader2, ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { marked } from 'marked';
 import TurndownService from 'turndown';
 import { gfm } from 'turndown-plugin-gfm';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 interface MinimalRichEditorProps {
   value: string;
@@ -48,6 +51,15 @@ function createTurndown() {
       return content + '\n>\n';
     },
   });
+  // Preserve images as markdown
+  td.addRule('image', {
+    filter: 'img',
+    replacement: (_content: string, node: any) => {
+      const src = node.getAttribute('src') || '';
+      const alt = node.getAttribute('alt') || '';
+      return `![${alt}](${src})`;
+    },
+  });
   return td;
 }
 
@@ -74,6 +86,16 @@ function htmlToMd(html: string): string {
   }
 }
 
+async function uploadImageToStorage(file: File): Promise<string> {
+  if (file.size > 10 * 1024 * 1024) throw new Error('Image must be under 10 MB');
+  const ext = file.name.split('.').pop() || 'png';
+  const path = `editor-images/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+  const { error } = await supabase.storage.from('knowledge-files').upload(path, file, { upsert: false });
+  if (error) throw error;
+  const { data } = supabase.storage.from('knowledge-files').getPublicUrl(path);
+  return data.publicUrl;
+}
+
 export function MinimalRichEditor({
   value,
   onChange,
@@ -86,6 +108,17 @@ export function MinimalRichEditor({
   const isUpdatingRef = useRef(false);
   const lastValueRef = useRef(value);
   const isInitializedRef = useRef(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Stable ref so paste/drop handlers in useEditor can call uploadImageToStorage
+  // without needing a reference to `editor` (which isn't declared yet).
+  const setIsUploadingRef = useRef(setIsUploading);
+  setIsUploadingRef.current = setIsUploading;
+
+  // We keep a ref to the editor instance for the paste/drop handlers
+  // defined inside useEditor (which run before the hook returns).
+  const editorInstanceRef = useRef<ReturnType<typeof useEditor> | null>(null);
 
   const editor = useEditor({
     extensions: [
@@ -100,6 +133,11 @@ export function MinimalRichEditor({
       Link.configure({
         openOnClick: false,
         HTMLAttributes: { class: 'text-primary hover:underline cursor-pointer' },
+      }),
+      Image.configure({
+        HTMLAttributes: { class: 'max-w-full rounded-md my-2' },
+        inline: false,
+        allowBase64: false,
       }),
       Placeholder.configure({ placeholder }),
       Table.configure({ resizable: false }),
@@ -124,6 +162,7 @@ export function MinimalRichEditor({
           '[&_td]:border [&_td]:border-border [&_td]:px-2 [&_td]:py-1',
           '[&_hr]:my-3 [&_hr]:border-border',
           '[&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5',
+          '[&_img]:max-w-full [&_img]:rounded-md [&_img]:my-2',
         ),
       },
       handleKeyDown: (_, event) => {
@@ -135,6 +174,40 @@ export function MinimalRichEditor({
         if (event.key === 'Escape' && onCancel) {
           event.preventDefault();
           onCancel();
+          return true;
+        }
+        return false;
+      },
+      handlePaste: (_view, event) => {
+        const items = Array.from(event.clipboardData?.items ?? []);
+        const imageItem = items.find(item => item.type.startsWith('image/'));
+        if (imageItem) {
+          event.preventDefault();
+          const file = imageItem.getAsFile();
+          if (!file) return false;
+          setIsUploadingRef.current(true);
+          uploadImageToStorage(file)
+            .then(url => {
+              editorInstanceRef.current?.chain().focus().setImage({ src: url, alt: file.name }).run();
+            })
+            .catch(err => toast.error(err instanceof Error ? err.message : 'Failed to upload image'))
+            .finally(() => setIsUploadingRef.current(false));
+          return true;
+        }
+        return false;
+      },
+      handleDrop: (_view, event) => {
+        const files = Array.from(event.dataTransfer?.files ?? []);
+        const imageFile = files.find(f => f.type.startsWith('image/'));
+        if (imageFile) {
+          event.preventDefault();
+          setIsUploadingRef.current(true);
+          uploadImageToStorage(imageFile)
+            .then(url => {
+              editorInstanceRef.current?.chain().focus().setImage({ src: url, alt: imageFile.name }).run();
+            })
+            .catch(err => toast.error(err instanceof Error ? err.message : 'Failed to upload image'))
+            .finally(() => setIsUploadingRef.current(false));
           return true;
         }
         return false;
@@ -152,6 +225,11 @@ export function MinimalRichEditor({
       onChange(md);
     },
   });
+
+  // Keep the stable ref in sync
+  useEffect(() => {
+    editorInstanceRef.current = editor;
+  }, [editor]);
 
   // Sync external value changes (e.g. AI classification filling in content)
   useEffect(() => {
@@ -172,6 +250,20 @@ export function MinimalRichEditor({
       editor.chain().focus().extendMarkRange('link').unsetLink().run();
     } else {
       editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+    }
+  }, [editor]);
+
+  const handleImageUpload = useCallback(async (file: File) => {
+    if (!file.type.startsWith('image/')) return;
+    setIsUploading(true);
+    try {
+      const url = await uploadImageToStorage(file);
+      editor?.chain().focus().setImage({ src: url, alt: file.name }).run();
+      toast.success('Image added');
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Failed to upload image');
+    } finally {
+      setIsUploading(false);
     }
   }, [editor]);
 
@@ -272,6 +364,39 @@ export function MinimalRichEditor({
           >
             <Minus className="h-3.5 w-3.5" />
           </Button>
+          <div className="w-px h-4 bg-border mx-0.5" />
+          {/* Image upload button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => fileInputRef.current?.click()}
+            className="h-7 w-7 p-0"
+            title="Insert image (or paste / drop)"
+            disabled={isUploading}
+          >
+            {isUploading
+              ? <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              : <ImageIcon className="h-3.5 w-3.5" />
+            }
+          </Button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={e => {
+              const file = e.target.files?.[0];
+              if (file) handleImageUpload(file);
+              e.target.value = '';
+            }}
+          />
+        </div>
+      )}
+
+      {isUploading && (
+        <div className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-muted-foreground bg-muted/40 border-b border-border/30">
+          <Loader2 className="h-3 w-3 animate-spin" />
+          Uploading image…
         </div>
       )}
 
