@@ -3,12 +3,12 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Sparkles } from 'lucide-react';
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useCallback } from 'react';
 import { useVideoForm } from '@/hooks/useVideoForm';
 import { VideoBasicInfo } from './VideoBasicInfo';
 import { VideoContentTabs } from './VideoContentTabs';
 import { structuredToMarkdown, createLegacyBackup } from '@/utils/videoContentConverter';
-import type { TrainingVideo } from '@/hooks/useProducts';
+import type { TrainingVideo, VideoAttachment, UsefulLink } from '@/hooks/useProducts';
 import { Skeleton } from '@/components/ui/skeleton';
 
 // Lazy-load the rich editor for performance
@@ -60,6 +60,28 @@ export function VideoEditForm({
     onUpdate(updatedVideo);
   };
 
+  // Resource handlers
+  const handleAddLink = useCallback((label: string, url: string) => {
+    const currentLinks = editVideo.useful_links || [];
+    const newLink: UsefulLink = { name: label, url, icon: '🔗' };
+    handleChange('useful_links', [...currentLinks, newLink]);
+  }, [editVideo.useful_links, handleChange]);
+
+  const handleAddFile = useCallback((attachment: VideoAttachment) => {
+    const currentAttachments = editVideo.attachments || [];
+    handleChange('attachments', [...currentAttachments, attachment]);
+  }, [editVideo.attachments, handleChange]);
+
+  const handleDeleteLink = useCallback((index: number) => {
+    const currentLinks = editVideo.useful_links || [];
+    handleChange('useful_links', currentLinks.filter((_, i) => i !== index));
+  }, [editVideo.useful_links, handleChange]);
+
+  const handleDeleteAttachment = useCallback((id: string) => {
+    const currentAttachments = editVideo.attachments || [];
+    handleChange('attachments', currentAttachments.filter(a => a.id !== id));
+  }, [editVideo.attachments, handleChange]);
+
   // Rich Editor Mode — Skool-style: inline title + content + transcript all in one card
   if (isRichMode) {
     return (
@@ -72,6 +94,12 @@ export function VideoEditForm({
           onTitleChange={(title) => handleChange('title', title)}
           transcript={editVideo.transcript || ''}
           onTranscriptChange={(transcript) => handleChange('transcript', transcript)}
+          usefulLinks={editVideo.useful_links || []}
+          attachments={editVideo.attachments || []}
+          onAddLink={handleAddLink}
+          onAddFile={handleAddFile}
+          onDeleteLink={handleDeleteLink}
+          onDeleteAttachment={handleDeleteAttachment}
         />
       </Suspense>
     );

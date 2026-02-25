@@ -5,7 +5,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Maximize, Minimize } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Maximize, Minimize, Link2 } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -416,74 +416,46 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
               </Collapsible>
 
 
-              {/* Useful Links & Attachments - Only show if not using rich content */}
-              {!currentVideo?.rich_content && (currentVideo?.useful_links?.length > 0 || currentVideo?.attachments?.length > 0) && (
+              {/* Resources — show for ALL videos (rich_content or not) */}
+              {(currentVideo?.useful_links?.length > 0 || currentVideo?.attachments?.length > 0) && (
                 <Card>
                   <CardHeader>
-                    <CardTitle>Learning Resources</CardTitle>
+                    <CardTitle className="text-base">Resources</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    {/* Useful Links */}
-                    {currentVideo?.useful_links?.length > 0 && (
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-medium">Useful Links</h4>
-                        <div className="grid gap-2">
-                          {currentVideo.useful_links.map((link, index) => (
-                            <Button
-                              key={index}
-                              variant="outline"
-                              className="justify-start h-auto p-3"
-                              onClick={() => window.open(link.url, '_blank')}
-                            >
-                              <span className="mr-2">{link.icon}</span>
-                              <div className="text-left">
-                                <div className="font-medium">{link.name}</div>
-                                <div className="text-micro text-muted-foreground truncate">
-                                  {link.url}
-                                </div>
-                              </div>
-                              <ExternalLink className="h-4 w-4 ml-auto" />
-                            </Button>
-                          ))}
-                        </div>
+                  <CardContent className="space-y-1.5">
+                    {/* Links */}
+                    {currentVideo?.useful_links?.map((link, index) => (
+                      <div key={`link-${index}`} className="flex items-center gap-2">
+                        <Link2 className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                        <a
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-primary hover:underline truncate"
+                        >
+                          {link.name}
+                        </a>
                       </div>
-                    )}
+                    ))}
 
                     {/* Attachments */}
-                    {currentVideo?.attachments?.length > 0 && (
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-medium">Downloadable Resources</h4>
-                        <div className="grid gap-2">
-                          {currentVideo.attachments.map((attachment, index) => (
-                            <Button
-                              key={index}
-                              variant="outline"
-                              className="justify-start h-auto p-3"
-                              onClick={() => window.open(attachment.url, '_blank')}
-                            >
-                              <FileText className="h-5 w-5 mr-3 text-primary" />
-                              <div className="text-left flex-1">
-                                <div className="font-medium">{attachment.name}</div>
-                                <div className="text-micro text-muted-foreground flex gap-2">
-                                  {attachment.file_type && (
-                                    <span>{attachment.file_type}</span>
-                                  )}
-                                  {attachment.file_size && (
-                                    <span>
-                                      {attachment.file_size > 1024 * 1024 
-                                        ? `${(attachment.file_size / (1024 * 1024)).toFixed(1)} MB`
-                                        : `${Math.round(attachment.file_size / 1024)} KB`
-                                      }
-                                    </span>
-                                  )}
-                                </div>
-                              </div>
-                              <Download className="h-4 w-4 ml-auto" />
-                            </Button>
-                          ))}
-                        </div>
+                    {currentVideo?.attachments?.map((attachment) => (
+                      <div key={`file-${attachment.id}`} className="flex items-center gap-2">
+                        {(attachment.file_type || '').toLowerCase() === 'pdf' ? (
+                          <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-red-100 text-red-600 text-xs font-bold flex-shrink-0">PDF</span>
+                        ) : (
+                          <FileText className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                        )}
+                        <a
+                          href={attachment.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-primary hover:underline truncate"
+                        >
+                          {attachment.name}
+                        </a>
                       </div>
-                    )}
+                    ))}
                   </CardContent>
                 </Card>
               )}
