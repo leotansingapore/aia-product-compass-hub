@@ -100,6 +100,8 @@ export function VideoEditForm({
           onAddFile={handleAddFile}
           onDeleteLink={handleDeleteLink}
           onDeleteAttachment={handleDeleteAttachment}
+          published={editVideo.published ?? true}
+          onPublishedChange={(val) => handleChange('published', val)}
         />
       </Suspense>
     );
