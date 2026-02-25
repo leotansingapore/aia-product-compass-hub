@@ -62,8 +62,8 @@ export function VideoEditorPanel({
           </div>
         ) : (
           /* ========== PREVIEW MODE (Skool-style) ========== */
-          <div className="border rounded-lg bg-card h-full flex flex-col overflow-hidden">
-            <div className="flex-1 overflow-auto p-8">
+          <div className="border rounded-lg bg-card">
+            <div className="p-8">
               {/* Title + Edit Button */}
               <div className="flex items-start justify-between mb-6">
                 <h1 className="text-2xl font-bold text-foreground leading-tight">
