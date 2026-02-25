@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
 import { useNavigate, useParams } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
@@ -83,6 +84,15 @@ function ServicingScriptCard({
 }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
+
+  // Community user versions — shown as extra tabs
+  const { userVersions, addVersion, updateVersion, deleteVersion, userId: currentUserId } = useScriptUserVersions(script.id);
+  const [showNewVersionForm, setShowNewVersionForm] = useState(false);
+  const [newVersionContent, setNewVersionContent] = useState("");
+  const [newVersionName, setNewVersionName] = useState("");
+  const [editingUserVersionId, setEditingUserVersionId] = useState<string | null>(null);
+  const [editUserVersionContent, setEditUserVersionContent] = useState("");
+  const [editUserVersionName, setEditUserVersionName] = useState("");
   const [editContent, setEditContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
@@ -226,11 +236,12 @@ function ServicingScriptCard({
         <CollapsibleContent>
           <div className="px-3 pb-3 sm:px-6 sm:pb-6">
             <Tabs defaultValue="0">
-              {script.versions.length > 1 && (
-                <TabsList className="mb-3 flex-wrap h-auto gap-1 w-full justify-start">
+              <div className="flex items-center gap-1 flex-wrap mb-3">
+                <TabsList className="flex-wrap h-auto gap-1 justify-start">
+                  {/* Official versions */}
                   {script.versions.map((v, i) => (
                     <TabsTrigger key={i} value={String(i)} className="text-xs relative group">
-                      {editingVersionTitle === i && isAdmin ? (
+                      {editingVersionTitle === i && isAuthenticated && onInlineSave ? (
                         <span onClick={(e) => e.stopPropagation()}>
                           <Input
                             value={versionTitleDraft}
@@ -256,16 +267,98 @@ function ServicingScriptCard({
                         </span>
                       ) : (
                         <span
-                          className={isAdmin && onMetadataSave ? 'cursor-text' : ''}
-                          onDoubleClick={(e) => { if (isAdmin && onMetadataSave) { e.stopPropagation(); setVersionTitleDraft(v.title || v.author); setEditingVersionTitle(i); } }}
+                          className={isAuthenticated && onInlineSave ? 'cursor-text' : ''}
+                          title={isAuthenticated && onInlineSave ? "Double-click to rename" : undefined}
+                          onDoubleClick={(e) => { if (isAuthenticated && onInlineSave) { e.stopPropagation(); setVersionTitleDraft(v.title || v.author); setEditingVersionTitle(i); } }}
                         >
                           {v.title || v.author}
                         </span>
                       )}
                     </TabsTrigger>
                   ))}
+                  {/* Community user versions as additional tabs */}
+                  {userVersions.map((uv) => (
+                    <TabsTrigger key={`uv-${uv.id}`} value={`uv-${uv.id}`} className="text-xs relative group">
+                      {editingUserVersionId === uv.id && currentUserId === uv.user_id ? (
+                        <span onClick={(e) => e.stopPropagation()}>
+                          <Input
+                            value={editUserVersionName}
+                            onChange={(e) => setEditUserVersionName(e.target.value)}
+                            className="h-5 text-[11px] w-24 px-1"
+                            autoFocus
+                            onKeyDown={async (e) => {
+                              if (e.key === 'Enter') {
+                                e.preventDefault();
+                                updateVersion.mutate({ id: uv.id, content: uv.content, authorName: editUserVersionName || uv.author_name });
+                                setEditingUserVersionId(null);
+                              } else if (e.key === 'Escape') setEditingUserVersionId(null);
+                            }}
+                            onBlur={async () => {
+                              if (editUserVersionName !== uv.author_name) {
+                                updateVersion.mutate({ id: uv.id, content: uv.content, authorName: editUserVersionName || uv.author_name });
+                              }
+                              setEditingUserVersionId(null);
+                            }}
+                          />
+                        </span>
+                      ) : (
+                        <span
+                          className={currentUserId === uv.user_id ? 'cursor-text' : ''}
+                          title={currentUserId === uv.user_id ? "Double-click to rename" : undefined}
+                          onDoubleClick={(e) => { if (currentUserId === uv.user_id) { e.stopPropagation(); setEditUserVersionName(uv.author_name); setEditingUserVersionId(uv.id); } }}
+                        >
+                          {uv.author_name}
+                        </span>
+                      )}
+                    </TabsTrigger>
+                  ))}
                 </TabsList>
+                {/* Add version button */}
+                {isAuthenticated && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7 rounded-sm border border-dashed border-muted-foreground/40 hover:border-primary hover:text-primary"
+                    title="Add your version"
+                    onClick={(e) => { e.stopPropagation(); setShowNewVersionForm(true); }}
+                  >
+                    <Plus className="h-3.5 w-3.5" />
+                  </Button>
+                )}
+              </div>
+
+              {/* New version form */}
+              {showNewVersionForm && (
+                <div className="mb-3 border rounded-lg p-3 bg-muted/20 space-y-2">
+                  <Input
+                    value={newVersionName}
+                    onChange={(e) => setNewVersionName(e.target.value)}
+                    placeholder="Version name (e.g. 'My Style')"
+                    className="text-sm"
+                    autoFocus
+                  />
+                  <MinimalRichEditor
+                    value={newVersionContent}
+                    onChange={setNewVersionContent}
+                    placeholder="Write your version... (supports markdown)"
+                  />
+                  <div className="flex justify-end gap-2">
+                    <Button variant="ghost" size="sm" onClick={() => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); }}>
+                      <X className="h-3.5 w-3.5 mr-1" /> Cancel
+                    </Button>
+                    <Button size="sm" disabled={!newVersionContent.trim() || addVersion.isPending} onClick={() => {
+                      addVersion.mutate(
+                        { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
+                        { onSuccess: () => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); } }
+                      );
+                    }}>
+                      {addVersion.isPending ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Adding…</> : "Add Version"}
+                    </Button>
+                  </div>
+                </div>
               )}
+
+              {/* Official version tab contents */}
               {script.versions.map((v, i) => (
                 <TabsContent key={i} value={String(i)}>
                   {editingVersionIdx === i ? (
@@ -284,12 +377,10 @@ function ServicingScriptCard({
                       </div>
                     </div>
                   ) : (
-                    <div className="relative group">
-                      <div className="prose prose-sm dark:prose-invert max-w-none">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
-                          {v.content}
-                        </ReactMarkdown>
-                      </div>
+                    <div className="prose prose-sm dark:prose-invert max-w-none text-sm">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+                        {v.content}
+                      </ReactMarkdown>
                       <div className="flex gap-1 mt-3">
                         <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={() => {
                           navigator.clipboard.writeText(v.content);
@@ -301,6 +392,50 @@ function ServicingScriptCard({
                           <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={() => { setEditingVersionIdx(i); setEditContent(v.content); }}>
                             <Pencil className="h-3 w-3" /> Edit
                           </Button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </TabsContent>
+              ))}
+
+              {/* Community user version tab contents */}
+              {userVersions.map((uv) => (
+                <TabsContent key={`uv-${uv.id}`} value={`uv-${uv.id}`}>
+                  {editingUserVersionId === uv.id && currentUserId === uv.user_id && editUserVersionContent !== "__name_only__" ? (
+                    <div className="space-y-2">
+                      <MinimalRichEditor value={editUserVersionContent} onChange={setEditUserVersionContent} />
+                      <div className="flex gap-2">
+                        <Button size="sm" disabled={updateVersion.isPending} onClick={() => {
+                          updateVersion.mutate({ id: uv.id, content: editUserVersionContent.trim(), authorName: uv.author_name });
+                          setEditingUserVersionId(null); setEditUserVersionContent("");
+                        }}>
+                          {updateVersion.isPending ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Saving…</> : "Save"}
+                        </Button>
+                        <Button size="sm" variant="outline" onClick={() => { setEditingUserVersionId(null); setEditUserVersionContent(""); }}>Cancel</Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="prose prose-sm dark:prose-invert max-w-none text-sm">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+                        {uv.content}
+                      </ReactMarkdown>
+                      <div className="flex gap-1 mt-3">
+                        <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={() => {
+                          navigator.clipboard.writeText(uv.content);
+                          toast.success("Copied to clipboard");
+                        }}>
+                          <Copy className="h-3 w-3" /> Copy
+                        </Button>
+                        {currentUserId === uv.user_id && (
+                          <>
+                            <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={() => { setEditUserVersionContent(uv.content); setEditingUserVersionId(uv.id); }}>
+                              <Pencil className="h-3 w-3" /> Edit
+                            </Button>
+                            <Button variant="outline" size="sm" className="h-7 text-xs gap-1 text-destructive hover:text-destructive" onClick={() => deleteVersion.mutate(uv.id)}>
+                              <Trash2 className="h-3 w-3" /> Delete
+                            </Button>
+                          </>
                         )}
                       </div>
                     </div>
