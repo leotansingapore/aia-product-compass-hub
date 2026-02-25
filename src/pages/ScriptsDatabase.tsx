@@ -1530,7 +1530,7 @@ function PlaybookDropdown({ myPlaybooks, scriptId, onAddToPlaybook, onCreatePlay
   );
 }
 
-function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, onCreatePlaybookAndAdd, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave, onMetadataSave, mergeSourceId, mergeOverId, onMergeDragStart, onMergeDragEnd, onMergeOver, onMergeLeave, onMergeDrop }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; onCreatePlaybookAndAdd?: (title: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>; onMetadataSave?: (scriptId: string, updates: Partial<ScriptEntry>) => Promise<void>; mergeSourceId?: string | null; mergeOverId?: string | null; onMergeDragStart?: (id: string) => void; onMergeDragEnd?: () => void; onMergeOver?: (id: string) => void; onMergeLeave?: () => void; onMergeDrop?: (targetId: string) => void; }) {
+function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, searchQuery = "", myPlaybooks, onAddToPlaybook, onCreatePlaybookAndAdd, isAuthenticated, userDisplayName, isFavourite, onToggleFavourite, isMobile, allScripts, onInlineSave, onMetadataSave, mergeSourceId, mergeOverId, tapSelectMode, onMergeDragStart, onMergeDragEnd, onMergeOver, onMergeLeave, onMergeDrop, onTapSelect, onTapTarget }: { script: ScriptEntry; isAdmin: boolean; onEdit: () => void; onDelete: () => void; isOpenByUrl: boolean; onToggle: (open: boolean) => void; searchQuery?: string; myPlaybooks?: { id: string; title: string }[]; onAddToPlaybook?: (playbookId: string, scriptId: string) => void; onCreatePlaybookAndAdd?: (title: string, scriptId: string) => void; isAuthenticated?: boolean; userDisplayName?: string; isFavourite?: boolean; onToggleFavourite?: () => void; isMobile?: boolean; allScripts?: ScriptEntry[]; onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>; onMetadataSave?: (scriptId: string, updates: Partial<ScriptEntry>) => Promise<void>; mergeSourceId?: string | null; mergeOverId?: string | null; tapSelectMode?: boolean; onMergeDragStart?: (id: string) => void; onMergeDragEnd?: () => void; onMergeOver?: (id: string) => void; onMergeLeave?: () => void; onMergeDrop?: (targetId: string) => void; onTapSelect?: (id: string) => void; onTapTarget?: (id: string) => void; }) {
   const [open, setOpen] = useState(isOpenByUrl);
   const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
@@ -1593,23 +1593,36 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     <div ref={cardRef} id={`script-${script.id}`}>
     <Collapsible open={open} onOpenChange={handleToggle}>
       <Card
-        className={`overflow-hidden transition-all duration-200 ${isOpenByUrl ? "ring-2 ring-primary/50" : ""} ${mergeSourceId && mergeSourceId !== script.id && mergeOverId === script.id ? "ring-2 ring-primary shadow-lg scale-[1.01]" : ""} ${mergeSourceId && mergeSourceId !== script.id ? "cursor-copy" : ""}`}
+        className={`overflow-hidden transition-all duration-200 ${isOpenByUrl ? "ring-2 ring-primary/50" : ""} ${
+          mergeSourceId === script.id ? "ring-2 ring-primary/60 shadow-md" : ""
+        } ${
+          mergeSourceId && mergeSourceId !== script.id && mergeOverId === script.id ? "ring-2 ring-primary shadow-lg scale-[1.01]" : ""
+        } ${
+          tapSelectMode && mergeSourceId && mergeSourceId !== script.id ? "cursor-pointer ring-1 ring-primary/30 hover:ring-primary/60" : ""
+        } ${
+          mergeSourceId && mergeSourceId !== script.id && !tapSelectMode ? "cursor-copy" : ""
+        }`}
         draggable={!!onMergeDragStart}
         onDragStart={(e) => { e.dataTransfer.effectAllowed = "move"; onMergeDragStart?.(script.id); }}
         onDragEnd={onMergeDragEnd}
         onDragOver={(e) => { if (mergeSourceId && mergeSourceId !== script.id) { e.preventDefault(); e.dataTransfer.dropEffect = "move"; onMergeOver?.(script.id); } }}
         onDragLeave={onMergeLeave}
         onDrop={(e) => { e.preventDefault(); if (mergeSourceId && mergeSourceId !== script.id) onMergeDrop?.(script.id); }}
+        onClick={() => { if (tapSelectMode && mergeSourceId && mergeSourceId !== script.id) onTapTarget?.(script.id); }}
       >
         <CollapsibleTrigger asChild>
           <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6">
             <div className="flex items-start sm:items-center gap-2 sm:gap-3">
               {onMergeDragStart && (
                 <div
-                  className={`shrink-0 mt-0.5 sm:mt-0 p-0.5 rounded cursor-grab active:cursor-grabbing transition-colors ${mergeSourceId === script.id ? "text-primary" : "text-muted-foreground/40 hover:text-muted-foreground"}`}
-                  title="Drag to merge versions into another script"
+                  className={`shrink-0 mt-0.5 sm:mt-0 p-1 rounded transition-colors ${
+                    mergeSourceId === script.id && tapSelectMode
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted"
+                  } cursor-grab active:cursor-grabbing`}
+                  title="Drag to merge (desktop) or tap to select for merge (mobile)"
                   onMouseDown={(e) => e.stopPropagation()}
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => { e.stopPropagation(); onTapSelect?.(script.id); }}
                 >
                   <GripVertical className="h-4 w-4" />
                 </div>
@@ -2544,7 +2557,7 @@ export default function ScriptsDatabase() {
     [counts]
   );
 
-  const { mergeState, pendingMerge, startDrag, endDrag, onDragOver, onDragLeave, onDrop, confirmMerge, cancelMerge } = useMergeScripts(
+  const { mergeState, pendingMerge, startDrag, endDrag, onDragOver, onDragLeave, onDrop, tapSelect, tapTarget, cancelTapSelect, confirmMerge, cancelMerge } = useMergeScripts(
     dbScripts,
     async (scriptId, versions) => { await updateScript(scriptId, { versions }); refetch(); }
   );
@@ -3029,6 +3042,17 @@ export default function ScriptsDatabase() {
 
                 return (
                   <>
+                    {/* Tap-to-merge banner (mobile) */}
+                    {mergeState.tapSelectMode && mergeState.sourceId && (
+                      <div className="flex items-center justify-between gap-2 bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-sm">
+                        <span className="text-primary font-medium">
+                          Tap another script to merge into it
+                        </span>
+                        <button onClick={cancelTapSelect} className="text-muted-foreground hover:text-foreground text-xs underline">
+                          Cancel
+                        </button>
+                      </div>
+                    )}
                     {filteredScripts.map((script) => (
                       <ScriptCard
                         key={script.id}
@@ -3051,11 +3075,14 @@ export default function ScriptsDatabase() {
                         onMetadataSave={handleMetadataSave}
                         mergeSourceId={mergeState.sourceId}
                         mergeOverId={mergeState.dragOverId}
+                        tapSelectMode={mergeState.tapSelectMode}
                         onMergeDragStart={startDrag}
                         onMergeDragEnd={endDrag}
                         onMergeOver={onDragOver}
                         onMergeLeave={onDragLeave}
                         onMergeDrop={onDrop}
+                        onTapSelect={tapSelect}
+                        onTapTarget={tapTarget}
                         onToggle={(open) => {
                           if (open) {
                             navigateToScriptInternal(script.id);
