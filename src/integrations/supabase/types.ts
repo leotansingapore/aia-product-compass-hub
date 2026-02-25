@@ -1256,6 +1256,7 @@ export type Database = {
       script_playbook_items: {
         Row: {
           created_at: string
+          custom_content: Json | null
           id: string
           item_type: string
           objection_id: string | null
@@ -1265,6 +1266,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          custom_content?: Json | null
           id?: string
           item_type?: string
           objection_id?: string | null
@@ -1274,6 +1276,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          custom_content?: Json | null
           id?: string
           item_type?: string
           objection_id?: string | null
@@ -1307,6 +1310,7 @@ export type Database = {
       }
       script_playbooks: {
         Row: {
+          allow_public_edit: boolean
           created_at: string
           created_by: string
           description: string | null
@@ -1317,6 +1321,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          allow_public_edit?: boolean
           created_at?: string
           created_by: string
           description?: string | null
@@ -1327,6 +1332,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          allow_public_edit?: boolean
           created_at?: string
           created_by?: string
           description?: string | null

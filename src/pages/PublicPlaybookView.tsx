@@ -1,17 +1,17 @@
-import { useMemo } from "react";
+import { useMemo, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Loader2, BookOpen, MessageSquare, Copy, Check } from "lucide-react";
+import { ChevronDown, Loader2, BookOpen, MessageSquare, Copy, Check, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
-import { useState } from "react";
+import { toast } from "sonner";
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -33,8 +33,39 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
+function InlineEditor({ initialValue, onSave, onCancel }: { initialValue: string; onSave: (val: string) => Promise<void>; onCancel: () => void }) {
+  const [value, setValue] = useState(initialValue);
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    setSaving(true);
+    await onSave(value);
+    setSaving(false);
+  };
+
+  return (
+    <div className="space-y-2">
+      <textarea
+        className="w-full min-h-[200px] p-3 rounded-lg border bg-background text-sm font-mono resize-y focus:outline-none focus:ring-2 focus:ring-primary/30"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        autoFocus
+      />
+      <div className="flex items-center gap-2 justify-end">
+        <Button variant="ghost" size="sm" onClick={onCancel} disabled={saving}>Cancel</Button>
+        <Button size="sm" onClick={handleSave} disabled={saving}>
+          {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
+          Save
+        </Button>
+      </div>
+      <p className="text-[10px] text-muted-foreground">Edits are saved to this playbook only — they don't affect the original script.</p>
+    </div>
+  );
+}
+
 export default function PublicPlaybookView() {
   const { shareToken } = useParams();
+  const queryClient = useQueryClient();
 
   const { data: playbook, isLoading: playbookLoading } = useQuery({
     queryKey: ['public-playbook', shareToken],
@@ -50,6 +81,8 @@ export default function PublicPlaybookView() {
     },
     enabled: !!shareToken,
   });
+
+  const allowEdit = !!(playbook as any)?.allow_public_edit;
 
   const { data: items = [], isLoading: itemsLoading } = useQuery({
     queryKey: ['public-playbook-items', playbook?.id],
@@ -97,12 +130,53 @@ export default function PublicPlaybookView() {
   });
 
   const itemsWithData = useMemo(() => {
-    return items.map(item => ({
-      ...item,
-      script: item.item_type === 'script' ? scripts.find((s: any) => s.id === item.script_id) : undefined,
-      objection: item.item_type === 'objection' ? objections.find((o: any) => o.id === item.objection_id) : undefined,
-    })).filter(item => item.script || item.objection);
+    return items.map(item => {
+      const script = item.item_type === 'script' ? scripts.find((s: any) => s.id === item.script_id) : undefined;
+      const objection = item.item_type === 'objection' ? objections.find((o: any) => o.id === item.objection_id) : undefined;
+
+      // If custom_content exists for a script item, override the versions
+      let displayScript = script;
+      const customContent = (item as any).custom_content;
+      if (script && customContent && typeof customContent === 'object') {
+        displayScript = { ...script, versions: customContent };
+      }
+
+      return {
+        ...item,
+        script: displayScript,
+        originalScript: script,
+        objection,
+      };
+    }).filter(item => item.script || item.objection);
   }, [items, scripts, objections]);
+
+  const [editingItem, setEditingItem] = useState<{ itemId: string; versionIdx: number } | null>(null);
+
+  const handleSaveEdit = useCallback(async (itemId: string, versionIdx: number, newContent: string) => {
+    const item = itemsWithData.find(i => i.id === itemId);
+    if (!item?.originalScript) return;
+
+    // Build custom_content: take existing custom_content or original versions, update the specific version
+    const existing = (item as any).custom_content || (item.originalScript as any).versions;
+    const updated = (existing as any[]).map((v: any, i: number) =>
+      i === versionIdx ? { ...v, content: newContent } : v
+    );
+
+    const { error } = await supabase
+      .from('script_playbook_items')
+      .update({ custom_content: updated } as any)
+      .eq('id', itemId);
+
+    if (error) {
+      toast.error('Failed to save edit');
+      console.error(error);
+      return;
+    }
+
+    toast.success('Edit saved to this playbook');
+    setEditingItem(null);
+    queryClient.invalidateQueries({ queryKey: ['public-playbook-items', playbook?.id] });
+  }, [itemsWithData, playbook?.id, queryClient]);
 
   const isLoading = playbookLoading || itemsLoading;
 
@@ -133,6 +207,11 @@ export default function PublicPlaybookView() {
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-3">
             <Badge variant="secondary" className="text-xs">Shared Playbook</Badge>
+            {allowEdit && (
+              <Badge variant="outline" className="text-xs gap-1">
+                <Pencil className="h-3 w-3" /> Editable
+              </Badge>
+            )}
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold">{playbook.title}</h1>
           {playbook.description && (
@@ -209,19 +288,42 @@ export default function PublicPlaybookView() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <CardContent className="pt-0 pb-4 px-4">
-                        {(item.script.versions as any[])?.map((version: any, vi: number) => (
-                          <div key={vi} className="mb-4 last:mb-0">
-                            <div className="flex items-center justify-between mb-2">
-                              <Badge variant="outline" className="text-xs">{version.author || `Version ${vi + 1}`}</Badge>
-                              <CopyButton text={version.content || ""} />
+                        {(item.script.versions as any[])?.map((version: any, vi: number) => {
+                          const isEditing = editingItem?.itemId === item.id && editingItem?.versionIdx === vi;
+                          return (
+                            <div key={vi} className="mb-4 last:mb-0">
+                              <div className="flex items-center justify-between mb-2">
+                                <Badge variant="outline" className="text-xs">{version.author || `Version ${vi + 1}`}</Badge>
+                                <div className="flex items-center gap-1">
+                                  {allowEdit && !isEditing && (
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="h-7 gap-1 text-xs"
+                                      onClick={() => setEditingItem({ itemId: item.id, versionIdx: vi })}
+                                    >
+                                      <Pencil className="h-3 w-3" /> Edit
+                                    </Button>
+                                  )}
+                                  <CopyButton text={version.content || ""} />
+                                </div>
+                              </div>
+                              {isEditing ? (
+                                <InlineEditor
+                                  initialValue={version.content || ""}
+                                  onSave={(val) => handleSaveEdit(item.id, vi, val)}
+                                  onCancel={() => setEditingItem(null)}
+                                />
+                              ) : (
+                                <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 rounded-lg p-3 sm:p-4 overflow-x-auto">
+                                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+                                    {version.content || ""}
+                                  </ReactMarkdown>
+                                </div>
+                              )}
                             </div>
-                            <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 rounded-lg p-3 sm:p-4 overflow-x-auto">
-                              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
-                                {version.content || ""}
-                              </ReactMarkdown>
-                            </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </CardContent>
                     </CollapsibleContent>
                   </Collapsible>

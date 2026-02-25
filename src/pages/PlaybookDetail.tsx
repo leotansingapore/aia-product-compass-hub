@@ -458,14 +458,30 @@ export default function PlaybookDetail() {
                 {playbook?.is_public ? "Copy Link" : "Share"}
               </Button>
               {playbook?.is_public && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="gap-1.5 text-xs"
-                  onClick={() => togglePublic.mutate({ id: playbook.id, isPublic: false })}
-                >
-                  <Lock className="h-3.5 w-3.5" /> Make Private
-                </Button>
+                <>
+                  <Button
+                    variant={playbook.allow_public_edit ? "secondary" : "ghost"}
+                    size="sm"
+                    className="gap-1.5 text-xs"
+                    onClick={async () => {
+                      const newVal = !(playbook as any).allow_public_edit;
+                      const { error } = await supabase.from('script_playbooks').update({ allow_public_edit: newVal } as any).eq('id', playbook.id);
+                      if (!error) {
+                        toast.success(newVal ? 'Public editing enabled' : 'Public editing disabled');
+                      }
+                    }}
+                  >
+                    <Pencil className="h-3.5 w-3.5" /> {(playbook as any).allow_public_edit ? "Editing On" : "Allow Edit"}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="gap-1.5 text-xs"
+                    onClick={() => togglePublic.mutate({ id: playbook.id, isPublic: false })}
+                  >
+                    <Lock className="h-3.5 w-3.5" /> Make Private
+                  </Button>
+                </>
               )}
               <Button variant="outline" onClick={handleAISuggest} disabled={isAiLoading} className="gap-1.5 flex-1 sm:flex-initial">
                 {isAiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
