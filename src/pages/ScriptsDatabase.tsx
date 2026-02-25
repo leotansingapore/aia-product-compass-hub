@@ -1301,29 +1301,98 @@ function getSearchSnippet(versions: ScriptVersion[], query: string): string | nu
   }
   return null;
 }
-function MobileVersionSelector({ versions, searchQuery }: { versions: ScriptVersion[]; searchQuery: string }) {
+function MobileVersionSelector({
+  versions,
+  searchQuery,
+  isAuthenticated,
+  onInlineSave,
+  scriptId,
+}: {
+  versions: ScriptVersion[];
+  searchQuery: string;
+  isAuthenticated?: boolean;
+  onInlineSave?: (id: string, versions: ScriptVersion[]) => Promise<void>;
+  scriptId?: string;
+}) {
   const [activeVersion, setActiveVersion] = useState("0");
-  const v = versions[parseInt(activeVersion)] || versions[0];
+  const [editing, setEditing] = useState(false);
+  const [editContent, setEditContent] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+  const idx = parseInt(activeVersion);
+  const v = versions[idx] || versions[0];
+
+  const startEdit = () => {
+    setEditContent(v.content);
+    setEditing(true);
+  };
+
+  const cancelEdit = () => {
+    setEditing(false);
+    setEditContent("");
+  };
+
+  const saveEdit = async () => {
+    if (!onInlineSave || !scriptId) return;
+    setIsSaving(true);
+    const updated = versions.map((ver, i) => i === idx ? { ...ver, content: editContent } : ver);
+    await onInlineSave(scriptId, updated);
+    setIsSaving(false);
+    setEditing(false);
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between gap-2 mb-3">
-        <Select value={activeVersion} onValueChange={setActiveVersion}>
-          <SelectTrigger className="h-8 text-xs bg-background flex-1">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent className="bg-popover z-50">
-            {versions.map((ver, i) => (
-              <SelectItem key={i} value={String(i)} className="text-xs">
-                {ver.author}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <CopyButton text={v.content} />
+        {versions.length > 1 ? (
+          <Select value={activeVersion} onValueChange={(val) => { setActiveVersion(val); setEditing(false); }}>
+            <SelectTrigger className="h-8 text-xs bg-background flex-1">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="bg-popover z-50">
+              {versions.map((ver, i) => (
+                <SelectItem key={i} value={String(i)} className="text-xs">
+                  {ver.title || ver.author}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ) : (
+          <span className="text-xs text-muted-foreground font-medium flex-1">{v.title || v.author}</span>
+        )}
+        <div className="flex items-center gap-1 shrink-0">
+          {isAuthenticated && onInlineSave && !editing && (
+            <Button variant="outline" size="sm" className="h-8 gap-1 text-xs" onClick={startEdit}>
+              <Pencil className="h-3 w-3" /> Edit
+            </Button>
+          )}
+          {!editing && <CopyButton text={v.content} />}
+        </div>
       </div>
-      <div className="bg-muted/50 rounded-lg p-3 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
-        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
-      </div>
+
+      {editing ? (
+        <div className="space-y-2">
+          <div className="border rounded-lg overflow-hidden">
+            <MinimalRichEditor
+              value={editContent}
+              onChange={setEditContent}
+              onSave={saveEdit}
+              onCancel={cancelEdit}
+              autoFocus
+            />
+          </div>
+          <div className="flex items-center gap-2 justify-end">
+            <Button variant="ghost" size="sm" onClick={cancelEdit} disabled={isSaving}>Cancel</Button>
+            <Button size="sm" onClick={saveEdit} disabled={isSaving}>
+              {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
+              Save
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div className="bg-muted/50 rounded-lg p-3 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
+        </div>
+      )}
     </div>
   );
 }
@@ -1725,7 +1794,13 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
             {script.versions.length > 1 ? (
               isMobile ? (
                 /* Mobile: dropdown version selector */
-                <MobileVersionSelector versions={script.versions} searchQuery={searchQuery} />
+                <MobileVersionSelector
+                  versions={script.versions}
+                  searchQuery={searchQuery}
+                  isAuthenticated={isAuthenticated}
+                  onInlineSave={onInlineSave}
+                  scriptId={script.id}
+                />
               ) : (
                 <Tabs defaultValue="0">
                   <TabsList className="mb-3 flex-wrap h-auto gap-1 w-full justify-start">
