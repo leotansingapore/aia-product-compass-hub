@@ -16,6 +16,7 @@ export interface TrainingVideo {
   transcript?: string;
   duration?: number; // in seconds
   order: number;
+  published?: boolean;
   category?: string; // folder/category name
   useful_links?: UsefulLink[];
   attachments?: VideoAttachment[];

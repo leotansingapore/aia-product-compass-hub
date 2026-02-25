@@ -28,6 +28,7 @@ import { CalloutNode } from './editor/CalloutNode';
 import { VideoEmbedPopover } from './editor/VideoEmbedPopover';
 import { TableControls } from './editor/TableControls';
 import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 import type { UsefulLink, VideoAttachment } from '@/hooks/useProducts';
 import { ModuleResourcesSection } from '@/components/video-editing/ModuleResourcesSection';
@@ -53,6 +54,9 @@ interface RichContentEditorProps {
   onAddFile?: (attachment: VideoAttachment) => void;
   onDeleteLink?: (index: number) => void;
   onDeleteAttachment?: (id: string) => void;
+  // Published toggle
+  published?: boolean;
+  onPublishedChange?: (published: boolean) => void;
 }
 
 // Configure marked for GFM
@@ -161,6 +165,8 @@ export function RichContentEditor({
   onAddFile,
   onDeleteLink,
   onDeleteAttachment,
+  published,
+  onPublishedChange,
 }: RichContentEditorProps) {
   const [showSlashMenu, setShowSlashMenu] = useState(false);
   const [showTranscript, setShowTranscript] = useState(!!(transcript && transcript.trim()));
@@ -613,12 +619,24 @@ export function RichContentEditor({
             onDeleteAttachment={onDeleteAttachment}
           />
           {onAddLink && onAddFile && (
-            <div className="flex justify-start">
+            <div className="flex items-center justify-between">
               <AddResourceDropdown
                 onAddLink={onAddLink}
                 onAddFile={onAddFile}
                 onShowTranscript={() => setShowTranscript(true)}
               />
+              {onPublishedChange !== undefined && (
+                <div className="flex items-center gap-2">
+                  <span className={cn("text-sm font-medium", published ? "text-emerald-600 dark:text-emerald-400" : "text-muted-foreground")}>
+                    {published ? 'Published' : 'Draft'}
+                  </span>
+                  <Switch
+                    checked={!!published}
+                    onCheckedChange={onPublishedChange}
+                    className="data-[state=checked]:bg-emerald-500"
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>
