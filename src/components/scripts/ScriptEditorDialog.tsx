@@ -8,7 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert, Link2, X, AlertCircle } from "lucide-react";
+import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert, Link2, X, AlertCircle, ChevronDown, FolderOpen } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useScripts } from "@/hooks/useScripts";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -85,6 +86,85 @@ interface Props {
 }
 
 type EditorStep = "paste" | "duplicates" | "review";
+
+function slugToLabel(slug: string) {
+  return slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function CategoryOverridePicker({
+  displaySlug, isNew, allSlugs, onSelect,
+}: {
+  displaySlug: string;
+  isNew: boolean;
+  allSlugs: string[];
+  onSelect: (slug: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [newCatInput, setNewCatInput] = useState("");
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <button
+          type="button"
+          className="w-full rounded-lg border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/50 transition-colors p-3 text-left group"
+        >
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
+            <FolderOpen className="h-3.5 w-3.5" />
+            Filed under
+            <span className="ml-auto text-[10px] font-normal normal-case text-primary group-hover:underline">click to change</span>
+          </p>
+          <div className="flex items-center justify-between">
+            <span className="text-lg font-bold text-foreground leading-tight">
+              {slugToLabel(displaySlug)}
+            </span>
+            <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
+          </div>
+          {isNew && (
+            <span className="text-[10px] text-amber-600 dark:text-amber-400 font-medium mt-1 inline-block">
+              ✦ New category — will be created
+            </span>
+          )}
+        </button>
+      </PopoverTrigger>
+      <PopoverContent className="w-72 p-3 space-y-3" align="start">
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Choose a category</p>
+        <div className="flex flex-wrap gap-1.5 max-h-40 overflow-y-auto">
+          {allSlugs.map(slug => (
+            <button
+              key={slug}
+              type="button"
+              onClick={() => { onSelect(slug); setOpen(false); }}
+              className="px-2.5 py-1 rounded-md text-xs border border-border bg-background hover:bg-accent hover:border-primary transition-colors font-medium"
+            >
+              {slugToLabel(slug)}
+            </button>
+          ))}
+        </div>
+        <div className="border-t pt-2 space-y-1.5">
+          <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wide">Or create a new category</p>
+          <div className="flex gap-1.5">
+            <Input
+              placeholder="e.g. policy-transfers"
+              value={newCatInput}
+              onChange={e => setNewCatInput(e.target.value.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, ""))}
+              className="h-7 text-xs"
+            />
+            <Button
+              type="button"
+              size="sm"
+              className="h-7 px-2 text-xs shrink-0"
+              disabled={!newCatInput.trim()}
+              onClick={() => { onSelect(newCatInput.trim()); setNewCatInput(""); setOpen(false); }}
+            >
+              <Plus className="h-3 w-3" />
+            </Button>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}
 
 function computeSimilarity(
   inputTitle: string,
@@ -648,64 +728,32 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                 );
               })()}
 
-              {/* === Servicing subcategory — prominent standalone field === */}
+              {/* === Servicing subcategory — clickable to override === */}
               {lockedCategory === "servicing" && !isEditing && (() => {
-                const servicingSubcategory = tags.find(t => t.includes("-") || Object.keys({
-                  "premium-payments":1,"new-business":1,"claims":1,"policy-services":1,
-                  "travel-insurance":1,"texting-campaigns":1,"festive-greetings":1,
-                  "referrals":1,"annual-reviews":1,"general-education":1,
-                }).includes(t));
+                const KNOWN_SLUGS = ["premium-payments","new-business","claims","policy-services",
+                  "travel-insurance","texting-campaigns","festive-greetings",
+                  "referrals","annual-reviews","general-education"];
+                const servicingSubcategory = tags.find(t => KNOWN_SLUGS.includes(t) || (t.includes("-") && !["phone-call","whatsapp","sms","cpf","follow-up","referral-ask"].includes(t)));
                 if (!servicingSubcategory && !aiSuggestedNewCategory) return null;
                 const displaySlug = servicingSubcategory || aiSuggestedNewCategory || "";
+                const isNew = !!(aiSuggestedNewCategory && !servicingSubcategory);
+                const allSlugs = Array.from(new Set([...KNOWN_SLUGS, ...existingCategorySlugs])).filter(s => s !== displaySlug);
+
                 return (
-                  <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-3">
-                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-                      📂 This script will be filed under
-                    </p>
-                    <p className="text-lg font-bold text-foreground leading-tight">
-                      {displaySlug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
-                    </p>
-                    {aiSuggestedNewCategory && (
-                      <p className="text-xs text-amber-600 dark:text-amber-400 mt-1">New category — doesn't exist yet</p>
-                    )}
-                  </div>
+                  <CategoryOverridePicker
+                    displaySlug={displaySlug}
+                    isNew={isNew}
+                    allSlugs={allSlugs}
+                    onSelect={(slug) => {
+                      setTags(prev => {
+                        const filtered = prev.filter(t => t !== displaySlug);
+                        return [slug, ...filtered];
+                      });
+                      setAiSuggestedNewCategory(null);
+                    }}
+                  />
                 );
               })()}
-
-              {/* === New servicing category override banner === */}
-              {aiSuggestedNewCategory && lockedCategory === "servicing" && !isEditing && (
-                <div className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-3 space-y-2">
-                  <p className="text-xs font-medium text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
-                    <AlertCircle className="h-3.5 w-3.5" />
-                    Override: assign to an existing category instead?
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mt-1">
-                    {existingCategorySlugs.map(slug => (
-                      <button
-                        key={slug}
-                        type="button"
-                        onClick={() => {
-                          setTags(prev => {
-                            const filtered = prev.filter(t => t !== aiSuggestedNewCategory);
-                            return [slug, ...filtered];
-                          });
-                          setAiSuggestedNewCategory(null);
-                        }}
-                        className="px-2.5 py-1 rounded-md text-xs border border-border bg-background hover:bg-accent hover:border-primary transition-colors font-medium"
-                      >
-                        {slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
-                      </button>
-                    ))}
-                    <button
-                      type="button"
-                      onClick={() => setAiSuggestedNewCategory(null)}
-                      className="px-2.5 py-1 rounded-md text-xs border border-amber-500/50 bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20 transition-colors font-medium"
-                    >
-                      ✓ Keep as new
-                    </button>
-                  </div>
-                </div>
-              )}
 
               <div>
                 <Label>Script Title / Stage</Label>
