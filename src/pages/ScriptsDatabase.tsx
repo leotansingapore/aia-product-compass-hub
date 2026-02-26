@@ -16,7 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, PenLine, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2, Link2, History, RotateCcw, GripVertical, GitMerge } from "lucide-react";
+import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2, Link2, History, RotateCcw, GripVertical, GitMerge } from "lucide-react";
 import { useMergeScripts } from "@/hooks/useMergeScripts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
@@ -1547,6 +1547,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [editingAudience, setEditingAudience] = useState(false);
   const [editingVersionTitle, setEditingVersionTitle] = useState<number | null>(null);
   const [versionTitleDraft, setVersionTitleDraft] = useState("");
+  const [addingTag, setAddingTag] = useState(false);
+  const [tagDraft, setTagDraft] = useState("");
 
   const saveMetaField = async (updates: Partial<ScriptEntry>) => {
     if (!onMetadataSave) return;
@@ -1656,13 +1658,14 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   ) : (
                     <CardTitle
                       className={`text-sm sm:text-base leading-snug ${isAdmin && onMetadataSave ? 'cursor-text hover:underline decoration-dashed decoration-muted-foreground/40 underline-offset-4' : ''}`}
-                      onClick={(e) => {
+                      onDoubleClick={(e) => {
                         if (isAdmin && onMetadataSave) {
                           e.stopPropagation();
                           setTitleDraft(script.stage);
                           setEditingTitle(true);
                         }
                       }}
+                      title={isAdmin && onMetadataSave ? "Double-click to rename" : undefined}
                     >
                       <HighlightedTitle text={script.stage} query={searchQuery} />
                     </CardTitle>
@@ -1747,15 +1750,53 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       {roleLabels[script.script_role] || script.script_role}
                     </Badge>
                   )}
-                  {script.tags && script.tags.length > 0 && (
-                    <span className="hidden sm:contents">
-                      {script.tags.map((tag) => (
-                        <Badge key={tag} variant="outline" className="text-[10px] bg-accent/30">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </span>
-                  )}
+                  {/* Tags — removable by admin inline, hidden on mobile */}
+                  <span className="hidden sm:contents">
+                    {(script.tags || []).map((tag) => (
+                      <Badge key={tag} variant="outline" className={`text-[10px] bg-accent/30 gap-1 ${isAdmin && onMetadataSave ? 'pr-0.5' : ''}`}>
+                        {tag}
+                        {isAdmin && onMetadataSave && (
+                          <button
+                            style={{ cursor: 'pointer' }}
+                            className="ml-0.5 hover:text-destructive transition-colors"
+                            onClick={async (e) => { e.stopPropagation(); await saveMetaField({ tags: (script.tags || []).filter(t => t !== tag) }); }}
+                          >
+                            <X className="h-2.5 w-2.5" />
+                          </button>
+                        )}
+                      </Badge>
+                    ))}
+                    {isAdmin && onMetadataSave && (
+                      addingTag ? (
+                        <div onClick={(e) => e.stopPropagation()}>
+                          <Input
+                            value={tagDraft}
+                            onChange={(e) => setTagDraft(e.target.value)}
+                            placeholder="new tag…"
+                            className="h-5 text-[10px] w-20 px-1.5 py-0"
+                            autoFocus
+                            onKeyDown={async (e) => {
+                              if (e.key === 'Enter' && tagDraft.trim()) {
+                                e.preventDefault();
+                                await saveMetaField({ tags: [...(script.tags || []), tagDraft.trim().toLowerCase()] });
+                                setTagDraft(""); setAddingTag(false);
+                              } else if (e.key === 'Escape') { setTagDraft(""); setAddingTag(false); }
+                            }}
+                            onBlur={() => { setTagDraft(""); setAddingTag(false); }}
+                          />
+                        </div>
+                      ) : (
+                        <button
+                          style={{ cursor: 'pointer' }}
+                          className="inline-flex items-center gap-0.5 text-[10px] text-muted-foreground/50 hover:text-muted-foreground transition-colors border border-dashed border-muted-foreground/30 rounded px-1 py-0.5"
+                          onClick={(e) => { e.stopPropagation(); setAddingTag(true); }}
+                          title="Add tag"
+                        >
+                          <Plus className="h-2.5 w-2.5" /> tag
+                        </button>
+                      )
+                    )}
+                  </span>
                   <Badge variant="outline" className="text-[10px]">
                     {script.versions.length}v
                   </Badge>
@@ -1787,11 +1828,6 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       onCreatePlaybookAndAdd={onCreatePlaybookAndAdd}
                     />
                   )}
-                  {isAuthenticated && onInlineSave && (
-                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); if (!open) handleToggle(true); setTimeout(() => startInlineEdit(0), 100); }} title="Quick edit content">
-                      <PenLine className="h-3.5 w-3.5" />
-                    </Button>
-                  )}
                   {isAdmin && (
                     <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
                       <Trash2 className="h-3.5 w-3.5" />
@@ -1816,57 +1852,67 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 />
               ) : (
                 <Tabs defaultValue="0">
-                  <TabsList className="mb-3 flex-wrap h-auto gap-1 w-full justify-start">
-                    <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider px-1 self-center mr-1">Versions</span>
-                    {script.versions.map((v, i) => (
-                      <TabsTrigger key={i} value={String(i)} className="text-xs relative group">
-                        {editingVersionTitle === i && isAdmin ? (
-                          <span onClick={(e) => e.stopPropagation()}>
-                            <Input
-                              value={versionTitleDraft}
-                              onChange={(e) => setVersionTitleDraft(e.target.value)}
-                              className="h-5 text-[11px] w-24 px-1"
-                              autoFocus
-                              onKeyDown={async (e) => {
-                                if (e.key === 'Enter') {
-                                  e.preventDefault();
-                                  const newVersions = script.versions.map((ver, idx) =>
-                                    idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver
-                                  );
-                                  if (onInlineSave) await onInlineSave(script.id, newVersions);
+                  {/* Version switcher header */}
+                  <div className="flex items-center gap-2 flex-wrap mb-3 pb-3 border-b border-border/60">
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Versions</span>
+                      <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] font-bold">
+                        {script.versions.length}
+                      </span>
+                    </div>
+                    <TabsList className="bg-transparent p-0 h-auto gap-1.5 flex-wrap justify-start">
+                      {script.versions.map((v, i) => (
+                        <TabsTrigger key={i} value={String(i)} style={{ cursor: 'pointer' }}
+                          className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors">
+                          {editingVersionTitle === i && isAdmin ? (
+                            <span onClick={(e) => e.stopPropagation()}>
+                              <Input
+                                value={versionTitleDraft}
+                                onChange={(e) => setVersionTitleDraft(e.target.value)}
+                                className="h-5 text-[11px] w-24 px-1"
+                                autoFocus
+                                onKeyDown={async (e) => {
+                                  if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    const newVersions = script.versions.map((ver, idx) =>
+                                      idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver
+                                    );
+                                    if (onInlineSave) await onInlineSave(script.id, newVersions);
+                                    setEditingVersionTitle(null);
+                                  } else if (e.key === 'Escape') {
+                                    setEditingVersionTitle(null);
+                                  }
+                                }}
+                                onBlur={async () => {
+                                  if (versionTitleDraft !== v.author) {
+                                    const newVersions = script.versions.map((ver, idx) =>
+                                      idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver
+                                    );
+                                    if (onInlineSave) await onInlineSave(script.id, newVersions);
+                                  }
                                   setEditingVersionTitle(null);
-                                } else if (e.key === 'Escape') {
-                                  setEditingVersionTitle(null);
+                                }}
+                              />
+                            </span>
+                          ) : (
+                            <span
+                              style={{ cursor: isAdmin && onMetadataSave ? 'text' : 'pointer' }}
+                              title={isAdmin && onMetadataSave ? "Double-click to rename" : undefined}
+                              onDoubleClick={(e) => {
+                                if (isAdmin && onMetadataSave) {
+                                  e.stopPropagation();
+                                  setVersionTitleDraft(v.title || v.author);
+                                  setEditingVersionTitle(i);
                                 }
                               }}
-                              onBlur={async () => {
-                                if (versionTitleDraft !== v.author) {
-                                  const newVersions = script.versions.map((ver, idx) =>
-                                    idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver
-                                  );
-                                  if (onInlineSave) await onInlineSave(script.id, newVersions);
-                                }
-                                setEditingVersionTitle(null);
-                              }}
-                            />
-                          </span>
-                        ) : (
-                          <span
-                            className={isAdmin && onMetadataSave ? 'cursor-text' : ''}
-                            onDoubleClick={(e) => {
-                              if (isAdmin && onMetadataSave) {
-                                e.stopPropagation();
-                                setVersionTitleDraft(v.title || v.author);
-                                setEditingVersionTitle(i);
-                              }
-                            }}
-                          >
-                            {v.title || v.author}
-                          </span>
-                        )}
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
+                            >
+                              {v.title || v.author || `Version ${i + 1}`}
+                            </span>
+                          )}
+                        </TabsTrigger>
+                      ))}
+                    </TabsList>
+                  </div>
                   {script.versions.map((v, i) => (
                     <TabsContent key={i} value={String(i)}>
                       {editingVersionIdx === i ? (
@@ -1890,16 +1936,18 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         </div>
                       ) : (
                         <>
-                          <div className="flex justify-end mb-2 gap-1">
-                            {isAuthenticated && onInlineSave && (
-                              <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(i)}>
-                                <Pencil className="h-3 w-3" /> Edit
-                              </Button>
-                            )}
-                            <CopyButton text={v.content} />
-                          </div>
-                          <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+                          <div
+                            className={`bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto ${isAuthenticated && onInlineSave ? 'cursor-text hover:border-primary/40 transition-colors' : ''}`}
+                            onDoubleClick={() => { if (isAuthenticated && onInlineSave) startInlineEdit(i); }}
+                            title={isAuthenticated && onInlineSave ? "Double-click to edit" : undefined}
+                          >
                             <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
+                          </div>
+                          <div className="flex items-center gap-1 mt-2">
+                            <CopyButton text={v.content} />
+                            {isAuthenticated && onInlineSave && (
+                              <span className="text-[10px] text-muted-foreground italic ml-1">double-click to edit</span>
+                            )}
                           </div>
                         </>
                       )}
@@ -1929,19 +1977,21 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 </div>
               ) : (
                 <>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-xs text-muted-foreground font-medium">{script.versions[0]?.author}</span>
-                    <div className="flex items-center gap-1">
-                      {isAuthenticated && onInlineSave && (
-                        <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => startInlineEdit(0)}>
-                          <Pencil className="h-3 w-3" /> Edit
-                        </Button>
-                      )}
-                      <CopyButton text={script.versions[0]?.content || ""} />
-                    </div>
-                  </div>
-                  <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+                  {script.versions[0]?.author && (
+                    <span className="text-xs text-muted-foreground font-medium block mb-2">{script.versions[0].author}</span>
+                  )}
+                  <div
+                    className={`bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto ${isAuthenticated && onInlineSave ? 'cursor-text hover:border-primary/40 transition-colors' : ''}`}
+                    onDoubleClick={() => { if (isAuthenticated && onInlineSave) startInlineEdit(0); }}
+                    title={isAuthenticated && onInlineSave ? "Double-click to edit" : undefined}
+                  >
                     <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
+                  </div>
+                  <div className="flex items-center gap-1 mt-2">
+                    <CopyButton text={script.versions[0]?.content || ""} />
+                    {isAuthenticated && onInlineSave && (
+                      <span className="text-[10px] text-muted-foreground italic ml-1">double-click to edit</span>
+                    )}
                   </div>
                 </>
               )
