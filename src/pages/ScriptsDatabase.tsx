@@ -16,7 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2, Link2, History, RotateCcw, GripVertical, GitMerge } from "lucide-react";
+import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, PenLine, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2, Link2, History, RotateCcw, GripVertical, GitMerge } from "lucide-react";
 import { useMergeScripts } from "@/hooks/useMergeScripts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
@@ -1788,8 +1788,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     />
                   )}
                   {isAuthenticated && onInlineSave && (
-                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); if (!open) handleToggle(true); setTimeout(() => startInlineEdit(0), 100); }} title="Edit content inline">
-                      <Pencil className="h-3.5 w-3.5" />
+                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7" onClick={(e) => { e.stopPropagation(); if (!open) handleToggle(true); setTimeout(() => startInlineEdit(0), 100); }} title="Quick edit content">
+                      <PenLine className="h-3.5 w-3.5" />
                     </Button>
                   )}
                   {isAdmin && (
