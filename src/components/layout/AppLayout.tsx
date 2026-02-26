@@ -190,8 +190,10 @@ const ResizeHandle = memo(function ResizeHandle() {
   const hasDragged = useRef(false);
   const [active, setActive] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const { state, toggleSidebar } = useSidebar();
-  const isCollapsed = state === "collapsed";
+  const { state, toggleSidebar, open, setOpen } = useSidebar();
+  // Use a ref so the mousemove closure always reads the latest value
+  const stateRef = useRef(state);
+  useEffect(() => { stateRef.current = state; }, [state]);
 
   const onMouseDown = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
@@ -204,27 +206,27 @@ const ResizeHandle = memo(function ResizeHandle() {
     const onMouseMove = (ev: MouseEvent) => {
       if (!isDragging.current) return;
       hasDragged.current = true;
+      const collapsed = stateRef.current === "collapsed";
+      const x = ev.clientX;
 
-      const newWidth = ev.clientX;
-
-      // If dragging right while collapsed, expand first
-      if (isCollapsed && newWidth > 200) {
-        toggleSidebar();
-        document.documentElement.style.setProperty("--sidebar-width", `${Math.min(480, newWidth)}px`);
+      if (collapsed) {
+        // Only expand once dragged far enough right
+        if (x > 160) {
+          setOpen(true);
+          const clamped = Math.min(480, Math.max(180, x));
+          document.documentElement.style.setProperty("--sidebar-width", `${clamped}px`);
+        }
         return;
       }
 
-      // If dragging left too far, collapse
-      if (!isCollapsed && newWidth < 160) {
-        toggleSidebar();
+      // Collapse when dragged too far left
+      if (x < 140) {
+        setOpen(false);
         return;
       }
 
-      if (!isCollapsed) {
-        // Clamp between 180px and 480px
-        const clamped = Math.min(480, Math.max(180, newWidth));
-        document.documentElement.style.setProperty("--sidebar-width", `${clamped}px`);
-      }
+      const clamped = Math.min(480, Math.max(180, x));
+      document.documentElement.style.setProperty("--sidebar-width", `${clamped}px`);
     };
 
     const onMouseUp = () => {
@@ -232,7 +234,6 @@ const ResizeHandle = memo(function ResizeHandle() {
       setActive(false);
       document.body.style.cursor = "";
       document.body.style.userSelect = "";
-      // Persist width
       const w = document.documentElement.style.getPropertyValue("--sidebar-width");
       if (w) localStorage.setItem("sidebar-width", w);
       document.removeEventListener("mousemove", onMouseMove);
@@ -241,14 +242,14 @@ const ResizeHandle = memo(function ResizeHandle() {
 
     document.addEventListener("mousemove", onMouseMove);
     document.addEventListener("mouseup", onMouseUp);
-  }, [isCollapsed, toggleSidebar]);
+  }, [setOpen]);
 
   // Click (no drag) toggles expand/collapse
   const onClick = useCallback(() => {
-    if (!hasDragged.current) {
-      toggleSidebar();
-    }
+    if (!hasDragged.current) toggleSidebar();
   }, [toggleSidebar]);
+
+  const isCollapsed = state === "collapsed";
 
   return (
     <div
@@ -256,29 +257,20 @@ const ResizeHandle = memo(function ResizeHandle() {
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      title={isCollapsed ? "Click to expand sidebar" : "Drag to resize · Click to collapse"}
+      title={isCollapsed ? "Click or drag right to expand" : "Drag to resize · Click to collapse"}
       className={`
         relative z-20 flex items-center justify-center
-        shrink-0 select-none transition-all duration-150
-        ${isCollapsed ? "w-3 cursor-pointer" : "w-1 cursor-col-resize"}
-        ${active ? "bg-primary/30" : hovered ? "bg-primary/10" : "bg-transparent"}
+        shrink-0 select-none transition-colors duration-150
+        w-2 cursor-col-resize
+        ${active ? "bg-primary/20" : hovered ? "bg-primary/10" : "bg-transparent"}
       `}
     >
-      {/* Visual pill indicator */}
       <div className={`
         absolute rounded-full transition-all duration-200
-        ${active ? "w-1 h-10 bg-primary scale-y-110" :
+        ${active ? "w-1 h-12 bg-primary" :
           hovered ? "w-1 h-10 bg-primary/60" :
-          "w-0.5 h-8 bg-border"}
+          "w-px h-8 bg-border"}
       `} />
-      {/* Expand arrow shown when collapsed and hovered */}
-      {isCollapsed && hovered && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <svg width="10" height="10" viewBox="0 0 10 10" className="text-primary fill-current">
-            <path d="M2 5l4-4v8z"/>
-          </svg>
-        </div>
-      )}
     </div>
   );
 });
