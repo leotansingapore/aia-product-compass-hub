@@ -269,6 +269,14 @@ export function ObjectionHandlingDatabase() {
   const { createEntry, updateEntry, deleteEntry, addResponse, deleteResponse, isAdmin } = useObjectionMutations();
   const { user } = useSimplifiedAuth();
   const isMobile = useIsMobile();
+  const { scripts: allScripts, loading: scriptsLoading } = useScripts();
+  const [objScriptsOpen, setObjScriptsOpen] = useState(true);
+
+  // Scripts categorised as 'objection-handling' from the scripts table
+  const objectionScripts = useMemo(
+    () => allScripts.filter(s => s.category === "objection-handling"),
+    [allScripts]
+  );
 
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
