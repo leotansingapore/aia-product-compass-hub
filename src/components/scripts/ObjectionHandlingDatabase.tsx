@@ -567,6 +567,40 @@ export function ObjectionHandlingDatabase() {
         </div>
       )}
 
+      {/* Objection Handling Scripts (from scripts table) */}
+      {objectionScripts.length > 0 && (
+        <div className="mt-8">
+          <Collapsible open={objScriptsOpen} onOpenChange={setObjScriptsOpen}>
+            <CollapsibleTrigger asChild>
+              <div className="flex items-center gap-3 cursor-pointer group mb-4">
+                <div className="h-px flex-1 bg-border" />
+                <button className="flex items-center gap-2 text-sm font-semibold text-foreground px-3 py-1.5 rounded-full border bg-muted/50 hover:bg-muted transition-colors group-hover:border-primary/40">
+                  <span>📋</span>
+                  <span>Objection Scripts</span>
+                  <Badge variant="secondary" className="text-[10px] ml-1">{objectionScripts.length}</Badge>
+                  <ChevronDown className={`h-3.5 w-3.5 text-muted-foreground transition-transform ${objScriptsOpen ? "rotate-180" : ""}`} />
+                </button>
+                <div className="h-px flex-1 bg-border" />
+              </div>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              {scriptsLoading ? (
+                <div className="flex justify-center py-8"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div>
+              ) : (
+                <div className="space-y-3">
+                  {objectionScripts.map(script => {
+                    const firstVersion = script.versions[0];
+                    return (
+                      <ObjectionScriptCard key={script.id} script={script} firstVersion={firstVersion} />
+                    );
+                  })}
+                </div>
+              )}
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
+      )}
+
       {/* Editor Dialog */}
       <ObjectionEditorDialog
         open={editorOpen}
