@@ -14,7 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { ChevronDown, Plus, Pencil, Trash2, Search, X, Filter, Loader2, MessageSquare, Shield, Send, User } from "lucide-react";
+import { ChevronDown, Plus, Pencil, Trash2, Search, X, Filter, Loader2, MessageSquare, Shield, Send, User, Copy, Check } from "lucide-react";
 import { useObjections, useObjectionMutations } from "@/hooks/useObjections";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useIsMobile } from "@/hooks/use-mobile";
