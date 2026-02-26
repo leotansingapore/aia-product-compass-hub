@@ -16,7 +16,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Plus, Search, X, ChevronDown, Pencil, Trash2, Copy, Heart, Users, Filter, GripVertical, GitMerge, Loader2 } from "lucide-react";
+import { Plus, Search, X, ChevronDown, Trash2, Copy, Heart, Users, Filter, GripVertical, GitMerge, Loader2 } from "lucide-react";
 import { useMergeScripts } from "@/hooks/useMergeScripts";
 import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
@@ -102,6 +102,8 @@ function ServicingScriptCard({
   const [isSaving, setIsSaving] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
   const [titleDraft, setTitleDraft] = useState(script.stage);
+  const [addingTag, setAddingTag] = useState(false);
+  const [tagDraft, setTagDraft] = useState("");
   const [editingRole, setEditingRole] = useState(false);
   const [editingCategory, setEditingCategory] = useState(false);
   const [editingVersionTitle, setEditingVersionTitle] = useState<number | null>(null);
@@ -188,7 +190,8 @@ function ServicingScriptCard({
                   ) : (
                     <CardTitle
                       className={`text-sm sm:text-base leading-snug ${isAdmin && onMetadataSave ? 'cursor-text hover:underline decoration-dashed decoration-muted-foreground/40 underline-offset-4' : ''}`}
-                      onClick={(e) => { if (isAdmin && onMetadataSave) { e.stopPropagation(); setTitleDraft(script.stage); setEditingTitle(true); } }}
+                      onDoubleClick={(e) => { if (isAdmin && onMetadataSave) { e.stopPropagation(); setTitleDraft(script.stage); setEditingTitle(true); } }}
+                      title={isAdmin ? "Double-click to rename" : undefined}
                     >
                       {script.stage}
                     </CardTitle>
@@ -257,9 +260,59 @@ function ServicingScriptCard({
                   {script.versions.length > 1 && (
                     <Badge variant="secondary" className="text-[10px]">{script.versions.length} versions</Badge>
                   )}
+                  {/* Non-category tags — admin can add/remove inline */}
+                  {(script.tags || []).filter(t => !catSlugsSet.has(t)).map(tag => (
+                    <Badge key={tag} variant="outline" className={`text-[10px] text-muted-foreground gap-1 ${isAdmin && onMetadataSave ? 'pr-0.5' : ''}`}>
+                      {tag}
+                      {isAdmin && onMetadataSave && (
+                        <button
+                          style={{ cursor: 'pointer' }}
+                          className="ml-0.5 hover:text-destructive transition-colors"
+                          onClick={async (e) => {
+                            e.stopPropagation();
+                            const updated = (script.tags || []).filter(t => t !== tag);
+                            await saveMetaField({ tags: updated });
+                          }}
+                        >
+                          <X className="h-2.5 w-2.5" />
+                        </button>
+                      )}
+                    </Badge>
+                  ))}
+                  {isAdmin && onMetadataSave && (
+                    addingTag ? (
+                      <div onClick={(e) => e.stopPropagation()}>
+                        <Input
+                          value={tagDraft}
+                          onChange={(e) => setTagDraft(e.target.value)}
+                          placeholder="new tag…"
+                          className="h-5 text-[10px] w-20 px-1.5 py-0"
+                          autoFocus
+                          onKeyDown={async (e) => {
+                            if (e.key === 'Enter' && tagDraft.trim()) {
+                              e.preventDefault();
+                              const updated = [...(script.tags || []), tagDraft.trim().toLowerCase()];
+                              await saveMetaField({ tags: updated });
+                              setTagDraft(""); setAddingTag(false);
+                            } else if (e.key === 'Escape') { setTagDraft(""); setAddingTag(false); }
+                          }}
+                          onBlur={() => { setTagDraft(""); setAddingTag(false); }}
+                        />
+                      </div>
+                    ) : (
+                      <button
+                        style={{ cursor: 'pointer' }}
+                        className="inline-flex items-center gap-0.5 text-[10px] text-muted-foreground/50 hover:text-muted-foreground transition-colors border border-dashed border-muted-foreground/30 rounded px-1 py-0.5"
+                        onClick={(e) => { e.stopPropagation(); setAddingTag(true); }}
+                        title="Add tag"
+                      >
+                        <Plus className="h-2.5 w-2.5" /> tag
+                      </button>
+                    )
+                  )}
                 </div>
               </div>
-              {/* Action buttons */}
+              {/* Action buttons — only favourite + delete remain */}
               <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
                 {onToggleFavourite && (
                   <Button variant="ghost" size="icon" className="h-7 w-7" onClick={onToggleFavourite}>
@@ -267,10 +320,7 @@ function ServicingScriptCard({
                   </Button>
                 )}
                 {isAdmin && (
-                  <>
-                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={onEdit} title="Open full editor"><Pencil className="h-3.5 w-3.5 text-primary" /></Button>
-                    <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={onDelete}><Trash2 className="h-3.5 w-3.5" /></Button>
-                  </>
+                  <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }}><Trash2 className="h-3.5 w-3.5" /></Button>
                 )}
               </div>
             </div>
