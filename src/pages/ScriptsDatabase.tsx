@@ -2167,7 +2167,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
             {script.related_script_id && allScripts && (() => {
               const related = allScripts.find(s => s.id === script.related_script_id);
               if (!related) return null;
-              const relCat = categoryLabels[related.category as CategoryKey] || categoryLabels["faq"];
+              const relCat = getCategoryInfo(related.category);
               return (
                 <div className="mt-4 pt-3 border-t">
                   <button
@@ -2194,7 +2194,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   </p>
                   <div className="space-y-1">
                     {children.map(child => {
-                      const childCat = categoryLabels[child.category as CategoryKey] || categoryLabels["faq"];
+                      const childCat = getCategoryInfo(child.category);
                       return (
                         <button
                           key={child.id}
@@ -2537,7 +2537,7 @@ export default function ScriptsDatabase() {
         if (strictIncludes(s.stage, q)) return true;
         if (s.versions.some((v) => strictIncludes(v.content, q) || strictIncludes(v.author, q))) return true;
         if ((s.tags || []).some((t: string) => strictIncludes(t, q))) return true;
-        const catLabel = categoryLabels[s.category as CategoryKey]?.label || s.category;
+        const catLabel = getCategoryInfo(s.category).label;
         if (strictIncludes(s.category, q) || strictIncludes(catLabel, q)) return true;
         const audLabel = audienceLabels[s.target_audience || ""] || s.target_audience || "";
         if (strictIncludes(audLabel, q)) return true;
