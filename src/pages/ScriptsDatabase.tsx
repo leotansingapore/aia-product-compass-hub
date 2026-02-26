@@ -33,7 +33,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 
-type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "objection-handling" | "tips" | "servicing";
+type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "objection-handling" | "tips" | "servicing" | "sales-scripts";
 
 const categoryLabels: Record<string, { label: string; icon: typeof Phone; color: string }> = {
   "cold-calling": { label: "Cold Calling", icon: Phone, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
@@ -48,6 +48,7 @@ const categoryLabels: Record<string, { label: string; icon: typeof Phone; color:
   "objection-handling": { label: "Objection Handling", icon: HelpCircle, color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300" },
   "tips": { label: "Tips & Best Practices", icon: Lightbulb, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
   "servicing": { label: "Servicing", icon: Users, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
+  "sales-scripts": { label: "Sales Scripts", icon: MessageSquare, color: "bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-300" },
 };
 
 function getCategoryInfo(key: string) {

@@ -40,6 +40,7 @@ const BASE_CATEGORIES = [
   { value: "objection-handling", label: "Objection Handling" },
   { value: "tips", label: "Tips & Best Practices" },
   { value: "servicing", label: "Servicing" },
+  { value: "sales-scripts", label: "Sales Scripts" },
 ];
 
 // Returns label for any category value, including custom ones
