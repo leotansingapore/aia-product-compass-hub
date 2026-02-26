@@ -3416,6 +3416,29 @@ export default function ScriptsDatabase() {
 
       {/* Floating AI Chat Widget */}
       <ScriptsChatWidget initialMode={activeTab === "objections" ? "objections" : "scripts"} />
+
+      {/* Delete Category Confirmation */}
+      <AlertDialog open={!!deleteCategoryTarget} onOpenChange={(o) => !o && setDeleteCategoryTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Category</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete the <strong>{deleteCategoryTarget ? getCategoryInfo(deleteCategoryTarget).label : ''}</strong> category?
+              {deleteCategoryTarget && counts[deleteCategoryTarget] > 0 && (
+                <span className="block mt-2 text-amber-600 dark:text-amber-400 font-medium">
+                  ⚠️ {counts[deleteCategoryTarget]} script{counts[deleteCategoryTarget] !== 1 ? 's' : ''} will be moved to "Uncategorized".
+                </span>
+              )}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteCategory} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              Delete Category
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </PageLayout>
   );
 }
