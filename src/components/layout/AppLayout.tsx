@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, memo, useMemo } from "react";
-import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { MobileBottomNav } from "./MobileBottomNav";
 import { MobileHeader } from "./MobileHeader";
@@ -161,12 +161,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         <AppSidebar />
         
         <SidebarInset className="flex-1">
-          {/* Minimal top bar — just the sidebar toggle */}
-          <header className="flex h-10 items-center gap-2 px-3 sticky top-0 z-10">
-            <SidebarTrigger data-onboarding="sidebar-trigger" />
-          </header>
-
-          {/* Main Content */}
           <main className="flex-1">
             {children}
           </main>
