@@ -273,14 +273,11 @@ const AppSidebar = memo(function AppSidebar() {
       <Sidebar collapsible="icon" className="border-r">
         <SidebarHeader className="border-b py-3 px-3 group-data-[collapsible=icon]:px-2">
           {isCollapsed ? (
-            /* Collapsed state: logo + expand button stacked */
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
-                <BookOpen className="h-4 w-4 text-primary-foreground" />
-              </div>
+            /* Collapsed state: just the expand button, no logo */
+            <div className="flex items-center justify-center">
               <SidebarTrigger
                 data-onboarding="sidebar-trigger"
-                className="h-6 w-6 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors flex items-center justify-center"
+                className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors flex items-center justify-center"
                 aria-label="Expand sidebar"
                 title="Expand sidebar"
               />
