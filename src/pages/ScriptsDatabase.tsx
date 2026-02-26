@@ -2466,6 +2466,8 @@ export default function ScriptsDatabase() {
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingScript, setEditingScript] = useState<ScriptEntry | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<ScriptEntry | null>(null);
+  const [deleteCategoryTarget, setDeleteCategoryTarget] = useState<string | null>(null);
+  const [deletedCategories, setDeletedCategories] = useState<Set<string>>(new Set());
 
   // Auto-seed DB when empty
   const [seeding, setSeeding] = useState(false);
