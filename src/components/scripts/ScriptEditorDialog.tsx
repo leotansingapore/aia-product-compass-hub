@@ -1125,7 +1125,50 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                       <Select value={category} onValueChange={setCategory}>
                         <SelectTrigger><SelectValue /></SelectTrigger>
                         <SelectContent>
-                          {CATEGORIES.map(c => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}
+                          {allCategories.map(c => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}
+                          <div className="border-t mt-1 pt-1 px-1 pb-1">
+                            <div className="flex gap-1">
+                              <Input
+                                value={newCatInput}
+                                onChange={e => setNewCatInput(e.target.value)}
+                                onKeyDown={e => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    const trimmed = newCatInput.trim();
+                                    if (!trimmed) return;
+                                    const slug = trimmed.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+                                    if (!allCategories.find(c => c.value === slug)) {
+                                      setCustomCategories(prev => [...prev, { value: slug, label: trimmed }]);
+                                    }
+                                    setCategory(slug);
+                                    setNewCatInput("");
+                                  }
+                                }}
+                                placeholder="New category name…"
+                                className="h-7 text-xs flex-1"
+                                onClick={e => e.stopPropagation()}
+                              />
+                              <Button
+                                type="button"
+                                size="sm"
+                                variant="outline"
+                                className="h-7 px-2 shrink-0"
+                                onClick={e => {
+                                  e.stopPropagation();
+                                  const trimmed = newCatInput.trim();
+                                  if (!trimmed) return;
+                                  const slug = trimmed.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+                                  if (!allCategories.find(c => c.value === slug)) {
+                                    setCustomCategories(prev => [...prev, { value: slug, label: trimmed }]);
+                                  }
+                                  setCategory(slug);
+                                  setNewCatInput("");
+                                }}
+                              >
+                                <Plus className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          </div>
                         </SelectContent>
                       </Select>
                     </div>
