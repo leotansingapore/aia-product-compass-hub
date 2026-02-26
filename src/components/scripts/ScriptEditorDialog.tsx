@@ -27,7 +27,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-const CATEGORIES = [
+const BASE_CATEGORIES = [
   { value: "cold-calling", label: "Cold Calling" },
   { value: "initial-text", label: "Initial Texts" },
   { value: "post-call-text", label: "Post-Call Texts" },
@@ -36,10 +36,22 @@ const CATEGORIES = [
   { value: "ad-campaign", label: "Ad Campaign / Lead Gen" },
   { value: "referral", label: "Referral Scripts" },
   { value: "confirmation", label: "Appointment Confirmation" },
-  { value: "faq", label: "FAQ / Objections" },
+  { value: "faq", label: "FAQ" },
+  { value: "objection-handling", label: "Objection Handling" },
   { value: "tips", label: "Tips & Best Practices" },
   { value: "servicing", label: "Servicing" },
 ];
+
+// Returns label for any category value, including custom ones
+function getCategoryLabel(value: string, customCategories: { value: string; label: string }[] = []): string {
+  return (
+    BASE_CATEGORIES.find(c => c.value === value)?.label ||
+    customCategories.find(c => c.value === value)?.label ||
+    value.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
+  );
+}
+
+const CATEGORIES = BASE_CATEGORIES; // backward compat alias
 
 const TARGET_AUDIENCES = [
   { value: "warm-market", label: "Warm Market / Friends & Family" },
