@@ -660,9 +660,15 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
   };
 
   const handleSubmit = async () => {
-    if (!stage.trim()) return;
+    if (!stage.trim()) {
+      toast.error("Please enter a script title.");
+      return;
+    }
     const validVersions = versions.filter(v => v.content.trim());
-    if (validVersions.length === 0) return;
+    if (validVersions.length === 0) {
+      toast.error("Please add at least one version with content.");
+      return;
+    }
     setSaving(true);
     const attachments = pasteImages.map(img => ({ label: img.name, url: img.url, type: "image" as const }));
     await onSave({ stage, category, target_audience: targetAudience, script_role: scriptRole, tags, versions: validVersions, sort_order: sortOrder, related_script_id: relatedScriptId, ...(attachments.length > 0 ? { attachments } : {}) } as any);
@@ -1195,7 +1201,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Button>
               ) : (
-                <Button onClick={handleSubmit} disabled={saving || !stage.trim()}>
+                <Button onClick={handleSubmit} disabled={saving || !stage.trim() || versions.every(v => !v.content.trim())}>
                   {saving ? "Saving..." : isEditing ? "Save Changes" : "Create Script"}
                 </Button>
               )}
