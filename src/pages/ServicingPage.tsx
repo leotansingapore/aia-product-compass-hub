@@ -16,7 +16,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Plus, Search, X, ChevronDown, Pencil, PenLine, Trash2, Copy, Heart, Users, Filter, GripVertical, GitMerge, Loader2 } from "lucide-react";
+import { Plus, Search, X, ChevronDown, Pencil, Trash2, Copy, Heart, Users, Filter, GripVertical, GitMerge, Loader2 } from "lucide-react";
 import { useMergeScripts } from "@/hooks/useMergeScripts";
 import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
@@ -264,11 +264,6 @@ function ServicingScriptCard({
                 {onToggleFavourite && (
                   <Button variant="ghost" size="icon" className="h-7 w-7" onClick={onToggleFavourite}>
                     <Heart className={`h-3.5 w-3.5 ${isFavourite ? 'fill-red-500 text-red-500' : ''}`} />
-                  </Button>
-                )}
-                {isAuthenticated && onInlineSave && (
-                  <Button variant="ghost" size="icon" className="h-7 w-7" title="Quick edit content" onClick={(e) => { e.stopPropagation(); if (!open) setOpen(true); setTimeout(() => setEditingVersionIdx(0), 100); setEditContent(script.versions[0]?.content || ""); }}>
-                    <PenLine className="h-3.5 w-3.5" />
                   </Button>
                 )}
                 {isAdmin && (
