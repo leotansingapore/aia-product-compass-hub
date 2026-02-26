@@ -273,18 +273,19 @@ const AppSidebar = memo(function AppSidebar() {
       <Sidebar collapsible="icon" className="border-r">
         <SidebarHeader className="border-b py-3 px-3 group-data-[collapsible=icon]:px-2">
           <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
-            {/* Logo — acts as expand trigger when collapsed */}
-            <SidebarTrigger
-              data-onboarding="sidebar-trigger"
-              className="p-0 h-auto w-auto bg-transparent hover:bg-transparent [&_svg]:hidden group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center hidden"
-              aria-label="Expand sidebar"
-            >
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0 hover:opacity-80 transition-opacity" title="Expand sidebar">
-                <BookOpen className="h-4 w-4 text-primary-foreground" />
-              </div>
-            </SidebarTrigger>
-            {/* Logo (expanded state) */}
-            {!isCollapsed && (
+            {/* Collapsed state: entire header is the expand button */}
+            {isCollapsed ? (
+              <SidebarTrigger
+                data-onboarding="sidebar-trigger"
+                className="p-0 h-auto w-auto bg-transparent hover:bg-transparent [&_svg]:hidden flex items-center justify-center"
+                aria-label="Expand sidebar"
+                title="Expand sidebar"
+              >
+                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0 hover:opacity-80 transition-opacity cursor-pointer">
+                  <BookOpen className="h-4 w-4 text-primary-foreground" />
+                </div>
+              </SidebarTrigger>
+            ) : (
               <>
                 <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
                   <BookOpen className="h-4 w-4 text-primary-foreground" />
@@ -297,6 +298,7 @@ const AppSidebar = memo(function AppSidebar() {
                 <SidebarTrigger
                   className="shrink-0 h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
                   aria-label="Collapse sidebar"
+                  title="Collapse sidebar"
                 />
               </>
             )}

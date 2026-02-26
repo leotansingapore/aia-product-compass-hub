@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, memo, useMemo } from "react";
+import React, { ReactNode, useEffect, memo, useMemo, useRef, useState, useCallback } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { MobileBottomNav } from "./MobileBottomNav";
@@ -57,6 +57,14 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
       if (match) return match[1] === 'true';
     } catch {}
     return true;
+  }, []);
+
+  // Restore saved sidebar width
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("sidebar-width");
+      if (saved) document.documentElement.style.setProperty("--sidebar-width", saved);
+    } catch {}
   }, []);
 
   // Auto-sync disabled to improve performance
@@ -159,6 +167,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
     <SidebarProvider defaultOpen={sidebarDefaultOpen}>
       <div className="min-h-screen flex w-full">
         <AppSidebar />
+        <ResizeHandle />
         
         <SidebarInset className="flex-1 min-w-0">
           <main className="flex-1 page-transition">
@@ -172,6 +181,62 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
       <OnboardingTutorial />
       <OnboardingHelpButton />
     </SidebarProvider>
+  );
+});
+
+/** Drag handle that sits on the right edge of the sidebar */
+const ResizeHandle = memo(function ResizeHandle() {
+  const isDragging = useRef(false);
+  const [active, setActive] = useState(false);
+
+  const onMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    isDragging.current = true;
+    setActive(true);
+    document.body.style.cursor = "col-resize";
+    document.body.style.userSelect = "none";
+
+    const onMouseMove = (ev: MouseEvent) => {
+      if (!isDragging.current) return;
+      // Clamp between 180px and 480px
+      const newWidth = Math.min(480, Math.max(180, ev.clientX));
+      document.documentElement.style.setProperty("--sidebar-width", `${newWidth}px`);
+    };
+
+    const onMouseUp = () => {
+      isDragging.current = false;
+      setActive(false);
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+      // Persist
+      const w = document.documentElement.style.getPropertyValue("--sidebar-width");
+      if (w) localStorage.setItem("sidebar-width", w);
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseup", onMouseUp);
+    };
+
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
+  }, []);
+
+  return (
+    <div
+      onMouseDown={onMouseDown}
+      title="Drag to resize"
+      className={`
+        relative z-20 flex items-center justify-center
+        w-1 shrink-0 cursor-col-resize select-none
+        transition-colors duration-150
+        ${active ? "bg-primary/40" : "bg-transparent hover:bg-primary/20"}
+      `}
+    >
+      {/* Visual pill indicator */}
+      <div className={`
+        absolute rounded-full w-1 h-8
+        transition-all duration-150
+        ${active ? "bg-primary scale-y-110" : "bg-border group-hover:bg-primary/50"}
+      `} />
+    </div>
   );
 });
 
