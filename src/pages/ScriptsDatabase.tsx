@@ -1817,6 +1817,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
               ) : (
                 <Tabs defaultValue="0">
                   <TabsList className="mb-3 flex-wrap h-auto gap-1 w-full justify-start">
+                    <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider px-1 self-center mr-1">Versions</span>
                     {script.versions.map((v, i) => (
                       <TabsTrigger key={i} value={String(i)} className="text-xs relative group">
                         {editingVersionTitle === i && isAdmin ? (

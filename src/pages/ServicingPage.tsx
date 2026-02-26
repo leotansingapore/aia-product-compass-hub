@@ -286,6 +286,7 @@ function ServicingScriptCard({
             <Tabs defaultValue="0">
               <div className="flex items-center gap-1 flex-wrap mb-3">
                 <TabsList className="flex-wrap h-auto gap-1 justify-start">
+                  <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider px-1 self-center mr-1">Versions</span>
                   {/* Official versions */}
                   {script.versions.map((v, i) => (
                     <TabsTrigger key={i} value={String(i)} className="text-xs relative group">
