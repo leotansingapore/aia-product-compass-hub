@@ -13,7 +13,8 @@ const EMPTY_STATE: MergeState = { sourceId: null, targetId: null, dragOverId: nu
 
 export function useMergeScripts(
   allScripts: ScriptEntry[],
-  onSave: (scriptId: string, versions: ScriptVersion[]) => Promise<void>
+  onSave: (scriptId: string, versions: ScriptVersion[]) => Promise<void>,
+  onMergeComplete?: (targetId: string, previousVersions: ScriptVersion[], targetName: string) => void,
 ) {
   const [mergeState, setMergeState] = useState<MergeState>(EMPTY_STATE);
 
@@ -125,6 +126,8 @@ export function useMergeScripts(
   const confirmMerge = useCallback(async () => {
     if (!pendingMerge) return;
     const { source, target } = pendingMerge;
+    // Snapshot old versions for undo
+    const previousVersions = [...target.versions];
     const newVersions: ScriptVersion[] = [
       ...target.versions,
       ...source.versions.map(v => ({
@@ -135,7 +138,8 @@ export function useMergeScripts(
     ];
     await onSave(target.id, newVersions);
     setPendingMerge(null);
-  }, [pendingMerge, onSave]);
+    onMergeComplete?.(target.id, previousVersions, target.stage);
+  }, [pendingMerge, onSave, onMergeComplete]);
 
   const cancelMerge = useCallback(() => setPendingMerge(null), []);
 
