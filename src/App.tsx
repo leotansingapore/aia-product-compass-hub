@@ -123,6 +123,7 @@ const App = () => (
 
 {/* Script Flows */}
 <Route path="/flows" element={<ScriptFlows />} />
+<Route path="/flows/:flowId" element={<ScriptFlows />} />
 <Route path="/flows/view/:flowId" element={<PublicFlowView />} />
 
 {/* Knowledge Base */}

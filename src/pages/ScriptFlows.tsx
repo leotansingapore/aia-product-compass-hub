@@ -22,6 +22,7 @@ import { AIFlowWizard } from '@/components/flows/AIFlowWizard';
 import { NodeSearch } from '@/components/flows/controls/NodeSearch';
 import { toast } from 'sonner';
 import { ScriptsTabBar } from '@/components/scripts/ScriptsTabBar';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDelete, userId, onOpenAIWizard }: {
   flows: ReturnType<typeof useScriptFlows>['flows'];
@@ -115,8 +116,12 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
 export default function ScriptFlows() {
   const { flows, isLoading, createFlow, updateFlow, deleteFlow, userId } = useScriptFlows();
   const { scripts } = useScripts();
+  const navigate = useNavigate();
+  const { flowId: urlFlowId } = useParams<{ flowId: string }>();
 
-  const [activeFlowId, setActiveFlowId] = useState<string | null>(null);
+  // Derive activeFlowId from URL param — fall back to null (list view)
+  const activeFlowId = urlFlowId || null;
+
   const [localNodes, setLocalNodes] = useState<FlowNode[]>([]);
   const [localEdges, setLocalEdges] = useState<FlowEdge[]>([]);
   const [flowTitle, setFlowTitle] = useState('');
@@ -132,16 +137,25 @@ export default function ScriptFlows() {
 
   const controlsRef = useRef<FlowCanvasControls | null>(null);
 
-  const openFlow = useCallback((id: string) => {
-    const flow = flows.find(f => f.id === id);
+  // Sync local state when active flow changes (URL-driven)
+  useEffect(() => {
+    if (!activeFlowId) return;
+    const flow = flows.find(f => f.id === activeFlowId);
     if (!flow) return;
-    setActiveFlowId(id);
     setLocalNodes([...flow.nodes]);
     setLocalEdges([...flow.edges]);
     setFlowTitle(flow.title);
     setFlowDescription(flow.description || '');
     setHasUnsaved(false);
-  }, [flows]);
+  }, [activeFlowId, flows.length]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const openFlow = useCallback((id: string) => {
+    navigate(`/flows/${id}`);
+  }, [navigate]);
+
+  const closeFlow = useCallback(() => {
+    navigate('/flows');
+  }, [navigate]);
 
   const createFromTemplate = useCallback(async (index: number) => {
     const tpl = FLOW_TEMPLATES[index];
@@ -150,20 +164,9 @@ export default function ScriptFlows() {
       nodes: tpl.nodes, edges: tpl.edges,
     });
     if (result) {
-      setTimeout(() => {
-        const created = flows.find(f => f.id === (result as any).id);
-        if (created) openFlow(created.id);
-        else {
-          setActiveFlowId((result as any).id);
-          setLocalNodes([...tpl.nodes]);
-          setLocalEdges([...tpl.edges]);
-          setFlowTitle(tpl.title);
-          setFlowDescription(tpl.description);
-          setHasUnsaved(false);
-        }
-      }, 500);
+      setTimeout(() => openFlow((result as any).id), 500);
     }
-  }, [createFlow, flows, openFlow]);
+  }, [createFlow, openFlow]);
 
   const handleCreateNew = async () => {
     if (!newTitle.trim()) return;
@@ -172,31 +175,15 @@ export default function ScriptFlows() {
     setShowNewDialog(false);
     setNewTitle('');
     setNewDesc('');
-    if (result) {
-      setActiveFlowId((result as any).id);
-      setLocalNodes([startNode]);
-      setLocalEdges([]);
-      setFlowTitle(newTitle);
-      setFlowDescription(newDesc);
-      setHasUnsaved(false);
-    }
+    if (result) openFlow((result as any).id);
   };
 
   const handleAIFlowGenerated = async (data: { title: string; description: string; nodes: any[]; edges: any[] }) => {
     const result = await createFlow.mutateAsync({
-      title: data.title,
-      description: data.description,
-      nodes: data.nodes,
-      edges: data.edges,
+      title: data.title, description: data.description,
+      nodes: data.nodes, edges: data.edges,
     });
-    if (result) {
-      setActiveFlowId((result as any).id);
-      setLocalNodes([...data.nodes]);
-      setLocalEdges([...data.edges]);
-      setFlowTitle(data.title);
-      setFlowDescription(data.description || '');
-      setHasUnsaved(false);
-    }
+    if (result) openFlow((result as any).id);
   };
 
   const handleSave = useCallback(async () => {

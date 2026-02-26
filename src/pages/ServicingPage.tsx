@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
@@ -69,13 +69,14 @@ const roleLabels: Record<string, string> = {
 // ─── Script Card ──────────────────────────────────────────────────────────────
 
 function ServicingScriptCard({
-  script, isAdmin, isAuthenticated, onEdit, onDelete, isOpenByUrl, onInlineSave, onMetadataSave, isFavourite, onToggleFavourite, categorySlugs,
+  script, isAdmin, isAuthenticated, onEdit, onDelete, isOpenByUrl, onToggle, onInlineSave, onMetadataSave, isFavourite, onToggleFavourite, categorySlugs,
   mergeSourceId, mergeOverId, tapSelectMode,
   onMergeDragStart, onMergeDragEnd, onMergeOver, onMergeLeave, onMergeDrop,
   onTapSelect, onTapTarget,
 }: {
   script: ScriptEntry; isAdmin: boolean; isAuthenticated?: boolean; onEdit: () => void; onDelete: () => void;
   isOpenByUrl: boolean;
+  onToggle?: (open: boolean) => void;
   onInlineSave?: (scriptId: string, versions: ScriptVersion[]) => Promise<void>;
   onMetadataSave?: (scriptId: string, updates: Partial<ScriptEntry>) => Promise<void>;
   isFavourite?: boolean; onToggleFavourite?: () => void;
@@ -86,6 +87,7 @@ function ServicingScriptCard({
   onTapSelect?: (id: string) => void; onTapTarget?: (id: string) => void;
 }) {
   const [open, setOpen] = useState(isOpenByUrl);
+  const handleOpenChange = (val: boolean) => { setOpen(val); onToggle?.(val); };
   const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
 
   // Community user versions — shown as extra tabs
@@ -147,7 +149,7 @@ function ServicingScriptCard({
       onDrop={(e) => { e.preventDefault(); if (mergeSourceId && mergeSourceId !== script.id) onMergeDrop?.(script.id); }}
       onClick={() => { if (tapSelectMode && mergeSourceId && mergeSourceId !== script.id) onTapTarget?.(script.id); }}
     >
-      <Collapsible open={open} onOpenChange={setOpen}>
+      <Collapsible open={open} onOpenChange={handleOpenChange}>
         <CollapsibleTrigger asChild>
           <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6">
             <div className="flex items-start sm:items-center gap-2 sm:gap-3">
@@ -471,16 +473,18 @@ function ServicingScriptCard({
 export default function ServicingPage() {
   const navigate = useNavigate();
   const { scriptId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const internalNavRef = useRef(false);
   const { scripts: dbScripts, loading, refetch } = useScripts();
   const { updateScript, deleteScript, createScript, isAdmin } = useScriptsMutations();
   const { user } = useSimplifiedAuth();
   const { favouriteIds, toggleFavourite } = useScriptFavourites();
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [activeAudience, setActiveAudience] = useState("all");
-  const [activeRole, setActiveRole] = useState("all");
-  const [activeTag, setActiveTag] = useState("all");
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
+  const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "all");
+  const [activeAudience, setActiveAudience] = useState(searchParams.get("audience") || "all");
+  const [activeRole, setActiveRole] = useState(searchParams.get("role") || "all");
+  const [activeTag, setActiveTag] = useState(searchParams.get("tag") || "all");
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingScript, setEditingScript] = useState<ScriptEntry | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<ScriptEntry | null>(null);
@@ -604,6 +608,42 @@ export default function ServicingPage() {
     await updateScript(scriptId, updates);
     refetch();
   }, [updateScript, refetch]);
+
+  // URL sync: navigate to /servicing/:id when a card is toggled open
+  const navigateToScriptInternal = useCallback((id: string) => {
+    internalNavRef.current = true;
+    const params = new URLSearchParams();
+    if (activeCategory !== "all") params.set("category", activeCategory);
+    if (activeAudience !== "all") params.set("audience", activeAudience);
+    if (activeRole !== "all") params.set("role", activeRole);
+    if (activeTag !== "all") params.set("tag", activeTag);
+    if (searchQuery) params.set("q", searchQuery);
+    const qs = params.toString();
+    navigate(`/servicing/${id}${qs ? `?${qs}` : ''}`, { replace: true });
+  }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
+
+  // Sync filter query params to URL
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (searchQuery) params.set("q", searchQuery);
+    if (activeCategory !== "all") params.set("category", activeCategory);
+    if (activeAudience !== "all") params.set("audience", activeAudience);
+    if (activeRole !== "all") params.set("role", activeRole);
+    if (activeTag !== "all") params.set("tag", activeTag);
+    setSearchParams(params, { replace: true });
+  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
+
+  // When navigating to a specific script via URL (external), apply URL filter params
+  useEffect(() => {
+    if (scriptId) {
+      if (internalNavRef.current) { internalNavRef.current = false; return; }
+      setActiveCategory(searchParams.get("category") || "all");
+      setActiveAudience(searchParams.get("audience") || "all");
+      setActiveRole(searchParams.get("role") || "all");
+      setActiveTag(searchParams.get("tag") || "all");
+      setSearchQuery(searchParams.get("q") || "");
+    }
+  }, [scriptId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleDelete = async () => {
     if (!deleteTarget) return;
@@ -813,6 +853,13 @@ export default function ServicingPage() {
                 isOpenByUrl={scriptId === script.id}
                 onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                 onDelete={() => setDeleteTarget(script)}
+                onToggle={(open) => {
+                  if (open) {
+                    navigateToScriptInternal(script.id);
+                  } else if (scriptId === script.id) {
+                    navigate('/servicing', { replace: true });
+                  }
+                }}
                  onInlineSave={handleInlineSave}
                  onMetadataSave={handleMetadataSave}
                  isFavourite={favouriteIds.has(script.id)}
