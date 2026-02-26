@@ -33,7 +33,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 
-type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "objection-handling" | "tips" | "servicing" | "sales-scripts";
+type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "fact-finding" | "tips" | "servicing" | "sales-scripts";
 
 const categoryLabels: Record<string, { label: string; icon: typeof Phone; color: string }> = {
   "cold-calling": { label: "Cold Calling", icon: Phone, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
