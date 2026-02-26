@@ -438,7 +438,11 @@ function ServicingScriptCard({
                       </div>
                     </div>
                   ) : (
-                    <div className="prose prose-sm dark:prose-invert max-w-none text-sm">
+                    <div
+                      className={`prose prose-sm dark:prose-invert max-w-none text-sm rounded-md ${isAuthenticated && onInlineSave ? 'cursor-text hover:bg-muted/30 px-2 py-1 -mx-2 -my-1 transition-colors' : ''}`}
+                      onDoubleClick={() => { if (isAuthenticated && onInlineSave) { setEditingVersionIdx(i); setEditContent(v.content); } }}
+                      title={isAuthenticated && onInlineSave ? "Double-click to edit" : undefined}
+                    >
                       <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
                         {v.content}
                       </ReactMarkdown>
@@ -450,9 +454,7 @@ function ServicingScriptCard({
                           <Copy className="h-3 w-3" /> Copy
                         </Button>
                         {isAuthenticated && onInlineSave && (
-                          <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={() => { setEditingVersionIdx(i); setEditContent(v.content); }}>
-                            <Pencil className="h-3 w-3" /> Edit
-                          </Button>
+                          <span className="text-[10px] text-muted-foreground self-center ml-1 italic">double-click to edit</span>
                         )}
                       </div>
                     </div>
@@ -477,7 +479,11 @@ function ServicingScriptCard({
                       </div>
                     </div>
                   ) : (
-                    <div className="prose prose-sm dark:prose-invert max-w-none text-sm">
+                    <div
+                      className={`prose prose-sm dark:prose-invert max-w-none text-sm rounded-md ${currentUserId === uv.user_id ? 'cursor-text hover:bg-muted/30 px-2 py-1 -mx-2 -my-1 transition-colors' : ''}`}
+                      onDoubleClick={() => { if (currentUserId === uv.user_id) { setEditUserVersionContent(uv.content); setEditingUserVersionId(uv.id); } }}
+                      title={currentUserId === uv.user_id ? "Double-click to edit" : undefined}
+                    >
                       <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
                         {uv.content}
                       </ReactMarkdown>
@@ -490,9 +496,7 @@ function ServicingScriptCard({
                         </Button>
                         {currentUserId === uv.user_id && (
                           <>
-                            <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={() => { setEditUserVersionContent(uv.content); setEditingUserVersionId(uv.id); }}>
-                              <Pencil className="h-3 w-3" /> Edit
-                            </Button>
+                            <span className="text-[10px] text-muted-foreground self-center ml-1 italic">double-click to edit</span>
                             <Button variant="outline" size="sm" className="h-7 text-xs gap-1 text-destructive hover:text-destructive" onClick={() => deleteVersion.mutate(uv.id)}>
                               <Trash2 className="h-3 w-3" /> Delete
                             </Button>
