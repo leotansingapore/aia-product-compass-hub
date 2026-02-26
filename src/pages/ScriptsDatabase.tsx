@@ -33,9 +33,9 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 
-type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips" | "servicing";
+type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "objection-handling" | "tips" | "servicing";
 
-const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; color: string }> = {
+const categoryLabels: Record<string, { label: string; icon: typeof Phone; color: string }> = {
   "cold-calling": { label: "Cold Calling", icon: Phone, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
   "initial-text": { label: "Initial Texts", icon: MessageSquare, color: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300" },
   "post-call-text": { label: "Post-Call Texts", icon: MessageSquare, color: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300" },
@@ -45,9 +45,18 @@ const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; c
   "referral": { label: "Referral Scripts", icon: UserPlus, color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300" },
   "confirmation": { label: "Appointment Confirmation", icon: CalendarCheck, color: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300" },
   "faq": { label: "FAQ", icon: HelpCircle, color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
+  "objection-handling": { label: "Objection Handling", icon: HelpCircle, color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300" },
   "tips": { label: "Tips & Best Practices", icon: Lightbulb, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
   "servicing": { label: "Servicing", icon: Users, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
 };
+
+function getCategoryInfo(key: string) {
+  return categoryLabels[key] ?? {
+    label: key.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
+    icon: HelpCircle,
+    color: "bg-muted text-muted-foreground",
+  };
+}
 
 // Sub-type labels for Follow-Up grouping
 const followUpSubTypeLabels: Record<string, { label: string; icon: string; description: string }> = {
