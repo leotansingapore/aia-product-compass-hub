@@ -288,14 +288,14 @@ function ServicingScriptCard({
                       {script.versions.length + userVersions.length}
                     </span>
                   </div>
-                  <div className="flex items-center gap-1.5 flex-wrap">
+                  <TabsList className="bg-transparent p-0 h-auto gap-1.5 flex-wrap justify-start">
                     {/* Official versions as pill buttons */}
                     {script.versions.map((v, i) => (
                       <TabsTrigger
                         key={i}
                         value={String(i)}
                         style={{ cursor: 'pointer' }}
-                        className="text-xs px-3 py-1 rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors relative group"
+                        className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
                       >
                         {editingVersionTitle === i && isAuthenticated && onInlineSave ? (
                           <span onClick={(e) => e.stopPropagation()}>
@@ -338,7 +338,7 @@ function ServicingScriptCard({
                         key={`uv-${uv.id}`}
                         value={`uv-${uv.id}`}
                         style={{ cursor: 'pointer' }}
-                        className="text-xs px-3 py-1 rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
+                        className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
                       >
                         {editingUserVersionId === uv.id && currentUserId === uv.user_id ? (
                           <span onClick={(e) => e.stopPropagation()}>
@@ -384,7 +384,7 @@ function ServicingScriptCard({
                         <Plus className="h-3 w-3" /> Add version
                       </button>
                     )}
-                  </div>
+                  </TabsList>
                 </div>
               )}
 
