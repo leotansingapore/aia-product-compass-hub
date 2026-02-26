@@ -2466,6 +2466,8 @@ export default function ScriptsDatabase() {
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingScript, setEditingScript] = useState<ScriptEntry | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<ScriptEntry | null>(null);
+  const [deleteCategoryTarget, setDeleteCategoryTarget] = useState<string | null>(null);
+  const [deletedCategories, setDeletedCategories] = useState<Set<string>>(new Set());
 
   // Auto-seed DB when empty
   const [seeding, setSeeding] = useState(false);
@@ -2787,6 +2789,32 @@ export default function ScriptsDatabase() {
     refetch();
   };
 
+  const handleDeleteCategory = async () => {
+    if (!deleteCategoryTarget) return;
+    const slug = deleteCategoryTarget;
+    // Reassign all scripts in this category to "uncategorized"
+    const { error } = await supabase
+      .from('scripts')
+      .update({ category: 'uncategorized' } as any)
+      .eq('category', slug);
+    if (error) {
+      toast.error('Failed to delete category');
+    } else {
+      setDeletedCategories(prev => new Set([...prev, slug]));
+      if (activeCategory === slug) setActiveCategory('all');
+      toast.success(`Category "${getCategoryInfo(slug).label}" deleted — scripts moved to Uncategorized`);
+      refetch();
+    }
+    setDeleteCategoryTarget(null);
+  };
+
+  // All visible categories: built-in + any from DB that aren't deleted
+  const allCategoriesWithData = useMemo(() => {
+    const dbCats = new Set(dbScripts.map(s => s.category).filter(Boolean));
+    const combined = new Set([...Object.keys(categoryLabels), ...dbCats]);
+    return Array.from(combined).filter(k => !deletedCategories.has(k) && counts[k] > 0);
+  }, [dbScripts, deletedCategories, counts]);
+
   return (
     <PageLayout
       title="Scripts Database - FINternship"
@@ -2907,10 +2935,22 @@ export default function ScriptsDatabase() {
                     </SelectTrigger>
                     <SelectContent className="bg-popover z-50">
                       <SelectItem value="all">All ({counts.all})</SelectItem>
-                      {activeCategoriesWithData.map((key) => (
-                        <SelectItem key={key} value={key}>
-                          {getCategoryInfo(key).label} ({counts[key]})
-                        </SelectItem>
+                      {allCategoriesWithData.map((key) => (
+                        <div key={key} className="flex items-center">
+                          <SelectItem value={key} className="flex-1">
+                            {getCategoryInfo(key).label} ({counts[key] ?? 0})
+                          </SelectItem>
+                          {isAdmin && (
+                            <button
+                              type="button"
+                              className="pr-2 text-muted-foreground hover:text-destructive transition-colors shrink-0"
+                              onClick={(e) => { e.stopPropagation(); setDeleteCategoryTarget(key); }}
+                              title={`Delete category "${getCategoryInfo(key).label}"`}
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </button>
+                          )}
+                        </div>
                       ))}
                     </SelectContent>
                   </Select>
@@ -3007,10 +3047,22 @@ export default function ScriptsDatabase() {
                   </SelectTrigger>
                   <SelectContent className="bg-popover z-50">
                     <SelectItem value="all">All ({counts.all})</SelectItem>
-                    {activeCategoriesWithData.map((key) => (
-                      <SelectItem key={key} value={key}>
-                        {getCategoryInfo(key).label} ({counts[key]})
-                      </SelectItem>
+                    {allCategoriesWithData.map((key) => (
+                      <div key={key} className="flex items-center">
+                        <SelectItem value={key} className="flex-1">
+                          {getCategoryInfo(key).label} ({counts[key] ?? 0})
+                        </SelectItem>
+                        {isAdmin && (
+                          <button
+                            type="button"
+                            className="pr-2 text-muted-foreground hover:text-destructive transition-colors shrink-0"
+                            onClick={(e) => { e.stopPropagation(); setDeleteCategoryTarget(key); }}
+                            title={`Delete category "${getCategoryInfo(key).label}"`}
+                          >
+                            <Trash2 className="h-3 w-3" />
+                          </button>
+                        )}
+                      </div>
                     ))}
                   </SelectContent>
                 </Select>
@@ -3364,6 +3416,29 @@ export default function ScriptsDatabase() {
 
       {/* Floating AI Chat Widget */}
       <ScriptsChatWidget initialMode={activeTab === "objections" ? "objections" : "scripts"} />
+
+      {/* Delete Category Confirmation */}
+      <AlertDialog open={!!deleteCategoryTarget} onOpenChange={(o) => !o && setDeleteCategoryTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Category</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete the <strong>{deleteCategoryTarget ? getCategoryInfo(deleteCategoryTarget).label : ''}</strong> category?
+              {deleteCategoryTarget && counts[deleteCategoryTarget] > 0 && (
+                <span className="block mt-2 text-amber-600 dark:text-amber-400 font-medium">
+                  ⚠️ {counts[deleteCategoryTarget]} script{counts[deleteCategoryTarget] !== 1 ? 's' : ''} will be moved to "Uncategorized".
+                </span>
+              )}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteCategory} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              Delete Category
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </PageLayout>
   );
 }
