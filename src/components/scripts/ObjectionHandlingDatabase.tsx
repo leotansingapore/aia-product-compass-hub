@@ -264,6 +264,78 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
   );
 }
 
+import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
+
+function ObjectionScriptCard({ script, firstVersion }: { script: ScriptEntry; firstVersion: ScriptVersion | undefined }) {
+  const [open, setOpen] = useState(false);
+  const [copiedVersionIdx, setCopiedVersionIdx] = useState<number | null>(null);
+
+  const handleCopy = (content: string, idx: number) => {
+    navigator.clipboard.writeText(content);
+    setCopiedVersionIdx(idx);
+    setTimeout(() => setCopiedVersionIdx(null), 2000);
+  };
+
+  return (
+    <Collapsible open={open} onOpenChange={setOpen}>
+      <Card className={`overflow-hidden transition-shadow ${open ? "shadow-md ring-1 ring-primary/20" : ""}`}>
+        <CollapsibleTrigger asChild>
+          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6">
+            <div className="flex items-start sm:items-center gap-2 sm:gap-3">
+              <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground shrink-0 mt-0.5 sm:mt-0" />
+              <div className="min-w-0 flex-1">
+                <div className="flex items-start justify-between gap-2">
+                  <CardTitle className="text-sm sm:text-base leading-snug">{script.stage}</CardTitle>
+                  <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform shrink-0 mt-0.5 ${open ? "rotate-180" : ""}`} />
+                </div>
+                <div className="flex items-center gap-1 sm:gap-1.5 mt-1.5 flex-wrap">
+                  <Badge variant="secondary" className="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+                    🛡️ Objection Script
+                  </Badge>
+                  {script.versions.length > 1 && (
+                    <Badge variant="outline" className="text-[10px]">{script.versions.length} versions</Badge>
+                  )}
+                  {(script.tags || []).slice(0, 3).map(tag => (
+                    <Badge key={tag} variant="outline" className="text-[10px] font-normal">#{tag}</Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </CardHeader>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <CardContent className="pt-0 px-3 sm:px-6 pb-4 space-y-4">
+            {script.versions.map((v, idx) => (
+              <div key={idx} className="border rounded-lg p-3 bg-card">
+                {script.versions.length > 1 && (
+                  <div className="text-xs font-semibold text-muted-foreground mb-2 flex items-center justify-between">
+                    <span>{v.author || `Version ${idx + 1}`}</span>
+                    <button onClick={() => handleCopy(v.content, idx)} className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
+                      {copiedVersionIdx === idx ? <><Check className="h-3 w-3 text-green-500" /> Copied</> : <><Copy className="h-3 w-3" /> Copy</>}
+                    </button>
+                  </div>
+                )}
+                <div className="prose prose-sm dark:prose-invert max-w-none">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+                    {v.content}
+                  </ReactMarkdown>
+                </div>
+                {script.versions.length === 1 && (
+                  <div className="mt-3 pt-3 border-t flex justify-end">
+                    <button onClick={() => handleCopy(v.content, idx)} className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
+                      {copiedVersionIdx === idx ? <><Check className="h-3 w-3 text-green-500" /> Copied</> : <><Copy className="h-3 w-3" /> Copy</>}
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </CardContent>
+        </CollapsibleContent>
+      </Card>
+    </Collapsible>
+  );
+}
+
 export function ObjectionHandlingDatabase() {
   const { entries, responses, loading, refetch } = useObjections();
   const { createEntry, updateEntry, deleteEntry, addResponse, deleteResponse, isAdmin } = useObjectionMutations();
