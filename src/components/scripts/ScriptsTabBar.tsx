@@ -1,5 +1,4 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 const tabs = [
   { key: "scripts",    label: "Sales Scripts", emoji: "📝", path: "/scripts" },
@@ -12,14 +11,12 @@ const tabs = [
 export function ScriptsTabBar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const isMobile = useIsMobile();
 
   const currentKey = tabs.find(t => location.pathname.startsWith(t.path))?.key ?? "scripts";
 
   return (
-    <div className="mb-4 sm:mb-5 -mx-3 sm:mx-0">
-      {/* Mobile: sticky at very top replacing the header, full-width scrollable strip */}
-      <div className="flex overflow-x-auto scrollbar-hide border-b border-border bg-background/95 backdrop-blur-sm sm:border-0 sm:overflow-visible sm:flex-wrap sm:gap-1 sm:p-1 sm:bg-background/95 sm:backdrop-blur-sm sm:rounded-lg sm:w-fit sticky top-0 z-40 sm:static sm:z-30 sm:border sm:border-border">
+    <div className="sm:mb-5 sm:mx-0">
+      <div className="flex overflow-x-auto scrollbar-hide border-b border-border bg-background/95 backdrop-blur-sm shadow-sm sm:shadow-none sm:border-0 sm:overflow-visible sm:flex-wrap sm:gap-1 sm:p-1 sm:bg-background/95 sm:rounded-lg sm:w-fit sticky top-0 z-40 sm:static sm:z-30 sm:border sm:border-border">
         {tabs.map(tab => {
           const isActive = currentKey === tab.key;
           return (

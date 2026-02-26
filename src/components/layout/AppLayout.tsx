@@ -89,20 +89,22 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
     if (isMobile) {
       return (
         <div className="min-h-screen w-full">
-          <MobileHeader 
-            title="FINternship Learning Platform"
-            rightAction={
-              <Button
-                variant="default"
-                size="sm"
-                onClick={() => navigate('/auth')}
-                className="flex items-center gap-2"
-              >
-                <LogIn className="h-4 w-4" />
-                Sign In
-              </Button>
-            }
-          />
+          {!hideMobileHeader && (
+            <MobileHeader 
+              title="FINternship Learning Platform"
+              rightAction={
+                <Button
+                  variant="default"
+                  size="sm"
+                  onClick={() => navigate('/auth')}
+                  className="flex items-center gap-2"
+                >
+                  <LogIn className="h-4 w-4" />
+                  Sign In
+                </Button>
+              }
+            />
+          )}
           <main className="flex-1 pb-20">
             {children}
           </main>
