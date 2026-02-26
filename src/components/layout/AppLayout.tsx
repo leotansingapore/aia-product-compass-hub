@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, memo, useMemo, useRef, useState, useCallback } from "react";
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { MobileBottomNav } from "./MobileBottomNav";
 import { MobileHeader } from "./MobileHeader";
@@ -187,10 +187,15 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
 /** Drag handle that sits on the right edge of the sidebar */
 const ResizeHandle = memo(function ResizeHandle() {
   const isDragging = useRef(false);
+  const hasDragged = useRef(false);
   const [active, setActive] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const { state, toggleSidebar } = useSidebar();
+  const isCollapsed = state === "collapsed";
 
   const onMouseDown = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
+    hasDragged.current = false;
     isDragging.current = true;
     setActive(true);
     document.body.style.cursor = "col-resize";
@@ -198,9 +203,28 @@ const ResizeHandle = memo(function ResizeHandle() {
 
     const onMouseMove = (ev: MouseEvent) => {
       if (!isDragging.current) return;
-      // Clamp between 180px and 480px
-      const newWidth = Math.min(480, Math.max(180, ev.clientX));
-      document.documentElement.style.setProperty("--sidebar-width", `${newWidth}px`);
+      hasDragged.current = true;
+
+      const newWidth = ev.clientX;
+
+      // If dragging right while collapsed, expand first
+      if (isCollapsed && newWidth > 200) {
+        toggleSidebar();
+        document.documentElement.style.setProperty("--sidebar-width", `${Math.min(480, newWidth)}px`);
+        return;
+      }
+
+      // If dragging left too far, collapse
+      if (!isCollapsed && newWidth < 160) {
+        toggleSidebar();
+        return;
+      }
+
+      if (!isCollapsed) {
+        // Clamp between 180px and 480px
+        const clamped = Math.min(480, Math.max(180, newWidth));
+        document.documentElement.style.setProperty("--sidebar-width", `${clamped}px`);
+      }
     };
 
     const onMouseUp = () => {
@@ -208,7 +232,7 @@ const ResizeHandle = memo(function ResizeHandle() {
       setActive(false);
       document.body.style.cursor = "";
       document.body.style.userSelect = "";
-      // Persist
+      // Persist width
       const w = document.documentElement.style.getPropertyValue("--sidebar-width");
       if (w) localStorage.setItem("sidebar-width", w);
       document.removeEventListener("mousemove", onMouseMove);
@@ -217,25 +241,44 @@ const ResizeHandle = memo(function ResizeHandle() {
 
     document.addEventListener("mousemove", onMouseMove);
     document.addEventListener("mouseup", onMouseUp);
-  }, []);
+  }, [isCollapsed, toggleSidebar]);
+
+  // Click (no drag) toggles expand/collapse
+  const onClick = useCallback(() => {
+    if (!hasDragged.current) {
+      toggleSidebar();
+    }
+  }, [toggleSidebar]);
 
   return (
     <div
       onMouseDown={onMouseDown}
-      title="Drag to resize"
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      title={isCollapsed ? "Click to expand sidebar" : "Drag to resize · Click to collapse"}
       className={`
         relative z-20 flex items-center justify-center
-        w-1 shrink-0 cursor-col-resize select-none
-        transition-colors duration-150
-        ${active ? "bg-primary/40" : "bg-transparent hover:bg-primary/20"}
+        shrink-0 select-none transition-all duration-150
+        ${isCollapsed ? "w-3 cursor-pointer" : "w-1 cursor-col-resize"}
+        ${active ? "bg-primary/30" : hovered ? "bg-primary/10" : "bg-transparent"}
       `}
     >
       {/* Visual pill indicator */}
       <div className={`
-        absolute rounded-full w-1 h-8
-        transition-all duration-150
-        ${active ? "bg-primary scale-y-110" : "bg-border group-hover:bg-primary/50"}
+        absolute rounded-full transition-all duration-200
+        ${active ? "w-1 h-10 bg-primary scale-y-110" :
+          hovered ? "w-1 h-10 bg-primary/60" :
+          "w-0.5 h-8 bg-border"}
       `} />
+      {/* Expand arrow shown when collapsed and hovered */}
+      {isCollapsed && hovered && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <svg width="10" height="10" viewBox="0 0 10 10" className="text-primary fill-current">
+            <path d="M2 5l4-4v8z"/>
+          </svg>
+        </div>
+      )}
     </div>
   );
 });
