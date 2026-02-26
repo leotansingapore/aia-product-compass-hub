@@ -8,7 +8,7 @@ import { ScriptsChatWidget } from "@/components/scripts/ScriptsChatWidget";
 import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
 import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 import { KnowledgeManagement } from "@/components/scripts/KnowledgeManagement";
-import { ScriptUserContributions } from "@/components/scripts/ScriptUserContributions";
+import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { Input } from "@/components/ui/input";
@@ -1550,6 +1550,14 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [addingTag, setAddingTag] = useState(false);
   const [tagDraft, setTagDraft] = useState("");
 
+  // User versions (all users can add their own versions)
+  const { userVersions, addVersion: addUserVersion, updateVersion: updateUserVersion, deleteVersion: deleteUserVersion, userId: currentUserId } = useScriptUserVersions(script.id);
+  const [showNewVersionForm, setShowNewVersionForm] = useState(false);
+  const [newVersionName, setNewVersionName] = useState("");
+  const [newVersionContent, setNewVersionContent] = useState("");
+  const [editingUserVersionId, setEditingUserVersionId] = useState<string | null>(null);
+  const [editUserVersionName, setEditUserVersionName] = useState("");
+
   const saveMetaField = async (updates: Partial<ScriptEntry>) => {
     if (!onMetadataSave) return;
     setIsSaving(true);
@@ -1911,8 +1919,79 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           )}
                         </TabsTrigger>
                       ))}
+                      {/* User version tabs */}
+                      {userVersions.map((uv) => (
+                        <TabsTrigger key={`uv-${uv.id}`} value={`uv-${uv.id}`} style={{ cursor: 'pointer' }}
+                          className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors">
+                          {editingUserVersionId === uv.id ? (
+                            <span onClick={(e) => e.stopPropagation()}>
+                              <Input
+                                value={editUserVersionName}
+                                onChange={(e) => setEditUserVersionName(e.target.value)}
+                                className="h-5 text-[11px] w-24 px-1"
+                                autoFocus
+                                onKeyDown={async (e) => {
+                                  if (e.key === 'Enter') { e.preventDefault(); updateUserVersion.mutate({ id: uv.id, content: uv.content, authorName: editUserVersionName || uv.author_name }); setEditingUserVersionId(null); }
+                                  else if (e.key === 'Escape') setEditingUserVersionId(null);
+                                }}
+                                onBlur={() => { if (editUserVersionName !== uv.author_name) updateUserVersion.mutate({ id: uv.id, content: uv.content, authorName: editUserVersionName || uv.author_name }); setEditingUserVersionId(null); }}
+                              />
+                            </span>
+                          ) : (
+                            <span
+                              style={{ cursor: currentUserId === uv.user_id ? 'text' : 'pointer' }}
+                              title={currentUserId === uv.user_id ? "Double-click to rename" : undefined}
+                              onDoubleClick={(e) => { if (currentUserId === uv.user_id) { e.stopPropagation(); setEditUserVersionName(uv.author_name); setEditingUserVersionId(uv.id); } }}
+                            >
+                              {uv.author_name}
+                            </span>
+                          )}
+                        </TabsTrigger>
+                      ))}
+                      {/* Add version button */}
+                      {isAuthenticated && (
+                        <button
+                          style={{ cursor: 'pointer' }}
+                          className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full border border-dashed border-muted-foreground/40 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                          title="Add your version"
+                          onClick={(e) => { e.stopPropagation(); setShowNewVersionForm(true); }}
+                        >
+                          <Plus className="h-3 w-3" /> Add version
+                        </button>
+                      )}
                     </TabsList>
                   </div>
+                  {/* New version form */}
+                  {showNewVersionForm && (
+                    <div className="mb-3 border rounded-lg p-3 bg-muted/20 space-y-2">
+                      <Input
+                        value={newVersionName}
+                        onChange={(e) => setNewVersionName(e.target.value)}
+                        placeholder="Version name (e.g. 'My Style')"
+                        className="text-sm"
+                        autoFocus
+                      />
+                      <MinimalRichEditor
+                        value={newVersionContent}
+                        onChange={setNewVersionContent}
+                        placeholder="Write your version… (supports markdown)"
+                      />
+                      <div className="flex justify-end gap-2">
+                        <Button variant="ghost" size="sm" onClick={() => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); }}>
+                          <X className="h-3.5 w-3.5 mr-1" /> Cancel
+                        </Button>
+                        <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={() => {
+                          addUserVersion.mutate(
+                            { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
+                            { onSuccess: () => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); } }
+                          );
+                        }}>
+                          {addUserVersion.isPending ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Adding…</> : "Add Version"}
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                  {/* Official version tab contents */}
                   {script.versions.map((v, i) => (
                     <TabsContent key={i} value={String(i)}>
                       {editingVersionIdx === i ? (
@@ -1951,6 +2030,23 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           </div>
                         </>
                       )}
+                    </TabsContent>
+                  ))}
+                  {/* User version tab contents */}
+                  {userVersions.map((uv) => (
+                    <TabsContent key={`uv-${uv.id}`} value={`uv-${uv.id}`}>
+                      <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{uv.content}</ReactMarkdown>
+                      </div>
+                      <div className="flex items-center gap-1 mt-2">
+                        <CopyButton text={uv.content} />
+                        {currentUserId === uv.user_id && (
+                          <Button variant="ghost" size="sm" className="h-6 text-xs text-destructive hover:text-destructive px-2"
+                            onClick={() => deleteUserVersion.mutate(uv.id)}>
+                            <Trash2 className="h-3 w-3 mr-1" /> Delete
+                          </Button>
+                        )}
+                      </div>
                     </TabsContent>
                   ))}
                 </Tabs>
@@ -2099,13 +2195,6 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 </div>
               );
             })()}
-
-            {/* User Contributions */}
-            <ScriptUserContributions
-              scriptId={script.id}
-              isAuthenticated={!!isAuthenticated}
-              displayName={userDisplayName}
-            />
 
             {/* Version History (Admin Only) */}
             {isAdmin && (
