@@ -2630,6 +2630,7 @@ export default function ScriptsDatabase() {
         showBackButton
         onBack={() => navigate("/")}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Scripts & Objections" }]}
+        className="hidden sm:block"
       />
 
       <div className="mx-auto px-3 sm:px-6 py-3 sm:py-8 max-w-4xl">

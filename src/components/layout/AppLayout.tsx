@@ -45,6 +45,11 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const { autoSync } = useAppStructureSync();
   const { loading: permissionsLoading } = usePermissions();
   const isMobile = useIsMobile();
+  const location = useLocation();
+
+  // Pages that manage their own mobile header (show ScriptsTabBar instead)
+  const scriptsRoutes = ['/scripts', '/servicing', '/objections', '/playbooks', '/flows'];
+  const hideMobileHeader = isMobile && scriptsRoutes.some(r => location.pathname.startsWith(r));
 
   // Read sidebar state from cookie for persistence
   const sidebarDefaultOpen = React.useMemo(() => {
@@ -63,7 +68,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   // }, [autoSync, isAdmin]);
 
   // Password change is optional now; previously enforced via redirect
-  const location = useLocation();
   useEffect(() => {
     // No-op: keep effect to reference variables and avoid unused warnings
   }, [user?.id, location.pathname, navigate]);
@@ -133,7 +137,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   if (isMobile) {
     return (
       <div className="min-h-screen w-full">
-        <MobileHeader />
+        {!hideMobileHeader && <MobileHeader />}
         
         <main className="flex-1 pb-20">
           {children}

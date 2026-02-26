@@ -18,8 +18,8 @@ export function ScriptsTabBar() {
 
   return (
     <div className="mb-4 sm:mb-5 -mx-3 sm:mx-0">
-      {/* Mobile: full-width scrollable strip */}
-      <div className="flex overflow-x-auto scrollbar-hide border-b border-border sm:border-0 sm:overflow-visible sm:flex-wrap sm:gap-1 sm:p-1 sm:bg-background/95 sm:backdrop-blur-sm sm:rounded-lg sm:w-fit sm:sticky sm:top-0 sm:z-30 sm:border sm:border-border">
+      {/* Mobile: sticky at very top replacing the header, full-width scrollable strip */}
+      <div className="flex overflow-x-auto scrollbar-hide border-b border-border bg-background/95 backdrop-blur-sm sm:border-0 sm:overflow-visible sm:flex-wrap sm:gap-1 sm:p-1 sm:bg-background/95 sm:backdrop-blur-sm sm:rounded-lg sm:w-fit sticky top-0 z-40 sm:static sm:z-30 sm:border sm:border-border">
         {tabs.map(tab => {
           const isActive = currentKey === tab.key;
           return (
