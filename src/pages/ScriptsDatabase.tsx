@@ -1706,8 +1706,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          {(Object.keys(categoryLabels) as CategoryKey[]).map((key) => (
-                            <SelectItem key={key} value={key} className="text-xs">{categoryLabels[key].label}</SelectItem>
+                          {Object.keys(categoryLabels).map((key) => (
+                            <SelectItem key={key} value={key} className="text-xs">{getCategoryInfo(key).label}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
