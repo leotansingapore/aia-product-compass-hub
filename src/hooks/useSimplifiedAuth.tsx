@@ -124,10 +124,6 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
         if (!error && data.user) {
           console.log('[SimplifiedAuth] Sign in successful, user:', data.user.email);
           clearPermissionsCache(data.user.id);
-          toast({
-            title: "Welcome back!",
-            description: "Successfully signed in."
-          });
           return;
         }
 
