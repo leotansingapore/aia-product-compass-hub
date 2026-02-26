@@ -1546,7 +1546,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [isSaving, setIsSaving] = useState(false);
   const navigate = useNavigate();
   const cardRef = useRef<HTMLDivElement>(null);
-  const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
+  const cat = getCategoryInfo(script.category);
   const snippet = useMemo(() => getSearchSnippet(script.versions, searchQuery), [script.versions, searchQuery]);
 
   // Inline metadata editing state (admin only)
