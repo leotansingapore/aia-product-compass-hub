@@ -284,97 +284,114 @@ function ServicingScriptCard({
         <CollapsibleContent>
           <div className="px-3 pb-3 sm:px-6 sm:pb-6">
             <Tabs defaultValue="0">
-              <div className="flex items-center gap-1 flex-wrap mb-3">
-                <TabsList className="flex-wrap h-auto gap-1 justify-start">
-                  <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider px-1 self-center mr-1">Versions</span>
-                  {/* Official versions */}
-                  {script.versions.map((v, i) => (
-                    <TabsTrigger key={i} value={String(i)} className="text-xs relative group">
-                      {editingVersionTitle === i && isAuthenticated && onInlineSave ? (
-                        <span onClick={(e) => e.stopPropagation()}>
-                          <Input
-                            value={versionTitleDraft}
-                            onChange={(e) => setVersionTitleDraft(e.target.value)}
-                            className="h-5 text-[11px] w-24 px-1"
-                            autoFocus
-                            onKeyDown={async (e) => {
-                              if (e.key === 'Enter') {
-                                e.preventDefault();
-                                const newVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver);
-                                if (onInlineSave) await onInlineSave(script.id, newVersions);
+              {/* Version switcher header */}
+              {(script.versions.length > 1 || userVersions.length > 0 || isAuthenticated) && (
+                <div className="flex items-center gap-2 flex-wrap mb-3 pb-3 border-b border-border/60">
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Versions</span>
+                    <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] font-bold">
+                      {script.versions.length + userVersions.length}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    {/* Official versions as pill buttons */}
+                    {script.versions.map((v, i) => (
+                      <TabsTrigger
+                        key={i}
+                        value={String(i)}
+                        style={{ cursor: 'pointer' }}
+                        className="text-xs px-3 py-1 rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors relative group"
+                      >
+                        {editingVersionTitle === i && isAuthenticated && onInlineSave ? (
+                          <span onClick={(e) => e.stopPropagation()}>
+                            <Input
+                              value={versionTitleDraft}
+                              onChange={(e) => setVersionTitleDraft(e.target.value)}
+                              className="h-5 text-[11px] w-24 px-1"
+                              autoFocus
+                              onKeyDown={async (e) => {
+                                if (e.key === 'Enter') {
+                                  e.preventDefault();
+                                  const newVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver);
+                                  if (onInlineSave) await onInlineSave(script.id, newVersions);
+                                  setEditingVersionTitle(null);
+                                } else if (e.key === 'Escape') setEditingVersionTitle(null);
+                              }}
+                              onBlur={async () => {
+                                if (versionTitleDraft !== v.author) {
+                                  const newVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver);
+                                  if (onInlineSave) await onInlineSave(script.id, newVersions);
+                                }
                                 setEditingVersionTitle(null);
-                              } else if (e.key === 'Escape') setEditingVersionTitle(null);
-                            }}
-                            onBlur={async () => {
-                              if (versionTitleDraft !== v.author) {
-                                const newVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver);
-                                if (onInlineSave) await onInlineSave(script.id, newVersions);
-                              }
-                              setEditingVersionTitle(null);
-                            }}
-                          />
-                        </span>
-                      ) : (
-                        <span
-                          className={isAuthenticated && onInlineSave ? 'cursor-text' : ''}
-                          title={isAuthenticated && onInlineSave ? "Double-click to rename" : undefined}
-                          onDoubleClick={(e) => { if (isAuthenticated && onInlineSave) { e.stopPropagation(); setVersionTitleDraft(v.title || v.author); setEditingVersionTitle(i); } }}
-                        >
-                          {v.title || v.author}
-                        </span>
-                      )}
-                    </TabsTrigger>
-                  ))}
-                  {/* Community user versions as additional tabs */}
-                  {userVersions.map((uv) => (
-                    <TabsTrigger key={`uv-${uv.id}`} value={`uv-${uv.id}`} className="text-xs relative group">
-                      {editingUserVersionId === uv.id && currentUserId === uv.user_id ? (
-                        <span onClick={(e) => e.stopPropagation()}>
-                          <Input
-                            value={editUserVersionName}
-                            onChange={(e) => setEditUserVersionName(e.target.value)}
-                            className="h-5 text-[11px] w-24 px-1"
-                            autoFocus
-                            onKeyDown={async (e) => {
-                              if (e.key === 'Enter') {
-                                e.preventDefault();
-                                updateVersion.mutate({ id: uv.id, content: uv.content, authorName: editUserVersionName || uv.author_name });
+                              }}
+                            />
+                          </span>
+                        ) : (
+                          <span
+                            style={{ cursor: isAuthenticated && onInlineSave ? 'text' : 'pointer' }}
+                            title={isAuthenticated && onInlineSave ? "Double-click to rename" : undefined}
+                            onDoubleClick={(e) => { if (isAuthenticated && onInlineSave) { e.stopPropagation(); setVersionTitleDraft(v.title || v.author); setEditingVersionTitle(i); } }}
+                          >
+                            {v.title || v.author || `Version ${i + 1}`}
+                          </span>
+                        )}
+                      </TabsTrigger>
+                    ))}
+                    {/* Community user versions */}
+                    {userVersions.map((uv) => (
+                      <TabsTrigger
+                        key={`uv-${uv.id}`}
+                        value={`uv-${uv.id}`}
+                        style={{ cursor: 'pointer' }}
+                        className="text-xs px-3 py-1 rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
+                      >
+                        {editingUserVersionId === uv.id && currentUserId === uv.user_id ? (
+                          <span onClick={(e) => e.stopPropagation()}>
+                            <Input
+                              value={editUserVersionName}
+                              onChange={(e) => setEditUserVersionName(e.target.value)}
+                              className="h-5 text-[11px] w-24 px-1"
+                              autoFocus
+                              onKeyDown={async (e) => {
+                                if (e.key === 'Enter') {
+                                  e.preventDefault();
+                                  updateVersion.mutate({ id: uv.id, content: uv.content, authorName: editUserVersionName || uv.author_name });
+                                  setEditingUserVersionId(null);
+                                } else if (e.key === 'Escape') setEditingUserVersionId(null);
+                              }}
+                              onBlur={async () => {
+                                if (editUserVersionName !== uv.author_name) {
+                                  updateVersion.mutate({ id: uv.id, content: uv.content, authorName: editUserVersionName || uv.author_name });
+                                }
                                 setEditingUserVersionId(null);
-                              } else if (e.key === 'Escape') setEditingUserVersionId(null);
-                            }}
-                            onBlur={async () => {
-                              if (editUserVersionName !== uv.author_name) {
-                                updateVersion.mutate({ id: uv.id, content: uv.content, authorName: editUserVersionName || uv.author_name });
-                              }
-                              setEditingUserVersionId(null);
-                            }}
-                          />
-                        </span>
-                      ) : (
-                        <span
-                          className={currentUserId === uv.user_id ? 'cursor-text' : ''}
-                          title={currentUserId === uv.user_id ? "Double-click to rename" : undefined}
-                          onDoubleClick={(e) => { if (currentUserId === uv.user_id) { e.stopPropagation(); setEditUserVersionName(uv.author_name); setEditingUserVersionId(uv.id); } }}
-                        >
-                          {uv.author_name}
-                        </span>
-                      )}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-                {/* Add version button */}
-                {isAuthenticated && (
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-7 w-7 rounded-sm border border-dashed border-muted-foreground/40 hover:border-primary hover:text-primary"
-                    title="Add your version"
-                    onClick={(e) => { e.stopPropagation(); setShowNewVersionForm(true); }}
-                  >
-                    <Plus className="h-3.5 w-3.5" />
-                  </Button>
-                )}
-              </div>
+                              }}
+                            />
+                          </span>
+                        ) : (
+                          <span
+                            style={{ cursor: currentUserId === uv.user_id ? 'text' : 'pointer' }}
+                            title={currentUserId === uv.user_id ? "Double-click to rename" : undefined}
+                            onDoubleClick={(e) => { if (currentUserId === uv.user_id) { e.stopPropagation(); setEditUserVersionName(uv.author_name); setEditingUserVersionId(uv.id); } }}
+                          >
+                            {uv.author_name}
+                          </span>
+                        )}
+                      </TabsTrigger>
+                    ))}
+                    {/* Add version button */}
+                    {isAuthenticated && (
+                      <button
+                        style={{ cursor: 'pointer' }}
+                        className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full border border-dashed border-muted-foreground/40 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                        title="Add your version"
+                        onClick={(e) => { e.stopPropagation(); setShowNewVersionForm(true); }}
+                      >
+                        <Plus className="h-3 w-3" /> Add version
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
 
               {/* New version form */}
               {showNewVersionForm && (
