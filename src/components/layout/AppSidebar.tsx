@@ -271,18 +271,33 @@ const AppSidebar = memo(function AppSidebar() {
   return (
     <>
       <Sidebar collapsible="icon" className="border-r">
-        <SidebarHeader className="border-b py-3 px-4 group-data-[collapsible=icon]:px-2">
+        <SidebarHeader className="border-b py-3 px-3 group-data-[collapsible=icon]:px-2">
           <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
-            <SidebarTrigger data-onboarding="sidebar-trigger" className="shrink-0" />
+            {/* Logo — acts as expand trigger when collapsed */}
+            <SidebarTrigger
+              data-onboarding="sidebar-trigger"
+              className="p-0 h-auto w-auto bg-transparent hover:bg-transparent [&_svg]:hidden group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center hidden"
+              aria-label="Expand sidebar"
+            >
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0 hover:opacity-80 transition-opacity" title="Expand sidebar">
+                <BookOpen className="h-4 w-4 text-primary-foreground" />
+              </div>
+            </SidebarTrigger>
+            {/* Logo (expanded state) */}
             {!isCollapsed && (
               <>
-                <div className="w-7 h-7 bg-primary rounded-lg flex items-center justify-center shrink-0">
-                  <BookOpen className="h-3.5 w-3.5 text-primary-foreground" />
+                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
+                  <BookOpen className="h-4 w-4 text-primary-foreground" />
                 </div>
-                <div>
-                  <h2 className="font-semibold text-sm leading-tight">FINternship</h2>
-                  <p className="text-micro text-muted-foreground">Learning Platform</p>
+                <div className="flex-1 min-w-0">
+                  <h2 className="font-semibold text-sm leading-tight truncate">FINternship</h2>
+                  <p className="text-[10px] text-muted-foreground">Learning Platform</p>
                 </div>
+                {/* Collapse toggle (only visible when expanded) */}
+                <SidebarTrigger
+                  className="shrink-0 h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
+                  aria-label="Collapse sidebar"
+                />
               </>
             )}
           </div>
@@ -473,49 +488,56 @@ const AppSidebar = memo(function AppSidebar() {
 
         <SidebarFooter className="border-t p-3">
           {!isCollapsed ? (
-            <div className="space-y-2">
-              {/* Profile + Sign Out row */}
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => navigate('/my-account')}
-                  className="flex items-center gap-2 flex-1 min-w-0 rounded-md px-2 py-1.5 hover:bg-muted transition-colors text-left"
-                  aria-label="My Account"
-                >
-                  <div className="h-7 w-7 rounded-full bg-primary flex items-center justify-center shrink-0">
-                    <span className="text-xs font-semibold text-primary-foreground">
-                      {user?.email?.charAt(0).toUpperCase() || "U"}
-                    </span>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs font-medium truncate">{user?.email || "Account"}</p>
-                    {isAdmin() && (
-                      <p className="text-micro text-muted-foreground">{isMasterAdmin() ? 'Master Admin' : 'Admin'}</p>
-                    )}
-                  </div>
-                </button>
+            <div className="space-y-1">
+              {/* Profile row */}
+              <button
+                onClick={() => navigate('/my-account')}
+                className="flex items-center gap-3 w-full rounded-lg px-2 py-2 hover:bg-muted transition-colors text-left group"
+                aria-label="My Account"
+              >
+                <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center shrink-0 ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all">
+                  <span className="text-xs font-bold text-primary-foreground">
+                    {user?.email?.charAt(0).toUpperCase() || "U"}
+                  </span>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs font-semibold truncate text-foreground">{user?.email || "Account"}</p>
+                  <p className="text-[10px] text-muted-foreground">
+                    {isMasterAdmin() ? 'Master Admin' : isAdmin() ? 'Admin' : 'My Account'}
+                  </p>
+                </div>
                 <ThemeToggle />
-              </div>
+              </button>
               {/* Sign Out */}
               <button
                 onClick={signOut}
-                className="flex items-center gap-2 w-full rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-destructive transition-colors"
+                className="flex items-center gap-2 w-full rounded-lg px-2 py-1.5 text-xs text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"
               >
-                <LogOut className="h-4 w-4" />
-                <span>Sign Out</span>
+                <LogOut className="h-3.5 w-3.5" />
+                <span>Sign out</span>
               </button>
             </div>
           ) : (
             <div className="flex flex-col items-center gap-2">
               <button
                 onClick={() => navigate('/my-account')}
-                className="h-7 w-7 rounded-full bg-primary flex items-center justify-center hover:opacity-80 transition-opacity"
+                title="My Account"
+                className="h-8 w-8 rounded-full bg-primary flex items-center justify-center hover:opacity-80 transition-opacity ring-2 ring-primary/20"
                 aria-label="My Account"
               >
-                <span className="text-xs font-semibold text-primary-foreground">
+                <span className="text-xs font-bold text-primary-foreground">
                   {user?.email?.charAt(0).toUpperCase() || "U"}
                 </span>
               </button>
               <ThemeToggle />
+              <button
+                onClick={signOut}
+                title="Sign out"
+                className="h-7 w-7 flex items-center justify-center rounded-md text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+                aria-label="Sign out"
+              >
+                <LogOut className="h-3.5 w-3.5" />
+              </button>
             </div>
           )}
         </SidebarFooter>

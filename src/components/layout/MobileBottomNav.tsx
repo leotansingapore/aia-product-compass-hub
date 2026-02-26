@@ -13,13 +13,13 @@ const navigationItems = [
 ];
 
 const quickLinkItems = [
-  { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500" },
-  { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap, color: "text-emerald-500" },
-  { name: "Search by Client", href: "/search-by-profile", icon: Users, color: "text-violet-500" },
-  { name: "How to Use", href: "/how-to-use", icon: HelpCircle, color: "text-teal-500" },
-  { name: "Playbooks", href: "/playbooks", icon: BookOpen, color: "text-blue-500" },
-  { name: "Script Flows", href: "/flows", icon: GitBranch, color: "text-amber-500" },
-  { name: "Sales Tools", href: "/product/sales-tools-objections", icon: TrendingUp, color: "text-orange-500" },
+  { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30" },
+  { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
+  { name: "Client Profile", href: "/search-by-profile", icon: Users, color: "text-violet-500", bg: "bg-violet-50 dark:bg-violet-950/30" },
+  { name: "How to Use", href: "/how-to-use", icon: HelpCircle, color: "text-teal-500", bg: "bg-teal-50 dark:bg-teal-950/30" },
+  { name: "Playbooks", href: "/playbooks", icon: BookOpen, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-950/30" },
+  { name: "Script Flows", href: "/flows", icon: GitBranch, color: "text-amber-500", bg: "bg-amber-50 dark:bg-amber-950/30" },
+  { name: "Sales Tools", href: "/product/sales-tools-objections", icon: TrendingUp, color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-950/30" },
 ];
 
 export function MobileBottomNav() {
@@ -29,61 +29,74 @@ export function MobileBottomNav() {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 bg-background border-t border-border z-50 safe-area-pb">
-        <div className="flex items-center justify-around px-1 py-2">
+      <nav className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md border-t border-border z-50 safe-area-pb">
+        <div className="flex items-stretch justify-around">
           {navigationItems.map((item) => {
-            const isActive = location.pathname === item.href ||
+            const isActive =
+              location.pathname === item.href ||
               (item.href === "/roleplay" && location.pathname.startsWith("/roleplay")) ||
               (item.href === "/kb" && (location.pathname === "/kb" || location.pathname.startsWith("/kb/"))) ||
-              (item.href === "/scripts" && (location.pathname.startsWith("/scripts") || location.pathname.startsWith("/objections")));
+              (item.href === "/scripts" && (
+                location.pathname.startsWith("/scripts") ||
+                location.pathname.startsWith("/objections") ||
+                location.pathname.startsWith("/servicing")
+              ));
 
             return (
               <NavLink
                 key={item.name}
                 to={item.href}
                 className={cn(
-                  "flex flex-col items-center justify-center px-2 py-3 min-h-[60px] flex-1 transition-colors mobile-touch-target",
-                  "active:bg-muted/50 active:scale-95",
+                  "relative flex flex-col items-center justify-center px-1 py-2 min-h-[56px] flex-1 transition-colors",
                   isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                <item.icon className={cn("h-5 w-5 mb-1", isActive ? "text-primary" : "text-muted-foreground")} />
-                <span className={cn("text-xs font-medium", isActive ? "text-primary" : "text-muted-foreground")}>
+                {/* Active indicator bar */}
+                {isActive && (
+                  <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full bg-primary" />
+                )}
+                <item.icon className={cn("h-5 w-5 mb-0.5 transition-transform", isActive && "scale-110")} />
+                <span className={cn("text-[10px] font-medium leading-none", isActive ? "font-semibold" : "")}>
                   {item.name}
                 </span>
               </NavLink>
             );
           })}
 
-          {/* Quick Links tab */}
+          {/* More tab */}
           <button
             onClick={() => setSheetOpen(true)}
             className={cn(
-              "flex flex-col items-center justify-center px-2 py-3 min-h-[60px] flex-1 transition-colors mobile-touch-target",
-              "active:bg-muted/50 active:scale-95",
-              "text-muted-foreground hover:text-foreground"
+              "relative flex flex-col items-center justify-center px-1 py-2 min-h-[56px] flex-1 transition-colors",
+              sheetOpen ? "text-primary" : "text-muted-foreground hover:text-foreground"
             )}
           >
-            <Grid3X3 className="h-5 w-5 mb-1 text-muted-foreground" />
-            <span className="text-xs font-medium text-muted-foreground">More</span>
+            {sheetOpen && (
+              <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full bg-primary" />
+            )}
+            <Grid3X3 className="h-5 w-5 mb-0.5" />
+            <span className="text-[10px] font-medium leading-none">More</span>
           </button>
         </div>
       </nav>
 
       {/* Quick Links Sheet */}
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-        <SheetContent side="bottom" className="rounded-t-2xl pb-8">
-          <SheetHeader className="pb-2">
-            <SheetTitle>Quick Links</SheetTitle>
+        <SheetContent side="bottom" className="rounded-t-2xl pb-10">
+          <SheetHeader className="pb-4">
+            <SheetTitle className="text-base">Quick Links</SheetTitle>
           </SheetHeader>
-          <div className="grid grid-cols-4 gap-4 py-4">
+          <div className="grid grid-cols-4 gap-3">
             {quickLinkItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => { navigate(item.href); setSheetOpen(false); }}
-                className="flex flex-col items-center gap-1.5 group"
+                className="flex flex-col items-center gap-2 group active:scale-95 transition-transform"
               >
-                <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div className={cn(
+                  "h-12 w-12 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-105",
+                  item.bg
+                )}>
                   <item.icon className={cn("h-5 w-5", item.color)} />
                 </div>
                 <span className="text-[11px] font-medium text-foreground text-center leading-tight">{item.name}</span>

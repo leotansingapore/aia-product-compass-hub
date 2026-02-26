@@ -140,7 +140,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
       <div className="min-h-screen w-full">
         {!hideMobileHeader && <MobileHeader />}
         
-        <main className="flex-1 pb-20">
+        <main className="flex-1 pb-20 page-transition">
           {children}
         </main>
         
@@ -160,8 +160,8 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
       <div className="min-h-screen flex w-full">
         <AppSidebar />
         
-        <SidebarInset className="flex-1">
-          <main className="flex-1">
+        <SidebarInset className="flex-1 min-w-0">
+          <main className="flex-1 page-transition">
             {children}
           </main>
         </SidebarInset>
