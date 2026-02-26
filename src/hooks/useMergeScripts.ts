@@ -42,9 +42,15 @@ export function useMergeScripts(
   }, []);
 
   useEffect(() => {
-    const onMove = (e: DragEvent) => { mouseYRef.current = e.clientY; };
-    window.addEventListener("dragover", onMove);
-    return () => window.removeEventListener("dragover", onMove);
+    // dragover only fires over valid drop targets — use both for full coverage
+    const onDragOver = (e: DragEvent) => { mouseYRef.current = e.clientY; };
+    const onDrag = (e: DragEvent) => { if (e.clientY !== 0) mouseYRef.current = e.clientY; };
+    window.addEventListener("dragover", onDragOver);
+    window.addEventListener("drag", onDrag);
+    return () => {
+      window.removeEventListener("dragover", onDragOver);
+      window.removeEventListener("drag", onDrag);
+    };
   }, []);
 
   const startAutoScroll = useCallback(() => {
