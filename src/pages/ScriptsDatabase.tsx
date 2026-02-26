@@ -2704,9 +2704,25 @@ export default function ScriptsDatabase() {
     [counts]
   );
 
+  const handleMergeUndo = useCallback(async (targetId: string, previousVersions: ScriptVersion[], targetName: string) => {
+    toast.success(`Merged into "${targetName}"`, {
+      description: "Versions were appended successfully.",
+      duration: 8000,
+      action: {
+        label: "Undo",
+        onClick: async () => {
+          await updateScript(targetId, { versions: previousVersions });
+          refetch();
+          toast.success("Merge undone");
+        },
+      },
+    });
+  }, [updateScript, refetch]);
+
   const { mergeState, pendingMerge, startDrag, endDrag, onDragOver, onDragLeave, onDrop, tapSelect, tapTarget, cancelTapSelect, confirmMerge, cancelMerge } = useMergeScripts(
     dbScripts,
-    async (scriptId, versions) => { await updateScript(scriptId, { versions }); refetch(); }
+    async (scriptId, versions) => { await updateScript(scriptId, { versions }); refetch(); },
+    handleMergeUndo,
   );
 
   const handleInlineSave = useCallback(async (scriptId: string, versions: ScriptVersion[]) => {
