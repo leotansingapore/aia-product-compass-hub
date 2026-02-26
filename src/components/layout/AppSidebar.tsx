@@ -272,37 +272,36 @@ const AppSidebar = memo(function AppSidebar() {
     <>
       <Sidebar collapsible="icon" className="border-r">
         <SidebarHeader className="border-b py-3 px-3 group-data-[collapsible=icon]:px-2">
-          <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
-            {/* Collapsed state: entire header is the expand button */}
-            {isCollapsed ? (
+          {isCollapsed ? (
+            /* Collapsed state: logo + expand button stacked */
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
+                <BookOpen className="h-4 w-4 text-primary-foreground" />
+              </div>
               <SidebarTrigger
                 data-onboarding="sidebar-trigger"
-                className="p-0 h-auto w-auto bg-transparent hover:bg-transparent [&_svg]:hidden flex items-center justify-center"
+                className="h-6 w-6 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors flex items-center justify-center"
                 aria-label="Expand sidebar"
                 title="Expand sidebar"
-              >
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0 hover:opacity-80 transition-opacity cursor-pointer">
-                  <BookOpen className="h-4 w-4 text-primary-foreground" />
-                </div>
-              </SidebarTrigger>
-            ) : (
-              <>
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
-                  <BookOpen className="h-4 w-4 text-primary-foreground" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h2 className="font-semibold text-sm leading-tight truncate">FINternship</h2>
-                  <p className="text-[10px] text-muted-foreground">Learning Platform</p>
-                </div>
-                {/* Collapse toggle (only visible when expanded) */}
-                <SidebarTrigger
-                  className="shrink-0 h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
-                  aria-label="Collapse sidebar"
-                  title="Collapse sidebar"
-                />
-              </>
-            )}
-          </div>
+              />
+            </div>
+          ) : (
+            /* Expanded state: logo + title + collapse button */
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
+                <BookOpen className="h-4 w-4 text-primary-foreground" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h2 className="font-semibold text-sm leading-tight truncate">FINternship</h2>
+                <p className="text-[10px] text-muted-foreground">Learning Platform</p>
+              </div>
+              <SidebarTrigger
+                className="shrink-0 h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
+                aria-label="Collapse sidebar"
+                title="Collapse sidebar"
+              />
+            </div>
+          )}
         </SidebarHeader>
 
         <SidebarContent>
