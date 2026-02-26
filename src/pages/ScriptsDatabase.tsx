@@ -2633,9 +2633,16 @@ export default function ScriptsDatabase() {
         className="hidden sm:block"
       />
 
-      <div className="mx-auto px-3 sm:px-6 py-3 sm:py-8 max-w-4xl">
-        {/* Tab Switcher — sticky on mobile */}
+      {/* Tab bar: full-bleed on mobile, contained on desktop */}
+      <div className="sm:hidden">
         <ScriptsTabBar />
+      </div>
+
+      <div className="mx-auto px-3 sm:px-6 py-3 sm:py-8 max-w-4xl">
+        {/* Tab Switcher — desktop only (mobile is above) */}
+        <div className="hidden sm:block">
+          <ScriptsTabBar />
+        </div>
 
         {activeTab === "objections" ? (
           <ObjectionHandlingDatabase />
