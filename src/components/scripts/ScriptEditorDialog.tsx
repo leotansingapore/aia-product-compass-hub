@@ -192,6 +192,17 @@ function CategoryOverridePicker({
               value={newCatInput}
               onChange={e => setNewCatInput(e.target.value.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, ""))}
               className="h-7 text-xs"
+              onKeyDown={e => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (newCatInput.trim()) {
+                    onSelect(newCatInput.trim());
+                    setNewCatInput("");
+                    setOpen(false);
+                  }
+                }
+              }}
             />
             <Button
               type="button"
