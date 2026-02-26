@@ -39,6 +39,7 @@ import {
   SidebarMenuAction,
   SidebarHeader,
   SidebarFooter,
+  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -272,14 +273,17 @@ const AppSidebar = memo(function AppSidebar() {
       <Sidebar collapsible="icon" className="border-r">
         <SidebarHeader className="border-b py-3 px-4 group-data-[collapsible=icon]:px-2">
           <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <BookOpen className="h-4 w-4 text-primary-foreground" />
-            </div>
+            <SidebarTrigger data-onboarding="sidebar-trigger" className="shrink-0" />
             {!isCollapsed && (
-              <div>
-                <h2 className="font-semibold text-sm">FINternship Learning</h2>
-                <p className="text-micro text-muted-foreground">Platform</p>
-              </div>
+              <>
+                <div className="w-7 h-7 bg-primary rounded-lg flex items-center justify-center shrink-0">
+                  <BookOpen className="h-3.5 w-3.5 text-primary-foreground" />
+                </div>
+                <div>
+                  <h2 className="font-semibold text-sm leading-tight">FINternship</h2>
+                  <p className="text-micro text-muted-foreground">Learning Platform</p>
+                </div>
+              </>
             )}
           </div>
         </SidebarHeader>
