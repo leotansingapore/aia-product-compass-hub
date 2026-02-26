@@ -103,6 +103,7 @@ function ServicingScriptCard({
   const [editingTitle, setEditingTitle] = useState(false);
   const [titleDraft, setTitleDraft] = useState(script.stage);
   const [editingRole, setEditingRole] = useState(false);
+  const [editingCategory, setEditingCategory] = useState(false);
   const [editingVersionTitle, setEditingVersionTitle] = useState<number | null>(null);
   const [versionTitleDraft, setVersionTitleDraft] = useState("");
   const cardRef = useRef<HTMLDivElement>(null);
@@ -222,7 +223,36 @@ function ServicingScriptCard({
                     </Badge>
                   )}
                   {categoryLabel && (
-                    <Badge variant="outline" className="text-[10px] text-muted-foreground">{categoryLabel}</Badge>
+                    editingCategory && isAdmin ? (
+                      <div onClick={(e) => e.stopPropagation()}>
+                        <Select
+                          value={categoryTag || ""}
+                          onValueChange={async (val) => {
+                            const otherTags = (script.tags || []).filter(t => !(catSlugsSet.has(t)));
+                            await saveMetaField({ tags: [val, ...otherTags] });
+                            setEditingCategory(false);
+                          }}
+                          open={true}
+                          onOpenChange={(o) => { if (!o) setEditingCategory(false); }}
+                        >
+                          <SelectTrigger className="h-5 text-[10px] w-auto min-w-[120px]"><SelectValue /></SelectTrigger>
+                          <SelectContent className="bg-popover z-50">
+                            {Array.from(catSlugsSet).sort().map(slug => (
+                              <SelectItem key={slug} value={slug} className="text-xs">{slugToLabel(slug)}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    ) : (
+                      <Badge
+                        variant="outline"
+                        className={`text-[10px] text-muted-foreground ${isAdmin && onMetadataSave ? 'cursor-pointer hover:ring-1 ring-primary/40' : ''}`}
+                        onClick={(e) => { if (isAdmin && onMetadataSave) { e.stopPropagation(); setEditingCategory(true); } }}
+                        title={isAdmin ? "Click to change category" : undefined}
+                      >
+                        {categoryLabel}
+                      </Badge>
+                    )
                   )}
                   {script.versions.length > 1 && (
                     <Badge variant="secondary" className="text-[10px]">{script.versions.length} versions</Badge>
