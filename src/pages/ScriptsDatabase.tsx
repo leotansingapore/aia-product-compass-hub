@@ -2908,7 +2908,7 @@ export default function ScriptsDatabase() {
                       <SelectItem value="all">All ({counts.all})</SelectItem>
                       {activeCategoriesWithData.map((key) => (
                         <SelectItem key={key} value={key}>
-                          {categoryLabels[key].label} ({counts[key]})
+                          {getCategoryInfo(key).label} ({counts[key]})
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -3008,7 +3008,7 @@ export default function ScriptsDatabase() {
                     <SelectItem value="all">All ({counts.all})</SelectItem>
                     {activeCategoriesWithData.map((key) => (
                       <SelectItem key={key} value={key}>
-                        {categoryLabels[key].label} ({counts[key]})
+                        {getCategoryInfo(key).label} ({counts[key]})
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -3096,7 +3096,7 @@ export default function ScriptsDatabase() {
             )}
             {activeCategory !== "all" && (
               <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
-                {categoryLabels[activeCategory as CategoryKey]?.label || activeCategory}
+                {getCategoryInfo(activeCategory).label}
                 <button onClick={() => setActiveCategory("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
               </Badge>
             )}
