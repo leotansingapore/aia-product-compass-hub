@@ -2597,17 +2597,13 @@ export default function ScriptsDatabase() {
       const created = await createScript(data);
       await refetch();
       if (created?.id) {
-        // Switch filters so the new script is visible, then navigate to it
-        setActiveCategory(data.category || "all");
-        setActiveAudience("all");
-        setActiveRole("all");
-        setActiveTag("all");
-        setSearchQuery("");
-        setSearchInput("");
-        // Small delay to let the list re-render with new filters before navigating
-        setTimeout(() => {
-          navigate(`/scripts/${created.id}`, { replace: true });
-        }, 150);
+        // Navigate to the new script with its category baked into the URL so
+        // the filter useEffect reads it and keeps the category selected.
+        const targetCategory = data.category || "all";
+        const params = new URLSearchParams();
+        if (targetCategory !== "all") params.set("category", targetCategory);
+        const qs = params.toString();
+        navigate(`/scripts/${created.id}${qs ? `?${qs}` : ''}`, { replace: true });
       }
     }
   };
