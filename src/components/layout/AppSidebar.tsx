@@ -20,9 +20,10 @@ import {
   Trash2,
   AlertTriangle,
   Loader2,
-   Eye,
-   Globe,
-   ArchiveRestore
+  Eye,
+  Globe,
+  ArchiveRestore,
+  LogOut,
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -107,7 +108,7 @@ const AppSidebar = memo(function AppSidebar() {
   const navigate = useNavigate();
   const { categories, refetch: refetchCategories } = useCategories();
   const { isMasterAdmin, canAccessSection, isAdmin, hasRole } = usePermissions();
-  const { user } = useSimplifiedAuth();
+  const { user, signOut } = useSimplifiedAuth();
   const { isAdmin: isAdminUser } = useAdmin();
   const { isViewingAsUser } = useViewMode();
 
@@ -466,27 +467,53 @@ const AppSidebar = memo(function AppSidebar() {
           </SidebarGroup>
         </SidebarContent>
 
-        <SidebarFooter className="border-t p-4">
-          {!isCollapsed && (
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Theme</span>
+        <SidebarFooter className="border-t p-3">
+          {!isCollapsed ? (
+            <div className="space-y-2">
+              {/* Profile + Sign Out row */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => navigate('/my-account')}
+                  className="flex items-center gap-2 flex-1 min-w-0 rounded-md px-2 py-1.5 hover:bg-muted transition-colors text-left"
+                  aria-label="My Account"
+                >
+                  <div className="h-7 w-7 rounded-full bg-primary flex items-center justify-center shrink-0">
+                    <span className="text-xs font-semibold text-primary-foreground">
+                      {user?.email?.charAt(0).toUpperCase() || "U"}
+                    </span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-medium truncate">{user?.email || "Account"}</p>
+                    {isAdmin() && (
+                      <p className="text-micro text-muted-foreground">{isMasterAdmin() ? 'Master Admin' : 'Admin'}</p>
+                    )}
+                  </div>
+                </button>
                 <ThemeToggle />
               </div>
-              {isAdmin() && (
-                <div className="flex items-center gap-2">
-                  <Badge variant="secondary" className="text-micro">
-                    {isMasterAdmin() ? 'Master Admin' : 'Admin'}
-                  </Badge>
-                </div>
-              )}
-              <div className="text-micro text-muted-foreground">
-                <p>© 2024 FINternship Learning Platform</p>
-                <p>Version 2.0</p>
-              </div>
+              {/* Sign Out */}
+              <button
+                onClick={signOut}
+                className="flex items-center gap-2 w-full rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-destructive transition-colors"
+              >
+                <LogOut className="h-4 w-4" />
+                <span>Sign Out</span>
+              </button>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-2">
+              <button
+                onClick={() => navigate('/my-account')}
+                className="h-7 w-7 rounded-full bg-primary flex items-center justify-center hover:opacity-80 transition-opacity"
+                aria-label="My Account"
+              >
+                <span className="text-xs font-semibold text-primary-foreground">
+                  {user?.email?.charAt(0).toUpperCase() || "U"}
+                </span>
+              </button>
+              <ThemeToggle />
             </div>
           )}
-          {isCollapsed && <ThemeToggle />}
         </SidebarFooter>
       </Sidebar>
 

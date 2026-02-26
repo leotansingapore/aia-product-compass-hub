@@ -14,7 +14,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAppStructureSync } from "@/hooks/useAppStructureSync";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 // Safe fallback to avoid crash if AdminProvider isn't mounted (e.g., during boot/HMR)
 const useAdminSafe = () => {
@@ -162,51 +161,9 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         <AppSidebar />
         
         <SidebarInset className="flex-1">
-          {/* Top Bar with Sidebar Toggle */}
-          <header className="flex h-12 items-center justify-between gap-2 border-b bg-card px-4 sticky top-0 z-10">
-            <div className="flex items-center gap-2">
-              <SidebarTrigger data-onboarding="sidebar-trigger" />
-              <h1 className="text-lg font-semibold">FINternship Learning Platform</h1>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              {user && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => navigate('/my-account')}
-                  className="rounded-full h-8 w-8 p-0"
-                  aria-label="My Account"
-                >
-                  <Avatar className="h-8 w-8">
-                    <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
-                      {user.email?.charAt(0).toUpperCase() || "U"}
-                    </AvatarFallback>
-                  </Avatar>
-                </Button>
-              )}
-              {!user ? (
-                <Button
-                  variant="default"
-                  size="sm"
-                  onClick={() => navigate('/auth')}
-                  className="flex items-center gap-2"
-                >
-                  <LogIn className="h-4 w-4" />
-                  Sign In
-                </Button>
-              ) : (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={signOut}
-                  className="flex items-center gap-2"
-                >
-                  <LogIn className="h-4 w-4 rotate-180" />
-                  Sign Out
-                </Button>
-              )}
-            </div>
+          {/* Minimal top bar — just the sidebar toggle */}
+          <header className="flex h-10 items-center gap-2 px-3 sticky top-0 z-10">
+            <SidebarTrigger data-onboarding="sidebar-trigger" />
           </header>
 
           {/* Main Content */}
