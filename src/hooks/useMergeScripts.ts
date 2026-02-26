@@ -42,14 +42,16 @@ export function useMergeScripts(
   }, []);
 
   useEffect(() => {
-    // dragover only fires over valid drop targets — use both for full coverage
-    const onDragOver = (e: DragEvent) => { mouseYRef.current = e.clientY; };
+    // "drag" fires on the dragged element and bubbles — listen on document to catch it.
+    // "dragover" fires on the element under the cursor (valid drop targets).
+    // Together these cover the full drag path including empty space near page edges.
     const onDrag = (e: DragEvent) => { if (e.clientY !== 0) mouseYRef.current = e.clientY; };
-    window.addEventListener("dragover", onDragOver);
-    window.addEventListener("drag", onDrag);
+    const onDragOver = (e: DragEvent) => { mouseYRef.current = e.clientY; };
+    document.addEventListener("drag", onDrag);
+    document.addEventListener("dragover", onDragOver);
     return () => {
-      window.removeEventListener("dragover", onDragOver);
-      window.removeEventListener("drag", onDrag);
+      document.removeEventListener("drag", onDrag);
+      document.removeEventListener("dragover", onDragOver);
     };
   }, []);
 
