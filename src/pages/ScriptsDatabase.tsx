@@ -2935,10 +2935,22 @@ export default function ScriptsDatabase() {
                     </SelectTrigger>
                     <SelectContent className="bg-popover z-50">
                       <SelectItem value="all">All ({counts.all})</SelectItem>
-                      {activeCategoriesWithData.map((key) => (
-                        <SelectItem key={key} value={key}>
-                          {getCategoryInfo(key).label} ({counts[key]})
-                        </SelectItem>
+                      {allCategoriesWithData.map((key) => (
+                        <div key={key} className="flex items-center">
+                          <SelectItem value={key} className="flex-1">
+                            {getCategoryInfo(key).label} ({counts[key] ?? 0})
+                          </SelectItem>
+                          {isAdmin && (
+                            <button
+                              type="button"
+                              className="pr-2 text-muted-foreground hover:text-destructive transition-colors shrink-0"
+                              onClick={(e) => { e.stopPropagation(); setDeleteCategoryTarget(key); }}
+                              title={`Delete category "${getCategoryInfo(key).label}"`}
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </button>
+                          )}
+                        </div>
                       ))}
                     </SelectContent>
                   </Select>
@@ -3035,10 +3047,22 @@ export default function ScriptsDatabase() {
                   </SelectTrigger>
                   <SelectContent className="bg-popover z-50">
                     <SelectItem value="all">All ({counts.all})</SelectItem>
-                    {activeCategoriesWithData.map((key) => (
-                      <SelectItem key={key} value={key}>
-                        {getCategoryInfo(key).label} ({counts[key]})
-                      </SelectItem>
+                    {allCategoriesWithData.map((key) => (
+                      <div key={key} className="flex items-center">
+                        <SelectItem value={key} className="flex-1">
+                          {getCategoryInfo(key).label} ({counts[key] ?? 0})
+                        </SelectItem>
+                        {isAdmin && (
+                          <button
+                            type="button"
+                            className="pr-2 text-muted-foreground hover:text-destructive transition-colors shrink-0"
+                            onClick={(e) => { e.stopPropagation(); setDeleteCategoryTarget(key); }}
+                            title={`Delete category "${getCategoryInfo(key).label}"`}
+                          >
+                            <Trash2 className="h-3 w-3" />
+                          </button>
+                        )}
+                      </div>
                     ))}
                   </SelectContent>
                 </Select>
