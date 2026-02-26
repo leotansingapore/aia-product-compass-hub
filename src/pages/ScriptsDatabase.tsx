@@ -2789,6 +2789,32 @@ export default function ScriptsDatabase() {
     refetch();
   };
 
+  const handleDeleteCategory = async () => {
+    if (!deleteCategoryTarget) return;
+    const slug = deleteCategoryTarget;
+    // Reassign all scripts in this category to "uncategorized"
+    const { error } = await supabase
+      .from('scripts')
+      .update({ category: 'uncategorized' } as any)
+      .eq('category', slug);
+    if (error) {
+      toast.error('Failed to delete category');
+    } else {
+      setDeletedCategories(prev => new Set([...prev, slug]));
+      if (activeCategory === slug) setActiveCategory('all');
+      toast.success(`Category "${getCategoryInfo(slug).label}" deleted — scripts moved to Uncategorized`);
+      refetch();
+    }
+    setDeleteCategoryTarget(null);
+  };
+
+  // All visible categories: built-in + any from DB that aren't deleted
+  const allCategoriesWithData = useMemo(() => {
+    const dbCats = new Set(dbScripts.map(s => s.category).filter(Boolean));
+    const combined = new Set([...Object.keys(categoryLabels), ...dbCats]);
+    return Array.from(combined).filter(k => !deletedCategories.has(k) && counts[k] > 0);
+  }, [dbScripts, deletedCategories, counts]);
+
   return (
     <PageLayout
       title="Scripts Database - FINternship"
