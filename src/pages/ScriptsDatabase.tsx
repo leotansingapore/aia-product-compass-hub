@@ -33,9 +33,9 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 
-type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "tips" | "servicing";
+type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "objection-handling" | "tips" | "servicing";
 
-const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; color: string }> = {
+const categoryLabels: Record<string, { label: string; icon: typeof Phone; color: string }> = {
   "cold-calling": { label: "Cold Calling", icon: Phone, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
   "initial-text": { label: "Initial Texts", icon: MessageSquare, color: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300" },
   "post-call-text": { label: "Post-Call Texts", icon: MessageSquare, color: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300" },
@@ -45,9 +45,18 @@ const categoryLabels: Record<CategoryKey, { label: string; icon: typeof Phone; c
   "referral": { label: "Referral Scripts", icon: UserPlus, color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300" },
   "confirmation": { label: "Appointment Confirmation", icon: CalendarCheck, color: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300" },
   "faq": { label: "FAQ", icon: HelpCircle, color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
+  "objection-handling": { label: "Objection Handling", icon: HelpCircle, color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300" },
   "tips": { label: "Tips & Best Practices", icon: Lightbulb, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
   "servicing": { label: "Servicing", icon: Users, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
 };
+
+function getCategoryInfo(key: string) {
+  return categoryLabels[key] ?? {
+    label: key.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
+    icon: HelpCircle,
+    color: "bg-muted text-muted-foreground",
+  };
+}
 
 // Sub-type labels for Follow-Up grouping
 const followUpSubTypeLabels: Record<string, { label: string; icon: string; description: string }> = {
@@ -1537,7 +1546,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [isSaving, setIsSaving] = useState(false);
   const navigate = useNavigate();
   const cardRef = useRef<HTMLDivElement>(null);
-  const cat = categoryLabels[script.category as CategoryKey] || categoryLabels["faq"];
+  const cat = getCategoryInfo(script.category);
   const snippet = useMemo(() => getSearchSnippet(script.versions, searchQuery), [script.versions, searchQuery]);
 
   // Inline metadata editing state (admin only)
@@ -1697,8 +1706,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          {(Object.keys(categoryLabels) as CategoryKey[]).map((key) => (
-                            <SelectItem key={key} value={key} className="text-xs">{categoryLabels[key].label}</SelectItem>
+                          {Object.keys(categoryLabels).map((key) => (
+                            <SelectItem key={key} value={key} className="text-xs">{getCategoryInfo(key).label}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -2158,7 +2167,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
             {script.related_script_id && allScripts && (() => {
               const related = allScripts.find(s => s.id === script.related_script_id);
               if (!related) return null;
-              const relCat = categoryLabels[related.category as CategoryKey] || categoryLabels["faq"];
+              const relCat = getCategoryInfo(related.category);
               return (
                 <div className="mt-4 pt-3 border-t">
                   <button
@@ -2185,7 +2194,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   </p>
                   <div className="space-y-1">
                     {children.map(child => {
-                      const childCat = categoryLabels[child.category as CategoryKey] || categoryLabels["faq"];
+                      const childCat = getCategoryInfo(child.category);
                       return (
                         <button
                           key={child.id}
@@ -2528,7 +2537,7 @@ export default function ScriptsDatabase() {
         if (strictIncludes(s.stage, q)) return true;
         if (s.versions.some((v) => strictIncludes(v.content, q) || strictIncludes(v.author, q))) return true;
         if ((s.tags || []).some((t: string) => strictIncludes(t, q))) return true;
-        const catLabel = categoryLabels[s.category as CategoryKey]?.label || s.category;
+        const catLabel = getCategoryInfo(s.category).label;
         if (strictIncludes(s.category, q) || strictIncludes(catLabel, q)) return true;
         const audLabel = audienceLabels[s.target_audience || ""] || s.target_audience || "";
         if (strictIncludes(audLabel, q)) return true;
@@ -2899,7 +2908,7 @@ export default function ScriptsDatabase() {
                       <SelectItem value="all">All ({counts.all})</SelectItem>
                       {activeCategoriesWithData.map((key) => (
                         <SelectItem key={key} value={key}>
-                          {categoryLabels[key].label} ({counts[key]})
+                          {getCategoryInfo(key).label} ({counts[key]})
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -2999,7 +3008,7 @@ export default function ScriptsDatabase() {
                     <SelectItem value="all">All ({counts.all})</SelectItem>
                     {activeCategoriesWithData.map((key) => (
                       <SelectItem key={key} value={key}>
-                        {categoryLabels[key].label} ({counts[key]})
+                        {getCategoryInfo(key).label} ({counts[key]})
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -3087,7 +3096,7 @@ export default function ScriptsDatabase() {
             )}
             {activeCategory !== "all" && (
               <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
-                {categoryLabels[activeCategory as CategoryKey]?.label || activeCategory}
+                {getCategoryInfo(activeCategory).label}
                 <button onClick={() => setActiveCategory("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
               </Badge>
             )}

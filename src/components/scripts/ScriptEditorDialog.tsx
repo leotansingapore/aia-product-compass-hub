@@ -27,7 +27,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-const CATEGORIES = [
+const BASE_CATEGORIES = [
   { value: "cold-calling", label: "Cold Calling" },
   { value: "initial-text", label: "Initial Texts" },
   { value: "post-call-text", label: "Post-Call Texts" },
@@ -36,10 +36,22 @@ const CATEGORIES = [
   { value: "ad-campaign", label: "Ad Campaign / Lead Gen" },
   { value: "referral", label: "Referral Scripts" },
   { value: "confirmation", label: "Appointment Confirmation" },
-  { value: "faq", label: "FAQ / Objections" },
+  { value: "faq", label: "FAQ" },
+  { value: "objection-handling", label: "Objection Handling" },
   { value: "tips", label: "Tips & Best Practices" },
   { value: "servicing", label: "Servicing" },
 ];
+
+// Returns label for any category value, including custom ones
+function getCategoryLabel(value: string, customCategories: { value: string; label: string }[] = []): string {
+  return (
+    BASE_CATEGORIES.find(c => c.value === value)?.label ||
+    customCategories.find(c => c.value === value)?.label ||
+    value.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
+  );
+}
+
+const CATEGORIES = BASE_CATEGORIES; // backward compat alias
 
 const TARGET_AUDIENCES = [
   { value: "warm-market", label: "Warm Market / Friends & Family" },
@@ -358,6 +370,9 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
   // Review/edit step state
   const [stage, setStage] = useState("");
   const [category, setCategory] = useState("cold-calling");
+  const [customCategories, setCustomCategories] = useState<{ value: string; label: string }[]>([]);
+  const [newCatInput, setNewCatInput] = useState("");
+  const allCategories = useMemo(() => [...BASE_CATEGORIES, ...customCategories], [customCategories]);
   const [targetAudience, setTargetAudience] = useState("general");
   const [scriptRole, setScriptRole] = useState("consultant");
   const [tags, setTags] = useState<string[]>([]);
@@ -999,17 +1014,61 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                         <PopoverTrigger asChild>
                           <button type="button" className="group flex items-center gap-1.5 rounded-full border border-dashed border-border bg-background hover:border-primary hover:bg-primary/5 transition-all px-3 py-1.5 text-xs font-medium">
                             <span className="text-[9px] uppercase tracking-widest text-muted-foreground">Category</span>
-                            <span className="text-foreground">{CATEGORIES.find(c => c.value === category)?.label ?? "—"}</span>
+                            <span className="text-foreground">{getCategoryLabel(category, customCategories)}</span>
                             <Pencil className="h-2.5 w-2.5 text-muted-foreground group-hover:text-primary transition-colors" />
                           </button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-52 p-1.5" align="start">
-                          {CATEGORIES.map(c => (
-                            <button key={c.value} type="button" onClick={() => setCategory(c.value)}
-                              className={`w-full text-left px-3 py-1.5 rounded-md text-xs hover:bg-accent transition-colors ${category === c.value ? "font-semibold text-primary" : ""}`}>
-                              {c.label}
-                            </button>
-                          ))}
+                        <PopoverContent className="w-56 p-1.5" align="start">
+                          <div className="max-h-56 overflow-y-auto">
+                            {allCategories.map(c => (
+                              <button key={c.value} type="button" onClick={() => setCategory(c.value)}
+                                className={`w-full text-left px-3 py-1.5 rounded-md text-xs hover:bg-accent transition-colors ${category === c.value ? "font-semibold text-primary" : ""}`}>
+                                {c.label}
+                              </button>
+                            ))}
+                          </div>
+                          <div className="border-t mt-1 pt-1.5 px-1">
+                            <p className="text-[9px] uppercase tracking-widest text-muted-foreground mb-1 px-2">Add new category</p>
+                            <div className="flex gap-1">
+                              <Input
+                                value={newCatInput}
+                                onChange={e => setNewCatInput(e.target.value)}
+                                onKeyDown={e => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    const trimmed = newCatInput.trim();
+                                    if (!trimmed) return;
+                                    const slug = trimmed.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+                                    if (!allCategories.find(c => c.value === slug)) {
+                                      setCustomCategories(prev => [...prev, { value: slug, label: trimmed }]);
+                                    }
+                                    setCategory(slug);
+                                    setNewCatInput("");
+                                  }
+                                }}
+                                placeholder="e.g. Warm-up Texts"
+                                className="h-7 text-xs flex-1"
+                              />
+                              <Button
+                                type="button"
+                                size="sm"
+                                variant="outline"
+                                className="h-7 px-2 text-xs"
+                                onClick={() => {
+                                  const trimmed = newCatInput.trim();
+                                  if (!trimmed) return;
+                                  const slug = trimmed.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+                                  if (!allCategories.find(c => c.value === slug)) {
+                                    setCustomCategories(prev => [...prev, { value: slug, label: trimmed }]);
+                                  }
+                                  setCategory(slug);
+                                  setNewCatInput("");
+                                }}
+                              >
+                                <Plus className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          </div>
                         </PopoverContent>
                       </Popover>
                     )}
@@ -1066,7 +1125,50 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                       <Select value={category} onValueChange={setCategory}>
                         <SelectTrigger><SelectValue /></SelectTrigger>
                         <SelectContent>
-                          {CATEGORIES.map(c => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}
+                          {allCategories.map(c => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}
+                          <div className="border-t mt-1 pt-1 px-1 pb-1">
+                            <div className="flex gap-1">
+                              <Input
+                                value={newCatInput}
+                                onChange={e => setNewCatInput(e.target.value)}
+                                onKeyDown={e => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    const trimmed = newCatInput.trim();
+                                    if (!trimmed) return;
+                                    const slug = trimmed.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+                                    if (!allCategories.find(c => c.value === slug)) {
+                                      setCustomCategories(prev => [...prev, { value: slug, label: trimmed }]);
+                                    }
+                                    setCategory(slug);
+                                    setNewCatInput("");
+                                  }
+                                }}
+                                placeholder="New category name…"
+                                className="h-7 text-xs flex-1"
+                                onClick={e => e.stopPropagation()}
+                              />
+                              <Button
+                                type="button"
+                                size="sm"
+                                variant="outline"
+                                className="h-7 px-2 shrink-0"
+                                onClick={e => {
+                                  e.stopPropagation();
+                                  const trimmed = newCatInput.trim();
+                                  if (!trimmed) return;
+                                  const slug = trimmed.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+                                  if (!allCategories.find(c => c.value === slug)) {
+                                    setCustomCategories(prev => [...prev, { value: slug, label: trimmed }]);
+                                  }
+                                  setCategory(slug);
+                                  setNewCatInput("");
+                                }}
+                              >
+                                <Plus className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          </div>
                         </SelectContent>
                       </Select>
                     </div>
