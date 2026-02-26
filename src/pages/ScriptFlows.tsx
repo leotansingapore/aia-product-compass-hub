@@ -216,7 +216,7 @@ export default function ScriptFlows() {
     setLocalNodes(updatedNodes);
     setHasUnsaved(true);
     // Re-mount canvas with updated data by forcing key change
-    setActiveFlowId(prev => prev); // trigger re-render
+    setLocalNodes([...updatedNodes]); // trigger re-render
   };
 
   const handleEdgeSave = (updates: Partial<FlowEdge>) => {
@@ -254,7 +254,7 @@ export default function ScriptFlows() {
           <div className="space-y-3">
             {/* Toolbar */}
             <div className="flex items-center gap-2 flex-wrap bg-muted/30 border rounded-lg px-3 py-2">
-              <Button variant="ghost" size="sm" onClick={() => setActiveFlowId(null)}>
+              <Button variant="ghost" size="sm" onClick={() => navigate('/flows')}>
                 <ArrowLeft className="h-4 w-4 mr-1" /> Back
               </Button>
 
