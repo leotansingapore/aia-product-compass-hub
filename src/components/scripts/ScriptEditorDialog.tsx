@@ -370,6 +370,9 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
   // Review/edit step state
   const [stage, setStage] = useState("");
   const [category, setCategory] = useState("cold-calling");
+  const [customCategories, setCustomCategories] = useState<{ value: string; label: string }[]>([]);
+  const [newCatInput, setNewCatInput] = useState("");
+  const allCategories = useMemo(() => [...BASE_CATEGORIES, ...customCategories], [customCategories]);
   const [targetAudience, setTargetAudience] = useState("general");
   const [scriptRole, setScriptRole] = useState("consultant");
   const [tags, setTags] = useState<string[]>([]);
