@@ -37,7 +37,7 @@ const BASE_CATEGORIES = [
   { value: "referral", label: "Referral Scripts" },
   { value: "confirmation", label: "Appointment Confirmation" },
   { value: "faq", label: "FAQ" },
-  { value: "objection-handling", label: "Objection Handling" },
+  { value: "fact-finding", label: "Fact Finding" },
   { value: "tips", label: "Tips & Best Practices" },
   { value: "servicing", label: "Servicing" },
   { value: "sales-scripts", label: "Sales Scripts" },

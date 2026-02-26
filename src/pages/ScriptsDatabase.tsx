@@ -33,7 +33,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 
-type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "objection-handling" | "tips" | "servicing" | "sales-scripts";
+type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "fact-finding" | "tips" | "servicing" | "sales-scripts";
 
 const categoryLabels: Record<string, { label: string; icon: typeof Phone; color: string }> = {
   "cold-calling": { label: "Cold Calling", icon: Phone, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
@@ -45,7 +45,7 @@ const categoryLabels: Record<string, { label: string; icon: typeof Phone; color:
   "referral": { label: "Referral Scripts", icon: UserPlus, color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300" },
   "confirmation": { label: "Appointment Confirmation", icon: CalendarCheck, color: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300" },
   "faq": { label: "FAQ", icon: HelpCircle, color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
-  "objection-handling": { label: "Objection Handling", icon: HelpCircle, color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300" },
+  "fact-finding": { label: "Fact Finding", icon: Search, color: "bg-lime-100 text-lime-800 dark:bg-lime-900/30 dark:text-lime-300" },
   "tips": { label: "Tips & Best Practices", icon: Lightbulb, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
   "servicing": { label: "Servicing", icon: Users, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
   "sales-scripts": { label: "Sales Scripts", icon: MessageSquare, color: "bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-300" },
