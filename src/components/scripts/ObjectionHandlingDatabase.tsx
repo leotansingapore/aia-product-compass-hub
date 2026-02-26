@@ -18,6 +18,11 @@ import { ChevronDown, Plus, Pencil, Trash2, Search, X, Filter, Loader2, MessageS
 import { useObjections, useObjectionMutations } from "@/hooks/useObjections";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useScripts } from "@/hooks/useScripts";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import { markdownComponents } from "@/lib/markdown-config";
 import type { ObjectionEntry, ObjectionResponse } from "@/hooks/useObjections";
 import { ObjectionEditorDialog } from "./ObjectionEditorDialog";
 
