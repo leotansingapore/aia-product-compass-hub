@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert, Link2, X, AlertCircle, ChevronDown, FolderOpen, ImagePlus } from "lucide-react";
+import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert, Link2, X, AlertCircle, ChevronDown, FolderOpen, ImagePlus, FileText } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useScripts } from "@/hooks/useScripts";
 import { supabase } from "@/integrations/supabase/client";
@@ -289,8 +289,11 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
   const [pasteContent, setPasteContent] = useState("");
   const [isClassifying, setIsClassifying] = useState(false);
   const [pasteImages, setPasteImages] = useState<Array<{ url: string; name: string }>>([]);
+  const [pastePdfs, setPastePdfs] = useState<Array<{ url: string; name: string }>>([]);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const [isUploadingPdf, setIsUploadingPdf] = useState(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
+  const pdfInputRef = useRef<HTMLInputElement>(null);
 
   const uploadImage = useCallback(async (file: File) => {
     if (file.size > 10 * 1024 * 1024) { toast.error("Image too large. Max 10MB."); return; }
@@ -307,6 +310,24 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       toast.error("Failed to upload image");
     } finally {
       setIsUploadingImage(false);
+    }
+  }, []);
+
+  const uploadPdf = useCallback(async (file: File) => {
+    if (file.type !== "application/pdf") { toast.error("Only PDF files are supported."); return; }
+    if (file.size > 20 * 1024 * 1024) { toast.error("PDF too large. Max 20MB."); return; }
+    setIsUploadingPdf(true);
+    try {
+      const path = `script-pdfs/${Date.now()}-${Math.random().toString(36).slice(2)}.pdf`;
+      const { error } = await supabase.storage.from("knowledge-files").upload(path, file, { contentType: "application/pdf" });
+      if (error) throw error;
+      const { data: urlData } = supabase.storage.from("knowledge-files").getPublicUrl(path);
+      setPastePdfs(prev => [...prev, { url: urlData.publicUrl, name: file.name }]);
+      toast.success("PDF added");
+    } catch (e) {
+      toast.error("Failed to upload PDF");
+    } finally {
+      setIsUploadingPdf(false);
     }
   }, []);
 
@@ -378,6 +399,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       setStep("paste");
       setPasteContent("");
       setPasteImages([]);
+      setPastePdfs([]);
       setSimilarScripts([]);
       setHighestSimilarityTier("none");
       setStage("");
@@ -670,7 +692,10 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       return;
     }
     setSaving(true);
-    const attachments = pasteImages.map(img => ({ label: img.name, url: img.url, type: "image" as const }));
+    const attachments = [
+      ...pasteImages.map(img => ({ label: img.name, url: img.url, type: "image" as const })),
+      ...pastePdfs.map(pdf => ({ label: pdf.name, url: pdf.url, type: "pdf" as const })),
+    ];
     await onSave({ stage, category, target_audience: targetAudience, script_role: scriptRole, tags, versions: validVersions, sort_order: sortOrder, related_script_id: relatedScriptId, ...(attachments.length > 0 ? { attachments } : {}) } as any);
     setSaving(false);
     onClose();
@@ -758,6 +783,52 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                         <button
                           type="button"
                           onClick={() => setPasteImages(prev => prev.filter((_, j) => j !== i))}
+                          className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              {/* PDF attachments */}
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Label className="text-xs text-muted-foreground">PDF Documents</Label>
+                  <input
+                    ref={pdfInputRef}
+                    type="file"
+                    accept="application/pdf"
+                    multiple
+                    className="hidden"
+                    onChange={e => {
+                      Array.from(e.target.files || []).forEach(uploadPdf);
+                      e.target.value = "";
+                    }}
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    className="h-7 gap-1.5 text-xs"
+                    onClick={() => pdfInputRef.current?.click()}
+                    disabled={isUploadingPdf}
+                  >
+                    {isUploadingPdf ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <FileText className="h-3.5 w-3.5" />}
+                    Add PDF
+                  </Button>
+                  <span className="text-[11px] text-muted-foreground">Max 20MB per file</span>
+                </div>
+                {pastePdfs.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {pastePdfs.map((pdf, i) => (
+                      <div key={i} className="relative group flex items-center gap-2 rounded-lg border bg-muted px-3 py-2 pr-7">
+                        <FileText className="h-4 w-4 text-destructive shrink-0" />
+                        <span className="text-xs max-w-[160px] truncate">{pdf.name}</span>
+                        <button
+                          type="button"
+                          onClick={() => setPastePdfs(prev => prev.filter((_, j) => j !== i))}
                           className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                         >
                           <X className="h-3 w-3" />
