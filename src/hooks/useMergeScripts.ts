@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
 
 export interface MergeState {
@@ -22,14 +22,53 @@ export function useMergeScripts(
     target: ScriptEntry;
   } | null>(null);
 
+  // ── Auto-scroll during drag ──────────────────────────────────────────────
+  const rafRef = useRef<number | null>(null);
+  const mouseYRef = useRef(0);
+  const draggingRef = useRef(false);
+
+  const EDGE_ZONE = 120;
+  const MAX_SPEED = 16;
+
+  const scrollLoop = useCallback(() => {
+    if (!draggingRef.current) return;
+    const y = mouseYRef.current;
+    const vh = window.innerHeight;
+    let speed = 0;
+    if (y < EDGE_ZONE) speed = -MAX_SPEED * (1 - y / EDGE_ZONE);
+    else if (y > vh - EDGE_ZONE) speed = MAX_SPEED * (1 - (vh - y) / EDGE_ZONE);
+    if (speed !== 0) window.scrollBy({ top: speed, behavior: "instant" as ScrollBehavior });
+    rafRef.current = requestAnimationFrame(scrollLoop);
+  }, []);
+
+  useEffect(() => {
+    const onMove = (e: DragEvent) => { mouseYRef.current = e.clientY; };
+    window.addEventListener("dragover", onMove);
+    return () => window.removeEventListener("dragover", onMove);
+  }, []);
+
+  const startAutoScroll = useCallback(() => {
+    draggingRef.current = true;
+    rafRef.current = requestAnimationFrame(scrollLoop);
+  }, [scrollLoop]);
+
+  const stopAutoScroll = useCallback(() => {
+    draggingRef.current = false;
+    if (rafRef.current !== null) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
+  }, []);
+
+  useEffect(() => () => stopAutoScroll(), [stopAutoScroll]);
+
   // ── Drag-and-drop (desktop) ──────────────────────────────────────────────
   const startDrag = useCallback((id: string) => {
     setMergeState(prev => ({ ...prev, sourceId: id, tapSelectMode: false }));
-  }, []);
+    startAutoScroll();
+  }, [startAutoScroll]);
 
   const endDrag = useCallback(() => {
     setMergeState(EMPTY_STATE);
-  }, []);
+    stopAutoScroll();
+  }, [stopAutoScroll]);
 
   const onDragOver = useCallback((id: string) => {
     setMergeState(prev => (prev.dragOverId === id ? prev : { ...prev, dragOverId: id }));
