@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,7 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare, Share2, Globe, Lock, Heading1, X } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare, Share2, Globe, Lock, Heading1, X, Link } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
 import { useScripts } from "@/hooks/useScripts";
@@ -38,6 +42,31 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
+
+function slugify(text: string) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function SectionAnchorLink({ anchor, shareToken }: { anchor: string; shareToken?: string | null }) {
+  const [copied, setCopied] = useState(false);
+  const base = shareToken
+    ? `${window.location.origin}/playbooks/share/${shareToken}`
+    : `${window.location.origin}${window.location.pathname}`;
+  const url = `${base}#${anchor}`;
+  return (
+    <button
+      title="Copy link to this section"
+      onClick={() => {
+        navigator.clipboard.writeText(url);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }}
+      className="opacity-0 group-hover/section:opacity-100 transition-opacity text-muted-foreground hover:text-foreground p-0.5"
+    >
+      {copied ? <Check className="h-3.5 w-3.5 text-primary" /> : <Link className="h-3.5 w-3.5" />}
+    </button>
+  );
+}
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -307,9 +336,10 @@ interface SortableSectionCardProps {
   isOwner: boolean;
   onRemove: (id: string) => void;
   onRename: (id: string, label: string) => void;
+  shareToken?: string | null;
 }
 
-function SortableSectionCard({ item, isOwner, onRemove, onRename }: SortableSectionCardProps) {
+function SortableSectionCard({ item, isOwner, onRemove, onRename, shareToken }: SortableSectionCardProps) {
   const {
     attributes,
     listeners,
@@ -335,8 +365,10 @@ function SortableSectionCard({ item, isOwner, onRemove, onRename }: SortableSect
     setEditing(false);
   };
 
+  const anchor = slugify(item.custom_content?.label || "section");
+
   return (
-    <div ref={setNodeRef} style={style} className="flex items-center gap-2 mt-4 mb-1 first:mt-0">
+    <div ref={setNodeRef} style={style} id={anchor} className="flex items-center gap-2 mt-6 mb-1 first:mt-0 scroll-mt-6 group/section">
       {isOwner && (
         <button
           {...attributes}
@@ -362,23 +394,26 @@ function SortableSectionCard({ item, isOwner, onRemove, onRename }: SortableSect
           />
         </div>
       ) : (
-        <div className="flex items-center gap-2 flex-1 group/section">
+        <div className="flex items-center gap-2 flex-1">
           <h2
             className={`text-base font-semibold leading-none flex-1 ${isOwner ? "cursor-pointer" : ""}`}
             onClick={() => isOwner && setEditing(true)}
           >
             {item.custom_content?.label || "Section"}
           </h2>
-          {isOwner && (
-            <div className="opacity-0 group-hover/section:opacity-100 transition-opacity flex items-center gap-1">
-              <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setEditing(true)} title="Rename">
-                <Pencil className="h-3 w-3" />
-              </Button>
-              <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => onRemove(item.id)} title="Delete section">
-                <X className="h-3 w-3" />
-              </Button>
-            </div>
-          )}
+          <div className="opacity-0 group-hover/section:opacity-100 transition-opacity flex items-center gap-1">
+            <SectionAnchorLink anchor={anchor} shareToken={shareToken} />
+            {isOwner && (
+              <>
+                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setEditing(true)} title="Rename">
+                  <Pencil className="h-3 w-3" />
+                </Button>
+                <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => onRemove(item.id)} title="Delete section">
+                  <X className="h-3 w-3" />
+                </Button>
+              </>
+            )}
+          </div>
         </div>
       )}
       <div className="flex-1 h-px bg-border ml-1" />
@@ -557,51 +592,107 @@ export default function PlaybookDetail() {
           </div>
           {isOwner && (
             <div className="flex gap-2 w-full sm:w-auto flex-wrap">
-              <Button
-                variant={playbook?.is_public ? "secondary" : "outline"}
-                size="sm"
-                className="gap-1.5 flex-1 sm:flex-initial"
-                onClick={() => {
-                  if (!playbook) return;
-                  if (playbook.is_public && playbook.share_token) {
-                    // Copy share link
-                    const url = `${window.location.origin}/playbooks/share/${playbook.share_token}`;
-                    navigator.clipboard.writeText(url);
-                    toast.success('Share link copied to clipboard');
-                  } else {
-                    togglePublic.mutate({ id: playbook.id, isPublic: true });
-                  }
-                }}
-              >
-                {playbook?.is_public ? <Globe className="h-4 w-4" /> : <Share2 className="h-4 w-4" />}
-                {playbook?.is_public ? "Copy Link" : "Share"}
-              </Button>
-              {playbook?.is_public && (
-                <>
+              {/* ── Share popover ── */}
+              <Popover>
+                <PopoverTrigger asChild>
                   <Button
-                    variant={playbook.allow_public_edit ? "secondary" : "ghost"}
+                    variant={playbook?.is_public ? "secondary" : "outline"}
                     size="sm"
-                    className="gap-1.5 text-xs"
-                    onClick={async () => {
-                      const newVal = !(playbook as any).allow_public_edit;
-                      const { error } = await supabase.from('script_playbooks').update({ allow_public_edit: newVal } as any).eq('id', playbook.id);
-                      if (!error) {
-                        toast.success(newVal ? 'Public editing enabled' : 'Public editing disabled');
-                      }
-                    }}
+                    className="gap-1.5 flex-1 sm:flex-initial"
                   >
-                    <Pencil className="h-3.5 w-3.5" /> {(playbook as any).allow_public_edit ? "Editing On" : "Allow Edit"}
+                    {playbook?.is_public ? <Globe className="h-4 w-4" /> : <Share2 className="h-4 w-4" />}
+                    {playbook?.is_public ? "Shared" : "Share"}
                   </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="gap-1.5 text-xs"
-                    onClick={() => togglePublic.mutate({ id: playbook.id, isPublic: false })}
-                  >
-                    <Lock className="h-3.5 w-3.5" /> Make Private
-                  </Button>
-                </>
-              )}
+                </PopoverTrigger>
+                <PopoverContent className="w-80 p-4" align="end">
+                  <p className="font-semibold text-sm mb-3">Share Playbook</p>
+
+                  {/* Enable / disable sharing */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <Label className="text-sm">Public link</Label>
+                      <p className="text-xs text-muted-foreground">Anyone with the link can view</p>
+                    </div>
+                    <Switch
+                      checked={!!playbook?.is_public}
+                      onCheckedChange={(checked) => {
+                        if (!playbook) return;
+                        togglePublic.mutate({ id: playbook.id, isPublic: checked });
+                      }}
+                    />
+                  </div>
+
+                  {playbook?.is_public && playbook?.share_token && (
+                    <>
+                      <Separator className="mb-3" />
+
+                      {/* View-only link */}
+                      <div className="space-y-1 mb-3">
+                        <Label className="text-xs text-muted-foreground">View-only link</Label>
+                        <div className="flex gap-1.5">
+                          <Input
+                            readOnly
+                            value={`${window.location.origin}/playbooks/share/${playbook.share_token}`}
+                            className="h-8 text-xs font-mono bg-muted border-0"
+                          />
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-8 px-2 shrink-0"
+                            onClick={() => {
+                              navigator.clipboard.writeText(`${window.location.origin}/playbooks/share/${playbook.share_token}`);
+                              toast.success('Link copied');
+                            }}
+                          >
+                            <Copy className="h-3.5 w-3.5" />
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Allow edit toggle */}
+                      <div className="flex items-center justify-between mb-3">
+                        <div>
+                          <Label className="text-sm">Allow editing</Label>
+                          <p className="text-xs text-muted-foreground">Viewers can edit scripts in this playbook</p>
+                        </div>
+                        <Switch
+                          checked={!!(playbook as any).allow_public_edit}
+                          onCheckedChange={async (checked) => {
+                            await supabase.from('script_playbooks').update({ allow_public_edit: checked } as any).eq('id', playbook!.id);
+                            queryClient.invalidateQueries({ queryKey: ['playbooks'] });
+                            toast.success(checked ? 'Editing enabled for viewers' : 'Editing disabled');
+                          }}
+                        />
+                      </div>
+
+                      {(playbook as any).allow_public_edit && (
+                        <div className="space-y-1">
+                          <Label className="text-xs text-muted-foreground">Edit link (same URL)</Label>
+                          <div className="flex gap-1.5">
+                            <Input
+                              readOnly
+                              value={`${window.location.origin}/playbooks/share/${playbook.share_token}`}
+                              className="h-8 text-xs font-mono bg-muted border-0"
+                            />
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-8 px-2 shrink-0"
+                              onClick={() => {
+                                navigator.clipboard.writeText(`${window.location.origin}/playbooks/share/${playbook.share_token}`);
+                                toast.success('Edit link copied');
+                              }}
+                            >
+                              <Copy className="h-3.5 w-3.5" />
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </PopoverContent>
+              </Popover>
+
               <Button variant="outline" onClick={handleAISuggest} disabled={isAiLoading} className="gap-1.5 flex-1 sm:flex-initial">
                 {isAiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
                 AI Suggest
@@ -709,6 +800,7 @@ export default function PlaybookDetail() {
                           isOwner={isOwner}
                           onRemove={(id) => removeItem.mutate(id)}
                           onRename={handleRenameSection}
+                          shareToken={playbook?.share_token}
                         />
                       );
                     }
