@@ -758,9 +758,24 @@ export default function PlaybookDetail() {
                 {isAiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
                 AI Suggest
               </Button>
-              <Button variant="outline" onClick={handleAddSection} className="gap-1.5 flex-1 sm:flex-initial">
-                <Heading1 className="h-4 w-4" /> Add Section
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="gap-1.5 flex-1 sm:flex-initial">
+                    <Heading1 className="h-4 w-4" /> Add Section <ChevronRight className="h-3.5 w-3.5 ml-0.5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-44">
+                  <DropdownMenuItem onClick={() => handleAddSection(1)} className="gap-2">
+                    <Heading1 className="h-4 w-4" /> H1 — Stage
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleAddSection(2)} className="gap-2">
+                    <Heading2 className="h-4 w-4" /> H2 — Group
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleAddSection(3)} className="gap-2">
+                    <Heading3 className="h-4 w-4" /> H3 — Sub-group
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Button onClick={() => setAddDialogOpen(true)} className="gap-2 flex-1 sm:flex-initial">
                 <Plus className="h-4 w-4" /> Add Items
               </Button>
