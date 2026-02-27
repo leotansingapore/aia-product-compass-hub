@@ -207,7 +207,7 @@ export default function PitchAnalysisPage() {
         .single();
 
       if (insertError || !record) throw insertError || new Error("Failed to create analysis record");
-      setAnalysis(record as PitchAnalysis);
+      setAnalysis(parseAnalysis(record));
 
       // Trigger edge function
       const { error: fnError } = await supabase.functions.invoke("analyze-pitch-video", {
