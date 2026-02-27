@@ -800,6 +800,7 @@ export default function PlaybookDetail() {
                           isOwner={isOwner}
                           onRemove={(id) => removeItem.mutate(id)}
                           onRename={handleRenameSection}
+                          shareToken={playbook?.share_token}
                         />
                       );
                     }
