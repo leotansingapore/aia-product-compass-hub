@@ -391,6 +391,7 @@ export default function PlaybookDetail() {
   const { playbookId } = useParams();
   const navigate = useNavigate();
   const { user } = useSimplifiedAuth();
+  const queryClient = useQueryClient();
   const { playbooks, togglePublic } = usePlaybooks();
   const { items, isLoading, removeItem, reorderItems } = usePlaybookItems(playbookId || null);
   const { scripts, loading: scriptsLoading, refetch } = useScripts();
@@ -424,14 +425,12 @@ export default function PlaybookDetail() {
       sort_order: maxOrder,
       custom_content: { label: 'New Section' },
     } as any);
-    // Manually re-fetch via invalidation
-    addItem.reset?.();
-    // Re-trigger by calling a dummy refetch — we use query client directly
-    window.dispatchEvent(new CustomEvent('playbook-section-added'));
+    queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
   };
 
   const handleRenameSection = async (itemId: string, label: string) => {
     await supabase.from('script_playbook_items').update({ custom_content: { label } } as any).eq('id', itemId);
+    queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
   };
 
   const sensors = useSensors(
@@ -606,6 +605,9 @@ export default function PlaybookDetail() {
                 {isAiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
                 AI Suggest
               </Button>
+              <Button variant="outline" onClick={handleAddSection} className="gap-1.5 flex-1 sm:flex-initial">
+                <Heading1 className="h-4 w-4" /> Add Section
+              </Button>
               <Button onClick={() => setAddDialogOpen(true)} className="gap-2 flex-1 sm:flex-initial">
                 <Plus className="h-4 w-4" /> Add Items
               </Button>
@@ -694,27 +696,46 @@ export default function PlaybookDetail() {
           >
             <SortableContext items={itemsWithData.map(i => i.id)} strategy={verticalListSortingStrategy}>
               <div className="space-y-3">
-                {itemsWithData.map((item, index) => (
-                  item.item_type === 'objection' && item.objection ? (
-                    <SortableObjectionCard
-                      key={item.id}
-                      item={item}
-                      index={index}
-                      isOwner={isOwner}
-                      onRemove={(id) => removeItem.mutate(id)}
-                    />
-                  ) : (
-                    <SortableScriptCard
-                      key={item.id}
-                      item={item}
-                      index={index}
-                      isOwner={isOwner}
-                      onRemove={(id) => removeItem.mutate(id)}
-                      onInlineSave={handleInlineSave}
-                      isAuthenticated={!!user}
-                    />
-                  )
-                ))}
+                {(() => {
+                  // Section headers don't count toward the item numbering
+                  let counter = 0;
+                  return itemsWithData.map((item) => {
+                    if (item.item_type === 'section') {
+                      return (
+                        <SortableSectionCard
+                          key={item.id}
+                          item={item}
+                          isOwner={isOwner}
+                          onRemove={(id) => removeItem.mutate(id)}
+                          onRename={handleRenameSection}
+                        />
+                      );
+                    }
+                    const idx = counter++;
+                    if (item.item_type === 'objection' && item.objection) {
+                      return (
+                        <SortableObjectionCard
+                          key={item.id}
+                          item={item}
+                          index={idx}
+                          isOwner={isOwner}
+                          onRemove={(id) => removeItem.mutate(id)}
+                        />
+                      );
+                    }
+                    return (
+                      <SortableScriptCard
+                        key={item.id}
+                        item={item}
+                        index={idx}
+                        isOwner={isOwner}
+                        onRemove={(id) => removeItem.mutate(id)}
+                        onInlineSave={handleInlineSave}
+                        isAuthenticated={!!user}
+                      />
+                    );
+                  });
+                })()}
               </div>
             </SortableContext>
           </DndContext>
