@@ -415,6 +415,25 @@ export default function PlaybookDetail() {
 
   const { addItem } = usePlaybookItems(playbookId || null);
 
+  const handleAddSection = async () => {
+    if (!playbookId) return;
+    const maxOrder = items.length > 0 ? Math.max(...items.map(i => i.sort_order)) + 1 : 0;
+    await supabase.from('script_playbook_items').insert({
+      playbook_id: playbookId,
+      item_type: 'section',
+      sort_order: maxOrder,
+      custom_content: { label: 'New Section' },
+    } as any);
+    // Manually re-fetch via invalidation
+    addItem.reset?.();
+    // Re-trigger by calling a dummy refetch — we use query client directly
+    window.dispatchEvent(new CustomEvent('playbook-section-added'));
+  };
+
+  const handleRenameSection = async (itemId: string, label: string) => {
+    await supabase.from('script_playbook_items').update({ custom_content: { label } } as any).eq('id', itemId);
+  };
+
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
