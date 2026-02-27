@@ -68,28 +68,48 @@ async function getYouTubeTranscript(videoId: string): Promise<string | null> {
 }
 
 async function getLoomTranscript(videoId: string): Promise<string | null> {
-  // Loom's public transcript endpoint
+  // Loom's transcript API requires auth, so we try page scraping instead
   try {
-    const url = `https://www.loom.com/api/campaigns/sessions/${videoId}/transcript`;
-    const resp = await fetch(url, {
+    // Try the share page and look for transcript JSON embedded in the page
+    const shareUrl = `https://www.loom.com/share/${videoId}`;
+    const resp = await fetch(shareUrl, {
       headers: {
-        "Accept": "application/json",
-        "User-Agent": "Mozilla/5.0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
       },
     });
     if (!resp.ok) return null;
-    const data = await resp.json();
-    if (Array.isArray(data)) {
-      return data.map((s: any) => s.transcript_message || s.text || "").join(" ").trim();
-    }
-    if (data.transcript) {
-      if (Array.isArray(data.transcript)) {
-        return data.transcript.map((s: any) => s.text || s.transcript_message || "").join(" ").trim();
+    const html = await resp.text();
+
+    // Look for transcript data embedded as JSON in __NEXT_DATA__ or similar
+    const nextDataMatch = html.match(/<script id="__NEXT_DATA__" type="application\/json">(.+?)<\/script>/s);
+    if (nextDataMatch) {
+      const nextData = JSON.parse(nextDataMatch[1]);
+      // Walk the props tree to find transcript
+      const str = JSON.stringify(nextData);
+      const transcriptMatch = str.match(/"transcript"\s*:\s*"([^"]{100,})"/);
+      if (transcriptMatch) return transcriptMatch[1].replace(/\\n/g, " ").replace(/\\"/g, '"');
+
+      // Look for captions array
+      const captionsMatch = str.match(/"captions"\s*:\s*(\[[^\]]{50,}\])/);
+      if (captionsMatch) {
+        try {
+          const captions = JSON.parse(captionsMatch[1]);
+          if (Array.isArray(captions)) {
+            return captions.map((c: any) => c.text || c.caption || "").filter(Boolean).join(" ").trim();
+          }
+        } catch { /* continue */ }
       }
-      return String(data.transcript);
     }
+
+    // Look for any transcript-like content in script tags
+    const transcriptBlockMatch = html.match(/"transcript_text"\s*:\s*"([^"]{100,})"/);
+    if (transcriptBlockMatch) return transcriptBlockMatch[1].replace(/\\n/g, " ");
+
     return null;
-  } catch {
+  } catch (e) {
+    console.error("Loom scrape failed:", e);
     return null;
   }
 }
@@ -169,10 +189,10 @@ serve(async (req) => {
 
     if (!transcript || transcript.length < 50) {
       await supabase.from("pitch_analyses").update({
-        status: "failed",
-        error_message: "Could not extract transcript from the video. For Loom videos, try sharing the link with transcript enabled. For YouTube, ensure captions are available. Alternatively paste the transcript manually.",
+        status: "needs_transcript",
+        error_message: "Auto-extraction failed. Please paste the transcript manually to continue.",
       }).eq("id", analysisId);
-      return new Response(JSON.stringify({ error: "transcript_unavailable" }), {
+      return new Response(JSON.stringify({ error: "transcript_unavailable", needs_manual: true }), {
         status: 422, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }

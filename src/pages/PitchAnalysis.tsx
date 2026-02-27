@@ -122,6 +122,7 @@ export default function PitchAnalysisPage() {
   const isProcessing = analysis?.status === "transcribing" || analysis?.status === "analysing";
   const isCompleted = analysis?.status === "completed";
   const isFailed = analysis?.status === "failed";
+  const needsTranscript = analysis?.status === "needs_transcript";
 
   // ── Timer for processing state ─────────────────────────────────────────────
   useEffect(() => {
@@ -182,7 +183,7 @@ export default function PitchAnalysisPage() {
     };
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (retryAnalysisId?: string) => {
     if (!videoUrl.trim() && !manualTranscript.trim()) {
       toast({ title: "Enter a video URL or paste your transcript", variant: "destructive" });
       return;
@@ -194,25 +195,34 @@ export default function PitchAnalysisPage() {
 
     setSubmitting(true);
     try {
-      // Create DB record
-      const { data: record, error: insertError } = await supabase
-        .from("pitch_analyses")
-        .insert({
-          user_id: user.id,
-          video_url: videoUrl.trim() || "manual",
-          video_title: videoTitle.trim() || null,
-          status: "pending",
-        })
-        .select()
-        .single();
+      let analysisId = retryAnalysisId;
 
-      if (insertError || !record) throw insertError || new Error("Failed to create analysis record");
-      setAnalysis(parseAnalysis(record));
+      if (!analysisId) {
+        // Create DB record for fresh submission
+        const { data: record, error: insertError } = await supabase
+          .from("pitch_analyses")
+          .insert({
+            user_id: user.id,
+            video_url: videoUrl.trim() || "manual",
+            video_title: videoTitle.trim() || null,
+            status: "pending",
+          })
+          .select()
+          .single();
+
+        if (insertError || !record) throw insertError || new Error("Failed to create analysis record");
+        setAnalysis(parseAnalysis(record));
+        analysisId = record.id;
+      } else {
+        // Re-use existing record — update status back to pending
+        await supabase.from("pitch_analyses").update({ status: "pending" }).eq("id", analysisId);
+        setAnalysis(prev => prev ? { ...prev, status: "pending" } : prev);
+      }
 
       // Trigger edge function
       const { error: fnError } = await supabase.functions.invoke("analyze-pitch-video", {
         body: {
-          analysisId: record.id,
+          analysisId,
           videoUrl: videoUrl.trim() || "manual",
           transcript: manualTranscript.trim() || undefined,
           userId: user.id,
@@ -344,7 +354,7 @@ export default function PitchAnalysisPage() {
               </div>
 
               <Button
-                onClick={handleSubmit}
+                onClick={() => handleSubmit()}
                 disabled={submitting || (!videoUrl.trim() && !manualTranscript.trim())}
                 className="w-full sm:w-auto"
               >
@@ -417,6 +427,52 @@ export default function PitchAnalysisPage() {
               <Button variant="outline" onClick={handleReset}>
                 <RotateCcw className="h-4 w-4 mr-2" /> Try Again
               </Button>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Needs manual transcript — soft fallback */}
+        {analysis && needsTranscript && (
+          <Card className="border-amber-400/40 bg-amber-50/30 dark:bg-amber-900/10">
+            <CardContent className="pt-6 pb-6 space-y-4">
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-amber-700 dark:text-amber-400">Transcript Could Not Be Auto-Extracted</p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Loom transcripts require authentication to access automatically. Please paste your transcript below and we'll run the analysis instantly.
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Paste Your Transcript</label>
+                <Textarea
+                  placeholder="Open your Loom video → click the Transcript tab → copy all text and paste it here…"
+                  value={manualTranscript}
+                  onChange={e => setManualTranscript(e.target.value)}
+                  rows={8}
+                  className="text-sm"
+                  autoFocus
+                />
+                <p className="text-xs text-muted-foreground">
+                  In Loom: open your video → click <strong>Transcript</strong> on the right panel → select all → copy → paste above.
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => handleSubmit(analysis.id)}
+                  disabled={submitting || manualTranscript.trim().length < 50}
+                >
+                  {submitting ? (
+                    <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Analysing…</>
+                  ) : (
+                    <><Sparkles className="h-4 w-4 mr-2" /> Run Analysis</>
+                  )}
+                </Button>
+                <Button variant="outline" onClick={handleReset}>
+                  <RotateCcw className="h-4 w-4 mr-2" /> Start Over
+                </Button>
+              </div>
             </CardContent>
           </Card>
         )}
