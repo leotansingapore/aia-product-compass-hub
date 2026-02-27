@@ -22,10 +22,10 @@ export interface PlaybookItem {
   playbook_id: string;
   script_id: string | null;
   objection_id: string | null;
-  item_type: 'script' | 'objection';
+  item_type: 'script' | 'objection' | 'section';
   sort_order: number;
   created_at: string;
-  custom_content?: { version_index?: number } | null;
+  custom_content?: { version_index?: number; label?: string } | null;
 }
 
 export function usePlaybooks() {
