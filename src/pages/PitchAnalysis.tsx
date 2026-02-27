@@ -183,7 +183,7 @@ export default function PitchAnalysisPage() {
     };
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (retryAnalysisId?: string) => {
     if (!videoUrl.trim() && !manualTranscript.trim()) {
       toast({ title: "Enter a video URL or paste your transcript", variant: "destructive" });
       return;
@@ -195,25 +195,34 @@ export default function PitchAnalysisPage() {
 
     setSubmitting(true);
     try {
-      // Create DB record
-      const { data: record, error: insertError } = await supabase
-        .from("pitch_analyses")
-        .insert({
-          user_id: user.id,
-          video_url: videoUrl.trim() || "manual",
-          video_title: videoTitle.trim() || null,
-          status: "pending",
-        })
-        .select()
-        .single();
+      let analysisId = retryAnalysisId;
 
-      if (insertError || !record) throw insertError || new Error("Failed to create analysis record");
-      setAnalysis(parseAnalysis(record));
+      if (!analysisId) {
+        // Create DB record for fresh submission
+        const { data: record, error: insertError } = await supabase
+          .from("pitch_analyses")
+          .insert({
+            user_id: user.id,
+            video_url: videoUrl.trim() || "manual",
+            video_title: videoTitle.trim() || null,
+            status: "pending",
+          })
+          .select()
+          .single();
+
+        if (insertError || !record) throw insertError || new Error("Failed to create analysis record");
+        setAnalysis(parseAnalysis(record));
+        analysisId = record.id;
+      } else {
+        // Re-use existing record — update status back to pending
+        await supabase.from("pitch_analyses").update({ status: "pending" }).eq("id", analysisId);
+        setAnalysis(prev => prev ? { ...prev, status: "pending" } : prev);
+      }
 
       // Trigger edge function
       const { error: fnError } = await supabase.functions.invoke("analyze-pitch-video", {
         body: {
-          analysisId: record.id,
+          analysisId,
           videoUrl: videoUrl.trim() || "manual",
           transcript: manualTranscript.trim() || undefined,
           userId: user.id,
