@@ -63,7 +63,7 @@ function SectionAnchorLink({ anchor, shareToken }: { anchor: string; shareToken?
       }}
       className="opacity-0 group-hover/section:opacity-100 transition-opacity text-muted-foreground hover:text-foreground p-0.5"
     >
-      {copied ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Link className="h-3.5 w-3.5" />}
+      {copied ? <Check className="h-3.5 w-3.5 text-primary" /> : <Link className="h-3.5 w-3.5" />}
     </button>
   );
 }
