@@ -354,7 +354,7 @@ export default function PitchAnalysisPage() {
               </div>
 
               <Button
-                onClick={handleSubmit}
+                onClick={() => handleSubmit()}
                 disabled={submitting || (!videoUrl.trim() && !manualTranscript.trim())}
                 className="w-full sm:w-auto"
               >
