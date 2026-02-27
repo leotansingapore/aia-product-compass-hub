@@ -189,10 +189,10 @@ serve(async (req) => {
 
     if (!transcript || transcript.length < 50) {
       await supabase.from("pitch_analyses").update({
-        status: "failed",
-        error_message: "Could not extract transcript from the video. For Loom videos, try sharing the link with transcript enabled. For YouTube, ensure captions are available. Alternatively paste the transcript manually.",
+        status: "needs_transcript",
+        error_message: "Auto-extraction failed. Please paste the transcript manually to continue.",
       }).eq("id", analysisId);
-      return new Response(JSON.stringify({ error: "transcript_unavailable" }), {
+      return new Response(JSON.stringify({ error: "transcript_unavailable", needs_manual: true }), {
         status: 422, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
