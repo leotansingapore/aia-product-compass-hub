@@ -299,6 +299,94 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
   );
 }
 
+// ─── Section Header Card ────────────────────────────────────────────────────
+
+interface SortableSectionCardProps {
+  item: any;
+  isOwner: boolean;
+  onRemove: (id: string) => void;
+  onRename: (id: string, label: string) => void;
+}
+
+function SortableSectionCard({ item, isOwner, onRemove, onRename }: SortableSectionCardProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: item.id });
+
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(item.custom_content?.label || "Section");
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 50 : undefined,
+    opacity: isDragging ? 0.8 : 1,
+  };
+
+  const commit = () => {
+    const trimmed = draft.trim() || "Section";
+    onRename(item.id, trimmed);
+    setEditing(false);
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} className="flex items-center gap-2 mt-4 mb-1 first:mt-0">
+      {isOwner && (
+        <button
+          {...attributes}
+          {...listeners}
+          className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 shrink-0"
+        >
+          <GripVertical className="h-4 w-4" />
+        </button>
+      )}
+      <Heading1 className="h-4 w-4 text-primary shrink-0" />
+      {editing ? (
+        <div className="flex items-center gap-2 flex-1">
+          <Input
+            autoFocus
+            value={draft}
+            onChange={e => setDraft(e.target.value)}
+            onBlur={commit}
+            onKeyDown={e => {
+              if (e.key === "Enter") commit();
+              if (e.key === "Escape") { setDraft(item.custom_content?.label || "Section"); setEditing(false); }
+            }}
+            className="h-7 text-base font-semibold border-0 border-b border-primary rounded-none px-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+          />
+        </div>
+      ) : (
+        <div className="flex items-center gap-2 flex-1 group/section">
+          <h2
+            className={`text-base font-semibold leading-none flex-1 ${isOwner ? "cursor-pointer" : ""}`}
+            onClick={() => isOwner && setEditing(true)}
+          >
+            {item.custom_content?.label || "Section"}
+          </h2>
+          {isOwner && (
+            <div className="opacity-0 group-hover/section:opacity-100 transition-opacity flex items-center gap-1">
+              <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setEditing(true)} title="Rename">
+                <Pencil className="h-3 w-3" />
+              </Button>
+              <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => onRemove(item.id)} title="Delete section">
+                <X className="h-3 w-3" />
+              </Button>
+            </div>
+          )}
+        </div>
+      )}
+      <div className="flex-1 h-px bg-border ml-1" />
+    </div>
+  );
+}
+
+// ─── Main Page ───────────────────────────────────────────────────────────────
+
 export default function PlaybookDetail() {
   const { playbookId } = useParams();
   const navigate = useNavigate();
