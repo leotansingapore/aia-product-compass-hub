@@ -237,13 +237,16 @@ serve(async (req) => {
       }
 
       if (allChunks.length > 0) {
-        const { data: inserted, error: insErr } = await supabase
-          .from("knowledge_chunks").insert(allChunks).select("id, content");
+        const { error: insErr } = await supabase
+          .from("knowledge_chunks").insert(allChunks);
         if (insErr) throw new Error(`Failed to insert chunks: ${insErr.message}`);
-        await embedAndStore(supabase, inserted, supabaseUrl);
+        // Fire-and-forget embedding to avoid timeout
+        supabase.functions.invoke("process-knowledge", {
+          body: { action: "reembed_missing" },
+        }).catch(() => {/* fire-and-forget */});
       }
 
-      return new Response(JSON.stringify({ success: true, chunks_created: allChunks.length }), {
+      return new Response(JSON.stringify({ success: true, chunks_created: allChunks.length, chunks_embedded: 0, note: "Embedding running in background" }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
