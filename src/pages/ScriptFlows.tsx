@@ -19,6 +19,7 @@ import { ExportControls } from '@/components/flows/controls/ExportControls';
 import { KeyboardShortcutsHelp } from '@/components/flows/controls/KeyboardShortcutsHelp';
 import { FLOW_TEMPLATES } from '@/utils/flowTemplates';
 import { AIFlowWizard } from '@/components/flows/AIFlowWizard';
+import { AIFlowChat } from '@/components/flows/AIFlowChat';
 import { NodeSearch } from '@/components/flows/controls/NodeSearch';
 import { toast } from 'sonner';
 import { ScriptsTabBar } from '@/components/scripts/ScriptsTabBar';
@@ -375,7 +376,7 @@ export default function ScriptFlows() {
             />
 
             {/* React Flow Canvas */}
-            <div className="h-[calc(100vh-260px)] min-h-[400px] rounded-xl border overflow-hidden">
+            <div className="relative h-[calc(100vh-260px)] min-h-[400px] rounded-xl border overflow-hidden">
               <ReactFlowCanvas
                 key={activeFlowId}
                 initialNodes={localNodes}
@@ -386,6 +387,16 @@ export default function ScriptFlows() {
                 onEdgesChange={(edges) => { setLocalEdges(edges); setHasUnsaved(true); }}
                 onDoubleClickNode={node => setEditingNode(node)}
                 controlsRef={controlsRef}
+              />
+              <AIFlowChat
+                nodes={localNodes}
+                edges={localEdges}
+                flowTitle={flowTitle}
+                onFlowUpdated={(nodes, edges) => {
+                  setLocalNodes([...nodes]);
+                  setLocalEdges([...edges]);
+                  setHasUnsaved(true);
+                }}
               />
             </div>
           </div>
