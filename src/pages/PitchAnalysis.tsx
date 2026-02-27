@@ -220,7 +220,7 @@ export default function PitchAnalysisPage() {
       }
 
       // Trigger edge function
-      const { error: fnError } = await supabase.functions.invoke("analyze-pitch-video", {
+      const { error: fnError, data: fnData } = await supabase.functions.invoke("analyze-pitch-video", {
         body: {
           analysisId,
           videoUrl: videoUrl.trim() || "manual",
@@ -230,11 +230,34 @@ export default function PitchAnalysisPage() {
       });
 
       if (fnError) {
-        toast({
-          title: "Analysis failed to start",
-          description: fnError.message,
-          variant: "destructive",
-        });
+        // Check if this is just a transcript_unavailable soft-fallback (not a real error)
+        const isTranscriptUnavailable =
+          fnError.message?.includes("transcript_unavailable") ||
+          fnError.context?.error === "transcript_unavailable";
+
+        if (!isTranscriptUnavailable) {
+          // Re-fetch the analysis to get the latest status from DB before showing toast
+          const { data: latest } = await supabase
+            .from("pitch_analyses")
+            .select("*")
+            .eq("id", analysisId!)
+            .single();
+          if (latest) setAnalysis(parseAnalysis(latest));
+          
+          toast({
+            title: "Analysis failed to start",
+            description: fnError.message,
+            variant: "destructive",
+          });
+        } else {
+          // Transcript unavailable — re-fetch to show needs_transcript UI
+          const { data: latest } = await supabase
+            .from("pitch_analyses")
+            .select("*")
+            .eq("id", analysisId!)
+            .single();
+          if (latest) setAnalysis(parseAnalysis(latest));
+        }
       }
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
