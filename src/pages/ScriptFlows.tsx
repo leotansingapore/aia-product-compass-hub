@@ -415,7 +415,7 @@ export default function ScriptFlows() {
   return (
     <PageLayout title="Script Flows" description="Build visual flowcharts for your sales and prospecting processes">
       <div className="px-3 sm:px-6 max-w-5xl mx-auto pb-20">
-      <ScriptsTabBar />
+      <div className="hidden sm:block"><ScriptsTabBar /></div>
       {isLoading ? (
         <div className="text-center py-12 text-muted-foreground">Loading flows...</div>
       ) : (

@@ -1,4 +1,5 @@
-import React, { ReactNode, useEffect, memo, useMemo, useRef, useState, useCallback } from "react";
+import React, { ReactNode, useEffect, memo, useRef, useState, useCallback } from "react";
+import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { MobileBottomNav } from "./MobileBottomNav";
@@ -146,7 +147,13 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   if (isMobile) {
     return (
       <div className="min-h-screen w-full">
-        {!hideMobileHeader && <MobileHeader />}
+        {hideMobileHeader ? (
+          <div className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
+            <ScriptsTabBar />
+          </div>
+        ) : (
+          <MobileHeader />
+        )}
         
         <main className="flex-1 pb-20 page-transition">
           {children}
