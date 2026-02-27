@@ -19,6 +19,7 @@ import { ExportControls } from '@/components/flows/controls/ExportControls';
 import { KeyboardShortcutsHelp } from '@/components/flows/controls/KeyboardShortcutsHelp';
 import { FLOW_TEMPLATES } from '@/utils/flowTemplates';
 import { AIFlowWizard } from '@/components/flows/AIFlowWizard';
+import { AIFlowChat } from '@/components/flows/AIFlowChat';
 import { NodeSearch } from '@/components/flows/controls/NodeSearch';
 import { toast } from 'sonner';
 import { ScriptsTabBar } from '@/components/scripts/ScriptsTabBar';
