@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect, memo, useRef, useState, useCallback } from "react";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
+import { useIsTabletOrMobile } from "@/hooks/use-mobile";
 import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { MobileBottomNav } from "./MobileBottomNav";
