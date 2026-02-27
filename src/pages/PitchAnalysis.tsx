@@ -431,6 +431,52 @@ export default function PitchAnalysisPage() {
           </Card>
         )}
 
+        {/* Needs manual transcript — soft fallback */}
+        {analysis && needsTranscript && (
+          <Card className="border-amber-400/40 bg-amber-50/30 dark:bg-amber-900/10">
+            <CardContent className="pt-6 pb-6 space-y-4">
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-amber-700 dark:text-amber-400">Transcript Could Not Be Auto-Extracted</p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Loom transcripts require authentication to access automatically. Please paste your transcript below and we'll run the analysis instantly.
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Paste Your Transcript</label>
+                <Textarea
+                  placeholder="Open your Loom video → click the Transcript tab → copy all text and paste it here…"
+                  value={manualTranscript}
+                  onChange={e => setManualTranscript(e.target.value)}
+                  rows={8}
+                  className="text-sm"
+                  autoFocus
+                />
+                <p className="text-xs text-muted-foreground">
+                  In Loom: open your video → click <strong>Transcript</strong> on the right panel → select all → copy → paste above.
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => handleSubmit(analysis.id)}
+                  disabled={submitting || manualTranscript.trim().length < 50}
+                >
+                  {submitting ? (
+                    <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Analysing…</>
+                  ) : (
+                    <><Sparkles className="h-4 w-4 mr-2" /> Run Analysis</>
+                  )}
+                </Button>
+                <Button variant="outline" onClick={handleReset}>
+                  <RotateCcw className="h-4 w-4 mr-2" /> Start Over
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Results */}
         {analysis && isCompleted && (
           <div className="space-y-5">
