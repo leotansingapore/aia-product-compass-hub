@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Loader2, BookOpen, MessageSquare, Copy, Check, Pencil, Heading1, Link } from "lucide-react";
+import { ChevronDown, Loader2, BookOpen, MessageSquare, Copy, Check, Pencil, Heading1, Heading2, Heading3, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
