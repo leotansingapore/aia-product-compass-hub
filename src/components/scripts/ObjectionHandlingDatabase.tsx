@@ -118,7 +118,7 @@ interface ObjectionCardProps {
   userDisplayName: string;
   onEdit: () => void;
   onDelete: () => void;
-  onAddResponse: (objectionId: string, content: string) => Promise<void>;
+  onAddResponse: (objectionId: string, content: string, authorName?: string) => Promise<void>;
   onDeleteResponse: (id: string) => Promise<void>;
   searchQuery?: string;
   matchedResponseIds?: Set<string>;
