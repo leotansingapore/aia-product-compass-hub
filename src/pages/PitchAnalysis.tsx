@@ -122,6 +122,7 @@ export default function PitchAnalysisPage() {
   const isProcessing = analysis?.status === "transcribing" || analysis?.status === "analysing";
   const isCompleted = analysis?.status === "completed";
   const isFailed = analysis?.status === "failed";
+  const needsTranscript = analysis?.status === "needs_transcript";
 
   // ── Timer for processing state ─────────────────────────────────────────────
   useEffect(() => {
