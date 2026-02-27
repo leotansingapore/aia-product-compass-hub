@@ -25,6 +25,7 @@ import {
   ArchiveRestore,
   LogOut,
   Sparkles,
+  Video,
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -70,6 +71,7 @@ import { toast } from "@/hooks/use-toast";
 const allResourceItems = [
   { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle, sectionId: "how-to-use" },
   { title: "Changelog", url: "/changelog", icon: Sparkles, sectionId: "changelog" },
+  { title: "Pitch Analysis", url: "/roleplay/pitch-analysis", icon: Video, sectionId: "pitch-analysis" },
   { title: "Search by Client Profile", url: "/search-by-profile", icon: Users, sectionId: "search-by-profile" },
   { title: "Sales Tools & Objection Handling", url: "/product/sales-tools-objections", icon: TrendingUp, sectionId: "sales-tools" },
   { title: "Scripts Database", url: "/scripts", icon: FileText, sectionId: "scripts-database" },

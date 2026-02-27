@@ -36,6 +36,7 @@ import CMFASVideoDetail from "./pages/cmfas/CMFASVideoDetail";
 import CMFASChat from "./pages/cmfas/CMFASChat";
 import Roleplay from "./pages/Roleplay";
 import RoleplayFeedback from "./pages/RoleplayFeedback";
+import PitchAnalysis from "./pages/PitchAnalysis";
 import AdminDashboard from "./pages/AdminDashboard";
 import MyAccount from "./pages/MyAccount";
 import NotFound from "./pages/NotFound";
@@ -87,8 +88,9 @@ const App = () => (
                     <Route path="/cmfas/module/:moduleId" element={<CMFASModuleDetail />} />
                     <Route path="/cmfas/module/:moduleId/video/:videoSlugOrId" element={<CMFASVideoDetail />} />
                     <Route path="/cmfas/chat/:moduleId?" element={<CMFASChat />} />
-                    <Route path="/roleplay" element={<Roleplay />} />
-                    <Route path="/roleplay/feedback/:sessionId" element={<RoleplayFeedback />} />
+                     <Route path="/roleplay" element={<Roleplay />} />
+                     <Route path="/roleplay/feedback/:sessionId" element={<RoleplayFeedback />} />
+                     <Route path="/roleplay/pitch-analysis" element={<PitchAnalysis />} />
                     <Route path="/admin" element={
                       <ProtectedAdminPage>
                         <AdminDashboard />

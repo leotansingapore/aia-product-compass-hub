@@ -858,6 +858,87 @@ export type Database = {
         }
         Relationships: []
       }
+      pitch_analyses: {
+        Row: {
+          closing_technique_score: number | null
+          communication_score: number | null
+          created_at: string
+          detailed_rubric: Json | null
+          error_message: string | null
+          executive_summary: string | null
+          id: string
+          improvement_areas: Json | null
+          missed_key_points: Json | null
+          needs_discovery_score: number | null
+          objection_handling_score: number | null
+          overall_score: number | null
+          product_id: string
+          product_knowledge_score: number | null
+          raw_feedback: Json | null
+          recommended_follow_up: Json | null
+          status: string
+          strengths: Json | null
+          transcript: string | null
+          transcript_source: string | null
+          updated_at: string
+          user_id: string
+          video_title: string | null
+          video_url: string
+        }
+        Insert: {
+          closing_technique_score?: number | null
+          communication_score?: number | null
+          created_at?: string
+          detailed_rubric?: Json | null
+          error_message?: string | null
+          executive_summary?: string | null
+          id?: string
+          improvement_areas?: Json | null
+          missed_key_points?: Json | null
+          needs_discovery_score?: number | null
+          objection_handling_score?: number | null
+          overall_score?: number | null
+          product_id?: string
+          product_knowledge_score?: number | null
+          raw_feedback?: Json | null
+          recommended_follow_up?: Json | null
+          status?: string
+          strengths?: Json | null
+          transcript?: string | null
+          transcript_source?: string | null
+          updated_at?: string
+          user_id: string
+          video_title?: string | null
+          video_url: string
+        }
+        Update: {
+          closing_technique_score?: number | null
+          communication_score?: number | null
+          created_at?: string
+          detailed_rubric?: Json | null
+          error_message?: string | null
+          executive_summary?: string | null
+          id?: string
+          improvement_areas?: Json | null
+          missed_key_points?: Json | null
+          needs_discovery_score?: number | null
+          objection_handling_score?: number | null
+          overall_score?: number | null
+          product_id?: string
+          product_knowledge_score?: number | null
+          raw_feedback?: Json | null
+          recommended_follow_up?: Json | null
+          status?: string
+          strengths?: Json | null
+          transcript?: string | null
+          transcript_source?: string | null
+          updated_at?: string
+          user_id?: string
+          video_title?: string | null
+          video_url?: string
+        }
+        Relationships: []
+      }
       products: {
         Row: {
           assistant_id: string | null
