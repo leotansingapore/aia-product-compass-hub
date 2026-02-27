@@ -73,7 +73,7 @@ export default function Playbooks() {
         subtitle="Create curated collections of scripts for different scenarios"
       />
 
-      <div className="px-3 lg:px-6 lg:px-8 max-w-6xl mx-auto pb-20">
+      <div className="px-3 md:px-6 lg:px-8 max-w-6xl mx-auto pb-20">
         <div className="hidden lg:block"><ScriptsTabBar /></div>
         {/* Create Button */}
         {user && (
