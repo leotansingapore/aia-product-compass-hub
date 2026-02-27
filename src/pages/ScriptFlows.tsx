@@ -376,7 +376,7 @@ export default function ScriptFlows() {
             />
 
             {/* React Flow Canvas */}
-            <div className="h-[calc(100vh-260px)] min-h-[400px] rounded-xl border overflow-hidden">
+            <div className="relative h-[calc(100vh-260px)] min-h-[400px] rounded-xl border overflow-hidden">
               <ReactFlowCanvas
                 key={activeFlowId}
                 initialNodes={localNodes}
@@ -387,6 +387,16 @@ export default function ScriptFlows() {
                 onEdgesChange={(edges) => { setLocalEdges(edges); setHasUnsaved(true); }}
                 onDoubleClickNode={node => setEditingNode(node)}
                 controlsRef={controlsRef}
+              />
+              <AIFlowChat
+                nodes={localNodes}
+                edges={localEdges}
+                flowTitle={flowTitle}
+                onFlowUpdated={(nodes, edges) => {
+                  setLocalNodes([...nodes]);
+                  setLocalEdges([...edges]);
+                  setHasUnsaved(true);
+                }}
               />
             </div>
           </div>
