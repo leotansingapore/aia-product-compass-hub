@@ -1,4 +1,5 @@
-import React, { ReactNode, useEffect, memo, useMemo, useRef, useState, useCallback } from "react";
+import React, { ReactNode, useEffect, memo, useRef, useState, useCallback } from "react";
+import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { MobileBottomNav } from "./MobileBottomNav";
