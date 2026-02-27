@@ -447,9 +447,9 @@ export function ObjectionHandlingDatabase() {
     refetch();
   };
 
-  const handleAddResponse = useCallback(async (objectionId: string, content: string) => {
+  const handleAddResponse = useCallback(async (objectionId: string, content: string, authorName?: string) => {
     if (!user) return;
-    const displayName = user.user_metadata?.display_name || user.email?.split("@")[0] || "Anonymous";
+    const displayName = authorName || user.user_metadata?.display_name || user.email?.split("@")[0] || "Anonymous";
     await addResponse(objectionId, content, displayName, user.id);
     refetch();
   }, [user, addResponse, refetch]);
