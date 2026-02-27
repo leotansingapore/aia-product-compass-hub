@@ -46,6 +46,7 @@ import VideoDetail from "./pages/VideoDetail";
 import AwaitingApproval from "./pages/AwaitingApproval";
 import ManageProductVideos from "./pages/ManageProductVideos";
 import ScriptsDatabase from "./pages/ScriptsDatabase";
+import Changelog from "./pages/Changelog";
 import ServicingPage from "./pages/ServicingPage";
 import Playbooks from "./pages/Playbooks";
 import PlaybookDetail from "./pages/PlaybookDetail";
@@ -106,6 +107,9 @@ const App = () => (
 <Route path="/product/:productSlugOrId/video/:videoId" element={<VideoDetail />} />
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
+
+{/* Changelog */}
+<Route path="/changelog" element={<Changelog />} />
 
 {/* Scripts Database */}
 <Route path="/scripts" element={<ScriptsDatabase />} />
