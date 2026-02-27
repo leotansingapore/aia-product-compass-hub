@@ -241,8 +241,7 @@ export function ScriptsChatWidget({ initialMode = "scripts" }: ScriptsChatWidget
         className={cn(
           "fixed right-4 z-50 h-14 w-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300",
           "bottom-20 md:bottom-6",
-          "bg-primary text-primary-foreground hover:scale-105",
-          open && "scale-0 opacity-0 pointer-events-none"
+          "bg-primary text-primary-foreground hover:scale-105"
         )}
         aria-label="Open AI Coach"
       >
