@@ -73,8 +73,8 @@ export default function Playbooks() {
         subtitle="Create curated collections of scripts for different scenarios"
       />
 
-      <div className="px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto pb-20">
-        <div className="hidden sm:block"><ScriptsTabBar /></div>
+      <div className="px-3 md:px-6 lg:px-8 max-w-6xl mx-auto pb-20">
+        <div className="hidden lg:block"><ScriptsTabBar /></div>
         {/* Create Button */}
         {user && (
           <div className="mb-4 sm:mb-6">
@@ -100,7 +100,7 @@ export default function Playbooks() {
             </CardContent>
           </Card>
         ) : (
-          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {playbooks.map((pb) => (
               <Card
                 key={pb.id}

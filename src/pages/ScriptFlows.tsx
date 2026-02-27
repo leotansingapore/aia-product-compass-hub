@@ -58,7 +58,7 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
             </CardContent>
           </Card>
         ) : (
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {flows.filter(f => !f.is_template).map(flow => (
               <Card key={flow.id} className="cursor-pointer hover:border-primary/50 transition-colors group" onClick={() => onSelect(flow.id)}>
                 <CardHeader className="pb-2">
@@ -89,7 +89,7 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
 
       <div>
         <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Templates</h2>
-        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {FLOW_TEMPLATES.map((tpl, i) => (
             <Card key={i} className="cursor-pointer hover:border-primary/50 transition-colors" onClick={() => onCreateFromTemplate(i)}>
               <CardHeader className="pb-2">
@@ -414,8 +414,8 @@ export default function ScriptFlows() {
 
   return (
     <PageLayout title="Script Flows" description="Build visual flowcharts for your sales and prospecting processes">
-      <div className="px-3 sm:px-6 max-w-5xl mx-auto pb-20">
-      <div className="hidden sm:block"><ScriptsTabBar /></div>
+      <div className="px-3 lg:px-6 max-w-5xl mx-auto pb-20">
+      <div className="hidden lg:block"><ScriptsTabBar /></div>
       {isLoading ? (
         <div className="text-center py-12 text-muted-foreground">Loading flows...</div>
       ) : (

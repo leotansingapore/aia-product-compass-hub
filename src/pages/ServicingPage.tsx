@@ -768,8 +768,8 @@ export default function ServicingPage() {
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Servicing" }]}
       />
 
-      <div className="mx-auto px-3 sm:px-6 py-3 sm:py-8 max-w-4xl">
-        <div className="hidden sm:block"><ScriptsTabBar /></div>
+      <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-4xl">
+        <div className="hidden lg:block"><ScriptsTabBar /></div>
 
         {/* Search + Add */}
         <div className="mb-4 sm:mb-5 flex gap-2 sm:gap-3 items-start">
@@ -794,8 +794,8 @@ export default function ServicingPage() {
         </div>
 
         {/* ── Filter dropdowns ── */}
-        <div className="mb-4 p-3 sm:p-4 rounded-lg border bg-muted/30">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+        <div className="mb-4 p-3 md:p-4 rounded-lg border bg-muted/30">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
             {/* Category */}
             <div>
               <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 flex items-center gap-1">

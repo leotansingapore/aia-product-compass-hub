@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect, memo, useRef, useState, useCallback } from "react";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
+import { useIsTabletOrMobile } from "@/hooks/use-mobile";
 import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { MobileBottomNav } from "./MobileBottomNav";
@@ -14,7 +15,6 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppStructureSync } from "@/hooks/useAppStructureSync";
 import { usePermissions } from "@/hooks/usePermissions";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 // Safe fallback to avoid crash if AdminProvider isn't mounted (e.g., during boot/HMR)
 const useAdminSafe = () => {
@@ -44,7 +44,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const navigate = useNavigate();
   const { autoSync } = useAppStructureSync();
   const { loading: permissionsLoading } = usePermissions();
-  const isMobile = useIsMobile();
+  const isMobile = useIsTabletOrMobile();
   const location = useLocation();
 
   // Pages that manage their own mobile header (show ScriptsTabBar instead)

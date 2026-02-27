@@ -15,8 +15,8 @@ export function ScriptsTabBar() {
   const currentKey = tabs.find(t => location.pathname.startsWith(t.path))?.key ?? "scripts";
 
   return (
-    <div className="sm:mb-5 sm:mx-0">
-      <div className="flex overflow-x-auto scrollbar-hide border-b border-border bg-background/95 backdrop-blur-sm shadow-sm sm:shadow-none sm:border-0 sm:overflow-visible sm:flex-wrap sm:gap-1 sm:p-1 sm:bg-background/95 sm:rounded-lg sm:w-fit sticky top-0 z-40 sm:static sm:z-30 sm:border sm:border-border">
+    <div className="lg:mb-5 lg:mx-0">
+      <div className="flex overflow-x-auto scrollbar-hide border-b border-border bg-background/95 backdrop-blur-sm shadow-sm lg:shadow-none lg:border-0 lg:overflow-visible lg:flex-wrap lg:gap-1 lg:p-1 lg:bg-background/95 lg:rounded-lg lg:w-fit sticky top-0 z-40 lg:static lg:z-30 lg:border lg:border-border">
         {tabs.map(tab => {
           const isActive = currentKey === tab.key;
           return (
@@ -24,16 +24,16 @@ export function ScriptsTabBar() {
               key={tab.key}
               onClick={() => navigate(tab.path)}
               className={[
-                "flex-1 sm:flex-none shrink-0 flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-0.5 sm:gap-1.5",
-                "px-3 sm:px-3 py-2.5 sm:py-1.5 text-[10px] sm:text-sm font-medium transition-all",
-                "border-b-2 sm:border-0 sm:rounded-md",
+                "flex-1 lg:flex-none shrink-0 flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-0.5 lg:gap-1.5",
+                "px-3 lg:px-3 py-2.5 lg:py-1.5 text-[10px] lg:text-sm font-medium transition-all",
+                "border-b-2 lg:border-0 lg:rounded-md",
                 isActive
-                  ? "border-primary text-primary sm:bg-primary sm:text-primary-foreground sm:border-transparent"
-                  : "border-transparent text-muted-foreground hover:text-foreground sm:hover:bg-accent",
+                  ? "border-primary text-primary lg:bg-primary lg:text-primary-foreground lg:border-transparent"
+                  : "border-transparent text-muted-foreground hover:text-foreground lg:hover:bg-accent",
               ].join(" ")}
             >
-              <span className="text-base sm:text-sm leading-none">{tab.emoji}</span>
-              <span className="leading-none mt-0.5 sm:mt-0 whitespace-nowrap">{tab.label}</span>
+              <span className="text-base lg:text-sm leading-none">{tab.emoji}</span>
+              <span className="leading-none mt-0.5 lg:mt-0 whitespace-nowrap">{tab.label}</span>
             </button>
           );
         })}
