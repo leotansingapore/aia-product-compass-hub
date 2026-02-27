@@ -150,13 +150,13 @@ export default function ProductDetail() {
           onDescriptionEdit={isAdminMode ? (newDesc) => handleUpdate('description', newDesc) : undefined}
         />
         
-        <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
+        {/* Floating AI Assistant Chat - outside containing div to ensure fixed positioning works */}
+        <FloatingAIChat
+          productId={product.id}
+          productName={product.title}
+        />
 
-          {/* Floating AI Assistant Chat */}
-          <FloatingAIChat
-            productId={product.id}
-            productName={product.title}
-          />
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
 
           {/* Compact Top Actions */}
           <div className="flex justify-end gap-2 mb-2 sm:mb-4">
