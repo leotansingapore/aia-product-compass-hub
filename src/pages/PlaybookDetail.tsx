@@ -4,8 +4,10 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare, Share2, Globe, Lock } from "lucide-react";
+import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare, Share2, Globe, Lock, Heading1, X } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
 import { useScripts } from "@/hooks/useScripts";
 import { useScriptsMutations } from "@/hooks/useScripts";
@@ -298,10 +300,99 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
   );
 }
 
+// ─── Section Header Card ────────────────────────────────────────────────────
+
+interface SortableSectionCardProps {
+  item: any;
+  isOwner: boolean;
+  onRemove: (id: string) => void;
+  onRename: (id: string, label: string) => void;
+}
+
+function SortableSectionCard({ item, isOwner, onRemove, onRename }: SortableSectionCardProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: item.id });
+
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(item.custom_content?.label || "Section");
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 50 : undefined,
+    opacity: isDragging ? 0.8 : 1,
+  };
+
+  const commit = () => {
+    const trimmed = draft.trim() || "Section";
+    onRename(item.id, trimmed);
+    setEditing(false);
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} className="flex items-center gap-2 mt-4 mb-1 first:mt-0">
+      {isOwner && (
+        <button
+          {...attributes}
+          {...listeners}
+          className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 shrink-0"
+        >
+          <GripVertical className="h-4 w-4" />
+        </button>
+      )}
+      <Heading1 className="h-4 w-4 text-primary shrink-0" />
+      {editing ? (
+        <div className="flex items-center gap-2 flex-1">
+          <Input
+            autoFocus
+            value={draft}
+            onChange={e => setDraft(e.target.value)}
+            onBlur={commit}
+            onKeyDown={e => {
+              if (e.key === "Enter") commit();
+              if (e.key === "Escape") { setDraft(item.custom_content?.label || "Section"); setEditing(false); }
+            }}
+            className="h-7 text-base font-semibold border-0 border-b border-primary rounded-none px-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+          />
+        </div>
+      ) : (
+        <div className="flex items-center gap-2 flex-1 group/section">
+          <h2
+            className={`text-base font-semibold leading-none flex-1 ${isOwner ? "cursor-pointer" : ""}`}
+            onClick={() => isOwner && setEditing(true)}
+          >
+            {item.custom_content?.label || "Section"}
+          </h2>
+          {isOwner && (
+            <div className="opacity-0 group-hover/section:opacity-100 transition-opacity flex items-center gap-1">
+              <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setEditing(true)} title="Rename">
+                <Pencil className="h-3 w-3" />
+              </Button>
+              <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => onRemove(item.id)} title="Delete section">
+                <X className="h-3 w-3" />
+              </Button>
+            </div>
+          )}
+        </div>
+      )}
+      <div className="flex-1 h-px bg-border ml-1" />
+    </div>
+  );
+}
+
+// ─── Main Page ───────────────────────────────────────────────────────────────
+
 export default function PlaybookDetail() {
   const { playbookId } = useParams();
   const navigate = useNavigate();
   const { user } = useSimplifiedAuth();
+  const queryClient = useQueryClient();
   const { playbooks, togglePublic } = usePlaybooks();
   const { items, isLoading, removeItem, reorderItems } = usePlaybookItems(playbookId || null);
   const { scripts, loading: scriptsLoading, refetch } = useScripts();
@@ -321,10 +412,27 @@ export default function PlaybookDetail() {
       ...item,
       script: item.item_type === 'script' ? scripts.find(s => s.id === item.script_id) : undefined,
       objection: item.item_type === 'objection' ? objections.find(o => o.id === item.objection_id) : undefined,
-    })).filter(item => item.script || item.objection);
+    })).filter(item => item.item_type === 'section' || item.script || item.objection);
   }, [items, scripts, objections]);
 
   const { addItem } = usePlaybookItems(playbookId || null);
+
+  const handleAddSection = async () => {
+    if (!playbookId) return;
+    const maxOrder = items.length > 0 ? Math.max(...items.map(i => i.sort_order)) + 1 : 0;
+    await supabase.from('script_playbook_items').insert({
+      playbook_id: playbookId,
+      item_type: 'section',
+      sort_order: maxOrder,
+      custom_content: { label: 'New Section' },
+    } as any);
+    queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
+  };
+
+  const handleRenameSection = async (itemId: string, label: string) => {
+    await supabase.from('script_playbook_items').update({ custom_content: { label } } as any).eq('id', itemId);
+    queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
+  };
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
@@ -498,6 +606,9 @@ export default function PlaybookDetail() {
                 {isAiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
                 AI Suggest
               </Button>
+              <Button variant="outline" onClick={handleAddSection} className="gap-1.5 flex-1 sm:flex-initial">
+                <Heading1 className="h-4 w-4" /> Add Section
+              </Button>
               <Button onClick={() => setAddDialogOpen(true)} className="gap-2 flex-1 sm:flex-initial">
                 <Plus className="h-4 w-4" /> Add Items
               </Button>
@@ -586,27 +697,46 @@ export default function PlaybookDetail() {
           >
             <SortableContext items={itemsWithData.map(i => i.id)} strategy={verticalListSortingStrategy}>
               <div className="space-y-3">
-                {itemsWithData.map((item, index) => (
-                  item.item_type === 'objection' && item.objection ? (
-                    <SortableObjectionCard
-                      key={item.id}
-                      item={item}
-                      index={index}
-                      isOwner={isOwner}
-                      onRemove={(id) => removeItem.mutate(id)}
-                    />
-                  ) : (
-                    <SortableScriptCard
-                      key={item.id}
-                      item={item}
-                      index={index}
-                      isOwner={isOwner}
-                      onRemove={(id) => removeItem.mutate(id)}
-                      onInlineSave={handleInlineSave}
-                      isAuthenticated={!!user}
-                    />
-                  )
-                ))}
+                {(() => {
+                  // Section headers don't count toward the item numbering
+                  let counter = 0;
+                  return itemsWithData.map((item) => {
+                    if (item.item_type === 'section') {
+                      return (
+                        <SortableSectionCard
+                          key={item.id}
+                          item={item}
+                          isOwner={isOwner}
+                          onRemove={(id) => removeItem.mutate(id)}
+                          onRename={handleRenameSection}
+                        />
+                      );
+                    }
+                    const idx = counter++;
+                    if (item.item_type === 'objection' && item.objection) {
+                      return (
+                        <SortableObjectionCard
+                          key={item.id}
+                          item={item}
+                          index={idx}
+                          isOwner={isOwner}
+                          onRemove={(id) => removeItem.mutate(id)}
+                        />
+                      );
+                    }
+                    return (
+                      <SortableScriptCard
+                        key={item.id}
+                        item={item}
+                        index={idx}
+                        isOwner={isOwner}
+                        onRemove={(id) => removeItem.mutate(id)}
+                        onInlineSave={handleInlineSave}
+                        isAuthenticated={!!user}
+                      />
+                    );
+                  });
+                })()}
               </div>
             </SortableContext>
           </DndContext>

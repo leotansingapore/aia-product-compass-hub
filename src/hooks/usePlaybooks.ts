@@ -22,10 +22,10 @@ export interface PlaybookItem {
   playbook_id: string;
   script_id: string | null;
   objection_id: string | null;
-  item_type: 'script' | 'objection';
+  item_type: 'script' | 'objection' | 'section';
   sort_order: number;
   created_at: string;
-  custom_content?: { version_index?: number } | null;
+  custom_content?: { version_index?: number; label?: string } | null;
 }
 
 export function usePlaybooks() {
@@ -165,7 +165,7 @@ export function usePlaybookItems(playbookId: string | null) {
   });
 
   const addItem = useMutation({
-    mutationFn: async ({ scriptId, objectionId, itemType = 'script', versionIndex }: { scriptId?: string; objectionId?: string; itemType?: 'script' | 'objection'; versionIndex?: number }) => {
+    mutationFn: async ({ scriptId, objectionId, itemType = 'script', versionIndex }: { scriptId?: string; objectionId?: string; itemType?: 'script' | 'objection' | 'section'; versionIndex?: number }) => {
       if (!playbookId) throw new Error('No playbook selected');
       const maxOrder = items.length > 0 ? Math.max(...items.map(i => i.sort_order)) + 1 : 0;
       const customContent = versionIndex !== undefined ? { version_index: versionIndex } : null;
