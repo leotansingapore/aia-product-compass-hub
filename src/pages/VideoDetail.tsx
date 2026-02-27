@@ -92,6 +92,7 @@ export default function VideoDetail() {
           initialVideoIndex={videoIndex}
           onClose={() => navigate(`/product/${productSlugOrId}`)}
         />
+        <FloatingAIChat productId={product.id} productName={product.title} />
       </PageLayout>
     </ProtectedPage>
   );
