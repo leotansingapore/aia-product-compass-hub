@@ -126,18 +126,33 @@ interface ObjectionCardProps {
 
 function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, userDisplayName, onEdit, onDelete, onAddResponse, onDeleteResponse, searchQuery = "", matchedResponseIds }: ObjectionCardProps) {
   const [open, setOpen] = useState(false);
-  const [newResponse, setNewResponse] = useState("");
+  const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [addingVersion, setAddingVersion] = useState(false);
+  const [newVersionName, setNewVersionName] = useState("");
+  const [newVersionContent, setNewVersionContent] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
   const cat = categoryConfig[entry.category] || categoryConfig.generic;
 
-  // Auto-expand when search matches response content
   const hasResponseMatch = matchedResponseIds && matchedResponseIds.size > 0;
 
-  const handleSubmit = async () => {
-    if (!newResponse.trim()) return;
+  // Default to first tab
+  const currentTab = activeTab || responses[0]?.id || "__add__";
+
+  const handleCopy = (content: string, id: string) => {
+    navigator.clipboard.writeText(content);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  const handleSubmitVersion = async () => {
+    if (!newVersionContent.trim()) return;
+    const name = newVersionName.trim() || userDisplayName || "Anonymous";
     setSubmitting(true);
-    await onAddResponse(entry.id, newResponse.trim());
-    setNewResponse("");
+    await onAddResponse(entry.id, newVersionContent.trim(), name);
+    setNewVersionContent("");
+    setNewVersionName("");
+    setAddingVersion(false);
     setSubmitting(false);
   };
 
@@ -158,7 +173,7 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
                     {cat.icon} {cat.label}
                   </Badge>
                   <Badge variant="outline" className="text-[10px]">
-                    {responses.length} {responses.length === 1 ? "response" : "responses"}
+                    {responses.length} {responses.length === 1 ? "version" : "versions"}
                   </Badge>
                   {(entry.tags || []).slice(0, 3).map(tag => (
                     <Badge key={tag} variant="outline" className="text-[10px] font-normal">#{tag}</Badge>
@@ -178,73 +193,120 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
         <CollapsibleContent>
           <CardContent className="pt-0 px-3 sm:px-6 pb-4">
             {entry.description && (
-              <div className="mb-4 p-3 bg-muted/40 rounded-lg border">
+              <div className="mb-3 p-3 bg-muted/40 rounded-lg border">
                 <p className="text-sm text-muted-foreground italic">{entry.description}</p>
               </div>
             )}
 
-            {/* Responses */}
-            <div className="space-y-3">
-              {responses.length === 0 && (
-                <p className="text-sm text-muted-foreground text-center py-4">No responses yet. Be the first to contribute!</p>
-              )}
-              {responses.map((resp) => (
-                <div key={resp.id} className={`border rounded-lg p-3 bg-card ${matchedResponseIds?.has(resp.id) ? 'ring-2 ring-yellow-400/60 dark:ring-yellow-500/40' : ''}`}>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <User className="h-3.5 w-3.5 text-muted-foreground" />
-                      <span className="text-xs font-medium">{resp.author_name}</span>
-                      <span className="text-[10px] text-muted-foreground">
-                        {new Date(resp.created_at).toLocaleDateString()}
-                      </span>
-                    </div>
-                    {(resp.user_id === userId || isAdmin) && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-6 w-6 p-0 text-muted-foreground hover:text-destructive"
-                        onClick={() => onDeleteResponse(resp.id)}
-                      >
-                        <Trash2 className="h-3 w-3" />
-                      </Button>
-                    )}
-                  </div>
-                  <div className="prose prose-sm dark:prose-invert max-w-none text-sm">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents as any}>
-                      {resp.content}
-                    </ReactMarkdown>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Add response */}
-            {isAuthenticated && (
-              <>
-                <Separator className="my-4" />
-                <div className="space-y-2">
-                  <Label className="text-xs font-medium text-muted-foreground">Add your response</Label>
-                  <div className="border rounded-lg overflow-hidden">
-                    <MinimalRichEditor
-                      value={newResponse}
-                      onChange={setNewResponse}
-                      placeholder="Share how you handle this objection..."
-                      onSave={handleSubmit}
-                    />
-                  </div>
-                  <div className="flex justify-end">
-                    <Button
-                      size="sm"
-                      onClick={handleSubmit}
-                      disabled={!newResponse.trim() || submitting}
-                      className="gap-1.5"
+            {/* Tabs for versions */}
+            {(responses.length > 0 || addingVersion) ? (
+              <div>
+                {/* Tab bar */}
+                <div className="flex items-center gap-1 overflow-x-auto pb-1 mb-3 border-b scrollbar-none">
+                  {responses.map((resp) => (
+                    <button
+                      key={resp.id}
+                      onClick={() => { setActiveTab(resp.id); setAddingVersion(false); }}
+                      className={`shrink-0 px-3 py-1.5 text-xs font-medium rounded-t-md transition-colors border-b-2 -mb-px ${
+                        currentTab === resp.id && !addingVersion
+                          ? "border-primary text-primary bg-primary/5"
+                          : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      } ${matchedResponseIds?.has(resp.id) ? "ring-1 ring-yellow-400/60" : ""}`}
                     >
-                      {submitting ? <Loader2 className="h-3 w-3 animate-spin" /> : <Send className="h-3 w-3" />}
-                      Submit
-                    </Button>
-                  </div>
+                      {resp.author_name}
+                    </button>
+                  ))}
+                  {isAuthenticated && (
+                    <button
+                      onClick={() => { setAddingVersion(true); setActiveTab(null); }}
+                      className={`shrink-0 flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium rounded-t-md transition-colors border-b-2 -mb-px ${
+                        addingVersion
+                          ? "border-primary text-primary bg-primary/5"
+                          : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      }`}
+                    >
+                      <Plus className="h-3 w-3" /> Add version
+                    </button>
+                  )}
                 </div>
-              </>
+
+                {/* Active tab content */}
+                {!addingVersion && responses.map((resp) => (
+                  currentTab === resp.id && (
+                    <div key={resp.id} className={`rounded-lg border p-3 bg-card ${matchedResponseIds?.has(resp.id) ? "ring-2 ring-yellow-400/60 dark:ring-yellow-500/40" : ""}`}>
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <User className="h-3 w-3 text-muted-foreground" />
+                          <span className="text-[10px] text-muted-foreground">{new Date(resp.created_at).toLocaleDateString()}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <button
+                            onClick={() => handleCopy(resp.content, resp.id)}
+                            className="flex items-center gap-1 text-[10px] text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded"
+                          >
+                            {copiedId === resp.id ? <><Check className="h-3 w-3 text-green-500" /> Copied</> : <><Copy className="h-3 w-3" /> Copy</>}
+                          </button>
+                          {(resp.user_id === userId || isAdmin) && (
+                            <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-muted-foreground hover:text-destructive" onClick={() => onDeleteResponse(resp.id)}>
+                              <Trash2 className="h-3 w-3" />
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                      <div className="prose prose-sm dark:prose-invert max-w-none text-sm">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents as any}>
+                          {resp.content}
+                        </ReactMarkdown>
+                      </div>
+                    </div>
+                  )
+                ))}
+
+                {/* Add version form */}
+                {addingVersion && (
+                  <div className="space-y-2 border rounded-lg p-3 bg-muted/20">
+                    <div>
+                      <Label className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Version name (optional)</Label>
+                      <Input
+                        value={newVersionName}
+                        onChange={(e) => setNewVersionName(e.target.value)}
+                        placeholder={userDisplayName || "Your name"}
+                        className="h-8 text-sm mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Script content</Label>
+                      <div className="border rounded-lg overflow-hidden mt-1">
+                        <MinimalRichEditor
+                          value={newVersionContent}
+                          onChange={setNewVersionContent}
+                          placeholder="Write your version of this objection response..."
+                          onSave={handleSubmitVersion}
+                        />
+                      </div>
+                    </div>
+                    <div className="flex gap-2 justify-end">
+                      <Button variant="ghost" size="sm" onClick={() => { setAddingVersion(false); setNewVersionContent(""); setNewVersionName(""); }}>
+                        Cancel
+                      </Button>
+                      <Button size="sm" onClick={handleSubmitVersion} disabled={!newVersionContent.trim() || submitting} className="gap-1.5">
+                        {submitting ? <Loader2 className="h-3 w-3 animate-spin" /> : <Send className="h-3 w-3" />}
+                        Save version
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* No responses yet */
+              <div className="text-center py-4">
+                <p className="text-sm text-muted-foreground mb-3">No versions yet. Be the first to contribute!</p>
+                {isAuthenticated && (
+                  <Button size="sm" variant="outline" onClick={() => setAddingVersion(true)} className="gap-1.5">
+                    <Plus className="h-3.5 w-3.5" /> Add version
+                  </Button>
+                )}
+              </div>
             )}
 
             {/* Admin actions */}
