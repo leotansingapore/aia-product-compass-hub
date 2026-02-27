@@ -36,6 +36,7 @@ import CMFASVideoDetail from "./pages/cmfas/CMFASVideoDetail";
 import CMFASChat from "./pages/cmfas/CMFASChat";
 import Roleplay from "./pages/Roleplay";
 import RoleplayFeedback from "./pages/RoleplayFeedback";
+import PitchAnalysis from "./pages/PitchAnalysis";
 import AdminDashboard from "./pages/AdminDashboard";
 import MyAccount from "./pages/MyAccount";
 import NotFound from "./pages/NotFound";
