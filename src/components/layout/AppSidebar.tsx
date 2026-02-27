@@ -25,6 +25,7 @@ import {
   ArchiveRestore,
   LogOut,
   Sparkles,
+  Video,
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
