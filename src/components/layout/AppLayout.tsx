@@ -44,7 +44,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const navigate = useNavigate();
   const { autoSync } = useAppStructureSync();
   const { loading: permissionsLoading } = usePermissions();
-  const isMobile = useIsTabletOrMobile();
+  const isMobile = useIsMobile();
   const location = useLocation();
 
   // Pages that manage their own mobile header (show ScriptsTabBar instead)
