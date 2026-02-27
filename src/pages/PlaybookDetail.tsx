@@ -510,20 +510,23 @@ export default function PlaybookDetail() {
 
   const { addItem } = usePlaybookItems(playbookId || null);
 
-  const handleAddSection = async () => {
+  const handleAddSection = async (level: 1 | 2 | 3 = 1) => {
     if (!playbookId) return;
     const maxOrder = items.length > 0 ? Math.max(...items.map(i => i.sort_order)) + 1 : 0;
+    const labels = { 1: 'New Stage', 2: 'New Group', 3: 'New Sub-group' };
     await supabase.from('script_playbook_items').insert({
       playbook_id: playbookId,
       item_type: 'section',
       sort_order: maxOrder,
-      custom_content: { label: 'New Section' },
+      custom_content: { label: labels[level], level },
     } as any);
     queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
   };
 
-  const handleRenameSection = async (itemId: string, label: string) => {
-    await supabase.from('script_playbook_items').update({ custom_content: { label } } as any).eq('id', itemId);
+  const handleRenameSection = async (itemId: string, label: string, level?: number) => {
+    const existing = items.find(i => i.id === itemId);
+    const existingLevel = (existing?.custom_content as any)?.level || 1;
+    await supabase.from('script_playbook_items').update({ custom_content: { label, level: level ?? existingLevel } } as any).eq('id', itemId);
     queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
   };
 
