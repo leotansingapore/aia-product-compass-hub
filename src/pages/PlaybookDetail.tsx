@@ -336,6 +336,7 @@ interface SortableSectionCardProps {
   isOwner: boolean;
   onRemove: (id: string) => void;
   onRename: (id: string, label: string) => void;
+  shareToken?: string | null;
 }
 
 function SortableSectionCard({ item, isOwner, onRemove, onRename }: SortableSectionCardProps) {
