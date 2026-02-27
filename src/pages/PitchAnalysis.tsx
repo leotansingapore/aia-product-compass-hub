@@ -219,45 +219,51 @@ export default function PitchAnalysisPage() {
         setAnalysis(prev => prev ? { ...prev, status: "pending" } : prev);
       }
 
-      // Trigger edge function
-      const { error: fnError, data: fnData } = await supabase.functions.invoke("analyze-pitch-video", {
-        body: {
+      // Trigger edge function — use raw fetch so we can read the body on non-2xx
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+      const session = await supabase.auth.getSession();
+      const token = session.data.session?.access_token || anonKey;
+
+      const fnResp = await fetch(`${supabaseUrl}/functions/v1/analyze-pitch-video`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          apikey: anonKey,
+        },
+        body: JSON.stringify({
           analysisId,
           videoUrl: videoUrl.trim() || "manual",
           transcript: manualTranscript.trim() || undefined,
           userId: user.id,
-        },
+        }),
       });
 
-      if (fnError) {
-        // Check if this is just a transcript_unavailable soft-fallback (not a real error)
+      if (!fnResp.ok) {
+        let errorBody: any = {};
+        try { errorBody = await fnResp.json(); } catch { /* ignore */ }
+
         const isTranscriptUnavailable =
-          fnError.message?.includes("transcript_unavailable") ||
-          fnError.context?.error === "transcript_unavailable";
+          errorBody?.error === "transcript_unavailable" ||
+          fnResp.status === 422;
+
+        // Always re-fetch DB record to get latest status
+        const { data: latest } = await supabase
+          .from("pitch_analyses")
+          .select("*")
+          .eq("id", analysisId!)
+          .single();
+        if (latest) setAnalysis(parseAnalysis(latest));
 
         if (!isTranscriptUnavailable) {
-          // Re-fetch the analysis to get the latest status from DB before showing toast
-          const { data: latest } = await supabase
-            .from("pitch_analyses")
-            .select("*")
-            .eq("id", analysisId!)
-            .single();
-          if (latest) setAnalysis(parseAnalysis(latest));
-          
           toast({
             title: "Analysis failed to start",
-            description: fnError.message,
+            description: errorBody?.error || `Server error (${fnResp.status})`,
             variant: "destructive",
           });
-        } else {
-          // Transcript unavailable — re-fetch to show needs_transcript UI
-          const { data: latest } = await supabase
-            .from("pitch_analyses")
-            .select("*")
-            .eq("id", analysisId!)
-            .single();
-          if (latest) setAnalysis(parseAnalysis(latest));
         }
+        // transcript_unavailable → UI now shows needs_transcript state, no toast needed
       }
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
