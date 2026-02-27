@@ -7,6 +7,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { useProductBySlugOrId } from "@/hooks/useProducts";
 import { getVideoSlug, isVideoId } from "@/utils/slugUtils";
+import { FloatingAIChat } from "@/components/product-detail/FloatingAIChat";
 
 export default function VideoDetail() {
   const { productSlugOrId, videoId: videoSlugOrId } = useParams<{
@@ -91,6 +92,7 @@ export default function VideoDetail() {
           initialVideoIndex={videoIndex}
           onClose={() => navigate(`/product/${productSlugOrId}`)}
         />
+        <FloatingAIChat productId={product.id} productName={product.title} />
       </PageLayout>
     </ProtectedPage>
   );
