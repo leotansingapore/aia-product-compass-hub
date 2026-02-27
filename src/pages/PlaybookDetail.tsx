@@ -10,7 +10,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare, Share2, Globe, Lock, Heading1, X, Link } from "lucide-react";
+import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare, Share2, Globe, Heading1, Heading2, Heading3, X, Link, ChevronRight } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
 import { useScripts } from "@/hooks/useScripts";
@@ -335,9 +336,36 @@ interface SortableSectionCardProps {
   item: any;
   isOwner: boolean;
   onRemove: (id: string) => void;
-  onRename: (id: string, label: string) => void;
+  onRename: (id: string, label: string, level?: number) => void;
   shareToken?: string | null;
 }
+
+const LEVEL_CONFIG = {
+  1: {
+    icon: Heading1,
+    textClass: "text-lg font-bold",
+    indent: "",
+    borderClass: "border-primary/60",
+    topMargin: "mt-8",
+    dividerH: "h-px",
+  },
+  2: {
+    icon: Heading2,
+    textClass: "text-base font-semibold",
+    indent: "ml-0",
+    borderClass: "border-muted-foreground/30",
+    topMargin: "mt-5",
+    dividerH: "h-px",
+  },
+  3: {
+    icon: Heading3,
+    textClass: "text-sm font-medium text-muted-foreground",
+    indent: "ml-2",
+    borderClass: "border-muted-foreground/20",
+    topMargin: "mt-3",
+    dividerH: "h-px opacity-50",
+  },
+};
 
 function SortableSectionCard({ item, isOwner, onRemove, onRename, shareToken }: SortableSectionCardProps) {
   const {
@@ -352,6 +380,10 @@ function SortableSectionCard({ item, isOwner, onRemove, onRename, shareToken }: 
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(item.custom_content?.label || "Section");
 
+  const level: 1 | 2 | 3 = (item.custom_content?.level as 1 | 2 | 3) || 1;
+  const cfg = LEVEL_CONFIG[level];
+  const LevelIcon = cfg.icon;
+
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -361,14 +393,18 @@ function SortableSectionCard({ item, isOwner, onRemove, onRename, shareToken }: 
 
   const commit = () => {
     const trimmed = draft.trim() || "Section";
-    onRename(item.id, trimmed);
+    onRename(item.id, trimmed, level);
     setEditing(false);
+  };
+
+  const changeLevel = (newLevel: number) => {
+    onRename(item.id, item.custom_content?.label || "Section", newLevel);
   };
 
   const anchor = slugify(item.custom_content?.label || "section");
 
   return (
-    <div ref={setNodeRef} style={style} id={anchor} className="flex items-center gap-2 mt-6 mb-1 first:mt-0 scroll-mt-6 group/section">
+    <div ref={setNodeRef} style={style} id={anchor} className={`flex items-center gap-2 ${cfg.topMargin} mb-1 first:mt-0 scroll-mt-6 group/section ${cfg.indent}`}>
       {isOwner && (
         <button
           {...attributes}
@@ -378,7 +414,29 @@ function SortableSectionCard({ item, isOwner, onRemove, onRename, shareToken }: 
           <GripVertical className="h-4 w-4" />
         </button>
       )}
-      <Heading1 className="h-4 w-4 text-primary shrink-0" />
+      {/* Level icon — click cycles level when owner */}
+      {isOwner ? (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button title="Change heading level" className="text-primary hover:text-primary/70 transition-colors shrink-0">
+              <LevelIcon className={level === 1 ? "h-5 w-5" : level === 2 ? "h-4 w-4" : "h-3.5 w-3.5"} />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-36">
+            <DropdownMenuItem onClick={() => changeLevel(1)} className="gap-2">
+              <Heading1 className="h-4 w-4" /> H1 — Stage
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => changeLevel(2)} className="gap-2">
+              <Heading2 className="h-4 w-4" /> H2 — Group
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => changeLevel(3)} className="gap-2">
+              <Heading3 className="h-4 w-4" /> H3 — Sub-group
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ) : (
+        <LevelIcon className={`${level === 1 ? "h-5 w-5" : level === 2 ? "h-4 w-4" : "h-3.5 w-3.5"} text-primary shrink-0`} />
+      )}
       {editing ? (
         <div className="flex items-center gap-2 flex-1">
           <Input
@@ -390,18 +448,18 @@ function SortableSectionCard({ item, isOwner, onRemove, onRename, shareToken }: 
               if (e.key === "Enter") commit();
               if (e.key === "Escape") { setDraft(item.custom_content?.label || "Section"); setEditing(false); }
             }}
-            className="h-7 text-base font-semibold border-0 border-b border-primary rounded-none px-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+            className={`h-7 border-0 border-b border-primary rounded-none px-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 ${cfg.textClass}`}
           />
         </div>
       ) : (
-        <div className="flex items-center gap-2 flex-1">
-          <h2
-            className={`text-base font-semibold leading-none flex-1 ${isOwner ? "cursor-pointer" : ""}`}
+        <div className="flex items-center gap-2 flex-1 min-w-0">
+          <span
+            className={`${cfg.textClass} leading-none flex-1 truncate ${isOwner ? "cursor-pointer hover:text-primary transition-colors" : ""}`}
             onClick={() => isOwner && setEditing(true)}
           >
             {item.custom_content?.label || "Section"}
-          </h2>
-          <div className="opacity-0 group-hover/section:opacity-100 transition-opacity flex items-center gap-1">
+          </span>
+          <div className="opacity-0 group-hover/section:opacity-100 transition-opacity flex items-center gap-1 shrink-0">
             <SectionAnchorLink anchor={anchor} shareToken={shareToken} />
             {isOwner && (
               <>
@@ -416,7 +474,7 @@ function SortableSectionCard({ item, isOwner, onRemove, onRename, shareToken }: 
           </div>
         </div>
       )}
-      <div className="flex-1 h-px bg-border ml-1" />
+      <div className={`flex-1 ${cfg.dividerH} bg-border ${cfg.borderClass} ml-1`} />
     </div>
   );
 }
@@ -452,20 +510,23 @@ export default function PlaybookDetail() {
 
   const { addItem } = usePlaybookItems(playbookId || null);
 
-  const handleAddSection = async () => {
+  const handleAddSection = async (level: 1 | 2 | 3 = 1) => {
     if (!playbookId) return;
     const maxOrder = items.length > 0 ? Math.max(...items.map(i => i.sort_order)) + 1 : 0;
+    const labels = { 1: 'New Stage', 2: 'New Group', 3: 'New Sub-group' };
     await supabase.from('script_playbook_items').insert({
       playbook_id: playbookId,
       item_type: 'section',
       sort_order: maxOrder,
-      custom_content: { label: 'New Section' },
+      custom_content: { label: labels[level], level },
     } as any);
     queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
   };
 
-  const handleRenameSection = async (itemId: string, label: string) => {
-    await supabase.from('script_playbook_items').update({ custom_content: { label } } as any).eq('id', itemId);
+  const handleRenameSection = async (itemId: string, label: string, level?: number) => {
+    const existing = items.find(i => i.id === itemId);
+    const existingLevel = (existing?.custom_content as any)?.level || 1;
+    await supabase.from('script_playbook_items').update({ custom_content: { label, level: level ?? existingLevel } } as any).eq('id', itemId);
     queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
   };
 
@@ -697,9 +758,24 @@ export default function PlaybookDetail() {
                 {isAiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
                 AI Suggest
               </Button>
-              <Button variant="outline" onClick={handleAddSection} className="gap-1.5 flex-1 sm:flex-initial">
-                <Heading1 className="h-4 w-4" /> Add Section
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="gap-1.5 flex-1 sm:flex-initial">
+                    <Heading1 className="h-4 w-4" /> Add Section <ChevronRight className="h-3.5 w-3.5 ml-0.5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-44">
+                  <DropdownMenuItem onClick={() => handleAddSection(1)} className="gap-2">
+                    <Heading1 className="h-4 w-4" /> H1 — Stage
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleAddSection(2)} className="gap-2">
+                    <Heading2 className="h-4 w-4" /> H2 — Group
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleAddSection(3)} className="gap-2">
+                    <Heading3 className="h-4 w-4" /> H3 — Sub-group
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Button onClick={() => setAddDialogOpen(true)} className="gap-2 flex-1 sm:flex-initial">
                 <Plus className="h-4 w-4" /> Add Items
               </Button>

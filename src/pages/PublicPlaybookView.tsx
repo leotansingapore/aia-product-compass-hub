@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Loader2, BookOpen, MessageSquare, Copy, Check, Pencil, Heading1, Link } from "lucide-react";
+import { ChevronDown, Loader2, BookOpen, MessageSquare, Copy, Check, Pencil, Heading1, Heading2, Heading3, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -299,15 +299,22 @@ export default function PublicPlaybookView() {
               // ─── Section header ───────────────────────────────────────────
               if (item.item_type === 'section') {
                 const label = (item as any).custom_content?.label || "Section";
+                const level: 1 | 2 | 3 = (item as any).custom_content?.level || 1;
                 const anchor = slugify(label);
+                const lvlCfg = {
+                  1: { iconClass: "h-5 w-5", textClass: "text-lg font-bold", topMargin: "mt-8", indent: "" },
+                  2: { iconClass: "h-4 w-4", textClass: "text-base font-semibold", topMargin: "mt-5", indent: "ml-0" },
+                  3: { iconClass: "h-3.5 w-3.5", textClass: "text-sm font-medium text-muted-foreground", topMargin: "mt-3", indent: "ml-2" },
+                }[level];
+                const LvlIcon = level === 1 ? Heading1 : level === 2 ? Heading2 : Heading3;
                 return (
                   <div
                     key={item.id}
                     id={anchor}
-                    className="group/section flex items-center gap-2 mt-6 mb-1 scroll-mt-6"
+                    className={`group/section flex items-center gap-2 ${lvlCfg.topMargin} mb-1 scroll-mt-6 ${lvlCfg.indent}`}
                   >
-                    <Heading1 className="h-4 w-4 text-primary shrink-0" />
-                    <h2 className="text-base font-semibold leading-none flex-1">{label}</h2>
+                    <LvlIcon className={`${lvlCfg.iconClass} text-primary shrink-0`} />
+                    <span className={`${lvlCfg.textClass} leading-none flex-1`}>{label}</span>
                     <SectionAnchorLink anchor={anchor} />
                     <div className="flex-1 h-px bg-border ml-1" />
                   </div>
