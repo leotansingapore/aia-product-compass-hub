@@ -592,51 +592,107 @@ export default function PlaybookDetail() {
           </div>
           {isOwner && (
             <div className="flex gap-2 w-full sm:w-auto flex-wrap">
-              <Button
-                variant={playbook?.is_public ? "secondary" : "outline"}
-                size="sm"
-                className="gap-1.5 flex-1 sm:flex-initial"
-                onClick={() => {
-                  if (!playbook) return;
-                  if (playbook.is_public && playbook.share_token) {
-                    // Copy share link
-                    const url = `${window.location.origin}/playbooks/share/${playbook.share_token}`;
-                    navigator.clipboard.writeText(url);
-                    toast.success('Share link copied to clipboard');
-                  } else {
-                    togglePublic.mutate({ id: playbook.id, isPublic: true });
-                  }
-                }}
-              >
-                {playbook?.is_public ? <Globe className="h-4 w-4" /> : <Share2 className="h-4 w-4" />}
-                {playbook?.is_public ? "Copy Link" : "Share"}
-              </Button>
-              {playbook?.is_public && (
-                <>
+              {/* ── Share popover ── */}
+              <Popover>
+                <PopoverTrigger asChild>
                   <Button
-                    variant={playbook.allow_public_edit ? "secondary" : "ghost"}
+                    variant={playbook?.is_public ? "secondary" : "outline"}
                     size="sm"
-                    className="gap-1.5 text-xs"
-                    onClick={async () => {
-                      const newVal = !(playbook as any).allow_public_edit;
-                      const { error } = await supabase.from('script_playbooks').update({ allow_public_edit: newVal } as any).eq('id', playbook.id);
-                      if (!error) {
-                        toast.success(newVal ? 'Public editing enabled' : 'Public editing disabled');
-                      }
-                    }}
+                    className="gap-1.5 flex-1 sm:flex-initial"
                   >
-                    <Pencil className="h-3.5 w-3.5" /> {(playbook as any).allow_public_edit ? "Editing On" : "Allow Edit"}
+                    {playbook?.is_public ? <Globe className="h-4 w-4" /> : <Share2 className="h-4 w-4" />}
+                    {playbook?.is_public ? "Shared" : "Share"}
                   </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="gap-1.5 text-xs"
-                    onClick={() => togglePublic.mutate({ id: playbook.id, isPublic: false })}
-                  >
-                    <Lock className="h-3.5 w-3.5" /> Make Private
-                  </Button>
-                </>
-              )}
+                </PopoverTrigger>
+                <PopoverContent className="w-80 p-4" align="end">
+                  <p className="font-semibold text-sm mb-3">Share Playbook</p>
+
+                  {/* Enable / disable sharing */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <Label className="text-sm">Public link</Label>
+                      <p className="text-xs text-muted-foreground">Anyone with the link can view</p>
+                    </div>
+                    <Switch
+                      checked={!!playbook?.is_public}
+                      onCheckedChange={(checked) => {
+                        if (!playbook) return;
+                        togglePublic.mutate({ id: playbook.id, isPublic: checked });
+                      }}
+                    />
+                  </div>
+
+                  {playbook?.is_public && playbook?.share_token && (
+                    <>
+                      <Separator className="mb-3" />
+
+                      {/* View-only link */}
+                      <div className="space-y-1 mb-3">
+                        <Label className="text-xs text-muted-foreground">View-only link</Label>
+                        <div className="flex gap-1.5">
+                          <Input
+                            readOnly
+                            value={`${window.location.origin}/playbooks/share/${playbook.share_token}`}
+                            className="h-8 text-xs font-mono bg-muted border-0"
+                          />
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-8 px-2 shrink-0"
+                            onClick={() => {
+                              navigator.clipboard.writeText(`${window.location.origin}/playbooks/share/${playbook.share_token}`);
+                              toast.success('Link copied');
+                            }}
+                          >
+                            <Copy className="h-3.5 w-3.5" />
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Allow edit toggle */}
+                      <div className="flex items-center justify-between mb-3">
+                        <div>
+                          <Label className="text-sm">Allow editing</Label>
+                          <p className="text-xs text-muted-foreground">Viewers can edit scripts in this playbook</p>
+                        </div>
+                        <Switch
+                          checked={!!(playbook as any).allow_public_edit}
+                          onCheckedChange={async (checked) => {
+                            await supabase.from('script_playbooks').update({ allow_public_edit: checked } as any).eq('id', playbook!.id);
+                            queryClient.invalidateQueries({ queryKey: ['playbooks'] });
+                            toast.success(checked ? 'Editing enabled for viewers' : 'Editing disabled');
+                          }}
+                        />
+                      </div>
+
+                      {(playbook as any).allow_public_edit && (
+                        <div className="space-y-1">
+                          <Label className="text-xs text-muted-foreground">Edit link (same URL)</Label>
+                          <div className="flex gap-1.5">
+                            <Input
+                              readOnly
+                              value={`${window.location.origin}/playbooks/share/${playbook.share_token}`}
+                              className="h-8 text-xs font-mono bg-muted border-0"
+                            />
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-8 px-2 shrink-0"
+                              onClick={() => {
+                                navigator.clipboard.writeText(`${window.location.origin}/playbooks/share/${playbook.share_token}`);
+                                toast.success('Edit link copied');
+                              }}
+                            >
+                              <Copy className="h-3.5 w-3.5" />
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </PopoverContent>
+              </Popover>
+
               <Button variant="outline" onClick={handleAISuggest} disabled={isAiLoading} className="gap-1.5 flex-1 sm:flex-initial">
                 {isAiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
                 AI Suggest
