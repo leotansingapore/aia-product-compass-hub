@@ -218,33 +218,39 @@ serve(async (req) => {
 
     const realProductId = product?.id;
 
-    if (realProductId) {
-      // Generate embedding for key query terms about pro achiever pitch
-      const queryText = "Pro Achiever investment linked policy features benefits pitch ILP returns guaranteed";
-      const embedding = await embedText(queryText, supabaseUrl, serviceKey);
-
-      if (embedding) {
-        const { data: chunks } = await supabase.rpc("hybrid_search_knowledge_chunks", {
-          query_embedding: embedding,
-          query_text: queryText,
-          match_count: 12,
-          filter_product_id: realProductId,
-        });
-
-        if (chunks && chunks.length > 0) {
-          knowledgeContext = chunks
-            .slice(0, 10)
-            .map((c: any, i: number) => `[KB ${i + 1}] ${c.content}`)
-            .join("\n\n");
-        }
-      }
-
-      // Also include product highlights
+      if (realProductId) {
+      // Include product highlights and description first
       if (product.highlights?.length) {
-        knowledgeContext = `Product Highlights:\n${product.highlights.join("\n")}\n\n${knowledgeContext}`;
+        knowledgeContext = `Product Highlights:\n${product.highlights.join("\n")}\n\n`;
       }
       if (product.description) {
-        knowledgeContext = `Product Description: ${product.description}\n\n${knowledgeContext}`;
+        knowledgeContext = `Product Description: ${product.description}\n\n` + knowledgeContext;
+      }
+
+      // Try RAG search — wrap fully so any vector/embedding errors don't crash the function
+      try {
+        const queryText = "Pro Achiever investment linked policy features benefits pitch ILP returns guaranteed";
+        const embedding = await embedText(queryText, supabaseUrl, serviceKey);
+
+        if (embedding) {
+          const { data: chunks, error: ragError } = await supabase.rpc("hybrid_search_knowledge_chunks", {
+            query_embedding: embedding,
+            query_text: queryText,
+            match_count: 12,
+            filter_product_id: realProductId,
+          });
+
+          if (ragError) {
+            console.warn("RAG search error (non-fatal):", ragError.message);
+          } else if (chunks && chunks.length > 0) {
+            knowledgeContext += chunks
+              .slice(0, 10)
+              .map((c: any, i: number) => `[KB ${i + 1}] ${c.content}`)
+              .join("\n\n");
+          }
+        }
+      } catch (ragErr) {
+        console.warn("RAG embedding step failed (non-fatal):", ragErr);
       }
     }
 
