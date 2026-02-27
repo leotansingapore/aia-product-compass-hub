@@ -2829,8 +2829,8 @@ export default function ScriptsDatabase() {
         className="hidden sm:block"
       />
 
-      <div className="mx-auto px-3 sm:px-6 py-3 sm:py-8 max-w-4xl">
-        <div className="hidden sm:block">
+      <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-4xl">
+        <div className="hidden lg:block">
           <ScriptsTabBar />
         </div>
 

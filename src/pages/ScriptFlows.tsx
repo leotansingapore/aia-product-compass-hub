@@ -58,7 +58,7 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
             </CardContent>
           </Card>
         ) : (
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {flows.filter(f => !f.is_template).map(flow => (
               <Card key={flow.id} className="cursor-pointer hover:border-primary/50 transition-colors group" onClick={() => onSelect(flow.id)}>
                 <CardHeader className="pb-2">
