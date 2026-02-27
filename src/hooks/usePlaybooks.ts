@@ -165,7 +165,7 @@ export function usePlaybookItems(playbookId: string | null) {
   });
 
   const addItem = useMutation({
-    mutationFn: async ({ scriptId, objectionId, itemType = 'script', versionIndex }: { scriptId?: string; objectionId?: string; itemType?: 'script' | 'objection'; versionIndex?: number }) => {
+    mutationFn: async ({ scriptId, objectionId, itemType = 'script', versionIndex }: { scriptId?: string; objectionId?: string; itemType?: 'script' | 'objection' | 'section'; versionIndex?: number }) => {
       if (!playbookId) throw new Error('No playbook selected');
       const maxOrder = items.length > 0 ? Math.max(...items.map(i => i.sort_order)) + 1 : 0;
       const customContent = versionIndex !== undefined ? { version_index: versionIndex } : null;
