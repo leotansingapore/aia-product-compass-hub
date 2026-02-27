@@ -43,6 +43,31 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 
 
+function slugify(text: string) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function SectionAnchorLink({ anchor, shareToken }: { anchor: string; shareToken?: string | null }) {
+  const [copied, setCopied] = useState(false);
+  const base = shareToken
+    ? `${window.location.origin}/playbooks/share/${shareToken}`
+    : `${window.location.origin}${window.location.pathname}`;
+  const url = `${base}#${anchor}`;
+  return (
+    <button
+      title="Copy link to this section"
+      onClick={() => {
+        navigator.clipboard.writeText(url);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }}
+      className="opacity-0 group-hover/section:opacity-100 transition-opacity text-muted-foreground hover:text-foreground p-0.5"
+    >
+      {copied ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Link className="h-3.5 w-3.5" />}
+    </button>
+  );
+}
+
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
   return (
