@@ -74,7 +74,7 @@ export default function Playbooks() {
       />
 
       <div className="px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto pb-20">
-        <ScriptsTabBar />
+        <div className="hidden sm:block"><ScriptsTabBar /></div>
         {/* Create Button */}
         {user && (
           <div className="mb-4 sm:mb-6">
