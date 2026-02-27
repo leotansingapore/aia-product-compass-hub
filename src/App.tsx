@@ -46,6 +46,7 @@ import VideoDetail from "./pages/VideoDetail";
 import AwaitingApproval from "./pages/AwaitingApproval";
 import ManageProductVideos from "./pages/ManageProductVideos";
 import ScriptsDatabase from "./pages/ScriptsDatabase";
+import Changelog from "./pages/Changelog";
 import ServicingPage from "./pages/ServicingPage";
 import Playbooks from "./pages/Playbooks";
 import PlaybookDetail from "./pages/PlaybookDetail";
