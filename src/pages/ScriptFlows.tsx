@@ -89,7 +89,7 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
 
       <div>
         <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Templates</h2>
-        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {FLOW_TEMPLATES.map((tpl, i) => (
             <Card key={i} className="cursor-pointer hover:border-primary/50 transition-colors" onClick={() => onCreateFromTemplate(i)}>
               <CardHeader className="pb-2">

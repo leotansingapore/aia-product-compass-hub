@@ -768,7 +768,7 @@ export default function ServicingPage() {
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Servicing" }]}
       />
 
-      <div className="mx-auto px-3 lg:px-6 py-3 lg:py-8 max-w-4xl">
+      <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-4xl">
         <div className="hidden lg:block"><ScriptsTabBar /></div>
 
         {/* Search + Add */}
