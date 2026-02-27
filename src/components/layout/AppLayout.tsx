@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, memo, useRef, useState, useCallback } from "react";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
-import { useIsTabletOrMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { MobileBottomNav } from "./MobileBottomNav";
@@ -44,7 +44,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const navigate = useNavigate();
   const { autoSync } = useAppStructureSync();
   const { loading: permissionsLoading } = usePermissions();
-  const isMobile = useIsTabletOrMobile();
+  const isMobile = useIsMobile();
   const location = useLocation();
 
   // Pages that manage their own mobile header (show ScriptsTabBar instead)
