@@ -108,6 +108,9 @@ const App = () => (
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
 
+{/* Changelog */}
+<Route path="/changelog" element={<Changelog />} />
+
 {/* Scripts Database */}
 <Route path="/scripts" element={<ScriptsDatabase />} />
 <Route path="/scripts/:scriptId" element={<ScriptsDatabase />} />
