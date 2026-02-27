@@ -2,20 +2,6 @@ import React, { ReactNode, useEffect, memo, useRef, useState, useCallback } from
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 import { useIsTabletOrMobile } from "@/hooks/use-mobile";
 import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
-import { AppSidebar } from "./AppSidebar";
-import { MobileBottomNav } from "./MobileBottomNav";
-import { MobileHeader } from "./MobileHeader";
-import { Button } from "@/components/ui/button";
-import { LogIn } from "lucide-react";
-import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
-import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
-import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
-import { useAdmin } from "@/hooks/useAdmin";
-import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useAppStructureSync } from "@/hooks/useAppStructureSync";
-import { usePermissions } from "@/hooks/usePermissions";
-import { useIsTabletOrMobile } from "@/hooks/use-mobile";
 
 // Safe fallback to avoid crash if AdminProvider isn't mounted (e.g., during boot/HMR)
 const useAdminSafe = () => {
