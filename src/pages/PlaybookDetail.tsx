@@ -410,7 +410,7 @@ export default function PlaybookDetail() {
       ...item,
       script: item.item_type === 'script' ? scripts.find(s => s.id === item.script_id) : undefined,
       objection: item.item_type === 'objection' ? objections.find(o => o.id === item.objection_id) : undefined,
-    })).filter(item => item.script || item.objection);
+    })).filter(item => item.item_type === 'section' || item.script || item.objection);
   }, [items, scripts, objections]);
 
   const { addItem } = usePlaybookItems(playbookId || null);
