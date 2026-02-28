@@ -331,7 +331,7 @@ export default function PitchAnalysisPage() {
     setVideoUrl("");
     setVideoTitle("");
     setManualTranscript("");
-    setShowManual(false);
+    setFormStep("transcript");
     setExpandedSection("strengths");
   };
 
