@@ -71,9 +71,68 @@ async function getYouTubeTranscript(videoId: string): Promise<string | null> {
   }
 }
 
+// Check if extracted text looks like real speech (not UI/nav text)
+function isRealTranscript(text: string): boolean {
+  if (!text || text.length < 100) return false;
+  // Must have enough words
+  const words = text.split(/\s+/).filter(w => w.length > 1);
+  if (words.length < 20) return false;
+  // Check it's not mostly nav/UI text
+  const navTerms = ["log in", "sign in", "pricing", "learn to loom", "how to record", "loom blog", "sign up", "get started", "home", "features"];
+  const lowerText = text.toLowerCase();
+  const navMatches = navTerms.filter(t => lowerText.includes(t)).length;
+  if (navMatches > 3) return false;
+  // Must contain at least a few sentence-like structures (words with spaces)
+  const avgWordLength = words.reduce((s, w) => s + w.length, 0) / words.length;
+  return avgWordLength > 3 && avgWordLength < 15;
+}
+
 async function getLoomTranscriptDirect(videoId: string): Promise<string | null> {
   // Loom exposes a public transcript endpoint for videos that have transcripts enabled
   try {
+    // Strategy 0: Try multiple known Loom transcript endpoint patterns
+    const endpointsToTry = [
+      `https://www.loom.com/api/transcripts/${videoId}`,
+      `https://cdn.loom.com/sessions/transcripts/${videoId}.json`,
+      `https://www.loom.com/v1/recordings/${videoId}/transcription`,
+    ];
+
+    for (const apiUrl of endpointsToTry) {
+      console.log("Trying Loom transcript endpoint:", apiUrl);
+      try {
+        const resp = await fetch(apiUrl, {
+          headers: {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Accept": "application/json, text/plain, */*",
+            "Referer": `https://www.loom.com/share/${videoId}`,
+          },
+        });
+        if (resp.ok) {
+          const contentType = resp.headers.get("content-type") || "";
+          if (contentType.includes("json")) {
+            const data = await resp.json();
+            const segments: any[] = data?.transcript ?? data?.segments ?? data?.captions ?? data?.words ?? [];
+            if (Array.isArray(segments) && segments.length > 0) {
+              const text = segments
+                .map((s: any) => s.text ?? s.caption ?? s.content ?? s.word ?? "")
+                .filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
+              if (isRealTranscript(text)) {
+                console.log("Loom transcript endpoint succeeded:", apiUrl, "chars:", text.length);
+                return text;
+              }
+            }
+            if (typeof data?.text === "string" && isRealTranscript(data.text)) return data.text;
+          } else if (contentType.includes("vtt") || contentType.includes("text")) {
+            const text = await resp.text();
+            if (text.startsWith("WEBVTT") || text.includes("-->")) {
+              const parsed = parseVTT(text);
+              if (isRealTranscript(parsed)) return parsed;
+            }
+          }
+        }
+      } catch { /* try next */ }
+    }
+
     // Try the transcript API endpoint directly
     const apiUrl = `https://www.loom.com/api/transcripts/${videoId}`;
     console.log("Trying Loom transcript API:", apiUrl);
