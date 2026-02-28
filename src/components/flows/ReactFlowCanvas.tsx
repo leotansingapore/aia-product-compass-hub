@@ -45,6 +45,7 @@ interface ReactFlowCanvasProps {
   onNodesChange?: (nodes: FlowNode[]) => void;
   onEdgesChange?: (edges: FlowEdge[]) => void;
   onDoubleClickNode?: (node: FlowNode) => void;
+  onClickNode?: (node: FlowNode) => void;
   /** Expose undo/redo/layout/export controls to parent */
   controlsRef?: React.MutableRefObject<FlowCanvasControls | null>;
 }
@@ -87,6 +88,7 @@ function ReactFlowCanvasInner({
   onNodesChange: onNodesChangeProp,
   onEdgesChange: onEdgesChangeProp,
   onDoubleClickNode,
+  onClickNode,
   controlsRef,
 }: ReactFlowCanvasProps) {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
@@ -258,14 +260,29 @@ function ReactFlowCanvasInner({
     const dbNode: FlowNode = {
       id: node.id,
       label: node.data?.label || '',
-      type: node.data?.nodeType || 'script',
+      type: (node.data?.nodeType || node.type || 'script') as FlowNode['type'],
       scriptId: node.data?.scriptId || null,
-      customText: node.data?.customText,
+      customText: node.data?.customText || '',
       x: Math.round(node.position.x),
       y: Math.round(node.position.y),
     };
     onDoubleClickNode(dbNode);
   }, [onDoubleClickNode]);
+
+  // Single-click node handler — preview
+  const onNodeClickHandler = useCallback((_: React.MouseEvent, node: Node) => {
+    if (!onClickNode) return;
+    const dbNode: FlowNode = {
+      id: node.id,
+      label: node.data?.label || '',
+      type: (node.data?.nodeType || node.type || 'script') as FlowNode['type'],
+      scriptId: node.data?.scriptId || null,
+      customText: node.data?.customText || '',
+      x: Math.round(node.position.x),
+      y: Math.round(node.position.y),
+    };
+    onClickNode(dbNode);
+  }, [onClickNode]);
 
   // Panel handlers
   const selectedNode = useMemo(() => nodes.find((n) => n.id === selectedNodeId) || null, [nodes, selectedNodeId]);
@@ -556,6 +573,7 @@ function ReactFlowCanvasInner({
         }}
         edgeUpdaterRadius={20}
         onNodeDoubleClick={onNodeDoubleClick}
+        onNodeClick={onClickNode ? onNodeClickHandler : undefined}
         onDragOver={onDragOver}
         onDrop={onDrop}
         nodeTypes={scriptFlowNodeTypes}
