@@ -1,9 +1,10 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import type { NodeProps } from 'reactflow';
 import { Square } from 'lucide-react';
 import { getNodeColors } from '@/utils/flowColorUtils';
 import { cn } from '@/lib/utils';
+import { InlineNodeEditor } from './InlineNodeEditor';
 
 function ScriptEndNodeInner({ data, selected, isConnectable }: NodeProps) {
   const { bg, text, handleBorder } = getNodeColors('scriptEnd', data.color);

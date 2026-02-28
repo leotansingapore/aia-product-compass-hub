@@ -1,9 +1,10 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import type { NodeProps } from 'reactflow';
 import { FileText } from 'lucide-react';
 import { getNodeColors } from '@/utils/flowColorUtils';
 import { cn } from '@/lib/utils';
+import { InlineNodeEditor } from './InlineNodeEditor';
 
 function ScriptNodeInner({ data, selected, isConnectable }: NodeProps) {
   const { bg, text, handleBorder } = getNodeColors('scriptNode', data.color);
@@ -11,6 +12,7 @@ function ScriptNodeInner({ data, selected, isConnectable }: NodeProps) {
   const shadow = data.shadow !== false;
   const borderStyle = data.borderStyle || 'solid';
   const fontSize = data.fontSize || 14;
+  const [editing, setEditing] = useState(false);
 
   const handleClass = '!w-3 !h-3 !bg-white !border-2';
 
@@ -31,12 +33,22 @@ function ScriptNodeInner({ data, selected, isConnectable }: NodeProps) {
     >
       <div className="flex items-center gap-1.5 w-full justify-center">
         <FileText className="w-3.5 h-3.5 shrink-0" style={{ color: text }} />
-        <span
-          className="font-semibold truncate"
-          style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
-        >
-          {data.label || 'Script'}
-        </span>
+        {editing ? (
+          <InlineNodeEditor
+            value={data.label || ''}
+            onChange={(val) => data.onLabelChange?.(val)}
+            onBlur={() => setEditing(false)}
+          />
+        ) : (
+          <span
+            className="font-semibold truncate cursor-text hover:opacity-80"
+            style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
+            onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+            title="Click to edit label"
+          >
+            {data.label || 'Script'}
+          </span>
+        )}
       </div>
 
       {data.scriptId && data.scriptName && (
@@ -65,3 +77,4 @@ function ScriptNodeInner({ data, selected, isConnectable }: NodeProps) {
 }
 
 export const ScriptNode = memo(ScriptNodeInner);
+
