@@ -300,8 +300,8 @@ serve(async (req) => {
         sent++;
       }
 
-      // Small delay to respect Resend rate limits
-      if (sent % 10 === 0) await new Promise((r) => setTimeout(r, 500));
+      // Respect Resend free tier: max 2 req/sec → wait 600ms between each send
+      await new Promise((r) => setTimeout(r, 600));
     }
 
     console.log(`Digest complete: ${sent} sent, ${failed} failed.`);
