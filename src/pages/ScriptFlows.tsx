@@ -216,12 +216,13 @@ export default function ScriptFlows() {
 
   const handleNodeSave = (updates: Partial<FlowNode>) => {
     if (!editingNode) return;
-    // Update local state
-    const updatedNodes = localNodes.map(n => n.id === editingNode.id ? { ...n, ...updates } : n);
+    const merged = { ...editingNode, ...updates };
+    const updatedNodes = localNodes.map(n => n.id === editingNode.id ? merged : n);
     setLocalNodes(updatedNodes);
     setHasUnsaved(true);
-    // Re-mount canvas with updated data by forcing key change
     setLocalNodes([...updatedNodes]); // trigger re-render
+    // Refresh preview panel if this node was being previewed
+    if (previewingNode?.id === editingNode.id) setPreviewingNode(merged);
   };
 
   const handleEdgeSave = (updates: Partial<FlowEdge>) => {
