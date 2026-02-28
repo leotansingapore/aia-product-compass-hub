@@ -88,6 +88,7 @@ function ReactFlowCanvasInner({
   onNodesChange: onNodesChangeProp,
   onEdgesChange: onEdgesChangeProp,
   onDoubleClickNode,
+  onClickNode,
   controlsRef,
 }: ReactFlowCanvasProps) {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
