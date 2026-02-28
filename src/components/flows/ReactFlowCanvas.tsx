@@ -584,6 +584,7 @@ function ReactFlowCanvasInner({
       <ReactFlow
         nodes={nodes}
         edges={edges}
+
         onNodesChange={handleNodesChange}
         onEdgesChange={handleEdgesChange}
         onConnect={onConnect}
