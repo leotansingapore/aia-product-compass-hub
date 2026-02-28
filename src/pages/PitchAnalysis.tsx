@@ -413,70 +413,112 @@ export default function PitchAnalysisPage() {
           {/* ── New Analysis Tab ─────────────────────────────────────────── */}
           <TabsContent value="new" className="space-y-5 mt-5">
 
-            {/* Input Form */}
-            {!analysis && (
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-base">Submit Your Pitch Recording</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">Video URL <span className="text-muted-foreground font-normal">(Loom or YouTube)</span></label>
-                    <Input
-                      placeholder="https://www.loom.com/share/... or https://youtu.be/..."
-                      value={videoUrl}
-                      onChange={e => setVideoUrl(e.target.value)}
-                    />
-                    <p className="text-xs text-muted-foreground">
-                      Loom: ensure captions are enabled in your recording. YouTube: captions must be available on the video.
-                    </p>
+            {/* ── Step 1: Enter URL + Transcript ─────────────────────────── */}
+            {!analysis && formStep === "transcript" && (
+              <div className="space-y-4">
+                {/* Step indicator */}
+                <div className="flex items-center gap-3 text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">1</div>
+                    <span className="font-medium text-foreground">Get Your Transcript</span>
                   </div>
-
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">Session Title <span className="text-muted-foreground font-normal">(optional)</span></label>
-                    <Input
-                      placeholder="e.g. John Doe — Pro Achiever pitch attempt 1"
-                      value={videoTitle}
-                      onChange={e => setVideoTitle(e.target.value)}
-                    />
+                  <div className="h-px flex-1 bg-border" />
+                  <div className="flex items-center gap-2 opacity-40">
+                    <div className="w-6 h-6 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs font-bold">2</div>
+                    <span>AI Analysis</span>
                   </div>
+                </div>
 
-                  <div>
-                    <button
-                      className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      onClick={() => setShowManual(v => !v)}
-                    >
-                      {showManual ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                      {showManual ? "Hide manual transcript" : "Or paste transcript manually"}
-                    </button>
-                    {showManual && (
-                      <div className="mt-3 space-y-1.5">
-                        <label className="text-sm font-medium">Transcript</label>
-                        <Textarea
-                          placeholder="Paste the full transcript of your pitch here…"
-                          value={manualTranscript}
-                          onChange={e => setManualTranscript(e.target.value)}
-                          rows={8}
-                          className="text-sm"
-                        />
-                        <p className="text-xs text-muted-foreground">A minimum of ~200 words is needed for a meaningful analysis.</p>
+                {/* How-to card for Loom */}
+                <Card className="border-primary/20 bg-primary/5">
+                  <CardContent className="pt-4 pb-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                        <FileText className="h-4 w-4 text-primary" />
                       </div>
-                    )}
-                  </div>
+                      <div className="space-y-2 flex-1 min-w-0">
+                        <p className="text-sm font-semibold">How to get your Loom transcript</p>
+                        <ol className="text-sm text-muted-foreground space-y-1.5 list-decimal list-inside">
+                          <li>Open your Loom video in a browser</li>
+                          <li>Click the <strong className="text-foreground">Transcript</strong> tab on the right panel</li>
+                          <li>Click <strong className="text-foreground">Copy transcript</strong> (or select all → copy)</li>
+                          <li>Paste it in the box below</li>
+                        </ol>
+                        <a
+                          href="https://support.loom.com/hc/en-us/articles/360006234777"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                        >
+                          <ExternalLink className="h-3 w-3" /> Loom transcript help
+                        </a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-                  <Button
-                    onClick={() => handleSubmit()}
-                    disabled={submitting || (!videoUrl.trim() && !manualTranscript.trim())}
-                    className="w-full sm:w-auto"
-                  >
-                    {submitting ? (
-                      <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Submitting…</>
-                    ) : (
-                      <><Sparkles className="h-4 w-4 mr-2" /> Analyse Pitch</>
-                    )}
-                  </Button>
-                </CardContent>
-              </Card>
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base">Submit Your Pitch</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Video URL <span className="text-muted-foreground font-normal">(Loom or YouTube)</span></label>
+                      <Input
+                        placeholder="https://www.loom.com/share/... or https://youtu.be/..."
+                        value={videoUrl}
+                        onChange={e => setVideoUrl(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Session Title <span className="text-muted-foreground font-normal">(optional)</span></label>
+                      <Input
+                        placeholder="e.g. John Doe — Pro Achiever pitch attempt 1"
+                        value={videoTitle}
+                        onChange={e => setVideoTitle(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">
+                        Transcript <span className="text-muted-foreground font-normal">(paste from Loom / YouTube)</span>
+                      </label>
+                      <Textarea
+                        placeholder="Paste your transcript here… (Open Loom → Transcript tab → Copy all → Paste here)"
+                        value={manualTranscript}
+                        onChange={e => setManualTranscript(e.target.value)}
+                        rows={9}
+                        className="text-sm"
+                        autoFocus
+                      />
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs text-muted-foreground">
+                          {manualTranscript.trim().split(/\s+/).filter(Boolean).length} words
+                          {manualTranscript.trim().split(/\s+/).filter(Boolean).length < 100 && manualTranscript.length > 0 && (
+                            <span className="text-amber-600 ml-1">— aim for at least 100 words for a good analysis</span>
+                          )}
+                        </p>
+                        {!videoUrl.trim() && (
+                          <p className="text-xs text-muted-foreground">No video URL? You can analyse transcript-only.</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <Button
+                      onClick={() => handleSubmit()}
+                      disabled={submitting || (!videoUrl.trim() && manualTranscript.trim().split(/\s+/).filter(Boolean).length < 20)}
+                      className="w-full sm:w-auto"
+                    >
+                      {submitting ? (
+                        <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Analysing…</>
+                      ) : (
+                        <><Sparkles className="h-4 w-4 mr-2" /> Analyse Pitch <ArrowRight className="h-4 w-4 ml-1" /></>
+                      )}
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
             )}
 
             {/* Processing state */}
