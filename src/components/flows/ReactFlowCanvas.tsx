@@ -101,17 +101,6 @@ function ReactFlowCanvasInner({
   const [penWidth, setPenWidth] = useState(3);
   const [canvasTransform, setCanvasTransform] = useState({ x: 0, y: 0, zoom: 1 });
 
-  // onLabelChange handler — passed to each node via data
-  const handleInlineLabelChange = useCallback((nodeId: string, newLabel: string) => {
-    setNodes((nds) => nds.map((n) => n.id === nodeId ? { ...n, data: { ...n.data, label: newLabel } } : n));
-    requestAnimationFrame(() => {
-      const n = rfGetNodes();
-      const e = rfGetEdges();
-      history.takeSnapshot(n, e, 'Renamed node');
-      notifyParent();
-    });
-  }, [setNodes, rfGetNodes, rfGetEdges, history, notifyParent]);
-
   // Convert DB format to React Flow format for initial load
   const rfInitialNodes = useMemo(() => {
     const converted = toReactFlowNodes(dbNodes);
