@@ -243,6 +243,7 @@ export default function PitchAnalysisPage() {
   }
 
   const handleSubmit = async (retryAnalysisId?: string) => {
+    setFormStep("analysing");
     if (!videoUrl.trim() && !manualTranscript.trim()) {
       toast({ title: "Enter a video URL or paste your transcript", variant: "destructive" });
       return;
