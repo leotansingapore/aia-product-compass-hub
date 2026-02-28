@@ -243,7 +243,6 @@ export default function PitchAnalysisPage() {
   }
 
   const handleSubmit = async (retryAnalysisId?: string) => {
-    setFormStep("analysing");
     if (!videoUrl.trim() && !manualTranscript.trim()) {
       toast({ title: "Enter a video URL or paste your transcript", variant: "destructive" });
       return;
@@ -252,6 +251,7 @@ export default function PitchAnalysisPage() {
       toast({ title: "Please sign in to use this feature", variant: "destructive" });
       return;
     }
+    setFormStep("analysing");
 
     setSubmitting(true);
     try {
@@ -523,7 +523,7 @@ export default function PitchAnalysisPage() {
             )}
 
             {/* Processing state */}
-            {analysis && isProcessing && (
+            {(submitting || (analysis && isProcessing)) && formStep === "analysing" && (
               <Card>
                 <CardContent className="pt-6 pb-6 space-y-5">
                   <div className="flex items-center gap-3">
