@@ -71,6 +71,112 @@ async function getYouTubeTranscript(videoId: string): Promise<string | null> {
   }
 }
 
+async function getLoomTranscriptDirect(videoId: string): Promise<string | null> {
+  // Loom exposes a public transcript endpoint for videos that have transcripts enabled
+  try {
+    // Try the transcript API endpoint directly
+    const apiUrl = `https://www.loom.com/api/transcripts/${videoId}`;
+    console.log("Trying Loom transcript API:", apiUrl);
+    const resp = await fetch(apiUrl, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "application/json",
+        "Referer": `https://www.loom.com/share/${videoId}`,
+      },
+    });
+
+    if (resp.ok) {
+      const data = await resp.json();
+      // Loom transcript format: { transcript: [ { startTime, endTime, text } ] } or similar
+      const segments: any[] = data?.transcript ?? data?.segments ?? data?.captions ?? [];
+      if (Array.isArray(segments) && segments.length > 0) {
+        const text = segments
+          .map((s: any) => s.text ?? s.caption ?? s.content ?? "")
+          .filter(Boolean)
+          .join(" ")
+          .replace(/\s+/g, " ")
+          .trim();
+        if (text.length > 50) {
+          console.log("Loom transcript API succeeded, chars:", text.length);
+          return text;
+        }
+      }
+      // Maybe raw text
+      if (typeof data?.text === "string" && data.text.length > 50) return data.text;
+    }
+
+    // Try the CDN-hosted transcript VTT/JSON
+    const videoPageResp = await fetch(`https://www.loom.com/share/${videoId}`, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      },
+    });
+    if (!videoPageResp.ok) return null;
+    const html = await videoPageResp.text();
+
+    // Look for __NEXT_DATA__ JSON which contains Loom's full page state
+    const nextDataMatch = html.match(/<script id="__NEXT_DATA__" type="application\/json">(.+?)<\/script>/s);
+    if (nextDataMatch) {
+      try {
+        const pageData = JSON.parse(nextDataMatch[1]);
+        const str = JSON.stringify(pageData);
+
+        // Find transcript URL in the page data (Loom stores it as a CDN URL)
+        const transcriptUrlMatch = str.match(/"transcriptUrl"\s*:\s*"([^"]+)"/);
+        if (transcriptUrlMatch) {
+          const transcriptUrl = transcriptUrlMatch[1].replace(/\\u0026/g, "&");
+          console.log("Found Loom transcript URL:", transcriptUrl.slice(0, 80));
+          const tResp = await fetch(transcriptUrl);
+          if (tResp.ok) {
+            const contentType = tResp.headers.get("content-type") || "";
+            const tText = await tResp.text();
+            // VTT format — strip timestamps and headers
+            if (contentType.includes("vtt") || tText.startsWith("WEBVTT")) {
+              const lines = tText.split("\n");
+              const textLines = lines.filter(l =>
+                l.trim() &&
+                !l.startsWith("WEBVTT") &&
+                !l.startsWith("NOTE") &&
+                !/^\d{2}:\d{2}/.test(l) &&  // timestamps
+                !/^[\d]+$/.test(l.trim())    // cue numbers
+              );
+              const vttText = textLines.join(" ").replace(/\s+/g, " ").trim();
+              if (vttText.length > 50) {
+                console.log("Loom VTT transcript extracted, chars:", vttText.length);
+                return vttText;
+              }
+            }
+            // Try JSON format
+            try {
+              const tJson = JSON.parse(tText);
+              const segs: any[] = tJson?.transcript ?? tJson?.segments ?? tJson?.captions ?? [];
+              if (Array.isArray(segs) && segs.length > 0) {
+                const text = segs.map((s: any) => s.text ?? s.caption ?? "").filter(Boolean).join(" ").trim();
+                if (text.length > 50) return text;
+              }
+            } catch { /* not JSON */ }
+          }
+        }
+
+        // Also try extracting transcript segments directly from page data
+        const transcriptMatch = str.match(/"transcript"\s*:\s*\[([^\]]{100,})\]/);
+        if (transcriptMatch) {
+          try {
+            const segs = JSON.parse(`[${transcriptMatch[1]}]`);
+            const text = segs.map((s: any) => s.text ?? s.content ?? "").filter(Boolean).join(" ").trim();
+            if (text.length > 50) return text;
+          } catch { /* continue */ }
+        }
+      } catch { /* JSON parse failed */ }
+    }
+
+    return null;
+  } catch (e) {
+    console.error("Loom direct transcript failed:", e);
+    return null;
+  }
+}
+
 async function getLoomTranscriptViaFirecrawl(videoId: string, firecrawlKey: string): Promise<string | null> {
   try {
     const shareUrl = `https://www.loom.com/share/${videoId}`;
@@ -86,10 +192,13 @@ async function getLoomTranscriptViaFirecrawl(videoId: string, firecrawlKey: stri
         url: shareUrl,
         formats: ["markdown"],
         actions: [
-          // Wait for JS to render
-          { type: "wait", milliseconds: 3000 },
+          { type: "wait", milliseconds: 4000 },
+          // Scroll down to trigger lazy-loaded transcript
+          { type: "scroll", direction: "down", amount: 800 },
+          { type: "wait", milliseconds: 1000 },
         ],
         onlyMainContent: false,
+        waitFor: 3000,
       }),
     });
 
@@ -101,27 +210,23 @@ async function getLoomTranscriptViaFirecrawl(videoId: string, firecrawlKey: stri
 
     const data = await resp.json();
     const markdown: string = data?.data?.markdown || "";
+    console.log("Firecrawl markdown length:", markdown.length, "preview:", markdown.slice(0, 200));
 
     if (!markdown) return null;
 
-    // Extract transcript-like sections from the rendered markdown
-    // Loom renders transcript as a list of timed segments
     const lines = markdown.split("\n");
     const transcriptLines: string[] = [];
     let inTranscriptSection = false;
 
     for (const line of lines) {
       const lower = line.toLowerCase();
-      // Detect transcript section header
       if (lower.includes("transcript") || lower.includes("caption")) {
         inTranscriptSection = true;
         continue;
       }
       if (inTranscriptSection) {
-        // Stop at next major section
         if (line.startsWith("## ") || line.startsWith("# ")) break;
         const clean = line.replace(/^\s*[-*•]\s*/, "").replace(/\*\*/g, "").trim();
-        // Skip timestamps like "0:00" or "[0:12]"
         if (clean && !/^\[?\d+:\d+\]?$/.test(clean) && clean.length > 3) {
           transcriptLines.push(clean);
         }
@@ -129,18 +234,12 @@ async function getLoomTranscriptViaFirecrawl(videoId: string, firecrawlKey: stri
     }
 
     if (transcriptLines.length > 5) {
-      return transcriptLines.join(" ").replace(/\s+/g, " ").trim();
+      const joined = transcriptLines.join(" ").replace(/\s+/g, " ").trim();
+      // Make sure it's actual speech, not nav/UI text
+      if (joined.split(" ").length > 20) return joined;
     }
 
-    // Fallback: try to extract any substantial text blocks from markdown
-    // that look like speech (ignore navigation, buttons, metadata)
-    const substentialText = lines
-      .filter(l => l.trim().length > 40 && !l.startsWith("#") && !l.startsWith("!") && !l.includes("http"))
-      .join(" ")
-      .replace(/\s+/g, " ")
-      .trim();
-
-    return substentialText.length > 100 ? substentialText : null;
+    return null;
   } catch (e) {
     console.error("Loom Firecrawl extraction failed:", e);
     return null;
@@ -250,15 +349,23 @@ serve(async (req) => {
       } else if (videoType === "loom") {
         const loomId = extractLoomId(videoUrl);
         if (loomId) {
-          // Try Firecrawl first (JS-rendered page scraping) then fallback to raw HTML
-          if (firecrawlKey) {
-            console.log("Attempting Loom transcript via Firecrawl...");
+          // Strategy 1: Direct Loom transcript API + CDN VTT (best — no API key needed)
+          console.log("Attempting Loom direct transcript extraction...");
+          transcript = (await getLoomTranscriptDirect(loomId)) || "";
+
+          // Strategy 2: Firecrawl JS-rendered scraping
+          if ((!transcript || transcript.length < 50) && firecrawlKey) {
+            console.log("Direct extraction failed, trying Firecrawl...");
             transcript = (await getLoomTranscriptViaFirecrawl(loomId, firecrawlKey)) || "";
           }
+
+          // Strategy 3: Raw HTML fallback (legacy __NEXT_DATA__ approach)
           if (!transcript || transcript.length < 50) {
             console.log("Firecrawl failed or unavailable, trying raw HTML fallback...");
             transcript = (await getLoomTranscriptFallback(loomId)) || "";
           }
+
+          console.log(`Final transcript length: ${transcript.length}`);
           transcriptSource = "loom";
         }
       }
