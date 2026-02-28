@@ -45,6 +45,7 @@ interface ReactFlowCanvasProps {
   onNodesChange?: (nodes: FlowNode[]) => void;
   onEdgesChange?: (edges: FlowEdge[]) => void;
   onDoubleClickNode?: (node: FlowNode) => void;
+  onClickNode?: (node: FlowNode) => void;
   /** Expose undo/redo/layout/export controls to parent */
   controlsRef?: React.MutableRefObject<FlowCanvasControls | null>;
 }
