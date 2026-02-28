@@ -1,9 +1,10 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import type { NodeProps } from 'reactflow';
 import { Zap } from 'lucide-react';
 import { getNodeColors } from '@/utils/flowColorUtils';
 import { cn } from '@/lib/utils';
+import { InlineNodeEditor } from './InlineNodeEditor';
 
 function ActionNodeInner({ data, selected, isConnectable }: NodeProps) {
   const { bg, text, handleBorder } = getNodeColors('actionNode', data.color);
@@ -11,6 +12,7 @@ function ActionNodeInner({ data, selected, isConnectable }: NodeProps) {
   const shadow = data.shadow !== false;
   const borderStyle = data.borderStyle || 'solid';
   const fontSize = data.fontSize || 14;
+  const [editing, setEditing] = useState(false);
 
   const handleClass = '!w-3 !h-3 !bg-white !border-2';
 
@@ -30,12 +32,22 @@ function ActionNodeInner({ data, selected, isConnectable }: NodeProps) {
       }}
     >
       <Zap className="w-3.5 h-3.5 shrink-0" style={{ color: text }} />
-      <span
-        className="font-semibold truncate"
-        style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
-      >
-        {data.label || 'Action'}
-      </span>
+      {editing ? (
+        <InlineNodeEditor
+          value={data.label || ''}
+          onChange={(val) => data.onLabelChange?.(val)}
+          onBlur={() => setEditing(false)}
+        />
+      ) : (
+        <span
+          className="font-semibold truncate cursor-text hover:opacity-80"
+          style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
+          onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+          title="Click to edit label"
+        >
+          {data.label || 'Action'}
+        </span>
+      )}
 
       <Handle type="target" position={Position.Top} isConnectable={isConnectable}
         className={handleClass} style={{ borderColor: handleBorder }} />
