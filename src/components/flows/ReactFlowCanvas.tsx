@@ -63,6 +63,7 @@ export interface FlowCanvasControls {
   getNodes: () => FlowNode[];
   getEdges: () => FlowEdge[];
   save: () => { nodes: FlowNode[]; edges: FlowEdge[] };
+  updateNodeData: (nodeId: string, dataUpdates: Record<string, any>) => void;
   snapToGrid: boolean;
   setSnapToGrid: (val: boolean) => void;
   focusNode: (nodeId: string) => void;
@@ -555,6 +556,16 @@ function ReactFlowCanvasInner({
         nodes: fromReactFlowNodes(rfGetNodes()),
         edges: fromReactFlowEdges(rfGetEdges()),
       }),
+      updateNodeData: (nodeId: string, dataUpdates: Record<string, any>) => {
+        setNodes((nds) => nds.map((n) => {
+          if (n.id !== nodeId) return n;
+          const newData = { ...n.data, ...dataUpdates };
+          if (dataUpdates.scriptId !== undefined) {
+            // scriptName is handled by the enrichment in toReactFlowNodes
+          }
+          return { ...n, data: newData };
+        }));
+      },
       snapToGrid,
       setSnapToGrid,
       focusNode: (nodeId: string) => {
