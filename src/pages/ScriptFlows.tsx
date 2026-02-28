@@ -131,6 +131,8 @@ export default function ScriptFlows() {
   const [flowDescription, setFlowDescription] = useState('');
   const [editingNode, setEditingNode] = useState<FlowNode | null>(null);
   const [editingEdge, setEditingEdge] = useState<FlowEdge | null>(null);
+  const [previewingNode, setPreviewingNode] = useState<FlowNode | null>(null);
+  const [expandedVersion, setExpandedVersion] = useState(0);
   const [showNewDialog, setShowNewDialog] = useState(false);
   const [newTitle, setNewTitle] = useState('');
   const [newDesc, setNewDesc] = useState('');
