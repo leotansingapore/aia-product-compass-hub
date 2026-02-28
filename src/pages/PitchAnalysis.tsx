@@ -523,7 +523,7 @@ export default function PitchAnalysisPage() {
             )}
 
             {/* Processing state */}
-            {analysis && isProcessing && (
+            {(submitting || (analysis && isProcessing)) && formStep === "analysing" && (
               <Card>
                 <CardContent className="pt-6 pb-6 space-y-5">
                   <div className="flex items-center gap-3">
