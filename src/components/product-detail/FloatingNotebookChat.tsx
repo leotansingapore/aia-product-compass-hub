@@ -26,7 +26,7 @@ export function FloatingNotebookChat({
     }
   };
 
-  return (
+  return createPortal(
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
@@ -34,7 +34,7 @@ export function FloatingNotebookChat({
             onClick={handleClick}
             disabled={!hasLink}
             className={cn(
-              "fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-lg",
+              "fixed bottom-6 right-6 z-[9999] h-14 w-14 rounded-full shadow-lg",
               "transition-all duration-300 hover:scale-110",
               hasLink
                 ? "bg-primary hover:bg-primary/90"
@@ -44,7 +44,6 @@ export function FloatingNotebookChat({
             aria-label={hasLink ? "Open NotebookLM Chat" : "Chat not available"}
           >
             <MessageCircle className="h-6 w-6" />
-            {/* Pulse indicator when link is available */}
             {hasLink && (
               <span className="absolute -top-1 -right-1 flex h-4 w-4">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
@@ -57,6 +56,7 @@ export function FloatingNotebookChat({
           {hasLink ? `Chat about ${productName}` : "Chat not available"}
         </TooltipContent>
       </Tooltip>
-    </TooltipProvider>
+    </TooltipProvider>,
+    document.body
   );
 }
