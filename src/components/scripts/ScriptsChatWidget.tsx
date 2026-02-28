@@ -234,7 +234,7 @@ export function ScriptsChatWidget({ initialMode = "scripts" }: ScriptsChatWidget
   const quickPrompts = mode === "scripts" ? SCRIPTS_PROMPTS : OBJECTION_PROMPTS;
   const ModeIcon = cfg.icon;
 
-  return (
+  return createPortal(
     <>
       {/* Floating trigger button */}
       <button
@@ -411,6 +411,7 @@ export function ScriptsChatWidget({ initialMode = "scripts" }: ScriptsChatWidget
           </div>
         </div>
       </div>
-    </>
+    </>,
+    document.body
   );
 }
