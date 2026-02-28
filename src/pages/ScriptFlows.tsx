@@ -463,8 +463,8 @@ export default function ScriptFlows() {
                           )}
 
                           {previewingNode.customText && (
-                            <div className="border rounded-lg p-3 bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800">
-                              <p className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 uppercase tracking-wide mb-1">Notes</p>
+                            <div className="border rounded-lg p-3 bg-muted/40 border-border">
+                              <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-1">Notes</p>
                               <div className="text-xs text-foreground prose prose-sm dark:prose-invert max-w-none [&_p]:my-1"
                                 dangerouslySetInnerHTML={{ __html: previewingNode.customText }} />
                             </div>
@@ -482,8 +482,8 @@ export default function ScriptFlows() {
                           Link a script
                         </Button>
                         {previewingNode.customText && (
-                          <div className="w-full border rounded-lg p-3 bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800 text-left">
-                            <p className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 uppercase tracking-wide mb-1">Notes</p>
+                           <div className="w-full border rounded-lg p-3 bg-muted/40 border-border text-left">
+                             <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-1">Notes</p>
                             <div className="text-xs text-foreground prose prose-sm dark:prose-invert max-w-none [&_p]:my-1"
                               dangerouslySetInnerHTML={{ __html: previewingNode.customText }} />
                           </div>
