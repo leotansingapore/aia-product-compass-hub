@@ -32,6 +32,9 @@ import {
   TrendingDown,
   Minus,
   ExternalLink,
+  FileText,
+  ArrowRight,
+  Link,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
