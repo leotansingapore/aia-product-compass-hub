@@ -583,7 +583,6 @@ function ReactFlowCanvasInner({
     <div ref={reactFlowWrapper} className="relative w-full h-full">
       <ReactFlow
         nodes={nodesWithCallbacks}
-        nodes={nodes}
         edges={edges}
 
         onNodesChange={handleNodesChange}
