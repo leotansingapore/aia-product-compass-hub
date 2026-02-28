@@ -250,6 +250,49 @@ serve(async (req) => {
           console.error('Error updating feedback:', updateError);
         } else {
           console.log('Successfully generated and stored comprehensive feedback for session:', sessionId);
+
+          // Send email notification to user
+          const resendApiKey = Deno.env.get("RESEND_API_KEY");
+          if (resendApiKey && session.user_id) {
+            try {
+              const { data: profile } = await supabase
+                .from("profiles")
+                .select("email, display_name, first_name")
+                .eq("user_id", session.user_id)
+                .maybeSingle();
+
+              if (profile?.email) {
+                const resend = new Resend(resendApiKey);
+                const userName = profile.display_name || profile.first_name || "Advisor";
+                const feedbackUrl = `https://academy.finternship.com/roleplay/feedback/${sessionId}`;
+
+                const html = await renderAsync(
+                  React.createElement(RoleplayFeedbackReadyEmail, {
+                    userName,
+                    scenarioTitle: session.scenario_title,
+                    scenarioDifficulty: session.scenario_difficulty,
+                    overallScore: comprehensiveFeedback.overall_score || 0,
+                    communicationScore: comprehensiveFeedback.communication_score || 0,
+                    objectionHandlingScore: comprehensiveFeedback.objection_handling_score || 0,
+                    productKnowledgeScore: comprehensiveFeedback.product_knowledge_score || 0,
+                    activeListeningScore: comprehensiveFeedback.active_listening_score || 0,
+                    feedbackUrl,
+                  })
+                );
+
+                await resend.emails.send({
+                  from: "FINternship <noreply@mail.themoneybees.co>",
+                  to: [profile.email],
+                  subject: `🎭 Roleplay Feedback Ready — ${session.scenario_title}`,
+                  html,
+                });
+                console.log("Roleplay feedback email sent to:", profile.email);
+              }
+            } catch (emailErr) {
+              // Non-fatal — log but don't break the flow
+              console.error("Failed to send roleplay feedback email:", emailErr);
+            }
+          }
         }
       } catch (error) {
         console.error('Background feedback generation error:', error);
