@@ -36,7 +36,7 @@ serve(async (req) => {
         userName,
         email,
         loginUrl: 'https://academy.finternship.com/auth',
-        passwordResetLink
+        passwordResetLink,
       })
     );
 
