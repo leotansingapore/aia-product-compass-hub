@@ -3227,6 +3227,50 @@ export default function ScriptsDatabase() {
           </div>
         )}
 
+        {/* Onboarding prompt — shown when no filters are selected and no search */}
+        {!loading && activeCategory === "all" && activeAudience === "all" && !searchQuery && !showFavouritesOnly && (
+          <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 mb-2">
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 text-2xl">🎯</div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-foreground mb-0.5">Start by choosing your target audience</p>
+                <p className="text-xs text-muted-foreground mb-3">Pick a category or audience below to find the right scripts faster. You're currently seeing all {filteredScripts.length} scripts.</p>
+                <div className="flex flex-wrap gap-2">
+                  {(["nsf", "young-adult", "working-adult", "pre-retiree", "parent", "warm-market", "cold-lead"] as const)
+                    .filter(aud => filteredScripts.some(s => s.target_audience === aud))
+                    .map(aud => (
+                      <button
+                        key={aud}
+                        onClick={() => setActiveAudience(aud)}
+                        className="text-xs px-3 py-1.5 rounded-full border border-primary/30 bg-background hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors font-medium"
+                      >
+                        {audienceLabels[aud] ?? aud}
+                      </button>
+                    ))}
+                  <button
+                    onClick={() => setActiveCategory("cold-calling")}
+                    className="text-xs px-3 py-1.5 rounded-full border border-border bg-background hover:bg-accent transition-colors font-medium text-muted-foreground"
+                  >
+                    📞 Cold Calling
+                  </button>
+                  <button
+                    onClick={() => setActiveCategory("follow-up")}
+                    className="text-xs px-3 py-1.5 rounded-full border border-border bg-background hover:bg-accent transition-colors font-medium text-muted-foreground"
+                  >
+                    💬 Follow-Ups
+                  </button>
+                  <button
+                    onClick={() => setActiveCategory("initial-text")}
+                    className="text-xs px-3 py-1.5 rounded-full border border-border bg-background hover:bg-accent transition-colors font-medium text-muted-foreground"
+                  >
+                    💬 Initial Texts
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Scripts list */}
         {!loading && (
           <div className="space-y-3">
