@@ -457,6 +457,52 @@ Return ONLY a valid JSON object (no markdown, no code blocks). Structure:
       console.error("DB update error:", updateError);
     }
 
+    // ── 9. Send email notification ──────────────────────────────────────────
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    if (resendApiKey && userId) {
+      try {
+        // Fetch user profile email
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("email, display_name, first_name")
+          .eq("user_id", userId)
+          .maybeSingle();
+
+        if (profile?.email) {
+          const resend = new Resend(resendApiKey);
+          const userName = profile.display_name || profile.first_name || "Advisor";
+          const appUrl = "https://academy.finternship.com";
+          const feedbackUrl = `${appUrl}/roleplay/pitch-analysis`;
+
+          const html = await renderAsync(
+            React.createElement(PitchAnalysisCompleteEmail, {
+              userName,
+              videoTitle: parsed.video_title || videoUrl,
+              overallScore: parsed.overall_score || 0,
+              productKnowledgeScore: parsed.product_knowledge_score || 0,
+              needsDiscoveryScore: parsed.needs_discovery_score || 0,
+              objectionHandlingScore: parsed.objection_handling_score || 0,
+              closingTechniqueScore: parsed.closing_technique_score || 0,
+              communicationScore: parsed.communication_score || 0,
+              executiveSummary: parsed.executive_summary || "",
+              feedbackUrl,
+            })
+          );
+
+          await resend.emails.send({
+            from: "FINternship <noreply@mail.themoneybees.co>",
+            to: [profile.email],
+            subject: `📊 Your Pitch Analysis is Ready — Score: ${parsed.overall_score || 0}/10`,
+            html,
+          });
+          console.log("Pitch analysis email sent to:", profile.email);
+        }
+      } catch (emailErr) {
+        // Non-fatal — log but don't fail the response
+        console.error("Failed to send pitch analysis email:", emailErr);
+      }
+    }
+
     return new Response(JSON.stringify({ success: true, analysisId }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
