@@ -573,6 +573,7 @@ function ReactFlowCanvasInner({
         }}
         edgeUpdaterRadius={20}
         onNodeDoubleClick={onNodeDoubleClick}
+        onNodeClick={onClickNode ? onNodeClickHandler : undefined}
         onDragOver={onDragOver}
         onDrop={onDrop}
         nodeTypes={scriptFlowNodeTypes}
