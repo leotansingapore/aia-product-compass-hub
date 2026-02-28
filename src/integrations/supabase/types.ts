@@ -303,6 +303,51 @@ export type Database = {
         }
         Relationships: []
       }
+      changelog_entries: {
+        Row: {
+          ai_week_start: string | null
+          category: string
+          created_at: string
+          description: string
+          entry_date: string
+          id: string
+          is_published: boolean
+          link_to: string | null
+          source: string
+          title: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          ai_week_start?: string | null
+          category: string
+          created_at?: string
+          description: string
+          entry_date?: string
+          id?: string
+          is_published?: boolean
+          link_to?: string | null
+          source?: string
+          title: string
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          ai_week_start?: string | null
+          category?: string
+          created_at?: string
+          description?: string
+          entry_date?: string
+          id?: string
+          is_published?: boolean
+          link_to?: string | null
+          source?: string
+          title?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       coaching_events: {
         Row: {
           created_at: string

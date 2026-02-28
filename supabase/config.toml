@@ -58,3 +58,6 @@ verify_jwt = false
 
 [functions.generate-embeddings]
 verify_jwt = false
+
+[functions.generate-changelog-entries]
+verify_jwt = false
