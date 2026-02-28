@@ -12,10 +12,9 @@ function ScriptStartNodeInner({ data, selected, isConnectable }: NodeProps) {
   const shadow = data.shadow !== false;
   const borderStyle = data.borderStyle || 'solid';
   const fontSize = data.fontSize || 14;
+  const [editing, setEditing] = useState(false);
 
-  const handleClass = cn(
-    '!w-3 !h-3 !bg-white !border-2',
-  );
+  const handleClass = '!w-3 !h-3 !bg-white !border-2';
 
   return (
     <div
@@ -33,36 +32,29 @@ function ScriptStartNodeInner({ data, selected, isConnectable }: NodeProps) {
       }}
     >
       <Play className="w-3.5 h-3.5 shrink-0" style={{ color: text }} />
-      <span
-        className="font-semibold truncate"
-        style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
-      >
-        {data.label || 'Start'}
-      </span>
+      {editing ? (
+        <InlineNodeEditor
+          value={data.label || ''}
+          onChange={(val) => data.onLabelChange?.(val)}
+          onBlur={() => setEditing(false)}
+        />
+      ) : (
+        <span
+          className="font-semibold truncate cursor-text hover:opacity-80"
+          style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
+          onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+          title="Click to edit label"
+        >
+          {data.label || 'Start'}
+        </span>
+      )}
 
-      <Handle
-        type="source"
-        position={Position.Bottom}
-        isConnectable={isConnectable}
-        className={handleClass}
-        style={{ borderColor: handleBorder }}
-      />
-      <Handle
-        type="source"
-        position={Position.Left}
-        id="left"
-        isConnectable={isConnectable}
-        className={handleClass}
-        style={{ borderColor: handleBorder }}
-      />
-      <Handle
-        type="source"
-        position={Position.Right}
-        id="right"
-        isConnectable={isConnectable}
-        className={handleClass}
-        style={{ borderColor: handleBorder }}
-      />
+      <Handle type="source" position={Position.Bottom} isConnectable={isConnectable}
+        className={handleClass} style={{ borderColor: handleBorder }} />
+      <Handle type="source" position={Position.Left} id="left" isConnectable={isConnectable}
+        className={handleClass} style={{ borderColor: handleBorder }} />
+      <Handle type="source" position={Position.Right} id="right" isConnectable={isConnectable}
+        className={handleClass} style={{ borderColor: handleBorder }} />
     </div>
   );
 }
