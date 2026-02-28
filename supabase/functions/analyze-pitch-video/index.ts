@@ -67,31 +67,100 @@ async function getYouTubeTranscript(videoId: string): Promise<string | null> {
   }
 }
 
-async function getLoomTranscript(videoId: string): Promise<string | null> {
-  // Loom's transcript API requires auth, so we try page scraping instead
+async function getLoomTranscriptViaFirecrawl(videoId: string, firecrawlKey: string): Promise<string | null> {
   try {
-    // Try the share page and look for transcript JSON embedded in the page
+    const shareUrl = `https://www.loom.com/share/${videoId}`;
+    console.log("Firecrawl scraping Loom:", shareUrl);
+
+    const resp = await fetch("https://api.firecrawl.dev/v1/scrape", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${firecrawlKey}`,
+      },
+      body: JSON.stringify({
+        url: shareUrl,
+        formats: ["markdown"],
+        actions: [
+          // Wait for JS to render
+          { type: "wait", milliseconds: 3000 },
+        ],
+        onlyMainContent: false,
+      }),
+    });
+
+    if (!resp.ok) {
+      const errText = await resp.text();
+      console.error("Firecrawl error:", resp.status, errText);
+      return null;
+    }
+
+    const data = await resp.json();
+    const markdown: string = data?.data?.markdown || "";
+
+    if (!markdown) return null;
+
+    // Extract transcript-like sections from the rendered markdown
+    // Loom renders transcript as a list of timed segments
+    const lines = markdown.split("\n");
+    const transcriptLines: string[] = [];
+    let inTranscriptSection = false;
+
+    for (const line of lines) {
+      const lower = line.toLowerCase();
+      // Detect transcript section header
+      if (lower.includes("transcript") || lower.includes("caption")) {
+        inTranscriptSection = true;
+        continue;
+      }
+      if (inTranscriptSection) {
+        // Stop at next major section
+        if (line.startsWith("## ") || line.startsWith("# ")) break;
+        const clean = line.replace(/^\s*[-*•]\s*/, "").replace(/\*\*/g, "").trim();
+        // Skip timestamps like "0:00" or "[0:12]"
+        if (clean && !/^\[?\d+:\d+\]?$/.test(clean) && clean.length > 3) {
+          transcriptLines.push(clean);
+        }
+      }
+    }
+
+    if (transcriptLines.length > 5) {
+      return transcriptLines.join(" ").replace(/\s+/g, " ").trim();
+    }
+
+    // Fallback: try to extract any substantial text blocks from markdown
+    // that look like speech (ignore navigation, buttons, metadata)
+    const substentialText = lines
+      .filter(l => l.trim().length > 40 && !l.startsWith("#") && !l.startsWith("!") && !l.includes("http"))
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    return substentialText.length > 100 ? substentialText : null;
+  } catch (e) {
+    console.error("Loom Firecrawl extraction failed:", e);
+    return null;
+  }
+}
+
+async function getLoomTranscriptFallback(videoId: string): Promise<string | null> {
+  // Fallback: raw HTML fetch (less reliable for JS-heavy pages)
+  try {
     const shareUrl = `https://www.loom.com/share/${videoId}`;
     const resp = await fetch(shareUrl, {
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.5",
       },
     });
     if (!resp.ok) return null;
     const html = await resp.text();
 
-    // Look for transcript data embedded as JSON in __NEXT_DATA__ or similar
     const nextDataMatch = html.match(/<script id="__NEXT_DATA__" type="application\/json">(.+?)<\/script>/s);
     if (nextDataMatch) {
-      const nextData = JSON.parse(nextDataMatch[1]);
-      // Walk the props tree to find transcript
-      const str = JSON.stringify(nextData);
+      const str = JSON.stringify(JSON.parse(nextDataMatch[1]));
       const transcriptMatch = str.match(/"transcript"\s*:\s*"([^"]{100,})"/);
       if (transcriptMatch) return transcriptMatch[1].replace(/\\n/g, " ").replace(/\\"/g, '"');
-
-      // Look for captions array
       const captionsMatch = str.match(/"captions"\s*:\s*(\[[^\]]{50,}\])/);
       if (captionsMatch) {
         try {
@@ -102,14 +171,9 @@ async function getLoomTranscript(videoId: string): Promise<string | null> {
         } catch { /* continue */ }
       }
     }
-
-    // Look for any transcript-like content in script tags
-    const transcriptBlockMatch = html.match(/"transcript_text"\s*:\s*"([^"]{100,})"/);
-    if (transcriptBlockMatch) return transcriptBlockMatch[1].replace(/\\n/g, " ");
-
     return null;
   } catch (e) {
-    console.error("Loom scrape failed:", e);
+    console.error("Loom fallback scrape failed:", e);
     return null;
   }
 }
