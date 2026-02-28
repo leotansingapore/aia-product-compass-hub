@@ -141,6 +141,17 @@ function ReactFlowCanvasInner({
     onEdgesChangeProp?.(fromReactFlowEdges(currentEdges));
   }, [rfGetNodes, rfGetEdges, onNodesChangeProp, onEdgesChangeProp]);
 
+  // Inline label change — called directly from node components
+  const handleInlineLabelChange = useCallback((nodeId: string, newLabel: string) => {
+    setNodes((nds) => nds.map((n) => n.id === nodeId ? { ...n, data: { ...n.data, label: newLabel } } : n));
+    requestAnimationFrame(() => {
+      const n = rfGetNodes();
+      const e = rfGetEdges();
+      history.takeSnapshot(n, e, 'Renamed node');
+      notifyParent();
+    });
+  }, [setNodes, rfGetNodes, rfGetEdges, history, notifyParent]);
+
   // Wrap onNodesChange to track changes
   const handleNodesChange = useCallback((changes: NodeChange[]) => {
     onNodesChange(changes);
