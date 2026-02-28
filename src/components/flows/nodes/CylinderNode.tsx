@@ -1,29 +1,23 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import type { NodeProps } from 'reactflow';
 import { Database } from 'lucide-react';
 import { getNodeColors } from '@/utils/flowColorUtils';
+import { InlineNodeEditor } from './InlineNodeEditor';
 
 function CylinderNodeInner({ data, selected, isConnectable }: NodeProps) {
   const { bg, text, handleBorder } = getNodeColors('cylinderNode', data.color);
   const opacity = data.opacity ?? 1;
   const shadow = data.shadow !== false;
   const fontSize = data.fontSize || 14;
+  const [editing, setEditing] = useState(false);
 
   const handleClass = '!w-3 !h-3 !bg-white !border-2';
   const w = 140;
   const h = 80;
-  const ry = 12; // ellipse radius for top/bottom
+  const ry = 12;
 
-  // Cylinder path: top ellipse, sides, bottom ellipse
-  const d = `
-    M 0,${ry}
-    A ${w / 2},${ry} 0 0,1 ${w},${ry}
-    V ${h - ry}
-    A ${w / 2},${ry} 0 0,1 0,${h - ry}
-    Z
-  `;
-  // Top ellipse overlay (visible face)
+  const d = `M 0,${ry} A ${w / 2},${ry} 0 0,1 ${w},${ry} V ${h - ry} A ${w / 2},${ry} 0 0,1 0,${h - ry} Z`;
   const topEllipse = `M 0,${ry} A ${w / 2},${ry} 0 0,0 ${w},${ry} A ${w / 2},${ry} 0 0,0 0,${ry}`;
 
   return (
@@ -38,14 +32,24 @@ function CylinderNodeInner({ data, selected, isConnectable }: NodeProps) {
         <path d={topEllipse} fill={bg} stroke={selected ? 'hsl(var(--primary))' : 'rgba(255,255,255,0.3)'} strokeWidth={1.5} />
       </svg>
 
-      <div className="absolute inset-0 flex items-center justify-center gap-1.5 pointer-events-none px-4" style={{ paddingTop: ry }}>
-        <Database className="w-3.5 h-3.5 shrink-0" style={{ color: text }} />
-        <span
-          className="font-semibold truncate"
-          style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
-        >
-          {data.label || 'Storage'}
-        </span>
+      <div className="absolute inset-0 flex items-center justify-center gap-1.5 px-4" style={{ paddingTop: ry }}>
+        <Database className="w-3.5 h-3.5 shrink-0 pointer-events-none" style={{ color: text }} />
+        {editing ? (
+          <InlineNodeEditor
+            value={data.label || ''}
+            onChange={(val) => data.onLabelChange?.(val)}
+            onBlur={() => setEditing(false)}
+          />
+        ) : (
+          <span
+            className="font-semibold truncate cursor-text hover:opacity-80"
+            style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
+            onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+            title="Click to edit label"
+          >
+            {data.label || 'Storage'}
+          </span>
+        )}
       </div>
 
       <Handle type="target" position={Position.Top} isConnectable={isConnectable}
