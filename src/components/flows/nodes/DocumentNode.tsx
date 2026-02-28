@@ -1,29 +1,23 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import type { NodeProps } from 'reactflow';
 import { FileText } from 'lucide-react';
 import { getNodeColors } from '@/utils/flowColorUtils';
+import { InlineNodeEditor } from './InlineNodeEditor';
 
 function DocumentNodeInner({ data, selected, isConnectable }: NodeProps) {
   const { bg, text, handleBorder } = getNodeColors('documentNode', data.color);
   const opacity = data.opacity ?? 1;
   const shadow = data.shadow !== false;
   const fontSize = data.fontSize || 14;
+  const [editing, setEditing] = useState(false);
 
   const handleClass = '!w-3 !h-3 !bg-white !border-2';
   const w = 160;
   const h = 80;
   const wave = 10;
 
-  // Rectangle with wavy bottom
-  const d = `
-    M 0,0
-    H ${w}
-    V ${h - wave}
-    Q ${w * 0.75},${h + wave} ${w * 0.5},${h - wave}
-    Q ${w * 0.25},${h - wave * 3} 0,${h - wave}
-    Z
-  `;
+  const d = `M 0,0 H ${w} V ${h - wave} Q ${w * 0.75},${h + wave} ${w * 0.5},${h - wave} Q ${w * 0.25},${h - wave * 3} 0,${h - wave} Z`;
 
   return (
     <div className="relative" style={{ width: w, height: h, opacity }}>
@@ -36,14 +30,24 @@ function DocumentNodeInner({ data, selected, isConnectable }: NodeProps) {
         <path d={d} fill={bg} stroke={selected ? 'hsl(var(--primary))' : bg} strokeWidth={selected ? 3 : 2} />
       </svg>
 
-      <div className="absolute inset-0 flex items-center justify-center gap-1.5 pointer-events-none px-4" style={{ paddingBottom: wave }}>
-        <FileText className="w-3.5 h-3.5 shrink-0" style={{ color: text }} />
-        <span
-          className="font-semibold truncate"
-          style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
-        >
-          {data.label || 'Document'}
-        </span>
+      <div className="absolute inset-0 flex items-center justify-center gap-1.5 px-4" style={{ paddingBottom: wave }}>
+        <FileText className="w-3.5 h-3.5 shrink-0 pointer-events-none" style={{ color: text }} />
+        {editing ? (
+          <InlineNodeEditor
+            value={data.label || ''}
+            onChange={(val) => data.onLabelChange?.(val)}
+            onBlur={() => setEditing(false)}
+          />
+        ) : (
+          <span
+            className="font-semibold truncate cursor-text hover:opacity-80"
+            style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
+            onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+            title="Click to edit label"
+          >
+            {data.label || 'Document'}
+          </span>
+        )}
       </div>
 
       <Handle type="target" position={Position.Top} isConnectable={isConnectable}

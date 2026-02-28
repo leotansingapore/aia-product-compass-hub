@@ -1,21 +1,22 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import type { NodeProps } from 'reactflow';
 import { Hexagon } from 'lucide-react';
 import { getNodeColors } from '@/utils/flowColorUtils';
 import { cn } from '@/lib/utils';
+import { InlineNodeEditor } from './InlineNodeEditor';
 
 function HexagonNodeInner({ data, selected, isConnectable }: NodeProps) {
   const { bg, text, handleBorder } = getNodeColors('hexagonNode', data.color);
   const opacity = data.opacity ?? 1;
   const shadow = data.shadow !== false;
   const fontSize = data.fontSize || 14;
+  const [editing, setEditing] = useState(false);
 
   const handleClass = '!w-3 !h-3 !bg-white !border-2';
   const w = 160;
   const h = 80;
   const inset = 20;
-  // Hexagon: flat top/bottom, angled sides
   const points = `${inset},0 ${w - inset},0 ${w},${h / 2} ${w - inset},${h} ${inset},${h} 0,${h / 2}`;
 
   return (
@@ -34,14 +35,24 @@ function HexagonNodeInner({ data, selected, isConnectable }: NodeProps) {
         />
       </svg>
 
-      <div className="absolute inset-0 flex items-center justify-center gap-1.5 pointer-events-none px-6">
-        <Hexagon className="w-3.5 h-3.5 shrink-0" style={{ color: text }} />
-        <span
-          className="font-semibold truncate"
-          style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
-        >
-          {data.label || 'Process'}
-        </span>
+      <div className="absolute inset-0 flex items-center justify-center gap-1.5 px-6">
+        <Hexagon className="w-3.5 h-3.5 shrink-0 pointer-events-none" style={{ color: text }} />
+        {editing ? (
+          <InlineNodeEditor
+            value={data.label || ''}
+            onChange={(val) => data.onLabelChange?.(val)}
+            onBlur={() => setEditing(false)}
+          />
+        ) : (
+          <span
+            className="font-semibold truncate cursor-text hover:opacity-80"
+            style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
+            onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+            title="Click to edit label"
+          >
+            {data.label || 'Process'}
+          </span>
+        )}
       </div>
 
       <Handle type="target" position={Position.Top} isConnectable={isConnectable}
