@@ -18,7 +18,7 @@ serve(async (req) => {
     const resendApiKey = Deno.env.get('RESEND_API_KEY')!;
     const resend = new Resend(resendApiKey);
 
-    const { email, firstName, lastName, passwordResetLink } = await req.json();
+    const { email, firstName, lastName, passwordResetLink }: { email: string; firstName?: string; lastName?: string; passwordResetLink?: string } = await req.json();
 
     if (!email) {
       throw new Error('Email is required');
