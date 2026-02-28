@@ -392,6 +392,7 @@ export default function ScriptFlows() {
                   onNodesChange={(nodes) => { setLocalNodes(nodes); setHasUnsaved(true); }}
                   onEdgesChange={(edges) => { setLocalEdges(edges); setHasUnsaved(true); }}
                   onDoubleClickNode={node => setEditingNode(node)}
+                  onClickNode={node => { setPreviewingNode(node); setExpandedVersion(0); }}
                   controlsRef={controlsRef}
                 />
                 <AIFlowChat
