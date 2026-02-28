@@ -71,6 +71,20 @@ async function getYouTubeTranscript(videoId: string): Promise<string | null> {
   }
 }
 
+function parseVTT(vttText: string): string {
+  const lines = vttText.split("\n");
+  const textLines = lines.filter(l =>
+    l.trim() &&
+    !l.startsWith("WEBVTT") &&
+    !l.startsWith("NOTE") &&
+    !l.startsWith("STYLE") &&
+    !/^\d{2}:\d{2}/.test(l) &&   // timestamps like 00:01:23.456
+    !/^[\d]+$/.test(l.trim()) &&  // cue numbers
+    !/-->/i.test(l)               // arrow lines
+  );
+  return textLines.join(" ").replace(/\s+/g, " ").trim();
+}
+
 // Check if extracted text looks like real speech (not UI/nav text)
 function isRealTranscript(text: string): boolean {
   if (!text || text.length < 100) return false;
