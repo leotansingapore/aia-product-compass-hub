@@ -71,9 +71,82 @@ async function getYouTubeTranscript(videoId: string): Promise<string | null> {
   }
 }
 
+function parseVTT(vttText: string): string {
+  const lines = vttText.split("\n");
+  const textLines = lines.filter(l =>
+    l.trim() &&
+    !l.startsWith("WEBVTT") &&
+    !l.startsWith("NOTE") &&
+    !l.startsWith("STYLE") &&
+    !/^\d{2}:\d{2}/.test(l) &&   // timestamps like 00:01:23.456
+    !/^[\d]+$/.test(l.trim()) &&  // cue numbers
+    !/-->/i.test(l)               // arrow lines
+  );
+  return textLines.join(" ").replace(/\s+/g, " ").trim();
+}
+
+// Check if extracted text looks like real speech (not UI/nav text)
+function isRealTranscript(text: string): boolean {
+  if (!text || text.length < 100) return false;
+  // Must have enough words
+  const words = text.split(/\s+/).filter(w => w.length > 1);
+  if (words.length < 20) return false;
+  // Check it's not mostly nav/UI text
+  const navTerms = ["log in", "sign in", "pricing", "learn to loom", "how to record", "loom blog", "sign up", "get started", "home", "features"];
+  const lowerText = text.toLowerCase();
+  const navMatches = navTerms.filter(t => lowerText.includes(t)).length;
+  if (navMatches > 3) return false;
+  // Must contain at least a few sentence-like structures (words with spaces)
+  const avgWordLength = words.reduce((s, w) => s + w.length, 0) / words.length;
+  return avgWordLength > 3 && avgWordLength < 15;
+}
+
 async function getLoomTranscriptDirect(videoId: string): Promise<string | null> {
   // Loom exposes a public transcript endpoint for videos that have transcripts enabled
   try {
+    // Strategy 0: Try multiple known Loom transcript endpoint patterns
+    const endpointsToTry = [
+      `https://www.loom.com/api/transcripts/${videoId}`,
+      `https://cdn.loom.com/sessions/transcripts/${videoId}.json`,
+      `https://www.loom.com/v1/recordings/${videoId}/transcription`,
+    ];
+
+    for (const apiUrl of endpointsToTry) {
+      console.log("Trying Loom transcript endpoint:", apiUrl);
+      try {
+        const resp = await fetch(apiUrl, {
+          headers: {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Accept": "application/json, text/plain, */*",
+            "Referer": `https://www.loom.com/share/${videoId}`,
+          },
+        });
+        if (resp.ok) {
+          const contentType = resp.headers.get("content-type") || "";
+          if (contentType.includes("json")) {
+            const data = await resp.json();
+            const segments: any[] = data?.transcript ?? data?.segments ?? data?.captions ?? data?.words ?? [];
+            if (Array.isArray(segments) && segments.length > 0) {
+              const text = segments
+                .map((s: any) => s.text ?? s.caption ?? s.content ?? s.word ?? "")
+                .filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
+              if (isRealTranscript(text)) {
+                console.log("Loom transcript endpoint succeeded:", apiUrl, "chars:", text.length);
+                return text;
+              }
+            }
+            if (typeof data?.text === "string" && isRealTranscript(data.text)) return data.text;
+          } else if (contentType.includes("vtt") || contentType.includes("text")) {
+            const text = await resp.text();
+            if (text.startsWith("WEBVTT") || text.includes("-->")) {
+              const parsed = parseVTT(text);
+              if (isRealTranscript(parsed)) return parsed;
+            }
+          }
+        }
+      } catch { /* try next */ }
+    }
+
     // Try the transcript API endpoint directly
     const apiUrl = `https://www.loom.com/api/transcripts/${videoId}`;
     console.log("Trying Loom transcript API:", apiUrl);
@@ -96,19 +169,19 @@ async function getLoomTranscriptDirect(videoId: string): Promise<string | null> 
           .join(" ")
           .replace(/\s+/g, " ")
           .trim();
-        if (text.length > 50) {
+        if (isRealTranscript(text)) {
           console.log("Loom transcript API succeeded, chars:", text.length);
           return text;
         }
       }
-      // Maybe raw text
-      if (typeof data?.text === "string" && data.text.length > 50) return data.text;
+      if (typeof data?.text === "string" && isRealTranscript(data.text)) return data.text;
     }
 
-    // Try the CDN-hosted transcript VTT/JSON
+    // Try the CDN-hosted transcript VTT/JSON via page scraping
     const videoPageResp = await fetch(`https://www.loom.com/share/${videoId}`, {
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml",
       },
     });
     if (!videoPageResp.ok) return null;
@@ -121,53 +194,69 @@ async function getLoomTranscriptDirect(videoId: string): Promise<string | null> 
         const pageData = JSON.parse(nextDataMatch[1]);
         const str = JSON.stringify(pageData);
 
-        // Find transcript URL in the page data (Loom stores it as a CDN URL)
-        const transcriptUrlMatch = str.match(/"transcriptUrl"\s*:\s*"([^"]+)"/);
-        if (transcriptUrlMatch) {
-          const transcriptUrl = transcriptUrlMatch[1].replace(/\\u0026/g, "&");
-          console.log("Found Loom transcript URL:", transcriptUrl.slice(0, 80));
-          const tResp = await fetch(transcriptUrl);
-          if (tResp.ok) {
-            const contentType = tResp.headers.get("content-type") || "";
-            const tText = await tResp.text();
-            // VTT format — strip timestamps and headers
-            if (contentType.includes("vtt") || tText.startsWith("WEBVTT")) {
-              const lines = tText.split("\n");
-              const textLines = lines.filter(l =>
-                l.trim() &&
-                !l.startsWith("WEBVTT") &&
-                !l.startsWith("NOTE") &&
-                !/^\d{2}:\d{2}/.test(l) &&  // timestamps
-                !/^[\d]+$/.test(l.trim())    // cue numbers
-              );
-              const vttText = textLines.join(" ").replace(/\s+/g, " ").trim();
-              if (vttText.length > 50) {
-                console.log("Loom VTT transcript extracted, chars:", vttText.length);
-                return vttText;
-              }
-            }
-            // Try JSON format
+        console.log("Page data keys found, looking for transcript URLs...");
+
+        // Try multiple URL key patterns Loom uses
+        const urlPatterns = [
+          /"transcriptUrl"\s*:\s*"([^"]+)"/,
+          /"transcriptDownloadUrl"\s*:\s*"([^"]+)"/,
+          /"captionUrl"\s*:\s*"([^"]+)"/,
+          /"transcript_url"\s*:\s*"([^"]+)"/,
+        ];
+
+        for (const pattern of urlPatterns) {
+          const match = str.match(pattern);
+          if (match) {
+            const transcriptUrl = match[1].replace(/\\u0026/g, "&").replace(/\\\//g, "/");
+            console.log("Found transcript URL via pattern:", transcriptUrl.slice(0, 100));
             try {
-              const tJson = JSON.parse(tText);
-              const segs: any[] = tJson?.transcript ?? tJson?.segments ?? tJson?.captions ?? [];
-              if (Array.isArray(segs) && segs.length > 0) {
-                const text = segs.map((s: any) => s.text ?? s.caption ?? "").filter(Boolean).join(" ").trim();
-                if (text.length > 50) return text;
+              const tResp = await fetch(transcriptUrl, {
+                headers: { "User-Agent": "Mozilla/5.0" },
+              });
+              if (tResp.ok) {
+                const contentType = tResp.headers.get("content-type") || "";
+                const tText = await tResp.text();
+                console.log("Transcript URL content type:", contentType, "length:", tText.length, "preview:", tText.slice(0, 100));
+                if (contentType.includes("vtt") || tText.startsWith("WEBVTT")) {
+                  const parsed = parseVTT(tText);
+                  if (isRealTranscript(parsed)) {
+                    console.log("Loom VTT transcript extracted, chars:", parsed.length);
+                    return parsed;
+                  }
+                }
+                // Try JSON format
+                try {
+                  const tJson = JSON.parse(tText);
+                  const segs: any[] = tJson?.transcript ?? tJson?.segments ?? tJson?.captions ?? [];
+                  if (Array.isArray(segs) && segs.length > 0) {
+                    const text = segs.map((s: any) => s.text ?? s.caption ?? "").filter(Boolean).join(" ").trim();
+                    if (isRealTranscript(text)) return text;
+                  }
+                } catch { /* not JSON */ }
+                // Plain text
+                if (isRealTranscript(tText)) return tText;
               }
-            } catch { /* not JSON */ }
+            } catch { /* try next pattern */ }
           }
         }
 
-        // Also try extracting transcript segments directly from page data
+        // Also try extracting transcript segments directly from page data JSON
         const transcriptMatch = str.match(/"transcript"\s*:\s*\[([^\]]{100,})\]/);
         if (transcriptMatch) {
           try {
             const segs = JSON.parse(`[${transcriptMatch[1]}]`);
             const text = segs.map((s: any) => s.text ?? s.content ?? "").filter(Boolean).join(" ").trim();
-            if (text.length > 50) return text;
+            if (isRealTranscript(text)) return text;
           } catch { /* continue */ }
         }
-      } catch { /* JSON parse failed */ }
+
+        // Also check for plain transcript string embedded in page data
+        const plainTranscriptMatch = str.match(/"transcript"\s*:\s*"([^"]{200,})"/);
+        if (plainTranscriptMatch) {
+          const text = plainTranscriptMatch[1].replace(/\\n/g, " ").replace(/\\"/g, '"').replace(/\s+/g, " ").trim();
+          if (isRealTranscript(text)) return text;
+        }
+      } catch (e) { console.error("Page data parse failed:", e); }
     }
 
     return null;
@@ -371,7 +460,7 @@ serve(async (req) => {
       }
     }
 
-    if (!transcript || transcript.length < 50) {
+    if (!transcript || !isRealTranscript(transcript)) {
       await supabase.from("pitch_analyses").update({
         status: "needs_transcript",
         error_message: "Auto-extraction failed. Please paste the transcript manually to continue.",
