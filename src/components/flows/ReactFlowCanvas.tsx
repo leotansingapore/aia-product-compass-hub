@@ -570,6 +570,15 @@ function ReactFlowCanvasInner({
     };
   });
 
+  // Enrich nodes with inline label change callback
+  const nodesWithCallbacks = useMemo(() =>
+    nodes.map((n) => ({
+      ...n,
+      data: { ...n.data, onLabelChange: (label: string) => handleInlineLabelChange(n.id, label) },
+    })),
+    [nodes, handleInlineLabelChange]
+  );
+
   return (
     <div ref={reactFlowWrapper} className="relative w-full h-full">
       <ReactFlow
