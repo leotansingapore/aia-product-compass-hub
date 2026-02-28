@@ -380,28 +380,119 @@ export default function ScriptFlows() {
             />
 
             {/* React Flow Canvas */}
-            <div className="relative h-[calc(100vh-260px)] min-h-[400px] rounded-xl border overflow-hidden">
-              <ReactFlowCanvas
-                key={activeFlowId}
-                initialNodes={localNodes}
-                initialEdges={localEdges}
-                scripts={scripts}
-                flowId={activeFlowId}
-                onNodesChange={(nodes) => { setLocalNodes(nodes); setHasUnsaved(true); }}
-                onEdgesChange={(edges) => { setLocalEdges(edges); setHasUnsaved(true); }}
-                onDoubleClickNode={node => setEditingNode(node)}
-                controlsRef={controlsRef}
-              />
-              <AIFlowChat
-                nodes={localNodes}
-                edges={localEdges}
-                flowTitle={flowTitle}
-                onFlowUpdated={(nodes, edges) => {
-                  setLocalNodes([...nodes]);
-                  setLocalEdges([...edges]);
-                  setHasUnsaved(true);
-                }}
-              />
+            <div className="flex gap-3 items-start">
+              <div className={`relative rounded-xl border overflow-hidden transition-all duration-300 ${previewingNode ? 'flex-1' : 'w-full'}`}
+                style={{ height: 'calc(100vh - 260px)', minHeight: 400 }}>
+                <ReactFlowCanvas
+                  key={activeFlowId}
+                  initialNodes={localNodes}
+                  initialEdges={localEdges}
+                  scripts={scripts}
+                  flowId={activeFlowId}
+                  onNodesChange={(nodes) => { setLocalNodes(nodes); setHasUnsaved(true); }}
+                  onEdgesChange={(edges) => { setLocalEdges(edges); setHasUnsaved(true); }}
+                  onDoubleClickNode={node => setEditingNode(node)}
+                  controlsRef={controlsRef}
+                />
+                <AIFlowChat
+                  nodes={localNodes}
+                  edges={localEdges}
+                  flowTitle={flowTitle}
+                  onFlowUpdated={(nodes, edges) => {
+                    setLocalNodes([...nodes]);
+                    setLocalEdges([...edges]);
+                    setHasUnsaved(true);
+                  }}
+                />
+              </div>
+
+              {/* Script Preview Panel */}
+              {previewingNode && (() => {
+                const linkedScript = scripts.find(s => s.id === previewingNode.scriptId);
+                return (
+                  <div className="w-[360px] shrink-0 rounded-xl border bg-card shadow-lg flex flex-col overflow-hidden"
+                    style={{ height: 'calc(100vh - 260px)', minHeight: 400 }}>
+                    {/* Panel header */}
+                    <div className="flex items-center justify-between px-4 py-3 border-b bg-muted/30 shrink-0">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <FileText className="h-4 w-4 text-primary shrink-0" />
+                        <span className="font-semibold text-sm truncate">{previewingNode.label}</span>
+                      </div>
+                      <div className="flex items-center gap-1 shrink-0">
+                        <Button variant="ghost" size="sm" className="h-7 text-xs gap-1" onClick={() => setEditingNode(previewingNode)}>
+                          Edit node
+                        </Button>
+                        <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => setPreviewingNode(null)}>
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+
+                    {linkedScript ? (
+                      <ScrollArea className="flex-1">
+                        <div className="p-4 space-y-3">
+                          <div className="flex flex-wrap gap-1.5">
+                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">{linkedScript.category}</span>
+                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{linkedScript.stage}</span>
+                            {linkedScript.target_audience && linkedScript.target_audience !== 'general' && (
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{linkedScript.target_audience}</span>
+                            )}
+                          </div>
+
+                          {linkedScript.versions.length === 0 ? (
+                            <p className="text-sm text-muted-foreground italic">No script content available.</p>
+                          ) : (
+                            <div className="space-y-2">
+                              {linkedScript.versions.map((version, i) => (
+                                <div key={i} className="border rounded-lg overflow-hidden">
+                                  <button
+                                    onClick={() => setExpandedVersion(expandedVersion === i ? -1 : i)}
+                                    className="flex items-center justify-between w-full px-3 py-2 text-left text-sm hover:bg-muted/50 transition-colors bg-muted/20"
+                                  >
+                                    <span className="font-medium text-xs">{(version as any).author || `Version ${i + 1}`}</span>
+                                    {expandedVersion === i ? <ChevronUp className="h-3.5 w-3.5 text-muted-foreground" /> : <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />}
+                                  </button>
+                                  {expandedVersion === i && (
+                                    <div className="px-3 pb-3 pt-1 text-xs leading-relaxed text-foreground prose prose-sm dark:prose-invert max-w-none [&_p]:my-1 [&_ul]:my-1 [&_li]:my-0.5">
+                                      <ReactMarkdown>{(version as any).content || ''}</ReactMarkdown>
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {previewingNode.customText && (
+                            <div className="border rounded-lg p-3 bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800">
+                              <p className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 uppercase tracking-wide mb-1">Notes</p>
+                              <div className="text-xs text-foreground prose prose-sm dark:prose-invert max-w-none [&_p]:my-1"
+                                dangerouslySetInnerHTML={{ __html: previewingNode.customText }} />
+                            </div>
+                          )}
+                        </div>
+                      </ScrollArea>
+                    ) : (
+                      <div className="flex-1 flex flex-col items-center justify-center p-6 text-center gap-3">
+                        <FileText className="h-10 w-10 text-muted-foreground/30" />
+                        <div>
+                          <p className="text-sm font-medium text-muted-foreground">No script linked</p>
+                          <p className="text-xs text-muted-foreground/70 mt-1">Click "Edit node" to link a script to this node.</p>
+                        </div>
+                        <Button size="sm" variant="outline" onClick={() => setEditingNode(previewingNode)}>
+                          Link a script
+                        </Button>
+                        {previewingNode.customText && (
+                          <div className="w-full border rounded-lg p-3 bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800 text-left">
+                            <p className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 uppercase tracking-wide mb-1">Notes</p>
+                            <div className="text-xs text-foreground prose prose-sm dark:prose-invert max-w-none [&_p]:my-1"
+                              dangerouslySetInnerHTML={{ __html: previewingNode.customText }} />
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
             </div>
           </div>
 
