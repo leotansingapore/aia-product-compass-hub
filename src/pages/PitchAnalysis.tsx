@@ -140,7 +140,8 @@ export default function PitchAnalysisPage() {
   const [videoUrl, setVideoUrl] = useState("");
   const [videoTitle, setVideoTitle] = useState("");
   const [manualTranscript, setManualTranscript] = useState("");
-  const [showManual, setShowManual] = useState(false);
+  // Step 1 = "transcript" (enter URL + paste transcript), Step 2 = "analysing" / "result"
+  const [formStep, setFormStep] = useState<"transcript" | "analysing">("transcript");
   const [analysis, setAnalysis] = useState<PitchAnalysis | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>("strengths");
