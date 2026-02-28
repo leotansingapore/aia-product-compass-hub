@@ -349,15 +349,23 @@ serve(async (req) => {
       } else if (videoType === "loom") {
         const loomId = extractLoomId(videoUrl);
         if (loomId) {
-          // Try Firecrawl first (JS-rendered page scraping) then fallback to raw HTML
-          if (firecrawlKey) {
-            console.log("Attempting Loom transcript via Firecrawl...");
+          // Strategy 1: Direct Loom transcript API + CDN VTT (best — no API key needed)
+          console.log("Attempting Loom direct transcript extraction...");
+          transcript = (await getLoomTranscriptDirect(loomId)) || "";
+
+          // Strategy 2: Firecrawl JS-rendered scraping
+          if ((!transcript || transcript.length < 50) && firecrawlKey) {
+            console.log("Direct extraction failed, trying Firecrawl...");
             transcript = (await getLoomTranscriptViaFirecrawl(loomId, firecrawlKey)) || "";
           }
+
+          // Strategy 3: Raw HTML fallback (legacy __NEXT_DATA__ approach)
           if (!transcript || transcript.length < 50) {
             console.log("Firecrawl failed or unavailable, trying raw HTML fallback...");
             transcript = (await getLoomTranscriptFallback(loomId)) || "";
           }
+
+          console.log(`Final transcript length: ${transcript.length}`);
           transcriptSource = "loom";
         }
       }
