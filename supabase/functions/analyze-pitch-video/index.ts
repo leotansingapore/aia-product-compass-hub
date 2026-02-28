@@ -460,7 +460,7 @@ serve(async (req) => {
       }
     }
 
-    if (!transcript || transcript.length < 50) {
+    if (!transcript || !isRealTranscript(transcript)) {
       await supabase.from("pitch_analyses").update({
         status: "needs_transcript",
         error_message: "Auto-extraction failed. Please paste the transcript manually to continue.",
