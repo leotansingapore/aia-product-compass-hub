@@ -246,7 +246,15 @@ serve(async (req) => {
       } else if (videoType === "loom") {
         const loomId = extractLoomId(videoUrl);
         if (loomId) {
-          transcript = (await getLoomTranscript(loomId)) || "";
+          // Try Firecrawl first (JS-rendered page scraping) then fallback to raw HTML
+          if (firecrawlKey) {
+            console.log("Attempting Loom transcript via Firecrawl...");
+            transcript = (await getLoomTranscriptViaFirecrawl(loomId, firecrawlKey)) || "";
+          }
+          if (!transcript || transcript.length < 50) {
+            console.log("Firecrawl failed or unavailable, trying raw HTML fallback...");
+            transcript = (await getLoomTranscriptFallback(loomId)) || "";
+          }
           transcriptSource = "loom";
         }
       }
