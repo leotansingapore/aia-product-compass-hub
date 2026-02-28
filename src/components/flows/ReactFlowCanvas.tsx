@@ -63,6 +63,7 @@ export interface FlowCanvasControls {
   getNodes: () => FlowNode[];
   getEdges: () => FlowEdge[];
   save: () => { nodes: FlowNode[]; edges: FlowEdge[] };
+  updateNodeData: (nodeId: string, dataUpdates: Record<string, any>) => void;
   snapToGrid: boolean;
   setSnapToGrid: (val: boolean) => void;
   focusNode: (nodeId: string) => void;
