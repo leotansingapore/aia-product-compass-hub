@@ -218,9 +218,10 @@ export default function ScriptFlows() {
     if (!editingNode) return;
     const merged = { ...editingNode, ...updates };
     const updatedNodes = localNodes.map(n => n.id === editingNode.id ? merged : n);
-    setLocalNodes(updatedNodes);
+    setLocalNodes([...updatedNodes]);
     setHasUnsaved(true);
-    setLocalNodes([...updatedNodes]); // trigger re-render
+    // Also push into ReactFlow's internal state so controlsRef.save() picks it up
+    controlsRef.current?.updateNodeData(editingNode.id, updates as Record<string, any>);
     // Refresh preview panel if this node was being previewed
     if (previewingNode?.id === editingNode.id) setPreviewingNode(merged);
   };
