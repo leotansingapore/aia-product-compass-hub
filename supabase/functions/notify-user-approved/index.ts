@@ -34,7 +34,8 @@ serve(async (req) => {
     const html = await renderAsync(
       React.createElement(UserApprovedEmail, {
         userName,
-        loginUrl: `${Deno.env.get('SUPABASE_URL')?.replace('supabase.co', 'lovable.app')}/auth`,
+        email,
+        loginUrl: 'https://academy.finternship.com/auth',
         passwordResetLink
       })
     );
