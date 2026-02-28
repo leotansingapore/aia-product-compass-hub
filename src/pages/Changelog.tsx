@@ -71,6 +71,44 @@ const entries: { month: string; changes: ChangeEntry[] }[] = [
     month: "February 2026",
     changes: [
       {
+        date: "28 Feb",
+        type: "new",
+        icon: Bot,
+        title: "Pitch Analysis — AI Video Pitch Evaluator",
+        description:
+          "Submit a Loom or YouTube URL of your Pro Achiever sales pitch and receive an AI-generated scorecard across 5 dimensions: Product Knowledge, Needs Discovery, Objection Handling, Closing Technique, and Communication.",
+        detail: "Scores are graded 1–10 with specific feedback, quoted examples from your transcript, missed key points, and recommended follow-up actions. Track your progress over time via the History tab with trend charts.",
+        category: "AI",
+        linkTo: "/roleplay/pitch-analysis",
+      },
+      {
+        date: "28 Feb",
+        type: "new",
+        icon: Sparkles,
+        title: "Email Notifications — Pitch Analysis & Roleplay Results",
+        description:
+          "You now receive an email when your AI pitch analysis or roleplay feedback is ready, with your scores summarised directly in the email so you don't need to check the platform.",
+        category: "Platform",
+      },
+      {
+        date: "28 Feb",
+        type: "new",
+        icon: Sparkles,
+        title: "Biweekly Changelog Digest Email",
+        description:
+          "All users now receive a biweekly email digest every Monday summarising the latest platform updates, new features, and new training videos added in the past two weeks.",
+        category: "Platform",
+      },
+      {
+        date: "28 Feb",
+        type: "new",
+        icon: Shield,
+        title: "Account Approval Email — Welcome & Login Credentials",
+        description:
+          "New users now receive a polished welcome email when their account is approved by an admin, including their login email, a direct link to set their password, and an overview of platform features.",
+        category: "Admin",
+      },
+      {
         date: "27 Feb",
         type: "new",
         icon: FileText,
