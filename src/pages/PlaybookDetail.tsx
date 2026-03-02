@@ -169,6 +169,11 @@ function SortableScriptCard({ item, index, isOwner, onRemove, onInlineSave, isAu
                         <Pencil className="h-3.5 w-3.5" />
                       </Button>
                     )}
+                    {isOwner && (
+                      <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive hover:text-destructive" onClick={(e) => { e.stopPropagation(); onRemove(item.id); }} title="Remove from playbook">
+                        <Trash2 className="h-3 w-3" />
+                      </Button>
+                    )}
                     <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
                   </div>
                 </div>
@@ -183,13 +188,6 @@ function SortableScriptCard({ item, index, isOwner, onRemove, onInlineSave, isAu
                     </Badge>
                   )}
                 </div>
-                {isOwner && (
-                  <div className="mt-2" onClick={e => e.stopPropagation()}>
-                    <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs text-destructive hover:text-destructive" onClick={() => onRemove(item.id)}>
-                      <Trash2 className="h-3 w-3" /> Remove
-                    </Button>
-                  </div>
-                )}
               </div>
             </div>
           </CardHeader>
@@ -297,7 +295,14 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
                     <MessageSquare className="h-3.5 w-3.5 text-amber-500 shrink-0" />
                     {item.objection?.title}
                   </CardTitle>
-                  <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                  <div className="flex items-center gap-1">
+                    {isOwner && (
+                      <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive hover:text-destructive" onClick={(e) => { e.stopPropagation(); onRemove(item.id); }} title="Remove from playbook">
+                        <Trash2 className="h-3 w-3" />
+                      </Button>
+                    )}
+                    <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                  </div>
                 </div>
                 <div className="flex gap-1.5 mt-1.5 flex-wrap">
                   <Badge variant="secondary" className="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">Objection</Badge>
@@ -306,13 +311,6 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
                     <Badge key={tag} variant="outline" className="text-[10px]">{tag}</Badge>
                   ))}
                 </div>
-                {isOwner && (
-                  <div className="mt-2" onClick={e => e.stopPropagation()}>
-                    <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs text-destructive hover:text-destructive" onClick={() => onRemove(item.id)}>
-                      <Trash2 className="h-3 w-3" /> Remove
-                    </Button>
-                  </div>
-                )}
               </div>
             </div>
           </CardHeader>
