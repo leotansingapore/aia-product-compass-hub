@@ -4,7 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Plus, Filter, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Plus, X, ChevronLeft } from "lucide-react";
 import { PlaybookItem } from "@/hooks/usePlaybooks";
 import type { ObjectionEntry } from "@/hooks/useObjections";
 import type { ScriptVersion } from "@/hooks/useScripts";
@@ -29,81 +30,141 @@ interface AddToPlaybookDialogProps {
   onAddObjection: (objectionId: string) => void;
 }
 
-function FilterChips({
-  label,
-  options,
-  selected,
-  onToggle,
+function FilterRow({
+  scriptCategories,
+  scriptAudiences,
+  scriptRoles,
+  categoryFilter,
+  audienceFilter,
+  roleFilter,
+  setCategoryFilter,
+  setAudienceFilter,
+  setRoleFilter,
 }: {
-  label: string;
-  options: string[];
-  selected: string | null;
-  onToggle: (val: string | null) => void;
+  scriptCategories: string[];
+  scriptAudiences: string[];
+  scriptRoles: string[];
+  categoryFilter: string | null;
+  audienceFilter: string | null;
+  roleFilter: string | null;
+  setCategoryFilter: (v: string | null) => void;
+  setAudienceFilter: (v: string | null) => void;
+  setRoleFilter: (v: string | null) => void;
 }) {
-  if (options.length === 0) return null;
   return (
-    <div className="flex flex-wrap items-center gap-1.5">
-      <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide shrink-0">{label}</span>
-      {options.map(opt => (
-        <Badge
-          key={opt}
-          variant={selected === opt ? "default" : "outline"}
-          className="text-[10px] cursor-pointer hover:bg-primary/10 transition-colors"
-          onClick={() => onToggle(selected === opt ? null : opt)}
-        >
-          {opt}
-        </Badge>
-      ))}
-      {selected && (
-        <button onClick={() => onToggle(null)} className="text-muted-foreground hover:text-foreground">
-          <X className="h-3 w-3" />
-        </button>
-      )}
+    <div className="grid grid-cols-3 gap-2">
+      <div className="space-y-1">
+        <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Category</label>
+        <Select value={categoryFilter ?? "all"} onValueChange={v => setCategoryFilter(v === "all" ? null : v)}>
+          <SelectTrigger className="h-8 text-xs">
+            <SelectValue placeholder="All" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All</SelectItem>
+            {scriptCategories.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="space-y-1">
+        <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Audience</label>
+        <Select value={audienceFilter ?? "all"} onValueChange={v => setAudienceFilter(v === "all" ? null : v)}>
+          <SelectTrigger className="h-8 text-xs">
+            <SelectValue placeholder="All" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All</SelectItem>
+            {scriptAudiences.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="space-y-1">
+        <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Role</label>
+        <Select value={roleFilter ?? "all"} onValueChange={v => setRoleFilter(v === "all" ? null : v)}>
+          <SelectTrigger className="h-8 text-xs">
+            <SelectValue placeholder="All" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All</SelectItem>
+            {scriptRoles.map(r => <SelectItem key={r} value={r}>{r}</SelectItem>)}
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }
 
-function ScriptVersionPicker({ script, onAdd }: { script: ScriptEntry; onAdd: (scriptId: string, versionIndex?: number) => void }) {
-  const [expanded, setExpanded] = useState(false);
-  const hasMultipleVersions = script.versions && script.versions.length > 1;
-
-  if (!hasMultipleVersions) {
-    return (
-      <button
-        className="shrink-0 flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground border border-dashed border-border rounded-md hover:border-muted-foreground/50 hover:text-foreground transition-colors"
-        onClick={() => onAdd(script.id)}
-      >
-        <Plus className="h-3 w-3" /> Add
-      </button>
-    );
-  }
+/** Version preview panel: shows all versions, lets user pick one to add */
+function VersionPreviewPanel({
+  script,
+  onAdd,
+  onBack,
+}: {
+  script: ScriptEntry;
+  onAdd: (scriptId: string, versionIndex?: number) => void;
+  onBack: () => void;
+}) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const version = script.versions[selectedIndex];
 
   return (
-    <div className="shrink-0 flex flex-col items-end gap-1">
-      <button
-        className="flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground border border-dashed border-border rounded-md hover:border-muted-foreground/50 hover:text-foreground transition-colors"
-        onClick={() => setExpanded(!expanded)}
-      >
-        {expanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
-        Add version
-      </button>
-      {expanded && (
-        <div className="flex flex-col gap-0.5 mt-1 w-full border border-border rounded-md overflow-hidden bg-popover shadow-sm">
-          <button className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors text-left" onClick={() => { onAdd(script.id); setExpanded(false); }}>
-            <Plus className="h-3 w-3 shrink-0" /> All versions
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center gap-2">
+        <button onClick={onBack} className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
+          <ChevronLeft className="h-3.5 w-3.5" /> Back
+        </button>
+        <span className="text-sm font-medium truncate flex-1">{script.stage}</span>
+      </div>
+
+      {/* Version tabs */}
+      <div className="flex gap-1.5 flex-wrap">
+        <button
+          className={`px-2.5 py-1 text-xs rounded-md border transition-colors ${selectedIndex === -1 ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-muted-foreground hover:border-muted-foreground/50 hover:text-foreground'}`}
+          onClick={() => setSelectedIndex(-1 as any)}
+        >
+          All versions
+        </button>
+        {script.versions.map((v, i) => (
+          <button
+            key={i}
+            className={`px-2.5 py-1 text-xs rounded-md border transition-colors ${selectedIndex === i ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-muted-foreground hover:border-muted-foreground/50 hover:text-foreground'}`}
+            onClick={() => setSelectedIndex(i)}
+          >
+            {v.author || `Version ${i + 1}`}
           </button>
+        ))}
+      </div>
+
+      {/* Preview content */}
+      {(selectedIndex as any) !== -1 && version && (
+        <div className="rounded-lg border bg-muted/30 p-3 max-h-52 overflow-y-auto">
+          <p className="text-xs text-foreground whitespace-pre-wrap leading-relaxed">{version.content}</p>
+        </div>
+      )}
+      {(selectedIndex as any) === -1 && (
+        <div className="rounded-lg border bg-muted/30 p-3 max-h-52 overflow-y-auto space-y-3">
           {script.versions.map((v, i) => (
-            <button
-              key={i}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors text-left truncate"
-              onClick={() => { onAdd(script.id, i); setExpanded(false); }}
-            >
-              <Plus className="h-3 w-3 shrink-0" />
-              <span className="truncate">{v.author || `Version ${i + 1}`}</span>
-            </button>
+            <div key={i}>
+              <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-1">{v.author || `Version ${i + 1}`}</p>
+              <p className="text-xs text-foreground whitespace-pre-wrap leading-relaxed">{v.content}</p>
+            </div>
           ))}
         </div>
       )}
+
+      <button
+        className="self-end flex items-center gap-1 px-3 py-1.5 text-xs text-muted-foreground border border-dashed border-border rounded-md hover:border-muted-foreground/50 hover:text-foreground transition-colors"
+        onClick={() => {
+          if ((selectedIndex as any) === -1) {
+            onAdd(script.id);
+          } else {
+            onAdd(script.id, selectedIndex);
+          }
+          onBack();
+        }}
+      >
+        <Plus className="h-3 w-3" />
+        {(selectedIndex as any) === -1 ? "Add all versions" : `Add "${version?.author || `Version ${selectedIndex + 1}`}"`}
+      </button>
     </div>
   );
 }
@@ -119,11 +180,11 @@ export function AddToPlaybookDialog({
 }: AddToPlaybookDialogProps) {
   const [search, setSearch] = useState("");
   const [tab, setTab] = useState<"scripts" | "objections">("scripts");
-  const [showFilters, setShowFilters] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
   const [audienceFilter, setAudienceFilter] = useState<string | null>(null);
   const [roleFilter, setRoleFilter] = useState<string | null>(null);
   const [objCategoryFilter, setObjCategoryFilter] = useState<string | null>(null);
+  const [previewScript, setPreviewScript] = useState<ScriptEntry | null>(null);
 
   const usedScriptIds = useMemo(() => new Set(items.filter(i => i.item_type === 'script').map(i => i.script_id)), [items]);
   const usedObjectionIds = useMemo(() => new Set(items.filter(i => i.item_type === 'objection').map(i => i.objection_id)), [items]);
@@ -171,115 +232,147 @@ export function AddToPlaybookDialog({
           <DialogTitle>Add to Playbook</DialogTitle>
         </DialogHeader>
 
-        <div className="flex items-center gap-2 mb-2">
-          <Input
-            placeholder={tab === "scripts" ? "Search scripts..." : "Search objections..."}
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            className="flex-1"
+        {previewScript ? (
+          <VersionPreviewPanel
+            script={previewScript}
+            onAdd={onAddScript}
+            onBack={() => setPreviewScript(null)}
           />
-          <Button
-            variant={showFilters || hasActiveFilters ? "default" : "outline"}
-            size="icon"
-            className="h-9 w-9 shrink-0"
-            onClick={() => setShowFilters(!showFilters)}
-          >
-            <Filter className="h-4 w-4" />
-          </Button>
-        </div>
-
-        <Tabs value={tab} onValueChange={(v) => { setTab(v as any); setSearch(""); clearFilters(); }}>
-          <TabsList className="w-full">
-            <TabsTrigger value="scripts" className="flex-1">
-              Scripts ({filteredScripts.length})
-            </TabsTrigger>
-            <TabsTrigger value="objections" className="flex-1">
-              Objections ({filteredObjections.length})
-            </TabsTrigger>
-          </TabsList>
-
-          {showFilters && (
-            <div className="mt-2 p-2.5 rounded-lg border bg-muted/30 space-y-2">
-              {tab === "scripts" ? (
-                <>
-                  <FilterChips label="Category" options={scriptCategories} selected={categoryFilter} onToggle={setCategoryFilter} />
-                  <FilterChips label="Audience" options={scriptAudiences} selected={audienceFilter} onToggle={setAudienceFilter} />
-                  <FilterChips label="Role" options={scriptRoles} selected={roleFilter} onToggle={setRoleFilter} />
-                </>
-              ) : (
-                <FilterChips label="Category" options={objCategories} selected={objCategoryFilter} onToggle={setObjCategoryFilter} />
-              )}
+        ) : (
+          <>
+            <div className="flex items-center gap-2">
+              <Input
+                placeholder={tab === "scripts" ? "Search scripts..." : "Search objections..."}
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className="flex-1 h-9"
+              />
               {hasActiveFilters && (
-                <Button variant="ghost" size="sm" className="h-6 text-[10px] gap-1" onClick={clearFilters}>
-                  <X className="h-3 w-3" /> Clear filters
-                </Button>
+                <button onClick={clearFilters} className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors shrink-0">
+                  <X className="h-3.5 w-3.5" /> Clear
+                </button>
               )}
             </div>
-          )}
 
-          <TabsContent value="scripts" className="mt-2">
-            <div className="overflow-y-auto max-h-[50vh] space-y-2">
-              {filteredScripts.length === 0 ? (
-                <p className="text-sm text-muted-foreground text-center py-4">
-                  {search || hasActiveFilters ? "No matching scripts found" : "All scripts are already in this playbook"}
-                </p>
-              ) : (
-                filteredScripts.map(script => (
-                  <div key={script.id} className="flex items-start justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors gap-2">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium truncate">{script.stage}</p>
-                      <div className="flex gap-1 mt-1 flex-wrap">
-                        <Badge variant="secondary" className="text-[10px]">{script.category}</Badge>
-                        {script.target_audience && script.target_audience !== 'general' && (
-                          <Badge variant="outline" className="text-[10px]">{script.target_audience}</Badge>
-                        )}
-                        {script.script_role && script.script_role !== 'consultant' && (
-                          <Badge variant="outline" className="text-[10px]">{script.script_role}</Badge>
-                        )}
-                        {script.versions.length > 1 && (
-                          <Badge variant="outline" className="text-[10px] text-muted-foreground">
-                            {script.versions.length} versions
-                          </Badge>
+            <Tabs value={tab} onValueChange={(v) => { setTab(v as any); setSearch(""); clearFilters(); }}>
+              <TabsList className="w-full">
+                <TabsTrigger value="scripts" className="flex-1">
+                  Scripts ({filteredScripts.length})
+                </TabsTrigger>
+                <TabsTrigger value="objections" className="flex-1">
+                  Objections ({filteredObjections.length})
+                </TabsTrigger>
+              </TabsList>
+
+              {/* Filters always visible below tabs */}
+              <div className="mt-2">
+                {tab === "scripts" ? (
+                  <FilterRow
+                    scriptCategories={scriptCategories}
+                    scriptAudiences={scriptAudiences}
+                    scriptRoles={scriptRoles}
+                    categoryFilter={categoryFilter}
+                    audienceFilter={audienceFilter}
+                    roleFilter={roleFilter}
+                    setCategoryFilter={setCategoryFilter}
+                    setAudienceFilter={setAudienceFilter}
+                    setRoleFilter={setRoleFilter}
+                  />
+                ) : (
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Category</label>
+                    <Select value={objCategoryFilter ?? "all"} onValueChange={v => setObjCategoryFilter(v === "all" ? null : v)}>
+                      <SelectTrigger className="h-8 text-xs w-48">
+                        <SelectValue placeholder="All" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All</SelectItem>
+                        {objCategories.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+              </div>
+
+              <TabsContent value="scripts" className="mt-2">
+                <div className="overflow-y-auto max-h-[42vh] space-y-1.5">
+                  {filteredScripts.length === 0 ? (
+                    <p className="text-sm text-muted-foreground text-center py-4">
+                      {search || hasActiveFilters ? "No matching scripts found" : "All scripts are already in this playbook"}
+                    </p>
+                  ) : (
+                    filteredScripts.map(script => (
+                      <div key={script.id} className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors gap-2">
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-medium truncate">{script.stage}</p>
+                          <div className="flex gap-1 mt-1 flex-wrap">
+                            <Badge variant="secondary" className="text-[10px]">{script.category}</Badge>
+                            {script.target_audience && script.target_audience !== 'general' && (
+                              <Badge variant="outline" className="text-[10px]">{script.target_audience}</Badge>
+                            )}
+                            {script.script_role && script.script_role !== 'consultant' && (
+                              <Badge variant="outline" className="text-[10px]">{script.script_role}</Badge>
+                            )}
+                            {script.versions.length > 1 && (
+                              <Badge variant="outline" className="text-[10px] text-muted-foreground">
+                                {script.versions.length} versions
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+                        {script.versions && script.versions.length > 1 ? (
+                          <button
+                            className="shrink-0 flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground border border-dashed border-border rounded-md hover:border-muted-foreground/50 hover:text-foreground transition-colors"
+                            onClick={() => setPreviewScript(script)}
+                          >
+                            Preview & add
+                          </button>
+                        ) : (
+                          <button
+                            className="shrink-0 flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground border border-dashed border-border rounded-md hover:border-muted-foreground/50 hover:text-foreground transition-colors"
+                            onClick={() => onAddScript(script.id)}
+                          >
+                            <Plus className="h-3 w-3" /> Add
+                          </button>
                         )}
                       </div>
-                    </div>
-                    <ScriptVersionPicker script={script} onAdd={onAddScript} />
-                  </div>
-                ))
-              )}
-            </div>
-          </TabsContent>
+                    ))
+                  )}
+                </div>
+              </TabsContent>
 
-          <TabsContent value="objections" className="mt-2">
-            <div className="overflow-y-auto max-h-[50vh] space-y-2">
-              {filteredObjections.length === 0 ? (
-                <p className="text-sm text-muted-foreground text-center py-4">
-                  {search || hasActiveFilters ? "No matching objections found" : "All objections are already in this playbook"}
-                </p>
-              ) : (
-                filteredObjections.map(objection => (
-                  <div key={objection.id} className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors gap-2">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium truncate">{objection.title}</p>
-                      <div className="flex gap-1 mt-1 flex-wrap">
-                        <Badge variant="secondary" className="text-[10px]">{objection.category}</Badge>
-                        {objection.tags?.map(tag => (
-                          <Badge key={tag} variant="outline" className="text-[10px]">{tag}</Badge>
-                        ))}
+              <TabsContent value="objections" className="mt-2">
+                <div className="overflow-y-auto max-h-[42vh] space-y-1.5">
+                  {filteredObjections.length === 0 ? (
+                    <p className="text-sm text-muted-foreground text-center py-4">
+                      {search || hasActiveFilters ? "No matching objections found" : "All objections are already in this playbook"}
+                    </p>
+                  ) : (
+                    filteredObjections.map(objection => (
+                      <div key={objection.id} className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors gap-2">
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-medium truncate">{objection.title}</p>
+                          <div className="flex gap-1 mt-1 flex-wrap">
+                            <Badge variant="secondary" className="text-[10px]">{objection.category}</Badge>
+                            {objection.tags?.map(tag => (
+                              <Badge key={tag} variant="outline" className="text-[10px]">{tag}</Badge>
+                            ))}
+                          </div>
+                          {objection.description && (
+                            <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{objection.description}</p>
+                          )}
+                        </div>
+                        <button className="shrink-0 flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground border border-dashed border-border rounded-md hover:border-muted-foreground/50 hover:text-foreground transition-colors" onClick={() => onAddObjection(objection.id)}>
+                          <Plus className="h-3 w-3" /> Add
+                        </button>
                       </div>
-                      {objection.description && (
-                        <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{objection.description}</p>
-                      )}
-                    </div>
-                    <button className="shrink-0 flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground border border-dashed border-border rounded-md hover:border-muted-foreground/50 hover:text-foreground transition-colors" onClick={() => onAddObjection(objection.id)}>
-                      <Plus className="h-3 w-3" /> Add
-                    </button>
-                  </div>
-                ))
-              )}
-            </div>
-          </TabsContent>
-        </Tabs>
+                    ))
+                  )}
+                </div>
+              </TabsContent>
+            </Tabs>
+          </>
+        )}
       </DialogContent>
     </Dialog>
   );
