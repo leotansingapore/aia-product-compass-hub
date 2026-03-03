@@ -30,7 +30,7 @@ export function detectVideoEmbed(url: string): VideoEmbedInfo {
   }
 
   // Vimeo patterns
-  const vimeoRegex = /vimeo\.com\/(?:video\/)?(\d+)/;
+  const vimeoRegex = /vimeo\.com\/(?:manage\/videos\/|video\/)?(\d+)/;
   const vimeoMatch = url.match(vimeoRegex);
   if (vimeoMatch) {
     return {
