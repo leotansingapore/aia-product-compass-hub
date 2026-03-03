@@ -28,6 +28,7 @@ import {
   useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { createPortal } from 'react-dom';
 
 interface AdminVideosByCategoryProps {
   videos: TrainingVideo[];
@@ -343,20 +344,23 @@ export function AdminVideosByCategory({
           })}
         </div>
 
-        <DragOverlay>
-          {activeVideo ? (
-            <div className="flex items-center gap-2 p-3 bg-background border-2 border-primary rounded-lg shadow-lg">
-              <GripVertical className="h-4 w-4 text-muted-foreground" />
-              <Play className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium">{activeVideo.title}</span>
-              {activeVideo.category && (
-                <Badge variant="outline" className="text-xs">
-                  {activeVideo.category}
-                </Badge>
-              )}
-            </div>
-          ) : null}
-        </DragOverlay>
+        {createPortal(
+          <DragOverlay dropAnimation={{ duration: 200, easing: 'ease' }}>
+            {activeVideo ? (
+              <div className="flex items-center gap-2 p-3 bg-background border-2 border-primary rounded-lg shadow-lg">
+                <GripVertical className="h-4 w-4 text-muted-foreground" />
+                <Play className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium">{activeVideo.title}</span>
+                {activeVideo.category && (
+                  <Badge variant="outline" className="text-xs">
+                    {activeVideo.category}
+                  </Badge>
+                )}
+              </div>
+            ) : null}
+          </DragOverlay>,
+          document.body
+        )}
       </DndContext>
 
       {hasPendingChanges && (
