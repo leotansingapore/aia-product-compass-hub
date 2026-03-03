@@ -43,16 +43,18 @@ export function ModuleResourcesSection({
       <div className="space-y-1.5">
         {/* Links */}
         {links?.map((link, index) => (
-          <div key={`link-${index}`} className="flex items-center gap-2 group">
-            <Link2 className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-primary hover:underline truncate"
-            >
-              {link.name}
-            </a>
+          <div key={`link-${index}`} className="flex items-center justify-between gap-2 group">
+            <div className="flex items-center gap-2 min-w-0">
+              <Link2 className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-primary hover:underline truncate"
+              >
+                {link.name}
+              </a>
+            </div>
             {isAdmin && onDeleteLink && (
               <Button
                 variant="ghost"
@@ -68,16 +70,18 @@ export function ModuleResourcesSection({
 
         {/* Attachments / Files */}
         {attachments?.map((att) => (
-          <div key={`file-${att.id}`} className="flex items-center gap-2 group">
-            {getFileIcon(att.file_type)}
-            <a
-              href={att.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-primary hover:underline truncate"
-            >
-              {att.name}
-            </a>
+          <div key={`file-${att.id}`} className="flex items-center justify-between gap-2 group">
+            <div className="flex items-center gap-2 min-w-0">
+              {getFileIcon(att.file_type)}
+              <a
+                href={att.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-primary hover:underline truncate"
+              >
+                {att.name}
+              </a>
+            </div>
             {isAdmin && onDeleteAttachment && (
               <Button
                 variant="ghost"
