@@ -984,6 +984,82 @@ export type Database = {
         }
         Relationships: []
       }
+      playbook_collaborators: {
+        Row: {
+          granted_at: string
+          granted_by: string
+          id: string
+          playbook_id: string
+          user_id: string
+        }
+        Insert: {
+          granted_at?: string
+          granted_by: string
+          id?: string
+          playbook_id: string
+          user_id: string
+        }
+        Update: {
+          granted_at?: string
+          granted_by?: string
+          id?: string
+          playbook_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "playbook_collaborators_playbook_id_fkey"
+            columns: ["playbook_id"]
+            isOneToOne: false
+            referencedRelation: "script_playbooks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      playbook_edit_requests: {
+        Row: {
+          created_at: string
+          id: string
+          playbook_id: string
+          requester_email: string | null
+          requester_id: string
+          requester_name: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          playbook_id: string
+          requester_email?: string | null
+          requester_id: string
+          requester_name?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          playbook_id?: string
+          requester_email?: string | null
+          requester_id?: string
+          requester_name?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "playbook_edit_requests_playbook_id_fkey"
+            columns: ["playbook_id"]
+            isOneToOne: false
+            referencedRelation: "script_playbooks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       products: {
         Row: {
           assistant_id: string | null

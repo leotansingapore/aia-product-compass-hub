@@ -11,10 +11,11 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare, Share2, Globe, Heading1, Heading2, Heading3, X, Link, ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare, Share2, Globe, Heading1, Heading2, Heading3, X, Link, ChevronRight, Users, UserPlus, Clock, CheckCircle, XCircle, Search } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
+import { usePlaybookCollaborators } from "@/hooks/usePlaybookCollaborators";
 import { useScripts } from "@/hooks/useScripts";
 import { useScriptsMutations } from "@/hooks/useScripts";
 import { useObjections } from "@/hooks/useObjections";
@@ -526,10 +527,28 @@ export default function PlaybookDetail() {
   const [aiSuggestions, setAiSuggestions] = useState<{ script_id: string; reason: string; suggested_position: string }[] | null>(null);
   const [aiSummary, setAiSummary] = useState("");
   const [isAiLoading, setIsAiLoading] = useState(false);
+  const [collaboratorSearch, setCollaboratorSearch] = useState("");
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   const playbook = playbooks.find(p => p.id === playbookId);
   const { isMasterAdmin, hasRole } = usePermissions();
-  const isOwner = user?.id === playbook?.created_by || isMasterAdmin() || hasRole('admin');
+  const isActualOwner = user?.id === playbook?.created_by || isMasterAdmin() || hasRole('admin');
+
+  const {
+    collaborators,
+    editRequests,
+    myRequest,
+    isCollaborator,
+    addCollaborator,
+    removeCollaborator,
+    requestEditAccess,
+    approveRequest,
+    rejectRequest,
+  } = usePlaybookCollaborators(playbookId);
+
+  const isOwner = isActualOwner || isCollaborator;
+  const pendingRequests = editRequests.filter(r => r.status === 'pending');
 
   const itemsWithData = useMemo(() => {
     return items.map(item => ({
@@ -559,6 +578,27 @@ export default function PlaybookDetail() {
     const existingLevel = (existing?.custom_content as any)?.level || 1;
     await supabase.from('script_playbook_items').update({ custom_content: { label, level: level ?? existingLevel } } as any).eq('id', itemId);
     queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
+  };
+
+  const handleUserSearch = async (query: string) => {
+    setCollaboratorSearch(query);
+    if (query.length < 2) { setSearchResults([]); return; }
+    setIsSearching(true);
+    try {
+      const { data } = await supabase
+        .from('profiles')
+        .select('user_id, display_name, first_name, last_name, email')
+        .or(`display_name.ilike.%${query}%,email.ilike.%${query}%,first_name.ilike.%${query}%,last_name.ilike.%${query}%`)
+        .limit(6);
+      // Exclude already-collaborators and owner
+      const existingIds = new Set([
+        playbook?.created_by,
+        ...collaborators.map(c => c.user_id),
+      ]);
+      setSearchResults((data || []).filter(p => !existingIds.has(p.user_id)));
+    } finally {
+      setIsSearching(false);
+    }
   };
 
   const sensors = useSensors(
@@ -696,10 +736,135 @@ export default function PlaybookDetail() {
                     {playbook?.is_public ? "Shared" : "Share"}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-80 p-4" align="end">
-                  <p className="font-semibold text-sm mb-3">Share Playbook</p>
+                <PopoverContent className="w-96 p-4 max-h-[80vh] overflow-y-auto" align="end">
+                  <p className="font-semibold text-sm mb-3">Share & Collaborators</p>
 
-                  {/* Enable / disable sharing */}
+                  {/* ── Collaborators section ── */}
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Users className="h-3.5 w-3.5 text-muted-foreground" />
+                      <Label className="text-sm">Editors</Label>
+                      {collaborators.length > 0 && (
+                        <span className="text-xs text-muted-foreground">({collaborators.length})</span>
+                      )}
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-2">Grant specific users edit access to this playbook.</p>
+
+                    {/* Search to add */}
+                    <div className="relative mb-2">
+                      <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                      <Input
+                        placeholder="Search by name or email…"
+                        value={collaboratorSearch}
+                        onChange={e => handleUserSearch(e.target.value)}
+                        className="h-8 pl-8 text-xs"
+                      />
+                    </div>
+
+                    {/* Search results */}
+                    {searchResults.length > 0 && (
+                      <div className="border rounded-md overflow-hidden mb-2">
+                        {searchResults.map(p => {
+                          const name = p.display_name || `${p.first_name || ''} ${p.last_name || ''}`.trim() || p.email;
+                          return (
+                            <div key={p.user_id} className="flex items-center justify-between px-3 py-1.5 hover:bg-muted/50 text-xs">
+                              <div className="min-w-0">
+                                <p className="font-medium truncate">{name}</p>
+                                <p className="text-muted-foreground truncate">{p.email}</p>
+                              </div>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                className="h-6 px-2 ml-2 shrink-0 gap-1 text-xs"
+                                onClick={() => {
+                                  addCollaborator.mutate(p.user_id);
+                                  setSearchResults([]);
+                                  setCollaboratorSearch("");
+                                }}
+                              >
+                                <UserPlus className="h-3 w-3" /> Add
+                              </Button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Existing collaborators list */}
+                    {collaborators.length > 0 ? (
+                      <div className="space-y-1">
+                        {collaborators.map(c => {
+                          const name = c.profile?.display_name || `${c.profile?.first_name || ''} ${c.profile?.last_name || ''}`.trim() || c.profile?.email || c.user_id;
+                          return (
+                            <div key={c.id} className="flex items-center justify-between px-2 py-1 rounded-md bg-muted/50 text-xs">
+                              <div className="min-w-0">
+                                <p className="font-medium truncate">{name}</p>
+                                <p className="text-muted-foreground truncate">{c.profile?.email}</p>
+                              </div>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                className="h-6 w-6 p-0 ml-2 shrink-0 text-destructive hover:text-destructive"
+                                onClick={() => removeCollaborator.mutate(c.id)}
+                              >
+                                <X className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="text-xs text-muted-foreground italic">No editors added yet.</p>
+                    )}
+                  </div>
+
+                  {/* ── Pending edit requests ── */}
+                  {pendingRequests.length > 0 && (
+                    <>
+                      <Separator className="mb-3" />
+                      <div className="mb-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Clock className="h-3.5 w-3.5 text-primary" />
+                          <Label className="text-sm">Edit Requests</Label>
+                          <span className="text-xs bg-primary/10 text-primary rounded-full px-1.5 py-0.5 font-medium">{pendingRequests.length}</span>
+                        </div>
+                        <div className="space-y-1.5">
+                          {pendingRequests.map(req => (
+                            <div key={req.id} className="flex items-center justify-between px-2 py-1.5 rounded-md border text-xs">
+                              <div className="min-w-0">
+                                <p className="font-medium truncate">{req.requester_name || 'Unknown'}</p>
+                                <p className="text-muted-foreground truncate">{req.requester_email}</p>
+                              </div>
+                              <div className="flex gap-1 ml-2 shrink-0">
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  className="h-6 w-6 p-0 text-primary hover:text-primary"
+                                  title="Approve"
+                                  onClick={() => approveRequest.mutate(req)}
+                                >
+                                  <CheckCircle className="h-3.5 w-3.5" />
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  className="h-6 w-6 p-0 text-destructive hover:text-destructive"
+                                  title="Reject"
+                                  onClick={() => rejectRequest.mutate(req.id)}
+                                >
+                                  <XCircle className="h-3.5 w-3.5" />
+                                </Button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  <Separator className="mb-3" />
+
+                  {/* Enable / disable public sharing */}
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <Label className="text-sm">Public link</Label>
@@ -716,8 +881,6 @@ export default function PlaybookDetail() {
 
                   {playbook?.is_public && playbook?.share_token && (
                     <>
-                      <Separator className="mb-3" />
-
                       {/* View-only link */}
                       <div className="space-y-1 mb-3">
                         <Label className="text-xs text-muted-foreground">View-only link</Label>
@@ -810,6 +973,35 @@ export default function PlaybookDetail() {
               <Button onClick={() => setAddDialogOpen(true)} className="gap-2 flex-1 sm:flex-initial">
                 <Plus className="h-4 w-4" /> Add Items
               </Button>
+            </div>
+          )}
+          {/* Request Edit Access — shown to non-owners who are authenticated */}
+          {!isOwner && user && (
+            <div className="mt-3 sm:mt-0 sm:ml-auto">
+              {myRequest?.status === 'approved' ? (
+                <div className="flex items-center gap-1.5 text-xs text-primary font-medium">
+                  <CheckCircle className="h-3.5 w-3.5" /> Edit access granted
+                </div>
+              ) : myRequest?.status === 'pending' ? (
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+                  <Clock className="h-3.5 w-3.5" /> Request pending approval
+                </div>
+              ) : myRequest?.status === 'rejected' ? (
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <XCircle className="h-3.5 w-3.5" /> Request was declined
+                </div>
+              ) : (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-1.5"
+                  onClick={() => requestEditAccess.mutate()}
+                  disabled={requestEditAccess.isPending}
+                >
+                  {requestEditAccess.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <UserPlus className="h-3.5 w-3.5" />}
+                  Request Edit Access
+                </Button>
+              )}
             </div>
           )}
         </div>
