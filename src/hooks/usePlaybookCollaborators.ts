@@ -66,7 +66,7 @@ export function usePlaybookCollaborators(playbookId: string | null | undefined) 
         .eq('playbook_id', playbookId)
         .order('created_at', { ascending: false });
       if (error) throw error;
-      return (data || []) as PlaybookEditRequest[];
+      return (data || []) as unknown as PlaybookEditRequest[];
     },
     enabled: !!playbookId && !!user,
   });
@@ -143,11 +143,11 @@ export function usePlaybookCollaborators(playbookId: string | null | undefined) 
   const approveRequest = useMutation({
     mutationFn: async (request: PlaybookEditRequest) => {
       if (!playbookId || !user) throw new Error('Not authenticated');
-      // Add as collaborator
+      // Add as collaborator (ignore duplicate)
       await supabase
         .from('playbook_collaborators' as any)
         .insert({ playbook_id: playbookId, user_id: request.requester_id, granted_by: user.id })
-        .onConflict ? undefined : undefined; // ignore duplicate silently
+        .then(() => null); // ignore errors (duplicate = already has access)
 
       // Update request status
       const { error } = await supabase
