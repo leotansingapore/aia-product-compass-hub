@@ -945,8 +945,8 @@ export default function PlaybookDetail() {
                       )}
                     </>
                   )}
-                </PopoverContent>
-              </Popover>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
               <Button variant="outline" onClick={handleAISuggest} disabled={isAiLoading} className="gap-1.5 flex-1 sm:flex-initial">
                 {isAiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
