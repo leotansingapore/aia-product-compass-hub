@@ -24,7 +24,7 @@ import type { VideoAttachment } from '@/hooks/useProducts';
 interface AddResourceDropdownProps {
   onAddLink: (label: string, url: string) => void;
   onAddFile: (attachment: VideoAttachment) => void;
-  onShowTranscript: () => void;
+  onShowTranscript?: () => void;
 }
 
 const ACCEPTED_FILE_TYPES = '.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.md,.csv,.png,.jpg,.jpeg,.gif,.webp';
@@ -125,10 +125,12 @@ export function AddResourceDropdown({ onAddLink, onAddFile, onShowTranscript }: 
             <Upload className="h-4 w-4 mr-2" />
             Add resource file
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={onShowTranscript}>
-            <FileText className="h-4 w-4 mr-2" />
-            Add transcript
-          </DropdownMenuItem>
+          {onShowTranscript && (
+            <DropdownMenuItem onClick={onShowTranscript}>
+              <FileText className="h-4 w-4 mr-2" />
+              Add transcript
+            </DropdownMenuItem>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
 

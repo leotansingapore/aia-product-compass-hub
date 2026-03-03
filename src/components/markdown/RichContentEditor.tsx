@@ -169,7 +169,7 @@ export function RichContentEditor({
   onPublishedChange,
 }: RichContentEditorProps) {
   const [showSlashMenu, setShowSlashMenu] = useState(false);
-  const [showTranscript, setShowTranscript] = useState(!!(transcript && transcript.trim()));
+  const [showTranscript, setShowTranscript] = useState(true);
   const [slashMenuPos, setSlashMenuPos] = useState({ top: 0, left: 0 });
   const [slashQuery, setSlashQuery] = useState('');
   const [showVideoPopover, setShowVideoPopover] = useState(false);
@@ -643,7 +643,6 @@ export function RichContentEditor({
           <AddResourceDropdown
             onAddLink={onAddLink}
             onAddFile={onAddFile}
-            onShowTranscript={() => setShowTranscript(true)}
           />
           {onPublishedChange !== undefined && (
             <div className="flex items-center gap-2">
