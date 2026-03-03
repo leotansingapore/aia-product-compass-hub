@@ -69,34 +69,38 @@ function ScriptVersionPicker({ script, onAdd }: { script: ScriptEntry; onAdd: (s
 
   if (!hasMultipleVersions) {
     return (
-      <Button size="sm" variant="outline" className="ml-2 shrink-0" onClick={() => onAdd(script.id)}>
-        <Plus className="h-3.5 w-3.5 mr-1" /> Add
-      </Button>
+      <button
+        className="shrink-0 flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground border border-dashed border-border rounded-md hover:border-muted-foreground/50 hover:text-foreground transition-colors"
+        onClick={() => onAdd(script.id)}
+      >
+        <Plus className="h-3 w-3" /> Add
+      </button>
     );
   }
 
   return (
-    <div className="ml-2 shrink-0 flex flex-col items-end gap-1">
-      <Button size="sm" variant="outline" className="gap-1" onClick={() => setExpanded(!expanded)}>
-        {expanded ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />}
-        Add Version
-      </Button>
+    <div className="shrink-0 flex flex-col items-end gap-1">
+      <button
+        className="flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground border border-dashed border-border rounded-md hover:border-muted-foreground/50 hover:text-foreground transition-colors"
+        onClick={() => setExpanded(!expanded)}
+      >
+        {expanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
+        Add version
+      </button>
       {expanded && (
-        <div className="flex flex-col gap-1 mt-1 w-full">
-          <Button size="sm" variant="ghost" className="h-7 text-xs justify-start" onClick={() => { onAdd(script.id); setExpanded(false); }}>
-            <Plus className="h-3 w-3 mr-1" /> All versions
-          </Button>
+        <div className="flex flex-col gap-0.5 mt-1 w-full border border-border rounded-md overflow-hidden bg-popover shadow-sm">
+          <button className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors text-left" onClick={() => { onAdd(script.id); setExpanded(false); }}>
+            <Plus className="h-3 w-3 shrink-0" /> All versions
+          </button>
           {script.versions.map((v, i) => (
-            <Button
+            <button
               key={i}
-              size="sm"
-              variant="ghost"
-              className="h-7 text-xs justify-start truncate"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors text-left truncate"
               onClick={() => { onAdd(script.id, i); setExpanded(false); }}
             >
-              <Plus className="h-3 w-3 mr-1 shrink-0" />
+              <Plus className="h-3 w-3 shrink-0" />
               <span className="truncate">{v.author || `Version ${i + 1}`}</span>
-            </Button>
+            </button>
           ))}
         </div>
       )}
@@ -267,9 +271,9 @@ export function AddToPlaybookDialog({
                         <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{objection.description}</p>
                       )}
                     </div>
-                    <Button size="sm" variant="outline" className="ml-2 shrink-0" onClick={() => onAddObjection(objection.id)}>
-                      <Plus className="h-3.5 w-3.5 mr-1" /> Add
-                    </Button>
+                    <button className="shrink-0 flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground border border-dashed border-border rounded-md hover:border-muted-foreground/50 hover:text-foreground transition-colors" onClick={() => onAddObjection(objection.id)}>
+                      <Plus className="h-3 w-3" /> Add
+                    </button>
                   </div>
                 ))
               )}
