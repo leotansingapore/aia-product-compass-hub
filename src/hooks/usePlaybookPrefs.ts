@@ -23,7 +23,7 @@ export function usePlaybookPrefs() {
         .select('*')
         .eq('user_id', user.id);
       if (error) throw error;
-      return (data || []) as PlaybookPref[];
+      return (data || []) as unknown as PlaybookPref[];
     },
     enabled: !!user,
   });

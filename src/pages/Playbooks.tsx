@@ -100,7 +100,7 @@ function PlaybookCard({
             <Clock className="h-3 w-3" />
             {format(new Date(pb.updated_at), "MMM d")}
           </span>
-          {pb.is_public && <Globe className="h-3 w-3" title="Public" />}
+          {pb.is_public && <Globe className="h-3 w-3 text-muted-foreground" aria-label="Public" />}
         </div>
       </CardContent>
     </Card>
