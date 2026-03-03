@@ -67,6 +67,7 @@ export function VideoEditorPanel({
               video={editVideos[editingIndex]}
               onUpdate={(updatedVideo) => onUpdateVideo(editingIndex, updatedVideo)}
               existingCategories={existingCategories}
+              hideTranscript={true}
             />
           </div>
         ) : (
