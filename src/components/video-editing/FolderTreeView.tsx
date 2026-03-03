@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -578,21 +579,24 @@ export function FolderTreeView({
         </div>
       </div>
 
-      <DragOverlay>
-        {activeVideo ? (
-          <div className="flex items-center gap-2 p-2 bg-background border rounded-lg shadow-lg">
-            <GripVertical className="h-4 w-4 text-muted-foreground" />
-            <Play className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium">{activeVideo.title}</span>
-          </div>
-        ) : activeFolderName ? (
-          <div className="flex items-center gap-2 p-2 bg-background border rounded-lg shadow-lg">
-            <GripVertical className="h-4 w-4 text-muted-foreground" />
-            <Folder className="h-4 w-4 text-blue-500" />
-            <span className="text-sm font-medium">{activeFolderName}</span>
-          </div>
-        ) : null}
-      </DragOverlay>
+      {createPortal(
+        <DragOverlay dropAnimation={{ duration: 200, easing: 'ease' }}>
+          {activeVideo ? (
+            <div className="flex items-center gap-2 p-2 bg-background border-2 border-primary rounded-lg shadow-lg">
+              <GripVertical className="h-4 w-4 text-muted-foreground" />
+              <Play className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium">{activeVideo.title}</span>
+            </div>
+          ) : activeFolderName ? (
+            <div className="flex items-center gap-2 p-2 bg-background border-2 border-primary rounded-lg shadow-lg">
+              <GripVertical className="h-4 w-4 text-muted-foreground" />
+              <Folder className="h-4 w-4 text-blue-500" />
+              <span className="text-sm font-medium">{activeFolderName}</span>
+            </div>
+          ) : null}
+        </DragOverlay>,
+        document.body
+      )}
     </DndContext>
   );
 }
