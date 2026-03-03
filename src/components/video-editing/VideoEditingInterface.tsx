@@ -55,6 +55,7 @@ export function VideoEditingInterface({
   // Use empty arrays as default since this interface manages its own state
   const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
   const [lastSavedAt, setLastSavedAt] = useState(0);
+  const [isEditorEditing, setIsEditorEditing] = useState(false);
   const { toast } = useToast();
 
   // Track video order changes from drag-and-drop
@@ -225,6 +226,7 @@ export function VideoEditingInterface({
           folderDialogOpen={folderManagement.folderDialogOpen}
           folderDialogMode={folderManagement.folderDialogMode}
           editingFolderName={folderManagement.editingFolderName}
+          isEditorEditing={isEditorEditing}
           onEditingIndexChange={onEditingIndexChange}
           onUpdateVideo={handleUpdateVideo}
           onRemoveVideo={onRemoveVideo}
