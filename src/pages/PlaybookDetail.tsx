@@ -839,7 +839,7 @@ export default function PlaybookDetail() {
                                 <Button
                                   size="sm"
                                   variant="ghost"
-                                  className="h-6 w-6 p-0 text-green-600 hover:text-green-700"
+                                  className="h-6 w-6 p-0 text-primary hover:text-primary"
                                   title="Approve"
                                   onClick={() => approveRequest.mutate(req)}
                                 >
@@ -979,7 +979,7 @@ export default function PlaybookDetail() {
           {!isOwner && user && (
             <div className="mt-3 sm:mt-0 sm:ml-auto">
               {myRequest?.status === 'approved' ? (
-                <div className="flex items-center gap-1.5 text-xs text-green-600 font-medium">
+                <div className="flex items-center gap-1.5 text-xs text-primary font-medium">
                   <CheckCircle className="h-3.5 w-3.5" /> Edit access granted
                 </div>
               ) : myRequest?.status === 'pending' ? (
