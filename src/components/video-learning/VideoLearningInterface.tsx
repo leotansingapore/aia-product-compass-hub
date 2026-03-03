@@ -5,7 +5,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Maximize, Minimize, Link2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -17,6 +17,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { markdownComponents } from '@/lib/markdown-config';
+import { usePermissions } from '@/hooks/usePermissions';
 
 interface VideoLearningInterfaceProps {
   videos: TrainingVideo[];
@@ -79,6 +80,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const { toast } = useToast();
   const { productSlugOrId } = useParams();
   const navigate = useNavigate();
+  const { isMasterAdmin, hasRole } = usePermissions();
+  const isAdmin = isMasterAdmin() || hasRole('admin');
 
   // Handle fullscreen changes
   useEffect(() => {
@@ -207,8 +210,18 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </div>
               </div>
               
-              {/* Navigation Buttons */}
+              {/* Admin Edit & Navigation Buttons */}
               <div className="flex items-center gap-1 flex-shrink-0">
+                {isAdmin && productSlugOrId && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => navigate(`/product/${productSlugOrId}/manage-videos`)}
+                  >
+                    <SquarePen className="h-4 w-4" />
+                    <span className="hidden sm:inline">Edit</span>
+                  </Button>
+                )}
                 <Button
                   variant="ghost"
                   size="icon"
@@ -313,49 +326,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                     </CardContent>
                   </Card>
                 </>
-              ) : (currentVideo?.notes || currentVideo?.transcript) ? (
-                // Legacy mode - display tabs
-                <Collapsible open={isNotesOpen} onOpenChange={setIsNotesOpen}>
-                  <Card>
-                    {isMobile && (
-                      <CollapsibleTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          className="w-full justify-between p-4 h-auto hover:bg-accent"
-                        >
-                          <span className="font-semibold">Notes & Transcript</span>
-                          <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isNotesOpen ? 'rotate-180' : ''}`} />
-                        </Button>
-                      </CollapsibleTrigger>
-                    )}
-                    <CollapsibleContent>
-                      <CardContent className="p-0">
-                        <Tabs defaultValue="notes" className="w-full">
-                          <TabsList className="w-full">
-                            {currentVideo?.notes && <TabsTrigger value="notes">Notes</TabsTrigger>}
-                            {currentVideo?.transcript && <TabsTrigger value="transcript">Transcript</TabsTrigger>}
-                          </TabsList>
-                          {currentVideo?.notes && (
-                            <TabsContent value="notes" className="p-4">
-                              <div className="prose prose-sm max-w-none">
-                                <h4>Learning Notes</h4>
-                                <div className="whitespace-pre-wrap">{currentVideo.notes}</div>
-                              </div>
-                            </TabsContent>
-                          )}
-                          {currentVideo?.transcript && (
-                            <TabsContent value="transcript" className="p-4">
-                              <div className="prose prose-sm max-w-none">
-                                <h4>Video Transcript</h4>
-                                <div className="whitespace-pre-wrap text-sm">{currentVideo.transcript}</div>
-                              </div>
-                            </TabsContent>
-                          )}
-                        </Tabs>
-                      </CardContent>
-                    </CollapsibleContent>
-                  </Card>
-                </Collapsible>
               ) : null}
             </div>
 
