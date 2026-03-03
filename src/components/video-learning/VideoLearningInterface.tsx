@@ -48,10 +48,11 @@ function getVideoEmbedInfo(url: string) {
   }
 
   // Vimeo
-  const vimeoMatch = url.match(/vimeo\.com\/(?:manage\/videos\/|channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/)?(\d+)(?:$|\/|\?)/);
+  const vimeoMatch = url.match(/vimeo\.com\/(?:manage\/videos\/|channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/)?(\d+)(?:\/([a-f0-9]+))?(?:$|\/|\?)/);
   if (vimeoMatch) {
+    const hash = vimeoMatch[4] ? `?h=${vimeoMatch[4]}` : '';
     return {
-      embedUrl: `https://player.vimeo.com/video/${vimeoMatch[3]}`,
+      embedUrl: `https://player.vimeo.com/video/${vimeoMatch[3]}${hash}`,
       type: 'vimeo'
     };
   }

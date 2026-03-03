@@ -109,15 +109,15 @@ function createTurndownService(): TurndownService {
 // Detect if a URL is a video embed URL
 function detectVideoUrl(url: string): { platform: string; embedUrl: string } | null {
   const patterns = [
-    { regex: /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/, platform: 'youtube', embed: (id: string) => `https://www.youtube.com/embed/${id}` },
-    { regex: /vimeo\.com\/(?:manage\/videos\/|video\/)?(\d+)/, platform: 'vimeo', embed: (id: string) => `https://player.vimeo.com/video/${id}` },
-    { regex: /loom\.com\/share\/([a-zA-Z0-9]+)/, platform: 'loom', embed: (id: string) => `https://www.loom.com/embed/${id}` },
+    { regex: /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/, platform: 'youtube', embed: (match: RegExpMatchArray) => `https://www.youtube.com/embed/${match[1]}` },
+    { regex: /vimeo\.com\/(?:manage\/videos\/|video\/)?(\d+)(?:\/([a-f0-9]+))?/, platform: 'vimeo', embed: (match: RegExpMatchArray) => { const hash = match[2] ? `?h=${match[2]}` : ''; return `https://player.vimeo.com/video/${match[1]}${hash}`; } },
+    { regex: /loom\.com\/share\/([a-zA-Z0-9]+)/, platform: 'loom', embed: (match: RegExpMatchArray) => `https://www.loom.com/embed/${match[1]}` },
   ];
 
   for (const { regex, platform, embed } of patterns) {
     const match = url.match(regex);
     if (match) {
-      return { platform, embedUrl: embed(match[1]) };
+      return { platform, embedUrl: embed(match) };
     }
   }
   return null;

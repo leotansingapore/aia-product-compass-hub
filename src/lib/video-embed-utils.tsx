@@ -30,12 +30,13 @@ export function detectVideoEmbed(url: string): VideoEmbedInfo {
   }
 
   // Vimeo patterns
-  const vimeoRegex = /vimeo\.com\/(?:manage\/videos\/|video\/)?(\d+)/;
+  const vimeoRegex = /vimeo\.com\/(?:manage\/videos\/|video\/)?(\d+)(?:\/([a-f0-9]+))?/;
   const vimeoMatch = url.match(vimeoRegex);
   if (vimeoMatch) {
+    const hash = vimeoMatch[2] ? `?h=${vimeoMatch[2]}` : '';
     return {
       isVideo: true,
-      embedUrl: `https://player.vimeo.com/video/${vimeoMatch[1]}`,
+      embedUrl: `https://player.vimeo.com/video/${vimeoMatch[1]}${hash}`,
       platform: 'vimeo'
     };
   }
