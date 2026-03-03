@@ -824,9 +824,9 @@ export default function PlaybookDetail() {
                       <Separator className="mb-3" />
                       <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
-                          <Clock className="h-3.5 w-3.5 text-amber-500" />
+                          <Clock className="h-3.5 w-3.5 text-primary" />
                           <Label className="text-sm">Edit Requests</Label>
-                          <span className="text-xs bg-amber-100 text-amber-700 rounded-full px-1.5 py-0.5 font-medium">{pendingRequests.length}</span>
+                          <span className="text-xs bg-primary/10 text-primary rounded-full px-1.5 py-0.5 font-medium">{pendingRequests.length}</span>
                         </div>
                         <div className="space-y-1.5">
                           {pendingRequests.map(req => (
