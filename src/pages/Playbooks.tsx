@@ -12,6 +12,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Plus, FileText, Pencil, Trash2, User, Clock, BookOpen } from "lucide-react";
 import { usePlaybooks } from "@/hooks/usePlaybooks";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { usePermissions } from "@/hooks/usePermissions";
 import { Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
@@ -19,7 +20,9 @@ import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 export default function Playbooks() {
   const navigate = useNavigate();
   const { user } = useSimplifiedAuth();
+  const { isMasterAdmin, hasRole } = usePermissions();
   const { playbooks, isLoading, createPlaybook, updatePlaybook, deletePlaybook, userId } = usePlaybooks();
+  const canManage = (createdBy: string) => userId === createdBy || isMasterAdmin() || hasRole('admin');
 
   const [createOpen, setCreateOpen] = useState(false);
   const [editPlaybook, setEditPlaybook] = useState<{ id: string; title: string; description: string } | null>(null);
@@ -110,7 +113,7 @@ export default function Playbooks() {
                 <CardHeader className="pb-2 px-4 sm:px-6">
                   <div className="flex items-start justify-between gap-2">
                     <CardTitle className="text-sm sm:text-base leading-snug">{pb.title}</CardTitle>
-                    {userId === pb.created_by && (
+                    {canManage(pb.created_by) && (
                       <div className="flex gap-1 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                         <Button
                           variant="ghost"
