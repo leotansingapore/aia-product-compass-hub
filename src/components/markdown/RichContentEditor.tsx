@@ -110,7 +110,7 @@ function createTurndownService(): TurndownService {
 function detectVideoUrl(url: string): { platform: string; embedUrl: string } | null {
   const patterns = [
     { regex: /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/, platform: 'youtube', embed: (id: string) => `https://www.youtube.com/embed/${id}` },
-    { regex: /vimeo\.com\/(\d+)/, platform: 'vimeo', embed: (id: string) => `https://player.vimeo.com/video/${id}` },
+    { regex: /vimeo\.com\/(?:manage\/videos\/|video\/)?(\d+)/, platform: 'vimeo', embed: (id: string) => `https://player.vimeo.com/video/${id}` },
     { regex: /loom\.com\/share\/([a-zA-Z0-9]+)/, platform: 'loom', embed: (id: string) => `https://www.loom.com/embed/${id}` },
   ];
 
