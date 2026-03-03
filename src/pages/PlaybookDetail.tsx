@@ -724,9 +724,9 @@ export default function PlaybookDetail() {
           </div>
           {isOwner && (
             <div className="flex gap-2 w-full sm:w-auto flex-wrap">
-              {/* ── Share popover ── */}
-              <Popover>
-                <PopoverTrigger asChild>
+              {/* ── Share dropdown ── */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
                   <Button
                     variant={playbook?.is_public ? "secondary" : "outline"}
                     size="sm"
@@ -735,8 +735,8 @@ export default function PlaybookDetail() {
                     {playbook?.is_public ? <Globe className="h-4 w-4" /> : <Share2 className="h-4 w-4" />}
                     {playbook?.is_public ? "Shared" : "Share"}
                   </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-96 p-4 max-h-[80vh] overflow-y-auto" align="end">
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-96 p-4 max-h-[80vh] overflow-y-auto" align="end" onClick={e => e.stopPropagation()}>
                   <p className="font-semibold text-sm mb-3">Share & Collaborators</p>
 
                   {/* ── Collaborators section ── */}
