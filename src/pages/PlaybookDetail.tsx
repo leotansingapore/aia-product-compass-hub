@@ -580,6 +580,27 @@ export default function PlaybookDetail() {
     queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
   };
 
+  const handleUserSearch = async (query: string) => {
+    setCollaboratorSearch(query);
+    if (query.length < 2) { setSearchResults([]); return; }
+    setIsSearching(true);
+    try {
+      const { data } = await supabase
+        .from('profiles')
+        .select('user_id, display_name, first_name, last_name, email')
+        .or(`display_name.ilike.%${query}%,email.ilike.%${query}%,first_name.ilike.%${query}%,last_name.ilike.%${query}%`)
+        .limit(6);
+      // Exclude already-collaborators and owner
+      const existingIds = new Set([
+        playbook?.created_by,
+        ...collaborators.map(c => c.user_id),
+      ]);
+      setSearchResults((data || []).filter(p => !existingIds.has(p.user_id)));
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
