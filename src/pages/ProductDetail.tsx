@@ -188,7 +188,7 @@ export default function ProductDetail() {
 
           {/* Training Videos Section */}
           <ProtectedSection sectionId="product_videos">
-            <div className="border-t pt-4 sm:pt-8">
+            <div className="pt-4 sm:pt-8">
               {isAdminMode ? (
                 <ErrorBoundary>
                   <VideoEditingInterface
