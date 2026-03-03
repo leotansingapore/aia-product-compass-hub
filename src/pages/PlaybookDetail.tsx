@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
@@ -112,6 +113,7 @@ function SortableScriptCard({ item, index, isOwner, onRemove, onInlineSave, isAu
   const [editingVersionIdx, setEditingVersionIdx] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -171,7 +173,7 @@ function SortableScriptCard({ item, index, isOwner, onRemove, onInlineSave, isAu
                       </Button>
                     )}
                     {isOwner && (
-                      <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive hover:text-destructive" onClick={(e) => { e.stopPropagation(); onRemove(item.id); }} title="Remove from playbook">
+                      <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive hover:text-destructive" onClick={(e) => { e.stopPropagation(); setShowRemoveConfirm(true); }} title="Remove from playbook">
                         <Trash2 className="h-3 w-3" />
                       </Button>
                     )}
@@ -245,6 +247,20 @@ function SortableScriptCard({ item, index, isOwner, onRemove, onInlineSave, isAu
           </CardContent>
         </CollapsibleContent>
       </Collapsible>
+      <AlertDialog open={showRemoveConfirm} onOpenChange={setShowRemoveConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Remove from playbook?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will remove "{item.script?.stage}" from the playbook. The original script will not be deleted.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction className="bg-destructive text-destructive-foreground hover:bg-destructive/90" onClick={() => onRemove(item.id)}>Remove</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Card>
   );
 }
@@ -257,6 +273,7 @@ interface SortableObjectionCardProps {
 }
 
 function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjectionCardProps) {
+  const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
   const {
     attributes,
     listeners,
@@ -298,7 +315,7 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
                   </CardTitle>
                   <div className="flex items-center gap-1">
                     {isOwner && (
-                      <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive hover:text-destructive" onClick={(e) => { e.stopPropagation(); onRemove(item.id); }} title="Remove from playbook">
+                      <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive hover:text-destructive" onClick={(e) => { e.stopPropagation(); setShowRemoveConfirm(true); }} title="Remove from playbook">
                         <Trash2 className="h-3 w-3" />
                       </Button>
                     )}
@@ -325,6 +342,20 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
           </CardContent>
         </CollapsibleContent>
       </Collapsible>
+      <AlertDialog open={showRemoveConfirm} onOpenChange={setShowRemoveConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Remove from playbook?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will remove the objection "{item.objection?.title}" from the playbook. The original objection will not be deleted.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction className="bg-destructive text-destructive-foreground hover:bg-destructive/90" onClick={() => onRemove(item.id)}>Remove</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Card>
   );
 }
