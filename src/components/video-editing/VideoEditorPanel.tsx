@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { VideoEditForm } from './VideoEditForm';
 import { Button } from '@/components/ui/button';
-import { SquarePen, Link2, FileText, ChevronDown } from 'lucide-react';
+import { SquarePen } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
