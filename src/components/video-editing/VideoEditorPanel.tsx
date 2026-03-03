@@ -20,6 +20,7 @@ interface VideoEditorPanelProps {
   onAddVideo: () => void;
   onCreateCategory: (categoryName: string) => void;
   lastSavedAt?: number;
+  onEditingStateChange?: (isEditing: boolean) => void;
 }
 
 export function VideoEditorPanel({
@@ -29,8 +30,14 @@ export function VideoEditorPanel({
   onEditingIndexChange,
   onUpdateVideo,
   lastSavedAt,
+  onEditingStateChange,
 }: VideoEditorPanelProps) {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditingLocal] = useState(false);
+
+  const setIsEditing = (val: boolean) => {
+    setIsEditingLocal(val);
+    onEditingStateChange?.(val);
+  };
   const currentVideo = editingIndex !== null ? editVideos[editingIndex] : null;
 
   // Auto-enter edit mode for new pages (empty content)
@@ -38,13 +45,15 @@ export function VideoEditorPanel({
 
   // Reset edit state when switching between pages
   useEffect(() => {
-    setIsEditing(false);
+    setIsEditingLocal(false);
+    onEditingStateChange?.(false);
   }, [editingIndex]);
 
   // Switch to preview mode after save completes
   useEffect(() => {
     if (lastSavedAt) {
-      setIsEditing(false);
+      setIsEditingLocal(false);
+      onEditingStateChange?.(false);
     }
   }, [lastSavedAt]);
 
@@ -58,6 +67,7 @@ export function VideoEditorPanel({
               video={editVideos[editingIndex]}
               onUpdate={(updatedVideo) => onUpdateVideo(editingIndex, updatedVideo)}
               existingCategories={existingCategories}
+              hideTranscript={true}
             />
           </div>
         ) : (

@@ -18,6 +18,7 @@ interface VideoEditingLayoutProps {
   folderDialogOpen: boolean;
   folderDialogMode: 'create' | 'edit';
   editingFolderName: string;
+  isEditorEditing?: boolean;
   onEditingIndexChange: (index: number | null) => void;
   onUpdateVideo: (index: number, updatedVideo: TrainingVideo) => void;
   onRemoveVideo: (index: number) => void;
@@ -38,6 +39,7 @@ interface VideoEditingLayoutProps {
   onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
   onReorderFolders?: (folderOrder: string[]) => void;
   lastSavedAt?: number;
+  onEditorEditingStateChange?: (isEditing: boolean) => void;
 }
 
 export function VideoEditingLayout({
@@ -50,6 +52,7 @@ export function VideoEditingLayout({
   folderDialogOpen,
   folderDialogMode,
   editingFolderName,
+  isEditorEditing = false,
   onEditingIndexChange,
   onUpdateVideo,
   onRemoveVideo,
@@ -69,7 +72,8 @@ export function VideoEditingLayout({
   onFolderSave,
   onReorderVideos,
   onReorderFolders,
-  lastSavedAt
+  lastSavedAt,
+  onEditorEditingStateChange
 }: VideoEditingLayoutProps) {
   const isMobile = useIsMobile();
   const [showMobileEditor, setShowMobileEditor] = useState(false);
@@ -161,6 +165,7 @@ export function VideoEditingLayout({
                 onAddVideo={onAddVideo}
                 onCreateCategory={onCreateCategory}
                 lastSavedAt={lastSavedAt}
+                onEditingStateChange={onEditorEditingStateChange}
               />
             </div>
           </div>
@@ -234,9 +239,9 @@ export function VideoEditingLayout({
         </div>
 
         {/* Transcript Accordion */}
-        {currentVideo?.transcript && (
+        {(currentVideo?.transcript || isEditorEditing) && editingIndex !== null && (
           <div className="border-b">
-            <details className="group">
+            <details className="group" open={isEditorEditing}>
               <summary className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-muted/50 transition-colors">
                 <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
                   <FileText className="h-4 w-4" />
@@ -245,11 +250,25 @@ export function VideoEditingLayout({
                 <ChevronDown className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
               </summary>
               <div className="px-4 pb-4">
-                <div className="max-h-[300px] overflow-y-auto">
-                  <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed">
-                    {currentVideo.transcript}
-                  </p>
-                </div>
+                {isEditorEditing ? (
+                  <textarea
+                    value={currentVideo?.transcript || ''}
+                    onChange={(e) => {
+                      if (editingIndex !== null && currentVideo) {
+                        onUpdateVideo(editingIndex, { ...currentVideo, transcript: e.target.value });
+                      }
+                    }}
+                    placeholder="Add your transcript..."
+                    rows={10}
+                    className="w-full bg-muted/20 border border-border rounded-lg p-3 text-sm text-foreground resize-y focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 placeholder:text-muted-foreground/50 break-words overflow-x-hidden"
+                  />
+                ) : (
+                  <div className="max-h-[300px] overflow-y-auto overflow-x-hidden">
+                    <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed break-words">
+                      {currentVideo?.transcript}
+                    </p>
+                  </div>
+                )}
               </div>
             </details>
           </div>
@@ -309,6 +328,7 @@ export function VideoEditingLayout({
             onAddVideo={onAddVideo}
             onCreateCategory={onCreateCategory}
             lastSavedAt={lastSavedAt}
+            onEditingStateChange={onEditorEditingStateChange}
           />
         </div>
       </main>
