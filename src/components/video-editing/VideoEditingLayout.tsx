@@ -165,6 +165,7 @@ export function VideoEditingLayout({
                 onAddVideo={onAddVideo}
                 onCreateCategory={onCreateCategory}
                 lastSavedAt={lastSavedAt}
+                onEditingStateChange={onEditorEditingStateChange}
               />
             </div>
           </div>
