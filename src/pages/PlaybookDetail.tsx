@@ -527,10 +527,28 @@ export default function PlaybookDetail() {
   const [aiSuggestions, setAiSuggestions] = useState<{ script_id: string; reason: string; suggested_position: string }[] | null>(null);
   const [aiSummary, setAiSummary] = useState("");
   const [isAiLoading, setIsAiLoading] = useState(false);
+  const [collaboratorSearch, setCollaboratorSearch] = useState("");
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   const playbook = playbooks.find(p => p.id === playbookId);
   const { isMasterAdmin, hasRole } = usePermissions();
-  const isOwner = user?.id === playbook?.created_by || isMasterAdmin() || hasRole('admin');
+  const isActualOwner = user?.id === playbook?.created_by || isMasterAdmin() || hasRole('admin');
+
+  const {
+    collaborators,
+    editRequests,
+    myRequest,
+    isCollaborator,
+    addCollaborator,
+    removeCollaborator,
+    requestEditAccess,
+    approveRequest,
+    rejectRequest,
+  } = usePlaybookCollaborators(playbookId);
+
+  const isOwner = isActualOwner || isCollaborator;
+  const pendingRequests = editRequests.filter(r => r.status === 'pending');
 
   const itemsWithData = useMemo(() => {
     return items.map(item => ({
