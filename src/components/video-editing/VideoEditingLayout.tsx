@@ -4,7 +4,7 @@ import { VideoEditorPanel } from './VideoEditorPanel';
 import { FolderManagementDialog } from './FolderManagementDialog';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoreVertical, FolderPlus, FilePlus, ChevronLeft } from 'lucide-react';
+import { MoreVertical, FolderPlus, FilePlus, ChevronLeft, FileText, Link2, ChevronDown } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
