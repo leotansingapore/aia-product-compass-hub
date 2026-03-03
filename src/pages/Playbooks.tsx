@@ -154,8 +154,10 @@ export default function Playbooks() {
   };
 
   // Split playbooks into categories
-  const myPlaybooks = playbooks.filter(pb => pb.created_by === userId);
-  const othersPlaybooks = playbooks.filter(pb => pb.created_by !== userId && !isHidden(pb.id));
+  const myPlaybooks = userId ? playbooks.filter(pb => pb.created_by === userId) : [];
+  const othersPlaybooks = userId
+    ? playbooks.filter(pb => pb.created_by !== userId && !isHidden(pb.id))
+    : playbooks.filter(pb => !isHidden(pb.id));
   const favourites = playbooks.filter(pb => isFavourite(pb.id) && !isHidden(pb.id));
   const hiddenPlaybooks = playbooks.filter(pb => isHidden(pb.id));
 
