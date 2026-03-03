@@ -241,7 +241,7 @@ export function VideoEditingLayout({
         {/* Transcript Accordion */}
         {(currentVideo?.transcript || isEditorEditing) && editingIndex !== null && (
           <div className="border-b">
-            <details className="group" open={isEditorEditing}>
+            <details className="group" open>
               <summary className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-muted/50 transition-colors">
                 <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
                   <FileText className="h-4 w-4" />
