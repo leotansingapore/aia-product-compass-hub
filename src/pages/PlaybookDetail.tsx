@@ -983,7 +983,7 @@ export default function PlaybookDetail() {
                   <CheckCircle className="h-3.5 w-3.5" /> Edit access granted
                 </div>
               ) : myRequest?.status === 'pending' ? (
-                <div className="flex items-center gap-1.5 text-xs text-amber-600 font-medium">
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
                   <Clock className="h-3.5 w-3.5" /> Request pending approval
                 </div>
               ) : myRequest?.status === 'rejected' ? (
