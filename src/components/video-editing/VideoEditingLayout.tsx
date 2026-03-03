@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { CourseStructurePanel } from './CourseStructurePanel';
 import { VideoEditorPanel } from './VideoEditorPanel';
 import { FolderManagementDialog } from './FolderManagementDialog';
+import { ModuleResourcesSection } from './ModuleResourcesSection';
+import { AddResourceDropdown } from './AddResourceDropdown';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { MoreVertical, FolderPlus, FilePlus, ChevronLeft, FileText, Link2, ChevronDown } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import type { TrainingVideo } from '@/hooks/useProducts';
+import type { TrainingVideo, UsefulLink, VideoAttachment } from '@/hooks/useProducts';
 
 interface VideoEditingLayoutProps {
   editVideos: TrainingVideo[];
@@ -275,41 +277,92 @@ export function VideoEditingLayout({
         )}
 
         {/* Resources */}
-        {currentVideo && ((currentVideo.useful_links?.length ?? 0) > 0 || (currentVideo.attachments?.length ?? 0) > 0) && (
-          <div className="p-4 space-y-3">
-            <h3 className="text-sm font-semibold text-foreground">Resources</h3>
-            <div className="space-y-1.5">
-              {currentVideo.useful_links?.map((link, index) => (
-                <div key={`link-${index}`} className="flex items-center gap-2">
-                  <Link2 className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-primary hover:underline truncate"
-                  >
-                    {link.name}
-                  </a>
+        {editingIndex !== null && currentVideo && (
+          <div className="border-b">
+            <details className="group" open>
+              <summary className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-muted/50 transition-colors">
+                <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                  <Link2 className="h-4 w-4" />
+                  Resources
                 </div>
-              ))}
-              {currentVideo.attachments?.map((attachment) => (
-                <div key={`file-${attachment.id}`} className="flex items-center gap-2">
-                  {(attachment.file_type || '').toLowerCase() === 'pdf' ? (
-                    <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-destructive/10 text-destructive text-[10px] font-bold flex-shrink-0">PDF</span>
-                  ) : (
-                    <FileText className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                  )}
-                  <a
-                    href={attachment.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-primary hover:underline truncate"
-                  >
-                    {attachment.name}
-                  </a>
-                </div>
-              ))}
-            </div>
+                <ChevronDown className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
+              </summary>
+              <div className="px-4 pb-4">
+                {isEditorEditing ? (
+                  <div className="space-y-3">
+                    <ModuleResourcesSection
+                      links={currentVideo.useful_links || []}
+                      attachments={currentVideo.attachments || []}
+                      isAdmin={true}
+                      onDeleteLink={(index) => {
+                        if (editingIndex !== null && currentVideo) {
+                          const updatedLinks = (currentVideo.useful_links || []).filter((_, i) => i !== index);
+                          onUpdateVideo(editingIndex, { ...currentVideo, useful_links: updatedLinks });
+                        }
+                      }}
+                      onDeleteAttachment={(id) => {
+                        if (editingIndex !== null && currentVideo) {
+                          const updatedAttachments = (currentVideo.attachments || []).filter(a => a.id !== id);
+                          onUpdateVideo(editingIndex, { ...currentVideo, attachments: updatedAttachments });
+                        }
+                      }}
+                    />
+                    <AddResourceDropdown
+                      onAddLink={(label, url) => {
+                        if (editingIndex !== null && currentVideo) {
+                          const newLink: UsefulLink = { name: label, url, icon: '🔗' };
+                          onUpdateVideo(editingIndex, { ...currentVideo, useful_links: [...(currentVideo.useful_links || []), newLink] });
+                        }
+                      }}
+                      onAddFile={(attachment) => {
+                        if (editingIndex !== null && currentVideo) {
+                          onUpdateVideo(editingIndex, { ...currentVideo, attachments: [...(currentVideo.attachments || []), attachment] });
+                        }
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div className="space-y-1.5">
+                    {(currentVideo.useful_links?.length ?? 0) === 0 && (currentVideo.attachments?.length ?? 0) === 0 ? (
+                      <p className="text-sm text-muted-foreground italic">No resources added</p>
+                    ) : (
+                      <>
+                        {currentVideo.useful_links?.map((link, index) => (
+                          <div key={`link-${index}`} className="flex items-center gap-2">
+                            <Link2 className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                            <a
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-primary hover:underline truncate"
+                            >
+                              {link.name}
+                            </a>
+                          </div>
+                        ))}
+                        {currentVideo.attachments?.map((attachment) => (
+                          <div key={`file-${attachment.id}`} className="flex items-center gap-2">
+                            {(attachment.file_type || '').toLowerCase() === 'pdf' ? (
+                              <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-destructive/10 text-destructive text-[10px] font-bold flex-shrink-0">PDF</span>
+                            ) : (
+                              <FileText className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                            )}
+                            <a
+                              href={attachment.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-primary hover:underline truncate"
+                            >
+                              {attachment.name}
+                            </a>
+                          </div>
+                        ))}
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+            </details>
           </div>
         )}
       </aside>
