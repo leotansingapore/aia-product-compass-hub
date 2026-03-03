@@ -45,13 +45,15 @@ export function VideoEditorPanel({
 
   // Reset edit state when switching between pages
   useEffect(() => {
-    setIsEditing(false);
+    setIsEditingLocal(false);
+    onEditingStateChange?.(false);
   }, [editingIndex]);
 
   // Switch to preview mode after save completes
   useEffect(() => {
     if (lastSavedAt) {
-      setIsEditing(false);
+      setIsEditingLocal(false);
+      onEditingStateChange?.(false);
     }
   }, [lastSavedAt]);
 

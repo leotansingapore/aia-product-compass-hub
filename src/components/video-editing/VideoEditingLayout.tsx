@@ -18,6 +18,7 @@ interface VideoEditingLayoutProps {
   folderDialogOpen: boolean;
   folderDialogMode: 'create' | 'edit';
   editingFolderName: string;
+  isEditorEditing?: boolean;
   onEditingIndexChange: (index: number | null) => void;
   onUpdateVideo: (index: number, updatedVideo: TrainingVideo) => void;
   onRemoveVideo: (index: number) => void;
@@ -50,6 +51,7 @@ export function VideoEditingLayout({
   folderDialogOpen,
   folderDialogMode,
   editingFolderName,
+  isEditorEditing = false,
   onEditingIndexChange,
   onUpdateVideo,
   onRemoveVideo,
