@@ -4,7 +4,7 @@ import { VideoEditorPanel } from './VideoEditorPanel';
 import { FolderManagementDialog } from './FolderManagementDialog';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoreVertical, FolderPlus, FilePlus, ChevronLeft } from 'lucide-react';
+import { MoreVertical, FolderPlus, FilePlus, ChevronLeft, FileText, Link2, ChevronDown } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
@@ -73,7 +73,7 @@ export function VideoEditingLayout({
 }: VideoEditingLayoutProps) {
   const isMobile = useIsMobile();
   const [showMobileEditor, setShowMobileEditor] = useState(false);
-
+  const currentVideo = editingIndex !== null ? editVideos[editingIndex] : null;
   // On mobile, show editor when a video is selected
   const handleVideoSelect = (index: number) => {
     onEditingIndexChange(index);
@@ -183,52 +183,116 @@ export function VideoEditingLayout({
     <div className="flex min-h-[calc(100vh-120px)]">
       {/* Left Sidebar - Course Structure (SKOOL-style) */}
       <aside className="w-80 border-r bg-muted/30 overflow-y-auto">
-        <div className="sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b px-4 py-3">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="font-semibold text-sm text-foreground">Course Structure</h2>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                {editVideos.length} videos
-              </p>
+        {/* Course Structure Card */}
+        <div className="border-b">
+          <div className="sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b px-4 py-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="font-semibold text-sm text-foreground">Course Structure</h2>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {editVideos.length} videos
+                </p>
+              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                    <MoreVertical className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48 bg-background z-50">
+                  <DropdownMenuItem onClick={onCreateFolder} className="cursor-pointer">
+                    <FolderPlus className="h-4 w-4 mr-2" />
+                    Add Folder
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={onAddPageToRoot} className="cursor-pointer">
+                    <FilePlus className="h-4 w-4 mr-2" />
+                    Add Page
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                  <MoreVertical className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48 bg-background z-50">
-                <DropdownMenuItem onClick={onCreateFolder} className="cursor-pointer">
-                  <FolderPlus className="h-4 w-4 mr-2" />
-                  Add Folder
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={onAddPageToRoot} className="cursor-pointer">
-                  <FilePlus className="h-4 w-4 mr-2" />
-                  Add Page
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+          </div>
+          <div className="p-4">
+            <CourseStructurePanel
+              videos={editVideos}
+              emptyFolders={emptyFolders}
+              expandedFolders={expandedFolders}
+              onExpandedChange={onExpandedChange}
+              onVideoSelect={(index) => onEditingIndexChange(index)}
+              onCreateFolder={onCreateFolder}
+              onEditFolder={onEditFolder}
+              onDeleteFolder={onDeleteFolder}
+              onMoveVideoToFolder={onMoveVideoToFolder}
+              onEditVideo={(index) => onEditingIndexChange(index)}
+              onDeleteVideo={onRemoveVideo}
+              onAddVideoToFolder={onAddVideoToFolder}
+              onAddPageToFolder={onAddPageToFolder}
+              onReorderVideos={onReorderVideos}
+              onReorderFolders={onReorderFolders}
+            />
           </div>
         </div>
-        <div className="p-4">
-          <CourseStructurePanel
-            videos={editVideos}
-            emptyFolders={emptyFolders}
-            expandedFolders={expandedFolders}
-            onExpandedChange={onExpandedChange}
-            onVideoSelect={(index) => onEditingIndexChange(index)}
-            onCreateFolder={onCreateFolder}
-            onEditFolder={onEditFolder}
-            onDeleteFolder={onDeleteFolder}
-            onMoveVideoToFolder={onMoveVideoToFolder}
-            onEditVideo={(index) => onEditingIndexChange(index)}
-            onDeleteVideo={onRemoveVideo}
-            onAddVideoToFolder={onAddVideoToFolder}
-            onAddPageToFolder={onAddPageToFolder}
-            onReorderVideos={onReorderVideos}
-            onReorderFolders={onReorderFolders}
-          />
-        </div>
+
+        {/* Transcript Accordion */}
+        {currentVideo?.transcript && (
+          <div className="border-b">
+            <details className="group">
+              <summary className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-muted/50 transition-colors">
+                <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                  <FileText className="h-4 w-4" />
+                  Transcript
+                </div>
+                <ChevronDown className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
+              </summary>
+              <div className="px-4 pb-4">
+                <div className="max-h-[300px] overflow-y-auto">
+                  <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed">
+                    {currentVideo.transcript}
+                  </p>
+                </div>
+              </div>
+            </details>
+          </div>
+        )}
+
+        {/* Resources */}
+        {currentVideo && ((currentVideo.useful_links?.length ?? 0) > 0 || (currentVideo.attachments?.length ?? 0) > 0) && (
+          <div className="p-4 space-y-3">
+            <h3 className="text-sm font-semibold text-foreground">Resources</h3>
+            <div className="space-y-1.5">
+              {currentVideo.useful_links?.map((link, index) => (
+                <div key={`link-${index}`} className="flex items-center gap-2">
+                  <Link2 className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-primary hover:underline truncate"
+                  >
+                    {link.name}
+                  </a>
+                </div>
+              ))}
+              {currentVideo.attachments?.map((attachment) => (
+                <div key={`file-${attachment.id}`} className="flex items-center gap-2">
+                  {(attachment.file_type || '').toLowerCase() === 'pdf' ? (
+                    <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-destructive/10 text-destructive text-[10px] font-bold flex-shrink-0">PDF</span>
+                  ) : (
+                    <FileText className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                  )}
+                  <a
+                    href={attachment.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-primary hover:underline truncate"
+                  >
+                    {attachment.name}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </aside>
 
       {/* Main Content Area - Video Editor */}
