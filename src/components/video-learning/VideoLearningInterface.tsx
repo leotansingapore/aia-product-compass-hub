@@ -307,6 +307,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                   ) : null}
                 </CardContent>
               </Card>
+              )}
 
               {/* Markdown Content or Legacy Notes */}
               {currentVideo?.rich_content?.trim() ? (
