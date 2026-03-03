@@ -342,6 +342,20 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
           </CardContent>
         </CollapsibleContent>
       </Collapsible>
+      <AlertDialog open={showRemoveConfirm} onOpenChange={setShowRemoveConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Remove from playbook?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will remove the objection "{item.objection?.title}" from the playbook. The original objection will not be deleted.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction className="bg-destructive text-destructive-foreground hover:bg-destructive/90" onClick={() => onRemove(item.id)}>Remove</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Card>
   );
 }
