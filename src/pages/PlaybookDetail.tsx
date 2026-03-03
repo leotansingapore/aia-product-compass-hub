@@ -15,6 +15,7 @@ import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plu
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
+import { usePlaybookCollaborators } from "@/hooks/usePlaybookCollaborators";
 import { useScripts } from "@/hooks/useScripts";
 import { useScriptsMutations } from "@/hooks/useScripts";
 import { useObjections } from "@/hooks/useObjections";
