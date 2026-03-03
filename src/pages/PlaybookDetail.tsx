@@ -975,6 +975,35 @@ export default function PlaybookDetail() {
               </Button>
             </div>
           )}
+          {/* Request Edit Access — shown to non-owners who are authenticated */}
+          {!isOwner && user && (
+            <div className="mt-3 sm:mt-0 sm:ml-auto">
+              {myRequest?.status === 'approved' ? (
+                <div className="flex items-center gap-1.5 text-xs text-green-600 font-medium">
+                  <CheckCircle className="h-3.5 w-3.5" /> Edit access granted
+                </div>
+              ) : myRequest?.status === 'pending' ? (
+                <div className="flex items-center gap-1.5 text-xs text-amber-600 font-medium">
+                  <Clock className="h-3.5 w-3.5" /> Request pending approval
+                </div>
+              ) : myRequest?.status === 'rejected' ? (
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <XCircle className="h-3.5 w-3.5" /> Request was declined
+                </div>
+              ) : (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-1.5"
+                  onClick={() => requestEditAccess.mutate()}
+                  disabled={requestEditAccess.isPending}
+                >
+                  {requestEditAccess.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <UserPlus className="h-3.5 w-3.5" />}
+                  Request Edit Access
+                </Button>
+              )}
+            </div>
+          )}
         </div>
 
         {/* AI Suggestions Panel */}
