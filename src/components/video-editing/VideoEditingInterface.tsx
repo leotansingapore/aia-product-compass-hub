@@ -247,6 +247,7 @@ export function VideoEditingInterface({
           onReorderVideos={videoOrderChanges.updatePendingVideos}
           onReorderFolders={handleReorderFolders}
           lastSavedAt={lastSavedAt}
+          onEditorEditingStateChange={setIsEditorEditing}
         />
         
         {/* Unified save bar - shows when there are ANY unsaved changes */}

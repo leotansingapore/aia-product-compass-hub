@@ -22,12 +22,14 @@ interface VideoEditFormProps {
   video: TrainingVideo;
   onUpdate: (updatedVideo: TrainingVideo) => void;
   existingCategories?: string[];
+  hideTranscript?: boolean;
 }
 
 export function VideoEditForm({
   video,
   onUpdate,
   existingCategories = [],
+  hideTranscript = false,
 }: VideoEditFormProps) {
   const {
     editVideo,
@@ -92,8 +94,8 @@ export function VideoEditForm({
           placeholder="Start writing, or type '/' for commands..."
           title={editVideo.title || ''}
           onTitleChange={(title) => handleChange('title', title)}
-          transcript={editVideo.transcript || ''}
-          onTranscriptChange={(transcript) => handleChange('transcript', transcript)}
+          transcript={hideTranscript ? undefined : (editVideo.transcript || '')}
+          onTranscriptChange={hideTranscript ? undefined : ((transcript) => handleChange('transcript', transcript))}
           usefulLinks={editVideo.useful_links || []}
           attachments={editVideo.attachments || []}
           onAddLink={handleAddLink}
