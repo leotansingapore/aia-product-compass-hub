@@ -249,8 +249,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
             {/* Video Player */}
             <div className="lg:col-span-2 space-y-6 order-2 lg:order-2 transition-all duration-300">
+              {(videoInfo || !currentVideo?.rich_content) && (
               <Card>
-                {/* Show header when there's no rich content, OR when there's a video URL */}
                 {(!currentVideo?.rich_content || videoInfo) && (
                   <CardHeader>
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
@@ -307,6 +307,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                   ) : null}
                 </CardContent>
               </Card>
+              )}
 
               {/* Markdown Content or Legacy Notes */}
               {currentVideo?.rich_content?.trim() ? (
