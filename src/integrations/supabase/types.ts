@@ -1060,6 +1060,41 @@ export type Database = {
           },
         ]
       }
+      playbook_user_prefs: {
+        Row: {
+          id: string
+          is_favourite: boolean
+          is_hidden: boolean
+          playbook_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          is_favourite?: boolean
+          is_hidden?: boolean
+          playbook_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          is_favourite?: boolean
+          is_hidden?: boolean
+          playbook_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "playbook_user_prefs_playbook_id_fkey"
+            columns: ["playbook_id"]
+            isOneToOne: false
+            referencedRelation: "script_playbooks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       products: {
         Row: {
           assistant_id: string | null
