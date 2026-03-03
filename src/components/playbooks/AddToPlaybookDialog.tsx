@@ -271,9 +271,9 @@ export function AddToPlaybookDialog({
                         <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{objection.description}</p>
                       )}
                     </div>
-                    <Button size="sm" variant="outline" className="ml-2 shrink-0" onClick={() => onAddObjection(objection.id)}>
-                      <Plus className="h-3.5 w-3.5 mr-1" /> Add
-                    </Button>
+                    <button className="shrink-0 flex items-center gap-1 px-2.5 py-1 text-xs text-muted-foreground border border-dashed border-border rounded-md hover:border-muted-foreground/50 hover:text-foreground transition-colors" onClick={() => onAddObjection(objection.id)}>
+                      <Plus className="h-3 w-3" /> Add
+                    </button>
                   </div>
                 ))
               )}
