@@ -18,6 +18,7 @@ import { useScripts } from "@/hooks/useScripts";
 import { useScriptsMutations } from "@/hooks/useScripts";
 import { useObjections } from "@/hooks/useObjections";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { usePermissions } from "@/hooks/usePermissions";
 import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from "react-markdown";
 import { MinimalRichEditor } from "@/components/MinimalRichEditor";
@@ -496,7 +497,8 @@ export default function PlaybookDetail() {
   const [isAiLoading, setIsAiLoading] = useState(false);
 
   const playbook = playbooks.find(p => p.id === playbookId);
-  const isOwner = user?.id === playbook?.created_by;
+  const { isMasterAdmin, hasRole } = usePermissions();
+  const isOwner = user?.id === playbook?.created_by || isMasterAdmin() || hasRole('admin');
 
   const itemsWithData = useMemo(() => {
     return items.map(item => ({
