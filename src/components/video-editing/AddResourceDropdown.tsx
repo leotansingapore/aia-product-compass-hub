@@ -111,10 +111,13 @@ export function AddResourceDropdown({ onAddLink, onAddFile, onShowTranscript }: 
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="gap-1 font-semibold" disabled={isUploading}>
-            {isUploading ? 'Uploading...' : 'ADD'}
-            <ChevronDown className="h-4 w-4" />
-          </Button>
+          <button
+            disabled={isUploading}
+            className="flex items-center gap-1.5 w-full px-3 py-1.5 text-sm text-muted-foreground/70 border border-dashed border-border rounded-md hover:border-muted-foreground/40 hover:text-muted-foreground transition-colors disabled:opacity-50"
+          >
+            <span className="text-xs">+</span>
+            {isUploading ? 'Uploading...' : 'Add resource'}
+          </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-48 bg-background">
           <DropdownMenuItem onClick={() => setShowLinkDialog(true)}>
