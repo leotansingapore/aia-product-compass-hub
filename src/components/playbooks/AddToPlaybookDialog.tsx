@@ -162,7 +162,7 @@ export function AddToPlaybookDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg max-h-[85vh] mx-2 sm:mx-auto">
+      <DialogContent className="max-w-2xl w-[95vw] max-h-[85vh]">
         <DialogHeader>
           <DialogTitle>Add to Playbook</DialogTitle>
         </DialogHeader>
