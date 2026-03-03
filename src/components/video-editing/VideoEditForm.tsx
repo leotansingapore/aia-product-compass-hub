@@ -23,6 +23,7 @@ interface VideoEditFormProps {
   onUpdate: (updatedVideo: TrainingVideo) => void;
   existingCategories?: string[];
   hideTranscript?: boolean;
+  hideResources?: boolean;
 }
 
 export function VideoEditForm({
@@ -30,6 +31,7 @@ export function VideoEditForm({
   onUpdate,
   existingCategories = [],
   hideTranscript = false,
+  hideResources = false,
 }: VideoEditFormProps) {
   const {
     editVideo,
@@ -96,12 +98,12 @@ export function VideoEditForm({
           onTitleChange={(title) => handleChange('title', title)}
           transcript={hideTranscript ? undefined : (editVideo.transcript || '')}
           onTranscriptChange={hideTranscript ? undefined : ((transcript) => handleChange('transcript', transcript))}
-          usefulLinks={editVideo.useful_links || []}
-          attachments={editVideo.attachments || []}
-          onAddLink={handleAddLink}
-          onAddFile={handleAddFile}
-          onDeleteLink={handleDeleteLink}
-          onDeleteAttachment={handleDeleteAttachment}
+          usefulLinks={hideResources ? undefined : (editVideo.useful_links || [])}
+          attachments={hideResources ? undefined : (editVideo.attachments || [])}
+          onAddLink={hideResources ? undefined : handleAddLink}
+          onAddFile={hideResources ? undefined : handleAddFile}
+          onDeleteLink={hideResources ? undefined : handleDeleteLink}
+          onDeleteAttachment={hideResources ? undefined : handleDeleteAttachment}
           published={editVideo.published ?? true}
           onPublishedChange={(val) => handleChange('published', val)}
         />
