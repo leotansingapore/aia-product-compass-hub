@@ -2037,9 +2037,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                 setNewVersionContent("");
                                 setNewVersionName("");
                                 if (newVersion?.id) {
-                                  setActiveVersionTab(`uv-${newVersion.id}`);
+                                  const tabId = `uv-${newVersion.id}`;
+                                  manualTabRef.current = tabId;
+                                  setActiveVersionTab(tabId);
+                                  // Wait for query refetch + DOM update before scrolling
+                                  setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
                                 }
-                                setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 100);
                               }
                             }
                           );
