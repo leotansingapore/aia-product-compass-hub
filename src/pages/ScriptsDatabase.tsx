@@ -2105,10 +2105,10 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       </div>
                       <div className="flex items-center gap-1 mt-2">
                         <CopyButton text={uv.content} />
-                        {currentUserId === uv.user_id && (
-                          <Button variant="ghost" size="sm" className="h-6 text-xs text-destructive hover:text-destructive px-2"
+                        {(currentUserId === uv.user_id || isAdmin) && (
+                          <Button variant="ghost" size="sm" className="h-6 text-xs text-destructive hover:text-destructive hover:bg-destructive/10 px-2"
                             onClick={() => deleteUserVersion.mutate(uv.id)}>
-                            <Trash2 className="h-3 w-3 mr-1" /> Delete
+                            <Trash2 className="h-3 w-3 mr-1" /> Delete version
                           </Button>
                         )}
                       </div>
