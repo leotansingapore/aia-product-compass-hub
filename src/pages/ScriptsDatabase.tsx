@@ -2106,6 +2106,19 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           </div>
                           <div className="flex items-center gap-1 mt-2">
                             <CopyButton text={v.content} />
+                            <button
+                              className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors rounded"
+                              title="Copy link to this version"
+                              onClick={() => {
+                                const url = new URL(window.location.href);
+                                url.pathname = `/scripts/${script.id}`;
+                                url.searchParams.set("v", String(i));
+                                navigator.clipboard.writeText(url.toString());
+                                toast.success("Version link copied!");
+                              }}
+                            >
+                              <Link2 className="h-3 w-3" /> Copy link
+                            </button>
                             {isAuthenticated && onInlineSave && (
                               <span className="text-[10px] text-muted-foreground italic ml-1">double-click to edit</span>
                             )}
