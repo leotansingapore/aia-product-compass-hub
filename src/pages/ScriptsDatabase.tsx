@@ -1567,6 +1567,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [newVersionContent, setNewVersionContent] = useState("");
   const [editingUserVersionId, setEditingUserVersionId] = useState<string | null>(null);
   const [editUserVersionName, setEditUserVersionName] = useState("");
+  const [activeVersionTab, setActiveVersionTab] = useState("0");
 
   const saveMetaField = async (updates: Partial<ScriptEntry>) => {
     if (!onMetadataSave) return;
@@ -1869,7 +1870,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   scriptId={script.id}
                 />
               ) : (
-                <Tabs defaultValue="0">
+                <Tabs value={activeVersionTab} onValueChange={setActiveVersionTab}>
                   {/* Version switcher header */}
                   <div className="flex items-center gap-2 flex-wrap mb-3 pb-3 border-b border-border/60">
                     <div className="flex items-center gap-1.5 shrink-0">
@@ -1999,7 +2000,16 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={() => {
                           addUserVersion.mutate(
                             { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
-                            { onSuccess: () => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); } }
+                            { onSuccess: (newVersion) => {
+                                setShowNewVersionForm(false);
+                                setNewVersionContent("");
+                                setNewVersionName("");
+                                if (newVersion?.id) {
+                                  setActiveVersionTab(`uv-${newVersion.id}`);
+                                }
+                                setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 100);
+                              }
+                            }
                           );
                         }}>
                           {addUserVersion.isPending ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Adding…</> : "Add Version"}
