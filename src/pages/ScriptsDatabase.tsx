@@ -2053,6 +2053,20 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                             {isAuthenticated && onInlineSave && (
                               <span className="text-[10px] text-muted-foreground italic ml-1">double-click to edit</span>
                             )}
+                            {isAdmin && onInlineSave && script.versions.length > 1 && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-6 text-xs text-destructive hover:text-destructive px-2 ml-auto"
+                                onClick={async () => {
+                                  const newVersions = script.versions.filter((_, idx) => idx !== i);
+                                  await onInlineSave(script.id, newVersions);
+                                  setActiveVersionTab("0");
+                                }}
+                              >
+                                <Trash2 className="h-3 w-3 mr-1" /> Delete version
+                              </Button>
+                            )}
                           </div>
                         </>
                       )}
