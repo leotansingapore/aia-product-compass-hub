@@ -1567,6 +1567,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [newVersionContent, setNewVersionContent] = useState("");
   const [editingUserVersionId, setEditingUserVersionId] = useState<string | null>(null);
   const [editUserVersionName, setEditUserVersionName] = useState("");
+  const [activeVersionTab, setActiveVersionTab] = useState("0");
 
   const saveMetaField = async (updates: Partial<ScriptEntry>) => {
     if (!onMetadataSave) return;
