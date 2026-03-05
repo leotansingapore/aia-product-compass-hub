@@ -2000,7 +2000,16 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={() => {
                           addUserVersion.mutate(
                             { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
-                            { onSuccess: () => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); } }
+                            { onSuccess: (newVersion) => {
+                                setShowNewVersionForm(false);
+                                setNewVersionContent("");
+                                setNewVersionName("");
+                                if (newVersion?.id) {
+                                  setActiveVersionTab(`uv-${newVersion.id}`);
+                                }
+                                setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 100);
+                              }
+                            }
                           );
                         }}>
                           {addUserVersion.isPending ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Adding…</> : "Add Version"}
