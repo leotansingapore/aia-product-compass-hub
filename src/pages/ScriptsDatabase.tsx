@@ -1568,9 +1568,16 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [editingUserVersionId, setEditingUserVersionId] = useState<string | null>(null);
   const [editUserVersionName, setEditUserVersionName] = useState("");
   const [activeVersionTab, setActiveVersionTab] = useState("0");
+  // Tracks whether the user manually pinned a tab (e.g. just added a version) — prevents search effect from overriding it
+  const manualTabRef = useRef<string | null>(null);
 
-  // Auto-switch to the matching version tab when search query changes
+  // Auto-switch to the matching version tab when search query changes (unless user just manually set it)
   useEffect(() => {
+    if (manualTabRef.current !== null) {
+      // Clear the manual lock after one cycle so future search changes work normally
+      manualTabRef.current = null;
+      return;
+    }
     if (!searchQuery?.trim()) {
       setActiveVersionTab("0");
       return;
@@ -2030,9 +2037,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                 setNewVersionContent("");
                                 setNewVersionName("");
                                 if (newVersion?.id) {
-                                  setActiveVersionTab(`uv-${newVersion.id}`);
+                                  const tabId = `uv-${newVersion.id}`;
+                                  manualTabRef.current = tabId;
+                                  setActiveVersionTab(tabId);
+                                  // Wait for query refetch + DOM update before scrolling
+                                  setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
                                 }
-                                setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 100);
                               }
                             }
                           );
