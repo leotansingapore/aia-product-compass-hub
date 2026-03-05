@@ -1569,6 +1569,31 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [editUserVersionName, setEditUserVersionName] = useState("");
   const [activeVersionTab, setActiveVersionTab] = useState("0");
 
+  // Auto-switch to the matching version tab when search query changes
+  useEffect(() => {
+    if (!searchQuery?.trim()) {
+      setActiveVersionTab("0");
+      return;
+    }
+    const q = searchQuery.toLowerCase();
+    const matchingIdx = script.versions.findIndex(v =>
+      v.content?.toLowerCase().includes(q) || v.author?.toLowerCase().includes(q)
+    );
+    if (matchingIdx !== -1) {
+      setActiveVersionTab(String(matchingIdx));
+      return;
+    }
+    const matchingUv = userVersions.find(uv =>
+      uv.content?.toLowerCase().includes(q) || uv.author_name?.toLowerCase().includes(q)
+    );
+    if (matchingUv) {
+      setActiveVersionTab(`uv-${matchingUv.id}`);
+      return;
+    }
+    setActiveVersionTab("0");
+  }, [searchQuery, script.versions, userVersions]);
+
+
   const saveMetaField = async (updates: Partial<ScriptEntry>) => {
     if (!onMetadataSave) return;
     setIsSaving(true);
