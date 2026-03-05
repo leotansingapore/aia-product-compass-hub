@@ -1870,7 +1870,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   scriptId={script.id}
                 />
               ) : (
-                <Tabs defaultValue="0">
+                <Tabs value={activeVersionTab} onValueChange={setActiveVersionTab}>
                   {/* Version switcher header */}
                   <div className="flex items-center gap-2 flex-wrap mb-3 pb-3 border-b border-border/60">
                     <div className="flex items-center gap-1.5 shrink-0">
