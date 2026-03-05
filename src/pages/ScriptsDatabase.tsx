@@ -1546,6 +1546,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [editContent, setEditContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = getCategoryInfo(script.category);
   const snippet = useMemo(() => getSearchSnippet(script.versions, searchQuery), [script.versions, searchQuery]);
@@ -1567,9 +1568,29 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [newVersionContent, setNewVersionContent] = useState("");
   const [editingUserVersionId, setEditingUserVersionId] = useState<string | null>(null);
   const [editUserVersionName, setEditUserVersionName] = useState("");
-  const [activeVersionTab, setActiveVersionTab] = useState("0");
-  // Tracks whether the user manually pinned a tab (e.g. just added a version) — prevents search effect from overriding it
+  // Read initial version tab from URL if this card is the one in the URL
+  const initialVersionTab = useMemo(() => {
+    const urlScriptId = window.location.pathname.split('/scripts/')[1]?.split('?')[0];
+    if (isOpenByUrl && urlScriptId === script.id) {
+      return searchParams.get("v") || "0";
+    }
+    return "0";
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const [activeVersionTab, setActiveVersionTabState] = useState(initialVersionTab);
+  // Tracks whether the user manually pinned a tab — prevents search effect from overriding it
   const manualTabRef = useRef<string | null>(null);
+
+  // When version tab changes, update the URL ?v= param if this card is open by URL
+  const setActiveVersionTab = useCallback((tab: string) => {
+    setActiveVersionTabState(tab);
+    if (isOpenByUrl) {
+      setSearchParams(prev => {
+        const next = new URLSearchParams(prev);
+        next.set("v", tab);
+        return next;
+      }, { replace: true });
+    }
+  }, [isOpenByUrl, setSearchParams]);
 
   // Auto-switch to the matching version tab when search query changes (unless user just manually set it)
   useEffect(() => {
