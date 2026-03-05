@@ -2149,6 +2149,19 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       </div>
                       <div className="flex items-center gap-1 mt-2">
                         <CopyButton text={uv.content} />
+                        <button
+                          className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors rounded"
+                          title="Copy link to this version"
+                          onClick={() => {
+                            const url = new URL(window.location.href);
+                            url.pathname = `/scripts/${script.id}`;
+                            url.searchParams.set("v", `uv-${uv.id}`);
+                            navigator.clipboard.writeText(url.toString());
+                            toast.success("Version link copied!");
+                          }}
+                        >
+                          <Link2 className="h-3 w-3" /> Copy link
+                        </button>
                         {(currentUserId === uv.user_id || isAdmin) && (
                           <Button variant="ghost" size="sm" className="h-6 text-xs text-destructive hover:text-destructive hover:bg-destructive/10 px-2"
                             onClick={() => deleteUserVersion.mutate(uv.id)}>
@@ -2481,15 +2494,20 @@ export default function ScriptsDatabase() {
     } catch {}
   }, [activeTab, activeCategory, activeAudience, activeRole, activeTag]);
 
-  // Sync filter state to URL search params (without the view param now)
+  // Sync filter state to URL search params — preserve ?v= param if present
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (searchQuery) params.set("q", searchQuery);
-    if (activeCategory !== "all") params.set("category", activeCategory);
-    if (activeAudience !== "all") params.set("audience", activeAudience);
-    if (activeRole !== "all") params.set("role", activeRole);
-    if (activeTag !== "all") params.set("tag", activeTag);
-    setSearchParams(params, { replace: true });
+    setSearchParams(prev => {
+      const params = new URLSearchParams();
+      if (searchQuery) params.set("q", searchQuery);
+      if (activeCategory !== "all") params.set("category", activeCategory);
+      if (activeAudience !== "all") params.set("audience", activeAudience);
+      if (activeRole !== "all") params.set("role", activeRole);
+      if (activeTag !== "all") params.set("tag", activeTag);
+      // preserve the version param if it was in the URL
+      const v = prev.get("v");
+      if (v) params.set("v", v);
+      return params;
+    }, { replace: true });
   }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
 
   // When navigating to a specific script via URL (external), apply URL params if present, else reset
