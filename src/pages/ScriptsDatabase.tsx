@@ -1569,18 +1569,18 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [editingUserVersionId, setEditingUserVersionId] = useState<string | null>(null);
   const [editUserVersionName, setEditUserVersionName] = useState("");
   // Read initial version tab from URL if this card is the one in the URL
-  const initialVersionTab = useMemo(() => {
+  const urlVersionParam = useMemo(() => {
     const urlScriptId = window.location.pathname.split('/scripts/')[1]?.split('?')[0];
     if (isOpenByUrl && urlScriptId === script.id) {
-      return searchParams.get("v") || "0";
+      return searchParams.get("v") || null;
     }
-    return "0";
+    return null;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  const [activeVersionTab, setActiveVersionTabState] = useState(initialVersionTab);
+  const [activeVersionTab, setActiveVersionTabState] = useState(urlVersionParam || "0");
   // Tracks whether the user manually pinned a tab — prevents search effect from overriding it
-  const manualTabRef = useRef<string | null>(null);
-  // Tracks whether we've done the initial mount — prevents search effect from overriding URL-provided tab on first render
-  const hasInitializedRef = useRef(false);
+  const manualTabRef = useRef<string | null>(urlVersionParam); // pre-pin the URL tab
+  // Tracks whether we've applied the deep-linked user version tab (needs userVersions to load first)
+  const urlVersionAppliedRef = useRef(!urlVersionParam || !urlVersionParam.startsWith("uv-"));
 
   // When version tab changes, update the URL ?v= param if this card is open by URL
   const setActiveVersionTab = useCallback((tab: string) => {
@@ -1594,13 +1594,20 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     }
   }, [isOpenByUrl, setSearchParams]);
 
+  // Apply deep-linked user version tab once userVersions load
+  useEffect(() => {
+    if (urlVersionAppliedRef.current) return;
+    if (!urlVersionParam || !urlVersionParam.startsWith("uv-")) return;
+    const targetId = urlVersionParam.replace("uv-", "");
+    const found = userVersions?.find(uv => uv.id === targetId);
+    if (found) {
+      urlVersionAppliedRef.current = true;
+      setActiveVersionTabState(urlVersionParam);
+    }
+  }, [userVersions, urlVersionParam]);
+
   // Auto-switch to the matching version tab when search query changes (unless user just manually set it)
   useEffect(() => {
-    // On first render, skip overriding if there's a URL-provided tab
-    if (!hasInitializedRef.current) {
-      hasInitializedRef.current = true;
-      if (initialVersionTab !== "0") return;
-    }
     if (manualTabRef.current !== null) {
       // Clear the manual lock after one cycle so future search changes work normally
       manualTabRef.current = null;
