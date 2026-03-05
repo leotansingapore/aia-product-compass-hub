@@ -1579,6 +1579,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [activeVersionTab, setActiveVersionTabState] = useState(initialVersionTab);
   // Tracks whether the user manually pinned a tab — prevents search effect from overriding it
   const manualTabRef = useRef<string | null>(null);
+  // Tracks whether we've done the initial mount — prevents search effect from overriding URL-provided tab on first render
+  const hasInitializedRef = useRef(false);
 
   // When version tab changes, update the URL ?v= param if this card is open by URL
   const setActiveVersionTab = useCallback((tab: string) => {
@@ -1594,6 +1596,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
 
   // Auto-switch to the matching version tab when search query changes (unless user just manually set it)
   useEffect(() => {
+    // On first render, skip overriding if there's a URL-provided tab
+    if (!hasInitializedRef.current) {
+      hasInitializedRef.current = true;
+      if (initialVersionTab !== "0") return;
+    }
     if (manualTabRef.current !== null) {
       // Clear the manual lock after one cycle so future search changes work normally
       manualTabRef.current = null;
