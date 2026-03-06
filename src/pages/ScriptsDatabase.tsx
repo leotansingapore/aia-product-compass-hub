@@ -1727,17 +1727,18 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
               {onMergeDragStart && (
                 <div
                   draggable
-                  className={`shrink-0 mt-0.5 sm:mt-0 p-1 rounded transition-colors ${
+                  className={`group shrink-0 mt-0.5 sm:mt-0 flex flex-col items-center gap-0.5 px-1 py-1 rounded transition-colors ${
                     mergeSourceId === script.id && tapSelectMode
                       ? "text-primary bg-primary/10"
-                      : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted"
+                      : "text-muted-foreground/40 hover:text-primary hover:bg-primary/5"
                   } cursor-grab active:cursor-grabbing`}
-                  title="Drag to merge (desktop) or tap to select for merge (mobile)"
+                  title="Drag onto another card to merge scripts (desktop) · Tap to select for merge (mobile)"
                   onDragStart={(e) => { e.stopPropagation(); e.dataTransfer.effectAllowed = "move"; const ghost = document.createElement('div'); ghost.style.cssText = 'position:fixed;top:-1000px;width:1px;height:1px;opacity:0;'; document.body.appendChild(ghost); e.dataTransfer.setDragImage(ghost, 0, 0); setTimeout(() => document.body.removeChild(ghost), 0); onMergeDragStart?.(script.id); }}
                   onDragEnd={(e) => { e.stopPropagation(); onMergeDragEnd?.(); }}
                   onClick={(e) => { e.stopPropagation(); onTapSelect?.(script.id); }}
                 >
                   <GripVertical className="h-4 w-4" />
+                  <span className="text-[9px] font-medium leading-none opacity-0 group-hover:opacity-100 transition-opacity">merge</span>
                 </div>
               )}
               <cat.icon className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground shrink-0 mt-0.5 sm:mt-0" />
@@ -1919,16 +1920,17 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   </p>
                 )}
                 {/* Mobile-friendly action row */}
-                <div className="flex items-center gap-1 mt-2 -ml-1" onClick={(e) => e.stopPropagation()}>
+                <div className="flex items-center gap-0.5 mt-2 -ml-1" onClick={(e) => e.stopPropagation()}>
                   {onToggleFavourite && (
                     <Button
                       variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 sm:h-7 sm:w-7"
+                      size="sm"
+                      className={`h-7 px-2 gap-1 text-xs ${isFavourite ? 'text-red-500' : 'text-muted-foreground'}`}
                       onClick={(e) => { e.stopPropagation(); onToggleFavourite(); }}
                       title={isFavourite ? "Remove from favourites" : "Add to favourites"}
                     >
-                      <Heart className={`h-4 w-4 sm:h-3.5 sm:w-3.5 ${isFavourite ? 'fill-red-500 text-red-500' : ''}`} />
+                      <Heart className={`h-3.5 w-3.5 ${isFavourite ? 'fill-red-500' : ''}`} />
+                      <span className="hidden sm:inline">{isFavourite ? 'Saved' : 'Save'}</span>
                     </Button>
                   )}
                   {isAuthenticated && (onAddToPlaybook || onCreatePlaybookAndAdd) && (
@@ -1940,8 +1942,9 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     />
                   )}
                   {isAdmin && (
-                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
+                    <Button variant="ghost" size="sm" className="h-7 px-2 gap-1 text-xs text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
                       <Trash2 className="h-3.5 w-3.5" />
+                      <span className="hidden sm:inline">Delete</span>
                     </Button>
                   )}
                 </div>
@@ -1966,10 +1969,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   {/* Version switcher header */}
                   <div className="flex items-center gap-2 flex-wrap mb-3 pb-3 border-b border-border/60">
                     <div className="flex items-center gap-1.5 shrink-0">
-                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Versions</span>
+                      <span className="text-[11px] font-medium text-muted-foreground">Versions</span>
                       <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] font-bold">
-                        {script.versions.length}
+                        {script.versions.length + userVersions.length}
                       </span>
+                      {isAuthenticated && <span className="text-[10px] text-muted-foreground/50 hidden sm:inline">· right-click a tab for options</span>}
                     </div>
                     {/* Inline rename inputs — rendered outside TabsList to avoid styling conflicts */}
                     {editingVersionTitle !== null && isAdmin && (
@@ -2451,10 +2455,10 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 </div>
               ) : (
                 <>
-                  {/* Version header row — matches multi-version style */}
+                   {/* Version header row — matches multi-version style */}
                   <div className="flex items-center gap-2 flex-wrap mb-3 pb-3 border-b border-border/60">
                     <div className="flex items-center gap-1.5 shrink-0">
-                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Versions</span>
+                      <span className="text-[11px] font-medium text-muted-foreground">Versions</span>
                       <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] font-bold">
                         {script.versions.length + userVersions.length}
                       </span>
@@ -3351,8 +3355,21 @@ export default function ScriptsDatabase() {
           </div>
           <Button
             variant="outline"
+            size="sm"
+            className="h-10 px-3 shrink-0 gap-1.5 text-xs hidden sm:flex"
+            title="Copy link to current view"
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              toast.success("Link copied to clipboard");
+            }}
+          >
+            <Share2 className="h-4 w-4" />
+            Share
+          </Button>
+          <Button
+            variant="outline"
             size="icon"
-            className="h-10 w-10 shrink-0"
+            className="h-10 w-10 shrink-0 sm:hidden"
             title="Copy link to current view"
             onClick={() => {
               navigator.clipboard.writeText(window.location.href);
