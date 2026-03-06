@@ -2320,10 +2320,14 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   ))}
                   {/* User version tab contents */}
                   {userVersions.map((uv) => (
-                    <TabsContent key={`uv-${uv.id}`} value={`uv-${uv.id}`}>
-                      <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{uv.content}</ReactMarkdown>
-                      </div>
+                     <TabsContent key={`uv-${uv.id}`} value={`uv-${uv.id}`}>
+                       <div
+                         className={`bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto ${currentUserId === uv.user_id ? 'cursor-text hover:border-primary/40 transition-colors' : ''}`}
+                         onDoubleClick={() => { /* user versions are not inline-editable here, use the edit button */ }}
+                         title={currentUserId === uv.user_id ? "Double-click to rename • Use duplicate to branch" : undefined}
+                       >
+                         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{uv.content}</ReactMarkdown>
+                       </div>
                        <div className="flex items-center gap-1 mt-2 flex-wrap">
                          <CopyButton text={uv.content} />
                          <button
