@@ -2186,11 +2186,13 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                               autoFocus
                             />
                           </div>
-                          <div className="flex items-center gap-1">
+                          <div className="flex items-center gap-2 pt-1">
                              {isAuthenticated && (
                                <>
-                                 <button
-                                   className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                                 <Button
+                                   variant="outline"
+                                   size="sm"
+                                   className="h-7 text-xs gap-1"
                                    title="Duplicate this version as your own copy"
                                    onMouseDown={(e) => e.preventDefault()}
                                    onClick={() => {
@@ -2213,9 +2215,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                    }}
                                  >
                                    <Copy className="h-3 w-3" /> Duplicate
-                                 </button>
-                                 <button
-                                   className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                                 </Button>
+                                 <Button
+                                   variant="outline"
+                                   size="sm"
+                                   className="h-7 text-xs gap-1"
                                    title="Add a new blank version"
                                    onMouseDown={(e) => e.preventDefault()}
                                    onClick={() => {
@@ -2237,7 +2241,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                    }}
                                  >
                                    <Plus className="h-3 w-3" /> Add version
-                                 </button>
+                                 </Button>
                                </>
                              )}
                              <span className="text-[10px] text-muted-foreground italic ml-auto">auto-saves on click away</span>
