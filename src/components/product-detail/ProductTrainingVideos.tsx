@@ -10,7 +10,8 @@ import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { useAdmin } from "@/hooks/useAdmin";
 import { formatDuration } from "@/components/video-editing/videoUtils";
 import { getVideoSlug } from "@/utils/slugUtils";
-import { GraduationCap, Play, Edit, Clock } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { GraduationCap, Play, Edit, Clock, CheckCircle2 } from "lucide-react";
 import type { TrainingVideo } from "@/hooks/useProducts";
 
 interface ProductTrainingVideosProps {
