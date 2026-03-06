@@ -368,26 +368,30 @@ const AppSidebar = memo(function AppSidebar() {
                         return (
                           <Collapsible key={category.id} asChild defaultOpen={isActiveCategory} className="group/collapsible">
                             <SidebarMenuItem>
-                              <CollapsibleTrigger asChild>
-                                <SidebarMenuButton tooltip={isCollapsed ? category.name : undefined}
-                                  className={`${category.published === false ? "opacity-60" : ""}`}
-                                >
-                                  <div className="relative shrink-0">
-                                    <Archive className="h-4 w-4" />
-                                    {category.published === false && (
-                                      <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-amber-400 border border-background" title="Draft" />
-                                    )}
-                                  </div>
-                                  {!isCollapsed && (
-                                    <>
-                                      <span className={`truncate flex-1 ${category.published === false ? "italic" : ""}`}>
-                                        {category.name}
-                                      </span>
-                                      <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
-                                    </>
+                              <SidebarMenuButton
+                                tooltip={isCollapsed ? category.name : undefined}
+                                className={`${category.published === false ? "opacity-60" : ""} pr-1`}
+                                onClick={() => navigate(`/category/${category.id}`)}
+                              >
+                                <div className="relative shrink-0">
+                                  <Archive className="h-4 w-4" />
+                                  {category.published === false && (
+                                    <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-amber-400 border border-background" title="Draft" />
                                   )}
-                                </SidebarMenuButton>
-                              </CollapsibleTrigger>
+                                </div>
+                                {!isCollapsed && (
+                                  <>
+                                    <span className={`truncate flex-1 ${category.published === false ? "italic" : ""}`}>
+                                      {category.name}
+                                    </span>
+                                    <CollapsibleTrigger asChild onClick={(e) => e.stopPropagation()}>
+                                      <span className="ml-1 p-0.5 rounded hover:bg-muted/60 transition-colors">
+                                        <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
+                                      </span>
+                                    </CollapsibleTrigger>
+                                  </>
+                                )}
+                              </SidebarMenuButton>
                               {isAdminUser && !isCollapsed && (
                                 <DropdownMenu>
                                   <DropdownMenuTrigger asChild>
