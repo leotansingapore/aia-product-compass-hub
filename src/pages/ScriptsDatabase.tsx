@@ -2327,7 +2327,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                        <div className="flex items-center gap-1 mt-2 flex-wrap">
                          <CopyButton text={uv.content} />
                          <button
-                           className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors rounded"
+                           className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors rounded border border-transparent hover:border-border"
                            title="Copy link to this version"
                            onClick={() => {
                              const url = new URL(window.location.href);
@@ -2341,7 +2341,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                          </button>
                          {isAuthenticated && (
                            <button
-                             className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                             className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded border border-transparent hover:border-primary/20"
                              title="Duplicate this version to edit as your own"
                              onClick={() => {
                                addUserVersion.mutate(
