@@ -42,7 +42,7 @@ export default function KnowledgeBase() {
           "@type": "Course",
           "name": category.name,
           "description": category.description,
-          "url": `${window.location.origin}/category/${getCategoryIdFromName(category.name)}`,
+          "url": `${window.location.origin}/kb/${category.slug}`,
           "courseMode": "online",
           "educationalLevel": "professional"
         }
