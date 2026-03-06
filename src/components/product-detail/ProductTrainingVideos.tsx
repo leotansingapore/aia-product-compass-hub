@@ -77,7 +77,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
             Training Course
             {processedVideos.length > 0 && (
               <Badge variant="secondary" className="text-[10px] sm:text-xs px-1.5 sm:px-2">
-                {completedVideos}/{processedVideos.length}
+                {completedVideos}/{processedVideos.length} lessons
               </Badge>
             )}
           </CardTitle>
@@ -94,27 +94,33 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
             </Button>
           )}
         </div>
-        <CardDescription className="text-xs sm:text-sm">
-          {processedVideos.length > 0 ? (
-            <div className="space-y-1 sm:space-y-2">
-              <div className="flex items-center justify-between">
-                {courseProgress > 0 && (
-                  <span className="text-xs sm:text-sm font-medium text-primary">
-                    {courseProgress}% Complete
-                  </span>
+        {processedVideos.length > 0 && (
+          <div className="space-y-1.5 mt-2">
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-muted-foreground flex items-center gap-1">
+                {totalDuration > 0 && (
+                  <>
+                    <Clock className="h-3 w-3" />
+                    {formatDuration(totalDuration)} total
+                  </>
                 )}
-              </div>
-              {totalDuration > 0 && (
-                <div className="flex items-center gap-1 text-[10px] sm:text-micro text-muted-foreground">
-                  <Clock className="h-3 w-3" />
-                  Total: {formatDuration(totalDuration)}
-                </div>
-              )}
+              </span>
+              <span className={`font-semibold ${courseProgress === 100 ? 'text-primary' : 'text-foreground'}`}>
+                {courseProgress === 100 ? (
+                  <span className="flex items-center gap-1">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                    Course complete!
+                  </span>
+                ) : courseProgress > 0 ? (
+                  `${courseProgress}% complete`
+                ) : (
+                  'Not started'
+                )}
+              </span>
             </div>
-          ) : (
-            "Comprehensive video library for different learning purposes"
-          )}
-        </CardDescription>
+            <Progress value={courseProgress} className="h-2" />
+          </div>
+        )}
       </CardHeader>
       <CardContent className="overflow-hidden p-3 sm:p-4 md:p-6 pt-0">
         {processedVideos.length > 0 ? (
@@ -123,8 +129,10 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
               <Button 
                 onClick={() => {
                   if (processedVideos.length > 0 && productSlugOrId) {
-                    const firstVideo = processedVideos[0];
-                    const videoSlug = getVideoSlug(firstVideo.title);
+                    // Resume: find first incomplete video, or start from beginning
+                    const firstIncomplete = processedVideos.find(v => !getVideoProgress(v.id)?.completed);
+                    const targetVideo = firstIncomplete || processedVideos[0];
+                    const videoSlug = getVideoSlug(targetVideo.title);
                     navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
                   } else {
                     setShowLearningInterface(true);
