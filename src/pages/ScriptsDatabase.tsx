@@ -2228,8 +2228,65 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 </div>
               ) : (
                 <>
+                  {/* Version header row — matches multi-version style */}
+                  <div className="flex items-center gap-2 flex-wrap mb-3 pb-3 border-b border-border/60">
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Versions</span>
+                      <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] font-bold">
+                        {script.versions.length}
+                      </span>
+                    </div>
+                    {script.versions.length > 0 && (
+                      <span className="inline-flex items-center text-xs px-3 py-1 rounded-full border border-border bg-muted/40 text-foreground font-medium">
+                        {script.versions[0].title || script.versions[0].author || "Version 1"}
+                      </span>
+                    )}
+                    {isAuthenticated && (
+                      <button
+                        className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full border border-dashed border-muted-foreground/40 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                        onClick={(e) => { e.stopPropagation(); setShowNewVersionForm(true); }}
+                      >
+                        <Plus className="h-3 w-3" /> Add version
+                      </button>
+                    )}
+                  </div>
+                  {/* New version form */}
+                  {showNewVersionForm && (
+                    <div className="mb-3 border rounded-lg p-3 bg-muted/20 space-y-2">
+                      <Input
+                        value={newVersionName}
+                        onChange={(e) => setNewVersionName(e.target.value)}
+                        placeholder="Version name (e.g. 'My Style')"
+                        className="text-sm"
+                        autoFocus
+                      />
+                      <MinimalRichEditor
+                        value={newVersionContent}
+                        onChange={setNewVersionContent}
+                        placeholder="Write your version… (supports markdown)"
+                      />
+                      <div className="flex justify-end gap-2">
+                        <Button variant="ghost" size="sm" onClick={() => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); }}>
+                          <X className="h-3.5 w-3.5 mr-1" /> Cancel
+                        </Button>
+                        <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={() => {
+                          addUserVersion.mutate(
+                            { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
+                            { onSuccess: () => {
+                                setShowNewVersionForm(false);
+                                setNewVersionContent("");
+                                setNewVersionName("");
+                              }
+                            }
+                          );
+                        }}>
+                          {addUserVersion.isPending ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Adding…</> : "Add Version"}
+                        </Button>
+                      </div>
+                    </div>
+                  )}
                   {script.versions.length === 0 ? (
-                    <div className="text-sm text-muted-foreground italic py-2">No versions yet.</div>
+                    <div className="text-sm text-muted-foreground italic py-2">No content yet.</div>
                   ) : (
                     <>
                       {script.versions[0]?.author && (
@@ -2249,52 +2306,6 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         )}
                       </div>
                     </>
-                  )}
-                  {/* Add version button for single/zero version scripts */}
-                  {isAuthenticated && (
-                    <div className="mt-3 pt-3 border-t border-border/60">
-                      {!showNewVersionForm ? (
-                        <button
-                          className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full border border-dashed border-muted-foreground/40 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
-                          onClick={(e) => { e.stopPropagation(); setShowNewVersionForm(true); }}
-                        >
-                          <Plus className="h-3 w-3" /> Add version
-                        </button>
-                      ) : (
-                        <div className="border rounded-lg p-3 bg-muted/20 space-y-2">
-                          <Input
-                            value={newVersionName}
-                            onChange={(e) => setNewVersionName(e.target.value)}
-                            placeholder="Version name (e.g. 'My Style')"
-                            className="text-sm"
-                            autoFocus
-                          />
-                          <MinimalRichEditor
-                            value={newVersionContent}
-                            onChange={setNewVersionContent}
-                            placeholder="Write your version… (supports markdown)"
-                          />
-                          <div className="flex justify-end gap-2">
-                            <Button variant="ghost" size="sm" onClick={() => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); }}>
-                              <X className="h-3.5 w-3.5 mr-1" /> Cancel
-                            </Button>
-                            <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={() => {
-                              addUserVersion.mutate(
-                                { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
-                                { onSuccess: () => {
-                                    setShowNewVersionForm(false);
-                                    setNewVersionContent("");
-                                    setNewVersionName("");
-                                  }
-                                }
-                              );
-                            }}>
-                              {addUserVersion.isPending ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Adding…</> : "Add Version"}
-                            </Button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
                   )}
                 </>
               )
