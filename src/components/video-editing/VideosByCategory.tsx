@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronDown, ChevronRight, Play, Check, Clock } from 'lucide-react';
+import { ChevronDown, ChevronRight, Play, Check, Clock, CheckCircle2, Circle } from 'lucide-react';
 import { formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -13,6 +13,7 @@ interface VideosByCategoryProps {
   videos: TrainingVideo[];
   onVideoSelect?: (index: number) => void;
   getVideoProgress: (videoId: string) => { completed: boolean } | undefined;
+  onToggleComplete?: (videoId: string, currentlyCompleted: boolean) => void;
   useIndividualPages?: boolean;
   currentVideoId?: string;
   moduleId?: string;
