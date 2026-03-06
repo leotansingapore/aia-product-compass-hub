@@ -20,6 +20,7 @@ export const categorySlugMap: Record<string, string> = {
   'Medical Insurance Products': 'medical-insurance-products',
   'Appointment Flows': 'supplementary-training',
   'Supplementary Training': 'supplementary-training',
+  'CMFAS': 'cmfas',
   'Learning Modules': 'learning-modules'
 };
 
@@ -36,7 +37,7 @@ export const categoryIdToSlugMap: Record<string, string> = {
   '291cf475-d918-40c0-b37d-33794534d469': 'term-products',
   'b1024527-481f-4d85-9192-b43633e9be4a': 'medical-insurance-products',
   '5ef0b17f-a19f-4859-8349-3e4959620e94': 'supplementary-training',
-  'be7504d3-e88b-4107-aae2-f8027fd884e0': 'learning-modules'
+  'be7504d3-e88b-4107-aae2-f8027fd884e0': 'cmfas'
 };
 
 // Reverse mapping from slug to category ID
