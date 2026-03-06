@@ -72,8 +72,8 @@ const allResourceItems = [
   { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle, sectionId: "how-to-use" },
   { title: "Changelog", url: "/changelog", icon: Sparkles, sectionId: "changelog" },
   { title: "Pitch Analysis", url: "/roleplay/pitch-analysis", icon: Video, sectionId: "pitch-analysis" },
-  { title: "Search by Client Profile", url: "/search-by-profile", icon: Users, sectionId: "search-by-profile" },
-  { title: "Sales Tools & Objection Handling", url: "/product/sales-tools-objections", icon: TrendingUp, sectionId: "sales-tools" },
+  { title: "Search by Client", url: "/search-by-profile", icon: Users, sectionId: "search-by-profile" },
+  { title: "Sales Tools", url: "/product/sales-tools-objections", icon: TrendingUp, sectionId: "sales-tools" },
   { title: "Scripts Database", url: "/scripts", icon: FileText, sectionId: "scripts-database" },
   { title: "Objection Handling", url: "/objections", icon: Shield, sectionId: "objection-handling" },
   { title: "Script Playbooks", url: "/playbooks", icon: BookOpen, sectionId: "script-playbooks" },
@@ -472,12 +472,30 @@ const AppSidebar = memo(function AppSidebar() {
             </Collapsible>
           </SidebarGroup>
 
-          {/* Resources */}
+          {/* Resources — split into Sales Tools and Utilities */}
           <SidebarGroup>
-            <SidebarGroupLabel>Resources</SidebarGroupLabel>
+            <SidebarGroupLabel>Sales Tools</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {resourceItems.map((item) => (
+                {resourceItems.filter(i => ['sales-tools', 'scripts-database', 'objection-handling', 'script-playbooks', 'script-flows'].includes(i.sectionId)).map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
+                      <NavLink to={item.url} className={getNavClassName(item.url)}>
+                        <item.icon className="h-4 w-4" />
+                        {!isCollapsed && <span>{item.title}</span>}
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+
+          <SidebarGroup>
+            <SidebarGroupLabel>Resources & Help</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {resourceItems.filter(i => ['search-by-profile', 'pitch-analysis', 'how-to-use', 'changelog'].includes(i.sectionId)).map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
                       <NavLink to={item.url} className={getNavClassName(item.url)}>

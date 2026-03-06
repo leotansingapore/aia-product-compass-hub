@@ -12,7 +12,6 @@ import type { UsefulLink } from "@/hooks/useProducts";
 import { ProtectedPage } from "@/components/ProtectedPage";
 
 export default function CMFASExams() {
-  console.log('CMFASExams component loaded - no UsefulLinksSection here');
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   
@@ -153,7 +152,7 @@ export default function CMFASExams() {
             />
           </div>
 
-          <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {cmfasModules.map((module) => (
               <CategoryCard
                 key={module.title}
@@ -163,6 +162,8 @@ export default function CMFASExams() {
                 productCount={module.productCount}
                 gradient={module.gradient}
                 borderColor={module.borderColor}
+                countLabel="topic"
+                ctaLabel="Start Studying"
                 onClick={() => navigate(module.route)}
               />
             ))}

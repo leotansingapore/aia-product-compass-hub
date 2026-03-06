@@ -49,7 +49,7 @@ export default function Roleplay() {
           { label: "Roleplay Training" }
         ]}
         showBackButton={true}
-        onBack={() => window.history.back()}
+        onBack={() => window.history.length > 1 ? window.history.back() : window.location.assign('/')}
       />
 
       <div className="mx-auto px-3 sm:px-6 py-3 sm:py-6 md:py-8 space-y-3 sm:space-y-8 md:space-y-10 pb-20 sm:pb-8">
