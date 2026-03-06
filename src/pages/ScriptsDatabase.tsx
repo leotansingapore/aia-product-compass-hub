@@ -1710,7 +1710,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
           mergeSourceId && mergeSourceId !== script.id && !tapSelectMode ? "cursor-copy" : ""
         }`}
         draggable={!!onMergeDragStart}
-        onDragStart={(e) => { e.dataTransfer.effectAllowed = "move"; onMergeDragStart?.(script.id); }}
+        onDragStart={(e) => { e.dataTransfer.effectAllowed = "move"; const ghost = document.createElement('div'); ghost.style.cssText = 'position:fixed;top:-1000px;width:1px;height:1px;opacity:0;'; document.body.appendChild(ghost); e.dataTransfer.setDragImage(ghost, 0, 0); setTimeout(() => document.body.removeChild(ghost), 0); onMergeDragStart?.(script.id); }}
         onDragEnd={onMergeDragEnd}
         onDragOver={(e) => { if (mergeSourceId && mergeSourceId !== script.id) { e.preventDefault(); e.dataTransfer.dropEffect = "move"; onMergeOver?.(script.id); } }}
         onDragLeave={onMergeLeave}
