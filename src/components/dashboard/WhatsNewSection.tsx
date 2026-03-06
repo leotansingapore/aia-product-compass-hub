@@ -47,7 +47,7 @@ export function WhatsNewSection() {
       <div className="space-y-3">
         <div className="flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-amber-500" />
-          <h3 className="text-base font-semibold text-foreground">What's New</h3>
+          <h3 className="text-base font-semibold text-foreground">Recently Updated</h3>
         </div>
         <div className="space-y-2">
           {[1, 2, 3].map((i) => (

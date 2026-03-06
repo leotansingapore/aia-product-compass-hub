@@ -32,14 +32,14 @@ export function ProductsGrid({
   if (products.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-muted-foreground">No products found matching your criteria.</p>
+        <p className="text-muted-foreground text-sm">No products found matching your search.</p>
         {onClearFilters && (
           <Button 
             variant="outline" 
             className="mt-4"
             onClick={onClearFilters}
           >
-            Clear all filters
+            Clear search &amp; show all products
           </Button>
         )}
       </div>
