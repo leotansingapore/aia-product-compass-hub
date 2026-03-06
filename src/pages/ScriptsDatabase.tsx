@@ -1909,7 +1909,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     )}
                   </span>
                   <Badge variant="outline" className="text-[10px]">
-                    {script.versions.length + (userVersions?.length ?? 0)} version{(script.versions.length + (userVersions?.length ?? 0)) !== 1 ? 's' : ''}
+                    {script.versions.length} version{script.versions.length !== 1 ? 's' : ''}
                   </Badge>
                 </div>
                 {/* Search snippet preview when collapsed */}
@@ -2259,7 +2259,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           <div className="flex items-center gap-1 mt-2 flex-wrap">
                              <CopyButton text={v.content} />
                              <button
-                               className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors rounded"
+                               className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors rounded border border-transparent hover:border-border"
                                title="Copy link to this version"
                                onClick={() => {
                                  const url = new URL(window.location.href);
@@ -2273,7 +2273,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                              </button>
                              {isAuthenticated && (
                                <button
-                                 className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                                 className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded border border-transparent hover:border-primary/20"
                                  title="Duplicate this version to edit as your own"
                                  onClick={() => {
                                    const sourceName = v.title || v.author || `Version ${i + 1}`;
@@ -2297,7 +2297,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                </button>
                              )}
                              {isAuthenticated && onInlineSave && (
-                               <span className="text-[10px] text-muted-foreground italic ml-1">double-click to edit</span>
+                               <span className="text-[10px] text-muted-foreground/60 italic ml-1">double-click to edit</span>
                              )}
                              {isAdmin && onInlineSave && script.versions.length > 1 && (
                                <Button
