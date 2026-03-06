@@ -24,7 +24,15 @@ export function CMFASTutorialLectures({ videos, moduleId, moduleName, onUpdate }
   const [showLearningInterface, setShowLearningInterface] = useState(false);
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
   const { isAdmin: isAdminMode } = useAdmin();
-  const { getCourseProgress, getVideoProgress } = useVideoProgress(moduleId);
+  const { getCourseProgress, getVideoProgress, markVideoComplete, updateVideoProgress } = useVideoProgress(moduleId);
+
+  const handleToggleComplete = async (videoId: string, currentlyCompleted: boolean) => {
+    if (currentlyCompleted) {
+      await updateVideoProgress(videoId, { completed: false, completion_percentage: 0 });
+    } else {
+      await markVideoComplete(videoId);
+    }
+  };
 
   // Ensure videos have IDs and are sorted by order
   const processedVideos = (videos || []).map((video, index) => ({
