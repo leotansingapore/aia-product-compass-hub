@@ -2205,28 +2205,52 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
                         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{uv.content}</ReactMarkdown>
                       </div>
-                      <div className="flex items-center gap-1 mt-2">
-                        <CopyButton text={uv.content} />
-                        <button
-                          className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors rounded"
-                          title="Copy link to this version"
-                          onClick={() => {
-                            const url = new URL(window.location.href);
-                            url.pathname = `/scripts/${script.id}`;
-                            url.searchParams.set("v", `uv-${uv.id}`);
-                            navigator.clipboard.writeText(url.toString());
-                            toast.success("Version link copied!");
-                          }}
-                        >
-                          <Link2 className="h-3 w-3" /> Copy link
-                        </button>
-                        {(currentUserId === uv.user_id || isAdmin) && (
-                          <Button variant="ghost" size="sm" className="h-6 text-xs text-destructive hover:text-destructive hover:bg-destructive/10 px-2"
-                            onClick={() => deleteUserVersion.mutate(uv.id)}>
-                            <Trash2 className="h-3 w-3 mr-1" /> Delete version
-                          </Button>
-                        )}
-                      </div>
+                       <div className="flex items-center gap-1 mt-2 flex-wrap">
+                         <CopyButton text={uv.content} />
+                         <button
+                           className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors rounded"
+                           title="Copy link to this version"
+                           onClick={() => {
+                             const url = new URL(window.location.href);
+                             url.pathname = `/scripts/${script.id}`;
+                             url.searchParams.set("v", `uv-${uv.id}`);
+                             navigator.clipboard.writeText(url.toString());
+                             toast.success("Version link copied!");
+                           }}
+                         >
+                           <Link2 className="h-3 w-3" /> Copy link
+                         </button>
+                         {isAuthenticated && (
+                           <button
+                             className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                             title="Duplicate this version to edit as your own"
+                             onClick={() => {
+                               addUserVersion.mutate(
+                                 { content: uv.content, authorName: `Copy of ${uv.author_name}` },
+                                 { onSuccess: (newVersion) => {
+                                     if (newVersion?.id) {
+                                       const tabId = `uv-${newVersion.id}`;
+                                       manualTabRef.current = tabId;
+                                       setActiveVersionTab(tabId);
+                                       setEditUserVersionName(`Copy of ${uv.author_name}`);
+                                       setEditingUserVersionId(newVersion.id);
+                                       setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
+                                     }
+                                   }
+                                 }
+                               );
+                             }}
+                           >
+                             <Copy className="h-3 w-3" /> Duplicate
+                           </button>
+                         )}
+                         {(currentUserId === uv.user_id || isAdmin) && (
+                           <Button variant="ghost" size="sm" className="h-6 text-xs text-destructive hover:text-destructive hover:bg-destructive/10 px-2"
+                             onClick={() => deleteUserVersion.mutate(uv.id)}>
+                             <Trash2 className="h-3 w-3 mr-1" /> Delete version
+                           </Button>
+                         )}
+                       </div>
                     </TabsContent>
                   ))}
                 </Tabs>
