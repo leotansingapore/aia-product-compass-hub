@@ -128,12 +128,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
       );
     }
 
-    // On the /auth page itself, render with no chrome at all
-    const isAuthPage = location.pathname === '/auth' || location.pathname === '/auth/';
-    if (isAuthPage) {
-      return <main className="min-h-screen">{children}</main>;
-    }
-
     return (
       <div className="min-h-screen w-full">
         {/* Top Bar for unauthenticated users on non-auth pages */}
