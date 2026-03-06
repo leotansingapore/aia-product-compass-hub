@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Button } from "@/components/ui/button";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
-import { getCategoryIdFromName } from "@/hooks/useProducts";
+
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown, BookOpen, TrendingUp, Shield, Heart, FileText, Clock } from "lucide-react";
 import { useState } from "react";
@@ -42,7 +42,7 @@ export default function KnowledgeBase() {
           "@type": "Course",
           "name": category.name,
           "description": category.description,
-          "url": `${window.location.origin}/category/${getCategoryIdFromName(category.name)}`,
+          "url": `${window.location.origin}/kb/${category.slug}`,
           "courseMode": "online",
           "educationalLevel": "professional"
         }
@@ -121,7 +121,7 @@ export default function KnowledgeBase() {
           {kbCategories.map((cat) => (
             <Link
               key={cat.slug}
-              to={`/category/${getCategoryIdFromName(cat.name)}`}
+              to={`/kb/${cat.slug}`}
               aria-label={`Open ${cat.name}`}
               className="group"
             >
