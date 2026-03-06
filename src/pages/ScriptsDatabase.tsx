@@ -1727,17 +1727,18 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
               {onMergeDragStart && (
                 <div
                   draggable
-                  className={`shrink-0 mt-0.5 sm:mt-0 p-1 rounded transition-colors ${
+                  className={`group shrink-0 mt-0.5 sm:mt-0 flex flex-col items-center gap-0.5 px-1 py-1 rounded transition-colors ${
                     mergeSourceId === script.id && tapSelectMode
                       ? "text-primary bg-primary/10"
-                      : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted"
+                      : "text-muted-foreground/40 hover:text-primary hover:bg-primary/5"
                   } cursor-grab active:cursor-grabbing`}
-                  title="Drag to merge (desktop) or tap to select for merge (mobile)"
+                  title="Drag onto another card to merge scripts (desktop) · Tap to select for merge (mobile)"
                   onDragStart={(e) => { e.stopPropagation(); e.dataTransfer.effectAllowed = "move"; const ghost = document.createElement('div'); ghost.style.cssText = 'position:fixed;top:-1000px;width:1px;height:1px;opacity:0;'; document.body.appendChild(ghost); e.dataTransfer.setDragImage(ghost, 0, 0); setTimeout(() => document.body.removeChild(ghost), 0); onMergeDragStart?.(script.id); }}
                   onDragEnd={(e) => { e.stopPropagation(); onMergeDragEnd?.(); }}
                   onClick={(e) => { e.stopPropagation(); onTapSelect?.(script.id); }}
                 >
                   <GripVertical className="h-4 w-4" />
+                  <span className="text-[9px] font-medium leading-none opacity-0 group-hover:opacity-100 transition-opacity">merge</span>
                 </div>
               )}
               <cat.icon className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground shrink-0 mt-0.5 sm:mt-0" />
