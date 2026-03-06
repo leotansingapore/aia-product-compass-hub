@@ -103,10 +103,10 @@ export function useVideoProgress(productId: string) {
           title: "Video Completed! 🎉",
           description: "+10 XP earned",
         });
-      } else if (updates.completed) {
+      } else if (updates.completed === false) {
         toast({
-          title: "Video Completed! 🎉",
-          description: "Great job on finishing this video!",
+          title: "Marked as incomplete",
+          description: "Video progress has been reset",
         });
       }
     } catch (error) {
