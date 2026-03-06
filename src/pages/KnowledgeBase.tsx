@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Button } from "@/components/ui/button";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
-import { getCategoryIdFromName } from "@/hooks/useProducts";
+
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown, BookOpen, TrendingUp, Shield, Heart, FileText, Clock } from "lucide-react";
 import { useState } from "react";
