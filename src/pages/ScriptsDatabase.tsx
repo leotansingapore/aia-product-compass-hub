@@ -1581,6 +1581,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const manualTabRef = useRef<string | null>(urlVersionParam); // pre-pin the URL tab
   // Tracks whether we've applied the deep-linked user version tab (needs userVersions to load first)
   const urlVersionAppliedRef = useRef(!urlVersionParam || !urlVersionParam.startsWith("uv-"));
+  // Ensures the deep-link toast fires only once
+  const deepLinkToastFiredRef = useRef(false);
 
   // When version tab changes, update the URL ?v= param if this card is open by URL
   const setActiveVersionTab = useCallback((tab: string) => {
@@ -1594,7 +1596,17 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     }
   }, [isOpenByUrl, setSearchParams]);
 
-  // Apply deep-linked user version tab once userVersions load
+  // Toast for official version deep links (e.g. ?v=0, ?v=1) — fires once on mount
+  useEffect(() => {
+    if (!urlVersionParam || urlVersionParam.startsWith("uv-")) return;
+    if (deepLinkToastFiredRef.current) return;
+    const versionIdx = parseInt(urlVersionParam, 10);
+    const versionName = script.versions[versionIdx]?.title || script.versions[versionIdx]?.author || `Version ${versionIdx + 1}`;
+    deepLinkToastFiredRef.current = true;
+    toast(`Viewing version: ${versionName}`, { duration: 3000 });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Apply deep-linked user version tab once userVersions load, then toast
   useEffect(() => {
     if (urlVersionAppliedRef.current) return;
     if (!urlVersionParam || !urlVersionParam.startsWith("uv-")) return;
@@ -1603,6 +1615,10 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     if (found) {
       urlVersionAppliedRef.current = true;
       setActiveVersionTabState(urlVersionParam);
+      if (!deepLinkToastFiredRef.current) {
+        deepLinkToastFiredRef.current = true;
+        toast(`Viewing version: ${found.author_name || "User version"}`, { duration: 3000 });
+      }
     }
   }, [userVersions, urlVersionParam]);
 
