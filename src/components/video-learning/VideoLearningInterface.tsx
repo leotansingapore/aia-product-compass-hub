@@ -445,22 +445,31 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
           </div>
         </div>
 
-        {/* Sticky Mark Complete Button */}
+        {/* Sticky Mark Complete / Undo Button */}
         <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t z-40 p-4">
           <div className="max-w-7xl mx-auto flex justify-center">
             <Button
               className="w-full max-w-md"
               size="lg"
-              onClick={handleMarkComplete}
-              disabled={currentProgress?.completed}
+              onClick={handleToggleStickyComplete}
               variant={currentProgress?.completed ? "secondary" : "default"}
             >
-              <Check className="h-5 w-5 mr-2" />
-              {currentProgress?.completed ? "Completed" : "Mark Complete"}
+              {currentProgress?.completed ? (
+                <>
+                  <CheckCircle2 className="h-5 w-5 mr-2" />
+                  Completed — click to undo
+                </>
+              ) : (
+                <>
+                  <Circle className="h-5 w-5 mr-2" />
+                  Mark Complete
+                </>
+              )}
             </Button>
           </div>
         </div>
       </div>
     </div>
   );
+
 });
