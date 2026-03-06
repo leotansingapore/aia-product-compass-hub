@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronDown, ChevronRight, Play, Check, Clock } from 'lucide-react';
+import { ChevronDown, ChevronRight, Play, Clock, CheckCircle2, Circle } from 'lucide-react';
 import { formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -13,6 +13,7 @@ interface VideosByCategoryProps {
   videos: TrainingVideo[];
   onVideoSelect?: (index: number) => void;
   getVideoProgress: (videoId: string) => { completed: boolean } | undefined;
+  onToggleComplete?: (videoId: string, currentlyCompleted: boolean) => void;
   useIndividualPages?: boolean;
   currentVideoId?: string;
   moduleId?: string;
@@ -23,6 +24,7 @@ export const VideosByCategory = memo(function VideosByCategory({
   videos,
   onVideoSelect,
   getVideoProgress,
+  onToggleComplete,
   useIndividualPages = false,
   currentVideoId,
   moduleId,
@@ -52,7 +54,7 @@ export const VideosByCategory = memo(function VideosByCategory({
 
   // Calculate category completion - memoized
   const getCategoryProgress = useCallback((videoItems: Array<{ video: TrainingVideo; index: number }>) => {
-    const completedCount = videoItems.filter(({ video }) => 
+    const completedCount = videoItems.filter(({ video }) =>
       getVideoProgress(video.id)?.completed
     ).length;
     return { completed: completedCount, total: videoItems.length };
@@ -82,7 +84,7 @@ export const VideosByCategory = memo(function VideosByCategory({
         const progress = getCategoryProgress(videoItems);
         const duration = getCategoryDuration(videoItems);
         const isOpen = openCategories[category] ?? !isMobile; // Default: collapsed on mobile
-        
+
         return (
           <Collapsible key={category} open={isOpen} onOpenChange={() => toggleCategory(category)}>
             <CollapsibleTrigger asChild>
@@ -110,31 +112,59 @@ export const VideosByCategory = memo(function VideosByCategory({
                 </Badge>
               </Button>
             </CollapsibleTrigger>
-            
+
             <CollapsibleContent className="space-y-2 pl-4 sm:pl-6">
               {videoItems.map(({ video, index }) => {
                 const videoProgress = getVideoProgress(video.id);
+                const isCompleted = !!videoProgress?.completed;
                 const isCurrentVideo = currentVideoId === video.id;
                 return (
                   <div
                     key={`${category}-${index}-${video.id}`}
-                    className={`flex items-center gap-2 sm:gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors min-h-[56px] overflow-hidden ${
+                    className={`flex items-center gap-2 sm:gap-3 p-3 border rounded-lg transition-colors min-h-[56px] overflow-hidden ${
                       isCurrentVideo
                         ? 'bg-primary/10 border-primary shadow-sm'
-                        : ''
+                        : isCompleted
+                        ? 'bg-muted/30 border-border'
+                        : 'hover:bg-muted/50 border-border'
                     }`}
-                    onClick={() => handleVideoClick(video, index)}
                   >
-                    <div className="flex-shrink-0">
-                      {videoProgress?.completed ? (
-                        <Check className="h-5 w-5 text-green-600" />
-                      ) : (
-                        <Play className="h-5 w-5 text-primary" />
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0 overflow-hidden">
+                    {/* Completion toggle button */}
+                    {onToggleComplete ? (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onToggleComplete(video.id, isCompleted);
+                        }}
+                        className="flex-shrink-0 p-0.5 rounded-full hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        title={isCompleted ? 'Mark as incomplete' : 'Mark as done'}
+                        aria-label={isCompleted ? 'Mark as incomplete' : 'Mark as done'}
+                      >
+                        {isCompleted ? (
+                          <CheckCircle2 className="h-5 w-5 text-primary" />
+                        ) : (
+                          <Circle className="h-5 w-5 text-muted-foreground" />
+                        )}
+                      </button>
+                    ) : (
+                      <div className="flex-shrink-0">
+                        {isCompleted ? (
+                          <CheckCircle2 className="h-5 w-5 text-primary" />
+                        ) : (
+                          <Play className="h-5 w-5 text-muted-foreground" />
+                        )}
+                      </div>
+                    )}
+
+                    {/* Video info — clickable area */}
+                    <div
+                      className="flex-1 min-w-0 overflow-hidden cursor-pointer"
+                      onClick={() => handleVideoClick(video, index)}
+                    >
                       <div className="flex items-center gap-2 mb-1 overflow-hidden">
-                        <h4 className="font-medium text-sm sm:text-base truncate flex-1">{video.title}</h4>
+                        <h4 className={`font-medium text-sm sm:text-base truncate flex-1 ${isCompleted ? 'text-muted-foreground line-through decoration-muted-foreground/50' : ''}`}>
+                          {video.title}
+                        </h4>
                         {video.duration && (
                           <Badge variant="outline" className="text-xs flex-shrink-0">
                             <Clock className="h-3 w-3 mr-1" />

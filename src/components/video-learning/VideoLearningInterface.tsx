@@ -5,7 +5,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen, CheckCircle2, Circle } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -120,9 +120,18 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const {
     getVideoProgress,
     markVideoComplete,
+    updateVideoProgress,
     updateWatchTime,
     getCourseProgress
   } = useVideoProgress(productId);
+
+  const handleToggleComplete = useCallback(async (videoId: string, currentlyCompleted: boolean) => {
+    if (currentlyCompleted) {
+      await updateVideoProgress(videoId, { completed: false, completion_percentage: 0 });
+    } else {
+      await markVideoComplete(videoId);
+    }
+  }, [markVideoComplete, updateVideoProgress]);
 
   const currentVideo = useMemo(() => videos[currentVideoIndex], [videos, currentVideoIndex]);
   const currentProgress = useMemo(() => getVideoProgress(currentVideo?.id), [getVideoProgress, currentVideo?.id]);
@@ -157,11 +166,11 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     return () => clearInterval(interval);
   }, [isPlaying, currentVideo, updateWatchTime]);
 
-  const handleMarkComplete = useCallback(async () => {
+  const handleToggleStickyComplete = useCallback(async () => {
     if (currentVideo) {
-      await markVideoComplete(currentVideo.id);
+      await handleToggleComplete(currentVideo.id, !!currentProgress?.completed);
     }
-  }, [currentVideo, markVideoComplete]);
+  }, [currentVideo, currentProgress, handleToggleComplete]);
 
   const navigateVideo = useCallback((direction: 'prev' | 'next') => {
     let targetIndex = currentVideoIndex;
@@ -345,6 +354,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                       setWatchTime(0);
                     }}
                     getVideoProgress={getVideoProgress}
+                    onToggleComplete={handleToggleComplete}
                     useIndividualPages={true}
                     currentVideoId={currentVideo?.id}
                     moduleId={moduleId}
@@ -435,22 +445,31 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
           </div>
         </div>
 
-        {/* Sticky Mark Complete Button */}
+        {/* Sticky Mark Complete / Undo Button */}
         <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t z-40 p-4">
           <div className="max-w-7xl mx-auto flex justify-center">
             <Button
               className="w-full max-w-md"
               size="lg"
-              onClick={handleMarkComplete}
-              disabled={currentProgress?.completed}
+              onClick={handleToggleStickyComplete}
               variant={currentProgress?.completed ? "secondary" : "default"}
             >
-              <Check className="h-5 w-5 mr-2" />
-              {currentProgress?.completed ? "Completed" : "Mark Complete"}
+              {currentProgress?.completed ? (
+                <>
+                  <CheckCircle2 className="h-5 w-5 mr-2" />
+                  Completed — click to undo
+                </>
+              ) : (
+                <>
+                  <Circle className="h-5 w-5 mr-2" />
+                  Mark Complete
+                </>
+              )}
             </Button>
           </div>
         </div>
       </div>
     </div>
   );
+
 });
