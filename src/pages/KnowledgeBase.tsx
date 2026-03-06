@@ -121,7 +121,7 @@ export default function KnowledgeBase() {
           {kbCategories.map((cat) => (
             <Link
               key={cat.slug}
-              to={`/category/${getCategoryIdFromName(cat.name)}`}
+              to={`/kb/${cat.slug}`}
               aria-label={`Open ${cat.name}`}
               className="group"
             >
