@@ -472,12 +472,30 @@ const AppSidebar = memo(function AppSidebar() {
             </Collapsible>
           </SidebarGroup>
 
-          {/* Resources */}
+          {/* Resources — split into Sales Tools and Utilities */}
           <SidebarGroup>
-            <SidebarGroupLabel>Resources</SidebarGroupLabel>
+            <SidebarGroupLabel>Sales Tools</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {resourceItems.map((item) => (
+                {resourceItems.filter(i => ['sales-tools', 'scripts-database', 'objection-handling', 'script-playbooks', 'script-flows'].includes(i.sectionId)).map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
+                      <NavLink to={item.url} className={getNavClassName(item.url)}>
+                        <item.icon className="h-4 w-4" />
+                        {!isCollapsed && <span>{item.title}</span>}
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+
+          <SidebarGroup>
+            <SidebarGroupLabel>Resources & Help</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {resourceItems.filter(i => ['search-by-profile', 'pitch-analysis', 'how-to-use', 'changelog'].includes(i.sectionId)).map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
                       <NavLink to={item.url} className={getNavClassName(item.url)}>
