@@ -1608,6 +1608,9 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
 
   // Auto-switch to the matching version tab when search query changes (unless user just manually set it)
   useEffect(() => {
+    // Don't override while a uv- deep link is still pending (userVersions not loaded yet)
+    if (!urlVersionAppliedRef.current) return;
+
     if (manualTabRef.current !== null) {
       // Clear the manual lock after one cycle so future search changes work normally
       manualTabRef.current = null;
