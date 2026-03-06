@@ -2528,10 +2528,10 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       >
                         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
                       </div>
-                      <div className="flex items-center gap-1 mt-2 flex-wrap">
+                       <div className="flex items-center gap-1 mt-2 flex-wrap">
                         <CopyButton text={script.versions[0]?.content || ""} />
                         <button
-                          className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                          className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded border border-transparent hover:border-primary/20"
                           title="Duplicate this version to edit as your own"
                           onClick={() => {
                             const sourceName = script.versions[0]?.title || script.versions[0]?.author || "Version 1";
@@ -2554,7 +2554,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           <Copy className="h-3 w-3" /> Duplicate
                         </button>
                         {isAuthenticated && onInlineSave && (
-                          <span className="text-[10px] text-muted-foreground italic ml-1">double-click to edit</span>
+                          <span className="text-[10px] text-muted-foreground/60 italic ml-1">double-click to edit</span>
                         )}
                       </div>
                     </>
