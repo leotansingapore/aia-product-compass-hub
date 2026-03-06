@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useProducts, useCategories } from '@/hooks/useProducts';
 import { useRecentlyViewed } from '@/hooks/useRecentlyViewed';
-import { getCategoryIdFromSlug, getCategorySlugFromId, isUUID } from '@/utils/slugUtils';
+import { getCategoryIdFromSlug, getCategorySlugFromId, getCategorySlug, isUUID, createSlug } from '@/utils/slugUtils';
 
 export function useProductCategory() {
   const { categorySlugOrId } = useParams<{ categorySlugOrId: string }>();
@@ -10,8 +10,19 @@ export function useProductCategory() {
   const { categories, loading: categoriesLoading, refetch: refetchCategories } = useCategories();
   const { addToRecent } = useRecentlyViewed();
   
-  // Handle both slug and UUID routing for backward compatibility
-  const categoryId = isUUID(categorySlugOrId || '') ? categorySlugOrId : getCategoryIdFromSlug(categorySlugOrId || '');
+  // Resolve categoryId: try static map first, then dynamic match against loaded categories
+  const categoryId = useMemo(() => {
+    if (!categorySlugOrId) return undefined;
+    if (isUUID(categorySlugOrId)) return categorySlugOrId;
+    
+    // Try static slug-to-ID map
+    const fromMap = getCategoryIdFromSlug(categorySlugOrId);
+    if (fromMap) return fromMap;
+    
+    // Fallback: match slug against category names dynamically
+    const match = categories.find(cat => createSlug(cat.name) === categorySlugOrId);
+    return match?.id;
+  }, [categorySlugOrId, categories]);
   
   const { products, loading: productsLoading, refetch } = useProducts(categoryId);
   
