@@ -118,6 +118,7 @@ export function CMFASTutorialLectures({ videos, moduleId, moduleName, onUpdate }
                 setShowLearningInterface(true);
               }}
               getVideoProgress={getVideoProgress}
+              onToggleComplete={handleToggleComplete}
               useIndividualPages={true}
               moduleId={moduleId}
               moduleType="cmfas"
