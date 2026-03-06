@@ -2182,13 +2182,41 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                               autoFocus
                             />
                           </div>
-                          <div className="flex items-center gap-2 justify-end">
-                            <Button variant="ghost" size="sm" onClick={cancelInlineEdit} disabled={isSaving}>Cancel</Button>
-                            <Button size="sm" onClick={saveInlineEdit} disabled={isSaving}>
-                              {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
-                              Save
-                            </Button>
-                          </div>
+                          <div className="flex items-center gap-2">
+                             {isAuthenticated && (
+                               <button
+                                 className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                                 title="Duplicate this version to edit as your own"
+                                 onClick={() => {
+                                   const sourceName = v.title || v.author || `Version ${i + 1}`;
+                                   addUserVersion.mutate(
+                                     { content: editContent, authorName: `Copy of ${sourceName}` },
+                                     { onSuccess: (newVersion) => {
+                                         if (newVersion?.id) {
+                                           const tabId = `uv-${newVersion.id}`;
+                                           manualTabRef.current = tabId;
+                                           setActiveVersionTab(tabId);
+                                           setEditUserVersionName(`Copy of ${sourceName}`);
+                                           setEditingUserVersionId(newVersion.id);
+                                           cancelInlineEdit();
+                                           setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
+                                         }
+                                       }
+                                     }
+                                   );
+                                 }}
+                               >
+                                 <Copy className="h-3 w-3" /> Duplicate
+                               </button>
+                             )}
+                             <div className="flex items-center gap-2 ml-auto">
+                               <Button variant="ghost" size="sm" onClick={cancelInlineEdit} disabled={isSaving}>Cancel</Button>
+                               <Button size="sm" onClick={saveInlineEdit} disabled={isSaving}>
+                                 {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
+                                 Save
+                               </Button>
+                             </div>
+                           </div>
                         </div>
                       ) : (
                         <>
