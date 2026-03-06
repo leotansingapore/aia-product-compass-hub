@@ -26,7 +26,7 @@ export function getCategoryConfig(categoryName: string) {
       gradient: 'bg-gradient-to-r from-red-500 to-red-600',
       productCount: 2
     },
-    'Appointment Flows': {
+    'Supplementary Training': {
       icon: '📅',
       gradient: 'bg-gradient-to-r from-teal-500 to-teal-600',
       productCount: 0
