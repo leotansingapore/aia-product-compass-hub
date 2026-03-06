@@ -1685,6 +1685,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     setIsSaving(false);
   };
 
+  const handleEditorBlur = () => {
+    if (editingVersionIdx !== null) {
+      saveInlineEdit();
+    }
+  };
+
   useEffect(() => {
     if (isOpenByUrl) {
       setOpen(true);
