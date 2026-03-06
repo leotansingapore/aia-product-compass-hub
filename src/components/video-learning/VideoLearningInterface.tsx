@@ -120,9 +120,18 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const {
     getVideoProgress,
     markVideoComplete,
+    updateVideoProgress,
     updateWatchTime,
     getCourseProgress
   } = useVideoProgress(productId);
+
+  const handleToggleComplete = useCallback(async (videoId: string, currentlyCompleted: boolean) => {
+    if (currentlyCompleted) {
+      await updateVideoProgress(videoId, { completed: false, completion_percentage: 0 });
+    } else {
+      await markVideoComplete(videoId);
+    }
+  }, [markVideoComplete, updateVideoProgress]);
 
   const currentVideo = useMemo(() => videos[currentVideoIndex], [videos, currentVideoIndex]);
   const currentProgress = useMemo(() => getVideoProgress(currentVideo?.id), [getVideoProgress, currentVideo?.id]);
