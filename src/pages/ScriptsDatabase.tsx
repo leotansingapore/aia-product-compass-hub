@@ -2031,7 +2031,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                   setEditingVersionTitle(i);
                                 }
                               }}>
-                              <span title={isAdmin && onMetadataSave ? "Double-click to rename" : undefined}>
+                              <span title="Right-click to duplicate · Double-click to rename (admin)">
                                 {v.title || v.author || `Version ${i + 1}`}
                               </span>
                             </TabsTrigger>
@@ -2074,7 +2074,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                   setEditingUserVersionId(uv.id);
                                 }
                               }}>
-                              <span title={currentUserId === uv.user_id ? "Double-click to rename" : undefined}>
+                              <span title={currentUserId === uv.user_id ? "Right-click to duplicate or rename · Double-click to rename" : "Right-click to duplicate"}>
                                 {uv.author_name}
                               </span>
                             </TabsTrigger>
