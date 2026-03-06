@@ -2188,31 +2188,57 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           </div>
                           <div className="flex items-center gap-1">
                              {isAuthenticated && (
-                               <button
-                                 className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
-                                 title="Duplicate this version to edit as your own"
-                                 onMouseDown={(e) => e.preventDefault()}
-                                 onClick={() => {
-                                   const sourceName = v.title || v.author || `Version ${i + 1}`;
-                                   addUserVersion.mutate(
-                                     { content: editContent, authorName: `Copy of ${sourceName}` },
-                                     { onSuccess: (newVersion) => {
-                                         if (newVersion?.id) {
-                                           const tabId = `uv-${newVersion.id}`;
-                                           manualTabRef.current = tabId;
-                                           setActiveVersionTab(tabId);
-                                           setEditUserVersionName(`Copy of ${sourceName}`);
-                                           setEditingUserVersionId(newVersion.id);
-                                           cancelInlineEdit();
-                                           setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
+                               <>
+                                 <button
+                                   className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                                   title="Duplicate this version as your own copy"
+                                   onMouseDown={(e) => e.preventDefault()}
+                                   onClick={() => {
+                                     const sourceName = v.title || v.author || `Version ${i + 1}`;
+                                     addUserVersion.mutate(
+                                       { content: editContent, authorName: `Copy of ${sourceName}` },
+                                       { onSuccess: (newVersion) => {
+                                           if (newVersion?.id) {
+                                             const tabId = `uv-${newVersion.id}`;
+                                             manualTabRef.current = tabId;
+                                             setActiveVersionTab(tabId);
+                                             setEditUserVersionName(`Copy of ${sourceName}`);
+                                             setEditingUserVersionId(newVersion.id);
+                                             cancelInlineEdit();
+                                             setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
+                                           }
                                          }
                                        }
-                                     }
-                                   );
-                                 }}
-                               >
-                                 <Copy className="h-3 w-3" /> Duplicate
-                               </button>
+                                     );
+                                   }}
+                                 >
+                                   <Copy className="h-3 w-3" /> Duplicate
+                                 </button>
+                                 <button
+                                   className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                                   title="Add a new blank version"
+                                   onMouseDown={(e) => e.preventDefault()}
+                                   onClick={() => {
+                                     addUserVersion.mutate(
+                                       { content: "", authorName: userDisplayName || "My Version" },
+                                       { onSuccess: (newVersion) => {
+                                           if (newVersion?.id) {
+                                             const tabId = `uv-${newVersion.id}`;
+                                             manualTabRef.current = tabId;
+                                             setActiveVersionTab(tabId);
+                                             setEditUserVersionName(userDisplayName || "My Version");
+                                             setEditingUserVersionId(newVersion.id);
+                                             cancelInlineEdit();
+                                             setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
+                                           }
+                                         }
+                                       }
+                                     );
+                                   }}
+                                 >
+                                   <Plus className="h-3 w-3" /> Add version
+                                 </button>
+                               </>
                              )}
                              <span className="text-[10px] text-muted-foreground italic ml-auto">auto-saves on click away</span>
                            </div>
