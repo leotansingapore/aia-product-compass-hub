@@ -1909,7 +1909,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     )}
                   </span>
                   <Badge variant="outline" className="text-[10px]">
-                    {script.versions.length}v
+                    {script.versions.length} version{script.versions.length !== 1 ? 's' : ''}
                   </Badge>
                 </div>
                 {/* Search snippet preview when collapsed */}
@@ -2259,7 +2259,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           <div className="flex items-center gap-1 mt-2 flex-wrap">
                              <CopyButton text={v.content} />
                              <button
-                               className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors rounded"
+                               className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors rounded border border-transparent hover:border-border"
                                title="Copy link to this version"
                                onClick={() => {
                                  const url = new URL(window.location.href);
@@ -2273,7 +2273,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                              </button>
                              {isAuthenticated && (
                                <button
-                                 className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                                 className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded border border-transparent hover:border-primary/20"
                                  title="Duplicate this version to edit as your own"
                                  onClick={() => {
                                    const sourceName = v.title || v.author || `Version ${i + 1}`;
@@ -2297,7 +2297,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                </button>
                              )}
                              {isAuthenticated && onInlineSave && (
-                               <span className="text-[10px] text-muted-foreground italic ml-1">double-click to edit</span>
+                               <span className="text-[10px] text-muted-foreground/60 italic ml-1">double-click to edit</span>
                              )}
                              {isAdmin && onInlineSave && script.versions.length > 1 && (
                                <Button
@@ -2320,14 +2320,18 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   ))}
                   {/* User version tab contents */}
                   {userVersions.map((uv) => (
-                    <TabsContent key={`uv-${uv.id}`} value={`uv-${uv.id}`}>
-                      <div className="bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{uv.content}</ReactMarkdown>
-                      </div>
+                     <TabsContent key={`uv-${uv.id}`} value={`uv-${uv.id}`}>
+                       <div
+                         className={`bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto ${currentUserId === uv.user_id ? 'cursor-text hover:border-primary/40 transition-colors' : ''}`}
+                         onDoubleClick={() => { /* user versions are not inline-editable here, use the edit button */ }}
+                         title={currentUserId === uv.user_id ? "Double-click to rename • Use duplicate to branch" : undefined}
+                       >
+                         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{uv.content}</ReactMarkdown>
+                       </div>
                        <div className="flex items-center gap-1 mt-2 flex-wrap">
                          <CopyButton text={uv.content} />
                          <button
-                           className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors rounded"
+                           className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors rounded border border-transparent hover:border-border"
                            title="Copy link to this version"
                            onClick={() => {
                              const url = new URL(window.location.href);
@@ -2341,7 +2345,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                          </button>
                          {isAuthenticated && (
                            <button
-                             className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                             className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded border border-transparent hover:border-primary/20"
                              title="Duplicate this version to edit as your own"
                              onClick={() => {
                                addUserVersion.mutate(
@@ -2528,10 +2532,10 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       >
                         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
                       </div>
-                      <div className="flex items-center gap-1 mt-2 flex-wrap">
+                       <div className="flex items-center gap-1 mt-2 flex-wrap">
                         <CopyButton text={script.versions[0]?.content || ""} />
                         <button
-                          className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                          className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded border border-transparent hover:border-primary/20"
                           title="Duplicate this version to edit as your own"
                           onClick={() => {
                             const sourceName = script.versions[0]?.title || script.versions[0]?.author || "Version 1";
@@ -2554,7 +2558,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           <Copy className="h-3 w-3" /> Duplicate
                         </button>
                         {isAuthenticated && onInlineSave && (
-                          <span className="text-[10px] text-muted-foreground italic ml-1">double-click to edit</span>
+                          <span className="text-[10px] text-muted-foreground/60 italic ml-1">double-click to edit</span>
                         )}
                       </div>
                     </>
