@@ -1969,10 +1969,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   {/* Version switcher header */}
                   <div className="flex items-center gap-2 flex-wrap mb-3 pb-3 border-b border-border/60">
                     <div className="flex items-center gap-1.5 shrink-0">
-                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Versions</span>
+                      <span className="text-[11px] font-medium text-muted-foreground">Versions</span>
                       <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] font-bold">
-                        {script.versions.length}
+                        {script.versions.length + userVersions.length}
                       </span>
+                      {isAuthenticated && <span className="text-[10px] text-muted-foreground/50 hidden sm:inline">· right-click a tab for options</span>}
                     </div>
                     {/* Inline rename inputs — rendered outside TabsList to avoid styling conflicts */}
                     {editingVersionTitle !== null && isAdmin && (
@@ -3354,8 +3355,21 @@ export default function ScriptsDatabase() {
           </div>
           <Button
             variant="outline"
+            size="sm"
+            className="h-10 px-3 shrink-0 gap-1.5 text-xs hidden sm:flex"
+            title="Copy link to current view"
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              toast.success("Link copied to clipboard");
+            }}
+          >
+            <Share2 className="h-4 w-4" />
+            Share
+          </Button>
+          <Button
+            variant="outline"
             size="icon"
-            className="h-10 w-10 shrink-0"
+            className="h-10 w-10 shrink-0 sm:hidden"
             title="Copy link to current view"
             onClick={() => {
               navigator.clipboard.writeText(window.location.href);
