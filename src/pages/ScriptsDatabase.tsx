@@ -2384,7 +2384,64 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       autoFocus
                     />
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-2 pt-1">
+                    {isAuthenticated && (
+                      <>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-7 text-xs gap-1"
+                          title="Duplicate this version as your own copy"
+                          onMouseDown={(e) => e.preventDefault()}
+                          onClick={() => {
+                            const sourceName = script.versions[0]?.title || script.versions[0]?.author || "Version 1";
+                            addUserVersion.mutate(
+                              { content: editContent, authorName: `Copy of ${sourceName}` },
+                              { onSuccess: (newVersion) => {
+                                  if (newVersion?.id) {
+                                    const tabId = `uv-${newVersion.id}`;
+                                    manualTabRef.current = tabId;
+                                    setActiveVersionTab(tabId);
+                                    setEditUserVersionName(`Copy of ${sourceName}`);
+                                    setEditingUserVersionId(newVersion.id);
+                                    cancelInlineEdit();
+                                    setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
+                                  }
+                                }
+                              }
+                            );
+                          }}
+                        >
+                          <Copy className="h-3 w-3" /> Duplicate
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-7 text-xs gap-1"
+                          title="Add a new blank version"
+                          onMouseDown={(e) => e.preventDefault()}
+                          onClick={() => {
+                            addUserVersion.mutate(
+                              { content: "", authorName: userDisplayName || "My Version" },
+                              { onSuccess: (newVersion) => {
+                                  if (newVersion?.id) {
+                                    const tabId = `uv-${newVersion.id}`;
+                                    manualTabRef.current = tabId;
+                                    setActiveVersionTab(tabId);
+                                    setEditUserVersionName(userDisplayName || "My Version");
+                                    setEditingUserVersionId(newVersion.id);
+                                    cancelInlineEdit();
+                                    setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
+                                  }
+                                }
+                              }
+                            );
+                          }}
+                        >
+                          <Plus className="h-3 w-3" /> Add version
+                        </Button>
+                      </>
+                    )}
                     <span className="text-[10px] text-muted-foreground italic ml-auto">auto-saves on click away</span>
                   </div>
                 </div>
@@ -2395,7 +2452,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     <div className="flex items-center gap-1.5 shrink-0">
                       <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Versions</span>
                       <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] font-bold">
-                        {script.versions.length}
+                        {script.versions.length + userVersions.length}
                       </span>
                     </div>
                     {script.versions.length > 0 && (
@@ -2403,6 +2460,16 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         {script.versions[0].title || script.versions[0].author || "Version 1"}
                       </span>
                     )}
+                    {/* User version tabs in single-version mode */}
+                    {userVersions.map((uv) => (
+                      <button
+                        key={uv.id}
+                        className="inline-flex items-center text-xs px-3 py-1 rounded-full border border-border bg-primary text-primary-foreground font-medium"
+                        onClick={() => {/* no-op, single version mode shows inline */}}
+                      >
+                        {uv.author_name}
+                      </button>
+                    ))}
                     {isAuthenticated && (
                       <button
                         className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full border border-dashed border-muted-foreground/40 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
@@ -2461,8 +2528,31 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       >
                         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
                       </div>
-                      <div className="flex items-center gap-1 mt-2">
+                      <div className="flex items-center gap-1 mt-2 flex-wrap">
                         <CopyButton text={script.versions[0]?.content || ""} />
+                        <button
+                          className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
+                          title="Duplicate this version to edit as your own"
+                          onClick={() => {
+                            const sourceName = script.versions[0]?.title || script.versions[0]?.author || "Version 1";
+                            addUserVersion.mutate(
+                              { content: script.versions[0]?.content || "", authorName: `Copy of ${sourceName}` },
+                              { onSuccess: (newVersion) => {
+                                  if (newVersion?.id) {
+                                    const tabId = `uv-${newVersion.id}`;
+                                    manualTabRef.current = tabId;
+                                    setActiveVersionTab(tabId);
+                                    setEditUserVersionName(`Copy of ${sourceName}`);
+                                    setEditingUserVersionId(newVersion.id);
+                                    setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
+                                  }
+                                }
+                              }
+                            );
+                          }}
+                        >
+                          <Copy className="h-3 w-3" /> Duplicate
+                        </button>
                         {isAuthenticated && onInlineSave && (
                           <span className="text-[10px] text-muted-foreground italic ml-1">double-click to edit</span>
                         )}
