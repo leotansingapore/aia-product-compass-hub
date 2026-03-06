@@ -36,14 +36,6 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
     }
   };
 
-  // Debug logging
-  console.log('🎥 ProductTrainingVideos render:', {
-    videosCount: videos?.length || 0,
-    isAdminMode,
-    productId,
-    showLearningInterface
-  });
-
   // Ensure videos have IDs and are sorted by order
   const processedVideos = (videos || []).map((video, index) => ({
     ...video,
