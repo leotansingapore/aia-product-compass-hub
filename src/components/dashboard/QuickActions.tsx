@@ -27,7 +27,10 @@ export function QuickActions() {
   return (
     <>
       <div className="space-y-3">
-        <h3 className="text-base font-semibold text-foreground">Quick Actions</h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-base font-semibold text-foreground">Quick Access</h3>
+          <span className="text-xs text-muted-foreground hidden sm:block">Tap any shortcut below</span>
+        </div>
         <div className="grid grid-cols-4 sm:grid-cols-8 gap-2 sm:gap-3">
           {shortcuts.map((item) => (
             <button

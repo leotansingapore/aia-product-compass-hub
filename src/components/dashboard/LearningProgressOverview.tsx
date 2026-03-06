@@ -62,18 +62,19 @@ export const LearningProgressOverview = memo(function LearningProgressOverview()
       <div className="flex items-center justify-between">
         <h2 className="text-base sm:text-lg font-semibold flex items-center gap-2">
           <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-          Your Learning Journey
+          Overview
         </h2>
+        <span className="text-xs text-muted-foreground">{progressData.totalCategories} categories</span>
       </div>
 
       {/* Stats Row */}
       <div className="grid grid-cols-3 gap-2 sm:gap-3">
-        <Card className="bg-gradient-to-br from-primary/10 to-primary/5">
+        <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
           <CardContent className="p-2.5 sm:p-4 text-center">
             <div className="text-xl sm:text-2xl font-bold text-primary">
               {progressData.totalCourses}
             </div>
-            <div className="text-[10px] sm:text-xs text-muted-foreground">Courses</div>
+            <div className="text-[10px] sm:text-xs text-muted-foreground">Products with training</div>
           </CardContent>
         </Card>
         <Card className="bg-gradient-to-br from-secondary/50 to-secondary/30">
@@ -81,7 +82,7 @@ export const LearningProgressOverview = memo(function LearningProgressOverview()
             <div className="text-xl sm:text-2xl font-bold">
               {progressData.totalVideos}
             </div>
-            <div className="text-[10px] sm:text-xs text-muted-foreground">Lessons</div>
+            <div className="text-[10px] sm:text-xs text-muted-foreground">Video lessons</div>
           </CardContent>
         </Card>
         <Card className="bg-gradient-to-br from-muted to-muted/50">
@@ -92,7 +93,7 @@ export const LearningProgressOverview = memo(function LearningProgressOverview()
                 : "—"
               }
             </div>
-            <div className="text-[10px] sm:text-xs text-muted-foreground">Total Time</div>
+            <div className="text-[10px] sm:text-xs text-muted-foreground">Content available</div>
           </CardContent>
         </Card>
       </div>
@@ -103,7 +104,7 @@ export const LearningProgressOverview = memo(function LearningProgressOverview()
           <CardHeader className="p-3 sm:p-6 pb-1 sm:pb-2">
             <CardTitle className="text-xs sm:text-sm font-medium flex items-center gap-2">
               <BookOpen className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-              Continue Learning
+              Start Learning — Top Courses
             </CardTitle>
           </CardHeader>
           <CardContent className="p-3 sm:p-6 pt-0 space-y-1 sm:space-y-3">
