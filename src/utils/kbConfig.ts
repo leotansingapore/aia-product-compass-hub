@@ -120,8 +120,8 @@ export const kbCategories: KBCategory[] = [
     ],
   },
   {
-    name: "Appointment Flows",
-    slug: "appointment-flows",
+    name: "Supplementary Training",
+    slug: "supplementary-training",
     description: "Step-by-step appointment booking and consultation processes for various product types.",
     products: [
       // Products will be added here as appointment flows are created
