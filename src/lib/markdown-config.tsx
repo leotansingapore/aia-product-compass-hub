@@ -97,12 +97,16 @@ export const markdownComponents: Components = {
     </pre>
   ),
 
-  // Blockquotes (important quotes, key takeaways)
-  blockquote: ({ children }: any) => (
-    <blockquote className="border-l-4 border-primary/50 pl-4 py-2 my-3 italic bg-muted/30 rounded-r text-foreground">
-      {children}
-    </blockquote>
-  ),
+  // Blockquotes — suppress empty ones (lone `>` spacers produce no visible content)
+  blockquote: ({ children }: any) => {
+    const text = typeof children === 'string' ? children : (Array.isArray(children) ? children.join('') : '');
+    if (!text.trim()) return null;
+    return (
+      <blockquote className="border-l-4 border-primary/50 pl-4 py-2 my-3 italic bg-muted/30 rounded-r text-foreground">
+        {children}
+      </blockquote>
+    );
+  },
 
   // Links with hover effects and video embed detection
   a: ({ children, href }: any) => {

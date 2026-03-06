@@ -69,7 +69,9 @@ const turndown = createTurndown();
 function mdToHtml(md: string): string {
   if (!md) return '';
   try {
-    const result = marked.parse(md, { async: false, gfm: true, breaks: true });
+    // Strip lone `>` lines used as visual spacers — they produce empty blockquotes
+    const cleaned = md.replace(/^>\s*$/gm, '');
+    const result = marked.parse(cleaned, { async: false, gfm: true, breaks: true });
     return typeof result === 'string' ? result : '';
   } catch {
     return md.replace(/\n/g, '<br>');
