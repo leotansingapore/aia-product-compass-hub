@@ -2228,22 +2228,74 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 </div>
               ) : (
                 <>
-                  {script.versions[0]?.author && (
-                    <span className="text-xs text-muted-foreground font-medium block mb-2">{script.versions[0].author}</span>
+                  {script.versions.length === 0 ? (
+                    <div className="text-sm text-muted-foreground italic py-2">No versions yet.</div>
+                  ) : (
+                    <>
+                      {script.versions[0]?.author && (
+                        <span className="text-xs text-muted-foreground font-medium block mb-2">{script.versions[0].author}</span>
+                      )}
+                      <div
+                        className={`bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto ${isAuthenticated && onInlineSave ? 'cursor-text hover:border-primary/40 transition-colors' : ''}`}
+                        onDoubleClick={() => { if (isAuthenticated && onInlineSave) startInlineEdit(0); }}
+                        title={isAuthenticated && onInlineSave ? "Double-click to edit" : undefined}
+                      >
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
+                      </div>
+                      <div className="flex items-center gap-1 mt-2">
+                        <CopyButton text={script.versions[0]?.content || ""} />
+                        {isAuthenticated && onInlineSave && (
+                          <span className="text-[10px] text-muted-foreground italic ml-1">double-click to edit</span>
+                        )}
+                      </div>
+                    </>
                   )}
-                  <div
-                    className={`bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto ${isAuthenticated && onInlineSave ? 'cursor-text hover:border-primary/40 transition-colors' : ''}`}
-                    onDoubleClick={() => { if (isAuthenticated && onInlineSave) startInlineEdit(0); }}
-                    title={isAuthenticated && onInlineSave ? "Double-click to edit" : undefined}
-                  >
-                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
-                  </div>
-                  <div className="flex items-center gap-1 mt-2">
-                    <CopyButton text={script.versions[0]?.content || ""} />
-                    {isAuthenticated && onInlineSave && (
-                      <span className="text-[10px] text-muted-foreground italic ml-1">double-click to edit</span>
-                    )}
-                  </div>
+                  {/* Add version button for single/zero version scripts */}
+                  {isAuthenticated && (
+                    <div className="mt-3 pt-3 border-t border-border/60">
+                      {!showNewVersionForm ? (
+                        <button
+                          className="inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full border border-dashed border-muted-foreground/40 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                          onClick={(e) => { e.stopPropagation(); setShowNewVersionForm(true); }}
+                        >
+                          <Plus className="h-3 w-3" /> Add version
+                        </button>
+                      ) : (
+                        <div className="border rounded-lg p-3 bg-muted/20 space-y-2">
+                          <Input
+                            value={newVersionName}
+                            onChange={(e) => setNewVersionName(e.target.value)}
+                            placeholder="Version name (e.g. 'My Style')"
+                            className="text-sm"
+                            autoFocus
+                          />
+                          <MinimalRichEditor
+                            value={newVersionContent}
+                            onChange={setNewVersionContent}
+                            placeholder="Write your version… (supports markdown)"
+                          />
+                          <div className="flex justify-end gap-2">
+                            <Button variant="ghost" size="sm" onClick={() => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); }}>
+                              <X className="h-3.5 w-3.5 mr-1" /> Cancel
+                            </Button>
+                            <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={() => {
+                              addUserVersion.mutate(
+                                { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
+                                { onSuccess: () => {
+                                    setShowNewVersionForm(false);
+                                    setNewVersionContent("");
+                                    setNewVersionName("");
+                                  }
+                                }
+                              );
+                            }}>
+                              {addUserVersion.isPending ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Adding…</> : "Add Version"}
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </>
               )
             )}
