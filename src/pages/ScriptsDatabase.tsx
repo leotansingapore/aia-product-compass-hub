@@ -1920,16 +1920,17 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   </p>
                 )}
                 {/* Mobile-friendly action row */}
-                <div className="flex items-center gap-1 mt-2 -ml-1" onClick={(e) => e.stopPropagation()}>
+                <div className="flex items-center gap-0.5 mt-2 -ml-1" onClick={(e) => e.stopPropagation()}>
                   {onToggleFavourite && (
                     <Button
                       variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 sm:h-7 sm:w-7"
+                      size="sm"
+                      className={`h-7 px-2 gap-1 text-xs ${isFavourite ? 'text-red-500' : 'text-muted-foreground'}`}
                       onClick={(e) => { e.stopPropagation(); onToggleFavourite(); }}
                       title={isFavourite ? "Remove from favourites" : "Add to favourites"}
                     >
-                      <Heart className={`h-4 w-4 sm:h-3.5 sm:w-3.5 ${isFavourite ? 'fill-red-500 text-red-500' : ''}`} />
+                      <Heart className={`h-3.5 w-3.5 ${isFavourite ? 'fill-red-500' : ''}`} />
+                      <span className="hidden sm:inline">{isFavourite ? 'Saved' : 'Save'}</span>
                     </Button>
                   )}
                   {isAuthenticated && (onAddToPlaybook || onCreatePlaybookAndAdd) && (
@@ -1941,8 +1942,9 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     />
                   )}
                   {isAdmin && (
-                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-7 sm:w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
+                    <Button variant="ghost" size="sm" className="h-7 px-2 gap-1 text-xs text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }} title="Delete script">
                       <Trash2 className="h-3.5 w-3.5" />
+                      <span className="hidden sm:inline">Delete</span>
                     </Button>
                   )}
                 </div>
