@@ -1685,6 +1685,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     setIsSaving(false);
   };
 
+  const handleEditorBlur = () => {
+    if (editingVersionIdx !== null) {
+      saveInlineEdit();
+    }
+  };
+
   useEffect(() => {
     if (isOpenByUrl) {
       setOpen(true);
@@ -2172,21 +2178,20 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                   {script.versions.map((v, i) => (
                     <TabsContent key={i} value={String(i)}>
                       {editingVersionIdx === i ? (
-                        <div className="space-y-2">
+                        <div className="space-y-2" onBlur={handleEditorBlur}>
                           <div className="border rounded-lg overflow-hidden">
                             <MinimalRichEditor
                               value={editContent}
                               onChange={setEditContent}
-                              onSave={saveInlineEdit}
-                              onCancel={cancelInlineEdit}
                               autoFocus
                             />
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1">
                              {isAuthenticated && (
                                <button
                                  className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-primary transition-colors rounded"
                                  title="Duplicate this version to edit as your own"
+                                 onMouseDown={(e) => e.preventDefault()}
                                  onClick={() => {
                                    const sourceName = v.title || v.author || `Version ${i + 1}`;
                                    addUserVersion.mutate(
@@ -2209,13 +2214,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                  <Copy className="h-3 w-3" /> Duplicate
                                </button>
                              )}
-                             <div className="flex items-center gap-2 ml-auto">
-                               <Button variant="ghost" size="sm" onClick={cancelInlineEdit} disabled={isSaving}>Cancel</Button>
-                               <Button size="sm" onClick={saveInlineEdit} disabled={isSaving}>
-                                 {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
-                                 Save
-                               </Button>
-                             </div>
+                             <span className="text-[10px] text-muted-foreground italic ml-auto">auto-saves on click away</span>
                            </div>
                         </div>
                       ) : (
@@ -2347,22 +2346,16 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
               )
             ) : (
               editingVersionIdx === 0 ? (
-                <div className="space-y-2">
+                <div className="space-y-2" onBlur={handleEditorBlur}>
                   <div className="border rounded-lg overflow-hidden">
                     <MinimalRichEditor
                       value={editContent}
                       onChange={setEditContent}
-                      onSave={saveInlineEdit}
-                      onCancel={cancelInlineEdit}
                       autoFocus
                     />
                   </div>
-                  <div className="flex items-center gap-2 justify-end">
-                    <Button variant="ghost" size="sm" onClick={cancelInlineEdit} disabled={isSaving}>Cancel</Button>
-                    <Button size="sm" onClick={saveInlineEdit} disabled={isSaving}>
-                      {isSaving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
-                      Save
-                    </Button>
+                  <div className="flex items-center gap-1">
+                    <span className="text-[10px] text-muted-foreground italic ml-auto">auto-saves on click away</span>
                   </div>
                 </div>
               ) : (
