@@ -2455,10 +2455,10 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 </div>
               ) : (
                 <>
-                  {/* Version header row — matches multi-version style */}
+                   {/* Version header row — matches multi-version style */}
                   <div className="flex items-center gap-2 flex-wrap mb-3 pb-3 border-b border-border/60">
                     <div className="flex items-center gap-1.5 shrink-0">
-                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Versions</span>
+                      <span className="text-[11px] font-medium text-muted-foreground">Versions</span>
                       <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] font-bold">
                         {script.versions.length + userVersions.length}
                       </span>
