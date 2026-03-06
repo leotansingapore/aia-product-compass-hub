@@ -142,7 +142,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
                 size="lg"
               >
                 <Play className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                Start Learning Course
+                {courseProgress > 0 && courseProgress < 100 ? 'Resume Learning' : courseProgress === 100 ? 'Review Course' : 'Start Learning'}
               </Button>
             )}
             
