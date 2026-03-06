@@ -94,6 +94,13 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   
   // For unauthenticated users, show simple layout without sidebar
   if (!user) {
+    const isAuthPage = location.pathname === '/auth' || location.pathname.startsWith('/auth');
+
+    // On the auth page itself, strip all chrome — no nav, no header
+    if (isAuthPage) {
+      return <main className="min-h-screen">{children}</main>;
+    }
+
     if (isMobile) {
       return (
         <div className="min-h-screen w-full">
@@ -123,7 +130,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
 
     return (
       <div className="min-h-screen w-full">
-        {/* Top Bar for unauthenticated users */}
+        {/* Top Bar for unauthenticated users on non-auth pages */}
         <header className="flex h-12 items-center justify-between gap-2 border-b bg-card px-4 sticky top-0 z-10">
           <h1 className="text-lg font-semibold">FINternship Learning Platform</h1>
           <Button
