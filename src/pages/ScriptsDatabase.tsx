@@ -1909,7 +1909,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     )}
                   </span>
                   <Badge variant="outline" className="text-[10px]">
-                    {script.versions.length}v
+                    {script.versions.length + (userVersions?.length ?? 0)} version{(script.versions.length + (userVersions?.length ?? 0)) !== 1 ? 's' : ''}
                   </Badge>
                 </div>
                 {/* Search snippet preview when collapsed */}
