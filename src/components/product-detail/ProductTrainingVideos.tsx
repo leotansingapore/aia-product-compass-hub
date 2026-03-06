@@ -23,9 +23,17 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
   const [showLearningInterface, setShowLearningInterface] = useState(false);
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
   const { isAdmin: isAdminMode } = useAdmin();
-  const { getCourseProgress, getVideoProgress } = useVideoProgress(productId);
+  const { getCourseProgress, getVideoProgress, markVideoComplete, updateVideoProgress } = useVideoProgress(productId);
   const navigate = useNavigate();
   const { productSlugOrId } = useParams();
+
+  const handleToggleComplete = async (videoId: string, currentlyCompleted: boolean) => {
+    if (currentlyCompleted) {
+      await updateVideoProgress(videoId, { completed: false, completion_percentage: 0 });
+    } else {
+      await markVideoComplete(videoId);
+    }
+  };
 
   // Debug logging
   console.log('🎥 ProductTrainingVideos render:', {
@@ -156,6 +164,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
                   setShowLearningInterface(true);
                 }}
                 getVideoProgress={getVideoProgress}
+                onToggleComplete={handleToggleComplete}
                 useIndividualPages={true}
               />
             )}
