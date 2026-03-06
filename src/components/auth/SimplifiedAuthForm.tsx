@@ -73,10 +73,10 @@ export function SimplifiedAuthForm() {
     <Card className="w-full shadow-lg border-border/60">
       <CardContent className="p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-5">
+          {/* Only show Sign In / Sign Up tabs — Forgot Password is accessed via inline link */}
+          <TabsList className="grid w-full grid-cols-2 mb-5">
             <TabsTrigger value="signin">Sign In</TabsTrigger>
             <TabsTrigger value="signup">Sign Up</TabsTrigger>
-            <TabsTrigger value="reset">Forgot Password</TabsTrigger>
           </TabsList>
 
           {/* ── SIGN IN ── */}
@@ -94,6 +94,7 @@ export function SimplifiedAuthForm() {
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     className="pl-10"
                     autoComplete="email"
+                    autoFocus
                     required
                   />
                 </div>
