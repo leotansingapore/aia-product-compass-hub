@@ -10,9 +10,13 @@ interface CategoryCardProps {
   onClick: () => void;
   gradient?: string;
   borderColor?: string;
+  /** Override the "X products available" label — e.g. "topics" for CMFAS */
+  countLabel?: string;
+  /** Override the CTA button text */
+  ctaLabel?: string;
 }
 
-export function CategoryCard({ title, description, icon, productCount, onClick, gradient, borderColor = 'group-hover:border-primary' }: CategoryCardProps) {
+export function CategoryCard({ title, description, icon, productCount, onClick, gradient, borderColor = 'group-hover:border-primary', countLabel = 'product', ctaLabel = 'Explore' }: CategoryCardProps) {
   return (
     <Card className="hover:shadow-md transition-shadow cursor-pointer group" onClick={onClick}>
       <CardHeader className="text-center pb-2 p-3 sm:p-4 md:p-6">
@@ -28,10 +32,10 @@ export function CategoryCard({ title, description, icon, productCount, onClick, 
       </CardHeader>
       <CardContent className="text-center pt-0 p-3 sm:p-4 md:p-6">
         <p className="text-metadata mb-3 md:mb-4">
-          {productCount} {productCount === 1 ? 'product' : 'products'} available
+          {productCount} {productCount === 1 ? countLabel : `${countLabel}s`} available
         </p>
         <Button variant="category" className="w-full min-h-[44px] text-sm sm:text-base">
-          Explore Products
+          {ctaLabel}
         </Button>
       </CardContent>
     </Card>

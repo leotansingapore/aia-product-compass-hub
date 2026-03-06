@@ -62,9 +62,12 @@ export function WhatsNewSection() {
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center gap-2">
-        <Sparkles className="h-4 w-4 text-amber-500" />
-        <h3 className="text-base font-semibold text-foreground">What's New</h3>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-amber-500" />
+          <h3 className="text-base font-semibold text-foreground">Recently Updated</h3>
+        </div>
+        <span className="text-xs text-muted-foreground">Latest product updates</span>
       </div>
 
       <Card className="divide-y divide-border overflow-hidden">

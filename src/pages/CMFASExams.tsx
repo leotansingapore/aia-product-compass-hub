@@ -162,6 +162,8 @@ export default function CMFASExams() {
                 productCount={module.productCount}
                 gradient={module.gradient}
                 borderColor={module.borderColor}
+                countLabel="topic"
+                ctaLabel="Start Studying"
                 onClick={() => navigate(module.route)}
               />
             ))}
