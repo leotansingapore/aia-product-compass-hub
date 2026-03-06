@@ -94,6 +94,13 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   
   // For unauthenticated users, show simple layout without sidebar
   if (!user) {
+    const isAuthPage = location.pathname === '/auth' || location.pathname.startsWith('/auth');
+
+    // On the auth page itself, strip all chrome — no nav, no header
+    if (isAuthPage) {
+      return <main className="min-h-screen">{children}</main>;
+    }
+
     if (isMobile) {
       return (
         <div className="min-h-screen w-full">
