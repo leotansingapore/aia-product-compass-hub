@@ -2,11 +2,11 @@ import { useState, useMemo, memo, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown, ChevronRight, Play, Clock, CheckCircle2, Circle } from 'lucide-react';
 import { formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
-import { useIsMobile } from '@/hooks/use-mobile';
 import { getVideoSlug } from '@/utils/slugUtils';
 
 interface VideosByCategoryProps {
