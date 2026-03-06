@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,8 @@ import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { useAdmin } from "@/hooks/useAdmin";
 import { formatDuration } from "@/components/video-editing/videoUtils";
 import { getVideoSlug } from "@/utils/slugUtils";
-import { GraduationCap, Play, Edit, Clock } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { GraduationCap, Play, Edit, Clock, CheckCircle2 } from "lucide-react";
 import type { TrainingVideo } from "@/hooks/useProducts";
 
 interface ProductTrainingVideosProps {
@@ -34,14 +35,6 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
       await markVideoComplete(videoId);
     }
   };
-
-  // Debug logging
-  console.log('🎥 ProductTrainingVideos render:', {
-    videosCount: videos?.length || 0,
-    isAdminMode,
-    productId,
-    showLearningInterface
-  });
 
   // Ensure videos have IDs and are sorted by order
   const processedVideos = (videos || []).map((video, index) => ({
@@ -84,7 +77,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
             Training Course
             {processedVideos.length > 0 && (
               <Badge variant="secondary" className="text-[10px] sm:text-xs px-1.5 sm:px-2">
-                {completedVideos}/{processedVideos.length}
+                {completedVideos}/{processedVideos.length} lessons
               </Badge>
             )}
           </CardTitle>
@@ -101,27 +94,33 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
             </Button>
           )}
         </div>
-        <CardDescription className="text-xs sm:text-sm">
-          {processedVideos.length > 0 ? (
-            <div className="space-y-1 sm:space-y-2">
-              <div className="flex items-center justify-between">
-                {courseProgress > 0 && (
-                  <span className="text-xs sm:text-sm font-medium text-primary">
-                    {courseProgress}% Complete
-                  </span>
+        {processedVideos.length > 0 && (
+          <div className="space-y-1.5 mt-2">
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-muted-foreground flex items-center gap-1">
+                {totalDuration > 0 && (
+                  <>
+                    <Clock className="h-3 w-3" />
+                    {formatDuration(totalDuration)} total
+                  </>
                 )}
-              </div>
-              {totalDuration > 0 && (
-                <div className="flex items-center gap-1 text-[10px] sm:text-micro text-muted-foreground">
-                  <Clock className="h-3 w-3" />
-                  Total: {formatDuration(totalDuration)}
-                </div>
-              )}
+              </span>
+              <span className={`font-semibold ${courseProgress === 100 ? 'text-primary' : 'text-foreground'}`}>
+                {courseProgress === 100 ? (
+                  <span className="flex items-center gap-1">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                    Course complete!
+                  </span>
+                ) : courseProgress > 0 ? (
+                  `${courseProgress}% complete`
+                ) : (
+                  'Not started'
+                )}
+              </span>
             </div>
-          ) : (
-            "Comprehensive video library for different learning purposes"
-          )}
-        </CardDescription>
+            <Progress value={courseProgress} className="h-2" />
+          </div>
+        )}
       </CardHeader>
       <CardContent className="overflow-hidden p-3 sm:p-4 md:p-6 pt-0">
         {processedVideos.length > 0 ? (
@@ -130,8 +129,10 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
               <Button 
                 onClick={() => {
                   if (processedVideos.length > 0 && productSlugOrId) {
-                    const firstVideo = processedVideos[0];
-                    const videoSlug = getVideoSlug(firstVideo.title);
+                    // Resume: find first incomplete video, or start from beginning
+                    const firstIncomplete = processedVideos.find(v => !getVideoProgress(v.id)?.completed);
+                    const targetVideo = firstIncomplete || processedVideos[0];
+                    const videoSlug = getVideoSlug(targetVideo.title);
                     navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
                   } else {
                     setShowLearningInterface(true);
@@ -141,7 +142,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
                 size="lg"
               >
                 <Play className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                Start Learning Course
+                {courseProgress > 0 && courseProgress < 100 ? 'Resume Learning' : courseProgress === 100 ? 'Review Course' : 'Start Learning'}
               </Button>
             )}
             

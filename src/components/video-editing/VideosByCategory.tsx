@@ -2,11 +2,11 @@ import { useState, useMemo, memo, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown, ChevronRight, Play, Clock, CheckCircle2, Circle } from 'lucide-react';
 import { formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
-import { useIsMobile } from '@/hooks/use-mobile';
 import { getVideoSlug } from '@/utils/slugUtils';
 
 interface VideosByCategoryProps {
@@ -31,36 +31,26 @@ export const VideosByCategory = memo(function VideosByCategory({
   moduleType = 'product'
 }: VideosByCategoryProps) {
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const { productSlugOrId } = useParams();
 
-  // Group videos by category - memoized to prevent recalculation
+  // Group videos by category - memoized
   const videosByCategory = useMemo(() => videos.reduce((acc, video, index) => {
     const category = video.category || 'Getting Started';
-    if (!acc[category]) {
-      acc[category] = [];
-    }
+    if (!acc[category]) acc[category] = [];
     acc[category].push({ video, index });
     return acc;
   }, {} as Record<string, Array<{ video: TrainingVideo; index: number }>>), [videos]);
 
   const toggleCategory = useCallback((category: string) => {
-    setOpenCategories(prev => ({
-      ...prev,
-      [category]: !prev[category]
-    }));
+    setOpenCategories(prev => ({ ...prev, [category]: !prev[category] }));
   }, []);
 
-  // Calculate category completion - memoized
   const getCategoryProgress = useCallback((videoItems: Array<{ video: TrainingVideo; index: number }>) => {
-    const completedCount = videoItems.filter(({ video }) =>
-      getVideoProgress(video.id)?.completed
-    ).length;
+    const completedCount = videoItems.filter(({ video }) => getVideoProgress(video.id)?.completed).length;
     return { completed: completedCount, total: videoItems.length };
   }, [getVideoProgress]);
 
-  // Calculate total duration for category - memoized
   const getCategoryDuration = useCallback((videoItems: Array<{ video: TrainingVideo; index: number }>) => {
     return videoItems.reduce((sum, { video }) => sum + (video.duration || 0), 0);
   }, []);
@@ -78,108 +68,141 @@ export const VideosByCategory = memo(function VideosByCategory({
     }
   }, [useIndividualPages, moduleType, moduleId, productSlugOrId, navigate, onVideoSelect]);
 
+  const categories = Object.entries(videosByCategory);
+  const isSingleCategory = categories.length === 1;
+
   return (
-    <div className="space-y-4">
-      {Object.entries(videosByCategory).map(([category, videoItems]) => {
+    <div className="space-y-3">
+      {categories.map(([category, videoItems]) => {
         const progress = getCategoryProgress(videoItems);
         const duration = getCategoryDuration(videoItems);
-        const isOpen = openCategories[category] ?? !isMobile; // Default: collapsed on mobile
+        const allDone = progress.completed === progress.total && progress.total > 0;
+        // Default open: always open (collapsed state only persisted when user explicitly toggles)
+        const isOpen = openCategories[category] !== undefined ? openCategories[category] : true;
+        const pct = progress.total > 0 ? Math.round((progress.completed / progress.total) * 100) : 0;
 
         return (
           <Collapsible key={category} open={isOpen} onOpenChange={() => toggleCategory(category)}>
-            <CollapsibleTrigger asChild>
-              <Button variant="ghost" className="w-full justify-between p-3 sm:p-4 h-auto">
-                <div className="flex items-center gap-3">
-                  {isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-                  <div className="text-left">
-                    <h3 className="font-medium text-sm sm:text-base">{category}</h3>
-                    <div className="flex items-center gap-2 text-micro sm:text-sm text-muted-foreground">
-                      <span>{progress.completed}/{progress.total} completed</span>
-                      {duration > 0 && (
-                        <>
-                          <span>•</span>
-                          <div className="flex items-center gap-1">
-                            <Clock className="h-3 w-3" />
-                            {formatDuration(duration)}
-                          </div>
-                        </>
+            {/* Category header — only show if multiple categories */}
+            {!isSingleCategory && (
+              <CollapsibleTrigger asChild>
+                <button className={`w-full text-left rounded-lg border px-4 py-3 transition-colors ${
+                  allDone ? 'bg-primary/5 border-primary/20' : 'bg-muted/30 border-border hover:bg-muted/50'
+                }`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      {isOpen ? <ChevronDown className="h-4 w-4 text-muted-foreground" /> : <ChevronRight className="h-4 w-4 text-muted-foreground" />}
+                      <span className="font-semibold text-sm sm:text-base">{category}</span>
+                      {allDone && (
+                        <Badge className="text-xs bg-primary/20 text-primary border-0">
+                          <CheckCircle2 className="h-3 w-3 mr-1" />
+                          Done
+                        </Badge>
                       )}
                     </div>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      {duration > 0 && (
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3 w-3" />
+                          {formatDuration(duration)}
+                        </span>
+                      )}
+                      <span className="font-medium tabular-nums">{progress.completed}/{progress.total}</span>
+                    </div>
                   </div>
-                </div>
-                <Badge variant={progress.completed === progress.total ? "default" : "secondary"} className="text-xs">
-                  {Math.round((progress.completed / progress.total) * 100)}%
-                </Badge>
-              </Button>
-            </CollapsibleTrigger>
+                  <Progress value={pct} className="h-1.5" />
+                </button>
+              </CollapsibleTrigger>
+            )}
 
-            <CollapsibleContent className="space-y-2 pl-4 sm:pl-6">
+            <CollapsibleContent className={`space-y-2 ${!isSingleCategory ? 'pt-2 pl-2 sm:pl-3' : ''}`}>
               {videoItems.map(({ video, index }) => {
                 const videoProgress = getVideoProgress(video.id);
                 const isCompleted = !!videoProgress?.completed;
                 const isCurrentVideo = currentVideoId === video.id;
+
                 return (
                   <div
                     key={`${category}-${index}-${video.id}`}
-                    className={`flex items-center gap-2 sm:gap-3 p-3 border rounded-lg transition-colors min-h-[56px] overflow-hidden ${
+                    className={`group flex items-stretch gap-0 border rounded-lg overflow-hidden transition-all ${
                       isCurrentVideo
-                        ? 'bg-primary/10 border-primary shadow-sm'
+                        ? 'border-primary shadow-sm'
                         : isCompleted
-                        ? 'bg-muted/30 border-border'
-                        : 'hover:bg-muted/50 border-border'
+                        ? 'border-primary/20 bg-primary/5'
+                        : 'border-border hover:border-primary/30 hover:shadow-sm'
                     }`}
                   >
-                    {/* Completion toggle button */}
-                    {onToggleComplete ? (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onToggleComplete(video.id, isCompleted);
-                        }}
-                        className="flex-shrink-0 p-0.5 rounded-full hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-primary/50"
-                        title={isCompleted ? 'Mark as incomplete' : 'Mark as done'}
-                        aria-label={isCompleted ? 'Mark as incomplete' : 'Mark as done'}
-                      >
-                        {isCompleted ? (
-                          <CheckCircle2 className="h-5 w-5 text-primary" />
-                        ) : (
-                          <Circle className="h-5 w-5 text-muted-foreground" />
-                        )}
-                      </button>
-                    ) : (
-                      <div className="flex-shrink-0">
-                        {isCompleted ? (
-                          <CheckCircle2 className="h-5 w-5 text-primary" />
-                        ) : (
-                          <Play className="h-5 w-5 text-muted-foreground" />
-                        )}
-                      </div>
-                    )}
+                    {/* Left accent strip */}
+                    <div className={`w-1 flex-shrink-0 ${isCompleted ? 'bg-primary' : isCurrentVideo ? 'bg-primary' : 'bg-transparent group-hover:bg-primary/30'} transition-colors`} />
 
-                    {/* Video info — clickable area */}
-                    <div
-                      className="flex-1 min-w-0 overflow-hidden cursor-pointer"
-                      onClick={() => handleVideoClick(video, index)}
-                    >
-                      <div className="flex items-center gap-2 mb-1 overflow-hidden">
-                        <h4 className={`font-medium text-sm sm:text-base truncate flex-1 ${isCompleted ? 'text-muted-foreground line-through decoration-muted-foreground/50' : ''}`}>
-                          {video.title}
-                        </h4>
-                        {video.duration && (
-                          <Badge variant="outline" className="text-xs flex-shrink-0">
-                            <Clock className="h-3 w-3 mr-1" />
-                            {formatDuration(video.duration)}
-                          </Badge>
+                    {/* Main content */}
+                    <div className="flex items-center gap-3 p-3 flex-1 min-w-0">
+                      {/* Completion toggle — prominent & labelled */}
+                      {onToggleComplete ? (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onToggleComplete(video.id, isCompleted);
+                          }}
+                          className={`flex-shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+                            isCompleted
+                              ? 'bg-primary/10 border-primary/30 text-primary hover:bg-primary/20'
+                              : 'bg-background border-border text-muted-foreground hover:bg-primary/5 hover:border-primary/40 hover:text-primary'
+                          }`}
+                          title={isCompleted ? 'Click to mark incomplete' : 'Click to mark complete'}
+                          aria-label={isCompleted ? 'Mark as incomplete' : 'Mark as complete'}
+                        >
+                          {isCompleted ? (
+                            <CheckCircle2 className="h-4 w-4" />
+                          ) : (
+                            <Circle className="h-4 w-4" />
+                          )}
+                          <span className="hidden sm:inline whitespace-nowrap">
+                            {isCompleted ? 'Done' : 'Mark done'}
+                          </span>
+                        </button>
+                      ) : (
+                        <div className={`flex-shrink-0 ${isCompleted ? 'text-primary' : 'text-muted-foreground'}`}>
+                          {isCompleted ? <CheckCircle2 className="h-5 w-5" /> : <Play className="h-5 w-5" />}
+                        </div>
+                      )}
+
+                      {/* Video info — clickable */}
+                      <div
+                        className="flex-1 min-w-0 cursor-pointer"
+                        onClick={() => handleVideoClick(video, index)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && handleVideoClick(video, index)}
+                      >
+                        <div className="flex items-center gap-2 overflow-hidden">
+                          <h4 className={`font-medium text-sm truncate flex-1 ${
+                            isCompleted ? 'text-muted-foreground line-through decoration-muted-foreground/40' : ''
+                          }`}>
+                            {video.title}
+                          </h4>
+                          {video.duration && (
+                            <span className="text-xs text-muted-foreground flex-shrink-0 flex items-center gap-1">
+                              <Clock className="h-3 w-3" />
+                              {formatDuration(video.duration)}
+                            </span>
+                          )}
+                        </div>
+                        {video.description && (
+                          <p className="text-xs text-muted-foreground truncate mt-0.5">
+                            {video.description}
+                          </p>
                         )}
                       </div>
-                      {video.description && (
-                        <p className="text-micro sm:text-sm text-muted-foreground truncate overflow-hidden">
-                          {video.description}
-                        </p>
-                      )}
-                    </div>
-                    <div className="text-micro text-muted-foreground flex-shrink-0">
-                      {index + 1}/{videos.length}
+
+                      {/* Play CTA */}
+                      <button
+                        onClick={() => handleVideoClick(video, index)}
+                        className="flex-shrink-0 p-1.5 rounded-md text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                        aria-label="Watch video"
+                      >
+                        <Play className="h-4 w-4" />
+                      </button>
                     </div>
                   </div>
                 );
