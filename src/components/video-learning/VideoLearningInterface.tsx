@@ -166,11 +166,11 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     return () => clearInterval(interval);
   }, [isPlaying, currentVideo, updateWatchTime]);
 
-  const handleMarkComplete = useCallback(async () => {
+  const handleToggleStickyComplete = useCallback(async () => {
     if (currentVideo) {
-      await markVideoComplete(currentVideo.id);
+      await handleToggleComplete(currentVideo.id, !!currentProgress?.completed);
     }
-  }, [currentVideo, markVideoComplete]);
+  }, [currentVideo, currentProgress, handleToggleComplete]);
 
   const navigateVideo = useCallback((direction: 'prev' | 'next') => {
     let targetIndex = currentVideoIndex;
@@ -354,6 +354,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                       setWatchTime(0);
                     }}
                     getVideoProgress={getVideoProgress}
+                    onToggleComplete={handleToggleComplete}
                     useIndividualPages={true}
                     currentVideoId={currentVideo?.id}
                     moduleId={moduleId}
