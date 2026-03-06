@@ -21,6 +21,7 @@ import { useMergeScripts } from "@/hooks/useMergeScripts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger, ContextMenuSeparator } from "@/components/ui/context-menu";
 import { useNavigate, useParams, useSearchParams, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { useScripts, useScriptsMutations } from "@/hooks/useScripts";
@@ -2018,37 +2019,99 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     )}
                     <TabsList className="bg-transparent p-0 h-auto gap-1.5 flex-wrap justify-start">
                       {script.versions.map((v, i) => (
-                        <TabsTrigger key={i} value={String(i)} style={{ cursor: 'pointer' }}
-                          className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
-                          onDoubleClick={(e) => {
-                            if (isAdmin && onMetadataSave) {
-                              e.stopPropagation();
-                              e.preventDefault();
-                              setVersionTitleDraft(v.title || v.author || `Version ${i + 1}`);
-                              setEditingVersionTitle(i);
-                            }
-                          }}>
-                          <span title={isAdmin && onMetadataSave ? "Double-click to rename" : undefined}>
-                            {v.title || v.author || `Version ${i + 1}`}
-                          </span>
-                        </TabsTrigger>
+                        <ContextMenu key={i}>
+                          <ContextMenuTrigger asChild>
+                            <TabsTrigger value={String(i)} style={{ cursor: 'pointer' }}
+                              className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
+                              onDoubleClick={(e) => {
+                                if (isAdmin && onMetadataSave) {
+                                  e.stopPropagation();
+                                  e.preventDefault();
+                                  setVersionTitleDraft(v.title || v.author || `Version ${i + 1}`);
+                                  setEditingVersionTitle(i);
+                                }
+                              }}>
+                              <span title={isAdmin && onMetadataSave ? "Double-click to rename" : undefined}>
+                                {v.title || v.author || `Version ${i + 1}`}
+                              </span>
+                            </TabsTrigger>
+                          </ContextMenuTrigger>
+                          <ContextMenuContent className="w-44">
+                            {isAuthenticated && (
+                              <ContextMenuItem
+                                onClick={() => {
+                                  const sourceName = v.title || v.author || `Version ${i + 1}`;
+                                  addUserVersion.mutate(
+                                    { content: v.content, authorName: `Copy of ${sourceName}` },
+                                    { onSuccess: (newVersion) => {
+                                      setShowNewVersionForm(false);
+                                      setTimeout(() => {
+                                        setActiveVersionTab(`uv-${newVersion.id}`);
+                                        setNewVersionName(`Copy of ${sourceName}`);
+                                      }, 50);
+                                    }}
+                                  );
+                                }}
+                              >
+                                <Copy className="h-3.5 w-3.5 mr-2" />
+                                Duplicate to my version
+                              </ContextMenuItem>
+                            )}
+                          </ContextMenuContent>
+                        </ContextMenu>
                       ))}
                       {/* User version tabs */}
                       {userVersions.map((uv) => (
-                        <TabsTrigger key={`uv-${uv.id}`} value={`uv-${uv.id}`} style={{ cursor: 'pointer' }}
-                          className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
-                          onDoubleClick={(e) => {
-                            if (currentUserId === uv.user_id) {
-                              e.stopPropagation();
-                              e.preventDefault();
-                              setEditUserVersionName(uv.author_name);
-                              setEditingUserVersionId(uv.id);
-                            }
-                          }}>
-                          <span title={currentUserId === uv.user_id ? "Double-click to rename" : undefined}>
-                            {uv.author_name}
-                          </span>
-                        </TabsTrigger>
+                        <ContextMenu key={`uv-${uv.id}`}>
+                          <ContextMenuTrigger asChild>
+                            <TabsTrigger value={`uv-${uv.id}`} style={{ cursor: 'pointer' }}
+                              className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
+                              onDoubleClick={(e) => {
+                                if (currentUserId === uv.user_id) {
+                                  e.stopPropagation();
+                                  e.preventDefault();
+                                  setEditUserVersionName(uv.author_name);
+                                  setEditingUserVersionId(uv.id);
+                                }
+                              }}>
+                              <span title={currentUserId === uv.user_id ? "Double-click to rename" : undefined}>
+                                {uv.author_name}
+                              </span>
+                            </TabsTrigger>
+                          </ContextMenuTrigger>
+                          <ContextMenuContent className="w-44">
+                            {isAuthenticated && (
+                              <ContextMenuItem
+                                onClick={() => {
+                                  addUserVersion.mutate(
+                                    { content: uv.content, authorName: `Copy of ${uv.author_name}` },
+                                    { onSuccess: (newVersion) => {
+                                      setTimeout(() => setActiveVersionTab(`uv-${newVersion.id}`), 50);
+                                    }}
+                                  );
+                                }}
+                              >
+                                <Copy className="h-3.5 w-3.5 mr-2" />
+                                Duplicate to my version
+                              </ContextMenuItem>
+                            )}
+                            {currentUserId === uv.user_id && (
+                              <>
+                                <ContextMenuSeparator />
+                                <ContextMenuItem
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setEditUserVersionName(uv.author_name);
+                                    setEditingUserVersionId(uv.id);
+                                  }}
+                                >
+                                  <Pencil className="h-3.5 w-3.5 mr-2" />
+                                  Rename
+                                </ContextMenuItem>
+                              </>
+                            )}
+                          </ContextMenuContent>
+                        </ContextMenu>
                       ))}
                       {/* Add version button */}
                       {isAuthenticated && (
