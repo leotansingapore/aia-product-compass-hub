@@ -84,10 +84,11 @@ export function VideoEditingLayout({
   const isMobile = useIsMobile();
   const [showMobileEditor, setShowMobileEditor] = useState(false);
   const [sidebarDirty, setSidebarDirty] = useState(false);
+  const [isTranscriptOpen, setIsTranscriptOpen] = useState(false);
   const currentVideo = editingIndex !== null ? editVideos[editingIndex] : null;
 
-  // Reset dirty state when switching pages or after save
-  useEffect(() => { setSidebarDirty(false); }, [editingIndex]);
+  // Reset states when switching pages or after save
+  useEffect(() => { setSidebarDirty(false); setIsTranscriptOpen(false); }, [editingIndex]);
   useEffect(() => { if (sidebarSaveStatus === 'saved') setSidebarDirty(false); }, [sidebarSaveStatus]);
 
   // On mobile, show editor when a video is selected
@@ -262,10 +263,11 @@ export function VideoEditingLayout({
                 <ChevronDown className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
               </summary>
               <div className="px-4 pb-4 space-y-2">
-                {sidebarDirty || isEditorEditing ? (
+                {isTranscriptOpen || isEditorEditing ? (
                   <>
                     <textarea
                       value={currentVideo?.transcript || ''}
+                      autoFocus={isTranscriptOpen && !isEditorEditing}
                       onChange={(e) => {
                         if (editingIndex !== null && currentVideo) {
                           onUpdateVideo(editingIndex, { ...currentVideo, transcript: e.target.value });
@@ -284,7 +286,7 @@ export function VideoEditingLayout({
                         size="sm"
                         className="text-xs h-7"
                         disabled={sidebarSaveStatus === 'saving'}
-                        onClick={onSidebarSave}
+                        onClick={() => { onSidebarSave?.(); setIsTranscriptOpen(false); }}
                       >
                         {sidebarSaveStatus === 'saving' ? 'Saving...' : 'Save'}
                       </Button>
@@ -293,7 +295,7 @@ export function VideoEditingLayout({
                 ) : currentVideo?.transcript ? (
                   <div
                     className="max-h-[300px] overflow-y-auto overflow-x-hidden cursor-pointer rounded-lg hover:bg-muted/30 p-2 -mx-2 transition-colors"
-                    onClick={() => setSidebarDirty(true)}
+                    onClick={() => setIsTranscriptOpen(true)}
                   >
                     <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed break-words">
                       {currentVideo.transcript}
@@ -302,7 +304,7 @@ export function VideoEditingLayout({
                 ) : (
                   <div
                     className="flex items-center gap-1.5 w-full px-3 py-1.5 text-sm text-muted-foreground/70 border border-dashed border-border rounded-md cursor-pointer hover:border-muted-foreground/40 hover:text-muted-foreground transition-colors"
-                    onClick={() => setSidebarDirty(true)}
+                    onClick={() => setIsTranscriptOpen(true)}
                   >
                     <span className="text-xs">+</span>
                     Add transcript
@@ -325,45 +327,36 @@ export function VideoEditingLayout({
                 <ChevronDown className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
               </summary>
               <div className="px-4 pb-4 space-y-3">
-                {isEditorEditing ? (
-                  <>
-                    <ModuleResourcesSection
-                      links={currentVideo.useful_links || []}
-                      attachments={currentVideo.attachments || []}
-                      isAdmin={true}
-                      onDeleteLink={(index) => {
-                        if (editingIndex !== null && currentVideo) {
-                          const updatedLinks = (currentVideo.useful_links || []).filter((_, i) => i !== index);
-                          onUpdateVideo(editingIndex, { ...currentVideo, useful_links: updatedLinks });
-                        }
-                      }}
-                      onDeleteAttachment={(id) => {
-                        if (editingIndex !== null && currentVideo) {
-                          const updatedAttachments = (currentVideo.attachments || []).filter(a => a.id !== id);
-                          onUpdateVideo(editingIndex, { ...currentVideo, attachments: updatedAttachments });
-                        }
-                      }}
-                    />
-                    <AddResourceDropdown
-                      onAddLink={(label, url) => {
-                        if (editingIndex !== null && currentVideo) {
-                          const newLink: UsefulLink = { name: label, url, icon: '🔗' };
-                          onUpdateVideo(editingIndex, { ...currentVideo, useful_links: [...(currentVideo.useful_links || []), newLink] });
-                        }
-                      }}
-                      onAddFile={(attachment) => {
-                        if (editingIndex !== null && currentVideo) {
-                          onUpdateVideo(editingIndex, { ...currentVideo, attachments: [...(currentVideo.attachments || []), attachment] });
-                        }
-                      }}
-                    />
-                  </>
-                ) : (
-                  <ModuleResourcesSection
-                    links={currentVideo.useful_links || []}
-                    attachments={currentVideo.attachments || []}
-                  />
-                )}
+                <ModuleResourcesSection
+                  links={currentVideo.useful_links || []}
+                  attachments={currentVideo.attachments || []}
+                  isAdmin={true}
+                  onDeleteLink={(index) => {
+                    if (editingIndex !== null && currentVideo) {
+                      const updatedLinks = (currentVideo.useful_links || []).filter((_, i) => i !== index);
+                      onUpdateVideo(editingIndex, { ...currentVideo, useful_links: updatedLinks });
+                    }
+                  }}
+                  onDeleteAttachment={(id) => {
+                    if (editingIndex !== null && currentVideo) {
+                      const updatedAttachments = (currentVideo.attachments || []).filter(a => a.id !== id);
+                      onUpdateVideo(editingIndex, { ...currentVideo, attachments: updatedAttachments });
+                    }
+                  }}
+                />
+                <AddResourceDropdown
+                  onAddLink={(label, url) => {
+                    if (editingIndex !== null && currentVideo) {
+                      const newLink: UsefulLink = { name: label, url, icon: '🔗' };
+                      onUpdateVideo(editingIndex, { ...currentVideo, useful_links: [...(currentVideo.useful_links || []), newLink] });
+                    }
+                  }}
+                  onAddFile={(attachment) => {
+                    if (editingIndex !== null && currentVideo) {
+                      onUpdateVideo(editingIndex, { ...currentVideo, attachments: [...(currentVideo.attachments || []), attachment] });
+                    }
+                  }}
+                />
               </div>
             </details>
           </div>
