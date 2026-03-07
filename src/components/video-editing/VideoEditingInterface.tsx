@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
+
 import { VideoEditingLayout } from './VideoEditingLayout';
 import { VideoEditingActions } from './VideoEditingActions';
 import { VideoOrderActions } from './VideoOrderActions';
@@ -56,6 +57,8 @@ export function VideoEditingInterface({
   const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
   const [lastSavedAt, setLastSavedAt] = useState(0);
   const [isEditorEditing, setIsEditorEditing] = useState(false);
+  const [sidebarSaveStatus, setSidebarSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
+  const sidebarSaveStatusTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const { toast } = useToast();
 
   // Track video order changes from drag-and-drop
@@ -76,17 +79,24 @@ export function VideoEditingInterface({
     }
   });
 
+  // Save sidebar changes (transcript/resources) on button click
+  const handleSidebarSave = useCallback(async () => {
+    setSidebarSaveStatus('saving');
+    try {
+      await onSave(videoOrderChanges.pendingVideos);
+      setSidebarSaveStatus('saved');
+      if (sidebarSaveStatusTimerRef.current) clearTimeout(sidebarSaveStatusTimerRef.current);
+      sidebarSaveStatusTimerRef.current = setTimeout(() => setSidebarSaveStatus('idle'), 2000);
+    } catch {
+      setSidebarSaveStatus('idle');
+    }
+  }, [onSave, videoOrderChanges.pendingVideos]);
+
   // Wrapper to update both pendingVideos and parent's editVideos when content is edited
   const handleUpdateVideo = (index: number, updatedVideo: TrainingVideo) => {
-    console.log('📝 VideoEditingInterface: Updating video content', {
-      index,
-      title: updatedVideo.title,
-      hasRichContent: !!updatedVideo.rich_content
-    });
-    
     // Update parent's editVideos (for hasContentChanges detection and save)
     onUpdateVideo(index, updatedVideo);
-    
+
     // Also update pendingVideos locally to keep UI in sync
     const updatedPending = [...videoOrderChanges.pendingVideos];
     updatedPending[index] = updatedVideo;
@@ -248,10 +258,12 @@ export function VideoEditingInterface({
           onReorderFolders={handleReorderFolders}
           lastSavedAt={lastSavedAt}
           onEditorEditingStateChange={setIsEditorEditing}
+          sidebarSaveStatus={sidebarSaveStatus}
+          onSidebarSave={handleSidebarSave}
         />
         
-        {/* Unified save bar - shows when there are ANY unsaved changes */}
-        {(videoOrderChanges.hasPendingChanges || hasContentChanges) && (
+        {/* Unified save bar - shows when in edit mode or reorder changes */}
+        {(videoOrderChanges.hasPendingChanges || (hasContentChanges && isEditorEditing)) && (
           <div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t px-6 py-4 mt-6">
             <VideoEditingActions
               saving={saving || videoOrderChanges.isSaving}

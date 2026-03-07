@@ -49,7 +49,7 @@ function ToolbarButton({
           size="sm"
           onClick={onClick}
           disabled={disabled}
-          className={`h-8 w-8 p-0 transition-colors ${
+          className={`h-7 w-7 p-0 transition-colors ${
             isActive
               ? 'bg-primary/10 text-primary hover:bg-primary/20'
               : 'text-muted-foreground hover:text-foreground hover:bg-muted'
@@ -66,7 +66,7 @@ function ToolbarButton({
 }
 
 function Divider() {
-  return <div className="w-px h-6 bg-border mx-0.5 shrink-0" />;
+  return <div className="w-px h-5 bg-border mx-0.5 shrink-0" />;
 }
 
 export function EditorToolbar({

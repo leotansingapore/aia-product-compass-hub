@@ -71,7 +71,7 @@ export function SimplifiedAuthForm() {
 
   return (
     <Card className="w-full shadow-lg border-border/60">
-      <CardContent className="p-6">
+      <CardContent className="p-6 !pt-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           {/* Only show Sign In / Sign Up tabs — Forgot Password is accessed via inline link */}
           <TabsList className="grid w-full grid-cols-2 mb-5">

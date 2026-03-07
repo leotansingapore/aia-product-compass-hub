@@ -570,7 +570,7 @@ export function RichContentEditor({
             value={title ?? ''}
             onChange={(e) => onTitleChange?.(e.target.value)}
             placeholder="Untitled"
-            className="w-full text-2xl font-bold bg-transparent border-none outline-none placeholder:text-muted-foreground/40 text-foreground"
+            className="w-full text-2xl font-bold bg-transparent border border-transparent rounded-lg px-3 py-2 outline-none focus:bg-muted/20 focus:border-border/40 placeholder:text-muted-foreground/40 text-foreground transition-all duration-200"
             style={{ letterSpacing: '0.02em', lineHeight: 1.2 }}
           />
         </div>

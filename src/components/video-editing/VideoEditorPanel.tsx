@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { VideoEditForm } from './VideoEditForm';
 import { Button } from '@/components/ui/button';
-import { SquarePen } from 'lucide-react';
+import { SquarePen, Eye } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -45,8 +45,14 @@ export function VideoEditorPanel({
 
   // Reset edit state when switching between pages
   useEffect(() => {
-    setIsEditingLocal(false);
-    onEditingStateChange?.(false);
+    if (shouldAutoEdit) {
+      // New pages auto-enter edit mode — notify parent so sidebar sections become editable
+      setIsEditingLocal(true);
+      onEditingStateChange?.(true);
+    } else {
+      setIsEditingLocal(false);
+      onEditingStateChange?.(false);
+    }
   }, [editingIndex]);
 
   // Switch to preview mode after save completes
@@ -63,6 +69,20 @@ export function VideoEditorPanel({
         isEditing || shouldAutoEdit ? (
           /* ========== EDIT MODE ========== */
           <div className="h-full">
+            {/* Preview toggle — only show when page has content */}
+            {currentVideo.rich_content || currentVideo.description ? (
+              <div className="flex justify-end px-2 py-1.5">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsEditing(false)}
+                  className="gap-1.5 text-muted-foreground hover:text-foreground"
+                >
+                  <Eye className="h-4 w-4" />
+                  Preview
+                </Button>
+              </div>
+            ) : null}
             <VideoEditForm
               video={editVideos[editingIndex]}
               onUpdate={(updatedVideo) => onUpdateVideo(editingIndex, updatedVideo)}

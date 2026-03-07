@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { CourseStructurePanel } from './CourseStructurePanel';
 import { VideoEditorPanel } from './VideoEditorPanel';
 import { FolderManagementDialog } from './FolderManagementDialog';
@@ -42,6 +42,8 @@ interface VideoEditingLayoutProps {
   onReorderFolders?: (folderOrder: string[]) => void;
   lastSavedAt?: number;
   onEditorEditingStateChange?: (isEditing: boolean) => void;
+  sidebarSaveStatus?: 'idle' | 'saving' | 'saved';
+  onSidebarSave?: () => void;
 }
 
 export function VideoEditingLayout({
@@ -75,11 +77,19 @@ export function VideoEditingLayout({
   onReorderVideos,
   onReorderFolders,
   lastSavedAt,
-  onEditorEditingStateChange
+  onEditorEditingStateChange,
+  sidebarSaveStatus = 'idle',
+  onSidebarSave
 }: VideoEditingLayoutProps) {
   const isMobile = useIsMobile();
   const [showMobileEditor, setShowMobileEditor] = useState(false);
+  const [sidebarDirty, setSidebarDirty] = useState(false);
   const currentVideo = editingIndex !== null ? editVideos[editingIndex] : null;
+
+  // Reset dirty state when switching pages or after save
+  useEffect(() => { setSidebarDirty(false); }, [editingIndex]);
+  useEffect(() => { if (sidebarSaveStatus === 'saved') setSidebarDirty(false); }, [sidebarSaveStatus]);
+
   // On mobile, show editor when a video is selected
   const handleVideoSelect = (index: number) => {
     onEditingIndexChange(index);
@@ -189,7 +199,7 @@ export function VideoEditingLayout({
   return (
     <div className="flex min-h-[calc(100vh-120px)]">
       {/* Left Sidebar - Course Structure (SKOOL-style) */}
-      <aside className="w-80 border-r bg-muted/30 overflow-y-auto">
+      <aside className="w-64 lg:w-80 border-r bg-muted/30 overflow-y-auto shrink-0">
         {/* Course Structure Card */}
         <div className="border-b">
           <div className="sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b px-4 py-3">
@@ -251,24 +261,51 @@ export function VideoEditingLayout({
                 </div>
                 <ChevronDown className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
               </summary>
-              <div className="px-4 pb-4">
-                {isEditorEditing ? (
-                  <textarea
-                    value={currentVideo?.transcript || ''}
-                    onChange={(e) => {
-                      if (editingIndex !== null && currentVideo) {
-                        onUpdateVideo(editingIndex, { ...currentVideo, transcript: e.target.value });
-                      }
-                    }}
-                    placeholder="Add your transcript..."
-                    rows={10}
-                    className="w-full bg-muted/20 border border-border rounded-lg p-3 text-sm text-foreground resize-y focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 placeholder:text-muted-foreground/50 break-words overflow-x-hidden"
-                  />
-                ) : (
-                  <div className="max-h-[300px] overflow-y-auto overflow-x-hidden">
+              <div className="px-4 pb-4 space-y-2">
+                {sidebarDirty || isEditorEditing ? (
+                  <>
+                    <textarea
+                      value={currentVideo?.transcript || ''}
+                      onChange={(e) => {
+                        if (editingIndex !== null && currentVideo) {
+                          onUpdateVideo(editingIndex, { ...currentVideo, transcript: e.target.value });
+                          setSidebarDirty(true);
+                        }
+                      }}
+                      placeholder="Paste or type your transcript here..."
+                      rows={6}
+                      className="w-full bg-muted/20 border border-border rounded-lg p-3 text-sm text-foreground resize-y focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 placeholder:text-muted-foreground/50 break-words overflow-x-hidden"
+                    />
+                    {sidebarSaveStatus === 'saved' ? (
+                      <p className="text-xs text-green-600">Saved</p>
+                    ) : sidebarDirty ? (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="text-xs h-7"
+                        disabled={sidebarSaveStatus === 'saving'}
+                        onClick={onSidebarSave}
+                      >
+                        {sidebarSaveStatus === 'saving' ? 'Saving...' : 'Save'}
+                      </Button>
+                    ) : null}
+                  </>
+                ) : currentVideo?.transcript ? (
+                  <div
+                    className="max-h-[300px] overflow-y-auto overflow-x-hidden cursor-pointer rounded-lg hover:bg-muted/30 p-2 -mx-2 transition-colors"
+                    onClick={() => setSidebarDirty(true)}
+                  >
                     <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed break-words">
-                      {currentVideo?.transcript}
+                      {currentVideo.transcript}
                     </p>
+                  </div>
+                ) : (
+                  <div
+                    className="flex items-center gap-1.5 w-full px-3 py-1.5 text-sm text-muted-foreground/70 border border-dashed border-border rounded-md cursor-pointer hover:border-muted-foreground/40 hover:text-muted-foreground transition-colors"
+                    onClick={() => setSidebarDirty(true)}
+                  >
+                    <span className="text-xs">+</span>
+                    Add transcript
                   </div>
                 )}
               </div>
@@ -287,9 +324,9 @@ export function VideoEditingLayout({
                 </div>
                 <ChevronDown className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
               </summary>
-              <div className="px-4 pb-4">
+              <div className="px-4 pb-4 space-y-3">
                 {isEditorEditing ? (
-                  <div className="space-y-3">
+                  <>
                     <ModuleResourcesSection
                       links={currentVideo.useful_links || []}
                       attachments={currentVideo.attachments || []}
@@ -320,46 +357,12 @@ export function VideoEditingLayout({
                         }
                       }}
                     />
-                  </div>
+                  </>
                 ) : (
-                  <div className="space-y-1.5">
-                    {(currentVideo.useful_links?.length ?? 0) === 0 && (currentVideo.attachments?.length ?? 0) === 0 ? (
-                      <p className="text-sm text-muted-foreground italic">No resources added</p>
-                    ) : (
-                      <>
-                        {currentVideo.useful_links?.map((link, index) => (
-                          <div key={`link-${index}`} className="flex items-center gap-2">
-                            <Link2 className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                            <a
-                              href={link.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-sm text-primary hover:underline truncate"
-                            >
-                              {link.name}
-                            </a>
-                          </div>
-                        ))}
-                        {currentVideo.attachments?.map((attachment) => (
-                          <div key={`file-${attachment.id}`} className="flex items-center gap-2">
-                            {(attachment.file_type || '').toLowerCase() === 'pdf' ? (
-                              <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-destructive/10 text-destructive text-[10px] font-bold flex-shrink-0">PDF</span>
-                            ) : (
-                              <FileText className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                            )}
-                            <a
-                              href={attachment.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-sm text-primary hover:underline truncate"
-                            >
-                              {attachment.name}
-                            </a>
-                          </div>
-                        ))}
-                      </>
-                    )}
-                  </div>
+                  <ModuleResourcesSection
+                    links={currentVideo.useful_links || []}
+                    attachments={currentVideo.attachments || []}
+                  />
                 )}
               </div>
             </details>
@@ -369,7 +372,7 @@ export function VideoEditingLayout({
 
       {/* Main Content Area - Video Editor */}
       <main className="flex-1 overflow-y-auto">
-        <div className="max-w-4xl mx-auto p-6">
+        <div className="max-w-5xl mx-auto p-4 lg:p-6">
           <VideoEditorPanel
             editVideos={editVideos}
             editingIndex={editingIndex}
