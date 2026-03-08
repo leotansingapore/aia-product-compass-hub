@@ -1,7 +1,7 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronRight, FolderOpen, Layers } from "lucide-react";
+import { ChevronDown, ChevronRight, FolderOpen, GripVertical, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
@@ -19,7 +19,9 @@ import {
   type DragOverEvent,
 } from "@dnd-kit/core";
 import {
+  SortableContext,
   useSortable,
+  rectSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
@@ -42,11 +44,10 @@ interface DraggableProductCardProps {
   onEditProduct?: (id: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => void;
   onDeleteProduct?: (id: string) => void;
   onTogglePublish?: (id: string, published: boolean) => void;
-  isOver?: boolean;
+  isDropTarget?: boolean;
 }
 
-function DraggableProductCard({ product, categoryName, onProductClick, onEditProduct, onDeleteProduct, onTogglePublish, isOver }: DraggableProductCardProps) {
-  const { isAdmin } = usePermissions();
+function DraggableProductCard({ product, categoryName, onProductClick, onEditProduct, onDeleteProduct, onTogglePublish, isDropTarget }: DraggableProductCardProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: product.id,
     data: { type: 'product', product },
@@ -55,7 +56,6 @@ function DraggableProductCard({ product, categoryName, onProductClick, onEditPro
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    opacity: isDragging ? 0.4 : 1,
   };
 
   return (
@@ -63,35 +63,41 @@ function DraggableProductCard({ product, categoryName, onProductClick, onEditPro
       ref={setNodeRef}
       style={style}
       className={cn(
-        "relative rounded-xl transition-all duration-200",
-        isOver && "ring-2 ring-primary ring-offset-2 bg-primary/5 scale-[1.01]"
+        "relative rounded-xl transition-all duration-200 group",
+        isDragging && "opacity-40 scale-95",
+        isDropTarget && "ring-2 ring-primary ring-offset-2 bg-primary/5 scale-[1.02]"
       )}
     >
-      {isAdmin() && (
-        <div
-          {...attributes}
-          {...listeners}
-          className="absolute top-2 left-2 z-10 cursor-grab active:cursor-grabbing p-1 rounded opacity-0 group-hover:opacity-100 hover:opacity-100 bg-background/80 border"
-          title="Drag to nest inside another module"
-        >
-          <Layers className="h-3.5 w-3.5 text-muted-foreground" />
+      {/* Drag handle — always visible for admins */}
+      <div
+        {...attributes}
+        {...listeners}
+        className="absolute top-2 left-2 z-20 cursor-grab active:cursor-grabbing p-1.5 rounded-md bg-background/90 border shadow-sm hover:bg-muted transition-colors"
+        title="Drag to nest inside another module"
+        onClick={e => e.stopPropagation()}
+      >
+        <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
+      </div>
+      {isDropTarget && (
+        <div className="absolute inset-0 rounded-xl flex items-end justify-center pb-2 pointer-events-none z-10">
+          <span className="bg-primary text-primary-foreground text-[10px] font-semibold px-2 py-0.5 rounded-full">
+            Drop to nest inside "{product.title}"
+          </span>
         </div>
       )}
-      <div className="group h-full">
-        <ProductCard
-          title={product.title}
-          description={product.description || ''}
-          category={categoryName}
-          tags={product.tags || []}
-          highlights={product.highlights || []}
-          onClick={() => onProductClick(product.id)}
-          productId={product.id}
-          published={product.published}
-          onEdit={onEditProduct}
-          onDelete={onDeleteProduct}
-          onTogglePublish={onTogglePublish}
-        />
-      </div>
+      <ProductCard
+        title={product.title}
+        description={product.description || ''}
+        category={categoryName}
+        tags={product.tags || []}
+        highlights={product.highlights || []}
+        onClick={() => onProductClick(product.id)}
+        productId={product.id}
+        published={product.published}
+        onEdit={onEditProduct}
+        onDelete={onDeleteProduct}
+        onTogglePublish={onTogglePublish}
+      />
     </div>
   );
 }
@@ -104,14 +110,14 @@ interface ParentProductCardProps {
   onDeleteProduct?: (id: string) => void;
   onTogglePublish?: (id: string, published: boolean) => void;
   onNestingChange: () => void;
-  isOverId?: string | null;
+  isDropTarget?: boolean;
 }
 
-function ParentProductCard({ product, categoryName, onProductClick, onEditProduct, onDeleteProduct, onTogglePublish, onNestingChange, isOverId }: ParentProductCardProps) {
+function ParentProductCard({ product, categoryName, onProductClick, onEditProduct, onDeleteProduct, onTogglePublish, onNestingChange, isDropTarget }: ParentProductCardProps) {
   const [expanded, setExpanded] = useState(true);
   const { isAdmin } = usePermissions();
   const { isViewingAsUser } = useViewMode();
-  const { isOver, setNodeRef, attributes, listeners, transform, transition, isDragging } = useSortable({
+  const { setNodeRef, attributes, listeners, transform, transition, isDragging } = useSortable({
     id: product.id,
     data: { type: 'parent', product },
   });
@@ -134,15 +140,13 @@ function ParentProductCard({ product, categoryName, onProductClick, onEditProduc
     else { toast.success('Module moved to top level'); onNestingChange(); }
   };
 
-  const isBeingDroppedOn = isOverId === product.id;
-
   return (
     <div
       ref={setNodeRef}
       style={style}
       className={cn(
         "col-span-full rounded-2xl border bg-card transition-all duration-200",
-        isBeingDroppedOn && "ring-2 ring-primary ring-offset-2 bg-primary/5"
+        isDropTarget && "ring-2 ring-primary ring-offset-2 bg-primary/5"
       )}
     >
       {/* Parent header */}
@@ -155,7 +159,7 @@ function ParentProductCard({ product, categoryName, onProductClick, onEditProduc
               className="cursor-grab active:cursor-grabbing p-1 rounded hover:bg-muted"
               title="Drag to reorder"
             >
-              <Layers className="h-3.5 w-3.5 text-muted-foreground" />
+              <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
             </div>
           )}
           <button
@@ -177,8 +181,8 @@ function ParentProductCard({ product, categoryName, onProductClick, onEditProduc
         </div>
       </div>
 
-      {/* Drop zone label when being dragged over */}
-      {isBeingDroppedOn && (
+      {/* Drop zone label */}
+      {isDropTarget && (
         <div className="mx-4 mb-3 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/30 text-xs text-primary text-center font-medium">
           Drop here to nest inside "{product.title}"
         </div>
@@ -245,12 +249,11 @@ export function NestedProductsGrid({
   const [overId, setOverId] = useState<string | null>(null);
 
   const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
   );
 
-  // Separate root products (no parent) from children
+  // Separate root products from children
   const rootProducts = products.filter(p => !p.parent_product_id);
-  // Build children map
   const childrenMap: Record<string, NestedProduct[]> = {};
   products.forEach(p => {
     if (p.parent_product_id) {
@@ -259,21 +262,20 @@ export function NestedProductsGrid({
     }
   });
 
-  // Attach children to parents
   const rootWithChildren: NestedProduct[] = rootProducts.map(p => ({
     ...p,
     children: (childrenMap[p.id] || []).sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0)),
   }));
 
   const activeProduct = products.find(p => p.id === activeId);
+  const rootIds = rootWithChildren.map(p => p.id);
 
   const handleDragStart = (event: DragStartEvent) => {
     setActiveId(event.active.id as string);
   };
 
   const handleDragOver = (event: DragOverEvent) => {
-    const overId = event.over?.id as string | null;
-    setOverId(overId || null);
+    setOverId((event.over?.id as string) || null);
   };
 
   const handleDragEnd = async (event: DragEndEvent) => {
@@ -295,8 +297,15 @@ export function NestedProductsGrid({
       return;
     }
 
-    // If target is a root product (not already a child), nest dragged inside target
+    // Only nest into root products (not already a child)
     if (!targetProduct.parent_product_id) {
+      const draggedProduct = products.find(p => p.id === draggedId);
+      // Don't nest a parent that has children into another card
+      if (draggedProduct && childrenMap[draggedId]?.length > 0) {
+        toast.error("Can't nest a module that already has sub-modules");
+        return;
+      }
+
       const { error } = await supabase
         .from('products')
         .update({ parent_product_id: targetId })
@@ -306,7 +315,7 @@ export function NestedProductsGrid({
         toast.error('Failed to nest module');
         console.error(error);
       } else {
-        toast.success(`Nested "${products.find(p => p.id === draggedId)?.title}" inside "${targetProduct.title}"`);
+        toast.success(`"${draggedProduct?.title}" nested inside "${targetProduct.title}"`);
         onNestingChange();
       }
     }
@@ -325,11 +334,11 @@ export function NestedProductsGrid({
     );
   }
 
+  // Non-admin: simple grid, no DnD
   if (!isAdmin()) {
-    // Non-admin: simple grid with parent containers, no DnD
     return (
       <div className="space-y-4 sm:space-y-6 animate-fade-in">
-        {rootWithChildren.map((product, index) => {
+        {rootWithChildren.map((product) => {
           const hasChildren = (product.children?.length ?? 0) > 0;
           if (hasChildren) {
             return (
@@ -342,12 +351,11 @@ export function NestedProductsGrid({
                 onDeleteProduct={onDeleteProduct}
                 onTogglePublish={onTogglePublish}
                 onNestingChange={onNestingChange}
-                isOverId={null}
               />
             );
           }
           return (
-            <div key={product.id} style={{ animationDelay: `${index * 0.05}s` }} className="animate-fade-in">
+            <div key={product.id} className="animate-fade-in">
               <ProductCard
                 title={product.title}
                 description={product.description || ''}
@@ -377,46 +385,46 @@ export function NestedProductsGrid({
       onDragEnd={handleDragEnd}
     >
       <div className="space-y-3 sm:space-y-4 animate-fade-in">
-        {isAdmin() && (
-          <p className="text-xs text-muted-foreground flex items-center gap-1.5 pb-1">
-            <Layers className="h-3.5 w-3.5" />
-            Drag a module card onto another to nest it as a sub-module
-          </p>
-        )}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-6">
-          {rootWithChildren.map((product, index) => {
-            const hasChildren = (product.children?.length ?? 0) > 0;
-            if (hasChildren) {
+        <p className="text-xs text-muted-foreground flex items-center gap-1.5 pb-1">
+          <GripVertical className="h-3.5 w-3.5" />
+          Drag a card (using the grip handle) onto another card to nest it as a sub-module
+        </p>
+
+        <SortableContext items={rootIds} strategy={rectSortingStrategy}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {rootWithChildren.map((product) => {
+              const hasChildren = (product.children?.length ?? 0) > 0;
+              if (hasChildren) {
+                return (
+                  <div key={product.id} className="col-span-full">
+                    <ParentProductCard
+                      product={product}
+                      categoryName={categoryName}
+                      onProductClick={onProductClick}
+                      onEditProduct={onEditProduct}
+                      onDeleteProduct={onDeleteProduct}
+                      onTogglePublish={onTogglePublish}
+                      onNestingChange={onNestingChange}
+                      isDropTarget={overId === product.id}
+                    />
+                  </div>
+                );
+              }
               return (
-                <div key={product.id} className="col-span-full">
-                  <ParentProductCard
-                    product={product}
-                    categoryName={categoryName}
-                    onProductClick={onProductClick}
-                    onEditProduct={onEditProduct}
-                    onDeleteProduct={onDeleteProduct}
-                    onTogglePublish={onTogglePublish}
-                    onNestingChange={onNestingChange}
-                    isOverId={overId}
-                  />
-                </div>
-              );
-            }
-            return (
-              <div key={product.id} style={{ animationDelay: `${index * 0.05}s` }} className="animate-fade-in">
                 <DraggableProductCard
+                  key={product.id}
                   product={product}
                   categoryName={categoryName}
                   onProductClick={onProductClick}
                   onEditProduct={onEditProduct}
                   onDeleteProduct={onDeleteProduct}
                   onTogglePublish={onTogglePublish}
-                  isOver={overId === product.id}
+                  isDropTarget={overId === product.id && activeId !== product.id}
                 />
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        </SortableContext>
       </div>
 
       <DragOverlay>
