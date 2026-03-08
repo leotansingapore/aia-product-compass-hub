@@ -283,7 +283,7 @@ export function VideoEditingLayout({
                       className="w-full bg-muted/20 border border-border rounded-lg p-3 text-sm text-foreground resize-y focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 placeholder:text-muted-foreground/50 break-words overflow-x-hidden"
                     />
                     {sidebarSaveStatus === 'saved' ? (
-                      <p className="text-xs text-emerald-600 dark:text-emerald-400">Saved</p>
+                      <p className="text-xs text-primary/70">Saved</p>
                     ) : sidebarDirty ? (
                       <Button
                         variant="outline"
