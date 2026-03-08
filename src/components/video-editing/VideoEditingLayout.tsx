@@ -76,6 +76,7 @@ export function VideoEditingLayout({
   onExpandedChange,
   onFolderDialogOpenChange,
   onFolderSave,
+  pendingSubFolderParent,
   onReorderVideos,
   onReorderFolders,
   onCreateSubFolder,
