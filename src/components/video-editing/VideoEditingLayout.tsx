@@ -38,8 +38,10 @@ interface VideoEditingLayoutProps {
   onExpandedChange: (expanded: Set<string>) => void;
   onFolderDialogOpenChange: (open: boolean) => void;
   onFolderSave: (folderName: string) => void;
+  pendingSubFolderParent?: string | null;
   onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
   onReorderFolders?: (folderOrder: string[]) => void;
+  onCreateSubFolder?: (parentPath: string) => void;
   lastSavedAt?: number;
   onEditorEditingStateChange?: (isEditing: boolean) => void;
   sidebarSaveStatus?: 'idle' | 'saving' | 'saved';
@@ -74,8 +76,10 @@ export function VideoEditingLayout({
   onExpandedChange,
   onFolderDialogOpenChange,
   onFolderSave,
+  pendingSubFolderParent,
   onReorderVideos,
   onReorderFolders,
+  onCreateSubFolder,
   lastSavedAt,
   onEditorEditingStateChange,
   sidebarSaveStatus = 'idle',
@@ -154,6 +158,7 @@ export function VideoEditingLayout({
                 onAddPageToFolder={onAddPageToFolder}
                 onReorderVideos={onReorderVideos}
                 onReorderFolders={onReorderFolders}
+                onCreateSubFolder={onCreateSubFolder}
               />
             </div>
           </div>
@@ -190,6 +195,7 @@ export function VideoEditingLayout({
           onOpenChange={onFolderDialogOpenChange}
           mode={folderDialogMode}
           initialName={editingFolderName}
+          parentPath={pendingSubFolderParent}
           onSave={onFolderSave}
         />
       </>
@@ -247,6 +253,7 @@ export function VideoEditingLayout({
               onAddPageToFolder={onAddPageToFolder}
               onReorderVideos={onReorderVideos}
               onReorderFolders={onReorderFolders}
+              onCreateSubFolder={onCreateSubFolder}
             />
           </div>
         </div>
@@ -279,7 +286,7 @@ export function VideoEditingLayout({
                       className="w-full bg-muted/20 border border-border rounded-lg p-3 text-sm text-foreground resize-y focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 placeholder:text-muted-foreground/50 break-words overflow-x-hidden"
                     />
                     {sidebarSaveStatus === 'saved' ? (
-                      <p className="text-xs text-green-600">Saved</p>
+                      <p className="text-xs text-primary/70">Saved</p>
                     ) : sidebarDirty ? (
                       <Button
                         variant="outline"
@@ -388,6 +395,7 @@ export function VideoEditingLayout({
         onOpenChange={onFolderDialogOpenChange}
         mode={folderDialogMode}
         initialName={editingFolderName}
+        parentPath={pendingSubFolderParent}
         onSave={onFolderSave}
       />
     </div>

@@ -251,6 +251,8 @@ export function VideoEditingInterface({
           onAddVideoToFolder={videoActions.handleAddVideoToFolder}
           onAddPageToFolder={handleAddPageToFolder}
           onAddPageToRoot={handleAddPageToRoot}
+          onCreateSubFolder={folderManagement.handleCreateSubFolder}
+          pendingSubFolderParent={folderManagement.pendingSubFolderParent}
           onExpandedChange={folderManagement.setExpandedFolders}
           onFolderDialogOpenChange={folderManagement.setFolderDialogOpen}
           onFolderSave={folderManagement.handleFolderSave}
