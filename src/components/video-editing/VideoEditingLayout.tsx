@@ -156,6 +156,7 @@ export function VideoEditingLayout({
                 onAddPageToFolder={onAddPageToFolder}
                 onReorderVideos={onReorderVideos}
                 onReorderFolders={onReorderFolders}
+                onCreateSubFolder={onCreateSubFolder}
               />
             </div>
           </div>
@@ -249,6 +250,7 @@ export function VideoEditingLayout({
               onAddPageToFolder={onAddPageToFolder}
               onReorderVideos={onReorderVideos}
               onReorderFolders={onReorderFolders}
+              onCreateSubFolder={onCreateSubFolder}
             />
           </div>
         </div>
