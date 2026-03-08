@@ -8,6 +8,7 @@ import { SalesToolsUsefulLinks } from "@/components/product-detail/SalesToolsUse
 import { FloatingAIChat } from "@/components/product-detail/FloatingAIChat";
 import { ProductSyncButton } from "@/components/product-detail/ProductSyncButton";
 import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
+import { SubModulesSection } from "@/components/product-detail/SubModulesSection";
 import { VideoEditingInterface } from "@/components/video-editing/VideoEditingInterface";
 import { useVideoManagement } from "@/hooks/useVideoManagement";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
