@@ -221,6 +221,9 @@ export default function ProductDetail() {
             </div>
           </ProtectedSection>
 
+          {/* Sub-modules Section */}
+          <SubModulesSection parentProductId={product.id} />
+
         </div>
       </PageLayout>
     </ProtectedPage>
