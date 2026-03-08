@@ -38,6 +38,7 @@ interface VideoEditingLayoutProps {
   onExpandedChange: (expanded: Set<string>) => void;
   onFolderDialogOpenChange: (open: boolean) => void;
   onFolderSave: (folderName: string) => void;
+  pendingSubFolderParent?: string | null;
   onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
   onReorderFolders?: (folderOrder: string[]) => void;
   onCreateSubFolder?: (parentPath: string) => void;
