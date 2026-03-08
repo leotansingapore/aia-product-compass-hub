@@ -182,6 +182,7 @@ export function useFolderManagement({
     setFolderDialogOpen,
     folderDialogMode,
     editingFolderName,
+    pendingSubFolderParent,
     emptyFolders,
     expandedFolders,
     setExpandedFolders,
