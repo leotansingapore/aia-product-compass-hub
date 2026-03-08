@@ -20,6 +20,8 @@ export function useFolderManagement({
   const [folderDialogOpen, setFolderDialogOpen] = useState(false);
   const [folderDialogMode, setFolderDialogMode] = useState<'create' | 'edit'>('create');
   const [editingFolderName, setEditingFolderName] = useState('');
+  // When creating a sub-folder, stores the parent path
+  const [pendingSubFolderParent, setPendingSubFolderParent] = useState<string | null>(null);
   
   // Auto-expand all folders on mount for better discoverability
   const allFolderNames = Array.from(new Set([
@@ -33,42 +35,62 @@ export function useFolderManagement({
   const handleCreateFolder = () => {
     setFolderDialogMode('create');
     setEditingFolderName('');
+    setPendingSubFolderParent(null);
     setFolderDialogOpen(true);
   };
 
-  const handleEditFolder = (folderName: string) => {
+  const handleCreateSubFolder = (parentPath: string) => {
+    setFolderDialogMode('create');
+    setEditingFolderName('');
+    setPendingSubFolderParent(parentPath);
+    setFolderDialogOpen(true);
+  };
+
+  const handleEditFolder = (folderPath: string) => {
     setFolderDialogMode('edit');
-    setEditingFolderName(folderName);
+    // Show only the last segment name for editing
+    const parts = folderPath.split('/').filter(Boolean);
+    setEditingFolderName(parts[parts.length - 1] ?? folderPath);
+    setPendingSubFolderParent(null);
     setFolderDialogOpen(true);
+    // Store the full old path for renaming
+    _setOldFolderPath(folderPath);
   };
 
-  const handleDeleteFolder = (folderName: string) => {
-    // Move all videos from this folder to Uncategorized
-    const updatedVideos = editVideos.map(video => 
-      video.category === folderName 
-        ? { ...video, category: '' }
-        : video
-    );
+  // Internal state to track the full path being renamed
+  const [_oldFolderPath, _setOldFolderPath] = useState('');
+
+  const handleDeleteFolder = (folderPath: string) => {
+    // Move all videos from this folder (and sub-folders) to root
+    const updatedVideos = editVideos.map(video => {
+      const cat = video.category ?? '';
+      if (cat === folderPath || cat.startsWith(folderPath + '/')) {
+        return { ...video, category: '' };
+      }
+      return video;
+    });
     
-    // Update all videos at once
     updatedVideos.forEach((video, index) => {
-      if (editVideos[index].category === folderName) {
+      const oldCat = editVideos[index].category ?? '';
+      if (oldCat === folderPath || oldCat.startsWith(folderPath + '/')) {
         onUpdateVideo(index, video);
       }
     });
 
-    // Remove from empty folders list
-    setEmptyFolders(emptyFolders.filter(folder => folder !== folderName));
-    // Remove from expanded folders
+    // Remove folder and all sub-folder paths from emptyFolders
+    setEmptyFolders(emptyFolders.filter(f => f !== folderPath && !f.startsWith(folderPath + '/')));
+
     setExpandedFolders(prev => {
-      const newExpanded = new Set(prev);
-      newExpanded.delete(folderName);
-      return newExpanded;
+      const next = new Set(prev);
+      next.delete(folderPath);
+      prev.forEach(p => { if (p.startsWith(folderPath + '/')) next.delete(p); });
+      return next;
     });
 
+    const folderName = folderPath.split('/').pop() ?? folderPath;
     toast({
       title: "Folder Deleted",
-      description: `"${folderName}" folder deleted. Videos moved to Uncategorized.`,
+      description: `"${folderName}" deleted. Videos moved to root.`,
     });
   };
 
@@ -78,39 +100,75 @@ export function useFolderManagement({
     
     toast({
       title: "Video Moved",
-      description: `Video moved to "${targetFolder}" folder.`,
+      description: `Video moved to "${targetFolder.split('/').pop()}" folder.`,
     });
   };
 
-  const handleFolderSave = (folderName: string) => {
+  const handleFolderSave = (folderNameInput: string) => {
+    const folderName = folderNameInput.trim();
+    if (!folderName) return;
+
     if (folderDialogMode === 'create') {
-      // Add to empty folders list immediately
-      setEmptyFolders([...emptyFolders, folderName]);
-      // Auto-expand the new folder
-      setExpandedFolders(prev => new Set([...prev, folderName]));
-      onCreateCategory(folderName);
+      // Build full path: if sub-folder, prepend parent path
+      const fullPath = pendingSubFolderParent
+        ? `${pendingSubFolderParent}/${folderName}`
+        : folderName;
+
+      setEmptyFolders([...emptyFolders, fullPath]);
+      setExpandedFolders(prev => {
+        const next = new Set([...prev, fullPath]);
+        if (pendingSubFolderParent) next.add(pendingSubFolderParent);
+        return next;
+      });
+      onCreateCategory(fullPath);
       toast({
         title: "Folder Created",
-        description: `"${folderName}" folder created successfully.`,
+        description: pendingSubFolderParent
+          ? `Sub-folder "${folderName}" created inside "${pendingSubFolderParent.split('/').pop()}".`
+          : `"${folderName}" folder created.`,
       });
+      setPendingSubFolderParent(null);
     } else {
-      // Rename folder - update all videos with the old folder name
-      const updatedVideos = editVideos.map(video => 
-        video.category === editingFolderName 
-          ? { ...video, category: folderName }
-          : video
-      );
-      
+      // Rename: rebuild path with new last segment
+      const oldPath = _oldFolderPath;
+      const parts = oldPath.split('/').filter(Boolean);
+      parts[parts.length - 1] = folderName;
+      const newPath = parts.join('/');
+
+      if (oldPath === newPath) return;
+
+      // Repath all videos
+      const updatedVideos = editVideos.map(video => {
+        const cat = video.category ?? '';
+        if (cat === oldPath) return { ...video, category: newPath };
+        if (cat.startsWith(oldPath + '/')) return { ...video, category: newPath + cat.slice(oldPath.length) };
+        return video;
+      });
       updatedVideos.forEach((video, index) => {
-        if (editVideos[index].category === editingFolderName) {
+        if (video.category !== editVideos[index].category) {
           onUpdateVideo(index, video);
         }
       });
 
-      // Update empty folders list if this was an empty folder
+      // Repath emptyFolders
       setEmptyFolders(
-        emptyFolders.map(folder => folder === editingFolderName ? folderName : folder)
+        emptyFolders.map(f => {
+          if (f === oldPath) return newPath;
+          if (f.startsWith(oldPath + '/')) return newPath + f.slice(oldPath.length);
+          return f;
+        })
       );
+
+      // Update expandedFolders
+      setExpandedFolders(prev => {
+        const next = new Set<string>();
+        prev.forEach(p => {
+          if (p === oldPath) next.add(newPath);
+          else if (p.startsWith(oldPath + '/')) next.add(newPath + p.slice(oldPath.length));
+          else next.add(p);
+        });
+        return next;
+      });
 
       toast({
         title: "Folder Renamed",
@@ -128,6 +186,7 @@ export function useFolderManagement({
     expandedFolders,
     setExpandedFolders,
     handleCreateFolder,
+    handleCreateSubFolder,
     handleEditFolder,
     handleDeleteFolder,
     handleMoveVideoToFolder,
