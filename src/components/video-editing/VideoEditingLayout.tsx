@@ -195,6 +195,7 @@ export function VideoEditingLayout({
           onOpenChange={onFolderDialogOpenChange}
           mode={folderDialogMode}
           initialName={editingFolderName}
+          parentPath={pendingSubFolderParent}
           onSave={onFolderSave}
         />
       </>
