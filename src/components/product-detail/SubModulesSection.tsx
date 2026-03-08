@@ -26,8 +26,8 @@ export function SubModulesSection({ parentProductId }: SubModulesSectionProps) {
       if (!error && data) {
         setSubModules(data.map(p => ({
           ...p,
-          training_videos: Array.isArray(p.training_videos) ? p.training_videos : [],
-        })) as Product[]);
+          training_videos: Array.isArray(p.training_videos) ? (p.training_videos as unknown as Product['training_videos']) : [],
+        })) as unknown as Product[]);
       }
       setLoading(false);
     }
