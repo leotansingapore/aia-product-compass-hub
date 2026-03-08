@@ -295,6 +295,7 @@ export default function ProductCategory() {
           onEditProduct={handleEditProduct}
           onDeleteProduct={handleDeleteProduct}
           onTogglePublish={handleToggleProductPublish}
+          onNestingChange={refetch}
         />
       </div>
     </PageLayout>

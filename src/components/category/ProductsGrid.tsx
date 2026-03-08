@@ -1,4 +1,4 @@
-import { ProductCard } from "@/components/ProductCard";
+import { NestedProductsGrid, type NestedProduct } from "./NestedProductsGrid";
 import { Button } from "@/components/ui/button";
 
 interface Product {
@@ -8,6 +8,8 @@ interface Product {
   tags?: string[];
   highlights?: string[];
   published?: boolean;
+  parent_product_id?: string | null;
+  sort_order?: number;
 }
 
 interface ProductsGridProps {
@@ -18,6 +20,7 @@ interface ProductsGridProps {
   onEditProduct?: (productId: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => void;
   onDeleteProduct?: (productId: string) => void;
   onTogglePublish?: (productId: string, published: boolean) => void;
+  onNestingChange?: () => void;
 }
 
 export function ProductsGrid({ 
@@ -27,7 +30,8 @@ export function ProductsGrid({
   onClearFilters,
   onEditProduct,
   onDeleteProduct,
-  onTogglePublish
+  onTogglePublish,
+  onNestingChange,
 }: ProductsGridProps) {
   if (products.length === 0) {
     return (
@@ -47,24 +51,15 @@ export function ProductsGrid({
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-6 animate-fade-in">
-      {products.map((product, index) => (
-        <div key={product.id} style={{ animationDelay: `${index * 0.05}s` }} className="animate-fade-in h-full">
-          <ProductCard
-            title={product.title}
-            description={product.description || ''}
-            category={categoryName}
-            tags={product.tags || []}
-            highlights={product.highlights || []}
-            onClick={() => onProductClick(product.id)}
-            productId={product.id}
-            published={product.published}
-            onEdit={onEditProduct}
-            onDelete={onDeleteProduct}
-            onTogglePublish={onTogglePublish}
-          />
-        </div>
-      ))}
-    </div>
+    <NestedProductsGrid
+      products={products as NestedProduct[]}
+      categoryName={categoryName}
+      onProductClick={onProductClick}
+      onClearFilters={onClearFilters}
+      onEditProduct={onEditProduct}
+      onDeleteProduct={onDeleteProduct}
+      onTogglePublish={onTogglePublish}
+      onNestingChange={onNestingChange || (() => {})}
+    />
   );
 }
