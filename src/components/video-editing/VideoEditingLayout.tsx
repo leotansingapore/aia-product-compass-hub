@@ -77,6 +77,7 @@ export function VideoEditingLayout({
   onFolderSave,
   onReorderVideos,
   onReorderFolders,
+  onCreateSubFolder,
   lastSavedAt,
   onEditorEditingStateChange,
   sidebarSaveStatus = 'idle',
