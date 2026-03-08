@@ -59,6 +59,8 @@ export interface Product {
   chatbot_3_name?: string;
   chatbot_button_text?: string;
   published?: boolean;
+  parent_product_id?: string | null;
+  sort_order?: number;
   created_at: string;
   updated_at: string;
 }

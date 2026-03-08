@@ -1111,8 +1111,10 @@ export type Database = {
           description: string | null
           highlights: string[] | null
           id: string
+          parent_product_id: string | null
           published: boolean
           rich_content: string | null
+          sort_order: number
           tags: string[] | null
           title: string
           training_videos: Json | null
@@ -1134,8 +1136,10 @@ export type Database = {
           description?: string | null
           highlights?: string[] | null
           id: string
+          parent_product_id?: string | null
           published?: boolean
           rich_content?: string | null
+          sort_order?: number
           tags?: string[] | null
           title: string
           training_videos?: Json | null
@@ -1157,8 +1161,10 @@ export type Database = {
           description?: string | null
           highlights?: string[] | null
           id?: string
+          parent_product_id?: string | null
           published?: boolean
           rich_content?: string | null
+          sort_order?: number
           tags?: string[] | null
           title?: string
           training_videos?: Json | null
@@ -1171,6 +1177,13 @@ export type Database = {
             columns: ["category_id"]
             isOneToOne: false
             referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "products_parent_product_id_fkey"
+            columns: ["parent_product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
             referencedColumns: ["id"]
           },
         ]
