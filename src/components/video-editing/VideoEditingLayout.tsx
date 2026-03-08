@@ -40,6 +40,7 @@ interface VideoEditingLayoutProps {
   onFolderSave: (folderName: string) => void;
   onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
   onReorderFolders?: (folderOrder: string[]) => void;
+  onCreateSubFolder?: (parentPath: string) => void;
   lastSavedAt?: number;
   onEditorEditingStateChange?: (isEditing: boolean) => void;
   sidebarSaveStatus?: 'idle' | 'saving' | 'saved';
