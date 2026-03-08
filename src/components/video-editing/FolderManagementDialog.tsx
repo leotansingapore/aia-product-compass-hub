@@ -67,7 +67,7 @@ export function FolderManagementDialog({
         <div className="space-y-4">
           {isSubFolder && parentName && (
             <div className="flex items-center gap-2 px-3 py-2 rounded-md bg-muted/50 text-sm text-muted-foreground">
-              <Folder className="h-4 w-4 text-blue-500 flex-shrink-0" />
+              <Folder className="h-4 w-4 text-primary flex-shrink-0" />
               <span>Inside <strong className="text-foreground">{parentName}</strong></span>
             </div>
           )}
