@@ -83,9 +83,16 @@ serve(async (req) => {
     // Mode: bulk-update — update fields on multiple scripts by ID
     if (mode === "bulk-update" && body.updates && Array.isArray(body.updates)) {
       let updated = 0;
+      let deleted = 0;
       for (const u of body.updates) {
-        const { id, ...fields } = u;
+        const { id, _delete, ...fields } = u;
         if (!id) continue;
+        if (_delete) {
+          const { error: dErr } = await supabase.from("scripts").delete().eq("id", id);
+          if (dErr) { console.error(`bulk-delete error for ${id}:`, dErr); }
+          else { deleted++; }
+          continue;
+        }
         fields.updated_at = new Date().toISOString();
         const { error: uErr } = await supabase.from("scripts").update(fields).eq("id", id);
         if (uErr) {
@@ -94,7 +101,7 @@ serve(async (req) => {
           updated++;
         }
       }
-      return new Response(JSON.stringify({ message: "Bulk update complete", updated }), {
+      return new Response(JSON.stringify({ message: "Bulk update complete", updated, deleted }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
