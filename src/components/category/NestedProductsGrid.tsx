@@ -626,17 +626,11 @@ export function NestedProductsGrid({
         </SortableContext>
       </div>
 
-      <DragOverlay>
+      <DragOverlay dropAnimation={null}>
         {activeProduct && (
-          <div className="opacity-90 rotate-1 scale-105 shadow-2xl">
-            <ProductCard
-              title={activeProduct.title}
-              description={activeProduct.description || ''}
-              category={categoryName}
-              tags={activeProduct.tags || []}
-              highlights={activeProduct.highlights || []}
-              onClick={() => {}}
-            />
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-background border shadow-xl text-sm font-semibold text-foreground cursor-grabbing select-none max-w-[220px]">
+            <GripVertical className="h-4 w-4 text-muted-foreground shrink-0" />
+            <span className="truncate">{activeProduct.title}</span>
           </div>
         )}
       </DragOverlay>
