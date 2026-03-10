@@ -431,31 +431,26 @@ export function NestedProductsGrid({
     );
   }
 
-  // Non-admin: simple read-only recursive view
+  // Non-admin: simple read-only recursive view (no DnD context needed)
   if (!isAdmin()) {
-    const renderNode = (product: NestedProduct, depth = 0) => {
+    const renderNode = (product: NestedProduct, depth = 0): React.ReactNode => {
       const visibleChildren = isViewingAsUser
         ? (product.children || []).filter(c => c.published !== false)
         : (product.children || []);
 
       if (visibleChildren.length > 0) {
         return (
-          <FolderProductCard
+          <ReadOnlyFolderCard
             key={product.id}
             product={product}
-            shared={{
-              categoryName,
-              onProductClick,
-              onEditProduct,
-              onDeleteProduct,
-              onTogglePublish,
-              onNestingChange,
-              overId: null,
-              activeId: null,
-              isAdmin: false,
-              isViewingAsUser,
-              depth,
-            }}
+            depth={depth}
+            categoryName={categoryName}
+            onProductClick={onProductClick}
+            onEditProduct={onEditProduct}
+            onDeleteProduct={onDeleteProduct}
+            onTogglePublish={onTogglePublish}
+            isViewingAsUser={isViewingAsUser}
+            renderNode={renderNode}
           />
         );
       }
