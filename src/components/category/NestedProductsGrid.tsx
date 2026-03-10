@@ -133,25 +133,18 @@ function DraggableProductCard({
     <div
       ref={setNodeRef}
       style={style}
+      {...(shared.isAdmin ? { ...attributes, ...listeners } : {})}
       className={cn(
         "relative rounded-xl transition-all duration-200",
+        shared.isAdmin && "cursor-grab active:cursor-grabbing",
         isDragging && "opacity-40 scale-95",
         isDropTarget && "ring-2 ring-primary ring-offset-2 bg-primary/5 scale-[1.02]"
       )}
     >
-      {/* Drag handle overlay — covers the whole card so user can grab from anywhere */}
+      {/* Grip icon hint — visual only, drag works on whole card */}
       {shared.isAdmin && (
-        <div
-          {...attributes}
-          {...listeners}
-          className="absolute inset-0 z-10 rounded-xl cursor-grab active:cursor-grabbing"
-          title="Drag onto another card to nest it inside"
-          onClick={e => e.stopPropagation()}
-        >
-          {/* Grip icon hint in top-left corner */}
-          <div className="absolute top-2 left-2 p-1.5 rounded-md bg-background/80 border shadow-sm pointer-events-none select-none">
-            <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
-          </div>
+        <div className="absolute top-2 left-2 z-20 pointer-events-none p-1.5 rounded-md bg-background/80 border shadow-sm select-none">
+          <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
         </div>
       )}
       {isDropTarget && (
