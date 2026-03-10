@@ -139,19 +139,23 @@ function DraggableProductCard({
         isDropTarget && "ring-2 ring-primary ring-offset-2 bg-primary/5 scale-[1.02]"
       )}
     >
+      {/* Drag handle overlay — covers the whole card so user can grab from anywhere */}
       {shared.isAdmin && (
         <div
           {...attributes}
           {...listeners}
-          className="absolute top-2 left-2 z-20 cursor-grab active:cursor-grabbing p-1.5 rounded-md bg-background/90 border shadow-sm hover:bg-muted transition-colors select-none"
+          className="absolute inset-0 z-10 rounded-xl cursor-grab active:cursor-grabbing"
           title="Drag onto another card to nest it inside"
           onClick={e => e.stopPropagation()}
         >
-          <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
+          {/* Grip icon hint in top-left corner */}
+          <div className="absolute top-2 left-2 p-1.5 rounded-md bg-background/80 border shadow-sm pointer-events-none select-none">
+            <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
+          </div>
         </div>
       )}
       {isDropTarget && (
-        <div className="absolute inset-0 rounded-xl flex items-end justify-center pb-2 pointer-events-none z-10">
+        <div className="absolute inset-0 rounded-xl flex items-end justify-center pb-2 pointer-events-none z-20">
           <span className="bg-primary text-primary-foreground text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">
             Drop to nest inside "{product.title}"
           </span>
@@ -170,10 +174,10 @@ function DraggableProductCard({
         onDelete={shared.onDeleteProduct}
         onTogglePublish={shared.onTogglePublish}
       />
-      {/* Un-nest button below the card — clear & unambiguous */}
+      {/* Un-nest button below the card */}
       {shared.isAdmin && isNested && onUnNest && (
         <button
-          className="w-full mt-1 py-1 text-[11px] font-medium text-muted-foreground hover:text-foreground bg-muted/60 hover:bg-muted border border-dashed border-border rounded-lg transition-colors flex items-center justify-center gap-1"
+          className="w-full mt-1 py-1 text-[11px] font-medium text-muted-foreground hover:text-foreground bg-muted/60 hover:bg-muted border border-dashed border-border rounded-lg transition-colors flex items-center justify-center gap-1 relative z-20"
           onClick={e => { e.stopPropagation(); onUnNest(); }}
         >
           ↑ Remove from folder
