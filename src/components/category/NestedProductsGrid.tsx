@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronRight, FolderOpen, GripVertical } from "lucide-react";
@@ -326,6 +326,71 @@ function FolderProductCard({
 }
 
 // ─────────────────────────────────────────────
+// Read-only folder card (no DnD hooks — safe for non-admin view)
+// ─────────────────────────────────────────────
+interface ReadOnlyFolderCardProps {
+  product: NestedProduct;
+  depth: number;
+  categoryName: string;
+  onProductClick: (id: string) => void;
+  onEditProduct?: SharedCardProps['onEditProduct'];
+  onDeleteProduct?: SharedCardProps['onDeleteProduct'];
+  onTogglePublish?: SharedCardProps['onTogglePublish'];
+  isViewingAsUser: boolean;
+  renderNode: (product: NestedProduct, depth?: number) => React.ReactNode;
+}
+
+function ReadOnlyFolderCard({
+  product, depth, categoryName, onProductClick,
+  onEditProduct, onDeleteProduct, onTogglePublish,
+  isViewingAsUser, renderNode,
+}: ReadOnlyFolderCardProps) {
+  const [expanded, setExpanded] = useState(true);
+  const visibleChildren = isViewingAsUser
+    ? (product.children || []).filter(c => c.published !== false)
+    : (product.children || []);
+
+  return (
+    <div className={cn(
+      "col-span-full rounded-2xl border bg-card",
+      depth > 0 && "border-border/60 bg-muted/20"
+    )}>
+      <div className="flex items-center gap-2 p-3 sm:p-4">
+        <button
+          onClick={() => setExpanded(e => !e)}
+          className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
+        >
+          {expanded
+            ? <ChevronDown className="h-4 w-4 shrink-0" />
+            : <ChevronRight className="h-4 w-4 shrink-0" />}
+          <FolderOpen className={cn("h-4 w-4 shrink-0", depth === 0 ? "text-primary" : "text-secondary-foreground")} />
+        </button>
+        <button
+          className="font-semibold text-sm sm:text-base hover:text-primary transition-colors truncate text-left"
+          onClick={() => onProductClick(product.id)}
+        >
+          {product.title}
+        </button>
+        <span className="text-xs text-muted-foreground shrink-0">
+          {visibleChildren.length} sub-module{visibleChildren.length !== 1 ? 's' : ''}
+        </span>
+      </div>
+      {expanded && visibleChildren.length > 0 && (
+        <div className={cn("px-3 sm:px-4 pb-4", depth > 0 && "ml-4 border-l-2 border-border/50")}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+            {visibleChildren.map(child => (
+              <React.Fragment key={child.id}>
+                {renderNode(child, depth + 1)}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────
 // Main grid
 // ─────────────────────────────────────────────
 interface NestedProductsGridProps {
@@ -431,31 +496,26 @@ export function NestedProductsGrid({
     );
   }
 
-  // Non-admin: simple read-only recursive view
+  // Non-admin: simple read-only recursive view (no DnD context needed)
   if (!isAdmin()) {
-    const renderNode = (product: NestedProduct, depth = 0) => {
+    const renderNode = (product: NestedProduct, depth = 0): React.ReactNode => {
       const visibleChildren = isViewingAsUser
         ? (product.children || []).filter(c => c.published !== false)
         : (product.children || []);
 
       if (visibleChildren.length > 0) {
         return (
-          <FolderProductCard
+          <ReadOnlyFolderCard
             key={product.id}
             product={product}
-            shared={{
-              categoryName,
-              onProductClick,
-              onEditProduct,
-              onDeleteProduct,
-              onTogglePublish,
-              onNestingChange,
-              overId: null,
-              activeId: null,
-              isAdmin: false,
-              isViewingAsUser,
-              depth,
-            }}
+            depth={depth}
+            categoryName={categoryName}
+            onProductClick={onProductClick}
+            onEditProduct={onEditProduct}
+            onDeleteProduct={onDeleteProduct}
+            onTogglePublish={onTogglePublish}
+            isViewingAsUser={isViewingAsUser}
+            renderNode={renderNode}
           />
         );
       }
