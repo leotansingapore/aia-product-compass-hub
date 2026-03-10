@@ -309,25 +309,19 @@ function FolderProductCard({
 
                 if (hasGrandchildren) {
                   return (
-                    <div key={child.id} className="col-span-full relative group">
+                    <div key={child.id} className="col-span-full">
                       <FolderProductCard product={child} shared={childShared} />
                     </div>
                   );
                 }
 
                 return (
-                  <div key={child.id} className="relative group">
-                    <DraggableProductCard product={child} shared={childShared} />
-                    {shared.isAdmin && (
-                      <button
-                        className="absolute top-2 right-10 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-background/90 border rounded px-1.5 py-0.5 text-[10px] text-muted-foreground hover:text-foreground"
-                        onClick={e => { e.stopPropagation(); handleUnNest(child.id); }}
-                        title="Remove from parent"
-                      >
-                        ↑ Un-nest
-                      </button>
-                    )}
-                  </div>
+                  <DraggableProductCard
+                    key={child.id}
+                    product={child}
+                    shared={childShared}
+                    onUnNest={() => handleUnNest(child.id)}
+                  />
                 );
               })}
             </div>
