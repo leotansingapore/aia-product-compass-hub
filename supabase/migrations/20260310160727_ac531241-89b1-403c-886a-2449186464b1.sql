@@ -1,0 +1,1 @@
+UPDATE products SET parent_product_id = NULL WHERE id IN ('elite-secure-income', 'competitors-investment', 'platinum-retirement-elite');
