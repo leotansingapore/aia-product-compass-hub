@@ -255,7 +255,7 @@ function FolderProductCard({
             {expanded
               ? <ChevronDown className="h-4 w-4 shrink-0" />
               : <ChevronRight className="h-4 w-4 shrink-0" />}
-            <FolderOpen className={cn("h-4 w-4 shrink-0", depth === 0 ? "text-primary" : "text-amber-500")} />
+            <FolderOpen className={cn("h-4 w-4 shrink-0", depth === 0 ? "text-primary" : "text-secondary-foreground")} />
           </button>
           <button
             className="font-semibold text-sm sm:text-base hover:text-primary transition-colors truncate text-left"
