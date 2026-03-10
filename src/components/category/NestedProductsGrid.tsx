@@ -177,10 +177,10 @@ function DraggableProductCard({
       {/* Un-nest button below the card */}
       {shared.isAdmin && isNested && onUnNest && (
         <button
-          className="w-full mt-1 py-1 text-[11px] font-medium text-muted-foreground hover:text-foreground bg-muted/60 hover:bg-muted border border-dashed border-border rounded-lg transition-colors flex items-center justify-center gap-1 relative z-20"
+          className="w-full mt-1.5 py-1.5 text-[11px] font-semibold text-primary hover:text-primary-foreground bg-primary/8 hover:bg-primary border border-primary/30 hover:border-primary rounded-lg transition-all duration-150 flex items-center justify-center gap-1.5 relative z-20"
           onClick={e => { e.stopPropagation(); onUnNest(); }}
         >
-          ↑ Remove from folder
+          <span>↑</span> Move out of folder
         </button>
       )}
     </div>
@@ -600,7 +600,7 @@ export function NestedProductsGrid({
       <div className="space-y-3 sm:space-y-4 animate-fade-in">
         <p className="text-xs text-muted-foreground flex items-center gap-1.5 pb-1">
           <GripVertical className="h-3.5 w-3.5 shrink-0" />
-          Drag a card onto another to nest it inside it. Nested cards show an <span className="font-medium text-foreground">↑ Un-nest</span> button to move them back.
+          Drag a card onto another to nest it. To un-nest, use the <span className="font-semibold text-primary">↑ Move out of folder</span> button that appears below each nested card.
         </p>
 
         <SortableContext items={allIds} strategy={rectSortingStrategy}>
