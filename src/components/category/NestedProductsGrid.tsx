@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronRight, FolderOpen, GripVertical, Layers } from "lucide-react";
+import { ChevronDown, ChevronRight, FolderOpen, GripVertical } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
@@ -37,21 +37,89 @@ export interface NestedProduct {
   children?: NestedProduct[];
 }
 
-interface DraggableProductCardProps {
-  product: NestedProduct;
+/** Recursively build a tree from a flat list */
+function buildTree(products: NestedProduct[]): NestedProduct[] {
+  const map: Record<string, NestedProduct> = {};
+  const roots: NestedProduct[] = [];
+
+  // Clone each product and init children array
+  products.forEach(p => {
+    map[p.id] = { ...p, children: [] };
+  });
+
+  products.forEach(p => {
+    if (p.parent_product_id && map[p.parent_product_id]) {
+      map[p.parent_product_id].children!.push(map[p.id]);
+    } else if (!p.parent_product_id) {
+      roots.push(map[p.id]);
+    }
+  });
+
+  // Sort children by sort_order
+  const sortChildren = (nodes: NestedProduct[]) => {
+    nodes.sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+    nodes.forEach(n => sortChildren(n.children || []));
+  };
+  sortChildren(roots);
+
+  return roots;
+}
+
+/** Collect all descendant IDs of a node */
+function getDescendantIds(product: NestedProduct): string[] {
+  const ids: string[] = [];
+  const traverse = (p: NestedProduct) => {
+    ids.push(p.id);
+    (p.children || []).forEach(traverse);
+  };
+  (product.children || []).forEach(traverse);
+  return ids;
+}
+
+/** Collect all IDs in the tree (for SortableContext) */
+function getAllIds(nodes: NestedProduct[]): string[] {
+  const ids: string[] = [];
+  const traverse = (p: NestedProduct) => {
+    ids.push(p.id);
+    (p.children || []).forEach(traverse);
+  };
+  nodes.forEach(traverse);
+  return ids;
+}
+
+// ─────────────────────────────────────────────
+// Shared props for recursive cards
+// ─────────────────────────────────────────────
+interface SharedCardProps {
   categoryName: string;
   onProductClick: (id: string) => void;
   onEditProduct?: (id: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => void;
   onDeleteProduct?: (id: string) => void;
   onTogglePublish?: (id: string, published: boolean) => void;
-  isDropTarget?: boolean;
+  onNestingChange: () => void;
+  overId: string | null;
+  activeId: string | null;
+  isAdmin: boolean;
+  isViewingAsUser: boolean;
+  depth?: number;
 }
 
-function DraggableProductCard({ product, categoryName, onProductClick, onEditProduct, onDeleteProduct, onTogglePublish, isDropTarget }: DraggableProductCardProps) {
+// ─────────────────────────────────────────────
+// Leaf card (no children)
+// ─────────────────────────────────────────────
+function DraggableProductCard({
+  product,
+  shared,
+}: {
+  product: NestedProduct;
+  shared: SharedCardProps;
+}) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: product.id,
     data: { type: 'product', product },
   });
+
+  const isDropTarget = shared.overId === product.id && shared.activeId !== product.id;
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -68,16 +136,17 @@ function DraggableProductCard({ product, categoryName, onProductClick, onEditPro
         isDropTarget && "ring-2 ring-primary ring-offset-2 bg-primary/5 scale-[1.02]"
       )}
     >
-      {/* Drag handle — always visible for admins */}
-      <div
-        {...attributes}
-        {...listeners}
-        className="absolute top-2 left-2 z-20 cursor-grab active:cursor-grabbing p-1.5 rounded-md bg-background/90 border shadow-sm hover:bg-muted transition-colors"
-        title="Drag to nest inside another module"
-        onClick={e => e.stopPropagation()}
-      >
-        <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
-      </div>
+      {shared.isAdmin && (
+        <div
+          {...attributes}
+          {...listeners}
+          className="absolute top-2 left-2 z-20 cursor-grab active:cursor-grabbing p-1.5 rounded-md bg-background/90 border shadow-sm hover:bg-muted transition-colors"
+          title="Drag to nest inside another module"
+          onClick={e => e.stopPropagation()}
+        >
+          <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
+        </div>
+      )}
       {isDropTarget && (
         <div className="absolute inset-0 rounded-xl flex items-end justify-center pb-2 pointer-events-none z-10">
           <span className="bg-primary text-primary-foreground text-[10px] font-semibold px-2 py-0.5 rounded-full">
@@ -88,38 +157,37 @@ function DraggableProductCard({ product, categoryName, onProductClick, onEditPro
       <ProductCard
         title={product.title}
         description={product.description || ''}
-        category={categoryName}
+        category={shared.categoryName}
         tags={product.tags || []}
         highlights={product.highlights || []}
-        onClick={() => onProductClick(product.id)}
+        onClick={() => shared.onProductClick(product.id)}
         productId={product.id}
         published={product.published}
-        onEdit={onEditProduct}
-        onDelete={onDeleteProduct}
-        onTogglePublish={onTogglePublish}
+        onEdit={shared.onEditProduct}
+        onDelete={shared.onDeleteProduct}
+        onTogglePublish={shared.onTogglePublish}
       />
     </div>
   );
 }
 
-interface ParentProductCardProps {
+// ─────────────────────────────────────────────
+// Folder card (has children) — renders recursively
+// ─────────────────────────────────────────────
+function FolderProductCard({
+  product,
+  shared,
+}: {
   product: NestedProduct;
-  categoryName: string;
-  onProductClick: (id: string) => void;
-  onEditProduct?: (id: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => void;
-  onDeleteProduct?: (id: string) => void;
-  onTogglePublish?: (id: string, published: boolean) => void;
-  onNestingChange: () => void;
-  isDropTarget?: boolean;
-}
-
-function ParentProductCard({ product, categoryName, onProductClick, onEditProduct, onDeleteProduct, onTogglePublish, onNestingChange, isDropTarget }: ParentProductCardProps) {
+  shared: SharedCardProps;
+}) {
   const [expanded, setExpanded] = useState(true);
-  const { isAdmin } = usePermissions();
-  const { isViewingAsUser } = useViewMode();
+  const depth = shared.depth ?? 0;
+  const isDropTarget = shared.overId === product.id && shared.activeId !== product.id;
+
   const { setNodeRef, attributes, listeners, transform, transition, isDragging } = useSortable({
     id: product.id,
-    data: { type: 'parent', product },
+    data: { type: 'folder', product },
   });
 
   const style = {
@@ -129,7 +197,11 @@ function ParentProductCard({ product, categoryName, onProductClick, onEditProduc
   };
 
   const children = product.children || [];
-  const visibleChildren = isViewingAsUser ? children.filter(c => c.published !== false) : children;
+  const visibleChildren = shared.isViewingAsUser
+    ? children.filter(c => c.published !== false)
+    : children;
+
+  const childIds = visibleChildren.map(c => c.id);
 
   const handleUnNest = async (childId: string) => {
     const { error } = await supabase
@@ -137,8 +209,21 @@ function ParentProductCard({ product, categoryName, onProductClick, onEditProduc
       .update({ parent_product_id: null })
       .eq('id', childId);
     if (error) toast.error('Failed to un-nest module');
-    else { toast.success('Module moved to top level'); onNestingChange(); }
+    else { toast.success('Module moved to top level'); shared.onNestingChange(); }
   };
+
+  const handleUnNestToParent = async (childId: string) => {
+    // Move child up one level (to this folder's parent)
+    const newParent = product.parent_product_id ?? null;
+    const { error } = await supabase
+      .from('products')
+      .update({ parent_product_id: newParent })
+      .eq('id', childId);
+    if (error) toast.error('Failed to move module');
+    else { toast.success('Module moved up one level'); shared.onNestingChange(); }
+  };
+
+  const indentClass = depth > 0 ? "ml-4 border-l-2 border-border/50" : "";
 
   return (
     <div
@@ -146,18 +231,19 @@ function ParentProductCard({ product, categoryName, onProductClick, onEditProduc
       style={style}
       className={cn(
         "col-span-full rounded-2xl border bg-card transition-all duration-200",
-        isDropTarget && "ring-2 ring-primary ring-offset-2 bg-primary/5"
+        isDropTarget && "ring-2 ring-primary ring-offset-2 bg-primary/5",
+        depth > 0 && "border-border/60 bg-muted/20"
       )}
     >
-      {/* Parent header */}
+      {/* Folder header */}
       <div className="flex items-center justify-between p-3 sm:p-4">
         <div className="flex items-center gap-2 min-w-0">
-          {isAdmin() && (
+          {shared.isAdmin && (
             <div
               {...attributes}
               {...listeners}
-              className="cursor-grab active:cursor-grabbing p-1 rounded hover:bg-muted"
-              title="Drag to reorder"
+              className="cursor-grab active:cursor-grabbing p-1 rounded hover:bg-muted shrink-0"
+              title="Drag to reorder or nest"
             >
               <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
             </div>
@@ -166,63 +252,82 @@ function ParentProductCard({ product, categoryName, onProductClick, onEditProduc
             onClick={() => setExpanded(e => !e)}
             className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
           >
-            {expanded ? <ChevronDown className="h-4 w-4 shrink-0" /> : <ChevronRight className="h-4 w-4 shrink-0" />}
-            <FolderOpen className="h-4 w-4 text-primary shrink-0" />
+            {expanded
+              ? <ChevronDown className="h-4 w-4 shrink-0" />
+              : <ChevronRight className="h-4 w-4 shrink-0" />}
+            <FolderOpen className={cn("h-4 w-4 shrink-0", depth === 0 ? "text-primary" : "text-secondary-foreground")} />
           </button>
           <button
             className="font-semibold text-sm sm:text-base hover:text-primary transition-colors truncate text-left"
-            onClick={() => onProductClick(product.id)}
+            onClick={() => shared.onProductClick(product.id)}
           >
             {product.title}
           </button>
           <span className="text-xs text-muted-foreground shrink-0">
             {visibleChildren.length} sub-module{visibleChildren.length !== 1 ? 's' : ''}
           </span>
+          {depth > 0 && shared.isAdmin && (
+            <button
+              className="shrink-0 text-[10px] text-muted-foreground hover:text-foreground border rounded px-1.5 py-0.5 bg-background/60 hover:bg-muted transition-colors"
+              onClick={e => { e.stopPropagation(); handleUnNestToParent(product.id); }}
+              title="Move up one level"
+            >
+              ↑ Move up
+            </button>
+          )}
         </div>
       </div>
 
-      {/* Drop zone label */}
+      {/* Drop zone indicator */}
       {isDropTarget && (
         <div className="mx-4 mb-3 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/30 text-xs text-primary text-center font-medium">
           Drop here to nest inside "{product.title}"
         </div>
       )}
 
-      {/* Children grid */}
+      {/* Children */}
       {expanded && visibleChildren.length > 0 && (
-        <div className="px-3 sm:px-4 pb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
-          {visibleChildren.map(child => (
-            <div key={child.id} className="relative group">
-              <ProductCard
-                title={child.title}
-                description={child.description || ''}
-                category={categoryName}
-                tags={child.tags || []}
-                highlights={child.highlights || []}
-                onClick={() => onProductClick(child.id)}
-                productId={child.id}
-                published={child.published}
-                onEdit={onEditProduct}
-                onDelete={onDeleteProduct}
-                onTogglePublish={onTogglePublish}
-              />
-              {isAdmin() && (
-                <button
-                  className="absolute top-2 right-10 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-background/90 border rounded px-1.5 py-0.5 text-[10px] text-muted-foreground hover:text-foreground"
-                  onClick={e => { e.stopPropagation(); handleUnNest(child.id); }}
-                  title="Remove from parent"
-                >
-                  ↑ Un-nest
-                </button>
-              )}
+        <div className={cn("px-3 sm:px-4 pb-4", indentClass)}>
+          <SortableContext items={childIds} strategy={rectSortingStrategy}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+              {visibleChildren.map(child => {
+                const hasGrandchildren = (child.children?.length ?? 0) > 0;
+                const childShared = { ...shared, depth: depth + 1 };
+
+                if (hasGrandchildren) {
+                  return (
+                    <div key={child.id} className="col-span-full relative group">
+                      <FolderProductCard product={child} shared={childShared} />
+                    </div>
+                  );
+                }
+
+                return (
+                  <div key={child.id} className="relative group">
+                    <DraggableProductCard product={child} shared={childShared} />
+                    {shared.isAdmin && (
+                      <button
+                        className="absolute top-2 right-10 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-background/90 border rounded px-1.5 py-0.5 text-[10px] text-muted-foreground hover:text-foreground"
+                        onClick={e => { e.stopPropagation(); handleUnNest(child.id); }}
+                        title="Remove from parent"
+                      >
+                        ↑ Un-nest
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-          ))}
+          </SortableContext>
         </div>
       )}
     </div>
   );
 }
 
+// ─────────────────────────────────────────────
+// Main grid
+// ─────────────────────────────────────────────
 interface NestedProductsGridProps {
   products: NestedProduct[];
   categoryName: string;
@@ -245,6 +350,7 @@ export function NestedProductsGrid({
   onNestingChange,
 }: NestedProductsGridProps) {
   const { isAdmin } = usePermissions();
+  const { isViewingAsUser } = useViewMode();
   const [activeId, setActiveId] = useState<string | null>(null);
   const [overId, setOverId] = useState<string | null>(null);
 
@@ -252,23 +358,9 @@ export function NestedProductsGrid({
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
   );
 
-  // Separate root products from children
-  const rootProducts = products.filter(p => !p.parent_product_id);
-  const childrenMap: Record<string, NestedProduct[]> = {};
-  products.forEach(p => {
-    if (p.parent_product_id) {
-      if (!childrenMap[p.parent_product_id]) childrenMap[p.parent_product_id] = [];
-      childrenMap[p.parent_product_id].push(p);
-    }
-  });
-
-  const rootWithChildren: NestedProduct[] = rootProducts.map(p => ({
-    ...p,
-    children: (childrenMap[p.id] || []).sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0)),
-  }));
-
+  const tree = buildTree(products);
+  const allIds = getAllIds(tree);
   const activeProduct = products.find(p => p.id === activeId);
-  const rootIds = rootWithChildren.map(p => p.id);
 
   const handleDragStart = (event: DragStartEvent) => {
     setActiveId(event.active.id as string);
@@ -287,37 +379,42 @@ export function NestedProductsGrid({
 
     const draggedId = active.id as string;
     const targetId = over.id as string;
-    const targetProduct = products.find(p => p.id === targetId);
 
-    if (!targetProduct) return;
+    // Prevent circular nesting: target must not be a descendant of dragged
+    const draggedNode = products.find(p => p.id === draggedId);
+    if (!draggedNode) return;
 
-    // Don't allow nesting into itself or into a child
-    if (targetProduct.parent_product_id === draggedId) {
-      toast.error("Can't nest a parent inside its own child");
+    // Build subtree of dragged node to check descendants
+    const draggedTree = buildTree(products).find(function findNode(n: NestedProduct): NestedProduct | undefined {
+      if (n.id === draggedId) return n;
+      for (const c of n.children || []) {
+        const found = findNode(c);
+        if (found) return found;
+      }
+    } as any);
+
+    // Get all descendant IDs to prevent circular reference
+    const descendantIds = draggedTree ? getDescendantIds(draggedTree) : [];
+    if (descendantIds.includes(targetId)) {
+      toast.error("Can't nest a module inside its own sub-module");
       return;
     }
 
-    // Only nest into root products (not already a child)
-    if (!targetProduct.parent_product_id) {
-      const draggedProduct = products.find(p => p.id === draggedId);
-      // Don't nest a parent that has children into another card
-      if (draggedProduct && childrenMap[draggedId]?.length > 0) {
-        toast.error("Can't nest a module that already has sub-modules");
-        return;
-      }
+    // Nest dragged into target
+    const targetProduct = products.find(p => p.id === targetId);
+    if (!targetProduct) return;
 
-      const { error } = await supabase
-        .from('products')
-        .update({ parent_product_id: targetId })
-        .eq('id', draggedId);
+    const { error } = await supabase
+      .from('products')
+      .update({ parent_product_id: targetId })
+      .eq('id', draggedId);
 
-      if (error) {
-        toast.error('Failed to nest module');
-        console.error(error);
-      } else {
-        toast.success(`"${draggedProduct?.title}" nested inside "${targetProduct.title}"`);
-        onNestingChange();
-      }
+    if (error) {
+      toast.error('Failed to nest module');
+      console.error(error);
+    } else {
+      toast.success(`"${draggedNode.title}" nested inside "${targetProduct.title}"`);
+      onNestingChange();
     }
   };
 
@@ -334,47 +431,74 @@ export function NestedProductsGrid({
     );
   }
 
-  // Non-admin: simple grid, no DnD
+  // Non-admin: simple read-only recursive view
   if (!isAdmin()) {
+    const renderNode = (product: NestedProduct, depth = 0) => {
+      const visibleChildren = isViewingAsUser
+        ? (product.children || []).filter(c => c.published !== false)
+        : (product.children || []);
+
+      if (visibleChildren.length > 0) {
+        return (
+          <FolderProductCard
+            key={product.id}
+            product={product}
+            shared={{
+              categoryName,
+              onProductClick,
+              onEditProduct,
+              onDeleteProduct,
+              onTogglePublish,
+              onNestingChange,
+              overId: null,
+              activeId: null,
+              isAdmin: false,
+              isViewingAsUser,
+              depth,
+            }}
+          />
+        );
+      }
+      return (
+        <div key={product.id} className="animate-fade-in">
+          <ProductCard
+            title={product.title}
+            description={product.description || ''}
+            category={categoryName}
+            tags={product.tags || []}
+            highlights={product.highlights || []}
+            onClick={() => onProductClick(product.id)}
+            productId={product.id}
+            published={product.published}
+            onEdit={onEditProduct}
+            onDelete={onDeleteProduct}
+            onTogglePublish={onTogglePublish}
+          />
+        </div>
+      );
+    };
+
     return (
       <div className="space-y-4 sm:space-y-6 animate-fade-in">
-        {rootWithChildren.map((product) => {
-          const hasChildren = (product.children?.length ?? 0) > 0;
-          if (hasChildren) {
-            return (
-              <ParentProductCard
-                key={product.id}
-                product={product}
-                categoryName={categoryName}
-                onProductClick={onProductClick}
-                onEditProduct={onEditProduct}
-                onDeleteProduct={onDeleteProduct}
-                onTogglePublish={onTogglePublish}
-                onNestingChange={onNestingChange}
-              />
-            );
-          }
-          return (
-            <div key={product.id} className="animate-fade-in">
-              <ProductCard
-                title={product.title}
-                description={product.description || ''}
-                category={categoryName}
-                tags={product.tags || []}
-                highlights={product.highlights || []}
-                onClick={() => onProductClick(product.id)}
-                productId={product.id}
-                published={product.published}
-                onEdit={onEditProduct}
-                onDelete={onDeleteProduct}
-                onTogglePublish={onTogglePublish}
-              />
-            </div>
-          );
-        })}
+        {tree.map(p => renderNode(p))}
       </div>
     );
   }
+
+  // Admin: DnD enabled
+  const shared: SharedCardProps = {
+    categoryName,
+    onProductClick,
+    onEditProduct,
+    onDeleteProduct,
+    onTogglePublish,
+    onNestingChange,
+    overId,
+    activeId,
+    isAdmin: true,
+    isViewingAsUser,
+    depth: 0,
+  };
 
   return (
     <DndContext
@@ -387,26 +511,17 @@ export function NestedProductsGrid({
       <div className="space-y-3 sm:space-y-4 animate-fade-in">
         <p className="text-xs text-muted-foreground flex items-center gap-1.5 pb-1">
           <GripVertical className="h-3.5 w-3.5" />
-          Drag a card (using the grip handle) onto another card to nest it as a sub-module
+          Drag a card onto another to nest it — supports unlimited depth like Google Drive
         </p>
 
-        <SortableContext items={rootIds} strategy={rectSortingStrategy}>
+        <SortableContext items={allIds} strategy={rectSortingStrategy}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-            {rootWithChildren.map((product) => {
+            {tree.map(product => {
               const hasChildren = (product.children?.length ?? 0) > 0;
               if (hasChildren) {
                 return (
                   <div key={product.id} className="col-span-full">
-                    <ParentProductCard
-                      product={product}
-                      categoryName={categoryName}
-                      onProductClick={onProductClick}
-                      onEditProduct={onEditProduct}
-                      onDeleteProduct={onDeleteProduct}
-                      onTogglePublish={onTogglePublish}
-                      onNestingChange={onNestingChange}
-                      isDropTarget={overId === product.id}
-                    />
+                    <FolderProductCard product={product} shared={shared} />
                   </div>
                 );
               }
@@ -414,12 +529,7 @@ export function NestedProductsGrid({
                 <DraggableProductCard
                   key={product.id}
                   product={product}
-                  categoryName={categoryName}
-                  onProductClick={onProductClick}
-                  onEditProduct={onEditProduct}
-                  onDeleteProduct={onDeleteProduct}
-                  onTogglePublish={onTogglePublish}
-                  isDropTarget={overId === product.id && activeId !== product.id}
+                  shared={shared}
                 />
               );
             })}
