@@ -150,16 +150,6 @@ function DraggableProductCard({
           <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
         </div>
       )}
-      {/* Always-visible un-nest button for nested cards */}
-      {shared.isAdmin && isNested && onUnNest && (
-        <button
-          className="absolute top-2 right-2 z-20 text-[10px] font-medium text-muted-foreground hover:text-foreground bg-background/90 border rounded-full px-2 py-0.5 shadow-sm hover:bg-muted transition-colors"
-          onClick={e => { e.stopPropagation(); onUnNest(); }}
-          title="Move back to top level"
-        >
-          ↑ Un-nest
-        </button>
-      )}
       {isDropTarget && (
         <div className="absolute inset-0 rounded-xl flex items-end justify-center pb-2 pointer-events-none z-10">
           <span className="bg-primary text-primary-foreground text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">
@@ -180,6 +170,15 @@ function DraggableProductCard({
         onDelete={shared.onDeleteProduct}
         onTogglePublish={shared.onTogglePublish}
       />
+      {/* Un-nest button below the card — clear & unambiguous */}
+      {shared.isAdmin && isNested && onUnNest && (
+        <button
+          className="w-full mt-1 py-1 text-[11px] font-medium text-muted-foreground hover:text-foreground bg-muted/60 hover:bg-muted border border-dashed border-border rounded-lg transition-colors flex items-center justify-center gap-1"
+          onClick={e => { e.stopPropagation(); onUnNest(); }}
+        >
+          ↑ Remove from folder
+        </button>
+      )}
     </div>
   );
 }
