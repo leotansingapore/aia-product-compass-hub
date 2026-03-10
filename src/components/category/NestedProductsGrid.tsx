@@ -110,9 +110,11 @@ interface SharedCardProps {
 function DraggableProductCard({
   product,
   shared,
+  onUnNest,
 }: {
   product: NestedProduct;
   shared: SharedCardProps;
+  onUnNest?: () => void;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: product.id,
@@ -120,6 +122,7 @@ function DraggableProductCard({
   });
 
   const isDropTarget = shared.overId === product.id && shared.activeId !== product.id;
+  const isNested = !!product.parent_product_id;
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -131,7 +134,7 @@ function DraggableProductCard({
       ref={setNodeRef}
       style={style}
       className={cn(
-        "relative rounded-xl transition-all duration-200 group",
+        "relative rounded-xl transition-all duration-200",
         isDragging && "opacity-40 scale-95",
         isDropTarget && "ring-2 ring-primary ring-offset-2 bg-primary/5 scale-[1.02]"
       )}
@@ -140,16 +143,26 @@ function DraggableProductCard({
         <div
           {...attributes}
           {...listeners}
-          className="absolute top-2 left-2 z-20 cursor-grab active:cursor-grabbing p-1.5 rounded-md bg-background/90 border shadow-sm hover:bg-muted transition-colors"
-          title="Drag to nest inside another module"
+          className="absolute top-2 left-2 z-20 cursor-grab active:cursor-grabbing p-1.5 rounded-md bg-background/90 border shadow-sm hover:bg-muted transition-colors select-none"
+          title="Drag onto another card to nest it inside"
           onClick={e => e.stopPropagation()}
         >
           <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
         </div>
       )}
+      {/* Always-visible un-nest button for nested cards */}
+      {shared.isAdmin && isNested && onUnNest && (
+        <button
+          className="absolute top-2 right-2 z-20 text-[10px] font-medium text-muted-foreground hover:text-foreground bg-background/90 border rounded-full px-2 py-0.5 shadow-sm hover:bg-muted transition-colors"
+          onClick={e => { e.stopPropagation(); onUnNest(); }}
+          title="Move back to top level"
+        >
+          ↑ Un-nest
+        </button>
+      )}
       {isDropTarget && (
         <div className="absolute inset-0 rounded-xl flex items-end justify-center pb-2 pointer-events-none z-10">
-          <span className="bg-primary text-primary-foreground text-[10px] font-semibold px-2 py-0.5 rounded-full">
+          <span className="bg-primary text-primary-foreground text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">
             Drop to nest inside "{product.title}"
           </span>
         </div>
