@@ -293,8 +293,8 @@ function FolderProductCard({
 
       {/* Drop zone indicator */}
       {isDropTarget && (
-        <div className="mx-4 mb-3 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/30 text-xs text-primary text-center font-medium">
-          Drop here to nest inside "{product.title}"
+        <div className="mx-4 mb-3 px-3 py-2 rounded-lg bg-primary/10 border-2 border-primary/50 border-dashed text-xs text-primary text-center font-semibold animate-pulse">
+          📂 Drop here to nest inside "{product.title}"
         </div>
       )}
 
