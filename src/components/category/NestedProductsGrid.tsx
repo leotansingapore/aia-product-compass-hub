@@ -110,9 +110,11 @@ interface SharedCardProps {
 function DraggableProductCard({
   product,
   shared,
+  onUnNest,
 }: {
   product: NestedProduct;
   shared: SharedCardProps;
+  onUnNest?: () => void;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: product.id,
@@ -120,6 +122,7 @@ function DraggableProductCard({
   });
 
   const isDropTarget = shared.overId === product.id && shared.activeId !== product.id;
+  const isNested = !!product.parent_product_id;
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -131,7 +134,7 @@ function DraggableProductCard({
       ref={setNodeRef}
       style={style}
       className={cn(
-        "relative rounded-xl transition-all duration-200 group",
+        "relative rounded-xl transition-all duration-200",
         isDragging && "opacity-40 scale-95",
         isDropTarget && "ring-2 ring-primary ring-offset-2 bg-primary/5 scale-[1.02]"
       )}
@@ -140,16 +143,26 @@ function DraggableProductCard({
         <div
           {...attributes}
           {...listeners}
-          className="absolute top-2 left-2 z-20 cursor-grab active:cursor-grabbing p-1.5 rounded-md bg-background/90 border shadow-sm hover:bg-muted transition-colors"
-          title="Drag to nest inside another module"
+          className="absolute top-2 left-2 z-20 cursor-grab active:cursor-grabbing p-1.5 rounded-md bg-background/90 border shadow-sm hover:bg-muted transition-colors select-none"
+          title="Drag onto another card to nest it inside"
           onClick={e => e.stopPropagation()}
         >
           <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
         </div>
       )}
+      {/* Always-visible un-nest button for nested cards */}
+      {shared.isAdmin && isNested && onUnNest && (
+        <button
+          className="absolute top-2 right-2 z-20 text-[10px] font-medium text-muted-foreground hover:text-foreground bg-background/90 border rounded-full px-2 py-0.5 shadow-sm hover:bg-muted transition-colors"
+          onClick={e => { e.stopPropagation(); onUnNest(); }}
+          title="Move back to top level"
+        >
+          ↑ Un-nest
+        </button>
+      )}
       {isDropTarget && (
         <div className="absolute inset-0 rounded-xl flex items-end justify-center pb-2 pointer-events-none z-10">
-          <span className="bg-primary text-primary-foreground text-[10px] font-semibold px-2 py-0.5 rounded-full">
+          <span className="bg-primary text-primary-foreground text-[10px] font-semibold px-2 py-0.5 rounded-full shadow">
             Drop to nest inside "{product.title}"
           </span>
         </div>
@@ -280,8 +293,8 @@ function FolderProductCard({
 
       {/* Drop zone indicator */}
       {isDropTarget && (
-        <div className="mx-4 mb-3 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/30 text-xs text-primary text-center font-medium">
-          Drop here to nest inside "{product.title}"
+        <div className="mx-4 mb-3 px-3 py-2 rounded-lg bg-primary/10 border-2 border-primary/50 border-dashed text-xs text-primary text-center font-semibold animate-pulse">
+          📂 Drop here to nest inside "{product.title}"
         </div>
       )}
 
@@ -296,25 +309,19 @@ function FolderProductCard({
 
                 if (hasGrandchildren) {
                   return (
-                    <div key={child.id} className="col-span-full relative group">
+                    <div key={child.id} className="col-span-full">
                       <FolderProductCard product={child} shared={childShared} />
                     </div>
                   );
                 }
 
                 return (
-                  <div key={child.id} className="relative group">
-                    <DraggableProductCard product={child} shared={childShared} />
-                    {shared.isAdmin && (
-                      <button
-                        className="absolute top-2 right-10 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-background/90 border rounded px-1.5 py-0.5 text-[10px] text-muted-foreground hover:text-foreground"
-                        onClick={e => { e.stopPropagation(); handleUnNest(child.id); }}
-                        title="Remove from parent"
-                      >
-                        ↑ Un-nest
-                      </button>
-                    )}
-                  </div>
+                  <DraggableProductCard
+                    key={child.id}
+                    product={child}
+                    shared={childShared}
+                    onUnNest={() => handleUnNest(child.id)}
+                  />
                 );
               })}
             </div>
@@ -420,7 +427,7 @@ export function NestedProductsGrid({
   const [overId, setOverId] = useState<string | null>(null);
 
   const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
   );
 
   const tree = buildTree(products);
@@ -589,8 +596,8 @@ export function NestedProductsGrid({
     >
       <div className="space-y-3 sm:space-y-4 animate-fade-in">
         <p className="text-xs text-muted-foreground flex items-center gap-1.5 pb-1">
-          <GripVertical className="h-3.5 w-3.5" />
-          Drag a card onto another to nest it — supports unlimited depth like Google Drive
+          <GripVertical className="h-3.5 w-3.5 shrink-0" />
+          Drag a card onto another to nest it inside it. Nested cards show an <span className="font-medium text-foreground">↑ Un-nest</span> button to move them back.
         </p>
 
         <SortableContext items={allIds} strategy={rectSortingStrategy}>
