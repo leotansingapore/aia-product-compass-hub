@@ -10,7 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import {
   DndContext,
   DragOverlay,
-  closestCenter,
+  pointerWithin,
   useSensor,
   useSensors,
   PointerSensor,
@@ -585,7 +585,7 @@ export function NestedProductsGrid({
   return (
     <DndContext
       sensors={sensors}
-      collisionDetection={closestCenter}
+      collisionDetection={pointerWithin}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
