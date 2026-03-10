@@ -469,6 +469,8 @@ export function NestedProductsGrid({
     const targetProduct = products.find(p => p.id === targetId);
     if (!targetProduct) return;
 
+    const previousParentId = draggedNode.parent_product_id ?? null;
+
     const { error } = await supabase
       .from('products')
       .update({ parent_product_id: targetId })
@@ -478,8 +480,25 @@ export function NestedProductsGrid({
       toast.error('Failed to nest module');
       console.error(error);
     } else {
-      toast.success(`"${draggedNode.title}" nested inside "${targetProduct.title}"`);
       onNestingChange();
+      toast.success(`"${draggedNode.title}" nested inside "${targetProduct.title}"`, {
+        action: {
+          label: 'Undo',
+          onClick: async () => {
+            const { error: undoError } = await supabase
+              .from('products')
+              .update({ parent_product_id: previousParentId })
+              .eq('id', draggedId);
+            if (undoError) {
+              toast.error('Failed to undo');
+            } else {
+              toast.success('Nesting undone');
+              onNestingChange();
+            }
+          },
+        },
+        duration: 6000,
+      });
     }
   };
 
