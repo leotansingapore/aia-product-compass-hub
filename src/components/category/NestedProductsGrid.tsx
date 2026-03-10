@@ -177,10 +177,10 @@ function DraggableProductCard({
       {/* Un-nest button below the card */}
       {shared.isAdmin && isNested && onUnNest && (
         <button
-          className="w-full mt-1 py-1 text-[11px] font-medium text-muted-foreground hover:text-foreground bg-muted/60 hover:bg-muted border border-dashed border-border rounded-lg transition-colors flex items-center justify-center gap-1 relative z-20"
+          className="w-full mt-1.5 py-1.5 text-[11px] font-semibold text-primary hover:text-primary-foreground bg-primary/8 hover:bg-primary border border-primary/30 hover:border-primary rounded-lg transition-all duration-150 flex items-center justify-center gap-1.5 relative z-20"
           onClick={e => { e.stopPropagation(); onUnNest(); }}
         >
-          ↑ Remove from folder
+          <span>↑</span> Move out of folder
         </button>
       )}
     </div>
