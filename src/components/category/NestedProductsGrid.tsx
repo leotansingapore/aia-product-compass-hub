@@ -596,8 +596,8 @@ export function NestedProductsGrid({
     >
       <div className="space-y-3 sm:space-y-4 animate-fade-in">
         <p className="text-xs text-muted-foreground flex items-center gap-1.5 pb-1">
-          <GripVertical className="h-3.5 w-3.5" />
-          Drag a card onto another to nest it — supports unlimited depth like Google Drive
+          <GripVertical className="h-3.5 w-3.5 shrink-0" />
+          Drag a card onto another to nest it inside it. Nested cards show an <span className="font-medium text-foreground">↑ Un-nest</span> button to move them back.
         </p>
 
         <SortableContext items={allIds} strategy={rectSortingStrategy}>
