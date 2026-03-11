@@ -542,6 +542,8 @@ export default function PlaybookDetail() {
   const [collaboratorSearch, setCollaboratorSearch] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  // Collapsed section state: maps section item id → boolean (true = collapsed)
+  const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
 
   const playbook = playbooks.find(p => p.id === playbookId);
   const { isMasterAdmin, hasRole } = usePermissions();
