@@ -130,6 +130,7 @@ export function SimplifiedAuthForm() {
                     className="absolute right-0 top-0 h-full px-3 hover:bg-transparent text-muted-foreground"
                     onClick={() => setShowPassword(!showPassword)}
                     tabIndex={-1}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </Button>
@@ -215,6 +216,7 @@ export function SimplifiedAuthForm() {
                     className="absolute right-0 top-0 h-full px-3 hover:bg-transparent text-muted-foreground"
                     onClick={() => setShowPassword(!showPassword)}
                     tabIndex={-1}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </Button>

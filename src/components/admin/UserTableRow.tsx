@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -37,7 +38,7 @@ interface UserTableRowProps {
   onSendEmail: (user: UnifiedUser) => void;
 }
 
-export function UserTableRow({ 
+export const UserTableRow = memo(function UserTableRow({ 
   user, 
   isSelected, 
   onSelect, 
@@ -121,6 +122,7 @@ export function UserTableRow({
           checked={isSelected}
           onChange={(e) => onSelect(e.target.checked)}
           className="cursor-pointer"
+          aria-label={`Select user ${user.email}`}
         />
       </TableCell>
 
@@ -261,7 +263,7 @@ export function UserTableRow({
           {/* More Actions Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="h-7 w-7 p-0">
+              <Button variant="ghost" size="sm" className="h-7 w-7 p-0" aria-label={`More options for ${user.email}`}>
                 <MoreHorizontal className="h-3 w-3" />
               </Button>
             </DropdownMenuTrigger>
@@ -303,4 +305,4 @@ export function UserTableRow({
       </TableCell>
     </TableRow>
   );
-}
+});

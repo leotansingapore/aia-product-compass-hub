@@ -276,6 +276,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
         checked={isSelected}
         onChange={(e) => onSelect(e.target.checked)}
         className="rounded"
+        aria-label={`Select user ${user.email}`}
       />
       
       <Avatar className="h-10 w-10">

@@ -51,6 +51,7 @@ export function UserManagementTable({
               checked={selectedUsers.size === users.length && users.length > 0}
               onChange={(e) => onSelectAll(e.target.checked)}
               className="cursor-pointer h-4 w-4"
+              aria-label="Select all users"
             />
             <span className="text-sm text-muted-foreground">
               Select all ({users.length} users)
@@ -84,6 +85,7 @@ export function UserManagementTable({
                         checked={selectedUsers.size === users.length && users.length > 0}
                         onChange={(e) => onSelectAll(e.target.checked)}
                         className="cursor-pointer"
+                        aria-label="Select all users"
                       />
                     </TableHead>
                     <TableHead>User</TableHead>

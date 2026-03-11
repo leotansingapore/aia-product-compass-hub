@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -48,7 +48,7 @@ interface ProductCardProps {
   onTogglePublish?: (productId: string, published: boolean) => void;
 }
 
-export function ProductCard({ title, description, category, tags, highlights, onClick, productId, published, onEdit, onDelete, onTogglePublish }: ProductCardProps) {
+export const ProductCard = memo(function ProductCard({ title, description, category, tags, highlights, onClick, productId, published, onEdit, onDelete, onTogglePublish }: ProductCardProps) {
   const { isBookmarked, toggleBookmark, loading } = useBookmarks();
   const { isAdmin } = usePermissions();
   const [showEditDialog, setShowEditDialog] = useState(false);
@@ -276,4 +276,4 @@ export function ProductCard({ title, description, category, tags, highlights, on
       </AlertDialog>
     </>
   );
-}
+});

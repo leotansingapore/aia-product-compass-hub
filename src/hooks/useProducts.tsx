@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 
 export interface UsefulLink {
@@ -74,322 +75,183 @@ export interface Category {
   updated_at: string;
 }
 
-// Cache for categories to prevent unnecessary re-fetches
-let categoriesCache: Category[] | null = null;
-let categoriesCacheTime = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const PRODUCTS_SELECT = `
+  *,
+  categories:category_id (
+    id,
+    name
+  )
+`;
 
-const CATEGORIES_CHANGED_EVENT = 'categories-changed';
+function transformProduct(product: any): Product {
+  return {
+    ...product,
+    useful_links: product.useful_links,
+    training_videos: Array.isArray(product.training_videos)
+      ? (product.training_videos as unknown as TrainingVideo[])
+      : []
+  };
+}
+
+async function fetchCategoriesFromServer(): Promise<Category[]> {
+  const { data, error } = await supabase
+    .from('categories')
+    .select('*')
+    .order('name');
+  if (error) throw error;
+  return data || [];
+}
+
+async function fetchProductsFromServer(categoryId?: string): Promise<Product[]> {
+  let query = supabase
+    .from('products')
+    .select(PRODUCTS_SELECT)
+    .order('title');
+
+  if (categoryId) {
+    query = query.eq('category_id', categoryId);
+  }
+
+  const { data, error } = await query;
+  if (error) throw error;
+  return (data || []).map(transformProduct);
+}
+
+async function fetchProductByIdFromServer(productId: string): Promise<Product | null> {
+  const { data, error } = await supabase
+    .from('products')
+    .select(PRODUCTS_SELECT)
+    .eq('id', productId)
+    .maybeSingle();
+  if (error) throw error;
+  return data ? transformProduct(data) : null;
+}
+
+async function fetchProductBySlugOrIdFromServer(slugOrId: string): Promise<Product | null> {
+  // First, try exact ID match
+  const { data: exactMatch, error: exactError } = await supabase
+    .from('products')
+    .select(PRODUCTS_SELECT)
+    .eq('id', slugOrId)
+    .maybeSingle();
+
+  if (!exactError && exactMatch) {
+    return transformProduct(exactMatch);
+  }
+
+  // Fall back to slug-to-title conversion for legacy URLs
+  const titleFromSlug = slugOrId
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
+  const { data, error } = await supabase
+    .from('products')
+    .select(PRODUCTS_SELECT)
+    .ilike('title', `%${titleFromSlug}%`)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data ? transformProduct(data) : null;
+}
 
 export function useCategories() {
-  const [categories, setCategories] = useState<Category[]>(categoriesCache || []);
-  const [loading, setLoading] = useState(!categoriesCache);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchFromServer = useCallback(async () => {
-    try {
-      const { data, error } = await supabase
-        .from('categories')
-        .select('*')
-        .order('name');
-      if (error) throw error;
-      const fetched = data || [];
-      categoriesCache = fetched;
-      categoriesCacheTime = Date.now();
-      setCategories(fetched);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch categories');
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    async function fetchCategories() {
-      if (categoriesCache && Date.now() - categoriesCacheTime < CACHE_DURATION) {
-        setCategories(categoriesCache);
-        setLoading(false);
-        return;
-      }
-      fetchFromServer();
-    }
-
-    fetchCategories();
-  }, [fetchFromServer]);
-
-  // Listen for cross-instance refetch signals
-  useEffect(() => {
-    const handler = () => {
-      if (categoriesCache) {
-        setCategories(categoriesCache);
-      } else {
-        fetchFromServer();
-      }
-    };
-    window.addEventListener(CATEGORIES_CHANGED_EVENT, handler);
-    return () => window.removeEventListener(CATEGORIES_CHANGED_EVENT, handler);
-  }, [fetchFromServer]);
+  const queryClient = useQueryClient();
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['categories'],
+    queryFn: fetchCategoriesFromServer,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
 
   const refetch = useCallback(async () => {
-    categoriesCache = null;
-    categoriesCacheTime = 0;
-    setLoading(true);
-    await fetchFromServer();
-    // Notify all other hook instances to sync
-    window.dispatchEvent(new Event(CATEGORIES_CHANGED_EVENT));
-  }, [fetchFromServer]);
+    await queryClient.invalidateQueries({ queryKey: ['categories'] });
+  }, [queryClient]);
 
-  return { categories, loading, error, refetch };
+  return {
+    categories: data || [],
+    loading: isLoading,
+    error: error ? (error instanceof Error ? error.message : 'Failed to fetch categories') : null,
+    refetch,
+  };
 }
 
 export function invalidateCategoriesCache() {
-  categoriesCache = null;
-  categoriesCacheTime = 0;
+  // No-op: callers should use queryClient.invalidateQueries instead.
+  // Kept for backward compatibility — the cache is now managed by TanStack Query.
 }
 
 export function useProducts(categoryId?: string) {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, isLoading, error, refetch: queryRefetch } = useQuery({
+    queryKey: ['products', categoryId ?? 'all'],
+    queryFn: () => fetchProductsFromServer(categoryId),
+    staleTime: 2 * 60 * 1000, // 2 minutes
+  });
 
-  const fetchProducts = useCallback(async () => {
-    setLoading(true);
-    try {
-        let query = supabase
-          .from('products')
-          .select(`
-            *,
-            categories:category_id (
-              id,
-              name
-            )
-          `)
-          .order('title');
+  const refetch = useCallback(async () => {
+    await queryRefetch();
+  }, [queryRefetch]);
 
-        if (categoryId) {
-          // Use the categoryId directly as it's now a UUID
-          query = query.eq('category_id', categoryId);
-        }
-
-        const { data, error } = await query;
-
-        if (error) throw error;
-        // Preserve useful_links exactly as stored (array or folder_structure object)
-        const transformedData = (data || []).map(product => ({
-          ...product,
-          useful_links: product.useful_links,
-          training_videos: Array.isArray(product.training_videos)
-            ? (product.training_videos as unknown as TrainingVideo[])
-            : []
-        }));
-        setProducts(transformedData);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch products');
-      } finally {
-        setLoading(false);
-      }
-    }, [categoryId]);
-
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
-
-  return { products, loading, error, refetch: fetchProducts };
+  return {
+    products: data || [],
+    loading: isLoading,
+    error: error ? (error instanceof Error ? error.message : 'Failed to fetch products') : null,
+    refetch,
+  };
 }
 
 export function useAllProducts() {
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['products', 'all'],
+    queryFn: () => fetchProductsFromServer(),
+    staleTime: 2 * 60 * 1000,
+  });
 
-  useEffect(() => {
-    async function fetchAllProducts() {
-      try {
-        const { data, error } = await supabase
-          .from('products')
-          .select(`
-            *,
-            categories:category_id (
-              id,
-              name
-            )
-          `)
-          .order('title');
-
-        if (error) throw error;
-        // Preserve useful_links exactly as stored (array or folder_structure object)
-        const transformedData = (data || []).map(product => ({
-          ...product,
-          useful_links: product.useful_links,
-          training_videos: Array.isArray(product.training_videos)
-            ? (product.training_videos as unknown as TrainingVideo[])
-            : []
-        }));
-        setAllProducts(transformedData);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch products');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchAllProducts();
-  }, []);
-
-  return { allProducts, loading, error };
+  return {
+    allProducts: data || [],
+    loading: isLoading,
+    error: error ? (error instanceof Error ? error.message : 'Failed to fetch products') : null,
+  };
 }
 
 export function useProductById(productId: string) {
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['product', productId],
+    queryFn: () => fetchProductByIdFromServer(productId),
+    enabled: !!productId,
+    staleTime: 2 * 60 * 1000,
+  });
 
-  useEffect(() => {
-    async function fetchProduct() {
-      if (!productId) {
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const { data, error } = await supabase
-          .from('products')
-          .select(`
-            *,
-            categories:category_id (
-              id,
-              name
-            )
-          `)
-          .eq('id', productId)
-          .maybeSingle();
-
-        if (error) throw error;
-        // Preserve useful_links exactly as stored (array or folder_structure object)
-        if (data) {
-          const transformedData = {
-            ...data,
-            useful_links: data.useful_links,
-            training_videos: Array.isArray(data.training_videos)
-              ? (data.training_videos as unknown as TrainingVideo[])
-              : []
-          };
-          setProduct(transformedData);
-        } else {
-          setProduct(null);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch product');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchProduct();
-  }, [productId]);
-
-  return { product, loading, error };
+  return {
+    product: data ?? null,
+    loading: isLoading,
+    error: error ? (error instanceof Error ? error.message : 'Failed to fetch product') : null,
+  };
 }
 
 export function useProductBySlugOrId(slugOrId: string) {
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const queryClient = useQueryClient();
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['product', 'slug', slugOrId],
+    queryFn: () => fetchProductBySlugOrIdFromServer(slugOrId),
+    enabled: !!slugOrId,
+    staleTime: 2 * 60 * 1000,
+  });
 
-  const fetchProduct = useCallback(async (silent: boolean = false) => {
-    if (!slugOrId) {
-      if (!silent) setLoading(false);
-      return;
-    }
+  const refetch = useCallback(async () => {
+    await queryClient.invalidateQueries({ queryKey: ['product', 'slug', slugOrId] });
+  }, [queryClient, slugOrId]);
 
-    // Only show loading state if not a silent refetch
-    if (!silent) setLoading(true);
+  const silentRefetch = useCallback(async () => {
+    await queryClient.invalidateQueries({ queryKey: ['product', 'slug', slugOrId] });
+  }, [queryClient, slugOrId]);
 
-    try {
-      const selectQuery = `
-        *,
-        categories:category_id (
-          id,
-          name
-        )
-      `;
-
-      // First, try exact ID match (handles UUIDs, module IDs, AND SEO-friendly slugs)
-      const { data: exactMatch, error: exactError } = await supabase
-        .from('products')
-        .select(selectQuery)
-        .eq('id', slugOrId)
-        .maybeSingle();
-
-      if (!exactError && exactMatch) {
-        // Found by exact ID match
-        const transformedData = {
-          ...exactMatch,
-          useful_links: exactMatch.useful_links,
-          training_videos: Array.isArray(exactMatch.training_videos)
-            ? (exactMatch.training_videos as unknown as TrainingVideo[])
-            : []
-        };
-        setProduct(transformedData);
-        return;
-      }
-
-      // Fall back to slug-to-title conversion for legacy URLs
-      const titleFromSlug = slugOrId
-        .split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-
-      const { data, error } = await supabase
-        .from('products')
-        .select(selectQuery)
-        .ilike('title', `%${titleFromSlug}%`)
-        .maybeSingle();
-
-      if (error) throw error;
-
-      // Preserve useful_links exactly as stored (array or folder_structure object)
-      if (data) {
-        const transformedData = {
-          ...data,
-          useful_links: data.useful_links,
-          training_videos: Array.isArray(data.training_videos)
-            ? (data.training_videos as unknown as TrainingVideo[])
-            : []
-        };
-        setProduct(transformedData);
-      } else {
-        setProduct(null);
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch product');
-    } finally {
-      if (!silent) setLoading(false);
-    }
-  }, [slugOrId]);
-
-  // Initial fetch on mount
-  useEffect(() => {
-    fetchProduct(false);
-  }, [fetchProduct]);
-
-  // Wrapper functions for different refetch behaviors
-  const refetch = useCallback(() => fetchProduct(false), [fetchProduct]);
-  const silentRefetch = useCallback(() => fetchProduct(true), [fetchProduct]);
-
-  return { product, loading, error, refetch, silentRefetch };
-}
-
-// Helper function to map category IDs to names for backward compatibility
-function getCategoryNameFromId(categoryId: string): string {
-  const categoryMap: Record<string, string> = {
-    'investment': 'Investment Products',
-    'endowment': 'Endowment Products',
-    'whole-life': 'Whole Life Products',
-    'term': 'Term Products',
-    'medical': 'Medical Insurance Products'
+  return {
+    product: data ?? null,
+    loading: isLoading,
+    error: error ? (error instanceof Error ? error.message : 'Failed to fetch product') : null,
+    refetch,
+    silentRefetch,
   };
-  return categoryMap[categoryId] || categoryId;
 }
 
 // Helper function to map category names to IDs for backward compatibility

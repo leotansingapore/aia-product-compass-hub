@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -11,7 +12,7 @@ interface ContinueLearningCardProps {
   onNavigate: () => void;
 }
 
-export function ContinueLearningCard({ product, onNavigate }: ContinueLearningCardProps) {
+export const ContinueLearningCard = memo(function ContinueLearningCard({ product, onNavigate }: ContinueLearningCardProps) {
   const { getCourseProgress } = useVideoProgress(product.id);
   
   const videos = Array.isArray(product.training_videos) ? product.training_videos : [];
@@ -74,4 +75,4 @@ export function ContinueLearningCard({ product, onNavigate }: ContinueLearningCa
       </CardContent>
     </Card>
   );
-}
+});
