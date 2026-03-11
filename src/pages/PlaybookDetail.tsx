@@ -324,7 +324,7 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
                   </div>
                 </div>
                 <div className="flex gap-1.5 mt-1.5 flex-wrap">
-                  <Badge variant="secondary" className="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">Objection</Badge>
+                  <Badge variant="secondary" className="text-[10px]">Objection</Badge>
                   <Badge variant="outline" className="text-[10px]">{item.objection?.category}</Badge>
                   {item.objection?.tags?.map((tag: string) => (
                     <Badge key={tag} variant="outline" className="text-[10px]">{tag}</Badge>
