@@ -273,7 +273,7 @@ function CompareResultPanel({ result, onRetry }: { result: CompareResult; onRetr
           <div
             className={cn(
               "h-full rounded-full transition-all duration-700",
-              result.score >= 70 ? "bg-emerald-500" : result.score >= 50 ? "bg-amber-500" : "bg-rose-500"
+              result.score >= 70 ? "bg-green-500" : result.score >= 50 ? "bg-yellow-500" : "bg-red-500"
             )}
             style={{ width: `${result.score}%` }}
           />
