@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback, useRef } from "react";
+import type { ReactNode } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
