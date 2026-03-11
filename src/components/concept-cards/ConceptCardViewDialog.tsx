@@ -500,9 +500,6 @@ export function ConceptCardViewDialog({ card, onClose }: Props) {
               {card.tags.map(t => <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>)}
             </div>
           </div>
-          <button onClick={handleClose} className="text-muted-foreground hover:text-foreground shrink-0 mt-0.5">
-            <X className="h-5 w-5" />
-          </button>
         </div>
 
         {/* Tabs */}
