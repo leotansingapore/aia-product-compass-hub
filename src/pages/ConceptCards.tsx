@@ -235,6 +235,7 @@ export default function ConceptCardsPage() {
   const [knownIds, setKnownIds] = useState<Set<string>>(new Set());
   const [reviewIds, setReviewIds] = useState<Set<string>>(new Set());
   const [showReviewOnly, setShowReviewOnly] = useState(false);
+  const [focusMode, setFocusMode] = useState(false);
 
   const filtered = useMemo(() => {
     let result = cards.filter(c => {

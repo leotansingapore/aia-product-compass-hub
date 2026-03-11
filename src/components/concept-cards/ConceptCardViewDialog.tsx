@@ -226,6 +226,24 @@ function Whiteboard({
           ))}
         </div>
 
+        {/* Undo / Redo */}
+        <div className="flex items-center gap-1 ml-2 border-l border-border/50 pl-2">
+          <button
+            onClick={undo}
+            title="Undo (Ctrl+Z)"
+            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors disabled:opacity-30"
+          >
+            <Undo2 className="h-3.5 w-3.5" />
+          </button>
+          <button
+            onClick={redo}
+            title="Redo (Ctrl+Shift+Z)"
+            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors disabled:opacity-30"
+          >
+            <Redo2 className="h-3.5 w-3.5" />
+          </button>
+        </div>
+
         <div className="flex-1" />
 
         {/* Toggle reference */}
