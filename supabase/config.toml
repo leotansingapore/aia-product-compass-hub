@@ -61,3 +61,9 @@ verify_jwt = false
 
 [functions.generate-changelog-entries]
 verify_jwt = false
+
+[functions.enhance-concept-image]
+verify_jwt = false
+
+[functions.compare-concept-drawing]
+verify_jwt = false
