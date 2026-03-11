@@ -60,6 +60,45 @@ function Whiteboard({
   const [hasDrawn, setHasDrawn] = useState(false);
   const [showRef, setShowRef] = useState(false);
   const lastPos = useRef<{ x: number; y: number } | null>(null);
+  // Undo/redo history — store canvas ImageData snapshots
+  const historyRef = useRef<ImageData[]>([]);
+  const historyIndexRef = useRef(-1);
+
+  const saveSnapshot = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+    const snap = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    // Truncate forward history
+    historyRef.current = historyRef.current.slice(0, historyIndexRef.current + 1);
+    historyRef.current.push(snap);
+    historyIndexRef.current = historyRef.current.length - 1;
+    // Keep max 30 steps
+    if (historyRef.current.length > 30) {
+      historyRef.current.shift();
+      historyIndexRef.current--;
+    }
+  }, []);
+
+  const undo = useCallback(() => {
+    if (historyIndexRef.current <= 0) return;
+    historyIndexRef.current--;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+    ctx.putImageData(historyRef.current[historyIndexRef.current], 0, 0);
+    setHasDrawn(historyIndexRef.current > 0);
+  }, []);
+
+  const redo = useCallback(() => {
+    if (historyIndexRef.current >= historyRef.current.length - 1) return;
+    historyIndexRef.current++;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+    ctx.putImageData(historyRef.current[historyIndexRef.current], 0, 0);
+    setHasDrawn(true);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -67,7 +106,22 @@ function Whiteboard({
     const ctx = canvas.getContext('2d')!;
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-  }, []);
+    // Save blank as first history state
+    saveSnapshot();
+  }, [saveSnapshot]);
+
+  // Keyboard undo/redo
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
+        e.preventDefault();
+        if (e.shiftKey) redo(); else undo();
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === 'y') { e.preventDefault(); redo(); }
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [undo, redo]);
 
   const getPos = (e: React.MouseEvent | React.TouchEvent, canvas: HTMLCanvasElement) => {
     const rect = canvas.getBoundingClientRect();
@@ -113,7 +167,11 @@ function Whiteboard({
     lastPos.current = pos;
   };
 
-  const stopDrawing = () => { setIsDrawing(false); lastPos.current = null; };
+  const stopDrawing = () => {
+    if (isDrawing) saveSnapshot(); // Save snapshot on stroke end
+    setIsDrawing(false);
+    lastPos.current = null;
+  };
 
   const clearCanvas = () => {
     const canvas = canvasRef.current;
@@ -121,6 +179,7 @@ function Whiteboard({
     const ctx = canvas.getContext('2d')!;
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    saveSnapshot();
     setHasDrawn(false);
   };
 
