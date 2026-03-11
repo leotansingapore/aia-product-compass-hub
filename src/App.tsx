@@ -58,6 +58,7 @@ const ScriptFlows = lazy(() => import("./pages/ScriptFlows"));
 const PublicFlowView = lazy(() => import("./pages/PublicFlowView"));
 const PublicPlaybookView = lazy(() => import("./pages/PublicPlaybookView"));
 const AIAssistant = lazy(() => import("./pages/AIAssistant"));
+const ConceptCards = lazy(() => import("./pages/ConceptCards"));
 
 const queryClient = new QueryClient();
 
