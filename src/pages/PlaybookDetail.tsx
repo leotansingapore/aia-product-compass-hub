@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback, useRef } from "react";
+import type { ReactNode } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -311,7 +312,7 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
                   <CardTitle className="text-sm font-medium leading-snug flex items-center gap-1.5">
-                    <MessageSquare className="h-3.5 w-3.5 text-amber-500 shrink-0" />
+                    <MessageSquare className="h-3.5 w-3.5 text-primary shrink-0" />
                     {item.objection?.title}
                   </CardTitle>
                   <div className="flex items-center gap-1">
@@ -324,7 +325,7 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
                   </div>
                 </div>
                 <div className="flex gap-1.5 mt-1.5 flex-wrap">
-                  <Badge variant="secondary" className="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">Objection</Badge>
+                  <Badge variant="secondary" className="text-[10px]">Objection</Badge>
                   <Badge variant="outline" className="text-[10px]">{item.objection?.category}</Badge>
                   {item.objection?.tags?.map((tag: string) => (
                     <Badge key={tag} variant="outline" className="text-[10px]">{tag}</Badge>
@@ -361,7 +362,7 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
   );
 }
 
-// ─── Section Header Card ────────────────────────────────────────────────────
+// ─── Section Header Card (collapsible group) ────────────────────────────────
 
 interface SortableSectionCardProps {
   item: any;
@@ -369,58 +370,47 @@ interface SortableSectionCardProps {
   onRemove: (id: string) => void;
   onRename: (id: string, label: string, level?: number) => void;
   shareToken?: string | null;
+  collapsed: boolean;
+  onToggleCollapse: () => void;
+  childCount: number;
+  // drag-the-group handle
+  groupDragAttributes?: any;
+  groupDragListeners?: any;
+  isDraggingGroup?: boolean;
 }
 
 const LEVEL_CONFIG = {
   1: {
     icon: Heading1,
-    textClass: "text-lg font-bold",
-    indent: "",
-    borderClass: "border-primary/60",
-    topMargin: "mt-8",
-    dividerH: "h-px",
+    textClass: "text-base font-bold",
+    borderClass: "border-primary/40",
+    bg: "bg-primary/5",
   },
   2: {
     icon: Heading2,
-    textClass: "text-base font-semibold",
-    indent: "ml-0",
-    borderClass: "border-muted-foreground/30",
-    topMargin: "mt-5",
-    dividerH: "h-px",
+    textClass: "text-sm font-semibold",
+    borderClass: "border-muted-foreground/25",
+    bg: "bg-muted/40",
   },
   3: {
     icon: Heading3,
     textClass: "text-sm font-medium text-muted-foreground",
-    indent: "ml-2",
-    borderClass: "border-muted-foreground/20",
-    topMargin: "mt-3",
-    dividerH: "h-px opacity-50",
+    borderClass: "border-muted-foreground/15",
+    bg: "bg-muted/20",
   },
 };
 
-function SortableSectionCard({ item, isOwner, onRemove, onRename, shareToken }: SortableSectionCardProps) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id: item.id });
-
+function SortableSectionCard({
+  item, isOwner, onRemove, onRename, shareToken,
+  collapsed, onToggleCollapse, childCount,
+  groupDragAttributes, groupDragListeners, isDraggingGroup,
+}: SortableSectionCardProps) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(item.custom_content?.label || "Section");
 
   const level: 1 | 2 | 3 = (item.custom_content?.level as 1 | 2 | 3) || 1;
   const cfg = LEVEL_CONFIG[level];
   const LevelIcon = cfg.icon;
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    zIndex: isDragging ? 50 : undefined,
-    opacity: isDragging ? 0.8 : 1,
-  };
 
   const commit = () => {
     const trimmed = draft.trim() || "Section";
@@ -435,41 +425,58 @@ function SortableSectionCard({ item, isOwner, onRemove, onRename, shareToken }: 
   const anchor = slugify(item.custom_content?.label || "section");
 
   return (
-    <div ref={setNodeRef} style={style} id={anchor} className={`flex items-center gap-2 ${cfg.topMargin} mb-1 first:mt-0 scroll-mt-6 group/section ${cfg.indent}`}>
-      {isOwner && (
+    <div
+      id={anchor}
+      className={`scroll-mt-6 rounded-lg border ${cfg.borderClass} ${cfg.bg} ${isDraggingGroup ? "ring-2 ring-primary/30 shadow-lg" : ""} group/section`}
+    >
+      <div className="flex items-center gap-2 px-3 py-2.5">
+        {/* Group drag handle */}
+        {isOwner && (
+          <button
+            {...groupDragAttributes}
+            {...groupDragListeners}
+            className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 shrink-0"
+            onClick={e => e.stopPropagation()}
+          >
+            <GripVertical className="h-4 w-4" />
+          </button>
+        )}
+
+        {/* Collapse toggle */}
         <button
-          {...attributes}
-          {...listeners}
-          className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 shrink-0"
+          onClick={onToggleCollapse}
+          className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+          title={collapsed ? "Expand section" : "Collapse section"}
         >
-          <GripVertical className="h-4 w-4" />
+          <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${collapsed ? "-rotate-90" : ""}`} />
         </button>
-      )}
-      {/* Level icon — click cycles level when owner */}
-      {isOwner ? (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button title="Change heading level" className="text-primary hover:text-primary/70 transition-colors shrink-0">
-              <LevelIcon className={level === 1 ? "h-5 w-5" : level === 2 ? "h-4 w-4" : "h-3.5 w-3.5"} />
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-36">
-            <DropdownMenuItem onClick={() => changeLevel(1)} className="gap-2">
-              <Heading1 className="h-4 w-4" /> H1 — Stage
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => changeLevel(2)} className="gap-2">
-              <Heading2 className="h-4 w-4" /> H2 — Group
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => changeLevel(3)} className="gap-2">
-              <Heading3 className="h-4 w-4" /> H3 — Sub-group
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      ) : (
-        <LevelIcon className={`${level === 1 ? "h-5 w-5" : level === 2 ? "h-4 w-4" : "h-3.5 w-3.5"} text-primary shrink-0`} />
-      )}
-      {editing ? (
-        <div className="flex items-center gap-2 flex-1">
+
+        {/* Level icon — dropdown to change level */}
+        {isOwner ? (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button title="Change heading level" className="text-primary hover:text-primary/70 transition-colors shrink-0">
+                <LevelIcon className="h-4 w-4" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-36">
+              <DropdownMenuItem onClick={() => changeLevel(1)} className="gap-2">
+                <Heading1 className="h-4 w-4" /> H1 — Stage
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => changeLevel(2)} className="gap-2">
+                <Heading2 className="h-4 w-4" /> H2 — Group
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => changeLevel(3)} className="gap-2">
+                <Heading3 className="h-4 w-4" /> H3 — Sub-group
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <LevelIcon className="h-4 w-4 text-primary shrink-0" />
+        )}
+
+        {/* Label */}
+        {editing ? (
           <Input
             autoFocus
             value={draft}
@@ -479,33 +486,84 @@ function SortableSectionCard({ item, isOwner, onRemove, onRename, shareToken }: 
               if (e.key === "Enter") commit();
               if (e.key === "Escape") { setDraft(item.custom_content?.label || "Section"); setEditing(false); }
             }}
-            className={`h-7 border-0 border-b border-primary rounded-none px-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 ${cfg.textClass}`}
+            className={`h-7 border-0 border-b border-primary rounded-none px-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 flex-1 ${cfg.textClass}`}
           />
-        </div>
-      ) : (
-        <div className="flex items-center gap-2 flex-1 min-w-0">
+        ) : (
           <span
-            className={`${cfg.textClass} leading-none flex-1 truncate ${isOwner ? "cursor-pointer hover:text-primary transition-colors" : ""}`}
+            className={`${cfg.textClass} flex-1 leading-none truncate ${isOwner ? "cursor-pointer hover:text-primary transition-colors" : ""}`}
             onClick={() => isOwner && setEditing(true)}
           >
             {item.custom_content?.label || "Section"}
           </span>
-          <div className="opacity-0 group-hover/section:opacity-100 transition-opacity flex items-center gap-1 shrink-0">
-            <SectionAnchorLink anchor={anchor} shareToken={shareToken} />
-            {isOwner && (
-              <>
-                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setEditing(true)} title="Rename">
-                  <Pencil className="h-3 w-3" />
-                </Button>
-                <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => onRemove(item.id)} title="Delete section">
-                  <X className="h-3 w-3" />
-                </Button>
-              </>
-            )}
-          </div>
+        )}
+
+        {/* Child count badge */}
+        {childCount > 0 && collapsed && (
+          <span className="text-xs text-muted-foreground bg-background/70 border rounded-full px-2 py-0.5 font-mono shrink-0">
+            {childCount}
+          </span>
+        )}
+
+        {/* Actions */}
+        <div className="opacity-0 group-hover/section:opacity-100 transition-opacity flex items-center gap-1 shrink-0 ml-1">
+          <SectionAnchorLink anchor={anchor} shareToken={shareToken} />
+          {isOwner && (
+            <>
+              <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setEditing(true)} title="Rename">
+                <Pencil className="h-3 w-3" />
+              </Button>
+              <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => onRemove(item.id)} title="Delete section">
+                <X className="h-3 w-3" />
+              </Button>
+            </>
+          )}
         </div>
-      )}
-      <div className={`flex-1 ${cfg.dividerH} bg-border ${cfg.borderClass} ml-1`} />
+      </div>
+    </div>
+  );
+}
+
+// ─── Sortable Group Wrapper ──────────────────────────────────────────────────
+
+interface SortableGroupProps {
+  sectionItem: any;
+  isOwner: boolean;
+  onRemove: (id: string) => void;
+  onRename: (id: string, label: string, level?: number) => void;
+  shareToken?: string | null;
+  collapsed: boolean;
+  onToggleCollapse: () => void;
+  childCount: number;
+  children: ReactNode;
+}
+
+function SortableGroup({
+  sectionItem, isOwner, onRemove, onRename, shareToken,
+  collapsed, onToggleCollapse, childCount, children,
+}: SortableGroupProps) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: sectionItem.id });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 50 : undefined,
+    opacity: isDragging ? 0.85 : 1,
+  };
+  return (
+    <div ref={setNodeRef} style={style}>
+      <SortableSectionCard
+        item={sectionItem}
+        isOwner={isOwner}
+        onRemove={onRemove}
+        onRename={onRename}
+        shareToken={shareToken}
+        collapsed={collapsed}
+        onToggleCollapse={onToggleCollapse}
+        childCount={childCount}
+        groupDragAttributes={attributes}
+        groupDragListeners={listeners}
+        isDraggingGroup={isDragging}
+      />
+      {children}
     </div>
   );
 }
@@ -530,6 +588,8 @@ export default function PlaybookDetail() {
   const [collaboratorSearch, setCollaboratorSearch] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  // Collapsed section state: maps section item id → boolean (true = collapsed)
+  const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
 
   const playbook = playbooks.find(p => p.id === playbookId);
   const { isMasterAdmin, hasRole } = usePermissions();
@@ -1086,45 +1146,81 @@ export default function PlaybookDetail() {
             onDragEnd={handleDragEnd}
           >
             <SortableContext items={itemsWithData.map(i => i.id)} strategy={verticalListSortingStrategy}>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {(() => {
-                  // Section headers don't count toward the item numbering
-                  let counter = 0;
-                  return itemsWithData.map((item) => {
+                  // Build groups: each section starts a new group; items before first section are "ungrouped"
+                  type Group = { section: any | null; children: any[] };
+                  const groups: Group[] = [];
+                  let current: Group = { section: null, children: [] };
+                  for (const item of itemsWithData) {
                     if (item.item_type === 'section') {
+                      groups.push(current);
+                      current = { section: item, children: [] };
+                    } else {
+                      current.children.push(item);
+                    }
+                  }
+                  groups.push(current);
+
+                  let globalCounter = 0;
+                  return groups.map((group, gi) => {
+                    if (!group.section && group.children.length === 0) return null;
+
+                    const isCollapsed = group.section ? !!collapsedSections[group.section.id] : false;
+
+                    const childrenEl = !isCollapsed ? (
+                      <div className={`space-y-2 ${group.section ? "mt-2 pl-2 border-l-2 border-muted ml-3" : ""}`}>
+                        {group.children.map((item) => {
+                          const idx = globalCounter++;
+                          if (item.item_type === 'objection' && item.objection) {
+                            return (
+                              <SortableObjectionCard
+                                key={item.id}
+                                item={item}
+                                index={idx}
+                                isOwner={isOwner}
+                                onRemove={(id) => removeItem.mutate(id)}
+                              />
+                            );
+                          }
+                          return (
+                            <SortableScriptCard
+                              key={item.id}
+                              item={item}
+                              index={idx}
+                              isOwner={isOwner}
+                              onRemove={(id) => removeItem.mutate(id)}
+                              onInlineSave={handleInlineSave}
+                              isAuthenticated={!!user}
+                            />
+                          );
+                        })}
+                      </div>
+                    ) : null;
+
+                    // Ungrouped items (before first section)
+                    if (!group.section) {
                       return (
-                        <SortableSectionCard
-                          key={item.id}
-                          item={item}
-                          isOwner={isOwner}
-                          onRemove={(id) => removeItem.mutate(id)}
-                          onRename={handleRenameSection}
-                          shareToken={playbook?.share_token}
-                        />
+                        <div key={`root-${gi}`} className="space-y-2">
+                          {childrenEl}
+                        </div>
                       );
                     }
-                    const idx = counter++;
-                    if (item.item_type === 'objection' && item.objection) {
-                      return (
-                        <SortableObjectionCard
-                          key={item.id}
-                          item={item}
-                          index={idx}
-                          isOwner={isOwner}
-                          onRemove={(id) => removeItem.mutate(id)}
-                        />
-                      );
-                    }
+
                     return (
-                      <SortableScriptCard
-                        key={item.id}
-                        item={item}
-                        index={idx}
+                      <SortableGroup
+                        key={group.section.id}
+                        sectionItem={group.section}
                         isOwner={isOwner}
                         onRemove={(id) => removeItem.mutate(id)}
-                        onInlineSave={handleInlineSave}
-                        isAuthenticated={!!user}
-                      />
+                        onRename={handleRenameSection}
+                        shareToken={playbook?.share_token}
+                        collapsed={isCollapsed}
+                        onToggleCollapse={() => setCollapsedSections(prev => ({ ...prev, [group.section.id]: !prev[group.section.id] }))}
+                        childCount={group.children.length}
+                      >
+                        {childrenEl}
+                      </SortableGroup>
                     );
                   });
                 })()}
