@@ -330,6 +330,16 @@ export default function ConceptCardsPage() {
             <GraduationCap className="h-4 w-4" />
             {quizMode ? 'Exit Quiz' : 'Quiz Mode'}
           </Button>
+          {filtered.length > 0 && (
+            <Button
+              variant="outline"
+              onClick={() => setFocusMode(true)}
+              className="shrink-0 gap-1.5"
+            >
+              <Focus className="h-4 w-4" />
+              Focus Mode
+            </Button>
+          )}
           {isAdmin() && (
             <Button onClick={() => setUploadOpen(true)} className="shrink-0">
               <Plus className="h-4 w-4 mr-1.5" /> Add Card
