@@ -1100,45 +1100,109 @@ export default function PlaybookDetail() {
             onDragEnd={handleDragEnd}
           >
             <SortableContext items={itemsWithData.map(i => i.id)} strategy={verticalListSortingStrategy}>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {(() => {
-                  // Section headers don't count toward the item numbering
-                  let counter = 0;
-                  return itemsWithData.map((item) => {
+                  // Build groups: each section starts a new group; items before the first section are "ungrouped"
+                  type Group = { section: any | null; children: any[] };
+                  const groups: Group[] = [];
+                  let current: Group = { section: null, children: [] };
+                  for (const item of itemsWithData) {
                     if (item.item_type === 'section') {
+                      groups.push(current);
+                      current = { section: item, children: [] };
+                    } else {
+                      current.children.push(item);
+                    }
+                  }
+                  groups.push(current);
+
+                  let globalCounter = 0;
+                  return groups.map((group, gi) => {
+                    if (!group.section && group.children.length === 0) return null;
+
+                    const sectionId = group.section?.id ?? `root-${gi}`;
+                    const isCollapsed = group.section ? !!collapsedSections[group.section.id] : false;
+
+                    // Drag props for the group wrapper (section item)
+                    // We wrap the group in a SortableContext item for dragging by section id
+                    const GroupWrapper = ({ children }: { children: React.ReactNode }) => {
+                      if (!group.section) return <>{children}</>;
+                      const {
+                        attributes,
+                        listeners,
+                        setNodeRef,
+                        transform,
+                        transition,
+                        isDragging,
+                      } = useSortable({ id: group.section.id });
+                      const style = {
+                        transform: CSS.Transform.toString(transform),
+                        transition,
+                        zIndex: isDragging ? 50 : undefined,
+                        opacity: isDragging ? 0.85 : 1,
+                      };
                       return (
-                        <SortableSectionCard
-                          key={item.id}
-                          item={item}
-                          isOwner={isOwner}
-                          onRemove={(id) => removeItem.mutate(id)}
-                          onRename={handleRenameSection}
-                          shareToken={playbook?.share_token}
-                        />
+                        <div ref={setNodeRef} style={style}>
+                          <SortableSectionCard
+                            item={group.section}
+                            isOwner={isOwner}
+                            onRemove={(id) => removeItem.mutate(id)}
+                            onRename={handleRenameSection}
+                            shareToken={playbook?.share_token}
+                            collapsed={isCollapsed}
+                            onToggleCollapse={() => setCollapsedSections(prev => ({ ...prev, [group.section.id]: !prev[group.section.id] }))}
+                            childCount={group.children.length}
+                            groupDragAttributes={attributes}
+                            groupDragListeners={listeners}
+                            isDraggingGroup={isDragging}
+                          />
+                          {children}
+                        </div>
+                      );
+                    };
+
+                    const childrenEl = !isCollapsed && (
+                      <div className={`space-y-2 ${group.section ? "mt-2 pl-2 border-l-2 border-muted ml-3" : ""}`}>
+                        {group.children.map((item) => {
+                          const idx = globalCounter++;
+                          if (item.item_type === 'objection' && item.objection) {
+                            return (
+                              <SortableObjectionCard
+                                key={item.id}
+                                item={item}
+                                index={idx}
+                                isOwner={isOwner}
+                                onRemove={(id) => removeItem.mutate(id)}
+                              />
+                            );
+                          }
+                          return (
+                            <SortableScriptCard
+                              key={item.id}
+                              item={item}
+                              index={idx}
+                              isOwner={isOwner}
+                              onRemove={(id) => removeItem.mutate(id)}
+                              onInlineSave={handleInlineSave}
+                              isAuthenticated={!!user}
+                            />
+                          );
+                        })}
+                      </div>
+                    );
+
+                    if (!group.section) {
+                      return (
+                        <div key={`root-${gi}`} className="space-y-2">
+                          {childrenEl}
+                        </div>
                       );
                     }
-                    const idx = counter++;
-                    if (item.item_type === 'objection' && item.objection) {
-                      return (
-                        <SortableObjectionCard
-                          key={item.id}
-                          item={item}
-                          index={idx}
-                          isOwner={isOwner}
-                          onRemove={(id) => removeItem.mutate(id)}
-                        />
-                      );
-                    }
+
                     return (
-                      <SortableScriptCard
-                        key={item.id}
-                        item={item}
-                        index={idx}
-                        isOwner={isOwner}
-                        onRemove={(id) => removeItem.mutate(id)}
-                        onInlineSave={handleInlineSave}
-                        isAuthenticated={!!user}
-                      />
+                      <GroupWrapper key={group.section.id}>
+                        {childrenEl}
+                      </GroupWrapper>
                     );
                   });
                 })()}
