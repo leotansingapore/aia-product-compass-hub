@@ -311,7 +311,7 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: SortableObjec
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
                   <CardTitle className="text-sm font-medium leading-snug flex items-center gap-1.5">
-                    <MessageSquare className="h-3.5 w-3.5 text-amber-500 shrink-0" />
+                    <MessageSquare className="h-3.5 w-3.5 text-primary shrink-0" />
                     {item.objection?.title}
                   </CardTitle>
                   <div className="flex items-center gap-1">
