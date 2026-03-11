@@ -23,6 +23,7 @@ import { FLOW_TEMPLATES } from '@/utils/flowTemplates';
 import { AIFlowWizard } from '@/components/flows/AIFlowWizard';
 import { AIFlowChat } from '@/components/flows/AIFlowChat';
 import { NodeSearch } from '@/components/flows/controls/NodeSearch';
+import DOMPurify from 'dompurify';
 import { toast } from 'sonner';
 import { ScriptsTabBar } from '@/components/scripts/ScriptsTabBar';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -469,7 +470,7 @@ export default function ScriptFlows() {
                             <div className="border rounded-lg p-3 bg-muted/40 border-border">
                               <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-1">Notes</p>
                               <div className="text-xs text-foreground prose prose-sm dark:prose-invert max-w-none [&_p]:my-1"
-                                dangerouslySetInnerHTML={{ __html: previewingNode.customText }} />
+                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(previewingNode.customText) }} />
                             </div>
                           )}
                         </div>
@@ -488,7 +489,7 @@ export default function ScriptFlows() {
                            <div className="w-full border rounded-lg p-3 bg-muted/40 border-border text-left">
                              <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-1">Notes</p>
                             <div className="text-xs text-foreground prose prose-sm dark:prose-invert max-w-none [&_p]:my-1"
-                              dangerouslySetInnerHTML={{ __html: previewingNode.customText }} />
+                              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(previewingNode.customText) }} />
                           </div>
                         )}
                       </div>
