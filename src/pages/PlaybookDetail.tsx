@@ -523,7 +523,6 @@ function SortableSectionCard({
 }
 
 // ─── Sortable Group Wrapper ──────────────────────────────────────────────────
-import React from 'react';
 
 interface SortableGroupProps {
   sectionItem: any;
