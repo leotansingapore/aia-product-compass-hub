@@ -1,11 +1,12 @@
 import { useNavigate, useLocation } from "react-router-dom";
 
 const tabs = [
-  { key: "scripts",    label: "Sales Scripts", emoji: "📝", path: "/scripts" },
-  { key: "servicing",  label: "Servicing",  emoji: "🛎️", path: "/servicing" },
-  { key: "objections", label: "Objections", emoji: "🛡️", path: "/objections" },
-  { key: "playbooks",  label: "Playbooks",  emoji: "📚", path: "/playbooks" },
-  { key: "flows",      label: "Flows",      emoji: "🔀", path: "/flows" },
+  { key: "scripts",       label: "Sales Scripts",   emoji: "📝", path: "/scripts" },
+  { key: "servicing",     label: "Servicing",        emoji: "🛎️", path: "/servicing" },
+  { key: "objections",    label: "Objections",       emoji: "🛡️", path: "/objections" },
+  { key: "playbooks",     label: "Playbooks",        emoji: "📚", path: "/playbooks" },
+  { key: "flows",         label: "Flows",            emoji: "🔀", path: "/flows" },
+  { key: "concept-cards", label: "Concept Cards",   emoji: "🃏", path: "/concept-cards" },
 ];
 
 export function ScriptsTabBar() {

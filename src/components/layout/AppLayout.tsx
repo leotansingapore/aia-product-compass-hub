@@ -48,7 +48,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const location = useLocation();
 
   // Pages that manage their own mobile header (show ScriptsTabBar instead)
-  const scriptsRoutes = ['/scripts', '/servicing', '/objections', '/playbooks', '/flows'];
+  const scriptsRoutes = ['/scripts', '/servicing', '/objections', '/playbooks', '/flows', '/concept-cards'];
   const hideMobileHeader = isMobile && scriptsRoutes.some(r => location.pathname.startsWith(r));
 
   // Read sidebar state from cookie for persistence

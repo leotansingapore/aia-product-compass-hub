@@ -58,6 +58,7 @@ const ScriptFlows = lazy(() => import("./pages/ScriptFlows"));
 const PublicFlowView = lazy(() => import("./pages/PublicFlowView"));
 const PublicPlaybookView = lazy(() => import("./pages/PublicPlaybookView"));
 const AIAssistant = lazy(() => import("./pages/AIAssistant"));
+const ConceptCards = lazy(() => import("./pages/ConceptCards"));
 
 const queryClient = new QueryClient();
 
@@ -129,6 +130,9 @@ const App = () => (
                     <Route path="/flows" element={<ScriptFlows />} />
                     <Route path="/flows/:flowId" element={<ScriptFlows />} />
                     <Route path="/flows/view/:flowId" element={<PublicFlowView />} />
+
+                    {/* Concept Cards */}
+                    <Route path="/concept-cards" element={<ConceptCards />} />
 
                     {/* Knowledge Base */}
                     <Route path="/kb" element={<KnowledgeBase />} />
