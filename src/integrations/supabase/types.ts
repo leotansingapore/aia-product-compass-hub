@@ -383,6 +383,51 @@ export type Database = {
           },
         ]
       }
+      concept_cards: {
+        Row: {
+          audience: string[] | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          image_url: string | null
+          original_image_url: string | null
+          product_type: string[] | null
+          sort_order: number | null
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          audience?: string[] | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          original_image_url?: string | null
+          product_type?: string[] | null
+          sort_order?: number | null
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          audience?: string[] | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          original_image_url?: string | null
+          product_type?: string[] | null
+          sort_order?: number | null
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       contribution_kudos: {
         Row: {
           contribution_id: string
