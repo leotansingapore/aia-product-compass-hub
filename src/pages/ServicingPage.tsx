@@ -769,7 +769,7 @@ export default function ServicingPage() {
       />
 
       <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-4xl">
-        <div className="hidden lg:block"><ScriptsTabBar /></div>
+        <ScriptsTabBar />
 
         {/* Search + Add */}
         <div className="mb-4 sm:mb-5 flex gap-2 sm:gap-3 items-start">
