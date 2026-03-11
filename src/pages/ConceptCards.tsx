@@ -11,95 +11,178 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Plus, Search, ImageIcon, Trash2, ChevronDown } from 'lucide-react';
+import { Plus, Search, ImageIcon, Trash2, BookOpen, GraduationCap, RotateCcw, CheckCircle, XCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 
 const AUDIENCE_OPTIONS = ['All', 'NSF / NS', 'Young Adults', 'Working Adults', 'Pre-Retirees (50-65)', 'Parents', 'General'];
 const PRODUCT_OPTIONS = ['All', 'Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'General'];
 
-function FlashCard({ card, onOpen, onDelete, isAdmin }: {
+// ─── Flash Card (3D flip) ──────────────────────────────────────────────────
+function FlashCard({ card, onOpen, onDelete, isAdmin, quizMode, onKnow, onReview }: {
   card: ConceptCard;
   onOpen: (card: ConceptCard) => void;
   onDelete: (id: string) => void;
   isAdmin: boolean;
+  quizMode: boolean;
+  onKnow?: (id: string) => void;
+  onReview?: (id: string) => void;
 }) {
   const [flipped, setFlipped] = useState(false);
 
+  const handleCardClick = () => {
+    if (card.image_url) setFlipped(f => !f);
+    else if (!quizMode) onOpen(card);
+  };
+
   return (
     <div
-      className="group relative cursor-pointer"
-      style={{ perspective: '1000px' }}
-      onClick={() => card.image_url ? onOpen(card) : undefined}
+      className="group relative"
+      style={{ perspective: '1200px', minHeight: '240px' }}
     >
       <div
         className={cn(
-          "relative w-full transition-all duration-500 rounded-2xl",
-          "border bg-card shadow-sm hover:shadow-md hover:-translate-y-0.5",
-          "min-h-[200px] sm:min-h-[220px]",
-          !card.image_url && "cursor-default"
+          "relative w-full transition-transform duration-500 rounded-2xl",
+          "cursor-pointer"
         )}
+        style={{
+          transformStyle: 'preserve-3d',
+          transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          minHeight: '240px',
+        }}
+        onClick={handleCardClick}
       >
-        {/* Card content */}
-        <div className="p-4 sm:p-5 flex flex-col h-full min-h-[200px]">
-          {/* Question */}
-          <div className="flex-1">
-            <p className="text-xs font-semibold text-primary/70 uppercase tracking-wide mb-2">Question</p>
-            <h3 className="font-semibold text-sm sm:text-base leading-snug line-clamp-4">{card.title}</h3>
-            {card.description && (
-              <p className="text-xs text-muted-foreground mt-1.5 line-clamp-2">{card.description}</p>
+        {/* FRONT — Question */}
+        <div
+          className="absolute inset-0 rounded-2xl border bg-card shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+          style={{ backfaceVisibility: 'hidden' }}
+        >
+          <div className="p-4 sm:p-5 flex flex-col h-full">
+            <div className="flex-1">
+              <div className="flex items-center gap-1.5 mb-2">
+                <span className="text-[10px] font-semibold text-primary/70 uppercase tracking-wide">Question</span>
+                {card.image_url && (
+                  <span className="text-[9px] text-muted-foreground/50 ml-auto">tap to flip ↻</span>
+                )}
+              </div>
+              <h3 className="font-semibold text-sm sm:text-base leading-snug">{card.title}</h3>
+              {card.description && (
+                <p className="text-xs text-muted-foreground mt-1.5 line-clamp-2">{card.description}</p>
+              )}
+            </div>
+
+            {/* Blurred image preview */}
+            {card.image_url ? (
+              <div className="mt-3 rounded-lg overflow-hidden border border-dashed border-border/50 h-20 flex items-center justify-center relative bg-muted/20">
+                <img
+                  src={card.image_url}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-contain blur-sm opacity-40"
+                />
+                <span className="relative z-10 text-xs text-muted-foreground font-medium">Tap to reveal drawing</span>
+              </div>
+            ) : (
+              <div className="mt-3 rounded-lg bg-muted/30 border border-dashed border-border/50 h-14 flex items-center justify-center">
+                <ImageIcon className="h-4 w-4 text-muted-foreground/40" />
+              </div>
             )}
-          </div>
 
-          {/* Image preview thumbnail */}
-          {card.image_url && (
-            <div className="mt-3 rounded-lg overflow-hidden bg-muted/30 border border-border/50 h-20 flex items-center justify-center">
-              <img
-                src={card.image_url}
-                alt={card.title}
-                className="max-h-full max-w-full object-contain"
-              />
+            <div className="mt-3 flex flex-wrap gap-1">
+              {card.audience.slice(0, 2).map(a => (
+                <Badge key={a} variant="outline" className="text-[10px] px-1.5 py-0">{a}</Badge>
+              ))}
+              {card.product_type.slice(0, 2).map(p => (
+                <Badge key={p} className="text-[10px] px-1.5 py-0 bg-primary/10 text-primary border-primary/20">{p}</Badge>
+              ))}
             </div>
-          )}
-
-          {!card.image_url && (
-            <div className="mt-3 rounded-lg bg-muted/30 border border-dashed border-border/50 h-16 flex items-center justify-center">
-              <ImageIcon className="h-5 w-5 text-muted-foreground/40" />
-            </div>
-          )}
-
-          {/* Tags */}
-          <div className="mt-3 flex flex-wrap gap-1">
-            {card.audience.slice(0, 2).map(a => (
-              <Badge key={a} variant="outline" className="text-[10px] px-1.5 py-0">{a}</Badge>
-            ))}
-            {card.product_type.slice(0, 2).map(p => (
-              <Badge key={p} className="text-[10px] px-1.5 py-0 bg-primary/10 text-primary border-primary/20">{p}</Badge>
-            ))}
           </div>
-
-          {/* Hint click to expand */}
-          {card.image_url && (
-            <p className="text-[10px] text-muted-foreground/60 mt-2 flex items-center gap-1">
-              <ChevronDown className="h-3 w-3" /> Click to see full drawing
-            </p>
-          )}
         </div>
 
-        {/* Admin delete */}
-        {isAdmin && (
-          <button
-            onClick={(e) => { e.stopPropagation(); onDelete(card.id); }}
-            className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg bg-destructive/10 hover:bg-destructive/20 text-destructive"
-          >
-            <Trash2 className="h-3.5 w-3.5" />
-          </button>
-        )}
+        {/* BACK — Drawing */}
+        <div
+          className="absolute inset-0 rounded-2xl border bg-card shadow-md overflow-hidden"
+          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+          onClick={e => { e.stopPropagation(); onOpen(card); }}
+        >
+          <div className="absolute top-2 right-2 z-10">
+            <span className="text-[9px] text-muted-foreground/60 bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">click for full view</span>
+          </div>
+          {card.image_url ? (
+            <img
+              src={card.image_url}
+              alt={card.title}
+              className="w-full h-full object-contain p-2"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
+              No drawing yet
+            </div>
+          )}
+        </div>
       </div>
+
+      {/* Quiz action buttons (shown below card when flipped in quiz mode) */}
+      {quizMode && flipped && (
+        <div className="absolute -bottom-12 inset-x-0 flex gap-2 justify-center z-20 animate-fade-in" onClick={e => e.stopPropagation()}>
+          <button
+            onClick={() => onKnow?.(card.id)}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors shadow-md"
+          >
+            <CheckCircle className="h-3.5 w-3.5" /> Know it
+          </button>
+          <button
+            onClick={() => onReview?.(card.id)}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-yellow-500 text-white hover:bg-yellow-600 transition-colors shadow-md"
+          >
+            <XCircle className="h-3.5 w-3.5" /> Review later
+          </button>
+        </div>
+      )}
+
+      {/* Admin delete */}
+      {isAdmin && !quizMode && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onDelete(card.id); }}
+          className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg bg-destructive/10 hover:bg-destructive/20 text-destructive"
+        >
+          <Trash2 className="h-3.5 w-3.5" />
+        </button>
+      )}
     </div>
   );
 }
 
+// ─── Quiz Mode Progress Banner ─────────────────────────────────────────────
+function QuizBanner({ total, known, reviewing, onReset }: {
+  total: number;
+  known: number;
+  reviewing: number;
+  onReset: () => void;
+}) {
+  const remaining = total - known - reviewing;
+  return (
+    <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl border bg-card mb-5 text-sm flex-wrap">
+      <GraduationCap className="h-4 w-4 text-primary shrink-0" />
+      <span className="font-medium">Quiz Mode</span>
+      <span className="text-muted-foreground">—</span>
+      <span className="text-green-600 font-semibold">{known} know it</span>
+      <span className="text-yellow-600 font-semibold">{reviewing} review later</span>
+      <span className="text-muted-foreground">{remaining} remaining</span>
+      {(known + reviewing) > 0 && (
+        <button onClick={onReset} className="ml-auto flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
+          <RotateCcw className="h-3 w-3" /> Reset
+        </button>
+      )}
+      {known + reviewing === total && (
+        <Badge className="ml-auto bg-green-600 text-white">
+          ✓ Session complete!
+        </Badge>
+      )}
+    </div>
+  );
+}
+
+// ─── Page ──────────────────────────────────────────────────────────────────
 export default function ConceptCardsPage() {
   const { cards, loading, refetch } = useConceptCards();
   const { deleteCard } = useConceptCardsMutations();
@@ -109,6 +192,9 @@ export default function ConceptCardsPage() {
   const [search, setSearch] = useState('');
   const [filterAudience, setFilterAudience] = useState('All');
   const [filterProduct, setFilterProduct] = useState('All');
+  const [quizMode, setQuizMode] = useState(false);
+  const [knownIds, setKnownIds] = useState<Set<string>>(new Set());
+  const [reviewIds, setReviewIds] = useState<Set<string>>(new Set());
 
   const filtered = useMemo(() => {
     return cards.filter(c => {
@@ -129,12 +215,28 @@ export default function ConceptCardsPage() {
     if (ok) refetch();
   };
 
+  const handleKnow = (id: string) => {
+    setKnownIds(prev => new Set([...prev, id]));
+    setReviewIds(prev => { const n = new Set(prev); n.delete(id); return n; });
+    toast.success('Marked as known! 🎉');
+  };
+
+  const handleReview = (id: string) => {
+    setReviewIds(prev => new Set([...prev, id]));
+    setKnownIds(prev => { const n = new Set(prev); n.delete(id); return n; });
+  };
+
+  const resetQuiz = () => {
+    setKnownIds(new Set());
+    setReviewIds(new Set());
+  };
+
   return (
     <PageLayout title="Concept Cards — FINternship" description="Visual concept flashcards for financial advisors">
       <BrandedPageHeader
         title="Concept Cards"
         titlePrefix="🃏 "
-        subtitle="Visual concept drawings as flashcards — click a card to reveal the drawing"
+        subtitle="Visual concept drawings as flashcards — tap a card to flip and reveal the drawing"
         showBackButton={false}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Concept Cards' }]}
       />
@@ -143,7 +245,7 @@ export default function ConceptCardsPage() {
         <ScriptsTabBar />
 
         {/* Toolbar */}
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-5">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
@@ -169,6 +271,14 @@ export default function ConceptCardsPage() {
               {PRODUCT_OPTIONS.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
             </SelectContent>
           </Select>
+          <Button
+            variant={quizMode ? "default" : "outline"}
+            onClick={() => { setQuizMode(q => !q); resetQuiz(); }}
+            className="shrink-0 gap-1.5"
+          >
+            <GraduationCap className="h-4 w-4" />
+            {quizMode ? 'Exit Quiz' : 'Quiz Mode'}
+          </Button>
           {isAdmin() && (
             <Button onClick={() => setUploadOpen(true)} className="shrink-0">
               <Plus className="h-4 w-4 mr-1.5" />
@@ -177,16 +287,29 @@ export default function ConceptCardsPage() {
           )}
         </div>
 
+        {/* Quiz banner */}
+        {quizMode && filtered.length > 0 && (
+          <QuizBanner
+            total={filtered.length}
+            known={knownIds.size}
+            reviewing={reviewIds.size}
+            onReset={resetQuiz}
+          />
+        )}
+
         {/* Count */}
         <p className="text-sm text-muted-foreground mb-4">
           {loading ? 'Loading...' : `${filtered.length} card${filtered.length !== 1 ? 's' : ''}`}
+          {quizMode && filtered.length > 0 && (
+            <span className="ml-2 text-xs text-muted-foreground/70">— Tap a card to flip, then mark yourself</span>
+          )}
         </p>
 
         {/* Grid */}
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="rounded-2xl border bg-card min-h-[200px] animate-pulse" />
+              <div key={i} className="rounded-2xl border bg-card h-60 animate-pulse" />
             ))}
           </div>
         ) : filtered.length === 0 ? (
@@ -202,7 +325,10 @@ export default function ConceptCardsPage() {
             )}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className={cn(
+            "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4",
+            quizMode && "gap-y-16" // extra vertical gap for quiz buttons
+          )}>
             {filtered.map(card => (
               <FlashCard
                 key={card.id}
@@ -210,6 +336,9 @@ export default function ConceptCardsPage() {
                 onOpen={setViewCard}
                 onDelete={handleDelete}
                 isAdmin={isAdmin()}
+                quizMode={quizMode}
+                onKnow={handleKnow}
+                onReview={handleReview}
               />
             ))}
           </div>
