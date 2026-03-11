@@ -28,19 +28,19 @@ interface CompareResult {
 }
 
 const GRADE_COLORS: Record<string, string> = {
-  Excellent: 'text-emerald-600 bg-emerald-50 border-emerald-200',
-  Good: 'text-blue-600 bg-blue-50 border-blue-200',
-  Fair: 'text-amber-600 bg-amber-50 border-amber-200',
-  Partial: 'text-orange-600 bg-orange-50 border-orange-200',
-  'Needs Work': 'text-rose-600 bg-rose-50 border-rose-200',
+  Excellent: 'text-green-700 bg-green-50 border-green-200 dark:text-green-400 dark:bg-green-950 dark:border-green-800',
+  Good: 'text-blue-700 bg-blue-50 border-blue-200 dark:text-blue-400 dark:bg-blue-950 dark:border-blue-800',
+  Fair: 'text-yellow-700 bg-yellow-50 border-yellow-200 dark:text-yellow-400 dark:bg-yellow-950 dark:border-yellow-800',
+  Partial: 'text-orange-700 bg-orange-50 border-orange-200 dark:text-orange-400 dark:bg-orange-950 dark:border-orange-800',
+  'Needs Work': 'text-red-700 bg-red-50 border-red-200 dark:text-red-400 dark:bg-red-950 dark:border-red-800',
 };
 
 const SCORE_COLOR = (score: number) => {
-  if (score >= 90) return 'text-emerald-600';
-  if (score >= 70) return 'text-blue-600';
-  if (score >= 50) return 'text-amber-600';
-  if (score >= 30) return 'text-orange-600';
-  return 'text-rose-600';
+  if (score >= 90) return 'text-green-600 dark:text-green-400';
+  if (score >= 70) return 'text-blue-600 dark:text-blue-400';
+  if (score >= 50) return 'text-yellow-600 dark:text-yellow-400';
+  if (score >= 30) return 'text-orange-600 dark:text-orange-400';
+  return 'text-red-600 dark:text-red-400';
 };
 
 // ─── Whiteboard Component ──────────────────────────────────────────────────
