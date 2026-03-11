@@ -522,6 +522,52 @@ function SortableSectionCard({
   );
 }
 
+// ─── Sortable Group Wrapper ──────────────────────────────────────────────────
+import React from 'react';
+
+interface SortableGroupProps {
+  sectionItem: any;
+  isOwner: boolean;
+  onRemove: (id: string) => void;
+  onRename: (id: string, label: string, level?: number) => void;
+  shareToken?: string | null;
+  collapsed: boolean;
+  onToggleCollapse: () => void;
+  childCount: number;
+  children: React.ReactNode;
+}
+
+function SortableGroup({
+  sectionItem, isOwner, onRemove, onRename, shareToken,
+  collapsed, onToggleCollapse, childCount, children,
+}: SortableGroupProps) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: sectionItem.id });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 50 : undefined,
+    opacity: isDragging ? 0.85 : 1,
+  };
+  return (
+    <div ref={setNodeRef} style={style}>
+      <SortableSectionCard
+        item={sectionItem}
+        isOwner={isOwner}
+        onRemove={onRemove}
+        onRename={onRename}
+        shareToken={shareToken}
+        collapsed={collapsed}
+        onToggleCollapse={onToggleCollapse}
+        childCount={childCount}
+        groupDragAttributes={attributes}
+        groupDragListeners={listeners}
+        isDraggingGroup={isDragging}
+      />
+      {children}
+    </div>
+  );
+}
+
 // ─── Main Page ───────────────────────────────────────────────────────────────
 
 export default function PlaybookDetail() {
