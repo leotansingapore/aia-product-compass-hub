@@ -258,6 +258,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
   const [tagInput, setTagInput] = useState('');
   const [saving, setSaving] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
   const { createCard, uploadOriginalImage } = useConceptCardsMutations();
