@@ -453,6 +453,16 @@ export default function ConceptCardsPage() {
         onClose={() => setEditCard(null)}
         onUpdated={refetch}
       />
+      {focusMode && filtered.length > 0 && (
+        <ConceptCardFocusMode
+          cards={filtered}
+          onClose={() => setFocusMode(false)}
+          onKnow={handleKnow}
+          onReview={handleReview}
+          knownIds={knownIds}
+          reviewIds={reviewIds}
+        />
+      )}
     </PageLayout>
   );
 }
