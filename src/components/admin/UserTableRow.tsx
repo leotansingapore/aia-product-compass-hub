@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -37,7 +38,7 @@ interface UserTableRowProps {
   onSendEmail: (user: UnifiedUser) => void;
 }
 
-export function UserTableRow({ 
+export const UserTableRow = memo(function UserTableRow({ 
   user, 
   isSelected, 
   onSelect, 
@@ -303,4 +304,4 @@ export function UserTableRow({
       </TableCell>
     </TableRow>
   );
-}
+});

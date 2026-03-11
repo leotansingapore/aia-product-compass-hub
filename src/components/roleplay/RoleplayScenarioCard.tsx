@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -37,7 +37,7 @@ interface RoleplayScenarioCardProps {
   onStart: (scenario: RoleplayScenario) => void;
 }
 
-export function RoleplayScenarioCard({ scenario, onStart }: RoleplayScenarioCardProps) {
+export const RoleplayScenarioCard = memo(function RoleplayScenarioCard({ scenario, onStart }: RoleplayScenarioCardProps) {
   const CategoryIcon = scenarioIcons[scenario.id] || categoryIcons[scenario.category];
   
   return (
@@ -93,4 +93,4 @@ export function RoleplayScenarioCard({ scenario, onStart }: RoleplayScenarioCard
       </CardContent>
     </Card>
   );
-}
+});
