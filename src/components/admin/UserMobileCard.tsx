@@ -121,6 +121,7 @@ export function UserMobileCard({
             checked={isSelected}
             onChange={(e) => onSelect(e.target.checked)}
             className="cursor-pointer mt-2 h-4 w-4"
+            aria-label={`Select user ${user.email}`}
           />
           
           <Avatar className="h-10 w-10 flex-shrink-0">

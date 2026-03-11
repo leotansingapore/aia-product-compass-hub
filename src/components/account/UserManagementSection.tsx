@@ -290,6 +290,7 @@ export function UserManagementSection() {
                   checked={selectedUsers.size === filteredUsers.length && filteredUsers.length > 0}
                   onChange={(e) => handleSelectAll(e.target.checked)}
                   className="h-4 w-4 shrink-0 cursor-pointer accent-primary"
+                  aria-label="Select all users"
                 />
                 <span className="text-xs sm:text-sm text-muted-foreground">
                   Select all ({filteredUsers.length})
@@ -312,6 +313,7 @@ export function UserManagementSection() {
                   checked={selectedUsers.has(user.id)}
                   onChange={(e) => handleUserSelect(user.id, e.target.checked)}
                   className="h-4 w-4 shrink-0 mt-3 sm:mt-[18px] cursor-pointer accent-primary"
+                  aria-label={`Select user ${user.email}`}
                 />
                 <div className="flex-1">
                   <UserCard

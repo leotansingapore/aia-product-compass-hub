@@ -207,6 +207,7 @@ export function PasswordResetDialog({ user, open, onOpenChange, onSuccess }: Pas
                         size="sm"
                         className="h-6 w-6 p-0"
                         onClick={() => setShowPassword(!showPassword)}
+                        aria-label={showPassword ? "Hide password" : "Show password"}
                       >
                         {showPassword ? (
                           <EyeOff className="h-3 w-3" />
@@ -221,6 +222,7 @@ export function PasswordResetDialog({ user, open, onOpenChange, onSuccess }: Pas
                           size="sm"
                           className="h-6 w-6 p-0"
                           onClick={copyToClipboard}
+                          aria-label="Copy password to clipboard"
                         >
                           <Copy className="h-3 w-3" />
                         </Button>

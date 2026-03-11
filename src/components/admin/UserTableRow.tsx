@@ -122,6 +122,7 @@ export const UserTableRow = memo(function UserTableRow({
           checked={isSelected}
           onChange={(e) => onSelect(e.target.checked)}
           className="cursor-pointer"
+          aria-label={`Select user ${user.email}`}
         />
       </TableCell>
 
@@ -262,7 +263,7 @@ export const UserTableRow = memo(function UserTableRow({
           {/* More Actions Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="h-7 w-7 p-0">
+              <Button variant="ghost" size="sm" className="h-7 w-7 p-0" aria-label={`More options for ${user.email}`}>
                 <MoreHorizontal className="h-3 w-3" />
               </Button>
             </DropdownMenuTrigger>
