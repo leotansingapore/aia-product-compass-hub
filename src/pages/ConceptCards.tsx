@@ -15,7 +15,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
   Plus, Search, ImageIcon, Trash2, GraduationCap, RotateCcw,
-  CheckCircle, XCircle, Pencil, BookmarkCheck
+  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
