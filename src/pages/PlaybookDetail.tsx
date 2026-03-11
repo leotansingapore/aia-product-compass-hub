@@ -1148,7 +1148,7 @@ export default function PlaybookDetail() {
             <SortableContext items={itemsWithData.map(i => i.id)} strategy={verticalListSortingStrategy}>
               <div className="space-y-2">
                 {(() => {
-                  // Build groups: each section starts a new group; items before the first section are "ungrouped"
+                  // Build groups: each section starts a new group; items before first section are "ungrouped"
                   type Group = { section: any | null; children: any[] };
                   const groups: Group[] = [];
                   let current: Group = { section: null, children: [] };
@@ -1166,48 +1166,9 @@ export default function PlaybookDetail() {
                   return groups.map((group, gi) => {
                     if (!group.section && group.children.length === 0) return null;
 
-                    const sectionId = group.section?.id ?? `root-${gi}`;
                     const isCollapsed = group.section ? !!collapsedSections[group.section.id] : false;
 
-                    // Drag props for the group wrapper (section item)
-                    // We wrap the group in a SortableContext item for dragging by section id
-                    const GroupWrapper = ({ children }: { children: React.ReactNode }) => {
-                      if (!group.section) return <>{children}</>;
-                      const {
-                        attributes,
-                        listeners,
-                        setNodeRef,
-                        transform,
-                        transition,
-                        isDragging,
-                      } = useSortable({ id: group.section.id });
-                      const style = {
-                        transform: CSS.Transform.toString(transform),
-                        transition,
-                        zIndex: isDragging ? 50 : undefined,
-                        opacity: isDragging ? 0.85 : 1,
-                      };
-                      return (
-                        <div ref={setNodeRef} style={style}>
-                          <SortableSectionCard
-                            item={group.section}
-                            isOwner={isOwner}
-                            onRemove={(id) => removeItem.mutate(id)}
-                            onRename={handleRenameSection}
-                            shareToken={playbook?.share_token}
-                            collapsed={isCollapsed}
-                            onToggleCollapse={() => setCollapsedSections(prev => ({ ...prev, [group.section.id]: !prev[group.section.id] }))}
-                            childCount={group.children.length}
-                            groupDragAttributes={attributes}
-                            groupDragListeners={listeners}
-                            isDraggingGroup={isDragging}
-                          />
-                          {children}
-                        </div>
-                      );
-                    };
-
-                    const childrenEl = !isCollapsed && (
+                    const childrenEl = !isCollapsed ? (
                       <div className={`space-y-2 ${group.section ? "mt-2 pl-2 border-l-2 border-muted ml-3" : ""}`}>
                         {group.children.map((item) => {
                           const idx = globalCounter++;
@@ -1235,8 +1196,9 @@ export default function PlaybookDetail() {
                           );
                         })}
                       </div>
-                    );
+                    ) : null;
 
+                    // Ungrouped items (before first section)
                     if (!group.section) {
                       return (
                         <div key={`root-${gi}`} className="space-y-2">
@@ -1246,9 +1208,19 @@ export default function PlaybookDetail() {
                     }
 
                     return (
-                      <GroupWrapper key={group.section.id}>
+                      <SortableGroup
+                        key={group.section.id}
+                        sectionItem={group.section}
+                        isOwner={isOwner}
+                        onRemove={(id) => removeItem.mutate(id)}
+                        onRename={handleRenameSection}
+                        shareToken={playbook?.share_token}
+                        collapsed={isCollapsed}
+                        onToggleCollapse={() => setCollapsedSections(prev => ({ ...prev, [group.section.id]: !prev[group.section.id] }))}
+                        childCount={group.children.length}
+                      >
                         {childrenEl}
-                      </GroupWrapper>
+                      </SortableGroup>
                     );
                   });
                 })()}
