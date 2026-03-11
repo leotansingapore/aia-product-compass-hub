@@ -6,6 +6,7 @@ import { useConceptCards, ConceptCard } from '@/hooks/useConceptCards';
 import { useConceptCardsMutations } from '@/hooks/useConceptCards';
 import { usePermissions } from '@/hooks/usePermissions';
 import { ConceptCardUploadDialog } from '@/components/concept-cards/ConceptCardUploadDialog';
+import { ConceptCardFocusMode } from '@/components/concept-cards/ConceptCardFocusMode';
 import { ConceptCardViewDialog } from '@/components/concept-cards/ConceptCardViewDialog';
 import { ConceptCardEditDialog } from '@/components/concept-cards/ConceptCardEditDialog';
 import { Button } from '@/components/ui/button';
@@ -14,7 +15,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
   Plus, Search, ImageIcon, Trash2, GraduationCap, RotateCcw,
-  CheckCircle, XCircle, Pencil, BookmarkCheck
+  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -234,6 +235,7 @@ export default function ConceptCardsPage() {
   const [knownIds, setKnownIds] = useState<Set<string>>(new Set());
   const [reviewIds, setReviewIds] = useState<Set<string>>(new Set());
   const [showReviewOnly, setShowReviewOnly] = useState(false);
+  const [focusMode, setFocusMode] = useState(false);
 
   const filtered = useMemo(() => {
     let result = cards.filter(c => {
@@ -328,6 +330,16 @@ export default function ConceptCardsPage() {
             <GraduationCap className="h-4 w-4" />
             {quizMode ? 'Exit Quiz' : 'Quiz Mode'}
           </Button>
+          {filtered.length > 0 && (
+            <Button
+              variant="outline"
+              onClick={() => setFocusMode(true)}
+              className="shrink-0 gap-1.5"
+            >
+              <Focus className="h-4 w-4" />
+              Focus Mode
+            </Button>
+          )}
           {isAdmin() && (
             <Button onClick={() => setUploadOpen(true)} className="shrink-0">
               <Plus className="h-4 w-4 mr-1.5" /> Add Card
@@ -441,6 +453,16 @@ export default function ConceptCardsPage() {
         onClose={() => setEditCard(null)}
         onUpdated={refetch}
       />
+      {focusMode && filtered.length > 0 && (
+        <ConceptCardFocusMode
+          cards={filtered}
+          onClose={() => setFocusMode(false)}
+          onKnow={handleKnow}
+          onReview={handleReview}
+          knownIds={knownIds}
+          reviewIds={reviewIds}
+        />
+      )}
     </PageLayout>
   );
 }
