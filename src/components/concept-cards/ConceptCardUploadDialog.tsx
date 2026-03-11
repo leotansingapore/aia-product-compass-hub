@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Upload, Loader2, Sparkles, X, ImageIcon, ClipboardPaste, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Upload, Loader2, Sparkles, X, ImageIcon, ClipboardPaste, CheckCircle, ChevronLeft, ChevronRight, Pencil, Eraser, Undo2, Redo2, Trash2, Check } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useConceptCardsMutations } from '@/hooks/useConceptCards';
 import { toast } from 'sonner';
@@ -13,6 +13,224 @@ import { cn } from '@/lib/utils';
 
 const AUDIENCE_OPTIONS = ['NSF / NS', 'Young Adults', 'Working Adults', 'Pre-Retirees (50-65)', 'Parents', 'General'];
 const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'General'];
+
+// ─── Inline Image Editor ─────────────────────────────────────────────────────
+function InlineImageEditor({
+  imageUrl,
+  onApply,
+  onCancel,
+}: {
+  imageUrl: string;
+  onApply: (editedBase64: string) => void;
+  onCancel: () => void;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [tool, setTool] = useState<'eraser' | 'pen'>('eraser');
+  const [strokeSize, setStrokeSize] = useState(18);
+  const [isDrawing, setIsDrawing] = useState(false);
+  const lastPos = useRef<{ x: number; y: number } | null>(null);
+  const historyRef = useRef<ImageData[]>([]);
+  const historyIndexRef = useRef(-1);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+
+  // Load image onto canvas
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      ctx.drawImage(img, 0, 0);
+      imgRef.current = img;
+      // Save blank state
+      const snap = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      historyRef.current = [snap];
+      historyIndexRef.current = 0;
+    };
+    img.src = imageUrl;
+  }, [imageUrl]);
+
+  const saveSnapshot = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+    const snap = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    historyRef.current = historyRef.current.slice(0, historyIndexRef.current + 1);
+    historyRef.current.push(snap);
+    if (historyRef.current.length > 40) {
+      historyRef.current.shift();
+    } else {
+      historyIndexRef.current++;
+    }
+  }, []);
+
+  const undo = useCallback(() => {
+    if (historyIndexRef.current <= 0) return;
+    historyIndexRef.current--;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.getContext('2d')!.putImageData(historyRef.current[historyIndexRef.current], 0, 0);
+  }, []);
+
+  const redo = useCallback(() => {
+    if (historyIndexRef.current >= historyRef.current.length - 1) return;
+    historyIndexRef.current++;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.getContext('2d')!.putImageData(historyRef.current[historyIndexRef.current], 0, 0);
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'z') { e.preventDefault(); e.shiftKey ? redo() : undo(); }
+      if ((e.metaKey || e.ctrlKey) && e.key === 'y') { e.preventDefault(); redo(); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [undo, redo]);
+
+  const getPos = (e: React.MouseEvent | React.TouchEvent) => {
+    const canvas = canvasRef.current!;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    if ('touches' in e) {
+      return { x: (e.touches[0].clientX - rect.left) * scaleX, y: (e.touches[0].clientY - rect.top) * scaleY };
+    }
+    return { x: ((e as React.MouseEvent).clientX - rect.left) * scaleX, y: ((e as React.MouseEvent).clientY - rect.top) * scaleY };
+  };
+
+  const startDraw = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    const canvas = canvasRef.current; if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+    const pos = getPos(e);
+    ctx.globalCompositeOperation = tool === 'eraser' ? 'destination-out' : 'source-over';
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, strokeSize / 2, 0, Math.PI * 2);
+    ctx.fillStyle = tool === 'eraser' ? 'rgba(0,0,0,1)' : '#1a1a1a';
+    ctx.fill();
+    setIsDrawing(true);
+    lastPos.current = pos;
+  };
+
+  const draw = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    if (!isDrawing || !lastPos.current) return;
+    const canvas = canvasRef.current; if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+    const pos = getPos(e);
+    ctx.globalCompositeOperation = tool === 'eraser' ? 'destination-out' : 'source-over';
+    ctx.beginPath();
+    ctx.moveTo(lastPos.current.x, lastPos.current.y);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.strokeStyle = tool === 'eraser' ? 'rgba(0,0,0,1)' : '#1a1a1a';
+    ctx.lineWidth = strokeSize;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+    lastPos.current = pos;
+  };
+
+  const stopDraw = () => {
+    if (isDrawing) saveSnapshot();
+    setIsDrawing(false);
+    lastPos.current = null;
+  };
+
+  const handleApply = () => {
+    const canvas = canvasRef.current; if (!canvas) return;
+    // Flatten onto white background
+    const flat = document.createElement('canvas');
+    flat.width = canvas.width;
+    flat.height = canvas.height;
+    const fctx = flat.getContext('2d')!;
+    fctx.fillStyle = '#ffffff';
+    fctx.fillRect(0, 0, flat.width, flat.height);
+    fctx.drawImage(canvas, 0, 0);
+    onApply(flat.toDataURL('image/png'));
+  };
+
+  return (
+    <div className="rounded-xl border-2 border-primary/40 bg-card overflow-hidden">
+      {/* Toolbar */}
+      <div className="flex items-center gap-2 px-3 py-2 bg-muted/30 border-b flex-wrap">
+        <span className="text-xs font-semibold text-foreground">Edit enhanced image</span>
+        <div className="flex items-center gap-1 ml-2">
+          {(['eraser', 'pen'] as const).map(t => (
+            <button
+              key={t}
+              onClick={() => setTool(t)}
+              title={t === 'eraser' ? 'Eraser' : 'Pen'}
+              className={cn(
+                "flex items-center gap-1 px-2 py-1 rounded-md text-xs border transition-colors",
+                tool === t
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-background text-muted-foreground border-border hover:border-primary/60"
+              )}
+            >
+              {t === 'eraser' ? <Eraser className="h-3 w-3" /> : <Pencil className="h-3 w-3" />}
+              {t.charAt(0).toUpperCase() + t.slice(1)}
+            </button>
+          ))}
+        </div>
+        {/* Size */}
+        <div className="flex items-center gap-1 ml-1">
+          {[10, 20, 35].map(s => (
+            <button
+              key={s}
+              onClick={() => setStrokeSize(s)}
+              className={cn(
+                "w-6 h-6 rounded-full flex items-center justify-center border transition-colors",
+                strokeSize === s ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
+              )}
+            >
+              <div className="rounded-full bg-foreground" style={{ width: Math.max(3, s / 5), height: Math.max(3, s / 5) }} />
+            </button>
+          ))}
+        </div>
+        <div className="flex items-center gap-1 ml-auto">
+          <button onClick={undo} title="Undo" className="p-1.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors">
+            <Undo2 className="h-3.5 w-3.5" />
+          </button>
+          <button onClick={redo} title="Redo" className="p-1.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors">
+            <Redo2 className="h-3.5 w-3.5" />
+          </button>
+          <button onClick={onCancel} className="flex items-center gap-1 px-2 py-1 rounded-md text-xs border border-border text-muted-foreground hover:border-destructive/60 hover:text-destructive transition-colors ml-1">
+            <X className="h-3 w-3" /> Cancel
+          </button>
+          <button onClick={handleApply} className="flex items-center gap-1 px-2.5 py-1 rounded-md text-xs border border-primary bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+            <Check className="h-3 w-3" /> Apply
+          </button>
+        </div>
+      </div>
+      {/* Canvas */}
+      <div className="relative bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjZjBmMGYwIi8+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9IiNmMGYwZjAiLz48L3N2Zz4=')] overflow-hidden max-h-64">
+        <canvas
+          ref={canvasRef}
+          className={cn(
+            "w-full h-full object-contain touch-none max-h-64",
+            tool === 'eraser' ? "cursor-cell" : "cursor-crosshair"
+          )}
+          onMouseDown={startDraw}
+          onMouseMove={draw}
+          onMouseUp={stopDraw}
+          onMouseLeave={stopDraw}
+          onTouchStart={startDraw}
+          onTouchMove={draw}
+          onTouchEnd={stopDraw}
+        />
+      </div>
+      <p className="text-[10px] text-muted-foreground px-3 py-1.5 bg-muted/20 border-t">
+        {tool === 'eraser' ? 'Erasing — draw over areas to remove them' : 'Drawing — add black marks'}
+        {' · '}Ctrl+Z to undo
+      </p>
+    </div>
+  );
+}
 
 interface ImageEntry {
   id: string;
@@ -40,6 +258,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
   const [tagInput, setTagInput] = useState('');
   const [saving, setSaving] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
   const { createCard, uploadOriginalImage } = useConceptCardsMutations();
@@ -332,15 +551,30 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
               {active && (
                 <div className="rounded-xl border bg-card p-4 space-y-4">
                   {/* Preview row */}
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className={cn(
+                    "grid gap-3",
+                    editingId === active.id ? "grid-cols-1" : "grid-cols-2"
+                  )}>
+                    {editingId !== active.id && (
+                      <div className="space-y-1">
+                        <p className="text-xs text-muted-foreground font-medium">Original</p>
+                        <img src={active.originalPreview} alt="" className="rounded-lg w-full object-contain max-h-32 bg-muted/20" />
+                      </div>
+                    )}
                     <div className="space-y-1">
-                      <p className="text-xs text-muted-foreground font-medium">Original</p>
-                      <img src={active.originalPreview} alt="" className="rounded-lg w-full object-contain max-h-32 bg-muted/20" />
-                    </div>
-                    <div className="space-y-1">
-                      <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
-                        AI Enhanced {active.enhancing && <Loader2 className="h-3 w-3 animate-spin" />}
-                      </p>
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
+                          AI Enhanced {active.enhancing && <Loader2 className="h-3 w-3 animate-spin" />}
+                        </p>
+                        {active.enhancedUrl && !active.enhancing && editingId !== active.id && (
+                          <button
+                            onClick={() => setEditingId(active.id)}
+                            className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
+                          >
+                            <Eraser className="h-2.5 w-2.5" /> Edit
+                          </button>
+                        )}
+                      </div>
                       {active.enhancing ? (
                         <div className="rounded-lg bg-muted/40 flex items-center justify-center h-32">
                           <div className="text-center space-y-1">
@@ -348,6 +582,16 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                             <p className="text-xs text-muted-foreground">Enhancing...</p>
                           </div>
                         </div>
+                      ) : editingId === active.id && active.enhancedUrl ? (
+                        <InlineImageEditor
+                          imageUrl={active.enhancedUrl}
+                          onApply={(edited) => {
+                            updateActive({ enhancedUrl: edited });
+                            setEditingId(null);
+                            toast.success('Image updated ✓');
+                          }}
+                          onCancel={() => setEditingId(null)}
+                        />
                       ) : active.enhancedUrl ? (
                         <img src={active.enhancedUrl} alt="Enhanced" className="rounded-lg w-full object-contain max-h-32 bg-white" />
                       ) : (
