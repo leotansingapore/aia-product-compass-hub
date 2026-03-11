@@ -131,6 +131,9 @@ const App = () => (
                     <Route path="/flows/:flowId" element={<ScriptFlows />} />
                     <Route path="/flows/view/:flowId" element={<PublicFlowView />} />
 
+                    {/* Concept Cards */}
+                    <Route path="/concept-cards" element={<ConceptCards />} />
+
                     {/* Knowledge Base */}
                     <Route path="/kb" element={<KnowledgeBase />} />
                     <Route path="/kb/:categorySlug" element={<KBCategory />} />
