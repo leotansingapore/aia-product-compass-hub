@@ -6,6 +6,7 @@ import { useConceptCards, ConceptCard } from '@/hooks/useConceptCards';
 import { useConceptCardsMutations } from '@/hooks/useConceptCards';
 import { usePermissions } from '@/hooks/usePermissions';
 import { ConceptCardUploadDialog } from '@/components/concept-cards/ConceptCardUploadDialog';
+import { ConceptCardFocusMode } from '@/components/concept-cards/ConceptCardFocusMode';
 import { ConceptCardViewDialog } from '@/components/concept-cards/ConceptCardViewDialog';
 import { ConceptCardEditDialog } from '@/components/concept-cards/ConceptCardEditDialog';
 import { Button } from '@/components/ui/button';
