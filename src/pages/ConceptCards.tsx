@@ -123,12 +123,18 @@ function FlashCard({
         <div
           className="absolute inset-0 rounded-2xl border bg-card shadow-md overflow-hidden"
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-          onClick={e => { e.stopPropagation(); onOpen(card); }}
+          onClick={() => setFlipped(false)}
         >
-          <div className="absolute top-2 right-2 z-10">
+          <div className="absolute top-2 right-2 z-10 flex items-center gap-1.5">
             <span className="text-[9px] text-muted-foreground/60 bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">
-              click for full view
+              tap to flip back ↻
             </span>
+            <button
+              onClick={e => { e.stopPropagation(); onOpen(card); }}
+              className="text-[9px] text-primary/70 bg-background/80 px-1.5 py-0.5 rounded-md border border-primary/20 hover:border-primary/50 transition-colors"
+            >
+              full view
+            </button>
           </div>
           {card.image_url ? (
             <img src={card.image_url} alt={card.title} className="w-full h-full object-contain p-2" />
