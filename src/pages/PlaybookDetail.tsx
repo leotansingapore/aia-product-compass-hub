@@ -534,7 +534,7 @@ interface SortableGroupProps {
   collapsed: boolean;
   onToggleCollapse: () => void;
   childCount: number;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 function SortableGroup({
