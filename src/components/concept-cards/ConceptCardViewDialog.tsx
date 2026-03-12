@@ -56,7 +56,8 @@ function Whiteboard({
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [tool, setTool] = useState<'pen' | 'eraser'>('pen');
-  const [strokeSize, setStrokeSize] = useState(3);
+  const [penSize, setPenSize] = useState(3);
+  const [eraserSize, setEraserSize] = useState(20);
   const [isDrawing, setIsDrawing] = useState(false);
   const [hasDrawn, setHasDrawn] = useState(false);
   const [showRef, setShowRef] = useState(false);
@@ -134,11 +135,11 @@ function Whiteboard({
     if (tool === 'eraser') {
       ctx.globalCompositeOperation = 'destination-out';
       ctx.strokeStyle = 'rgba(0,0,0,1)';
-      ctx.lineWidth = strokeSize * 5;
+      ctx.lineWidth = eraserSize;
     } else {
       ctx.globalCompositeOperation = 'source-over';
       ctx.strokeStyle = '#1a1a1a';
-      ctx.lineWidth = strokeSize;
+      ctx.lineWidth = penSize;
     }
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
@@ -153,10 +154,10 @@ function Whiteboard({
     applyToolSettings(ctx);
     ctx.beginPath();
     if (tool === 'eraser') {
-      ctx.arc(pos.x, pos.y, (strokeSize * 5) / 2, 0, Math.PI * 2);
+      ctx.arc(pos.x, pos.y, eraserSize / 2, 0, Math.PI * 2);
       ctx.fill();
     } else {
-      ctx.arc(pos.x, pos.y, strokeSize / 2, 0, Math.PI * 2);
+      ctx.arc(pos.x, pos.y, penSize / 2, 0, Math.PI * 2);
       ctx.fillStyle = '#1a1a1a';
       ctx.fill();
     }
@@ -182,7 +183,6 @@ function Whiteboard({
 
   const stopDrawing = () => {
     if (isDrawing) {
-      // Reset composite operation and save snapshot
       const canvas = canvasRef.current;
       if (canvas) {
         const ctx = canvas.getContext('2d')!;
@@ -208,7 +208,6 @@ function Whiteboard({
   const handleCompare = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    // Flatten onto white background before exporting (destination-out leaves transparency)
     const flat = document.createElement('canvas');
     flat.width = canvas.width;
     flat.height = canvas.height;
@@ -218,6 +217,9 @@ function Whiteboard({
     fctx.drawImage(canvas, 0, 0);
     onCompare(flat.toDataURL('image/png'));
   };
+
+  const PEN_SIZES = [2, 4, 7];
+  const ERASER_SIZES = [10, 20, 40, 70];
 
   return (
     <div className="flex flex-col h-full">
@@ -239,20 +241,40 @@ function Whiteboard({
           </button>
         ))}
 
-        <div className="flex items-center gap-1.5 ml-1">
-          {[2, 4, 7].map(s => (
-            <button
-              key={s}
-              onClick={() => setStrokeSize(s)}
-              className={cn(
-                "w-7 h-7 rounded-full flex items-center justify-center border transition-colors",
-                strokeSize === s ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
-              )}
-            >
-              <div className="rounded-full bg-foreground" style={{ width: s + 2, height: s + 2 }} />
-            </button>
-          ))}
-        </div>
+        {/* Size pickers — contextual per tool */}
+        {tool === 'pen' ? (
+          <div className="flex items-center gap-1.5 ml-1">
+            {PEN_SIZES.map(s => (
+              <button
+                key={s}
+                onClick={() => setPenSize(s)}
+                className={cn(
+                  "w-7 h-7 rounded-full flex items-center justify-center border transition-colors",
+                  penSize === s ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
+                )}
+              >
+                <div className="rounded-full bg-foreground" style={{ width: s + 2, height: s + 2 }} />
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="flex items-center gap-1.5 ml-1">
+            {ERASER_SIZES.map(s => (
+              <button
+                key={s}
+                onClick={() => setEraserSize(s)}
+                title={`Eraser ${s}px`}
+                className={cn(
+                  "w-7 h-7 rounded-full flex items-center justify-center border transition-colors",
+                  eraserSize === s ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
+                )}
+              >
+                <div className="rounded-full bg-foreground/30 border border-foreground/40"
+                  style={{ width: Math.min(s / 3 + 4, 22), height: Math.min(s / 3 + 4, 22) }} />
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="flex items-center gap-1 ml-2 border-l border-border/50 pl-2">
           <button
