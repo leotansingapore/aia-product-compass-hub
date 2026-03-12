@@ -128,7 +128,10 @@ function Whiteboard({
       const t = e.touches[0];
       return { x: (t.clientX - rect.left) * scaleX, y: (t.clientY - rect.top) * scaleY };
     }
-    return { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
+    // Use offsetX/offsetY — already relative to the canvas element, unaffected by
+    // parent CSS transforms (e.g. Dialog animations) that throw off clientX - rect.left.
+    const me = e as React.MouseEvent;
+    return { x: me.nativeEvent.offsetX * scaleX, y: me.nativeEvent.offsetY * scaleY };
   };
 
   const applyToolSettings = (ctx: CanvasRenderingContext2D) => {
