@@ -25,11 +25,12 @@ const PRODUCT_OPTIONS = ['All', 'Investment', 'Endowment', 'Whole Life', 'Term',
 
 // ─── Flash Card (3D flip) ──────────────────────────────────────────────────
 function FlashCard({
-  card, onOpen, onDelete, onEdit, isAdmin, quizMode,
+  card, onOpen, onDraw, onDelete, onEdit, isAdmin, quizMode,
   onKnow, onReview, isKnown, isReview,
 }: {
   card: ConceptCard;
   onOpen: (card: ConceptCard) => void;
+  onDraw: (card: ConceptCard) => void;
   onDelete: (id: string) => void;
   onEdit: (card: ConceptCard) => void;
   isAdmin: boolean;

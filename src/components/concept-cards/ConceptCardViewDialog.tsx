@@ -17,6 +17,7 @@ import { ImageCropper } from './ImageCropper';
 interface Props {
   card: ConceptCard | null;
   onClose: () => void;
+  initialTab?: 'view' | 'draw';
 }
 
 interface CompareResult {
