@@ -129,7 +129,7 @@ function FlashCard({
           </div>
         </div>
 
-        {/* BACK — Drawing */}
+        {/* BACK — Drawing(s) */}
         <div
           className="absolute inset-0 rounded-2xl border bg-card shadow-md overflow-hidden"
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
@@ -146,8 +146,33 @@ function FlashCard({
               full view
             </button>
           </div>
-          {card.image_url ? (
-            <img src={card.image_url} alt={card.title} className="w-full h-full object-contain p-2 pointer-events-none" />
+
+          {hasImages ? (
+            <>
+              <img src={currentImg!} alt={card.title} className="w-full h-full object-contain p-2 pointer-events-none" />
+              {/* Multi-image carousel controls */}
+              {allImages.length > 1 && (
+                <div className="absolute bottom-2 inset-x-0 flex items-center justify-center gap-1.5 z-10" onClick={e => e.stopPropagation()}>
+                  <button
+                    onClick={e => { e.stopPropagation(); setImgIndex(i => Math.max(0, i - 1)); }}
+                    disabled={imgIndex === 0}
+                    className="p-0.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors"
+                  >
+                    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                  </button>
+                  <span className="text-[9px] bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40 text-muted-foreground tabular-nums">
+                    {imgIndex + 1}/{allImages.length}
+                  </span>
+                  <button
+                    onClick={e => { e.stopPropagation(); setImgIndex(i => Math.min(allImages.length - 1, i + 1)); }}
+                    disabled={imgIndex === allImages.length - 1}
+                    className="p-0.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors"
+                  >
+                    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                  </button>
+                </div>
+              )}
+            </>
           ) : (
             <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none">No drawing yet</div>
           )}
