@@ -28,6 +28,9 @@ export function InlineImageEditor({
     img.onload = () => {
       canvas.width = img.naturalWidth;
       canvas.height = img.naturalHeight;
+      // Fill white background first so erasing reveals white, not transparency
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0);
       const snap = ctx.getImageData(0, 0, canvas.width, canvas.height);
       historyRef.current = [snap];
@@ -84,7 +87,7 @@ export function InlineImageEditor({
       return { x: (e.touches[0].clientX - rect.left) * scaleX, y: (e.touches[0].clientY - rect.top) * scaleY };
     }
     const me = e as React.MouseEvent;
-    return { x: me.nativeEvent.offsetX * scaleX, y: me.nativeEvent.offsetY * scaleY };
+    return { x: (me.clientX - rect.left) * scaleX, y: (me.clientY - rect.top) * scaleY };
   };
 
   const startDraw = (e: React.MouseEvent | React.TouchEvent) => {
@@ -92,10 +95,10 @@ export function InlineImageEditor({
     const canvas = canvasRef.current; if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
     const pos = getPos(e);
-    ctx.globalCompositeOperation = tool === 'eraser' ? 'destination-out' : 'source-over';
+    ctx.globalCompositeOperation = 'source-over';
     ctx.beginPath();
     ctx.arc(pos.x, pos.y, strokeSize / 2, 0, Math.PI * 2);
-    ctx.fillStyle = tool === 'eraser' ? 'rgba(0,0,0,1)' : '#1a1a1a';
+    ctx.fillStyle = tool === 'eraser' ? '#ffffff' : '#1a1a1a';
     ctx.fill();
     setIsDrawing(true);
     lastPos.current = pos;
@@ -107,11 +110,8 @@ export function InlineImageEditor({
     const canvas = canvasRef.current; if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
     const pos = getPos(e);
-    ctx.globalCompositeOperation = tool === 'eraser' ? 'destination-out' : 'source-over';
-    ctx.beginPath();
-    ctx.moveTo(lastPos.current.x, lastPos.current.y);
-    ctx.lineTo(pos.x, pos.y);
-    ctx.strokeStyle = tool === 'eraser' ? 'rgba(0,0,0,1)' : '#1a1a1a';
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.strokeStyle = tool === 'eraser' ? '#ffffff' : '#1a1a1a';
     ctx.lineWidth = strokeSize;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
@@ -121,8 +121,6 @@ export function InlineImageEditor({
 
   const stopDraw = () => {
     if (isDrawing) {
-      const canvas = canvasRef.current;
-      if (canvas) canvas.getContext('2d')!.globalCompositeOperation = 'source-over';
       saveSnapshot();
     }
     setIsDrawing(false);
