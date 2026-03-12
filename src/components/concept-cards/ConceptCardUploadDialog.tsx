@@ -112,7 +112,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
       reader.readAsDataURL(file);
     });
     toast.success(`${imageFiles.length} image${imageFiles.length > 1 ? 's' : ''} added`);
-  }, [enhanceEntry]);
+  }, [enhanceEntry, aiEnhance]);
 
   // ── Clipboard paste (global while dialog open) ────────────────────────────
   useEffect(() => {
