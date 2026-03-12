@@ -121,8 +121,6 @@ export function InlineImageEditor({
 
   const stopDraw = () => {
     if (isDrawing) {
-      const canvas = canvasRef.current;
-      if (canvas) canvas.getContext('2d')!.globalCompositeOperation = 'source-over';
       saveSnapshot();
     }
     setIsDrawing(false);
