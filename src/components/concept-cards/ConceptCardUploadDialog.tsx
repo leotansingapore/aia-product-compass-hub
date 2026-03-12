@@ -353,75 +353,82 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
               {active && (
                 <div className="rounded-xl border bg-card p-4 space-y-4">
                   {/* Preview row */}
-                  <div className={cn(
-                    "grid gap-3",
-                    editingId === active.id ? "grid-cols-1" : "grid-cols-2"
-                  )}>
-                    {editingId !== active.id && (
+                  {aiEnhance ? (
+                    <div className={cn(
+                      "grid gap-3",
+                      editingId === active.id ? "grid-cols-1" : "grid-cols-2"
+                    )}>
+                      {editingId !== active.id && (
+                        <div className="space-y-1">
+                          <p className="text-xs text-muted-foreground font-medium">Original</p>
+                          <img src={active.originalPreview} alt="" className="rounded-lg w-full object-contain max-h-32 bg-muted/20" />
+                        </div>
+                      )}
                       <div className="space-y-1">
-                        <p className="text-xs text-muted-foreground font-medium">Original</p>
-                        <img src={active.originalPreview} alt="" className="rounded-lg w-full object-contain max-h-32 bg-muted/20" />
-                      </div>
-                    )}
-                    <div className="space-y-1">
-                      <div className="flex items-center justify-between">
-                        <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
-                          AI Enhanced {active.enhancing && <Loader2 className="h-3 w-3 animate-spin" />}
-                        </p>
-                        {active.enhancedUrl && !active.enhancing && editingId !== active.id && croppingId !== active.id && (
-                          <div className="flex items-center gap-1">
-                            <button
-                              onClick={() => setCroppingId(active.id)}
-                              className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
-                            >
-                              <Crop className="h-2.5 w-2.5" /> Crop
-                            </button>
-                            <button
-                              onClick={() => setEditingId(active.id)}
-                              className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
-                            >
-                              <Eraser className="h-2.5 w-2.5" /> Edit
-                            </button>
+                        <div className="flex items-center justify-between">
+                          <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
+                            AI Enhanced {active.enhancing && <Loader2 className="h-3 w-3 animate-spin" />}
+                          </p>
+                          {active.enhancedUrl && !active.enhancing && editingId !== active.id && croppingId !== active.id && (
+                            <div className="flex items-center gap-1">
+                              <button
+                                onClick={() => setCroppingId(active.id)}
+                                className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
+                              >
+                                <Crop className="h-2.5 w-2.5" /> Crop
+                              </button>
+                              <button
+                                onClick={() => setEditingId(active.id)}
+                                className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
+                              >
+                                <Eraser className="h-2.5 w-2.5" /> Edit
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                        {active.enhancing ? (
+                          <div className="rounded-lg bg-muted/40 flex items-center justify-center h-32">
+                            <div className="text-center space-y-1">
+                              <Sparkles className="h-5 w-5 text-primary mx-auto animate-pulse" />
+                              <p className="text-xs text-muted-foreground">Enhancing...</p>
+                            </div>
+                          </div>
+                        ) : croppingId === active.id && active.enhancedUrl ? (
+                          <ImageCropper
+                            imageUrl={active.enhancedUrl}
+                            maxImgClass="max-w-full max-h-[40vh]"
+                            onCrop={(cropped) => {
+                              updateActive({ enhancedUrl: cropped });
+                              setCroppingId(null);
+                              toast.success('Image cropped ✓');
+                            }}
+                            onCancel={() => setCroppingId(null)}
+                          />
+                        ) : editingId === active.id && active.enhancedUrl ? (
+                          <InlineImageEditor
+                            imageUrl={active.enhancedUrl}
+                            onApply={(edited) => {
+                              updateActive({ enhancedUrl: edited });
+                              setEditingId(null);
+                              toast.success('Image updated ✓');
+                            }}
+                            onCancel={() => setEditingId(null)}
+                          />
+                        ) : active.enhancedUrl ? (
+                          <img src={active.enhancedUrl} alt="Enhanced" className="rounded-lg w-full object-contain max-h-32 bg-white" />
+                        ) : (
+                          <div className="rounded-lg bg-muted/40 flex items-center justify-center h-32">
+                            <p className="text-xs text-muted-foreground">Using original</p>
                           </div>
                         )}
                       </div>
-                      {active.enhancing ? (
-                        <div className="rounded-lg bg-muted/40 flex items-center justify-center h-32">
-                          <div className="text-center space-y-1">
-                            <Sparkles className="h-5 w-5 text-primary mx-auto animate-pulse" />
-                            <p className="text-xs text-muted-foreground">Enhancing...</p>
-                          </div>
-                        </div>
-                      ) : croppingId === active.id && active.enhancedUrl ? (
-                        <ImageCropper
-                          imageUrl={active.enhancedUrl}
-                          maxImgClass="max-w-full max-h-[40vh]"
-                          onCrop={(cropped) => {
-                            updateActive({ enhancedUrl: cropped });
-                            setCroppingId(null);
-                            toast.success('Image cropped ✓');
-                          }}
-                          onCancel={() => setCroppingId(null)}
-                        />
-                      ) : editingId === active.id && active.enhancedUrl ? (
-                        <InlineImageEditor
-                          imageUrl={active.enhancedUrl}
-                          onApply={(edited) => {
-                            updateActive({ enhancedUrl: edited });
-                            setEditingId(null);
-                            toast.success('Image updated ✓');
-                          }}
-                          onCancel={() => setEditingId(null)}
-                        />
-                      ) : active.enhancedUrl ? (
-                        <img src={active.enhancedUrl} alt="Enhanced" className="rounded-lg w-full object-contain max-h-32 bg-white" />
-                      ) : (
-                        <div className="rounded-lg bg-muted/40 flex items-center justify-center h-32">
-                          <p className="text-xs text-muted-foreground">Using original</p>
-                        </div>
-                      )}
                     </div>
-                  </div>
+                  ) : (
+                    <div className="space-y-1">
+                      <p className="text-xs text-muted-foreground font-medium">Image Preview</p>
+                      <img src={active.originalPreview} alt="" className="rounded-lg w-full object-contain max-h-40 bg-muted/20" />
+                    </div>
+                  )}
 
                   {/* Question */}
                   <div className="space-y-1.5">
