@@ -116,7 +116,8 @@ export function InlineImageEditor({
       return { x: (e.touches[0].clientX - rect.left) * scaleX, y: (e.touches[0].clientY - rect.top) * scaleY };
     }
     const me = e as React.MouseEvent;
-    return { x: me.nativeEvent.offsetX * scaleX, y: me.nativeEvent.offsetY * scaleY };
+    // Use clientX relative to the draw canvas rect (not the overlay) for correct scaling
+    return { x: (me.clientX - rect.left) * scaleX, y: (me.clientY - rect.top) * scaleY };
   };
 
   const getDisplayRadius = () => {
