@@ -146,6 +146,15 @@ function FlashCard({
               full view
             </button>
           </div>
+          {/* Draw & Compare shortcut — bottom of back face */}
+          <div className="absolute bottom-2 left-2 z-10" onClick={e => e.stopPropagation()}>
+            <button
+              onClick={e => { e.stopPropagation(); onDraw(card); }}
+              className="flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/60 px-2 py-1 rounded-lg transition-colors shadow-sm"
+            >
+              <Pencil className="h-3 w-3" /> Draw & Compare
+            </button>
+          </div>
 
           {hasImages ? (
             <>
