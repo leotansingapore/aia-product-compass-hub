@@ -5,11 +5,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Sparkles, X, ImageIcon, Save } from 'lucide-react';
+import { Loader2, Sparkles, X, ImageIcon, Save, Crop, Eraser } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useConceptCardsMutations, ConceptCard } from '@/hooks/useConceptCards';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import { ImageCropper } from './ImageCropper';
+import { InlineImageEditor } from './InlineImageEditor';
 
 const AUDIENCE_OPTIONS = ['NSF / NS', 'Young Adults', 'Working Adults', 'Pre-Retirees (50-65)', 'Parents', 'General'];
 const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'General'];
@@ -19,6 +21,8 @@ interface Props {
   onClose: () => void;
   onUpdated: () => void;
 }
+
+type EditMode = 'crop-current' | 'edit-current' | 'crop-enhanced' | 'edit-enhanced' | null;
 
 export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
   const [title, setTitle] = useState('');
@@ -32,10 +36,13 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
   const [enhancedUrl, setEnhancedUrl] = useState<string | null>(null);
   const [enhancing, setEnhancing] = useState(false);
   const [saving, setSaving] = useState(false);
+  // Edited versions of images (base64 overrides)
+  const [editedCurrentUrl, setEditedCurrentUrl] = useState<string | null>(null);
+  const [editedEnhancedUrl, setEditedEnhancedUrl] = useState<string | null>(null);
+  const [editMode, setEditMode] = useState<EditMode>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const { updateCard, uploadOriginalImage } = useConceptCardsMutations();
 
-  // Populate form when card changes
   useEffect(() => {
     if (card) {
       setTitle(card.title);
@@ -46,6 +53,9 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
       setNewFile(null);
       setNewPreview(null);
       setEnhancedUrl(null);
+      setEditedCurrentUrl(null);
+      setEditedEnhancedUrl(null);
+      setEditMode(null);
     }
   }, [card]);
 
@@ -53,6 +63,7 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
 
   const handleClose = () => {
     setNewFile(null); setNewPreview(null); setEnhancedUrl(null);
+    setEditedCurrentUrl(null); setEditedEnhancedUrl(null); setEditMode(null);
     setSaving(false); setEnhancing(false);
     onClose();
   };
@@ -62,6 +73,7 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
     if (!file) return;
     setNewFile(file);
     setEnhancedUrl(null);
+    setEditedEnhancedUrl(null);
     const reader = new FileReader();
     reader.onload = ev => setNewPreview(ev.target?.result as string);
     reader.readAsDataURL(file);
@@ -98,6 +110,14 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
     setTagInput('');
   };
 
+  // Upload a base64 data URL as a new file to Supabase storage
+  const uploadBase64 = async (dataUrl: string, prefix: string): Promise<string> => {
+    const res = await fetch(dataUrl);
+    const blob = await res.blob();
+    const file = new File([blob], `${prefix}_${Date.now()}.png`, { type: 'image/png' });
+    return uploadOriginalImage(file);
+  };
+
   const handleSave = async () => {
     if (!title.trim()) { toast.error('Please enter a question/title'); return; }
     setSaving(true);
@@ -113,13 +133,50 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
     if (newFile) {
       const originalUrl = await uploadOriginalImage(newFile);
       updates.original_image_url = originalUrl;
-      updates.image_url = enhancedUrl || originalUrl;
+      // Use edited enhanced > edited original > enhanced > original
+      const finalEnhanced = editedEnhancedUrl || enhancedUrl;
+      const finalOriginal = editedCurrentUrl || originalUrl;
+      updates.image_url = finalEnhanced
+        ? (editedEnhancedUrl ? await uploadBase64(editedEnhancedUrl, 'enhanced') : finalEnhanced)
+        : finalOriginal;
+    } else if (editedCurrentUrl) {
+      // Admin edited/cropped the existing drawing without uploading a new file
+      const uploaded = await uploadBase64(editedCurrentUrl, 'edited');
+      updates.image_url = uploaded;
     }
 
     const ok = await updateCard(card.id, updates);
     setSaving(false);
     if (ok) { onUpdated(); handleClose(); }
   };
+
+  // ── Image action bar helper ─────────────────────────────────────────────
+  const ImageActions = ({
+    onCrop,
+    onEdit,
+    label,
+  }: { onCrop: () => void; onEdit: () => void; label: string }) => (
+    <div className="flex items-center gap-1 mt-1">
+      <span className="text-[10px] text-muted-foreground flex-1">{label}</span>
+      <button
+        type="button"
+        onClick={onCrop}
+        className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
+      >
+        <Crop className="h-2.5 w-2.5" /> Crop
+      </button>
+      <button
+        type="button"
+        onClick={onEdit}
+        className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
+      >
+        <Eraser className="h-2.5 w-2.5" /> Edit
+      </button>
+    </div>
+  );
+
+  const currentDisplayUrl = editedCurrentUrl || card.image_url;
+  const enhancedDisplayUrl = editedEnhancedUrl || enhancedUrl;
 
   return (
     <Dialog open={!!card} onOpenChange={handleClose}>
@@ -144,56 +201,111 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
             <Textarea value={description} onChange={e => setDescription(e.target.value)} rows={2} />
           </div>
 
-          {/* Image — current + optional replacement */}
+          {/* Image section */}
           <div className="space-y-2">
             <Label>Drawing / Diagram</Label>
-            {/* Current image */}
-            {card.image_url && !newPreview && (
-              <div className="rounded-xl border overflow-hidden bg-muted/20 p-2">
-                <p className="text-xs text-muted-foreground mb-1.5 font-medium">Current drawing</p>
-                <img src={card.image_url} alt="Current" className="max-h-40 object-contain mx-auto rounded" />
+
+            {/* ── Edit/crop modes ── */}
+            {editMode === 'crop-current' && currentDisplayUrl && (
+              <div className="rounded-xl border overflow-hidden">
+                <ImageCropper
+                  imageUrl={currentDisplayUrl}
+                  maxImgClass="max-w-full max-h-[40vh]"
+                  onCrop={url => { setEditedCurrentUrl(url); setEditMode(null); toast.success('Cropped ✓'); }}
+                  onCancel={() => setEditMode(null)}
+                />
               </div>
             )}
-            {/* New file drop zone */}
-            <div
-              onClick={() => fileRef.current?.click()}
-              className={cn(
-                "border-2 border-dashed rounded-xl p-4 cursor-pointer transition-colors text-center",
-                "hover:border-primary/60 hover:bg-primary/5",
-                newPreview ? "border-border" : "border-muted-foreground/30"
-              )}
-            >
-              {newPreview ? (
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="space-y-1">
-                    <p className="text-xs text-muted-foreground font-medium">New original</p>
-                    <img src={newPreview} alt="New" className="rounded-lg w-full object-contain max-h-40" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
-                      Enhanced {enhancing && <Loader2 className="h-3 w-3 animate-spin" />}
-                    </p>
-                    {enhancing ? (
-                      <div className="rounded-lg bg-muted/50 flex items-center justify-center h-40">
-                        <Sparkles className="h-6 w-6 text-primary mx-auto animate-pulse" />
-                      </div>
-                    ) : enhancedUrl ? (
-                      <img src={enhancedUrl} alt="Enhanced" className="rounded-lg w-full object-contain max-h-40" />
-                    ) : (
-                      <div className="rounded-lg bg-muted/50 flex items-center justify-center h-40">
-                        <p className="text-xs text-muted-foreground">Enhancement failed</p>
-                      </div>
-                    )}
-                  </div>
+            {editMode === 'edit-current' && currentDisplayUrl && (
+              <div className="rounded-xl border overflow-hidden">
+                <InlineImageEditor
+                  imageUrl={currentDisplayUrl}
+                  onApply={url => { setEditedCurrentUrl(url); setEditMode(null); toast.success('Image updated ✓'); }}
+                  onCancel={() => setEditMode(null)}
+                />
+              </div>
+            )}
+            {editMode === 'crop-enhanced' && enhancedDisplayUrl && (
+              <div className="rounded-xl border overflow-hidden">
+                <ImageCropper
+                  imageUrl={enhancedDisplayUrl}
+                  maxImgClass="max-w-full max-h-[40vh]"
+                  onCrop={url => { setEditedEnhancedUrl(url); setEditMode(null); toast.success('Cropped ✓'); }}
+                  onCancel={() => setEditMode(null)}
+                />
+              </div>
+            )}
+            {editMode === 'edit-enhanced' && enhancedDisplayUrl && (
+              <div className="rounded-xl border overflow-hidden">
+                <InlineImageEditor
+                  imageUrl={enhancedDisplayUrl}
+                  onApply={url => { setEditedEnhancedUrl(url); setEditMode(null); toast.success('Image updated ✓'); }}
+                  onCancel={() => setEditMode(null)}
+                />
+              </div>
+            )}
+
+            {/* ── Current drawing (shown when no edit mode active) ── */}
+            {!editMode && currentDisplayUrl && !newPreview && (
+              <div className="rounded-xl border overflow-hidden bg-muted/20 p-2">
+                <img src={currentDisplayUrl} alt="Current" className="max-h-40 object-contain mx-auto rounded" />
+                <ImageActions
+                  label={editedCurrentUrl ? 'Current drawing (edited)' : 'Current drawing'}
+                  onCrop={() => setEditMode('crop-current')}
+                  onEdit={() => setEditMode('edit-current')}
+                />
+              </div>
+            )}
+
+            {/* ── New upload preview ── */}
+            {!editMode && newPreview && (
+              <div className="grid grid-cols-2 gap-3 rounded-xl border p-3 bg-muted/10">
+                <div className="space-y-1">
+                  <p className="text-xs text-muted-foreground font-medium">New original</p>
+                  <img src={newPreview} alt="New" className="rounded-lg w-full object-contain max-h-40" />
                 </div>
-              ) : (
-                <div className="py-4 space-y-1.5">
-                  <ImageIcon className="h-8 w-8 text-muted-foreground/50 mx-auto" />
-                  <p className="text-sm text-muted-foreground">Click to replace drawing</p>
+                <div className="space-y-1">
+                  <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
+                    Enhanced {enhancing && <Loader2 className="h-3 w-3 animate-spin" />}
+                  </p>
+                  {enhancing ? (
+                    <div className="rounded-lg bg-muted/50 flex items-center justify-center h-40">
+                      <Sparkles className="h-6 w-6 text-primary mx-auto animate-pulse" />
+                    </div>
+                  ) : enhancedDisplayUrl ? (
+                    <>
+                      <img src={enhancedDisplayUrl} alt="Enhanced" className="rounded-lg w-full object-contain max-h-40" />
+                      <ImageActions
+                        label={editedEnhancedUrl ? 'Enhanced (edited)' : 'Enhanced'}
+                        onCrop={() => setEditMode('crop-enhanced')}
+                        onEdit={() => setEditMode('edit-enhanced')}
+                      />
+                    </>
+                  ) : (
+                    <div className="rounded-lg bg-muted/50 flex items-center justify-center h-40">
+                      <p className="text-xs text-muted-foreground">Enhancement failed</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* ── Drop zone ── */}
+            {!editMode && (
+              <div
+                onClick={() => fileRef.current?.click()}
+                className={cn(
+                  "border-2 border-dashed rounded-xl p-4 cursor-pointer transition-colors text-center",
+                  "hover:border-primary/60 hover:bg-primary/5 border-muted-foreground/30"
+                )}
+              >
+                <div className="py-2 space-y-1">
+                  <ImageIcon className="h-6 w-6 text-muted-foreground/50 mx-auto" />
+                  <p className="text-sm text-muted-foreground">{newPreview ? 'Click to replace again' : 'Click to replace drawing'}</p>
                   <p className="text-xs text-muted-foreground/60">AI will auto-enhance to clean B&W</p>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
             <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
           </div>
 
@@ -262,7 +374,7 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
           {/* Actions */}
           <div className="flex gap-2 pt-2">
             <Button variant="outline" className="flex-1" onClick={handleClose} disabled={saving}>Cancel</Button>
-            <Button className="flex-1" onClick={handleSave} disabled={saving || enhancing}>
+            <Button className="flex-1" onClick={handleSave} disabled={saving || enhancing || !!editMode}>
               {saving ? <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Saving...</> : 'Save Changes'}
             </Button>
           </div>
