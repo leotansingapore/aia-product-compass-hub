@@ -210,8 +210,7 @@ export function InlineImageEditor({
   const handleMouseMove = (e: React.MouseEvent) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    setCursorPos({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
 
     const pos = getPos(e);
 
