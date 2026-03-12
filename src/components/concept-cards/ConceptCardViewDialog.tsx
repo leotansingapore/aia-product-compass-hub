@@ -4,9 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
-  X, ZoomIn, ZoomOut, Pencil, Eraser, Trash2, Loader2,
+  ZoomIn, ZoomOut, Pencil, Eraser, Trash2, Loader2,
   Sparkles, CheckCircle, AlertCircle, TrendingUp, Lightbulb,
-  RotateCcw, Eye, Columns2, Undo2, Redo2
+  RotateCcw, Eye, Columns2, Undo2, Redo2, Crop, X, Check
 } from 'lucide-react';
 import { ConceptCard } from '@/hooks/useConceptCards';
 import { supabase } from '@/integrations/supabase/client';
@@ -43,6 +43,151 @@ const SCORE_COLOR = (score: number) => {
   return 'text-red-600 dark:text-red-400';
 };
 
+// ─── Image Cropper ──────────────────────────────────────────────────────────
+function ImageCropper({
+  imageUrl,
+  onCrop,
+  onCancel,
+}: {
+  imageUrl: string;
+  onCrop: (croppedUrl: string) => void;
+  onCancel: () => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState<{ x: number; y: number } | null>(null);
+  const [cropRect, setCropRect] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
+
+  const getRelPos = (e: React.MouseEvent | React.TouchEvent) => {
+    const img = imgRef.current;
+    if (!img) return { x: 0, y: 0 };
+    const rect = img.getBoundingClientRect();
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    return {
+      x: Math.max(0, Math.min(1, (clientX - rect.left) / rect.width)),
+      y: Math.max(0, Math.min(1, (clientY - rect.top) / rect.height)),
+    };
+  };
+
+  const onMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    const pos = getRelPos(e);
+    setDragStart(pos);
+    setCropRect(null);
+    setIsDragging(true);
+  };
+
+  const onMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!isDragging || !dragStart) return;
+    e.preventDefault();
+    const pos = getRelPos(e);
+    setCropRect({
+      x: Math.min(dragStart.x, pos.x),
+      y: Math.min(dragStart.y, pos.y),
+      w: Math.abs(pos.x - dragStart.x),
+      h: Math.abs(pos.y - dragStart.y),
+    });
+  };
+
+  const onMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const applyCrop = () => {
+    if (!cropRect || cropRect.w < 0.02 || cropRect.h < 0.02) {
+      toast.error('Select a larger area to crop');
+      return;
+    }
+    const img = imgRef.current;
+    if (!img) return;
+    const canvas = document.createElement('canvas');
+    const naturalW = img.naturalWidth;
+    const naturalH = img.naturalHeight;
+    const sx = cropRect.x * naturalW;
+    const sy = cropRect.y * naturalH;
+    const sw = cropRect.w * naturalW;
+    const sh = cropRect.h * naturalH;
+    canvas.width = sw;
+    canvas.height = sh;
+    const ctx = canvas.getContext('2d')!;
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+    onCrop(canvas.toDataURL('image/png'));
+  };
+
+  const imgStyle = cropRect
+    ? {
+        '--cx': `${cropRect.x * 100}%`,
+        '--cy': `${cropRect.y * 100}%`,
+        '--cw': `${cropRect.w * 100}%`,
+        '--ch': `${cropRect.h * 100}%`,
+      } as React.CSSProperties
+    : {};
+
+  return (
+    <div className="flex flex-col h-full">
+      <div className="flex items-center gap-2 px-3 py-2 border-b bg-muted/30 shrink-0">
+        <Crop className="h-3.5 w-3.5 text-primary" />
+        <span className="text-xs font-medium flex-1">Drag to select crop area</span>
+        <Button size="sm" variant="outline" className="h-7 text-xs gap-1" onClick={onCancel}>
+          <X className="h-3 w-3" /> Cancel
+        </Button>
+        <Button size="sm" className="h-7 text-xs gap-1" onClick={applyCrop} disabled={!cropRect}>
+          <Check className="h-3 w-3" /> Apply Crop
+        </Button>
+      </div>
+      <div
+        ref={containerRef}
+        className="flex-1 overflow-auto bg-muted/20 flex items-center justify-center p-4 select-none"
+      >
+        <div
+          className="relative inline-block cursor-crosshair"
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+          onMouseUp={onMouseUp}
+          onMouseLeave={onMouseUp}
+          onTouchStart={onMouseDown}
+          onTouchMove={onMouseMove}
+          onTouchEnd={onMouseUp}
+        >
+          <img
+            ref={imgRef}
+            src={imageUrl}
+            alt="Crop"
+            draggable={false}
+            className="max-w-full max-h-[60vh] rounded-lg shadow-sm block"
+          />
+          {/* Dim overlay outside selection */}
+          {cropRect && (
+            <>
+              {/* top */}
+              <div className="absolute inset-x-0 top-0 bg-black/40 pointer-events-none" style={{ height: `${cropRect.y * 100}%` }} />
+              {/* bottom */}
+              <div className="absolute inset-x-0 bottom-0 bg-black/40 pointer-events-none" style={{ height: `${(1 - cropRect.y - cropRect.h) * 100}%` }} />
+              {/* left */}
+              <div className="absolute bg-black/40 pointer-events-none" style={{ top: `${cropRect.y * 100}%`, left: 0, width: `${cropRect.x * 100}%`, height: `${cropRect.h * 100}%` }} />
+              {/* right */}
+              <div className="absolute bg-black/40 pointer-events-none" style={{ top: `${cropRect.y * 100}%`, right: 0, width: `${(1 - cropRect.x - cropRect.w) * 100}%`, height: `${cropRect.h * 100}%` }} />
+              {/* selection border */}
+              <div
+                className="absolute border-2 border-primary pointer-events-none"
+                style={{
+                  left: `${cropRect.x * 100}%`,
+                  top: `${cropRect.y * 100}%`,
+                  width: `${cropRect.w * 100}%`,
+                  height: `${cropRect.h * 100}%`,
+                  boxShadow: '0 0 0 1px rgba(255,255,255,0.4)',
+                }}
+              />
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Whiteboard ─────────────────────────────────────────────────────────────
 function Whiteboard({
   onCompare,
@@ -60,7 +205,6 @@ function Whiteboard({
   const [hasDrawn, setHasDrawn] = useState(false);
   const [showRef, setShowRef] = useState(false);
   const lastPos = useRef<{ x: number; y: number } | null>(null);
-  // Undo/redo history — store canvas ImageData snapshots
   const historyRef = useRef<ImageData[]>([]);
   const historyIndexRef = useRef(-1);
 
@@ -69,11 +213,9 @@ function Whiteboard({
     if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
     const snap = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    // Truncate forward history
     historyRef.current = historyRef.current.slice(0, historyIndexRef.current + 1);
     historyRef.current.push(snap);
     historyIndexRef.current = historyRef.current.length - 1;
-    // Keep max 30 steps
     if (historyRef.current.length > 30) {
       historyRef.current.shift();
       historyIndexRef.current--;
@@ -106,11 +248,9 @@ function Whiteboard({
     const ctx = canvas.getContext('2d')!;
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    // Save blank as first history state
     saveSnapshot();
   }, [saveSnapshot]);
 
-  // Keyboard undo/redo
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
@@ -134,16 +274,36 @@ function Whiteboard({
     return { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
   };
 
+  const applyToolSettings = (ctx: CanvasRenderingContext2D) => {
+    if (tool === 'eraser') {
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.strokeStyle = 'rgba(0,0,0,1)';
+      ctx.lineWidth = strokeSize * 5;
+    } else {
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.strokeStyle = '#1a1a1a';
+      ctx.lineWidth = strokeSize;
+    }
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+  };
+
   const startDrawing = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
     const pos = getPos(e, canvas);
+    applyToolSettings(ctx);
     ctx.beginPath();
-    ctx.arc(pos.x, pos.y, strokeSize / 2, 0, Math.PI * 2);
-    ctx.fillStyle = tool === 'eraser' ? '#ffffff' : '#1a1a1a';
-    ctx.fill();
+    if (tool === 'eraser') {
+      ctx.arc(pos.x, pos.y, (strokeSize * 5) / 2, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      ctx.arc(pos.x, pos.y, strokeSize / 2, 0, Math.PI * 2);
+      ctx.fillStyle = '#1a1a1a';
+      ctx.fill();
+    }
     setIsDrawing(true);
     lastPos.current = pos;
     setHasDrawn(true);
@@ -156,19 +316,24 @@ function Whiteboard({
     if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
     const pos = getPos(e, canvas);
+    applyToolSettings(ctx);
     ctx.beginPath();
     ctx.moveTo(lastPos.current.x, lastPos.current.y);
     ctx.lineTo(pos.x, pos.y);
-    ctx.strokeStyle = tool === 'eraser' ? '#ffffff' : '#1a1a1a';
-    ctx.lineWidth = tool === 'eraser' ? strokeSize * 4 : strokeSize;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
     ctx.stroke();
     lastPos.current = pos;
   };
 
   const stopDrawing = () => {
-    if (isDrawing) saveSnapshot(); // Save snapshot on stroke end
+    if (isDrawing) {
+      // Reset composite operation and save snapshot
+      const canvas = canvasRef.current;
+      if (canvas) {
+        const ctx = canvas.getContext('2d')!;
+        ctx.globalCompositeOperation = 'source-over';
+      }
+      saveSnapshot();
+    }
     setIsDrawing(false);
     lastPos.current = null;
   };
@@ -177,6 +342,7 @@ function Whiteboard({
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
+    ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     saveSnapshot();
@@ -186,14 +352,21 @@ function Whiteboard({
   const handleCompare = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    onCompare(canvas.toDataURL('image/png'));
+    // Flatten onto white background before exporting (destination-out leaves transparency)
+    const flat = document.createElement('canvas');
+    flat.width = canvas.width;
+    flat.height = canvas.height;
+    const fctx = flat.getContext('2d')!;
+    fctx.fillStyle = '#ffffff';
+    fctx.fillRect(0, 0, flat.width, flat.height);
+    fctx.drawImage(canvas, 0, 0);
+    onCompare(flat.toDataURL('image/png'));
   };
 
   return (
     <div className="flex flex-col h-full">
       {/* Toolbar */}
       <div className="flex items-center gap-2 px-3 py-2 border-b bg-muted/30 flex-wrap shrink-0">
-        {/* Tool toggles */}
         {(['pen', 'eraser'] as const).map(t => (
           <button
             key={t}
@@ -210,7 +383,6 @@ function Whiteboard({
           </button>
         ))}
 
-        {/* Stroke sizes */}
         <div className="flex items-center gap-1.5 ml-1">
           {[2, 4, 7].map(s => (
             <button
@@ -226,19 +398,18 @@ function Whiteboard({
           ))}
         </div>
 
-        {/* Undo / Redo */}
         <div className="flex items-center gap-1 ml-2 border-l border-border/50 pl-2">
           <button
             onClick={undo}
             title="Undo (Ctrl+Z)"
-            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors disabled:opacity-30"
+            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors"
           >
             <Undo2 className="h-3.5 w-3.5" />
           </button>
           <button
             onClick={redo}
             title="Redo (Ctrl+Shift+Z)"
-            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors disabled:opacity-30"
+            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors"
           >
             <Redo2 className="h-3.5 w-3.5" />
           </button>
@@ -246,7 +417,6 @@ function Whiteboard({
 
         <div className="flex-1" />
 
-        {/* Toggle reference */}
         {referenceImageUrl && (
           <button
             onClick={() => setShowRef(v => !v)}
@@ -277,15 +447,14 @@ function Whiteboard({
         </Button>
       </div>
 
-      {/* Body: canvas (+ optional side-by-side reference) */}
       <div className={cn("flex-1 overflow-hidden flex", showRef ? "flex-row" : "flex-col")}>
-        {/* Canvas */}
-        <div className={cn("relative bg-white overflow-hidden", showRef ? "w-1/2 border-r" : "flex-1")}>
+        <div className={cn("relative overflow-hidden", showRef ? "w-1/2 border-r" : "flex-1")} style={{ background: '#ffffff' }}>
           <canvas
             ref={canvasRef}
             width={900}
             height={600}
             className="w-full h-full cursor-crosshair touch-none"
+            style={{ background: '#ffffff' }}
             onMouseDown={startDrawing}
             onMouseMove={draw}
             onMouseUp={stopDrawing}
@@ -309,7 +478,6 @@ function Whiteboard({
           )}
         </div>
 
-        {/* Side-by-side reference */}
         {showRef && referenceImageUrl && (
           <div className="w-1/2 bg-muted/20 overflow-auto flex items-center justify-center relative">
             <div className="absolute top-2 left-2 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">
@@ -344,7 +512,6 @@ function CompareResultPanel({
 
   return (
     <div className="flex-1 overflow-auto">
-      {/* Side-by-side images */}
       {referenceImageUrl && userDrawingBase64 && (
         <div className="grid grid-cols-2 gap-0 border-b">
           <div className="relative bg-muted/20 flex items-center justify-center p-3 border-r min-h-[140px]">
@@ -363,7 +530,6 @@ function CompareResultPanel({
       )}
 
       <div className="px-4 py-4 space-y-4">
-        {/* Score hero */}
         <div className="flex items-center gap-4 p-4 rounded-xl border bg-card">
           <div className="text-center min-w-[60px]">
             <div className={cn("text-4xl font-bold tabular-nums", scoreColor)}>{result.score}</div>
@@ -377,7 +543,6 @@ function CompareResultPanel({
           </div>
         </div>
 
-        {/* Score bar */}
         <div className="space-y-1.5">
           <div className="h-2.5 rounded-full bg-muted overflow-hidden">
             <div
@@ -393,7 +558,6 @@ function CompareResultPanel({
           </div>
         </div>
 
-        {/* Strengths */}
         {result.strengths.length > 0 && (
           <div className="space-y-2">
             <div className="flex items-center gap-1.5 text-sm font-semibold text-green-700 dark:text-green-400">
@@ -409,7 +573,6 @@ function CompareResultPanel({
           </div>
         )}
 
-        {/* Improvements */}
         {result.improvements.length > 0 && (
           <div className="space-y-2">
             <div className="flex items-center gap-1.5 text-sm font-semibold text-yellow-700 dark:text-yellow-400">
@@ -425,7 +588,6 @@ function CompareResultPanel({
           </div>
         )}
 
-        {/* Tip */}
         {result.tip && (
           <div className="p-3 rounded-xl bg-primary/5 border border-primary/20 flex items-start gap-2">
             <Lightbulb className="h-4 w-4 text-primary shrink-0 mt-0.5" />
@@ -448,24 +610,30 @@ export function ConceptCardViewDialog({ card, onClose }: Props) {
   const [compareResult, setCompareResult] = useState<CompareResult | null>(null);
   const [lastUserDrawing, setLastUserDrawing] = useState<string | null>(null);
   const [whiteboardKey, setWhiteboardKey] = useState(0);
+  const [isCropping, setIsCropping] = useState(false);
+  const [croppedImageUrl, setCroppedImageUrl] = useState<string | null>(null);
 
   if (!card) return null;
+
+  const displayImageUrl = croppedImageUrl || card.image_url;
 
   const handleClose = () => {
     setCompareResult(null);
     setLastUserDrawing(null);
     setWhiteboardKey(k => k + 1);
+    setIsCropping(false);
+    setCroppedImageUrl(null);
     onClose();
   };
 
   const handleCompare = async (userDrawingBase64: string) => {
-    if (!card.image_url) { toast.error('No reference image to compare against'); return; }
+    if (!displayImageUrl) { toast.error('No reference image to compare against'); return; }
     setComparing(true);
     setCompareResult(null);
     setLastUserDrawing(userDrawingBase64);
     try {
       const { data, error } = await supabase.functions.invoke('compare-concept-drawing', {
-        body: { userDrawingBase64, referenceImageUrl: card.image_url, cardTitle: card.title },
+        body: { userDrawingBase64, referenceImageUrl: displayImageUrl, cardTitle: card.title },
       });
       if (error || !data) { toast.error(error?.message || 'Comparison failed'); return; }
       if (data.error) { toast.error(data.error); return; }
@@ -482,6 +650,12 @@ export function ConceptCardViewDialog({ card, onClose }: Props) {
     setCompareResult(null);
     setLastUserDrawing(null);
     setWhiteboardKey(k => k + 1);
+  };
+
+  const handleCropApply = (croppedUrl: string) => {
+    setCroppedImageUrl(croppedUrl);
+    setIsCropping(false);
+    toast.success('Image cropped');
   };
 
   return (
@@ -515,35 +689,64 @@ export function ConceptCardViewDialog({ card, onClose }: Props) {
 
           {/* VIEW TAB */}
           <TabsContent value="view" className="flex flex-col flex-1 overflow-hidden mt-0 p-0">
-            <div className="flex-1 overflow-auto bg-muted/20">
-              {card.image_url ? (
-                <div className="p-4 flex items-center justify-center min-h-[300px]">
-                  <img
-                    src={card.image_url}
-                    alt={card.title}
-                    style={{ transform: `scale(${zoom})`, transformOrigin: 'center', transition: 'transform 0.2s' }}
-                    className="max-w-full rounded-lg shadow-sm"
-                  />
+            {isCropping && card.image_url ? (
+              <ImageCropper
+                imageUrl={croppedImageUrl || card.image_url}
+                onCrop={handleCropApply}
+                onCancel={() => setIsCropping(false)}
+              />
+            ) : (
+              <>
+                <div className="flex-1 overflow-auto bg-muted/20">
+                  {displayImageUrl ? (
+                    <div className="p-4 flex items-center justify-center min-h-[300px]">
+                      <img
+                        src={displayImageUrl}
+                        alt={card.title}
+                        style={{ transform: `scale(${zoom})`, transformOrigin: 'center', transition: 'transform 0.2s' }}
+                        className="max-w-full rounded-lg shadow-sm"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center h-64 text-muted-foreground text-sm">
+                      No drawing attached yet
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <div className="flex items-center justify-center h-64 text-muted-foreground text-sm">
-                  No drawing attached yet
-                </div>
-              )}
-            </div>
-            {card.image_url && (
-              <div className="flex items-center justify-center gap-2 py-3 border-t bg-card shrink-0">
-                <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => setZoom(z => Math.max(0.5, z - 0.25))}>
-                  <ZoomOut className="h-4 w-4" />
-                </Button>
-                <span className="text-sm text-muted-foreground w-12 text-center">{Math.round(zoom * 100)}%</span>
-                <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => setZoom(z => Math.min(3, z + 0.25))}>
-                  <ZoomIn className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="sm" className="text-xs text-muted-foreground ml-2" onClick={() => setZoom(1)}>
-                  Reset
-                </Button>
-              </div>
+                {displayImageUrl && (
+                  <div className="flex items-center justify-center gap-2 py-3 border-t bg-card shrink-0">
+                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => setZoom(z => Math.max(0.5, z - 0.25))}>
+                      <ZoomOut className="h-4 w-4" />
+                    </Button>
+                    <span className="text-sm text-muted-foreground w-12 text-center">{Math.round(zoom * 100)}%</span>
+                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => setZoom(z => Math.min(3, z + 0.25))}>
+                      <ZoomIn className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="sm" className="text-xs text-muted-foreground ml-2" onClick={() => setZoom(1)}>
+                      Reset
+                    </Button>
+                    <div className="w-px h-5 bg-border mx-1" />
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-xs gap-1.5"
+                      onClick={() => setIsCropping(true)}
+                    >
+                      <Crop className="h-3.5 w-3.5" /> Crop
+                    </Button>
+                    {croppedImageUrl && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-xs text-muted-foreground"
+                        onClick={() => setCroppedImageUrl(null)}
+                      >
+                        Reset crop
+                      </Button>
+                    )}
+                  </div>
+                )}
+              </>
             )}
           </TabsContent>
 
@@ -553,7 +756,7 @@ export function ConceptCardViewDialog({ card, onClose }: Props) {
               <CompareResultPanel
                 result={compareResult}
                 onRetry={handleRetry}
-                referenceImageUrl={card.image_url}
+                referenceImageUrl={displayImageUrl}
                 userDrawingBase64={lastUserDrawing}
               />
             ) : (
@@ -561,7 +764,7 @@ export function ConceptCardViewDialog({ card, onClose }: Props) {
                 key={whiteboardKey}
                 onCompare={handleCompare}
                 comparing={comparing}
-                referenceImageUrl={card.image_url}
+                referenceImageUrl={displayImageUrl}
               />
             )}
           </TabsContent>
