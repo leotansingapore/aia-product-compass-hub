@@ -107,16 +107,27 @@ export function InlineImageEditor({
   }, [undo, redo]);
 
   // --- Coordinate helpers ---
+  // Always measure against the drawing canvas rect so cursor + strokes align.
+  const getClientXY = (e: React.MouseEvent | React.TouchEvent) => {
+    if ('touches' in e) return { clientX: e.touches[0].clientX, clientY: e.touches[0].clientY };
+    return { clientX: (e as React.MouseEvent).clientX, clientY: (e as React.MouseEvent).clientY };
+  };
+
   const getPos = (e: React.MouseEvent | React.TouchEvent) => {
     const canvas = canvasRef.current!;
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-    if ('touches' in e) {
-      return { x: (e.touches[0].clientX - rect.left) * scaleX, y: (e.touches[0].clientY - rect.top) * scaleY };
-    }
-    const me = e as React.MouseEvent;
-    return { x: me.nativeEvent.offsetX * scaleX, y: me.nativeEvent.offsetY * scaleY };
+    const { clientX, clientY } = getClientXY(e);
+    return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
+  };
+
+  // Returns display-space (CSS px) position relative to the canvas element
+  const getDisplayPos = (e: React.MouseEvent | React.TouchEvent) => {
+    const canvas = canvasRef.current!;
+    const rect = canvas.getBoundingClientRect();
+    const { clientX, clientY } = getClientXY(e);
+    return { x: clientX - rect.left, y: clientY - rect.top };
   };
 
   const getDisplayRadius = () => {
