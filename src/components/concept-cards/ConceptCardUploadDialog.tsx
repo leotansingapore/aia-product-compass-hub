@@ -41,6 +41,8 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
   const [entries, setEntries] = useState<ImageEntry[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [tagInput, setTagInput] = useState('');
+  const [audienceInput, setAudienceInput] = useState('');
+  const [productTypeInput, setProductTypeInput] = useState('');
   const [saving, setSaving] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
