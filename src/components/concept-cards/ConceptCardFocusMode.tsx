@@ -243,18 +243,19 @@ export function ConceptCardFocusMode({
 
                 {/* BACK */}
                 <div
-                  className="absolute inset-0 rounded-2xl border-2 border-border bg-card shadow-lg overflow-hidden"
+                  className="absolute inset-0 rounded-2xl border-2 border-border bg-card shadow-lg overflow-hidden cursor-pointer"
                   style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                  onClick={() => setFlipped(false)}
                 >
                   <div className="absolute top-3 left-3 z-10 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded border border-border/40">
                     Drawing
                   </div>
                   <div className="absolute top-3 right-3 z-10 text-[10px] text-muted-foreground bg-background/70 px-1.5 py-0.5 rounded border border-border/40">
-                    click to flip back ↻
+                    tap to flip back ↻
                   </div>
                   {card.image_url
-                    ? <img src={card.image_url} alt={card.title} className="w-full h-full object-contain p-4" />
-                    : <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">No drawing yet</div>
+                    ? <img src={card.image_url} alt={card.title} className="w-full h-full object-contain p-4 pointer-events-none" />
+                    : <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none">No drawing yet</div>
                   }
                 </div>
               </div>
