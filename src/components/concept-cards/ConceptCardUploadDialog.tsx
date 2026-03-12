@@ -19,21 +19,6 @@ const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medic
 
 
 
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d')!;
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
-      ctx.drawImage(img, 0, 0);
-      imgRef.current = img;
-      // Save blank state
-      const snap = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      historyRef.current = [snap];
-      historyIndexRef.current = 0;
-    };
-    img.src = imageUrl;
   }, [imageUrl]);
 
   const saveSnapshot = useCallback(() => {
