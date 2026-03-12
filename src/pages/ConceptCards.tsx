@@ -25,11 +25,12 @@ const PRODUCT_OPTIONS = ['All', 'Investment', 'Endowment', 'Whole Life', 'Term',
 
 // ─── Flash Card (3D flip) ──────────────────────────────────────────────────
 function FlashCard({
-  card, onOpen, onDelete, onEdit, isAdmin, quizMode,
+  card, onOpen, onDraw, onDelete, onEdit, isAdmin, quizMode,
   onKnow, onReview, isKnown, isReview,
 }: {
   card: ConceptCard;
   onOpen: (card: ConceptCard) => void;
+  onDraw: (card: ConceptCard) => void;
   onDelete: (id: string) => void;
   onEdit: (card: ConceptCard) => void;
   isAdmin: boolean;
@@ -144,6 +145,15 @@ function FlashCard({
               className="text-[9px] text-primary/70 bg-background/80 px-1.5 py-0.5 rounded-md border border-primary/20 hover:border-primary/50 transition-colors"
             >
               full view
+            </button>
+          </div>
+          {/* Draw & Compare shortcut — bottom of back face */}
+          <div className="absolute bottom-2 left-2 z-10" onClick={e => e.stopPropagation()}>
+            <button
+              onClick={e => { e.stopPropagation(); onDraw(card); }}
+              className="flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/60 px-2 py-1 rounded-lg transition-colors shadow-sm"
+            >
+              <Pencil className="h-3 w-3" /> Draw & Compare
             </button>
           </div>
 
@@ -268,6 +278,7 @@ export default function ConceptCardsPage() {
   const { isAdmin } = usePermissions();
   const [uploadOpen, setUploadOpen] = useState(false);
   const [viewCard, setViewCard] = useState<ConceptCard | null>(null);
+  const [drawCard, setDrawCard] = useState<ConceptCard | null>(null);
   const [editCard, setEditCard] = useState<ConceptCard | null>(null);
   const [search, setSearch] = useState('');
   const [filterAudience, setFilterAudience] = useState('All');
@@ -466,6 +477,7 @@ export default function ConceptCardsPage() {
                 key={card.id}
                 card={card}
                 onOpen={setViewCard}
+                onDraw={setDrawCard}
                 onDelete={handleDelete}
                 onEdit={setEditCard}
                 isAdmin={isAdmin()}
@@ -488,6 +500,11 @@ export default function ConceptCardsPage() {
       <ConceptCardViewDialog
         card={viewCard}
         onClose={() => setViewCard(null)}
+      />
+      <ConceptCardViewDialog
+        card={drawCard}
+        initialTab="draw"
+        onClose={() => setDrawCard(null)}
       />
       <ConceptCardEditDialog
         card={editCard}
