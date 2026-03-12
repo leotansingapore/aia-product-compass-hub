@@ -476,6 +476,7 @@ export default function ConceptCardsPage() {
                 key={card.id}
                 card={card}
                 onOpen={setViewCard}
+                onDraw={setDrawCard}
                 onDelete={handleDelete}
                 onEdit={setEditCard}
                 isAdmin={isAdmin()}
