@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Crop, X, Check } from 'lucide-react';
+import { Crop, X, Check, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 export function ImageCropper({
@@ -19,6 +19,7 @@ export function ImageCropper({
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState<{ x: number; y: number } | null>(null);
   const [cropRect, setCropRect] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
+  const [applying, setApplying] = useState(false);
 
   const getRelPos = (e: React.MouseEvent | React.TouchEvent) => {
     const img = imgRef.current;
@@ -61,18 +62,39 @@ export function ImageCropper({
     }
     const img = imgRef.current;
     if (!img) return;
-    const canvas = document.createElement('canvas');
-    const naturalW = img.naturalWidth;
-    const naturalH = img.naturalHeight;
-    const sx = cropRect.x * naturalW;
-    const sy = cropRect.y * naturalH;
-    const sw = cropRect.w * naturalW;
-    const sh = cropRect.h * naturalH;
-    canvas.width = sw;
-    canvas.height = sh;
-    const ctx = canvas.getContext('2d')!;
-    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
-    onCrop(canvas.toDataURL('image/png'));
+
+    setApplying(true);
+
+    // Re-fetch with crossOrigin to avoid canvas taint (CORS) on Supabase/external images
+    const freshImg = new Image();
+    freshImg.crossOrigin = 'anonymous';
+    freshImg.onload = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        const naturalW = freshImg.naturalWidth;
+        const naturalH = freshImg.naturalHeight;
+        const sx = cropRect.x * naturalW;
+        const sy = cropRect.y * naturalH;
+        const sw = cropRect.w * naturalW;
+        const sh = cropRect.h * naturalH;
+        canvas.width = sw;
+        canvas.height = sh;
+        const ctx = canvas.getContext('2d')!;
+        ctx.drawImage(freshImg, sx, sy, sw, sh, 0, 0, sw, sh);
+        onCrop(canvas.toDataURL('image/png'));
+      } catch (err) {
+        console.error('Crop failed:', err);
+        toast.error('Crop failed — the image may not support canvas export');
+      } finally {
+        setApplying(false);
+      }
+    };
+    freshImg.onerror = () => {
+      toast.error('Could not load image for cropping');
+      setApplying(false);
+    };
+    // Bust cache so browser re-fetches with CORS headers
+    freshImg.src = imageUrl.includes('?') ? `${imageUrl}&_cors=1` : `${imageUrl}?_cors=1`;
   };
 
   return (
@@ -83,8 +105,8 @@ export function ImageCropper({
         <Button size="sm" variant="outline" className="h-7 text-xs gap-1" onClick={onCancel}>
           <X className="h-3 w-3" /> Cancel
         </Button>
-        <Button size="sm" className="h-7 text-xs gap-1" onClick={applyCrop} disabled={!cropRect}>
-          <Check className="h-3 w-3" /> Apply Crop
+        <Button size="sm" className="h-7 text-xs gap-1" onClick={applyCrop} disabled={!cropRect || applying}>
+          {applying ? <><Loader2 className="h-3 w-3 animate-spin" /> Cropping…</> : <><Check className="h-3 w-3" /> Apply Crop</>}
         </Button>
       </div>
       <div
