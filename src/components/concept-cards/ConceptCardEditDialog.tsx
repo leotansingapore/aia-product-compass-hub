@@ -31,6 +31,8 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
   const [productType, setProductType] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState('');
+  const [audienceInput, setAudienceInput] = useState('');
+  const [productTypeInput, setProductTypeInput] = useState('');
   const [newFile, setNewFile] = useState<File | null>(null);
   const [newPreview, setNewPreview] = useState<string | null>(null);
   const [enhancedUrl, setEnhancedUrl] = useState<string | null>(null);
