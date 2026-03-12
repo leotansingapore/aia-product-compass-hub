@@ -1,6 +1,13 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { Eraser, Pencil, Undo2, Redo2, X, Check } from 'lucide-react';
+import { Eraser, Pencil, Undo2, Redo2, X, Check, Move } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+type Tool = 'eraser' | 'pen' | 'select';
+
+// Selection state phases
+type SelectPhase = 'idle' | 'selecting' | 'selected' | 'dragging';
+
+interface Rect { x: number; y: number; w: number; h: number }
 
 export function InlineImageEditor({
   imageUrl,
@@ -12,13 +19,30 @@ export function InlineImageEditor({
   onCancel: () => void;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [tool, setTool] = useState<'eraser' | 'pen'>('eraser');
+  const overlayRef = useRef<HTMLCanvasElement>(null);
+  const [tool, setTool] = useState<Tool>('eraser');
   const [strokeSize, setStrokeSize] = useState(18);
   const isDrawingRef = useRef(false);
   const lastPos = useRef<{ x: number; y: number } | null>(null);
   const historyRef = useRef<ImageData[]>([]);
   const historyIndexRef = useRef(-1);
 
+  // Selection state
+  const selectPhaseRef = useRef<SelectPhase>('idle');
+  const selRectRef = useRef<Rect | null>(null);       // canvas-pixel rect
+  const selStartRef = useRef<{ x: number; y: number } | null>(null);
+  const selImageDataRef = useRef<ImageData | null>(null); // captured pixels
+  const dragStartRef = useRef<{ x: number; y: number } | null>(null);
+  const [selRect, setSelRect] = useState<Rect | null>(null); // for overlay render
+
+  // Cursor overlay
+  const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(null);
+  const toolRef = useRef(tool);
+  const strokeSizeRef = useRef(strokeSize);
+  useEffect(() => { toolRef.current = tool; }, [tool]);
+  useEffect(() => { strokeSizeRef.current = strokeSize; }, [strokeSize]);
+
+  // Load image
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -28,7 +52,6 @@ export function InlineImageEditor({
     img.onload = () => {
       canvas.width = img.naturalWidth;
       canvas.height = img.naturalHeight;
-      // Fill white background first so erasing reveals white, not transparency
       ctx.fillStyle = '#ffffff';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0);
@@ -59,6 +82,8 @@ export function InlineImageEditor({
     const canvas = canvasRef.current;
     if (!canvas) return;
     canvas.getContext('2d')!.putImageData(historyRef.current[historyIndexRef.current], 0, 0);
+    selRectRef.current = null; setSelRect(null); selImageDataRef.current = null;
+    selectPhaseRef.current = 'idle';
   }, []);
 
   const redo = useCallback(() => {
@@ -67,17 +92,21 @@ export function InlineImageEditor({
     const canvas = canvasRef.current;
     if (!canvas) return;
     canvas.getContext('2d')!.putImageData(historyRef.current[historyIndexRef.current], 0, 0);
+    selRectRef.current = null; setSelRect(null); selImageDataRef.current = null;
+    selectPhaseRef.current = 'idle';
   }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'z') { e.preventDefault(); e.shiftKey ? redo() : undo(); }
       if ((e.metaKey || e.ctrlKey) && e.key === 'y') { e.preventDefault(); redo(); }
+      if (e.key === 'Escape') { selRectRef.current = null; setSelRect(null); selImageDataRef.current = null; selectPhaseRef.current = 'idle'; }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [undo, redo]);
 
+  // --- Coordinate helpers ---
   const getPos = (e: React.MouseEvent | React.TouchEvent) => {
     const canvas = canvasRef.current!;
     const rect = canvas.getBoundingClientRect();
@@ -90,13 +119,6 @@ export function InlineImageEditor({
     return { x: me.nativeEvent.offsetX * scaleX, y: me.nativeEvent.offsetY * scaleY };
   };
 
-  const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(null);
-  const toolRef = useRef(tool);
-  const strokeSizeRef = useRef(strokeSize);
-  useEffect(() => { toolRef.current = tool; }, [tool]);
-  useEffect(() => { strokeSizeRef.current = strokeSize; }, [strokeSize]);
-
-  // Compute display-pixel radius of the brush circle
   const getDisplayRadius = () => {
     const canvas = canvasRef.current;
     if (!canvas) return strokeSize / 2;
@@ -105,19 +127,76 @@ export function InlineImageEditor({
     return strokeSizeRef.current / scaleX / 2;
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  // Draw selection overlay (dashed marching ants rect)
+  const drawOverlay = useCallback((r: Rect | null) => {
+    const overlay = overlayRef.current;
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    draw(e);
-  };
+    if (!overlay || !canvas) return;
+    overlay.width = canvas.width;
+    overlay.height = canvas.height;
+    const ctx = overlay.getContext('2d')!;
+    ctx.clearRect(0, 0, overlay.width, overlay.height);
+    if (!r) return;
+    ctx.strokeStyle = '#2563eb';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([8, 4]);
+    ctx.strokeRect(r.x, r.y, r.w, r.h);
+    // light fill
+    ctx.fillStyle = 'rgba(37,99,235,0.08)';
+    ctx.fillRect(r.x, r.y, r.w, r.h);
+  }, []);
 
-  const startDraw = (e: React.MouseEvent | React.TouchEvent) => {
+  useEffect(() => { drawOverlay(selRect); }, [selRect, drawOverlay]);
+
+  // ---- Mouse handlers ----
+
+  const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
+    const pos = getPos(e);
+
+    if (toolRef.current === 'select') {
+      const phase = selectPhaseRef.current;
+      const r = selRectRef.current;
+
+      // If there's an existing selection and we click inside it → start drag
+      if ((phase === 'selected' || phase === 'dragging') && r) {
+        const inside = pos.x >= r.x && pos.x <= r.x + r.w && pos.y >= r.y && pos.y <= r.y + r.h;
+        if (inside) {
+          // Capture the region and clear it on canvas
+          if (phase === 'selected') {
+            const canvas = canvasRef.current!;
+            const ctx = canvas.getContext('2d')!;
+            selImageDataRef.current = ctx.getImageData(r.x, r.y, r.w, r.h);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(r.x, r.y, r.w, r.h);
+          }
+          selectPhaseRef.current = 'dragging';
+          dragStartRef.current = pos;
+          return;
+        }
+      }
+
+      // Otherwise start a new selection
+      if (selImageDataRef.current && selRectRef.current) {
+        // Commit floating selection first
+        const canvas = canvasRef.current!;
+        const ctx = canvas.getContext('2d')!;
+        const r2 = selRectRef.current;
+        ctx.putImageData(selImageDataRef.current, r2.x, r2.y);
+        saveSnapshot();
+        selImageDataRef.current = null;
+      }
+      selectPhaseRef.current = 'selecting';
+      selStartRef.current = pos;
+      selRectRef.current = { x: pos.x, y: pos.y, w: 0, h: 0 };
+      setSelRect({ x: pos.x, y: pos.y, w: 0, h: 0 });
+      isDrawingRef.current = true;
+      return;
+    }
+
+    // Pen / eraser
     const canvas = canvasRef.current; if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
-    const pos = getPos(e);
     const color = toolRef.current === 'eraser' ? '#ffffff' : '#1a1a1a';
     ctx.globalCompositeOperation = 'source-over';
     ctx.beginPath();
@@ -128,12 +207,56 @@ export function InlineImageEditor({
     lastPos.current = pos;
   };
 
-  const draw = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    if (!isDrawingRef.current || !lastPos.current) return;
-    const canvas = canvasRef.current; if (!canvas) return;
-    const ctx = canvas.getContext('2d')!;
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+
     const pos = getPos(e);
+
+    if (toolRef.current === 'select') {
+      const phase = selectPhaseRef.current;
+
+      if (phase === 'selecting' && isDrawingRef.current && selStartRef.current) {
+        const r: Rect = {
+          x: Math.min(selStartRef.current.x, pos.x),
+          y: Math.min(selStartRef.current.y, pos.y),
+          w: Math.abs(pos.x - selStartRef.current.x),
+          h: Math.abs(pos.y - selStartRef.current.y),
+        };
+        selRectRef.current = r;
+        setSelRect({ ...r });
+        return;
+      }
+
+      if (phase === 'dragging' && dragStartRef.current && selRectRef.current && selImageDataRef.current) {
+        const dx = pos.x - dragStartRef.current.x;
+        const dy = pos.y - dragStartRef.current.y;
+        const r = selRectRef.current;
+        const newRect: Rect = { x: r.x + dx, y: r.y + dy, w: r.w, h: r.h };
+        selRectRef.current = newRect;
+        setSelRect({ ...newRect });
+        dragStartRef.current = pos;
+
+        // Re-render: clear + restore base + draw floating
+        const ctx = canvas.getContext('2d')!;
+        // Restore base from last history snapshot (before the lift)
+        const baseSnap = historyRef.current[historyIndexRef.current];
+        if (baseSnap) ctx.putImageData(baseSnap, 0, 0);
+        // White out the old position
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(r.x, r.y, r.w, r.h);
+        // Draw floating at new position
+        ctx.putImageData(selImageDataRef.current, newRect.x, newRect.y);
+        return;
+      }
+      return;
+    }
+
+    // Pen / eraser draw
+    if (!isDrawingRef.current || !lastPos.current) return;
+    const ctx = canvas.getContext('2d')!;
     const color = toolRef.current === 'eraser' ? '#ffffff' : '#1a1a1a';
     ctx.globalCompositeOperation = 'source-over';
     ctx.beginPath();
@@ -147,19 +270,46 @@ export function InlineImageEditor({
     lastPos.current = pos;
   };
 
-  const stopDraw = () => {
-    if (isDrawingRef.current) {
-      saveSnapshot();
+  const handleMouseUp = () => {
+    const phase = selectPhaseRef.current;
+
+    if (toolRef.current === 'select') {
+      if (phase === 'selecting') {
+        const r = selRectRef.current;
+        if (!r || r.w < 4 || r.h < 4) {
+          selRectRef.current = null; setSelRect(null);
+          selectPhaseRef.current = 'idle';
+        } else {
+          selectPhaseRef.current = 'selected';
+        }
+      } else if (phase === 'dragging') {
+        selectPhaseRef.current = 'selected';
+        dragStartRef.current = null;
+      }
+      isDrawingRef.current = false;
+      return;
     }
+
+    if (isDrawingRef.current) saveSnapshot();
     isDrawingRef.current = false;
     lastPos.current = null;
   };
 
+  const handleMouseLeave = () => {
+    setCursorPos(null);
+    handleMouseUp();
+  };
+
   const handleApply = () => {
+    // Commit any floating selection first
+    if (selImageDataRef.current && selRectRef.current) {
+      const canvas = canvasRef.current!;
+      const ctx = canvas.getContext('2d')!;
+      ctx.putImageData(selImageDataRef.current, selRectRef.current.x, selRectRef.current.y);
+    }
     const canvas = canvasRef.current; if (!canvas) return;
     const flat = document.createElement('canvas');
-    flat.width = canvas.width;
-    flat.height = canvas.height;
+    flat.width = canvas.width; flat.height = canvas.height;
     const fctx = flat.getContext('2d')!;
     fctx.fillStyle = '#ffffff';
     fctx.fillRect(0, 0, flat.width, flat.height);
@@ -168,16 +318,33 @@ export function InlineImageEditor({
   };
 
   const displayRadius = cursorPos ? getDisplayRadius() : 0;
+  const cursorClass = tool === 'select'
+    ? (selectPhaseRef.current === 'dragging' ? 'cursor-grabbing' : 'cursor-crosshair')
+    : 'cursor-none';
 
   return (
     <div className="rounded-xl border-2 border-primary/40 bg-card overflow-hidden">
       <div className="flex items-center gap-2 px-3 py-2 bg-muted/30 border-b flex-wrap">
         <span className="text-xs font-semibold text-foreground">Edit image</span>
         <div className="flex items-center gap-1 ml-2">
-          {(['eraser', 'pen'] as const).map(t => (
+          {(['eraser', 'pen', 'select'] as const).map(t => (
             <button
               key={t}
-              onClick={() => setTool(t)}
+              onClick={() => {
+                setTool(t);
+                if (t !== 'select') {
+                  // commit floating selection on tool switch
+                  if (selImageDataRef.current && selRectRef.current) {
+                    const canvas = canvasRef.current!;
+                    const ctx = canvas.getContext('2d')!;
+                    ctx.putImageData(selImageDataRef.current, selRectRef.current.x, selRectRef.current.y);
+                    saveSnapshot();
+                    selImageDataRef.current = null;
+                  }
+                  selRectRef.current = null; setSelRect(null);
+                  selectPhaseRef.current = 'idle';
+                }
+              }}
               className={cn(
                 "flex items-center gap-1 px-2 py-1 rounded-md text-xs border transition-colors",
                 tool === t
@@ -185,25 +352,27 @@ export function InlineImageEditor({
                   : "bg-background text-muted-foreground border-border hover:border-primary/60"
               )}
             >
-              {t === 'eraser' ? <Eraser className="h-3 w-3" /> : <Pencil className="h-3 w-3" />}
-              {t.charAt(0).toUpperCase() + t.slice(1)}
+              {t === 'eraser' ? <Eraser className="h-3 w-3" /> : t === 'pen' ? <Pencil className="h-3 w-3" /> : <Move className="h-3 w-3" />}
+              {t === 'select' ? 'Move' : t.charAt(0).toUpperCase() + t.slice(1)}
             </button>
           ))}
         </div>
-        <div className="flex items-center gap-1 ml-1">
-          {[10, 20, 35].map(s => (
-            <button
-              key={s}
-              onClick={() => setStrokeSize(s)}
-              className={cn(
-                "w-6 h-6 rounded-full flex items-center justify-center border transition-colors",
-                strokeSize === s ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
-              )}
-            >
-              <div className="rounded-full bg-foreground" style={{ width: Math.max(3, s / 5), height: Math.max(3, s / 5) }} />
-            </button>
-          ))}
-        </div>
+        {tool !== 'select' && (
+          <div className="flex items-center gap-1 ml-1">
+            {[10, 20, 35].map(s => (
+              <button
+                key={s}
+                onClick={() => setStrokeSize(s)}
+                className={cn(
+                  "w-6 h-6 rounded-full flex items-center justify-center border transition-colors",
+                  strokeSize === s ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
+                )}
+              >
+                <div className="rounded-full bg-foreground" style={{ width: Math.max(3, s / 5), height: Math.max(3, s / 5) }} />
+              </button>
+            ))}
+          </div>
+        )}
         <div className="flex items-center gap-1 ml-auto">
           <button onClick={undo} title="Undo (Ctrl+Z)" className="p-1.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors">
             <Undo2 className="h-3.5 w-3.5" />
@@ -220,19 +389,21 @@ export function InlineImageEditor({
         </div>
       </div>
       <div className="relative overflow-hidden max-h-64">
+        <canvas ref={canvasRef} className="w-full h-full object-contain touch-none max-h-64 block" />
+        {/* Selection overlay canvas */}
         <canvas
-          ref={canvasRef}
-          className="w-full h-full object-contain touch-none max-h-64 cursor-none"
-          onMouseDown={startDraw}
+          ref={overlayRef}
+          className={cn("absolute inset-0 w-full h-full object-contain touch-none max-h-64", cursorClass)}
+          onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
-          onMouseUp={stopDraw}
-          onMouseLeave={() => { setCursorPos(null); stopDraw(); }}
-          onTouchStart={startDraw}
-          onTouchMove={draw}
-          onTouchEnd={stopDraw}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleMouseDown as never}
+          onTouchMove={handleMouseMove as never}
+          onTouchEnd={handleMouseUp}
         />
-        {/* Custom brush cursor circle */}
-        {cursorPos && (
+        {/* Brush cursor circle */}
+        {cursorPos && tool !== 'select' && (
           <div
             className="pointer-events-none absolute rounded-full border-2 border-dashed"
             style={{
@@ -246,7 +417,10 @@ export function InlineImageEditor({
         )}
       </div>
       <p className="text-[10px] text-muted-foreground px-3 py-1.5 bg-muted/20 border-t">
-        {tool === 'eraser' ? 'Erasing — draw over areas to remove' : 'Drawing — add black marks'} · Ctrl+Z to undo
+        {tool === 'select'
+          ? selRect ? 'Drag inside selection to move it · Esc to deselect' : 'Drag to select a region'
+          : tool === 'eraser' ? 'Erasing — draw over areas to remove' : 'Drawing — add black marks'
+        } · Ctrl+Z to undo
       </p>
     </div>
   );
