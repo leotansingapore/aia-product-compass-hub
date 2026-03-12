@@ -90,10 +90,28 @@ export function InlineImageEditor({
     return { x: me.nativeEvent.offsetX * scaleX, y: me.nativeEvent.offsetY * scaleY };
   };
 
+  const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(null);
   const toolRef = useRef(tool);
   const strokeSizeRef = useRef(strokeSize);
   useEffect(() => { toolRef.current = tool; }, [tool]);
   useEffect(() => { strokeSizeRef.current = strokeSize; }, [strokeSize]);
+
+  // Compute display-pixel radius of the brush circle
+  const getDisplayRadius = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return strokeSize / 2;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    return strokeSizeRef.current / scaleX / 2;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    draw(e);
+  };
 
   const startDraw = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
@@ -149,6 +167,8 @@ export function InlineImageEditor({
     onApply(flat.toDataURL('image/png'));
   };
 
+  const displayRadius = cursorPos ? getDisplayRadius() : 0;
+
   return (
     <div className="rounded-xl border-2 border-primary/40 bg-card overflow-hidden">
       <div className="flex items-center gap-2 px-3 py-2 bg-muted/30 border-b flex-wrap">
@@ -202,18 +222,28 @@ export function InlineImageEditor({
       <div className="relative overflow-hidden max-h-64">
         <canvas
           ref={canvasRef}
-          className={cn(
-            "w-full h-full object-contain touch-none max-h-64",
-            tool === 'eraser' ? "cursor-cell" : "cursor-crosshair"
-          )}
+          className="w-full h-full object-contain touch-none max-h-64 cursor-none"
           onMouseDown={startDraw}
-          onMouseMove={draw}
+          onMouseMove={handleMouseMove}
           onMouseUp={stopDraw}
-          onMouseLeave={stopDraw}
+          onMouseLeave={() => { setCursorPos(null); stopDraw(); }}
           onTouchStart={startDraw}
           onTouchMove={draw}
           onTouchEnd={stopDraw}
         />
+        {/* Custom brush cursor circle */}
+        {cursorPos && (
+          <div
+            className="pointer-events-none absolute rounded-full border-2 border-dashed"
+            style={{
+              left: cursorPos.x - displayRadius,
+              top: cursorPos.y - displayRadius,
+              width: displayRadius * 2,
+              height: displayRadius * 2,
+              borderColor: tool === 'eraser' ? '#ef4444' : '#1a1a1a',
+            }}
+          />
+        )}
       </div>
       <p className="text-[10px] text-muted-foreground px-3 py-1.5 bg-muted/20 border-t">
         {tool === 'eraser' ? 'Erasing — draw over areas to remove' : 'Drawing — add black marks'} · Ctrl+Z to undo
