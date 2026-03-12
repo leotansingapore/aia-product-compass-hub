@@ -18,27 +18,27 @@ interface PaletteItem {
 
 const CATEGORIES: { label: string; items: PaletteItem[] }[] = [
   {
-    label: 'Terminals',
+    label: 'Start / End',
     items: [
       { type: 'start', label: 'Start', icon: Play, color: '#16a34a' },
       { type: 'end', label: 'End', icon: Square, color: '#dc2626' },
     ],
   },
   {
-    label: 'Flow',
+    label: 'Steps',
     items: [
-      { type: 'script', label: 'Script', icon: FileText, color: '#2563eb' },
-      { type: 'decision', label: 'Decision', icon: Diamond, color: '#d97706' },
-      { type: 'action', label: 'Action', icon: Zap, color: '#7c3aed' },
+      { type: 'script', label: 'Talk Track', icon: FileText, color: '#2563eb' },
+      { type: 'decision', label: 'Check', icon: Diamond, color: '#d97706' },
+      { type: 'action', label: 'Follow-Up', icon: Zap, color: '#7c3aed' },
     ],
   },
   {
-    label: 'Data',
+    label: 'More Shapes',
     items: [
-      { type: 'hexagon', label: 'Hexagon', icon: Hexagon, color: '#0891b2' },
-      { type: 'parallelogram', label: 'I/O', icon: ArrowRightLeft, color: '#ea580c' },
-      { type: 'cylinder', label: 'Storage', icon: Database, color: '#4f46e5' },
-      { type: 'document', label: 'Document', icon: FileText, color: '#0d9488' },
+      { type: 'hexagon', label: 'Key Step', icon: Hexagon, color: '#0891b2' },
+      { type: 'parallelogram', label: 'Send / Get', icon: ArrowRightLeft, color: '#ea580c' },
+      { type: 'cylinder', label: 'CRM / Data', icon: Database, color: '#4f46e5' },
+      { type: 'document', label: 'Reference', icon: FileText, color: '#0d9488' },
     ],
   },
 ];

@@ -5,10 +5,12 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
-import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Save, Undo2, Redo2, Keyboard, Sparkles, Link, Grid3x3, FileText, X, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Save, Undo2, Redo2, Keyboard, Sparkles, Link, Grid3x3, FileText, X, ChevronDown, ChevronUp, ExternalLink, MoreHorizontal, Search } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import ReactMarkdown from 'react-markdown';
 import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
@@ -160,6 +162,8 @@ export default function ScriptFlows() {
   const [hasUnsaved, setHasUnsaved] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [showAIWizard, setShowAIWizard] = useState(false);
+  const [showLeaveDialog, setShowLeaveDialog] = useState(false);
+  const [hintDismissed, setHintDismissed] = useState(() => localStorage.getItem('flows-hint-dismissed') === '1');
 
   const controlsRef = useRef<FlowCanvasControls | null>(null);
 
@@ -287,8 +291,8 @@ export default function ScriptFlows() {
             <div className="flex items-center gap-2 flex-wrap bg-muted/30 border rounded-lg px-3 py-2">
               <Button variant="ghost" size="sm" onClick={() => {
                 if (hasUnsaved) {
-                  const confirmed = window.confirm('You have unsaved changes. Leave without saving?');
-                  if (!confirmed) return;
+                  setShowLeaveDialog(true);
+                  return;
                 }
                 navigate('/flows');
               }}>
@@ -328,71 +332,74 @@ export default function ScriptFlows() {
               {/* Auto-layout */}
               <AutoLayoutControls onLayout={(dir) => controlsRef.current?.autoLayout(dir)} />
 
-              {/* Export */}
-              <ExportControls onExport={handleExport} />
+              {/* More tools (overflow menu) */}
+              <Popover>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        <MoreHorizontal className="h-3.5 w-3.5" />
+                      </Button>
+                    </PopoverTrigger>
+                  </TooltipTrigger>
+                  <TooltipContent>More tools</TooltipContent>
+                </Tooltip>
+                <PopoverContent align="start" className="w-48 p-1">
+                  <div className="flex flex-col gap-0.5">
+                    {/* Export */}
+                    <ExportControls onExport={handleExport} />
 
-              {/* Share */}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline" size="sm"
-                    onClick={() => {
-                      const url = `${window.location.origin}/flows/view/${activeFlowId}`;
-                      navigator.clipboard.writeText(url).then(() => {
-                        toast.success('Share link copied to clipboard!');
-                      });
-                    }}
-                  >
-                    <Link className="h-3.5 w-3.5" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Copy share link</TooltipContent>
-              </Tooltip>
+                    {/* Share */}
+                    <Button
+                      variant="ghost" size="sm"
+                      className="justify-start gap-2 text-xs h-8"
+                      onClick={() => {
+                        const url = `${window.location.origin}/flows/view/${activeFlowId}`;
+                        navigator.clipboard.writeText(url).then(() => {
+                          toast.success('Share link copied to clipboard!');
+                        });
+                      }}
+                    >
+                      <Link className="h-3.5 w-3.5" />
+                      Copy Share Link
+                    </Button>
 
-              <div className="w-px h-6 bg-border" />
+                    {/* Grid snap toggle */}
+                    <Button
+                      variant="ghost" size="sm"
+                      className="justify-start gap-2 text-xs h-8"
+                      onClick={() => {
+                        const current = controlsRef.current?.snapToGrid ?? false;
+                        controlsRef.current?.setSnapToGrid(!current);
+                        toast.success(!current ? 'Snap to grid enabled' : 'Snap to grid disabled');
+                      }}
+                    >
+                      <Grid3x3 className="h-3.5 w-3.5" />
+                      {controlsRef.current?.snapToGrid ? 'Snap: On' : 'Snap: Off'}
+                    </Button>
 
-              {/* Keyboard shortcuts */}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" size="sm" onClick={() => setShowShortcuts(true)}>
-                    <Keyboard className="h-3.5 w-3.5" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Keyboard shortcuts</TooltipContent>
-              </Tooltip>
+                    {/* Node search */}
+                    <div className="px-1 py-0.5">
+                      <NodeSearch
+                        nodes={localNodes}
+                        onFocusNode={(id) => controlsRef.current?.focusNode(id)}
+                      />
+                    </div>
 
-              <div className="w-px h-6 bg-border" />
+                    <div className="h-px bg-border my-0.5" />
 
-              {/* Grid snap toggle */}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant={controlsRef.current?.snapToGrid ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => {
-                      const current = controlsRef.current?.snapToGrid ?? false;
-                      controlsRef.current?.setSnapToGrid(!current);
-                      toast.success(!current ? 'Snap to grid enabled' : 'Snap to grid disabled');
-                    }}
-                  >
-                    <Grid3x3 className="h-3.5 w-3.5" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Toggle snap to grid</TooltipContent>
-              </Tooltip>
-
-              {/* Node search */}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <span>
-                    <NodeSearch
-                      nodes={localNodes}
-                      onFocusNode={(id) => controlsRef.current?.focusNode(id)}
-                    />
-                  </span>
-                </TooltipTrigger>
-                <TooltipContent>Search nodes</TooltipContent>
-              </Tooltip>
+                    {/* Keyboard shortcuts */}
+                    <Button
+                      variant="ghost" size="sm"
+                      className="justify-start gap-2 text-xs h-8"
+                      onClick={() => setShowShortcuts(true)}
+                    >
+                      <Keyboard className="h-3.5 w-3.5" />
+                      Keyboard Shortcuts
+                    </Button>
+                  </div>
+                </PopoverContent>
+              </Popover>
 
               <div className="flex-1" />
 
@@ -451,6 +458,31 @@ export default function ScriptFlows() {
                   onPaneClick={() => setPreviewingNode(null)}
                   controlsRef={controlsRef}
                 />
+                {/* Canvas hints for first-time users */}
+                {localNodes.length <= 2 && !hintDismissed && (
+                  <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
+                    <div className="pointer-events-auto bg-background/90 backdrop-blur border rounded-xl shadow-lg px-6 py-5 max-w-sm text-center space-y-3">
+                      <p className="text-sm font-semibold text-foreground">Getting started</p>
+                      <ul className="text-xs text-muted-foreground text-left space-y-1.5">
+                        <li>Drag nodes from the <strong>left palette</strong> onto the canvas</li>
+                        <li><strong>Connect</strong> nodes by dragging from one handle to another</li>
+                        <li><strong>Click</strong> a node to preview, <strong>double-click</strong> to edit</li>
+                        <li>Use <strong>AI Improve</strong> to auto-enhance your flow</li>
+                      </ul>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="text-xs"
+                        onClick={() => {
+                          localStorage.setItem('flows-hint-dismissed', '1');
+                          setHintDismissed(true);
+                        }}
+                      >
+                        Got it
+                      </Button>
+                    </div>
+                  </div>
+                )}
                 <AIFlowChat
                   nodes={localNodes}
                   edges={localEdges}
@@ -587,6 +619,25 @@ export default function ScriptFlows() {
             open={showShortcuts}
             onOpenChange={setShowShortcuts}
           />
+          <AlertDialog open={showLeaveDialog} onOpenChange={setShowLeaveDialog}>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Unsaved changes</AlertDialogTitle>
+                <AlertDialogDescription>
+                  You have unsaved changes to this flow. Are you sure you want to leave? Your changes will be lost.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Keep editing</AlertDialogCancel>
+                <AlertDialogAction
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                  onClick={() => navigate('/flows')}
+                >
+                  Leave without saving
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </PageLayout>
       </TooltipProvider>
     );

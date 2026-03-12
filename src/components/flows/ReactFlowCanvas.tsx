@@ -225,8 +225,8 @@ function ReactFlowCanvasInner({
   // Add node (from palette click or drag)
   const addNode = useCallback((type: FlowNode['type'], position?: { x: number; y: number }) => {
     const labels: Record<string, string> = {
-      start: 'Start', script: 'New Script', decision: 'Decision?', action: 'Follow-up', end: 'End',
-      hexagon: 'Process', parallelogram: 'Input/Output', cylinder: 'Storage', document: 'Document',
+      start: 'Start', script: 'Talk Track', decision: 'Check?', action: 'Follow-Up', end: 'End',
+      hexagon: 'Key Step', parallelogram: 'Send / Get', cylinder: 'CRM / Data', document: 'Reference',
     };
     const nodeTypeMap: Record<string, string> = {
       start: 'scriptStart', script: 'scriptNode', decision: 'decisionNode', action: 'actionNode', end: 'scriptEnd',

@@ -22,11 +22,11 @@ interface AIFlowChatProps {
 }
 
 const QUICK_PROMPTS = [
-  'Add a follow-up path for no-reply',
-  'Simplify this flow',
-  'Add a referral ask step at the end',
-  'Add more decision points',
-  'Make it more concise',
+  'Add objection handling after the pitch',
+  'Add a follow-up path if prospect goes silent',
+  'Insert a needs analysis step before recommending',
+  'Add a referral ask after closing',
+  'Simplify — fewer steps, same outcome',
 ];
 
 export function AIFlowChat({ nodes, edges, flowTitle, onFlowUpdated }: AIFlowChatProps) {

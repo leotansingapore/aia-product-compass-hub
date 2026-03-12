@@ -40,6 +40,7 @@ export function ScriptNodeEditPanel({
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({ basic: true, colors: false, style: false });
   const [expandedVersion, setExpandedVersion] = useState<number>(0);
+  const [scriptSearch, setScriptSearch] = useState('');
 
   useEffect(() => {
     if (node) {
@@ -59,6 +60,9 @@ export function ScriptNodeEditPanel({
 
   const nodeType = node.data?.nodeType || node.type;
   const showScriptLink = ['script', 'action', 'hexagon', 'parallelogram', 'cylinder', 'document'].includes(nodeType);
+  const filteredScripts = scriptSearch.trim()
+    ? scripts.filter(s => s.stage.toLowerCase().includes(scriptSearch.toLowerCase()) || s.category.toLowerCase().includes(scriptSearch.toLowerCase()))
+    : scripts;
   const linkedScript = scriptId ? scripts.find(s => s.id === scriptId) : null;
 
   const toggleSection = (key: string) => {
@@ -157,15 +161,31 @@ export function ScriptNodeEditPanel({
             {showScriptLink && (
               <div className="space-y-2">
                 <Label className="text-xs">Link to Script</Label>
-                <Select value={scriptId || '_none'} onValueChange={handleScriptChange}>
+                <Select value={scriptId || '_none'} onValueChange={(val) => { handleScriptChange(val); setScriptSearch(''); }}>
                   <SelectTrigger className="h-8 text-sm">
                     <SelectValue placeholder="Select a script..." />
                   </SelectTrigger>
                   <SelectContent className="max-h-60">
+                    <div className="sticky top-0 px-1 pb-1 bg-popover z-10">
+                      <Input
+                        value={scriptSearch}
+                        onChange={(e) => setScriptSearch(e.target.value)}
+                        placeholder="Search scripts..."
+                        className="h-7 text-xs"
+                        onClick={(e) => e.stopPropagation()}
+                        onKeyDown={(e) => e.stopPropagation()}
+                      />
+                    </div>
                     <SelectItem value="_none">-- None --</SelectItem>
-                    {scripts.map((s) => (
-                      <SelectItem key={s.id} value={s.id}>{s.stage}</SelectItem>
+                    {filteredScripts.map((s) => (
+                      <SelectItem key={s.id} value={s.id}>
+                        <span className="truncate">{s.stage}</span>
+                        <span className="text-[9px] text-muted-foreground ml-1">({s.category})</span>
+                      </SelectItem>
                     ))}
+                    {filteredScripts.length === 0 && scriptSearch && (
+                      <p className="text-xs text-muted-foreground text-center py-2">No scripts match</p>
+                    )}
                   </SelectContent>
                 </Select>
 
