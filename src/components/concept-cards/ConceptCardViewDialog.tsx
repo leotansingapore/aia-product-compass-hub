@@ -576,14 +576,31 @@ export function ConceptCardViewDialog({ card, onClose }: Props) {
 
           {/* VIEW TAB */}
           <TabsContent value="view" className="flex flex-col flex-1 overflow-hidden mt-0 p-0">
-            {isCropping && card.image_url ? (
+            {isCropping && baseImageUrl ? (
               <ImageCropper
-                imageUrl={croppedImageUrl || card.image_url}
+                imageUrl={croppedImageUrl || baseImageUrl}
                 onCrop={handleCropApply}
                 onCancel={() => setIsCropping(false)}
               />
             ) : (
               <>
+                {/* Multi-image selector tabs */}
+                {allImages.length > 1 && (
+                  <div className="flex gap-1.5 px-4 pt-3 pb-1 overflow-x-auto shrink-0">
+                    {allImages.map((url, i) => (
+                      <button
+                        key={url}
+                        onClick={() => { setActiveImgIndex(i); setCroppedImageUrl(null); setZoom(1); }}
+                        className={cn(
+                          "shrink-0 w-14 h-14 rounded-lg border-2 overflow-hidden transition-all",
+                          i === activeImgIndex ? "border-primary shadow-sm" : "border-border/40 opacity-60 hover:opacity-100"
+                        )}
+                      >
+                        <img src={url} alt={`Drawing ${i + 1}`} className="w-full h-full object-contain" />
+                      </button>
+                    ))}
+                  </div>
+                )}
                 <div className="flex-1 overflow-auto bg-muted/20">
                   {displayImageUrl ? (
                     <div className="p-4 flex items-center justify-center min-h-[300px]">
