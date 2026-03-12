@@ -105,8 +105,8 @@ export function ImageCropper({
         <Button size="sm" variant="outline" className="h-7 text-xs gap-1" onClick={onCancel}>
           <X className="h-3 w-3" /> Cancel
         </Button>
-        <Button size="sm" className="h-7 text-xs gap-1" onClick={applyCrop} disabled={!cropRect}>
-          <Check className="h-3 w-3" /> Apply Crop
+        <Button size="sm" className="h-7 text-xs gap-1" onClick={applyCrop} disabled={!cropRect || applying}>
+          {applying ? <><Loader2 className="h-3 w-3 animate-spin" /> Cropping…</> : <><Check className="h-3 w-3" /> Apply Crop</>}
         </Button>
       </div>
       <div
