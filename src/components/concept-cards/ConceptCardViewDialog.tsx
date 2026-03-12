@@ -565,7 +565,7 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue="view" className="flex flex-col flex-1 overflow-hidden">
+        <Tabs defaultValue={initialTab} className="flex flex-col flex-1 overflow-hidden">
           <TabsList className="mx-4 mt-3 self-start shrink-0">
             <TabsTrigger value="view" className="text-xs sm:text-sm gap-1.5">
               <Eye className="h-3.5 w-3.5" /> View Drawing
