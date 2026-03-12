@@ -317,7 +317,7 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
           <div className="space-y-2">
             <Label>Audience</Label>
             <div className="flex flex-wrap gap-1.5">
-              {AUDIENCE_OPTIONS.map(a => (
+              {[...new Set([...AUDIENCE_OPTIONS, ...audience.filter(a => !AUDIENCE_OPTIONS.includes(a))])].map(a => (
                 <button
                   key={a} type="button"
                   onClick={() => toggleItem(audience, setAudience, a)}
@@ -330,13 +330,34 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
                 >{a}</button>
               ))}
             </div>
+            <div className="flex gap-2">
+              <Input
+                placeholder="Add custom audience…"
+                value={audienceInput}
+                onChange={e => setAudienceInput(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const v = audienceInput.trim();
+                    if (v && !audience.includes(v)) setAudience([...audience, v]);
+                    setAudienceInput('');
+                  }
+                }}
+                className="h-8 text-xs"
+              />
+              <Button type="button" variant="outline" className="h-8 text-xs px-3" onClick={() => {
+                const v = audienceInput.trim();
+                if (v && !audience.includes(v)) setAudience([...audience, v]);
+                setAudienceInput('');
+              }}>Add</Button>
+            </div>
           </div>
 
           {/* Product Type */}
           <div className="space-y-2">
             <Label>Product Type</Label>
             <div className="flex flex-wrap gap-1.5">
-              {PRODUCT_OPTIONS.map(p => (
+              {[...new Set([...PRODUCT_OPTIONS, ...productType.filter(p => !PRODUCT_OPTIONS.includes(p))])].map(p => (
                 <button
                   key={p} type="button"
                   onClick={() => toggleItem(productType, setProductType, p)}
@@ -348,6 +369,27 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
                   )}
                 >{p}</button>
               ))}
+            </div>
+            <div className="flex gap-2">
+              <Input
+                placeholder="Add custom product type…"
+                value={productTypeInput}
+                onChange={e => setProductTypeInput(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const v = productTypeInput.trim();
+                    if (v && !productType.includes(v)) setProductType([...productType, v]);
+                    setProductTypeInput('');
+                  }
+                }}
+                className="h-8 text-xs"
+              />
+              <Button type="button" variant="outline" className="h-8 text-xs px-3" onClick={() => {
+                const v = productTypeInput.trim();
+                if (v && !productType.includes(v)) setProductType([...productType, v]);
+                setProductTypeInput('');
+              }}>Add</Button>
             </div>
           </div>
 
