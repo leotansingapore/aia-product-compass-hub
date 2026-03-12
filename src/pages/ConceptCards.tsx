@@ -277,6 +277,7 @@ export default function ConceptCardsPage() {
   const { isAdmin } = usePermissions();
   const [uploadOpen, setUploadOpen] = useState(false);
   const [viewCard, setViewCard] = useState<ConceptCard | null>(null);
+  const [drawCard, setDrawCard] = useState<ConceptCard | null>(null);
   const [editCard, setEditCard] = useState<ConceptCard | null>(null);
   const [search, setSearch] = useState('');
   const [filterAudience, setFilterAudience] = useState('All');
