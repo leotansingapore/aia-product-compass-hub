@@ -486,7 +486,7 @@ function CompareResultPanel({
 }
 
 // ─── Main Dialog ───────────────────────────────────────────────────────────
-export function ConceptCardViewDialog({ card, onClose }: Props) {
+export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Props) {
   const [zoom, setZoom] = useState(1);
   const [comparing, setComparing] = useState(false);
   const [compareResult, setCompareResult] = useState<CompareResult | null>(null);
