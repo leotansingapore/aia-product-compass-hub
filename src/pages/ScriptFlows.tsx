@@ -11,7 +11,7 @@ import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/comp
 import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Save, Undo2, Redo2, Keyboard, Sparkles, Link, Grid3x3, FileText, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import ReactMarkdown from 'react-markdown';
-import { useScriptFlows, type FlowNode } from '@/hooks/useScriptFlows';
+import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
 import { useScripts } from '@/hooks/useScripts';
 import ReactFlowCanvas, { type FlowCanvasControls } from '@/components/flows/ReactFlowCanvas';
 import { NodeEditorDialog } from '@/components/flows/NodeEditorDialog';
@@ -179,10 +179,6 @@ export default function ScriptFlows() {
     navigate(`/flows/${id}`);
   }, [navigate]);
 
-  const closeFlow = useCallback(() => {
-    navigate('/flows');
-  }, [navigate]);
-
   const createFromTemplate = useCallback(async (index: number) => {
     const tpl = FLOW_TEMPLATES[index];
     const result = await createFlow.mutateAsync({
@@ -277,7 +273,13 @@ export default function ScriptFlows() {
           <div className="space-y-3">
             {/* Toolbar */}
             <div className="flex items-center gap-2 flex-wrap bg-muted/30 border rounded-lg px-3 py-2">
-              <Button variant="ghost" size="sm" onClick={() => navigate('/flows')}>
+              <Button variant="ghost" size="sm" onClick={() => {
+                if (hasUnsaved) {
+                  const confirmed = window.confirm('You have unsaved changes. Leave without saving?');
+                  if (!confirmed) return;
+                }
+                navigate('/flows');
+              }}>
                 <ArrowLeft className="h-4 w-4 mr-1" /> Back
               </Button>
 
@@ -433,7 +435,7 @@ export default function ScriptFlows() {
               {previewingNode && (() => {
                 const linkedScript = scripts.find(s => s.id === previewingNode.scriptId);
                 return (
-                  <div className="w-[360px] shrink-0 rounded-xl border bg-card shadow-lg flex flex-col overflow-hidden"
+                  <div className="hidden lg:flex w-[320px] xl:w-[360px] shrink-0 rounded-xl border bg-card shadow-lg flex-col overflow-hidden"
                     style={{ height: 'calc(100vh - 260px)', minHeight: 400 }}>
                     {/* Panel header */}
                     <div className="flex items-center justify-between px-4 py-3 border-b bg-muted/30 shrink-0">
