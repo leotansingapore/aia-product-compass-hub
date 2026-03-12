@@ -500,6 +500,11 @@ export default function ConceptCardsPage() {
         card={viewCard}
         onClose={() => setViewCard(null)}
       />
+      <ConceptCardViewDialog
+        card={drawCard}
+        initialTab="draw"
+        onClose={() => setDrawCard(null)}
+      />
       <ConceptCardEditDialog
         card={editCard}
         onClose={() => setEditCard(null)}
