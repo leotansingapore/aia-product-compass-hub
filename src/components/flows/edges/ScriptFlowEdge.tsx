@@ -101,6 +101,8 @@ export default function ScriptFlowEdge({
     (e: React.MouseEvent) => {
       e.stopPropagation();
       setEdges((edges) => edges.filter((edge) => edge.id !== id));
+      // Notify canvas to take a history snapshot for undo support
+      window.dispatchEvent(new CustomEvent('flow-edge-inline-delete'));
     },
     [id, setEdges]
   );

@@ -112,12 +112,12 @@ export function NodeEditorDialog({ open, onClose, onSave, node, scripts }: Props
     }
   };
 
-  // Auto-fetch AI suggestions when switching to AI tab
+  // Auto-fetch AI suggestions when switching to AI tab (intentionally only on tab switch)
   useEffect(() => {
     if (scriptTab === 'ai' && aiSuggestions.length === 0 && !aiLoading && label.trim()) {
       getAISuggestions();
     }
-  }, [scriptTab]);
+  }, [scriptTab]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const selectScript = (id: string) => {
     setScriptId(id === scriptId ? '' : id);

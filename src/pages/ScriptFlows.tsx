@@ -181,31 +181,43 @@ export default function ScriptFlows() {
 
   const createFromTemplate = useCallback(async (index: number) => {
     const tpl = FLOW_TEMPLATES[index];
-    const result = await createFlow.mutateAsync({
-      title: tpl.title, description: tpl.description,
-      nodes: tpl.nodes, edges: tpl.edges,
-    });
-    if (result) {
-      setTimeout(() => openFlow((result as any).id), 500);
+    try {
+      const result = await createFlow.mutateAsync({
+        title: tpl.title, description: tpl.description,
+        nodes: tpl.nodes, edges: tpl.edges,
+      });
+      if (result) {
+        setTimeout(() => openFlow((result as any).id), 500);
+      }
+    } catch {
+      toast.error('Failed to create flow from template');
     }
   }, [createFlow, openFlow]);
 
   const handleCreateNew = async () => {
     if (!newTitle.trim()) return;
     const startNode: FlowNode = { id: 'n1', scriptId: null, label: 'Start', type: 'start', x: 400, y: 50 };
-    const result = await createFlow.mutateAsync({ title: newTitle, description: newDesc, nodes: [startNode], edges: [] });
-    setShowNewDialog(false);
-    setNewTitle('');
-    setNewDesc('');
-    if (result) openFlow((result as any).id);
+    try {
+      const result = await createFlow.mutateAsync({ title: newTitle, description: newDesc, nodes: [startNode], edges: [] });
+      setShowNewDialog(false);
+      setNewTitle('');
+      setNewDesc('');
+      if (result) openFlow((result as any).id);
+    } catch {
+      toast.error('Failed to create flow');
+    }
   };
 
   const handleAIFlowGenerated = async (data: { title: string; description: string; nodes: any[]; edges: any[] }) => {
-    const result = await createFlow.mutateAsync({
-      title: data.title, description: data.description,
-      nodes: data.nodes, edges: data.edges,
-    });
-    if (result) openFlow((result as any).id);
+    try {
+      const result = await createFlow.mutateAsync({
+        title: data.title, description: data.description,
+        nodes: data.nodes, edges: data.edges,
+      });
+      if (result) openFlow((result as any).id);
+    } catch {
+      toast.error('Failed to save AI-generated flow');
+    }
   };
 
   const handleSave = useCallback(async () => {

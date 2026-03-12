@@ -519,6 +519,20 @@ function ReactFlowCanvasInner({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [readOnly, history, clipboard, setNodes, setEdges, rfGetNodes, rfGetEdges, fitView, notifyParent]);
 
+  // Listen for inline edge deletions (from ScriptFlowEdge hover delete button)
+  useEffect(() => {
+    const handler = () => {
+      requestAnimationFrame(() => {
+        const n = rfGetNodes();
+        const e = rfGetEdges();
+        history.takeSnapshot(n, e, 'Deleted edge (inline)');
+        notifyParent();
+      });
+    };
+    window.addEventListener('flow-edge-inline-delete', handler);
+    return () => window.removeEventListener('flow-edge-inline-delete', handler);
+  }, [rfGetNodes, rfGetEdges, history, notifyParent]);
+
   // Expose controls to parent
   useEffect(() => {
     if (!controlsRef) return;
@@ -624,12 +638,23 @@ function ReactFlowCanvasInner({
         onConnect={onConnect}
         onReconnect={(oldEdge, newConnection) => {
           setEdges((eds) => reconnectEdge(oldEdge, newConnection, eds));
-          notifyParent();
+          requestAnimationFrame(() => {
+            const n = rfGetNodes();
+            const e = rfGetEdges();
+            history.takeSnapshot(n, e, 'Reconnected edge');
+            notifyParent();
+          });
         }}
         edgeUpdaterRadius={20}
         onNodeDoubleClick={onNodeDoubleClick}
         onNodeClick={onClickNode ? onNodeClickHandler : undefined}
-        onPaneClick={onPaneClick}
+        onPaneClick={() => {
+          setSelectedNodeId(null);
+          setSelectedEdgeId(null);
+          setNodes((nds) => nds.map((n) => ({ ...n, selected: false })));
+          setEdges((eds) => eds.map((e) => ({ ...e, selected: false })));
+          onPaneClick?.();
+        }}
         onDragOver={onDragOver}
         onDrop={onDrop}
         nodeTypes={scriptFlowNodeTypes}

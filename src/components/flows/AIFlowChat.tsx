@@ -70,8 +70,8 @@ export function AIFlowChat({ nodes, edges, flowTitle, onFlowUpdated }: AIFlowCha
         return;
       }
 
-      // Save undo state before applying
-      setUndoStack(prev => [...prev.slice(-9), { nodes: [...nodes], edges: [...edges] }]);
+      // Save undo state before applying (deep clone to avoid shared references)
+      setUndoStack(prev => [...prev.slice(-9), { nodes: structuredClone(nodes), edges: structuredClone(edges) }]);
 
       onFlowUpdated(data.nodes, data.edges);
       setMessages(prev => [
