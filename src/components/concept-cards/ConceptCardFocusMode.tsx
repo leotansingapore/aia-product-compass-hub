@@ -227,11 +227,11 @@ export function ConceptCardFocusMode({
                   )}
 
                   {/* Image preview hint */}
-                  {card.image_url ? (
+                  {cardImages.length > 0 ? (
                     <div className="mt-4 rounded-xl overflow-hidden border border-dashed border-border/60 h-20 flex items-center justify-center relative bg-muted/20">
-                      <img src={card.image_url} alt="" className="absolute inset-0 w-full h-full object-contain blur-md opacity-30" />
+                      <img src={cardImages[0]} alt="" className="absolute inset-0 w-full h-full object-contain blur-md opacity-30" />
                       <span className="relative z-10 text-xs text-muted-foreground font-medium">
-                        Tap to reveal drawing ↻
+                        Tap to reveal {cardImages.length > 1 ? `${cardImages.length} drawings` : 'drawing'} ↻
                       </span>
                     </div>
                   ) : (
