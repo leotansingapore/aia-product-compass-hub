@@ -332,7 +332,7 @@ export function ConceptCardFocusMode({
           </div>
 
           {/* Flip hint */}
-          {card.image_url && !flipped && (
+          {cardImages.length > 0 && !flipped && (
             <p className="text-center text-xs text-muted-foreground mt-3">
               <kbd className="px-1.5 py-0.5 bg-muted border rounded text-[10px]">Space</kbd> to flip card
             </p>
