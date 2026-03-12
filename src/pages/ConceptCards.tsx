@@ -137,9 +137,9 @@ function FlashCard({
             </button>
           </div>
           {card.image_url ? (
-            <img src={card.image_url} alt={card.title} className="w-full h-full object-contain p-2" />
+            <img src={card.image_url} alt={card.title} className="w-full h-full object-contain p-2 pointer-events-none" />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">No drawing yet</div>
+            <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none">No drawing yet</div>
           )}
         </div>
       </div>
