@@ -305,7 +305,9 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
               >
                 <div className="py-2 space-y-1">
                   <ImageIcon className="h-6 w-6 text-muted-foreground/50 mx-auto" />
-                  <p className="text-sm text-muted-foreground">{newPreview ? 'Click to replace again' : 'Click to replace drawing'}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {newPreview ? 'Click to replace again' : card.image_url ? 'Click to replace drawing' : 'Click to add a drawing'}
+                  </p>
                   <p className="text-xs text-muted-foreground/60">AI will auto-enhance to clean B&W</p>
                 </div>
               </div>
