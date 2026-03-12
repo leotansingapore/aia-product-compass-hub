@@ -107,34 +107,60 @@ export function InlineImageEditor({
   }, [undo, redo]);
 
   // --- Coordinate helpers ---
-  // Always measure against the drawing canvas rect so cursor + strokes align.
+  // Account for object-contain letterboxing: the canvas content may not fill
+  // the entire CSS box, so we need to find the actual rendered content area.
   const getClientXY = (e: React.MouseEvent | React.TouchEvent) => {
     if ('touches' in e) return { clientX: e.touches[0].clientX, clientY: e.touches[0].clientY };
     return { clientX: (e as React.MouseEvent).clientX, clientY: (e as React.MouseEvent).clientY };
   };
 
+  /** Compute the rendered content area within the CSS box when object-contain is used */
+  const getContentRect = (canvas: HTMLCanvasElement) => {
+    const rect = canvas.getBoundingClientRect();
+    const canvasAspect = canvas.width / canvas.height;
+    const boxAspect = rect.width / rect.height;
+    let renderWidth: number, renderHeight: number, offsetX: number, offsetY: number;
+    if (canvasAspect > boxAspect) {
+      // Canvas wider than box → width-constrained, bars top/bottom
+      renderWidth = rect.width;
+      renderHeight = rect.width / canvasAspect;
+      offsetX = 0;
+      offsetY = (rect.height - renderHeight) / 2;
+    } else {
+      // Canvas taller than box → height-constrained, bars left/right
+      renderHeight = rect.height;
+      renderWidth = rect.height * canvasAspect;
+      offsetX = (rect.width - renderWidth) / 2;
+      offsetY = 0;
+    }
+    return { renderWidth, renderHeight, offsetX, offsetY, rect };
+  };
+
   const getPos = (e: React.MouseEvent | React.TouchEvent) => {
     const canvas = canvasRef.current!;
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
+    const { renderWidth, renderHeight, offsetX, offsetY, rect } = getContentRect(canvas);
+    const scaleX = canvas.width / renderWidth;
+    const scaleY = canvas.height / renderHeight;
     const { clientX, clientY } = getClientXY(e);
-    return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
+    return {
+      x: (clientX - rect.left - offsetX) * scaleX,
+      y: (clientY - rect.top - offsetY) * scaleY,
+    };
   };
 
   // Returns display-space (CSS px) position relative to the canvas element
   const getDisplayPos = (e: React.MouseEvent | React.TouchEvent) => {
     const canvas = canvasRef.current!;
-    const rect = canvas.getBoundingClientRect();
+    const { offsetX, offsetY, rect } = getContentRect(canvas);
     const { clientX, clientY } = getClientXY(e);
-    return { x: clientX - rect.left, y: clientY - rect.top };
+    return { x: clientX - rect.left - offsetX, y: clientY - rect.top - offsetY };
   };
 
   const getDisplayRadius = () => {
     const canvas = canvasRef.current;
     if (!canvas) return strokeSize / 2;
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
+    const { renderWidth } = getContentRect(canvas);
+    const scaleX = canvas.width / renderWidth;
     return strokeSizeRef.current / scaleX / 2;
   };
 
@@ -413,19 +439,23 @@ export function InlineImageEditor({
           onTouchMove={handleMouseMove as never}
           onTouchEnd={handleMouseUp}
         />
-        {/* Brush cursor circle */}
-        {cursorPos && tool !== 'select' && (
-          <div
-            className="pointer-events-none absolute rounded-full border-2 border-dashed"
-            style={{
-              left: cursorPos.x - displayRadius,
-              top: cursorPos.y - displayRadius,
-              width: displayRadius * 2,
-              height: displayRadius * 2,
-              borderColor: tool === 'eraser' ? '#ef4444' : '#1a1a1a',
-            }}
-          />
-        )}
+        {/* Brush cursor circle — offset by content area origin */}
+        {cursorPos && tool !== 'select' && (() => {
+          const canvas = canvasRef.current;
+          const contentOffset = canvas ? getContentRect(canvas) : { offsetX: 0, offsetY: 0 };
+          return (
+            <div
+              className="pointer-events-none absolute rounded-full border-2 border-dashed"
+              style={{
+                left: contentOffset.offsetX + cursorPos.x - displayRadius,
+                top: contentOffset.offsetY + cursorPos.y - displayRadius,
+                width: displayRadius * 2,
+                height: displayRadius * 2,
+                borderColor: tool === 'eraser' ? '#ef4444' : '#1a1a1a',
+              }}
+            />
+          );
+        })()}
       </div>
       <p className="text-[10px] text-muted-foreground px-3 py-1.5 bg-muted/20 border-t">
         {tool === 'select'
