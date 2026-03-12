@@ -123,7 +123,7 @@ function FlashCard({
         <div
           className="absolute inset-0 rounded-2xl border bg-card shadow-md overflow-hidden"
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-          onClick={() => setFlipped(false)}
+          onClick={e => { e.stopPropagation(); setFlipped(false); }}
         >
           <div className="absolute top-2 right-2 z-10 flex items-center gap-1.5">
             <span className="text-[9px] text-muted-foreground/60 bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">
