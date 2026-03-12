@@ -493,8 +493,14 @@ export function ConceptCardViewDialog({ card, onClose }: Props) {
   const [whiteboardKey, setWhiteboardKey] = useState(0);
   const [isCropping, setIsCropping] = useState(false);
   const [croppedImageUrl, setCroppedImageUrl] = useState<string | null>(null);
+  const [activeImgIndex, setActiveImgIndex] = useState(0);
 
-  const displayImageUrl = croppedImageUrl || card?.image_url || null;
+  // Normalise image list
+  const allImages: string[] = card
+    ? (card.image_urls && card.image_urls.length > 0 ? card.image_urls : card.image_url ? [card.image_url] : [])
+    : [];
+  const baseImageUrl = allImages[activeImgIndex] ?? null;
+  const displayImageUrl = croppedImageUrl || baseImageUrl || null;
 
   if (!card) return null;
 
