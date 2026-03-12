@@ -5,7 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Upload, Loader2, Sparkles, X, ImageIcon, ClipboardPaste, CheckCircle, ChevronLeft, ChevronRight, Pencil, Eraser, Undo2, Redo2, Trash2, Check } from 'lucide-react';
+import { Upload, Loader2, Sparkles, X, ImageIcon, ClipboardPaste, CheckCircle, ChevronLeft, ChevronRight, Pencil, Eraser, Undo2, Redo2, Trash2, Check, Crop } from 'lucide-react';
+import { ImageCropper } from './ImageCropper';
 import { supabase } from '@/integrations/supabase/client';
 import { useConceptCardsMutations } from '@/hooks/useConceptCards';
 import { toast } from 'sonner';
@@ -259,6 +260,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
   const [saving, setSaving] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [croppingId, setCroppingId] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
   const { createCard, uploadOriginalImage } = useConceptCardsMutations();
@@ -566,13 +568,21 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                         <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
                           AI Enhanced {active.enhancing && <Loader2 className="h-3 w-3 animate-spin" />}
                         </p>
-                        {active.enhancedUrl && !active.enhancing && editingId !== active.id && (
-                          <button
-                            onClick={() => setEditingId(active.id)}
-                            className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
-                          >
-                            <Eraser className="h-2.5 w-2.5" /> Edit
-                          </button>
+                        {active.enhancedUrl && !active.enhancing && editingId !== active.id && croppingId !== active.id && (
+                          <div className="flex items-center gap-1">
+                            <button
+                              onClick={() => setCroppingId(active.id)}
+                              className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
+                            >
+                              <Crop className="h-2.5 w-2.5" /> Crop
+                            </button>
+                            <button
+                              onClick={() => setEditingId(active.id)}
+                              className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
+                            >
+                              <Eraser className="h-2.5 w-2.5" /> Edit
+                            </button>
+                          </div>
                         )}
                       </div>
                       {active.enhancing ? (
@@ -582,6 +592,17 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                             <p className="text-xs text-muted-foreground">Enhancing...</p>
                           </div>
                         </div>
+                      ) : croppingId === active.id && active.enhancedUrl ? (
+                        <ImageCropper
+                          imageUrl={active.enhancedUrl}
+                          maxImgClass="max-w-full max-h-[40vh]"
+                          onCrop={(cropped) => {
+                            updateActive({ enhancedUrl: cropped });
+                            setCroppingId(null);
+                            toast.success('Image cropped ✓');
+                          }}
+                          onCancel={() => setCroppingId(null)}
+                        />
                       ) : editingId === active.id && active.enhancedUrl ? (
                         <InlineImageEditor
                           imageUrl={active.enhancedUrl}
