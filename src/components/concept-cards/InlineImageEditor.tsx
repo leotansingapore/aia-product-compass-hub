@@ -90,6 +90,7 @@ export function InlineImageEditor({
     return { x: me.nativeEvent.offsetX * scaleX, y: me.nativeEvent.offsetY * scaleY };
   };
 
+  const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(null);
   const toolRef = useRef(tool);
   const strokeSizeRef = useRef(strokeSize);
   useEffect(() => { toolRef.current = tool; }, [tool]);
