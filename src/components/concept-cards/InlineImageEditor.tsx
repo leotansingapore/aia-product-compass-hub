@@ -28,6 +28,9 @@ export function InlineImageEditor({
     img.onload = () => {
       canvas.width = img.naturalWidth;
       canvas.height = img.naturalHeight;
+      // Fill white background first so erasing reveals white, not transparency
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0);
       const snap = ctx.getImageData(0, 0, canvas.width, canvas.height);
       historyRef.current = [snap];
