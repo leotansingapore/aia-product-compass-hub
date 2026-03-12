@@ -6,12 +6,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   ZoomIn, ZoomOut, Pencil, Eraser, Trash2, Loader2,
   Sparkles, CheckCircle, AlertCircle, TrendingUp, Lightbulb,
-  RotateCcw, Eye, Columns2, Undo2, Redo2, Crop, X, Check
+  RotateCcw, Eye, Columns2, Undo2, Redo2, Crop,
 } from 'lucide-react';
 import { ConceptCard } from '@/hooks/useConceptCards';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import { ImageCropper } from './ImageCropper';
 
 interface Props {
   card: ConceptCard | null;
