@@ -184,7 +184,7 @@ export function ConceptCardFocusMode({
                   minHeight: '340px',
                   transition: animDir ? 'all 0.18s ease' : 'transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
-                onClick={() => { if (card.image_url) setFlipped(f => !f); }}
+                onClick={() => setFlipped(f => !f)}
               >
                 {/* FRONT */}
                 <div
