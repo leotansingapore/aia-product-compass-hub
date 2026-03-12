@@ -27,6 +27,7 @@ export function ConceptCardFocusMode({
   const [flipped, setFlipped] = useState(false);
   const [animDir, setAnimDir] = useState<'left' | 'right' | null>(null);
   const [showKeys, setShowKeys] = useState(false);
+  const [imgIndex, setImgIndex] = useState(0);
 
   const card = cards[index];
   const total = cards.length;
