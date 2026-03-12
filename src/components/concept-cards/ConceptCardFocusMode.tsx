@@ -94,6 +94,13 @@ export function ConceptCardFocusMode({
   const isReview = reviewIds.has(card.id);
   const allDone = knownCount + reviewCount === total;
 
+  // Normalise images for current card
+  const cardImages: string[] = (card.image_urls && card.image_urls.length > 0)
+    ? card.image_urls
+    : card.image_url ? [card.image_url] : [];
+  const safeImgIndex = Math.min(imgIndex, cardImages.length - 1);
+  const currentImg = cardImages[safeImgIndex] ?? null;
+
   return (
     <div className="fixed inset-0 z-50 bg-background/98 backdrop-blur-sm flex flex-col">
       {/* Top bar */}
