@@ -27,6 +27,7 @@ export function ConceptCardFocusMode({
   const [flipped, setFlipped] = useState(false);
   const [animDir, setAnimDir] = useState<'left' | 'right' | null>(null);
   const [showKeys, setShowKeys] = useState(false);
+  const [imgIndex, setImgIndex] = useState(0);
 
   const card = cards[index];
   const total = cards.length;
@@ -41,6 +42,7 @@ export function ConceptCardFocusMode({
       setIndex(i => i + 1);
       setFlipped(false);
       setAnimDir(null);
+      setImgIndex(0);
     }, 180);
   }, [index, total]);
 
@@ -51,6 +53,7 @@ export function ConceptCardFocusMode({
       setIndex(i => i - 1);
       setFlipped(false);
       setAnimDir(null);
+      setImgIndex(0);
     }, 180);
   }, [index]);
 
@@ -90,6 +93,13 @@ export function ConceptCardFocusMode({
   const isKnown = knownIds.has(card.id);
   const isReview = reviewIds.has(card.id);
   const allDone = knownCount + reviewCount === total;
+
+  // Normalise images for current card
+  const cardImages: string[] = (card.image_urls && card.image_urls.length > 0)
+    ? card.image_urls
+    : card.image_url ? [card.image_url] : [];
+  const safeImgIndex = Math.min(imgIndex, cardImages.length - 1);
+  const currentImg = cardImages[safeImgIndex] ?? null;
 
   return (
     <div className="fixed inset-0 z-50 bg-background/98 backdrop-blur-sm flex flex-col">
@@ -217,11 +227,11 @@ export function ConceptCardFocusMode({
                   )}
 
                   {/* Image preview hint */}
-                  {card.image_url ? (
+                  {cardImages.length > 0 ? (
                     <div className="mt-4 rounded-xl overflow-hidden border border-dashed border-border/60 h-20 flex items-center justify-center relative bg-muted/20">
-                      <img src={card.image_url} alt="" className="absolute inset-0 w-full h-full object-contain blur-md opacity-30" />
+                      <img src={cardImages[0]} alt="" className="absolute inset-0 w-full h-full object-contain blur-md opacity-30" />
                       <span className="relative z-10 text-xs text-muted-foreground font-medium">
-                        Tap to reveal drawing ↻
+                        Tap to reveal {cardImages.length > 1 ? `${cardImages.length} drawings` : 'drawing'} ↻
                       </span>
                     </div>
                   ) : (
@@ -248,15 +258,35 @@ export function ConceptCardFocusMode({
                   onClick={() => setFlipped(false)}
                 >
                   <div className="absolute top-3 left-3 z-10 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded border border-border/40">
-                    Drawing
+                    Drawing {cardImages.length > 1 ? `${safeImgIndex + 1}/${cardImages.length}` : ''}
                   </div>
                   <div className="absolute top-3 right-3 z-10 text-[10px] text-muted-foreground bg-background/70 px-1.5 py-0.5 rounded border border-border/40">
                     tap to flip back ↻
                   </div>
-                  {card.image_url
-                    ? <img src={card.image_url} alt={card.title} className="w-full h-full object-contain p-4 pointer-events-none" />
+                  {currentImg
+                    ? <img src={currentImg} alt={card.title} className="w-full h-full object-contain p-4 pointer-events-none" />
                     : <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none">No drawing yet</div>
                   }
+                  {/* Multi-image nav */}
+                  {cardImages.length > 1 && (
+                    <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2 z-20" onClick={e => e.stopPropagation()}>
+                      <button onClick={() => setImgIndex(i => Math.max(0, i - 1))} disabled={safeImgIndex === 0}
+                        className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors">
+                        <ChevronLeft className="h-3.5 w-3.5" />
+                      </button>
+                      <div className="flex gap-1">
+                        {cardImages.map((_, i) => (
+                          <button key={i} onClick={() => setImgIndex(i)}
+                            className={cn("w-1.5 h-1.5 rounded-full transition-colors",
+                              i === safeImgIndex ? "bg-primary" : "bg-muted-foreground/40 hover:bg-muted-foreground/70")} />
+                        ))}
+                      </div>
+                      <button onClick={() => setImgIndex(i => Math.min(cardImages.length - 1, i + 1))} disabled={safeImgIndex === cardImages.length - 1}
+                        className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors">
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -302,7 +332,7 @@ export function ConceptCardFocusMode({
           </div>
 
           {/* Flip hint */}
-          {card.image_url && !flipped && (
+          {cardImages.length > 0 && !flipped && (
             <p className="text-center text-xs text-muted-foreground mt-3">
               <kbd className="px-1.5 py-0.5 bg-muted border rounded text-[10px]">Space</kbd> to flip card
             </p>

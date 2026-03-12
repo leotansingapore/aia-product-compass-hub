@@ -8,6 +8,7 @@ export interface ConceptCard {
   description?: string | null;
   image_url?: string | null;
   original_image_url?: string | null;
+  image_urls?: string[] | null;
   audience: string[];
   product_type: string[];
   tags: string[];
