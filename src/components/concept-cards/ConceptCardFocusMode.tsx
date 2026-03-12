@@ -42,6 +42,7 @@ export function ConceptCardFocusMode({
       setIndex(i => i + 1);
       setFlipped(false);
       setAnimDir(null);
+      setImgIndex(0);
     }, 180);
   }, [index, total]);
 
@@ -52,6 +53,7 @@ export function ConceptCardFocusMode({
       setIndex(i => i - 1);
       setFlipped(false);
       setAnimDir(null);
+      setImgIndex(0);
     }, 180);
   }, [index]);
 
