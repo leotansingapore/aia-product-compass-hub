@@ -391,6 +391,7 @@ export type Database = {
           description: string | null
           id: string
           image_url: string | null
+          image_urls: string[] | null
           original_image_url: string | null
           product_type: string[] | null
           sort_order: number | null
@@ -405,6 +406,7 @@ export type Database = {
           description?: string | null
           id?: string
           image_url?: string | null
+          image_urls?: string[] | null
           original_image_url?: string | null
           product_type?: string[] | null
           sort_order?: number | null
@@ -419,6 +421,7 @@ export type Database = {
           description?: string | null
           id?: string
           image_url?: string | null
+          image_urls?: string[] | null
           original_image_url?: string | null
           product_type?: string[] | null
           sort_order?: number | null
