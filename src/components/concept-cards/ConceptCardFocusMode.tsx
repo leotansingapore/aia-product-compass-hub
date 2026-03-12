@@ -258,15 +258,35 @@ export function ConceptCardFocusMode({
                   onClick={() => setFlipped(false)}
                 >
                   <div className="absolute top-3 left-3 z-10 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded border border-border/40">
-                    Drawing
+                    Drawing {cardImages.length > 1 ? `${safeImgIndex + 1}/${cardImages.length}` : ''}
                   </div>
                   <div className="absolute top-3 right-3 z-10 text-[10px] text-muted-foreground bg-background/70 px-1.5 py-0.5 rounded border border-border/40">
                     tap to flip back ↻
                   </div>
-                  {card.image_url
-                    ? <img src={card.image_url} alt={card.title} className="w-full h-full object-contain p-4 pointer-events-none" />
+                  {currentImg
+                    ? <img src={currentImg} alt={card.title} className="w-full h-full object-contain p-4 pointer-events-none" />
                     : <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none">No drawing yet</div>
                   }
+                  {/* Multi-image nav */}
+                  {cardImages.length > 1 && (
+                    <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2 z-20" onClick={e => e.stopPropagation()}>
+                      <button onClick={() => setImgIndex(i => Math.max(0, i - 1))} disabled={safeImgIndex === 0}
+                        className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors">
+                        <ChevronLeft className="h-3.5 w-3.5" />
+                      </button>
+                      <div className="flex gap-1">
+                        {cardImages.map((_, i) => (
+                          <button key={i} onClick={() => setImgIndex(i)}
+                            className={cn("w-1.5 h-1.5 rounded-full transition-colors",
+                              i === safeImgIndex ? "bg-primary" : "bg-muted-foreground/40 hover:bg-muted-foreground/70")} />
+                        ))}
+                      </div>
+                      <button onClick={() => setImgIndex(i => Math.min(cardImages.length - 1, i + 1))} disabled={safeImgIndex === cardImages.length - 1}
+                        className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors">
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
