@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Crop, X, Check } from 'lucide-react';
+import { Crop, X, Check, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 export function ImageCropper({
