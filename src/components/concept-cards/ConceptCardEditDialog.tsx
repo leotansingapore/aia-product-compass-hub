@@ -58,6 +58,8 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
       setEditedCurrentUrl(null);
       setEditedEnhancedUrl(null);
       setEditMode(null);
+      setAudienceInput('');
+      setProductTypeInput('');
     }
   }, [card]);
 
