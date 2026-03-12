@@ -107,7 +107,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
           setActiveIndex(updated.length - 1);
           return updated;
         });
-        enhanceEntry(id, file, base64);
+        if (aiEnhance) enhanceEntry(id, file, base64);
       };
       reader.readAsDataURL(file);
     });
