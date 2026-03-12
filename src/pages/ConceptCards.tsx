@@ -40,9 +40,17 @@ function FlashCard({
   isReview: boolean;
 }) {
   const [flipped, setFlipped] = useState(false);
+  const [imgIndex, setImgIndex] = useState(0);
+
+  // Normalise: prefer image_urls array, fall back to legacy image_url
+  const allImages: string[] = (card.image_urls && card.image_urls.length > 0)
+    ? card.image_urls
+    : card.image_url ? [card.image_url] : [];
+  const hasImages = allImages.length > 0;
+  const currentImg = allImages[imgIndex] ?? null;
 
   const handleCardClick = () => {
-    if (card.image_url) setFlipped(f => !f);
+    if (hasImages) setFlipped(f => !f);
     else if (!quizMode) onOpen(card);
   };
 
