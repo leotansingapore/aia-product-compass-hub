@@ -294,7 +294,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                     key={entry.id}
                     onClick={() => setActiveIndex(i)}
                     className={cn(
-                      "relative shrink-0 w-20 h-20 rounded-lg border-2 overflow-hidden transition-all",
+                      "group relative shrink-0 w-20 h-20 rounded-lg border-2 overflow-hidden transition-all",
                       i === activeIndex ? "border-primary shadow-md scale-105" : "border-border hover:border-primary/60",
                       entry.saved && "opacity-60"
                     )}
