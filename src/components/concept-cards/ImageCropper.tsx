@@ -19,6 +19,7 @@ export function ImageCropper({
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState<{ x: number; y: number } | null>(null);
   const [cropRect, setCropRect] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
+  const [applying, setApplying] = useState(false);
 
   const getRelPos = (e: React.MouseEvent | React.TouchEvent) => {
     const img = imgRef.current;
