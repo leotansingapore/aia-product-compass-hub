@@ -14,7 +14,7 @@ import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
 const AUDIENCE_OPTIONS = ['NSF / NS', 'Young Adults', 'Working Adults', 'Pre-Retirees (50-65)', 'Parents', 'General'];
-const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'General'];
+const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'Critical Illness', 'General'];
 
 
 interface ImageEntry {
