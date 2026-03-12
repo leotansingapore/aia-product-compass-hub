@@ -14,7 +14,7 @@ import { ImageCropper } from './ImageCropper';
 import { InlineImageEditor } from './InlineImageEditor';
 
 const AUDIENCE_OPTIONS = ['NSF / NS', 'Young Adults', 'Working Adults', 'Pre-Retirees (50-65)', 'Parents', 'General'];
-const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'General'];
+const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'Critical Illness', 'General'];
 
 interface Props {
   card: ConceptCard | null;
