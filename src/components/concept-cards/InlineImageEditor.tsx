@@ -90,29 +90,39 @@ export function InlineImageEditor({
     return { x: me.nativeEvent.offsetX * scaleX, y: me.nativeEvent.offsetY * scaleY };
   };
 
+  const toolRef = useRef(tool);
+  const strokeSizeRef = useRef(strokeSize);
+  useEffect(() => { toolRef.current = tool; }, [tool]);
+  useEffect(() => { strokeSizeRef.current = strokeSize; }, [strokeSize]);
+
   const startDraw = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     const canvas = canvasRef.current; if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
     const pos = getPos(e);
+    const color = toolRef.current === 'eraser' ? '#ffffff' : '#1a1a1a';
     ctx.globalCompositeOperation = 'source-over';
     ctx.beginPath();
-    ctx.arc(pos.x, pos.y, strokeSize / 2, 0, Math.PI * 2);
-    ctx.fillStyle = tool === 'eraser' ? '#ffffff' : '#1a1a1a';
+    ctx.arc(pos.x, pos.y, strokeSizeRef.current / 2, 0, Math.PI * 2);
+    ctx.fillStyle = color;
     ctx.fill();
-    setIsDrawing(true);
+    isDrawingRef.current = true;
     lastPos.current = pos;
   };
 
   const draw = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
-    if (!isDrawing || !lastPos.current) return;
+    if (!isDrawingRef.current || !lastPos.current) return;
     const canvas = canvasRef.current; if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
     const pos = getPos(e);
+    const color = toolRef.current === 'eraser' ? '#ffffff' : '#1a1a1a';
     ctx.globalCompositeOperation = 'source-over';
-    ctx.strokeStyle = tool === 'eraser' ? '#ffffff' : '#1a1a1a';
-    ctx.lineWidth = strokeSize;
+    ctx.beginPath();
+    ctx.moveTo(lastPos.current.x, lastPos.current.y);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = strokeSizeRef.current;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.stroke();
@@ -120,10 +130,10 @@ export function InlineImageEditor({
   };
 
   const stopDraw = () => {
-    if (isDrawing) {
+    if (isDrawingRef.current) {
       saveSnapshot();
     }
-    setIsDrawing(false);
+    isDrawingRef.current = false;
     lastPos.current = null;
   };
 
