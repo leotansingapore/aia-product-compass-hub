@@ -13,6 +13,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { toReactFlowNodes, toReactFlowEdges } from '@/utils/flowDataBridge';
 import { scriptFlowNodeTypes } from '@/components/flows/nodes';
 import { scriptFlowEdgeTypes } from '@/components/flows/edges';
+import { NODE_TYPE_DEFAULTS } from '@/utils/flowColorUtils';
 import type { FlowNode, FlowEdge } from '@/hooks/useScriptFlows';
 
 const PROPTIONS = { hideAttribution: true };
@@ -103,12 +104,8 @@ function PublicFlowViewInner() {
           <MiniMap
             className="!bottom-3 !right-14 !w-36 !h-24"
             nodeColor={(n) => {
-              const type = n.data?.nodeType || '';
-              const map: Record<string, string> = {
-                start: '#16a34a', end: '#dc2626', decision: '#d97706', script: '#2563eb', action: '#7c3aed',
-                hexagon: '#0891b2', parallelogram: '#ea580c', cylinder: '#4f46e5', document: '#0d9488',
-              };
-              return n.data?.color || map[type] || '#94a3b8';
+              const rfType = n.type || '';
+              return n.data?.color || NODE_TYPE_DEFAULTS[rfType] || '#94a3b8';
             }}
             maskColor="rgba(0,0,0,0.1)"
             pannable

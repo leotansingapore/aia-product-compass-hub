@@ -15,7 +15,6 @@ import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptF
 import { useScripts } from '@/hooks/useScripts';
 import ReactFlowCanvas, { type FlowCanvasControls } from '@/components/flows/ReactFlowCanvas';
 import { NodeEditorDialog } from '@/components/flows/NodeEditorDialog';
-import { EdgeEditorDialog } from '@/components/flows/EdgeEditorDialog';
 import { AutoLayoutControls } from '@/components/flows/controls/AutoLayoutControls';
 import { ExportControls } from '@/components/flows/controls/ExportControls';
 import { KeyboardShortcutsHelp } from '@/components/flows/controls/KeyboardShortcutsHelp';
@@ -37,6 +36,7 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
   userId?: string;
   onOpenAIWizard: () => void;
 }) {
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
   return (
     <div className="space-y-6 sm:space-y-8">
       <div>
@@ -70,19 +70,39 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
                     <CardTitle className="text-sm">{flow.title}</CardTitle>
                     {userId === flow.created_by && (
                       <button
-                        onClick={e => { e.stopPropagation(); onDelete(flow.id); }}
-                        className="sm:opacity-0 sm:group-hover:opacity-100 text-destructive hover:bg-destructive/10 p-1 rounded transition-all"
+                        onClick={e => {
+                          e.stopPropagation();
+                          if (confirmDeleteId === flow.id) {
+                            onDelete(flow.id);
+                            setConfirmDeleteId(null);
+                          } else {
+                            setConfirmDeleteId(flow.id);
+                            // Auto-reset after 3 seconds
+                            setTimeout(() => setConfirmDeleteId(prev => prev === flow.id ? null : prev), 3000);
+                          }
+                        }}
+                        className={`sm:opacity-0 sm:group-hover:opacity-100 p-1 rounded transition-all ${
+                          confirmDeleteId === flow.id
+                            ? 'opacity-100 bg-destructive text-destructive-foreground'
+                            : 'text-destructive hover:bg-destructive/10'
+                        }`}
+                        title={confirmDeleteId === flow.id ? 'Click again to confirm delete' : 'Delete flow'}
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                       </button>
                     )}
                   </div>
-                  <CardDescription className="text-xs line-clamp-2">{flow.description || 'No description'}</CardDescription>
+                  {confirmDeleteId === flow.id ? (
+                    <CardDescription className="text-xs text-destructive font-medium">Click trash again to confirm delete</CardDescription>
+                  ) : (
+                    <CardDescription className="text-xs line-clamp-2">{flow.description || 'No description'}</CardDescription>
+                  )}
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <div className="flex gap-2 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <Badge variant="secondary" className="text-[10px]">{flow.nodes.length} nodes</Badge>
                     <Badge variant="secondary" className="text-[10px]">{flow.edges.length} connections</Badge>
+                    <span className="text-[10px] ml-auto">{new Date(flow.updated_at).toLocaleDateString()}</span>
                   </div>
                 </CardContent>
               </Card>
@@ -131,7 +151,7 @@ export default function ScriptFlows() {
   const [flowTitle, setFlowTitle] = useState('');
   const [flowDescription, setFlowDescription] = useState('');
   const [editingNode, setEditingNode] = useState<FlowNode | null>(null);
-  const [editingEdge, setEditingEdge] = useState<FlowEdge | null>(null);
+  // Edge editing is handled by ScriptEdgeStylePanel inside ReactFlowCanvas (select an edge to edit)
   const [previewingNode, setPreviewingNode] = useState<FlowNode | null>(null);
   const [expandedVersion, setExpandedVersion] = useState(0);
   const [showNewDialog, setShowNewDialog] = useState(false);
@@ -144,23 +164,19 @@ export default function ScriptFlows() {
   const controlsRef = useRef<FlowCanvasControls | null>(null);
 
   // Sync local state when active flow changes (URL-driven)
+  const activeFlow = flows.find(f => f.id === activeFlowId) ?? null;
+  const activeFlowUpdatedAt = activeFlow?.updated_at;
   useEffect(() => {
-    if (!activeFlowId) return;
-    const flow = flows.find(f => f.id === activeFlowId);
-    if (!flow) return;
-    setLocalNodes([...flow.nodes]);
-    setLocalEdges([...flow.edges]);
-    setFlowTitle(flow.title);
-    setFlowDescription(flow.description || '');
+    if (!activeFlowId || !activeFlow) return;
+    setLocalNodes([...activeFlow.nodes]);
+    setLocalEdges([...activeFlow.edges]);
+    setFlowTitle(activeFlow.title);
+    setFlowDescription(activeFlow.description || '');
     setHasUnsaved(false);
-  }, [activeFlowId, flows.length]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeFlowId, activeFlowUpdatedAt]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const openFlow = useCallback((id: string) => {
     navigate(`/flows/${id}`);
-  }, [navigate]);
-
-  const closeFlow = useCallback(() => {
-    navigate('/flows');
   }, [navigate]);
 
   const createFromTemplate = useCallback(async (index: number) => {
@@ -227,11 +243,6 @@ export default function ScriptFlows() {
     if (previewingNode?.id === editingNode.id) setPreviewingNode(merged);
   };
 
-  const handleEdgeSave = (updates: Partial<FlowEdge>) => {
-    if (!editingEdge) return;
-    setLocalEdges(prev => prev.map(e => e.id === editingEdge.id ? { ...e, ...updates } : e));
-    setHasUnsaved(true);
-  };
 
   const handleExport = useCallback(async (format: 'png' | 'pdf' | 'json') => {
     if (!controlsRef.current) return;
@@ -262,7 +273,13 @@ export default function ScriptFlows() {
           <div className="space-y-3">
             {/* Toolbar */}
             <div className="flex items-center gap-2 flex-wrap bg-muted/30 border rounded-lg px-3 py-2">
-              <Button variant="ghost" size="sm" onClick={() => navigate('/flows')}>
+              <Button variant="ghost" size="sm" onClick={() => {
+                if (hasUnsaved) {
+                  const confirmed = window.confirm('You have unsaved changes. Leave without saving?');
+                  if (!confirmed) return;
+                }
+                navigate('/flows');
+              }}>
                 <ArrowLeft className="h-4 w-4 mr-1" /> Back
               </Button>
 
@@ -375,12 +392,15 @@ export default function ScriptFlows() {
             </div>
 
             {/* Title */}
-            <Input
-              value={flowTitle}
-              onChange={e => { setFlowTitle(e.target.value); setHasUnsaved(true); }}
-              className="font-semibold text-base max-w-md"
-              placeholder="Flow title"
-            />
+            <div className="flex items-center gap-2 max-w-md">
+              {hasUnsaved && <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0 animate-pulse" title="Unsaved changes" />}
+              <Input
+                value={flowTitle}
+                onChange={e => { setFlowTitle(e.target.value); setHasUnsaved(true); }}
+                className="font-semibold text-base"
+                placeholder="Flow title"
+              />
+            </div>
 
             {/* React Flow Canvas */}
             <div className="flex gap-3 items-start">
@@ -396,6 +416,7 @@ export default function ScriptFlows() {
                   onEdgesChange={(edges) => { setLocalEdges(edges); setHasUnsaved(true); }}
                   onDoubleClickNode={node => setEditingNode(node)}
                   onClickNode={node => { setPreviewingNode(node); setExpandedVersion(0); }}
+                  onPaneClick={() => setPreviewingNode(null)}
                   controlsRef={controlsRef}
                 />
                 <AIFlowChat
@@ -414,7 +435,7 @@ export default function ScriptFlows() {
               {previewingNode && (() => {
                 const linkedScript = scripts.find(s => s.id === previewingNode.scriptId);
                 return (
-                  <div className="w-[360px] shrink-0 rounded-xl border bg-card shadow-lg flex flex-col overflow-hidden"
+                  <div className="hidden lg:flex w-[320px] xl:w-[360px] shrink-0 rounded-xl border bg-card shadow-lg flex-col overflow-hidden"
                     style={{ height: 'calc(100vh - 260px)', minHeight: 400 }}>
                     {/* Panel header */}
                     <div className="flex items-center justify-between px-4 py-3 border-b bg-muted/30 shrink-0">
@@ -506,12 +527,6 @@ export default function ScriptFlows() {
             onSave={handleNodeSave}
             node={editingNode}
             scripts={scripts}
-          />
-          <EdgeEditorDialog
-            open={!!editingEdge}
-            onClose={() => setEditingEdge(null)}
-            onSave={handleEdgeSave}
-            edge={editingEdge}
           />
           <KeyboardShortcutsHelp
             open={showShortcuts}

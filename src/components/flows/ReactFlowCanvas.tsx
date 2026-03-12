@@ -34,6 +34,7 @@ import { ScriptNodeEditPanel } from './panels/ScriptNodeEditPanel';
 import { ScriptEdgeStylePanel } from './panels/ScriptEdgeStylePanel';
 import { AnnotationLayer } from './annotations/AnnotationLayer';
 import { AnnotationToolbar, type AnnotationTool } from './annotations/AnnotationToolbar';
+import { NODE_TYPE_DEFAULTS } from '@/utils/flowColorUtils';
 import { PenLine } from 'lucide-react';
 
 interface ReactFlowCanvasProps {
@@ -46,6 +47,7 @@ interface ReactFlowCanvasProps {
   onEdgesChange?: (edges: FlowEdge[]) => void;
   onDoubleClickNode?: (node: FlowNode) => void;
   onClickNode?: (node: FlowNode) => void;
+  onPaneClick?: () => void;
   /** Expose undo/redo/layout/export controls to parent */
   controlsRef?: React.MutableRefObject<FlowCanvasControls | null>;
 }
@@ -64,6 +66,7 @@ export interface FlowCanvasControls {
   getEdges: () => FlowEdge[];
   save: () => { nodes: FlowNode[]; edges: FlowEdge[] };
   updateNodeData: (nodeId: string, dataUpdates: Record<string, any>) => void;
+  updateEdgeData?: (edgeId: string, dataUpdates: Record<string, any>) => void;
   snapToGrid: boolean;
   setSnapToGrid: (val: boolean) => void;
   focusNode: (nodeId: string) => void;
@@ -90,6 +93,7 @@ function ReactFlowCanvasInner({
   onEdgesChange: onEdgesChangeProp,
   onDoubleClickNode,
   onClickNode,
+  onPaneClick,
   controlsRef,
 }: ReactFlowCanvasProps) {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
@@ -561,10 +565,29 @@ function ReactFlowCanvasInner({
           if (n.id !== nodeId) return n;
           const newData = { ...n.data, ...dataUpdates };
           if (dataUpdates.scriptId !== undefined) {
-            // scriptName is handled by the enrichment in toReactFlowNodes
+            const script = scripts.find((s) => s.id === dataUpdates.scriptId);
+            newData.scriptName = script?.stage;
           }
           return { ...n, data: newData };
         }));
+        requestAnimationFrame(() => {
+          const n = rfGetNodes();
+          const e = rfGetEdges();
+          history.takeSnapshot(n, e, 'Updated node via dialog');
+          notifyParent();
+        });
+      },
+      updateEdgeData: (edgeId: string, dataUpdates: Record<string, any>) => {
+        setEdges((eds) => eds.map((e) => {
+          if (e.id !== edgeId) return e;
+          return { ...e, data: { ...e.data, ...dataUpdates } };
+        }));
+        requestAnimationFrame(() => {
+          const n = rfGetNodes();
+          const e = rfGetEdges();
+          history.takeSnapshot(n, e, 'Updated edge via dialog');
+          notifyParent();
+        });
       },
       snapToGrid,
       setSnapToGrid,
@@ -606,6 +629,7 @@ function ReactFlowCanvasInner({
         edgeUpdaterRadius={20}
         onNodeDoubleClick={onNodeDoubleClick}
         onNodeClick={onClickNode ? onNodeClickHandler : undefined}
+        onPaneClick={onPaneClick}
         onDragOver={onDragOver}
         onDrop={onDrop}
         nodeTypes={scriptFlowNodeTypes}
@@ -631,12 +655,8 @@ function ReactFlowCanvasInner({
         <MiniMap
           className="!bottom-3 !right-14 !w-36 !h-24"
           nodeColor={(n) => {
-            const type = n.data?.nodeType || '';
-            const map: Record<string, string> = {
-              start: '#16a34a', end: '#dc2626', decision: '#d97706', script: '#2563eb', action: '#7c3aed',
-              hexagon: '#0891b2', parallelogram: '#ea580c', cylinder: '#4f46e5', document: '#0d9488',
-            };
-            return n.data?.color || map[type] || '#94a3b8';
+            const rfType = n.type || '';
+            return n.data?.color || NODE_TYPE_DEFAULTS[rfType] || '#94a3b8';
           }}
           maskColor="rgba(0,0,0,0.1)"
           pannable

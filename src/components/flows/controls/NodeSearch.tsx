@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import type { FlowNode } from '@/hooks/useScriptFlows';
+import { NODE_TYPE_DEFAULTS } from '@/utils/flowColorUtils';
 
 interface NodeSearchProps {
   nodes: FlowNode[];
@@ -74,10 +75,10 @@ export function NodeSearch({ nodes, onFocusNode }: NodeSearchProps) {
                   )}
                 >
                   <span className="w-2 h-2 rounded-full shrink-0" style={{
-                    backgroundColor: {
-                      start: '#16a34a', end: '#dc2626', script: '#2563eb', decision: '#d97706', action: '#7c3aed',
-                      hexagon: '#0891b2', parallelogram: '#ea580c', cylinder: '#4f46e5', document: '#0d9488',
-                    }[n.type] || '#94a3b8',
+                    backgroundColor: NODE_TYPE_DEFAULTS[{
+                      start: 'scriptStart', end: 'scriptEnd', script: 'scriptNode', decision: 'decisionNode', action: 'actionNode',
+                      hexagon: 'hexagonNode', parallelogram: 'parallelogramNode', cylinder: 'cylinderNode', document: 'documentNode',
+                    }[n.type] || ''] || '#94a3b8',
                   }} />
                   <span className="truncate">{n.label}</span>
                   <span className="text-muted-foreground ml-auto capitalize text-[10px]">{n.type}</span>
