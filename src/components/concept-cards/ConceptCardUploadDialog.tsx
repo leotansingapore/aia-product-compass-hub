@@ -16,16 +16,8 @@ import { cn } from '@/lib/utils';
 const AUDIENCE_OPTIONS = ['NSF / NS', 'Young Adults', 'Working Adults', 'Pre-Retirees (50-65)', 'Parents', 'General'];
 const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'General'];
 
-// ─── Inline Image Editor ─────────────────────────────────────────────────────
-function InlineImageEditor({
-  imageUrl,
-  onApply,
-  onCancel,
-}: {
-  imageUrl: string;
-  onApply: (editedBase64: string) => void;
-  onCancel: () => void;
-}) {
+
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [tool, setTool] = useState<'eraser' | 'pen'>('eraser');
   const [strokeSize, setStrokeSize] = useState(18);
