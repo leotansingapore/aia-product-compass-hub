@@ -110,11 +110,8 @@ export function InlineImageEditor({
     const canvas = canvasRef.current; if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
     const pos = getPos(e);
-    ctx.globalCompositeOperation = tool === 'eraser' ? 'destination-out' : 'source-over';
-    ctx.beginPath();
-    ctx.moveTo(lastPos.current.x, lastPos.current.y);
-    ctx.lineTo(pos.x, pos.y);
-    ctx.strokeStyle = tool === 'eraser' ? 'rgba(0,0,0,1)' : '#1a1a1a';
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.strokeStyle = tool === 'eraser' ? '#ffffff' : '#1a1a1a';
     ctx.lineWidth = strokeSize;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
