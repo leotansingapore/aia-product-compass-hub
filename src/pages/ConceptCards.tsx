@@ -101,14 +101,16 @@ function FlashCard({
               )}
             </div>
 
-            {card.image_url ? (
+          {hasImages ? (
               <div className="mt-3 rounded-lg overflow-hidden border border-dashed border-border/50 h-20 flex items-center justify-center relative bg-muted/20">
                 <img
-                  src={card.image_url}
+                  src={currentImg!}
                   alt=""
                   className="absolute inset-0 w-full h-full object-contain blur-sm opacity-40"
                 />
-                <span className="relative z-10 text-xs text-muted-foreground font-medium">Tap to reveal drawing</span>
+                <span className="relative z-10 text-xs text-muted-foreground font-medium">
+                  Tap to reveal {allImages.length > 1 ? `${allImages.length} drawings` : 'drawing'}
+                </span>
               </div>
             ) : (
               <div className="mt-3 rounded-lg bg-muted/30 border border-dashed border-border/50 h-14 flex items-center justify-center">
