@@ -613,9 +613,9 @@ export function ConceptCardViewDialog({ card, onClose }: Props) {
   const [isCropping, setIsCropping] = useState(false);
   const [croppedImageUrl, setCroppedImageUrl] = useState<string | null>(null);
 
-  if (!card) return null;
+  const displayImageUrl = croppedImageUrl || card?.image_url || null;
 
-  const displayImageUrl = croppedImageUrl || card.image_url;
+  if (!card) return null;
 
   const handleClose = () => {
     setCompareResult(null);
