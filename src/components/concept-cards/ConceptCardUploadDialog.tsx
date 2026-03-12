@@ -188,7 +188,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
       const result = await createCard({
         title: entry.title.trim(),
         description: entry.description.trim() || null,
-        image_url: entry.enhancedUrl || originalUrl,
+        image_url: aiEnhance ? (entry.enhancedUrl || originalUrl) : originalUrl,
         original_image_url: originalUrl,
         audience: entry.audience,
         product_type: entry.productType,
