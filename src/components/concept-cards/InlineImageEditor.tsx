@@ -14,7 +14,7 @@ export function InlineImageEditor({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [tool, setTool] = useState<'eraser' | 'pen'>('eraser');
   const [strokeSize, setStrokeSize] = useState(18);
-  const [isDrawing, setIsDrawing] = useState(false);
+  const isDrawingRef = useRef(false);
   const lastPos = useRef<{ x: number; y: number } | null>(null);
   const historyRef = useRef<ImageData[]>([]);
   const historyIndexRef = useRef(-1);
