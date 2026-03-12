@@ -31,7 +31,7 @@ export function useFlowHistory() {
   );
 
   const undo = useCallback((): HistoryEntry | null => {
-    if (pastRef.current.length === 0) return null;
+    if (pastRef.current.length <= 1) return null; // Need initial snapshot to restore to
 
     const previous = pastRef.current[pastRef.current.length - 1];
     pastRef.current = pastRef.current.slice(0, -1);
@@ -67,7 +67,7 @@ export function useFlowHistory() {
     takeSnapshot,
     undo,
     redo,
-    canUndo: pastRef.current.length > 0,
+    canUndo: pastRef.current.length > 1, // Need at least 2 entries: initial + something to undo
     canRedo: futureRef.current.length > 0,
     clear,
   };
