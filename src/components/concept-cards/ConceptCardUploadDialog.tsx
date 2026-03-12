@@ -56,6 +56,8 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
     setTagInput('');
     setSaving(false);
     setIsDragging(false);
+    setEditingId(null);
+    setCroppingId(null);
   }, []);
 
   const handleClose = () => { reset(); onClose(); };
