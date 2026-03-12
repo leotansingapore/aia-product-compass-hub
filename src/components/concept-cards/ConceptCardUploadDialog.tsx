@@ -18,18 +18,7 @@ const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medic
 
 
 
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [tool, setTool] = useState<'eraser' | 'pen'>('eraser');
-  const [strokeSize, setStrokeSize] = useState(18);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const lastPos = useRef<{ x: number; y: number } | null>(null);
-  const historyRef = useRef<ImageData[]>([]);
-  const historyIndexRef = useRef(-1);
-  const imgRef = useRef<HTMLImageElement | null>(null);
 
-  // Load image onto canvas
-  useEffect(() => {
-    const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
     const img = new Image();
