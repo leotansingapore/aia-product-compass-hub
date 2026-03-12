@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Sparkles, Send, Loader2, ChevronDown, ChevronUp, X, Undo2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+
 import type { FlowNode, FlowEdge } from '@/hooks/useScriptFlows';
 
 interface Message {
@@ -201,7 +202,7 @@ export function AIFlowChat({ nodes, edges, flowTitle, onFlowUpdated }: AIFlowCha
         variant={isOpen ? 'outline' : 'default'}
       >
         <Sparkles className="h-4 w-4" />
-        <span className="text-sm">AI</span>
+        <span className="text-sm">{isOpen ? 'AI' : 'AI Improve'}</span>
         {isOpen ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronUp className="h-3.5 w-3.5" />}
         {undoStack.length > 0 && !isOpen && (
           <Badge variant="secondary" className="text-[9px] h-4 px-1">{undoStack.length}</Badge>

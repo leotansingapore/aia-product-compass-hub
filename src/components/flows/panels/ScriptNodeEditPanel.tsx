@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Node } from 'reactflow';
-import { X, Expand, Trash2, ChevronDown, RotateCcw, FileText, ChevronRight } from 'lucide-react';
+import { X, Expand, Trash2, ChevronDown, RotateCcw, FileText, ChevronRight, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -28,6 +29,7 @@ export function ScriptNodeEditPanel({
   onDeleteNode,
   onOpenFullEditor,
 }: ScriptNodeEditPanelProps) {
+  const navigate = useNavigate();
   const [label, setLabel] = useState('');
   const [scriptId, setScriptId] = useState('');
   const [color, setColor] = useState('');
@@ -174,6 +176,13 @@ export function ScriptNodeEditPanel({
                     <div className="flex items-center gap-1.5 px-2.5 py-2 border-b border-border/40 bg-primary/5">
                       <FileText className="h-3 w-3 text-primary shrink-0" />
                       <span className="text-xs font-medium text-foreground truncate flex-1">{linkedScript.stage}</span>
+                      <button
+                        onClick={() => navigate(`/scripts/${scriptId}`)}
+                        className="text-primary hover:text-primary/80 shrink-0 p-0.5 rounded hover:bg-primary/10 transition-colors"
+                        title="Open full script page"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                      </button>
                       <Badge variant="secondary" className="text-[9px] shrink-0 px-1">{linkedScript.category}</Badge>
                     </div>
 

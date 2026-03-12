@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
-import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Save, Undo2, Redo2, Keyboard, Sparkles, Link, Grid3x3, FileText, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Save, Undo2, Redo2, Keyboard, Sparkles, Link, Grid3x3, FileText, X, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import ReactMarkdown from 'react-markdown';
 import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
@@ -384,6 +384,26 @@ export default function ScriptFlows() {
 
               <div className="flex-1" />
 
+              {/* AI Improve — toolbar shortcut */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="gap-1.5 text-xs text-primary border-primary/30 hover:bg-primary/10"
+                    onClick={() => {
+                      // Scroll to bottom-right AI chat and open it
+                      const aiBtn = document.querySelector('[class*="rounded-full"][class*="shadow-lg"]') as HTMLButtonElement;
+                      if (aiBtn) aiBtn.click();
+                    }}
+                  >
+                    <Sparkles className="h-3.5 w-3.5" />
+                    AI Improve
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Ask AI to improve this flow</TooltipContent>
+              </Tooltip>
+
               {/* Save */}
               <Button size="sm" onClick={handleSave} disabled={!hasUnsaved || updateFlow.isPending} className="gap-1.5">
                 <Save className="h-3.5 w-3.5" />
@@ -444,6 +464,18 @@ export default function ScriptFlows() {
                         <span className="font-semibold text-sm truncate">{previewingNode.label}</span>
                       </div>
                       <div className="flex items-center gap-1 shrink-0">
+                        {linkedScript && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 text-xs gap-1 text-primary hover:text-primary"
+                            onClick={() => navigate(`/scripts/${previewingNode.scriptId}`)}
+                            title="Open full script page"
+                          >
+                            <ExternalLink className="h-3.5 w-3.5" />
+                            Open
+                          </Button>
+                        )}
                         <Button variant="ghost" size="sm" className="h-7 text-xs gap-1" onClick={() => setEditingNode(previewingNode)}>
                           Edit node
                         </Button>
@@ -494,6 +526,17 @@ export default function ScriptFlows() {
                                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(previewingNode.customText) }} />
                             </div>
                           )}
+
+                          {/* Prominent navigation to full script page */}
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="w-full gap-2 text-xs border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                            onClick={() => navigate(`/scripts/${previewingNode.scriptId}`)}
+                          >
+                            <ExternalLink className="h-3.5 w-3.5" />
+                            View Full Script Page
+                          </Button>
                         </div>
                       </ScrollArea>
                     ) : (

@@ -53,8 +53,13 @@ function ScriptNodeInner({ data, selected, isConnectable }: NodeProps) {
 
       {data.scriptId && data.scriptName && (
         <span
-          className="text-[10px] truncate max-w-[140px]"
+          className="text-[10px] truncate max-w-[140px] flex items-center gap-0.5 cursor-pointer hover:underline"
           style={{ color: text, opacity: 0.8 }}
+          onClick={(e) => {
+            e.stopPropagation();
+            window.open(`/scripts/${data.scriptId}`, '_blank');
+          }}
+          title="Click to open script"
         >
           {'\uD83D\uDCC4'} {data.scriptName}
         </span>

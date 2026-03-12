@@ -19,7 +19,7 @@ function ActionNodeInner({ data, selected, isConnectable }: NodeProps) {
   return (
     <div
       className={cn(
-        'flex items-center gap-1.5 px-4 py-2 rounded-lg border-2 min-w-[160px] justify-center',
+        'flex flex-col items-center gap-0.5 px-4 py-2 rounded-lg border-2 min-w-[160px]',
         'transition-all',
         selected && 'ring-2 ring-primary ring-offset-2 ring-offset-background'
       )}
@@ -31,21 +31,37 @@ function ActionNodeInner({ data, selected, isConnectable }: NodeProps) {
         filter: shadow ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.15))' : undefined,
       }}
     >
-      <Zap className="w-3.5 h-3.5 shrink-0" style={{ color: text }} />
-      {editing ? (
-        <InlineNodeEditor
-          value={data.label || ''}
-          onChange={(val) => data.onLabelChange?.(val)}
-          onBlur={() => setEditing(false)}
-        />
-      ) : (
+      <div className="flex items-center gap-1.5 w-full justify-center">
+        <Zap className="w-3.5 h-3.5 shrink-0" style={{ color: text }} />
+        {editing ? (
+          <InlineNodeEditor
+            value={data.label || ''}
+            onChange={(val) => data.onLabelChange?.(val)}
+            onBlur={() => setEditing(false)}
+          />
+        ) : (
+          <span
+            className="font-semibold truncate cursor-text hover:opacity-80"
+            style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
+            onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+            title="Click to edit label"
+          >
+            {data.label || 'Action'}
+          </span>
+        )}
+      </div>
+
+      {data.scriptId && data.scriptName && (
         <span
-          className="font-semibold truncate cursor-text hover:opacity-80"
-          style={{ color: text, fontSize: `${fontSize}px`, lineHeight: '1.3' }}
-          onClick={(e) => { e.stopPropagation(); setEditing(true); }}
-          title="Click to edit label"
+          className="text-[10px] truncate max-w-[140px] flex items-center gap-0.5 cursor-pointer hover:underline"
+          style={{ color: text, opacity: 0.8 }}
+          onClick={(e) => {
+            e.stopPropagation();
+            window.open(`/scripts/${data.scriptId}`, '_blank');
+          }}
+          title="Click to open script"
         >
-          {data.label || 'Action'}
+          {'\uD83D\uDCC4'} {data.scriptName}
         </span>
       )}
 
