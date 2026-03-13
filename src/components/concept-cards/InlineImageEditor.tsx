@@ -242,6 +242,7 @@ export function InlineImageEditor({
             const canvas = canvasRef.current!;
             const ctx = canvas.getContext('2d')!;
             selImageDataRef.current = ctx.getImageData(r.x, r.y, r.w, r.h);
+            origSelRectRef.current = { ...r };
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(r.x, r.y, r.w, r.h);
           }
