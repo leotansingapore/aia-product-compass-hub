@@ -8,7 +8,6 @@ export interface UserQuizStat {
   total_attempts: number;
   avg_score_pct: number;
   best_score_pct: number;
-  total_xp_earned: number;
   last_attempt: string | null;
   product_breakdown: QuizProductBreakdown[];
 }
@@ -21,7 +20,6 @@ export interface QuizProductBreakdown {
   best_total: number;
   best_score_pct: number;
   avg_score_pct: number;
-  total_xp_earned: number;
   last_attempt: string | null;
 }
 
