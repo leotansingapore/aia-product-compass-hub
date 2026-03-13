@@ -426,12 +426,29 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </div>
               )}
 
-              {/* Rich content */}
+              {/* Rich content — use components without video auto-embed to avoid duplicating the standalone player */}
               {currentVideo?.rich_content?.trim() ? (
                 <Card>
                   <CardContent className="p-4 sm:p-6">
                     <div className="prose prose-sm dark:prose-invert max-w-none">
-                      <ReactMarkdown components={markdownComponents} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+                      <ReactMarkdown
+                        components={{
+                          ...markdownComponents,
+                          // Override: render video URLs as plain links, not embeds (standalone player handles the video)
+                          a: ({ children, href }: any) => (
+                            <a
+                              href={href}
+                              className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {children}
+                            </a>
+                          ),
+                        }}
+                        remarkPlugins={[remarkGfm]}
+                        rehypePlugins={[rehypeRaw]}
+                      >
                         {currentVideo.rich_content}
                       </ReactMarkdown>
                     </div>
