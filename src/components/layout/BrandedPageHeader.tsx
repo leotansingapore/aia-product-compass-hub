@@ -143,11 +143,11 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
               <Button
                 variant="ghost"
                 onClick={onBack}
-                className="text-white hover:bg-white/20 mobile-touch-target transition-colors"
+                className="hidden sm:flex text-white hover:bg-white/20 mobile-touch-target transition-colors"
                 aria-label="Go back to previous page"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                <span className="hidden sm:inline ml-2">Back</span>
+                <span className="ml-2">Back</span>
               </Button>
             )}
             <div className="min-w-0 flex-1">
