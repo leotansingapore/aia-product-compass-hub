@@ -784,9 +784,13 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
           >
             {saving
               ? <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Saving...</>
-              : entries.length > 1
-                ? `Save ${entries.filter(e => e.title.trim()).length} Card${entries.filter(e => e.title.trim()).length !== 1 ? 's' : ''}`
-                : 'Save Card'
+              : entries.length === 1 && active?.duplicateAction === 'replace'
+                ? 'Replace Image'
+                : entries.length === 1 && active?.duplicateAction === 'add-version'
+                  ? 'Add as Version'
+                  : entries.length > 1
+                    ? `Save ${entries.filter(e => e.title.trim()).length} Card${entries.filter(e => e.title.trim()).length !== 1 ? 's' : ''}`
+                    : 'Save Card'
             }
           </Button>
         </div>
