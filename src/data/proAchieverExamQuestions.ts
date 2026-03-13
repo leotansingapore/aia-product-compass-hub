@@ -235,15 +235,15 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     category: 'sales-angles'
   },
   {
-    question: "A client is deciding between the 10-year and 20-year investment periods for Pro Achiever 3.0. How do you guide this conversation?",
+    question: "A client is deciding between the 10-year and 20-year investment periods for Pro Achiever 3.0. What should an advisor typically recommend?",
     options: [
-      "Always recommend 10 years as it is the safest option",
-      "Guide them based on their goal timeline and explain that a longer period unlocks a higher welcome bonus and a better special bonus trajectory — use the illustration to show the difference",
-      "Tell them both periods are identical in returns",
-      "Recommend 20 years only for clients above age 40"
+      "Always recommend 20 years to maximise the welcome bonus",
+      "Recommend 20 years only for clients above age 40",
+      "Recommend 10 years — commissions are the same for both, and 10 years gives the client more flexibility with no surrender charges after the lock-in period",
+      "Tell them both periods are identical and let the client decide"
     ],
-    correct: 1,
-    explanation: "The 20-year period offers a higher welcome bonus and longer compounding from the special bonus (5% from year 10, 8% from year 21). Use an illustration to show the actual numbers — the difference can be tens of thousands of dollars. Help clients match the period to a real goal: '20 years aligns perfectly with your retirement at 60.'",
+    correct: 2,
+    explanation: "Advisors should generally recommend the 10-year period. The commission earned is the same regardless of whether the client chooses 10 or 20 years. More importantly, a 20-year lock-in exposes the client to surrender charges if they need to withdraw or surrender within that period. The 10-year option gives clients greater flexibility — after 10 years, they can withdraw, top up, or continue without being tied to a longer commitment.",
     category: 'sales-angles'
   },
   {
