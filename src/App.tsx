@@ -59,7 +59,6 @@ const PublicFlowView = lazy(() => import("./pages/PublicFlowView"));
 const PublicPlaybookView = lazy(() => import("./pages/PublicPlaybookView"));
 const AIAssistant = lazy(() => import("./pages/AIAssistant"));
 const ConceptCards = lazy(() => import("./pages/ConceptCards"));
-const ProductExam = lazy(() => import("./pages/ProductExam"));
 
 const queryClient = new QueryClient();
 
@@ -106,7 +105,6 @@ const App = () => (
                     <Route path="/product/:productSlugOrId/:pageId" element={<ProductDetail />} />
                     <Route path="/product/:productSlugOrId/manage-videos" element={<ManageProductVideos />} />
                     <Route path="/product/:productId/ai-assistant" element={<AIAssistant />} />
-                    <Route path="/product/:productSlugOrId/exam" element={<ProductExam />} />
                     <Route path="/product/:productSlugOrId/video/:videoId" element={<VideoDetail />} />
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
