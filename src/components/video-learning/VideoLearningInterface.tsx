@@ -109,6 +109,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   useEffect(() => {
     setCurrentVideoIndex(initialVideoIndex);
     setWatchTime(0);
+    setShowMobileSidebar(false);
   }, [initialVideoIndex]);
 
   // Scroll mini-nav to keep current item visible
