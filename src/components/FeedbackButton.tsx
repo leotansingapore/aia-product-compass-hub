@@ -57,7 +57,7 @@ export function FeedbackButton() {
       onClick={() => setOpen(true)}
       aria-label="Submit feedback or bug report"
       className={cn(
-        'fixed z-[9990] bottom-[5.5rem] right-4 sm:bottom-6 sm:right-6',
+        'fixed z-[9990] bottom-[5.5rem] right-4 sm:bottom-[5rem] sm:right-6',
         'flex items-center gap-2 px-3 py-2 rounded-full',
         'bg-card border border-border shadow-lg text-muted-foreground',
         'hover:text-foreground hover:border-primary/40 hover:shadow-xl hover:scale-105',
