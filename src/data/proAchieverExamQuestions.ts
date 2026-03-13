@@ -114,11 +114,11 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     options: [
       "A government bond fund available across all AIA products",
       "A high-yield emerging market equity fund available since 2018",
-      "A fund that pays quarterly dividends, available to Pro Achiever 3.0 policyholders",
+      "A fund that pays quarterly dividends, exclusively available for Pro Achiever 3.0",
       "A fixed-deposit-like fund with a guaranteed 3% annual return"
     ],
     correct: 2,
-    explanation: "The AIA Global Dynamic Income Fund pays dividends every quarter and is available to Pro Achiever 3.0 policyholders. It is designed for clients who want regular income from their investment, making it suitable for those who want the growth of an ILP but also appreciate periodic payouts.",
+    explanation: "The AIA Global Dynamic Income Fund pays dividends every quarter and is only available for Pro Achiever 3.0. It is designed for clients who want regular income from their investment, making it suitable for those who want the growth of an ILP but also appreciate periodic payouts.",
     category: 'product-facts'
   },
   {
@@ -211,15 +211,15 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     category: 'sales-angles'
   },
   {
-    question: "A client asks how Pro Achiever 3.0 compares to simply putting $500/month into a robo-advisor. What is your most compelling response?",
+    question: "How do Pro Achiever 3.0's charges compare to a competitor ILP like FWD in the first 10 years?",
     options: [
-      "Pro Achiever always beats robo-advisors on returns",
-      "Robo-advisors charge higher fees than ILPs",
-      "Pro Achiever bundles life protection and a welcome bonus into the investment — the client gets comparable fund diversification plus a death/disability benefit and a structured bonus, all in one plan",
-      "Pro Achiever's funds are government-backed unlike robo-advisors"
+      "Pro Achiever charges 6% p.a., higher than FWD's 3.9%",
+      "Both charge the same — 3.9% p.a. for the first 10 years",
+      "Pro Achiever charges 3.9% p.a. vs FWD's 6% — almost double — making Pro Achiever significantly cheaper",
+      "Pro Achiever has no charges in the first 10 years while FWD charges 6%"
     ],
     correct: 2,
-    explanation: "The key differentiators vs robo-advisors are: (1) Integrated life protection — robo-advisors pay nothing if you die; (2) The welcome bonus (up to 75%) — a robo-advisor has no equivalent; (3) Structured discipline — the regular premium commitment builds the savings habit. Ask: 'Does your robo-advisor give you a bonus on day one and pay your family if something happens?'",
+    explanation: "According to competitor analysis in training materials, Pro Achiever charges 3.9% p.a. in the first 10 years, while FWD charges 6% — almost double. Over the long term, Pro Achiever's charges average out very low, whereas FWD's charges remain at 5.6% after 10 years (lowest 3.5%). Pro Achiever also has greater transparency with no hidden charges.",
     category: 'sales-angles'
   },
   {
