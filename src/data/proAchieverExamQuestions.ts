@@ -211,15 +211,15 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     category: 'sales-angles'
   },
   {
-    question: "How do Pro Achiever 3.0's charges compare to a competitor ILP like FWD in the first 10 years?",
+    question: "What is a key advantage of Pro Achiever 3.0's supplementary charges compared to most competitor ILPs?",
     options: [
-      "Pro Achiever charges 6% p.a., higher than FWD's 3.9%",
-      "Both charge the same — 3.9% p.a. for the first 10 years",
-      "Pro Achiever charges 3.9% p.a. vs FWD's 6% — almost double — making Pro Achiever significantly cheaper",
-      "Pro Achiever has no charges in the first 10 years while FWD charges 6%"
+      "Pro Achiever has no charges at all, while competitors charge throughout",
+      "Both Pro Achiever and most competitors stop charges after 10 years",
+      "Most competitor ILPs have perpetual supplementary charges that never stop, whereas Pro Achiever's supplementary charges only apply for the first 10 years and cease after that",
+      "Pro Achiever charges more upfront but less over time compared to competitors"
     ],
     correct: 2,
-    explanation: "According to competitor analysis in training materials, Pro Achiever charges 3.9% p.a. in the first 10 years, while FWD charges 6% — almost double. Over the long term, Pro Achiever's charges average out very low, whereas FWD's charges remain at 5.6% after 10 years (lowest 3.5%). Pro Achiever also has greater transparency with no hidden charges.",
+    explanation: "A major differentiator for Pro Achiever is that its supplementary charges (3.9% p.a.) only apply for the first 10 years. After that, no further supplementary charges are deducted. Most competitor ILPs continue to charge supplementary fees perpetually throughout the life of the policy — meaning more and more of the client's money goes toward charges over time, rather than investments.",
     category: 'sales-angles'
   },
   {
