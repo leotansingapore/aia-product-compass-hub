@@ -79,7 +79,7 @@ export function ProductQuiz({ questions, productId }: ProductQuizProps) {
               />
             </div>
 
-            <div className="sticky bottom-0 bg-gradient-to-t from-green-50 dark:from-green-950/20 pt-2 pb-4">
+            <div className="sticky bottom-0 bg-gradient-to-t from-card/90 to-transparent pt-2 pb-4 backdrop-blur-sm">
               <QuizNavigation
                 currentQuestion={currentQuestion}
                 totalQuestions={questions.length}
