@@ -44,6 +44,7 @@ export function InlineImageEditor({
   const selStartRef = useRef<{ x: number; y: number } | null>(null);
   const selImageDataRef = useRef<ImageData | null>(null);
   const dragStartRef = useRef<{ x: number; y: number } | null>(null);
+  const origSelRectRef = useRef<Rect | null>(null);
   const [selRect, setSelRect] = useState<Rect | null>(null);
 
   // Cursor overlay
