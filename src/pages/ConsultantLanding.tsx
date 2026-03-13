@@ -40,8 +40,8 @@ const ConsultantLanding = () => {
     },
     {
       icon: Award,
-      title: "Gamified Learning",
-      description: "Earn XP, unlock achievements, and track your learning progress with our engaging gamification system."
+      title: "Progress Tracking",
+      description: "Track your learning progress across products, exams, and training videos all in one place."
     },
     {
       icon: Search,
