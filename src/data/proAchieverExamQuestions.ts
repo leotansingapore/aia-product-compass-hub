@@ -399,12 +399,12 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     question: "A prospect says: 'I'm not sure I can commit to a 20-year policy. What if my circumstances change?' What is the best reassurance?",
     options: [
       "Tell them they must commit or not take the policy",
-      "Explain that Pro Achiever 3.0 has built-in flexibility: Premium Pass allows up to 36 months of paused payments with no charges; Premium Holiday covers unexpected hardship — they can pause without surrendering",
+      "Explain that after 5 years, Premium Pass gives a charge-free pause of up to 12 months; Premium Holiday is also available within the first 10 years if needed — they can pause without surrendering",
       "Offer to write the policy as a 5-year term instead",
       "Promise that they can surrender at any time with no cost"
     ],
     correct: 1,
-    explanation: "Address commitment anxiety directly with Pro Achiever 3.0's flexibility toolkit: Premium Pass (up to 36 months, no charges) for planned breaks, and Premium Holiday for unexpected difficulty. The worst case is a pause — not a lapse. Reassure them: 'Life changes. Pro Achiever was designed knowing that. You have a built-in safety valve.'",
+    explanation: "Address commitment anxiety with Pro Achiever 3.0's flexibility features: once 5 years of premiums are paid, Premium Pass allows up to 12 months charge-free. Premium Holiday is available within the first 10 years too, though charges apply then. The key message: the worst case is a pause, not a loss — they won't need to surrender the policy.",
     category: 'objection-handling'
   },
   {
