@@ -388,7 +388,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
             {/* Video Player — comes FIRST on mobile */}
             <div className="lg:col-span-2 space-y-4 sm:space-y-6 order-1 lg:order-2 transition-all duration-300">
-              {(videoInfo || !currentVideo?.rich_content) && (
+              {!currentVideo?.rich_content && (
                 <Card>
                   {(!currentVideo?.rich_content || videoInfo) && (
                     <CardHeader className="py-3 px-4 sm:py-4 sm:px-6">
