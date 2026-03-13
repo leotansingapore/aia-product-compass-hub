@@ -114,11 +114,11 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     options: [
       "A government bond fund available across all AIA products",
       "A high-yield emerging market equity fund available since 2018",
-      "A fund that pays quarterly dividends, available to Pro Achiever 3.0 policyholders",
+      "A fund that pays quarterly dividends, exclusively available for Pro Achiever 3.0",
       "A fixed-deposit-like fund with a guaranteed 3% annual return"
     ],
     correct: 2,
-    explanation: "The AIA Global Dynamic Income Fund pays dividends every quarter and is available to Pro Achiever 3.0 policyholders. It is designed for clients who want regular income from their investment, making it suitable for those who want the growth of an ILP but also appreciate periodic payouts.",
+    explanation: "The AIA Global Dynamic Income Fund pays dividends every quarter and is only available for Pro Achiever 3.0. It is designed for clients who want regular income from their investment, making it suitable for those who want the growth of an ILP but also appreciate periodic payouts.",
     category: 'product-facts'
   },
   {
