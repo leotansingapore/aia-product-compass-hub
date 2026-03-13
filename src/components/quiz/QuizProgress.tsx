@@ -15,33 +15,30 @@ export function QuizProgress({
   score, 
   isComplete 
 }: QuizProgressProps) {
+  const progressPct = Math.round(((currentQuestion + 1) / totalQuestions) * 100);
+
   return (
-    <div className="flex items-center justify-between mb-6">
-      <div className="flex items-center gap-2">
-        <Badge variant="outline">
-          {currentQuestion + 1} of {totalQuestions}
-        </Badge>
-        {isComplete && (
-          <Badge variant={score >= totalQuestions * 0.7 ? "default" : "secondary"}>
-            Score: {score}/{totalQuestions}
+    <div className="mb-4 space-y-2">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2 flex-wrap">
+          <Badge variant="outline" className="text-xs">
+            Q{currentQuestion + 1} / {totalQuestions}
           </Badge>
-        )}
+          {isComplete && (
+            <Badge variant={score >= totalQuestions * 0.7 ? "default" : "secondary"} className="text-xs">
+              Score: {score}/{totalQuestions}
+            </Badge>
+          )}
+        </div>
+        <span className="text-xs text-muted-foreground">{progressPct}%</span>
       </div>
-      
-      {/* Progress Indicator */}
-      <div className="flex gap-2">
-        {Array.from({ length: totalQuestions }, (_, index) => (
-          <div
-            key={index}
-            className={`h-2 w-8 rounded-full ${
-              index < currentQuestion 
-                ? 'bg-success' 
-                : index === currentQuestion 
-                ? 'bg-primary' 
-                : 'bg-muted'
-            }`}
-          />
-        ))}
+
+      {/* Single progress bar — works for any number of questions */}
+      <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+        <div
+          className="h-full bg-primary rounded-full transition-all duration-300"
+          style={{ width: `${progressPct}%` }}
+        />
       </div>
     </div>
   );
