@@ -23,6 +23,10 @@ import { useProductDetail } from "@/hooks/useProductDetail";
 import { useAdmin } from "@/hooks/useAdmin";
 import type { TrainingVideo } from "@/hooks/useProducts";
 import { getVideoSlug } from "@/utils/slugUtils";
+import { Brain } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+
+const PRODUCTS_WITH_EXAMS = new Set(['pro-achiever']);
 
 export default function ProductDetail() {
   const {
@@ -181,6 +185,31 @@ export default function ProductDetail() {
               />
             )}
           </div>
+
+          {/* Product Exam CTA */}
+          {PRODUCTS_WITH_EXAMS.has(product.id) && (
+            <Card className="mb-4 sm:mb-8 border-primary/20 bg-gradient-to-r from-green-50 to-emerald-50">
+              <CardContent className="p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-primary/10 shrink-0">
+                    <Brain className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm sm:text-base">Product Knowledge Exam</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
+                      Test your knowledge on product facts, sales angles, and objection handling
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  onClick={() => navigate(`/product/${productSlugOrId}/exam`)}
+                  className="shrink-0 w-full sm:w-auto"
+                >
+                  Take Exam
+                </Button>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Training Videos Section */}
           <ProtectedSection sectionId="product_videos">

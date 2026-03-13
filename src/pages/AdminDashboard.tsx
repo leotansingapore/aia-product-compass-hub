@@ -1,8 +1,9 @@
 import { AdminLayout } from '@/components/layout/AdminLayout';
 import { UnifiedUserDirectory } from '@/components/admin/UnifiedUserDirectory';
 import { VideoProgressPanel } from '@/components/admin/VideoProgressPanel';
+import { QuizScoresPanel } from '@/components/admin/QuizScoresPanel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Users, Video } from 'lucide-react';
+import { Users, Video, Brain } from 'lucide-react';
 
 export default function AdminDashboard() {
   return (
@@ -22,6 +23,11 @@ export default function AdminDashboard() {
             <span className="hidden xs:inline sm:inline">Video Progress</span>
             <span className="xs:hidden sm:hidden">Videos</span>
           </TabsTrigger>
+          <TabsTrigger value="quiz-scores" className="flex items-center gap-1.5 flex-1 sm:flex-none">
+            <Brain className="h-4 w-4 shrink-0" />
+            <span className="hidden xs:inline sm:inline">Quiz Scores</span>
+            <span className="xs:hidden sm:hidden">Quizzes</span>
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="users">
@@ -30,6 +36,10 @@ export default function AdminDashboard() {
 
         <TabsContent value="video-progress">
           <VideoProgressPanel />
+        </TabsContent>
+
+        <TabsContent value="quiz-scores">
+          <QuizScoresPanel />
         </TabsContent>
       </Tabs>
     </AdminLayout>
