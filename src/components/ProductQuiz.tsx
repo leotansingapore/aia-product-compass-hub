@@ -3,6 +3,7 @@ import { QuizProgress } from "@/components/quiz/QuizProgress";
 import { QuizQuestion } from "@/components/quiz/QuizQuestion";
 import { QuizExplanation } from "@/components/quiz/QuizExplanation";
 import { QuizNavigation } from "@/components/quiz/QuizNavigation";
+import { QuizSummary } from "@/components/quiz/QuizSummary";
 import { useQuizState } from "@/hooks/useQuizState";
 
 interface QuizQuestion {
@@ -10,6 +11,7 @@ interface QuizQuestion {
   options: string[];
   correct: number;
   explanation: string;
+  category?: string;
 }
 
 interface ProductQuizProps {
@@ -21,6 +23,7 @@ export function ProductQuiz({ questions, productId }: ProductQuizProps) {
   const {
     currentQuestion,
     selectedAnswer,
+    selectedAnswers,
     showResult,
     score,
     answeredQuestions,
@@ -51,32 +54,43 @@ export function ProductQuiz({ questions, productId }: ProductQuizProps) {
         />
       </CardHeader>
       <CardContent className="px-4 sm:px-6">
-        <div className="space-y-4">
-          <QuizQuestion
-            question={questions[currentQuestion]}
-            selectedAnswer={selectedAnswer}
-            showResult={showResult}
-            onAnswerSelect={handleAnswerSelect}
-          />
-
-          <QuizExplanation
-            explanation={questions[currentQuestion].explanation}
-            isCorrect={isCorrect}
-            showResult={showResult}
-          />
-
-          <QuizNavigation
-            currentQuestion={currentQuestion}
-            totalQuestions={questions.length}
-            showResult={showResult}
-            isComplete={isComplete}
+        {isComplete ? (
+          <QuizSummary
             score={score}
-            user={user}
-            onPrevious={handlePrevious}
-            onNext={handleNext}
+            totalQuestions={questions.length}
+            answeredQuestions={answeredQuestions}
+            selectedAnswers={selectedAnswers}
+            questions={questions}
             onRestart={handleRestart}
           />
-        </div>
+        ) : (
+          <div className="space-y-4">
+            <QuizQuestion
+              question={questions[currentQuestion]}
+              selectedAnswer={selectedAnswer}
+              showResult={showResult}
+              onAnswerSelect={handleAnswerSelect}
+            />
+
+            <QuizExplanation
+              explanation={questions[currentQuestion].explanation}
+              isCorrect={isCorrect}
+              showResult={showResult}
+            />
+
+            <QuizNavigation
+              currentQuestion={currentQuestion}
+              totalQuestions={questions.length}
+              showResult={showResult}
+              isComplete={isComplete}
+              score={score}
+              user={user}
+              onPrevious={handlePrevious}
+              onNext={handleNext}
+              onRestart={handleRestart}
+            />
+          </div>
+        )}
       </CardContent>
     </Card>
   );
