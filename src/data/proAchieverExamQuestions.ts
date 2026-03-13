@@ -3,86 +3,74 @@ export interface ExamQuestion {
   options: string[];
   correct: number;
   explanation: string;
-  category: 'product-facts' | 'sales-angles' | 'objection-handling';
+  category: 'product-facts' | 'sales-angles' | 'objection-handling' | 'roleplay';
 }
 
 export const proAchieverExamQuestions: ExamQuestion[] = [
 
   // ══════════════════════════════════════════
-  // PRODUCT FACTS (15 questions)
-  // Based on Pro Achiever 3.0 training materials
+  // PRODUCT Q&A (10 questions)
+  // Sourced from: Pro Achiever Overview, AIA's Materials, APA Charges, Overview of Product Features
   // ══════════════════════════════════════════
 
   {
-    question: "What type of insurance product is Pro Achiever 3.0?",
+    question: "What type of insurance product is Pro Achiever (APA) 3.0?",
     options: [
-      "Term life insurance with a savings component",
-      "Regular premium Investment-Linked Policy (ILP)",
-      "Whole life endowment with guaranteed maturity value",
-      "Universal life policy with a fixed crediting rate"
+      "A whole life endowment plan with guaranteed maturity value",
+      "A regular premium Investment-Linked Policy (ILP)",
+      "A term life policy with a cash savings component",
+      "A universal life policy with a fixed crediting rate"
     ],
     correct: 1,
-    explanation: "Pro Achiever 3.0 is a regular premium ILP — it combines life insurance protection with investment in sub-funds. Unlike endowments, returns are not guaranteed and depend on fund performance. It is AIA's best-selling investment plan as of 2024.",
+    explanation: "Pro Achiever is a regular premium ILP — it combines life insurance protection with investment in sub-funds. Unlike endowments, returns are not guaranteed and depend on fund performance. It is AIA's best-selling investment plan as of August 2024.",
     category: 'product-facts'
   },
   {
-    question: "What are the three available investment period options for Pro Achiever 3.0?",
+    question: "What are the three investment period options available in Pro Achiever 3.0?",
     options: [
-      "5 years, 10 years, 15 years",
-      "10 years, 20 years, 30 years",
-      "10 years, 15 years, 20 years",
-      "7 years, 14 years, 21 years"
+      "5, 10, and 15 years",
+      "10, 20, and 30 years",
+      "10, 15, and 20 years",
+      "7, 14, and 21 years"
     ],
     correct: 2,
-    explanation: "Pro Achiever 3.0 introduced three investment period choices: 10, 15, or 20 years. This was an enhancement over Pro Achiever 2.0, which only had a 10-year period. A longer period generally qualifies for a higher welcome bonus.",
+    explanation: "Pro Achiever 3.0 introduced three investment period choices: 10, 15, or 20 years. Previously in version 2.0, only a 10-year period was available. A longer period generally qualifies for a higher welcome bonus.",
     category: 'product-facts'
   },
   {
-    question: "What is the welcome bonus range for Pro Achiever 3.0, and what factors determine it?",
+    question: "What is the welcome bonus range in Pro Achiever 3.0, and what determines it?",
     options: [
-      "A flat 3% welcome bonus for all clients, regardless of premium",
-      "5% to 75%, depending on the annualised premium amount and the chosen investment period",
-      "10% to 50%, based solely on the client's age at entry",
+      "A flat 3% for all clients regardless of premium",
+      "5% to 75%, based on the annualised premium amount and investment period chosen",
+      "10% to 50%, based solely on the client's age",
       "There is no welcome bonus — only the special bonus applies"
     ],
     correct: 1,
-    explanation: "The welcome bonus ranges from 5% to 75% of the annualised premium. The higher the annual premium and the longer the investment period chosen, the higher the welcome bonus. It is credited in the first year and is designed to incentivise higher, longer-term commitments.",
+    explanation: "The welcome bonus ranges from 5% to 75% of the annualised premium. The higher the annual premium and the longer the investment period, the higher the welcome bonus. It is credited in the first year and cannot be withdrawn within the 10-year lock-in period.",
     category: 'product-facts'
   },
   {
-    question: "Can the welcome bonus be withdrawn during the policy's lock-in period?",
+    question: "When does the 5% special bonus kick in, and what happens from year 21 onwards?",
     options: [
-      "Yes, it can be withdrawn immediately after the first anniversary",
-      "Yes, but only 50% can be withdrawn before year 5",
-      "No — the welcome bonus cannot be withdrawn within the first 10 years",
-      "Yes, it is automatically paid out as cash each year"
-    ],
-    correct: 2,
-    explanation: "The welcome bonus (5%–75%) cannot be withdrawn within the lock-in period of 10 years. It is invested into the policy and grows with the fund, but remains locked until the 10-year mark. This is a key point to explain to clients to manage expectations.",
-    category: 'product-facts'
-  },
-  {
-    question: "What is the 'special bonus' in Pro Achiever 3.0, and how is it calculated?",
-    options: [
-      "A 5% bonus of the total fund value paid at maturity only",
-      "5% of the annualised premium from year 10, increasing to 8% from year 21 onwards — paid annually and withdrawable",
-      "An 8% flat bonus on all premiums paid after year 5",
-      "A one-time bonus of 10% of the fund value at the 10th anniversary"
+      "5% from year 5, increasing to 10% from year 15",
+      "5% from year 10, increasing to 8% from year 21 onwards",
+      "8% from year 10 onwards, no change after that",
+      "A one-time 5% bonus paid at the 10th anniversary only"
     ],
     correct: 1,
-    explanation: "From year 10, an additional 5% special bonus of the annualised premium is credited each year. This increases to 8% from year 21 onwards. For example, if the annualised premium is $10,000, the client gets an extra $500/year from year 10, and $800/year from year 21. Unlike the welcome bonus, the special bonus can be withdrawn at any time.",
+    explanation: "From year 10, an additional 5% special bonus on the annualised premium is credited each year. This increases to 8% from year 21 onwards. For example, on a $10,000/year premium, the client gets an extra $500/year from year 10 and $800/year from year 21. Unlike the welcome bonus, the special bonus can be withdrawn at any time.",
     category: 'product-facts'
   },
   {
-    question: "How long does the supplementary charge apply in Pro Achiever 3.0?",
+    question: "How long do supplementary charges apply in Pro Achiever 3.0?",
     options: [
       "For the entire duration of the policy",
       "For the first 5 years only",
-      "For the first 11 years only (3.9% p.a.); no supplementary charges after that",
+      "For the first 10 years only (3.9% p.a.); no supplementary charges after that",
       "There are no supplementary charges in Pro Achiever 3.0"
     ],
     correct: 2,
-    explanation: "The supplementary charge is 3.9% p.a. and applies for the first 11 years. After this, the charge is capped — no further supplementary charges are deducted, meaning more of the client's money goes toward investments in the later years of the policy.",
+    explanation: "The supplementary charge is 3.9% p.a. and applies for the first 10 years only. After this, no further supplementary charges are deducted — meaning more of the client's money goes toward investments in the later years. This is a key differentiator vs most competitor ILPs whose charges are perpetual.",
     category: 'product-facts'
   },
   {
@@ -90,7 +78,7 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     options: [
       "A discount on premiums for loyal policyholders after 5 years",
       "The ability to pause premium payments for up to 12 months, available after 5 years of premiums have been paid, with no charges",
-      "A feature that automatically reduces the premium amount if the fund value drops",
+      "A feature that automatically reduces premium amounts if fund value drops",
       "An option to prepay multiple years of premiums in advance"
     ],
     correct: 1,
@@ -98,349 +86,371 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "What is 'commingling' in the context of Pro Achiever 3.0's fund selection?",
+    question: "What is 'commingling' in Pro Achiever 3.0's fund selection?",
     options: [
-      "Mixing two different insurance policies together under one premium",
-      "The ability to combine AIA Elite Funds (e.g., Conservative, Balanced, Adventurous) with à la carte funds in a single portfolio",
       "Pooling investments with other policyholders to reduce risk",
+      "Mixing different AIA Elite Fund risk profiles (e.g. Conservative, Balanced, Adventurous) with à la carte funds in one portfolio",
+      "Mixing two different insurance policies under one premium",
       "A feature exclusive to joint policies held by couples"
     ],
     correct: 1,
-    explanation: "Commingling refers to the ability to mix different fund types within one Pro Achiever policy — for example, allocating 30% to AIA Elite Balanced, 20% to AIA Elite Conservative, and 50% to an à la carte fund of choice. This was not possible in Pro Achiever 2.0, where clients had to choose just one risk profile (conservative, balanced, or adventurous).",
+    explanation: "Commingling means you can mix different fund types in one Pro Achiever policy — e.g. 50% AIA Elite Balanced, 20% à la carte fund, 30% Elite Conservative. This was not possible in Pro Achiever 2.0, where clients had to choose just one risk profile. AIA can offer this because of the large assets under management.",
     category: 'product-facts'
   },
   {
-    question: "What is the AIA Global Dynamic Income Fund, and what makes it notable in Pro Achiever 3.0?",
+    question: "What makes the AIA Global Dynamic Income Fund (GDIF) unique to Pro Achiever 3.0?",
     options: [
-      "A government bond fund available across all AIA products",
-      "A high-yield emerging market equity fund available since 2018",
-      "A fund that pays quarterly dividends, exclusively available for Pro Achiever 3.0",
-      "A fixed-deposit-like fund with a guaranteed 3% annual return"
+      "It is a government bond fund available across all AIA products",
+      "It guarantees a 3% annual return with no market risk",
+      "It pays dividends every quarter and is only available for Pro Achiever 3.0",
+      "It is an emerging market equity fund available since 2018"
     ],
     correct: 2,
-    explanation: "The AIA Global Dynamic Income Fund pays dividends every quarter and is only available for Pro Achiever 3.0. It is designed for clients who want regular income from their investment, making it suitable for those who want the growth of an ILP but also appreciate periodic payouts.",
+    explanation: "The AIA Global Dynamic Income Fund pays dividends every quarter and is only available for Pro Achiever 3.0. It is designed for clients who want regular income from their investment alongside the growth potential of an ILP.",
     category: 'product-facts'
   },
   {
-    question: "What is the typical annualised premium range for most Pro Achiever clients, based on training materials?",
+    question: "What does Pro Achiever 3.0's Additional Term Rider provide?",
+    options: [
+      "A critical illness rider with premiums that increase with age",
+      "Coverage for death, terminal illness, and disability with premiums that stay the same throughout the coverage period",
+      "A hospitalisation rider covering daily hospital cash",
+      "A waiver of premium triggered by any illness"
+    ],
+    correct: 1,
+    explanation: "The Additional Term Rider provides coverage for death, terminal illness, and disability. Crucially, the premiums for this rider remain fixed throughout the coverage period — unlike most term riders whose premiums increase with age. This provides stable and predictable protection costs alongside the investment.",
+    category: 'product-facts'
+  },
+  {
+    question: "According to training materials, what is the typical annualised premium range for most Pro Achiever clients?",
     options: [
       "$1,200 to $2,400 per year ($100–$200/month)",
-      "$4,800 to $6,000 per year, with some going above $12,000",
+      "$4,800 to $6,000 per year, with some exceeding $12,000",
       "$500 to $1,000 per year",
       "$10,000 to $20,000 per year minimum"
     ],
     correct: 1,
-    explanation: "According to training materials, most Pro Achiever clients pay between $4,800 and $6,000 per year (roughly $400–$500/month), with some higher-commitment clients exceeding $12,000/year. The case size average has grown from $3,800 to $5,000 in recent years. This is an important benchmark for advisors when sizing up proposals.",
-    category: 'product-facts'
-  },
-  {
-    question: "Who are the primary target market segments for Pro Achiever, according to the training?",
-    options: [
-      "Retirees aged 60+ with large lump sums to invest",
-      "Fresh graduates, young working professionals, and parents planning for their children's education",
-      "Business owners only who need key-man insurance",
-      "High-net-worth clients with >$1 million in investable assets"
-    ],
-    correct: 1,
-    explanation: "The primary target for Pro Achiever is fresh graduates and young working professionals in the wealth accumulation stage. A secondary use case is parents buying it for their children's education savings. About 80% of AIA consultants sell Pro Achiever, reflecting its broad applicability across the mass market.",
-    category: 'product-facts'
-  },
-  {
-    question: "What does Pro Achiever 3.0 offer in terms of additional protection through a rider?",
-    options: [
-      "A critical illness rider with premiums that increase with age",
-      "An Additional Term Rider for death, terminal illness, and disability coverage with premiums that stay fixed throughout the coverage period",
-      "A hospitalisation rider covering daily hospital cash",
-      "A waiver of premium rider triggered by any illness"
-    ],
-    correct: 1,
-    explanation: "Pro Achiever 3.0 offers an Additional Term Rider that provides coverage for death, terminal illness, and disability. The premiums for this rider remain the same throughout the coverage period — unlike many term riders whose premiums increase with age. This provides stable and predictable protection costs alongside the investment.",
-    category: 'product-facts'
-  },
-  {
-    question: "What is the Legacy Planning feature in Pro Achiever 3.0?",
-    options: [
-      "A special fund portfolio designed for estate planning with tax benefits",
-      "The ability to transfer the plan to a spouse or child for continued coverage and financial security",
-      "A will-writing service offered free to all Pro Achiever policyholders",
-      "An automatic payout to beneficiaries after a 30-day waiting period"
-    ],
-    correct: 1,
-    explanation: "Pro Achiever 3.0 includes a Legacy Planning feature that allows the policyholder to transfer the plan to a spouse or child, enabling continued coverage and financial security across generations. This makes it a useful tool for clients who want to pass on an investment vehicle to their loved ones.",
-    category: 'product-facts'
-  },
-  {
-    question: "What is the key difference between 'Premium Pass' and 'Premium Holiday' in Pro Achiever 3.0?",
-    options: [
-      "They are the same feature with different names",
-      "Premium Pass is a no-charge pause of up to 12 months available after 5 years of premiums paid; Premium Holiday can be taken within the first 10 years but incurs charges",
-      "Premium Pass reduces the premium amount; Premium Holiday suspends the policy entirely",
-      "Premium Holiday is only available after year 15; Premium Pass can be used from year 1"
-    ],
-    correct: 1,
-    explanation: "Premium Pass allows a charge-free pause of up to 12 months, but only after 5 years of premiums have been paid. Premium Holiday can be taken within the first 10 years of the policy, but unlike Premium Pass, charges do apply if taken during this period. Advisors should clarify this distinction to clients upfront to avoid surprises.",
-    category: 'product-facts'
-  },
-  {
-    question: "What was a key enhancement of Pro Achiever 3.0 over the previous version 2.0?",
-    options: [
-      "Pro Achiever 3.0 removed all supplementary charges entirely",
-      "Pro Achiever 3.0 reduced the minimum investment period from 20 years to 5 years",
-      "Pro Achiever 3.0 introduced three investment period options (10/15/20 years), higher welcome bonus (up to 75%), fund commingling, Premium Pass, and the AIA Global Dynamic Income Fund",
-      "Pro Achiever 3.0 introduced a guaranteed minimum return of 3% per year"
-    ],
-    correct: 2,
-    explanation: "Pro Achiever 3.0 (launched August 2024) significantly enhanced over 2.0: (1) Three period choices instead of one 10-year period; (2) Welcome bonus increased from 10% to up to 75%; (3) Fund commingling allowing mixed portfolio; (4) New Premium Pass feature; (5) Exclusive AIA Global Dynamic Income Fund with quarterly dividends.",
+    explanation: "Most Pro Achiever clients pay between $4,800 and $6,000 per year (roughly $400–$500/month), with some exceeding $12,000/year. The average case size has grown from $3,800 to $5,000. About 80% of AIA consultants sell Pro Achiever, making it the most widely sold investment plan.",
     category: 'product-facts'
   },
 
   // ══════════════════════════════════════════
-  // SALES ANGLES (10 questions)
+  // SALES TECHNIQUES (10 questions)
+  // Sourced from: Commentary of My Own Closing, Simple Way to Intro APA, APA Close Demo,
+  //               Summary of how to sell APA, Linearizing Policy Returns, Retirement Income Concepts
   // ══════════════════════════════════════════
 
   {
-    question: "A 26-year-old fresh graduate earns $3,500/month and wants to 'start building wealth properly'. Which Pro Achiever 3.0 benefit do you lead with?",
+    question: "According to the 'Linearizing Policy Returns' technique, how should you make a large future payout feel relatable to a client?",
     options: [
-      "The guaranteed maturity value and fixed returns",
-      "The welcome bonus (up to 75%) that boosts their investment from year 1, combined with the 10/15/20-year investment period flexibility",
-      "The short-term liquidity through Premium Holiday",
-      "The critical illness coverage component"
-    ],
-    correct: 1,
-    explanation: "For a fresh grad starting wealth accumulation, lead with the welcome bonus — it's a tangible, exciting benefit that makes starting early feel rewarding. Pair it with the investment period choice (younger = longer period = higher bonus). This creates urgency to start now rather than wait.",
-    category: 'sales-angles'
-  },
-  {
-    question: "What is a key advantage of Pro Achiever 3.0's supplementary charges compared to most competitor ILPs?",
-    options: [
-      "Pro Achiever has no charges at all, while competitors charge throughout",
-      "Both Pro Achiever and most competitors stop charges after 10 years",
-      "Most competitor ILPs have perpetual supplementary charges that never stop, whereas Pro Achiever's supplementary charges only apply for the first 10 years and cease after that",
-      "Pro Achiever charges more upfront but less over time compared to competitors"
+      "Show them the total amount they will receive at maturity",
+      "Compare the total return to a lump sum deposit at the bank",
+      "Break the return down into a monthly income figure — e.g. '$315k over 45 years = $54/month passive income on $200/month invested'",
+      "Show a table comparing ILP vs term plan charges"
     ],
     correct: 2,
-    explanation: "A major differentiator for Pro Achiever is that its supplementary charges (3.9% p.a.) only apply for the first 10 years. After that, no further supplementary charges are deducted. Most competitor ILPs continue to charge supplementary fees perpetually throughout the life of the policy — meaning more and more of the client's money goes toward charges over time, rather than investments.",
+    explanation: "Telling a client they'll earn '$315,000 in 45 years' doesn't feel impactful. The better approach is to linearize it: divide the profit over the years and months to show it as passive income. '$54/month for every $200/month you invest' is far more tangible. You can also compare $315k to the value of a car, BTO flat, or house to make it emotionally resonant.",
     category: 'sales-angles'
   },
   {
-    question: "When using goal-based selling for Pro Achiever 3.0, which technique creates the most emotional engagement?",
+    question: "What is the recommended approach when discussing Pro Achiever's total fees and charges with a client to build trust?",
     options: [
-      "Show the client a table comparing ILP vs term plan charges",
-      "Use a goal-based projection illustration tied to a specific personal milestone — e.g., 'Based on your chosen period, here's what this could look like when your child is ready for university'",
-      "Explain the mechanics of supplementary charges in detail",
-      "List all available AIA Elite Funds and their past performance"
+      "Avoid mentioning fees until after the client signs",
+      "Show the total cost figure (e.g. $6,194) but divide it over the full policy duration to show it's about $1/month — then compare to hiring a private investment consultant",
+      "Tell the client fees are negligible and move on quickly",
+      "Only mention the supplementary charge percentage, not the total cost"
     ],
     correct: 1,
-    explanation: "Goal-based selling creates urgency and personal relevance. Tie the projection to a specific life event — child's education (secondary use case confirmed in training), retirement, or a business goal. Pro Achiever is explicitly used by parents for children's education, making this a proven and emotionally resonant angle.",
+    explanation: "From 'Commentary of My Own Closing': proactively show the total cost of distribution (e.g. $6,194), then divide it over the full policy life — it works out to about $1/month. Compare this to: (1) hiring your own investment consultant at $10,000+, (2) high brokerage costs of DIY stock trading, (3) the time and stress of managing your own portfolio daily.",
     category: 'sales-angles'
   },
   {
-    question: "A client is deciding between the 10-year and 20-year investment periods for Pro Achiever 3.0. What should an advisor typically recommend?",
+    question: "According to the 'Simple Way to Intro APA' training, what is the 4-layer diversification argument used to educate prospects?",
     options: [
-      "Always recommend 20 years to maximise the welcome bonus",
-      "Recommend 20 years only for clients above age 40",
-      "Recommend 10 years — commissions are the same for both, and 10 years gives the client more flexibility with no surrender charges after the lock-in period",
-      "Tell them both periods are identical and let the client decide"
+      "Diversify by time, risk, geography, and currency",
+      "Number of stocks → number of industries → multiple asset classes → geographic diversification",
+      "Equities, bonds, REITs, and commodities only",
+      "Singapore stocks, US stocks, Asian stocks, and emerging markets"
+    ],
+    correct: 1,
+    explanation: "The 4-layer approach: Layer 1 — it's not just one stock, but many stocks. Layer 2 — not just many stocks, but across many industries (e.g. all bank stocks collapsed in the US banking crisis). Layer 3 — not just stocks, but multiple asset classes (stocks, bonds, gold, commodities). Layer 4 — not just domestic, but geographically diversified globally. This pre-empts DIY investing objections.",
+    category: 'sales-angles'
+  },
+  {
+    question: "What is the key sales positioning of APA vs ETFs, according to training?",
+    options: [
+      "APA has better returns than ETFs on average",
+      "ETFs are just a tool; APA combines the tool with a professional service — like a chef vs. just buying ingredients",
+      "ETFs charge higher fees than APA",
+      "APA funds are government-guaranteed while ETFs are not"
+    ],
+    correct: 1,
+    explanation: "From 'APA vs. ETFs': ETFs are investment tools without added value. APA combines the tool with a consultative service — selecting, monitoring, and adjusting investments for you. The analogy: an ETF is like buying raw ingredients; APA is like hiring a chef who prepares the meal, monitors quality, and adjusts based on your taste. You're selling the service, not just the product.",
+    category: 'sales-angles'
+  },
+  {
+    question: "When selling to a young adult, what is the core emotional argument against DIY stock investing (from 'APA vs DIY' training)?",
+    options: [
+      "DIY investing is illegal without a financial advisor",
+      "DIY investors pay more tax than those with insurance-linked investments",
+      "Most DIY investors fall into a cycle of buying high out of FOMO and selling low out of fear — leading to consistent underperformance and emotional stress",
+      "DIY investing requires a minimum capital of $50,000"
     ],
     correct: 2,
-    explanation: "Advisors should generally recommend the 10-year period. The commission earned is the same regardless of whether the client chooses 10 or 20 years. More importantly, a 20-year lock-in exposes the client to surrender charges if they need to withdraw or surrender within that period. The 10-year option gives clients greater flexibility — after 10 years, they can withdraw, top up, or continue without being tied to a longer commitment.",
+    explanation: "From 'APA vs DIY': The emotional cycle traps most DIY investors — buy high (FOMO when market rises) → sell low (panic when market drops) → regret when market rebounds → buy high again. APA's dollar-cost averaging approach removes emotion, enforces discipline, and avoids this destructive cycle. The key message: 'APA invests consistently every month regardless of market conditions.'",
     category: 'sales-angles'
   },
   {
-    question: "A client who just received a year-end bonus wants to invest a lump sum into Pro Achiever 3.0. What do you advise?",
+    question: "Which client profile is the 'Simple Way to Intro APA' book approach ideally suited for?",
     options: [
-      "Pro Achiever only accepts regular monthly premiums — lump sums are not possible",
-      "Advise them to start a new policy with the lump sum as the first-year premium to maximise the welcome bonus, and set regular premiums going forward",
-      "Tell them to put the lump sum in a fixed deposit first, then use it to fund the policy",
-      "Suggest they split it across multiple insurance companies for diversification"
-    ],
-    correct: 1,
-    explanation: "Pro Achiever 3.0 supports top-up premiums. A lump sum deployed as a large first-year contribution directly increases the welcome bonus (since the bonus is tied to annualised premium). This is a powerful onboarding technique — use the illustration to show how a higher starting premium unlocks the upper end of the welcome bonus range.",
-    category: 'sales-angles'
-  },
-  {
-    question: "A self-employed client with fluctuating income is interested in Pro Achiever 3.0 but worried about the commitment. What features do you highlight?",
-    options: [
-      "Tell them the fixed premium schedule is actually beneficial for self-employed people",
-      "Highlight Premium Pass (up to 12 months charge-free pause after 5 years paid) and Premium Holiday — they can pause without surrendering the policy during lean periods",
-      "Advise them to wait until their income stabilises before starting",
-      "Suggest a savings account as a lower-commitment alternative"
-    ],
-    correct: 1,
-    explanation: "Premium Pass gives a charge-free pause of up to 12 months once 5 years of premiums are paid — ideal for planned income gaps. Premium Holiday is also available within the first 10 years if needed, though charges apply. Together, these features mean the client never needs to surrender the policy just because of a rough patch.",
-    category: 'sales-angles'
-  },
-  {
-    question: "A married couple with two young children wants to plan for both retirement AND education funding. How do you frame the Pro Achiever 3.0 conversation?",
-    options: [
-      "Tell them to take out two separate Pro Achiever policies — one per goal",
-      "Show a 20-year illustration: the special bonus from year 10 can fund education milestones while the full fund continues growing for retirement — one plan, two goals",
-      "Suggest an endowment for education and Pro Achiever for retirement separately",
-      "Tell them Pro Achiever is only for retirement, not education"
-    ],
-    correct: 1,
-    explanation: "Pro Achiever is explicitly used by parents for their children's education — this is confirmed in the training materials as a key secondary use case. A 20-year policy with a child aged 3 matures when the child is ~23. The special bonus from year 10 onwards (withdrawable at any time) can also fund secondary school or university costs along the way.",
-    category: 'sales-angles'
-  },
-  {
-    question: "During a product presentation, a client says they prefer 'safe' investments. How do you position Pro Achiever 3.0 without misrepresenting it?",
-    options: [
-      "Tell them Pro Achiever is safe because AIA is a large reputable company",
-      "Acknowledge their preference, guide them toward the lower-risk AIA Elite Conservative or balanced fund options within Pro Achiever, while being clear about the non-guaranteed nature of returns",
-      "Agree and recommend an endowment plan instead",
-      "Avoid mentioning market risk to prevent alarming them"
-    ],
-    correct: 1,
-    explanation: "Never obscure market risk — this is a compliance and ethical requirement. Instead, acknowledge their preference and show how the AIA Elite Funds (Conservative, Balanced) within Pro Achiever accommodate cautious investors. Highlight the commingling feature: they can start conservative and gradually shift to more growth-oriented funds using the free switching option.",
-    category: 'sales-angles'
-  },
-  {
-    question: "A prospect asks: 'Why should I choose Pro Achiever over just keeping money in a fixed deposit?' What are the three strongest points?",
-    options: [
-      "Higher safety, lower fees, fixed returns",
-      "Guaranteed 6% annual return, zero charges, free withdrawal anytime",
-      "Higher long-term growth potential through AIA Elite Funds; a welcome bonus of up to 75% that FD has no equivalent for; built-in life protection — FD pays nothing on death",
-      "Government-backed returns; lower expense ratio than any other product; fixed deposit interest is taxable"
+      "Elderly clients focused on healthcare funding",
+      "Clients who are already convinced of advisor value and just need product details",
+      "Prospects skeptical of financial advisors, DIY investors, and those concerned about fees",
+      "Business owners looking for key-man insurance"
     ],
     correct: 2,
-    explanation: "The three pillars vs FD: (1) Growth potential — diversified fund exposure vs FD's ~2–3% per year; (2) The welcome bonus (up to 75%) — FD offers no equivalent upfront boost; (3) Life protection built in — FD pays zero to your family if you pass away. Acknowledge trade-offs honestly: Pro Achiever carries market risk and is not for money needed short-term.",
+    explanation: "The book intro is ideal for: prospects skeptical of financial advisors, DIY investors who think they can do better, people who follow friends' advice, and those concerned about fees. It is NOT ideal for: urgent insurance needs, very elderly clients focused on healthcare, or clients already sold on advisor value. The book positions the advisor as an educator, not a salesperson.",
     category: 'sales-angles'
   },
   {
-    question: "About what percentage of AIA consultants sell Pro Achiever, and what does this tell you about how to position it?",
+    question: "What is the recommended way to introduce Pro Achiever's welcome bonus during a client appointment?",
     options: [
-      "About 20% — it is a specialist product for high-net-worth clients only",
-      "About 80% — it is a core, widely applicable product suitable for most working adults in the wealth accumulation stage",
-      "About 50% — it splits evenly between investment and protection-focused consultants",
-      "About 5% — it is a niche product for specific client profiles only"
+      "Lead with the product brochure and list all technical features first",
+      "Tell the client 'if you invest a bit more, you can get a higher welcome bonus' — use this to anchor a higher premium amount",
+      "Only mention the welcome bonus at the end as a closing incentive",
+      "Never mention bonuses as they can be misleading"
     ],
     correct: 1,
-    explanation: "About 80% of AIA consultants sell Pro Achiever — making it a flagship mass-market product, not a niche offering. This means it is suitable for a broad range of clients: young professionals, fresh grads, parents saving for children, and even clients with higher disposable income. Its broad suitability is a key selling point when a prospect asks if it's 'right for them'.",
+    explanation: "From 'Pro Achiever Overview': the welcome bonus is an incentive lever during the appointment. Advisors are coached to say: 'If you invest a bit more, you can have a higher welcome bonus.' This both anchors a higher premium and makes starting now feel immediately rewarding — since the client gets the bonus in year 1.",
+    category: 'sales-angles'
+  },
+  {
+    question: "According to training, why should advisors generally recommend the 10-year period over the 20-year period?",
+    options: [
+      "The 10-year period gives a higher welcome bonus",
+      "The commission earned is the same for both periods, and the 10-year option avoids surrender charges if the client needs flexibility within a longer lock-in",
+      "The 20-year period has much higher supplementary charges",
+      "AIA only recommends 20 years for clients above 40"
+    ],
+    correct: 1,
+    explanation: "Commissions are identical regardless of investment period. The 20-year lock-in exposes the client to surrender charges if they need to withdraw early. The 10-year option gives the client greater flexibility — after 10 years, they can withdraw, top up, or continue without being locked into a longer commitment. Recommending 10 years is the client-centric approach.",
+    category: 'sales-angles'
+  },
+  {
+    question: "What is the 'Retirement Income Concept' sales approach used for Pro Achiever?",
+    options: [
+      "Selling Pro Achiever as a replacement for CPF Life",
+      "Using Pro Achiever's projected fund value to create a retirement income stream — showing how regular withdrawals from the matured fund can supplement retirement expenses for 20–30 years",
+      "Positioning Pro Achiever as a short-term emergency fund",
+      "Recommending Pro Achiever only for clients with existing retirement plans"
+    ],
+    correct: 1,
+    explanation: "The Retirement Income Concept (Phase 1–3) shows clients how to use Pro Achiever's accumulated fund at maturity as a retirement income source — making systematic withdrawals to supplement living expenses for decades. This reframes APA from a savings plan into a long-term income vehicle, making it highly relevant for young adults planning for retirement.",
+    category: 'sales-angles'
+  },
+  {
+    question: "What is a key advantage of APA's fee structure compared to hiring your own private investment consultant?",
+    options: [
+      "APA charges zero fees while private consultants charge $10,000+",
+      "APA's fees are spread over ~1 million policyholders — so even though the fund managers are well-paid, the cost per individual is very low",
+      "APA has no fund management fees; only mortality charges apply",
+      "Private investment consultants are always more expensive than APA by law"
+    ],
+    correct: 1,
+    explanation: "From 'Commentary of My Own Closing': AIA has about 1 million policyholders, so even highly paid investment consultants managing the funds result in a very low cost per individual. Compare this to hiring a private wealth manager at $10,000+/year, or the brokerage costs and time spent on DIY investing. The total cost in APA is roughly $1/month when spread over the policy life.",
     category: 'sales-angles'
   },
 
   // ══════════════════════════════════════════
-  // OBJECTION HANDLING (10 questions)
+  // OBJECTION HANDLING (8 questions)
+  // Sourced from: Attacking and Defending APA, Countering S&P500, APA Charges, Competitor Analysis
   // ══════════════════════════════════════════
 
   {
-    question: "A prospect says: 'ILPs have very high charges — I read about it online.' How do you handle this?",
+    question: "A client says: 'I'd rather just invest in the S&P 500 — it's consistently returned 10% per year.' What is the best response?",
     options: [
-      "Deny the charges exist and redirect to fund performance numbers",
-      "Agree and suggest a term plan paired with a unit trust instead",
-      "Acknowledge that charges exist (3.9% p.a. supplementary charge for ~10 years), explain they are capped after year 10–11, and show how the welcome bonus (up to 75%) helps offset the early charge impact",
-      "Tell them the internet is wrong and only trust AIA's materials"
+      "Agree that S&P 500 is better and suggest combining both",
+      "Tell them the S&P 500 is too risky and they will lose everything",
+      "Acknowledge the S&P 500's strong historical returns, then highlight APA's advantages: diversification beyond US equities, the welcome bonus that S&P500 doesn't have, built-in life protection, and the discipline of regular premiums vs. timing the market yourself",
+      "Tell them S&P 500 returns are not guaranteed either, so APA is safer"
     ],
     correct: 2,
-    explanation: "Transparency builds trust. Acknowledge: yes, there is a 3.9% p.a. supplementary charge for the first 10–11 years — this is factual. Then contextualise: (1) The welcome bonus (up to 75%) directly offsets early costs; (2) After year 10–11, no more supplementary charges; (3) The special bonus from year 10 adds returns. Use the actual illustration to make the net effect visible.",
+    explanation: "From 'Countering S&P500': Don't dismiss the S&P 500 — acknowledge it. Then position APA's advantages: (1) Geographic diversification beyond US, (2) The welcome bonus (5–75%) which the S&P 500 has no equivalent of, (3) Built-in life protection, (4) Dollar-cost averaging discipline so they don't have to time the market, (5) The S&P 500 is US-only — APA diversifies globally.",
     category: 'objection-handling'
   },
   {
-    question: "A client says: 'I don't like the idea that my money can go down in value.' What is the most effective response?",
+    question: "A client says: 'The fees in ILPs are too high.' What is the correct framework to handle this?",
     options: [
-      "Promise that markets always recover and they should not worry",
-      "Acknowledge the concern, guide them toward the AIA Elite Conservative fund for lower volatility, explain the commingling option lets them adjust over time, and emphasise that regular premiums provide DCA benefits",
-      "Tell them to only use the money market fund option",
-      "Agree with them and recommend a guaranteed endowment plan"
+      "Apologise and offer to reduce the premium",
+      "Compare the total cost to DIY alternatives: personal investment manager fees, brokerage trading costs, and the value of time saved — showing that APA's all-in cost works out to roughly $1/month when spread over the policy life",
+      "Tell them fees don't matter because returns are good",
+      "Redirect to the welcome bonus and change the subject"
     ],
     correct: 1,
-    explanation: "Address the fear with concrete mitigants: (1) The AIA Elite Conservative fund provides lower volatility within Pro Achiever; (2) Commingling lets them diversify gradually into growth funds at their own pace; (3) Regular premiums provide natural dollar-cost averaging — buying more units when prices are low. Never promise recovery — this is a compliance red flag.",
+    explanation: "From 'APA Charges' and 'Commentary of My Own Closing': Fees objections are countered by context. Show the total cost of distribution (e.g. $6,194), divide over 45 years = ~$1/month. Compare to: a private investment manager ($10,000+/year), brokerage fees for DIY trading, and the daily stress of monitoring your own portfolio. The fees are small relative to the service and returns.",
     category: 'objection-handling'
   },
   {
-    question: "A prospect says: 'My friend surrendered his ILP after 3 years and lost a lot of money.' How do you respond?",
+    question: "A client says: 'My friend lost money in an ILP before.' How do you handle this?",
     options: [
-      "Tell them their friend made a mistake and you would not do the same",
-      "Acknowledge that early surrender is one of the biggest risks in ILPs; the supplementary charge applies for 10 years, so year 2–3 surrender almost always results in a loss — this is why Pro Achiever is a commitment for the full investment period",
-      "Tell them Pro Achiever is different and this would never happen",
-      "Avoid the topic and change the subject to the welcome bonus"
+      "Tell them their friend made a mistake and should have stayed invested",
+      "Acknowledge the concern, explain that ILP returns depend on fund selection and time horizon, then highlight that APA's professional management and diversified funds reduce single-stock/sector risk compared to DIY investing",
+      "Ignore the objection and show the benefit illustration",
+      "Suggest they buy a fixed deposit instead if they are risk-averse"
     ],
     correct: 1,
-    explanation: "Your friend's experience is completely valid — early surrender within the supplementary charge period (first 10 years) locks in a loss. Be honest: 'Pro Achiever is designed to be held for the full 10, 15, or 20 years. I would only recommend it if it truly fits your long-term plan. If you might need this money in under 5 years, we should look at a different vehicle.' This builds credibility.",
+    explanation: "From 'Attacking and Defending APA': Validate the concern first. Then educate: the friend likely suffered from poor timing (bought high, sold low during panic) or single-stock concentration. APA counters this with: (1) Professional fund management, (2) Dollar-cost averaging — invest consistently regardless of market, (3) Diversification across 1000+ stocks, industries, asset classes, and geographies.",
     category: 'objection-handling'
   },
   {
-    question: "A prospect says: 'I can get better returns just buying S&P 500 ETFs myself. Why pay ILP charges?' How do you counter?",
+    question: "A client says: 'I can just buy ETFs myself — lower fees and more control.' What is the APA counter-argument?",
     options: [
-      "Tell them Pro Achiever's funds consistently outperform the S&P 500",
-      "Agree and suggest they invest directly in ETFs instead",
-      "Acknowledge their point on charges (3.9% supplementary charge for 10 years), then highlight the gaps ETFs don't fill: life protection, the welcome bonus of up to 75%, the disciplined savings structure, and legacy planning",
-      "Tell them ILP charges are actually lower than ETF brokerage fees"
+      "ETFs are illegal for retail investors in Singapore",
+      "ETFs are just a tool with no advisory service; APA provides the tool plus professional management, monitoring, rebalancing, and a built-in welcome bonus that no ETF can match",
+      "APA has better returns than all ETFs historically",
+      "ETFs have higher management fees than APA"
+    ],
+    correct: 1,
+    explanation: "From 'APA vs. ETFs': ETFs are tools, not a service. APA gives you: (1) The tool (diversified funds), (2) Professional management and monitoring, (3) Automatic rebalancing, (4) A welcome bonus (no ETF gives this), (5) Life protection built-in. The analogy: buying ETF ingredients vs. hiring a chef. You could cook yourself, but do you have the time, skill, and discipline to do it for 40 years?",
+    category: 'objection-handling'
+  },
+  {
+    question: "A client says: 'What if I need the money before 10 years?' What is the correct response?",
+    options: [
+      "Tell them they will lose all their money if they withdraw early",
+      "Explain that they can make partial withdrawals after the lock-in, and that within the first 10 years, Premium Holiday is available if they face financial difficulty — though charges apply if used in the early years",
+      "Advise them to put only money they don't need into APA",
+      "Tell them the policy can be surrendered at any time for full value"
+    ],
+    correct: 1,
+    explanation: "From 'Pro Achiever Overview' and training: Partial withdrawals are available after the 10-year lock-in. Within the first 10 years, Premium Holiday allows pausing payments if facing financial difficulty (though charges may apply). After 5 years of payments, Premium Pass gives a charge-free pause of up to 12 months. The key message: worst case is a pause — not a total loss.",
+    category: 'objection-handling'
+  },
+  {
+    question: "A client says: 'I already have savings in my CPF — why do I need this?' What is your response?",
+    options: [
+      "Tell them CPF is enough and they don't need Pro Achiever",
+      "Explain that CPF is capped and locked away until retirement — APA supplements CPF by building an accessible investment fund for mid-life goals, with a bonus on top that CPF doesn't offer",
+      "Tell them CPF interest rates are too low to rely on",
+      "Suggest they transfer all CPF into an APA policy"
+    ],
+    correct: 1,
+    explanation: "CPF is restricted, capped, and inaccessible until retirement age. APA complements CPF by: (1) Providing an accessible investment fund that grows over time, (2) Giving a welcome bonus (CPF gives no bonus), (3) Allowing goal-based withdrawals before retirement (education, property, business), (4) Providing life protection alongside accumulation. APA is not a CPF replacement — it fills the gaps CPF can't cover.",
+    category: 'objection-handling'
+  },
+  {
+    question: "What is a key advantage of Pro Achiever's charges compared to most competitor ILPs?",
+    options: [
+      "Pro Achiever has no charges at all — only competitor ILPs charge",
+      "Both APA and most competitors stop charges after 10 years",
+      "Most competitor ILPs have perpetual supplementary charges that never stop, whereas APA's supplementary charges only apply for the first 10 years",
+      "APA charges more upfront but refunds fees at maturity"
     ],
     correct: 2,
-    explanation: "A financially savvy client may be right that ETF fees are lower. Don't fight on charges — instead identify the structural gaps: 'ETFs don't give you a welcome bonus of up to 75% on your first year. They don't pay your family a death benefit. And they don't come with a legacy transfer feature. If those have value to you, Pro Achiever justifies its additional cost.'",
+    explanation: "A major differentiator: APA's supplementary charges (3.9% p.a.) stop after 10 years. Most competitor ILPs continue deducting supplementary charges perpetually — so more and more of the client's fund goes toward charges over time. For a long-term policy of 20–40 years, this difference is significant and compounds in favour of APA clients.",
     category: 'objection-handling'
   },
   {
-    question: "A prospect asks: 'What if AIA goes bankrupt? What happens to my money?' How do you address this?",
-    options: [
-      "Tell them AIA has never lost money so this will never happen",
-      "Explain that ILP sub-funds are held separately from AIA's own assets in a segregated fund account; also mention MAS regulatory oversight and the Policy Owners' Protection (PPF) Scheme for Singapore policyholders",
-      "Tell them to just trust that AIA is a large company",
-      "Acknowledge the risk and say there are no protections"
-    ],
-    correct: 1,
-    explanation: "This is a legitimate concern. Key reassurances: (1) ILP sub-funds are legally segregated from AIA's own balance sheet — they cannot be used to settle AIA's liabilities; (2) MAS strictly regulates AIA, requiring capital reserves; (3) The Policy Owners' Protection (PPF) Scheme provides additional protection for Singapore policyholders. These structural protections significantly reduce (though don't eliminate) the risk.",
-    category: 'objection-handling'
-  },
-  {
-    question: "A client says: 'I already have savings and CPF. I don't need another product.' How do you uncover a genuine need?",
-    options: [
-      "Tell them they definitely still need Pro Achiever regardless",
-      "Ask discovery questions: 'Does CPF cover your family if something happened tomorrow? Do you have a vehicle for long-term growth beyond CPF limits? Does your savings account offer a welcome bonus and a structured investment plan?' — let the gaps emerge naturally",
-      "Agree and end the meeting",
-      "Tell them CPF returns are too low to rely on"
-    ],
-    correct: 1,
-    explanation: "Never push the product — ask questions that reveal gaps. CPF has withdrawal restrictions and caps. Savings accounts grow slowly with no bonus. Pro Achiever offers: (1) Life protection; (2) AIA Elite Fund growth potential; (3) A welcome bonus with no CPF equivalent; (4) Legacy transfer to a spouse or child. Usually at least one gap emerges from discovery questions.",
-    category: 'objection-handling'
-  },
-  {
-    question: "A prospect says: 'I'm not sure I can commit to a 20-year policy. What if my circumstances change?' What is the best reassurance?",
-    options: [
-      "Tell them they must commit or not take the policy",
-      "Explain that after 5 years, Premium Pass gives a charge-free pause of up to 12 months; Premium Holiday is also available within the first 10 years if needed — they can pause without surrendering",
-      "Offer to write the policy as a 5-year term instead",
-      "Promise that they can surrender at any time with no cost"
-    ],
-    correct: 1,
-    explanation: "Address commitment anxiety with Pro Achiever 3.0's flexibility features: once 5 years of premiums are paid, Premium Pass allows up to 12 months charge-free. Premium Holiday is available within the first 10 years too, though charges apply then. The key message: the worst case is a pause, not a loss — they won't need to surrender the policy.",
-    category: 'objection-handling'
-  },
-  {
-    question: "A prospect says: 'I'll think about it and get back to you.' What is the ideal response?",
+    question: "A client says: 'I'll think about it and get back to you.' What is the ideal advisor response?",
     options: [
       "Accept it and wait for them to call back",
-      "Pressure them to sign today before the offer expires",
-      "Acknowledge their position, ask which specific aspect they want to think through to uncover a hidden objection, and set a specific follow-up date and time before ending the meeting",
-      "Send them daily messages until they respond"
+      "Pressure them to sign before the offer expires today",
+      "Acknowledge their position, ask which specific aspect they want to think through to uncover the hidden objection, then set a specific follow-up date and time before the meeting ends",
+      "Send them the benefit illustration by email and follow up in two weeks"
     ],
     correct: 2,
-    explanation: "'Think about it' is almost always a hidden objection. Ask: 'Of course — is there a specific part you'd like more clarity on? Sometimes I can address it now.' Then close with a specific next touchpoint: 'How about a quick call next Thursday at 4pm? If you've decided it's not for you, just say so — I'll respect that completely.' Vague timelines almost never result in callbacks.",
+    explanation: "From closing training: 'I'll think about it' is a hidden objection — something specific is unresolved. Don't accept it at face value. Ask: 'Of course — just so I can prepare better for our next chat, which part would you like to think through more? The commitment, the returns, or something else?' This surfaces the real concern. Then always lock in a specific next meeting time before ending.",
     category: 'objection-handling'
   },
+
+  // ══════════════════════════════════════════
+  // ROLEPLAY SCENARIOS (7 questions)
+  // Sourced from: APA Close Demo for Young Adults, Commentary of My Own Closing, Summary of how to sell APA
+  // ══════════════════════════════════════════
+
   {
-    question: "A prospect says: 'My spouse needs to agree before I can proceed.' How do you handle this?",
+    question: "You're in a roleplay as a prospect who says: 'I'm only 23 — I don't think I need to invest yet. I'll start when I'm 30.' What is the most effective advisor response?",
     options: [
-      "Tell them they don't need their spouse's approval for a financial plan",
-      "Offer to arrange a meeting or call that includes the spouse, so both can hear the presentation together and any concerns can be addressed directly — especially how the legacy planning feature benefits the family",
-      "Give all the materials and hope the client convinces the spouse",
-      "Ask the client to proceed without telling their spouse"
+      "Agree and tell them to come back in 7 years",
+      "Show them the compound interest effect: starting at 23 vs 30 results in vastly different fund values — plus the welcome bonus is locked in at the start, so waiting means losing those extra years of compounding on a bonus they can never reclaim",
+      "Tell them they're being irresponsible with their money",
+      "Offer to lower the premium to make it feel less like a commitment"
     ],
     correct: 1,
-    explanation: "A joint decision is legitimate and should be respected. The right move is to request an opportunity to present to both together: 'I'd love to walk through this with both of you — even a 30-minute call works. I can show how the legacy transfer feature directly benefits your family.' The spouse meeting often accelerates the close because it removes the relay game and surfaces real concerns directly.",
-    category: 'objection-handling'
+    explanation: "From 'APA Close Demo for Young Adults': The earlier you start, the longer compounding works. A 7-year head start at 23 vs 30 = significant fund value difference at retirement. More critically: the welcome bonus is credited in year 1 and immediately starts compounding. Waiting 7 years means losing 7 years of compounding on a bonus they'll never get back if they start later.",
+    category: 'roleplay'
   },
   {
-    question: "A client who purchased Pro Achiever 2 years ago calls wanting to surrender because the fund value is lower than what they paid in. How do you handle this retention conversation?",
+    question: "You're roleplaying a closing call. The client says: 'Can I start with $200/month?' How do you respond to anchor a higher premium?",
     options: [
-      "Support their decision and process the surrender immediately",
-      "Acknowledge the frustration, explain that year 2 is the typical trough — the supplementary charge (3.9% p.a.) is still in effect for ~8 more years, surrendering now locks in the loss. Show the long-term projection and explore Premium Holiday or fund switching as alternatives",
-      "Tell them they should have read the product illustration more carefully",
-      "Offer to switch them to a different AIA product as retention"
+      "Accept $200/month — any amount is fine",
+      "Tell them the minimum is $400/month so they have to pay more",
+      "Show them that a slightly higher premium (e.g. $400/month) unlocks a significantly higher welcome bonus tier — use the illustration to show the actual dollar difference in year 1",
+      "Tell them $200/month is too low and they need to save more first"
+    ],
+    correct: 2,
+    explanation: "From 'Pro Achiever Overview' and closing training: Use the welcome bonus tiers as an anchoring tool. Show the client the benefit illustration at $200/month vs $400/month — the difference in welcome bonus can be thousands of dollars. The question becomes: 'For an extra $200/month, you get $X more in year 1. Does that make sense?' This makes increasing the premium feel like a rational decision, not a sales push.",
+    category: 'roleplay'
+  },
+  {
+    question: "In a roleplay, a prospect says: 'I invest in stocks myself — I don't need someone to manage my money.' What is the best advisor opening move?",
+    options: [
+      "Immediately list all the charges in competitor brokerage accounts",
+      "Use the book 'The Psychology of Money' or similar reference to educate them on diversification — position yourself as sharing wisdom, not selling",
+      "Tell them DIY investing is for gamblers",
+      "Ask them which stocks they own and criticise their portfolio"
     ],
     correct: 1,
-    explanation: "Year 2 in the red is expected and was shown in the product illustration at point of sale. The supplementary charge runs for ~10 years — surrendering at year 2 locks in the worst possible outcome. Retention approach: validate the frustration, re-show the long-term projection, explain that the special bonus starting at year 10 changes the equation significantly, and explore Premium Holiday or switching to a more defensive fund rather than full surrender.",
-    category: 'objection-handling'
-  }
+    explanation: "From 'Simple Way to Intro APA': For DIY investors, lead with education not product. Use a credible third-party reference (e.g. a finance book) to discuss diversification across stocks, industries, asset classes, and geographies. This positions you as an educator sharing wisdom rather than a salesperson. Pre-empt the fee objection and the 'I can do it myself' objection before they raise them.",
+    category: 'roleplay'
+  },
+  {
+    question: "In a roleplay, you've shown the benefit illustration and the client asks: 'Are these returns guaranteed?' What do you say?",
+    options: [
+      "Yes, the returns shown are guaranteed by AIA",
+      "No — but honestly explain that ILP returns are not guaranteed as they depend on fund performance; then pivot to the advantages: professional management, diversification, and the welcome/special bonuses which are contractually creditable",
+      "Tell them to ignore the illustration and focus on the minimum guaranteed amount",
+      "Change the subject to the life protection component instead"
+    ],
+    correct: 1,
+    explanation: "Honesty builds trust. The projected returns in the benefit illustration are NOT guaranteed — they are based on assumed fund performance. Acknowledge this directly, then pivot: (1) The welcome bonus is real and credited in year 1, (2) The special bonus from year 10 is real, (3) Professional fund management and diversification maximise the probability of strong long-term returns. Risk is managed, not eliminated.",
+    category: 'roleplay'
+  },
+  {
+    question: "In a roleplay closing demo, the prospect says: 'Let me see the numbers first.' What do you do?",
+    options: [
+      "Email them the benefit illustration and follow up next week",
+      "Run the benefit illustration with them live in the meeting — show the welcome bonus in year 1, the special bonus from year 10, and linearize the projected returns into a monthly income figure they can relate to",
+      "Tell them you don't have the numbers handy and reschedule",
+      "Show them a competitor comparison chart instead"
+    ],
+    correct: 1,
+    explanation: "From 'Explanation of Sales Illustrator for APA' and 'Commentary of My Own Closing': Always run the illustration live with the client, not in advance. Walk them through: (1) Welcome bonus credited in year 1, (2) 100% invested from the start, (3) Special bonus from year 10, (4) Projected fund value at maturity. Then linearize — divide the projected profit into monthly income equivalent. Never leave the illustration for them to interpret alone.",
+    category: 'roleplay'
+  },
+  {
+    question: "In a roleplay, a self-employed client says: 'I like the plan but I'm worried about cash flow — business can be unpredictable.' How do you reassure them?",
+    options: [
+      "Tell them to wait until their business is stable",
+      "Highlight Premium Pass (charge-free 12-month pause after 5 years of premiums paid) and Premium Holiday — explain they can pause without surrendering the policy, and that the worst case is a pause, not a loss",
+      "Offer to lower the premium to $100/month",
+      "Tell them the policy can be surrendered at any time with no penalties"
+    ],
+    correct: 1,
+    explanation: "From training: for self-employed clients, flexibility features are the closing tool. Premium Pass gives a charge-free pause of up to 12 months once 5 years of premiums are paid — perfect for planned business slow periods. Premium Holiday is also available if needed earlier. The key message: 'If business slows, you press pause — not stop. You don't lose what you've built over those years.'",
+    category: 'roleplay'
+  },
+  {
+    question: "In a roleplay with a young couple, they say: 'We're planning to have kids soon — should we buy Pro Achiever for ourselves or for the child?' What do you advise?",
+    options: [
+      "Always buy for the child — they will benefit more",
+      "Always buy for the parents first — they need protection and accumulation before the child's plan",
+      "Advise buying for the parents first since they need coverage now; later, use the Legacy Planning feature to transfer the plan to a child, or start a new policy for the child when they arrive",
+      "Tell them to wait until the child is born to decide"
+    ],
+    correct: 2,
+    explanation: "From training: parents' financial protection comes first — they need life coverage and wealth accumulation in case something happens to them. Once the parents' plan is in place, Pro Achiever's Legacy Planning feature allows the policy to be transferred to a spouse or child for continued coverage. A separate child policy can also be started when the child is born, using the parent's APA as education funding.",
+    category: 'roleplay'
+  },
+
 ];
