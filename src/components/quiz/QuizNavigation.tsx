@@ -6,8 +6,6 @@ interface QuizNavigationProps {
   totalQuestions: number;
   showResult: boolean;
   isComplete: boolean;
-  score: number;
-  user: any;
   onPrevious: () => void;
   onNext: () => void;
   onRestart: () => void;
@@ -18,8 +16,6 @@ export function QuizNavigation({
   totalQuestions,
   showResult,
   isComplete,
-  score,
-  user,
   onPrevious,
   onNext,
   onRestart
