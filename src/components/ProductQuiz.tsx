@@ -52,7 +52,7 @@ export function ProductQuiz({ questions, productId }: ProductQuizProps) {
           isComplete={isComplete}
         />
       </CardHeader>
-      <CardContent className="px-4 sm:px-6">
+      <CardContent className="px-4 sm:px-6 pb-0">
         {isComplete ? (
           <QuizSummary
             score={score}
@@ -63,29 +63,33 @@ export function ProductQuiz({ questions, productId }: ProductQuizProps) {
             onRestart={handleRestart}
           />
         ) : (
-          <div className="space-y-4">
-            <QuizQuestion
-              question={questions[currentQuestion]}
-              selectedAnswer={selectedAnswer}
-              showResult={showResult}
-              onAnswerSelect={handleAnswerSelect}
-            />
+          <div className="flex flex-col">
+            <div className="space-y-4 pb-4">
+              <QuizQuestion
+                question={questions[currentQuestion]}
+                selectedAnswer={selectedAnswer}
+                showResult={showResult}
+                onAnswerSelect={handleAnswerSelect}
+              />
 
-            <QuizExplanation
-              explanation={questions[currentQuestion].explanation}
-              isCorrect={isCorrect}
-              showResult={showResult}
-            />
+              <QuizExplanation
+                explanation={questions[currentQuestion].explanation}
+                isCorrect={isCorrect}
+                showResult={showResult}
+              />
+            </div>
 
-            <QuizNavigation
-              currentQuestion={currentQuestion}
-              totalQuestions={questions.length}
-              showResult={showResult}
-              isComplete={isComplete}
-              onPrevious={handlePrevious}
-              onNext={handleNext}
-              onRestart={handleRestart}
-            />
+            <div className="sticky bottom-0 bg-gradient-to-t from-card/90 to-transparent pt-2 pb-4 backdrop-blur-sm">
+              <QuizNavigation
+                currentQuestion={currentQuestion}
+                totalQuestions={questions.length}
+                showResult={showResult}
+                isComplete={isComplete}
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+                onRestart={handleRestart}
+              />
+            </div>
           </div>
         )}
       </CardContent>
