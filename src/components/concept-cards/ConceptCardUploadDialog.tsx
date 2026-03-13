@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Upload, Loader2, Sparkles, X, ImageIcon, ClipboardPaste, CheckCircle, ChevronLeft, ChevronRight, Trash2, Crop, Eraser, Zap, ZapOff } from 'lucide-react';
+import { Upload, Loader2, Sparkles, X, ImageIcon, ClipboardPaste, CheckCircle, ChevronLeft, ChevronRight, Trash2, Crop, Eraser, Zap, ZapOff, AlertTriangle, Copy } from 'lucide-react';
 import { ImageCropper } from './ImageCropper';
 import { InlineImageEditor } from './InlineImageEditor';
 import { supabase } from '@/integrations/supabase/client';
@@ -16,6 +16,15 @@ import { cn } from '@/lib/utils';
 const AUDIENCE_OPTIONS = ['NSF / NS', 'Young Adults', 'Working Adults', 'Pre-Retirees (50-65)', 'Parents', 'General'];
 const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'Critical Illness', 'General'];
 
+interface DuplicateResult {
+  isDuplicate: boolean;
+  isSimilar: boolean;
+  similarity: number;
+  matchedCardId: string;
+  matchedCardTitle: string;
+  reason: string;
+  checking: boolean;
+}
 
 interface ImageEntry {
   id: string;
@@ -29,6 +38,7 @@ interface ImageEntry {
   productType: string[];
   tags: string[];
   saved: boolean;
+  duplicate: DuplicateResult | null;
 }
 
 interface Props {
