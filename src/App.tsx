@@ -148,12 +148,11 @@ const App = () => (
                   <OnboardingTutorial />
                   <OnboardingHelpButton />
                   <WelcomeModal />
-                  
-                  {/* Admin View Switcher - floating button */}
-                  <AdminViewSwitcher />
                   </AppLayout>
                 </ChecklistProvider>
               </OnboardingProvider>
+              {/* Admin View Switcher - outside AppLayout so it's never clipped */}
+              <AdminViewSwitcher />
             </BrowserRouter>
           </TooltipProvider>
         </AdminProvider>
