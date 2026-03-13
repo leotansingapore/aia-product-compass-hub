@@ -447,30 +447,116 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
               {active && (
                 <div className="rounded-xl border bg-card p-4 space-y-4">
 
-                  {/* ── Duplicate warning banner ─────────────────── */}
+                  {/* ── Duplicate / similar action banner ───────── */}
                   {active.duplicate?.checking && (
                     <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/40 rounded-lg px-3 py-2 border border-border">
                       <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" />
                       Checking for duplicates…
                     </div>
                   )}
+
+                  {/* Duplicate detected (90%+) */}
                   {active.duplicate && !active.duplicate.checking && active.duplicate.isDuplicate && (
-                    <div className="flex items-start gap-2 text-xs bg-destructive/10 border border-destructive/30 rounded-lg px-3 py-2.5">
-                      <Copy className="h-3.5 w-3.5 text-destructive shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-semibold text-destructive">Likely duplicate ({active.duplicate.similarity}% match)</p>
-                        <p className="text-muted-foreground mt-0.5">Matches existing card: <span className="font-medium text-foreground">"{active.duplicate.matchedCardTitle}"</span></p>
-                        <p className="text-muted-foreground mt-0.5">{active.duplicate.reason}</p>
+                    <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-3 space-y-2.5 text-xs">
+                      <div className="flex items-start gap-2">
+                        <Copy className="h-3.5 w-3.5 text-destructive shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-semibold text-destructive">Likely duplicate — {active.duplicate.similarity}% match</p>
+                          <p className="text-muted-foreground mt-0.5">Matches: <span className="font-medium text-foreground">"{active.duplicate.matchedCardTitle}"</span></p>
+                          <p className="text-muted-foreground mt-0.5">{active.duplicate.reason}</p>
+                        </div>
+                      </div>
+                      <p className="text-muted-foreground font-medium">What would you like to do?</p>
+                      <div className="flex flex-wrap gap-2">
+                        <button
+                          type="button"
+                          onClick={() => updateActive({ duplicateAction: 'replace' })}
+                          className={cn(
+                            "flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border text-xs font-medium transition-colors",
+                            active.duplicateAction === 'replace'
+                              ? "bg-destructive text-destructive-foreground border-destructive"
+                              : "bg-background border-border text-foreground hover:border-destructive/60"
+                          )}
+                        >
+                          Replace existing image
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => updateActive({ duplicateAction: 'add-version' })}
+                          className={cn(
+                            "flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border text-xs font-medium transition-colors",
+                            active.duplicateAction === 'add-version'
+                              ? "bg-primary text-primary-foreground border-primary"
+                              : "bg-background border-border text-foreground hover:border-primary/60"
+                          )}
+                        >
+                          Add as drawing version
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => updateActive({ duplicateAction: 'new' })}
+                          className={cn(
+                            "flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border text-xs font-medium transition-colors",
+                            active.duplicateAction === 'new'
+                              ? "bg-secondary text-secondary-foreground border-border"
+                              : "bg-background border-border text-muted-foreground hover:border-border"
+                          )}
+                        >
+                          Save as new card anyway
+                        </button>
                       </div>
                     </div>
                   )}
+
+                  {/* Similar card (60–89%) */}
                   {active.duplicate && !active.duplicate.checking && !active.duplicate.isDuplicate && active.duplicate.isSimilar && active.duplicate.similarity >= 60 && (
-                    <div className="flex items-start gap-2 text-xs bg-secondary border border-border rounded-lg px-3 py-2.5">
-                      <AlertTriangle className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-semibold text-foreground">Similar card exists ({active.duplicate.similarity}% match)</p>
-                        <p className="text-muted-foreground mt-0.5">Similar to: <span className="font-medium text-foreground">"{active.duplicate.matchedCardTitle}"</span></p>
-                        <p className="text-muted-foreground mt-0.5">{active.duplicate.reason}</p>
+                    <div className="rounded-lg border border-border bg-secondary p-3 space-y-2.5 text-xs">
+                      <div className="flex items-start gap-2">
+                        <AlertTriangle className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-semibold text-foreground">Similar card — {active.duplicate.similarity}% match</p>
+                          <p className="text-muted-foreground mt-0.5">Similar to: <span className="font-medium text-foreground">"{active.duplicate.matchedCardTitle}"</span></p>
+                          <p className="text-muted-foreground mt-0.5">{active.duplicate.reason}</p>
+                        </div>
+                      </div>
+                      <p className="text-muted-foreground font-medium">What would you like to do?</p>
+                      <div className="flex flex-wrap gap-2">
+                        <button
+                          type="button"
+                          onClick={() => updateActive({ duplicateAction: 'add-version' })}
+                          className={cn(
+                            "flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border text-xs font-medium transition-colors",
+                            active.duplicateAction === 'add-version'
+                              ? "bg-primary text-primary-foreground border-primary"
+                              : "bg-background border-border text-foreground hover:border-primary/60"
+                          )}
+                        >
+                          Add as drawing version
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => updateActive({ duplicateAction: 'replace' })}
+                          className={cn(
+                            "flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border text-xs font-medium transition-colors",
+                            active.duplicateAction === 'replace'
+                              ? "bg-destructive text-destructive-foreground border-destructive"
+                              : "bg-background border-border text-foreground hover:border-destructive/60"
+                          )}
+                        >
+                          Replace existing image
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => updateActive({ duplicateAction: 'new' })}
+                          className={cn(
+                            "flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border text-xs font-medium transition-colors",
+                            active.duplicateAction === 'new'
+                              ? "bg-secondary text-secondary-foreground border-border"
+                              : "bg-background border-border text-muted-foreground hover:border-border"
+                          )}
+                        >
+                          Save as new card
+                        </button>
                       </div>
                     </div>
                   )}
