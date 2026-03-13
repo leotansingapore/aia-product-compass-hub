@@ -38,7 +38,6 @@ export function QuizSummary({ score, totalQuestions, questions, selectedAnswers,
   const pct = Math.round((score / totalQuestions) * 100);
   const grade = getGrade(pct);
   const feedback = getFeedback(pct);
-  const xp = 20 + Math.floor((score / totalQuestions) * 50);
 
   // Per-category breakdown
   const categories = Array.from(new Set(questions.map(q => (q as any).category).filter(Boolean)));
