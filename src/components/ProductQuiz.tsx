@@ -33,7 +33,6 @@ export function ProductQuiz({ questions, productId }: ProductQuizProps) {
     handleNext,
     handlePrevious,
     handleRestart,
-    user
   } = useQuizState({ questions, productId });
 
   return (
