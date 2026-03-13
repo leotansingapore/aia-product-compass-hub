@@ -89,12 +89,12 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     question: "What is the 'Premium Pass' feature in Pro Achiever 3.0?",
     options: [
       "A discount on premiums for loyal policyholders after 5 years",
-      "The ability to take a break from paying premiums for up to 36 months, with no charges during this period",
+      "The ability to pause premium payments for up to 12 months, available after 5 years of premiums have been paid, with no charges",
       "A feature that automatically reduces the premium amount if the fund value drops",
       "An option to prepay multiple years of premiums in advance"
     ],
     correct: 1,
-    explanation: "Premium Pass allows clients to pause their premium payments for up to 36 months (3 years) with no charges during the pause period. The number of years available depends on the initial investment period chosen. This is a new feature in Pro Achiever 3.0 that provides flexibility for clients facing temporary financial pressure.",
+    explanation: "Premium Pass allows clients to pause premium payments for up to 12 months, but only after at least 5 years of premiums have been paid. There are no charges during the Premium Pass period. This is useful for clients on planned sabbaticals or career breaks.",
     category: 'product-facts'
   },
   {
@@ -170,15 +170,15 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "What is the key difference between the 'Premium Pass' and 'Premium Holiday' in Pro Achiever 3.0?",
+    question: "What is the key difference between 'Premium Pass' and 'Premium Holiday' in Pro Achiever 3.0?",
     options: [
       "They are the same feature with different names",
-      "Premium Pass allows a structured break of up to 36 months with no charges; Premium Holiday pauses payments when facing financial difficulty, also with no premium holiday charges",
+      "Premium Pass is a no-charge pause of up to 12 months available after 5 years of premiums paid; Premium Holiday can be taken within the first 10 years but incurs charges",
       "Premium Pass reduces the premium amount; Premium Holiday suspends the policy entirely",
       "Premium Holiday is only available after year 15; Premium Pass can be used from year 1"
     ],
     correct: 1,
-    explanation: "Both are flexibility features. Premium Pass is a planned break from premium payments for up to 36 months with no charges — useful for sabbaticals or planned career breaks. Premium Holiday is for clients facing unexpected financial difficulties, allowing them to pause without premium holiday charges. Both help prevent unnecessary policy lapses.",
+    explanation: "Premium Pass allows a charge-free pause of up to 12 months, but only after 5 years of premiums have been paid. Premium Holiday can be taken within the first 10 years of the policy, but unlike Premium Pass, charges do apply if taken during this period. Advisors should clarify this distinction to clients upfront to avoid surprises.",
     category: 'product-facts'
   },
   {
@@ -262,12 +262,12 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     question: "A self-employed client with fluctuating income is interested in Pro Achiever 3.0 but worried about the commitment. What features do you highlight?",
     options: [
       "Tell them the fixed premium schedule is actually beneficial for self-employed people",
-      "Highlight the Premium Pass (up to 36 months break, no charges) and Premium Holiday features — they can pause without surrendering the policy during lean periods",
+      "Highlight Premium Pass (up to 12 months charge-free pause after 5 years paid) and Premium Holiday — they can pause without surrendering the policy during lean periods",
       "Advise them to wait until their income stabilises before starting",
       "Suggest a savings account as a lower-commitment alternative"
     ],
     correct: 1,
-    explanation: "The Premium Pass and Premium Holiday features were built exactly for this concern. Premium Pass allows up to 36 months of planned breaks; Premium Holiday covers unexpected financial difficulty — both with no charges. Reassure them: 'If business slows down, you can press pause. You don't lose what you've built.'",
+    explanation: "Premium Pass gives a charge-free pause of up to 12 months once 5 years of premiums are paid — ideal for planned income gaps. Premium Holiday is also available within the first 10 years if needed, though charges apply. Together, these features mean the client never needs to surrender the policy just because of a rough patch.",
     category: 'sales-angles'
   },
   {
@@ -399,12 +399,12 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     question: "A prospect says: 'I'm not sure I can commit to a 20-year policy. What if my circumstances change?' What is the best reassurance?",
     options: [
       "Tell them they must commit or not take the policy",
-      "Explain that Pro Achiever 3.0 has built-in flexibility: Premium Pass allows up to 36 months of paused payments with no charges; Premium Holiday covers unexpected hardship — they can pause without surrendering",
+      "Explain that after 5 years, Premium Pass gives a charge-free pause of up to 12 months; Premium Holiday is also available within the first 10 years if needed — they can pause without surrendering",
       "Offer to write the policy as a 5-year term instead",
       "Promise that they can surrender at any time with no cost"
     ],
     correct: 1,
-    explanation: "Address commitment anxiety directly with Pro Achiever 3.0's flexibility toolkit: Premium Pass (up to 36 months, no charges) for planned breaks, and Premium Holiday for unexpected difficulty. The worst case is a pause — not a lapse. Reassure them: 'Life changes. Pro Achiever was designed knowing that. You have a built-in safety valve.'",
+    explanation: "Address commitment anxiety with Pro Achiever 3.0's flexibility features: once 5 years of premiums are paid, Premium Pass allows up to 12 months charge-free. Premium Holiday is available within the first 10 years too, though charges apply then. The key message: the worst case is a pause, not a loss — they won't need to surrender the policy.",
     category: 'objection-handling'
   },
   {
