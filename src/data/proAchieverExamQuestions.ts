@@ -89,12 +89,12 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     question: "What is the 'Premium Pass' feature in Pro Achiever 3.0?",
     options: [
       "A discount on premiums for loyal policyholders after 5 years",
-      "The ability to take a break from paying premiums for up to 36 months, with no charges during this period",
+      "The ability to pause premium payments for up to 12 months, available after 5 years of premiums have been paid, with no charges",
       "A feature that automatically reduces the premium amount if the fund value drops",
       "An option to prepay multiple years of premiums in advance"
     ],
     correct: 1,
-    explanation: "Premium Pass allows clients to pause their premium payments for up to 36 months (3 years) with no charges during the pause period. The number of years available depends on the initial investment period chosen. This is a new feature in Pro Achiever 3.0 that provides flexibility for clients facing temporary financial pressure.",
+    explanation: "Premium Pass allows clients to pause premium payments for up to 12 months, but only after at least 5 years of premiums have been paid. There are no charges during the Premium Pass period. This is useful for clients on planned sabbaticals or career breaks.",
     category: 'product-facts'
   },
   {
