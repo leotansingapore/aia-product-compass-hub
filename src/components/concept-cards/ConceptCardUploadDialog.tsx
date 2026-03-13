@@ -430,10 +430,10 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                     </div>
                   )}
                   {active.duplicate && !active.duplicate.checking && !active.duplicate.isDuplicate && active.duplicate.isSimilar && active.duplicate.similarity >= 60 && (
-                    <div className="flex items-start gap-2 text-xs bg-amber-500/10 border border-amber-500/30 rounded-lg px-3 py-2.5">
-                      <AlertTriangle className="h-3.5 w-3.5 text-amber-600 shrink-0 mt-0.5" />
+                    <div className="flex items-start gap-2 text-xs bg-secondary border border-border rounded-lg px-3 py-2.5">
+                      <AlertTriangle className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-semibold text-amber-700 dark:text-amber-400">Similar card exists ({active.duplicate.similarity}% match)</p>
+                        <p className="font-semibold text-foreground">Similar card exists ({active.duplicate.similarity}% match)</p>
                         <p className="text-muted-foreground mt-0.5">Similar to: <span className="font-medium text-foreground">"{active.duplicate.matchedCardTitle}"</span></p>
                         <p className="text-muted-foreground mt-0.5">{active.duplicate.reason}</p>
                       </div>
