@@ -345,7 +345,7 @@ export default function ConceptCardsPage() {
       />
 
       <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-5xl">
-        <ScriptsTabBar />
+        <div className="hidden md:block"><ScriptsTabBar /></div>
 
         {/* Toolbar */}
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4">
