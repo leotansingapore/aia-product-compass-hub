@@ -66,7 +66,6 @@ export function QuizSummary({ score, totalQuestions, questions, selectedAnswers,
         </div>
         <div className={cn("text-lg font-semibold", grade.color)}>{grade.label}</div>
         <div className="text-sm text-muted-foreground">{pct}% correct</div>
-        <div className="text-xs text-muted-foreground mt-1">+{xp} XP earned</div>
       </div>
 
       {/* Feedback */}
