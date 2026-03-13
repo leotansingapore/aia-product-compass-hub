@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { useAdminVideoProgress, UserVideoStat } from '@/hooks/useAdminVideoProgress';
 import { LoadingState } from '@/components/ui/LoadingState';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 function formatWatchTime(seconds: number): string {
   if (seconds < 60) return `${seconds}s`;
@@ -51,15 +52,102 @@ function formatDate(iso: string | null): string {
 }
 
 function CompletionBadge({ pct }: { pct: number }) {
-  const variant =
-    pct >= 80 ? 'default' : pct >= 40 ? 'secondary' : 'outline';
+  const variant = pct >= 80 ? 'default' : pct >= 40 ? 'secondary' : 'outline';
   return (
-    <Badge variant={variant} className="tabular-nums">
+    <Badge variant={variant} className="tabular-nums text-xs">
       {pct}%
     </Badge>
   );
 }
 
+/** Mobile card view for a single user's progress */
+function UserProgressMobileCard({ stat }: { stat: UserVideoStat }) {
+  const [open, setOpen] = useState(false);
+  const name = stat.display_name || stat.email || stat.user_id.slice(0, 8) + '…';
+
+  return (
+    <Collapsible open={open} onOpenChange={setOpen}>
+      <CollapsibleTrigger asChild>
+        <Card className="cursor-pointer active:scale-[0.99] transition-transform">
+          <CardContent className="p-4">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex-1 min-w-0">
+                <div className="font-medium text-sm truncate">{name}</div>
+                {stat.email && stat.display_name && (
+                  <div className="text-xs text-muted-foreground truncate">{stat.email}</div>
+                )}
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <CompletionBadge pct={stat.completion_percentage} />
+                {open ? (
+                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                ) : (
+                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                )}
+              </div>
+            </div>
+
+            <Progress value={stat.completion_percentage} className="h-1.5 mt-3 mb-3" />
+
+            <div className="grid grid-cols-3 gap-2 text-center">
+              <div>
+                <div className="text-sm font-semibold">
+                  <span className="text-primary">{stat.completed_videos}</span>
+                  <span className="text-muted-foreground text-xs">/{stat.total_videos}</span>
+                </div>
+                <div className="text-xs text-muted-foreground">Videos</div>
+              </div>
+              <div>
+                <div className="text-sm font-semibold">
+                  {formatWatchTime(stat.total_watch_time_seconds)}
+                </div>
+                <div className="text-xs text-muted-foreground">Watch time</div>
+              </div>
+              <div>
+                <div className="text-sm font-semibold">{stat.product_breakdown.length}</div>
+                <div className="text-xs text-muted-foreground">Products</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </CollapsibleTrigger>
+
+      <CollapsibleContent>
+        <div className="mx-1 mb-2 rounded-b-lg border border-t-0 bg-muted/30 px-4 py-3 space-y-2">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+            Product Breakdown
+          </p>
+          {stat.product_breakdown.map(pb => (
+            <div key={pb.product_id} className="rounded-lg border bg-background p-3 text-sm">
+              <div className="font-medium mb-2 truncate">{pb.product_title}</div>
+              <div className="flex items-center justify-between gap-2 mb-1.5">
+                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                  <CheckCircle2 className="h-3 w-3" />
+                  {pb.videos_completed}/{pb.videos_watched} videos
+                </span>
+                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {formatWatchTime(pb.total_watch_time_seconds)}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Progress value={pb.completion_percentage} className="h-1.5 flex-1" />
+                <span className="text-xs text-muted-foreground w-8 text-right">
+                  {pb.completion_percentage}%
+                </span>
+              </div>
+            </div>
+          ))}
+          <p className="text-xs text-muted-foreground pt-1">
+            Last active: {formatDate(stat.last_activity)}
+          </p>
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
+
+/** Desktop table row */
 function UserProgressRow({ stat }: { stat: UserVideoStat }) {
   const [open, setOpen] = useState(false);
   const name = stat.display_name || stat.email || stat.user_id.slice(0, 8) + '…';
@@ -86,16 +174,11 @@ function UserProgressRow({ stat }: { stat: UserVideoStat }) {
           <TableCell className="text-center">
             <div className="flex flex-col items-center gap-1">
               <CompletionBadge pct={stat.completion_percentage} />
-              <Progress
-                value={stat.completion_percentage}
-                className="h-1.5 w-20"
-              />
+              <Progress value={stat.completion_percentage} className="h-1.5 w-20" />
             </div>
           </TableCell>
           <TableCell className="text-center tabular-nums text-sm">
-            <span className="text-primary font-medium">
-              {stat.completed_videos}
-            </span>
+            <span className="text-primary font-medium">{stat.completed_videos}</span>
             <span className="text-muted-foreground"> / {stat.total_videos}</span>
           </TableCell>
           <TableCell className="text-center">
@@ -124,24 +207,18 @@ function UserProgressRow({ stat }: { stat: UserVideoStat }) {
                 {stat.product_breakdown.map(pb => (
                   <div
                     key={pb.product_id}
-                    className="flex items-center gap-4 rounded-lg border bg-background px-4 py-2.5 text-sm"
+                    className="flex flex-wrap items-center gap-3 rounded-lg border bg-background px-4 py-2.5 text-sm"
                   >
-                    <div className="flex-1 min-w-0">
-                      <span className="font-medium truncate block">
-                        {pb.product_title}
-                      </span>
+                    <div className="flex-1 min-w-[120px]">
+                      <span className="font-medium truncate block">{pb.product_title}</span>
                     </div>
                     <div className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
                       <CheckCircle2 className="h-3 w-3" />
-                      <span>
-                        {pb.videos_completed}/{pb.videos_watched} videos
-                      </span>
+                      <span>{pb.videos_completed}/{pb.videos_watched} videos</span>
                     </div>
-                    <div className="w-24 flex flex-col items-end gap-1 shrink-0">
+                    <div className="flex flex-col items-end gap-1 shrink-0">
                       <Progress value={pb.completion_percentage} className="h-1.5 w-20" />
-                      <span className="text-xs text-muted-foreground">
-                        {pb.completion_percentage}%
-                      </span>
+                      <span className="text-xs text-muted-foreground">{pb.completion_percentage}%</span>
                     </div>
                     <div className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
                       <Clock className="h-3 w-3" />
@@ -161,6 +238,7 @@ function UserProgressRow({ stat }: { stat: UserVideoStat }) {
 export function VideoProgressPanel() {
   const { stats, loading, error, refetch } = useAdminVideoProgress();
   const [search, setSearch] = useState('');
+  const isMobile = useIsMobile();
 
   const filtered = stats.filter(s => {
     if (!search) return true;
@@ -171,15 +249,12 @@ export function VideoProgressPanel() {
     );
   });
 
-  // Summary stats
   const totalUsers = stats.length;
   const totalWatchTime = stats.reduce((s, u) => s + u.total_watch_time_seconds, 0);
   const totalCompletions = stats.reduce((s, u) => s + u.completed_videos, 0);
   const avgCompletion =
     stats.length > 0
-      ? Math.round(
-          stats.reduce((s, u) => s + u.completion_percentage, 0) / stats.length
-        )
+      ? Math.round(stats.reduce((s, u) => s + u.completion_percentage, 0) / stats.length)
       : 0;
 
   if (loading) return <LoadingState message="Loading video progress data..." />;
@@ -187,99 +262,106 @@ export function VideoProgressPanel() {
   if (error)
     return (
       <Card>
-        <CardContent className="p-8 text-center text-destructive">
-          {error}
-        </CardContent>
+        <CardContent className="p-8 text-center text-destructive">{error}</CardContent>
       </Card>
     );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Summary Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <Card>
-          <CardContent className="p-4 flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10">
-              <Users className="h-5 w-5 text-primary" />
+          <CardContent className="p-3 sm:p-4 flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-primary/10 shrink-0">
+              <Users className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
             </div>
-            <div>
-              <div className="text-2xl font-bold">{totalUsers}</div>
+            <div className="min-w-0">
+              <div className="text-xl sm:text-2xl font-bold">{totalUsers}</div>
               <div className="text-xs text-muted-foreground">Active Learners</div>
             </div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-4 flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-accent/50">
-              <CheckCircle2 className="h-5 w-5 text-accent-foreground" />
+          <CardContent className="p-3 sm:p-4 flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-accent/50 shrink-0">
+              <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-accent-foreground" />
             </div>
-            <div>
-              <div className="text-2xl font-bold">{totalCompletions}</div>
+            <div className="min-w-0">
+              <div className="text-xl sm:text-2xl font-bold">{totalCompletions}</div>
               <div className="text-xs text-muted-foreground">Videos Completed</div>
             </div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-4 flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-secondary">
-              <Clock className="h-5 w-5 text-secondary-foreground" />
+          <CardContent className="p-3 sm:p-4 flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-secondary shrink-0">
+              <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-secondary-foreground" />
             </div>
-            <div>
-              <div className="text-2xl font-bold">{formatWatchTime(totalWatchTime)}</div>
+            <div className="min-w-0">
+              <div className="text-xl sm:text-2xl font-bold">{formatWatchTime(totalWatchTime)}</div>
               <div className="text-xs text-muted-foreground">Total Watch Time</div>
             </div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-4 flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-muted">
-              <TrendingUp className="h-5 w-5 text-muted-foreground" />
+          <CardContent className="p-3 sm:p-4 flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-muted shrink-0">
+              <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
             </div>
-            <div>
-              <div className="text-2xl font-bold">{avgCompletion}%</div>
+            <div className="min-w-0">
+              <div className="text-xl sm:text-2xl font-bold">{avgCompletion}%</div>
               <div className="text-xs text-muted-foreground">Avg Completion</div>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Main Table */}
-      <Card>
-        <CardHeader>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <CardTitle className="flex items-center gap-2">
-                <Video className="h-5 w-5" />
-                User Video Progress
-              </CardTitle>
-              <CardDescription>
-                Click any row to see per-product breakdowns
-              </CardDescription>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="Search users…"
-                  value={search}
-                  onChange={e => setSearch(e.target.value)}
-                  className="pl-9 w-56"
-                />
-              </div>
-              <Button variant="outline" size="icon" onClick={refetch}>
-                <RefreshCw className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent className="p-0">
-          {filtered.length === 0 ? (
-            <div className="p-12 text-center text-muted-foreground">
-              <Play className="h-10 w-10 mx-auto mb-3 opacity-30" />
-              <p className="font-medium">No video activity yet</p>
-              <p className="text-sm mt-1">Users will appear here once they start watching videos</p>
-            </div>
-          ) : (
+      {/* Search + Refresh */}
+      <div className="flex items-center gap-2">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search users…"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="pl-9"
+          />
+        </div>
+        <Button variant="outline" size="icon" onClick={refetch} className="shrink-0">
+          <RefreshCw className="h-4 w-4" />
+        </Button>
+      </div>
+
+      {/* Content area */}
+      {filtered.length === 0 ? (
+        <Card>
+          <CardContent className="p-12 text-center text-muted-foreground">
+            <Play className="h-10 w-10 mx-auto mb-3 opacity-30" />
+            <p className="font-medium">No video activity yet</p>
+            <p className="text-sm mt-1">Users will appear here once they start watching videos</p>
+          </CardContent>
+        </Card>
+      ) : isMobile ? (
+        /* ── Mobile: stacked cards ── */
+        <div className="space-y-3">
+          <p className="text-xs text-muted-foreground px-1">
+            {filtered.length} user{filtered.length !== 1 ? 's' : ''} · tap to expand
+          </p>
+          {filtered.map(stat => (
+            <UserProgressMobileCard key={stat.user_id} stat={stat} />
+          ))}
+        </div>
+      ) : (
+        /* ── Desktop: table ── */
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-base">
+              <Video className="h-5 w-5" />
+              User Video Progress
+            </CardTitle>
+            <CardDescription>Click any row to see per-product breakdowns</CardDescription>
+          </CardHeader>
+          <CardContent className="p-0">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -297,9 +379,9 @@ export function VideoProgressPanel() {
                 ))}
               </TableBody>
             </Table>
-          )}
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }

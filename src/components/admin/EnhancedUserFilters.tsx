@@ -159,26 +159,28 @@ export function EnhancedUserFilters({
       </div>
 
       {/* Status Overview Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 pb-3">
+      <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 pb-3">
         {[
-          { key: 'pending_approval', label: 'Pending', color: 'text-amber-600', bgColor: 'bg-amber-50 hover:bg-amber-100' },
-          { key: 'approved', label: 'Approved', color: 'text-blue-600', bgColor: 'bg-blue-50 hover:bg-blue-100' },
-          { key: 'active', label: 'Active', color: 'text-green-600', bgColor: 'bg-green-50 hover:bg-green-100' },
-          { key: 'suspended', label: 'Suspended', color: 'text-gray-600', bgColor: 'bg-gray-50 hover:bg-gray-100' },
-          { key: 'rejected', label: 'Rejected', color: 'text-red-600', bgColor: 'bg-red-50 hover:bg-red-100' },
-        ].map(({ key, label, color, bgColor }) => (
+          { key: 'pending_approval', label: 'Pending' },
+          { key: 'approved', label: 'Approved' },
+          { key: 'active', label: 'Active' },
+          { key: 'suspended', label: 'Suspended' },
+          { key: 'rejected', label: 'Rejected' },
+        ].map(({ key, label }) => (
           <button
             key={key}
-            onClick={() => updateFilter('status', key === 'all' ? 'all' : key)}
-            className={`text-center py-3 min-h-0 rounded-lg border transition-colors ${bgColor} ${
-              filters.status === key ? 'ring-2 ring-primary' : 'hover:shadow-sm'
+            onClick={() => updateFilter('status', key)}
+            className={`text-center py-2.5 rounded-lg border transition-colors bg-muted/40 hover:bg-muted/80 ${
+              filters.status === key ? 'ring-2 ring-primary bg-primary/5' : ''
             }`}
           >
-            <div className="flex flex-col gap-1">
-              <div className={`font-semibold text-lg ${color}`}>
+            <div className="flex flex-col gap-0.5">
+              <div className="font-semibold text-base sm:text-lg text-foreground">
                 {statusCounts[key as keyof StatusCounts]}
               </div>
-              <div className="text-micro text-muted-foreground font-medium">{label}</div>
+              <div className="text-[10px] sm:text-xs text-muted-foreground font-medium leading-tight">
+                {label}
+              </div>
             </div>
           </button>
         ))}
