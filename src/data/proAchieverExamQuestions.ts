@@ -133,6 +133,18 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     explanation: "Most Pro Achiever clients pay between $4,800 and $6,000 per year (roughly $400–$500/month), with some exceeding $12,000/year. The average case size has grown from $3,800 to $5,000. About 80% of AIA consultants sell Pro Achiever, making it the most widely sold investment plan.",
     category: 'product-facts'
   },
+  {
+    question: "What is the capital guarantee feature in Pro Achiever 3.0 upon death?",
+    options: [
+      "There is no capital guarantee — the death benefit is purely market-linked",
+      "Upon death, the beneficiary receives 101% of total premiums paid OR the current fund value, whichever is higher",
+      "The policy pays back only the welcome bonus amount upon death",
+      "Capital is guaranteed only if the policy has been held for more than 10 years"
+    ],
+    correct: 1,
+    explanation: "Pro Achiever 3.0 provides a capital guarantee upon death: the beneficiary receives the higher of (1) 101% of total premiums paid, or (2) the current fund value. This means even if markets have performed poorly and the fund value is below total premiums paid, the family still gets back more than was invested — providing genuine peace of mind alongside the investment.",
+    category: 'product-facts'
+  },
 
   // ══════════════════════════════════════════
   // SALES TECHNIQUES (10 questions)
