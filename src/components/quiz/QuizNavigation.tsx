@@ -24,12 +24,6 @@ export function QuizNavigation({
   onNext,
   onRestart
 }: QuizNavigationProps) {
-  const calculateXP = (score: number, totalQuestions: number) => {
-    const baseXP = 20;
-    const bonusXP = Math.floor((score / totalQuestions) * 50);
-    return baseXP + bonusXP;
-  };
-
   return (
     <div className="pt-4 space-y-2">
       {/* Main action row */}
@@ -70,12 +64,11 @@ export function QuizNavigation({
             showResult && (
               <Button 
                 onClick={onNext}
-                disabled={!user}
                 variant="hero"
                 size="sm"
                 className="px-4 text-xs sm:text-sm"
               >
-                {user ? `Complete (+${calculateXP(score, totalQuestions)} XP)` : 'Sign in to earn XP'}
+                Complete ✓
               </Button>
             )
           )}
