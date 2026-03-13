@@ -31,46 +31,55 @@ export function QuizNavigation({
   };
 
   return (
-    <div className="flex justify-between items-center pt-4">
-      <Button 
-        variant="outline" 
-        onClick={onPrevious}
-        disabled={currentQuestion === 0}
-      >
-        Previous
-      </Button>
-      
-      <div className="flex gap-2">
-        {isComplete && (
-          <Button 
-            variant="outline" 
-            onClick={onRestart}
-            className="flex items-center gap-2"
-          >
-            <RotateCcw className="h-4 w-4" />
-            Restart Quiz
-          </Button>
-        )}
+    <div className="pt-4 space-y-2">
+      {/* Main action row */}
+      <div className="flex items-center justify-between gap-2">
+        <Button 
+          variant="outline"
+          size="sm"
+          onClick={onPrevious}
+          disabled={currentQuestion === 0}
+          className="shrink-0"
+        >
+          ← Prev
+        </Button>
         
-        {currentQuestion < totalQuestions - 1 ? (
-          <Button 
-            onClick={onNext}
-            disabled={!showResult}
-          >
-            Next Question
-          </Button>
-        ) : (
-          showResult && (
+        <div className="flex gap-2 flex-wrap justify-end">
+          {isComplete && (
             <Button 
-              onClick={onNext}
-              disabled={!user}
-              variant="hero"
-              className="px-6"
+              variant="outline"
+              size="sm"
+              onClick={onRestart}
+              className="flex items-center gap-1"
             >
-              {user ? `Complete Quiz (+${calculateXP(score, totalQuestions)} XP)` : 'Sign in to earn XP'}
+              <RotateCcw className="h-3 w-3" />
+              <span className="hidden sm:inline">Restart</span>
+              <span className="sm:hidden">↺</span>
             </Button>
-          )
-        )}
+          )}
+          
+          {currentQuestion < totalQuestions - 1 ? (
+            <Button 
+              size="sm"
+              onClick={onNext}
+              disabled={!showResult}
+            >
+              Next →
+            </Button>
+          ) : (
+            showResult && (
+              <Button 
+                onClick={onNext}
+                disabled={!user}
+                variant="hero"
+                size="sm"
+                className="px-4 text-xs sm:text-sm"
+              >
+                {user ? `Complete (+${calculateXP(score, totalQuestions)} XP)` : 'Sign in to earn XP'}
+              </Button>
+            )
+          )}
+        </div>
       </div>
     </div>
   );
