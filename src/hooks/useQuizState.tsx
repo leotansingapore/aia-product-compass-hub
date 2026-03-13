@@ -124,6 +124,7 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
   return {
     currentQuestion,
     selectedAnswer,
+    selectedAnswers,
     showResult,
     score,
     answeredQuestions,
