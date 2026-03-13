@@ -501,6 +501,51 @@ export type Database = {
           },
         ]
       }
+      feedback_submissions: {
+        Row: {
+          admin_notes: string | null
+          created_at: string
+          description: string
+          id: string
+          page_url: string | null
+          status: string
+          title: string
+          type: string
+          updated_at: string
+          user_email: string | null
+          user_id: string
+          user_name: string | null
+        }
+        Insert: {
+          admin_notes?: string | null
+          created_at?: string
+          description: string
+          id?: string
+          page_url?: string | null
+          status?: string
+          title: string
+          type?: string
+          updated_at?: string
+          user_email?: string | null
+          user_id: string
+          user_name?: string | null
+        }
+        Update: {
+          admin_notes?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          page_url?: string | null
+          status?: string
+          title?: string
+          type?: string
+          updated_at?: string
+          user_email?: string | null
+          user_id?: string
+          user_name?: string | null
+        }
+        Relationships: []
+      }
       file_embeddings: {
         Row: {
           content: string
