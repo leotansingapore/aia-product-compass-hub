@@ -63,7 +63,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
   const [aiEnhance, setAiEnhance] = useState(true);
   const fileRef = useRef<HTMLInputElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
-  const { createCard, uploadOriginalImage } = useConceptCardsMutations();
+  const { createCard, updateCard, uploadOriginalImage } = useConceptCardsMutations();
 
   const reset = useCallback(() => {
     setEntries([]);
