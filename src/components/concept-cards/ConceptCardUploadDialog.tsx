@@ -395,6 +395,35 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
               {/* Active entry editor */}
               {active && (
                 <div className="rounded-xl border bg-card p-4 space-y-4">
+
+                  {/* ── Duplicate warning banner ─────────────────── */}
+                  {active.duplicate?.checking && (
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/40 rounded-lg px-3 py-2 border border-border">
+                      <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" />
+                      Checking for duplicates…
+                    </div>
+                  )}
+                  {active.duplicate && !active.duplicate.checking && active.duplicate.isDuplicate && (
+                    <div className="flex items-start gap-2 text-xs bg-destructive/10 border border-destructive/30 rounded-lg px-3 py-2.5">
+                      <Copy className="h-3.5 w-3.5 text-destructive shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-destructive">Likely duplicate ({active.duplicate.similarity}% match)</p>
+                        <p className="text-muted-foreground mt-0.5">Matches existing card: <span className="font-medium text-foreground">"{active.duplicate.matchedCardTitle}"</span></p>
+                        <p className="text-muted-foreground mt-0.5">{active.duplicate.reason}</p>
+                      </div>
+                    </div>
+                  )}
+                  {active.duplicate && !active.duplicate.checking && !active.duplicate.isDuplicate && active.duplicate.isSimilar && active.duplicate.similarity >= 60 && (
+                    <div className="flex items-start gap-2 text-xs bg-amber-500/10 border border-amber-500/30 rounded-lg px-3 py-2.5">
+                      <AlertTriangle className="h-3.5 w-3.5 text-amber-600 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-amber-700 dark:text-amber-400">Similar card exists ({active.duplicate.similarity}% match)</p>
+                        <p className="text-muted-foreground mt-0.5">Similar to: <span className="font-medium text-foreground">"{active.duplicate.matchedCardTitle}"</span></p>
+                        <p className="text-muted-foreground mt-0.5">{active.duplicate.reason}</p>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Preview row */}
                   {aiEnhance ? (
                     <div className={cn(
