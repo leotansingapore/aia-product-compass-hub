@@ -44,7 +44,6 @@ export function InlineImageEditor({
   const selStartRef = useRef<{ x: number; y: number } | null>(null);
   const selImageDataRef = useRef<ImageData | null>(null);
   const dragStartRef = useRef<{ x: number; y: number } | null>(null);
-  const origSelRectRef = useRef<Rect | null>(null);
   const [selRect, setSelRect] = useState<Rect | null>(null);
 
   // Cursor overlay
@@ -242,7 +241,6 @@ export function InlineImageEditor({
             const canvas = canvasRef.current!;
             const ctx = canvas.getContext('2d')!;
             selImageDataRef.current = ctx.getImageData(r.x, r.y, r.w, r.h);
-            origSelRectRef.current = { ...r };
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(r.x, r.y, r.w, r.h);
           }
@@ -317,10 +315,8 @@ export function InlineImageEditor({
           const ctx = canvas.getContext('2d')!;
           const baseSnap = historyRef.current[historyIndexRef.current];
           if (baseSnap) ctx.putImageData(baseSnap, 0, 0);
-          // Erase the ORIGINAL position (not the intermediate drag position)
-          const orig = origSelRectRef.current ?? r;
           ctx.fillStyle = '#ffffff';
-          ctx.fillRect(orig.x, orig.y, orig.w, orig.h);
+          ctx.fillRect(r.x, r.y, r.w, r.h);
           ctx.putImageData(selImageDataRef.current, newRect.x, newRect.y);
           return;
         }
