@@ -262,12 +262,12 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     question: "A self-employed client with fluctuating income is interested in Pro Achiever 3.0 but worried about the commitment. What features do you highlight?",
     options: [
       "Tell them the fixed premium schedule is actually beneficial for self-employed people",
-      "Highlight the Premium Pass (up to 36 months break, no charges) and Premium Holiday features — they can pause without surrendering the policy during lean periods",
+      "Highlight Premium Pass (up to 12 months charge-free pause after 5 years paid) and Premium Holiday — they can pause without surrendering the policy during lean periods",
       "Advise them to wait until their income stabilises before starting",
       "Suggest a savings account as a lower-commitment alternative"
     ],
     correct: 1,
-    explanation: "The Premium Pass and Premium Holiday features were built exactly for this concern. Premium Pass allows up to 36 months of planned breaks; Premium Holiday covers unexpected financial difficulty — both with no charges. Reassure them: 'If business slows down, you can press pause. You don't lose what you've built.'",
+    explanation: "Premium Pass gives a charge-free pause of up to 12 months once 5 years of premiums are paid — ideal for planned income gaps. Premium Holiday is also available within the first 10 years if needed, though charges apply. Together, these features mean the client never needs to surrender the policy just because of a rough patch.",
     category: 'sales-angles'
   },
   {
