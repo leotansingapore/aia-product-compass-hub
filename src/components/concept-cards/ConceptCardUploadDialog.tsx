@@ -26,6 +26,8 @@ interface DuplicateResult {
   checking: boolean;
 }
 
+type DuplicateAction = 'new' | 'replace' | 'add-version';
+
 interface ImageEntry {
   id: string;
   file: File;
@@ -39,6 +41,7 @@ interface ImageEntry {
   tags: string[];
   saved: boolean;
   duplicate: DuplicateResult | null;
+  duplicateAction: DuplicateAction;
 }
 
 interface Props {
