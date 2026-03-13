@@ -26,7 +26,6 @@ import {
   Users,
   TrendingUp,
   Brain,
-  Award,
 } from 'lucide-react';
 import { useAdminQuizScores, UserQuizStat } from '@/hooks/useAdminQuizScores';
 import { LoadingState } from '@/components/ui/LoadingState';
@@ -78,7 +77,7 @@ function UserQuizMobileCard({ stat }: { stat: UserQuizStat }) {
 
             <Progress value={stat.best_score_pct} className="h-1.5 mt-3 mb-3" />
 
-            <div className="grid grid-cols-3 gap-2 text-center">
+            <div className="grid grid-cols-2 gap-2 text-center">
               <div>
                 <div className="text-sm font-semibold">{stat.total_attempts}</div>
                 <div className="text-xs text-muted-foreground">Attempts</div>
@@ -86,10 +85,6 @@ function UserQuizMobileCard({ stat }: { stat: UserQuizStat }) {
               <div>
                 <div className="text-sm font-semibold">{stat.avg_score_pct}%</div>
                 <div className="text-xs text-muted-foreground">Avg Score</div>
-              </div>
-              <div>
-                <div className="text-sm font-semibold">{stat.total_xp_earned}</div>
-                <div className="text-xs text-muted-foreground">XP Earned</div>
               </div>
             </div>
           </CardContent>
@@ -108,10 +103,6 @@ function UserQuizMobileCard({ stat }: { stat: UserQuizStat }) {
                 <span className="text-xs text-muted-foreground flex items-center gap-1">
                   <Trophy className="h-3 w-3" />
                   Best: {pb.best_score}/{pb.best_total} ({pb.best_score_pct}%)
-                </span>
-                <span className="text-xs text-muted-foreground flex items-center gap-1">
-                  <Award className="h-3 w-3" />
-                  {pb.total_xp_earned} XP
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -166,9 +157,6 @@ function UserQuizRow({ stat }: { stat: UserQuizStat }) {
           <TableCell className="text-center tabular-nums text-sm">
             {stat.total_attempts}
           </TableCell>
-          <TableCell className="text-center tabular-nums text-sm">
-            {stat.total_xp_earned}
-          </TableCell>
           <TableCell className="text-center text-xs text-muted-foreground">
             {formatDate(stat.last_attempt)}
           </TableCell>
@@ -177,7 +165,7 @@ function UserQuizRow({ stat }: { stat: UserQuizStat }) {
 
       <CollapsibleContent asChild>
         <TableRow className="bg-muted/20">
-          <TableCell colSpan={6} className="py-0">
+          <TableCell colSpan={5} className="py-0">
             <div className="py-3 px-6 space-y-2">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
                 Product Breakdown
@@ -199,9 +187,8 @@ function UserQuizRow({ stat }: { stat: UserQuizStat }) {
                       <Progress value={pb.best_score_pct} className="h-1.5 w-20" />
                       <span className="text-xs text-muted-foreground">Avg {pb.avg_score_pct}%</span>
                     </div>
-                    <div className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
-                      <Award className="h-3 w-3" />
-                      {pb.total_xp_earned} XP · {pb.attempts} attempt{pb.attempts !== 1 ? 's' : ''}
+                    <div className="text-xs text-muted-foreground shrink-0">
+                      {pb.attempts} attempt{pb.attempts !== 1 ? 's' : ''}
                     </div>
                   </div>
                 ))}
@@ -230,7 +217,6 @@ export function QuizScoresPanel() {
 
   const totalUsers = stats.length;
   const totalAttempts = stats.reduce((s, u) => s + u.total_attempts, 0);
-  const totalXp = stats.reduce((s, u) => s + u.total_xp_earned, 0);
   const avgBest =
     stats.length > 0
       ? Math.round(stats.reduce((s, u) => s + u.best_score_pct, 0) / stats.length)
@@ -248,7 +234,7 @@ export function QuizScoresPanel() {
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Summary Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-3 gap-3">
         <Card>
           <CardContent className="p-3 sm:p-4 flex items-center gap-3">
             <div className="p-2 rounded-lg bg-primary/10 shrink-0">
@@ -268,17 +254,6 @@ export function QuizScoresPanel() {
             <div className="min-w-0">
               <div className="text-xl sm:text-2xl font-bold">{totalAttempts}</div>
               <div className="text-xs text-muted-foreground">Total Attempts</div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-3 sm:p-4 flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-secondary shrink-0">
-              <Award className="h-4 w-4 sm:h-5 sm:w-5 text-secondary-foreground" />
-            </div>
-            <div className="min-w-0">
-              <div className="text-xl sm:text-2xl font-bold">{totalXp}</div>
-              <div className="text-xs text-muted-foreground">Total XP Earned</div>
             </div>
           </CardContent>
         </Card>
@@ -346,7 +321,6 @@ export function QuizScoresPanel() {
                   <TableHead className="text-center">Best Score</TableHead>
                   <TableHead className="text-center">Avg Score</TableHead>
                   <TableHead className="text-center">Attempts</TableHead>
-                  <TableHead className="text-center">XP Earned</TableHead>
                   <TableHead className="text-center">Last Attempt</TableHead>
                 </TableRow>
               </TableHeader>
