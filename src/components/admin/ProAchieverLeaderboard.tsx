@@ -57,7 +57,7 @@ export function ProAchieverLeaderboard() {
       }) as {
         user_id: string; name: string; email: string | null;
         best_score: number; best_total: number; best_score_pct: number;
-        avg_score_pct: number; attempts: number; xp_earned: number; last_attempt: string | null;
+        avg_score_pct: number; attempts: number; last_attempt: string | null;
       }[];
   }, [stats]);
 
