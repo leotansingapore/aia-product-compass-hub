@@ -165,8 +165,8 @@ export default function ProductDetail() {
             <BookmarkButton productId={product.id} />
           </div>
 
-          {/* Resources Section - 2 columns on larger screens */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-8">
+          {/* Resources Section - full width on mobile */}
+          <div className="mb-4 sm:mb-8">
             {/* Useful Links */}
             {productId === 'sales-tools-objections' ? (
               <SalesToolsUsefulLinks
@@ -180,11 +180,6 @@ export default function ProductDetail() {
                 productId={productId}
               />
             )}
-
-            {/* Personal Notes */}
-            <ProtectedSection sectionId="product_notes">
-              <PersonalNotes productId={product.id} />
-            </ProtectedSection>
           </div>
 
           {/* Training Videos Section */}
