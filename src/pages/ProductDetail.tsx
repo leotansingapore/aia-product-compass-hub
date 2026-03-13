@@ -219,6 +219,13 @@ export default function ProductDetail() {
           {/* Sub-modules Section */}
           <SubModulesSection parentProductId={product.id} />
 
+          {/* Personal Notes — at the bottom */}
+          <ProtectedSection sectionId="product_notes">
+            <div className="mt-4 sm:mt-8">
+              <PersonalNotes productId={product.id} />
+            </div>
+          </ProtectedSection>
+
         </div>
       </PageLayout>
     </ProtectedPage>
