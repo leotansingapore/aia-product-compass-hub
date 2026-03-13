@@ -93,7 +93,7 @@ function UserProgressRow({ stat }: { stat: UserVideoStat }) {
             </div>
           </TableCell>
           <TableCell className="text-center tabular-nums text-sm">
-            <span className="text-green-600 dark:text-green-400 font-medium">
+            <span className="text-primary font-medium">
               {stat.completed_videos}
             </span>
             <span className="text-muted-foreground"> / {stat.total_videos}</span>
