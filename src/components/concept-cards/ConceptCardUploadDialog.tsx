@@ -352,7 +352,23 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                     )}
                     {entry.saved && (
                       <div className="absolute inset-0 bg-background/60 flex items-center justify-center">
-                        <CheckCircle className="h-5 w-5 text-green-600" />
+                        <CheckCircle className="h-5 w-5 text-primary" />
+                      </div>
+                    )}
+                    {/* Duplicate/similar indicator on thumbnail */}
+                    {entry.duplicate?.checking && (
+                      <div className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-muted/80 flex items-center justify-center">
+                        <Loader2 className="h-2.5 w-2.5 animate-spin text-muted-foreground" />
+                      </div>
+                    )}
+                    {entry.duplicate && !entry.duplicate.checking && entry.duplicate.isDuplicate && (
+                      <div className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-destructive/90 flex items-center justify-center">
+                        <Copy className="h-2.5 w-2.5 text-destructive-foreground" />
+                      </div>
+                    )}
+                    {entry.duplicate && !entry.duplicate.checking && !entry.duplicate.isDuplicate && entry.duplicate.isSimilar && entry.duplicate.similarity >= 60 && (
+                      <div className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-warning/90 flex items-center justify-center">
+                        <AlertTriangle className="h-2.5 w-2.5 text-warning-foreground" />
                       </div>
                     )}
                     {!entry.title.trim() && (
