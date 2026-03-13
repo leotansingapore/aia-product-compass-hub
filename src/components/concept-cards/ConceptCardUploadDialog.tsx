@@ -141,6 +141,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
           productType: [],
           tags: [],
           saved: false,
+          duplicate: null,
         };
         setEntries(prev => {
           const updated = [...prev, newEntry];
@@ -148,11 +149,13 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
           return updated;
         });
         if (aiEnhance) enhanceEntry(id, file, base64);
+        // Run duplicate check in parallel (non-blocking)
+        checkDuplicate(id, base64);
       };
       reader.readAsDataURL(file);
     });
     toast.success(`${imageFiles.length} image${imageFiles.length > 1 ? 's' : ''} added`);
-  }, [enhanceEntry, aiEnhance]);
+  }, [enhanceEntry, checkDuplicate, aiEnhance]);
 
   // ── Clipboard paste (global while dialog open) ────────────────────────────
   useEffect(() => {
