@@ -210,8 +210,8 @@ export function VideoProgressPanel() {
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-green-500/10">
-              <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400" />
+            <div className="p-2 rounded-lg bg-accent/50">
+              <CheckCircle2 className="h-5 w-5 text-accent-foreground" />
             </div>
             <div>
               <div className="text-2xl font-bold">{totalCompletions}</div>
@@ -221,8 +221,8 @@ export function VideoProgressPanel() {
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-blue-500/10">
-              <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <div className="p-2 rounded-lg bg-secondary">
+              <Clock className="h-5 w-5 text-secondary-foreground" />
             </div>
             <div>
               <div className="text-2xl font-bold">{formatWatchTime(totalWatchTime)}</div>
@@ -232,8 +232,8 @@ export function VideoProgressPanel() {
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-orange-500/10">
-              <TrendingUp className="h-5 w-5 text-orange-500" />
+            <div className="p-2 rounded-lg bg-muted">
+              <TrendingUp className="h-5 w-5 text-muted-foreground" />
             </div>
             <div>
               <div className="text-2xl font-bold">{avgCompletion}%</div>
