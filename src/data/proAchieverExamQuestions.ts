@@ -170,15 +170,15 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "What is the key difference between the 'Premium Pass' and 'Premium Holiday' in Pro Achiever 3.0?",
+    question: "What is the key difference between 'Premium Pass' and 'Premium Holiday' in Pro Achiever 3.0?",
     options: [
       "They are the same feature with different names",
-      "Premium Pass allows a structured break of up to 36 months with no charges; Premium Holiday pauses payments when facing financial difficulty, also with no premium holiday charges",
+      "Premium Pass is a no-charge pause of up to 12 months available after 5 years of premiums paid; Premium Holiday can be taken within the first 10 years but incurs charges",
       "Premium Pass reduces the premium amount; Premium Holiday suspends the policy entirely",
       "Premium Holiday is only available after year 15; Premium Pass can be used from year 1"
     ],
     correct: 1,
-    explanation: "Both are flexibility features. Premium Pass is a planned break from premium payments for up to 36 months with no charges — useful for sabbaticals or planned career breaks. Premium Holiday is for clients facing unexpected financial difficulties, allowing them to pause without premium holiday charges. Both help prevent unnecessary policy lapses.",
+    explanation: "Premium Pass allows a charge-free pause of up to 12 months, but only after 5 years of premiums have been paid. Premium Holiday can be taken within the first 10 years of the policy, but unlike Premium Pass, charges do apply if taken during this period. Advisors should clarify this distinction to clients upfront to avoid surprises.",
     category: 'product-facts'
   },
   {
