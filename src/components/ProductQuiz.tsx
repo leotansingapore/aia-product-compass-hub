@@ -34,26 +34,24 @@ export function ProductQuiz({ questions, productId }: ProductQuizProps) {
   } = useQuizState({ questions, productId });
 
   return (
-    <Card className="border-accent/20 bg-gradient-to-r from-green-50 to-emerald-50">
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between">
-          <span className="flex items-center gap-2">
-            <span>🧠</span> Knowledge Quiz
-          </span>
-          <QuizProgress
-            currentQuestion={currentQuestion}
-            totalQuestions={questions.length}
-            answeredQuestions={answeredQuestions}
-            score={score}
-            isComplete={isComplete}
-          />
+    <Card className="border-accent/20 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20">
+      <CardHeader className="pb-2 px-4 sm:px-6">
+        <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+          <span>🧠</span> Knowledge Quiz
         </CardTitle>
-        <CardDescription>
+        <CardDescription className="text-xs sm:text-sm">
           Test your product knowledge with this interactive quiz
         </CardDescription>
+        <QuizProgress
+          currentQuestion={currentQuestion}
+          totalQuestions={questions.length}
+          answeredQuestions={answeredQuestions}
+          score={score}
+          isComplete={isComplete}
+        />
       </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
+      <CardContent className="px-4 sm:px-6">
+        <div className="space-y-4">
           <QuizQuestion
             question={questions[currentQuestion]}
             selectedAnswer={selectedAnswer}
