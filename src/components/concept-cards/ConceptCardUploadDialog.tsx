@@ -232,20 +232,51 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
 
     for (const entry of toSave) {
       const originalUrl = await uploadOriginalImage(entry.file);
-      const result = await createCard({
-        title: entry.title.trim(),
-        description: entry.description.trim() || null,
-        image_url: aiEnhance ? (entry.enhancedUrl || originalUrl) : originalUrl,
-        original_image_url: originalUrl,
-        audience: entry.audience,
-        product_type: entry.productType,
-        tags: entry.tags,
-        sort_order: 0,
-        created_by: user?.id || null,
-      });
-      if (result) {
-        setEntries(prev => prev.map(e => e.id === entry.id ? { ...e, saved: true } : e));
-        successCount++;
+      const finalImageUrl = aiEnhance ? (entry.enhancedUrl || originalUrl) : originalUrl;
+
+      if (entry.duplicateAction === 'replace' && entry.duplicate?.matchedCardId) {
+        // Replace the matched card's image
+        const ok = await updateCard(entry.duplicate.matchedCardId, {
+          image_url: finalImageUrl,
+          original_image_url: originalUrl,
+        });
+        if (ok) {
+          setEntries(prev => prev.map(e => e.id === entry.id ? { ...e, saved: true } : e));
+          successCount++;
+        }
+      } else if (entry.duplicateAction === 'add-version' && entry.duplicate?.matchedCardId) {
+        // Fetch existing image_urls for the matched card and append
+        const { data: existing } = await supabase
+          .from('concept_cards')
+          .select('image_urls')
+          .eq('id', entry.duplicate.matchedCardId)
+          .single();
+        const existingUrls: string[] = existing?.image_urls || [];
+        const newUrls = [...existingUrls, finalImageUrl].filter(Boolean) as string[];
+        const ok = await updateCard(entry.duplicate.matchedCardId, {
+          image_urls: newUrls,
+        });
+        if (ok) {
+          setEntries(prev => prev.map(e => e.id === entry.id ? { ...e, saved: true } : e));
+          successCount++;
+        }
+      } else {
+        // Create new card as usual
+        const result = await createCard({
+          title: entry.title.trim(),
+          description: entry.description.trim() || null,
+          image_url: finalImageUrl,
+          original_image_url: originalUrl,
+          audience: entry.audience,
+          product_type: entry.productType,
+          tags: entry.tags,
+          sort_order: 0,
+          created_by: user?.id || null,
+        });
+        if (result) {
+          setEntries(prev => prev.map(e => e.id === entry.id ? { ...e, saved: true } : e));
+          successCount++;
+        }
       }
     }
 
