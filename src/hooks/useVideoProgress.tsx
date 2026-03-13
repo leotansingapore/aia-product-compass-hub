@@ -89,24 +89,13 @@ export function useVideoProgress(productId: string) {
         setVideoProgress(prev => [...prev, data]);
       }
 
-      // Award XP for completion (only if user is authenticated)
-      if (updates.completed && user) {
-        await supabase.from('learning_progress').insert({
-          user_id: user.id,
-          category_id: productId,
-          product_id: productId,
-          progress_type: 'video_completed',
-          xp_earned: 10
-        });
-
+      if (updates.completed) {
         toast({
           title: "Video Completed! 🎉",
-          description: "+10 XP earned",
         });
       } else if (updates.completed === false) {
         toast({
           title: "Marked as incomplete",
-          description: "Video progress has been reset",
         });
       }
     } catch (error) {
