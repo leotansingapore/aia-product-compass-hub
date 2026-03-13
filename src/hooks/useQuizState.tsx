@@ -47,7 +47,6 @@ const loadState = (productId: string, length: number): PersistedQuizState => {
 
 export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
   const { user } = useAuth();
-  const { recordQuizCompletion } = useGamification();
 
   const initial = loadState(productId, questions.length);
 
