@@ -173,6 +173,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         <WelcomeModal />
         <OnboardingTutorial />
         <OnboardingHelpButton />
+        <FeedbackButton />
       </div>
     );
   }
@@ -195,6 +196,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
       <WelcomeModal />
       <OnboardingTutorial />
       <OnboardingHelpButton />
+      <FeedbackButton />
     </SidebarProvider>
   );
 });
