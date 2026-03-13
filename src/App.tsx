@@ -80,67 +80,56 @@ const App = () => (
                   <RouteTracker />
                   <Suspense fallback={<SkeletonLoader type="product" />}>
                   <Routes>
-                    <Route path="/" element={<Index />} />
+                    {/* Public routes — no auth required */}
                     <Route path="/auth" element={<SimplifiedAuth />} />
                     <Route path="/awaiting-approval" element={<AwaitingApproval />} />
-                    <Route path="/consultant-landing" element={<ConsultantLanding />} />
-
-                    <Route path="/how-to-use" element={<HowToUsePortal />} />
-                    <Route path="/search-by-profile" element={<SearchByProfile />} />
-
-                    <Route path="/bookmarks" element={<Bookmarks />} />
-                    <Route path="/cmfas-exams" element={<CMFASExams />} />
-                    <Route path="/cmfas/module/:moduleId" element={<CMFASModuleDetail />} />
-                    <Route path="/cmfas/module/:moduleId/video/:videoSlugOrId" element={<CMFASVideoDetail />} />
-                    <Route path="/cmfas/chat/:moduleId?" element={<CMFASChat />} />
-                    <Route path="/roleplay" element={<Roleplay />} />
-                    <Route path="/roleplay/feedback/:sessionId" element={<RoleplayFeedback />} />
-                    <Route path="/roleplay/pitch-analysis" element={<PitchAnalysis />} />
-                    <Route path="/admin" element={
-                      <ProtectedAdminPage>
-                        <AdminDashboard />
-                      </ProtectedAdminPage>
-                    } />
-                    <Route path="/my-account" element={<MyAccount />} />
-                    <Route path="/category/:categorySlugOrId" element={<ProductCategory />} />
-                    <Route path="/product/:productSlugOrId" element={<ProductDetail />} />
-                    <Route path="/product/:productSlugOrId/:pageId" element={<ProductDetail />} />
-                    <Route path="/product/:productSlugOrId/manage-videos" element={<ManageProductVideos />} />
-                    <Route path="/product/:productId/ai-assistant" element={<AIAssistant />} />
-                    <Route path="/product/:productSlugOrId/exam" element={<ProductExam />} />
-                    <Route path="/product/:productSlugOrId/video/:videoId" element={<VideoDetail />} />
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
-
-                    {/* Changelog */}
-                    <Route path="/changelog" element={<Changelog />} />
-
-                    {/* Scripts Database */}
-                    <Route path="/scripts" element={<ScriptsDatabase />} />
-                    <Route path="/scripts/:scriptId" element={<ScriptsDatabase />} />
-                    <Route path="/objections" element={<ScriptsDatabase />} />
-
-                    {/* Servicing Templates */}
-                    <Route path="/servicing" element={<ServicingPage />} />
-                    <Route path="/servicing/:scriptId" element={<ServicingPage />} />
-
-                    {/* Script Playbooks */}
-                    <Route path="/playbooks" element={<Playbooks />} />
-                    <Route path="/playbooks/:playbookId" element={<PlaybookDetail />} />
+                    <Route path="/flows/view/:flowId" element={<PublicFlowView />} />
                     <Route path="/playbooks/share/:shareToken" element={<PublicPlaybookView />} />
 
-                    {/* Script Flows */}
-                    <Route path="/flows" element={<ScriptFlows />} />
-                    <Route path="/flows/:flowId" element={<ScriptFlows />} />
-                    <Route path="/flows/view/:flowId" element={<PublicFlowView />} />
-
-                    {/* Concept Cards */}
-                    <Route path="/concept-cards" element={<ConceptCards />} />
-
-                    {/* Knowledge Base */}
-                    <Route path="/kb" element={<KnowledgeBase />} />
-                    <Route path="/kb/:categorySlug" element={<KBCategory />} />
-                    <Route path="/kb/:categorySlug/:productSlug" element={<KBProduct />} />
+                    {/* All other routes require authentication */}
+                    <Route path="/" element={<RequireAuth><Index /></RequireAuth>} />
+                    <Route path="/consultant-landing" element={<RequireAuth><ConsultantLanding /></RequireAuth>} />
+                    <Route path="/how-to-use" element={<RequireAuth><HowToUsePortal /></RequireAuth>} />
+                    <Route path="/search-by-profile" element={<RequireAuth><SearchByProfile /></RequireAuth>} />
+                    <Route path="/bookmarks" element={<RequireAuth><Bookmarks /></RequireAuth>} />
+                    <Route path="/cmfas-exams" element={<RequireAuth><CMFASExams /></RequireAuth>} />
+                    <Route path="/cmfas/module/:moduleId" element={<RequireAuth><CMFASModuleDetail /></RequireAuth>} />
+                    <Route path="/cmfas/module/:moduleId/video/:videoSlugOrId" element={<RequireAuth><CMFASVideoDetail /></RequireAuth>} />
+                    <Route path="/cmfas/chat/:moduleId?" element={<RequireAuth><CMFASChat /></RequireAuth>} />
+                    <Route path="/roleplay" element={<RequireAuth><Roleplay /></RequireAuth>} />
+                    <Route path="/roleplay/feedback/:sessionId" element={<RequireAuth><RoleplayFeedback /></RequireAuth>} />
+                    <Route path="/roleplay/pitch-analysis" element={<RequireAuth><PitchAnalysis /></RequireAuth>} />
+                    <Route path="/admin" element={
+                      <RequireAuth>
+                        <ProtectedAdminPage>
+                          <AdminDashboard />
+                        </ProtectedAdminPage>
+                      </RequireAuth>
+                    } />
+                    <Route path="/my-account" element={<RequireAuth><MyAccount /></RequireAuth>} />
+                    <Route path="/category/:categorySlugOrId" element={<RequireAuth><ProductCategory /></RequireAuth>} />
+                    <Route path="/product/:productSlugOrId" element={<RequireAuth><ProductDetail /></RequireAuth>} />
+                    <Route path="/product/:productSlugOrId/:pageId" element={<RequireAuth><ProductDetail /></RequireAuth>} />
+                    <Route path="/product/:productSlugOrId/manage-videos" element={<RequireAuth><ManageProductVideos /></RequireAuth>} />
+                    <Route path="/product/:productId/ai-assistant" element={<RequireAuth><AIAssistant /></RequireAuth>} />
+                    <Route path="/product/:productSlugOrId/exam" element={<RequireAuth><ProductExam /></RequireAuth>} />
+                    <Route path="/product/:productSlugOrId/video/:videoId" element={<RequireAuth><VideoDetail /></RequireAuth>} />
+                    <Route path="/changelog" element={<RequireAuth><Changelog /></RequireAuth>} />
+                    <Route path="/scripts" element={<RequireAuth><ScriptsDatabase /></RequireAuth>} />
+                    <Route path="/scripts/:scriptId" element={<RequireAuth><ScriptsDatabase /></RequireAuth>} />
+                    <Route path="/objections" element={<RequireAuth><ScriptsDatabase /></RequireAuth>} />
+                    <Route path="/servicing" element={<RequireAuth><ServicingPage /></RequireAuth>} />
+                    <Route path="/servicing/:scriptId" element={<RequireAuth><ServicingPage /></RequireAuth>} />
+                    <Route path="/playbooks" element={<RequireAuth><Playbooks /></RequireAuth>} />
+                    <Route path="/playbooks/:playbookId" element={<RequireAuth><PlaybookDetail /></RequireAuth>} />
+                    <Route path="/flows" element={<RequireAuth><ScriptFlows /></RequireAuth>} />
+                    <Route path="/flows/:flowId" element={<RequireAuth><ScriptFlows /></RequireAuth>} />
+                    <Route path="/concept-cards" element={<RequireAuth><ConceptCards /></RequireAuth>} />
+                    <Route path="/kb" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
+                    <Route path="/kb/:categorySlug" element={<RequireAuth><KBCategory /></RequireAuth>} />
+                    <Route path="/kb/:categorySlug/:productSlug" element={<RequireAuth><KBProduct /></RequireAuth>} />
 
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
