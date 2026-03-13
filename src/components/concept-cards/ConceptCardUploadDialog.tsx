@@ -92,6 +92,34 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
     }
   }, []);
 
+  // ── Check for duplicate image ─────────────────────────────────────────────
+  const checkDuplicate = useCallback(async (id: string, base64: string) => {
+    setEntries(prev => prev.map(e =>
+      e.id === id ? { ...e, duplicate: { isDuplicate: false, isSimilar: false, similarity: 0, matchedCardId: '', matchedCardTitle: '', reason: '', checking: true } } : e
+    ));
+    try {
+      const { data } = await supabase.functions.invoke('check-duplicate-concept-image', {
+        body: { imageBase64: base64 },
+      });
+      if (data && !data.aiError) {
+        setEntries(prev => prev.map(e =>
+          e.id === id ? { ...e, duplicate: { ...data, checking: false } } : e
+        ));
+        if (data.isDuplicate) {
+          toast.warning(`Possible duplicate detected — matches "${data.matchedCardTitle}"`, { duration: 5000 });
+        } else if (data.isSimilar && data.similarity >= 60) {
+          toast.info(`Similar card exists: "${data.matchedCardTitle}" (${data.similarity}% match)`, { duration: 4000 });
+        }
+      } else {
+        setEntries(prev => prev.map(e =>
+          e.id === id ? { ...e, duplicate: null } : e
+        ));
+      }
+    } catch {
+      setEntries(prev => prev.map(e => e.id === id ? { ...e, duplicate: null } : e));
+    }
+  }, []);
+
   // ── Add files ─────────────────────────────────────────────────────────────
   const addFiles = useCallback((files: File[]) => {
     const imageFiles = files.filter(f => f.type.startsWith('image/'));
