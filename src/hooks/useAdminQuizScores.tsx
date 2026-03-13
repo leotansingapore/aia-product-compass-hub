@@ -8,7 +8,6 @@ export interface UserQuizStat {
   total_attempts: number;
   avg_score_pct: number;
   best_score_pct: number;
-  total_xp_earned: number;
   last_attempt: string | null;
   product_breakdown: QuizProductBreakdown[];
 }
@@ -21,7 +20,6 @@ export interface QuizProductBreakdown {
   best_total: number;
   best_score_pct: number;
   avg_score_pct: number;
-  total_xp_earned: number;
   last_attempt: string | null;
 }
 
@@ -113,7 +111,6 @@ export function useAdminQuizScores() {
             best_total: pRows[bestIdx].total_questions,
             best_score_pct: Math.round(scorePcts[bestIdx]),
             avg_score_pct: avgPct,
-            total_xp_earned: totalXp,
             last_attempt: lastAttempt,
           });
         }
@@ -134,7 +131,6 @@ export function useAdminQuizScores() {
           total_attempts: rows.length,
           avg_score_pct: avgScorePct,
           best_score_pct: bestScorePct,
-          total_xp_earned: totalXp,
           last_attempt: lastAttempt,
           product_breakdown,
         });

@@ -40,8 +40,8 @@ const ConsultantLanding = () => {
     },
     {
       icon: Award,
-      title: "Gamified Learning",
-      description: "Earn XP, unlock achievements, and track your learning progress with our engaging gamification system."
+      title: "Progress Tracking",
+      description: "Track your learning progress across products, exams, and training videos all in one place."
     },
     {
       icon: Search,
@@ -77,7 +77,7 @@ const ConsultantLanding = () => {
       role: "Financial Advisor",
       avatar: "MT", 
       rating: 5,
-      quote: "The gamified learning system made product training actually enjoyable. I've earned 2,500 XP points and unlocked 8 achievements while mastering investment products."
+      quote: "The learning platform made product training actually enjoyable. The structured exams and video content helped me master investment products quickly."
     },
     {
       name: "Jennifer Wong",

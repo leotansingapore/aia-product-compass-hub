@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import { useGamification } from '@/hooks/useGamification';
+import { supabase } from '@/integrations/supabase/client';
 
 interface QuizQuestion {
   question: string;
@@ -47,7 +47,6 @@ const loadState = (productId: string, length: number): PersistedQuizState => {
 
 export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
   const { user } = useAuth();
-  const { recordQuizCompletion } = useGamification();
 
   const initial = loadState(productId, questions.length);
 
@@ -84,25 +83,26 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
   const handleNext = useCallback(async () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(prev => prev + 1);
-    } else if (answeredQuestions[currentQuestion] && user) {
-      const isPerfectScore = score === questions.length;
+    } else if (answeredQuestions[currentQuestion]) {
+      // Record quiz attempt (no XP)
       try {
-        await recordQuizCompletion({
-          productId,
+        await supabase.from('quiz_attempts').insert({
+          user_id: user?.id,
+          product_id: productId,
           score,
-          totalQuestions: questions.length,
-          isPerfectScore
+          total_questions: questions.length,
+          xp_earned: 0,
         });
-        localStorage.removeItem(storageKey(productId));
-        setCurrentQuestion(0);
-        setScore(0);
-        setSelectedAnswers(new Array(questions.length).fill(null));
-        setAnsweredQuestions(new Array(questions.length).fill(false));
       } catch (error) {
-        console.error('Failed to record quiz completion:', error);
+        console.error('Failed to record quiz attempt:', error);
       }
+      localStorage.removeItem(storageKey(productId));
+      setCurrentQuestion(0);
+      setScore(0);
+      setSelectedAnswers(new Array(questions.length).fill(null));
+      setAnsweredQuestions(new Array(questions.length).fill(false));
     }
-  }, [currentQuestion, questions.length, answeredQuestions, user, score, productId, recordQuizCompletion]);
+  }, [currentQuestion, questions.length, answeredQuestions, user, score, productId]);
 
   const handlePrevious = useCallback(() => {
     if (currentQuestion > 0) {

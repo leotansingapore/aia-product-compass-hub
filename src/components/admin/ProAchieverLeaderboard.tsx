@@ -47,7 +47,6 @@ export function ProAchieverLeaderboard() {
           best_score_pct: pb.best_score_pct,
           avg_score_pct: pb.avg_score_pct,
           attempts: pb.attempts,
-          xp_earned: pb.total_xp_earned,
           last_attempt: pb.last_attempt,
         };
       })
@@ -55,11 +54,11 @@ export function ProAchieverLeaderboard() {
       .sort((a, b) => {
         if (b!.best_score_pct !== a!.best_score_pct) return b!.best_score_pct - a!.best_score_pct;
         return (b!.avg_score_pct ?? 0) - (a!.avg_score_pct ?? 0);
-      }) as NonNullable<ReturnType<typeof stats[0]['product_breakdown']['find']> & {
+      }) as {
         user_id: string; name: string; email: string | null;
         best_score: number; best_total: number; best_score_pct: number;
-        avg_score_pct: number; attempts: number; xp_earned: number; last_attempt: string | null;
-      }>[];
+        avg_score_pct: number; attempts: number; last_attempt: string | null;
+      }[];
   }, [stats]);
 
   if (loading) return <LoadingState message="Loading leaderboard…" />;

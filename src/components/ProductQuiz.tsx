@@ -33,7 +33,6 @@ export function ProductQuiz({ questions, productId }: ProductQuizProps) {
     handleNext,
     handlePrevious,
     handleRestart,
-    user
   } = useQuizState({ questions, productId });
 
   return (
@@ -83,8 +82,6 @@ export function ProductQuiz({ questions, productId }: ProductQuizProps) {
               totalQuestions={questions.length}
               showResult={showResult}
               isComplete={isComplete}
-              score={score}
-              user={user}
               onPrevious={handlePrevious}
               onNext={handleNext}
               onRestart={handleRestart}
