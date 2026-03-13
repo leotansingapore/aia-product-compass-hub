@@ -3,9 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronLeft, ChevronRight, Check, Play, Pause, Download, ExternalLink, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen, CheckCircle2, Circle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Play, Download, ExternalLink, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen, CheckCircle2, Circle, List, X } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -73,10 +72,10 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const [isPlaying, setIsPlaying] = useState(false);
   const [watchTime, setWatchTime] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  const [isNotesOpen, setIsNotesOpen] = useState(!isMobile);
   const { toast } = useToast();
   const { productSlugOrId } = useParams();
   const navigate = useNavigate();
@@ -180,14 +179,13 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     } else if (direction === 'next' && currentVideoIndex < videos.length - 1) {
       targetIndex = currentVideoIndex + 1;
     } else {
-      return; // No navigation needed
+      return;
     }
 
     const targetVideo = videos[targetIndex];
     if (targetVideo) {
       const videoSlug = getVideoSlug(targetVideo.title);
 
-      // Use appropriate URL pattern based on module type
       if (moduleType === 'cmfas' && moduleId) {
         navigate(`/cmfas/module/${moduleId}/video/${videoSlug}`);
       } else if (productSlugOrId) {
@@ -198,258 +196,304 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
   const videoInfo = useMemo(() => currentVideo ? getVideoEmbedInfo(currentVideo.url) : null, [currentVideo]);
 
+  const sidebarContent = (
+    <div className="space-y-4">
+      {/* Course Navigation */}
+      <Card>
+        <CardHeader className="pb-2 flex flex-row items-center justify-between">
+          <CardTitle className="text-base">Course Videos</CardTitle>
+          {isMobile && (
+            <Button variant="ghost" size="icon" className="h-7 w-7 -mr-1" onClick={() => setShowMobileSidebar(false)}>
+              <X className="h-4 w-4" />
+            </Button>
+          )}
+        </CardHeader>
+        <CardContent className="pt-2">
+          <VideosByCategory
+            videos={videos}
+            onVideoSelect={(index) => {
+              setCurrentVideoIndex(index);
+              setWatchTime(0);
+              if (isMobile) setShowMobileSidebar(false);
+            }}
+            getVideoProgress={getVideoProgress}
+            onToggleComplete={handleToggleComplete}
+            useIndividualPages={true}
+            currentVideoId={currentVideo?.id}
+            moduleId={moduleId}
+            moduleType={moduleType}
+          />
+        </CardContent>
+      </Card>
+
+      {/* Transcript Accordion */}
+      <Collapsible defaultOpen={false}>
+        <Card>
+          <CollapsibleTrigger className="w-full">
+            <CardHeader className="pb-3 cursor-pointer hover:bg-muted/50 transition-colors">
+              <CardTitle className="text-base flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <FileText className="h-4 w-4" />
+                  Transcript
+                </div>
+                <ChevronDown className="h-4 w-4 transition-transform duration-200 [[data-state=open]_&]:rotate-180" />
+              </CardTitle>
+            </CardHeader>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <CardContent className="pt-0">
+              {currentVideo?.transcript ? (
+                <div className="max-h-[400px] overflow-y-auto">
+                  <p className="whitespace-pre-wrap text-muted-foreground text-sm leading-relaxed">
+                    {currentVideo.transcript}
+                  </p>
+                </div>
+              ) : (
+                <div className="text-center py-4 text-muted-foreground">
+                  <p className="text-sm">No transcript available for this video.</p>
+                </div>
+              )}
+            </CardContent>
+          </CollapsibleContent>
+        </Card>
+      </Collapsible>
+
+      {/* Resources */}
+      {(currentVideo?.useful_links?.length > 0 || currentVideo?.attachments?.length > 0) && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Resources</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-1.5">
+            {currentVideo?.useful_links?.map((link, index) => (
+              <div key={`link-${index}`} className="flex items-center gap-2">
+                <Link2 className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-primary hover:underline truncate"
+                >
+                  {link.name}
+                </a>
+              </div>
+            ))}
+            {currentVideo?.attachments?.map((attachment) => (
+              <div key={`file-${attachment.id}`} className="flex items-center gap-2">
+                {(attachment.file_type || '').toLowerCase() === 'pdf' ? (
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-destructive/10 text-destructive text-xs font-bold flex-shrink-0">PDF</span>
+                ) : (
+                  <FileText className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                )}
+                <a
+                  href={attachment.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-primary hover:underline truncate"
+                >
+                  {attachment.name}
+                </a>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+
   return (
     <div className="fixed inset-0 bg-background z-50 overflow-auto">
       <div className="min-h-screen">
-        {/* Header with Navigation */}
+
+        {/* ── Sticky Header ── */}
         <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
-            <div className="flex items-center gap-3">
-              {/* Back button */}
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3">
+            <div className="flex items-center gap-2">
+
+              {/* Back */}
               <Button variant="ghost" size="icon" onClick={onClose} className="flex-shrink-0 h-9 w-9">
                 <ChevronLeft className="h-5 w-5" />
               </Button>
-              
-              {/* Title and progress */}
+
+              {/* Title + progress */}
               <div className="min-w-0 flex-1">
-                <h1 className="text-sm sm:text-base font-medium truncate">{currentVideo?.title || 'Training Course'}</h1>
+                <h1 className="text-sm sm:text-base font-medium truncate leading-tight">
+                  {currentVideo?.title || 'Training Course'}
+                </h1>
                 <div className="flex items-center gap-2 mt-1">
-                  <Progress value={courseProgress} className="flex-1 h-1.5 max-w-32" />
-                  <span className="text-xs text-muted-foreground">{currentVideoIndex + 1}/{videos.length}</span>
+                  <Progress value={courseProgress} className="flex-1 h-1.5 max-w-28 sm:max-w-40" />
+                  <span className="text-xs text-muted-foreground tabular-nums">
+                    {currentVideoIndex + 1}/{videos.length}
+                  </span>
                 </div>
               </div>
-              
-              {/* Admin Edit & Navigation Buttons */}
+
+              {/* Right controls */}
               <div className="flex items-center gap-1 flex-shrink-0">
+                {/* Admin edit — icon only on mobile */}
                 {isAdmin && productSlugOrId && (
                   <Button
                     variant="outline"
                     size="sm"
+                    className="h-8 px-2 sm:px-3"
                     onClick={() => navigate(`/product/${productSlugOrId}/manage-videos`)}
                   >
                     <SquarePen className="h-4 w-4" />
-                    <span className="hidden sm:inline">Edit</span>
+                    <span className="hidden sm:inline ml-1.5">Edit</span>
                   </Button>
                 )}
+
+                {/* Course list toggle — mobile only */}
+                {isMobile && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-8 px-2"
+                    onClick={() => setShowMobileSidebar(true)}
+                    aria-label="Show course videos"
+                  >
+                    <List className="h-4 w-4" />
+                  </Button>
+                )}
+
+                {/* Prev / Next */}
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-9 w-9"
+                  className="h-8 w-8"
                   onClick={() => navigateVideo('prev')}
                   disabled={currentVideoIndex === 0}
+                  aria-label="Previous video"
                 >
-                  <ChevronLeft className="h-5 w-5" />
+                  <ChevronLeft className="h-4 w-4" />
                 </Button>
                 <Button
                   variant="default"
                   size="sm"
+                  className="h-8 px-2 sm:px-3"
                   onClick={() => navigateVideo('next')}
                   disabled={currentVideoIndex === videos.length - 1}
                 >
-                  Next
-                  <ChevronRight className="h-4 w-4 ml-1" />
+                  <span className="hidden sm:inline">Next</span>
+                  <ChevronRight className="h-4 w-4 sm:ml-1" />
                 </Button>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-24 sm:pb-8">
+        {/* ── Main content ── */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 pt-4 sm:pt-8 pb-28 sm:pb-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
-            {/* Video Player */}
-            <div className="lg:col-span-2 space-y-6 order-2 lg:order-2 transition-all duration-300">
+
+            {/* Video Player — comes FIRST on mobile */}
+            <div className="lg:col-span-2 space-y-4 sm:space-y-6 order-1 lg:order-2 transition-all duration-300">
               {(videoInfo || !currentVideo?.rich_content) && (
-              <Card>
-                {(!currentVideo?.rich_content || videoInfo) && (
-                  <CardHeader>
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                      <CardTitle className="flex items-start sm:items-center gap-2 flex-wrap">
-                        <span className="break-words">{currentVideo?.title}</span>
-                        {currentProgress?.completed && (
-                          <Badge variant="secondary" className="text-xs text-green-600 flex-shrink-0">
-                            <Check className="h-3 w-3 mr-1" />
-                            Completed
-                          </Badge>
-                        )}
-                      </CardTitle>
-                    </div>
-                    {!currentVideo?.rich_content && currentVideo?.description && (
-                      <p className="text-muted-foreground">{currentVideo.description}</p>
-                    )}
-                  </CardHeader>
-                )}
-                <CardContent>
-                  {/* Show video player when there's a valid video URL, regardless of rich_content */}
-                  {videoInfo ? (
-                    <div
-                      ref={videoContainerRef}
-                      className={`relative rounded-lg overflow-hidden bg-muted group ${isFullscreen ? 'w-full h-full' : 'aspect-video'}`}
-                    >
-                      <iframe
-                        ref={iframeRef}
-                        src={videoInfo.embedUrl}
-                        title={currentVideo?.title}
-                        className="w-full h-full"
-                        allowFullScreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        onLoad={() => setIsPlaying(false)}
-                      />
-                      {/* Fullscreen button overlay */}
-                      <Button
-                        variant="secondary"
-                        size="icon"
-                        className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/70 hover:bg-black/90 text-white border-0 h-9 w-9"
-                        onClick={toggleFullscreen}
-                        title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-                      >
-                        {isFullscreen ? (
-                          <Minimize className="h-4 w-4" />
-                        ) : (
-                          <Maximize className="h-4 w-4" />
-                        )}
-                      </Button>
-                    </div>
-                  ) : !currentVideo?.rich_content ? (
-                    <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                      <p className="text-muted-foreground">Invalid video URL</p>
-                    </div>
-                  ) : null}
-                </CardContent>
-              </Card>
-              )}
-
-              {/* Markdown Content or Legacy Notes */}
-              {currentVideo?.rich_content?.trim() ? (
-                // Markdown mode - display formatted markdown
-                <>
-                  <Card>
-                    <CardContent className="p-6">
-                      <div className="prose prose-sm dark:prose-invert max-w-none">
-                        <ReactMarkdown
-                          components={markdownComponents}
-                          remarkPlugins={[remarkGfm]}
-                          rehypePlugins={[rehypeRaw]}
-                        >
-                          {currentVideo.rich_content}
-                        </ReactMarkdown>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </>
-              ) : null}
-            </div>
-
-            {/* Sidebar */}
-            <div className="space-y-6 order-1 lg:order-1 transition-all duration-300">
-              {/* Course Navigation */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base">Course Videos</CardTitle>
-                </CardHeader>
-                <CardContent className="pt-2">
-                  <VideosByCategory
-                    videos={videos}
-                    onVideoSelect={(index) => {
-                      setCurrentVideoIndex(index);
-                      setWatchTime(0);
-                    }}
-                    getVideoProgress={getVideoProgress}
-                    onToggleComplete={handleToggleComplete}
-                    useIndividualPages={true}
-                    currentVideoId={currentVideo?.id}
-                    moduleId={moduleId}
-                    moduleType={moduleType}
-                  />
-                </CardContent>
-              </Card>
-
-              {/* Transcript Accordion - Hidden by Default */}
-              <Collapsible defaultOpen={false}>
                 <Card>
-                  <CollapsibleTrigger className="w-full">
-                    <CardHeader className="pb-3 cursor-pointer hover:bg-muted/50 transition-colors">
-                      <CardTitle className="text-base flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <FileText className="h-4 w-4" />
-                          Transcript
-                        </div>
-                        <ChevronDown className="h-4 w-4 transition-transform duration-200 [[data-state=open]_&]:rotate-180" />
-                      </CardTitle>
-                    </CardHeader>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <CardContent className="pt-0">
-                      {currentVideo?.transcript ? (
-                        <div className="max-h-[400px] overflow-y-auto">
-                          <div className="prose prose-sm max-w-none">
-                            <p className="whitespace-pre-wrap text-muted-foreground text-sm leading-relaxed">
-                              {currentVideo.transcript}
-                            </p>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="text-center py-4 text-muted-foreground">
-                          <p className="text-sm">No transcript available for this video.</p>
-                        </div>
+                  {(!currentVideo?.rich_content || videoInfo) && (
+                    <CardHeader className="py-3 px-4 sm:py-4 sm:px-6">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
+                        <CardTitle className="flex items-start sm:items-center gap-2 flex-wrap text-sm sm:text-base leading-snug">
+                          <span className="break-words">{currentVideo?.title}</span>
+                          {currentProgress?.completed && (
+                            <Badge variant="secondary" className="text-xs flex-shrink-0">
+                              <Check className="h-3 w-3 mr-1" />
+                              Completed
+                            </Badge>
+                          )}
+                        </CardTitle>
+                      </div>
+                      {!currentVideo?.rich_content && currentVideo?.description && (
+                        <p className="text-muted-foreground text-sm mt-1">{currentVideo.description}</p>
                       )}
-                    </CardContent>
-                  </CollapsibleContent>
-                </Card>
-              </Collapsible>
-
-
-              {/* Resources — show for ALL videos (rich_content or not) */}
-              {(currentVideo?.useful_links?.length > 0 || currentVideo?.attachments?.length > 0) && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-base">Resources</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-1.5">
-                    {/* Links */}
-                    {currentVideo?.useful_links?.map((link, index) => (
-                      <div key={`link-${index}`} className="flex items-center gap-2">
-                        <Link2 className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                        <a
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm text-primary hover:underline truncate"
+                    </CardHeader>
+                  )}
+                  <CardContent className="px-0 pb-0 sm:px-6 sm:pb-6">
+                    {videoInfo ? (
+                      <div
+                        ref={videoContainerRef}
+                        className={`relative overflow-hidden bg-muted group sm:rounded-lg ${isFullscreen ? 'w-full h-full' : 'aspect-video'}`}
+                      >
+                        <iframe
+                          ref={iframeRef}
+                          src={videoInfo.embedUrl}
+                          title={currentVideo?.title}
+                          className="w-full h-full"
+                          allowFullScreen
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          onLoad={() => setIsPlaying(false)}
+                        />
+                        {/* Fullscreen button overlay */}
+                        <Button
+                          variant="secondary"
+                          size="icon"
+                          className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/70 hover:bg-black/90 text-white border-0 h-9 w-9"
+                          onClick={toggleFullscreen}
+                          title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
                         >
-                          {link.name}
-                        </a>
+                          {isFullscreen ? (
+                            <Minimize className="h-4 w-4" />
+                          ) : (
+                            <Maximize className="h-4 w-4" />
+                          )}
+                        </Button>
                       </div>
-                    ))}
-
-                    {/* Attachments */}
-                    {currentVideo?.attachments?.map((attachment) => (
-                      <div key={`file-${attachment.id}`} className="flex items-center gap-2">
-                        {(attachment.file_type || '').toLowerCase() === 'pdf' ? (
-                          <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-red-100 text-red-600 text-xs font-bold flex-shrink-0">PDF</span>
-                        ) : (
-                          <FileText className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                        )}
-                        <a
-                          href={attachment.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm text-primary hover:underline truncate"
-                        >
-                          {attachment.name}
-                        </a>
+                    ) : !currentVideo?.rich_content ? (
+                      <div className="aspect-video bg-muted rounded-lg flex items-center justify-center mx-4 mb-4 sm:mx-0 sm:mb-0">
+                        <p className="text-muted-foreground">Invalid video URL</p>
                       </div>
-                    ))}
+                    ) : null}
                   </CardContent>
                 </Card>
               )}
+
+              {/* Markdown / Rich Content */}
+              {currentVideo?.rich_content?.trim() ? (
+                <Card>
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="prose prose-sm dark:prose-invert max-w-none">
+                      <ReactMarkdown
+                        components={markdownComponents}
+                        remarkPlugins={[remarkGfm]}
+                        rehypePlugins={[rehypeRaw]}
+                      >
+                        {currentVideo.rich_content}
+                      </ReactMarkdown>
+                    </div>
+                  </CardContent>
+                </Card>
+              ) : null}
+            </div>
+
+            {/* Desktop Sidebar — hidden on mobile */}
+            <div className="hidden lg:block space-y-6 order-2 lg:order-1 transition-all duration-300">
+              {sidebarContent}
             </div>
           </div>
         </div>
 
-        {/* Sticky Mark Complete / Undo Button */}
-        <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t z-40 p-4">
-          <div className="max-w-7xl mx-auto flex justify-center">
+        {/* ── Mobile Sidebar Drawer ── */}
+        {isMobile && showMobileSidebar && (
+          <div className="fixed inset-0 z-50 flex">
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              onClick={() => setShowMobileSidebar(false)}
+            />
+            {/* Drawer */}
+            <div className="relative ml-auto w-[85vw] max-w-sm h-full bg-background overflow-y-auto shadow-2xl">
+              <div className="p-4 pb-24">
+                {sidebarContent}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── Sticky Mark Complete bar ── */}
+        <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t z-40 p-3 sm:p-4">
+          <div className="max-w-7xl mx-auto flex items-center gap-3">
             <Button
-              className="w-full max-w-md"
+              className="flex-1 max-w-md mx-auto"
               size="lg"
               onClick={handleToggleStickyComplete}
               variant={currentProgress?.completed ? "secondary" : "default"}
@@ -457,17 +501,18 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
               {currentProgress?.completed ? (
                 <>
                   <CheckCircle2 className="h-5 w-5 mr-2" />
-                  Completed — click to undo
+                  <span>Completed — tap to undo</span>
                 </>
               ) : (
                 <>
                   <Circle className="h-5 w-5 mr-2" />
-                  Mark Complete
+                  <span>Mark Complete</span>
                 </>
               )}
             </Button>
           </div>
         </div>
+
       </div>
     </div>
   );
