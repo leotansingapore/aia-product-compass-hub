@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Upload, Loader2, Sparkles, X, ImageIcon, ClipboardPaste, CheckCircle, ChevronLeft, ChevronRight, Trash2, Crop, Eraser, Zap, ZapOff } from 'lucide-react';
+import { Upload, Loader2, Sparkles, X, ImageIcon, ClipboardPaste, CheckCircle, ChevronLeft, ChevronRight, Trash2, Crop, Eraser, Zap, ZapOff, AlertTriangle, Copy } from 'lucide-react';
 import { ImageCropper } from './ImageCropper';
 import { InlineImageEditor } from './InlineImageEditor';
 import { supabase } from '@/integrations/supabase/client';
@@ -16,6 +16,15 @@ import { cn } from '@/lib/utils';
 const AUDIENCE_OPTIONS = ['NSF / NS', 'Young Adults', 'Working Adults', 'Pre-Retirees (50-65)', 'Parents', 'General'];
 const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'Critical Illness', 'General'];
 
+interface DuplicateResult {
+  isDuplicate: boolean;
+  isSimilar: boolean;
+  similarity: number;
+  matchedCardId: string;
+  matchedCardTitle: string;
+  reason: string;
+  checking: boolean;
+}
 
 interface ImageEntry {
   id: string;
@@ -29,6 +38,7 @@ interface ImageEntry {
   productType: string[];
   tags: string[];
   saved: boolean;
+  duplicate: DuplicateResult | null;
 }
 
 interface Props {
@@ -82,6 +92,34 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
     }
   }, []);
 
+  // ── Check for duplicate image ─────────────────────────────────────────────
+  const checkDuplicate = useCallback(async (id: string, base64: string) => {
+    setEntries(prev => prev.map(e =>
+      e.id === id ? { ...e, duplicate: { isDuplicate: false, isSimilar: false, similarity: 0, matchedCardId: '', matchedCardTitle: '', reason: '', checking: true } } : e
+    ));
+    try {
+      const { data } = await supabase.functions.invoke('check-duplicate-concept-image', {
+        body: { imageBase64: base64 },
+      });
+      if (data && !data.aiError) {
+        setEntries(prev => prev.map(e =>
+          e.id === id ? { ...e, duplicate: { ...data, checking: false } } : e
+        ));
+        if (data.isDuplicate) {
+          toast.warning(`Possible duplicate detected — matches "${data.matchedCardTitle}"`, { duration: 5000 });
+        } else if (data.isSimilar && data.similarity >= 60) {
+          toast.info(`Similar card exists: "${data.matchedCardTitle}" (${data.similarity}% match)`, { duration: 4000 });
+        }
+      } else {
+        setEntries(prev => prev.map(e =>
+          e.id === id ? { ...e, duplicate: null } : e
+        ));
+      }
+    } catch {
+      setEntries(prev => prev.map(e => e.id === id ? { ...e, duplicate: null } : e));
+    }
+  }, []);
+
   // ── Add files ─────────────────────────────────────────────────────────────
   const addFiles = useCallback((files: File[]) => {
     const imageFiles = files.filter(f => f.type.startsWith('image/'));
@@ -103,6 +141,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
           productType: [],
           tags: [],
           saved: false,
+          duplicate: null,
         };
         setEntries(prev => {
           const updated = [...prev, newEntry];
@@ -110,11 +149,13 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
           return updated;
         });
         if (aiEnhance) enhanceEntry(id, file, base64);
+        // Run duplicate check in parallel (non-blocking)
+        checkDuplicate(id, base64);
       };
       reader.readAsDataURL(file);
     });
     toast.success(`${imageFiles.length} image${imageFiles.length > 1 ? 's' : ''} added`);
-  }, [enhanceEntry, aiEnhance]);
+  }, [enhanceEntry, checkDuplicate, aiEnhance]);
 
   // ── Clipboard paste (global while dialog open) ────────────────────────────
   useEffect(() => {
@@ -311,7 +352,23 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                     )}
                     {entry.saved && (
                       <div className="absolute inset-0 bg-background/60 flex items-center justify-center">
-                        <CheckCircle className="h-5 w-5 text-green-600" />
+                        <CheckCircle className="h-5 w-5 text-primary" />
+                      </div>
+                    )}
+                    {/* Duplicate/similar indicator on thumbnail */}
+                    {entry.duplicate?.checking && (
+                      <div className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-muted/80 flex items-center justify-center">
+                        <Loader2 className="h-2.5 w-2.5 animate-spin text-muted-foreground" />
+                      </div>
+                    )}
+                    {entry.duplicate && !entry.duplicate.checking && entry.duplicate.isDuplicate && (
+                      <div className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-destructive/90 flex items-center justify-center">
+                        <Copy className="h-2.5 w-2.5 text-destructive-foreground" />
+                      </div>
+                    )}
+                    {entry.duplicate && !entry.duplicate.checking && !entry.duplicate.isDuplicate && entry.duplicate.isSimilar && entry.duplicate.similarity >= 60 && (
+                      <div className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-warning/90 flex items-center justify-center">
+                        <AlertTriangle className="h-2.5 w-2.5 text-warning-foreground" />
                       </div>
                     )}
                     {!entry.title.trim() && (
@@ -354,6 +411,35 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
               {/* Active entry editor */}
               {active && (
                 <div className="rounded-xl border bg-card p-4 space-y-4">
+
+                  {/* ── Duplicate warning banner ─────────────────── */}
+                  {active.duplicate?.checking && (
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/40 rounded-lg px-3 py-2 border border-border">
+                      <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" />
+                      Checking for duplicates…
+                    </div>
+                  )}
+                  {active.duplicate && !active.duplicate.checking && active.duplicate.isDuplicate && (
+                    <div className="flex items-start gap-2 text-xs bg-destructive/10 border border-destructive/30 rounded-lg px-3 py-2.5">
+                      <Copy className="h-3.5 w-3.5 text-destructive shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-destructive">Likely duplicate ({active.duplicate.similarity}% match)</p>
+                        <p className="text-muted-foreground mt-0.5">Matches existing card: <span className="font-medium text-foreground">"{active.duplicate.matchedCardTitle}"</span></p>
+                        <p className="text-muted-foreground mt-0.5">{active.duplicate.reason}</p>
+                      </div>
+                    </div>
+                  )}
+                  {active.duplicate && !active.duplicate.checking && !active.duplicate.isDuplicate && active.duplicate.isSimilar && active.duplicate.similarity >= 60 && (
+                    <div className="flex items-start gap-2 text-xs bg-secondary border border-border rounded-lg px-3 py-2.5">
+                      <AlertTriangle className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-foreground">Similar card exists ({active.duplicate.similarity}% match)</p>
+                        <p className="text-muted-foreground mt-0.5">Similar to: <span className="font-medium text-foreground">"{active.duplicate.matchedCardTitle}"</span></p>
+                        <p className="text-muted-foreground mt-0.5">{active.duplicate.reason}</p>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Preview row */}
                   {aiEnhance ? (
                     <div className={cn(
