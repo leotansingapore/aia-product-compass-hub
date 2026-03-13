@@ -11,14 +11,16 @@ export default function AdminDashboard() {
       description="Unified user management dashboard for registration to activation."
     >
       <Tabs defaultValue="users">
-        <TabsList className="mb-6">
-          <TabsTrigger value="users" className="flex items-center gap-2">
-            <Users className="h-4 w-4" />
-            User Management
+        <TabsList className="mb-4 sm:mb-6 w-full sm:w-auto">
+          <TabsTrigger value="users" className="flex items-center gap-1.5 flex-1 sm:flex-none">
+            <Users className="h-4 w-4 shrink-0" />
+            <span className="hidden xs:inline sm:inline">User Management</span>
+            <span className="xs:hidden sm:hidden">Users</span>
           </TabsTrigger>
-          <TabsTrigger value="video-progress" className="flex items-center gap-2">
-            <Video className="h-4 w-4" />
-            Video Progress
+          <TabsTrigger value="video-progress" className="flex items-center gap-1.5 flex-1 sm:flex-none">
+            <Video className="h-4 w-4 shrink-0" />
+            <span className="hidden xs:inline sm:inline">Video Progress</span>
+            <span className="xs:hidden sm:hidden">Videos</span>
           </TabsTrigger>
         </TabsList>
 
