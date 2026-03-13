@@ -110,15 +110,15 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "What is the AIA Global Dynamic Income Fund, and what makes it unique to Pro Achiever 3.0?",
+    question: "What is the AIA Global Dynamic Income Fund, and what makes it notable in Pro Achiever 3.0?",
     options: [
       "A government bond fund available across all AIA products",
       "A high-yield emerging market equity fund available since 2018",
-      "A fund that pays quarterly dividends, available exclusively to Pro Achiever 3.0 policyholders",
+      "A fund that pays quarterly dividends, available to Pro Achiever 3.0 policyholders",
       "A fixed-deposit-like fund with a guaranteed 3% annual return"
     ],
     correct: 2,
-    explanation: "The AIA Global Dynamic Income Fund is exclusive to Pro Achiever 3.0. It pays dividends every quarter and is designed for clients who want regular income from their investment. This makes it suitable for clients who want the growth of an ILP but also appreciate periodic payouts.",
+    explanation: "The AIA Global Dynamic Income Fund pays dividends every quarter and is available to Pro Achiever 3.0 policyholders. It is designed for clients who want regular income from their investment, making it suitable for those who want the growth of an ILP but also appreciate periodic payouts.",
     category: 'product-facts'
   },
   {
