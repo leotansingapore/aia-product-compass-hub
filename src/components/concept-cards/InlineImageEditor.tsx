@@ -317,8 +317,10 @@ export function InlineImageEditor({
           const ctx = canvas.getContext('2d')!;
           const baseSnap = historyRef.current[historyIndexRef.current];
           if (baseSnap) ctx.putImageData(baseSnap, 0, 0);
+          // Erase the ORIGINAL position (not the intermediate drag position)
+          const orig = origSelRectRef.current ?? r;
           ctx.fillStyle = '#ffffff';
-          ctx.fillRect(r.x, r.y, r.w, r.h);
+          ctx.fillRect(orig.x, orig.y, orig.w, orig.h);
           ctx.putImageData(selImageDataRef.current, newRect.x, newRect.y);
           return;
         }
