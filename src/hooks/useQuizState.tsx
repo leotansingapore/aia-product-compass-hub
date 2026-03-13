@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useGamification } from '@/hooks/useGamification';
 
@@ -14,22 +14,56 @@ interface UseQuizStateProps {
   productId: string;
 }
 
+interface PersistedQuizState {
+  currentQuestion: number;
+  score: number;
+  selectedAnswers: (number | null)[];
+  answeredQuestions: boolean[];
+}
+
+const storageKey = (productId: string) => `quiz_state_${productId}`;
+
+const loadState = (productId: string, length: number): PersistedQuizState => {
+  try {
+    const raw = localStorage.getItem(storageKey(productId));
+    if (raw) {
+      const parsed: PersistedQuizState = JSON.parse(raw);
+      // Guard against stale data from a different question set length
+      if (
+        parsed.selectedAnswers?.length === length &&
+        parsed.answeredQuestions?.length === length
+      ) {
+        return parsed;
+      }
+    }
+  } catch { /* ignore */ }
+  return {
+    currentQuestion: 0,
+    score: 0,
+    selectedAnswers: new Array(length).fill(null),
+    answeredQuestions: new Array(length).fill(false),
+  };
+};
+
 export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
   const { user } = useAuth();
   const { recordQuizCompletion } = useGamification();
-  
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0);
-  // Store each question's selected answer and whether result is shown
-  const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(
-    new Array(questions.length).fill(null)
-  );
-  const [answeredQuestions, setAnsweredQuestions] = useState<boolean[]>(
-    new Array(questions.length).fill(false)
-  );
+
+  const initial = loadState(productId, questions.length);
+
+  const [currentQuestion, setCurrentQuestion] = useState(initial.currentQuestion);
+  const [score, setScore] = useState(initial.score);
+  const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(initial.selectedAnswers);
+  const [answeredQuestions, setAnsweredQuestions] = useState<boolean[]>(initial.answeredQuestions);
 
   const selectedAnswer = selectedAnswers[currentQuestion];
   const showResult = answeredQuestions[currentQuestion];
+
+  // Persist state to localStorage on every change
+  useEffect(() => {
+    const state: PersistedQuizState = { currentQuestion, score, selectedAnswers, answeredQuestions };
+    localStorage.setItem(storageKey(productId), JSON.stringify(state));
+  }, [currentQuestion, score, selectedAnswers, answeredQuestions, productId]);
 
   const handleAnswerSelect = useCallback((answerIndex: number) => {
     if (answeredQuestions[currentQuestion]) return;
@@ -59,6 +93,7 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
           totalQuestions: questions.length,
           isPerfectScore
         });
+        localStorage.removeItem(storageKey(productId));
         setCurrentQuestion(0);
         setScore(0);
         setSelectedAnswers(new Array(questions.length).fill(null));
@@ -76,11 +111,12 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
   }, [currentQuestion]);
 
   const handleRestart = useCallback(() => {
+    localStorage.removeItem(storageKey(productId));
     setCurrentQuestion(0);
     setScore(0);
     setSelectedAnswers(new Array(questions.length).fill(null));
     setAnsweredQuestions(new Array(questions.length).fill(false));
-  }, [questions.length]);
+  }, [questions.length, productId]);
 
   const isCorrect = selectedAnswer === questions[currentQuestion].correct;
   const isComplete = answeredQuestions.every(answered => answered);
