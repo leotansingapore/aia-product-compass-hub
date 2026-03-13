@@ -390,24 +390,22 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             <div className="lg:col-span-2 space-y-4 sm:space-y-6 order-1 lg:order-2 transition-all duration-300">
               {!currentVideo?.rich_content && (
                 <Card>
-                  {(!currentVideo?.rich_content || videoInfo) && (
-                    <CardHeader className="py-3 px-4 sm:py-4 sm:px-6">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
-                        <CardTitle className="flex items-start sm:items-center gap-2 flex-wrap text-sm sm:text-base leading-snug">
-                          <span className="break-words">{currentVideo?.title}</span>
-                          {currentProgress?.completed && (
-                            <Badge variant="secondary" className="text-xs flex-shrink-0">
-                              <Check className="h-3 w-3 mr-1" />
-                              Completed
-                            </Badge>
-                          )}
-                        </CardTitle>
-                      </div>
-                      {!currentVideo?.rich_content && currentVideo?.description && (
-                        <p className="text-muted-foreground text-sm mt-1">{currentVideo.description}</p>
-                      )}
-                    </CardHeader>
-                  )}
+                  <CardHeader className="py-3 px-4 sm:py-4 sm:px-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
+                      <CardTitle className="flex items-start sm:items-center gap-2 flex-wrap text-sm sm:text-base leading-snug">
+                        <span className="break-words">{currentVideo?.title}</span>
+                        {currentProgress?.completed && (
+                          <Badge variant="secondary" className="text-xs flex-shrink-0">
+                            <Check className="h-3 w-3 mr-1" />
+                            Completed
+                          </Badge>
+                        )}
+                      </CardTitle>
+                    </div>
+                    {currentVideo?.description && (
+                      <p className="text-muted-foreground text-sm mt-1">{currentVideo.description}</p>
+                    )}
+                  </CardHeader>
                   <CardContent className="px-0 pb-0 sm:px-6 sm:pb-6">
                     {videoInfo ? (
                       <div
@@ -438,11 +436,11 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           )}
                         </Button>
                       </div>
-                    ) : !currentVideo?.rich_content ? (
+                    ) : (
                       <div className="aspect-video bg-muted rounded-lg flex items-center justify-center mx-4 mb-4 sm:mx-0 sm:mb-0">
                         <p className="text-muted-foreground">Invalid video URL</p>
                       </div>
-                    ) : null}
+                    )}
                   </CardContent>
                 </Card>
               )}
