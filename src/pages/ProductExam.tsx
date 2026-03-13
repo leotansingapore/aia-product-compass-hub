@@ -38,6 +38,7 @@ export default function ProductExam() {
   const factCount = exam.questions.filter(q => q.category === 'product-facts').length;
   const salesCount = exam.questions.filter(q => q.category === 'sales-angles').length;
   const objectionCount = exam.questions.filter(q => q.category === 'objection-handling').length;
+  const roleplayCount = exam.questions.filter(q => q.category === 'roleplay').length;
 
   return (
     <ProtectedPage pageId="product-exam">
