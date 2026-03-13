@@ -14,6 +14,7 @@ import { ChecklistProvider } from "@/hooks/useChecklistProgress";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { ProtectedAdminPage } from "@/components/ProtectedAdminPage";
+import { RequireAuth } from "@/components/RequireAuth";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { RouteTracker } from "@/components/RouteTracker";
 
