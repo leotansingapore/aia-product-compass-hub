@@ -111,7 +111,6 @@ export function useAdminQuizScores() {
             best_total: pRows[bestIdx].total_questions,
             best_score_pct: Math.round(scorePcts[bestIdx]),
             avg_score_pct: avgPct,
-            total_xp_earned: totalXp,
             last_attempt: lastAttempt,
           });
         }
