@@ -78,11 +78,11 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     options: [
       "For the entire duration of the policy",
       "For the first 5 years only",
-      "For the first 10–11 years only (3.9% p.a.); no supplementary charges after that",
+      "For the first 10 years only (3.9% p.a.); no supplementary charges after that",
       "There are no supplementary charges in Pro Achiever 3.0"
     ],
     correct: 2,
-    explanation: "The supplementary charge is 3.9% p.a. and applies for approximately the first 10–11 years. After this period, the supplementary charge is capped — no further supplementary charges are deducted. This means more of the client's money goes toward investments in the later years of the policy.",
+    explanation: "The supplementary charge is 3.9% p.a. and applies for the first 10 years only. After this period, the supplementary charge is capped — no further supplementary charges are deducted. This means more of the client's money goes toward investments in the later years of the policy.",
     category: 'product-facts'
   },
   {
