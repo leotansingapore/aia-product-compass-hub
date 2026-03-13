@@ -145,6 +145,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
           tags: [],
           saved: false,
           duplicate: null,
+          duplicateAction: 'new' as DuplicateAction,
         };
         setEntries(prev => {
           const updated = [...prev, newEntry];
