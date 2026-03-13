@@ -131,7 +131,6 @@ export function useAdminQuizScores() {
           total_attempts: rows.length,
           avg_score_pct: avgScorePct,
           best_score_pct: bestScorePct,
-          total_xp_earned: totalXp,
           last_attempt: lastAttempt,
           product_breakdown,
         });

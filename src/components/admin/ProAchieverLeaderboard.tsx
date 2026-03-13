@@ -47,7 +47,6 @@ export function ProAchieverLeaderboard() {
           best_score_pct: pb.best_score_pct,
           avg_score_pct: pb.avg_score_pct,
           attempts: pb.attempts,
-          xp_earned: pb.total_xp_earned,
           last_attempt: pb.last_attempt,
         };
       })
