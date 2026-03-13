@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronLeft, ChevronRight, Check, Play, Download, ExternalLink, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen, CheckCircle2, Circle, List, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen, CheckCircle2, Circle, List, X } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -27,36 +27,20 @@ interface VideoLearningInterfaceProps {
   moduleType?: 'product' | 'cmfas';
 }
 
-
 function getVideoEmbedInfo(url: string) {
-  // YouTube
   const youtubeMatch = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
   if (youtubeMatch) {
-    return {
-      embedUrl: `https://www.youtube.com/embed/${youtubeMatch[1]}?enablejsapi=1`,
-      type: 'youtube'
-    };
+    return { embedUrl: `https://www.youtube.com/embed/${youtubeMatch[1]}?enablejsapi=1`, type: 'youtube' };
   }
-
-  // Loom
   const loomMatch = url.match(/loom\.com\/share\/([a-f0-9]+)/);
   if (loomMatch) {
-    return {
-      embedUrl: `https://www.loom.com/embed/${loomMatch[1]}`,
-      type: 'loom'
-    };
+    return { embedUrl: `https://www.loom.com/embed/${loomMatch[1]}`, type: 'loom' };
   }
-
-  // Vimeo
   const vimeoMatch = url.match(/vimeo\.com\/(?:manage\/videos\/|channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/)?(\d+)(?:\/([a-f0-9]+))?(?:$|\/|\?)/);
   if (vimeoMatch) {
     const hash = vimeoMatch[4] ? `?h=${vimeoMatch[4]}` : '';
-    return {
-      embedUrl: `https://player.vimeo.com/video/${vimeoMatch[3]}${hash}`,
-      type: 'vimeo'
-    };
+    return { embedUrl: `https://player.vimeo.com/video/${vimeoMatch[3]}${hash}`, type: 'vimeo' };
   }
-
   return null;
 }
 
@@ -75,6 +59,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
+  const miniNavRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const { toast } = useToast();
   const { productSlugOrId } = useParams();
@@ -84,13 +69,9 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
   // Handle fullscreen changes
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
-
+    const handleFullscreenChange = () => setIsFullscreen(!!document.fullscreenElement);
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-
     return () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
       document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
@@ -99,7 +80,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
   const toggleFullscreen = useCallback(async () => {
     if (!videoContainerRef.current) return;
-
     try {
       if (!document.fullscreenElement) {
         await videoContainerRef.current.requestFullscreen();
@@ -108,21 +88,11 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
       }
     } catch (error) {
       console.error('Fullscreen error:', error);
-      toast({
-        title: "Fullscreen not available",
-        description: "Your browser doesn't support fullscreen mode",
-        variant: "destructive",
-      });
+      toast({ title: "Fullscreen not available", description: "Your browser doesn't support fullscreen mode", variant: "destructive" });
     }
   }, [toast]);
 
-  const {
-    getVideoProgress,
-    markVideoComplete,
-    updateVideoProgress,
-    updateWatchTime,
-    getCourseProgress
-  } = useVideoProgress(productId);
+  const { getVideoProgress, markVideoComplete, updateVideoProgress, updateWatchTime, getCourseProgress } = useVideoProgress(productId);
 
   const handleToggleComplete = useCallback(async (videoId: string, currentlyCompleted: boolean) => {
     if (currentlyCompleted) {
@@ -136,32 +106,32 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const currentProgress = useMemo(() => getVideoProgress(currentVideo?.id), [getVideoProgress, currentVideo?.id]);
   const courseProgress = useMemo(() => getCourseProgress(videos.length), [getCourseProgress, videos.length]);
 
-  // Sync state with URL changes when video is selected from sidebar
   useEffect(() => {
     setCurrentVideoIndex(initialVideoIndex);
     setWatchTime(0);
   }, [initialVideoIndex]);
 
+  // Scroll mini-nav to keep current item visible
+  useEffect(() => {
+    if (miniNavRef.current) {
+      const activeEl = miniNavRef.current.querySelector('[data-active="true"]');
+      activeEl?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [currentVideoIndex]);
+
   // Track watch time
   useEffect(() => {
     let interval: NodeJS.Timeout;
-    
     if (isPlaying && currentVideo) {
       interval = setInterval(() => {
         setWatchTime(prev => {
           const newTime = prev + 1;
           const percentage = currentVideo.duration ? Math.min((newTime / currentVideo.duration) * 100, 100) : 0;
-          
-          // Update progress every 10 seconds
-          if (newTime % 10 === 0) {
-            updateWatchTime(currentVideo.id, newTime, percentage);
-          }
-          
+          if (newTime % 10 === 0) updateWatchTime(currentVideo.id, newTime, percentage);
           return newTime;
         });
       }, 1000);
     }
-
     return () => clearInterval(interval);
   }, [isPlaying, currentVideo, updateWatchTime]);
 
@@ -173,19 +143,13 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
   const navigateVideo = useCallback((direction: 'prev' | 'next') => {
     let targetIndex = currentVideoIndex;
-
-    if (direction === 'prev' && currentVideoIndex > 0) {
-      targetIndex = currentVideoIndex - 1;
-    } else if (direction === 'next' && currentVideoIndex < videos.length - 1) {
-      targetIndex = currentVideoIndex + 1;
-    } else {
-      return;
-    }
+    if (direction === 'prev' && currentVideoIndex > 0) targetIndex = currentVideoIndex - 1;
+    else if (direction === 'next' && currentVideoIndex < videos.length - 1) targetIndex = currentVideoIndex + 1;
+    else return;
 
     const targetVideo = videos[targetIndex];
     if (targetVideo) {
       const videoSlug = getVideoSlug(targetVideo.title);
-
       if (moduleType === 'cmfas' && moduleId) {
         navigate(`/cmfas/module/${moduleId}/video/${videoSlug}`);
       } else if (productSlugOrId) {
@@ -198,15 +162,12 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
   const sidebarContent = (
     <div className="space-y-4">
-      {/* Course Navigation */}
       <Card>
         <CardHeader className="pb-2 flex flex-row items-center justify-between">
           <CardTitle className="text-base">Course Videos</CardTitle>
-          {isMobile && (
-            <Button variant="ghost" size="icon" className="h-7 w-7 -mr-1" onClick={() => setShowMobileSidebar(false)}>
-              <X className="h-4 w-4" />
-            </Button>
-          )}
+          <Button variant="ghost" size="icon" className="h-7 w-7 -mr-1 lg:hidden" onClick={() => setShowMobileSidebar(false)}>
+            <X className="h-4 w-4" />
+          </Button>
         </CardHeader>
         <CardContent className="pt-2">
           <VideosByCategory
@@ -214,7 +175,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             onVideoSelect={(index) => {
               setCurrentVideoIndex(index);
               setWatchTime(0);
-              if (isMobile) setShowMobileSidebar(false);
+              setShowMobileSidebar(false);
             }}
             getVideoProgress={getVideoProgress}
             onToggleComplete={handleToggleComplete}
@@ -226,7 +187,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
         </CardContent>
       </Card>
 
-      {/* Transcript Accordion */}
+      {/* Transcript */}
       <Collapsible defaultOpen={false}>
         <Card>
           <CollapsibleTrigger className="w-full">
@@ -244,9 +205,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             <CardContent className="pt-0">
               {currentVideo?.transcript ? (
                 <div className="max-h-[400px] overflow-y-auto">
-                  <p className="whitespace-pre-wrap text-muted-foreground text-sm leading-relaxed">
-                    {currentVideo.transcript}
-                  </p>
+                  <p className="whitespace-pre-wrap text-muted-foreground text-sm leading-relaxed">{currentVideo.transcript}</p>
                 </div>
               ) : (
                 <div className="text-center py-4 text-muted-foreground">
@@ -268,14 +227,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             {currentVideo?.useful_links?.map((link, index) => (
               <div key={`link-${index}`} className="flex items-center gap-2">
                 <Link2 className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-primary hover:underline truncate"
-                >
-                  {link.name}
-                </a>
+                <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline truncate">{link.name}</a>
               </div>
             ))}
             {currentVideo?.attachments?.map((attachment) => (
@@ -285,14 +237,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 ) : (
                   <FileText className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                 )}
-                <a
-                  href={attachment.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-primary hover:underline truncate"
-                >
-                  {attachment.name}
-                </a>
+                <a href={attachment.url} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline truncate">{attachment.name}</a>
               </div>
             ))}
           </CardContent>
@@ -330,37 +275,30 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
               {/* Right controls */}
               <div className="flex items-center gap-1 flex-shrink-0">
-                {/* Admin edit — icon only on mobile */}
+                {/* Admin edit */}
                 {isAdmin && productSlugOrId && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="h-8 px-2 sm:px-3"
-                    onClick={() => navigate(`/product/${productSlugOrId}/manage-videos`)}
-                  >
+                  <Button variant="outline" size="sm" className="h-8 px-2 sm:px-3" onClick={() => navigate(`/product/${productSlugOrId}/manage-videos`)}>
                     <SquarePen className="h-4 w-4" />
                     <span className="hidden sm:inline ml-1.5">Edit</span>
                   </Button>
                 )}
 
-                {/* Course list toggle — mobile only */}
-                {isMobile && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="h-8 px-2"
-                    onClick={() => setShowMobileSidebar(true)}
-                    aria-label="Show course videos"
-                  >
-                    <List className="h-4 w-4" />
-                  </Button>
-                )}
+                {/* Course list toggle — below lg */}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-8 px-2 lg:hidden"
+                  onClick={() => setShowMobileSidebar(true)}
+                  aria-label="Show course videos"
+                >
+                  <List className="h-4 w-4" />
+                </Button>
 
-                {/* Prev / Next */}
+                {/* Prev / Next — desktop only in header; mobile gets bottom bar */}
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8"
+                  className="h-8 w-8 hidden sm:flex"
                   onClick={() => navigateVideo('prev')}
                   disabled={currentVideoIndex === 0}
                   aria-label="Previous video"
@@ -370,7 +308,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 <Button
                   variant="default"
                   size="sm"
-                  className="h-8 px-2 sm:px-3"
+                  className="h-8 px-2 sm:px-3 hidden sm:flex"
                   onClick={() => navigateVideo('next')}
                   disabled={currentVideoIndex === videos.length - 1}
                 >
@@ -386,8 +324,10 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
         <div className="max-w-7xl mx-auto px-3 sm:px-6 pt-4 sm:pt-8 pb-28 sm:pb-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
 
-            {/* Video Player — comes FIRST on mobile */}
-            <div className="lg:col-span-2 space-y-4 sm:space-y-6 order-1 lg:order-2 transition-all duration-300">
+            {/* Video + mini-nav column */}
+            <div className="lg:col-span-2 space-y-4 sm:space-y-6 order-1 lg:order-2">
+
+              {/* Video player */}
               {!currentVideo?.rich_content && (
                 <Card>
                   <CardHeader className="py-3 px-4 sm:py-4 sm:px-6">
@@ -421,7 +361,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           onLoad={() => setIsPlaying(false)}
                         />
-                        {/* Fullscreen button overlay */}
                         <Button
                           variant="secondary"
                           size="icon"
@@ -429,11 +368,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           onClick={toggleFullscreen}
                           title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
                         >
-                          {isFullscreen ? (
-                            <Minimize className="h-4 w-4" />
-                          ) : (
-                            <Maximize className="h-4 w-4" />
-                          )}
+                          {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
                         </Button>
                       </div>
                     ) : (
@@ -445,16 +380,57 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </Card>
               )}
 
-              {/* Markdown / Rich Content */}
+              {/* ── Mobile mini video nav strip ── */}
+              {videos.length > 1 && (
+                <div className="lg:hidden">
+                  <div
+                    ref={miniNavRef}
+                    className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide snap-x snap-mandatory"
+                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                  >
+                    {videos.map((video, idx) => {
+                      const vProgress = getVideoProgress(video.id);
+                      const isDone = !!vProgress?.completed;
+                      const isCurrent = idx === currentVideoIndex;
+                      const slug = getVideoSlug(video.title);
+                      return (
+                        <button
+                          key={video.id}
+                          data-active={isCurrent}
+                          onClick={() => {
+                            if (moduleType === 'cmfas' && moduleId) {
+                              navigate(`/cmfas/module/${moduleId}/video/${slug}`);
+                            } else if (productSlugOrId) {
+                              navigate(`/product/${productSlugOrId}/video/${slug}`);
+                            }
+                          }}
+                          className={`snap-start flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg border text-xs font-medium transition-all max-w-[160px] ${
+                            isCurrent
+                              ? 'bg-primary text-primary-foreground border-primary shadow-sm'
+                              : isDone
+                              ? 'bg-primary/10 border-primary/30 text-primary'
+                              : 'bg-background border-border text-muted-foreground hover:border-primary/40 hover:text-foreground'
+                          }`}
+                        >
+                          {isDone && !isCurrent ? (
+                            <CheckCircle2 className="h-3.5 w-3.5 flex-shrink-0" />
+                          ) : (
+                            <span className="flex-shrink-0 w-4 text-center tabular-nums opacity-60">{idx + 1}</span>
+                          )}
+                          <span className="truncate">{video.title}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Rich content */}
               {currentVideo?.rich_content?.trim() ? (
                 <Card>
                   <CardContent className="p-4 sm:p-6">
                     <div className="prose prose-sm dark:prose-invert max-w-none">
-                      <ReactMarkdown
-                        components={markdownComponents}
-                        remarkPlugins={[remarkGfm]}
-                        rehypePlugins={[rehypeRaw]}
-                      >
+                      <ReactMarkdown components={markdownComponents} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
                         {currentVideo.rich_content}
                       </ReactMarkdown>
                     </div>
@@ -463,22 +439,17 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
               ) : null}
             </div>
 
-            {/* Desktop Sidebar — hidden on mobile */}
-            <div className="hidden lg:block space-y-6 order-2 lg:order-1 transition-all duration-300">
+            {/* Desktop Sidebar */}
+            <div className="hidden lg:block space-y-6 order-2 lg:order-1">
               {sidebarContent}
             </div>
           </div>
         </div>
 
-        {/* ── Mobile Sidebar Drawer ── */}
-        {isMobile && showMobileSidebar && (
-          <div className="fixed inset-0 z-50 flex">
-            {/* Backdrop */}
-            <div
-              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-              onClick={() => setShowMobileSidebar(false)}
-            />
-            {/* Drawer */}
+        {/* ── Mobile/Tablet Sidebar Drawer ── */}
+        {showMobileSidebar && (
+          <div className="fixed inset-0 z-50 flex lg:hidden">
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowMobileSidebar(false)} />
             <div className="relative ml-auto w-[85vw] max-w-sm h-full bg-background overflow-y-auto shadow-2xl">
               <div className="p-4 pb-24">
                 {sidebarContent}
@@ -487,12 +458,25 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
           </div>
         )}
 
-        {/* ── Sticky Mark Complete bar ── */}
+        {/* ── Mobile Bottom bar: Prev | Mark Complete | Next ── */}
         <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t z-40 p-3 sm:p-4">
-          <div className="max-w-7xl mx-auto flex items-center gap-3">
+          <div className="max-w-7xl mx-auto flex items-center gap-2">
+
+            {/* Prev — mobile only */}
             <Button
-              className="flex-1 max-w-md mx-auto"
-              size="lg"
+              variant="outline"
+              size="icon"
+              className="h-11 w-11 flex-shrink-0 sm:hidden"
+              onClick={() => navigateVideo('prev')}
+              disabled={currentVideoIndex === 0}
+              aria-label="Previous video"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
+
+            {/* Mark complete */}
+            <Button
+              className="flex-1 max-w-md mx-auto h-11"
               onClick={handleToggleStickyComplete}
               variant={currentProgress?.completed ? "secondary" : "default"}
             >
@@ -508,11 +492,23 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </>
               )}
             </Button>
+
+            {/* Next — mobile only */}
+            <Button
+              variant="default"
+              size="icon"
+              className="h-11 w-11 flex-shrink-0 sm:hidden"
+              onClick={() => navigateVideo('next')}
+              disabled={currentVideoIndex === videos.length - 1}
+              aria-label="Next video"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </Button>
+
           </div>
         </div>
 
       </div>
     </div>
   );
-
 });
