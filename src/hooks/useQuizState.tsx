@@ -59,6 +59,12 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
   const selectedAnswer = selectedAnswers[currentQuestion];
   const showResult = answeredQuestions[currentQuestion];
 
+  // Persist state to localStorage on every change
+  useEffect(() => {
+    const state: PersistedQuizState = { currentQuestion, score, selectedAnswers, answeredQuestions };
+    localStorage.setItem(storageKey(productId), JSON.stringify(state));
+  }, [currentQuestion, score, selectedAnswers, answeredQuestions, productId]);
+
   const handleAnswerSelect = useCallback((answerIndex: number) => {
     if (answeredQuestions[currentQuestion]) return;
     
@@ -87,6 +93,7 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
           totalQuestions: questions.length,
           isPerfectScore
         });
+        localStorage.removeItem(storageKey(productId));
         setCurrentQuestion(0);
         setScore(0);
         setSelectedAnswers(new Array(questions.length).fill(null));
@@ -104,11 +111,12 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
   }, [currentQuestion]);
 
   const handleRestart = useCallback(() => {
+    localStorage.removeItem(storageKey(productId));
     setCurrentQuestion(0);
     setScore(0);
     setSelectedAnswers(new Array(questions.length).fill(null));
     setAnsweredQuestions(new Array(questions.length).fill(false));
-  }, [questions.length]);
+  }, [questions.length, productId]);
 
   const isCorrect = selectedAnswer === questions[currentQuestion].correct;
   const isComplete = answeredQuestions.every(answered => answered);
