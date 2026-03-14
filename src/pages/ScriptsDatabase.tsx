@@ -3882,8 +3882,9 @@ export default function ScriptsDatabase() {
                             navigate('/scripts', { replace: true });
                           }
                         }}
-                      />
-                    ))}
+                       />
+                       </div>
+                     ))}
                   </>
                 );
               })()
