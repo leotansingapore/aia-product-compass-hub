@@ -945,20 +945,86 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                   <span className="text-[11px] text-muted-foreground">Max 20MB per file</span>
                 </div>
                 {pastePdfs.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {pastePdfs.map((pdf, i) => (
-                      <div key={i} className="relative group flex items-center gap-2 rounded-lg border bg-muted px-3 py-2 pr-7">
-                        <FileText className="h-4 w-4 text-destructive shrink-0" />
-                        <span className="text-xs max-w-[160px] truncate">{pdf.name}</span>
-                        <button
-                          type="button"
-                          onClick={() => setPastePdfs(prev => prev.filter((_, j) => j !== i))}
-                          className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <X className="h-3 w-3" />
-                        </button>
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap gap-2">
+                      {pastePdfs.map((pdf, i) => (
+                        <div key={i} className="relative group flex items-center gap-2 rounded-lg border bg-muted px-3 py-2 pr-7">
+                          <FileText className="h-4 w-4 text-destructive shrink-0" />
+                          <span className="text-xs max-w-[160px] truncate">{pdf.name}</span>
+                          <button
+                            type="button"
+                            onClick={() => setPastePdfs(prev => prev.filter((_, j) => j !== i))}
+                            className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <X className="h-3 w-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="h-7 gap-1.5 text-xs border-primary/40 text-primary hover:bg-primary/5"
+                      onClick={extractScriptFromPdfs}
+                      disabled={isExtractingPdf}
+                    >
+                      {isExtractingPdf ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <FileScan className="h-3.5 w-3.5" />}
+                      {isExtractingPdf ? "Extracting…" : "Extract script from PDF"}
+                    </Button>
+                  </div>
+                )}
+                {/* Multi-script selection UI */}
+                {pdfExtractedScripts.length > 1 && (
+                  <div className="mt-3 rounded-lg border border-primary/20 bg-primary/5 p-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs font-semibold text-primary">{pdfExtractedScripts.length} scripts found — select which to add</p>
+                      <div className="flex gap-1">
+                        <button type="button" className="text-[10px] text-primary underline" onClick={() => setPdfExtractedScripts(p => p.map(s => ({ ...s, selected: true })))}>All</button>
+                        <span className="text-[10px] text-muted-foreground">·</span>
+                        <button type="button" className="text-[10px] text-muted-foreground underline" onClick={() => setPdfExtractedScripts(p => p.map(s => ({ ...s, selected: false })))}>None</button>
                       </div>
-                    ))}
+                    </div>
+                    <div className="space-y-1.5 max-h-48 overflow-y-auto">
+                      {pdfExtractedScripts.map((s, i) => (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => setPdfExtractedScripts(p => p.map((x, j) => j === i ? { ...x, selected: !x.selected } : x))}
+                          className={`w-full text-left rounded-md border px-3 py-2 transition-colors ${s.selected ? "border-primary bg-primary/10" : "border-border bg-background"}`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <CheckSquare className={`h-3.5 w-3.5 shrink-0 ${s.selected ? "text-primary" : "text-muted-foreground"}`} />
+                            <span className="text-xs font-medium truncate">{s.title || `Script ${i + 1}`}</span>
+                          </div>
+                          <p className="text-[10px] text-muted-foreground mt-0.5 line-clamp-1 pl-5">{s.content.slice(0, 80)}…</p>
+                        </button>
+                      ))}
+                    </div>
+                    <Button
+                      type="button"
+                      size="sm"
+                      className="w-full h-7 text-xs gap-1.5"
+                      disabled={!pdfExtractedScripts.some(s => s.selected)}
+                      onClick={() => {
+                        const selected = pdfExtractedScripts.filter(s => s.selected);
+                        if (selected.length === 1) {
+                          setPasteContent(prev => prev ? `${prev}\n\n${selected[0].content}` : selected[0].content);
+                          toast.success("Script loaded into editor");
+                        } else {
+                          // Load first selected, queue rest
+                          const [first, ...rest] = selected;
+                          setPasteContent(prev => prev ? `${prev}\n\n${first.content}` : first.content);
+                          if (rest.length > 0) {
+                            toast.success(`First script loaded. ${rest.length} more in queue — add each after saving.`);
+                          }
+                        }
+                        setPdfExtractedScripts([]);
+                      }}
+                    >
+                      <ArrowRight className="h-3.5 w-3.5" />
+                      Use {pdfExtractedScripts.filter(s => s.selected).length} selected script{pdfExtractedScripts.filter(s => s.selected).length !== 1 ? "s" : ""}
+                    </Button>
                   </div>
                 )}
               </div>
