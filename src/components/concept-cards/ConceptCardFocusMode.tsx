@@ -5,10 +5,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
   X, ChevronLeft, ChevronRight, CheckCircle,
-  RotateCcw, GraduationCap, Keyboard, CalendarClock
+  RotateCcw, GraduationCap, Keyboard, CalendarClock, Lightbulb
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+
 
 interface Props {
   cards: ConceptCard[];
