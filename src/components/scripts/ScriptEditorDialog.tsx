@@ -9,7 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert, Link2, X, AlertCircle, ChevronDown, FolderOpen, ImagePlus, FileText } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert, Link2, X, AlertCircle, ChevronDown, FolderOpen, ImagePlus, FileText, ScanText } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useScripts } from "@/hooks/useScripts";
 import { supabase } from "@/integrations/supabase/client";
@@ -301,12 +302,64 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
   // Paste step state
   const [pasteContent, setPasteContent] = useState("");
   const [isClassifying, setIsClassifying] = useState(false);
-  const [pasteImages, setPasteImages] = useState<Array<{ url: string; name: string }>>([]);
+  const [pasteImages, setPasteImages] = useState<Array<{ url: string; name: string; isScript?: boolean }>>([]);
   const [pastePdfs, setPastePdfs] = useState<Array<{ url: string; name: string }>>([]);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [isUploadingPdf, setIsUploadingPdf] = useState(false);
+  const [isExtractingScript, setIsExtractingScript] = useState(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const pdfInputRef = useRef<HTMLInputElement>(null);
+
+  const toggleImageAsScript = (index: number) => {
+    setPasteImages(prev => prev.map((img, i) => i === index ? { ...img, isScript: !img.isScript } : img));
+  };
+
+  const extractScriptFromImages = useCallback(async () => {
+    const scriptImages = pasteImages.filter(img => img.isScript);
+    if (scriptImages.length === 0) return;
+    setIsExtractingScript(true);
+    try {
+      const imageContents = scriptImages.map(img => ({
+        type: "image_url" as const,
+        image_url: { url: img.url },
+      }));
+      const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "google/gemini-2.5-flash",
+          messages: [
+            {
+              role: "user",
+              content: [
+                {
+                  type: "text",
+                  text: "Extract all the script/text content from this image exactly as written. Return only the raw text of the script — no explanations, no headers, no commentary. Preserve line breaks and formatting.",
+                },
+                ...imageContents,
+              ],
+            },
+          ],
+        }),
+      });
+      if (!response.ok) throw new Error("AI extraction failed");
+      const data = await response.json();
+      const extracted = data.choices?.[0]?.message?.content?.trim();
+      if (extracted) {
+        setPasteContent(prev => prev ? `${prev}\n\n${extracted}` : extracted);
+        toast.success("Script extracted from image!");
+      } else {
+        toast.error("No text found in image");
+      }
+    } catch (e) {
+      toast.error("Failed to extract script from image");
+    } finally {
+      setIsExtractingScript(false);
+    }
+  }, [pasteImages]);
 
   const uploadImage = useCallback(async (file: File) => {
     if (file.size > 10 * 1024 * 1024) { toast.error("Image too large. Max 10MB."); return; }
@@ -801,19 +854,51 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                   <span className="text-[11px] text-muted-foreground">or paste an image into the text box above</span>
                 </div>
                 {pasteImages.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {pasteImages.map((img, i) => (
-                      <div key={i} className="relative group">
-                        <img src={img.url} alt={img.name} className="h-20 w-20 object-cover rounded-lg border" />
-                        <button
-                          type="button"
-                          onClick={() => setPasteImages(prev => prev.filter((_, j) => j !== i))}
-                          className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <X className="h-3 w-3" />
-                        </button>
-                      </div>
-                    ))}
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap gap-3">
+                      {pasteImages.map((img, i) => (
+                        <div key={i} className="flex flex-col gap-1.5">
+                          <div className="relative group">
+                            <img
+                              src={img.url}
+                              alt={img.name}
+                              className={`h-20 w-20 object-cover rounded-lg border-2 transition-all ${img.isScript ? "border-primary ring-2 ring-primary/30" : "border-border"}`}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setPasteImages(prev => prev.filter((_, j) => j !== i))}
+                              className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <X className="h-3 w-3" />
+                            </button>
+                          </div>
+                          <div className="flex items-center gap-1.5 w-20">
+                            <Switch
+                              id={`script-img-${i}`}
+                              checked={!!img.isScript}
+                              onCheckedChange={() => toggleImageAsScript(i)}
+                              className="scale-75 origin-left"
+                            />
+                            <label htmlFor={`script-img-${i}`} className="text-[10px] text-muted-foreground leading-tight cursor-pointer">
+                              {img.isScript ? <span className="text-primary font-semibold">Extract</span> : "Has script?"}
+                            </label>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {pasteImages.some(img => img.isScript) && (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        className="h-7 gap-1.5 text-xs border-primary/40 text-primary hover:bg-primary/5"
+                        onClick={extractScriptFromImages}
+                        disabled={isExtractingScript}
+                      >
+                        {isExtractingScript ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ScanText className="h-3.5 w-3.5" />}
+                        {isExtractingScript ? "Extracting…" : "Extract script from image"}
+                      </Button>
+                    )}
                   </div>
                 )}
               </div>
