@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   ZoomIn, ZoomOut, Pencil, Eraser, Trash2, Loader2,
   Sparkles, CheckCircle, AlertCircle, TrendingUp, Lightbulb,
-  RotateCcw, Eye, Columns2, Undo2, Redo2, Crop,
+  RotateCcw, Eye, Columns2, Undo2, Redo2, Crop, Type,
 } from 'lucide-react';
 import { ConceptCard } from '@/hooks/useConceptCards';
 import { supabase } from '@/integrations/supabase/client';
@@ -46,6 +46,15 @@ const SCORE_COLOR = (score: number) => {
 };
 
 // ─── Whiteboard ─────────────────────────────────────────────────────────────
+type WhiteboardTool = 'pen' | 'eraser' | 'text';
+
+interface TextOverlay {
+  x: number;   // CSS pixels relative to canvas element
+  y: number;
+  canvasX: number; // canvas pixel coords
+  canvasY: number;
+}
+
 function Whiteboard({
   onCompare,
   comparing,
@@ -56,12 +65,16 @@ function Whiteboard({
   referenceImageUrl?: string | null;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [tool, setTool] = useState<'pen' | 'eraser'>('pen');
+  const [tool, setTool] = useState<WhiteboardTool>('pen');
   const [penSize, setPenSize] = useState(3);
   const [eraserSize, setEraserSize] = useState(20);
+  const [fontSize, setFontSize] = useState(20);
   const [isDrawing, setIsDrawing] = useState(false);
   const [hasDrawn, setHasDrawn] = useState(false);
   const [showRef, setShowRef] = useState(false);
+  const [textOverlay, setTextOverlay] = useState<TextOverlay | null>(null);
+  const [textValue, setTextValue] = useState('');
+  const textInputRef = useRef<HTMLInputElement>(null);
   const lastPos = useRef<{ x: number; y: number } | null>(null);
   const historyRef = useRef<ImageData[]>([]);
   const historyIndexRef = useRef(-1);
@@ -121,18 +134,33 @@ function Whiteboard({
     return () => window.removeEventListener('keydown', handleKey);
   }, [undo, redo]);
 
+  // Focus text input when overlay appears
+  useEffect(() => {
+    if (textOverlay) {
+      setTimeout(() => textInputRef.current?.focus(), 50);
+    }
+  }, [textOverlay]);
+
   const getPos = (e: React.MouseEvent | React.TouchEvent, canvas: HTMLCanvasElement) => {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
     if ('touches' in e) {
       const t = e.touches[0];
-      return { x: (t.clientX - rect.left) * scaleX, y: (t.clientY - rect.top) * scaleY };
+      return {
+        cssX: t.clientX - rect.left,
+        cssY: t.clientY - rect.top,
+        x: (t.clientX - rect.left) * scaleX,
+        y: (t.clientY - rect.top) * scaleY,
+      };
     }
-    // Use offsetX/offsetY — already relative to the canvas element, unaffected by
-    // parent CSS transforms (e.g. Dialog animations) that throw off clientX - rect.left.
     const me = e as React.MouseEvent;
-    return { x: me.nativeEvent.offsetX * scaleX, y: me.nativeEvent.offsetY * scaleY };
+    return {
+      cssX: me.nativeEvent.offsetX,
+      cssY: me.nativeEvent.offsetY,
+      x: me.nativeEvent.offsetX * scaleX,
+      y: me.nativeEvent.offsetY * scaleY,
+    };
   };
 
   const applyToolSettings = (ctx: CanvasRenderingContext2D) => {
@@ -149,10 +177,45 @@ function Whiteboard({
     ctx.lineJoin = 'round';
   };
 
+  const stampText = useCallback((text: string, canvasX: number, canvasY: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas || !text.trim()) return;
+    const ctx = canvas.getContext('2d')!;
+    const scale = canvas.width / (canvasRef.current?.getBoundingClientRect().width ?? canvas.width);
+    const scaledFont = Math.round(fontSize * scale);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.font = `${scaledFont}px sans-serif`;
+    ctx.fillStyle = '#1a1a1a';
+    ctx.textBaseline = 'top';
+    ctx.fillText(text, canvasX, canvasY);
+    saveSnapshot();
+    setHasDrawn(true);
+  }, [fontSize, saveSnapshot]);
+
+  const commitText = useCallback(() => {
+    if (textOverlay && textValue.trim()) {
+      stampText(textValue, textOverlay.canvasX, textOverlay.canvasY);
+    }
+    setTextOverlay(null);
+    setTextValue('');
+  }, [textOverlay, textValue, stampText]);
+
   const startDrawing = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    if (tool === 'text') {
+      const pos = getPos(e, canvas);
+      // dismiss existing overlay first
+      if (textOverlay && textValue.trim()) {
+        stampText(textValue, textOverlay.canvasX, textOverlay.canvasY);
+      }
+      setTextValue('');
+      setTextOverlay({ x: pos.cssX, y: pos.cssY, canvasX: pos.x, canvasY: pos.y });
+      return;
+    }
+
     const ctx = canvas.getContext('2d')!;
     const pos = getPos(e, canvas);
     applyToolSettings(ctx);
@@ -172,7 +235,7 @@ function Whiteboard({
 
   const draw = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
-    if (!isDrawing || !lastPos.current) return;
+    if (!isDrawing || !lastPos.current || tool === 'text') return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
@@ -207,9 +270,17 @@ function Whiteboard({
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     saveSnapshot();
     setHasDrawn(false);
+    setTextOverlay(null);
+    setTextValue('');
   };
 
   const handleCompare = () => {
+    // Commit any pending text first
+    if (textOverlay && textValue.trim()) {
+      stampText(textValue, textOverlay.canvasX, textOverlay.canvasY);
+      setTextOverlay(null);
+      setTextValue('');
+    }
     const canvas = canvasRef.current;
     if (!canvas) return;
     const flat = document.createElement('canvas');
@@ -224,29 +295,37 @@ function Whiteboard({
 
   const PEN_SIZES = [2, 4, 7];
   const ERASER_SIZES = [10, 20, 40, 70];
+  const FONT_SIZES = [14, 20, 28, 36];
+
+  const cursorStyle = tool === 'text' ? 'text' : tool === 'eraser' ? 'cell' : 'crosshair';
 
   return (
     <div className="flex flex-col h-full">
       {/* Toolbar */}
       <div className="flex items-center gap-2 px-3 py-2 border-b bg-muted/30 flex-wrap shrink-0">
-        {(['pen', 'eraser'] as const).map(t => (
+        {/* Tool buttons */}
+        {([
+          { id: 'pen', icon: Pencil, label: 'Pen' },
+          { id: 'eraser', icon: Eraser, label: 'Eraser' },
+          { id: 'text', icon: Type, label: 'Text' },
+        ] as const).map(({ id, icon: Icon, label }) => (
           <button
-            key={t}
-            onClick={() => setTool(t)}
+            key={id}
+            onClick={() => { setTool(id); setTextOverlay(null); setTextValue(''); }}
             className={cn(
               "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors border",
-              tool === t
+              tool === id
                 ? "bg-primary text-primary-foreground border-primary"
                 : "bg-background text-muted-foreground border-border hover:border-primary/60"
             )}
           >
-            {t === 'pen' ? <Pencil className="h-3.5 w-3.5" /> : <Eraser className="h-3.5 w-3.5" />}
-            {t.charAt(0).toUpperCase() + t.slice(1)}
+            <Icon className="h-3.5 w-3.5" />
+            {label}
           </button>
         ))}
 
         {/* Size pickers — contextual per tool */}
-        {tool === 'pen' ? (
+        {tool === 'pen' && (
           <div className="flex items-center gap-1.5 ml-1">
             {PEN_SIZES.map(s => (
               <button
@@ -261,7 +340,9 @@ function Whiteboard({
               </button>
             ))}
           </div>
-        ) : (
+        )}
+
+        {tool === 'eraser' && (
           <div className="flex items-center gap-1.5 ml-1">
             {ERASER_SIZES.map(s => (
               <button
@@ -275,6 +356,23 @@ function Whiteboard({
               >
                 <div className="rounded-full bg-foreground/30 border border-foreground/40"
                   style={{ width: Math.min(s / 3 + 4, 22), height: Math.min(s / 3 + 4, 22) }} />
+              </button>
+            ))}
+          </div>
+        )}
+
+        {tool === 'text' && (
+          <div className="flex items-center gap-1.5 ml-1">
+            {FONT_SIZES.map(s => (
+              <button
+                key={s}
+                onClick={() => setFontSize(s)}
+                className={cn(
+                  "min-w-[28px] h-7 px-1.5 rounded-lg flex items-center justify-center border text-xs font-medium transition-colors",
+                  fontSize === s ? "border-primary bg-primary/10 text-primary" : "border-border hover:border-primary/60 text-muted-foreground"
+                )}
+              >
+                {s}
               </button>
             ))}
           </div>
@@ -335,8 +433,8 @@ function Whiteboard({
             ref={canvasRef}
             width={900}
             height={600}
-            className="w-full h-full cursor-crosshair touch-none"
-            style={{ background: '#ffffff' }}
+            className="w-full h-full touch-none"
+            style={{ background: '#ffffff', cursor: cursorStyle }}
             onMouseDown={startDrawing}
             onMouseMove={draw}
             onMouseUp={stopDrawing}
@@ -345,11 +443,47 @@ function Whiteboard({
             onTouchMove={draw}
             onTouchEnd={stopDrawing}
           />
-          {!hasDrawn && (
+
+          {/* Floating text input overlay */}
+          {tool === 'text' && textOverlay && (
+            <div
+              className="absolute z-20"
+              style={{ left: textOverlay.x, top: textOverlay.y, transform: 'translateY(-2px)' }}
+            >
+              <input
+                ref={textInputRef}
+                value={textValue}
+                onChange={e => setTextValue(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') { e.preventDefault(); commitText(); }
+                  if (e.key === 'Escape') { setTextOverlay(null); setTextValue(''); }
+                }}
+                onBlur={commitText}
+                placeholder="Type here…"
+                className="bg-white/95 border-2 border-primary rounded px-2 py-0.5 outline-none shadow-lg min-w-[120px] max-w-[240px]"
+                style={{
+                  fontSize: `${fontSize}px`,
+                  lineHeight: 1.2,
+                  color: '#1a1a1a',
+                  fontFamily: 'sans-serif',
+                }}
+              />
+              <div className="text-[9px] text-muted-foreground mt-0.5 bg-background/80 rounded px-1">
+                Enter to stamp · Esc to cancel
+              </div>
+            </div>
+          )}
+
+          {!hasDrawn && !textOverlay && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="text-center space-y-2 opacity-40">
-                <Pencil className="h-8 w-8 mx-auto text-muted-foreground" />
-                <p className="text-sm text-muted-foreground">Draw here, then tap "Compare with AI"</p>
+                {tool === 'text'
+                  ? <Type className="h-8 w-8 mx-auto text-muted-foreground" />
+                  : <Pencil className="h-8 w-8 mx-auto text-muted-foreground" />
+                }
+                <p className="text-sm text-muted-foreground">
+                  {tool === 'text' ? 'Tap anywhere to type text' : 'Draw here, then tap "Compare with AI"'}
+                </p>
               </div>
             </div>
           )}
@@ -376,6 +510,7 @@ function Whiteboard({
     </div>
   );
 }
+
 
 // ─── Score Display ─────────────────────────────────────────────────────────
 function CompareResultPanel({
