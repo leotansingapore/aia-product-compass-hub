@@ -2908,6 +2908,17 @@ export default function ScriptsDatabase() {
     [scriptId, scriptsForSlug]
   );
 
+  // Auto-scroll to a newly created or deep-linked script once it renders
+  useEffect(() => {
+    if (!resolvedScriptId || loading) return;
+    const el = document.getElementById(`script-${resolvedScriptId}`);
+    if (el) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    }
+  }, [resolvedScriptId, loading]);
+
   // Playbook integration
   const { myPlaybooks, createPlaybook } = usePlaybooks();
   const { favouriteIds, toggleFavourite } = useScriptFavourites();
@@ -3834,12 +3845,12 @@ export default function ScriptsDatabase() {
                         </button>
                       </div>
                     )}
-                     {filteredScripts.map((script) => (
-                      <ScriptCard
-                        key={script.id}
-                        script={script}
-                        isAdmin={isAdmin}
-                        isOpenByUrl={resolvedScriptId === script.id}
+                      {filteredScripts.map((script) => (
+                       <div key={script.id} id={`script-${script.id}`}>
+                       <ScriptCard
+                         script={script}
+                         isAdmin={isAdmin}
+                         isOpenByUrl={resolvedScriptId === script.id}
                         searchQuery={searchQuery}
                         myPlaybooks={myPlaybooks}
                         onAddToPlaybook={handleAddToPlaybook}
@@ -3871,8 +3882,9 @@ export default function ScriptsDatabase() {
                             navigate('/scripts', { replace: true });
                           }
                         }}
-                      />
-                    ))}
+                       />
+                       </div>
+                     ))}
                   </>
                 );
               })()
