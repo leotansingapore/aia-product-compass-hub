@@ -2827,6 +2827,9 @@ export default function ScriptsDatabase() {
   const [showFavouritesOnly, setShowFavouritesOnly] = useState(false);
   const [showMobileExtraFilters, setShowMobileExtraFilters] = useState(false);
 
+  // Ref so navigateToScriptInternal can access scripts without declaration order issues
+  const dbScriptsRef = useRef<typeof dbScripts>([]);
+
   // Helper for in-page card toggle navigation (preserves filters including query params)
   const navigateToScriptInternal = useCallback((id: string) => {
     internalNavRef.current = true;
@@ -2837,9 +2840,9 @@ export default function ScriptsDatabase() {
     if (activeTag !== "all") params.set("tag", activeTag);
     if (searchQuery) params.set("q", searchQuery);
     const qs = params.toString();
-    const slug = toScriptSlug(dbScripts.find(s => s.id === id)?.stage || id, id);
+    const slug = toScriptSlug(dbScriptsRef.current.find(s => s.id === id)?.stage || id, id);
     navigate(`/scripts/${slug}${qs ? `?${qs}` : ''}`, { replace: true });
-  }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery, dbScripts]);
+  }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
 
   // Persist filters to localStorage whenever they change
   useEffect(() => {
