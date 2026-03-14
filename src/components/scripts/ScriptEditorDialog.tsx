@@ -854,19 +854,51 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                   <span className="text-[11px] text-muted-foreground">or paste an image into the text box above</span>
                 </div>
                 {pasteImages.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {pasteImages.map((img, i) => (
-                      <div key={i} className="relative group">
-                        <img src={img.url} alt={img.name} className="h-20 w-20 object-cover rounded-lg border" />
-                        <button
-                          type="button"
-                          onClick={() => setPasteImages(prev => prev.filter((_, j) => j !== i))}
-                          className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <X className="h-3 w-3" />
-                        </button>
-                      </div>
-                    ))}
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap gap-3">
+                      {pasteImages.map((img, i) => (
+                        <div key={i} className="flex flex-col gap-1.5">
+                          <div className="relative group">
+                            <img
+                              src={img.url}
+                              alt={img.name}
+                              className={`h-20 w-20 object-cover rounded-lg border-2 transition-all ${img.isScript ? "border-primary ring-2 ring-primary/30" : "border-border"}`}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setPasteImages(prev => prev.filter((_, j) => j !== i))}
+                              className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <X className="h-3 w-3" />
+                            </button>
+                          </div>
+                          <div className="flex items-center gap-1.5 w-20">
+                            <Switch
+                              id={`script-img-${i}`}
+                              checked={!!img.isScript}
+                              onCheckedChange={() => toggleImageAsScript(i)}
+                              className="scale-75 origin-left"
+                            />
+                            <label htmlFor={`script-img-${i}`} className="text-[10px] text-muted-foreground leading-tight cursor-pointer">
+                              {img.isScript ? <span className="text-primary font-semibold">Extract</span> : "Has script?"}
+                            </label>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {pasteImages.some(img => img.isScript) && (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        className="h-7 gap-1.5 text-xs border-primary/40 text-primary hover:bg-primary/5"
+                        onClick={extractScriptFromImages}
+                        disabled={isExtractingScript}
+                      >
+                        {isExtractingScript ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ScanText className="h-3.5 w-3.5" />}
+                        {isExtractingScript ? "Extracting…" : "Extract script from image"}
+                      </Button>
+                    )}
                   </div>
                 )}
               </div>
