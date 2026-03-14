@@ -16,6 +16,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { markdownComponents } from '@/lib/markdown-config';
+import { detectVideoEmbed, VideoEmbed } from '@/lib/video-embed-utils';
 import { usePermissions } from '@/hooks/usePermissions';
 
 interface VideoLearningInterfaceProps {
