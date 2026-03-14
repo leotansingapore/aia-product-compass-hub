@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import {
   Plus, Search, ImageIcon, Trash2, GraduationCap, RotateCcw,
   CheckCircle, XCircle, Pencil, BookmarkCheck, Focus, CalendarClock, Flame
