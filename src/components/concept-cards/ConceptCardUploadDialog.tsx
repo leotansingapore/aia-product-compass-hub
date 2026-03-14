@@ -302,19 +302,29 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
             {entries.length > 0 && (
               <Badge variant="secondary" className="ml-1">{entries.length} image{entries.length > 1 ? 's' : ''}</Badge>
             )}
-            <button
-              type="button"
-              onClick={() => setAiEnhance(v => !v)}
-              className={cn(
-                "ml-auto flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full border transition-colors",
-                aiEnhance
-                  ? "bg-primary/10 text-primary border-primary/30 hover:bg-primary/20"
-                  : "bg-muted text-muted-foreground border-border hover:border-primary/40 hover:text-foreground"
-              )}
-            >
-              {aiEnhance ? <Zap className="h-3.5 w-3.5" /> : <ZapOff className="h-3.5 w-3.5" />}
-              AI Enhance {aiEnhance ? 'On' : 'Off'}
-            </button>
+            <div className="ml-auto flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setAiEnhance(v => !v)}
+                className={cn(
+                  "flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full border transition-colors",
+                  aiEnhance
+                    ? "bg-primary/10 text-primary border-primary/30 hover:bg-primary/20"
+                    : "bg-muted text-muted-foreground border-border hover:border-primary/40 hover:text-foreground"
+                )}
+              >
+                {aiEnhance ? <Zap className="h-3.5 w-3.5" /> : <ZapOff className="h-3.5 w-3.5" />}
+                AI Enhance {aiEnhance ? 'On' : 'Off'}
+              </button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
+                aria-label="Close"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
           </DialogTitle>
         </DialogHeader>
 
