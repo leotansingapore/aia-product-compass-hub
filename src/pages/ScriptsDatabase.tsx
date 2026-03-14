@@ -3797,7 +3797,7 @@ export default function ScriptsDatabase() {
                             config={config}
                             scripts={grouped[subType]}
                             isAdmin={isAdmin}
-                            scriptId={scriptId}
+                            scriptId={resolvedScriptId}
                             searchQuery={searchQuery}
                             myPlaybooks={myPlaybooks}
                             handleAddToPlaybook={handleAddToPlaybook}
