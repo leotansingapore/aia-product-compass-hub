@@ -302,12 +302,64 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
   // Paste step state
   const [pasteContent, setPasteContent] = useState("");
   const [isClassifying, setIsClassifying] = useState(false);
-  const [pasteImages, setPasteImages] = useState<Array<{ url: string; name: string }>>([]);
+  const [pasteImages, setPasteImages] = useState<Array<{ url: string; name: string; isScript?: boolean }>>([]);
   const [pastePdfs, setPastePdfs] = useState<Array<{ url: string; name: string }>>([]);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [isUploadingPdf, setIsUploadingPdf] = useState(false);
+  const [isExtractingScript, setIsExtractingScript] = useState(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const pdfInputRef = useRef<HTMLInputElement>(null);
+
+  const toggleImageAsScript = (index: number) => {
+    setPasteImages(prev => prev.map((img, i) => i === index ? { ...img, isScript: !img.isScript } : img));
+  };
+
+  const extractScriptFromImages = useCallback(async () => {
+    const scriptImages = pasteImages.filter(img => img.isScript);
+    if (scriptImages.length === 0) return;
+    setIsExtractingScript(true);
+    try {
+      const imageContents = scriptImages.map(img => ({
+        type: "image_url" as const,
+        image_url: { url: img.url },
+      }));
+      const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "google/gemini-2.5-flash",
+          messages: [
+            {
+              role: "user",
+              content: [
+                {
+                  type: "text",
+                  text: "Extract all the script/text content from this image exactly as written. Return only the raw text of the script — no explanations, no headers, no commentary. Preserve line breaks and formatting.",
+                },
+                ...imageContents,
+              ],
+            },
+          ],
+        }),
+      });
+      if (!response.ok) throw new Error("AI extraction failed");
+      const data = await response.json();
+      const extracted = data.choices?.[0]?.message?.content?.trim();
+      if (extracted) {
+        setPasteContent(prev => prev ? `${prev}\n\n${extracted}` : extracted);
+        toast.success("Script extracted from image!");
+      } else {
+        toast.error("No text found in image");
+      }
+    } catch (e) {
+      toast.error("Failed to extract script from image");
+    } finally {
+      setIsExtractingScript(false);
+    }
+  }, [pasteImages]);
 
   const uploadImage = useCallback(async (file: File) => {
     if (file.size > 10 * 1024 * 1024) { toast.error("Image too large. Max 10MB."); return; }
