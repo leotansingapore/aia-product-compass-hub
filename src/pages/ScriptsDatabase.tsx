@@ -2837,7 +2837,8 @@ export default function ScriptsDatabase() {
     if (activeTag !== "all") params.set("tag", activeTag);
     if (searchQuery) params.set("q", searchQuery);
     const qs = params.toString();
-    navigate(`/scripts/${id}${qs ? `?${qs}` : ''}`, { replace: true });
+    const slug = toScriptSlug(allScripts?.find(s => s.id === id)?.stage || id, id);
+    navigate(`/scripts/${slug}${qs ? `?${qs}` : ''}`, { replace: true });
   }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
 
   // Persist filters to localStorage whenever they change
