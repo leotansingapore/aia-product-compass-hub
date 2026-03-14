@@ -305,7 +305,7 @@ function Whiteboard({
   const cursorStyle = tool === 'text' ? 'text' : tool === 'eraser' ? 'cell' : 'crosshair';
 
   return (
-    <div className="flex flex-col overflow-hidden" style={{ flex: '1 1 0', minHeight: 0 }}>
+    <div className="flex flex-col h-full overflow-hidden">
       {/* ── Drawing Surface ── */}
       <div
         className={cn("flex-1 min-h-0 overflow-hidden relative", showRef && "flex flex-row")}
