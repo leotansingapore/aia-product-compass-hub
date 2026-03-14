@@ -55,8 +55,10 @@ function FlashCard({
 
   const goToStep = (s: number) => setStep(Math.max(0, Math.min(2, s)));
 
+  const PANEL_HEIGHT = 260;
+
   return (
-    <div className="group relative" style={{ minHeight: '240px' }}>
+    <div className="group relative">
       {/* Quiz status indicator */}
       {quizMode && (isKnown || isReview) && (
         <div className={cn(
@@ -70,29 +72,42 @@ function FlashCard({
         </div>
       )}
 
-      {/* 3-step dots */}
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 flex gap-1">
-        {[0, 1, 2].map(i => (
-          <button
-            key={i}
-            onClick={e => { e.stopPropagation(); goToStep(i); }}
-            className={cn(
-              "rounded-full transition-all duration-200",
-              step === i ? "w-4 h-1.5 bg-primary" : "w-1.5 h-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"
-            )}
-          />
-        ))}
-      </div>
-
-      {/* Carousel container */}
+      {/* Card */}
       <div className={cn(
-        "rounded-2xl border bg-card shadow-sm overflow-hidden transition-all",
-        "hover:shadow-md",
+        "rounded-2xl border bg-card shadow-sm overflow-hidden transition-all hover:shadow-md relative",
         isKnown && quizMode && "opacity-60",
-      )} style={{ minHeight: '240px' }}>
+      )} style={{ height: `${PANEL_HEIGHT}px` }}>
+
+        {/* 3-step dots — inside card at top */}
+        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+          {[0, 1, 2].map(i => (
+            <button
+              key={i}
+              onClick={e => { e.stopPropagation(); goToStep(i); }}
+              style={{
+                width: step === i ? '16px' : '6px',
+                height: '6px',
+                borderRadius: '3px',
+                background: step === i ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground) / 0.3)',
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                flexShrink: 0,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Sliding track */}
         <div
-          className="flex transition-transform duration-400 ease-in-out h-full"
-          style={{ transform: `translateX(-${step * 100}%)`, width: '300%' }}
+          style={{
+            display: 'flex',
+            width: '300%',
+            height: '100%',
+            transform: `translateX(-${step * (100 / 3)}%)`,
+            transition: 'transform 0.3s ease-in-out',
+          }}
         >
           {/* PANEL 1 — Question */}
           <div
