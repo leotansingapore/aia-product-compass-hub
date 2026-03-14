@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert, Link2, X, AlertCircle, ChevronDown, FolderOpen, ImagePlus, FileText, ScanText } from "lucide-react";
+import { Plus, Trash2, Sparkles, Loader2, ArrowRight, Pencil, AlertTriangle, GitMerge, ShieldAlert, Link2, X, AlertCircle, ChevronDown, FolderOpen, ImagePlus, FileText, ScanText, FileScan, CheckSquare } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useScripts } from "@/hooks/useScripts";
 import { supabase } from "@/integrations/supabase/client";
