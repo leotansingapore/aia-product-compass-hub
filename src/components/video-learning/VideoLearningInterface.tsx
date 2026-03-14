@@ -457,24 +457,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                             if (hasBlock) return <div className="mb-3 last:mb-0">{children}</div>;
                             return <p className="mb-3 last:mb-0 leading-relaxed text-foreground">{children}</p>;
                           },
-                          // Only suppress embedding for the same URL already shown by the standalone player above
+                          // Always embed video links — standalone player deduplication is handled by richContentHasVideo above
                           a: ({ children, href }: any) => {
-                            const standaloneUrl = currentVideo?.url ?? '';
-                            const isSameAsStandalone = standaloneUrl && href &&
-                              href.trim() === standaloneUrl.trim();
-                            if (isSameAsStandalone) {
-                              return (
-                                <a
-                                  href={href}
-                                   className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  {children}
-                                </a>
-                              );
-                            }
-                            // All other links — use detectVideoEmbed to embed if it's a video URL
                             const videoInfo = detectVideoEmbed(href ?? '');
                             if (videoInfo.isVideo && videoInfo.embedUrl) {
                               return <VideoEmbed embedUrl={videoInfo.embedUrl} platform={videoInfo.platform || 'video'} />;
