@@ -365,14 +365,20 @@ function Whiteboard({
       const dy = py - d.lastY;
       d.lastX = px; d.lastY = py;
 
+
       if (d.target.kind === 'text') {
-        setTextItems(prev => prev.map(t => t.id === d.target.id ? { ...t, x: t.x + dx, y: t.y + dy } : t));
+        const textId = d.target.id;
+        setTextItems(prev => prev.map(t => t.id === textId ? { ...t, x: t.x + dx, y: t.y + dy } : t));
       } else if (d.target.kind === 'stroke') {
-        setCommittedStrokes(prev => prev.map(s => s.id === d.target.id ? translateStroke(s, dx, dy) : s));
+        const strokeId = d.target.id;
+        setCommittedStrokes(prev => prev.map(s => s.id === strokeId ? translateStroke(s, dx, dy) : s));
       } else if (d.target.kind === 'multi') {
-        setTextItems(prev => prev.map(t => (d.target as { kind: 'multi'; textIds: string[]; strokeIds: string[] }).textIds.includes(t.id) ? { ...t, x: t.x + dx, y: t.y + dy } : t));
-        setCommittedStrokes(prev => prev.map(s => (d.target as { kind: 'multi'; textIds: string[]; strokeIds: string[] }).strokeIds.includes(s.id) ? translateStroke(s, dx, dy) : s));
+        const tIds = d.target.textIds;
+        const sIds = d.target.strokeIds;
+        setTextItems(prev => prev.map(t => tIds.includes(t.id) ? { ...t, x: t.x + dx, y: t.y + dy } : t));
+        setCommittedStrokes(prev => prev.map(s => sIds.includes(s.id) ? translateStroke(s, dx, dy) : s));
       }
+
       return;
     }
 
