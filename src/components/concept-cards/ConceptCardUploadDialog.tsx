@@ -652,7 +652,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
 
                   {/* Description */}
                   <div className="space-y-1.5">
-                    <Label className="text-sm">Hint <span className="text-muted-foreground text-xs">(optional)</span></Label>
+                    <Label className="text-sm">Explanation <span className="text-muted-foreground text-xs">(optional)</span></Label>
                     <Textarea
                       placeholder="Short description shown as a hint..."
                       value={active.description}
