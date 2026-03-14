@@ -3839,35 +3839,13 @@ export default function ScriptsDatabase() {
                         key={script.id}
                         script={script}
                         isAdmin={isAdmin}
-                        isOpenByUrl={scriptId === script.id}
+                        isOpenByUrl={resolvedScriptId === script.id}
                         searchQuery={searchQuery}
-                        myPlaybooks={myPlaybooks}
-                        onAddToPlaybook={handleAddToPlaybook}
-                        onCreatePlaybookAndAdd={handleCreatePlaybookAndAdd}
-                        isAuthenticated={!!user}
-                        userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
-                        isFavourite={favouriteIds.has(script.id)}
-                        onToggleFavourite={() => toggleFavourite.mutate(script.id)}
-                        isMobile={isMobile}
-                        allScripts={dbScripts}
-                        onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
-                        onDelete={() => setDeleteTarget(script)}
-                        onInlineSave={handleInlineSave}
-                        onMetadataSave={handleMetadataSave}
-                        mergeSourceId={mergeState.sourceId}
-                        mergeOverId={mergeState.dragOverId}
-                        tapSelectMode={mergeState.tapSelectMode}
-                        onMergeDragStart={startDrag}
-                        onMergeDragEnd={endDrag}
-                        onMergeOver={onDragOver}
-                        onMergeLeave={onDragLeave}
-                        onMergeDrop={onDrop}
-                        onTapSelect={tapSelect}
-                        onTapTarget={tapTarget}
+...
                         onToggle={(open) => {
                           if (open) {
                             navigateToScriptInternal(script.id);
-                          } else if (scriptId === script.id) {
+                          } else if (resolvedScriptId === script.id) {
                             navigate('/scripts', { replace: true });
                           }
                         }}
