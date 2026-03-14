@@ -8,6 +8,7 @@ import {
   Sparkles, CheckCircle, AlertCircle, TrendingUp, Lightbulb,
   RotateCcw, Eye, Columns2, Undo2, Redo2, Crop, Type,
 } from 'lucide-react';
+import { getStroke } from 'perfect-freehand';
 import { ConceptCard } from '@/hooks/useConceptCards';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
@@ -48,11 +49,34 @@ const SCORE_COLOR = (score: number) => {
 // ─── Whiteboard ─────────────────────────────────────────────────────────────
 type WhiteboardTool = 'pen' | 'eraser' | 'text';
 
-interface TextOverlay {
-  x: number;   // CSS pixels relative to canvas element
+// SVG path helper from perfect-freehand
+function getSvgPathFromStroke(points: number[][]): string {
+  if (!points.length) return '';
+  const d = points.reduce(
+    (acc, [x0, y0], i, arr) => {
+      const [x1, y1] = arr[(i + 1) % arr.length];
+      acc.push(x0, y0, (x0 + x1) / 2, (y0 + y1) / 2);
+      return acc;
+    },
+    ['M', ...points[0], 'Q'] as (string | number)[]
+  );
+  d.push('Z');
+  return d.join(' ');
+}
+
+interface DrawnStroke {
+  id: string;
+  points: number[][];  // [x, y, pressure]
+  tool: 'pen' | 'eraser';
+  size: number;
+}
+
+interface TextItem {
+  id: string;
+  x: number;
   y: number;
-  canvasX: number; // canvas pixel coords
-  canvasY: number;
+  text: string;
+  fontSize: number;
 }
 
 function Whiteboard({
@@ -64,64 +88,60 @@ function Whiteboard({
   comparing: boolean;
   referenceImageUrl?: string | null;
 }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const exportCanvasRef = useRef<HTMLCanvasElement>(null);
   const [tool, setTool] = useState<WhiteboardTool>('pen');
-  const [penSize, setPenSize] = useState(3);
-  const [eraserSize, setEraserSize] = useState(20);
+  const [penSize, setPenSize] = useState(4);
+  const [eraserSize, setEraserSize] = useState(24);
   const [fontSize, setFontSize] = useState(20);
-  const [isDrawing, setIsDrawing] = useState(false);
   const [hasDrawn, setHasDrawn] = useState(false);
   const [showRef, setShowRef] = useState(false);
-  const [textOverlay, setTextOverlay] = useState<TextOverlay | null>(null);
-  const [textValue, setTextValue] = useState('');
-  const textInputRef = useRef<HTMLInputElement>(null);
-  const lastPos = useRef<{ x: number; y: number } | null>(null);
-  const historyRef = useRef<ImageData[]>([]);
-  const historyIndexRef = useRef(-1);
 
-  const saveSnapshot = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d')!;
-    const snap = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    historyRef.current = historyRef.current.slice(0, historyIndexRef.current + 1);
-    historyRef.current.push(snap);
-    historyIndexRef.current = historyRef.current.length - 1;
-    if (historyRef.current.length > 30) {
-      historyRef.current.shift();
-      historyIndexRef.current--;
-    }
+  // Stroke state
+  const [committedStrokes, setCommittedStrokes] = useState<DrawnStroke[]>([]);
+  const [currentPoints, setCurrentPoints] = useState<number[][]>([]);
+  const [isPointerDown, setIsPointerDown] = useState(false);
+  const currentToolRef = useRef<'pen' | 'eraser'>('pen');
+
+  // Text state
+  const [textItems, setTextItems] = useState<TextItem[]>([]);
+  const [editingText, setEditingText] = useState<{ x: number; y: number } | null>(null);
+  const [editingValue, setEditingValue] = useState('');
+  const textInputRef = useRef<HTMLInputElement>(null);
+
+  // History
+  type HistoryState = { strokes: DrawnStroke[]; texts: TextItem[] };
+  const historyRef = useRef<HistoryState[]>([{ strokes: [], texts: [] }]);
+  const historyIndexRef = useRef(0);
+
+  const pushHistory = useCallback((strokes: DrawnStroke[], texts: TextItem[]) => {
+    const slice = historyRef.current.slice(0, historyIndexRef.current + 1);
+    slice.push({ strokes, texts });
+    if (slice.length > 40) slice.shift();
+    historyRef.current = slice;
+    historyIndexRef.current = slice.length - 1;
   }, []);
 
   const undo = useCallback(() => {
     if (historyIndexRef.current <= 0) return;
     historyIndexRef.current--;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d')!;
-    ctx.putImageData(historyRef.current[historyIndexRef.current], 0, 0);
-    setHasDrawn(historyIndexRef.current > 0);
+    const s = historyRef.current[historyIndexRef.current];
+    setCommittedStrokes(s.strokes);
+    setTextItems(s.texts);
+    setHasDrawn(s.strokes.length > 0 || s.texts.length > 0);
   }, []);
 
   const redo = useCallback(() => {
     if (historyIndexRef.current >= historyRef.current.length - 1) return;
     historyIndexRef.current++;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d')!;
-    ctx.putImageData(historyRef.current[historyIndexRef.current], 0, 0);
+    const s = historyRef.current[historyIndexRef.current];
+    setCommittedStrokes(s.strokes);
+    setTextItems(s.texts);
     setHasDrawn(true);
   }, []);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d')!;
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    saveSnapshot();
-  }, [saveSnapshot]);
-
+  // Keyboard shortcuts
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
@@ -134,176 +154,169 @@ function Whiteboard({
     return () => window.removeEventListener('keydown', handleKey);
   }, [undo, redo]);
 
-  // Focus text input when overlay appears
+  // Auto-focus text input
   useEffect(() => {
-    if (textOverlay) {
-      setTimeout(() => textInputRef.current?.focus(), 50);
-    }
-  }, [textOverlay]);
+    if (editingText) setTimeout(() => textInputRef.current?.focus(), 30);
+  }, [editingText]);
 
-  const getPos = (e: React.MouseEvent | React.TouchEvent, canvas: HTMLCanvasElement) => {
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    if ('touches' in e) {
-      const t = e.touches[0];
-      return {
-        cssX: t.clientX - rect.left,
-        cssY: t.clientY - rect.top,
-        x: (t.clientX - rect.left) * scaleX,
-        y: (t.clientY - rect.top) * scaleY,
-      };
-    }
-    const me = e as React.MouseEvent;
-    return {
-      cssX: me.nativeEvent.offsetX,
-      cssY: me.nativeEvent.offsetY,
-      x: me.nativeEvent.offsetX * scaleX,
-      y: me.nativeEvent.offsetY * scaleY,
-    };
-  };
+  const getRelativePos = useCallback((e: React.PointerEvent): [number, number] => {
+    const rect = containerRef.current!.getBoundingClientRect();
+    return [e.clientX - rect.left, e.clientY - rect.top];
+  }, []);
 
-  const applyToolSettings = (ctx: CanvasRenderingContext2D) => {
-    if (tool === 'eraser') {
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.strokeStyle = 'rgba(0,0,0,1)';
-      ctx.lineWidth = eraserSize;
-    } else {
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.strokeStyle = '#1a1a1a';
-      ctx.lineWidth = penSize;
-    }
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-  };
-
-  const stampText = useCallback((text: string, canvasX: number, canvasY: number) => {
-    const canvas = canvasRef.current;
-    if (!canvas || !text.trim()) return;
-    const ctx = canvas.getContext('2d')!;
-    const scale = canvas.width / (canvasRef.current?.getBoundingClientRect().width ?? canvas.width);
-    const scaledFont = Math.round(fontSize * scale);
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.font = `${scaledFont}px sans-serif`;
-    ctx.fillStyle = '#1a1a1a';
-    ctx.textBaseline = 'top';
-    ctx.fillText(text, canvasX, canvasY);
-    saveSnapshot();
-    setHasDrawn(true);
-  }, [fontSize, saveSnapshot]);
-
-  const commitText = useCallback(() => {
-    if (textOverlay && textValue.trim()) {
-      stampText(textValue, textOverlay.canvasX, textOverlay.canvasY);
-    }
-    setTextOverlay(null);
-    setTextValue('');
-  }, [textOverlay, textValue, stampText]);
-
-  const startDrawing = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
+  // ── Pointer events ──────────────────────────────────────────────────────
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
     if (tool === 'text') {
-      const pos = getPos(e, canvas);
-      // dismiss existing overlay first
-      if (textOverlay && textValue.trim()) {
-        stampText(textValue, textOverlay.canvasX, textOverlay.canvasY);
+      // commit any current editing first
+      if (editingValue.trim() && editingText) {
+        const newTexts = [...textItems, {
+          id: crypto.randomUUID(),
+          x: editingText.x,
+          y: editingText.y,
+          text: editingValue,
+          fontSize,
+        }];
+        setTextItems(newTexts);
+        pushHistory(committedStrokes, newTexts);
+        setHasDrawn(true);
       }
-      setTextValue('');
-      setTextOverlay({ x: pos.cssX, y: pos.cssY, canvasX: pos.x, canvasY: pos.y });
+      const [x, y] = getRelativePos(e);
+      setEditingText({ x, y });
+      setEditingValue('');
       return;
     }
+    e.currentTarget.setPointerCapture(e.pointerId);
+    currentToolRef.current = tool as 'pen' | 'eraser';
+    const [x, y] = getRelativePos(e);
+    const pressure = e.pressure || 0.5;
+    setCurrentPoints([[x, y, pressure]]);
+    setIsPointerDown(true);
+  }, [tool, editingText, editingValue, textItems, committedStrokes, fontSize, getRelativePos, pushHistory]);
 
-    const ctx = canvas.getContext('2d')!;
-    const pos = getPos(e, canvas);
-    applyToolSettings(ctx);
-    ctx.beginPath();
-    if (tool === 'eraser') {
-      ctx.arc(pos.x, pos.y, eraserSize / 2, 0, Math.PI * 2);
-      ctx.fill();
-    } else {
-      ctx.arc(pos.x, pos.y, penSize / 2, 0, Math.PI * 2);
-      ctx.fillStyle = '#1a1a1a';
-      ctx.fill();
-    }
-    setIsDrawing(true);
-    lastPos.current = pos;
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (!isPointerDown || tool === 'text') return;
+    const [x, y] = getRelativePos(e);
+    const pressure = e.pressure || 0.5;
+    setCurrentPoints(prev => [...prev, [x, y, pressure]]);
+  }, [isPointerDown, tool, getRelativePos]);
+
+  const handlePointerUp = useCallback(() => {
+    if (!isPointerDown || currentPoints.length === 0) return;
+    setIsPointerDown(false);
+    const newStroke: DrawnStroke = {
+      id: crypto.randomUUID(),
+      points: currentPoints,
+      tool: currentToolRef.current,
+      size: currentToolRef.current === 'eraser' ? eraserSize : penSize,
+    };
+    const newStrokes = [...committedStrokes, newStroke];
+    setCommittedStrokes(newStrokes);
+    setCurrentPoints([]);
+    pushHistory(newStrokes, textItems);
     setHasDrawn(true);
-  };
+  }, [isPointerDown, currentPoints, committedStrokes, textItems, penSize, eraserSize, pushHistory]);
 
-  const draw = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    if (!isDrawing || !lastPos.current || tool === 'text') return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d')!;
-    const pos = getPos(e, canvas);
-    applyToolSettings(ctx);
-    ctx.beginPath();
-    ctx.moveTo(lastPos.current.x, lastPos.current.y);
-    ctx.lineTo(pos.x, pos.y);
-    ctx.stroke();
-    lastPos.current = pos;
-  };
-
-  const stopDrawing = () => {
-    if (isDrawing) {
-      const canvas = canvasRef.current;
-      if (canvas) {
-        const ctx = canvas.getContext('2d')!;
-        ctx.globalCompositeOperation = 'source-over';
-      }
-      saveSnapshot();
+  const commitText = useCallback(() => {
+    if (!editingText || !editingValue.trim()) {
+      setEditingText(null);
+      setEditingValue('');
+      return;
     }
-    setIsDrawing(false);
-    lastPos.current = null;
+    const newTexts = [...textItems, {
+      id: crypto.randomUUID(),
+      x: editingText.x,
+      y: editingText.y,
+      text: editingValue,
+      fontSize,
+    }];
+    setTextItems(newTexts);
+    pushHistory(committedStrokes, newTexts);
+    setHasDrawn(true);
+    setEditingText(null);
+    setEditingValue('');
+  }, [editingText, editingValue, textItems, committedStrokes, fontSize, pushHistory]);
+
+  const clearAll = () => {
+    setCommittedStrokes([]);
+    setTextItems([]);
+    setCurrentPoints([]);
+    setEditingText(null);
+    setEditingValue('');
+    pushHistory([], []);
+    setHasDrawn(false);
   };
 
-  const clearCanvas = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+  // ── Render stroke ────────────────────────────────────────────────────────
+  const renderStroke = (stroke: DrawnStroke, key: string) => {
+    const pathData = getSvgPathFromStroke(
+      getStroke(stroke.points, {
+        size: stroke.size,
+        thinning: stroke.tool === 'eraser' ? 0 : 0.6,
+        smoothing: 0.5,
+        streamline: 0.5,
+        simulatePressure: stroke.points[0]?.[2] === 0.5, // only simulate if no real pressure
+      })
+    );
+    if (stroke.tool === 'eraser') {
+      return <path key={key} d={pathData} fill="white" />;
+    }
+    return <path key={key} d={pathData} fill="#1a1a1a" />;
+  };
+
+  // ── Export for compare ───────────────────────────────────────────────────
+  const handleCompare = useCallback(async () => {
+    // commit pending text
+    let finalTexts = textItems;
+    if (editingText && editingValue.trim()) {
+      finalTexts = [...textItems, {
+        id: crypto.randomUUID(),
+        x: editingText.x,
+        y: editingText.y,
+        text: editingValue,
+        fontSize,
+      }];
+      setTextItems(finalTexts);
+      setEditingText(null);
+      setEditingValue('');
+    }
+
+    const svg = svgRef.current;
+    if (!svg) return;
+    const rect = svg.getBoundingClientRect();
+    const w = rect.width || 900;
+    const h = rect.height || 600;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = w * 2;
+    canvas.height = h * 2;
     const ctx = canvas.getContext('2d')!;
-    ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    saveSnapshot();
-    setHasDrawn(false);
-    setTextOverlay(null);
-    setTextValue('');
-  };
 
-  const handleCompare = () => {
-    // Commit any pending text first
-    if (textOverlay && textValue.trim()) {
-      stampText(textValue, textOverlay.canvasX, textOverlay.canvasY);
-      setTextOverlay(null);
-      setTextValue('');
-    }
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const flat = document.createElement('canvas');
-    flat.width = canvas.width;
-    flat.height = canvas.height;
-    const fctx = flat.getContext('2d')!;
-    fctx.fillStyle = '#ffffff';
-    fctx.fillRect(0, 0, flat.width, flat.height);
-    fctx.drawImage(canvas, 0, 0);
-    onCompare(flat.toDataURL('image/png'));
-  };
+    // Serialize SVG
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const blob = new Blob([svgData], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      onCompare(canvas.toDataURL('image/png'));
+    };
+    img.src = url;
+  }, [svgRef, textItems, editingText, editingValue, fontSize, onCompare]);
 
-  const PEN_SIZES = [2, 4, 7];
-  const ERASER_SIZES = [10, 20, 40, 70];
+  const PEN_SIZES = [2, 4, 8];
+  const ERASER_SIZES = [12, 24, 48];
   const FONT_SIZES = [14, 20, 28, 36];
 
   const cursorStyle = tool === 'text' ? 'text' : tool === 'eraser' ? 'cell' : 'crosshair';
 
   return (
     <div className="flex flex-col h-full">
-      {/* Toolbar */}
-      <div className="flex items-center gap-2 px-3 py-2 border-b bg-muted/30 flex-wrap shrink-0">
-        {/* Tool buttons */}
+      {/* ── Toolbar ── */}
+      <div className="flex items-center gap-1.5 px-3 py-2 border-b bg-muted/30 flex-wrap shrink-0">
+        {/* Tools */}
         {([
           { id: 'pen', icon: Pencil, label: 'Pen' },
           { id: 'eraser', icon: Eraser, label: 'Eraser' },
@@ -311,65 +324,57 @@ function Whiteboard({
         ] as const).map(({ id, icon: Icon, label }) => (
           <button
             key={id}
-            onClick={() => { setTool(id); setTextOverlay(null); setTextValue(''); }}
+            onClick={() => { setTool(id); setEditingText(null); setEditingValue(''); }}
+            title={label}
             className={cn(
-              "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors border",
+              "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border",
               tool === id
-                ? "bg-primary text-primary-foreground border-primary"
-                : "bg-background text-muted-foreground border-border hover:border-primary/60"
+                ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                : "bg-background text-muted-foreground border-border hover:border-primary/60 hover:bg-primary/5"
             )}
           >
             <Icon className="h-3.5 w-3.5" />
-            {label}
+            <span className="hidden sm:inline">{label}</span>
           </button>
         ))}
 
-        {/* Size pickers — contextual per tool */}
+        {/* Size pickers */}
         {tool === 'pen' && (
-          <div className="flex items-center gap-1.5 ml-1">
+          <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
             {PEN_SIZES.map(s => (
-              <button
-                key={s}
-                onClick={() => setPenSize(s)}
+              <button key={s} onClick={() => setPenSize(s)}
                 className={cn(
-                  "w-7 h-7 rounded-full flex items-center justify-center border transition-colors",
-                  penSize === s ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
+                  "w-7 h-7 rounded-full flex items-center justify-center border transition-all",
+                  penSize === s ? "border-primary bg-primary/10 scale-110" : "border-border hover:border-primary/60"
                 )}
               >
-                <div className="rounded-full bg-foreground" style={{ width: s + 2, height: s + 2 }} />
+                <div className="rounded-full bg-foreground" style={{ width: s + 1, height: s + 1 }} />
               </button>
             ))}
           </div>
         )}
-
         {tool === 'eraser' && (
-          <div className="flex items-center gap-1.5 ml-1">
+          <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
             {ERASER_SIZES.map(s => (
-              <button
-                key={s}
-                onClick={() => setEraserSize(s)}
-                title={`Eraser ${s}px`}
+              <button key={s} onClick={() => setEraserSize(s)} title={`${s}px`}
                 className={cn(
-                  "w-7 h-7 rounded-full flex items-center justify-center border transition-colors",
-                  eraserSize === s ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
+                  "w-7 h-7 rounded-full flex items-center justify-center border transition-all",
+                  eraserSize === s ? "border-primary bg-primary/10 scale-110" : "border-border hover:border-primary/60"
                 )}
               >
-                <div className="rounded-full bg-foreground/30 border border-foreground/40"
-                  style={{ width: Math.min(s / 3 + 4, 22), height: Math.min(s / 3 + 4, 22) }} />
+                <div className="rounded-full bg-foreground/20 border border-foreground/30"
+                  style={{ width: Math.min(s / 3 + 3, 20), height: Math.min(s / 3 + 3, 20) }} />
               </button>
             ))}
           </div>
         )}
-
         {tool === 'text' && (
-          <div className="flex items-center gap-1.5 ml-1">
+          <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
             {FONT_SIZES.map(s => (
-              <button
-                key={s}
-                onClick={() => setFontSize(s)}
+              <button key={s} onClick={() => setFontSize(s)}
                 className={cn(
-                  "min-w-[28px] h-7 px-1.5 rounded-lg flex items-center justify-center border text-xs font-medium transition-colors",
-                  fontSize === s ? "border-primary bg-primary/10 text-primary" : "border-border hover:border-primary/60 text-muted-foreground"
+                  "min-w-[28px] h-7 px-1.5 rounded-lg flex items-center justify-center border text-xs font-medium transition-all",
+                  fontSize === s ? "border-primary bg-primary/10 text-primary scale-105" : "border-border hover:border-primary/60 text-muted-foreground"
                 )}
               >
                 {s}
@@ -378,19 +383,14 @@ function Whiteboard({
           </div>
         )}
 
-        <div className="flex items-center gap-1 ml-2 border-l border-border/50 pl-2">
-          <button
-            onClick={undo}
-            title="Undo (Ctrl+Z)"
-            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors"
-          >
+        {/* Undo / Redo */}
+        <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
+          <button onClick={undo} title="Undo (⌘Z)"
+            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors">
             <Undo2 className="h-3.5 w-3.5" />
           </button>
-          <button
-            onClick={redo}
-            title="Redo (Ctrl+Shift+Z)"
-            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors"
-          >
+          <button onClick={redo} title="Redo (⌘⇧Z)"
+            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors">
             <Redo2 className="h-3.5 w-3.5" />
           </button>
         </div>
@@ -398,97 +398,119 @@ function Whiteboard({
         <div className="flex-1" />
 
         {referenceImageUrl && (
-          <button
-            onClick={() => setShowRef(v => !v)}
+          <button onClick={() => setShowRef(v => !v)}
             className={cn(
               "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors border",
-              showRef
-                ? "bg-primary/10 text-primary border-primary/40"
-                : "bg-background text-muted-foreground border-border hover:border-primary/60"
+              showRef ? "bg-primary/10 text-primary border-primary/40" : "bg-background text-muted-foreground border-border hover:border-primary/60"
             )}
           >
             <Columns2 className="h-3.5 w-3.5" />
-            {showRef ? 'Hide ref' : 'Show ref'}
+            <span className="hidden sm:inline">{showRef ? 'Hide ref' : 'Show ref'}</span>
           </button>
         )}
 
-        <button
-          onClick={clearCanvas}
-          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-border hover:border-destructive/60 hover:text-destructive transition-colors"
-        >
-          <Trash2 className="h-3.5 w-3.5" /> Clear
+        <button onClick={clearAll}
+          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-border hover:border-destructive/60 hover:text-destructive transition-colors">
+          <Trash2 className="h-3.5 w-3.5" />
+          <span className="hidden sm:inline">Clear</span>
         </button>
 
         <Button size="sm" onClick={handleCompare} disabled={!hasDrawn || comparing} className="text-xs h-8">
           {comparing
-            ? <><Loader2 className="h-3.5 w-3.5 mr-1.5 animate-spin" />Comparing...</>
-            : <><Sparkles className="h-3.5 w-3.5 mr-1.5" />Compare with AI</>
-          }
+            ? <><Loader2 className="h-3.5 w-3.5 mr-1.5 animate-spin" />Comparing…</>
+            : <><Sparkles className="h-3.5 w-3.5 mr-1.5" />Compare with AI</>}
         </Button>
       </div>
 
+      {/* ── Drawing Surface ── */}
       <div className={cn("flex-1 overflow-hidden flex", showRef ? "flex-row" : "flex-col")}>
-        <div className={cn("relative overflow-hidden", showRef ? "w-1/2 border-r" : "flex-1")} style={{ background: '#ffffff' }}>
-          <canvas
-            ref={canvasRef}
-            width={900}
-            height={600}
-            className="w-full h-full touch-none"
-            style={{ background: '#ffffff', cursor: cursorStyle }}
-            onMouseDown={startDrawing}
-            onMouseMove={draw}
-            onMouseUp={stopDrawing}
-            onMouseLeave={stopDrawing}
-            onTouchStart={startDrawing}
-            onTouchMove={draw}
-            onTouchEnd={stopDrawing}
-          />
+        <div
+          ref={containerRef}
+          className={cn("relative overflow-hidden select-none", showRef ? "w-1/2 border-r" : "flex-1")}
+          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none' }}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerLeave={handlePointerUp}
+        >
+          <svg
+            ref={svgRef}
+            className="absolute inset-0 w-full h-full"
+            style={{ overflow: 'visible' }}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Committed strokes */}
+            {committedStrokes.map(s => renderStroke(s, s.id))}
 
-          {/* Floating text input overlay */}
-          {tool === 'text' && textOverlay && (
+            {/* Live stroke preview */}
+            {isPointerDown && currentPoints.length > 1 && renderStroke(
+              { id: 'live', points: currentPoints, tool: currentToolRef.current, size: currentToolRef.current === 'eraser' ? eraserSize : penSize },
+              'live'
+            )}
+
+            {/* Text items */}
+            {textItems.map(t => (
+              <text
+                key={t.id}
+                x={t.x}
+                y={t.y + t.fontSize}
+                fontSize={t.fontSize}
+                fontFamily="system-ui, sans-serif"
+                fill="#1a1a1a"
+                style={{ userSelect: 'none' }}
+              >
+                {t.text}
+              </text>
+            ))}
+          </svg>
+
+          {/* Inline text input — appears at tap position */}
+          {tool === 'text' && editingText && (
             <div
               className="absolute z-20"
-              style={{ left: textOverlay.x, top: textOverlay.y, transform: 'translateY(-2px)' }}
+              style={{ left: editingText.x, top: editingText.y }}
             >
               <input
                 ref={textInputRef}
-                value={textValue}
-                onChange={e => setTextValue(e.target.value)}
+                value={editingValue}
+                onChange={e => setEditingValue(e.target.value)}
                 onKeyDown={e => {
                   if (e.key === 'Enter') { e.preventDefault(); commitText(); }
-                  if (e.key === 'Escape') { setTextOverlay(null); setTextValue(''); }
+                  if (e.key === 'Escape') { setEditingText(null); setEditingValue(''); }
                 }}
                 onBlur={commitText}
-                placeholder="Type here…"
-                className="bg-white/95 border-2 border-primary rounded px-2 py-0.5 outline-none shadow-lg min-w-[120px] max-w-[240px]"
+                placeholder="Type…"
+                className="bg-white/95 border-2 border-primary/70 rounded px-2 py-0.5 outline-none shadow-md min-w-[100px] max-w-[260px]"
                 style={{
                   fontSize: `${fontSize}px`,
-                  lineHeight: 1.2,
+                  lineHeight: 1.3,
                   color: '#1a1a1a',
-                  fontFamily: 'sans-serif',
+                  fontFamily: 'system-ui, sans-serif',
+                  caretColor: 'hsl(var(--primary))',
                 }}
               />
               <div className="text-[9px] text-muted-foreground mt-0.5 bg-background/80 rounded px-1">
-                Enter to stamp · Esc to cancel
+                Enter ↵ to place · Esc to cancel
               </div>
             </div>
           )}
 
-          {!hasDrawn && !textOverlay && (
+          {/* Empty hint */}
+          {!hasDrawn && !editingText && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="text-center space-y-2 opacity-40">
+              <div className="text-center space-y-2 opacity-30">
                 {tool === 'text'
                   ? <Type className="h-8 w-8 mx-auto text-muted-foreground" />
-                  : <Pencil className="h-8 w-8 mx-auto text-muted-foreground" />
-                }
-                <p className="text-sm text-muted-foreground">
-                  {tool === 'text' ? 'Tap anywhere to type text' : 'Draw here, then tap "Compare with AI"'}
+                  : <Pencil className="h-8 w-8 mx-auto text-muted-foreground" />}
+                <p className="text-sm text-muted-foreground font-medium">
+                  {tool === 'text' ? 'Tap to type' : 'Draw freely'}
                 </p>
               </div>
             </div>
           )}
+
           {showRef && (
-            <div className="absolute top-2 left-2 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">
+            <div className="absolute top-2 left-2 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40 pointer-events-none">
               Your drawing
             </div>
           )}
@@ -499,11 +521,7 @@ function Whiteboard({
             <div className="absolute top-2 left-2 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">
               Reference
             </div>
-            <img
-              src={referenceImageUrl}
-              alt="Reference"
-              className="max-w-full max-h-full object-contain p-3"
-            />
+            <img src={referenceImageUrl} alt="Reference" className="max-w-full max-h-full object-contain p-3" />
           </div>
         )}
       </div>
