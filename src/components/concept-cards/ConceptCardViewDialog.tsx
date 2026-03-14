@@ -418,7 +418,7 @@ function Whiteboard({
         <div
           ref={containerRef}
           className={cn("relative overflow-hidden select-none", showRef ? "w-1/2 border-r" : "flex-1")}
-          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none' }}
+          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none', minHeight: '300px' }}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
@@ -800,7 +800,7 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
           </TabsContent>
 
           {/* DRAW & COMPARE TAB */}
-          <TabsContent value="draw" className="flex-1 overflow-hidden mt-0 p-0 flex flex-col">
+          <TabsContent value="draw" className="flex-1 overflow-hidden mt-0 p-0 flex flex-col min-h-0" style={{ height: '100%' }}>
             {compareResult ? (
               <CompareResultPanel
                 result={compareResult}
