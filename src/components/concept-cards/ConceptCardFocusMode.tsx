@@ -141,7 +141,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   return (
     <div className="fixed inset-0 z-50 bg-background/98 backdrop-blur-sm flex flex-col" onClick={onClose}>
       {/* Top bar */}
-      <div className="flex items-center gap-3 px-4 sm:px-6 py-3 border-b bg-card/80 backdrop-blur-sm shrink-0">
+      <div className="flex items-center gap-3 px-4 sm:px-6 py-3 border-b bg-card/80 backdrop-blur-sm shrink-0" onClick={e => e.stopPropagation()}>
         <GraduationCap className="h-4 w-4 text-primary shrink-0" />
         <span className="text-sm font-semibold hidden sm:block">Focus Mode</span>
 
