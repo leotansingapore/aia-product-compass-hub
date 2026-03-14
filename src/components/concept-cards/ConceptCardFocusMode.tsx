@@ -139,9 +139,9 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   const currentImg = cardImages[safeImgIndex] ?? null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-background/98 backdrop-blur-sm flex flex-col">
+    <div className="fixed inset-0 z-50 bg-background/98 backdrop-blur-sm flex flex-col" onClick={onClose}>
       {/* Top bar */}
-      <div className="flex items-center gap-3 px-4 sm:px-6 py-3 border-b bg-card/80 backdrop-blur-sm shrink-0">
+      <div className="flex items-center gap-3 px-4 sm:px-6 py-3 border-b bg-card/80 backdrop-blur-sm shrink-0" onClick={e => e.stopPropagation()}>
         <GraduationCap className="h-4 w-4 text-primary shrink-0" />
         <span className="text-sm font-semibold hidden sm:block">Focus Mode</span>
 
@@ -181,7 +181,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
 
       {/* Keyboard hint */}
       {showKeys && (
-        <div className="flex flex-wrap gap-2 px-6 py-2 bg-muted/30 border-b text-xs text-muted-foreground shrink-0">
+        <div className="flex flex-wrap gap-2 px-6 py-2 bg-muted/30 border-b text-xs text-muted-foreground shrink-0" onClick={e => e.stopPropagation()}>
           <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">Space</kbd> flip ·&nbsp;
           <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">1</kbd> Again ·&nbsp;
           <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">2</kbd> Hard ·&nbsp;
@@ -194,7 +194,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
 
       {/* Session complete banner */}
       {allDone && (
-        <div className="mx-4 sm:mx-6 mt-4 p-4 rounded-xl bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 flex items-center gap-3 shrink-0">
+        <div className="mx-4 sm:mx-6 mt-4 p-4 rounded-xl bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 flex items-center gap-3 shrink-0" onClick={e => e.stopPropagation()}>
           <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 shrink-0" />
           <div className="flex-1">
             <p className="text-sm font-semibold text-green-700 dark:text-green-300">Session complete! 🎉</p>
@@ -209,7 +209,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
       )}
 
       {/* Card area */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-12 py-6 overflow-hidden">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-12 py-6 overflow-hidden" onClick={e => e.stopPropagation()}>
         <div className="w-full max-w-2xl" style={{ perspective: '1400px' }}>
 
           {/* Card navigator row */}
