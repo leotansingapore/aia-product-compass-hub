@@ -305,17 +305,23 @@ function Whiteboard({
   const cursorStyle = tool === 'text' ? 'text' : tool === 'eraser' ? 'cell' : 'crosshair';
 
   return (
-    <div className="flex flex-col overflow-hidden" style={{ flex: '1 1 0', minHeight: 0, height: '100%' }}>
+    <div className="flex flex-col overflow-hidden" style={{ flex: '1 1 0', minHeight: 0 }}>
       {/* ── Drawing Surface ── */}
-      <div className={cn("flex flex-1 min-h-0 overflow-hidden", showRef ? "flex-row" : "flex-col")} style={{ minHeight: 0 }}>
+      <div
+        className={cn("flex-1 min-h-0 overflow-hidden relative", showRef && "flex flex-row")}
+      >
+        {/* When NOT in split mode, containerRef fills via absolute inset-0 within the relative parent */}
         <div
           ref={containerRef}
-          className={cn("relative overflow-hidden select-none", showRef ? "w-1/2 border-r" : "w-full")}
-          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none', flex: '1 1 0', minHeight: 0, height: '100%' }}
+          className={cn(
+            "overflow-hidden select-none",
+            showRef ? "relative flex-1 border-r" : "absolute inset-0"
+          )}
+          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none' }}
         >
           <svg
             ref={svgRef}
-            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflow: 'visible', touchAction: 'none', userSelect: 'none' }}
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', touchAction: 'none', userSelect: 'none' }}
             xmlns="http://www.w3.org/2000/svg"
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
@@ -400,7 +406,7 @@ function Whiteboard({
         </div>
 
         {showRef && referenceImageUrl && (
-          <div className="w-1/2 bg-muted/20 overflow-auto flex items-center justify-center relative">
+          <div className="flex-1 bg-muted/20 overflow-auto flex items-center justify-center relative">
             <div className="absolute top-2 left-2 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">
               Reference
             </div>
