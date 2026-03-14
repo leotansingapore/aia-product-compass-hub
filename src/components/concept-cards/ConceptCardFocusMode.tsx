@@ -108,7 +108,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
       if (e.key === 'Escape') { onClose(); return; }
       if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
-        setFlipped(f => !f);
+        setStep(s => Math.min(2, s + 1));
         return;
       }
       if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); return; }
