@@ -801,7 +801,7 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
           </TabsContent>
 
           {/* DRAW & COMPARE TAB */}
-          <TabsContent value="draw" className="flex-1 overflow-hidden mt-0 p-0 flex flex-col min-h-0" style={{ height: '100%' }}>
+          <TabsContent value="draw" className="flex-1 overflow-hidden mt-0 p-0 min-h-0" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
             {compareResult ? (
               <CompareResultPanel
                 result={compareResult}
