@@ -1,5 +1,5 @@
 import { memo, useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Handle, Position, NodeResizer } from 'reactflow';
 import type { NodeProps } from 'reactflow';
 import { FileText } from 'lucide-react';
 import { getNodeColors } from '@/utils/flowColorUtils';
