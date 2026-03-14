@@ -597,6 +597,12 @@ export default function ServicingPage() {
   const { user } = useSimplifiedAuth();
   const { favouriteIds, toggleFavourite } = useScriptFavourites();
 
+  // Resolve slug → real UUID (supports both pretty slug and legacy UUID)
+  const resolvedScriptId = useMemo(
+    () => scriptId ? (resolveScriptSlug(scriptId, dbScripts) ?? scriptId) : undefined,
+    [scriptId, dbScripts]
+  );
+
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "all");
   const [activeAudience, setActiveAudience] = useState(searchParams.get("audience") || "all");
