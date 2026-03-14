@@ -410,7 +410,7 @@ export default function ConceptCardsPage() {
                 <TooltipTrigger asChild>
                   <Button
                     variant="outline"
-                    onClick={() => { setDueOnlyMode(false); setFocusMode(true); }}
+                    onClick={() => { window.scrollTo({ top: 0, behavior: 'instant' }); setDueOnlyMode(false); setFocusMode(true); }}
                     className="shrink-0 gap-1.5"
                   >
                     <Focus className="h-4 w-4" />
