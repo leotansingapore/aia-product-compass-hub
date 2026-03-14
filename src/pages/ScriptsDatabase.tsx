@@ -3259,7 +3259,8 @@ export default function ScriptsDatabase() {
         const params = new URLSearchParams();
         if (targetCategory !== "all") params.set("category", targetCategory);
         const qs = params.toString();
-        navigate(`/scripts/${created.id}${qs ? `?${qs}` : ''}`, { replace: true });
+        const slug = toScriptSlug(data.stage || created.id, created.id);
+        navigate(`/scripts/${slug}${qs ? `?${qs}` : ''}`, { replace: true });
       }
     }
   };
