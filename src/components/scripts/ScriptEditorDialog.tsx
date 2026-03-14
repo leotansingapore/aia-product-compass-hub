@@ -1366,7 +1366,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
             <div className="flex gap-2">
               <Button variant="outline" onClick={onClose}>Cancel</Button>
               {step === "paste" ? (
-                <Button onClick={handleClassify} disabled={isClassifying || !pasteContent.trim()} className="gap-1.5">
+                <Button onClick={handleClassify} disabled={isClassifying || (!pasteContent.trim() && pasteImages.length === 0)} className="gap-1.5">
                   {isClassifying ? (
                     <><Loader2 className="h-4 w-4 animate-spin" /> Classifying...</>
                   ) : (
