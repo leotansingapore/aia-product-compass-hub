@@ -3088,7 +3088,8 @@ export default function ScriptsDatabase() {
       setShowFavouritesOnly(false);
       setSearchInput("");
       setSearchQuery("");
-      navigate(`/scripts/${suggestion.id}`, { replace: true });
+      const slug = toScriptSlug(suggestion.label?.replace(/^🏷️\s*/, '') || suggestion.id, suggestion.id);
+      navigate(`/scripts/${slug}`, { replace: true });
       // If already on this script's URL, force scroll into view
       setTimeout(() => {
         const el = document.getElementById(`script-${suggestion.id}`);
