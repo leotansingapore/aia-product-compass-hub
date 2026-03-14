@@ -74,7 +74,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
     setAnimDir(dir);
     setTimeout(() => {
       setIndex(i => i + 1);
-      setFlipped(false);
+      setStep(0);
       setAnimDir(null);
       setImgIndex(0);
     }, 180);
@@ -85,7 +85,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
     setAnimDir('left');
     setTimeout(() => {
       setIndex(i => i - 1);
-      setFlipped(false);
+      setStep(0);
       setAnimDir(null);
       setImgIndex(0);
     }, 180);
