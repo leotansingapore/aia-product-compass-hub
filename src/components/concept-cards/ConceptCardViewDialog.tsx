@@ -406,7 +406,7 @@ function Whiteboard({
         </div>
 
         {showRef && referenceImageUrl && (
-          <div className="w-1/2 bg-muted/20 overflow-auto flex items-center justify-center relative">
+          <div className="flex-1 bg-muted/20 overflow-auto flex items-center justify-center relative">
             <div className="absolute top-2 left-2 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">
               Reference
             </div>
