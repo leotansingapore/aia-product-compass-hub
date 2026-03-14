@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { toScriptSlug, resolveScriptSlug } from "@/lib/scriptSlug";
 import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -596,6 +597,12 @@ export default function ServicingPage() {
   const { user } = useSimplifiedAuth();
   const { favouriteIds, toggleFavourite } = useScriptFavourites();
 
+  // Resolve slug → real UUID (supports both pretty slug and legacy UUID)
+  const resolvedScriptId = useMemo(
+    () => scriptId ? (resolveScriptSlug(scriptId, dbScripts) ?? scriptId) : undefined,
+    [scriptId, dbScripts]
+  );
+
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "all");
   const [activeAudience, setActiveAudience] = useState(searchParams.get("audience") || "all");
@@ -735,8 +742,9 @@ export default function ServicingPage() {
     if (activeTag !== "all") params.set("tag", activeTag);
     if (searchQuery) params.set("q", searchQuery);
     const qs = params.toString();
-    navigate(`/servicing/${id}${qs ? `?${qs}` : ''}`, { replace: true });
-  }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
+    const slug = toScriptSlug(dbScripts.find(s => s.id === id)?.stage || id, id);
+    navigate(`/servicing/${slug}${qs ? `?${qs}` : ''}`, { replace: true });
+  }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery, dbScripts]);
 
   // Sync filter query params to URL
   useEffect(() => {
@@ -966,13 +974,13 @@ export default function ServicingPage() {
                 script={script}
                 isAdmin={isAdmin}
                 isAuthenticated={!!user}
-                isOpenByUrl={scriptId === script.id}
+                isOpenByUrl={resolvedScriptId === script.id}
                 onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                 onDelete={() => setDeleteTarget(script)}
                 onToggle={(open) => {
                   if (open) {
                     navigateToScriptInternal(script.id);
-                  } else if (scriptId === script.id) {
+                  } else if (resolvedScriptId === script.id) {
                     navigate('/servicing', { replace: true });
                   }
                 }}

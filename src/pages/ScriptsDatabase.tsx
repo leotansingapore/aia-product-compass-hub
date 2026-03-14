@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { toScriptSlug, resolveScriptSlug } from "@/lib/scriptSlug";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -1571,8 +1572,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [editUserVersionName, setEditUserVersionName] = useState("");
   // Read initial version tab from URL if this card is the one in the URL
   const urlVersionParam = useMemo(() => {
-    const urlScriptId = window.location.pathname.split('/scripts/')[1]?.split('?')[0];
-    if (isOpenByUrl && urlScriptId === script.id) {
+    // The URL may contain a slug (e.g. "warm-market-intro-8f42b1c3") — just rely on isOpenByUrl
+    if (isOpenByUrl) {
       return searchParams.get("v") || null;
     }
     return null;
@@ -2826,6 +2827,9 @@ export default function ScriptsDatabase() {
   const [showFavouritesOnly, setShowFavouritesOnly] = useState(false);
   const [showMobileExtraFilters, setShowMobileExtraFilters] = useState(false);
 
+  // Ref so navigateToScriptInternal can access scripts without declaration order issues
+  const dbScriptsRef = useRef<typeof dbScripts>([]);
+
   // Helper for in-page card toggle navigation (preserves filters including query params)
   const navigateToScriptInternal = useCallback((id: string) => {
     internalNavRef.current = true;
@@ -2836,7 +2840,8 @@ export default function ScriptsDatabase() {
     if (activeTag !== "all") params.set("tag", activeTag);
     if (searchQuery) params.set("q", searchQuery);
     const qs = params.toString();
-    navigate(`/scripts/${id}${qs ? `?${qs}` : ''}`, { replace: true });
+    const slug = toScriptSlug(dbScriptsRef.current.find(s => s.id === id)?.stage || id, id);
+    navigate(`/scripts/${slug}${qs ? `?${qs}` : ''}`, { replace: true });
   }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
 
   // Persist filters to localStorage whenever they change
@@ -2893,6 +2898,15 @@ export default function ScriptsDatabase() {
   const { scripts: dbScripts, loading, refetch } = useScripts();
   const { createScript, updateScript, deleteScript, isAdmin } = useScriptsMutations();
   const { user } = useSimplifiedAuth();
+
+  // Resolve slug-based scriptId (e.g. "warm-market-intro-8f42b1c3") → real UUID
+  const scriptsForSlug = dbScripts.length > 0 ? dbScripts : [];
+  // Keep ref in sync so navigateToScriptInternal (declared above) can use latest scripts
+  dbScriptsRef.current = dbScripts;
+  const resolvedScriptId = useMemo(
+    () => scriptId ? (resolveScriptSlug(scriptId, scriptsForSlug) ?? scriptId) : undefined,
+    [scriptId, scriptsForSlug]
+  );
 
   // Playbook integration
   const { myPlaybooks, createPlaybook } = usePlaybooks();
@@ -3074,7 +3088,8 @@ export default function ScriptsDatabase() {
       setShowFavouritesOnly(false);
       setSearchInput("");
       setSearchQuery("");
-      navigate(`/scripts/${suggestion.id}`, { replace: true });
+      const slug = toScriptSlug(dbScripts.find(s => s.id === suggestion.id)?.stage || suggestion.label?.replace(/^🏷️\s*/, '') || suggestion.id, suggestion.id);
+      navigate(`/scripts/${slug}`, { replace: true });
       // If already on this script's URL, force scroll into view
       setTimeout(() => {
         const el = document.getElementById(`script-${suggestion.id}`);
@@ -3244,7 +3259,8 @@ export default function ScriptsDatabase() {
         const params = new URLSearchParams();
         if (targetCategory !== "all") params.set("category", targetCategory);
         const qs = params.toString();
-        navigate(`/scripts/${created.id}${qs ? `?${qs}` : ''}`, { replace: true });
+        const slug = toScriptSlug(data.stage || created.id, created.id);
+        navigate(`/scripts/${slug}${qs ? `?${qs}` : ''}`, { replace: true });
       }
     }
   };
@@ -3781,7 +3797,7 @@ export default function ScriptsDatabase() {
                             config={config}
                             scripts={grouped[subType]}
                             isAdmin={isAdmin}
-                            scriptId={scriptId}
+                            scriptId={resolvedScriptId}
                             searchQuery={searchQuery}
                             myPlaybooks={myPlaybooks}
                             handleAddToPlaybook={handleAddToPlaybook}
@@ -3818,12 +3834,12 @@ export default function ScriptsDatabase() {
                         </button>
                       </div>
                     )}
-                    {filteredScripts.map((script) => (
+                     {filteredScripts.map((script) => (
                       <ScriptCard
                         key={script.id}
                         script={script}
                         isAdmin={isAdmin}
-                        isOpenByUrl={scriptId === script.id}
+                        isOpenByUrl={resolvedScriptId === script.id}
                         searchQuery={searchQuery}
                         myPlaybooks={myPlaybooks}
                         onAddToPlaybook={handleAddToPlaybook}
@@ -3851,7 +3867,7 @@ export default function ScriptsDatabase() {
                         onToggle={(open) => {
                           if (open) {
                             navigateToScriptInternal(script.id);
-                          } else if (scriptId === script.id) {
+                          } else if (resolvedScriptId === script.id) {
                             navigate('/scripts', { replace: true });
                           }
                         }}
