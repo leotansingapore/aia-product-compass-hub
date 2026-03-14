@@ -655,6 +655,22 @@ function Whiteboard({
   };
 
   const handleCompare = () => {
+    if (textOverlay && textValue.trim()) {
+      stampText(textValue, textOverlay.canvasX, textOverlay.canvasY);
+      setTextOverlay(null);
+      setTextValue('');
+    }
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const flat = document.createElement('canvas');
+    flat.width = canvas.width;
+    flat.height = canvas.height;
+    const fctx = flat.getContext('2d')!;
+    fctx.fillStyle = '#ffffff';
+    fctx.fillRect(0, 0, flat.width, flat.height);
+    fctx.drawImage(canvas, 0, 0);
+    onCompare(flat.toDataURL('image/png'));
+  };
 
 // ─── Score Display ─────────────────────────────────────────────────────────
 function CompareResultPanel({
