@@ -419,16 +419,16 @@ function Whiteboard({
           ref={containerRef}
           className={cn("relative overflow-hidden select-none", showRef ? "w-1/2 border-r" : "flex-1")}
           style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none', minHeight: '300px' }}
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onPointerLeave={handlePointerUp}
         >
           <svg
             ref={svgRef}
             className="absolute inset-0 w-full h-full"
-            style={{ overflow: 'visible' }}
+            style={{ overflow: 'visible', touchAction: 'none', userSelect: 'none' }}
             xmlns="http://www.w3.org/2000/svg"
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerLeave={handlePointerUp}
           >
             {/* Committed strokes */}
             {committedStrokes.map(s => renderStroke(s, s.id))}
