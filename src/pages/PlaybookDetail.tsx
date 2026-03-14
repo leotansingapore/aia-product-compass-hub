@@ -688,6 +688,16 @@ export default function PlaybookDetail() {
     return itemsWithData.find(i => i.id === String(activeId)) || null;
   }, [activeId, itemsWithData]);
 
+  // Compute global start indexes for item numbering (must be before early return)
+  const globalIndexMap = useMemo(() => {
+    const map: Record<string, number> = {};
+    let counter = 0;
+    for (const g of groups) {
+      for (const c of g.children) { map[c.id] = counter++; }
+    }
+    return map;
+  }, [groups]);
+
   if (!playbook && !isLoading) {
     return (
       <PageLayout title="Playbook Not Found" description="The requested playbook was not found">
@@ -698,16 +708,6 @@ export default function PlaybookDetail() {
       </PageLayout>
     );
   }
-
-  // Compute global start indexes for item numbering
-  const globalIndexMap = useMemo(() => {
-    const map: Record<string, number> = {};
-    let counter = 0;
-    for (const g of groups) {
-      for (const c of g.children) { map[c.id] = counter++; }
-    }
-    return map;
-  }, [groups]);
 
   return (
     <PageLayout title={playbook?.title || "Playbook"} description={playbook?.description || "Script playbook detail"}>
