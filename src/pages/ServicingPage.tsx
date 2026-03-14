@@ -25,6 +25,25 @@ import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 
+// Strip markdown to clean plain text (for WhatsApp/messaging copy-paste)
+function markdownToPlainText(md: string): string {
+  return md
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/\*\*(.+?)\*\*/gs, '$1')
+    .replace(/\*(.+?)\*/gs, '$1')
+    .replace(/__(.+?)__/gs, '$1')
+    .replace(/_(.+?)_/gs, '$1')
+    .replace(/~~(.+?)~~/gs, '$1')
+    .replace(/`{1,3}[^`\n]*`{1,3}/g, (m) => m.replace(/`/g, ''))
+    .replace(/^\s*[-*+]\s+/gm, '• ')
+    .replace(/^\s*\d+\.\s+/gm, '')
+    .replace(/\[(.+?)\]\(.*?\)/g, '$1')
+    .replace(/!\[.*?\]\(.*?\)/g, '')
+    .replace(/^>\s*/gm, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const SERVICING_ROLES = [
