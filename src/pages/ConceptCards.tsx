@@ -228,11 +228,49 @@ function FlashCard({
             </div>
           </div>
         </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-1.5 mb-2 mt-5">
-                <span className="text-[10px] font-semibold text-primary/70 uppercase tracking-wide">Question</span>
-                <span className="text-[9px] text-muted-foreground/50 ml-auto">tap to continue →</span>
-              </div>
+      </div>
+
+      {/* Quiz action buttons */}
+      {quizMode && step > 0 && (
+        <div
+          className="absolute -bottom-12 inset-x-0 flex gap-2 justify-center z-20 animate-fade-in"
+          onClick={e => e.stopPropagation()}
+        >
+          <button
+            onClick={() => { onKnow?.(card.id); setStep(0); }}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors shadow-md"
+          >
+            <CheckCircle className="h-3.5 w-3.5" /> Know it
+          </button>
+          <button
+            onClick={() => { onReview?.(card.id); setStep(0); }}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-yellow-500 text-white hover:bg-yellow-600 transition-colors shadow-md"
+          >
+            <XCircle className="h-3.5 w-3.5" /> Review later
+          </button>
+        </div>
+      )}
+
+      {/* Admin actions (hover) */}
+      {isAdmin && !quizMode && (
+        <div className="absolute top-2 right-2 z-20 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={e => { e.stopPropagation(); onEdit(card); }}
+            className="p-1.5 rounded-lg bg-background/90 border border-border/60 hover:border-primary/60 hover:text-primary text-muted-foreground transition-colors shadow-sm"
+          >
+            <Pencil className="h-3.5 w-3.5" />
+          </button>
+          <button
+            onClick={e => { e.stopPropagation(); onDelete(card.id); }}
+            className="p-1.5 rounded-lg bg-destructive/10 hover:bg-destructive/20 text-destructive transition-colors"
+          >
+            <Trash2 className="h-3.5 w-3.5" />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
               <h3 className="font-semibold text-sm sm:text-base leading-snug">{card.title}</h3>
             </div>
 
