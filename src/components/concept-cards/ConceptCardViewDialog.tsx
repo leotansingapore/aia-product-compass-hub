@@ -415,11 +415,11 @@ function Whiteboard({
       </div>
 
       {/* ── Drawing Surface ── */}
-      <div className={cn("overflow-hidden flex", showRef ? "flex-row" : "flex-col")} style={{ minHeight: 0 }}>
+      <div className={cn("overflow-hidden flex flex-1 min-h-0", showRef ? "flex-row" : "flex-col")}>
         <div
           ref={containerRef}
-          className={cn("relative overflow-hidden select-none", showRef ? "w-1/2 border-r" : "w-full")}
-          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none', height: 'calc(100svh - 310px)', minHeight: '260px' }}
+          className={cn("relative overflow-hidden select-none flex-1 min-h-0", showRef ? "w-1/2 border-r" : "w-full")}
+          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none' }}
         >
           <svg
             ref={svgRef}
