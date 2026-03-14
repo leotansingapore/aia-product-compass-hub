@@ -209,7 +209,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
       )}
 
       {/* Card area */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-12 py-6 overflow-hidden">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-12 py-6 overflow-hidden" onClick={e => e.stopPropagation()}>
         <div className="w-full max-w-2xl" style={{ perspective: '1400px' }}>
 
           {/* Card navigator row */}
