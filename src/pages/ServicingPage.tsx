@@ -742,8 +742,9 @@ export default function ServicingPage() {
     if (activeTag !== "all") params.set("tag", activeTag);
     if (searchQuery) params.set("q", searchQuery);
     const qs = params.toString();
-    navigate(`/servicing/${id}${qs ? `?${qs}` : ''}`, { replace: true });
-  }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
+    const slug = toScriptSlug(dbScripts.find(s => s.id === id)?.stage || id, id);
+    navigate(`/servicing/${slug}${qs ? `?${qs}` : ''}`, { replace: true });
+  }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery, dbScripts]);
 
   // Sync filter query params to URL
   useEffect(() => {
