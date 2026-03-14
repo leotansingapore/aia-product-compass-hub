@@ -692,7 +692,7 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
 
   return (
     <Dialog open={!!card} onOpenChange={handleClose}>
-      <DialogContent className="max-w-4xl w-full max-h-[92vh] p-0 overflow-hidden flex flex-col">
+      <DialogContent className="max-w-4xl w-full max-h-[92vh] h-[92vh] p-0 overflow-hidden flex flex-col">
         {/* Header */}
         <div className="px-5 py-4 border-b bg-card flex items-start justify-between gap-3 shrink-0">
           <div className="space-y-1 flex-1 min-w-0">
