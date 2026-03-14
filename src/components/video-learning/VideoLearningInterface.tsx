@@ -444,7 +444,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                               return (
                                 <a
                                   href={href}
-                                  className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+                                   className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
@@ -452,8 +452,12 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                                 </a>
                               );
                             }
-                            // All other video links — let the default embed logic run
-                            return markdownComponents.a?.({ children, href } as any) ?? (
+                            // All other links — use detectVideoEmbed to embed if it's a video URL
+                            const videoInfo = detectVideoEmbed(href ?? '');
+                            if (videoInfo.isVideo && videoInfo.embedUrl) {
+                              return <VideoEmbed embedUrl={videoInfo.embedUrl} platform={videoInfo.platform || 'video'} />;
+                            }
+                            return (
                               <a
                                 href={href}
                                 className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
