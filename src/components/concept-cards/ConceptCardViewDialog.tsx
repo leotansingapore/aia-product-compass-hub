@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   ZoomIn, ZoomOut, Pencil, Eraser, Trash2, Loader2,
   Sparkles, CheckCircle, AlertCircle, TrendingUp, Lightbulb,
-  RotateCcw, Eye, Columns2, Undo2, Redo2, Crop, Type,
+  RotateCcw, Eye, Columns2, Undo2, Redo2, Crop, Type, MousePointer2,
 } from 'lucide-react';
 // Inline smooth stroke helper (catmull-rom → SVG path)
 function getSmoothPath(pts: number[][]): string {
@@ -21,6 +21,23 @@ function getSmoothPath(pts: number[][]): string {
   d.push(`L ${last[0].toFixed(1)} ${last[1].toFixed(1)}`);
   return d.join(' ');
 }
+
+// Get bounding box of a stroke
+function getStrokeBounds(pts: number[][]): { x: number; y: number; w: number; h: number } {
+  if (!pts.length) return { x: 0, y: 0, w: 0, h: 0 };
+  let minX = pts[0][0], maxX = pts[0][0], minY = pts[0][1], maxY = pts[0][1];
+  for (const [x, y] of pts) {
+    if (x < minX) minX = x; if (x > maxX) maxX = x;
+    if (y < minY) minY = y; if (y > maxY) maxY = y;
+  }
+  return { x: minX, y: minY, w: maxX - minX, h: maxY - minY };
+}
+
+// Translate stroke points by dx, dy
+function translateStroke(stroke: DrawnStroke, dx: number, dy: number): DrawnStroke {
+  return { ...stroke, points: stroke.points.map(([x, y, p]) => [x + dx, y + dy, p]) };
+}
+
 import { ConceptCard } from '@/hooks/useConceptCards';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
