@@ -305,7 +305,7 @@ function Whiteboard({
   const cursorStyle = tool === 'text' ? 'text' : tool === 'eraser' ? 'cell' : 'crosshair';
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col overflow-hidden" style={{ flex: '1 1 0', minHeight: 0 }}>
       {/* ── Toolbar ── */}
       <div className="flex items-center gap-1.5 px-3 py-2 border-b bg-muted/30 flex-wrap shrink-0">
         {/* Tools */}
@@ -415,11 +415,11 @@ function Whiteboard({
       </div>
 
       {/* ── Drawing Surface ── */}
-      <div className={cn("flex-1 overflow-hidden flex", showRef ? "flex-row" : "flex-col")}>
+      <div className={cn("overflow-hidden flex", showRef ? "flex-row" : "flex-col")} style={{ minHeight: 0 }}>
         <div
           ref={containerRef}
-          className={cn("relative overflow-hidden select-none", showRef ? "w-1/2 border-r" : "flex-1")}
-          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none', minHeight: '300px' }}
+          className={cn("relative overflow-hidden select-none", showRef ? "w-1/2 border-r" : "w-full")}
+          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none', height: 'calc(100svh - 310px)', minHeight: '260px' }}
         >
           <svg
             ref={svgRef}
@@ -801,7 +801,7 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
           </TabsContent>
 
           {/* DRAW & COMPARE TAB */}
-          <TabsContent value="draw" className="flex-1 overflow-hidden mt-0 p-0 flex flex-col min-h-0" style={{ height: '100%' }}>
+          <TabsContent value="draw" className="flex-1 overflow-hidden mt-0 p-0 min-h-0" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
             {compareResult ? (
               <CompareResultPanel
                 result={compareResult}
