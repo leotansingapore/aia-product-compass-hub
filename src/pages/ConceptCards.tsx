@@ -5,6 +5,7 @@ import { ScriptsTabBar } from '@/components/scripts/ScriptsTabBar';
 import { useConceptCards, ConceptCard } from '@/hooks/useConceptCards';
 import { useConceptCardsMutations } from '@/hooks/useConceptCards';
 import { usePermissions } from '@/hooks/usePermissions';
+import { useSpacedRepetition } from '@/hooks/useSpacedRepetition';
 import { ConceptCardUploadDialog } from '@/components/concept-cards/ConceptCardUploadDialog';
 import { ConceptCardFocusMode } from '@/components/concept-cards/ConceptCardFocusMode';
 import { ConceptCardViewDialog } from '@/components/concept-cards/ConceptCardViewDialog';
@@ -15,7 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
   Plus, Search, ImageIcon, Trash2, GraduationCap, RotateCcw,
-  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus
+  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus, CalendarClock, Flame
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
