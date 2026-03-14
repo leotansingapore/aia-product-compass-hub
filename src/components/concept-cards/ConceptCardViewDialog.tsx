@@ -315,8 +315,7 @@ function Whiteboard({
         >
           <svg
             ref={svgRef}
-            className="w-full h-full block"
-            style={{ display: 'block', touchAction: 'none', userSelect: 'none', position: 'absolute', inset: 0 }}
+            style={{ display: 'block', touchAction: 'none', userSelect: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
             style={{ overflow: 'visible', touchAction: 'none', userSelect: 'none' }}
             xmlns="http://www.w3.org/2000/svg"
             onPointerDown={handlePointerDown}
