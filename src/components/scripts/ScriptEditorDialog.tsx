@@ -483,6 +483,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       setPasteContent("");
       setPasteImages([]);
       setPastePdfs([]);
+      setPdfExtractedScripts([]);
       setSimilarScripts([]);
       setHighestSimilarityTier("none");
       setStage("");
