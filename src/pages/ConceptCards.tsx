@@ -369,16 +369,18 @@ export default function ConceptCardsPage() {
             />
           </div>
           <Select value={filterAudience} onValueChange={setFilterAudience}>
-            <SelectTrigger className="w-full sm:w-44">
-              <SelectValue placeholder="Audience" />
+            <SelectTrigger className="w-full sm:w-48">
+              <span className="text-muted-foreground text-xs mr-1 shrink-0">Audience:</span>
+              <SelectValue />
             </SelectTrigger>
             <SelectContent>
               {AUDIENCE_OPTIONS.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
             </SelectContent>
           </Select>
           <Select value={filterProduct} onValueChange={setFilterProduct}>
-            <SelectTrigger className="w-full sm:w-44">
-              <SelectValue placeholder="Product" />
+            <SelectTrigger className="w-full sm:w-48">
+              <span className="text-muted-foreground text-xs mr-1 shrink-0">Product:</span>
+              <SelectValue />
             </SelectTrigger>
             <SelectContent>
               {PRODUCT_OPTIONS.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
