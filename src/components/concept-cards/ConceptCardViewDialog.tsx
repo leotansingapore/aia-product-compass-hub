@@ -752,18 +752,16 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
                     ))}
                   </div>
                 )}
-                <div className="flex-1 overflow-auto bg-muted/20">
+                <div className="flex-1 min-h-0 overflow-hidden bg-muted/20 flex items-center justify-center p-3">
                   {displayImageUrl ? (
-                    <div className="p-4 flex items-center justify-center min-h-[300px]">
-                      <img
-                        src={displayImageUrl}
-                        alt={card.title}
-                        style={{ transform: `scale(${zoom})`, transformOrigin: 'center', transition: 'transform 0.2s' }}
-                        className="max-w-full rounded-lg shadow-sm"
-                      />
-                    </div>
+                    <img
+                      src={displayImageUrl}
+                      alt={card.title}
+                      style={{ transform: `scale(${zoom})`, transformOrigin: 'center', transition: 'transform 0.2s' }}
+                      className="max-w-full max-h-full w-auto h-auto rounded-lg shadow-sm object-contain"
+                    />
                   ) : (
-                    <div className="flex items-center justify-center h-64 text-muted-foreground text-sm">
+                    <div className="text-muted-foreground text-sm">
                       No drawing attached yet
                     </div>
                   )}
