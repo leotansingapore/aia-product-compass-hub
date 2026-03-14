@@ -46,6 +46,15 @@ const SCORE_COLOR = (score: number) => {
 };
 
 // ─── Whiteboard ─────────────────────────────────────────────────────────────
+type WhiteboardTool = 'pen' | 'eraser' | 'text';
+
+interface TextOverlay {
+  x: number;   // CSS pixels relative to canvas element
+  y: number;
+  canvasX: number; // canvas pixel coords
+  canvasY: number;
+}
+
 function Whiteboard({
   onCompare,
   comparing,
@@ -56,7 +65,7 @@ function Whiteboard({
   referenceImageUrl?: string | null;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [tool, setTool] = useState<'pen' | 'eraser'>('pen');
+  const [tool, setTool] = useState<WhiteboardTool>('pen');
   const [penSize, setPenSize] = useState(3);
   const [eraserSize, setEraserSize] = useState(20);
   const [isDrawing, setIsDrawing] = useState(false);
