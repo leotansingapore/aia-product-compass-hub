@@ -16,6 +16,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { markdownComponents } from '@/lib/markdown-config';
+import { detectVideoEmbed, VideoEmbed } from '@/lib/video-embed-utils';
 import { usePermissions } from '@/hooks/usePermissions';
 
 interface VideoLearningInterfaceProps {
@@ -426,7 +427,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </div>
               )}
 
-              {/* Rich content — use components without video auto-embed to avoid duplicating the standalone player */}
+              {/* Rich content — embed video links UNLESS they match the standalone player's URL */}
               {currentVideo?.rich_content?.trim() ? (
                 <Card>
                   <CardContent className="p-4 sm:p-6">
@@ -434,17 +435,39 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                       <ReactMarkdown
                         components={{
                           ...markdownComponents,
-                          // Override: render video URLs as plain links, not embeds (standalone player handles the video)
-                          a: ({ children, href }: any) => (
-                            <a
-                              href={href}
-                              className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {children}
-                            </a>
-                          ),
+                          // Only suppress embedding for the same URL already shown by the standalone player above
+                          a: ({ children, href }: any) => {
+                            const standaloneUrl = currentVideo?.url ?? '';
+                            const isSameAsStandalone = standaloneUrl && href &&
+                              href.trim() === standaloneUrl.trim();
+                            if (isSameAsStandalone) {
+                              return (
+                                <a
+                                  href={href}
+                                   className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {children}
+                                </a>
+                              );
+                            }
+                            // All other links — use detectVideoEmbed to embed if it's a video URL
+                            const videoInfo = detectVideoEmbed(href ?? '');
+                            if (videoInfo.isVideo && videoInfo.embedUrl) {
+                              return <VideoEmbed embedUrl={videoInfo.embedUrl} platform={videoInfo.platform || 'video'} />;
+                            }
+                            return (
+                              <a
+                                href={href}
+                                className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {children}
+                              </a>
+                            );
+                          },
                         }}
                         remarkPlugins={[remarkGfm]}
                         rehypePlugins={[rehypeRaw]}
