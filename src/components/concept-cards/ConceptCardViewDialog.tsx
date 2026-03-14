@@ -76,7 +76,752 @@ const SCORE_COLOR = (score: number) => {
 };
 
 // ─── Whiteboard ─────────────────────────────────────────────────────────────
-type WhiteboardTool = 'pen' | 'eraser' | 'text';
+type WhiteboardTool = 'select' | 'pen' | 'eraser' | 'text';
+
+type SelectionTarget =
+  | { kind: 'text'; id: string }
+  | { kind: 'stroke'; id: string }
+  | { kind: 'multi'; textIds: string[]; strokeIds: string[] };
+
+interface DrawnStroke {
+  id: string;
+  points: number[][];
+  tool: 'pen' | 'eraser';
+  size: number;
+}
+
+interface TextItem {
+  id: string;
+  x: number;
+  y: number;
+  text: string;
+  fontSize: number;
+  width?: number; // optional override for text box width
+}
+
+// Hit test: is point (px,py) within the bounding box of a stroke (with padding)?
+function hitTestStroke(stroke: DrawnStroke, px: number, py: number): boolean {
+  const PAD = Math.max(stroke.size * 3, 8);
+  const b = getStrokeBounds(stroke.points);
+  return px >= b.x - PAD && px <= b.x + b.w + PAD && py >= b.y - PAD && py <= b.y + b.h + PAD;
+}
+
+// Hit test a text item
+function hitTestText(t: TextItem, px: number, py: number): boolean {
+  const approxW = t.width ?? t.text.length * t.fontSize * 0.6 + 16;
+  const approxH = t.fontSize * 1.4;
+  return px >= t.x - 4 && px <= t.x + approxW + 4 && py >= t.y - 4 && py <= t.y + approxH + 4;
+}
+
+// Get text bounding box
+function getTextBounds(t: TextItem): { x: number; y: number; w: number; h: number } {
+  const w = t.width ?? t.text.length * t.fontSize * 0.6 + 16;
+  const h = t.fontSize * 1.4;
+  return { x: t.x, y: t.y, w, h };
+}
+
+function Whiteboard({
+  onCompare,
+  comparing,
+  referenceImageUrl,
+}: {
+  onCompare: (base64: string) => void;
+  comparing: boolean;
+  referenceImageUrl?: string | null;
+}) {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [tool, setTool] = useState<WhiteboardTool>('pen');
+  const [penSize, setPenSize] = useState(4);
+  const [eraserSize, setEraserSize] = useState(24);
+  const [fontSize, setFontSize] = useState(20);
+  const [hasDrawn, setHasDrawn] = useState(false);
+  const [showRef, setShowRef] = useState(false);
+
+  // Stroke state
+  const [committedStrokes, setCommittedStrokes] = useState<DrawnStroke[]>([]);
+  const [currentPoints, setCurrentPoints] = useState<number[][]>([]);
+  const [isPointerDown, setIsPointerDown] = useState(false);
+  const currentToolRef = useRef<'pen' | 'eraser'>('pen');
+
+  // Text state
+  const [textItems, setTextItems] = useState<TextItem[]>([]);
+  const [editingText, setEditingText] = useState<{ x: number; y: number } | null>(null);
+  const [editingValue, setEditingValue] = useState('');
+  const textInputRef = useRef<HTMLInputElement>(null);
+
+  // ── Select tool state ──
+  const [selection, setSelection] = useState<SelectionTarget | null>(null);
+  // drag state (refs to avoid re-renders mid-drag)
+  const dragStateRef = useRef<{
+    active: boolean;
+    startX: number; startY: number;
+    lastX: number; lastY: number;
+    target: SelectionTarget;
+    snapshotStrokes: DrawnStroke[];
+    snapshotTexts: TextItem[];
+  } | null>(null);
+  // marquee (rubber-band) select
+  const [marquee, setMarquee] = useState<{ x1: number; y1: number; x2: number; y2: number } | null>(null);
+  const marqueeStartRef = useRef<{ x: number; y: number } | null>(null);
+  // resize handle for text
+  type ResizeHandle = 'se';
+  const resizeRef = useRef<{
+    active: boolean;
+    handle: ResizeHandle;
+    textId: string;
+    startX: number; startY: number;
+    origFontSize: number;
+    origWidth: number;
+  } | null>(null);
+
+  // History
+  type HistoryState = { strokes: DrawnStroke[]; texts: TextItem[] };
+  const historyRef = useRef<HistoryState[]>([{ strokes: [], texts: [] }]);
+  const historyIndexRef = useRef(0);
+
+  const pushHistory = useCallback((strokes: DrawnStroke[], texts: TextItem[]) => {
+    const slice = historyRef.current.slice(0, historyIndexRef.current + 1);
+    slice.push({ strokes, texts });
+    if (slice.length > 40) slice.shift();
+    historyRef.current = slice;
+    historyIndexRef.current = slice.length - 1;
+  }, []);
+
+  const undo = useCallback(() => {
+    if (historyIndexRef.current <= 0) return;
+    historyIndexRef.current--;
+    const s = historyRef.current[historyIndexRef.current];
+    setCommittedStrokes(s.strokes);
+    setTextItems(s.texts);
+    setHasDrawn(s.strokes.length > 0 || s.texts.length > 0);
+    setSelection(null);
+  }, []);
+
+  const redo = useCallback(() => {
+    if (historyIndexRef.current >= historyRef.current.length - 1) return;
+    historyIndexRef.current++;
+    const s = historyRef.current[historyIndexRef.current];
+    setCommittedStrokes(s.strokes);
+    setTextItems(s.texts);
+    setHasDrawn(true);
+    setSelection(null);
+  }, []);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
+        e.preventDefault();
+        if (e.shiftKey) redo(); else undo();
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === 'y') { e.preventDefault(); redo(); }
+      if ((e.key === 'Delete' || e.key === 'Backspace') && selection && tool === 'select') {
+        // Don't delete when editing text
+        if (document.activeElement?.tagName === 'INPUT') return;
+        e.preventDefault();
+        setCommittedStrokes(prev => {
+          const next = selection.kind === 'stroke'
+            ? prev.filter(s => s.id !== selection.id)
+            : selection.kind === 'multi'
+              ? prev.filter(s => !selection.strokeIds.includes(s.id))
+              : prev;
+          setTextItems(tprev => {
+            const tnext = selection.kind === 'text'
+              ? tprev.filter(t => t.id !== selection.id)
+              : selection.kind === 'multi'
+                ? tprev.filter(t => !selection.textIds.includes(t.id))
+                : tprev;
+            pushHistory(next, tnext);
+            setHasDrawn(next.length > 0 || tnext.length > 0);
+            return tnext;
+          });
+          return next;
+        });
+        setSelection(null);
+      }
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [undo, redo, selection, tool, pushHistory]);
+
+  // Auto-focus text input
+  useEffect(() => {
+    if (editingText) setTimeout(() => textInputRef.current?.focus(), 30);
+  }, [editingText]);
+
+  const getRelativePos = useCallback((e: React.PointerEvent): [number, number] => {
+    const rect = containerRef.current!.getBoundingClientRect();
+    return [e.clientX - rect.left, e.clientY - rect.top];
+  }, []);
+
+  // ── SELECT tool hit testing ─────────────────────────────────────────────
+  const hitTest = useCallback((px: number, py: number, strokes: DrawnStroke[], texts: TextItem[]): SelectionTarget | null => {
+    // texts first (on top)
+    for (let i = texts.length - 1; i >= 0; i--) {
+      if (hitTestText(texts[i], px, py)) return { kind: 'text', id: texts[i].id };
+    }
+    // then strokes
+    for (let i = strokes.length - 1; i >= 0; i--) {
+      if (hitTestStroke(strokes[i], px, py)) return { kind: 'stroke', id: strokes[i].id };
+    }
+    return null;
+  }, []);
+
+  // Is (px,py) near the SE resize handle of a selected text?
+  const hitResizeHandle = useCallback((px: number, py: number, texts: TextItem[]): string | null => {
+    if (!selection || selection.kind !== 'text') return null;
+    const t = texts.find(t => t.id === selection.id);
+    if (!t) return null;
+    const b = getTextBounds(t);
+    const hx = b.x + b.w; const hy = b.y + b.h;
+    if (Math.abs(px - hx) <= 8 && Math.abs(py - hy) <= 8) return t.id;
+    return null;
+  }, [selection]);
+
+  // ── Pointer events ──────────────────────────────────────────────────────
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    e.preventDefault();
+    const [px, py] = getRelativePos(e);
+
+    if (tool === 'select') {
+      // 1. Check resize handle first
+      const resizeTextId = hitResizeHandle(px, py, textItems);
+      if (resizeTextId) {
+        const t = textItems.find(t => t.id === resizeTextId)!;
+        resizeRef.current = {
+          active: true,
+          handle: 'se',
+          textId: resizeTextId,
+          startX: px, startY: py,
+          origFontSize: t.fontSize,
+          origWidth: getTextBounds(t).w,
+        };
+        e.currentTarget.setPointerCapture(e.pointerId);
+        return;
+      }
+
+      // 2. Hit test
+      const hit = hitTest(px, py, committedStrokes, textItems);
+      if (hit) {
+        setSelection(hit);
+        dragStateRef.current = {
+          active: true,
+          startX: px, startY: py,
+          lastX: px, lastY: py,
+          target: hit,
+          snapshotStrokes: committedStrokes.map(s => ({ ...s, points: s.points.map(p => [...p]) })),
+          snapshotTexts: textItems.map(t => ({ ...t })),
+        };
+        e.currentTarget.setPointerCapture(e.pointerId);
+      } else {
+        // 3. Start marquee
+        setSelection(null);
+        marqueeStartRef.current = { x: px, y: py };
+        setMarquee({ x1: px, y1: py, x2: px, y2: py });
+        e.currentTarget.setPointerCapture(e.pointerId);
+      }
+      return;
+    }
+
+    if (tool === 'text') {
+      if (editingValue.trim() && editingText) {
+        const newTexts = [...textItems, {
+          id: crypto.randomUUID(), x: editingText.x, y: editingText.y, text: editingValue, fontSize,
+        }];
+        setTextItems(newTexts);
+        pushHistory(committedStrokes, newTexts);
+        setHasDrawn(true);
+      }
+      setEditingText({ x: px, y: py });
+      setEditingValue('');
+      return;
+    }
+
+    e.currentTarget.setPointerCapture(e.pointerId);
+    currentToolRef.current = tool as 'pen' | 'eraser';
+    const pressure = e.pressure || 0.5;
+    setCurrentPoints([[px, py, pressure]]);
+    setIsPointerDown(true);
+  }, [tool, editingText, editingValue, textItems, committedStrokes, fontSize, getRelativePos, pushHistory, hitTest, hitResizeHandle]);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    const [px, py] = getRelativePos(e);
+
+    // Resize handle drag
+    if (resizeRef.current?.active) {
+      const r = resizeRef.current;
+      const dx = px - r.startX;
+      // Scale font size proportionally
+      const newFontSize = Math.max(8, Math.round(r.origFontSize + dx * 0.15));
+      setTextItems(prev => prev.map(t => t.id === r.textId ? { ...t, fontSize: newFontSize, width: undefined } : t));
+      return;
+    }
+
+    // Select drag
+    if (dragStateRef.current?.active) {
+      const d = dragStateRef.current;
+      const dx = px - d.lastX;
+      const dy = py - d.lastY;
+      d.lastX = px; d.lastY = py;
+
+      if (d.target.kind === 'text') {
+        setTextItems(prev => prev.map(t => t.id === d.target.id ? { ...t, x: t.x + dx, y: t.y + dy } : t));
+      } else if (d.target.kind === 'stroke') {
+        setCommittedStrokes(prev => prev.map(s => s.id === d.target.id ? translateStroke(s, dx, dy) : s));
+      } else if (d.target.kind === 'multi') {
+        setTextItems(prev => prev.map(t => (d.target as { kind: 'multi'; textIds: string[]; strokeIds: string[] }).textIds.includes(t.id) ? { ...t, x: t.x + dx, y: t.y + dy } : t));
+        setCommittedStrokes(prev => prev.map(s => (d.target as { kind: 'multi'; textIds: string[]; strokeIds: string[] }).strokeIds.includes(s.id) ? translateStroke(s, dx, dy) : s));
+      }
+      return;
+    }
+
+    // Marquee update
+    if (marqueeStartRef.current) {
+      setMarquee({ x1: marqueeStartRef.current.x, y1: marqueeStartRef.current.y, x2: px, y2: py });
+      return;
+    }
+
+    if (!isPointerDown || tool === 'text' || tool === 'select') return;
+    const pressure = e.pressure || 0.5;
+    setCurrentPoints(prev => [...prev, [px, py, pressure]]);
+  }, [isPointerDown, tool, getRelativePos]);
+
+  const handlePointerUp = useCallback((e: React.PointerEvent) => {
+    const [px, py] = getRelativePos(e);
+
+    // Finish resize
+    if (resizeRef.current?.active) {
+      resizeRef.current.active = false;
+      resizeRef.current = null;
+      pushHistory(committedStrokes, textItems);
+      return;
+    }
+
+    // Finish drag
+    if (dragStateRef.current?.active) {
+      dragStateRef.current.active = false;
+      dragStateRef.current = null;
+      pushHistory(committedStrokes, textItems);
+      return;
+    }
+
+    // Finish marquee
+    if (marqueeStartRef.current) {
+      const mx1 = Math.min(marqueeStartRef.current.x, px);
+      const mx2 = Math.max(marqueeStartRef.current.x, px);
+      const my1 = Math.min(marqueeStartRef.current.y, py);
+      const my2 = Math.max(marqueeStartRef.current.y, py);
+      marqueeStartRef.current = null;
+      setMarquee(null);
+
+      if (mx2 - mx1 > 4 || my2 - my1 > 4) {
+        // Find items inside marquee
+        const selectedTextIds = textItems
+          .filter(t => { const b = getTextBounds(t); return b.x < mx2 && b.x + b.w > mx1 && b.y < my2 && b.y + b.h > my1; })
+          .map(t => t.id);
+        const selectedStrokeIds = committedStrokes
+          .filter(s => { const b = getStrokeBounds(s.points); return b.x < mx2 && b.x + b.w > mx1 && b.y < my2 && b.y + b.h > my1; })
+          .map(s => s.id);
+        if (selectedTextIds.length + selectedStrokeIds.length > 0) {
+          setSelection({ kind: 'multi', textIds: selectedTextIds, strokeIds: selectedStrokeIds });
+        }
+      }
+      return;
+    }
+
+    // Finish pen/eraser stroke
+    if (!isPointerDown || currentPoints.length === 0) return;
+    setIsPointerDown(false);
+    const newStroke: DrawnStroke = {
+      id: crypto.randomUUID(),
+      points: currentPoints,
+      tool: currentToolRef.current,
+      size: currentToolRef.current === 'eraser' ? eraserSize : penSize,
+    };
+    const newStrokes = [...committedStrokes, newStroke];
+    setCommittedStrokes(newStrokes);
+    setCurrentPoints([]);
+    pushHistory(newStrokes, textItems);
+    setHasDrawn(true);
+  }, [isPointerDown, currentPoints, committedStrokes, textItems, penSize, eraserSize, pushHistory, getRelativePos]);
+
+  const commitText = useCallback(() => {
+    if (!editingText || !editingValue.trim()) {
+      setEditingText(null); setEditingValue(''); return;
+    }
+    const newTexts = [...textItems, {
+      id: crypto.randomUUID(), x: editingText.x, y: editingText.y, text: editingValue, fontSize,
+    }];
+    setTextItems(newTexts);
+    pushHistory(committedStrokes, newTexts);
+    setHasDrawn(true);
+    setEditingText(null); setEditingValue('');
+  }, [editingText, editingValue, textItems, committedStrokes, fontSize, pushHistory]);
+
+  const clearAll = () => {
+    setCommittedStrokes([]); setTextItems([]); setCurrentPoints([]);
+    setEditingText(null); setEditingValue('');
+    setSelection(null);
+    pushHistory([], []);
+    setHasDrawn(false);
+  };
+
+  // ── Render stroke ────────────────────────────────────────────────────────
+  const renderStroke = (stroke: DrawnStroke, key: string, highlight = false) => {
+    const pathData = getSmoothPath(stroke.points);
+    if (stroke.tool === 'eraser') {
+      return <path key={key} d={pathData} stroke="white" strokeWidth={stroke.size} fill="none" strokeLinecap="round" strokeLinejoin="round" />;
+    }
+    return <path key={key} d={pathData} stroke={highlight ? 'hsl(var(--primary))' : '#1a1a1a'} strokeWidth={stroke.size * 0.5} fill="none" strokeLinecap="round" strokeLinejoin="round" />;
+  };
+
+  // ── Selection overlay helpers ────────────────────────────────────────────
+  const getSelectionBounds = () => {
+    if (!selection) return null;
+    const textBoxes = (() => {
+      if (selection.kind === 'text') return textItems.filter(t => t.id === selection.id).map(getTextBounds);
+      if (selection.kind === 'multi') return textItems.filter(t => selection.textIds.includes(t.id)).map(getTextBounds);
+      return [];
+    })();
+    const strokeBoxes = (() => {
+      if (selection.kind === 'stroke') return committedStrokes.filter(s => s.id === selection.id).map(s => getStrokeBounds(s.points));
+      if (selection.kind === 'multi') return committedStrokes.filter(s => selection.strokeIds.includes(s.id)).map(s => getStrokeBounds(s.points));
+      return [];
+    })();
+    const all = [...textBoxes, ...strokeBoxes];
+    if (!all.length) return null;
+    const PAD = 6;
+    const x1 = Math.min(...all.map(b => b.x)) - PAD;
+    const y1 = Math.min(...all.map(b => b.y)) - PAD;
+    const x2 = Math.max(...all.map(b => b.x + b.w)) + PAD;
+    const y2 = Math.max(...all.map(b => b.y + b.h)) + PAD;
+    return { x: x1, y: y1, w: x2 - x1, h: y2 - y1 };
+  };
+
+  const selBounds = getSelectionBounds();
+
+  // Which stroke ids are selected?
+  const selectedStrokeIds = selection?.kind === 'stroke' ? [selection.id]
+    : selection?.kind === 'multi' ? selection.strokeIds : [];
+  const selectedTextIds = selection?.kind === 'text' ? [selection.id]
+    : selection?.kind === 'multi' ? selection.textIds : [];
+
+  // ── Export for compare ───────────────────────────────────────────────────
+  const handleCompare = useCallback(async () => {
+    let finalTexts = textItems;
+    if (editingText && editingValue.trim()) {
+      finalTexts = [...textItems, { id: crypto.randomUUID(), x: editingText.x, y: editingText.y, text: editingValue, fontSize }];
+      setTextItems(finalTexts); setEditingText(null); setEditingValue('');
+    }
+    const svg = svgRef.current; if (!svg) return;
+    const rect = svg.getBoundingClientRect();
+    const w = rect.width || 900; const h = rect.height || 600;
+    const canvas = document.createElement('canvas');
+    canvas.width = w * 2; canvas.height = h * 2;
+    const ctx = canvas.getContext('2d')!;
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const blob = new Blob([svgData], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = () => { ctx.drawImage(img, 0, 0, canvas.width, canvas.height); URL.revokeObjectURL(url); onCompare(canvas.toDataURL('image/png')); };
+    img.src = url;
+  }, [svgRef, textItems, editingText, editingValue, fontSize, onCompare]);
+
+  const PEN_SIZES = [2, 4, 8];
+  const ERASER_SIZES = [12, 24, 48];
+  const FONT_SIZES = [14, 20, 28, 36];
+
+  const cursorStyle = tool === 'text' ? 'text'
+    : tool === 'eraser' ? 'cell'
+    : tool === 'select' ? (dragStateRef.current?.active ? 'grabbing' : 'default')
+    : 'crosshair';
+
+  return (
+    <div className="flex flex-col h-full overflow-hidden">
+      {/* ── Drawing Surface ── */}
+      <div className={cn("flex-1 min-h-0 overflow-hidden relative", showRef && "flex flex-row")}>
+        <div
+          ref={containerRef}
+          className={cn(
+            "overflow-hidden select-none",
+            showRef ? "relative flex-1 border-r" : "absolute inset-0"
+          )}
+          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none' }}
+        >
+          <svg
+            ref={svgRef}
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', touchAction: 'none', userSelect: 'none' }}
+            xmlns="http://www.w3.org/2000/svg"
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerLeave={e => { if (!dragStateRef.current?.active && !resizeRef.current?.active) handlePointerUp(e); }}
+          >
+            {/* Committed strokes */}
+            {committedStrokes.map(s => renderStroke(s, s.id, selectedStrokeIds.includes(s.id)))}
+
+            {/* Live stroke preview */}
+            {isPointerDown && currentPoints.length > 1 && renderStroke(
+              { id: 'live', points: currentPoints, tool: currentToolRef.current, size: currentToolRef.current === 'eraser' ? eraserSize : penSize },
+              'live'
+            )}
+
+            {/* Text items */}
+            {textItems.map(t => (
+              <text
+                key={t.id}
+                x={t.x}
+                y={t.y + t.fontSize}
+                fontSize={t.fontSize}
+                fontFamily="system-ui, sans-serif"
+                fill={selectedTextIds.includes(t.id) ? 'hsl(var(--primary))' : '#1a1a1a'}
+                style={{ userSelect: 'none' }}
+              >
+                {t.text}
+              </text>
+            ))}
+
+            {/* Selection bounding box */}
+            {tool === 'select' && selBounds && (
+              <g>
+                <rect
+                  x={selBounds.x} y={selBounds.y} width={selBounds.w} height={selBounds.h}
+                  fill="none"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="1.5"
+                  strokeDasharray="5 3"
+                  rx="3"
+                />
+                {/* Corner handles */}
+                {[
+                  [selBounds.x, selBounds.y],
+                  [selBounds.x + selBounds.w, selBounds.y],
+                  [selBounds.x, selBounds.y + selBounds.h],
+                  [selBounds.x + selBounds.w, selBounds.y + selBounds.h],
+                ].map(([cx, cy], i) => (
+                  <rect key={i} x={cx - 4} y={cy - 4} width={8} height={8}
+                    fill="white" stroke="hsl(var(--primary))" strokeWidth="1.5" rx="1"
+                    style={{ cursor: i === 3 ? 'se-resize' : 'nwse-resize' }}
+                  />
+                ))}
+                {/* Move cursor indicator */}
+                <rect
+                  x={selBounds.x} y={selBounds.y} width={selBounds.w} height={selBounds.h}
+                  fill="hsl(var(--primary) / 0.04)"
+                  rx="3"
+                  style={{ cursor: 'grab' }}
+                />
+              </g>
+            )}
+
+            {/* Marquee selection rectangle */}
+            {tool === 'select' && marquee && (
+              <rect
+                x={Math.min(marquee.x1, marquee.x2)}
+                y={Math.min(marquee.y1, marquee.y2)}
+                width={Math.abs(marquee.x2 - marquee.x1)}
+                height={Math.abs(marquee.y2 - marquee.y1)}
+                fill="hsl(var(--primary) / 0.08)"
+                stroke="hsl(var(--primary))"
+                strokeWidth="1"
+                strokeDasharray="4 2"
+                rx="2"
+              />
+            )}
+          </svg>
+
+          {/* Inline text input */}
+          {tool === 'text' && editingText && (
+            <div className="absolute z-20" style={{ left: editingText.x, top: editingText.y }}>
+              <input
+                ref={textInputRef}
+                value={editingValue}
+                onChange={e => setEditingValue(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') { e.preventDefault(); commitText(); }
+                  if (e.key === 'Escape') { setEditingText(null); setEditingValue(''); }
+                }}
+                onBlur={commitText}
+                placeholder="Type…"
+                className="bg-white/95 border-2 border-primary/70 rounded px-2 py-0.5 outline-none shadow-md min-w-[100px] max-w-[260px]"
+                style={{ fontSize: `${fontSize}px`, lineHeight: 1.3, color: '#1a1a1a', fontFamily: 'system-ui, sans-serif', caretColor: 'hsl(var(--primary))' }}
+              />
+              <div className="text-[9px] text-muted-foreground mt-0.5 bg-background/80 rounded px-1">
+                Enter ↵ to place · Esc to cancel
+              </div>
+            </div>
+          )}
+
+          {/* Empty hint */}
+          {!hasDrawn && !editingText && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="text-center space-y-2 opacity-30">
+                {tool === 'text'
+                  ? <Type className="h-8 w-8 mx-auto text-muted-foreground" />
+                  : tool === 'select'
+                    ? <MousePointer2 className="h-8 w-8 mx-auto text-muted-foreground" />
+                    : <Pencil className="h-8 w-8 mx-auto text-muted-foreground" />}
+                <p className="text-sm text-muted-foreground font-medium">
+                  {tool === 'text' ? 'Tap to type' : tool === 'select' ? 'Click or drag to select' : 'Draw freely'}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Select tool hint when content exists */}
+          {tool === 'select' && hasDrawn && !selection && (
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 pointer-events-none">
+              <div className="text-[10px] text-muted-foreground bg-background/80 border border-border/40 rounded-full px-2.5 py-1 shadow-sm">
+                Click an element to select · Drag to multi-select · Delete key removes
+              </div>
+            </div>
+          )}
+
+          {showRef && (
+            <div className="absolute top-2 left-2 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40 pointer-events-none">
+              Your drawing
+            </div>
+          )}
+        </div>
+
+        {showRef && referenceImageUrl && (
+          <div className="flex-1 bg-muted/20 overflow-auto flex items-center justify-center relative">
+            <div className="absolute top-2 left-2 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">
+              Reference
+            </div>
+            <img src={referenceImageUrl} alt="Reference" className="max-w-full max-h-full object-contain p-3" />
+          </div>
+        )}
+      </div>
+
+      {/* ── Toolbar (bottom) ── */}
+      <div className="flex items-center gap-1.5 px-3 py-2 border-t bg-muted/30 flex-wrap shrink-0">
+        {/* Tools */}
+        {([
+          { id: 'select', icon: MousePointer2, label: 'Select' },
+          { id: 'pen', icon: Pencil, label: 'Pen' },
+          { id: 'eraser', icon: Eraser, label: 'Eraser' },
+          { id: 'text', icon: Type, label: 'Text' },
+        ] as const).map(({ id, icon: Icon, label }) => (
+          <button
+            key={id}
+            onClick={() => { setTool(id); setEditingText(null); setEditingValue(''); if (id !== 'select') setSelection(null); }}
+            title={label}
+            className={cn(
+              "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border",
+              tool === id
+                ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                : "bg-background text-muted-foreground border-border hover:border-primary/60 hover:bg-primary/5"
+            )}
+          >
+            <Icon className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">{label}</span>
+          </button>
+        ))}
+
+        {/* Size pickers */}
+        {tool === 'pen' && (
+          <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
+            {PEN_SIZES.map(s => (
+              <button key={s} onClick={() => setPenSize(s)}
+                className={cn("w-7 h-7 rounded-full flex items-center justify-center border transition-all",
+                  penSize === s ? "border-primary bg-primary/10 scale-110" : "border-border hover:border-primary/60")}>
+                <div className="rounded-full bg-foreground" style={{ width: s + 1, height: s + 1 }} />
+              </button>
+            ))}
+          </div>
+        )}
+        {tool === 'eraser' && (
+          <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
+            {ERASER_SIZES.map(s => (
+              <button key={s} onClick={() => setEraserSize(s)} title={`${s}px`}
+                className={cn("w-7 h-7 rounded-full flex items-center justify-center border transition-all",
+                  eraserSize === s ? "border-primary bg-primary/10 scale-110" : "border-border hover:border-primary/60")}>
+                <div className="rounded-full bg-foreground/20 border border-foreground/30"
+                  style={{ width: Math.min(s / 3 + 3, 20), height: Math.min(s / 3 + 3, 20) }} />
+              </button>
+            ))}
+          </div>
+        )}
+        {tool === 'text' && (
+          <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
+            {FONT_SIZES.map(s => (
+              <button key={s} onClick={() => setFontSize(s)}
+                className={cn("min-w-[28px] h-7 px-1.5 rounded-lg flex items-center justify-center border text-xs font-medium transition-all",
+                  fontSize === s ? "border-primary bg-primary/10 text-primary scale-105" : "border-border hover:border-primary/60 text-muted-foreground")}>
+                {s}
+              </button>
+            ))}
+          </div>
+        )}
+        {/* Select tool: delete button when selection active */}
+        {tool === 'select' && selection && (
+          <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
+            <button
+              onClick={() => {
+                setCommittedStrokes(prev => {
+                  const next = selection.kind === 'stroke' ? prev.filter(s => s.id !== selection.id)
+                    : selection.kind === 'multi' ? prev.filter(s => !selection.strokeIds.includes(s.id)) : prev;
+                  setTextItems(tprev => {
+                    const tnext = selection.kind === 'text' ? tprev.filter(t => t.id !== selection.id)
+                      : selection.kind === 'multi' ? tprev.filter(t => !selection.textIds.includes(t.id)) : tprev;
+                    pushHistory(next, tnext);
+                    setHasDrawn(next.length > 0 || tnext.length > 0);
+                    return tnext;
+                  });
+                  return next;
+                });
+                setSelection(null);
+              }}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-destructive/40 text-destructive hover:bg-destructive/5 transition-colors"
+            >
+              <Trash2 className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Delete</span>
+            </button>
+          </div>
+        )}
+
+        {/* Undo / Redo */}
+        <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
+          <button onClick={undo} title="Undo (⌘Z)"
+            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors">
+            <Undo2 className="h-3.5 w-3.5" />
+          </button>
+          <button onClick={redo} title="Redo (⌘⇧Z)"
+            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors">
+            <Redo2 className="h-3.5 w-3.5" />
+          </button>
+        </div>
+
+        <div className="flex-1" />
+
+        {referenceImageUrl && (
+          <button onClick={() => setShowRef(v => !v)}
+            className={cn("flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors border",
+              showRef ? "bg-primary/10 text-primary border-primary/40" : "bg-background text-muted-foreground border-border hover:border-primary/60")}>
+            <Columns2 className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">{showRef ? 'Hide ref' : 'Show ref'}</span>
+          </button>
+        )}
+
+        <button onClick={clearAll}
+          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-border hover:border-destructive/60 hover:text-destructive transition-colors">
+          <Trash2 className="h-3.5 w-3.5" />
+          <span className="hidden sm:inline">Clear</span>
+        </button>
+
+        <Button size="sm" onClick={handleCompare} disabled={!hasDrawn || comparing} className="text-xs h-8">
+          {comparing
+            ? <><Loader2 className="h-3.5 w-3.5 mr-1.5 animate-spin" />Comparing…</>
+            : <><Sparkles className="h-3.5 w-3.5 mr-1.5" />Compare with AI</>}
+        </Button>
+      </div>
+    </div>
+  );
+}
+
 
 
 
