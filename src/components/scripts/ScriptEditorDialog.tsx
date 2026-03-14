@@ -380,6 +380,37 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
     }
   }, []);
 
+  const extractScriptFromPdfs = useCallback(async () => {
+    if (pastePdfs.length === 0) return;
+    setIsExtractingPdf(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("extract-script-from-pdf", {
+        body: { pdfUrls: pastePdfs.map(p => p.url) },
+      });
+      if (error) throw error;
+      if (data?.error) { toast.error(data.error); return; }
+      const scripts: { title: string; content: string }[] = data?.scripts || [];
+      if (scripts.length === 0) {
+        toast.error("No script content found in PDF");
+        return;
+      }
+      if (scripts.length === 1) {
+        // Single script: put directly in paste box
+        setPasteContent(prev => prev ? `${prev}\n\n${scripts[0].content}` : scripts[0].content);
+        toast.success("Script extracted from PDF!");
+      } else {
+        // Multiple scripts: show selection UI
+        setPdfExtractedScripts(scripts.map(s => ({ ...s, selected: true })));
+        toast.success(`Found ${scripts.length} scripts in PDF — select which ones to add`);
+      }
+    } catch (e) {
+      console.error("Extract PDF error:", e);
+      toast.error("Failed to extract script from PDF");
+    } finally {
+      setIsExtractingPdf(false);
+    }
+  }, [pastePdfs]);
+
   const handlePasteImages = useCallback((e: React.ClipboardEvent) => {
     const items = e.clipboardData?.items;
     if (!items) return;
