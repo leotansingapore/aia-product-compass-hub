@@ -387,33 +387,60 @@ export default function ConceptCardsPage() {
               {PRODUCT_OPTIONS.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
             </SelectContent>
           </Select>
-          <Button
-            variant={quizMode ? 'default' : 'outline'}
-            onClick={() => { setQuizMode(q => !q); resetQuiz(); }}
-            className="shrink-0 gap-1.5"
-          >
-            <GraduationCap className="h-4 w-4" />
-            {quizMode ? 'Exit Quiz' : 'Quiz Mode'}
-          </Button>
+          <TooltipProvider delayDuration={300}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant={quizMode ? 'default' : 'outline'}
+                  onClick={() => { setQuizMode(q => !q); resetQuiz(); }}
+                  className="shrink-0 gap-1.5"
+                >
+                  <GraduationCap className="h-4 w-4" />
+                  {quizMode ? 'Exit Quiz' : 'Quiz Mode'}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" className="max-w-[220px] text-center text-xs">
+                Flip cards one by one and self-mark each as "Know it" or "Review". Tracks your progress across the deck.
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           {filtered.length > 0 && (
-            <Button
-              variant="outline"
-              onClick={() => { setDueOnlyMode(false); setFocusMode(true); }}
-              className="shrink-0 gap-1.5"
-            >
-              <Focus className="h-4 w-4" />
-              Focus Mode
-            </Button>
+            <TooltipProvider delayDuration={300}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    onClick={() => { setDueOnlyMode(false); setFocusMode(true); }}
+                    className="shrink-0 gap-1.5"
+                  >
+                    <Focus className="h-4 w-4" />
+                    Focus Mode
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="max-w-[220px] text-center text-xs">
+                  Full-screen swipe-through session. Swipe right to know, left to review — ideal for rapid drill before an exam.
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
           {dueCards.length > 0 && (
-            <Button
-              variant="outline"
-              onClick={() => { setDueOnlyMode(true); setFocusMode(true); }}
-              className="shrink-0 gap-1.5 border-primary/40 text-primary hover:bg-primary/10"
-            >
-              <CalendarClock className="h-4 w-4" />
-              Study Due ({dueCards.length})
-            </Button>
+            <TooltipProvider delayDuration={300}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    onClick={() => { setDueOnlyMode(true); setFocusMode(true); }}
+                    className="shrink-0 gap-1.5 border-primary/40 text-primary hover:bg-primary/10"
+                  >
+                    <CalendarClock className="h-4 w-4" />
+                    Study Due ({dueCards.length})
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="max-w-[220px] text-center text-xs">
+                  Focus Mode showing only cards due for spaced-repetition review today — based on how well you knew them last time.
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
           {isAdmin() && (
             <Button onClick={() => setUploadOpen(true)} className="shrink-0">
