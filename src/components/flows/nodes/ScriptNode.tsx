@@ -29,8 +29,17 @@ function ScriptNodeInner({ data, selected, isConnectable }: NodeProps) {
         borderStyle,
         opacity,
         filter: shadow ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.15))' : undefined,
+        width: '100%',
+        height: '100%',
       }}
     >
+      <NodeResizer
+        isVisible={selected}
+        minWidth={100}
+        minHeight={36}
+        lineStyle={{ borderColor: 'hsl(var(--primary))' }}
+        handleStyle={{ borderColor: 'hsl(var(--primary))', backgroundColor: 'white', width: 10, height: 10 }}
+      />
       <div className="flex items-center gap-1.5 w-full justify-center">
         <FileText className="w-3.5 h-3.5 shrink-0" style={{ color: text }} />
         {editing ? (
