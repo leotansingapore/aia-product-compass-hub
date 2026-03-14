@@ -329,8 +329,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             {/* Video + mini-nav column */}
             <div className="lg:col-span-2 space-y-4 sm:space-y-6 order-1 lg:order-2">
 
-              {/* Video player */}
-              {!currentVideo?.rich_content && (
+              {/* Video player — hide if rich_content contains the same video URL (avoids duplicate) */}
+              {!(currentVideo?.rich_content?.trim() && currentVideo?.url && currentVideo.rich_content.includes(currentVideo.url)) && (
                 <Card>
                   <CardHeader className="py-3 px-4 sm:py-4 sm:px-6">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
