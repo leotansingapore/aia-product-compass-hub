@@ -1,5 +1,5 @@
 import { memo, useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Handle, Position, NodeResizer } from 'reactflow';
 import type { NodeProps } from 'reactflow';
 import { Database } from 'lucide-react';
 import { getNodeColors } from '@/utils/flowColorUtils';
@@ -21,10 +21,19 @@ function CylinderNodeInner({ data, selected, isConnectable }: NodeProps) {
   const topEllipse = `M 0,${ry} A ${w / 2},${ry} 0 0,0 ${w},${ry} A ${w / 2},${ry} 0 0,0 0,${ry}`;
 
   return (
-    <div className="relative" style={{ width: w, height: h, opacity }}>
+    <div className="relative" style={{ width: '100%', height: '100%', minWidth: w, minHeight: h, opacity }}>
+      <NodeResizer
+        isVisible={selected}
+        minWidth={w}
+        minHeight={h}
+        lineStyle={{ borderColor: 'hsl(var(--primary))' }}
+        handleStyle={{ borderColor: 'hsl(var(--primary))', backgroundColor: 'white', width: 10, height: 10 }}
+      />
       <svg
-        width={w}
-        height={h}
+        width="100%"
+        height="100%"
+        viewBox={`0 0 ${w} ${h}`}
+        preserveAspectRatio="none"
         className="absolute inset-0"
         style={{ filter: shadow ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.15))' : undefined }}
       >

@@ -1,5 +1,5 @@
 import { memo, useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Handle, Position, NodeResizer } from 'reactflow';
 import type { NodeProps } from 'reactflow';
 import { GitBranch } from 'lucide-react';
 import { getNodeColors } from '@/utils/flowColorUtils';
@@ -19,10 +19,19 @@ function DecisionNodeInner({ data, selected, isConnectable }: NodeProps) {
   const points = `${half},0 ${size},${half} ${half},${size} 0,${half}`;
 
   return (
-    <div className="relative" style={{ width: size, height: size, opacity }}>
+    <div className="relative" style={{ width: '100%', height: '100%', minWidth: size, minHeight: size, opacity }}>
+      <NodeResizer
+        isVisible={selected}
+        minWidth={size}
+        minHeight={size}
+        lineStyle={{ borderColor: 'hsl(var(--primary))' }}
+        handleStyle={{ borderColor: 'hsl(var(--primary))', backgroundColor: 'white', width: 10, height: 10 }}
+      />
       <svg
-        width={size}
-        height={size}
+        width="100%"
+        height="100%"
+        viewBox={`0 0 ${size} ${size}`}
+        preserveAspectRatio="none"
         className="absolute inset-0"
         style={{ filter: shadow ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.15))' : undefined }}
       >
