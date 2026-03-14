@@ -260,19 +260,11 @@ function Whiteboard({
 
   // ── Render stroke ────────────────────────────────────────────────────────
   const renderStroke = (stroke: DrawnStroke, key: string) => {
-    const pathData = getSvgPathFromStroke(
-      getStroke(stroke.points, {
-        size: stroke.size,
-        thinning: stroke.tool === 'eraser' ? 0 : 0.6,
-        smoothing: 0.5,
-        streamline: 0.5,
-        simulatePressure: stroke.points[0]?.[2] === 0.5, // only simulate if no real pressure
-      })
-    );
+    const pathData = getSmoothPath(stroke.points);
     if (stroke.tool === 'eraser') {
-      return <path key={key} d={pathData} fill="white" />;
+      return <path key={key} d={pathData} stroke="white" strokeWidth={stroke.size} fill="none" strokeLinecap="round" strokeLinejoin="round" />;
     }
-    return <path key={key} d={pathData} fill="#1a1a1a" />;
+    return <path key={key} d={pathData} stroke="#1a1a1a" strokeWidth={stroke.size * 0.5} fill="none" strokeLinecap="round" strokeLinejoin="round" />;
   };
 
   // ── Export for compare ───────────────────────────────────────────────────
