@@ -122,40 +122,35 @@ function FlashCard({
           </div>
 
           {/* PANEL 2 — Drawing(s) */}
+          {/* PANEL 2 — Drawing(s): tap anywhere to go to next step */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 cursor-pointer"
             style={{
               opacity: step === 1 ? 1 : 0,
               pointerEvents: step === 1 ? 'auto' : 'none',
               transform: `translateX(${(1 - step) * 100}%)`,
               transition: 'transform 0.3s ease-in-out, opacity 0.3s',
             }}
+            onClick={() => goToStep(2)}
           >
-            <div className="absolute top-6 right-2 z-10">
+            <div className="absolute top-2 right-2 z-10" onClick={e => e.stopPropagation()}>
               <button onClick={e => { e.stopPropagation(); onOpen(card); }}
                 className="text-[9px] text-primary/70 bg-background/80 px-1.5 py-0.5 rounded-md border border-primary/20 hover:border-primary/50 transition-colors">
                 full view
               </button>
             </div>
-            <button onClick={e => { e.stopPropagation(); goToStep(0); }}
-              className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-background/80 border border-border/60 text-muted-foreground hover:border-primary/60 transition-colors">
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-            </button>
-            <button onClick={e => { e.stopPropagation(); goToStep(2); }}
-              className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-background/80 border border-border/60 text-muted-foreground hover:border-primary/60 transition-colors">
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </button>
             <div className="absolute bottom-2 left-2 z-10" onClick={e => e.stopPropagation()}>
               <button onClick={e => { e.stopPropagation(); onDraw(card); }}
                 className="flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 hover:bg-primary/20 border border-primary/30 px-2 py-1 rounded-lg transition-colors shadow-sm">
                 <Pencil className="h-3 w-3" /> Draw &amp; Compare
               </button>
             </div>
+            <div className="absolute bottom-2 right-2 z-10 text-[9px] text-muted-foreground/50 pointer-events-none">tap →</div>
             {hasImages ? (
               <>
                 <img src={currentImg!} alt={card.title} className="w-full h-full object-contain p-2 pointer-events-none" />
                 {allImages.length > 1 && (
-                  <div className="absolute bottom-2 inset-x-0 flex items-center justify-center gap-1.5 z-10" onClick={e => e.stopPropagation()}>
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1" onClick={e => e.stopPropagation()}>
                     <button onClick={e => { e.stopPropagation(); setImgIndex(i => Math.max(0, i - 1)); }} disabled={imgIndex === 0}
                       className="p-0.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30">
                       <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
@@ -169,28 +164,26 @@ function FlashCard({
                 )}
               </>
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">No drawing yet</div>
+              <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none">No drawing yet</div>
             )}
           </div>
 
-          {/* PANEL 3 — Explanation */}
+          {/* PANEL 3 — Explanation: tap to loop back to question */}
           <div
-            className="absolute inset-0 p-4 sm:p-5 flex flex-col"
+            className="absolute inset-0 p-4 sm:p-5 flex flex-col cursor-pointer"
             style={{
               opacity: step === 2 ? 1 : 0,
               pointerEvents: step === 2 ? 'auto' : 'none',
               transform: `translateX(${(2 - step) * 100}%)`,
               transition: 'transform 0.3s ease-in-out, opacity 0.3s',
             }}
+            onClick={() => goToStep(0)}
           >
-            <button onClick={e => { e.stopPropagation(); goToStep(1); }}
-              className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-background/80 border border-border/60 text-muted-foreground hover:border-primary/60 transition-colors">
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-            </button>
-            <div className="mt-5 flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto">
               <div className="flex items-center gap-1.5 mb-2">
                 <Lightbulb className="h-3.5 w-3.5 text-amber-500" />
                 <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wide">Explanation</span>
+                <span className="text-[9px] text-muted-foreground/50 ml-auto">tap to restart →</span>
               </div>
               {card.description ? (
                 <p className="text-sm text-foreground leading-relaxed">{card.description}</p>
