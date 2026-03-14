@@ -306,8 +306,112 @@ function Whiteboard({
 
   return (
     <div className="flex flex-col overflow-hidden" style={{ flex: '1 1 0', minHeight: 0 }}>
-      {/* ── Toolbar ── */}
-      <div className="flex items-center gap-1.5 px-3 py-2 border-b bg-muted/30 flex-wrap shrink-0">
+      {/* ── Drawing Surface ── */}
+      <div className={cn("overflow-hidden flex flex-1 min-h-0", showRef ? "flex-row" : "flex-col")}>
+        <div
+          ref={containerRef}
+          className={cn("relative overflow-hidden select-none flex-1 min-h-0", showRef ? "w-1/2 border-r" : "w-full")}
+          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none' }}
+        >
+          <svg
+            ref={svgRef}
+            className="absolute inset-0 w-full h-full"
+            style={{ overflow: 'visible', touchAction: 'none', userSelect: 'none' }}
+            xmlns="http://www.w3.org/2000/svg"
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerLeave={handlePointerUp}
+          >
+            {/* Committed strokes */}
+            {committedStrokes.map(s => renderStroke(s, s.id))}
+
+            {/* Live stroke preview */}
+            {isPointerDown && currentPoints.length > 1 && renderStroke(
+              { id: 'live', points: currentPoints, tool: currentToolRef.current, size: currentToolRef.current === 'eraser' ? eraserSize : penSize },
+              'live'
+            )}
+
+            {/* Text items */}
+            {textItems.map(t => (
+              <text
+                key={t.id}
+                x={t.x}
+                y={t.y + t.fontSize}
+                fontSize={t.fontSize}
+                fontFamily="system-ui, sans-serif"
+                fill="#1a1a1a"
+                style={{ userSelect: 'none' }}
+              >
+                {t.text}
+              </text>
+            ))}
+          </svg>
+
+          {/* Inline text input — appears at tap position */}
+          {tool === 'text' && editingText && (
+            <div
+              className="absolute z-20"
+              style={{ left: editingText.x, top: editingText.y }}
+            >
+              <input
+                ref={textInputRef}
+                value={editingValue}
+                onChange={e => setEditingValue(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') { e.preventDefault(); commitText(); }
+                  if (e.key === 'Escape') { setEditingText(null); setEditingValue(''); }
+                }}
+                onBlur={commitText}
+                placeholder="Type…"
+                className="bg-white/95 border-2 border-primary/70 rounded px-2 py-0.5 outline-none shadow-md min-w-[100px] max-w-[260px]"
+                style={{
+                  fontSize: `${fontSize}px`,
+                  lineHeight: 1.3,
+                  color: '#1a1a1a',
+                  fontFamily: 'system-ui, sans-serif',
+                  caretColor: 'hsl(var(--primary))',
+                }}
+              />
+              <div className="text-[9px] text-muted-foreground mt-0.5 bg-background/80 rounded px-1">
+                Enter ↵ to place · Esc to cancel
+              </div>
+            </div>
+          )}
+
+          {/* Empty hint */}
+          {!hasDrawn && !editingText && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="text-center space-y-2 opacity-30">
+                {tool === 'text'
+                  ? <Type className="h-8 w-8 mx-auto text-muted-foreground" />
+                  : <Pencil className="h-8 w-8 mx-auto text-muted-foreground" />}
+                <p className="text-sm text-muted-foreground font-medium">
+                  {tool === 'text' ? 'Tap to type' : 'Draw freely'}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {showRef && (
+            <div className="absolute top-2 left-2 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40 pointer-events-none">
+              Your drawing
+            </div>
+          )}
+        </div>
+
+        {showRef && referenceImageUrl && (
+          <div className="w-1/2 bg-muted/20 overflow-auto flex items-center justify-center relative">
+            <div className="absolute top-2 left-2 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">
+              Reference
+            </div>
+            <img src={referenceImageUrl} alt="Reference" className="max-w-full max-h-full object-contain p-3" />
+          </div>
+        )}
+      </div>
+
+      {/* ── Toolbar (bottom) ── */}
+      <div className="flex items-center gap-1.5 px-3 py-2 border-t bg-muted/30 flex-wrap shrink-0">
         {/* Tools */}
         {([
           { id: 'pen', icon: Pencil, label: 'Pen' },
