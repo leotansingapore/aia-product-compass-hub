@@ -17,7 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import {
   Plus, Search, ImageIcon, Trash2, GraduationCap, RotateCcw,
-  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus, CalendarClock, Flame
+  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus, CalendarClock, Flame, Lightbulb
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -42,7 +42,8 @@ function FlashCard({
   isKnown: boolean;
   isReview: boolean;
 }) {
-  const [flipped, setFlipped] = useState(false);
+  // 3-step carousel: 0 = Question, 1 = Drawing, 2 = Explanation
+  const [step, setStep] = useState(0);
   const [imgIndex, setImgIndex] = useState(0);
 
   // Normalise: prefer image_urls array, fall back to legacy image_url
@@ -52,13 +53,10 @@ function FlashCard({
   const hasImages = allImages.length > 0;
   const currentImg = allImages[imgIndex] ?? null;
 
-  const handleCardClick = () => {
-    if (hasImages) setFlipped(f => !f);
-    else if (!quizMode) onOpen(card);
-  };
+  const goToStep = (s: number) => setStep(Math.max(0, Math.min(2, s)));
 
   return (
-    <div className="group relative" style={{ perspective: '1200px', minHeight: '240px' }}>
+    <div className="group relative" style={{ minHeight: '240px' }}>
       {/* Quiz status indicator */}
       {quizMode && (isKnown || isReview) && (
         <div className={cn(
@@ -72,39 +70,45 @@ function FlashCard({
         </div>
       )}
 
-      <div
-        className="relative w-full transition-transform duration-500 rounded-2xl cursor-pointer"
-        style={{
-          transformStyle: 'preserve-3d',
-          transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-          minHeight: '240px',
-        }}
-        onClick={handleCardClick}
-      >
-        {/* FRONT — Question */}
+      {/* 3-step dots */}
+      <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 flex gap-1">
+        {[0, 1, 2].map(i => (
+          <button
+            key={i}
+            onClick={e => { e.stopPropagation(); goToStep(i); }}
+            className={cn(
+              "rounded-full transition-all duration-200",
+              step === i ? "w-4 h-1.5 bg-primary" : "w-1.5 h-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"
+            )}
+          />
+        ))}
+      </div>
+
+      {/* Carousel container */}
+      <div className={cn(
+        "rounded-2xl border bg-card shadow-sm overflow-hidden transition-all",
+        "hover:shadow-md",
+        isKnown && quizMode && "opacity-60",
+      )} style={{ minHeight: '240px' }}>
         <div
-          className={cn(
-            "absolute inset-0 rounded-2xl border bg-card shadow-sm transition-all",
-            "hover:shadow-md hover:-translate-y-0.5",
-            isKnown && quizMode && "opacity-60",
-          )}
-          style={{ backfaceVisibility: 'hidden' }}
+          className="flex transition-transform duration-400 ease-in-out h-full"
+          style={{ transform: `translateX(-${step * 100}%)`, width: '300%' }}
         >
-          <div className="p-4 sm:p-5 flex flex-col h-full">
+          {/* PANEL 1 — Question */}
+          <div
+            className="w-1/3 shrink-0 p-4 sm:p-5 flex flex-col cursor-pointer"
+            style={{ minHeight: '240px' }}
+            onClick={() => hasImages ? goToStep(1) : goToStep(2)}
+          >
             <div className="flex-1">
-              <div className="flex items-center gap-1.5 mb-2">
+              <div className="flex items-center gap-1.5 mb-2 mt-5">
                 <span className="text-[10px] font-semibold text-primary/70 uppercase tracking-wide">Question</span>
-                {card.image_url && (
-                  <span className="text-[9px] text-muted-foreground/50 ml-auto">tap to flip ↻</span>
-                )}
+                <span className="text-[9px] text-muted-foreground/50 ml-auto">tap to continue →</span>
               </div>
               <h3 className="font-semibold text-sm sm:text-base leading-snug">{card.title}</h3>
-              {card.description && (
-                <p className="text-xs text-muted-foreground mt-1.5 line-clamp-2">{card.description}</p>
-              )}
             </div>
 
-          {hasImages ? (
+            {hasImages ? (
               <div className="mt-3 rounded-lg overflow-hidden border border-dashed border-border/50 h-20 flex items-center justify-center relative bg-muted/20">
                 <img
                   src={currentImg!}
@@ -130,81 +134,122 @@ function FlashCard({
               ))}
             </div>
           </div>
-        </div>
 
-        {/* BACK — Drawing(s) */}
-        <div
-          className="absolute inset-0 rounded-2xl border bg-card shadow-md overflow-hidden"
-          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-          onClick={e => { e.stopPropagation(); setFlipped(false); }}
-        >
-          <div className="absolute top-2 right-2 z-10 flex items-center gap-1.5">
-            <span className="text-[9px] text-muted-foreground/60 bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">
-              tap to flip back ↻
-            </span>
+          {/* PANEL 2 — Drawing(s) */}
+          <div
+            className="w-1/3 shrink-0 relative overflow-hidden"
+            style={{ minHeight: '240px' }}
+          >
+            <div className="absolute top-6 right-2 z-10 flex items-center gap-1.5">
+              <button
+                onClick={e => { e.stopPropagation(); onOpen(card); }}
+                className="text-[9px] text-primary/70 bg-background/80 px-1.5 py-0.5 rounded-md border border-primary/20 hover:border-primary/50 transition-colors"
+              >
+                full view
+              </button>
+            </div>
+            {/* Navigation arrows */}
             <button
-              onClick={e => { e.stopPropagation(); onOpen(card); }}
-              className="text-[9px] text-primary/70 bg-background/80 px-1.5 py-0.5 rounded-md border border-primary/20 hover:border-primary/50 transition-colors"
+              onClick={e => { e.stopPropagation(); goToStep(0); }}
+              className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-background/80 border border-border/60 text-muted-foreground hover:border-primary/60 transition-colors"
             >
-              full view
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
             </button>
-          </div>
-          {/* Draw & Compare shortcut — bottom of back face */}
-          <div className="absolute bottom-2 left-2 z-10" onClick={e => e.stopPropagation()}>
             <button
-              onClick={e => { e.stopPropagation(); onDraw(card); }}
-              className="flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/60 px-2 py-1 rounded-lg transition-colors shadow-sm"
+              onClick={e => { e.stopPropagation(); goToStep(2); }}
+              className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-background/80 border border-border/60 text-muted-foreground hover:border-primary/60 transition-colors"
             >
-              <Pencil className="h-3 w-3" /> Draw & Compare
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </button>
+            {/* Draw & Compare shortcut */}
+            <div className="absolute bottom-2 left-2 z-10" onClick={e => e.stopPropagation()}>
+              <button
+                onClick={e => { e.stopPropagation(); onDraw(card); }}
+                className="flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/60 px-2 py-1 rounded-lg transition-colors shadow-sm"
+              >
+                <Pencil className="h-3 w-3" /> Draw & Compare
+              </button>
+            </div>
+
+            {hasImages ? (
+              <>
+                <img src={currentImg!} alt={card.title} className="w-full h-full object-contain p-2 pointer-events-none" style={{ minHeight: '240px' }} />
+                {allImages.length > 1 && (
+                  <div className="absolute bottom-2 inset-x-0 flex items-center justify-center gap-1.5 z-10" onClick={e => e.stopPropagation()}>
+                    <button
+                      onClick={e => { e.stopPropagation(); setImgIndex(i => Math.max(0, i - 1)); }}
+                      disabled={imgIndex === 0}
+                      className="p-0.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors"
+                    >
+                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <span className="text-[9px] bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40 text-muted-foreground tabular-nums">
+                      {imgIndex + 1}/{allImages.length}
+                    </span>
+                    <button
+                      onClick={e => { e.stopPropagation(); setImgIndex(i => Math.min(allImages.length - 1, i + 1)); }}
+                      disabled={imgIndex === allImages.length - 1}
+                      className="p-0.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors"
+                    >
+                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none" style={{ minHeight: '240px' }}>No drawing yet</div>
+            )}
           </div>
 
-          {hasImages ? (
-            <>
-              <img src={currentImg!} alt={card.title} className="w-full h-full object-contain p-2 pointer-events-none" />
-              {/* Multi-image carousel controls */}
-              {allImages.length > 1 && (
-                <div className="absolute bottom-2 inset-x-0 flex items-center justify-center gap-1.5 z-10" onClick={e => e.stopPropagation()}>
-                  <button
-                    onClick={e => { e.stopPropagation(); setImgIndex(i => Math.max(0, i - 1)); }}
-                    disabled={imgIndex === 0}
-                    className="p-0.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors"
-                  >
-                    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-                  </button>
-                  <span className="text-[9px] bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40 text-muted-foreground tabular-nums">
-                    {imgIndex + 1}/{allImages.length}
-                  </span>
-                  <button
-                    onClick={e => { e.stopPropagation(); setImgIndex(i => Math.min(allImages.length - 1, i + 1)); }}
-                    disabled={imgIndex === allImages.length - 1}
-                    className="p-0.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors"
-                  >
-                    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                  </button>
-                </div>
+          {/* PANEL 3 — Explanation */}
+          <div
+            className="w-1/3 shrink-0 p-4 sm:p-5 flex flex-col"
+            style={{ minHeight: '240px' }}
+          >
+            {/* Back arrow */}
+            <button
+              onClick={e => { e.stopPropagation(); goToStep(1); }}
+              className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-background/80 border border-border/60 text-muted-foreground hover:border-primary/60 transition-colors"
+            >
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <div className="mt-5">
+              <div className="flex items-center gap-1.5 mb-2">
+                <Lightbulb className="h-3.5 w-3.5 text-amber-500" />
+                <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wide">Explanation</span>
+              </div>
+              {card.description ? (
+                <p className="text-sm text-foreground leading-relaxed">{card.description}</p>
+              ) : (
+                <p className="text-sm text-muted-foreground italic">No explanation added yet.</p>
               )}
-            </>
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none">No drawing yet</div>
-          )}
+            </div>
+            <div className="mt-auto pt-3 flex flex-wrap gap-1">
+              {card.audience.slice(0, 2).map(a => (
+                <Badge key={a} variant="outline" className="text-[10px] px-1.5 py-0">{a}</Badge>
+              ))}
+              {card.product_type.slice(0, 2).map(p => (
+                <Badge key={p} className="text-[10px] px-1.5 py-0 bg-primary/10 text-primary border-primary/20">{p}</Badge>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Quiz action buttons (appear below card when flipped) */}
-      {quizMode && flipped && (
+      {/* Quiz action buttons (appear when on drawing or explanation step) */}
+      {quizMode && step > 0 && (
         <div
           className="absolute -bottom-12 inset-x-0 flex gap-2 justify-center z-20 animate-fade-in"
           onClick={e => e.stopPropagation()}
         >
           <button
-            onClick={() => { onKnow?.(card.id); setFlipped(false); }}
+            onClick={() => { onKnow?.(card.id); setStep(0); }}
             className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors shadow-md"
           >
             <CheckCircle className="h-3.5 w-3.5" /> Know it
           </button>
           <button
-            onClick={() => { onReview?.(card.id); setFlipped(false); }}
+            onClick={() => { onReview?.(card.id); setStep(0); }}
             className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-yellow-500 text-white hover:bg-yellow-600 transition-colors shadow-md"
           >
             <XCircle className="h-3.5 w-3.5" /> Review later

@@ -282,9 +282,8 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
             <Input value={title} onChange={e => setTitle(e.target.value)} />
           </div>
 
-          {/* Description */}
           <div className="space-y-1.5">
-            <Label>Hint / subtitle <span className="text-muted-foreground text-xs">(optional)</span></Label>
+            <Label>Explanation <span className="text-muted-foreground text-xs">(optional)</span></Label>
             <Textarea value={description} onChange={e => setDescription(e.target.value)} rows={2} />
           </div>
 

@@ -5,10 +5,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
   X, ChevronLeft, ChevronRight, CheckCircle,
-  RotateCcw, GraduationCap, Keyboard, CalendarClock
+  RotateCcw, GraduationCap, Keyboard, CalendarClock, Lightbulb
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+
 
 interface Props {
   cards: ConceptCard[];
@@ -53,7 +54,8 @@ const GRADE_CONFIG: { grade: Grade; label: string; key: string; color: string; a
 
 export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props) {
   const [index, setIndex] = useState(initialIndex);
-  const [flipped, setFlipped] = useState(false);
+  // 3-step carousel: 0 = Question, 1 = Drawing, 2 = Explanation
+  const [step, setStep] = useState(0);
   const [animDir, setAnimDir] = useState<'left' | 'right' | null>(null);
   const [showKeys, setShowKeys] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
@@ -72,7 +74,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
     setAnimDir(dir);
     setTimeout(() => {
       setIndex(i => i + 1);
-      setFlipped(false);
+      setStep(0);
       setAnimDir(null);
       setImgIndex(0);
     }, 180);
@@ -83,7 +85,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
     setAnimDir('left');
     setTimeout(() => {
       setIndex(i => i - 1);
-      setFlipped(false);
+      setStep(0);
       setAnimDir(null);
       setImgIndex(0);
     }, 180);
@@ -106,7 +108,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
       if (e.key === 'Escape') { onClose(); return; }
       if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
-        setFlipped(f => !f);
+        setStep(s => Math.min(2, s + 1));
         return;
       }
       if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); return; }
@@ -224,121 +226,153 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
               <ChevronLeft className="h-4 w-4" />
             </button>
 
-            {/* 3D Flip Card */}
-            <div className="flex-1 min-w-0" style={{ perspective: '1200px' }}>
+            {/* 3-step Carousel Card */}
+            <div className="flex-1 min-w-0 overflow-hidden">
               <div
                 className={cn(
-                  "relative w-full transition-all duration-500 cursor-pointer",
+                  "relative w-full",
                   animDir === 'right' && "translate-x-4 opacity-0",
                   animDir === 'left' && "-translate-x-4 opacity-0",
+                  "transition-all duration-200"
                 )}
-                style={{
-                  transformStyle: 'preserve-3d',
-                  transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-                  minHeight: 'clamp(260px, 40vh, 380px)',
-                  transition: animDir ? 'all 0.18s ease' : 'transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)',
-                }}
-                onClick={() => setFlipped(f => !f)}
+                style={{ minHeight: 'clamp(260px, 40vh, 380px)' }}
               >
-                {/* FRONT */}
-                <div
-                  className={cn(
-                    "absolute inset-0 rounded-2xl border-2 bg-card shadow-lg p-4 sm:p-6 md:p-8 flex flex-col",
-                    lastGrade === 'again' && "border-red-400/50 dark:border-red-600/40",
-                    lastGrade === 'hard' && "border-orange-400/50 dark:border-orange-600/40",
-                    lastGrade === 'good' && "border-green-400/50 dark:border-green-600/40",
-                    lastGrade === 'easy' && "border-blue-400/50 dark:border-blue-600/40",
-                    !lastGrade && "border-border",
-                  )}
-                  style={{ backfaceVisibility: 'hidden' }}
-                >
-                  {/* Last grade badge */}
-                  {lastGrade && (
-                    <div className={cn(
-                      "absolute top-3 right-3 flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full border",
-                      lastGrade === 'again' && "text-red-700 bg-red-50 border-red-200 dark:text-red-400 dark:bg-red-950 dark:border-red-800",
-                      lastGrade === 'hard' && "text-orange-700 bg-orange-50 border-orange-200 dark:text-orange-400 dark:bg-orange-950 dark:border-orange-800",
-                      lastGrade === 'good' && "text-green-700 bg-green-50 border-green-200 dark:text-green-400 dark:bg-green-950 dark:border-green-800",
-                      lastGrade === 'easy' && "text-blue-700 bg-blue-50 border-blue-200 dark:text-blue-400 dark:bg-blue-950 dark:border-blue-800",
-                    )}>
-                      <RotateCcw className="h-3 w-3" />
-                      {lastGrade.charAt(0).toUpperCase() + lastGrade.slice(1)}
-                    </div>
-                  )}
-
-                  <div className="text-[10px] font-semibold text-primary/70 uppercase tracking-widest mb-2 sm:mb-3">
-                    Question
-                  </div>
-                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold leading-snug flex-1">{card.title}</h2>
-                  {card.description && (
-                    <p className="text-xs sm:text-sm text-muted-foreground mt-2 sm:mt-3 leading-relaxed line-clamp-3">{card.description}</p>
-                  )}
-
-                  {/* Image preview hint */}
-                  {cardImages.length > 0 ? (
-                    <div className="mt-3 rounded-xl overflow-hidden border border-dashed border-border/60 h-16 sm:h-20 flex items-center justify-center relative bg-muted/20">
-                      <img src={cardImages[0]} alt="" className="absolute inset-0 w-full h-full object-contain blur-md opacity-30" />
-                      <span className="relative z-10 text-xs text-muted-foreground font-medium">
-                        Tap to reveal {cardImages.length > 1 ? `${cardImages.length} drawings` : 'drawing'} ↻
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="mt-3 rounded-xl bg-muted/20 border border-dashed border-border/50 h-12 sm:h-16 flex items-center justify-center">
-                      <span className="text-xs text-muted-foreground">No drawing attached</span>
-                    </div>
-                  )}
-
-                  {/* Tags */}
-                  <div className="mt-3 flex flex-wrap gap-1">
-                    {card.audience.slice(0, 2).map(a => (
-                      <Badge key={a} variant="outline" className="text-[10px] sm:text-xs px-1.5">{a}</Badge>
-                    ))}
-                    {card.product_type.slice(0, 2).map(p => (
-                      <Badge key={p} className="text-[10px] sm:text-xs px-1.5 bg-primary/10 text-primary border-primary/20">{p}</Badge>
-                    ))}
-                  </div>
+                {/* Step indicator dots */}
+                <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
+                  {[0, 1, 2].map(i => (
+                    <button
+                      key={i}
+                      onClick={() => setStep(i)}
+                      className={cn(
+                        "rounded-full transition-all duration-200",
+                        step === i ? "w-5 h-1.5 bg-primary" : "w-1.5 h-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"
+                      )}
+                    />
+                  ))}
                 </div>
 
-                {/* BACK */}
                 <div
-                  className="absolute inset-0 rounded-2xl border-2 border-border bg-card shadow-lg overflow-hidden"
-                  style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                  className="flex transition-transform duration-400 ease-in-out"
+                  style={{
+                    transform: `translateX(-${step * 100}%)`,
+                    width: '300%',
+                    minHeight: 'clamp(260px, 40vh, 380px)',
+                  }}
                 >
-                  <div className="absolute top-3 left-3 z-10 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded border border-border/40">
-                    Drawing {cardImages.length > 1 ? `${safeImgIndex + 1}/${cardImages.length}` : ''}
-                  </div>
-                  {/* Flip back button */}
-                  <button
-                    onClick={() => setFlipped(false)}
-                    className="absolute top-2 right-2 z-20 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold shadow-md hover:bg-primary/90 active:scale-95 transition-all"
+                  {/* PANEL 1 — Question */}
+                  <div
+                    className={cn(
+                      "w-1/3 shrink-0 rounded-2xl border-2 bg-card shadow-lg p-4 sm:p-6 md:p-8 flex flex-col cursor-pointer relative",
+                      lastGrade === 'again' && "border-red-400/50 dark:border-red-600/40",
+                      lastGrade === 'hard' && "border-orange-400/50 dark:border-orange-600/40",
+                      lastGrade === 'good' && "border-green-400/50 dark:border-green-600/40",
+                      lastGrade === 'easy' && "border-blue-400/50 dark:border-blue-600/40",
+                      !lastGrade && "border-border",
+                    )}
+                    onClick={() => setStep(cardImages.length > 0 ? 1 : 2)}
                   >
-                    <RotateCcw className="h-3.5 w-3.5" />
-                    <span className="hidden sm:inline">Flip back</span>
-                  </button>
-                  {currentImg
-                    ? <img src={currentImg} alt={card.title} className="w-full h-full object-contain p-4 pointer-events-none" />
-                    : <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none">No drawing yet</div>
-                  }
-                  {/* Multi-image nav */}
-                  {cardImages.length > 1 && (
-                    <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2 z-20">
-                      <button onClick={() => setImgIndex(i => Math.max(0, i - 1))} disabled={safeImgIndex === 0}
-                        className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors">
-                        <ChevronLeft className="h-3.5 w-3.5" />
-                      </button>
-                      <div className="flex gap-1">
-                        {cardImages.map((_, i) => (
-                          <button key={i} onClick={() => setImgIndex(i)}
-                            className={cn("w-1.5 h-1.5 rounded-full transition-colors",
-                              i === safeImgIndex ? "bg-primary" : "bg-muted-foreground/40 hover:bg-muted-foreground/70")} />
-                        ))}
+                    {lastGrade && (
+                      <div className={cn(
+                        "absolute top-3 right-3 flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full border",
+                        lastGrade === 'again' && "text-red-700 bg-red-50 border-red-200 dark:text-red-400 dark:bg-red-950 dark:border-red-800",
+                        lastGrade === 'hard' && "text-orange-700 bg-orange-50 border-orange-200 dark:text-orange-400 dark:bg-orange-950 dark:border-orange-800",
+                        lastGrade === 'good' && "text-green-700 bg-green-50 border-green-200 dark:text-green-400 dark:bg-green-950 dark:border-green-800",
+                        lastGrade === 'easy' && "text-blue-700 bg-blue-50 border-blue-200 dark:text-blue-400 dark:bg-blue-950 dark:border-blue-800",
+                      )}>
+                        <RotateCcw className="h-3 w-3" />
+                        {lastGrade.charAt(0).toUpperCase() + lastGrade.slice(1)}
                       </div>
-                      <button onClick={() => setImgIndex(i => Math.min(cardImages.length - 1, i + 1))} disabled={safeImgIndex === cardImages.length - 1}
-                        className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors">
-                        <ChevronRight className="h-3.5 w-3.5" />
-                      </button>
+                    )}
+                    <div className="text-[10px] font-semibold text-primary/70 uppercase tracking-widest mb-2 sm:mb-3 mt-4">
+                      Question
                     </div>
-                  )}
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold leading-snug flex-1">{card.title}</h2>
+                    {cardImages.length > 0 ? (
+                      <div className="mt-3 rounded-xl overflow-hidden border border-dashed border-border/60 h-16 sm:h-20 flex items-center justify-center relative bg-muted/20">
+                        <img src={cardImages[0]} alt="" className="absolute inset-0 w-full h-full object-contain blur-md opacity-30" />
+                        <span className="relative z-10 text-xs text-muted-foreground font-medium">
+                          Tap to reveal {cardImages.length > 1 ? `${cardImages.length} drawings` : 'drawing'} →
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="mt-3 rounded-xl bg-muted/20 border border-dashed border-border/50 h-12 sm:h-16 flex items-center justify-center">
+                        <span className="text-xs text-muted-foreground">Tap to see explanation →</span>
+                      </div>
+                    )}
+                    <div className="mt-3 flex flex-wrap gap-1">
+                      {card.audience.slice(0, 2).map(a => (
+                        <Badge key={a} variant="outline" className="text-[10px] sm:text-xs px-1.5">{a}</Badge>
+                      ))}
+                      {card.product_type.slice(0, 2).map(p => (
+                        <Badge key={p} className="text-[10px] sm:text-xs px-1.5 bg-primary/10 text-primary border-primary/20">{p}</Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* PANEL 2 — Drawing */}
+                  <div className="w-1/3 shrink-0 rounded-2xl border-2 border-border bg-card shadow-lg overflow-hidden relative">
+                    <div className="absolute top-6 left-3 z-10 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded border border-border/40">
+                      Drawing {cardImages.length > 1 ? `${safeImgIndex + 1}/${cardImages.length}` : ''}
+                    </div>
+                    <button onClick={() => setStep(0)}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full bg-background/80 border border-border text-muted-foreground hover:border-primary/60 transition-colors">
+                      <ChevronLeft className="h-3.5 w-3.5" />
+                    </button>
+                    <button onClick={() => setStep(2)}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full bg-background/80 border border-border text-muted-foreground hover:border-primary/60 transition-colors">
+                      <ChevronRight className="h-3.5 w-3.5" />
+                    </button>
+                    {currentImg
+                      ? <img src={currentImg} alt={card.title} className="w-full h-full object-contain p-4 pointer-events-none" />
+                      : <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none">No drawing yet</div>
+                    }
+                    {cardImages.length > 1 && (
+                      <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2 z-20">
+                        <button onClick={() => setImgIndex(i => Math.max(0, i - 1))} disabled={safeImgIndex === 0}
+                          className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors">
+                          <ChevronLeft className="h-3.5 w-3.5" />
+                        </button>
+                        <div className="flex gap-1">
+                          {cardImages.map((_, i) => (
+                            <button key={i} onClick={() => setImgIndex(i)}
+                              className={cn("w-1.5 h-1.5 rounded-full transition-colors",
+                                i === safeImgIndex ? "bg-primary" : "bg-muted-foreground/40 hover:bg-muted-foreground/70")} />
+                          ))}
+                        </div>
+                        <button onClick={() => setImgIndex(i => Math.min(cardImages.length - 1, i + 1))} disabled={safeImgIndex === cardImages.length - 1}
+                          className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors">
+                          <ChevronRight className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* PANEL 3 — Explanation */}
+                  <div className="w-1/3 shrink-0 rounded-2xl border-2 border-border bg-card shadow-lg p-4 sm:p-6 md:p-8 flex flex-col relative">
+                    <button onClick={() => setStep(cardImages.length > 0 ? 1 : 0)}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full bg-background/80 border border-border text-muted-foreground hover:border-primary/60 transition-colors">
+                      <ChevronLeft className="h-3.5 w-3.5" />
+                    </button>
+                    <div className="mt-4 flex items-center gap-1.5 mb-3">
+                      <Lightbulb className="h-4 w-4 text-amber-500" />
+                      <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-widest">Explanation</span>
+                    </div>
+                    <div className="flex-1">
+                      {card.description ? (
+                        <p className="text-sm sm:text-base text-foreground leading-relaxed">{card.description}</p>
+                      ) : (
+                        <p className="text-sm text-muted-foreground italic">No explanation added yet.</p>
+                      )}
+                    </div>
+                    <div className="mt-3 flex flex-wrap gap-1">
+                      {card.audience.slice(0, 2).map(a => (
+                        <Badge key={a} variant="outline" className="text-[10px] sm:text-xs px-1.5">{a}</Badge>
+                      ))}
+                      {card.product_type.slice(0, 2).map(p => (
+                        <Badge key={p} className="text-[10px] sm:text-xs px-1.5 bg-primary/10 text-primary border-primary/20">{p}</Badge>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -370,10 +404,10 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
             ))}
           </div>
 
-          {/* Flip hint — mobile only when not flipped */}
-          {cardImages.length > 0 && !flipped && (
+          {/* Hint — show when on step 0 */}
+          {cardImages.length > 0 && step === 0 && (
             <p className="text-center text-xs text-muted-foreground mt-2 shrink-0">
-              Tap card to flip · Grade after revealing
+              Tap card to continue · Grade after revealing
             </p>
           )}
 
@@ -387,7 +421,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                   key={c.id}
                   onClick={() => {
                     setAnimDir(realIndex > index ? 'right' : 'left');
-                    setTimeout(() => { setIndex(realIndex); setFlipped(false); setAnimDir(null); }, 180);
+                    setTimeout(() => { setIndex(realIndex); setStep(0); setAnimDir(null); }, 180);
                   }}
                   className={cn(
                     "rounded-full transition-all duration-200",
