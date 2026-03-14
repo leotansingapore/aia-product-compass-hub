@@ -2837,9 +2837,9 @@ export default function ScriptsDatabase() {
     if (activeTag !== "all") params.set("tag", activeTag);
     if (searchQuery) params.set("q", searchQuery);
     const qs = params.toString();
-    const slug = toScriptSlug(allScripts?.find(s => s.id === id)?.stage || id, id);
+    const slug = toScriptSlug(dbScripts.find(s => s.id === id)?.stage || id, id);
     navigate(`/scripts/${slug}${qs ? `?${qs}` : ''}`, { replace: true });
-  }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
+  }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery, dbScripts]);
 
   // Persist filters to localStorage whenever they change
   useEffect(() => {
