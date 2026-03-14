@@ -78,26 +78,6 @@ function FlashCard({
         isKnown && quizMode && "opacity-60",
       )} style={{ height: `${PANEL_HEIGHT}px` }}>
 
-        {/* 3-step dots — inside card at top */}
-        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
-          {[0, 1, 2].map(i => (
-            <button
-              key={i}
-              onClick={e => { e.stopPropagation(); goToStep(i); }}
-              style={{
-                width: step === i ? '16px' : '6px',
-                height: '6px',
-                borderRadius: '3px',
-                background: step === i ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground) / 0.3)',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                flexShrink: 0,
-              }}
-            />
-          ))}
-        </div>
 
         {/* Panels — absolute positioned so width always = card width */}
         <div className="relative w-full h-full">
