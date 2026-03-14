@@ -1572,8 +1572,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [editUserVersionName, setEditUserVersionName] = useState("");
   // Read initial version tab from URL if this card is the one in the URL
   const urlVersionParam = useMemo(() => {
-    const urlScriptId = window.location.pathname.split('/scripts/')[1]?.split('?')[0];
-    if (isOpenByUrl && urlScriptId === script.id) {
+    // The URL may contain a slug (e.g. "warm-market-intro-8f42b1c3") — just rely on isOpenByUrl
+    if (isOpenByUrl) {
       return searchParams.get("v") || null;
     }
     return null;
