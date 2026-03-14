@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   ZoomIn, ZoomOut, Pencil, Eraser, Trash2, Loader2,
   Sparkles, CheckCircle, AlertCircle, TrendingUp, Lightbulb,
-  RotateCcw, Eye, Columns2, Undo2, Redo2, Crop,
+  RotateCcw, Eye, Columns2, Undo2, Redo2, Crop, Type,
 } from 'lucide-react';
 import { ConceptCard } from '@/hooks/useConceptCards';
 import { supabase } from '@/integrations/supabase/client';
