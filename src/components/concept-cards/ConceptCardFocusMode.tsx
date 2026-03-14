@@ -140,77 +140,82 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
 
   return (
     <div className="fixed inset-0 z-50 bg-background/98 backdrop-blur-sm flex flex-col" onClick={onClose}>
-      {/* Top bar */}
-      <div className="flex items-center gap-3 px-4 sm:px-6 py-3 border-b bg-card/80 backdrop-blur-sm shrink-0" onClick={e => e.stopPropagation()}>
-        <GraduationCap className="h-4 w-4 text-primary shrink-0" />
-        <span className="text-sm font-semibold hidden sm:block">Focus Mode</span>
 
-        {/* Progress bar */}
-        <div className="flex-1 max-w-xs">
-          <div className="h-1.5 rounded-full bg-muted overflow-hidden">
-            <div
-              className="h-full rounded-full bg-primary transition-all duration-300"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-        </div>
-        <span className="text-xs text-muted-foreground tabular-nums whitespace-nowrap">
-          {index + 1} / {total}
-        </span>
-
-        <div className="flex items-center gap-2 text-xs text-muted-foreground ml-2">
-          <CalendarClock className="h-3.5 w-3.5 shrink-0" />
-          <span className="font-semibold text-primary">{gradedCount} graded</span>
-          {reviewStats.reviewedToday > 0 && (
-            <span className="hidden sm:inline text-muted-foreground/70">· {reviewStats.reviewedToday} today</span>
-          )}
-        </div>
-
-        <button
-          onClick={() => setShowKeys(v => !v)}
-          className="hidden sm:flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded border border-border/60 hover:border-border"
-        >
-          <Keyboard className="h-3.5 w-3.5" />
-          Keys
-        </button>
-
-        <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors">
-          <X className="h-5 w-5" />
-        </button>
-      </div>
-
-      {/* Keyboard hint */}
-      {showKeys && (
-        <div className="flex flex-wrap gap-2 px-6 py-2 bg-muted/30 border-b text-xs text-muted-foreground shrink-0" onClick={e => e.stopPropagation()}>
-          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">Space</kbd> flip ·&nbsp;
-          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">1</kbd> Again ·&nbsp;
-          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">2</kbd> Hard ·&nbsp;
-          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">3</kbd> Good ·&nbsp;
-          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">4</kbd> Easy ·&nbsp;
-          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">←→</kbd> Navigate ·&nbsp;
-          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">Esc</kbd> Exit
-        </div>
-      )}
-
-      {/* Session complete banner */}
-      {allDone && (
-        <div className="mx-4 sm:mx-6 mt-4 p-4 rounded-xl bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 flex items-center gap-3 shrink-0" onClick={e => e.stopPropagation()}>
-          <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 shrink-0" />
-          <div className="flex-1">
-            <p className="text-sm font-semibold text-green-700 dark:text-green-300">Session complete! 🎉</p>
-            <p className="text-xs text-green-600 dark:text-green-400">
-              {gradedCount} cards graded — intervals saved to your schedule
-            </p>
-          </div>
-          <Button size="sm" variant="outline" onClick={onClose} className="text-xs border-green-300 dark:border-green-700">
-            Done
-          </Button>
-        </div>
-      )}
-
-      {/* Card area */}
+      {/* Card area — centred, with controls floating just above */}
       <div className="flex-1 flex items-center justify-center px-4 sm:px-12 py-6 overflow-hidden" onClick={e => e.stopPropagation()}>
         <div className="w-full max-w-2xl" style={{ perspective: '1400px' }}>
+
+          {/* ── Controls strip above card ── */}
+          <div className="flex items-center gap-3 mb-3 px-1">
+            {/* Label */}
+            <GraduationCap className="h-4 w-4 text-primary shrink-0" />
+            <span className="text-xs font-semibold text-muted-foreground hidden sm:block">Focus Mode</span>
+
+            {/* Progress bar */}
+            <div className="flex-1">
+              <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-primary transition-all duration-300"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+            </div>
+            <span className="text-xs text-muted-foreground tabular-nums whitespace-nowrap">
+              {index + 1} / {total}
+            </span>
+
+            {/* Graded count */}
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+              <CalendarClock className="h-3.5 w-3.5 shrink-0" />
+              <span className="font-semibold text-primary">{gradedCount} graded</span>
+              {reviewStats.reviewedToday > 0 && (
+                <span className="hidden sm:inline text-muted-foreground/70">· {reviewStats.reviewedToday} today</span>
+              )}
+            </div>
+
+            {/* Keys toggle */}
+            <button
+              onClick={() => setShowKeys(v => !v)}
+              className="hidden sm:flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded border border-border/60 hover:border-border"
+            >
+              <Keyboard className="h-3.5 w-3.5" />
+              Keys
+            </button>
+
+            {/* Close */}
+            <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors ml-1">
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Keyboard hint */}
+          {showKeys && (
+            <div className="flex flex-wrap gap-2 px-3 py-2 mb-3 rounded-lg bg-muted/40 border border-border/50 text-xs text-muted-foreground">
+              <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">Space</kbd> flip ·&nbsp;
+              <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">1</kbd> Again ·&nbsp;
+              <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">2</kbd> Hard ·&nbsp;
+              <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">3</kbd> Good ·&nbsp;
+              <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">4</kbd> Easy ·&nbsp;
+              <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">←→</kbd> Navigate ·&nbsp;
+              <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">Esc</kbd> Exit
+            </div>
+          )}
+
+          {/* Session complete banner */}
+          {allDone && (
+            <div className="mb-4 p-4 rounded-xl bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 flex items-center gap-3">
+              <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 shrink-0" />
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-green-700 dark:text-green-300">Session complete! 🎉</p>
+                <p className="text-xs text-green-600 dark:text-green-400">
+                  {gradedCount} cards graded — intervals saved to your schedule
+                </p>
+              </div>
+              <Button size="sm" variant="outline" onClick={onClose} className="text-xs border-green-300 dark:border-green-700">
+                Done
+              </Button>
+            </div>
+          )}
 
           {/* Card navigator row */}
           <div className="flex items-center gap-3 mb-4">
