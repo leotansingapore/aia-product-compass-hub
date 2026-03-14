@@ -551,10 +551,10 @@ export default function ConceptCardsPage() {
         onClose={() => setEditCard(null)}
         onUpdated={refetch}
       />
-      {focusMode && filtered.length > 0 && (
+      {focusMode && focusCards.length > 0 && (
         <ConceptCardFocusMode
-          cards={filtered}
-          onClose={() => setFocusMode(false)}
+          cards={focusCards}
+          onClose={() => { setFocusMode(false); setDueOnlyMode(false); }}
         />
       )}
     </PageLayout>
