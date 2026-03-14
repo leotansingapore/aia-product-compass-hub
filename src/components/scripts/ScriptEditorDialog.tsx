@@ -307,6 +307,9 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [isUploadingPdf, setIsUploadingPdf] = useState(false);
   const [isExtractingScript, setIsExtractingScript] = useState(false);
+  const [isExtractingPdf, setIsExtractingPdf] = useState(false);
+  // Multi-script: list of scripts extracted from PDFs ready to be added one-by-one
+  const [pdfExtractedScripts, setPdfExtractedScripts] = useState<Array<{ title: string; content: string; selected: boolean }>>([]);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const pdfInputRef = useRef<HTMLInputElement>(null);
 
