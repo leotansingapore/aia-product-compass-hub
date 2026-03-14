@@ -141,6 +141,7 @@ const App = () => (
                   <OnboardingTutorial />
                   <OnboardingHelpButton />
                   <WelcomeModal />
+                  <NewVersionBanner />
                   </AppLayout>
                 </ChecklistProvider>
               </OnboardingProvider>
