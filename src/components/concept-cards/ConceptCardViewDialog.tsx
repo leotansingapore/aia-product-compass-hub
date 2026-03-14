@@ -305,7 +305,7 @@ function Whiteboard({
   const cursorStyle = tool === 'text' ? 'text' : tool === 'eraser' ? 'cell' : 'crosshair';
 
   return (
-    <div className="flex flex-col overflow-hidden" style={{ flex: '1 1 0', minHeight: 0 }}>
+    <div className="flex flex-col h-full overflow-hidden">
       {/* ── Drawing Surface ── */}
       <div
         className={cn("flex-1 min-h-0 overflow-hidden relative", showRef && "flex flex-row")}
@@ -804,22 +804,24 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
           </TabsContent>
 
           {/* DRAW & COMPARE TAB */}
-          <TabsContent value="draw" className="flex-1 overflow-hidden mt-0 p-0 min-h-0" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-            {compareResult ? (
-              <CompareResultPanel
-                result={compareResult}
-                onRetry={handleRetry}
-                referenceImageUrl={displayImageUrl}
-                userDrawingBase64={lastUserDrawing}
-              />
-            ) : (
-              <Whiteboard
-                key={whiteboardKey}
-                onCompare={handleCompare}
-                comparing={comparing}
-                referenceImageUrl={displayImageUrl}
-              />
-            )}
+          <TabsContent value="draw" className="flex-1 overflow-hidden mt-0 p-0 min-h-0 relative">
+            <div className="absolute inset-0 flex flex-col overflow-hidden">
+              {compareResult ? (
+                <CompareResultPanel
+                  result={compareResult}
+                  onRetry={handleRetry}
+                  referenceImageUrl={displayImageUrl}
+                  userDrawingBase64={lastUserDrawing}
+                />
+              ) : (
+                <Whiteboard
+                  key={whiteboardKey}
+                  onCompare={handleCompare}
+                  comparing={comparing}
+                  referenceImageUrl={displayImageUrl}
+                />
+              )}
+            </div>
           </TabsContent>
         </Tabs>
       </DialogContent>
