@@ -20,7 +20,14 @@ function DocumentNodeInner({ data, selected, isConnectable }: NodeProps) {
   const d = `M 0,0 H ${w} V ${h - wave} Q ${w * 0.75},${h + wave} ${w * 0.5},${h - wave} Q ${w * 0.25},${h - wave * 3} 0,${h - wave} Z`;
 
   return (
-    <div className="relative" style={{ width: w, height: h, opacity }}>
+    <div className="relative" style={{ width: '100%', height: '100%', minWidth: w, minHeight: h, opacity }}>
+      <NodeResizer
+        isVisible={selected}
+        minWidth={w}
+        minHeight={h}
+        lineStyle={{ borderColor: 'hsl(var(--primary))' }}
+        handleStyle={{ borderColor: 'hsl(var(--primary))', backgroundColor: 'white', width: 10, height: 10 }}
+      />
       <svg
         width={w}
         height={h}

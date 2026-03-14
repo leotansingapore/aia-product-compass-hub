@@ -19,7 +19,14 @@ function DecisionNodeInner({ data, selected, isConnectable }: NodeProps) {
   const points = `${half},0 ${size},${half} ${half},${size} 0,${half}`;
 
   return (
-    <div className="relative" style={{ width: size, height: size, opacity }}>
+    <div className="relative" style={{ width: '100%', height: '100%', minWidth: size, minHeight: size, opacity }}>
+      <NodeResizer
+        isVisible={selected}
+        minWidth={size}
+        minHeight={size}
+        lineStyle={{ borderColor: 'hsl(var(--primary))' }}
+        handleStyle={{ borderColor: 'hsl(var(--primary))', backgroundColor: 'white', width: 10, height: 10 }}
+      />
       <svg
         width={size}
         height={size}
