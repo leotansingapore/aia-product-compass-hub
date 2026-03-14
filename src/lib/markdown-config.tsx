@@ -28,12 +28,21 @@ export const markdownComponents: Components = {
     </h4>
   ),
 
-  // Paragraphs with proper spacing
-  p: ({ children }: any) => (
-    <p className="mb-3 last:mb-0 leading-relaxed text-foreground">
-      {children}
-    </p>
-  ),
+  // Paragraphs with proper spacing — use div if children contain a block element (e.g. VideoEmbed)
+  p: ({ children }: any) => {
+    const childArray = Array.isArray(children) ? children : [children];
+    const hasBlockChild = childArray.some(
+      (c: any) => c?.type === 'div' || (typeof c === 'object' && c?.props?.className?.includes('my-4'))
+    );
+    if (hasBlockChild) {
+      return <div className="mb-3 last:mb-0">{children}</div>;
+    }
+    return (
+      <p className="mb-3 last:mb-0 leading-relaxed text-foreground">
+        {children}
+      </p>
+    );
+  },
 
   // Unordered lists with better styling
   ul: ({ children }: any) => (

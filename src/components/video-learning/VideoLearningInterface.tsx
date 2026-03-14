@@ -435,6 +435,15 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                       <ReactMarkdown
                         components={{
                           ...markdownComponents,
+                          // Prevent <div> (VideoEmbed) inside <p> invalid HTML
+                          p: ({ children }: any) => {
+                            const childArray = Array.isArray(children) ? children : [children];
+                            const hasBlock = childArray.some(
+                              (c: any) => c?.type === 'div' || (typeof c === 'object' && c?.props?.className?.includes('my-4'))
+                            );
+                            if (hasBlock) return <div className="mb-3 last:mb-0">{children}</div>;
+                            return <p className="mb-3 last:mb-0 leading-relaxed text-foreground">{children}</p>;
+                          },
                           // Only suppress embedding for the same URL already shown by the standalone player above
                           a: ({ children, href }: any) => {
                             const standaloneUrl = currentVideo?.url ?? '';
