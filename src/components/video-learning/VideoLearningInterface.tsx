@@ -162,6 +162,19 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
   const videoInfo = useMemo(() => currentVideo ? getVideoEmbedInfo(currentVideo.url) : null, [currentVideo]);
 
+  // True when the rich_content markdown already embeds the same video — hides the standalone player to avoid duplicates.
+  // Uses the embed URL's video ID so minor URL param differences (e.g. ?sid=) don't cause false negatives.
+  const richContentHasVideo = useMemo(() => {
+    if (!currentVideo?.rich_content?.trim() || !currentVideo?.url) return false;
+    const embedInfo = detectVideoEmbed(currentVideo.url);
+    if (!embedInfo.isVideo || !embedInfo.embedUrl) return false;
+    // Extract the core video ID from the embed URL (last path segment before any query)
+    const embedPath = embedInfo.embedUrl.split('?')[0];
+    const videoId = embedPath.split('/').pop();
+    if (!videoId) return false;
+    return currentVideo.rich_content.includes(videoId);
+  }, [currentVideo]);
+
   const sidebarContent = (
     <div className="space-y-4">
       <Card>
@@ -329,8 +342,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             {/* Video + mini-nav column */}
             <div className="lg:col-span-2 space-y-4 sm:space-y-6 order-1 lg:order-2">
 
-              {/* Video player — hide if rich_content contains the same video URL (avoids duplicate) */}
-              {!(currentVideo?.rich_content?.trim() && currentVideo?.url && currentVideo.rich_content.includes(currentVideo.url)) && (
+              {/* Video player — hide if rich_content already embeds this video (avoids duplicate) */}
+              {!richContentHasVideo && (
                 <Card>
                   <CardHeader className="py-3 px-4 sm:py-4 sm:px-6">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
