@@ -759,7 +759,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
           {step === "paste" && !isEditing && (
             <div className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                Paste your script below. AI will auto-detect the category, audience, role, and tags.
+                Paste your script below, or just add an image — AI will auto-detect the category, audience, role, and tags.
               </p>
               <div>
                 <Label>Script Content</Label>
