@@ -305,7 +305,7 @@ function Whiteboard({
   const cursorStyle = tool === 'text' ? 'text' : tool === 'eraser' ? 'cell' : 'crosshair';
 
   return (
-    <div className="flex overflow-hidden" style={{ flex: '1 1 0', minHeight: 0, flexDirection: 'column' }}>
+    <div className="grid overflow-hidden" style={{ flex: '1 1 0', minHeight: 0, gridTemplateRows: 'auto 1fr' }}>
       {/* ── Toolbar ── */}
       <div className="flex items-center gap-1.5 px-3 py-2 border-b bg-muted/30 flex-wrap shrink-0">
         {/* Tools */}
