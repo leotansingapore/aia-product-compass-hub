@@ -162,6 +162,19 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
   const videoInfo = useMemo(() => currentVideo ? getVideoEmbedInfo(currentVideo.url) : null, [currentVideo]);
 
+  // True when the rich_content markdown already embeds the same video — hides the standalone player to avoid duplicates.
+  // Uses the embed URL's video ID so minor URL param differences (e.g. ?sid=) don't cause false negatives.
+  const richContentHasVideo = useMemo(() => {
+    if (!currentVideo?.rich_content?.trim() || !currentVideo?.url) return false;
+    const embedInfo = detectVideoEmbed(currentVideo.url);
+    if (!embedInfo.isVideo || !embedInfo.embedUrl) return false;
+    // Extract the core video ID from the embed URL (last path segment before any query)
+    const embedPath = embedInfo.embedUrl.split('?')[0];
+    const videoId = embedPath.split('/').pop();
+    if (!videoId) return false;
+    return currentVideo.rich_content.includes(videoId);
+  }, [currentVideo]);
+
   const sidebarContent = (
     <div className="space-y-4">
       <Card>
