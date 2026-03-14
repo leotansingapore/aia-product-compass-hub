@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { toScriptSlug, resolveScriptSlug } from "@/lib/scriptSlug";
 import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
