@@ -99,22 +99,135 @@ function FlashCard({
           ))}
         </div>
 
-        {/* Sliding track */}
-        <div
-          style={{
-            display: 'flex',
-            width: '300%',
-            height: '100%',
-            transform: `translateX(-${step * (100 / 3)}%)`,
-            transition: 'transform 0.3s ease-in-out',
-          }}
-        >
+        {/* Panels — absolute positioned so width always = card width */}
+        <div className="relative w-full h-full">
           {/* PANEL 1 — Question */}
           <div
-            className="w-1/3 shrink-0 p-4 sm:p-5 flex flex-col cursor-pointer"
-            style={{ minHeight: '240px' }}
+            className="absolute inset-0 p-4 sm:p-5 flex flex-col cursor-pointer"
+            style={{
+              opacity: step === 0 ? 1 : 0,
+              pointerEvents: step === 0 ? 'auto' : 'none',
+              transform: `translateX(${(0 - step) * 100}%)`,
+              transition: 'transform 0.3s ease-in-out, opacity 0.3s',
+            }}
             onClick={() => hasImages ? goToStep(1) : goToStep(2)}
           >
+            <div className="flex-1 pt-4">
+              <div className="flex items-center gap-1.5 mb-2">
+                <span className="text-[10px] font-semibold text-primary/70 uppercase tracking-wide">Question</span>
+                <span className="text-[9px] text-muted-foreground/50 ml-auto">tap to continue →</span>
+              </div>
+              <h3 className="font-semibold text-sm sm:text-base leading-snug">{card.title}</h3>
+            </div>
+            {hasImages ? (
+              <div className="mt-3 rounded-lg overflow-hidden border border-dashed border-border/50 h-20 flex items-center justify-center relative bg-muted/20">
+                <img src={currentImg!} alt="" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-40" />
+                <span className="relative z-10 text-xs text-muted-foreground font-medium">
+                  Tap to reveal {allImages.length > 1 ? `${allImages.length} drawings` : 'drawing'}
+                </span>
+              </div>
+            ) : (
+              <div className="mt-3 rounded-lg bg-muted/30 border border-dashed border-border/50 h-14 flex items-center justify-center">
+                <ImageIcon className="h-4 w-4 text-muted-foreground/40" />
+              </div>
+            )}
+            <div className="mt-3 flex flex-wrap gap-1">
+              {card.audience.slice(0, 2).map(a => (
+                <Badge key={a} variant="outline" className="text-[10px] px-1.5 py-0">{a}</Badge>
+              ))}
+              {card.product_type.slice(0, 2).map(p => (
+                <Badge key={p} className="text-[10px] px-1.5 py-0 bg-primary/10 text-primary border-primary/20">{p}</Badge>
+              ))}
+            </div>
+          </div>
+
+          {/* PANEL 2 — Drawing(s) */}
+          <div
+            className="absolute inset-0"
+            style={{
+              opacity: step === 1 ? 1 : 0,
+              pointerEvents: step === 1 ? 'auto' : 'none',
+              transform: `translateX(${(1 - step) * 100}%)`,
+              transition: 'transform 0.3s ease-in-out, opacity 0.3s',
+            }}
+          >
+            <div className="absolute top-6 right-2 z-10">
+              <button onClick={e => { e.stopPropagation(); onOpen(card); }}
+                className="text-[9px] text-primary/70 bg-background/80 px-1.5 py-0.5 rounded-md border border-primary/20 hover:border-primary/50 transition-colors">
+                full view
+              </button>
+            </div>
+            <button onClick={e => { e.stopPropagation(); goToStep(0); }}
+              className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-background/80 border border-border/60 text-muted-foreground hover:border-primary/60 transition-colors">
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button onClick={e => { e.stopPropagation(); goToStep(2); }}
+              className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-background/80 border border-border/60 text-muted-foreground hover:border-primary/60 transition-colors">
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
+            <div className="absolute bottom-2 left-2 z-10" onClick={e => e.stopPropagation()}>
+              <button onClick={e => { e.stopPropagation(); onDraw(card); }}
+                className="flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 hover:bg-primary/20 border border-primary/30 px-2 py-1 rounded-lg transition-colors shadow-sm">
+                <Pencil className="h-3 w-3" /> Draw &amp; Compare
+              </button>
+            </div>
+            {hasImages ? (
+              <>
+                <img src={currentImg!} alt={card.title} className="w-full h-full object-contain p-2 pointer-events-none" />
+                {allImages.length > 1 && (
+                  <div className="absolute bottom-2 inset-x-0 flex items-center justify-center gap-1.5 z-10" onClick={e => e.stopPropagation()}>
+                    <button onClick={e => { e.stopPropagation(); setImgIndex(i => Math.max(0, i - 1)); }} disabled={imgIndex === 0}
+                      className="p-0.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30">
+                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <span className="text-[9px] bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40 text-muted-foreground tabular-nums">{imgIndex + 1}/{allImages.length}</span>
+                    <button onClick={e => { e.stopPropagation(); setImgIndex(i => Math.min(allImages.length - 1, i + 1)); }} disabled={imgIndex === allImages.length - 1}
+                      className="p-0.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30">
+                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">No drawing yet</div>
+            )}
+          </div>
+
+          {/* PANEL 3 — Explanation */}
+          <div
+            className="absolute inset-0 p-4 sm:p-5 flex flex-col"
+            style={{
+              opacity: step === 2 ? 1 : 0,
+              pointerEvents: step === 2 ? 'auto' : 'none',
+              transform: `translateX(${(2 - step) * 100}%)`,
+              transition: 'transform 0.3s ease-in-out, opacity 0.3s',
+            }}
+          >
+            <button onClick={e => { e.stopPropagation(); goToStep(1); }}
+              className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-background/80 border border-border/60 text-muted-foreground hover:border-primary/60 transition-colors">
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <div className="mt-5 flex-1 overflow-y-auto">
+              <div className="flex items-center gap-1.5 mb-2">
+                <Lightbulb className="h-3.5 w-3.5 text-amber-500" />
+                <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wide">Explanation</span>
+              </div>
+              {card.description ? (
+                <p className="text-sm text-foreground leading-relaxed">{card.description}</p>
+              ) : (
+                <p className="text-sm text-muted-foreground italic">No explanation added yet.</p>
+              )}
+            </div>
+            <div className="pt-3 flex flex-wrap gap-1">
+              {card.audience.slice(0, 2).map(a => (
+                <Badge key={a} variant="outline" className="text-[10px] px-1.5 py-0">{a}</Badge>
+              ))}
+              {card.product_type.slice(0, 2).map(p => (
+                <Badge key={p} className="text-[10px] px-1.5 py-0 bg-primary/10 text-primary border-primary/20">{p}</Badge>
+              ))}
+            </div>
+          </div>
+        </div>
             <div className="flex-1">
               <div className="flex items-center gap-1.5 mb-2 mt-5">
                 <span className="text-[10px] font-semibold text-primary/70 uppercase tracking-wide">Question</span>
