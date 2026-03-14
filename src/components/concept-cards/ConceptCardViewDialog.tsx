@@ -419,7 +419,7 @@ function Whiteboard({
         <div
           ref={containerRef}
           className={cn("relative overflow-hidden select-none", showRef ? "w-1/2 border-r" : "flex-1")}
-          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none', minHeight: '300px' }}
+          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none' }}
         >
           <svg
             ref={svgRef}
