@@ -54,7 +54,8 @@ const GRADE_CONFIG: { grade: Grade; label: string; key: string; color: string; a
 
 export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props) {
   const [index, setIndex] = useState(initialIndex);
-  const [flipped, setFlipped] = useState(false);
+  // 3-step carousel: 0 = Question, 1 = Drawing, 2 = Explanation
+  const [step, setStep] = useState(0);
   const [animDir, setAnimDir] = useState<'left' | 'right' | null>(null);
   const [showKeys, setShowKeys] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
