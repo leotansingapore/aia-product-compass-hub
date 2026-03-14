@@ -2895,6 +2895,13 @@ export default function ScriptsDatabase() {
   const { createScript, updateScript, deleteScript, isAdmin } = useScriptsMutations();
   const { user } = useSimplifiedAuth();
 
+  // Resolve slug-based scriptId (e.g. "warm-market-intro-8f42b1c3") → real UUID
+  const scriptsForSlug = dbScripts.length > 0 ? dbScripts : [];
+  const resolvedScriptId = useMemo(
+    () => scriptId ? (resolveScriptSlug(scriptId, scriptsForSlug) ?? scriptId) : undefined,
+    [scriptId, scriptsForSlug]
+  );
+
   // Playbook integration
   const { myPlaybooks, createPlaybook } = usePlaybooks();
   const { favouriteIds, toggleFavourite } = useScriptFavourites();
