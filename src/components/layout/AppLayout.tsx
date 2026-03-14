@@ -154,7 +154,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   // Mobile Layout for authenticated users
   if (isMobile) {
     return (
-      <div className="min-h-screen w-full">
+      <div className="min-h-screen w-full overflow-x-hidden">
         {hideMobileHeader ? (
           <div className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
             <ScriptsTabBar />
