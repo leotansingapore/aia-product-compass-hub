@@ -355,98 +355,114 @@ export default function ConceptCardsPage() {
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Concept Cards' }]}
       />
 
-      <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-5xl">
+      <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-5xl overflow-x-hidden">
         <div className="hidden md:block"><ScriptsTabBar /></div>
 
-        {/* Toolbar */}
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search concept cards..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              className="pl-9"
-            />
+        {/* Toolbar — row 1: search + filters */}
+        <div className="flex flex-col gap-2 mb-3">
+          <div className="flex gap-2">
+            <div className="relative flex-1 min-w-0">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search concept cards..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className="pl-9"
+              />
+            </div>
+            {isAdmin() && (
+              <Button onClick={() => setUploadOpen(true)} className="shrink-0">
+                <Plus className="h-4 w-4 sm:mr-1.5" />
+                <span className="hidden sm:inline">Add Card</span>
+              </Button>
+            )}
           </div>
-          <Select value={filterAudience} onValueChange={setFilterAudience}>
-            <SelectTrigger className="w-full sm:w-48">
-              <span className="text-muted-foreground text-xs mr-1 shrink-0">Audience:</span>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {AUDIENCE_OPTIONS.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
-            </SelectContent>
-          </Select>
-          <Select value={filterProduct} onValueChange={setFilterProduct}>
-            <SelectTrigger className="w-full sm:w-48">
-              <span className="text-muted-foreground text-xs mr-1 shrink-0">Product:</span>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {PRODUCT_OPTIONS.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
-            </SelectContent>
-          </Select>
-          <TooltipProvider delayDuration={300}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant={quizMode ? 'default' : 'outline'}
-                  onClick={() => { setQuizMode(q => !q); resetQuiz(); }}
-                  className="shrink-0 gap-1.5"
-                >
-                  <GraduationCap className="h-4 w-4" />
-                  {quizMode ? 'Exit Quiz' : 'Quiz Mode'}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="bottom" className="max-w-[220px] text-center text-xs">
-                Flip cards one by one and self-mark each as "Know it" or "Review". Tracks your progress across the deck.
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          {filtered.length > 0 && (
+
+          {/* Filters + action buttons row */}
+          <div className="flex flex-wrap gap-2">
+            <Select value={filterAudience} onValueChange={setFilterAudience}>
+              <SelectTrigger className="w-[140px] sm:w-44 text-xs h-9">
+                <span className="text-muted-foreground text-xs mr-1 shrink-0">Audience:</span>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {AUDIENCE_OPTIONS.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
+              </SelectContent>
+            </Select>
+            <Select value={filterProduct} onValueChange={setFilterProduct}>
+              <SelectTrigger className="w-[130px] sm:w-40 text-xs h-9">
+                <span className="text-muted-foreground text-xs mr-1 shrink-0">Product:</span>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {PRODUCT_OPTIONS.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
+              </SelectContent>
+            </Select>
+
             <TooltipProvider delayDuration={300}>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                    variant="outline"
-                    onClick={() => { window.scrollTo({ top: 0, behavior: 'instant' }); setDueOnlyMode(false); setFocusMode(true); }}
-                    className="shrink-0 gap-1.5"
+                    variant={quizMode ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => { setQuizMode(q => !q); resetQuiz(); }}
+                    className="gap-1.5 h-9"
                   >
-                    <Focus className="h-4 w-4" />
-                    Focus Mode
+                    <GraduationCap className="h-4 w-4 shrink-0" />
+                    <span className="hidden xs:inline">{quizMode ? 'Exit Quiz' : 'Quiz Mode'}</span>
+                    <span className="xs:hidden">{quizMode ? 'Exit' : 'Quiz'}</span>
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="bottom" className="max-w-[220px] text-center text-xs">
-                  Full-screen swipe-through session. Swipe right to know, left to review — ideal for rapid drill before an exam.
+                  Flip cards one by one and self-mark each as "Know it" or "Review". Tracks your progress across the deck.
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
-          )}
-          {dueCards.length > 0 && (
-            <TooltipProvider delayDuration={300}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    onClick={() => { window.scrollTo({ top: 0, behavior: 'instant' }); setDueOnlyMode(true); setFocusMode(true); }}
-                    className="shrink-0 gap-1.5 border-primary/40 text-primary hover:bg-primary/10"
-                  >
-                    <CalendarClock className="h-4 w-4" />
-                    Study Due ({dueCards.length})
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent side="bottom" className="max-w-[220px] text-center text-xs">
-                  Focus Mode showing only cards due for spaced-repetition review today — based on how well you knew them last time.
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          )}
-          {isAdmin() && (
-            <Button onClick={() => setUploadOpen(true)} className="shrink-0">
-              <Plus className="h-4 w-4 mr-1.5" /> Add Card
-            </Button>
-          )}
+
+            {filtered.length > 0 && (
+              <TooltipProvider delayDuration={300}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => { window.scrollTo({ top: 0, behavior: 'instant' }); setDueOnlyMode(false); setFocusMode(true); }}
+                      className="gap-1.5 h-9"
+                    >
+                      <Focus className="h-4 w-4 shrink-0" />
+                      <span className="hidden xs:inline">Focus Mode</span>
+                      <span className="xs:hidden">Focus</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="max-w-[220px] text-center text-xs">
+                    Full-screen session — ideal for rapid drill before an exam.
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+
+            {dueCards.length > 0 && (
+              <TooltipProvider delayDuration={300}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => { window.scrollTo({ top: 0, behavior: 'instant' }); setDueOnlyMode(true); setFocusMode(true); }}
+                      className="gap-1.5 h-9 border-primary/40 text-primary hover:bg-primary/10"
+                    >
+                      <CalendarClock className="h-4 w-4 shrink-0" />
+                      <span className="hidden xs:inline">Study Due ({dueCards.length})</span>
+                      <span className="xs:hidden">Due ({dueCards.length})</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="max-w-[220px] text-center text-xs">
+                    Focus Mode showing only cards due for spaced-repetition review today.
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+          </div>
         </div>
 
         {/* SRS Stats strip */}

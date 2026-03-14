@@ -139,20 +139,19 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   const currentImg = cardImages[safeImgIndex] ?? null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-background/98 backdrop-blur-sm flex flex-col" onClick={onClose}>
+    <div className="fixed inset-0 z-50 bg-background/98 backdrop-blur-sm flex flex-col overflow-hidden" onClick={onClose}>
 
       {/* Card area — centred, with controls floating just above */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-12 py-6 overflow-hidden" onClick={e => e.stopPropagation()}>
-        <div className="w-full max-w-2xl" style={{ perspective: '1400px' }}>
+      <div className="flex-1 flex items-center justify-center px-3 sm:px-8 md:px-12 py-4 sm:py-6 min-h-0" onClick={e => e.stopPropagation()}>
+        <div className="w-full max-w-2xl flex flex-col min-h-0">
 
           {/* ── Controls strip above card ── */}
-          <div className="flex items-center gap-3 mb-3 px-1">
-            {/* Label */}
+          <div className="flex items-center gap-2 mb-3 px-1 shrink-0">
             <GraduationCap className="h-4 w-4 text-primary shrink-0" />
-            <span className="text-xs font-semibold text-muted-foreground hidden sm:block">Focus Mode</span>
+            <span className="text-xs font-semibold text-muted-foreground hidden sm:block whitespace-nowrap">Focus Mode</span>
 
             {/* Progress bar */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <div className="h-1.5 rounded-full bg-muted overflow-hidden">
                 <div
                   className="h-full rounded-full bg-primary transition-all duration-300"
@@ -160,37 +159,35 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                 />
               </div>
             </div>
-            <span className="text-xs text-muted-foreground tabular-nums whitespace-nowrap">
-              {index + 1} / {total}
+            <span className="text-xs text-muted-foreground tabular-nums whitespace-nowrap shrink-0">
+              {index + 1}/{total}
             </span>
 
-            {/* Graded count */}
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            {/* Graded count — collapsed on mobile */}
+            <div className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
               <CalendarClock className="h-3.5 w-3.5 shrink-0" />
-              <span className="font-semibold text-primary">{gradedCount} graded</span>
-              {reviewStats.reviewedToday > 0 && (
-                <span className="hidden sm:inline text-muted-foreground/70">· {reviewStats.reviewedToday} today</span>
-              )}
+              <span className="font-semibold text-primary">{gradedCount}</span>
+              <span className="hidden sm:inline text-muted-foreground/70">graded</span>
             </div>
 
-            {/* Keys toggle */}
+            {/* Keys toggle — desktop only */}
             <button
               onClick={() => setShowKeys(v => !v)}
-              className="hidden sm:flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded border border-border/60 hover:border-border"
+              className="hidden sm:flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded border border-border/60 hover:border-border shrink-0"
             >
               <Keyboard className="h-3.5 w-3.5" />
               Keys
             </button>
 
             {/* Close */}
-            <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors ml-1">
+            <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors shrink-0 p-1">
               <X className="h-4 w-4" />
             </button>
           </div>
 
           {/* Keyboard hint */}
           {showKeys && (
-            <div className="flex flex-wrap gap-2 px-3 py-2 mb-3 rounded-lg bg-muted/40 border border-border/50 text-xs text-muted-foreground">
+            <div className="flex flex-wrap gap-2 px-3 py-2 mb-3 rounded-lg bg-muted/40 border border-border/50 text-xs text-muted-foreground shrink-0">
               <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">Space</kbd> flip ·&nbsp;
               <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">1</kbd> Again ·&nbsp;
               <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">2</kbd> Hard ·&nbsp;
@@ -203,32 +200,32 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
 
           {/* Session complete banner */}
           {allDone && (
-            <div className="mb-4 p-4 rounded-xl bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 flex items-center gap-3">
+            <div className="mb-3 p-3 rounded-xl bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 flex items-center gap-3 shrink-0">
               <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 shrink-0" />
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-green-700 dark:text-green-300">Session complete! 🎉</p>
-                <p className="text-xs text-green-600 dark:text-green-400">
+                <p className="text-xs text-green-600 dark:text-green-400 hidden sm:block">
                   {gradedCount} cards graded — intervals saved to your schedule
                 </p>
               </div>
-              <Button size="sm" variant="outline" onClick={onClose} className="text-xs border-green-300 dark:border-green-700">
+              <Button size="sm" variant="outline" onClick={onClose} className="text-xs border-green-300 dark:border-green-700 shrink-0">
                 Done
               </Button>
             </div>
           )}
 
           {/* Card navigator row */}
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-stretch gap-2 sm:gap-3 mb-3 flex-1 min-h-0">
             <button
               onClick={goPrev}
               disabled={index === 0}
-              className="p-2 rounded-full border border-border hover:border-primary/60 text-muted-foreground hover:text-foreground transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              className="p-1.5 sm:p-2 rounded-full border border-border hover:border-primary/60 text-muted-foreground hover:text-foreground transition-all disabled:opacity-30 disabled:cursor-not-allowed self-center shrink-0"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
 
             {/* 3D Flip Card */}
-            <div className="flex-1" style={{ perspective: '1200px' }}>
+            <div className="flex-1 min-w-0" style={{ perspective: '1200px' }}>
               <div
                 className={cn(
                   "relative w-full transition-all duration-500 cursor-pointer",
@@ -238,7 +235,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                 style={{
                   transformStyle: 'preserve-3d',
                   transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-                  minHeight: '340px',
+                  minHeight: 'clamp(260px, 40vh, 380px)',
                   transition: animDir ? 'all 0.18s ease' : 'transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
                 onClick={() => setFlipped(f => !f)}
@@ -246,7 +243,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                 {/* FRONT */}
                 <div
                   className={cn(
-                    "absolute inset-0 rounded-2xl border-2 bg-card shadow-lg p-6 sm:p-8 flex flex-col",
+                    "absolute inset-0 rounded-2xl border-2 bg-card shadow-lg p-4 sm:p-6 md:p-8 flex flex-col",
                     lastGrade === 'again' && "border-red-400/50 dark:border-red-600/40",
                     lastGrade === 'hard' && "border-orange-400/50 dark:border-orange-600/40",
                     lastGrade === 'good' && "border-green-400/50 dark:border-green-600/40",
@@ -269,35 +266,35 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                     </div>
                   )}
 
-                  <div className="text-[10px] font-semibold text-primary/70 uppercase tracking-widest mb-3">
+                  <div className="text-[10px] font-semibold text-primary/70 uppercase tracking-widest mb-2 sm:mb-3">
                     Question
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-bold leading-snug flex-1">{card.title}</h2>
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold leading-snug flex-1">{card.title}</h2>
                   {card.description && (
-                    <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{card.description}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground mt-2 sm:mt-3 leading-relaxed line-clamp-3">{card.description}</p>
                   )}
 
                   {/* Image preview hint */}
                   {cardImages.length > 0 ? (
-                    <div className="mt-4 rounded-xl overflow-hidden border border-dashed border-border/60 h-20 flex items-center justify-center relative bg-muted/20">
+                    <div className="mt-3 rounded-xl overflow-hidden border border-dashed border-border/60 h-16 sm:h-20 flex items-center justify-center relative bg-muted/20">
                       <img src={cardImages[0]} alt="" className="absolute inset-0 w-full h-full object-contain blur-md opacity-30" />
                       <span className="relative z-10 text-xs text-muted-foreground font-medium">
                         Tap to reveal {cardImages.length > 1 ? `${cardImages.length} drawings` : 'drawing'} ↻
                       </span>
                     </div>
                   ) : (
-                    <div className="mt-4 rounded-xl bg-muted/20 border border-dashed border-border/50 h-16 flex items-center justify-center">
+                    <div className="mt-3 rounded-xl bg-muted/20 border border-dashed border-border/50 h-12 sm:h-16 flex items-center justify-center">
                       <span className="text-xs text-muted-foreground">No drawing attached</span>
                     </div>
                   )}
 
                   {/* Tags */}
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {card.audience.map(a => (
-                      <Badge key={a} variant="outline" className="text-xs">{a}</Badge>
+                  <div className="mt-3 flex flex-wrap gap-1">
+                    {card.audience.slice(0, 2).map(a => (
+                      <Badge key={a} variant="outline" className="text-[10px] sm:text-xs px-1.5">{a}</Badge>
                     ))}
-                    {card.product_type.map(p => (
-                      <Badge key={p} className="text-xs bg-primary/10 text-primary border-primary/20">{p}</Badge>
+                    {card.product_type.slice(0, 2).map(p => (
+                      <Badge key={p} className="text-[10px] sm:text-xs px-1.5 bg-primary/10 text-primary border-primary/20">{p}</Badge>
                     ))}
                   </div>
                 </div>
@@ -310,12 +307,13 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                   <div className="absolute top-3 left-3 z-10 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded border border-border/40">
                     Drawing {cardImages.length > 1 ? `${safeImgIndex + 1}/${cardImages.length}` : ''}
                   </div>
-                  {/* Flip back button — prominent, top-right */}
+                  {/* Flip back button */}
                   <button
                     onClick={() => setFlipped(false)}
-                    className="absolute top-2 right-2 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold shadow-md hover:bg-primary/90 active:scale-95 transition-all"
+                    className="absolute top-2 right-2 z-20 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold shadow-md hover:bg-primary/90 active:scale-95 transition-all"
                   >
-                    <RotateCcw className="h-3.5 w-3.5" /> Flip back
+                    <RotateCcw className="h-3.5 w-3.5" />
+                    <span className="hidden sm:inline">Flip back</span>
                   </button>
                   {currentImg
                     ? <img src={currentImg} alt={card.title} className="w-full h-full object-contain p-4 pointer-events-none" />
@@ -348,39 +346,39 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
             <button
               onClick={() => goNext()}
               disabled={index === total - 1}
-              className="p-2 rounded-full border border-border hover:border-primary/60 text-muted-foreground hover:text-foreground transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              className="p-1.5 sm:p-2 rounded-full border border-border hover:border-primary/60 text-muted-foreground hover:text-foreground transition-all disabled:opacity-30 disabled:cursor-not-allowed self-center shrink-0"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
 
           {/* 4-grade Action buttons */}
-          <div className="flex gap-2 justify-center mt-2 flex-wrap">
+          <div className="grid grid-cols-4 gap-1.5 sm:gap-2 mt-1 sm:mt-2 shrink-0">
             {GRADE_CONFIG.map(({ grade, label, key, activeClass, hoverClass }) => (
               <button
                 key={grade}
                 onClick={() => handleGrade(grade)}
                 className={cn(
-                  "flex flex-col items-center gap-0.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all border shadow-sm min-w-[72px]",
+                  "flex flex-col items-center gap-0.5 px-1 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border shadow-sm",
                   lastGrade === grade ? activeClass : hoverClass
                 )}
               >
                 <span>{label}</span>
-                <span className="text-[10px] font-normal opacity-70">{formatInterval(intervals[grade])}</span>
-                <kbd className="hidden sm:inline text-[10px] px-1 py-0.5 bg-white/20 rounded border border-current/30 opacity-60">{key}</kbd>
+                <span className="text-[9px] sm:text-[10px] font-normal opacity-70 hidden xs:block">{formatInterval(intervals[grade])}</span>
+                <kbd className="hidden md:inline text-[10px] px-1 py-0.5 bg-white/20 rounded border border-current/30 opacity-60">{key}</kbd>
               </button>
             ))}
           </div>
 
-          {/* Flip hint */}
+          {/* Flip hint — mobile only when not flipped */}
           {cardImages.length > 0 && !flipped && (
-            <p className="text-center text-xs text-muted-foreground mt-3">
-              <kbd className="px-1.5 py-0.5 bg-muted border rounded text-[10px]">Space</kbd> to flip · Grade after revealing
+            <p className="text-center text-xs text-muted-foreground mt-2 shrink-0">
+              Tap card to flip · Grade after revealing
             </p>
           )}
 
           {/* Dot nav */}
-          <div className="flex justify-center gap-1 mt-4 overflow-hidden max-w-full">
+          <div className="flex justify-center gap-1 mt-3 overflow-hidden max-w-full shrink-0">
             {cards.slice(Math.max(0, index - 4), Math.min(total, index + 5)).map((c, i) => {
               const realIndex = Math.max(0, index - 4) + i;
               const cLastGrade = lastGradeMap.get(c.id);
