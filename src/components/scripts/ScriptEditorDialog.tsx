@@ -505,8 +505,17 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
   };
 
   const handleClassify = async () => {
-    if (!pasteContent.trim()) {
-      toast.error("Please paste your script content first");
+    const hasText = pasteContent.trim().length > 0;
+    const hasImages = pasteImages.length > 0;
+    if (!hasText && !hasImages) {
+      toast.error("Please paste your script content or add an image first");
+      return;
+    }
+    // Image-only path: skip AI classification, go straight to review
+    if (!hasText && hasImages) {
+      setVersions([{ author: userName, content: "" }]);
+      setStep("review");
+      toast.info("Add the script details manually and save.");
       return;
     }
     setIsClassifying(true);
