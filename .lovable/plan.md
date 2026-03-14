@@ -1,83 +1,88 @@
 
-## Current state
-The Concept Cards Focus Mode already has:
-- Binary "Know it / Review later" rating (2 options)
-- Session-only progress (in-memory, resets on close)
-- Keyboard shortcuts
-- Dot navigation + progress bar
 
-What Anki does that this doesn't:
-1. **Spaced Repetition Scheduling** — cards due today based on last review + performance
-2. **Multi-grade rating** — Again / Hard / Good / Easy (4 grades, not 2)
-3. **Persistent progress** — reviews saved across sessions
-4. **Due card queue** — "X cards due today"
-5. **Streak / session stats** — reviewed today, daily target
-6. **Shuffle mode** — randomise card order
+# Add Resources Feature to Module Editor Pages
 
----
+## Overview
+Add an "ADD" dropdown button and a "Resources" display section to each module/lecture editor page. This lets admins attach resource links, upload resource files, and add transcripts to individual lectures. Students see the same resources as clickable links/downloads.
 
-## What I'd recommend building (prioritised)
+## Key Insight: Data Model Already Exists
+The `TrainingVideo` interface already has the needed fields:
+- `useful_links` (array of `{name, url, icon}`)
+- `attachments` (array of `{id, name, url, file_size, file_type}` via `VideoAttachment`)
+- `transcript` (string)
 
-### Option A — Lightweight (no DB changes)
-**Persistent ratings + Shuffle mode**
-- Save `knownIds` / `reviewIds` per user in `localStorage` (persist across sessions)
-- Add a **Shuffle** button on the cards page
-- This gives 80% of the benefit with zero backend work
+No database migration is needed -- resources are stored in the `training_videos` JSONB column on the `products` table.
 
-### Option B — Full Anki-style Spaced Repetition (recommended)
-1. **New DB table**: `concept_card_reviews` — stores per-user, per-card: `ease_factor`, `interval_days`, `due_date`, `last_grade`
-2. **4-grade rating** in Focus Mode: `Again` / `Hard` / `Good` / `Easy` — replaces the current binary buttons
-3. **SM-2 algorithm** — compute next interval from grade + ease factor (standard Anki algorithm)
-4. **Due card queue** — "Study Due Cards" button on the main page showing N cards due today
-5. **Daily stats** — small badge showing "5 due · 3 reviewed today"
+## Implementation Plan
 
----
+### 1. Create `ModuleResourcesSection` Component
+**File:** `src/components/video-editing/ModuleResourcesSection.tsx`
 
-## Plan: Full Spaced Repetition
+Displays the combined list of resources (links + files) with appropriate icons:
+- Link icon for URL resources
+- Red PDF icon for PDFs
+- Document icon for other files
+- Each item is clickable (opens in new tab)
+- Admin view: shows edit/delete buttons per resource
+- Student view: read-only clickable list
 
-### Database
-New migration: `concept_card_reviews` table
-```text
-id            uuid PK
-user_id       uuid → auth.users
-card_id       uuid → concept_cards
-ease_factor   float  (default 2.5, Anki standard)
-interval_days int    (days until next review, starts at 1)
-due_date      date   (next review date)
-last_grade    text   (again | hard | good | easy)
-reviewed_at   timestamptz
-```
-RLS: users can only read/write their own rows.
+### 2. Create `AddResourceDropdown` Component
+**File:** `src/components/video-editing/AddResourceDropdown.tsx`
 
-### Algorithm (SM-2 simplified)
-```text
-Again → interval = 1,    ease -= 0.2
-Hard  → interval = max(1, interval * 1.2),  ease -= 0.15
-Good  → interval = interval * ease
-Easy  → interval = interval * ease * 1.3,   ease += 0.15
+An "ADD" dropdown button (styled per the reference screenshots) with options:
+- **Add resource link** -- opens a dialog with Label (max 34 chars with counter) and URL fields, Cancel and Add (gold/yellow) buttons
+- **Add resource file** -- triggers file upload (PDF, images, DOCX, etc.) to the `knowledge-files` storage bucket, then adds to `attachments`
+- **Add transcript** -- scrolls to / reveals the transcript textarea
 
-ease clamped to [1.3 – 2.5]
-due_date = today + interval
-```
+### 3. Create `AddLinkDialog` Component
+**File:** `src/components/video-editing/AddLinkDialog.tsx`
 
-### New hook: `useSpacedRepetition(cards)`
-- Loads review rows for current user + these cards
-- Exposes: `dueCards`, `allReviews`, `gradeCard(cardId, grade)`, `isDue(cardId)`, `reviewStats`
-- `gradeCard` upserts into `concept_card_reviews`
+Modal dialog matching the reference screenshot:
+- Label field with 34-character max and live character count
+- URL field
+- Cancel button and gold/yellow "ADD" button
+- Validation: both fields required, URL format check
 
-### Focus Mode changes
-- Replace "Review later / Know it" buttons with 4 coloured buttons:
-  - 🔴 **Again** · 🟠 **Hard** · 🟢 **Good** · 🔵 **Easy**
-- Show interval preview under each button ("1d · 3d · 6d · 10d")
-- Keyboard: `1/2/3/4` for grades, `Space` still flips
-- After grading, auto-advance to next card
+### 4. Update `RichContentEditor` to Accept Resources Props
+**File:** `src/components/markdown/RichContentEditor.tsx`
 
-### Main page changes
-- Add **"📅 Study Due (N)"** button next to Quiz Mode — filters to only due cards
-- Small stats row: "Due today: 5 · Reviewed today: 12 · Streak: 3 days 🔥"
+Add new props:
+- `resources` (combined links + attachments)
+- `onAddLink`, `onAddFile`, `onDeleteResource`
+- Render `ModuleResourcesSection` between content and transcript
+- Render `AddResourceDropdown` at the bottom
 
-### Files to create/edit
-1. `supabase/migrations/` — new table + RLS
-2. `src/hooks/useSpacedRepetition.ts` — new hook
-3. `src/components/concept-cards/ConceptCardFocusMode.tsx` — 4-grade buttons + interval hints
-4. `src/pages/ConceptCards.tsx` — due card queue button + stats strip
+### 5. Update `VideoEditForm` to Pass Resources Data
+**File:** `src/components/video-editing/VideoEditForm.tsx`
+
+Wire up the resources props from the `TrainingVideo` to the `RichContentEditor`:
+- Pass `useful_links` and `attachments` as resources
+- Handle add/delete callbacks that update the video via `handleChange`
+- Handle file upload to Supabase storage
+
+### 6. Update Student View (Non-Admin)
+**File:** `src/components/video-learning/VideoLearningInterface.tsx` (or relevant student-facing component)
+
+Display the Resources section read-only:
+- Show "Resources" heading with the icon list
+- Links open in new tab, files download/open in new tab
+- Show transcript content below resources if present
+
+## Technical Details
+
+- File uploads use the existing `knowledge-files` Supabase storage bucket (already public)
+- Resources are persisted as part of the `training_videos` JSONB -- no new tables needed
+- The ADD dropdown uses Radix `DropdownMenu` for proper z-index and non-transparent background
+- Character count on the label field uses controlled input with `maxLength={34}`
+- Gold/yellow button uses a custom class or inline style matching the reference
+
+## Files to Create
+1. `src/components/video-editing/ModuleResourcesSection.tsx`
+2. `src/components/video-editing/AddResourceDropdown.tsx`
+3. `src/components/video-editing/AddLinkDialog.tsx`
+
+## Files to Modify
+1. `src/components/markdown/RichContentEditor.tsx` -- add resources section
+2. `src/components/video-editing/VideoEditForm.tsx` -- wire resources props
+3. `src/hooks/useProducts.tsx` -- no changes needed (interfaces already exist)
+

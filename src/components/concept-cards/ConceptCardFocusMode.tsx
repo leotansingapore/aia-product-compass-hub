@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import { ConceptCard } from '@/hooks/useConceptCards';
+import { useSpacedRepetition, Grade, previewIntervals, formatInterval } from '@/hooks/useSpacedRepetition';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
-  X, ChevronLeft, ChevronRight, CheckCircle, XCircle,
-  RotateCcw, GraduationCap, Keyboard
+  X, ChevronLeft, ChevronRight, CheckCircle,
+  RotateCcw, GraduationCap, Keyboard, CalendarClock
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -13,27 +14,58 @@ interface Props {
   cards: ConceptCard[];
   initialIndex?: number;
   onClose: () => void;
-  onKnow?: (id: string) => void;
-  onReview?: (id: string) => void;
-  knownIds: Set<string>;
-  reviewIds: Set<string>;
 }
 
-export function ConceptCardFocusMode({
-  cards, initialIndex = 0, onClose,
-  onKnow, onReview, knownIds, reviewIds,
-}: Props) {
+const GRADE_CONFIG: { grade: Grade; label: string; key: string; color: string; activeClass: string; hoverClass: string }[] = [
+  {
+    grade: 'again',
+    label: 'Again',
+    key: '1',
+    color: 'text-red-700 dark:text-red-400',
+    activeClass: 'bg-red-600 text-white border-red-700',
+    hoverClass: 'bg-card text-red-700 dark:text-red-400 border-red-300 dark:border-red-700 hover:bg-red-50 dark:hover:bg-red-950/40',
+  },
+  {
+    grade: 'hard',
+    label: 'Hard',
+    key: '2',
+    color: 'text-orange-700 dark:text-orange-400',
+    activeClass: 'bg-orange-500 text-white border-orange-600',
+    hoverClass: 'bg-card text-orange-700 dark:text-orange-400 border-orange-300 dark:border-orange-700 hover:bg-orange-50 dark:hover:bg-orange-950/40',
+  },
+  {
+    grade: 'good',
+    label: 'Good',
+    key: '3',
+    color: 'text-green-700 dark:text-green-400',
+    activeClass: 'bg-green-600 text-white border-green-700',
+    hoverClass: 'bg-card text-green-700 dark:text-green-400 border-green-300 dark:border-green-700 hover:bg-green-50 dark:hover:bg-green-950/40',
+  },
+  {
+    grade: 'easy',
+    label: 'Easy',
+    key: '4',
+    color: 'text-blue-700 dark:text-blue-400',
+    activeClass: 'bg-blue-600 text-white border-blue-700',
+    hoverClass: 'bg-card text-blue-700 dark:text-blue-400 border-blue-300 dark:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-950/40',
+  },
+];
+
+export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props) {
   const [index, setIndex] = useState(initialIndex);
   const [flipped, setFlipped] = useState(false);
   const [animDir, setAnimDir] = useState<'left' | 'right' | null>(null);
   const [showKeys, setShowKeys] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
+  const [gradedIds, setGradedIds] = useState<Set<string>>(new Set());
+  const [lastGradeMap, setLastGradeMap] = useState<Map<string, Grade>>(new Map());
+
+  const { gradeCard, getReview, reviewStats } = useSpacedRepetition(cards);
 
   const card = cards[index];
   const total = cards.length;
   const progress = ((index + 1) / total) * 100;
-  const knownCount = cards.filter(c => knownIds.has(c.id)).length;
-  const reviewCount = cards.filter(c => reviewIds.has(c.id)).length;
+  const gradedCount = gradedIds.size;
 
   const goNext = useCallback((dir: 'left' | 'right' = 'right') => {
     if (index >= total - 1) return;
@@ -57,18 +89,16 @@ export function ConceptCardFocusMode({
     }, 180);
   }, [index]);
 
-  const handleKnow = useCallback(() => {
+  const handleGrade = useCallback(async (grade: Grade) => {
     if (!card) return;
-    onKnow?.(card.id);
-    toast.success('Marked as known! 🎉', { duration: 1200 });
-    goNext('right');
-  }, [card, onKnow, goNext]);
+    await gradeCard(card.id, grade);
+    setGradedIds(prev => new Set([...prev, card.id]));
+    setLastGradeMap(prev => new Map([...prev, [card.id, grade]]));
 
-  const handleReview = useCallback(() => {
-    if (!card) return;
-    onReview?.(card.id);
+    const labels: Record<Grade, string> = { again: '🔴 Again', hard: '🟠 Hard', good: '🟢 Good', easy: '🔵 Easy' };
+    toast.success(labels[grade], { duration: 900 });
     goNext('right');
-  }, [card, onReview, goNext]);
+  }, [card, gradeCard, goNext]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -79,22 +109,29 @@ export function ConceptCardFocusMode({
         setFlipped(f => !f);
         return;
       }
-      if (e.key === 'ArrowRight') { e.preventDefault(); handleKnow(); return; }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); handleReview(); return; }
-      if (e.key === 'ArrowUp') { e.preventDefault(); goPrev(); return; }
-      if (e.key === 'ArrowDown') { e.preventDefault(); goNext(); return; }
+      if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); return; }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); return; }
+      if (e.key === '1') { handleGrade('again'); return; }
+      if (e.key === '2') { handleGrade('hard'); return; }
+      if (e.key === '3') { handleGrade('good'); return; }
+      if (e.key === '4') { handleGrade('easy'); return; }
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [handleKnow, handleReview, goPrev, goNext, onClose]);
+  }, [handleGrade, goPrev, goNext, onClose]);
 
   if (!card) return null;
 
-  const isKnown = knownIds.has(card.id);
-  const isReview = reviewIds.has(card.id);
-  const allDone = knownCount + reviewCount === total;
+  const review = getReview(card.id);
+  const intervals = previewIntervals(
+    review
+      ? { ease_factor: review.ease_factor, interval_days: review.interval_days }
+      : { ease_factor: 2.5, interval_days: 1 }
+  );
+  const lastGrade = lastGradeMap.get(card.id);
+  const allDone = gradedCount === total;
 
-  // Normalise images for current card
+  // Normalise images
   const cardImages: string[] = (card.image_urls && card.image_urls.length > 0)
     ? card.image_urls
     : card.image_url ? [card.image_url] : [];
@@ -122,8 +159,11 @@ export function ConceptCardFocusMode({
         </span>
 
         <div className="flex items-center gap-2 text-xs text-muted-foreground ml-2">
-          <span className="font-semibold text-green-600 dark:text-green-400">{knownCount} ✓</span>
-          <span className="font-semibold text-yellow-600 dark:text-yellow-400">{reviewCount} ◷</span>
+          <CalendarClock className="h-3.5 w-3.5 shrink-0" />
+          <span className="font-semibold text-primary">{gradedCount} graded</span>
+          {reviewStats.reviewedToday > 0 && (
+            <span className="hidden sm:inline text-muted-foreground/70">· {reviewStats.reviewedToday} today</span>
+          )}
         </div>
 
         <button
@@ -143,9 +183,11 @@ export function ConceptCardFocusMode({
       {showKeys && (
         <div className="flex flex-wrap gap-2 px-6 py-2 bg-muted/30 border-b text-xs text-muted-foreground shrink-0">
           <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">Space</kbd> flip ·&nbsp;
-          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">→</kbd> Know it ·&nbsp;
-          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">←</kbd> Review later ·&nbsp;
-          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">↑↓</kbd> Navigate ·&nbsp;
+          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">1</kbd> Again ·&nbsp;
+          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">2</kbd> Hard ·&nbsp;
+          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">3</kbd> Good ·&nbsp;
+          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">4</kbd> Easy ·&nbsp;
+          <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">←→</kbd> Navigate ·&nbsp;
           <kbd className="px-1.5 py-0.5 bg-background border rounded text-[10px]">Esc</kbd> Exit
         </div>
       )}
@@ -157,7 +199,7 @@ export function ConceptCardFocusMode({
           <div className="flex-1">
             <p className="text-sm font-semibold text-green-700 dark:text-green-300">Session complete! 🎉</p>
             <p className="text-xs text-green-600 dark:text-green-400">
-              {knownCount} known · {reviewCount} to review
+              {gradedCount} cards graded — intervals saved to your schedule
             </p>
           </div>
           <Button size="sm" variant="outline" onClick={onClose} className="text-xs border-green-300 dark:border-green-700">
@@ -200,21 +242,25 @@ export function ConceptCardFocusMode({
                 <div
                   className={cn(
                     "absolute inset-0 rounded-2xl border-2 bg-card shadow-lg p-6 sm:p-8 flex flex-col",
-                    isKnown && "border-green-400/50 dark:border-green-600/40",
-                    isReview && !isKnown && "border-yellow-400/50 dark:border-yellow-600/40",
-                    !isKnown && !isReview && "border-border",
+                    lastGrade === 'again' && "border-red-400/50 dark:border-red-600/40",
+                    lastGrade === 'hard' && "border-orange-400/50 dark:border-orange-600/40",
+                    lastGrade === 'good' && "border-green-400/50 dark:border-green-600/40",
+                    lastGrade === 'easy' && "border-blue-400/50 dark:border-blue-600/40",
+                    !lastGrade && "border-border",
                   )}
                   style={{ backfaceVisibility: 'hidden' }}
                 >
-                  {/* Status badge */}
-                  {(isKnown || isReview) && (
+                  {/* Last grade badge */}
+                  {lastGrade && (
                     <div className={cn(
                       "absolute top-3 right-3 flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full border",
-                      isKnown
-                        ? "text-green-700 bg-green-50 border-green-200 dark:text-green-400 dark:bg-green-950 dark:border-green-800"
-                        : "text-yellow-700 bg-yellow-50 border-yellow-200 dark:text-yellow-400 dark:bg-yellow-950 dark:border-yellow-800"
+                      lastGrade === 'again' && "text-red-700 bg-red-50 border-red-200 dark:text-red-400 dark:bg-red-950 dark:border-red-800",
+                      lastGrade === 'hard' && "text-orange-700 bg-orange-50 border-orange-200 dark:text-orange-400 dark:bg-orange-950 dark:border-orange-800",
+                      lastGrade === 'good' && "text-green-700 bg-green-50 border-green-200 dark:text-green-400 dark:bg-green-950 dark:border-green-800",
+                      lastGrade === 'easy' && "text-blue-700 bg-blue-50 border-blue-200 dark:text-blue-400 dark:bg-blue-950 dark:border-blue-800",
                     )}>
-                      {isKnown ? <><CheckCircle className="h-3 w-3" /> Known</> : <><RotateCcw className="h-3 w-3" /> Review</>}
+                      <RotateCcw className="h-3 w-3" />
+                      {lastGrade.charAt(0).toUpperCase() + lastGrade.slice(1)}
                     </div>
                   )}
 
@@ -300,41 +346,28 @@ export function ConceptCardFocusMode({
             </button>
           </div>
 
-          {/* Action buttons */}
-          <div className="flex gap-3 justify-center mt-2">
-            <button
-              onClick={handleReview}
-              className={cn(
-                "flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all border shadow-sm",
-                isReview
-                  ? "bg-yellow-500 text-white border-yellow-600 shadow-yellow-200 dark:shadow-none"
-                  : "bg-card text-yellow-700 dark:text-yellow-400 border-yellow-300 dark:border-yellow-700 hover:bg-yellow-50 dark:hover:bg-yellow-950/40"
-              )}
-            >
-              <XCircle className="h-4 w-4" />
-              <span>Review later</span>
-              <kbd className="hidden sm:inline text-[10px] px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/40 rounded border border-yellow-300 dark:border-yellow-700 text-yellow-600 dark:text-yellow-400">←</kbd>
-            </button>
-
-            <button
-              onClick={handleKnow}
-              className={cn(
-                "flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all border shadow-sm",
-                isKnown
-                  ? "bg-green-600 text-white border-green-700 shadow-green-200 dark:shadow-none"
-                  : "bg-card text-green-700 dark:text-green-400 border-green-300 dark:border-green-700 hover:bg-green-50 dark:hover:bg-green-950/40"
-              )}
-            >
-              <CheckCircle className="h-4 w-4" />
-              <span>Know it!</span>
-              <kbd className="hidden sm:inline text-[10px] px-1 py-0.5 bg-green-100 dark:bg-green-900/40 rounded border border-green-300 dark:border-green-700 text-green-600 dark:text-green-400">→</kbd>
-            </button>
+          {/* 4-grade Action buttons */}
+          <div className="flex gap-2 justify-center mt-2 flex-wrap">
+            {GRADE_CONFIG.map(({ grade, label, key, activeClass, hoverClass }) => (
+              <button
+                key={grade}
+                onClick={() => handleGrade(grade)}
+                className={cn(
+                  "flex flex-col items-center gap-0.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all border shadow-sm min-w-[72px]",
+                  lastGrade === grade ? activeClass : hoverClass
+                )}
+              >
+                <span>{label}</span>
+                <span className="text-[10px] font-normal opacity-70">{formatInterval(intervals[grade])}</span>
+                <kbd className="hidden sm:inline text-[10px] px-1 py-0.5 bg-white/20 rounded border border-current/30 opacity-60">{key}</kbd>
+              </button>
+            ))}
           </div>
 
           {/* Flip hint */}
           {cardImages.length > 0 && !flipped && (
             <p className="text-center text-xs text-muted-foreground mt-3">
-              <kbd className="px-1.5 py-0.5 bg-muted border rounded text-[10px]">Space</kbd> to flip card
+              <kbd className="px-1.5 py-0.5 bg-muted border rounded text-[10px]">Space</kbd> to flip · Grade after revealing
             </p>
           )}
 
@@ -342,6 +375,7 @@ export function ConceptCardFocusMode({
           <div className="flex justify-center gap-1 mt-4 overflow-hidden max-w-full">
             {cards.slice(Math.max(0, index - 4), Math.min(total, index + 5)).map((c, i) => {
               const realIndex = Math.max(0, index - 4) + i;
+              const cLastGrade = lastGradeMap.get(c.id);
               return (
                 <button
                   key={c.id}
@@ -351,9 +385,12 @@ export function ConceptCardFocusMode({
                   }}
                   className={cn(
                     "rounded-full transition-all duration-200",
-                    realIndex === index ? "w-5 h-2 bg-primary" : "w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/60",
-                    knownIds.has(c.id) && realIndex !== index && "bg-green-400/60",
-                    reviewIds.has(c.id) && !knownIds.has(c.id) && realIndex !== index && "bg-yellow-400/60",
+                    realIndex === index ? "w-5 h-2 bg-primary" : "w-2 h-2",
+                    realIndex !== index && !cLastGrade && "bg-muted-foreground/30 hover:bg-muted-foreground/60",
+                    realIndex !== index && cLastGrade === 'again' && "bg-red-400/60",
+                    realIndex !== index && cLastGrade === 'hard' && "bg-orange-400/60",
+                    realIndex !== index && cLastGrade === 'good' && "bg-green-400/60",
+                    realIndex !== index && cLastGrade === 'easy' && "bg-blue-400/60",
                   )}
                 />
               );

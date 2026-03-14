@@ -5,6 +5,7 @@ import { ScriptsTabBar } from '@/components/scripts/ScriptsTabBar';
 import { useConceptCards, ConceptCard } from '@/hooks/useConceptCards';
 import { useConceptCardsMutations } from '@/hooks/useConceptCards';
 import { usePermissions } from '@/hooks/usePermissions';
+import { useSpacedRepetition } from '@/hooks/useSpacedRepetition';
 import { ConceptCardUploadDialog } from '@/components/concept-cards/ConceptCardUploadDialog';
 import { ConceptCardFocusMode } from '@/components/concept-cards/ConceptCardFocusMode';
 import { ConceptCardViewDialog } from '@/components/concept-cards/ConceptCardViewDialog';
@@ -15,7 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
   Plus, Search, ImageIcon, Trash2, GraduationCap, RotateCcw,
-  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus
+  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus, CalendarClock, Flame
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -288,6 +289,10 @@ export default function ConceptCardsPage() {
   const [reviewIds, setReviewIds] = useState<Set<string>>(new Set());
   const [showReviewOnly, setShowReviewOnly] = useState(false);
   const [focusMode, setFocusMode] = useState(false);
+  const [dueOnlyMode, setDueOnlyMode] = useState(false);
+
+  // Spaced repetition
+  const { dueCards, reviewStats } = useSpacedRepetition(cards);
 
   const filtered = useMemo(() => {
     let result = cards.filter(c => {
@@ -305,6 +310,11 @@ export default function ConceptCardsPage() {
     }
     return result;
   }, [cards, search, filterAudience, filterProduct, showReviewOnly, quizMode, reviewIds]);
+
+  // Cards to use in focus mode — either due-only subset or all filtered
+  const focusCards = dueOnlyMode
+    ? dueCards.filter(c => filtered.some(f => f.id === c.id))
+    : filtered;
 
   const handleDelete = async (id: string) => {
     if (!confirm('Delete this concept card?')) return;
@@ -385,11 +395,21 @@ export default function ConceptCardsPage() {
           {filtered.length > 0 && (
             <Button
               variant="outline"
-              onClick={() => setFocusMode(true)}
+              onClick={() => { setDueOnlyMode(false); setFocusMode(true); }}
               className="shrink-0 gap-1.5"
             >
               <Focus className="h-4 w-4" />
               Focus Mode
+            </Button>
+          )}
+          {dueCards.length > 0 && (
+            <Button
+              variant="outline"
+              onClick={() => { setDueOnlyMode(true); setFocusMode(true); }}
+              className="shrink-0 gap-1.5 border-primary/40 text-primary hover:bg-primary/10"
+            >
+              <CalendarClock className="h-4 w-4" />
+              Study Due ({dueCards.length})
             </Button>
           )}
           {isAdmin() && (
@@ -398,6 +418,26 @@ export default function ConceptCardsPage() {
             </Button>
           )}
         </div>
+
+        {/* SRS Stats strip */}
+        {cards.length > 0 && (reviewStats.dueToday > 0 || reviewStats.reviewedToday > 0) && (
+          <div className="flex items-center gap-4 px-4 py-2.5 rounded-xl border bg-card mb-4 text-sm flex-wrap">
+            <CalendarClock className="h-4 w-4 text-primary shrink-0" />
+            <span className="font-medium text-muted-foreground">Spaced Repetition</span>
+            <span className="text-foreground font-semibold">
+              {reviewStats.dueToday} due today
+            </span>
+            {reviewStats.reviewedToday > 0 && (
+              <>
+                <span className="text-muted-foreground">·</span>
+                <span className="text-green-600 dark:text-green-400 font-semibold flex items-center gap-1">
+                  <Flame className="h-3.5 w-3.5" />
+                  {reviewStats.reviewedToday} reviewed today
+                </span>
+              </>
+            )}
+          </div>
+        )}
 
         {/* Quiz banner */}
         {quizMode && filtered.length > 0 && (
@@ -511,14 +551,10 @@ export default function ConceptCardsPage() {
         onClose={() => setEditCard(null)}
         onUpdated={refetch}
       />
-      {focusMode && filtered.length > 0 && (
+      {focusMode && focusCards.length > 0 && (
         <ConceptCardFocusMode
-          cards={filtered}
-          onClose={() => setFocusMode(false)}
-          onKnow={handleKnow}
-          onReview={handleReview}
-          knownIds={knownIds}
-          reviewIds={reviewIds}
+          cards={focusCards}
+          onClose={() => { setFocusMode(false); setDueOnlyMode(false); }}
         />
       )}
     </PageLayout>
