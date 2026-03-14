@@ -505,8 +505,17 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
   };
 
   const handleClassify = async () => {
-    if (!pasteContent.trim()) {
-      toast.error("Please paste your script content first");
+    const hasText = pasteContent.trim().length > 0;
+    const hasImages = pasteImages.length > 0;
+    if (!hasText && !hasImages) {
+      toast.error("Please paste your script content or add an image first");
+      return;
+    }
+    // Image-only path: skip AI classification, go straight to review
+    if (!hasText && hasImages) {
+      setVersions([{ author: userName, content: "" }]);
+      setStep("review");
+      toast.info("Add the script details manually and save.");
       return;
     }
     setIsClassifying(true);
@@ -750,7 +759,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
           {step === "paste" && !isEditing && (
             <div className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                Paste your script below. AI will auto-detect the category, audience, role, and tags.
+                Paste your script below, or just add an image — AI will auto-detect the category, audience, role, and tags.
               </p>
               <div>
                 <Label>Script Content</Label>
@@ -1357,7 +1366,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
             <div className="flex gap-2">
               <Button variant="outline" onClick={onClose}>Cancel</Button>
               {step === "paste" ? (
-                <Button onClick={handleClassify} disabled={isClassifying || !pasteContent.trim()} className="gap-1.5">
+                <Button onClick={handleClassify} disabled={isClassifying || (!pasteContent.trim() && pasteImages.length === 0)} className="gap-1.5">
                   {isClassifying ? (
                     <><Loader2 className="h-4 w-4 animate-spin" /> Classifying...</>
                   ) : (
