@@ -974,13 +974,13 @@ export default function ServicingPage() {
                 script={script}
                 isAdmin={isAdmin}
                 isAuthenticated={!!user}
-                isOpenByUrl={scriptId === script.id}
+                isOpenByUrl={resolvedScriptId === script.id}
                 onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
                 onDelete={() => setDeleteTarget(script)}
                 onToggle={(open) => {
                   if (open) {
                     navigateToScriptInternal(script.id);
-                  } else if (scriptId === script.id) {
+                  } else if (resolvedScriptId === script.id) {
                     navigate('/servicing', { replace: true });
                   }
                 }}
