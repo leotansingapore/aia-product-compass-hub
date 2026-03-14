@@ -21,6 +21,7 @@ import { RouteTracker } from "@/components/RouteTracker";
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
 import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
 import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
+import { NewVersionBanner } from "@/components/NewVersionBanner";
 // Eagerly loaded pages (lightweight / critical path)
 import Index from "./pages/Index";
 import SimplifiedAuth from "./pages/SimplifiedAuth";
@@ -140,6 +141,7 @@ const App = () => (
                   <OnboardingTutorial />
                   <OnboardingHelpButton />
                   <WelcomeModal />
+                  <NewVersionBanner />
                   </AppLayout>
                 </ChecklistProvider>
               </OnboardingProvider>
