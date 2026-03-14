@@ -517,7 +517,7 @@ function ServicingScriptCard({
                       </ReactMarkdown>
                       <div className="flex gap-1 mt-3">
                         <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={() => {
-                          navigator.clipboard.writeText(v.content);
+                          navigator.clipboard.writeText(markdownToPlainText(v.content));
                           toast.success("Copied to clipboard");
                         }}>
                           <Copy className="h-3 w-3" /> Copy
