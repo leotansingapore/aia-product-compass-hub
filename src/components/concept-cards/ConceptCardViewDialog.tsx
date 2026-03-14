@@ -165,6 +165,7 @@ function Whiteboard({
 
   // ── Pointer events ──────────────────────────────────────────────────────
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    e.preventDefault();
     if (tool === 'text') {
       // commit any current editing first
       if (editingValue.trim() && editingText) {
