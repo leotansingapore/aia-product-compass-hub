@@ -515,10 +515,6 @@ export default function ConceptCardsPage() {
         <ConceptCardFocusMode
           cards={filtered}
           onClose={() => setFocusMode(false)}
-          onKnow={handleKnow}
-          onReview={handleReview}
-          knownIds={knownIds}
-          reviewIds={reviewIds}
         />
       )}
     </PageLayout>
