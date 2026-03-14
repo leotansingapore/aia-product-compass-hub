@@ -289,6 +289,10 @@ export default function ConceptCardsPage() {
   const [reviewIds, setReviewIds] = useState<Set<string>>(new Set());
   const [showReviewOnly, setShowReviewOnly] = useState(false);
   const [focusMode, setFocusMode] = useState(false);
+  const [dueOnlyMode, setDueOnlyMode] = useState(false);
+
+  // Spaced repetition
+  const { dueCards, reviewStats } = useSpacedRepetition(cards);
 
   const filtered = useMemo(() => {
     let result = cards.filter(c => {
@@ -306,6 +310,11 @@ export default function ConceptCardsPage() {
     }
     return result;
   }, [cards, search, filterAudience, filterProduct, showReviewOnly, quizMode, reviewIds]);
+
+  // Cards to use in focus mode — either due-only subset or all filtered
+  const focusCards = dueOnlyMode
+    ? dueCards.filter(c => filtered.some(f => f.id === c.id))
+    : filtered;
 
   const handleDelete = async (id: string) => {
     if (!confirm('Delete this concept card?')) return;
