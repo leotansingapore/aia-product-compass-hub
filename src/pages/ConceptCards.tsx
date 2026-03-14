@@ -395,11 +395,21 @@ export default function ConceptCardsPage() {
           {filtered.length > 0 && (
             <Button
               variant="outline"
-              onClick={() => setFocusMode(true)}
+              onClick={() => { setDueOnlyMode(false); setFocusMode(true); }}
               className="shrink-0 gap-1.5"
             >
               <Focus className="h-4 w-4" />
               Focus Mode
+            </Button>
+          )}
+          {dueCards.length > 0 && (
+            <Button
+              variant="outline"
+              onClick={() => { setDueOnlyMode(true); setFocusMode(true); }}
+              className="shrink-0 gap-1.5 border-primary/40 text-primary hover:bg-primary/10"
+            >
+              <CalendarClock className="h-4 w-4" />
+              Study Due ({dueCards.length})
             </Button>
           )}
           {isAdmin() && (
@@ -408,6 +418,26 @@ export default function ConceptCardsPage() {
             </Button>
           )}
         </div>
+
+        {/* SRS Stats strip */}
+        {cards.length > 0 && (reviewStats.dueToday > 0 || reviewStats.reviewedToday > 0) && (
+          <div className="flex items-center gap-4 px-4 py-2.5 rounded-xl border bg-card mb-4 text-sm flex-wrap">
+            <CalendarClock className="h-4 w-4 text-primary shrink-0" />
+            <span className="font-medium text-muted-foreground">Spaced Repetition</span>
+            <span className="text-foreground font-semibold">
+              {reviewStats.dueToday} due today
+            </span>
+            {reviewStats.reviewedToday > 0 && (
+              <>
+                <span className="text-muted-foreground">·</span>
+                <span className="text-green-600 dark:text-green-400 font-semibold flex items-center gap-1">
+                  <Flame className="h-3.5 w-3.5" />
+                  {reviewStats.reviewedToday} reviewed today
+                </span>
+              </>
+            )}
+          </div>
+        )}
 
         {/* Quiz banner */}
         {quizMode && filtered.length > 0 && (
