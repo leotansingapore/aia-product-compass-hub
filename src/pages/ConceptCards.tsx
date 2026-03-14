@@ -379,10 +379,11 @@ export default function ConceptCardsPage() {
           </div>
 
           {/* Filters + action buttons row */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 min-w-0">
             <Select value={filterAudience} onValueChange={setFilterAudience}>
-              <SelectTrigger className="w-[140px] sm:w-44 text-xs h-9">
-                <span className="text-muted-foreground text-xs mr-1 shrink-0">Audience:</span>
+              <SelectTrigger className="w-[120px] xs:w-[140px] sm:w-44 text-xs h-9 min-w-0">
+                <span className="text-muted-foreground text-xs mr-1 shrink-0 hidden xs:inline">Audience:</span>
+                <span className="text-muted-foreground text-xs mr-1 shrink-0 xs:hidden">👥</span>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -390,8 +391,9 @@ export default function ConceptCardsPage() {
               </SelectContent>
             </Select>
             <Select value={filterProduct} onValueChange={setFilterProduct}>
-              <SelectTrigger className="w-[130px] sm:w-40 text-xs h-9">
-                <span className="text-muted-foreground text-xs mr-1 shrink-0">Product:</span>
+              <SelectTrigger className="w-[110px] xs:w-[130px] sm:w-40 text-xs h-9 min-w-0">
+                <span className="text-muted-foreground text-xs mr-1 shrink-0 hidden xs:inline">Product:</span>
+                <span className="text-muted-foreground text-xs mr-1 shrink-0 xs:hidden">📦</span>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
