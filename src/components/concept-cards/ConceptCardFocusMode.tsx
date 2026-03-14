@@ -299,23 +299,26 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
 
                 {/* BACK */}
                 <div
-                  className="absolute inset-0 rounded-2xl border-2 border-border bg-card shadow-lg overflow-hidden cursor-pointer"
+                  className="absolute inset-0 rounded-2xl border-2 border-border bg-card shadow-lg overflow-hidden"
                   style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                  onClick={() => setFlipped(false)}
                 >
                   <div className="absolute top-3 left-3 z-10 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded border border-border/40">
                     Drawing {cardImages.length > 1 ? `${safeImgIndex + 1}/${cardImages.length}` : ''}
                   </div>
-                  <div className="absolute top-3 right-3 z-10 text-[10px] text-muted-foreground bg-background/70 px-1.5 py-0.5 rounded border border-border/40">
-                    tap to flip back ↻
-                  </div>
+                  {/* Flip back button — prominent, top-right */}
+                  <button
+                    onClick={() => setFlipped(false)}
+                    className="absolute top-2 right-2 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold shadow-md hover:bg-primary/90 active:scale-95 transition-all"
+                  >
+                    <RotateCcw className="h-3.5 w-3.5" /> Flip back
+                  </button>
                   {currentImg
                     ? <img src={currentImg} alt={card.title} className="w-full h-full object-contain p-4 pointer-events-none" />
                     : <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none">No drawing yet</div>
                   }
                   {/* Multi-image nav */}
                   {cardImages.length > 1 && (
-                    <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2 z-20" onClick={e => e.stopPropagation()}>
+                    <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2 z-20">
                       <button onClick={() => setImgIndex(i => Math.max(0, i - 1))} disabled={safeImgIndex === 0}
                         className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors">
                         <ChevronLeft className="h-3.5 w-3.5" />
