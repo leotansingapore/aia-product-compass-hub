@@ -17,7 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import {
   Plus, Search, ImageIcon, Trash2, GraduationCap, RotateCcw,
-  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus, CalendarClock, Flame
+  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus, CalendarClock, Flame, Lightbulb
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
