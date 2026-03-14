@@ -436,18 +436,11 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
               );
             })}
           </div>
-                {/* FRONT */}
-                <div
-                  className={cn(
-                    "absolute inset-0 rounded-2xl border-2 bg-card shadow-lg p-4 sm:p-6 md:p-8 flex flex-col",
-                    lastGrade === 'again' && "border-red-400/50 dark:border-red-600/40",
-                    lastGrade === 'hard' && "border-orange-400/50 dark:border-orange-600/40",
-                    lastGrade === 'good' && "border-green-400/50 dark:border-green-600/40",
-                    lastGrade === 'easy' && "border-blue-400/50 dark:border-blue-600/40",
-                    !lastGrade && "border-border",
-                  )}
-                  style={{ backfaceVisibility: 'hidden' }}
-                >
+        </div>
+      </div>
+    </div>
+  );
+}
                   {/* Last grade badge */}
                   {lastGrade && (
                     <div className={cn(
