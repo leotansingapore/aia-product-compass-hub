@@ -764,7 +764,7 @@ export default function PlaybookDetail() {
                       <div className="space-y-1">
                         {collaborators.map(c => (
                           <div key={c.id} className="flex items-center justify-between px-2 py-1 rounded bg-muted/40 text-xs">
-                            <span className="font-medium">{c.display_name || c.email || c.user_id}</span>
+                            <span className="font-medium">{c.profile?.display_name || c.profile?.email || c.user_id}</span>
                             <Button size="sm" variant="ghost" className="h-5 w-5 p-0 text-destructive hover:text-destructive" onClick={() => removeCollaborator.mutate(c.id)}><X className="h-3 w-3" /></Button>
                           </div>
                         ))}
