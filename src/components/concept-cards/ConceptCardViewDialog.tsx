@@ -305,17 +305,18 @@ function Whiteboard({
   const cursorStyle = tool === 'text' ? 'text' : tool === 'eraser' ? 'cell' : 'crosshair';
 
   return (
-    <div className="flex flex-col overflow-hidden" style={{ flex: '1 1 0', minHeight: 0 }}>
+    <div className="flex flex-col overflow-hidden" style={{ flex: '1 1 0', minHeight: 0, height: '100%' }}>
       {/* ── Drawing Surface ── */}
-      <div className={cn("overflow-hidden flex flex-1 min-h-0", showRef ? "flex-row" : "flex-col")}>
+      <div className={cn("flex flex-1 min-h-0 overflow-hidden", showRef ? "flex-row" : "flex-col")} style={{ minHeight: 0 }}>
         <div
           ref={containerRef}
-          className={cn("relative overflow-hidden select-none flex-1 min-h-0", showRef ? "w-1/2 border-r" : "w-full")}
-          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none' }}
+          className={cn("relative overflow-hidden select-none", showRef ? "w-1/2 border-r" : "w-full")}
+          style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none', flex: '1 1 0', minHeight: 0, height: '100%' }}
         >
           <svg
             ref={svgRef}
-            className="absolute inset-0 w-full h-full"
+            className="w-full h-full block"
+            style={{ display: 'block', touchAction: 'none', userSelect: 'none', position: 'absolute', inset: 0 }}
             style={{ overflow: 'visible', touchAction: 'none', userSelect: 'none' }}
             xmlns="http://www.w3.org/2000/svg"
             onPointerDown={handlePointerDown}
