@@ -2908,6 +2908,17 @@ export default function ScriptsDatabase() {
     [scriptId, scriptsForSlug]
   );
 
+  // Auto-scroll to a newly created or deep-linked script once it renders
+  useEffect(() => {
+    if (!resolvedScriptId || loading) return;
+    const el = document.getElementById(`script-${resolvedScriptId}`);
+    if (el) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    }
+  }, [resolvedScriptId, loading]);
+
   // Playbook integration
   const { myPlaybooks, createPlaybook } = usePlaybooks();
   const { favouriteIds, toggleFavourite } = useScriptFavourites();
