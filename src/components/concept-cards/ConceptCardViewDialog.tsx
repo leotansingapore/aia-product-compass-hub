@@ -692,7 +692,7 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
 
   return (
     <Dialog open={!!card} onOpenChange={handleClose}>
-      <DialogContent className="max-w-4xl w-full max-h-[92vh] p-0 overflow-hidden flex flex-col">
+      <DialogContent className="max-w-4xl w-full max-h-[92vh] h-[92vh] p-0 overflow-hidden flex flex-col">
         {/* Header */}
         <div className="px-5 py-4 border-b bg-card flex items-start justify-between gap-3 shrink-0">
           <div className="space-y-1 flex-1 min-w-0">
@@ -709,7 +709,7 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue={initialTab} className="flex flex-col flex-1 overflow-hidden">
+        <Tabs defaultValue={initialTab} className="flex flex-col flex-1 overflow-hidden min-h-0">
           <TabsList className="mx-4 mt-3 self-start shrink-0">
             <TabsTrigger value="view" className="text-xs sm:text-sm gap-1.5">
               <Eye className="h-3.5 w-3.5" /> View Drawing
