@@ -8,7 +8,19 @@ import {
   Sparkles, CheckCircle, AlertCircle, TrendingUp, Lightbulb,
   RotateCcw, Eye, Columns2, Undo2, Redo2, Crop, Type,
 } from 'lucide-react';
-import { getStroke } from 'perfect-freehand';
+// Inline smooth stroke helper (catmull-rom → SVG path)
+function getSmoothPath(pts: number[][]): string {
+  if (pts.length < 2) return '';
+  const d: string[] = [`M ${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`];
+  for (let i = 1; i < pts.length - 1; i++) {
+    const mx = (pts[i][0] + pts[i + 1][0]) / 2;
+    const my = (pts[i][1] + pts[i + 1][1]) / 2;
+    d.push(`Q ${pts[i][0].toFixed(1)} ${pts[i][1].toFixed(1)} ${mx.toFixed(1)} ${my.toFixed(1)}`);
+  }
+  const last = pts[pts.length - 1];
+  d.push(`L ${last[0].toFixed(1)} ${last[1].toFixed(1)}`);
+  return d.join(' ');
+}
 import { ConceptCard } from '@/hooks/useConceptCards';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
