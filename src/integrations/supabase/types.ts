@@ -383,6 +383,47 @@ export type Database = {
           },
         ]
       }
+      concept_card_reviews: {
+        Row: {
+          card_id: string
+          due_date: string
+          ease_factor: number
+          id: string
+          interval_days: number
+          last_grade: string
+          reviewed_at: string
+          user_id: string
+        }
+        Insert: {
+          card_id: string
+          due_date?: string
+          ease_factor?: number
+          id?: string
+          interval_days?: number
+          last_grade?: string
+          reviewed_at?: string
+          user_id: string
+        }
+        Update: {
+          card_id?: string
+          due_date?: string
+          ease_factor?: number
+          id?: string
+          interval_days?: number
+          last_grade?: string
+          reviewed_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "concept_card_reviews_card_id_fkey"
+            columns: ["card_id"]
+            isOneToOne: false
+            referencedRelation: "concept_cards"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       concept_cards: {
         Row: {
           audience: string[] | null
