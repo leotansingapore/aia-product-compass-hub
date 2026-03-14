@@ -2901,6 +2901,8 @@ export default function ScriptsDatabase() {
 
   // Resolve slug-based scriptId (e.g. "warm-market-intro-8f42b1c3") → real UUID
   const scriptsForSlug = dbScripts.length > 0 ? dbScripts : [];
+  // Keep ref in sync so navigateToScriptInternal (declared above) can use latest scripts
+  dbScriptsRef.current = dbScripts;
   const resolvedScriptId = useMemo(
     () => scriptId ? (resolveScriptSlug(scriptId, scriptsForSlug) ?? scriptId) : undefined,
     [scriptId, scriptsForSlug]
