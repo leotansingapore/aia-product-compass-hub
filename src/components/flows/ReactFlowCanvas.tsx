@@ -653,7 +653,7 @@ function ReactFlowCanvasInner({
         <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="hsl(var(--muted-foreground)/0.2)" />
         <Controls showInteractive={false} className="!bottom-3 !left-auto !right-3" />
         <MiniMap
-          className="!bottom-3 !right-14 !w-36 !h-24"
+          className="!bottom-3 !right-14 !w-36 !h-24 hidden sm:block"
           nodeColor={(n) => {
             const rfType = n.type || '';
             return n.data?.color || NODE_TYPE_DEFAULTS[rfType] || '#94a3b8';
