@@ -15,6 +15,7 @@ export interface Playbook {
   allow_public_edit: boolean;
   items?: PlaybookItem[];
   creator_name?: string;
+  item_count?: number;
 }
 
 export interface PlaybookItem {
@@ -56,9 +57,25 @@ export function usePlaybooks() {
         }
       }
 
+      // Fetch item counts per playbook
+      const playbookIds = (data || []).map(p => p.id);
+      let itemCountMap: Record<string, number> = {};
+      if (playbookIds.length > 0) {
+        const { data: itemCounts } = await supabase
+          .from('script_playbook_items')
+          .select('playbook_id')
+          .in('playbook_id', playbookIds);
+        if (itemCounts) {
+          itemCounts.forEach(ic => {
+            itemCountMap[ic.playbook_id] = (itemCountMap[ic.playbook_id] || 0) + 1;
+          });
+        }
+      }
+
       return (data || []).map(p => ({
         ...p,
-        creator_name: creatorMap[p.created_by] || 'Unknown'
+        creator_name: creatorMap[p.created_by] || 'Unknown',
+        item_count: itemCountMap[p.id] || 0,
       })) as Playbook[];
     },
   });
