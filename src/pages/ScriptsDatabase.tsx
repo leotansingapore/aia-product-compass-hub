@@ -3138,7 +3138,8 @@ export default function ScriptsDatabase() {
 
   // Helper: apply all filters EXCEPT a given dimension
   const filterExcluding = useCallback((exclude: 'category' | 'audience' | 'role' | 'tag') => {
-    let result = scriptsData;
+    // Always exclude servicing scripts — they live on their own page
+    let result = scriptsData.filter((s) => s.category !== "servicing");
     if (exclude !== 'category' && activeCategory !== "all") {
       result = result.filter((s) => s.category === activeCategory);
     }
