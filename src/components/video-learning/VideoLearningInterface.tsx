@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronLeft, ChevronRight, Check, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen, CheckCircle2, Circle, List, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen, CheckCircle2, Circle, List, X, Play } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import { useIsMobile } from '@/hooks/use-mobile';
