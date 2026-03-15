@@ -1093,11 +1093,24 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                       </div>
                     )}
 
-                    <div className="flex gap-2 justify-end">
+                    <div className="flex gap-2 justify-end flex-wrap">
+                      {s.similarityTier === "near-identical" && (
+                        <Button
+                          size="sm"
+                          className="gap-1.5 text-xs"
+                          onClick={() => {
+                            onClose();
+                            navigate(`/scripts/${s.id}`);
+                          }}
+                        >
+                          <ExternalLink className="h-3 w-3" />
+                          Edit that script instead
+                        </Button>
+                      )}
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button
-                            variant="outline"
+                            variant={s.similarityTier === "near-identical" ? "outline" : "default"}
                             size="sm"
                             className="gap-1 text-xs"
                             disabled={isMerging}
