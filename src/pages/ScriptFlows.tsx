@@ -258,6 +258,8 @@ export default function ScriptFlows() {
   const [showAIWizard, setShowAIWizard] = useState(false);
   // Mobile preview sheet
   const [mobilePreviewOpen, setMobilePreviewOpen] = useState(false);
+  // Unsaved changes confirmation dialog
+  const [showLeaveDialog, setShowLeaveDialog] = useState(false);
 
   const controlsRef = useRef<FlowCanvasControls | null>(null);
   const autoSaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -319,16 +321,56 @@ export default function ScriptFlows() {
     if (result) openFlow((result as any).id);
   };
 
+  /** Validate flow structure and show warnings (non-blocking) */
+  const validateFlow = useCallback((nodes: FlowNode[], edges: FlowEdge[]) => {
+    const warnings: string[] = [];
+    if (nodes.length === 0) return warnings;
+
+    const nodeIds = new Set(nodes.map(n => n.id));
+    const hasOutgoing = new Set(edges.map(e => e.from));
+    const hasIncoming = new Set(edges.map(e => e.to));
+
+    // Dead-end nodes (non-end nodes with no outgoing edges)
+    const deadEnds = nodes.filter(n => n.type !== 'end' && !hasOutgoing.has(n.id));
+    if (deadEnds.length > 0) {
+      warnings.push(`${deadEnds.length} node${deadEnds.length > 1 ? 's have' : ' has'} no outgoing connection: ${deadEnds.map(n => `"${n.label}"`).slice(0, 3).join(', ')}${deadEnds.length > 3 ? '...' : ''}`);
+    }
+
+    // Disconnected nodes (no incoming AND no outgoing, excluding start nodes)
+    const disconnected = nodes.filter(n => n.type !== 'start' && !hasOutgoing.has(n.id) && !hasIncoming.has(n.id));
+    if (disconnected.length > 0) {
+      warnings.push(`${disconnected.length} disconnected node${disconnected.length > 1 ? 's' : ''}: ${disconnected.map(n => `"${n.label}"`).slice(0, 3).join(', ')}${disconnected.length > 3 ? '...' : ''}`);
+    }
+
+    // Edges pointing to non-existent nodes
+    const brokenEdges = edges.filter(e => !nodeIds.has(e.from) || !nodeIds.has(e.to));
+    if (brokenEdges.length > 0) {
+      warnings.push(`${brokenEdges.length} broken connection${brokenEdges.length > 1 ? 's' : ''} (pointing to deleted nodes)`);
+    }
+
+    return warnings;
+  }, []);
+
   const handleSave = useCallback(async () => {
     if (!activeFlowId) return;
     const data = controlsRef.current?.save();
     const nodes = data?.nodes ?? localNodes;
     const edges = data?.edges ?? localEdges;
+
+    // Run validation and show warnings (non-blocking)
+    const warnings = validateFlow(nodes, edges);
+    if (warnings.length > 0) {
+      toast.warning('Flow saved with warnings', {
+        description: warnings.join('. '),
+        duration: 6000,
+      });
+    }
+
     await updateFlow.mutateAsync({ id: activeFlowId, title: flowTitle, description: flowDescription, nodes, edges });
     setLocalNodes(nodes);
     setLocalEdges(edges);
     setHasUnsaved(false);
-  }, [activeFlowId, flowTitle, flowDescription, localNodes, localEdges, updateFlow]);
+  }, [activeFlowId, flowTitle, flowDescription, localNodes, localEdges, updateFlow, validateFlow]);
 
   // Auto-save: debounce 5 seconds after changes
   useEffect(() => {
@@ -497,8 +539,8 @@ export default function ScriptFlows() {
             <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap bg-muted/30 border rounded-lg px-2 sm:px-3 py-1.5 sm:py-2">
               <Button variant="ghost" size="sm" className="h-8 text-xs sm:text-sm" onClick={() => {
                 if (hasUnsaved) {
-                  const confirmed = window.confirm('You have unsaved changes. Leave without saving?');
-                  if (!confirmed) return;
+                  setShowLeaveDialog(true);
+                  return;
                 }
                 navigate('/flows');
               }}>
@@ -553,9 +595,21 @@ export default function ScriptFlows() {
                 </Tooltip>
               </div>
 
-              {/* Export — hide text on small screens */}
+              {/* Export & Import — hide text on small screens */}
               <div className="hidden sm:block">
-                <ExportControls onExport={handleExport} />
+                <ExportControls
+                  onExport={handleExport}
+                  onImportJson={(data) => {
+                    try {
+                      setLocalNodes(data.nodes);
+                      setLocalEdges(data.edges);
+                      setHasUnsaved(true);
+                      toast.success(`Imported ${data.nodes.length} nodes and ${data.edges.length} connections`);
+                    } catch {
+                      toast.error('Failed to import: invalid flow data');
+                    }
+                  }}
+                />
               </div>
 
               {/* Share */}
@@ -716,6 +770,20 @@ export default function ScriptFlows() {
             open={showShortcuts}
             onOpenChange={setShowShortcuts}
           />
+
+          {/* Unsaved changes confirmation dialog */}
+          <Dialog open={showLeaveDialog} onOpenChange={setShowLeaveDialog}>
+            <DialogContent className="max-w-xs">
+              <DialogHeader>
+                <DialogTitle>Unsaved changes</DialogTitle>
+                <DialogDescription>You have unsaved changes that will be lost if you leave.</DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="flex-row gap-2 sm:justify-end">
+                <Button variant="outline" className="flex-1 sm:flex-none" onClick={() => setShowLeaveDialog(false)}>Stay</Button>
+                <Button variant="destructive" className="flex-1 sm:flex-none" onClick={() => { setShowLeaveDialog(false); navigate('/flows'); }}>Leave</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </PageLayout>
       </TooltipProvider>
     );
