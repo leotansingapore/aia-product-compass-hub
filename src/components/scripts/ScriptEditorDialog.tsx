@@ -1053,7 +1053,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                 </p>
                 <p className="text-xs text-muted-foreground">
                   {highestSimilarityTier === "near-identical"
-                    ? "To keep a single source of truth, add yours as a new version to the existing script instead."
+                    ? "Please edit that script directly instead of creating a duplicate. If your content is different enough, add it as a new version there."
                     : "Review these first. You can merge as a version or add as a separate script."
                   }
                 </p>
