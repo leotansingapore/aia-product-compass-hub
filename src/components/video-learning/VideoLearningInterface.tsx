@@ -477,6 +477,18 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                     </div>
                   </CardContent>
                 </Card>
+              ) : !videoInfo ? (
+                <Card>
+                  <CardContent className="p-8 sm:p-12 flex flex-col items-center justify-center text-center gap-3">
+                    <div className="rounded-full bg-muted p-4">
+                      <Play className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                    <h3 className="font-semibold text-foreground">Content coming soon</h3>
+                    <p className="text-sm text-muted-foreground max-w-xs">
+                      This lecture hasn't been set up yet. Check back later or contact your admin.
+                    </p>
+                  </CardContent>
+                </Card>
               ) : null}
             </div>
 
