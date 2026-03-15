@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronLeft, ChevronRight, Check, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen, CheckCircle2, Circle, List, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen, CheckCircle2, Circle, List, X, Play } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -475,6 +475,18 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                         {currentVideo.rich_content}
                       </ReactMarkdown>
                     </div>
+                  </CardContent>
+                </Card>
+              ) : !videoInfo ? (
+                <Card>
+                  <CardContent className="p-8 sm:p-12 flex flex-col items-center justify-center text-center gap-3">
+                    <div className="rounded-full bg-muted p-4">
+                      <Play className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                    <h3 className="font-semibold text-foreground">Content coming soon</h3>
+                    <p className="text-sm text-muted-foreground max-w-xs">
+                      This lecture hasn't been set up yet. Check back later or contact your admin.
+                    </p>
                   </CardContent>
                 </Card>
               ) : null}
