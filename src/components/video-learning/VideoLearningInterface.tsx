@@ -342,8 +342,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             {/* Video + mini-nav column */}
             <div className="lg:col-span-2 space-y-4 sm:space-y-6 order-1 lg:order-2">
 
-              {/* Video player — hide if rich_content already embeds this video (avoids duplicate) */}
-              {!richContentHasVideo && (
+              {/* Video player — hide if rich_content already embeds this video (avoids duplicate), or if no valid URL */}
+              {!richContentHasVideo && videoInfo && (
                 <Card>
                   <CardHeader className="py-3 px-4 sm:py-4 sm:px-6">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
@@ -362,35 +362,29 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                     )}
                   </CardHeader>
                   <CardContent className="px-0 pb-0 sm:px-6 sm:pb-6">
-                    {videoInfo ? (
-                      <div
-                        ref={videoContainerRef}
-                        className={`relative overflow-hidden bg-muted group sm:rounded-lg ${isFullscreen ? 'w-full h-full' : 'aspect-video'}`}
+                    <div
+                      ref={videoContainerRef}
+                      className={`relative overflow-hidden bg-muted group sm:rounded-lg ${isFullscreen ? 'w-full h-full' : 'aspect-video'}`}
+                    >
+                      <iframe
+                        ref={iframeRef}
+                        src={videoInfo.embedUrl}
+                        title={currentVideo?.title}
+                        className="w-full h-full"
+                        allowFullScreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        onLoad={() => setIsPlaying(false)}
+                      />
+                      <Button
+                        variant="secondary"
+                        size="icon"
+                        className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/70 hover:bg-black/90 text-white border-0 h-9 w-9"
+                        onClick={toggleFullscreen}
+                        title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
                       >
-                        <iframe
-                          ref={iframeRef}
-                          src={videoInfo.embedUrl}
-                          title={currentVideo?.title}
-                          className="w-full h-full"
-                          allowFullScreen
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          onLoad={() => setIsPlaying(false)}
-                        />
-                        <Button
-                          variant="secondary"
-                          size="icon"
-                          className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/70 hover:bg-black/90 text-white border-0 h-9 w-9"
-                          onClick={toggleFullscreen}
-                          title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-                        >
-                          {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
-                        </Button>
-                      </div>
-                    ) : (
-                      <div className="aspect-video bg-muted rounded-lg flex items-center justify-center mx-4 mb-4 sm:mx-0 sm:mb-0">
-                        <p className="text-muted-foreground">Invalid video URL</p>
-                      </div>
-                    )}
+                        {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               )}
