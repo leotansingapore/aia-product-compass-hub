@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Plus, FileText, Pencil, Trash2, User, Clock, Star, EyeOff, Eye, MoreVertical, Loader2, Globe } from "lucide-react";
+import { Plus, FileText, Pencil, Trash2, User, Clock, Star, EyeOff, Eye, MoreVertical, Loader2, Globe, Search, BookOpen, ListOrdered } from "lucide-react";
 import { usePlaybooks } from "@/hooks/usePlaybooks";
 import { usePlaybookPrefs } from "@/hooks/usePlaybookPrefs";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
@@ -41,9 +41,11 @@ function PlaybookCard({
   onDelete: () => void;
 }) {
   const navigate = useNavigate();
+  const itemCount = pb.item_count || 0;
+
   return (
     <Card
-      className="cursor-pointer hover:shadow-md transition-shadow active:scale-[0.98] group relative"
+      className="cursor-pointer hover:shadow-md transition-all active:scale-[0.98] group relative border-l-4 border-l-transparent hover:border-l-primary/40"
       onClick={() => navigate(`/playbooks/${pb.id}`)}
     >
       <CardHeader className="pb-2 px-4 sm:px-5">
@@ -100,18 +102,28 @@ function PlaybookCard({
             <Clock className="h-3 w-3" />
             {format(new Date(pb.updated_at), "MMM d")}
           </span>
-          {pb.is_public && <Globe className="h-3 w-3 text-muted-foreground" aria-label="Public" />}
+          <span className="flex items-center gap-1">
+            <ListOrdered className="h-3 w-3" />
+            {itemCount} {itemCount === 1 ? "item" : "items"}
+          </span>
+          {pb.is_public && (
+            <Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4 gap-0.5 border-blue-200 text-blue-600">
+              <Globe className="h-2.5 w-2.5" /> Public
+            </Badge>
+          )}
         </div>
       </CardContent>
     </Card>
   );
 }
 
-function EmptyState({ message, cta }: { message: string; cta?: React.ReactNode }) {
+function EmptyState({ message, cta, icon: Icon = FileText }: { message: string; cta?: React.ReactNode; icon?: React.ElementType }) {
   return (
-    <Card className="text-center py-10 sm:py-12">
+    <Card className="text-center py-10 sm:py-12 border-dashed">
       <CardContent>
-        <FileText className="h-10 w-10 mx-auto text-muted-foreground mb-3" />
+        <div className="rounded-full bg-muted w-14 h-14 mx-auto flex items-center justify-center mb-4">
+          <Icon className="h-7 w-7 text-muted-foreground" />
+        </div>
         <p className="text-muted-foreground text-sm mb-4">{message}</p>
         {cta}
       </CardContent>
@@ -133,6 +145,7 @@ export default function Playbooks() {
   const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [search, setSearch] = useState("");
 
   const handleCreate = () => {
     if (!title.trim()) return;
@@ -160,6 +173,22 @@ export default function Playbooks() {
     : playbooks.filter(pb => !isHidden(pb.id));
   const favourites = playbooks.filter(pb => isFavourite(pb.id) && !isHidden(pb.id));
   const hiddenPlaybooks = playbooks.filter(pb => isHidden(pb.id));
+
+  // Apply search filter to current tab
+  const filterBySearch = (list: Playbook[]) => {
+    if (!search.trim()) return list;
+    const q = search.toLowerCase();
+    return list.filter(pb =>
+      pb.title.toLowerCase().includes(q) ||
+      (pb.description || "").toLowerCase().includes(q) ||
+      (pb.creator_name || "").toLowerCase().includes(q)
+    );
+  };
+
+  const filteredMine = useMemo(() => filterBySearch(myPlaybooks), [myPlaybooks, search]);
+  const filteredOthers = useMemo(() => filterBySearch(othersPlaybooks), [othersPlaybooks, search]);
+  const filteredFavourites = useMemo(() => filterBySearch(favourites), [favourites, search]);
+  const filteredHidden = useMemo(() => filterBySearch(hiddenPlaybooks), [hiddenPlaybooks, search]);
 
   const cardProps = (pb: Playbook) => ({
     pb,
@@ -192,14 +221,25 @@ export default function Playbooks() {
       <div className="px-3 md:px-6 lg:px-8 max-w-6xl mx-auto pb-20">
         <div className="hidden md:block"><ScriptsTabBar /></div>
 
-        {/* New Playbook button */}
-        {user && (
-          <div className="mb-4 sm:mb-5">
-            <Button onClick={() => { setTitle(""); setDescription(""); setCreateOpen(true); }} className="gap-2 w-full sm:w-auto">
+        {/* Top bar: Search + New Playbook */}
+        <div className="flex flex-col sm:flex-row gap-3 mb-5">
+          {playbooks.length > 0 && (
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search playbooks by title, description, or creator..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className="pl-9 h-10"
+              />
+            </div>
+          )}
+          {user && (
+            <Button onClick={() => { setTitle(""); setDescription(""); setCreateOpen(true); }} className="gap-2 shrink-0">
               <Plus className="h-4 w-4" /> New Playbook
             </Button>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Tabs */}
         <Tabs value={tab} onValueChange={setTab}>
@@ -235,16 +275,19 @@ export default function Playbooks() {
           <TabsContent value="mine">
             {myPlaybooks.length === 0 ? (
               <EmptyState
-                message="You haven't created any playbooks yet."
+                icon={BookOpen}
+                message="You haven't created any playbooks yet. Playbooks let you group scripts and objection handlers into curated collections for different scenarios."
                 cta={
                   <Button onClick={() => { setTitle(""); setDescription(""); setCreateOpen(true); }}>
-                    <Plus className="h-4 w-4 mr-2" /> Create Playbook
+                    <Plus className="h-4 w-4 mr-2" /> Create Your First Playbook
                   </Button>
                 }
               />
+            ) : filteredMine.length === 0 ? (
+              <EmptyState icon={Search} message={`No playbooks matching "${search}"`} />
             ) : (
               <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                {myPlaybooks.map(pb => <PlaybookCard key={pb.id} {...cardProps(pb)} />)}
+                {filteredMine.map(pb => <PlaybookCard key={pb.id} {...cardProps(pb)} />)}
               </div>
             )}
           </TabsContent>
@@ -252,32 +295,40 @@ export default function Playbooks() {
           {/* Favourites */}
           <TabsContent value="favourites">
             {favourites.length === 0 ? (
-              <EmptyState message="No favourites yet — star a playbook from the menu on any card to add it here." />
+              <EmptyState icon={Star} message="No favourites yet — star a playbook from the menu on any card to add it here." />
+            ) : filteredFavourites.length === 0 ? (
+              <EmptyState icon={Search} message={`No favourites matching "${search}"`} />
             ) : (
               <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                {favourites.map(pb => <PlaybookCard key={pb.id} {...cardProps(pb)} />)}
+                {filteredFavourites.map(pb => <PlaybookCard key={pb.id} {...cardProps(pb)} />)}
               </div>
             )}
           </TabsContent>
 
           {/* Discover (others) */}
           <TabsContent value="others">
-            <p className="text-xs text-muted-foreground mb-4">Playbooks created by other team members. Use the ⋮ menu to favourite or hide any of these.</p>
+            <p className="text-xs text-muted-foreground mb-4">Playbooks created by other team members. Use the <strong>...</strong> menu to favourite or hide any of these.</p>
             {othersPlaybooks.length === 0 ? (
               <EmptyState message="No playbooks from others to show — you may have hidden them all." />
+            ) : filteredOthers.length === 0 ? (
+              <EmptyState icon={Search} message={`No playbooks matching "${search}"`} />
             ) : (
               <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                {othersPlaybooks.map(pb => <PlaybookCard key={pb.id} {...cardProps(pb)} />)}
+                {filteredOthers.map(pb => <PlaybookCard key={pb.id} {...cardProps(pb)} />)}
               </div>
             )}
           </TabsContent>
 
           {/* Hidden */}
           <TabsContent value="hidden">
-            <p className="text-xs text-muted-foreground mb-4">These playbooks are hidden from your other tabs. Use the ⋮ menu to unhide them.</p>
-            <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {hiddenPlaybooks.map(pb => <PlaybookCard key={pb.id} {...cardProps(pb)} />)}
-            </div>
+            <p className="text-xs text-muted-foreground mb-4">These playbooks are hidden from your other tabs. Use the <strong>...</strong> menu to unhide them.</p>
+            {filteredHidden.length === 0 && search ? (
+              <EmptyState icon={Search} message={`No hidden playbooks matching "${search}"`} />
+            ) : (
+              <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {filteredHidden.map(pb => <PlaybookCard key={pb.id} {...cardProps(pb)} />)}
+              </div>
+            )}
           </TabsContent>
         </Tabs>
       </div>
@@ -287,8 +338,14 @@ export default function Playbooks() {
         <DialogContent>
           <DialogHeader><DialogTitle>New Playbook</DialogTitle></DialogHeader>
           <div className="space-y-4">
-            <Input placeholder="Playbook title" value={title} onChange={e => setTitle(e.target.value)} />
-            <Textarea placeholder="Description (optional)" value={description} onChange={e => setDescription(e.target.value)} rows={3} />
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium">Title</label>
+              <Input placeholder="e.g. First Meeting Scripts, Objection Handling for HNW" value={title} onChange={e => setTitle(e.target.value)} autoFocus />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium">Description <span className="text-muted-foreground font-normal">(optional)</span></label>
+              <Textarea placeholder="What is this playbook for?" value={description} onChange={e => setDescription(e.target.value)} rows={3} />
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setCreateOpen(false)}>Cancel</Button>
@@ -305,8 +362,14 @@ export default function Playbooks() {
         <DialogContent>
           <DialogHeader><DialogTitle>Edit Playbook</DialogTitle></DialogHeader>
           <div className="space-y-4">
-            <Input placeholder="Playbook title" value={title} onChange={e => setTitle(e.target.value)} />
-            <Textarea placeholder="Description (optional)" value={description} onChange={e => setDescription(e.target.value)} rows={3} />
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium">Title</label>
+              <Input placeholder="Playbook title" value={title} onChange={e => setTitle(e.target.value)} autoFocus />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium">Description <span className="text-muted-foreground font-normal">(optional)</span></label>
+              <Textarea placeholder="What is this playbook for?" value={description} onChange={e => setDescription(e.target.value)} rows={3} />
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setEditPlaybook(null)}>Cancel</Button>
@@ -320,7 +383,7 @@ export default function Playbooks() {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Delete playbook?</AlertDialogTitle>
-            <AlertDialogDescription>This will permanently delete this playbook and all its script selections.</AlertDialogDescription>
+            <AlertDialogDescription>This will permanently delete this playbook and all its script selections. This action cannot be undone.</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>

@@ -12,7 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare, Share2, Globe, Heading1, Heading2, Heading3, X, Link, ChevronRight, Users, UserPlus, Clock, CheckCircle, XCircle, Search } from "lucide-react";
+import { ArrowLeft, ChevronDown, Trash2, Loader2, GripVertical, Copy, Check, Plus, Sparkles, Pencil, MessageSquare, Share2, Globe, Heading1, Heading2, Heading3, X, Link, ChevronRight, Users, UserPlus, Clock, CheckCircle, XCircle, Search, ChevronsUpDown, List, ChevronUp } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePlaybooks, usePlaybookItems } from "@/hooks/usePlaybooks";
@@ -713,9 +713,9 @@ export default function PlaybookDetail() {
     <PageLayout title={playbook?.title || "Playbook"} description={playbook?.description || "Script playbook detail"}>
       <div className="px-3 sm:px-6 lg:px-8 max-w-4xl mx-auto pb-20">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 pt-4 sm:pt-6">
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={() => navigate("/playbooks")}>
+        <div className="flex flex-col gap-3 mb-6 pt-4 sm:pt-6">
+          <div className="flex items-start gap-3">
+            <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0 mt-0.5" onClick={() => navigate("/playbooks")}>
               <ArrowLeft className="h-4 w-4" />
             </Button>
             <div className="flex-1 min-w-0">
@@ -725,7 +725,7 @@ export default function PlaybookDetail() {
             </div>
           </div>
           {isOwner && (
-            <div className="flex gap-2 w-full sm:w-auto flex-wrap">
+            <div className="grid grid-cols-2 sm:flex gap-2 sm:flex-wrap ml-0 sm:ml-11">
               {/* Share dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -825,13 +825,18 @@ export default function PlaybookDetail() {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <Button variant="outline" onClick={handleAISuggest} disabled={isAiLoading} className="gap-1.5 flex-1 sm:flex-initial">
-                {isAiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />} AI Suggest
+              <Button variant="outline" size="sm" onClick={handleAISuggest} disabled={isAiLoading} className="gap-1.5">
+                {isAiLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Sparkles className="h-3.5 w-3.5" />}
+                <span className="hidden sm:inline">AI Suggest</span>
+                <span className="sm:hidden">AI</span>
               </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="gap-1.5 flex-1 sm:flex-initial">
-                    <Heading1 className="h-4 w-4" /> Add Group <ChevronRight className="h-3.5 w-3.5 ml-0.5" />
+                  <Button variant="outline" size="sm" className="gap-1.5">
+                    <Heading1 className="h-3.5 w-3.5" />
+                    <span className="hidden sm:inline">Add Section</span>
+                    <span className="sm:hidden">Section</span>
+                    <ChevronRight className="h-3 w-3 ml-0.5" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-44">
@@ -840,8 +845,8 @@ export default function PlaybookDetail() {
                   <DropdownMenuItem onClick={() => handleAddSection(3)} className="gap-2"><Heading3 className="h-4 w-4" /> H3 — Sub-group</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Button onClick={() => setAddDialogOpen(true)} className="gap-2 flex-1 sm:flex-initial">
-                <Plus className="h-4 w-4" /> Add Items
+              <Button size="sm" onClick={() => setAddDialogOpen(true)} className="gap-1.5 col-span-2 sm:col-span-1">
+                <Plus className="h-3.5 w-3.5" /> Add Items
               </Button>
             </div>
           )}
@@ -902,14 +907,103 @@ export default function PlaybookDetail() {
           </Card>
         )}
 
+        {/* Table of Contents + Expand/Collapse Controls */}
+        {itemsWithData.length > 0 && groups.some(g => g.section) && (
+          <div className="mb-4 flex flex-col sm:flex-row sm:items-start gap-3">
+            {/* Table of Contents */}
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline" size="sm" className="gap-1.5 text-xs">
+                  <List className="h-3.5 w-3.5" /> Table of Contents
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent align="start" className="w-72 p-2 max-h-[60vh] overflow-y-auto">
+                <p className="text-xs font-semibold text-muted-foreground px-2 py-1 uppercase tracking-wider">Jump to section</p>
+                <div className="space-y-0.5 mt-1">
+                  {groups.filter(g => g.section).map(g => {
+                    const label = g.section.custom_content?.label || "Section";
+                    const level = (g.section.custom_content?.level as number) || 1;
+                    const anchor = slugify(label);
+                    return (
+                      <button
+                        key={g.key}
+                        className={cn(
+                          "w-full text-left px-2 py-1.5 rounded text-sm hover:bg-muted transition-colors truncate",
+                          level === 2 && "pl-5 text-xs",
+                          level === 3 && "pl-8 text-xs text-muted-foreground",
+                        )}
+                        onClick={() => {
+                          // Expand section if collapsed
+                          if (collapsedSections[g.section.id]) {
+                            setCollapsedSections(prev => ({ ...prev, [g.section.id]: false }));
+                          }
+                          setTimeout(() => {
+                            document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                          }, 50);
+                        }}
+                      >
+                        {label}
+                        {g.children.length > 0 && (
+                          <span className="text-muted-foreground ml-1">({g.children.length})</span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </PopoverContent>
+            </Popover>
+
+            {/* Expand/Collapse All */}
+            <div className="flex gap-1.5">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-1 text-xs text-muted-foreground h-8"
+                onClick={() => {
+                  const allSectionIds = groups.filter(g => g.section).reduce((acc, g) => {
+                    acc[g.section.id] = false;
+                    return acc;
+                  }, {} as Record<string, boolean>);
+                  setCollapsedSections(allSectionIds);
+                }}
+              >
+                <ChevronsUpDown className="h-3 w-3" /> Expand All
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-1 text-xs text-muted-foreground h-8"
+                onClick={() => {
+                  const allCollapsed = groups.filter(g => g.section).reduce((acc, g) => {
+                    acc[g.section.id] = true;
+                    return acc;
+                  }, {} as Record<string, boolean>);
+                  setCollapsedSections(allCollapsed);
+                }}
+              >
+                <ChevronUp className="h-3 w-3" /> Collapse All
+              </Button>
+            </div>
+          </div>
+        )}
+
         {/* Items */}
         {isLoading || scriptsLoading || objectionsLoading ? (
           <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div>
         ) : itemsWithData.length === 0 ? (
-          <Card className="text-center py-12">
+          <Card className="text-center py-12 border-dashed">
             <CardContent>
-              <p className="text-muted-foreground mb-4">No items in this playbook yet.</p>
-              {isOwner && <Button onClick={() => setAddDialogOpen(true)}><Plus className="h-4 w-4 mr-2" /> Add Items</Button>}
+              <div className="rounded-full bg-muted w-14 h-14 mx-auto flex items-center justify-center mb-4">
+                <Plus className="h-7 w-7 text-muted-foreground" />
+              </div>
+              <p className="font-medium mb-1">This playbook is empty</p>
+              <p className="text-muted-foreground text-sm mb-5">Add scripts, objection handlers, or section headers to build your playbook.</p>
+              {isOwner && (
+                <div className="flex gap-2 justify-center flex-wrap">
+                  <Button onClick={() => setAddDialogOpen(true)} className="gap-1.5"><Plus className="h-4 w-4" /> Add Scripts & Objections</Button>
+                  <Button variant="outline" onClick={() => handleAddSection(1)} className="gap-1.5"><Heading1 className="h-4 w-4" /> Add Section Header</Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         ) : (
