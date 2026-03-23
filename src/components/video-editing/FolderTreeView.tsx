@@ -127,16 +127,31 @@ function buildTree(
     if (!getParentPath(path)) rootFolders.push(node);
   });
 
-  // Sort children by path for deterministic order
+  const getMinOrder = (n: FolderNode): number => {
+    let min = Infinity;
+    for (const { video } of n.videos) min = Math.min(min, video.order ?? Infinity);
+    for (const child of n.children) min = Math.min(min, getMinOrder(child));
+    return min;
+  };
+
   const sortNode = (n: FolderNode) => {
-    n.children.sort((a, b) => a.path.localeCompare(b.path));
+    n.children.sort((a, b) => getMinOrder(a) - getMinOrder(b));
     n.children.forEach(sortNode);
   };
-  rootFolders.sort((a, b) => a.path.localeCompare(b.path));
+  rootFolders.sort((a, b) => getMinOrder(a) - getMinOrder(b));
   rootFolders.forEach(sortNode);
 
   const root: FolderNode = { path: '', name: '', children: rootFolders, videos: rootVideos };
   return { root, rootVideos };
+}
+
+function findNode(node: FolderNode, path: string): FolderNode | null {
+  if (node.path === path) return node;
+  for (const child of node.children) {
+    const found = findNode(child, path);
+    if (found) return found;
+  }
+  return null;
 }
 
 // ─── SortableVideoItem ────────────────────────────────────────────────────────
@@ -514,39 +529,77 @@ export function FolderTreeView({
       return;
     }
 
-    // Folder dropped onto another folder → make it a sub-folder
     if (activeIdStr.startsWith('folder-') && overIdStr.startsWith('folder-')) {
       const activePath = activeIdStr.replace('folder-', '');
       const overPath = overIdStr.replace('folder-', '');
 
       if (activePath !== overPath && onReorderVideos) {
-        // Avoid nesting a folder inside itself or a descendant
-        if (overPath.startsWith(activePath + '/') || activePath === overPath) {
-          resetDragState();
-          return;
-        }
+        const activeParent = getParentPath(activePath);
+        const overParent = getParentPath(overPath);
 
-        const activeName = getFolderName(activePath);
-        const newParentPath = overPath;
-        const newFolderPath = joinPath(newParentPath, activeName);
+        if (activeParent === overParent) {
+          const parentNode = activeParent === '' ? root : findNode(root, activeParent);
+          if (parentNode) {
+            const siblingPaths = parentNode.children.map(c => c.path);
+            const oldIdx = siblingPaths.indexOf(activePath);
+            const newIdx = siblingPaths.indexOf(overPath);
+            if (oldIdx !== -1 && newIdx !== -1) {
+              const newSiblingOrder = [...siblingPaths];
+              const [moved] = newSiblingOrder.splice(oldIdx, 1);
+              newSiblingOrder.splice(newIdx, 0, moved);
 
-        // Repath all videos that were under activePath
-        const updatedVideos = videos.map((v, i) => {
-          const cat = v.category ?? '';
-          if (cat === activePath || cat.startsWith(activePath + '/')) {
-            const newCat = newFolderPath + cat.slice(activePath.length);
-            return { ...v, category: newCat, order: i };
+              const belongsTo = (v: TrainingVideo, fp: string) => {
+                const cat = v.category ?? '';
+                return cat === fp || cat.startsWith(fp + '/');
+              };
+
+              const groups: TrainingVideo[][] = siblingPaths.map(sp =>
+                videos.filter(v => belongsTo(v, sp)).sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+              );
+
+              const reordered: TrainingVideo[] = [];
+              for (const sp of newSiblingOrder) {
+                reordered.push(...groups[siblingPaths.indexOf(sp)]);
+              }
+
+              const orderValues = groups.flat()
+                .map(v => v.order ?? 0)
+                .sort((a, b) => a - b);
+
+              const idToOrder = new Map<string, number>();
+              reordered.forEach((v, i) => idToOrder.set(v.id, orderValues[i]));
+
+              const updatedVideos = videos
+                .map(v => idToOrder.has(v.id) ? { ...v, order: idToOrder.get(v.id)! } : v)
+                .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+              onReorderVideos(updatedVideos);
+            }
           }
-          return { ...v, order: i };
-        });
+        } else {
+          if (overPath.startsWith(activePath + '/')) {
+            resetDragState();
+            return;
+          }
 
-        // Auto-expand the new parent
-        const next = new Set(expandedFolders);
-        next.add(newParentPath);
-        next.add(newFolderPath);
-        onExpandedChange(next);
+          const activeName = getFolderName(activePath);
+          const newFolderPath = joinPath(overPath, activeName);
 
-        onReorderVideos(updatedVideos);
+          const updatedVideos = videos.map((v, i) => {
+            const cat = v.category ?? '';
+            if (cat === activePath || cat.startsWith(activePath + '/')) {
+              return { ...v, category: newFolderPath + cat.slice(activePath.length), order: i };
+            }
+            return { ...v, order: i };
+          });
+
+          const next = new Set(expandedFolders);
+          next.add(overPath);
+          next.add(newFolderPath);
+          onExpandedChange(next);
+
+          onReorderVideos(updatedVideos);
+        }
       }
       resetDragState();
       return;
