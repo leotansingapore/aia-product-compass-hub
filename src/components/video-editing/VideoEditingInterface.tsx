@@ -116,16 +116,15 @@ export function VideoEditingInterface({
     onNewVideoChange
   });
 
-  const handleAddPageToFolder = (folderName: string) => {
-    // Create a new page template with rich content mode enabled
+  const handleAddPageToFolder = async (folderName: string) => {
     const newPage: TrainingVideo = {
       id: `temp-${Date.now()}`,
       title: 'New Page',
       url: '',
       description: '',
-      category: folderName || '', // Empty string means no folder (root level)
+      category: folderName || '',
       order: videoOrderChanges.pendingVideos.length,
-      rich_content: '', // Start with empty rich content
+      rich_content: '',
       legacy_fields: {
         migrated_at: new Date().toISOString(),
         notes: '',
@@ -135,21 +134,11 @@ export function VideoEditingInterface({
       }
     };
 
-    // Add the new page to the videos array
     const updatedVideos = [...videoOrderChanges.pendingVideos, newPage];
     videoOrderChanges.updatePendingVideos(updatedVideos);
-    
-    // Sync with parent state immediately so the page exists when content updates happen
     onSetEditVideos(updatedVideos);
-
-    // Open it for editing (it will be the last item)
-    const newIndex = updatedVideos.length - 1;
-    onEditingIndexChange(newIndex);
-
-    toast({
-      title: 'New Page Created',
-      description: folderName ? `Start editing your new page in "${folderName}".` : 'Start editing your new page at root level.',
-    });
+    onEditingIndexChange(updatedVideos.length - 1);
+    await onSave(updatedVideos);
   };
 
   const handleAddPageToRoot = () => {
