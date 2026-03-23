@@ -265,24 +265,21 @@ export function VideoEditingInterface({
         />
         
         {(videoOrderChanges.hasPendingChanges || (hasContentChanges && isEditorEditing)) && (
-          <>
-            <div className="h-20" />
-            <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t">
-              <div className="max-w-[1600px] mx-auto px-6 py-4">
-                <VideoEditingActions
-                  saving={saving || videoOrderChanges.isSaving}
-                  onSave={async () => {
-                    const currentVideos = videoOrderChanges.pendingVideos;
-                    console.log('💾 Save triggered with videos:', currentVideos.length);
-                    await onSave(currentVideos);
-                    videoOrderChanges.clearChangeTracking();
-                    setLastSavedAt(Date.now());
-                  }}
-                  onCancel={onCancel}
-                />
-              </div>
+          <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t">
+            <div className="max-w-[1600px] mx-auto px-6 py-4">
+              <VideoEditingActions
+                saving={saving || videoOrderChanges.isSaving}
+                onSave={async () => {
+                  const currentVideos = videoOrderChanges.pendingVideos;
+                  console.log('💾 Save triggered with videos:', currentVideos.length);
+                  await onSave(currentVideos);
+                  videoOrderChanges.clearChangeTracking();
+                  setLastSavedAt(Date.now());
+                }}
+                onCancel={onCancel}
+              />
             </div>
-          </>
+          </div>
         )}
       </>
     );
