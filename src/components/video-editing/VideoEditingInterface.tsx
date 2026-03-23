@@ -264,25 +264,25 @@ export function VideoEditingInterface({
           onSidebarSave={handleSidebarSave}
         />
         
-        {/* Unified save bar - shows when in edit mode or reorder changes */}
         {(videoOrderChanges.hasPendingChanges || (hasContentChanges && isEditorEditing)) && (
-          <div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t px-6 py-4 mt-6">
-            <VideoEditingActions
-              saving={saving || videoOrderChanges.isSaving}
-              onSave={async () => {
-                // Get the latest videos (includes order changes and content changes)
-                const currentVideos = videoOrderChanges.pendingVideos;
-                console.log('💾 Save triggered with videos:', currentVideos.length);
-                // Wait for save to complete before clearing state
-                await onSave(currentVideos);
-                // Clear change tracking but keep pendingVideos as-is (they have the saved state)
-                videoOrderChanges.clearChangeTracking();
-                // Signal editor to switch back to preview mode
-                setLastSavedAt(Date.now());
-              }}
-              onCancel={onCancel}
-            />
-          </div>
+          <>
+            <div className="h-20" />
+            <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t">
+              <div className="max-w-[1600px] mx-auto px-6 py-4">
+                <VideoEditingActions
+                  saving={saving || videoOrderChanges.isSaving}
+                  onSave={async () => {
+                    const currentVideos = videoOrderChanges.pendingVideos;
+                    console.log('💾 Save triggered with videos:', currentVideos.length);
+                    await onSave(currentVideos);
+                    videoOrderChanges.clearChangeTracking();
+                    setLastSavedAt(Date.now());
+                  }}
+                  onCancel={onCancel}
+                />
+              </div>
+            </div>
+          </>
         )}
       </>
     );
