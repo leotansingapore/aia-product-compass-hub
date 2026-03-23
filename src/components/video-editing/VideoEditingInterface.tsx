@@ -255,7 +255,17 @@ export function VideoEditingInterface({
           pendingSubFolderParent={folderManagement.pendingSubFolderParent}
           onExpandedChange={folderManagement.setExpandedFolders}
           onFolderDialogOpenChange={folderManagement.setFolderDialogOpen}
-          onFolderSave={folderManagement.handleFolderSave}
+          onFolderSave={(folderName: string) => {
+            const trimmed = folderName.trim();
+            if (!trimmed) return;
+            folderManagement.handleFolderSave(trimmed);
+            if (folderManagement.folderDialogMode === 'create') {
+              const fullPath = folderManagement.pendingSubFolderParent
+                ? `${folderManagement.pendingSubFolderParent}/${trimmed}`
+                : trimmed;
+              handleAddPageToFolder(fullPath);
+            }
+          }}
           onReorderVideos={videoOrderChanges.updatePendingVideos}
           onReorderFolders={handleReorderFolders}
           lastSavedAt={lastSavedAt}
