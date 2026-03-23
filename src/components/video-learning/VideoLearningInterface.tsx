@@ -4,11 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronLeft, ChevronRight, Check, FileText, ChevronDown, Maximize, Minimize, Link2, SquarePen, CheckCircle2, Circle, List, X, Play } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, FileText, ChevronDown, Link2, SquarePen, CheckCircle2, Circle, List, X, Play } from 'lucide-react';
 import { useVideoProgress } from '@/hooks/useVideoProgress';
 import { VideosByCategory } from '@/components/video-editing/VideosByCategory';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { useToast } from '@/hooks/use-toast';
 import type { TrainingVideo } from '@/hooks/useProducts';
 import { getVideoSlug } from '@/utils/slugUtils';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -56,42 +55,14 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const [currentVideoIndex, setCurrentVideoIndex] = useState(initialVideoIndex);
   const [isPlaying, setIsPlaying] = useState(false);
   const [watchTime, setWatchTime] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const videoContainerRef = useRef<HTMLDivElement>(null);
   const miniNavRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  const { toast } = useToast();
   const { productSlugOrId } = useParams();
   const navigate = useNavigate();
   const { isMasterAdmin, hasRole } = usePermissions();
   const isAdmin = isMasterAdmin() || hasRole('admin');
-
-  // Handle fullscreen changes
-  useEffect(() => {
-    const handleFullscreenChange = () => setIsFullscreen(!!document.fullscreenElement);
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
-    };
-  }, []);
-
-  const toggleFullscreen = useCallback(async () => {
-    if (!videoContainerRef.current) return;
-    try {
-      if (!document.fullscreenElement) {
-        await videoContainerRef.current.requestFullscreen();
-      } else {
-        await document.exitFullscreen();
-      }
-    } catch (error) {
-      console.error('Fullscreen error:', error);
-      toast({ title: "Fullscreen not available", description: "Your browser doesn't support fullscreen mode", variant: "destructive" });
-    }
-  }, [toast]);
 
   const { getVideoProgress, markVideoComplete, updateVideoProgress, updateWatchTime, getCourseProgress } = useVideoProgress(productId);
 
@@ -362,10 +333,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                     )}
                   </CardHeader>
                   <CardContent className="px-0 pb-0 sm:px-6 sm:pb-6">
-                    <div
-                      ref={videoContainerRef}
-                      className={`relative overflow-hidden bg-muted group sm:rounded-lg ${isFullscreen ? 'w-full h-full' : 'aspect-video'}`}
-                    >
+                    <div className="relative overflow-hidden bg-muted sm:rounded-lg aspect-video">
                       <iframe
                         ref={iframeRef}
                         src={videoInfo.embedUrl}
@@ -375,15 +343,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                         onLoad={() => setIsPlaying(false)}
                       />
-                      <Button
-                        variant="secondary"
-                        size="icon"
-                        className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/70 hover:bg-black/90 text-white border-0 h-9 w-9"
-                        onClick={toggleFullscreen}
-                        title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-                      >
-                        {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
-                      </Button>
                     </div>
                   </CardContent>
                 </Card>
