@@ -255,7 +255,7 @@ export function VideoEditingInterface({
           pendingSubFolderParent={folderManagement.pendingSubFolderParent}
           onExpandedChange={folderManagement.setExpandedFolders}
           onFolderDialogOpenChange={folderManagement.setFolderDialogOpen}
-          onFolderSave={(folderName: string) => {
+          onFolderSave={async (folderName: string) => {
             const trimmed = folderName.trim();
             if (!trimmed) return;
             folderManagement.handleFolderSave(trimmed);
@@ -263,7 +263,27 @@ export function VideoEditingInterface({
               const fullPath = folderManagement.pendingSubFolderParent
                 ? `${folderManagement.pendingSubFolderParent}/${trimmed}`
                 : trimmed;
-              handleAddPageToFolder(fullPath);
+              const newPage: TrainingVideo = {
+                id: `temp-${Date.now()}`,
+                title: 'New Page',
+                url: '',
+                description: '',
+                category: fullPath,
+                order: videoOrderChanges.pendingVideos.length,
+                rich_content: '',
+                legacy_fields: {
+                  migrated_at: new Date().toISOString(),
+                  notes: '',
+                  transcript: '',
+                  useful_links: [],
+                  attachments: []
+                }
+              };
+              const updatedVideos = [...videoOrderChanges.pendingVideos, newPage];
+              videoOrderChanges.updatePendingVideos(updatedVideos);
+              onSetEditVideos(updatedVideos);
+              onEditingIndexChange(updatedVideos.length - 1);
+              await onSave(updatedVideos);
             }
           }}
           onReorderVideos={videoOrderChanges.updatePendingVideos}
