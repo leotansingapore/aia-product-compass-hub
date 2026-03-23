@@ -100,7 +100,7 @@ export function VideoEmbed({ embedUrl, platform }: VideoEmbedProps) {
           className="absolute top-0 left-0 w-full h-full rounded-lg border border-border shadow-sm"
           style={{ borderRadius: isFullscreen ? '0' : undefined }}
           frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
           allowFullScreen
           title={`${platform} video`}
         />

@@ -372,7 +372,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                         title={currentVideo?.title}
                         className="w-full h-full"
                         allowFullScreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                         onLoad={() => setIsPlaying(false)}
                       />
                       <Button
