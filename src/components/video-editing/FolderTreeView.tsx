@@ -154,6 +154,13 @@ function findNode(node: FolderNode, path: string): FolderNode | null {
   return null;
 }
 
+function getNodeMinOrder(n: FolderNode): number {
+  let min = Infinity;
+  for (const { video } of n.videos) min = Math.min(min, video.order ?? Infinity);
+  for (const child of n.children) min = Math.min(min, getNodeMinOrder(child));
+  return min;
+}
+
 // ─── SortableVideoItem ────────────────────────────────────────────────────────
 interface SortableVideoItemProps {
   video: TrainingVideo;
@@ -605,6 +612,60 @@ export function FolderTreeView({
       return;
     }
 
+    // Folder dropped on a root-level video → reorder at root level
+    if (activeIdStr.startsWith('folder-') && !overIdStr.startsWith('folder-') && onReorderVideos) {
+      const activePath = activeIdStr.replace('folder-', '');
+      if (getParentPath(activePath) === '') {
+        const overVideo = videos.find(v => v.id === overIdStr);
+        if (overVideo && (!overVideo.category || overVideo.category.trim() === '')) {
+          const belongsTo = (v: TrainingVideo, fp: string) => {
+            const cat = v.category ?? '';
+            return cat === fp || cat.startsWith(fp + '/');
+          };
+
+          type ItemGroup = { id: string; vids: TrainingVideo[] };
+          const items: ItemGroup[] = [];
+
+          for (const { video } of root.videos) {
+            items.push({ id: video.id, vids: [video] });
+          }
+          for (const node of root.children) {
+            const fv = videos.filter(v => belongsTo(v, node.path)).sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+            items.push({ id: `folder-${node.path}`, vids: fv });
+          }
+
+          items.sort((a, b) => {
+            const minA = Math.min(...a.vids.map(v => v.order ?? 0));
+            const minB = Math.min(...b.vids.map(v => v.order ?? 0));
+            return minA - minB;
+          });
+
+          const oldIdx = items.findIndex(g => g.id === activeIdStr);
+          const newIdx = items.findIndex(g => g.id === overIdStr);
+
+          if (oldIdx !== -1 && newIdx !== -1 && oldIdx !== newIdx) {
+            const reordered = [...items];
+            const [moved] = reordered.splice(oldIdx, 1);
+            reordered.splice(newIdx, 0, moved);
+
+            const idToOrder = new Map<string, number>();
+            let order = 0;
+            for (const group of reordered) {
+              for (const v of group.vids) idToOrder.set(v.id, order++);
+            }
+
+            const updatedVideos = videos
+              .map(v => idToOrder.has(v.id) ? { ...v, order: idToOrder.get(v.id)! } : v)
+              .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+            onReorderVideos(updatedVideos);
+          }
+          resetDragState();
+          return;
+        }
+      }
+    }
+
     // Video reordering within same folder
     if (!onReorderVideos) { resetDragState(); return; }
     const activeVideo = videos.find(v => v.id === active.id);
@@ -625,8 +686,23 @@ export function FolderTreeView({
   const activeFolderPath = activeId?.startsWith('folder-') ? activeId.replace('folder-', '') : null;
   const activeFolderName = activeFolderPath ? getFolderName(activeFolderPath) : null;
 
-  const rootFolderIds = root.children.map(c => `folder-${c.path}`);
-  const rootVideoIds = root.videos.map(({ video }) => video.id);
+  const rootItems = [
+    ...root.videos.map(({ video, index }) => ({
+      type: 'video' as const,
+      id: video.id,
+      video,
+      index,
+      sortKey: video.order ?? 0,
+    })),
+    ...root.children.map(node => ({
+      type: 'folder' as const,
+      id: `folder-${node.path}`,
+      node,
+      sortKey: getNodeMinOrder(node),
+    })),
+  ].sort((a, b) => a.sortKey - b.sortKey);
+
+  const allRootIds = rootItems.map(item => item.id);
 
   const handleCreateSubFolder = (parentPath: string) => {
     if (onCreateSubFolder) {
@@ -644,41 +720,37 @@ export function FolderTreeView({
       onDragCancel={resetDragState}
     >
       <div className="space-y-0.5">
-        {/* Root-level videos */}
-        <SortableContext items={rootVideoIds} strategy={verticalListSortingStrategy}>
-          {root.videos.map(({ video, index }) => (
-            <SortableVideoItem
-              key={video.id}
-              video={video}
-              index={index}
-              depth={0}
-              onVideoSelect={onVideoSelect}
-              onEditVideo={onEditVideo}
-              onDeleteVideo={onDeleteVideo}
-            />
-          ))}
-        </SortableContext>
-
-        {/* Root-level folders */}
-        <SortableContext items={rootFolderIds} strategy={verticalListSortingStrategy}>
-          {root.children.map(node => (
-            <RecursiveFolderItem
-              key={node.path}
-              node={node}
-              depth={0}
-              expandedFolders={expandedFolders}
-              dropTargetFolder={dropTargetFolder}
-              activeType={activeType}
-              onToggle={toggleFolder}
-              onEditFolder={onEditFolder}
-              onDeleteFolder={onDeleteFolder}
-              onAddPageToFolder={onAddPageToFolder}
-              onCreateSubFolder={handleCreateSubFolder}
-              onVideoSelect={onVideoSelect}
-              onEditVideo={onEditVideo}
-              onDeleteVideo={onDeleteVideo}
-            />
-          ))}
+        <SortableContext items={allRootIds} strategy={verticalListSortingStrategy}>
+          {rootItems.map(item =>
+            item.type === 'video' ? (
+              <SortableVideoItem
+                key={item.id}
+                video={item.video}
+                index={item.index}
+                depth={0}
+                onVideoSelect={onVideoSelect}
+                onEditVideo={onEditVideo}
+                onDeleteVideo={onDeleteVideo}
+              />
+            ) : (
+              <RecursiveFolderItem
+                key={item.id}
+                node={item.node}
+                depth={0}
+                expandedFolders={expandedFolders}
+                dropTargetFolder={dropTargetFolder}
+                activeType={activeType}
+                onToggle={toggleFolder}
+                onEditFolder={onEditFolder}
+                onDeleteFolder={onDeleteFolder}
+                onAddPageToFolder={onAddPageToFolder}
+                onCreateSubFolder={handleCreateSubFolder}
+                onVideoSelect={onVideoSelect}
+                onEditVideo={onEditVideo}
+                onDeleteVideo={onDeleteVideo}
+              />
+            )
+          )}
         </SortableContext>
       </div>
 
