@@ -1,61 +1,65 @@
-import { useState } from "react";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { PageLayout } from "@/components/layout/PageLayout";
-import { learningTracks, type TrackModule } from "@/data/learningTrackData";
+import { learningTrack } from "@/data/learningTrackData";
 import { useLearningTrackProgress } from "@/hooks/useLearningTrackProgress";
-import { TrackOverviewCard } from "@/components/learning-track/TrackOverviewCard";
-import { TrackDetail } from "@/components/learning-track/TrackDetail";
+import { useLearningTrackContent } from "@/hooks/useLearningTrackContent";
+import { TrackPhaseSection } from "@/components/learning-track/TrackPhaseSection";
+import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { usePermissions } from "@/hooks/usePermissions";
 
 export default function LearningTrack() {
-  const [selectedTrack, setSelectedTrack] = useState<TrackModule | null>(null);
   const isMobile = useIsMobile();
   const progressHook = useLearningTrackProgress();
+  const contentHook = useLearningTrackContent();
+  const { isMasterAdmin, isAdmin } = usePermissions();
+  const isAdminUser = isMasterAdmin() || isAdmin();
 
-  const getAllItemIds = (track: TrackModule): string[] => {
-    if (track.weeks) {
-      return track.weeks.flatMap((w) => w.sessions.map((s) => s.id));
-    }
-    return track.items?.map((i) => i.id) ?? [];
-  };
+  const allIds = learningTrack.flatMap((phase) => phase.items.map((i) => i.id));
+  const completed = progressHook.getCompletedCount(allIds);
+  const total = allIds.length;
+  const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
 
   return (
     <PageLayout title="Learning Track" description="Track your onboarding progress">
       <div className="min-h-screen">
         <BrandedPageHeader
-          title="Learning Track"
-          subtitle="Follow your structured training plan and track your progress step by step."
+          title="Advisor Onboarding Track"
+          subtitle="Your complete training roadmap from foundation to field-ready advisor."
         />
 
-        <div className={`mx-auto max-w-5xl px-4 pb-24 ${isMobile ? "pt-4" : "pt-8"}`}>
-          {selectedTrack ? (
-            <>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setSelectedTrack(null)}
-                className="mb-4 -ml-2"
-              >
-                <ArrowLeft className="mr-1 h-4 w-4" />
-                All Tracks
-              </Button>
-              <TrackDetail track={selectedTrack} progressHook={progressHook} />
-            </>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2">
-              {learningTracks.map((track) => (
-                <TrackOverviewCard
-                  key={track.id}
-                  track={track}
-                  completedCount={progressHook.getCompletedCount(getAllItemIds(track))}
-                  totalCount={getAllItemIds(track).length}
-                  onSelect={() => setSelectedTrack(track)}
-                />
-              ))}
+        <div className={`mx-auto max-w-4xl px-4 pb-24 ${isMobile ? "pt-4" : "pt-8"}`}>
+          {/* Overall progress */}
+          <div className="rounded-xl border bg-card p-5 mb-8">
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-semibold">Overall Progress</span>
+              <div className="flex items-center gap-2">
+                {percent === 100 && (
+                  <Badge variant="default" className="bg-green-600 hover:bg-green-600">
+                    Completed
+                  </Badge>
+                )}
+                <span className="text-sm font-semibold tabular-nums">
+                  {completed}/{total} ({percent}%)
+                </span>
+              </div>
             </div>
-          )}
+            <Progress value={percent} className="h-3" />
+          </div>
+
+          {/* Phases */}
+          <div className="space-y-6">
+            {learningTrack.map((phase) => (
+              <TrackPhaseSection
+                key={phase.id}
+                phase={phase}
+                progressHook={progressHook}
+                contentHook={contentHook}
+                isAdmin={isAdminUser}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </PageLayout>
