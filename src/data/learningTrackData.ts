@@ -306,6 +306,7 @@ export const learningTrack: TrackPhase[] = [
           link("p3-2-c", "KB — Whole Life Products", "/kb/whole-life-products"),
           link("p3-2-d", "MoneySense — Guide to Life Insurance", "https://www.moneysense.gov.sg/insurance/life-insurance"),
           link("p3-2-e", "CMFAS M9 Module — Risk & Insurance", "/cmfas/module/m9"),
+          link("p3-2-f2", "Pro Achiever Study Bank — 1000 Practice Questions", "/product/pro-achiever/study"),
           text("p3-2-f", "Key distinction for clients:\n• Medical Treatment coverage (Hospitalization, PA) = pays for medical bills directly\n• Income Replacement coverage (Whole Life, Term) = replaces lost income if you can't work\n\nMost clients need BOTH. A hospitalization plan covers the bill, but who pays the mortgage while you're recovering?"),
         ],
       },
