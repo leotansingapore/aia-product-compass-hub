@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Home, Library, FileText, MessageCircle, Grid3X3 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Bookmark, GraduationCap, Users, HelpCircle, BookOpen, GitBranch, TrendingUp } from "lucide-react";
+import { Bookmark, GraduationCap, Users, HelpCircle, BookOpen, GitBranch, TrendingUp, ListChecks } from "lucide-react";
 
 const navigationItems = [
   { name: "Home", href: "/", icon: Home },
@@ -14,6 +14,7 @@ const navigationItems = [
 
 const quickLinkItems = [
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30" },
+  { name: "Learning Track", href: "/learning-track", icon: ListChecks, color: "text-cyan-500", bg: "bg-cyan-50 dark:bg-cyan-950/30" },
   { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
   { name: "Client Profile", href: "/search-by-profile", icon: Users, color: "text-violet-500", bg: "bg-violet-50 dark:bg-violet-950/30" },
   { name: "How to Use", href: "/how-to-use", icon: HelpCircle, color: "text-teal-500", bg: "bg-teal-50 dark:bg-teal-950/30" },

@@ -62,6 +62,7 @@ const PublicPlaybookView = lazy(() => import("./pages/PublicPlaybookView"));
 const AIAssistant = lazy(() => import("./pages/AIAssistant"));
 const ConceptCards = lazy(() => import("./pages/ConceptCards"));
 const ProductExam = lazy(() => import("./pages/ProductExam"));
+const LearningTrack = lazy(() => import("./pages/LearningTrack"));
 
 const queryClient = new QueryClient();
 
@@ -128,6 +129,7 @@ const App = () => (
                     <Route path="/flows" element={<RequireAuth><ScriptFlows /></RequireAuth>} />
                     <Route path="/flows/:flowId" element={<RequireAuth><ScriptFlows /></RequireAuth>} />
                     <Route path="/concept-cards" element={<RequireAuth><ConceptCards /></RequireAuth>} />
+                    <Route path="/learning-track" element={<RequireAuth><LearningTrack /></RequireAuth>} />
                     <Route path="/kb" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
                     <Route path="/kb/:categorySlug" element={<RequireAuth><KBCategory /></RequireAuth>} />
                     <Route path="/kb/:categorySlug/:productSlug" element={<RequireAuth><KBProduct /></RequireAuth>} />
