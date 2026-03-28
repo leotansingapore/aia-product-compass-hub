@@ -26,7 +26,7 @@ export default function LearningTrack() {
       <div className="min-h-screen">
         <BrandedPageHeader
           title="Learning Track"
-          description="Follow your structured training plan and track your progress step by step."
+          subtitle="Follow your structured training plan and track your progress step by step."
         />
 
         <div className={`mx-auto max-w-5xl px-4 pb-24 ${isMobile ? "pt-4" : "pt-8"}`}>
