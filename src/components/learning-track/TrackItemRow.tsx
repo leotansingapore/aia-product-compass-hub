@@ -55,7 +55,9 @@ export function TrackItemRow({
 }: TrackItemRowProps) {
   const [expanded, setExpanded] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
-  const hasContent = contentBlocks.length > 0;
+  const defaultBlocks = item.defaultContent ?? [];
+  const allBlocks = [...defaultBlocks, ...contentBlocks];
+  const hasContent = allBlocks.length > 0;
 
   return (
     <div
@@ -93,7 +95,7 @@ export function TrackItemRow({
                 </span>
                 {hasContent && !expanded && (
                   <span className="text-[10px] text-primary mt-1 block">
-                    {contentBlocks.length} resource{contentBlocks.length !== 1 ? "s" : ""} attached
+                    {allBlocks.length} resource{allBlocks.length !== 1 ? "s" : ""} attached
                   </span>
                 )}
               </div>
@@ -145,52 +147,35 @@ export function TrackItemRow({
               )}
 
               {/* Content blocks (visible to everyone) */}
-              {contentBlocks.length > 0 && (
+              {allBlocks.length > 0 && (
                 <div className="space-y-3 pt-1">
                   <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                     Resources
                   </div>
-                  {contentBlocks.map((block) => (
-                    <div key={block.id} className="relative group">
-                      {block.type === "text" && (
-                        <div className="rounded-md border bg-muted/30 p-3">
-                          <div className="flex items-start gap-2">
-                            <FileText className="h-3.5 w-3.5 text-muted-foreground mt-0.5 shrink-0" />
-                            <p className="text-sm whitespace-pre-wrap">{block.text}</p>
+                  {allBlocks.map((block) => {
+                    const isDefault = defaultBlocks.some((d) => d.id === block.id);
+                    const isInternal = block.type === "link" && block.url?.startsWith("/");
+                    return (
+                      <div key={block.id} className="relative group">
+                        {block.type === "text" && (
+                          <div className="rounded-md border bg-muted/30 p-3">
+                            <div className="flex items-start gap-2">
+                              <FileText className="h-3.5 w-3.5 text-muted-foreground mt-0.5 shrink-0" />
+                              <p className="text-sm whitespace-pre-wrap">{block.text}</p>
+                            </div>
                           </div>
-                        </div>
-                      )}
-                      {block.type === "link" && (
-                        <a
-                          href={block.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 rounded-md border p-3 transition-colors hover:bg-accent/50"
-                        >
-                          <ExternalLink className="h-3.5 w-3.5 text-primary shrink-0" />
-                          <span className="text-sm text-primary underline underline-offset-2">
-                            {block.label || block.url}
-                          </span>
-                        </a>
-                      )}
-                      {block.type === "video" && (
-                        <div className="space-y-1.5">
-                          {block.label && (
-                            <div className="flex items-center gap-1.5">
-                              <Play className="h-3 w-3 text-muted-foreground" />
-                              <span className="text-xs font-medium text-muted-foreground">{block.label}</span>
-                            </div>
-                          )}
-                          {block.url && getVideoEmbedUrl(block.url) ? (
-                            <div className="relative w-full rounded-md overflow-hidden border" style={{ paddingBottom: "56.25%" }}>
-                              <iframe
-                                src={getVideoEmbedUrl(block.url)!}
-                                className="absolute inset-0 w-full h-full"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                title={block.label || "Video"}
-                              />
-                            </div>
+                        )}
+                        {block.type === "link" && (
+                          isInternal ? (
+                            <a
+                              href={block.url}
+                              className="flex items-center gap-2 rounded-md border border-primary/20 bg-primary/5 p-3 transition-colors hover:bg-primary/10"
+                            >
+                              <ExternalLink className="h-3.5 w-3.5 text-primary shrink-0" />
+                              <span className="text-sm font-medium text-primary">
+                                {block.label || block.url}
+                              </span>
+                            </a>
                           ) : (
                             <a
                               href={block.url}
@@ -198,27 +183,60 @@ export function TrackItemRow({
                               rel="noopener noreferrer"
                               className="flex items-center gap-2 rounded-md border p-3 transition-colors hover:bg-accent/50"
                             >
-                              <Play className="h-3.5 w-3.5 text-primary shrink-0" />
+                              <ExternalLink className="h-3.5 w-3.5 text-primary shrink-0" />
                               <span className="text-sm text-primary underline underline-offset-2">
                                 {block.label || block.url}
                               </span>
                             </a>
-                          )}
-                        </div>
-                      )}
+                          )
+                        )}
+                        {block.type === "video" && (
+                          <div className="space-y-1.5">
+                            {block.label && (
+                              <div className="flex items-center gap-1.5">
+                                <Play className="h-3 w-3 text-muted-foreground" />
+                                <span className="text-xs font-medium text-muted-foreground">{block.label}</span>
+                              </div>
+                            )}
+                            {block.url && getVideoEmbedUrl(block.url) ? (
+                              <div className="relative w-full rounded-md overflow-hidden border" style={{ paddingBottom: "56.25%" }}>
+                                <iframe
+                                  src={getVideoEmbedUrl(block.url)!}
+                                  className="absolute inset-0 w-full h-full"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                  title={block.label || "Video"}
+                                />
+                              </div>
+                            ) : (
+                              <a
+                                href={block.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 rounded-md border p-3 transition-colors hover:bg-accent/50"
+                              >
+                                <Play className="h-3.5 w-3.5 text-primary shrink-0" />
+                                <span className="text-sm text-primary underline underline-offset-2">
+                                  {block.label || block.url}
+                                </span>
+                              </a>
+                            )}
+                          </div>
+                        )}
 
-                      {/* Admin delete button */}
-                      {isAdmin && (
-                        <button
-                          onClick={() => onRemoveBlock(block.id)}
-                          className="absolute -right-1 -top-1 hidden group-hover:flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-destructive-foreground shadow-sm"
-                          aria-label="Remove resource"
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </button>
-                      )}
-                    </div>
-                  ))}
+                        {/* Admin delete button — only for admin-added blocks, not defaults */}
+                        {isAdmin && !isDefault && (
+                          <button
+                            onClick={() => onRemoveBlock(block.id)}
+                            className="absolute -right-1 -top-1 hidden group-hover:flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-destructive-foreground shadow-sm"
+                            aria-label="Remove resource"
+                          >
+                            <Trash2 className="h-3 w-3" />
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
 
