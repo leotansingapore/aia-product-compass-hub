@@ -199,7 +199,7 @@ export default function ProductDetail() {
                     <div>
                       <h3 className="font-semibold text-sm sm:text-base">Study Bank</h3>
                       <p className="text-xs sm:text-sm text-muted-foreground">
-                        500 practice questions with instant feedback — study at your own pace
+                        Practice questions with instant feedback — study at your own pace
                       </p>
                     </div>
                   </div>
