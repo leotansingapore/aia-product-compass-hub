@@ -23,7 +23,7 @@ import { useProductDetail } from "@/hooks/useProductDetail";
 import { useAdmin } from "@/hooks/useAdmin";
 import type { TrainingVideo } from "@/hooks/useProducts";
 import { getVideoSlug } from "@/utils/slugUtils";
-import { Brain } from "lucide-react";
+import { Brain, BookOpen } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const PRODUCTS_WITH_EXAMS = new Set(['pro-achiever']);
@@ -186,27 +186,52 @@ export default function ProductDetail() {
             )}
           </div>
 
-          {/* Product Exam CTA */}
+          {/* Study Bank + Product Exam CTA */}
           {PRODUCTS_WITH_EXAMS.has(product.id) && (
-            <Card className="mb-4 sm:mb-8 border-primary/20 bg-gradient-to-r from-green-50 to-emerald-50">
-              <CardContent className="p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-primary/10 shrink-0">
-                    <Brain className="h-5 w-5 text-primary" />
+            <Card className="mb-4 sm:mb-8 border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20">
+              <CardContent className="p-4 sm:p-6 space-y-4">
+                {/* Study Bank */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-primary/10 shrink-0">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-sm sm:text-base">Study Bank</h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        500 practice questions with instant feedback — study at your own pace
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-sm sm:text-base">Product Knowledge Exam</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      Test your knowledge on product facts, sales angles, and objection handling
-                    </p>
-                  </div>
+                  <Button
+                    variant="outline"
+                    onClick={() => navigate(`/product/${productSlugOrId}/study`)}
+                    className="shrink-0 w-full sm:w-auto"
+                  >
+                    Start Studying
+                  </Button>
                 </div>
-                <Button
-                  onClick={() => navigate(`/product/${productSlugOrId}/exam`)}
-                  className="shrink-0 w-full sm:w-auto"
-                >
-                  Take Exam
-                </Button>
+                <div className="border-t" />
+                {/* Exam */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/30 shrink-0">
+                      <Brain className="h-5 w-5 text-green-700 dark:text-green-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-sm sm:text-base">Product Knowledge Exam</h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        Scored exam recorded on your profile — take when you're ready
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={() => navigate(`/product/${productSlugOrId}/exam`)}
+                    className="shrink-0 w-full sm:w-auto"
+                  >
+                    Take Exam
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           )}
