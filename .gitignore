@@ -29,3 +29,4 @@ BUGS.md
 
 # Playwright MCP logs
 .playwright-mcp/
+.vercel

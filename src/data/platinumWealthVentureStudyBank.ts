@@ -1486,15 +1486,15 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // Q105 — correct: 0
   {
-    question: "A client has $460,000 in CPF OA earning 2.5%. How do you position PWV?",
+    question: "A client has $460,000 in CPF OA earning 2.5%. How do you position PWV alongside their CPF strategy?",
     options: [
-      "Show that CPF OA funds can be invested in PWV via CPF-approved funds for potentially higher returns through a dividend strategy",
+      "Show that CPF OA funds can be withdrawn to their bank account (after age 55) and the cash used to fund PWV premiums for potentially higher dividend returns",
       "Tell them to withdraw all CPF OA immediately and invest in PWV",
       "Explain that CPF OA returns are already optimal and no action is needed",
       "Say PWV accepts CPF OA direct contributions with no restrictions"
     ],
     correct: 0,
-    explanation: "CPF OA earns 2.5%. PWV dividend funds target 6%. The staged transfer approach (e.g., $60K-$80K/year for 5 years from CPF OA) lets their money work harder while maintaining sufficient CPF balances.",
+    explanation: "PWV is cash-only — CPF cannot be paid directly. But CPF OA funds can be withdrawn to a bank account (subject to CPF rules) and the cash used to fund PWV premiums. The staged approach lets money work harder at 6% vs CPF OA's 2.5%.",
     category: 'sales-angles'
   },
 
