@@ -4,6 +4,11 @@
 // Fireflies recordings, and Obsidian meeting notes.
 // ─────────────────────────────────────────────────────────────────────────────
 
+export interface VisualConfig {
+  type: "depletion" | "bar-chart" | "timeline" | "before-after" | "counter" | "concept";
+  data: any;
+}
+
 export interface SlideContent {
   heading: string;
   bullets: string[];
@@ -11,6 +16,8 @@ export interface SlideContent {
   script?: string;
   /** Optional table data */
   table?: { headers: string[]; rows: string[][] };
+  /** Optional visual/chart config */
+  visual?: VisualConfig;
 }
 
 export interface Lesson {
@@ -84,6 +91,20 @@ This framework gives you a clear, repeatable structure for every meeting. Memori
               "Identify the income gap",
               "Apply inflation adjustment: 2.5-3% annually",
             ],
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "Typical Retirement Income Gap",
+                bars: [
+                  { label: "CPF Life", value: 1400, color: "#3b82f6" },
+                  { label: "Rental", value: 800, color: "#22c55e" },
+                  { label: "Dividends", value: 0, color: "#64748b" },
+                  { label: "GAP", value: 2600, color: "#ef4444" }
+                ],
+                valuePrefix: "$",
+                showValues: true
+              }
+            }
           },
           {
             heading: "Step 2: Identify Redundant Assets",
@@ -306,6 +327,19 @@ The key insight: don't rush the process, but don't let momentum die either. Idea
                 ["Extended (S/C profile)", "4-6", "1-3 months"],
               ],
             },
+            visual: {
+              type: "timeline" as const,
+              data: {
+                title: "The Sales Arc Timeline",
+                points: [
+                  { age: 0, label: "AFF Call", value: "Day 0", color: "#3b82f6" },
+                  { age: 7, label: "Opening", value: "Day 7", color: "#60a5fa" },
+                  { age: 14, label: "Proposal", value: "Day 14", color: "#f59e0b", highlight: true },
+                  { age: 21, label: "Close", value: "Day 21", color: "#22c55e" },
+                  { age: 30, label: "Servicing", value: "Day 30+", color: "#22c55e" }
+                ]
+              }
+            }
           },
           {
             heading: "Critical Timing Rules",
@@ -459,6 +493,20 @@ Remember: your time is your most valuable asset. Spend it on prospects who are r
                 ["Cold", "No response x3", "Unknown", "Breakup call, then archive"],
               ],
             },
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "Lead Scoring & Conversion",
+                bars: [
+                  { label: "Hot (8-10)", value: 80, color: "#22c55e" },
+                  { label: "Warm (5-7)", value: 40, color: "#f59e0b" },
+                  { label: "Cold (<5)", value: 10, color: "#ef4444" }
+                ],
+                valueSuffix: "%",
+                valuePrefix: "",
+                showValues: true
+              }
+            }
           },
         ],
         keyTakeaways: [
@@ -762,6 +810,10 @@ From the Ms Then Ai Huong meeting, after the CPF education, the client immediate
             heading: "The Critical Fact That Changes Everything",
             bullets: [],
             script: '"After age 81, remaining capital goes to the CPF pool, not your family. CPF Life is an annuity, not a savings account."',
+            visual: {
+              type: "depletion" as const,
+              data: { startAge: 65, endAge: 95, startAmount: 280000, depletionAge: 81, monthlyDraw: 2500, title: "CPF Balance Depletion Over Retirement" }
+            }
           },
           {
             heading: "Additional CPF Insights",
@@ -834,6 +886,21 @@ This is the moment where clients lean forward. The gap is no longer abstract —
                 ["$5,000", "$2.0M", "$1.2M", "$1.0M", "$750K"],
               ],
             },
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "Capital Needed for $2,000/mo Income",
+                horizontal: false,
+                bars: [
+                  { label: "FD 3%", value: 800000, color: "#ef4444" },
+                  { label: "Bonds 5%", value: 480000, color: "#f59e0b" },
+                  { label: "PWV 6%", value: 400000, color: "#22c55e" },
+                  { label: "Equity 8%", value: 300000, color: "#3b82f6" }
+                ],
+                valuePrefix: "$",
+                showValues: true
+              }
+            }
           },
           {
             heading: "The Closing Script",
@@ -964,6 +1031,22 @@ Each of these real examples becomes a talking point. When you can show a client 
               "Pro Achiever ILP: $2,800 growth over 7 years (Tracy)",
               "Prudential COI: $11→$67 per $1,000 from age 55-69 (Chang Tsann)",
             ],
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "True Yields: Old Policies vs Alternatives",
+                bars: [
+                  { label: "GE WL", value: 0.5, color: "#ef4444" },
+                  { label: "NTUC WL", value: 1.07, color: "#ef4444" },
+                  { label: "CPF OA", value: 2.5, color: "#f59e0b" },
+                  { label: "CPF SA", value: 4.0, color: "#60a5fa" },
+                  { label: "PWV", value: 6.0, color: "#22c55e" }
+                ],
+                valueSuffix: "%",
+                valuePrefix: "",
+                showValues: true
+              }
+            }
           },
           {
             heading: "Premium Savings Identification",
@@ -1023,6 +1106,18 @@ From the John and Adelyn meeting, showing actual AIA fund performance at 6.9 to 
               "Performance bonus: 0.4% from year 8",
               "Higher upfront fees BUT lower total cost over 10+ years",
             ],
+            visual: {
+              type: "timeline" as const,
+              data: {
+                title: "PWV Fee Structure Over Time",
+                points: [
+                  { age: 1, label: "Years 1-7", value: "3.6% charge", color: "#ef4444" },
+                  { age: 8, label: "Year 8", value: "0% charge", color: "#22c55e", highlight: true },
+                  { age: 8, label: "Years 8-11", value: "+2.5% bonus", color: "#3b82f6" },
+                  { age: 12, label: "Year 8+", value: "+0.4%/yr", color: "#22c55e" }
+                ]
+              }
+            }
           },
           {
             heading: "The Underpromise Rule",
@@ -1119,6 +1214,10 @@ Exit Options that reduce commitment anxiety. The free look period: "You have 14 
               "Pre-underwriting: submit without payment to check qualification",
               "Start small: $10-12K first year, scale up after seeing results",
             ],
+            visual: {
+              type: "counter" as const,
+              data: { from: 0, to: 15, prefix: "", suffix: "+", label: "micro-yeses before the close", color: "#22c55e", fontSize: 96 }
+            }
           },
         ],
         keyTakeaways: [
@@ -1245,6 +1344,10 @@ The psychological framing matters. You're framing the conversation around avoidi
               "Lifetime hospital premiums: $91K-$171K per person",
               "Pure expense — no cash value, no death benefit, no inheritance",
             ],
+            visual: {
+              type: "depletion" as const,
+              data: { startAge: 50, endAge: 90, startAmount: 0, depletionAge: 90, monthlyDraw: -800, title: "Cumulative Healthcare Premium Cost" }
+            }
           },
           {
             heading: "The Solution Script",
@@ -1448,6 +1551,10 @@ Persona 7: The DIY Investor — about 5%. Self-manages stocks and ETFs, skeptica
               "Use SDIC $75K limit as leverage",
               'Key: "Your money is safe but it\'s not working for you"',
             ],
+            visual: {
+              type: "counter" as const,
+              data: { from: 0, to: 40, prefix: "", suffix: "%", label: "of pre-retiree clients are Conservative Savers", color: "#3b82f6", fontSize: 96 }
+            }
           },
           {
             heading: "The Anxious Pre-Retiree (25%)",
@@ -1604,6 +1711,18 @@ Fund switching is available at any time — clients can reallocate between growt
                 ["Promo Tranche", "Extra 10%+", "On $200K+ (limited)"],
               ],
             },
+            visual: {
+              type: "timeline" as const,
+              data: {
+                title: "PWV Bonus Schedule",
+                points: [
+                  { age: 1, label: "Years 1-3", value: "3-12% Welcome", color: "#f59e0b" },
+                  { age: 7, label: "Year 7", value: "Charges end", color: "#22c55e", highlight: true },
+                  { age: 8, label: "Years 8-11", value: "2.5%/yr Bonus", color: "#3b82f6" },
+                  { age: 12, label: "Year 8+", value: "0.4%/yr Forever", color: "#22c55e" }
+                ]
+              }
+            }
           },
           {
             heading: "Key Selling Points",
@@ -1650,6 +1769,21 @@ By giving clients a framework to compare, you position yourself as confident and
               "$120K invested → $2,100/quarter",
               "$210K invested → ~$42K/year",
             ],
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "Dividend Yield: Projected vs Actual",
+                horizontal: false,
+                bars: [
+                  { label: "Target", value: 6.0, color: "#3b82f6" },
+                  { label: "2023", value: 6.99, color: "#22c55e" },
+                  { label: "2024", value: 7.4, color: "#22c55e" }
+                ],
+                valueSuffix: "%",
+                valuePrefix: "",
+                showValues: true
+              }
+            }
           },
           {
             heading: "Competitive Comparison Framework",
@@ -1756,6 +1890,19 @@ Objection 10: "I'll do it next year." Response: "Every year you wait, the cost o
               '"Bad experience" → "Tell me what happened" (listen first)',
               '"Next year" → "Every year delay = $60K opportunity cost"',
             ],
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "20-Year Growth: $200K Investment",
+                horizontal: false,
+                bars: [
+                  { label: "FD 2.5%", value: 328000, color: "#ef4444" },
+                  { label: "PWV 6%", value: 641000, color: "#22c55e" }
+                ],
+                valuePrefix: "$",
+                showValues: true
+              }
+            }
           },
           {
             heading: "The IBCT Technique for C-Profiles",
@@ -2033,6 +2180,27 @@ These techniques are most effective when used subtly and in service of the clien
               "$412K as expense ↔ premiums funded by dividends",
               "The contrast makes the decision obvious",
             ],
+            visual: {
+              type: "before-after" as const,
+              data: {
+                before: {
+                  title: "Without PWV",
+                  items: [
+                    { label: "Yield", value: "1-2%", color: "#ef4444" },
+                    { label: "Capital Needed", value: "$800K", color: "#ef4444" },
+                    { label: "Hospital Premiums", value: "Pure expense", color: "#ef4444" }
+                  ]
+                },
+                after: {
+                  title: "With PWV",
+                  items: [
+                    { label: "Yield", value: "6-7%", color: "#22c55e" },
+                    { label: "Capital Needed", value: "$400K", color: "#22c55e" },
+                    { label: "Hospital Premiums", value: "Funded by dividends", color: "#22c55e" }
+                  ]
+                }
+              }
+            }
           },
         ],
         keyTakeaways: [
@@ -2088,7 +2256,11 @@ Remember, you are not selling against CPF. You are showing that CPF is a foundat
               "Average Singaporean life expectancy: 84 (and rising)",
               "Key question: What happens when CPF runs out but you are still alive?"
             ],
-            script: `"After age 81, CPF pays you nothing and leaves your family nothing. That is why we need to build a second income stream that never runs out."`
+            script: `"After age 81, CPF pays you nothing and leaves your family nothing. That is why we need to build a second income stream that never runs out."`,
+            visual: {
+              type: "depletion" as const,
+              data: { startAge: 65, endAge: 95, startAmount: 300000, depletionAge: 81, monthlyDraw: 2500, title: "CPF Life Balance Over Time" }
+            }
           },
           {
             heading: "Standard vs Basic Comparison",
@@ -2105,6 +2277,20 @@ Remember, you are not selling against CPF. You are showing that CPF is a foundat
                 ["Best For", "Those needing max income now", "Those wanting to leave more behind"],
                 ["Risk", "Longevity risk after 81", "Lower income during retirement"]
               ]
+            },
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "Monthly Payout Comparison",
+                horizontal: false,
+                bars: [
+                  { label: "Standard", value: 3000, color: "#f59e0b" },
+                  { label: "Basic", value: 2400, color: "#22c55e" }
+                ],
+                valuePrefix: "$",
+                valueSuffix: "/mo",
+                showValues: true
+              }
             }
           },
           {
@@ -2185,6 +2371,25 @@ Your action step in every meeting with a pre-retiree: check their CPF balances, 
                 ["Transfer $80K to SA now", "$228,000+", "~$1,750/mo"],
                 ["Difference", "+$18,000+", "+$150/mo for life"]
               ]
+            },
+            visual: {
+              type: "before-after" as const,
+              data: {
+                before: {
+                  title: "No Transfer",
+                  items: [
+                    { label: "RA Balance at 55", value: "$210,000", color: "#f59e0b" },
+                    { label: "CPF Life Payout", value: "~$1,600/mo", color: "#f59e0b" }
+                  ]
+                },
+                after: {
+                  title: "Transfer $80K OA→SA",
+                  items: [
+                    { label: "RA Balance at 55", value: "$228,000+", color: "#22c55e" },
+                    { label: "CPF Life Payout", value: "~$1,750/mo", color: "#22c55e" }
+                  ]
+                }
+              }
             }
           },
           {
@@ -2196,7 +2401,19 @@ Your action step in every meeting with a pre-retiree: check their CPF balances, 
               "This is a one-time optimization window — cannot be done after 55",
               "Position this as 'free money' — costs nothing, earns more"
             ],
-            script: `"Before we talk about any new investments, let me show you something that costs you nothing but earns you more. We can move your excess OA into your SA — it is like getting a raise on your retirement savings for free."`
+            script: `"Before we talk about any new investments, let me show you something that costs you nothing but earns you more. We can move your excess OA into your SA — it is like getting a raise on your retirement savings for free."`,
+            visual: {
+              type: "timeline" as const,
+              data: {
+                title: "The CPF Optimization Window",
+                points: [
+                  { age: 45, label: "Transfer OA → SA", value: "+1.5% p.a.", color: "#3b82f6" },
+                  { age: 50, label: "Last best window", color: "#f59e0b", highlight: true },
+                  { age: 55, label: "SA+OA merge → RA", value: "Locked in", color: "#22c55e" },
+                  { age: 65, label: "CPF Life begins", value: "$1,750/mo", color: "#22c55e" }
+                ]
+              }
+            }
           }
         ],
         keyTakeaways: [
@@ -2249,6 +2466,19 @@ When you combine SRS tax savings with CPF optimization and a dividend plan, you 
               "Effective tax rate: 0% on $40,000 annual withdrawal",
               "This is the number your clients need to hear"
             ],
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "SRS Withdrawal Tax Comparison",
+                bars: [
+                  { label: "Withdrawn", value: 40000, color: "#3b82f6" },
+                  { label: "Taxable", value: 20000, color: "#f59e0b" },
+                  { label: "Tax Paid", value: 0, color: "#22c55e" }
+                ],
+                valuePrefix: "$",
+                showValues: true
+              }
+            },
             script: `"Here is what most people do not realize about SRS. If you structure your withdrawals correctly after 62, you can pull out $40,000 a year and pay absolutely zero tax on it. Let me show you the math."`
           },
           {
@@ -2279,7 +2509,22 @@ When you combine SRS tax savings with CPF optimization and a dividend plan, you 
               "Combined: $7,000–$8,000/mo retirement income",
               "This comprehensive approach is your competitive moat"
             ],
-            script: `"When we combine your CPF Life payout, your SRS withdrawals, and your dividend income, you are looking at $7,000 to $8,000 a month in retirement — with minimal tax. No robo-advisor can build this for you."`
+            script: `"When we combine your CPF Life payout, your SRS withdrawals, and your dividend income, you are looking at $7,000 to $8,000 a month in retirement — with minimal tax. No robo-advisor can build this for you."`,
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "Three Income Streams Combined",
+                horizontal: false,
+                bars: [
+                  { label: "CPF Life", value: 2500, color: "#3b82f6" },
+                  { label: "SRS", value: 3000, color: "#f59e0b" },
+                  { label: "Dividends", value: 2000, color: "#22c55e" }
+                ],
+                valuePrefix: "$",
+                valueSuffix: "/mo",
+                showValues: true
+              }
+            }
           }
         ],
         keyTakeaways: [
@@ -2336,7 +2581,11 @@ This is not financial engineering. This is common sense presented professionally
               "Restructuring converts that cash value into a dividend-generating asset",
               "The client goes from net negative to net positive cash flow",
               "No new money required — uses existing committed capital"
-            ]
+            ],
+            visual: {
+              type: "counter" as const,
+              data: { from: -5300, to: 12000, prefix: "$", suffix: "/yr", label: "Annual Cash Flow Transformation", color: "#22c55e", fontSize: 72 }
+            }
           },
           {
             heading: "The Arthur Chang Example",
@@ -2347,15 +2596,28 @@ This is not financial engineering. This is common sense presented professionally
               "New income: ~$12,000/year in dividends",
               "Net swing: from -$5,300 to +$12,000 = $17,300/year improvement"
             ],
-            table: {
-              headers: ["Metric", "Before Restructuring", "After Restructuring"],
-              rows: [
-                ["Annual Premium Outflow", "-$5,300", "$0"],
-                ["Annual Dividend Income", "$0", "+$12,000"],
-                ["Death Benefit", "$68,000", "$500,000"],
-                ["Net Annual Cash Flow", "-$5,300", "+$12,000"],
-                ["Cash Flow Swing", "", "+$17,300/year"]
-              ]
+            visual: {
+              type: "before-after" as const,
+              data: {
+                before: {
+                  title: "Before Restructuring",
+                  items: [
+                    { label: "Annual Premium", value: "-$5,300", color: "#ef4444" },
+                    { label: "Dividend Income", value: "$0", color: "#64748b" },
+                    { label: "Death Benefit", value: "$68,000", color: "#f59e0b" },
+                    { label: "Net Cash Flow", value: "-$5,300", color: "#ef4444" }
+                  ]
+                },
+                after: {
+                  title: "After Restructuring",
+                  items: [
+                    { label: "Annual Premium", value: "$0", color: "#22c55e" },
+                    { label: "Dividend Income", value: "+$12,000", color: "#22c55e" },
+                    { label: "Death Benefit", value: "$500,000", color: "#22c55e" },
+                    { label: "Net Cash Flow", value: "+$12,000", color: "#22c55e" }
+                  ]
+                }
+              }
             }
           },
           {
@@ -2435,6 +2697,20 @@ In the Patwant Singh meeting, this portal review uncovered a Prudential maturity
                 ["YELLOW", "Moderate returns (3–5%), some overlap, adequate cost", "Monitor annually"],
                 ["RED", "Low returns (<3%), redundant coverage, high cost", "Restructure immediately"]
               ]
+            },
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "Policy Rating System",
+                bars: [
+                  { label: "Keep (>5%)", value: 80, color: "#22c55e" },
+                  { label: "Review (3-5%)", value: 50, color: "#f59e0b" },
+                  { label: "Restructure (<3%)", value: 20, color: "#ef4444" }
+                ],
+                valuePrefix: "",
+                valueSuffix: "",
+                showValues: false
+              }
             }
           },
           {
@@ -2456,7 +2732,11 @@ In the Patwant Singh meeting, this portal review uncovered a Prudential maturity
               "Client loses coverage AND savings in one event",
               "When you explain this, clients react with shock — use that momentum",
               "Compare: separate CI policy + separate investment = no cross-contamination"
-            ]
+            ],
+            visual: {
+              type: "concept" as const,
+              data: { title: "CI claim terminates BOTH coverage AND investment", subtitle: "You lose everything in a single event", value: "The ILP Trap", color: "#ef4444" }
+            }
           }
         ],
         keyTakeaways: [
@@ -2495,7 +2775,28 @@ The common thread across all three cases is this: clients do not know what they 
               "After: Single consolidated plan, $500K death benefit, $0 additional premium",
               "Result: 7x coverage increase with zero new cost"
             ],
-            script: `"You currently have $119,000 locked in policies that would only pay your family $68,000. That means your coverage is less than what you have already paid in. Let me show you how we fix this."`
+            script: `"You currently have $119,000 locked in policies that would only pay your family $68,000. That means your coverage is less than what you have already paid in. Let me show you how we fix this."`,
+            visual: {
+              type: "before-after" as const,
+              data: {
+                before: {
+                  title: "Before",
+                  items: [
+                    { label: "Cash Value", value: "$119,000", color: "#f59e0b" },
+                    { label: "Death Benefit", value: "$68,000", color: "#ef4444" },
+                    { label: "Coverage < Cash!", value: "Losing money", color: "#ef4444" }
+                  ]
+                },
+                after: {
+                  title: "After",
+                  items: [
+                    { label: "Death Benefit", value: "$500,000", color: "#22c55e" },
+                    { label: "Extra Premium", value: "$0", color: "#22c55e" },
+                    { label: "Improvement", value: "7x coverage", color: "#22c55e" }
+                  ]
+                }
+              }
+            }
           },
           {
             heading: "Case Study 2: Patwant Singh — Scattered to Strategic",
@@ -2514,7 +2815,21 @@ The common thread across all three cases is this: clients do not know what they 
               "Problem: Portfolio fluctuating without generating usable cash flow",
               "After: Restructured into dividend portfolio",
               "Result: $24,000/year ($2,000/month) in predictable dividend income"
-            ]
+            ],
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "Three Restructuring Outcomes",
+                horizontal: false,
+                bars: [
+                  { label: "Nov 30", value: 500000, color: "#22c55e" },
+                  { label: "Patwant", value: 1000000, color: "#3b82f6" },
+                  { label: "Elaine", value: 24000, color: "#f59e0b" }
+                ],
+                valuePrefix: "$",
+                showValues: true
+              }
+            }
           },
           {
             heading: "Before & After Summary Table",
@@ -2606,7 +2921,11 @@ This is how you differentiate from the advisor who just pushes products. You car
               "Even if your Will says 'everything to my wife' — CPF follows its own rules",
               "Delays, court costs, and unintended distribution",
               "Takes 10 minutes on the CPF portal to fix"
-            ]
+            ],
+            visual: {
+              type: "concept" as const,
+              data: { title: "Without a CPF nomination, savings go through intestacy — not to who you intended", subtitle: "CPF follows its OWN rules, separate from your Will", value: "CPF ≠ Will", color: "#f59e0b" }
+            }
           },
           {
             heading: "Positioning as a Free Value-Add",
@@ -2666,6 +2985,27 @@ You are not the lawyer who sets up the trust. But you are the advisor who identi
                 ["Best For", "Simple family structures", "Complex families, large estates"],
                 ["Can Set Conditions", "No", "Yes (age triggers, milestones)"]
               ]
+            },
+            visual: {
+              type: "before-after" as const,
+              data: {
+                before: {
+                  title: "Nomination",
+                  items: [
+                    { label: "Payout", value: "Lump sum", color: "#f59e0b" },
+                    { label: "Control", value: "None", color: "#ef4444" },
+                    { label: "Cost", value: "Free", color: "#22c55e" }
+                  ]
+                },
+                after: {
+                  title: "Insurance Trust",
+                  items: [
+                    { label: "Payout", value: "Staged splits", color: "#22c55e" },
+                    { label: "Control", value: "Full conditions", color: "#22c55e" },
+                    { label: "Cost", value: "$2-5K setup", color: "#f59e0b" }
+                  ]
+                }
+              }
             }
           },
           {
@@ -2920,6 +3260,18 @@ The beauty of the group chat is that it persists. Six months later, when a new p
                 ["Day 14", "Value-add content", "Stay top-of-mind without pressure"],
                 ["Ongoing", "Promotions & reviews", "Long-term relationship maintenance"]
               ]
+            },
+            visual: {
+              type: "timeline" as const,
+              data: {
+                title: "The Follow-Up System",
+                points: [
+                  { age: 0, label: "Same Day", value: "Summary", color: "#3b82f6" },
+                  { age: 3, label: "Day 3", value: "Proposal", color: "#60a5fa" },
+                  { age: 7, label: "Day 7", value: "Follow-up", color: "#f59e0b", highlight: true },
+                  { age: 14, label: "Day 14", value: "Value-add", color: "#22c55e" }
+                ]
+              }
             }
           },
           {
@@ -2971,7 +3323,22 @@ Finally, the competitive analysis tool allows you to compare AIA fund structures
               "Rule: Always stretch the problem BEFORE presenting the solution",
               "Let the client sit with the gap for a moment — then offer the answer"
             ],
-            script: `"Right now you need $5,000 a month. But watch what happens when I turn on inflation..." [toggle] "...by 65, that same lifestyle costs $7,000. By 75, $9,500. The money you need keeps going up, but your CPF payout stays flat. That gap is what we need to solve."`
+            script: `"Right now you need $5,000 a month. But watch what happens when I turn on inflation..." [toggle] "...by 65, that same lifestyle costs $7,000. By 75, $9,500. The money you need keeps going up, but your CPF payout stays flat. That gap is what we need to solve."`,
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "Monthly Expenses vs CPF Life (Inflation Effect)",
+                horizontal: false,
+                bars: [
+                  { label: "Today", value: 5000, color: "#3b82f6" },
+                  { label: "Age 65", value: 7000, color: "#f59e0b" },
+                  { label: "Age 75", value: 9500, color: "#ef4444" },
+                  { label: "CPF Life", value: 1800, color: "#22c55e" }
+                ],
+                valuePrefix: "$",
+                showValues: true
+              }
+            }
           },
           {
             heading: "Dividend Mode vs Growth Mode",
@@ -3074,6 +3441,21 @@ Step four: secure commitment. The meeting ended with Kyaw agreeing to the $100,0
                 ["At 75", "$9,500", "$1,800", "$7,700"],
                 ["At 85", "$12,800", "$1,800 (may deplete)", "$11,000+"]
               ]
+            },
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "Retirement Income Gap by Age",
+                horizontal: false,
+                bars: [
+                  { label: "Need @65", value: 7000, color: "#ef4444" },
+                  { label: "CPF @65", value: 1800, color: "#3b82f6" },
+                  { label: "Need @75", value: 9500, color: "#ef4444" },
+                  { label: "CPF @75", value: 1800, color: "#3b82f6" }
+                ],
+                valuePrefix: "$",
+                showValues: true
+              }
             }
           },
           {
@@ -3156,6 +3538,10 @@ For healthcare-anxious clients, this is the most powerful pitch in your arsenal.
                 ["80", "$200,000–$400,000", "$22,000+"],
                 ["85", "$300,000–$500,000+", "$25,000+"]
               ]
+            },
+            visual: {
+              type: "depletion" as const,
+              data: { startAge: 50, endAge: 85, startAmount: 500000, depletionAge: 85, monthlyDraw: 1200, title: "Cumulative Healthcare Costs Over Time" }
             }
           },
           {
@@ -3177,7 +3563,26 @@ For healthcare-anxious clients, this is the most powerful pitch in your arsenal.
               "The product eliminates the very fear that motivated the purchase",
               "This is the most powerful pitch for healthcare-anxious clients"
             ],
-            script: `"Jeffrey, here is what I want you to see. Your biggest concern is your hospital plan costs — $1,000 a month and rising. This dividend plan generates $3,500 a month. Your dividends fund your hospital plan. The very thing you are worried about is covered by the very plan we are setting up. You do not have to worry about medical costs eating into your savings — the plan pays for itself."`
+            script: `"Jeffrey, here is what I want you to see. Your biggest concern is your hospital plan costs — $1,000 a month and rising. This dividend plan generates $3,500 a month. Your dividends fund your hospital plan. The very thing you are worried about is covered by the very plan we are setting up. You do not have to worry about medical costs eating into your savings — the plan pays for itself."`,
+            visual: {
+              type: "before-after" as const,
+              data: {
+                before: {
+                  title: "Without PWV",
+                  items: [
+                    { label: "Hospital Plan", value: "$1,000/mo expense", color: "#ef4444" },
+                    { label: "Surplus", value: "$0", color: "#64748b" }
+                  ]
+                },
+                after: {
+                  title: "With PWV Dividends",
+                  items: [
+                    { label: "Dividend Income", value: "$3,500/mo", color: "#22c55e" },
+                    { label: "After Hospital", value: "$2,500 surplus", color: "#22c55e" }
+                  ]
+                }
+              }
+            }
           }
         ],
         keyTakeaways: [
@@ -3229,7 +3634,26 @@ Thian signed before his Korea trip. The lesson is clear: when artificial urgency
               "This realization is the turning point in every conversion",
               "Key phrase: 'Your money is not growing — it is slowly disappearing'"
             ],
-            script: `"Thian, let me show you something important. Your portfolio is earning about 2 percent. Inflation is running at 3 percent. That means in real terms, your money is losing 1 percent of its purchasing power every year. After 10 years, your $411,000 buys what $370,000 buys today. You are going backwards."`
+            script: `"Thian, let me show you something important. Your portfolio is earning about 2 percent. Inflation is running at 3 percent. That means in real terms, your money is losing 1 percent of its purchasing power every year. After 10 years, your $411,000 buys what $370,000 buys today. You are going backwards."`,
+            visual: {
+              type: "before-after" as const,
+              data: {
+                before: {
+                  title: "Before",
+                  items: [
+                    { label: "Portfolio", value: "$411K at 2%", color: "#ef4444" },
+                    { label: "Real Return", value: "-1% (losing)", color: "#ef4444" }
+                  ]
+                },
+                after: {
+                  title: "After",
+                  items: [
+                    { label: "Gift of Life", value: "$120K at 3.6%", color: "#22c55e" },
+                    { label: "Bonus", value: "+10% welcome", color: "#22c55e" }
+                  ]
+                }
+              }
+            }
           },
           {
             heading: "The Product: Platinum Gift of Life",
@@ -3333,6 +3757,10 @@ The lesson from Karen is simple but important: not every client needs the same e
               "Risk-averse clients (Thian): Lead with capital preservation",
               "Your job: identify the hook in the first 10 minutes and lean into it"
             ],
+            visual: {
+              type: "concept" as const,
+              data: { title: "Pragmatic = ROI. Family = Legacy. Healthcare = Coverage. Risk-Averse = Preservation.", subtitle: "Match the emotional hook to the client type", value: "4 Hooks", color: "#3b82f6" }
+            },
             table: {
               headers: ["Client Type", "Primary Hook", "What to Avoid"],
               rows: [
@@ -3494,7 +3922,22 @@ Now the pipeline math. To hit COT qualification, you need approximately 15 PWV c
               "Need ~180 appointments set (50% show rate)",
               "Need ~500 leads contacted (36% appointment rate)",
               "Daily: ~2 leads contacted, 1 appointment/day"
-            ]
+            ],
+            visual: {
+              type: "bar-chart" as const,
+              data: {
+                title: "Pipeline Funnel: Leads to COT",
+                bars: [
+                  { label: "Leads", value: 500, color: "#3b82f6" },
+                  { label: "Appts Set", value: 180, color: "#60a5fa" },
+                  { label: "Appts Kept", value: 90, color: "#f59e0b" },
+                  { label: "Proposals", value: 45, color: "#f59e0b" },
+                  { label: "Closed", value: 15, color: "#22c55e" }
+                ],
+                valuePrefix: "",
+                showValues: true
+              }
+            }
           }
         ],
         keyTakeaways: [
@@ -3577,7 +4020,11 @@ The pledge system brings it all together. At the start of each 12-week cycle, ev
               "Proof that marketing investment pays off with systematic execution",
               "The pledge system: set weekly targets, share with team, track against pledges",
               "Over time: pledge-to-performance gap narrows, conversion rates improve"
-            ]
+            ],
+            visual: {
+              type: "counter" as const,
+              data: { from: 0, to: 168000, prefix: "$", suffix: "", label: "First Year Commission via Facebook Ads", color: "#22c55e", fontSize: 72 }
+            }
           }
         ],
         keyTakeaways: [
