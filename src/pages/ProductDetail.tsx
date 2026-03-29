@@ -27,6 +27,7 @@ import { Brain, BookOpen } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const PRODUCTS_WITH_EXAMS = new Set(['pro-achiever']);
+const PRODUCTS_WITH_STUDY = new Set(['pro-achiever', 'platinum-wealth-venture']);
 
 export default function ProductDetail() {
   const {
@@ -187,10 +188,11 @@ export default function ProductDetail() {
           </div>
 
           {/* Study Bank + Product Exam CTA */}
-          {PRODUCTS_WITH_EXAMS.has(product.id) && (
+          {(PRODUCTS_WITH_STUDY.has(product.id) || PRODUCTS_WITH_EXAMS.has(product.id)) && (
             <Card className="mb-4 sm:mb-8 border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20">
               <CardContent className="p-4 sm:p-6 space-y-4">
                 {/* Study Bank */}
+                {PRODUCTS_WITH_STUDY.has(product.id) && (
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-primary/10 shrink-0">
@@ -211,8 +213,12 @@ export default function ProductDetail() {
                     Start Studying
                   </Button>
                 </div>
-                <div className="border-t" />
+                )}
+                {PRODUCTS_WITH_STUDY.has(product.id) && PRODUCTS_WITH_EXAMS.has(product.id) && (
+                  <div className="border-t" />
+                )}
                 {/* Exam */}
+                {PRODUCTS_WITH_EXAMS.has(product.id) && (
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/30 shrink-0">
@@ -232,6 +238,7 @@ export default function ProductDetail() {
                     Take Exam
                   </Button>
                 </div>
+                )}
               </CardContent>
             </Card>
           )}

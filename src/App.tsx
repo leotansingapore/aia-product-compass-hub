@@ -64,6 +64,7 @@ const ConceptCards = lazy(() => import("./pages/ConceptCards"));
 const ProductExam = lazy(() => import("./pages/ProductExam"));
 const LearningTrack = lazy(() => import("./pages/LearningTrack"));
 const ProAchieverStudy = lazy(() => import("./pages/ProAchieverStudy"));
+const PlatinumWealthVentureStudy = lazy(() => import("./pages/PlatinumWealthVentureStudy"));
 
 const queryClient = new QueryClient();
 
@@ -132,6 +133,7 @@ const App = () => (
                     <Route path="/concept-cards" element={<RequireAuth><ConceptCards /></RequireAuth>} />
                     <Route path="/learning-track" element={<RequireAuth><LearningTrack /></RequireAuth>} />
                     <Route path="/product/pro-achiever/study" element={<RequireAuth><ProAchieverStudy /></RequireAuth>} />
+                    <Route path="/product/platinum-wealth-venture/study" element={<RequireAuth><PlatinumWealthVentureStudy /></RequireAuth>} />
                     <Route path="/kb" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
                     <Route path="/kb/:categorySlug" element={<RequireAuth><KBCategory /></RequireAuth>} />
                     <Route path="/kb/:categorySlug/:productSlug" element={<RequireAuth><KBProduct /></RequireAuth>} />
