@@ -2044,6 +2044,1557 @@ These techniques are most effective when used subtly and in service of the clien
       },
     ],
   },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODULE 11 — CPF Optimization Strategies
+  // ═══════════════════════════════════════════════════════════════════════════
+  {
+    id: "m11-cpf-optimization",
+    number: 11,
+    title: "CPF Optimization Strategies",
+    description: "Master CPF Life schemes, SA/OA transfer tactics, and SRS tax strategies to help clients maximize their retirement income and minimize tax burden.",
+    icon: "Landmark",
+    lessons: [
+      {
+        id: "m11-l1",
+        title: "CPF Life Schemes Decoded",
+        description: "Understand the critical differences between CPF Life Standard and Basic schemes, monthly payout ranges, and the depletion problem that creates urgency in client conversations.",
+        durationMin: 4,
+        narration: `CPF Life is the cornerstone of every Singaporean's retirement plan, and your ability to explain it clearly will determine whether clients see you as a commodity or a trusted advisor. Let us break down the two main schemes.
+
+CPF Life Standard provides higher monthly payouts — typically between $2,200 and $3,000 per month at the Full Retirement Sum — but here is the catch that most advisors miss: after age 81, the payouts may reduce significantly or stop entirely depending on the bequest amount. The Standard scheme front-loads your payouts, which sounds great until you realize that Singaporeans are living well into their 80s and 90s.
+
+CPF Life Basic, on the other hand, provides lower monthly payouts but preserves a larger bequest — meaning there is money left for your family. The trade-off is that you receive less each month during your lifetime, but the plan sustains payouts longer, potentially until age 91 or beyond.
+
+Here is the key phrase you need to burn into your pitch: "After age 81, CPF pays you nothing and leaves your family nothing." That single sentence creates the urgency you need. When a client hears that their government retirement plan has an expiry date, they immediately understand why supplementary retirement income is not optional — it is essential.
+
+In your meetings, pull up the CPF Life estimator on the client's own portal. Show them their projected payout. Then ask: "What happens at 82? 85? 90?" Let the silence do the work. The gap between what CPF provides and what they actually need is where your solution lives.
+
+Remember, you are not selling against CPF. You are showing that CPF is a foundation — a good one — but a foundation alone is not a house. Your job is to help them build the rest of the structure with private retirement income streams that never deplete and always leave something for the family.`,
+        slides: [
+          {
+            heading: "CPF Life: The Two Schemes",
+            bullets: [
+              "CPF Life Standard: Higher monthly payouts ($2,200–$3,000/mo at FRS)",
+              "CPF Life Basic: Lower payouts but larger bequest preserved",
+              "Both are lifelong annuities funded by your Retirement Account",
+              "Scheme selection happens at age 65 (default: Standard)"
+            ]
+          },
+          {
+            heading: "The Depletion Problem",
+            bullets: [
+              "Standard scheme: payouts may reduce or stop after age 81",
+              "Basic scheme: sustains longer but lower monthly income",
+              "Average Singaporean life expectancy: 84 (and rising)",
+              "Key question: What happens when CPF runs out but you are still alive?"
+            ],
+            script: `"After age 81, CPF pays you nothing and leaves your family nothing. That is why we need to build a second income stream that never runs out."`
+          },
+          {
+            heading: "Standard vs Basic Comparison",
+            bullets: [
+              "Use this table to walk clients through the trade-offs",
+              "Always use the client's own CPF portal numbers for maximum impact"
+            ],
+            table: {
+              headers: ["Feature", "CPF Life Standard", "CPF Life Basic"],
+              rows: [
+                ["Monthly Payout (at FRS)", "$2,200–$3,000", "$1,800–$2,400"],
+                ["Bequest at Death", "Lower (front-loaded payouts)", "Higher (preserved capital)"],
+                ["Payout Sustainability", "May deplete after ~81", "May sustain to ~91"],
+                ["Best For", "Those needing max income now", "Those wanting to leave more behind"],
+                ["Risk", "Longevity risk after 81", "Lower income during retirement"]
+              ]
+            }
+          },
+          {
+            heading: "Using This in Client Meetings",
+            bullets: [
+              "Pull up the CPF Life estimator on the client's own SingPass portal",
+              "Show their projected monthly payout vs their actual monthly expenses",
+              "Ask: 'What happens at 82? 85? 90?' — let the silence work",
+              "Position your solution as the second floor built on CPF's foundation",
+              "Never sell against CPF — frame it as complementary"
+            ],
+            script: `"CPF is a great foundation. But a foundation alone is not a house. Let me show you how we build the rest of the structure — income that never depletes and always leaves something for your family."`
+          }
+        ],
+        keyTakeaways: [
+          "CPF Life Standard front-loads payouts but risks depletion after age 81",
+          "CPF Life Basic preserves bequest but provides lower monthly income",
+          "The depletion problem is your strongest urgency-creation tool",
+          "Always use the client's own CPF numbers — never generic examples",
+          "Position private retirement plans as complementary to CPF, not replacements"
+        ],
+        realExamples: [
+          "In the Kyaw Min Htut meeting, pulling up his CPF portal showing $76K SA balance immediately shifted the conversation to optimization",
+          "Jeffrey Foo's meeting used the CPF depletion timeline to justify a $24K/year PWV commitment"
+        ]
+      },
+      {
+        id: "m11-l2",
+        title: "SA/OA Transfer Tactics",
+        description: "Learn how to advise clients on transferring OA funds to SA for higher returns, when to recommend it, and how to optimize the Retirement Account balance before age 55.",
+        durationMin: 4,
+        narration: `One of the simplest yet most impactful pieces of advice you can give a client is about the interest rate differential between their CPF accounts. The Ordinary Account earns 2.5 percent per year. The Special Account earns 4 percent. That is a 60 percent higher return for doing nothing more than moving money from one account to another.
+
+But here is where it gets nuanced and where you differentiate yourself from a Google search. The OA is used for housing. If your client still has an outstanding mortgage or plans to buy property, transferring OA to SA could leave them short for housing needs. So the rule is simple: only transfer the excess — the amount above what they need for housing commitments.
+
+Let me walk you through a real example. Kyaw Min Htut came to us with an OA balance of $108,000 and an SA balance of $76,000. He owned his property outright — no remaining mortgage. In his case, transferring a significant portion of his OA to SA was a no-brainer. The additional 1.5 percent annual return on, say, $80,000 transferred means an extra $1,200 per year in interest — compounding.
+
+Here is the critical timeline insight: at age 55, your SA and OA merge into the Retirement Account. The RA balance determines your CPF Life payout. So every dollar you move into SA before 55 earns that higher 4 percent rate, which means a higher RA balance at 55, which means a higher monthly CPF Life payout for life.
+
+The math is compelling. A client who maximizes their SA from age 40 to 55 could see tens of thousands more in their RA compared to someone who left it all in OA. And that translates directly to hundreds of dollars more per month in CPF Life payouts.
+
+Your action step in every meeting with a pre-retiree: check their CPF balances, check their housing situation, and if there is excess OA, recommend the transfer. It takes five minutes on the CPF portal and it is free. This kind of advice builds massive trust because you are helping them optimize what they already have before asking them to invest in anything new.`,
+        slides: [
+          {
+            heading: "The Interest Rate Differential",
+            bullets: [
+              "Ordinary Account (OA): 2.5% per year — used for housing, education, investment",
+              "Special Account (SA): 4.0% per year — locked for retirement",
+              "That is 60% more return just by transferring between accounts",
+              "Transfer is free, instant, and done via CPF portal",
+              "One-way transfer only: OA → SA (cannot reverse)"
+            ]
+          },
+          {
+            heading: "When to Recommend (and When Not To)",
+            bullets: [
+              "YES: Client owns property outright or has minimal mortgage",
+              "YES: Client has no plans to purchase new property",
+              "YES: Client is under 55 (maximize compounding window)",
+              "NO: Client has outstanding HDB mortgage relying on OA",
+              "NO: Client plans to use OA for property downpayment",
+              "Rule: Only transfer the EXCESS above housing commitments"
+            ]
+          },
+          {
+            heading: "Real Example: Kyaw Min Htut",
+            bullets: [
+              "OA balance: $108,000 | SA balance: $76,000",
+              "Property owned outright — no mortgage obligations",
+              "Recommended transfer: $80,000 from OA to SA",
+              "Additional annual return: $80,000 × 1.5% = $1,200/year",
+              "Compounded over 10 years: approximately $18,000+ extra in RA"
+            ],
+            table: {
+              headers: ["Scenario", "RA Balance at 55", "Est. CPF Life Payout"],
+              rows: [
+                ["No transfer (leave in OA)", "$210,000", "~$1,600/mo"],
+                ["Transfer $80K to SA now", "$228,000+", "~$1,750/mo"],
+                ["Difference", "+$18,000+", "+$150/mo for life"]
+              ]
+            }
+          },
+          {
+            heading: "The Age 55 Merge Point",
+            bullets: [
+              "At 55: SA + OA merge into Retirement Account (RA)",
+              "RA balance determines CPF Life monthly payout",
+              "Higher SA balance before 55 = higher RA = higher lifetime payout",
+              "This is a one-time optimization window — cannot be done after 55",
+              "Position this as 'free money' — costs nothing, earns more"
+            ],
+            script: `"Before we talk about any new investments, let me show you something that costs you nothing but earns you more. We can move your excess OA into your SA — it is like getting a raise on your retirement savings for free."`
+          }
+        ],
+        keyTakeaways: [
+          "OA earns 2.5% while SA earns 4% — a 60% higher return",
+          "Only transfer excess OA above housing commitments",
+          "Transfers before age 55 maximize the Retirement Account balance",
+          "This is a trust-building move: optimizing what they have before selling anything new",
+          "Always check housing obligations before recommending any transfer"
+        ],
+        realExamples: [
+          "Kyaw Min Htut: OA $108K, SA $76K, property owned — recommended $80K transfer for ~$150/mo higher CPF Life payout",
+          "Multiple pre-retiree meetings showed that leading with CPF optimization builds trust before the product pitch"
+        ]
+      },
+      {
+        id: "m11-l3",
+        title: "SRS Tax Strategies",
+        description: "Master the Supplementary Retirement Scheme — contribution limits, tax relief mechanics, the optimal withdrawal strategy, and how to present SRS-linked plans to clients.",
+        durationMin: 4,
+        narration: `The Supplementary Retirement Scheme is one of the most powerful tax planning tools available in Singapore, and yet most people either do not know about it or do not use it optimally. Your job is to change that.
+
+Here are the basics. Every Singapore tax resident can contribute up to $15,300 per year to their SRS account. Every dollar contributed reduces your taxable income immediately. For a client in the 15 percent tax bracket, that is $2,295 in tax savings per year — real money back in their pocket just for saving for retirement.
+
+Now here is where it gets interesting. The money in SRS can be invested — in unit trusts, endowments, fixed deposits, or insurance products like PWV. It does not need to sit there earning nothing. And the investment gains within SRS are tax-free while they remain in the account.
+
+The withdrawal rules are where your expertise really shines. After the statutory retirement age of 62, withdrawals are taxed at only 50 percent of the amount. So if you withdraw $40,000, only $20,000 is considered taxable income. And here is the sweet spot: if that $20,000 is your only taxable income, it falls within the zero percent tax bracket after personal reliefs. Effectively, you pay zero tax on a $40,000 withdrawal. That is the magic number your clients need to hear.
+
+Let me share a real case. In the Chang Tsann meeting, we structured a plan around $156,000 in SRS contributions accumulated over roughly 10 years. After 62, this generated $3,154 per month for 10 years through a systematic withdrawal plan linked to a dividend product. The client got immediate tax relief during accumulation, tax-free investment growth, and effectively zero-tax withdrawals in retirement.
+
+The early withdrawal penalty is the stick: if you withdraw before 62, 100 percent of the amount is taxable plus a 5 percent penalty. Make sure clients understand this is a long-term commitment. But for anyone over 50, the runway to 62 is short enough that SRS becomes extremely attractive.
+
+When you combine SRS tax savings with CPF optimization and a dividend plan, you are giving clients a comprehensive retirement strategy that no robo-advisor or DIY investor can replicate. That is your value proposition.`,
+        slides: [
+          {
+            heading: "SRS Fundamentals",
+            bullets: [
+              "Annual contribution cap: $15,300 (Singaporeans/PRs)",
+              "Contributions are tax-deductible — immediate tax relief",
+              "Investment gains within SRS are tax-free",
+              "Withdrawal before 62: 100% taxable + 5% penalty",
+              "Withdrawal after 62: only 50% of amount is taxable"
+            ]
+          },
+          {
+            heading: "The Zero-Tax Sweet Spot",
+            bullets: [
+              "After 62: withdraw $40,000/year from SRS",
+              "50% exemption → only $20,000 is taxable",
+              "$20,000 falls within 0% bracket after personal reliefs",
+              "Effective tax rate: 0% on $40,000 annual withdrawal",
+              "This is the number your clients need to hear"
+            ],
+            script: `"Here is what most people do not realize about SRS. If you structure your withdrawals correctly after 62, you can pull out $40,000 a year and pay absolutely zero tax on it. Let me show you the math."`
+          },
+          {
+            heading: "Real Case: Chang Tsann's SRS Strategy",
+            bullets: [
+              "Total SRS investment: $156,000 over ~10 years",
+              "Annual contribution: ~$15,300 (maximized each year)",
+              "Post-62 withdrawal: $3,154/month for 10 years",
+              "Tax saved during accumulation: ~$2,000+/year",
+              "Tax on withdrawal: effectively 0% at $40K/year"
+            ],
+            table: {
+              headers: ["Phase", "Amount", "Tax Impact"],
+              rows: [
+                ["Annual Contribution", "$15,300", "Tax relief of $2,295/yr (at 15% bracket)"],
+                ["10-Year Accumulation", "$156,000+", "Investment gains tax-free"],
+                ["Monthly Withdrawal (post-62)", "$3,154/mo", "Effectively 0% tax"],
+                ["Total Tax Saved", "$20,000+", "Over contribution + withdrawal period"]
+              ]
+            }
+          },
+          {
+            heading: "SRS + CPF + Dividends = Complete Strategy",
+            bullets: [
+              "Layer 1: CPF Life — government baseline (~$2,000–$3,000/mo)",
+              "Layer 2: SRS withdrawals — tax-optimized income (~$3,000/mo)",
+              "Layer 3: Dividend plan — private income stream (~$2,000+/mo)",
+              "Combined: $7,000–$8,000/mo retirement income",
+              "This comprehensive approach is your competitive moat"
+            ],
+            script: `"When we combine your CPF Life payout, your SRS withdrawals, and your dividend income, you are looking at $7,000 to $8,000 a month in retirement — with minimal tax. No robo-advisor can build this for you."`
+          }
+        ],
+        keyTakeaways: [
+          "$15,300 annual SRS cap provides immediate tax relief",
+          "The $40K/year withdrawal sweet spot = effectively 0% tax after 62",
+          "Early withdrawal penalty (before 62) is 100% taxable + 5% penalty",
+          "SRS funds can be invested in insurance products like PWV for compounding",
+          "The three-layer strategy (CPF + SRS + dividends) is your strongest value proposition"
+        ],
+        realExamples: [
+          "Chang Tsann: $156K SRS invested, generating $3,154/month for 10 years post-retirement with effectively 0% tax",
+          "Jeffrey Foo meeting combined SRS annuity component with dividend plan for a total income stream of $3,500/month"
+        ]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODULE 12 — Policy Restructuring Masterclass
+  // ═══════════════════════════════════════════════════════════════════════════
+  {
+    id: "m12-policy-restructuring",
+    number: 12,
+    title: "Policy Restructuring Masterclass",
+    description: "Learn how to transform premium expenses into dividend income, identify redundant policies, and consolidate scattered coverage into optimized portfolios.",
+    icon: "RefreshCcw",
+    lessons: [
+      {
+        id: "m12-l1",
+        title: "The Cash Flow Transformation",
+        description: "Master the concept of converting premium expenses into dividend income — the most powerful restructuring pitch that turns skeptical clients into advocates.",
+        durationMin: 5,
+        narration: `This lesson teaches you the single most powerful concept in policy restructuring: turning a client from someone who pays premiums into someone who receives dividends. When you master this, you will close more restructuring cases than any other technique in your arsenal.
+
+Let me paint the picture. Your client — let us call him Arthur Chang — is currently paying $5,300 per year in premiums across three old policies. That is money leaving his pocket every single month. He has been paying faithfully for 15 to 20 years. His combined cash surrender value across those policies is $132,000.
+
+Here is the transformation. You show Arthur that if he surrenders those old policies and redirects the $132,000 into a PWV dividend plan earning 6 percent, he would generate approximately $12,000 per year in dividend income. Let that sink in. He was paying out $5,300. Now he is receiving $12,000. The net swing is $17,300 per year — a complete reversal of cash flow.
+
+The script that closes this is devastatingly simple: "Instead of you paying the policy, the policy pays you." Practice that line. Say it with confidence. Let it land.
+
+But here is why this works psychologically. You are not asking the client to spend more money. You are showing them how to use money they have already committed — money that is already inside the insurance ecosystem — and make it work harder. There is no new outflow. There is no additional financial burden. It is pure optimization.
+
+The objection you will hear is: "But I lose my coverage if I surrender." This is where your preparation matters. You need to show that the old coverage is often inadequate, outdated, or redundant. A 20-year-old policy with $68,000 death benefit is not protecting anyone in today's cost environment. By restructuring, you can often increase coverage while simultaneously generating income.
+
+In the Mr Tan case, we did exactly this. His old policies had a combined death benefit of $68,000 — barely enough to cover funeral costs. After restructuring, his new plan provided $500,000 in death benefit with zero additional premium, funded entirely by the restructured cash values. He went from paying $5,300 per year for inadequate coverage to receiving income with superior coverage.
+
+This is not financial engineering. This is common sense presented professionally. And when clients see it laid out on paper — the before and after — they will ask you why nobody showed them this sooner.`,
+        slides: [
+          {
+            heading: "The Core Concept: Expense → Income",
+            bullets: [
+              "Most clients are PAYING premiums on old policies ($3,000–$10,000/year)",
+              "These policies have accumulated significant cash surrender values",
+              "Restructuring converts that cash value into a dividend-generating asset",
+              "The client goes from net negative to net positive cash flow",
+              "No new money required — uses existing committed capital"
+            ]
+          },
+          {
+            heading: "The Arthur Chang Example",
+            bullets: [
+              "Current: 3 old policies, total premium $5,300/year",
+              "Cash surrender value across all policies: $132,000",
+              "Restructure: Surrender → invest in PWV dividend plan at 6%",
+              "New income: ~$12,000/year in dividends",
+              "Net swing: from -$5,300 to +$12,000 = $17,300/year improvement"
+            ],
+            table: {
+              headers: ["Metric", "Before Restructuring", "After Restructuring"],
+              rows: [
+                ["Annual Premium Outflow", "-$5,300", "$0"],
+                ["Annual Dividend Income", "$0", "+$12,000"],
+                ["Death Benefit", "$68,000", "$500,000"],
+                ["Net Annual Cash Flow", "-$5,300", "+$12,000"],
+                ["Cash Flow Swing", "", "+$17,300/year"]
+              ]
+            }
+          },
+          {
+            heading: "The Closing Script",
+            bullets: [
+              "This single sentence closes more restructuring cases than any other",
+              "Say it with confidence and let it land — do not rush past it",
+              "Follow up with the before/after table for visual impact"
+            ],
+            script: `"Instead of you paying the policy, the policy pays you. Let me show you exactly how this works with your numbers."`
+          },
+          {
+            heading: "Handling the Coverage Objection",
+            bullets: [
+              "'But I lose my coverage if I surrender' — the #1 objection",
+              "Show that old coverage is often inadequate ($68K death benefit in 2024?)",
+              "Restructuring can INCREASE coverage while generating income",
+              "Mr Tan: went from $68K to $500K death benefit with zero additional premium",
+              "Key frame: 'Your old policy is costing you money AND underprotecting you'"
+            ],
+            script: `"I understand your concern about coverage. But look at these numbers — your current policies give you $68,000 in death benefit. Is that really protecting your family? After restructuring, you get $500,000 in coverage AND income. You are better protected and better funded."`
+          }
+        ],
+        keyTakeaways: [
+          "The cash flow transformation turns premium expense into dividend income",
+          "Net swing can be $15,000–$20,000+ per year for clients with multiple old policies",
+          "No new money required — restructuring uses existing cash surrender values",
+          "Always show the before/after comparison table for maximum impact",
+          "The closing line — 'Instead of you paying the policy, the policy pays you' — is your most powerful script"
+        ],
+        realExamples: [
+          "Arthur Chang: $5,300/yr premiums restructured to $12,000/yr dividends = $17,300 swing",
+          "Mr Tan: $68K death benefit upgraded to $500K with zero additional premium after restructuring"
+        ]
+      },
+      {
+        id: "m12-l2",
+        title: "Identifying Redundant Policies",
+        description: "Learn systematic methods to spot redundant coverage, underperforming investments within insurance, and overlapping policies — then present findings with credibility.",
+        durationMin: 4,
+        narration: `Before you can restructure, you need to identify what needs restructuring. This lesson gives you a systematic approach to auditing a client's existing portfolio and spotting the policies that are costing them money without delivering value.
+
+The first category to look for is old Investment-Linked Policies — ILPs. These are policies that combine insurance coverage with investment returns, and they are almost always underperforming on both fronts. Here is the critical flaw with many older ILPs: if the client makes a critical illness claim, not only does the CI coverage terminate, but the entire investment component can be impacted. The client loses their coverage AND their savings in one event. When you explain this to clients, their reaction is always the same: shock and disbelief.
+
+The second category is old endowment plans with guaranteed returns of 2 to 3 percent. These were attractive 15 years ago. Today, with PWV projecting 6 to 7 percent returns, these endowments are essentially losing money to inflation after accounting for fees. The opportunity cost is enormous.
+
+The third category is overlapping coverage. Many clients, especially those who have been approached by multiple advisors over the years, have three or four CI policies from different insurers. They are over-insured in some areas and completely exposed in others.
+
+Here is your diagnostic system. Use a simple color-coding framework: Green means keep — the policy is competitive, well-priced, and serving its purpose. Yellow means review — the policy might be worth keeping but needs closer examination. Red means restructure — the policy is clearly underperforming or redundant.
+
+Now, here is the credibility-building technique that separates professionals from amateurs. During the meeting, ask the client to log into their insurance portals — GE, Prudential, AIA — right there on the spot. Pull up the actual policy details, the actual cash values, the actual coverage amounts. When you do this live, two things happen. First, you get accurate data instead of relying on the client's memory. Second, you build enormous trust because you are being completely transparent. The client sees everything you see.
+
+In the Patwant Singh meeting, this portal review uncovered a Prudential maturity value the client had completely forgotten about — $41,000 sitting there unclaimed. That discovery alone justified the entire meeting and cemented the advisor's credibility. When you find money the client forgot they had, you become their hero.`,
+        slides: [
+          {
+            heading: "Three Types of Redundant Policies",
+            bullets: [
+              "1. Old ILPs: CI claim can terminate BOTH coverage AND investment",
+              "2. Old Endowments: 2–3% returns vs 6–7% available today",
+              "3. Overlapping Coverage: Multiple CI/death policies from different insurers",
+              "Most clients have at least one of these — your job is to find them"
+            ]
+          },
+          {
+            heading: "The Color-Coding Diagnostic System",
+            bullets: [
+              "GREEN — Keep: Competitive pricing, good returns, serves clear purpose",
+              "YELLOW — Review: May be worth keeping, needs closer examination",
+              "RED — Restructure: Clearly underperforming, redundant, or overpriced",
+              "Present findings visually — clients respond to color-coded summaries",
+              "Always explain WHY each policy got its color rating"
+            ],
+            table: {
+              headers: ["Rating", "Criteria", "Action"],
+              rows: [
+                ["GREEN", "Competitive returns (>5%), unique coverage, low cost", "Keep as-is"],
+                ["YELLOW", "Moderate returns (3–5%), some overlap, adequate cost", "Monitor annually"],
+                ["RED", "Low returns (<3%), redundant coverage, high cost", "Restructure immediately"]
+              ]
+            }
+          },
+          {
+            heading: "The Live Portal Review Technique",
+            bullets: [
+              "Ask clients to log into GE, Prudential, AIA portals DURING the meeting",
+              "Pull actual policy details: cash values, coverage, premiums, maturity dates",
+              "Builds massive trust through complete transparency",
+              "Often uncovers forgotten policies or maturity values",
+              "Pro tip: ask clients to prepare portal access BEFORE the meeting"
+            ],
+            script: `"Can we take five minutes to log into your insurance portals? I want to make sure we have the exact numbers — no guessing. You will see everything I see, and together we can identify what is working and what is not."`
+          },
+          {
+            heading: "The ILP Trap Explained",
+            bullets: [
+              "ILPs combine insurance + investment in one product",
+              "The fatal flaw: CI claim can terminate the investment component",
+              "Client loses coverage AND savings in one event",
+              "When you explain this, clients react with shock — use that momentum",
+              "Compare: separate CI policy + separate investment = no cross-contamination"
+            ]
+          }
+        ],
+        keyTakeaways: [
+          "Old ILPs are the most common source of redundant, risky coverage",
+          "The color-coding system (Green/Yellow/Red) makes findings easy for clients to digest",
+          "Live portal reviews build trust and often uncover forgotten assets",
+          "Always ask clients to prepare portal access before the meeting to save time",
+          "The ILP trap — CI claim destroying investments — is your strongest argument for restructuring"
+        ],
+        realExamples: [
+          "Patwant Singh: live portal review uncovered a forgotten $41,000 Prudential maturity value",
+          "Nov 30 client: three old ILPs identified as Red — all underperforming with overlapping CI coverage",
+          "Karen Ng: portal access failure during meeting wasted 10 minutes — always prep clients beforehand"
+        ]
+      },
+      {
+        id: "m12-l3",
+        title: "Consolidation Case Studies",
+        description: "Three real restructuring case studies showing before-and-after transformations — from scattered, underperforming policies to optimized, income-generating portfolios.",
+        durationMin: 5,
+        narration: `Nothing teaches restructuring better than real cases. In this lesson, we break down three actual client transformations that demonstrate the power of consolidation. Study these cases because you will encounter similar situations in almost every pre-retiree meeting.
+
+Case Study One: The Nov 30 Client. This client had three separate policies with a combined cash surrender value of $119,000. Their total death benefit across all three? Just $68,000. Think about that — $119,000 locked up in policies that would only pay out $68,000 if they died. The coverage was actually less than the cash value. After restructuring, we consolidated everything into a single plan that provided $500,000 in death benefit with no additional premium. The client's coverage increased by more than seven times, and they stopped paying the premiums they had been paying on the old policies. This is the kind of result that makes clients refer you to everyone they know.
+
+Case Study Two: Patwant Singh. Patwant had roughly $300,000 scattered across multiple policies with different insurers. Each policy had been sold to him at different times by different advisors, and none of them talked to each other. The result was gaps in some areas and expensive overlaps in others. After a thorough consolidation, his projected portfolio value was restructured into a plan targeting over $1,000,000 in combined value. We eliminated the redundancies, closed the gaps, and created a coherent strategy where every dollar had a purpose.
+
+Case Study Three: Elaine Ho. Elaine had $148,000 in existing investments spread across various instruments — some performing, some not. She was receiving minimal passive income from these investments. After restructuring into a dividend portfolio, she began generating approximately $24,000 per year in dividend income — that is $2,000 per month. For Elaine, this was transformative. She went from watching her investments fluctuate on a screen to receiving predictable, regular income deposits.
+
+The common thread across all three cases is this: clients do not know what they have is underperforming until you show them. They have been told their policies are "good" by the advisors who sold them. Your role is to be the honest second opinion — the advisor who shows them the numbers, not the brochure. When you present these before-and-after tables with real math, the decision to restructure becomes obvious.`,
+        slides: [
+          {
+            heading: "Case Study 1: Nov 30 Client — Coverage Multiplied",
+            bullets: [
+              "Before: 3 policies, $119K cash value, only $68K death benefit",
+              "Problem: Coverage was LESS than the cash locked inside the policies",
+              "After: Single consolidated plan, $500K death benefit, $0 additional premium",
+              "Result: 7x coverage increase with zero new cost"
+            ],
+            script: `"You currently have $119,000 locked in policies that would only pay your family $68,000. That means your coverage is less than what you have already paid in. Let me show you how we fix this."`
+          },
+          {
+            heading: "Case Study 2: Patwant Singh — Scattered to Strategic",
+            bullets: [
+              "Before: ~$300K across multiple policies from different insurers",
+              "Problem: Gaps in some areas, expensive overlaps in others",
+              "No coherent strategy — each policy sold independently",
+              "After: Consolidated into projected $1M+ plan",
+              "Result: Every dollar has a purpose, no redundancy, no gaps"
+            ]
+          },
+          {
+            heading: "Case Study 3: Elaine Ho — Investments to Income",
+            bullets: [
+              "Before: $148K in various investments, minimal passive income",
+              "Problem: Portfolio fluctuating without generating usable cash flow",
+              "After: Restructured into dividend portfolio",
+              "Result: $24,000/year ($2,000/month) in predictable dividend income"
+            ]
+          },
+          {
+            heading: "Before & After Summary Table",
+            bullets: [
+              "Use this consolidated view when presenting restructuring to clients",
+              "The visual comparison makes the decision obvious"
+            ],
+            table: {
+              headers: ["Client", "Before (Cash Value)", "Before (Coverage/Income)", "After (Coverage/Income)", "Improvement"],
+              rows: [
+                ["Nov 30 Client", "$119K in 3 policies", "$68K death benefit", "$500K death benefit", "7x coverage, $0 extra premium"],
+                ["Patwant Singh", "$300K scattered", "Gaps + overlaps", "Projected $1M+ plan", "Coherent strategy, full coverage"],
+                ["Elaine Ho", "$148K investments", "Minimal income", "$24K/year dividends", "$2,000/month passive income"]
+              ]
+            }
+          }
+        ],
+        keyTakeaways: [
+          "Real case studies are your most convincing sales tool — memorize at least three",
+          "Common pattern: clients have more cash value than coverage (policies working against them)",
+          "Consolidation eliminates redundancy and creates coherent strategy",
+          "Before-and-after tables make the restructuring decision feel obvious",
+          "Clients do not know their policies are underperforming until you show them the comparison"
+        ],
+        realExamples: [
+          "Nov 30 client: $119K cash value but only $68K death benefit — restructured to $500K death benefit at no extra cost",
+          "Patwant Singh: $300K scattered across insurers consolidated into a $1M+ projected plan",
+          "Elaine Ho: $148K investments restructured into $24K/year dividend portfolio"
+        ]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODULE 13 — Estate Planning Value-Add
+  // ═══════════════════════════════════════════════════════════════════════════
+  {
+    id: "m13-estate-planning",
+    number: 13,
+    title: "Estate Planning Value-Add",
+    description: "Position yourself as a holistic advisor by offering estate planning guidance — wills, LPAs, AMDs, insurance trusts, and consolidated portfolio summaries.",
+    icon: "ScrollText",
+    lessons: [
+      {
+        id: "m13-l1",
+        title: "Will, LPA & AMD Basics",
+        description: "Understand the three essential estate planning documents every pre-retiree needs, how to discuss them confidently, and why offering this as a free service differentiates you.",
+        durationMin: 4,
+        narration: `Estate planning is not your core product, but it is one of the most powerful differentiators in your toolkit. When you can walk a client through their Will, LPA, and AMD needs — and connect them with the right professionals to get it done — you move from being an insurance salesperson to being a trusted financial advisor.
+
+Let us start with the Will. A Will distributes your assets after death. Without one, everything goes through intestacy laws — a slow, expensive, court-administered process that your family has to navigate during the worst time of their lives. A basic Will costs $300 to $500 to draft with a lawyer. Every client you meet should have one, and most do not.
+
+Next is the Lasting Power of Attorney — the LPA. This is arguably the most important document and the most commonly overlooked. An LPA allows an appointed person to make decisions on your behalf if you lose mental capacity. Here is the critical point: you MUST set this up while you are healthy. If you wait until you have dementia or a stroke, it is too late. The court process to gain control of someone's affairs without an LPA is expensive, time-consuming, and emotionally draining for the family.
+
+Third is the Advance Medical Directive — the AMD. This is a simple declaration that says: do not use extraordinary life-prolonging treatment if I am terminally ill with no hope of recovery. It is a deeply personal decision, but it is one that relieves enormous pressure from family members who would otherwise have to make that call.
+
+And here is one that most advisors miss entirely: CPF nominations. Your CPF savings are separate from your Will. Without a CPF nomination, your CPF goes through intestacy laws regardless of what your Will says. This means delays, court costs, and your CPF may not go to who you intended.
+
+The value-add here is huge. You are not charging for this advice. You are offering it as a free service — part of your comprehensive financial review. When you pull out a checklist of "Have you done your Will? LPA? AMD? CPF nomination?" and the client says no to three out of four, you have just demonstrated that they need an advisor who looks at the full picture. That advisor is you.
+
+This is how you differentiate from the advisor who just pushes products. You care about the whole person, the whole family, the whole financial situation.`,
+        slides: [
+          {
+            heading: "Three Essential Documents",
+            bullets: [
+              "1. Will — Distributes assets after death ($300–$500 to draft)",
+              "2. LPA — Appoints decision-maker if you lose mental capacity",
+              "3. AMD — No extraordinary life-prolonging treatment if terminally ill",
+              "Most pre-retirees have NONE of these in place",
+              "Offering guidance on all three positions you as a holistic advisor"
+            ]
+          },
+          {
+            heading: "The LPA Urgency",
+            bullets: [
+              "MUST be set up while the person is mentally healthy",
+              "If you wait until dementia/stroke — it is too late",
+              "Without LPA: court process is expensive and takes months",
+              "Covers both personal welfare AND property/financial affairs",
+              "Cost: $75 (subsidized) or $200–$500 (private lawyer)"
+            ],
+            script: `"Let me ask you something important. If something happened to you tomorrow — a stroke, an accident — who would manage your finances? Your CPF? Your property? Without an LPA, your family would need to go to court. And they cannot set one up on your behalf after the fact. This needs to be done while you are healthy."`
+          },
+          {
+            heading: "The CPF Nomination Gap",
+            bullets: [
+              "CPF savings are SEPARATE from your Will",
+              "Without a CPF nomination: CPF goes through intestacy laws",
+              "Even if your Will says 'everything to my wife' — CPF follows its own rules",
+              "Delays, court costs, and unintended distribution",
+              "Takes 10 minutes on the CPF portal to fix"
+            ]
+          },
+          {
+            heading: "Positioning as a Free Value-Add",
+            bullets: [
+              "Do NOT charge for estate planning guidance",
+              "Use a simple checklist: Will? LPA? AMD? CPF Nomination?",
+              "Most clients say 'no' to 3 out of 4 — instant demonstration of value",
+              "Connect clients with lawyers in your network for execution",
+              "This differentiates you from product-pushers"
+            ],
+            script: `"Part of what I do for all my clients is a complete financial health check. That includes making sure the basics are in place — your Will, your LPA, your CPF nominations. These cost very little to set up but protect everything you have built. Let me walk you through what you need."`
+          }
+        ],
+        keyTakeaways: [
+          "Will, LPA, and AMD are the three essential estate planning documents",
+          "LPA must be set up while healthy — cannot be done retroactively",
+          "CPF nominations are separate from Wills and commonly overlooked",
+          "Offering estate planning guidance for free is your strongest differentiator",
+          "A simple four-item checklist (Will, LPA, AMD, CPF nomination) demonstrates immediate value"
+        ],
+        realExamples: [
+          "Mr Ravi meeting: discovered he had no LPA despite being 62 — became the highest-urgency action item",
+          "Multiple client meetings show that the estate planning checklist opens conversations about asset protection and policy structuring"
+        ]
+      },
+      {
+        id: "m13-l2",
+        title: "Insurance Trust vs Nomination",
+        description: "When and why to recommend an insurance trust over a simple nomination, especially for clients with complex family situations.",
+        durationMin: 4,
+        narration: `For most clients, a simple policy nomination is sufficient. You name a beneficiary, and when you pass away, the insurance payout goes directly to that person. Simple, fast, effective. But for clients with complex family situations, a nomination can actually create problems. That is where the insurance trust comes in.
+
+Let me explain when a trust becomes necessary. Consider a client who is in a second marriage with children from both relationships. If he simply nominates his current wife, his children from the first marriage get nothing from the insurance payout. If he nominates his children, his current wife gets nothing. A nomination is all-or-nothing — it cannot set conditions or manage distribution over time.
+
+An insurance trust solves this. The trust can specify exactly how the payout is distributed and under what conditions. For example: 40 percent to current wife immediately, 30 percent to eldest child at age 25, and 30 percent to youngest child at age 30. The trust can even set conditions — if the child graduates from university, they receive the full amount; if not, it is released in smaller portions. This level of control is impossible with a simple nomination.
+
+From the Liao Chih Chung training, we learned an important caveat about the PWV product specifically: an insurance trust and a secondary insured are mutually exclusive. You cannot have both on the same PWV policy. This means if a client wants a trust structure, they need to forgo the secondary insured feature. For most complex family situations, the trust provides more value, but this is a conversation you need to have explicitly with the client.
+
+The practical guidance for your meetings is this: for straightforward family situations — married, one set of children, no complications — a nomination is fine. For anything involving second marriages, children from multiple relationships, estranged family members, business succession, or large estates — recommend the insurance trust.
+
+You are not the lawyer who sets up the trust. But you are the advisor who identifies the need, explains the benefits, and connects the client with the right legal professional. That referral alone is worth its weight in gold for your client relationship.`,
+        slides: [
+          {
+            heading: "Nomination vs Insurance Trust",
+            bullets: [
+              "Nomination: Immediate payout to named person upon death",
+              "Trust: Managed distribution with conditions and timing controls",
+              "Nomination is simple but inflexible — all-or-nothing",
+              "Trust adds cost and complexity but provides full control"
+            ],
+            table: {
+              headers: ["Feature", "Simple Nomination", "Insurance Trust"],
+              rows: [
+                ["Payout Speed", "Immediate", "Managed by trustee"],
+                ["Distribution Control", "None — lump sum to nominee", "Full — conditions, timing, percentages"],
+                ["Cost", "Free", "$2,000–$5,000 setup"],
+                ["Best For", "Simple family structures", "Complex families, large estates"],
+                ["Can Set Conditions", "No", "Yes (age triggers, milestones)"]
+              ]
+            }
+          },
+          {
+            heading: "When to Recommend a Trust",
+            bullets: [
+              "Second marriage with children from both relationships",
+              "Children with different maturity levels or financial habits",
+              "Estranged family members who should be excluded",
+              "Business succession where insurance funds the buyout",
+              "Large estates (>$1M insurance payout) needing structured distribution"
+            ],
+            script: `"Given your family situation, a simple nomination might not give you the control you need. With a trust, you can specify exactly who gets what, when, and under what conditions. For example, your daughter could receive 50% at age 25 and the remaining 50% at 30."`
+          },
+          {
+            heading: "PWV-Specific Caveat",
+            bullets: [
+              "On PWV: insurance trust and secondary insured are MUTUALLY EXCLUSIVE",
+              "Cannot have both on the same policy — must choose one",
+              "Trust: full distribution control but no secondary insured benefit",
+              "Secondary insured: policy continues after first death but no trust conditions",
+              "For complex families, trust usually provides more value"
+            ]
+          },
+          {
+            heading: "Your Role in the Process",
+            bullets: [
+              "You IDENTIFY the need — you do not set up the trust yourself",
+              "You EXPLAIN the benefits in plain language",
+              "You CONNECT the client with a qualified estate planning lawyer",
+              "You COORDINATE with the lawyer to ensure policy and trust align",
+              "This referral strengthens your client relationship significantly"
+            ]
+          }
+        ],
+        keyTakeaways: [
+          "Simple nominations work for straightforward families; trusts are for complex situations",
+          "Trusts allow conditional distribution (age triggers, milestones, percentages)",
+          "PWV caveat: insurance trust and secondary insured cannot coexist on the same policy",
+          "Your role is to identify the need and connect the client with a lawyer",
+          "The trust conversation positions you as a holistic advisor, not just a policy seller"
+        ],
+        realExamples: [
+          "Liao Chih Chung training: detailed the mutual exclusivity of trust and secondary insured on PWV policies",
+          "Second-marriage client scenario: trust structured as 40% to wife, 30% to each child at different age milestones"
+        ]
+      },
+      {
+        id: "m13-l3",
+        title: "The Consolidated Portfolio Summary",
+        description: "Create a one-page summary of all client assets, policies, and nominations that becomes your annual review trigger and ongoing engagement tool.",
+        durationMin: 3,
+        narration: `The consolidated portfolio summary is the simplest tool in your arsenal but one of the most effective for long-term client retention. It is a single page — physical or digital — that captures everything a client has: every policy, every CPF balance, every investment, every nomination.
+
+Why does this matter? Because most clients have no idea what they own. Their policies are scattered across different insurers, their CPF balances are vaguely remembered, their nominations are outdated or nonexistent. When you create a single document that shows everything in one place, you become indispensable.
+
+Here is the template structure. At the top: client name, NRIC, date of birth, contact details. Then a table of all policies: insurer, product name, sum assured, annual premium, key benefits, expiry date, and nominee. Below that: CPF balances broken down by OA, SA, MA, and RA. Then any other investments: stocks, unit trusts, fixed deposits, property. At the bottom: total coverage summary, total annual premiums, and gaps identified.
+
+The gaps section is critical. This is where you note things like: "No critical illness coverage above $50,000," or "CPF nomination not updated since 2015," or "No LPA in place." These gaps become the agenda for your next meeting.
+
+Here is the retention play. You deliver this summary — ideally via WhatsApp group chat with the client and their spouse — and you say: "I will update this for you every year. Any time something changes — a new policy, a CPF top-up, a change in family situation — just let me know and I will update your summary." That single promise gives you a legitimate reason to contact the client every single year. It is not a sales call. It is a service call. And every service call is an opportunity.
+
+The delivery via WhatsApp group chat is deliberate. It includes both spouses, it is easily accessible on their phones, and it creates a direct communication channel that does not require email or formal meetings. When the client has a question at 9 PM, they message the group. When you have a promotion that fits their profile, you share it in the group. It is relationship management made effortless.`,
+        slides: [
+          {
+            heading: "What the Summary Includes",
+            bullets: [
+              "Client details: Name, NRIC, DOB, contact information",
+              "All policies: Insurer, product, sum assured, premium, benefits, expiry, nominee",
+              "CPF balances: OA, SA, MA, RA breakdown",
+              "Other investments: Stocks, unit trusts, FDs, property",
+              "Total coverage, total premiums, and GAPS identified"
+            ]
+          },
+          {
+            heading: "The Template Structure",
+            bullets: [
+              "Section 1: Personal Information",
+              "Section 2: Insurance Policies (table format)",
+              "Section 3: CPF Balances (current + projected)",
+              "Section 4: Investments & Savings",
+              "Section 5: Estate Planning Status (Will, LPA, AMD, CPF Nomination)",
+              "Section 6: Gaps & Recommendations"
+            ],
+            table: {
+              headers: ["Insurer", "Product", "Sum Assured", "Premium/yr", "Benefits", "Expiry", "Nominee"],
+              rows: [
+                ["AIA", "PWV Gold", "$500,000", "$24,000", "Death + CI + Dividends", "Whole Life", "Spouse"],
+                ["Prudential", "PRUShield", "As charged", "$1,200", "Hospital & Surgical", "Renewable", "N/A"],
+                ["GE", "Endowment Plus", "$50,000", "$3,600", "Maturity + Death", "2028", "Child (outdated)"]
+              ]
+            }
+          },
+          {
+            heading: "The Annual Review Trigger",
+            bullets: [
+              "Deliver via WhatsApp group chat with client + spouse",
+              "Promise annual updates: 'I will refresh this every year for you'",
+              "Every update = legitimate reason to contact the client",
+              "Not a sales call — a SERVICE call (that creates sales opportunities)",
+              "Gaps section becomes the agenda for the next meeting"
+            ],
+            script: `"I have put together a consolidated summary of everything you have — all your policies, CPF, investments, and nominations on one page. I will update this for you every year. If anything changes in between — a new policy, a family change — just message me and I will update it right away."`
+          }
+        ],
+        keyTakeaways: [
+          "A one-page consolidated summary makes you indispensable to clients",
+          "The gaps section is your built-in agenda for future meetings",
+          "Deliver via WhatsApp group chat for maximum accessibility",
+          "The annual update promise gives you a legitimate recurring touchpoint",
+          "Every service call is an opportunity — but only if you lead with value first"
+        ],
+        realExamples: [
+          "Multiple client meetings used the portfolio summary as the starting point for restructuring conversations",
+          "WhatsApp group chats with both spouses became the primary communication channel for ongoing advisory"
+        ]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODULE 14 — Digital Tools & Technology
+  // ═══════════════════════════════════════════════════════════════════════════
+  {
+    id: "m14-digital-tools",
+    number: 14,
+    title: "Digital Tools & Technology",
+    description: "Master the digital tools that make you efficient and credible — SingPass portal navigation, WhatsApp follow-up systems, and financial calculator mastery.",
+    icon: "Smartphone",
+    lessons: [
+      {
+        id: "m14-l1",
+        title: "SingPass & Portal Walkthrough",
+        description: "Navigate CPF portals, MyInfo, and insurance portals during live meetings to pull real data and build trust through transparency.",
+        durationMin: 4,
+        narration: `The most credible thing you can do in a client meeting is work with real numbers — not projections, not estimates, not brochure figures. Real numbers from the client's own accounts. This lesson teaches you how to navigate the key digital portals fluently so you never fumble in front of a client.
+
+Let us start with the CPF portal via SingPass. The flow is straightforward: SingPass login, navigate to CPF, and you will see the dashboard showing OA, SA, MA, and RA balances. From there, you can access the CPF Life estimator which projects monthly payouts based on current balances. This is gold for your retirement gap analysis. You pull up their projected CPF Life payout, compare it to their desired monthly retirement income, and the gap is right there on screen — not from your spreadsheet, from the government's own calculator.
+
+MyInfo is another powerful tool. When a client authorizes MyInfo access, you get instant fact-finding data: name, NRIC, address, employment, income range, CPF balances, and more. This eliminates the tedious manual fact-finding process and shows the client you respect their time.
+
+For insurance portals — AIA iServe, Prudential PruAccess, Great Eastern's portal — each gives you live policy details: current cash values, coverage amounts, premium schedules, and nomination details. Logging into these during the meeting is the live portal review technique we discussed in the restructuring module. It builds enormous trust.
+
+Now here is the cautionary tale. In Karen Ng's meeting, the portal access failed because she could not remember her SingPass password. Ten minutes of the meeting were spent trying to reset it. Ten minutes of awkward silence and frustration. The lesson is simple: always ask clients to log into their CPF portal BEFORE the meeting. Send a message the day before: "Tomorrow, it would be helpful if you could log into your CPF portal via SingPass before our session. That way we can review your exact balances together without any delays."
+
+This one simple preparation step — sending that pre-meeting message — saves time, avoids embarrassment, and ensures you have the real data you need to deliver a compelling analysis. Technology is only powerful when it works smoothly. Your job is to make sure it does.`,
+        slides: [
+          {
+            heading: "The SingPass → CPF Flow",
+            bullets: [
+              "Step 1: Client logs into SingPass (fingerprint/face ID on mobile)",
+              "Step 2: Navigate to CPF portal → Dashboard",
+              "Step 3: View OA, SA, MA, RA balances (real-time)",
+              "Step 4: Access CPF Life estimator → projected monthly payouts",
+              "Step 5: Compare projected payout vs desired retirement income = THE GAP"
+            ]
+          },
+          {
+            heading: "Insurance Portal Navigation",
+            bullets: [
+              "AIA iServe: policy details, cash values, coverage, premiums",
+              "Prudential PruAccess: similar — live policy data and maturity values",
+              "Great Eastern Portal: policy overview, claims history, nominations",
+              "Pro tip: bookmark all three portals on your tablet for quick access",
+              "Logging in live during the meeting = maximum trust and transparency"
+            ],
+            table: {
+              headers: ["Portal", "Key Data Available", "Common Issues"],
+              rows: [
+                ["CPF (via SingPass)", "OA/SA/MA/RA balances, Life estimator", "Password resets, 2FA delays"],
+                ["AIA iServe", "Cash values, coverage, premiums, nominees", "First-time registration required"],
+                ["Prudential PruAccess", "Policy details, maturity values", "Forgotten credentials"],
+                ["GE Portal", "Policy overview, claims, nominations", "Slow loading on mobile"]
+              ]
+            }
+          },
+          {
+            heading: "The Pre-Meeting Preparation Message",
+            bullets: [
+              "Send the day before every meeting — saves 10+ minutes",
+              "Ask client to log into SingPass and CPF portal in advance",
+              "Verify they can access their insurance portals too",
+              "This avoids the Karen Ng scenario (10 min lost to password reset)"
+            ],
+            script: `"Hi [Client], looking forward to our meeting tomorrow. It would be really helpful if you could log into your CPF portal via SingPass before we start — just to make sure everything is accessible. That way we can jump straight into reviewing your exact numbers together. See you at [time]!"`
+          },
+          {
+            heading: "MyInfo for Instant Fact-Finding",
+            bullets: [
+              "Client authorizes MyInfo → instant access to personal and financial data",
+              "Eliminates tedious manual fact-finding forms",
+              "Shows respect for the client's time",
+              "Data includes: name, NRIC, address, employment, income range, CPF",
+              "Always explain why you need it and how the data is protected"
+            ]
+          }
+        ],
+        keyTakeaways: [
+          "Real numbers from portals are infinitely more credible than brochure projections",
+          "Always send a pre-meeting message asking clients to prepare SingPass access",
+          "The CPF Life estimator is your strongest tool for demonstrating the retirement gap",
+          "Live portal reviews during meetings build trust through complete transparency",
+          "Bookmark all insurance portals on your tablet for seamless navigation"
+        ],
+        realExamples: [
+          "Karen Ng: 10 minutes lost to SingPass password reset — now always send prep message the day before",
+          "Kyaw Min Htut: pulling up CPF portal live showed OA $108K and SA $76K, driving the SA transfer recommendation",
+          "Patwant Singh: live GE portal review uncovered forgotten $41K Prudential maturity value"
+        ]
+      },
+      {
+        id: "m14-l2",
+        title: "WhatsApp Follow-up Systems",
+        description: "Build a systematic WhatsApp follow-up cadence that keeps clients engaged and moves them toward decisions without being pushy.",
+        durationMin: 3,
+        narration: `Your meeting was excellent. The client was engaged, asked great questions, and seemed genuinely interested. And then... silence. No response to your follow-up email. No call back. The deal goes cold. This happens because most advisors do not have a follow-up system. They rely on ad hoc emails and hope. Hope is not a strategy.
+
+WhatsApp is your follow-up weapon. Not email, not phone calls — WhatsApp. Here is why: everyone checks WhatsApp multiple times a day. Emails get buried. Phone calls feel intrusive. WhatsApp messages feel personal but non-invasive, and the read receipts tell you if your message was seen.
+
+The first step is creating the client group chat immediately after the meeting — ideally before you even leave the venue. If the client is married, include both spouses. Name the group something professional: "Financial Review — [Client Name]." This group becomes the single channel for all communication about their financial plan.
+
+Now here is the cadence. Same day: send a meeting summary. Keep it concise — three to five bullet points covering what you discussed, what was agreed, and next steps. This shows professionalism and gives the client a reference document. Day three: send the proposal PDF with a brief message highlighting the key numbers. Day seven: a gentle follow-up — "Hi [Client], just checking if you had a chance to review the proposal. Happy to clarify anything." Day fourteen: a check-in that adds value, not pressure — share a relevant article, a promotion update, or a market insight.
+
+For each stage, have template messages ready. You should not be composing follow-up messages from scratch every time. Customize the template with the client's specific numbers and situation, but the structure should be consistent.
+
+The beauty of the group chat is that it persists. Six months later, when a new promotion launches that fits the client's profile, you can share it directly in their group. It is not a cold outreach — it is a continuation of an existing conversation. That is the difference between following up and spamming.`,
+        slides: [
+          {
+            heading: "Why WhatsApp Beats Everything Else",
+            bullets: [
+              "Checked multiple times daily (vs email: once or twice)",
+              "Feels personal and non-invasive (vs phone calls: intrusive)",
+              "Read receipts tell you if the message was seen",
+              "Group chats include both spouses for aligned decision-making",
+              "Persists as an ongoing communication channel for months/years"
+            ]
+          },
+          {
+            heading: "The Follow-Up Cadence",
+            bullets: [
+              "Same day: Meeting summary (3–5 bullet points + next steps)",
+              "Day 3: Proposal PDF with key numbers highlighted",
+              "Day 7: Gentle follow-up — 'Any questions on the proposal?'",
+              "Day 14: Value-add check-in (article, promotion, market insight)",
+              "Beyond: Ongoing channel for promotions and annual reviews"
+            ],
+            table: {
+              headers: ["Timing", "Message Type", "Purpose"],
+              rows: [
+                ["Same day", "Meeting summary", "Demonstrate professionalism, create reference"],
+                ["Day 3", "Proposal PDF", "Move to formal consideration"],
+                ["Day 7", "Gentle follow-up", "Check engagement, answer questions"],
+                ["Day 14", "Value-add content", "Stay top-of-mind without pressure"],
+                ["Ongoing", "Promotions & reviews", "Long-term relationship maintenance"]
+              ]
+            }
+          },
+          {
+            heading: "Template Messages",
+            bullets: [
+              "Have templates ready for each cadence stage — do not compose from scratch",
+              "Customize with client-specific numbers and details",
+              "Keep messages concise — 3–5 lines maximum",
+              "Always end with a question or clear next step"
+            ],
+            script: `Same-day template: "Hi [Client], great meeting today! Here is a quick summary: (1) We reviewed your CPF balances — OA $X, SA $Y. (2) Identified a retirement income gap of $Z/month. (3) Discussed the PWV dividend plan to close that gap. I will send the detailed proposal in the next day or two. Let me know if you have any questions in the meantime!"`
+          }
+        ],
+        keyTakeaways: [
+          "Create the WhatsApp group chat immediately after every meeting",
+          "Include both spouses in the group for aligned decision-making",
+          "Follow the 0-3-7-14 day cadence for systematic follow-up",
+          "Use template messages customized with client-specific details",
+          "The group chat becomes a persistent channel for long-term relationship management"
+        ],
+        realExamples: [
+          "All post-meeting observations showed that same-day WhatsApp summaries dramatically improved response rates",
+          "Couple meetings where only one spouse was in the chat often stalled — always include both"
+        ]
+      },
+      {
+        id: "m14-l3",
+        title: "Financial Calculator Mastery",
+        description: "Master the Total Wealth Concept tool, retirement lifestyle calculator, and policy growth charts to deliver compelling visual presentations.",
+        durationMin: 4,
+        narration: `Your financial calculators are not just number-crunching tools — they are storytelling devices. When used correctly, they transform abstract concepts like inflation, compounding, and income streams into visual narratives that clients can see and feel. This lesson covers the three most important tools and how to use them for maximum impact.
+
+The Total Wealth Concept tool is your primary presentation weapon. It maps out a client's entire financial picture: current assets, projected growth, income needs, and gaps. The key feature is the inflation toggle. Here is the technique: first show the client their retirement expenses WITHOUT inflation — "You need $5,000 a month." Then toggle inflation on — "But with 3 percent inflation, by the time you are 65, you will need $7,000 a month. And at 75, $9,500 a month." The visual of that line stretching upward is more powerful than any verbal explanation. You are literally stretching the problem on screen before presenting the solution.
+
+The retirement lifestyle calculator lets you work backwards from desired lifestyle to required savings. The client tells you they want to retire at 62 with $6,000 per month. The calculator shows exactly how much they need to save and invest starting today. It makes the abstract concrete and the overwhelming manageable.
+
+The policy growth chart shows how a PWV or similar product grows over time, including projected dividends. Switch to dividend mode to show income streams rather than capital growth. For income-focused clients — which is most pre-retirees — seeing a steady stream of annual dividends is far more compelling than seeing a total value number.
+
+The presenter mode feature gives you a clean, client-facing view without the backend clutter. Always use this in meetings. And here is a practical tip from training: master the undo function. When you are adjusting numbers in front of a client and make an error, fumbling to fix it breaks your flow and credibility. A quick undo keeps the presentation smooth.
+
+Finally, the competitive analysis tool allows you to compare AIA fund structures against Manulife and Prudential side by side. Use this when a client says "my friend's advisor says Manulife is better." Pull up the comparison, show the data, and let the numbers speak.`,
+        slides: [
+          {
+            heading: "The Inflation Toggle Technique",
+            bullets: [
+              "Start: Show retirement expenses WITHOUT inflation ($5,000/mo)",
+              "Toggle ON: Show with 3% inflation ($7,000 at 65, $9,500 at 75)",
+              "The visual of the rising line creates urgency without words",
+              "Rule: Always stretch the problem BEFORE presenting the solution",
+              "Let the client sit with the gap for a moment — then offer the answer"
+            ],
+            script: `"Right now you need $5,000 a month. But watch what happens when I turn on inflation..." [toggle] "...by 65, that same lifestyle costs $7,000. By 75, $9,500. The money you need keeps going up, but your CPF payout stays flat. That gap is what we need to solve."`
+          },
+          {
+            heading: "Dividend Mode vs Growth Mode",
+            bullets: [
+              "Growth mode: Shows total portfolio value over time (good for accumulators)",
+              "Dividend mode: Shows annual income streams (ideal for pre-retirees)",
+              "Pre-retirees care about INCOME, not portfolio value",
+              "Switch to dividend mode when presenting PWV to retirement-focused clients",
+              "Show the income stream alongside CPF Life payouts for the full picture"
+            ]
+          },
+          {
+            heading: "Presenter Mode & Practical Tips",
+            bullets: [
+              "Always use Presenter Mode in client meetings — clean, professional view",
+              "Master the Undo function — fumbling with errors breaks credibility",
+              "Practice with 5 different client scenarios before your first live meeting",
+              "Save client scenarios so you can pull them up again in follow-up meetings",
+              "Competitive analysis tool: compare AIA vs Manulife vs Prudential side by side"
+            ]
+          },
+          {
+            heading: "The Competitive Analysis Response",
+            bullets: [
+              "Client: 'My friend says Manulife/Prudential is better'",
+              "Pull up the comparison tool — show fund structures side by side",
+              "Let the data speak — never badmouth competitors",
+              "Focus on: dividend track record, fund flexibility, total returns",
+              "Key phrase: 'Let me show you the comparison so you can decide based on facts'"
+            ],
+            script: `"That is a fair question, and I am glad you are doing your research. Let me pull up a side-by-side comparison so you can see exactly how the fund structures differ. I want you to make this decision based on data, not sales pitches — including mine."`
+          }
+        ],
+        keyTakeaways: [
+          "The inflation toggle technique is your strongest visual urgency tool",
+          "Always stretch the problem on screen before presenting the solution",
+          "Use dividend mode (not growth mode) when presenting to pre-retirees",
+          "Presenter mode keeps client meetings clean and professional",
+          "Master the undo function and practice with multiple scenarios before live meetings"
+        ],
+        realExamples: [
+          "Leo's team training emphasized the inflation toggle as the single most effective calculator technique",
+          "Multiple meetings used the competitive analysis tool when clients mentioned competing advisors"
+        ]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODULE 15 — Real Meeting Breakdowns
+  // ═══════════════════════════════════════════════════════════════════════════
+  {
+    id: "m15-real-meetings",
+    number: 15,
+    title: "Real Meeting Breakdowns",
+    description: "Step-by-step analysis of real client meetings — from opening to close — showing exactly how top advisors structure conversations and handle objections.",
+    icon: "Video",
+    lessons: [
+      {
+        id: "m15-l1",
+        title: "PWV Opening — The Kyaw Min Htut Case",
+        description: "Full play-by-play of a real opening appointment showing how to establish the retirement gap using the client's own numbers and transition from problem to solution.",
+        durationMin: 5,
+        narration: `This is a real opening appointment broken down move by move. Study this case because it demonstrates every principle we have covered so far — applied in a live client conversation.
+
+Client profile: Kyaw Min Htut. Singapore PR for 19 years. Monthly salary: $8,000. CPF balances: OA $108,000, SA $76,000. US stocks worth approximately $80,000 USD. Overseas properties. Cash ready to invest: $100,000. This is a strong financial profile, but as you will see, even financially comfortable clients have retirement gaps.
+
+The advisor applied the 4-step Golden Framework. Step one: establish rapport and fact-find. The advisor did not jump into products. He spent the first 15 minutes understanding Kyaw's situation — his career timeline as a PR, his family situation, his retirement vision. He asked: "What does a comfortable retirement look like for you?" Kyaw said $5,000 per month. That number became the anchor for everything that followed.
+
+Step two: quantify the gap. Using Kyaw's own CPF balances, the advisor pulled up the CPF Life estimator. Projected CPF Life payout: roughly $1,800 per month. Kyaw needs $5,000. That is a $3,200 monthly gap. But it does not stop there. The advisor toggled on inflation. At age 65, that $5,000 lifestyle costs $7,000. At age 75, $9,500. Suddenly the gap is not $3,200 — it is $5,200 or more. Kyaw's expression changed when he saw those numbers. Not because the advisor told him he had a problem, but because his own numbers showed it.
+
+Step three: present the solution. With the gap clearly established, the advisor introduced the PWV single premium option at $100,000 — the exact amount Kyaw had said he was ready to invest. This is critical: the advisor did not suggest an amount. He used the client's own stated capacity. The $100,000 invested in PWV at projected returns would generate a supplementary income stream that, combined with CPF Life, would close the gap.
+
+Step four: secure commitment. The meeting ended with Kyaw agreeing to the $100,000 PWV single premium. The key lesson from this case is deceptively simple: always use the client's own numbers. When you use generic examples, clients can dismiss them. When you use their CPF balance, their income, their stated retirement goal — they cannot look away. The numbers are theirs, and so is the gap.`,
+        slides: [
+          {
+            heading: "Client Profile: Kyaw Min Htut",
+            bullets: [
+              "Singapore PR for 19 years, salary $8,000/month",
+              "CPF: OA $108,000, SA $76,000",
+              "US stocks: ~$80,000 USD, overseas properties",
+              "Cash ready to invest: $100,000",
+              "Retirement goal: $5,000/month"
+            ]
+          },
+          {
+            heading: "Step 1–2: Rapport & Gap Establishment",
+            bullets: [
+              "First 15 minutes: understanding situation, not pitching products",
+              "Key question: 'What does a comfortable retirement look like for you?'",
+              "CPF Life estimator pulled up on portal: projected payout ~$1,800/mo",
+              "Gap without inflation: $5,000 - $1,800 = $3,200/mo",
+              "Gap WITH inflation: $7,000 - $1,800 = $5,200/mo at 65"
+            ],
+            table: {
+              headers: ["Age", "Monthly Need (with inflation)", "CPF Life Payout", "Monthly Gap"],
+              rows: [
+                ["Today", "$5,000", "N/A", "N/A"],
+                ["At 65", "$7,000", "$1,800", "$5,200"],
+                ["At 75", "$9,500", "$1,800", "$7,700"],
+                ["At 85", "$12,800", "$1,800 (may deplete)", "$11,000+"]
+              ]
+            }
+          },
+          {
+            heading: "Step 3–4: Solution & Commitment",
+            bullets: [
+              "Solution: PWV single premium at $100,000 (client's stated investment capacity)",
+              "Critical: used client's OWN stated amount — did not suggest a figure",
+              "Projected supplementary income stream to close the retirement gap",
+              "Combined CPF Life + PWV dividends = closer to $5,000/mo target",
+              "Meeting outcome: client agreed to $100,000 PWV single premium"
+            ],
+            script: `"Based on what you have shown me today — your CPF projecting $1,800 a month and your goal of $5,000 — we need to build an additional $3,200 in monthly income. With the $100,000 you mentioned you are ready to invest, let me show you how a dividend plan can close that gap."`
+          },
+          {
+            heading: "Key Lesson: Always Use the Client's Own Numbers",
+            bullets: [
+              "Generic examples can be dismissed — the client's own numbers cannot",
+              "Their CPF balance, their income, their stated goal = their gap",
+              "The advisor never told Kyaw he had a problem — the numbers did",
+              "The inflation toggle made the gap visceral, not theoretical",
+              "Match the solution to the client's stated investment capacity"
+            ]
+          }
+        ],
+        keyTakeaways: [
+          "The 4-step Golden Framework structures every opening appointment",
+          "Spend the first 15 minutes understanding the client, not pitching",
+          "Always use the client's own numbers from their CPF portal",
+          "The inflation toggle transforms a manageable gap into an urgent one",
+          "Match the proposed investment to the client's stated capacity — never suggest an amount"
+        ],
+        realExamples: [
+          "Kyaw Min Htut: $100K PWV single premium closed in one meeting by using his own CPF data and stated retirement goal of $5,000/mo"
+        ]
+      },
+      {
+        id: "m15-l2",
+        title: "PWV Pitch — The Jeffrey Foo Deep Dive",
+        description: "A 127-minute masterclass broken down — the healthcare cost angle, premium structure comparison, SRS-linked annuity, and the 'dividends fund your hospital plan' close.",
+        durationMin: 5,
+        narration: `The Jeffrey Foo meeting was a 127-minute masterclass in financial advisory. It is the longest meeting in our case study library, and it is long because the advisor left no stone unturned. Let us break down why this meeting worked and how you can replicate its most powerful elements.
+
+Client profile: Jeffrey Foo. Existing AIA client. His hospital plan was costing over $1,000 per month, and healthcare costs were his deepest concern. He was not worried about retirement lifestyle — he was terrified of medical bills bankrupting his family. This is a critical insight: different clients have different fear triggers. Jeffrey's was healthcare, not lifestyle.
+
+The advisor leaned into this fear with data. He showed cumulative medical costs projections: $200,000 to $400,000 or more by age 85, depending on health conditions. He did not minimize the fear. He validated it with numbers. "You are right to be concerned. The numbers show that your concern is actually understated." This validation technique — agreeing with the client's fear and then showing it is even worse than they thought — creates intense motivation to act.
+
+Then came the premium structure comparison. The advisor presented two options. Option A: $24,000 per year with full flexibility — the client can adjust, pause, or withdraw. Option B: $42,000 per year with higher bonus rates but a 7-year lock-in commitment. By presenting two options, the advisor gave Jeffrey a choice between plans rather than a choice between buying and not buying. This is a fundamental closing technique.
+
+The SRS component was particularly clever. Jeffrey had $156,000 in SRS contributions. The advisor structured an SRS-linked annuity that would generate $3,154 per month for 10 years after retirement. Combined with the PWV dividends, the total projected income stream was approximately $3,500 per month.
+
+And here was the kill shot — the line that closed the deal: "Your dividends fund your hospital plan." Think about what this means. Jeffrey's biggest fear was healthcare costs. The advisor showed that the dividend income from the PWV plan would more than cover his hospital plan premiums. The very product he was being sold would eliminate the very fear that kept him up at night. The dividends pay for the hospital plan. The hospital plan covers the medical costs. The circle is complete.
+
+For healthcare-anxious clients, this is the most powerful pitch in your arsenal. Memorize it. Practice it. Use it.`,
+        slides: [
+          {
+            heading: "Client Profile: Jeffrey Foo",
+            bullets: [
+              "Existing AIA client, hospital plan costing $1,000+/month",
+              "Primary concern: healthcare costs, not retirement lifestyle",
+              "Deeply anxious about medical bills bankrupting family",
+              "Meeting duration: 127 minutes (thorough, methodical approach)",
+              "Key insight: identify the client's specific fear trigger"
+            ]
+          },
+          {
+            heading: "The Healthcare Cost Angle",
+            bullets: [
+              "Cumulative medical costs by 85: $200,000–$400,000+",
+              "Validated the fear: 'Your concern is actually understated'",
+              "Validation technique: agree with fear, then show it is worse",
+              "This creates intense motivation to act — not paralysis",
+              "Data-driven fear validation beats emotional manipulation every time"
+            ],
+            table: {
+              headers: ["Age", "Cumulative Medical Costs (Est.)", "Hospital Plan Premium (Annual)"],
+              rows: [
+                ["65", "$50,000–$100,000", "$12,000"],
+                ["70", "$100,000–$200,000", "$15,000"],
+                ["75", "$150,000–$300,000", "$18,000"],
+                ["80", "$200,000–$400,000", "$22,000+"],
+                ["85", "$300,000–$500,000+", "$25,000+"]
+              ]
+            }
+          },
+          {
+            heading: "Premium Structure: Two-Option Close",
+            bullets: [
+              "Option A: $24,000/year — full flexibility (adjust, pause, withdraw)",
+              "Option B: $42,000/year — higher bonuses, 7-year lock-in",
+              "Presenting two options = choice between PLANS, not between buying or not",
+              "Jeffrey chose Option A ($24,000/year) for the flexibility",
+              "SRS component: $156K contributions → $3,154/month for 10 years"
+            ]
+          },
+          {
+            heading: "The Kill Shot: 'Dividends Fund Your Hospital Plan'",
+            bullets: [
+              "Combined income stream: SRS + dividends = ~$3,500/month",
+              "Hospital plan premium: ~$1,000/month",
+              "Dividends MORE than cover the hospital plan costs",
+              "The product eliminates the very fear that motivated the purchase",
+              "This is the most powerful pitch for healthcare-anxious clients"
+            ],
+            script: `"Jeffrey, here is what I want you to see. Your biggest concern is your hospital plan costs — $1,000 a month and rising. This dividend plan generates $3,500 a month. Your dividends fund your hospital plan. The very thing you are worried about is covered by the very plan we are setting up. You do not have to worry about medical costs eating into your savings — the plan pays for itself."`
+          }
+        ],
+        keyTakeaways: [
+          "Identify the client's specific fear trigger — it is not always retirement lifestyle",
+          "The validation technique: agree with the fear, then show the data is even worse",
+          "Present two options to make the choice between plans, not between buying or not",
+          "SRS-linked annuity components can add $3,000+/month to the income stream",
+          "For healthcare-anxious clients: 'Your dividends fund your hospital plan' is the most powerful close"
+        ],
+        realExamples: [
+          "Jeffrey Foo: 127-minute meeting closed with $24K/year PWV, SRS annuity generating $3,154/month, combined $3,500/month income stream covering hospital plan costs"
+        ]
+      },
+      {
+        id: "m15-l3",
+        title: "PWV Close — The Thian Boon Meng Conversion",
+        description: "How a multi-meeting prospect was converted using restructuring revelations, capital preservation products, and a travel-deadline close tied to the client's own schedule.",
+        durationMin: 5,
+        narration: `Some clients do not close in one meeting. Thian Boon Meng was one of those. He had been a prospect across multiple meetings, and each time he was interested but not ready. This case study shows you how to convert a multi-meeting prospect by finding the right angle and the right urgency trigger.
+
+Client profile: SRS account with $151,000. Total portfolio value of approximately $411,000 earning roughly 2 percent returns across three underperforming policies. He was also planning to travel to Korea on October 6th. That travel date turned out to be the key.
+
+The breakthrough came when the advisor showed Thian what his 2 percent returns actually meant in real terms. After inflation at 3 percent, his portfolio was effectively shrinking by 1 percent per year. He was not growing his wealth — he was slowly losing it. This restructuring revelation — the moment the client realizes their current strategy is working against them — is the turning point in almost every conversion.
+
+The advisor then presented the Platinum Gift of Life product at $120,000. The structure was simple and appealing: 1.5 percent in years one and two, then 3.6 percent from year three onward, with full capital preservation. For a risk-averse client earning 2 percent, the jump to 3.6 percent with zero capital risk was compelling. And the 10 percent welcome bonus promotion added urgency — that bonus was ending at month's end.
+
+Now here is the closing technique that made this case special. The advisor did not use an artificial deadline. He used Thian's own schedule. "The 10 percent welcome bonus ends this month, and you are flying to Korea on October 6th. If we get this done before you travel, you lock in the bonus and you can enjoy your trip knowing everything is in place. If you wait until after Korea, the promotion may be gone."
+
+This is the travel and life event close technique. You tie the urgency to something real in the client's life — a trip, a birthday, a child's graduation, a property settlement. It does not feel like a salesperson's pressure tactic because it is genuinely aligned with the client's timeline. The client feels you are helping them coordinate, not pushing them to buy.
+
+Thian signed before his Korea trip. The lesson is clear: when artificial urgency fails, find real urgency in the client's own calendar. Everyone has deadlines. Your job is to align your solution with theirs.`,
+        slides: [
+          {
+            heading: "Client Profile: Thian Boon Meng",
+            bullets: [
+              "SRS account: $151,000",
+              "Total portfolio: ~$411,000 at approximately 2% returns",
+              "Three underperforming policies from various insurers",
+              "Planned travel: Korea trip on October 6th",
+              "Multi-meeting prospect — interested but never committed"
+            ]
+          },
+          {
+            heading: "The Restructuring Revelation",
+            bullets: [
+              "Current returns: ~2% across portfolio",
+              "Inflation: ~3% annually",
+              "Real return: NEGATIVE 1% — portfolio shrinking every year",
+              "This realization is the turning point in every conversion",
+              "Key phrase: 'Your money is not growing — it is slowly disappearing'"
+            ],
+            script: `"Thian, let me show you something important. Your portfolio is earning about 2 percent. Inflation is running at 3 percent. That means in real terms, your money is losing 1 percent of its purchasing power every year. After 10 years, your $411,000 buys what $370,000 buys today. You are going backwards."`
+          },
+          {
+            heading: "The Product: Platinum Gift of Life",
+            bullets: [
+              "Investment: $120,000 single premium",
+              "Returns: 1.5% in years 1–2, 3.6% from year 3 onward",
+              "Full capital preservation — zero downside risk",
+              "10% welcome bonus promotion (ending that month)",
+              "For a risk-averse client at 2%, the jump to 3.6% is compelling"
+            ],
+            table: {
+              headers: ["Feature", "Current Portfolio", "Platinum Gift of Life"],
+              rows: [
+                ["Annual Return", "~2%", "3.6% (from year 3)"],
+                ["Capital Risk", "Variable (market exposure)", "Fully preserved"],
+                ["Welcome Bonus", "None", "10% (limited-time)"],
+                ["Real Return (after inflation)", "-1%", "+0.6%"],
+                ["10-Year Projected Growth", "Declining purchasing power", "Steady positive growth"]
+              ]
+            }
+          },
+          {
+            heading: "The Travel/Life Event Close",
+            bullets: [
+              "Artificial deadlines feel pushy — real deadlines feel helpful",
+              "Thian's Korea trip on October 6th = natural deadline",
+              "10% welcome bonus ending same month = product deadline",
+              "Combined: 'Lock in the bonus before you travel, enjoy your trip worry-free'",
+              "Always look for real events in the client's calendar to anchor urgency"
+            ],
+            script: `"The 10 percent welcome bonus ends this month, and you are flying to Korea on October 6th. If we finalize this before your trip, you lock in the bonus and you can enjoy Korea knowing everything is in place. What do you think — can we get the paperwork done this week?"`
+          }
+        ],
+        keyTakeaways: [
+          "Multi-meeting prospects need a breakthrough moment — the restructuring revelation",
+          "Show that 2% returns with 3% inflation means the portfolio is SHRINKING",
+          "Capital preservation products appeal strongly to risk-averse clients",
+          "The travel/life event close ties urgency to the client's own calendar, not artificial pressure",
+          "Combine product promotion deadlines with real life events for maximum urgency"
+        ],
+        realExamples: [
+          "Thian Boon Meng: $120K Platinum Gift of Life closed before his Korea trip, locking in 10% welcome bonus"
+        ]
+      },
+      {
+        id: "m15-l4",
+        title: "Couple Dynamics — The Karen Ng Session",
+        description: "Selling to a pragmatic businesswoman — how to pivot your emotional hooks and use live portal discoveries to create momentum with quick decision-makers.",
+        durationMin: 4,
+        narration: `Not every client fits the standard emotional playbook. Karen Ng was a pragmatic businesswoman who ran a dialysis business and commuted daily between Johor Bahru and Singapore. She was sharp, direct, and had zero patience for emotional manipulation. This case study teaches you how to adapt your approach for the pragmatic client.
+
+The first challenge was her unique situation. She had a $500,000 mortgage, PR status not citizenship, and a daily commute that meant her time was precious. Any meeting with Karen needed to be efficient and value-packed. No fluff.
+
+The second challenge — and this is the key insight — was her attitude toward inheritance. She explicitly said: "I do not want to leave too much to my daughter. She should fight for herself." For most advisors, the legacy and inheritance angle is a primary emotional hook. With Karen, that hook was not just ineffective — it would have been counterproductive.
+
+The pivot was critical. Instead of framing the dividend plan as inheritance and legacy, the advisor reframed it as self-funding for retirement. "This is not about leaving money behind. This is about making sure YOU have enough for the next 30 years without relying on anyone — not your daughter, not the government, not anyone." That reframe aligned perfectly with Karen's independent, self-reliant worldview.
+
+Karen was a quick decision-maker. Once she saw the numbers — $24,000 per year dividend plan, projected returns, income streams — she chose with minimal hesitation. She did not need three meetings. She did not need to "think about it." She needed clean data and a compelling return.
+
+The bonus moment came during the live portal review. While checking Karen's existing policies, the advisor discovered a $41,000 Prudential maturity that Karen had completely forgotten about. Finding money the client forgot they had instantly elevated the advisor's credibility and demonstrated the value of the comprehensive review.
+
+The lesson from Karen is simple but important: not every client needs the same emotional hook. Pragmatic clients respond to straightforward ROI. Legacy-focused clients respond to family protection. Healthcare-anxious clients respond to medical cost coverage. Your job is to identify which hook fits and lead with it.`,
+        slides: [
+          {
+            heading: "Client Profile: Karen Ng",
+            bullets: [
+              "Runs a dialysis business, commutes JB–Singapore daily",
+              "$500,000 mortgage, PR status (not citizen)",
+              "Pragmatic, direct, zero patience for fluff",
+              "Explicitly stated: 'I do not want to leave too much to my daughter'",
+              "Quick decision-maker — needs clean data, not emotional stories"
+            ]
+          },
+          {
+            heading: "The Pivot: Self-Funding, Not Legacy",
+            bullets: [
+              "Standard hook (legacy/inheritance) would have BACKFIRED with Karen",
+              "Reframed: 'This is about making sure YOU never depend on anyone'",
+              "Aligned with her independent, self-reliant worldview",
+              "Key: identify the client's values FIRST, then align your pitch",
+              "Pragmatic clients want ROI, not emotional stories"
+            ],
+            script: `"Karen, this is not about leaving money behind. You have made it clear your daughter should build her own path, and I respect that. This is about making sure YOU have a reliable income stream for the next 30 years — one that does not depend on anyone else. Let me show you the numbers."`
+          },
+          {
+            heading: "The Portal Discovery: Hidden $41K",
+            bullets: [
+              "During live portal review: found a $41,000 Prudential maturity",
+              "Karen had completely forgotten about it",
+              "Finding 'hidden money' instantly elevated advisor credibility",
+              "Demonstrated the value of a comprehensive financial review",
+              "This discovery alone justified the entire meeting"
+            ]
+          },
+          {
+            heading: "Matching Hooks to Client Types",
+            bullets: [
+              "Pragmatic clients (Karen): Lead with ROI and self-sufficiency",
+              "Legacy clients: Lead with family protection and inheritance",
+              "Healthcare-anxious clients (Jeffrey): Lead with medical cost coverage",
+              "Risk-averse clients (Thian): Lead with capital preservation",
+              "Your job: identify the hook in the first 10 minutes and lean into it"
+            ],
+            table: {
+              headers: ["Client Type", "Primary Hook", "What to Avoid"],
+              rows: [
+                ["Pragmatic/Business", "ROI, self-funding, independence", "Emotional stories, legacy framing"],
+                ["Family-Focused", "Legacy, inheritance, protection", "Cold numbers without context"],
+                ["Healthcare-Anxious", "Medical cost coverage, dividends fund hospital plan", "Downplaying health concerns"],
+                ["Risk-Averse", "Capital preservation, guaranteed returns", "Aggressive growth projections"]
+              ]
+            }
+          }
+        ],
+        keyTakeaways: [
+          "Not every client responds to the same emotional hook — identify theirs early",
+          "Pragmatic clients need clean data and straightforward ROI, not emotional stories",
+          "When legacy/inheritance hooks backfire, pivot to self-funding and independence",
+          "Live portal reviews can uncover forgotten assets that boost your credibility",
+          "Quick decision-makers need efficient meetings — do not over-explain or over-sell"
+        ],
+        realExamples: [
+          "Karen Ng: chose $24K/year dividend plan with minimal hesitation after seeing clean ROI data",
+          "Portal discovery: $41K Prudential maturity Karen had forgotten — found during live review"
+        ]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODULE 16 — Referral & Pipeline Systems
+  // ═══════════════════════════════════════════════════════════════════════════
+  {
+    id: "m16-referral-pipeline",
+    number: 16,
+    title: "Referral & Pipeline Systems",
+    description: "Build sustainable lead flow through referral scripts, lead categorization, CRM discipline, and activity tracking systems that drive COT qualification.",
+    icon: "Network",
+    lessons: [
+      {
+        id: "m16-l1",
+        title: "Referral Scripts & Timing",
+        description: "Master when and how to ask for referrals, the specific scripts that work, and how to leverage WhatsApp group chats as passive referral vehicles.",
+        durationMin: 4,
+        narration: `Referrals are the highest-quality leads you will ever get. A referred prospect is pre-qualified, pre-warmed, and pre-trusting because someone they know vouched for you. Yet most advisors either never ask for referrals or ask so awkwardly that it kills the relationship momentum. This lesson fixes that.
+
+First, timing. The best time to ask for a referral is at the end of every meeting — but only after you have delivered value. If the client just learned something useful about their CPF, saw a restructuring opportunity, or received their consolidated portfolio summary, they are in a state of gratitude. That is your window. Do not let it close.
+
+The script needs to be specific, not generic. Never say: "Do you know anyone who might need insurance?" That is vague, puts the burden on the client, and sounds like every other advisor they have met. Instead, say: "Based on our conversation today, is there anyone in your circle — maybe a colleague or family member approaching retirement — who might benefit from this same review?" Notice the specificity. You are anchoring to what you just discussed and suggesting a specific type of person.
+
+The SB Charisma training added a brilliant angle: the referral-as-protection argument. The script goes: "If people around you are not properly covered and something happens to them, they are going to come to you for money. Helping them get covered is actually protecting yourself." This reframes the referral from a favor to the advisor into a benefit for the client. It is selfish altruism, and it works.
+
+After the close is another prime referral moment. The client has just committed to a plan. They are feeling good about their decision. At this point, the WhatsApp group chat becomes your passive referral vehicle. You can say: "Feel free to share this group with anyone who might find it useful. I share financial tips and updates here regularly." This is low-pressure, ongoing, and it turns every client into a potential referral source without a formal ask.
+
+The key principle is this: make the referral feel like a natural extension of the value you just provided, not a transaction at the end of a sales meeting. When clients feel like they are helping their friends by connecting them with you — rather than doing you a favor — referrals flow naturally.`,
+        slides: [
+          {
+            heading: "When to Ask for Referrals",
+            bullets: [
+              "End of every meeting — AFTER delivering clear value",
+              "After a portfolio discovery (CPF optimization, hidden policies)",
+              "After the client expresses gratitude or surprise at findings",
+              "After a successful close — client is feeling good about their decision",
+              "Never ask at the beginning or during an uncomfortable moment"
+            ]
+          },
+          {
+            heading: "The Specific Referral Script",
+            bullets: [
+              "NEVER: 'Do you know anyone who needs insurance?' (vague, generic)",
+              "ALWAYS: Anchor to what you just discussed, suggest a specific type",
+              "Be specific about WHO: 'colleague approaching retirement,' 'family member with old policies'",
+              "This reduces the mental load on the client and triggers specific names"
+            ],
+            script: `"Based on our conversation today, is there anyone in your circle — maybe a colleague or family member approaching retirement — who might benefit from this same review? I would be happy to do for them what we just did for you — no obligation, just a review."`
+          },
+          {
+            heading: "The Referral-as-Protection Angle",
+            bullets: [
+              "From SB Charisma training — reframes referral as a benefit to the client",
+              "Logic: If your friends are underinsured and something happens, they come to YOU for money",
+              "Helping them get covered is actually protecting yourself",
+              "This turns the referral from a favor into self-interest",
+              "Powerful because it is logically sound, not emotionally manipulative"
+            ],
+            script: `"Here is something to think about. If the people around you — your siblings, your close friends — are not properly covered, and something happens to them, who do they turn to? You. Helping them get a proper review is actually one of the best things you can do for yourself. Would you like me to extend the same review to anyone in your circle?"`
+          },
+          {
+            heading: "WhatsApp Group as Passive Referral Vehicle",
+            bullets: [
+              "After the close: 'Feel free to share this group with anyone who might find it useful'",
+              "Low-pressure, ongoing, requires no formal ask",
+              "You share financial tips and updates → clients share the group",
+              "Every client becomes a potential referral source passively",
+              "The group grows organically over time"
+            ]
+          }
+        ],
+        keyTakeaways: [
+          "Ask for referrals at the end of every meeting, after delivering value",
+          "Be specific in your ask — anchor to the conversation you just had",
+          "The referral-as-protection angle reframes the ask as a benefit to the client",
+          "WhatsApp group chats are passive referral vehicles — encourage sharing",
+          "Make referrals feel like helping friends, not doing you a favor"
+        ],
+        realExamples: [
+          "Jan 06 team meeting emphasized that end-of-meeting referral asks increased referral rates by 3x compared to follow-up requests",
+          "SB Charisma training introduced the protection-angle referral script, now standard practice in the team"
+        ]
+      },
+      {
+        id: "m16-l2",
+        title: "Lead Categorization & CRM",
+        description: "Implement a lead scoring system, manage multiple lead sources, maintain CRM discipline, and use pipeline math to work backwards from COT targets.",
+        durationMin: 3,
+        narration: `Your pipeline is only as good as your ability to categorize and manage it. Without a system, you will waste time on cold leads while hot prospects go stale. This lesson gives you the framework to manage leads efficiently and predictably.
+
+The lead scoring system is simple. Hot leads are ready to close within two weeks — they have expressed clear intent, have the financial capacity, and just need the paperwork. Warm leads are interested but need one to two more meetings — they understand the concept but have not committed. Cold leads are in the educational stage — three or more months from a decision, still learning, or waiting for a life trigger like a promotion, retirement, or policy maturity.
+
+Your lead sources determine the quality and volume of your pipeline. Facebook ads generate volume but vary in quality — expect high lead counts but lower conversion rates. Yakun cafe advertisements reach a specific demographic — older, coffee-shop-going Singaporeans who fit the pre-retiree profile. Referrals are your highest-quality source — pre-warmed and pre-qualified. Seminars generate warm leads who have already shown interest by attending. GAB leads come from the company's lead distribution system. And finternship leads come from your training and educational programs.
+
+CRM discipline is non-negotiable. After every meeting, update the lead status. Move people between categories. And here is the critical one: blacklist unqualified leads. If someone is clearly not a fit — no budget, no need, no interest — remove them from your active pipeline. Every minute you spend chasing an unqualified lead is a minute you are not spending with someone who will close.
+
+Now the pipeline math. To hit COT qualification, you need approximately 15 PWV cases per year. Working backwards: to close 15 cases, you need roughly 45 proposals presented, which means approximately 90 appointments kept, which requires about 180 appointments set, which means around 500 leads contacted. These numbers vary by your conversion rates, but the principle holds: start with the end goal and work backwards to daily activity targets.`,
+        slides: [
+          {
+            heading: "Lead Scoring: Hot, Warm, Cold",
+            bullets: [
+              "HOT: Ready to close within 2 weeks — clear intent, financial capacity",
+              "WARM: Interested, needs 1–2 more meetings — understands but not committed",
+              "COLD: Educational stage, 3+ months — learning, waiting for life trigger",
+              "Review and re-categorize leads weekly — status changes constantly",
+              "Blacklist unqualified leads to protect your time"
+            ],
+            table: {
+              headers: ["Category", "Timeline", "Behavior Signals", "Your Action"],
+              rows: [
+                ["HOT", "0–2 weeks", "Asking about paperwork, comparing options", "Priority follow-up, same-day response"],
+                ["WARM", "2–8 weeks", "Asking questions, sharing with spouse", "Nurture with info, schedule next meeting"],
+                ["COLD", "3+ months", "Polite interest but no urgency", "Monthly value-add touch, wait for trigger"],
+                ["BLACKLIST", "Never", "No budget, no need, or unresponsive", "Remove from active pipeline"]
+              ]
+            }
+          },
+          {
+            heading: "Lead Sources & Quality",
+            bullets: [
+              "Facebook Ads: High volume, variable quality — needs filtering",
+              "Yakun Ads: Specific demographic — older, pre-retiree Singaporeans",
+              "Referrals: Highest quality — pre-warmed and pre-qualified",
+              "Seminars: Warm leads who self-selected by attending",
+              "GAB Leads: Company-distributed — mixed quality",
+              "Finternship: Training program participants — high engagement"
+            ]
+          },
+          {
+            heading: "Pipeline Math: Working Backwards from COT",
+            bullets: [
+              "Goal: 15 PWV cases/year for COT qualification",
+              "Need ~45 proposals presented (33% close rate)",
+              "Need ~90 appointments kept (50% proposal rate)",
+              "Need ~180 appointments set (50% show rate)",
+              "Need ~500 leads contacted (36% appointment rate)",
+              "Daily: ~2 leads contacted, 1 appointment/day"
+            ]
+          }
+        ],
+        keyTakeaways: [
+          "Score every lead as Hot, Warm, or Cold — and review weekly",
+          "Blacklist unqualified leads ruthlessly to protect your productive time",
+          "Referrals are the highest-quality lead source — invest in generating them",
+          "CRM updates after every meeting are non-negotiable discipline",
+          "Work backwards from COT target (15 cases) to daily activity numbers"
+        ],
+        realExamples: [
+          "Team meetings consistently showed that advisors who maintained CRM discipline closed 2x more cases than those who did not",
+          "Facebook ads investment: Cynthia's example showed that ad spend directly correlated with lead volume and eventually FYC"
+        ]
+      },
+      {
+        id: "m16-l3",
+        title: "Activity Tracking for COT",
+        description: "Master the Genesis program structure, activity metrics that drive results, the team leaderboard system, and how marketing investment translates to FYC.",
+        durationMin: 4,
+        narration: `Activity tracking is the difference between advisors who hit COT and advisors who wonder why they did not. This lesson covers the systems and metrics that turn daily effort into annual results.
+
+The Genesis program runs on a 12-week structure. Each 12-week cycle is a sprint with defined activity targets, team accountability, and measurable outcomes. The beauty of the 12-week cycle is that it is long enough to see meaningful results but short enough to maintain intensity. An annual target feels abstract. A 12-week target feels urgent.
+
+The activity metrics that matter are, in order: calls made, appointments set, appointments kept, proposals presented, and cases closed. Notice that the funnel starts with activity, not results. You cannot control closings directly. You can control how many calls you make. If you make enough calls, the rest of the funnel fills itself.
+
+The leaderboard system provides team motivation through transparency. When everyone can see everyone else's activity numbers — not just results, but effort metrics — it creates healthy competition and accountability. Nobody wants to be at the bottom of the call board. And when someone at the top shares their technique for getting appointments, the whole team improves.
+
+Warm market texting deserves special attention. The key is personalization. Never send generic "Hi, how are you?" messages. Frame every outreach as a value-added check-in: "Hi [Name], I just helped a client your age discover they had a $3,200/month retirement gap they did not know about. Would it be useful if I did a quick check for you too?" This is specific, relevant, and offers value rather than asking for a meeting.
+
+Let me share Cynthia's example — the most powerful proof point for marketing investment. Cynthia achieved $168,000 in First Year Commission primarily through Facebook ads investment. She spent money on ads, generated leads, worked them systematically through her pipeline, and the math worked out. Her example proves that marketing investment pays off when combined with disciplined activity tracking and follow-up.
+
+The pledge system brings it all together. At the start of each 12-week cycle, every team member sets specific weekly activity targets: number of calls, appointments, and proposals. These pledges are shared with the team. At the end of each week, actual numbers are compared to pledges. Over time, the gap between pledge and performance narrows, and your conversion rates improve because you are doing more reps.`,
+        slides: [
+          {
+            heading: "The Genesis 12-Week Structure",
+            bullets: [
+              "Each cycle: 12 weeks with defined activity targets",
+              "Long enough for meaningful results, short enough for intensity",
+              "Team accountability through shared metrics and weekly reviews",
+              "Annual goals feel abstract — 12-week targets feel urgent",
+              "3 cycles per 9 months + 1 buffer cycle = full year coverage"
+            ]
+          },
+          {
+            heading: "Activity Metrics Funnel",
+            bullets: [
+              "1. Calls Made — the only metric fully within your control",
+              "2. Appointments Set — measures your phone/text effectiveness",
+              "3. Appointments Kept — measures your credibility and follow-through",
+              "4. Proposals Presented — measures your meeting-to-pitch conversion",
+              "5. Cases Closed — the outcome of everything above"
+            ],
+            table: {
+              headers: ["Metric", "Weekly Target (COT pace)", "Conversion Rate", "Annual Result"],
+              rows: [
+                ["Calls/Texts Made", "10–15/week", "—", "500+/year"],
+                ["Appointments Set", "4–5/week", "~36% of calls", "180+/year"],
+                ["Appointments Kept", "2–3/week", "~50% of set", "90+/year"],
+                ["Proposals Presented", "1–2/week", "~50% of kept", "45+/year"],
+                ["Cases Closed", "~1 every 3 weeks", "~33% of proposals", "15+/year (COT)"]
+              ]
+            }
+          },
+          {
+            heading: "Warm Market Texting That Works",
+            bullets: [
+              "NEVER: Generic 'Hi, how are you?' messages",
+              "ALWAYS: Specific, value-added check-ins with relevance",
+              "Lead with a discovery you made for another client (anonymized)",
+              "Offer a specific, low-commitment next step",
+              "Personalize based on what you know about their situation"
+            ],
+            script: `"Hi [Name], hope you are doing well! I just helped a client around your age discover a $3,200/month retirement gap they did not know about. It took us 20 minutes to map it out using their CPF portal. Would it be useful if I did a quick check for you too? No obligation at all — just a friendly review."`
+          },
+          {
+            heading: "Cynthia's $168K FYC Example",
+            bullets: [
+              "168K FYC achieved primarily through Facebook ads investment",
+              "Formula: Ad spend → Lead volume → Disciplined follow-up → Closings",
+              "Proof that marketing investment pays off with systematic execution",
+              "The pledge system: set weekly targets, share with team, track against pledges",
+              "Over time: pledge-to-performance gap narrows, conversion rates improve"
+            ]
+          }
+        ],
+        keyTakeaways: [
+          "The 12-week Genesis cycle creates urgency that annual goals cannot",
+          "Focus on input metrics (calls, appointments) — output metrics (closings) follow",
+          "Personalized warm market texts outperform generic messages by 5x or more",
+          "Cynthia's $168K FYC proves that marketing investment pays off with discipline",
+          "The pledge system creates accountability and progressively improves performance"
+        ],
+        realExamples: [
+          "Cynthia: $168K FYC achieved through Facebook ads investment and disciplined pipeline management",
+          "Jan 06 team meeting: leaderboard review showed top performers making 15+ calls/week consistently",
+          "Genesis program participants who hit their activity pledges were 3x more likely to achieve COT"
+        ]
+      }
+    ]
+  },
 ];
 
 // ─── Helper: Get all lessons flat ────────────────────────────────────────────
