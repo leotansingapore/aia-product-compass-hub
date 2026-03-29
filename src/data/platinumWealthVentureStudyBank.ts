@@ -1421,5 +1421,290 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     correct: 3,
     explanation: "Savings accounts offer liquidity and interest but nothing else. PWV bundles death benefit, three bonus layers, exclusive Elite Funds, and intergenerational transfer via Secondary Insured.",
     category: 'roleplay'
+  },
+
+  // ============================================================
+  // FIELD-TESTED QUESTIONS (20 questions) — Q101–Q120
+  // From real meeting transcripts and sales playbooks
+  // ============================================================
+
+  // Q101 — correct: 0
+  {
+    question: "What is the 'healthcare cost angle' for positioning PWV to pre-retirees?",
+    options: [
+      "Building a dividend-generating asset today to cover rising hospitalization premiums in retirement, preserving capital for inheritance",
+      "Using PWV to replace their existing hospitalization plan with cheaper coverage",
+      "Convincing clients that PWV is a medical insurance product that covers hospital bills",
+      "Recommending they cancel their hospital plan and use PWV dividends for out-of-pocket expenses"
+    ],
+    correct: 0,
+    explanation: "The healthcare cost angle positions PWV as a wealth-building tool whose dividends offset rising hospital plan premiums (often $300-400K lifetime), while preserving capital for legacy.",
+    category: 'sales-angles'
+  },
+
+  // Q102 — correct: 2
+  {
+    question: "A pre-retiree client will pay approximately $412,000 in HealthShield Gold Max premiums by age 85. How do you use this to pitch PWV?",
+    options: [
+      "Tell them to cancel their hospitalization plan and self-insure using PWV",
+      "Explain that PWV will pay their hospital bills directly as a rider",
+      "Show that a PWV dividend portfolio at 6% yield can cover these premiums annually while preserving capital",
+      "Guarantee that PWV dividends will always exceed their hospital plan premiums"
+    ],
+    correct: 2,
+    explanation: "At 6% yield on a properly sized PWV portfolio, quarterly dividends can cover annual hospital premiums without depleting the capital — and the capital is preserved for inheritance.",
+    category: 'sales-angles'
+  },
+
+  // Q103 — correct: 1
+  {
+    question: "When presenting PWV dividend projections, what conservative yield assumption should you use?",
+    options: [
+      "Always use 9-12% to show the maximum potential returns",
+      "Use 6% as the conservative assumption, while noting actual historical returns average closer to 7-8%",
+      "Use 3% to be as conservative as possible and underpromise",
+      "Use the exact same rate as CPF OA (2.5%) for a fair comparison"
+    ],
+    correct: 1,
+    explanation: "Using 6% conservative assumption builds trust. Clients see you're not overselling. Then show that actual funds have historically returned 7-8%, giving a comfortable buffer.",
+    category: 'sales-angles'
+  },
+
+  // Q104 — correct: 3
+  {
+    question: "How should you present the concept of 'portfolio restructuring' when pitching PWV to a pre-retiree with old policies?",
+    options: [
+      "Tell them all their old policies are worthless and should be surrendered immediately",
+      "Ignore their existing policies and focus only on selling the new PWV plan",
+      "Criticize their previous advisor for selling them bad products",
+      "Audit their existing policies, identify low-yielding ones (often 1-2% returns), and show how surrendering those can fund PWV for higher income"
+    ],
+    correct: 3,
+    explanation: "Real field approach: audit every policy, show the actual yield (often shockingly low at 1-2%), then demonstrate how surrendering and redirecting into PWV's 6% dividend strategy creates significantly more retirement income.",
+    category: 'sales-angles'
+  },
+
+  // Q105 — correct: 0
+  {
+    question: "A client has $460,000 in CPF OA earning 2.5%. How do you position PWV?",
+    options: [
+      "Show that CPF OA funds can be invested in PWV via CPF-approved funds for potentially higher returns through a dividend strategy",
+      "Tell them to withdraw all CPF OA immediately and invest in PWV",
+      "Explain that CPF OA returns are already optimal and no action is needed",
+      "Say PWV accepts CPF OA direct contributions with no restrictions"
+    ],
+    correct: 0,
+    explanation: "CPF OA earns 2.5%. PWV dividend funds target 6%. The staged transfer approach (e.g., $60K-$80K/year for 5 years from CPF OA) lets their money work harder while maintaining sufficient CPF balances.",
+    category: 'sales-angles'
+  },
+
+  // Q106 — correct: 2
+  {
+    question: "What is 'dividend stacking' in the context of PWV for pre-retirees?",
+    options: [
+      "Buying the maximum number of PWV units in a single lump sum payment",
+      "Investing only in the highest-risk funds to maximize dividend yield",
+      "Purchasing multiple PWV policies with staggered start dates to create multiple income streams",
+      "Combining PWV dividends with stock market dividends in one account"
+    ],
+    correct: 2,
+    explanation: "Clients can stack multiple PWV policies purchased at different times to create diversified, multi-stream income. Each policy generates its own quarterly dividends.",
+    category: 'sales-angles'
+  },
+
+  // Q107 — correct: 1
+  {
+    question: "Why is the 'pain avoidance' framing more effective than 'gain seeking' when presenting PWV's healthcare angle?",
+    options: [
+      "Because pre-retirees don't care about making money — they only care about not losing it",
+      "Because showing clients they'll lose $412,000 to insurance premiums without a plan creates stronger urgency than showing potential gains",
+      "Because MAS regulations require advisors to focus on risks rather than benefits",
+      "Because pain avoidance is the only ethically acceptable sales approach"
+    ],
+    correct: 1,
+    explanation: "Psychological framing: showing the cost of inaction ($412K in premiums with nothing to show) motivates faster action than showing potential gains. This is a proven technique from real pre-retiree meetings.",
+    category: 'sales-angles'
+  },
+
+  // Q108 — correct: 0
+  {
+    question: "A client holds nearly $1 million in fixed deposits earning 1.2-1.6%. What is the PWV opportunity?",
+    options: [
+      "Show the significant yield gap between FD rates (1.2-1.6%) and PWV dividend target (6%), and propose reallocating a portion",
+      "Recommend they move their entire $1 million into PWV immediately",
+      "Tell them fixed deposits are a terrible investment and they're wasting money",
+      "Suggest they keep all money in FDs since they're guaranteed by SDIC"
+    ],
+    correct: 0,
+    explanation: "Don't push all-in. Show the opportunity cost: $1M at 1.5% FD = $15K/year vs portion in PWV at 6% = significantly more. Propose reallocating a portion while keeping FD for liquidity.",
+    category: 'objection-handling'
+  },
+
+  // Q109 — correct: 3
+  {
+    question: "A client says: 'I want to study the dividend plan before committing.' How should you respond?",
+    options: [
+      "Pressure them by saying the offer expires soon",
+      "Tell them studying it is unnecessary since you're the expert",
+      "Agree but then keep calling them daily until they sign up",
+      "Send a detailed summary, offer to answer questions via chat, and set a specific follow-up date"
+    ],
+    correct: 3,
+    explanation: "Patience builds trust with pre-retirees. Send materials, stay available via group chat, and set a concrete follow-up date. Don't push — they've been sold to for decades.",
+    category: 'objection-handling'
+  },
+
+  // Q110 — correct: 1
+  {
+    question: "How should you handle the objection: 'My current DBS private bank fund is already managing my wealth'?",
+    options: [
+      "Tell the client that private banks always underperform insurance-linked funds",
+      "Ask to review the fund's actual returns — often suboptimal (3-4%) — and show how PWV's dividend strategy targets 6% with death benefit",
+      "Agree and suggest the client keep everything with DBS",
+      "Say private banks will stop offering wealth management to individual clients soon"
+    ],
+    correct: 1,
+    explanation: "From real meetings: many private bank managed funds return only 3-4%. Request a performance review, then demonstrate PWV's additional value: higher target yield plus death benefit.",
+    category: 'objection-handling'
+  },
+
+  // Q111 — correct: 2
+  {
+    question: "When conducting a pre-retiree meeting, what should you check FIRST about their existing insurance policies?",
+    options: [
+      "Whether they are paying too much in premiums",
+      "Which insurer offers the best commission for switching",
+      "Whether beneficiary nominations are up to date on every policy",
+      "Whether the policy design matches current market trends"
+    ],
+    correct: 2,
+    explanation: "From field experience: many pre-retirees have NO beneficiary nominations on policies for 10+ years. Flagging this immediately builds trust and demonstrates thoroughness.",
+    category: 'roleplay'
+  },
+
+  // Q112 — correct: 0
+  {
+    question: "In a real meeting, how do you present PWV's dividend flexibility to a retiree?",
+    options: [
+      "Explain they can choose quarterly: take dividends as cash via PayNow for living expenses, or reinvest to grow capital — adjustable anytime",
+      "Tell them dividends must be reinvested for the first 10 years with no exceptions",
+      "Say dividends are automatically paid out and cannot be reinvested",
+      "Explain that dividend frequency is fixed at annual payouts only"
+    ],
+    correct: 0,
+    explanation: "Flexibility is key for retirees. They can adjust quarterly: withdraw for income needs or reinvest when they don't need the cash. This adapts to changing retirement circumstances.",
+    category: 'roleplay'
+  },
+
+  // Q113 — correct: 3
+  {
+    question: "How do you connect PWV to estate planning in a pre-retiree conversation?",
+    options: [
+      "Tell them PWV replaces the need for a will entirely",
+      "Say estate planning is irrelevant to investment products like PWV",
+      "Explain that PWV is primarily an estate planning tool, not an investment",
+      "Position PWV as part of holistic planning: the Secondary Insured feature enables intergenerational transfer, while the death benefit provides for nominees"
+    ],
+    correct: 3,
+    explanation: "Estate planning is a powerful door-opener for pre-retirees. PWV's Secondary Insured feature and death benefit naturally connect to their legacy planning goals — will, LPA, AMD.",
+    category: 'sales-angles'
+  },
+
+  // Q114 — correct: 1
+  {
+    question: "A client's existing whole life policy shows a return of only 1.21% over 20 years. How do you use this in a PWV pitch?",
+    options: [
+      "Ignore their existing policy performance and focus only on PWV features",
+      "Show the stark comparison: 1.21% from their old policy vs 6% target from PWV dividends — and ask if their money could work harder",
+      "Guarantee that PWV will always return more than 1.21%",
+      "Tell them their old policy was a scam and the advisor who sold it was dishonest"
+    ],
+    correct: 1,
+    explanation: "Use real numbers from their own policies. Showing the actual low yield of their existing plans (often 1-2%) vs PWV's 6% target creates a compelling case without needing to criticize.",
+    category: 'sales-angles'
+  },
+
+  // Q115 — correct: 2
+  {
+    question: "When pitching PWV to a couple, how should you adapt the DISC personality framework?",
+    options: [
+      "Identify only the husband's personality type since he makes the financial decisions",
+      "Use the same presentation style for both regardless of their personalities",
+      "Identify both partners' DISC profiles — adapt your approach to each, as one may be analytical (C) while the other is relationship-driven (I/S)",
+      "Only focus on the partner who seems more receptive and ignore the other"
+    ],
+    correct: 2,
+    explanation: "Couples often have different DISC profiles. A C-profile partner needs data and comparisons, while an I/S partner needs emotional connection and testimonials. Address both.",
+    category: 'roleplay'
+  },
+
+  // Q116 — correct: 0
+  {
+    question: "What is the recommended approach for building a PWV portfolio over time for a pre-retiree?",
+    options: [
+      "Stage contributions over the 5-year premium term (e.g., $60-80K/year) to achieve dollar cost averaging while building toward target income",
+      "Invest the entire amount as a single lump sum on day one for maximum immediate dividends",
+      "Start with the minimum premium and never top up to minimize risk",
+      "Wait for a market crash before investing any premium"
+    ],
+    correct: 0,
+    explanation: "The staged approach (e.g., $80K/year for 5 years = $400K) implements dollar cost averaging. By Year 5, the portfolio targets approximately $24,000 annual dividends.",
+    category: 'product-facts'
+  },
+
+  // Q117 — correct: 3
+  {
+    question: "How should you handle the SRS angle when discussing PWV with a pre-retiree?",
+    options: [
+      "Recommend they withdraw all SRS funds immediately to invest in PWV",
+      "Tell them SRS is irrelevant to their retirement planning",
+      "Suggest they ignore SRS and focus only on cash investments",
+      "Explain that SRS funds can be strategically allocated — keep combined monthly income under $1,150 to avoid tax, and sequence withdrawals across policies"
+    ],
+    correct: 3,
+    explanation: "SRS tax optimization is crucial for pre-retirees: keep combined SRS monthly income below $1,150 to stay tax-free. Sequence PWV dividend withdrawals and SRS withdrawals to avoid stacking into taxable thresholds.",
+    category: 'sales-angles'
+  },
+
+  // Q118 — correct: 1
+  {
+    question: "A pre-retiree asks: 'What if I move overseas — will my PWV dividends still work?' What is the correct answer?",
+    options: [
+      "They must surrender the policy immediately if they leave Singapore",
+      "PWV dividends can be paid to their Singapore bank account via PayNow regardless of where they live — recommend retaining a SGD account",
+      "Dividends are automatically stopped if the policyholder's address changes to overseas",
+      "They need to convert to a different product designed for overseas residents"
+    ],
+    correct: 1,
+    explanation: "PWV dividends continue regardless of residency. Clients should retain a Singapore bank account for PayNow dividend receipts. The policy is not affected by relocation.",
+    category: 'roleplay'
+  },
+
+  // Q119 — correct: 2
+  {
+    question: "What is the recommended meeting flow when presenting PWV to a pre-retiree for the first time?",
+    options: [
+      "Jump straight to the PWV product pitch within the first 5 minutes",
+      "Focus the entire meeting on scaring them about rising healthcare costs",
+      "Build context (10 min), audit their finances (15 min), educate with scenarios (20 min), then recommend PWV as part of the solution (10 min)",
+      "Present PWV in the first meeting and push for immediate sign-up before they leave"
+    ],
+    correct: 2,
+    explanation: "The proven 4-phase approach: personal rapport, financial landscape audit, scenario modelling with real numbers, then specific recommendations. Pre-retirees respond to education, not hard selling.",
+    category: 'roleplay'
+  },
+
+  // Q120 — correct: 0
+  {
+    question: "Why should you frame PWV as 'building retirement income' rather than 'buying insurance' to pre-retirees?",
+    options: [
+      "Because pre-retirees want income streams, not more insurance products — framing PWV as income resonates with their actual retirement goal",
+      "Because calling it insurance is illegal under MAS regulations",
+      "Because PWV is not technically an insurance product",
+      "Because the word 'insurance' makes the product sound more expensive"
+    ],
+    correct: 0,
+    explanation: "Key principle from field experience: pre-retirees are tired of being sold insurance for decades. They want income. Frame everything as 'building your retirement income stream' — PWV is the vehicle, income is the goal.",
+    category: 'sales-angles'
   }
 ];
