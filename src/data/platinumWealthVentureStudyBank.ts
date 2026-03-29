@@ -143,11 +143,11 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     options: [
       "3.9% p.a. for the first 10 years",
       "2.5% p.a. for the first 5 years",
-      "3.0% p.a. for the first 7 years",
+      "3.6% p.a. for the first 7 years",
       "4.0% p.a. for the first 8 years"
     ],
     correct: 2,
-    explanation: "The supplementary charge is 3.0% p.a. of Regular Premium Policy Value, deducted monthly for the first 7 policy years only.",
+    explanation: "The supplementary charge is 3.6% p.a. of Regular Premium Policy Value, deducted monthly for the first 7 policy years only.",
     category: 'product-facts'
   },
 
@@ -161,7 +161,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "After Year 7 of the policy"
     ],
     correct: 3,
-    explanation: "Supplementary charges of 3.0% p.a. apply only for the first 7 policy years, then drop to zero permanently.",
+    explanation: "Supplementary charges of 3.6% p.a. apply only for the first 7 policy years, then drop to zero permanently.",
     category: 'product-facts'
   },
 
@@ -368,10 +368,10 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "Annually as a lump sum at each policy anniversary",
       "Quarterly from the fund value",
       "Semi-annually from the premium payments",
-      "Monthly as 3.0%/12 of Regular Premium Policy Value"
+      "Monthly as 3.6%/12 of Regular Premium Policy Value"
     ],
     correct: 3,
-    explanation: "The 3.0% p.a. supplementary charge is deducted on a monthly basis (3.0%/12 per month) for the first 7 policy years.",
+    explanation: "The 3.6% p.a. supplementary charge is deducted on a monthly basis (3.6%/12 per month) for the first 7 policy years.",
     category: 'product-facts'
   },
 
@@ -717,15 +717,15 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // Q51 — correct: 1
   {
-    question: "A client compares PWV's 3% supplementary charge to Pro Achiever's 3.9%. How do you frame this?",
+    question: "A client compares PWV's 3.6% supplementary charge to Pro Achiever's 3.9%. How do you frame this?",
     options: [
       "Tell them the charges are not comparable since they apply to different policy values",
-      "Highlight that PWV charges are lower (3.0% vs 3.9%) and end sooner (7 years vs 10 years)",
+      "Highlight that PWV charges are lower (3.6% vs 3.9%) and end sooner (7 years vs 10 years)",
       "Explain that Pro Achiever's higher charge means better fund performance",
       "Suggest they ignore charges entirely and focus on returns"
     ],
     correct: 1,
-    explanation: "PWV has a clear advantage: lower supplementary charge rate (3.0% vs 3.9%) that ends earlier (Year 7 vs Year 10).",
+    explanation: "PWV has a clear advantage: lower supplementary charge rate (3.6% vs 3.9%) that ends earlier (Year 7 vs Year 10).",
     category: 'sales-angles'
   },
 
@@ -1015,15 +1015,15 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
 
   // Q72 — correct: 3
   {
-    question: "A prospect objects: 'Why should I pay 3% supplementary charge when ETFs charge 0.1%?' How do you counter?",
+    question: "A prospect objects: 'Why should I pay 3.6% supplementary charge when ETFs charge 0.1%?' How do you counter?",
     options: [
       "Say ETFs are too volatile for wealth accumulation",
       "Admit that ETFs are always better value and you have no counter",
       "Tell them the 3% charge is waived if they choose Elite Funds",
-      "Explain the 3% stops after 7 years, plus PWV bundles death benefit, triple bonuses, GIO, and Secondary Insured that ETFs cannot provide"
+      "Explain the 3.6% stops after 7 years, plus PWV bundles death benefit, triple bonuses, GIO, and Secondary Insured that ETFs cannot provide"
     ],
     correct: 3,
-    explanation: "The 3% supplementary charge covers only 7 years. Beyond fees, PWV provides death benefit, three bonus layers, GIO access, exclusive funds, and Secondary Insured — none available through ETFs.",
+    explanation: "The 3.6% supplementary charge covers only 7 years. Beyond fees, PWV provides death benefit, three bonus layers, GIO access, exclusive funds, and Secondary Insured — none available through ETFs.",
     category: 'objection-handling'
   },
 
@@ -1372,12 +1372,12 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
     question: "A roleplay client asks: 'How does PWV compare to Pro Achiever on charges?' What is accurate?",
     options: [
       "'Both products have identical charge structures.'",
-      "'PWV charges 3.0% for 7 years vs Pro Achiever's 3.9% for 10 years — PWV is lower and shorter.'",
+      "'PWV charges 3.6% for 7 years vs Pro Achiever's 3.9% for 10 years — PWV is lower and shorter.'",
       "'Pro Achiever has no charges while PWV charges 3% for 10 years.'",
       "'PWV charges 5% but for only 3 years, making it cheaper overall.'"
     ],
     correct: 1,
-    explanation: "PWV has a clear charge advantage: 3.0% p.a. for 7 years versus Pro Achiever's 3.9% p.a. for 10 years — both lower rate and shorter duration.",
+    explanation: "PWV has a clear charge advantage: 3.6% p.a. for 7 years versus Pro Achiever's 3.9% p.a. for 10 years — both lower rate and shorter duration.",
     category: 'roleplay'
   },
 
