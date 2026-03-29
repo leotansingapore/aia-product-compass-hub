@@ -27,7 +27,7 @@ import { Brain, BookOpen } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const PRODUCTS_WITH_EXAMS = new Set(['pro-achiever']);
-const PRODUCTS_WITH_STUDY = new Set(['pro-achiever', 'platinum-wealth-venture']);
+const PRODUCTS_WITH_STUDY = new Set(['pro-achiever', 'platinum-wealth-venture', 'healthshield-gold-max']);
 
 export default function ProductDetail() {
   const {

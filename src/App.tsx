@@ -65,6 +65,7 @@ const ProductExam = lazy(() => import("./pages/ProductExam"));
 const LearningTrack = lazy(() => import("./pages/LearningTrack"));
 const ProAchieverStudy = lazy(() => import("./pages/ProAchieverStudy"));
 const PlatinumWealthVentureStudy = lazy(() => import("./pages/PlatinumWealthVentureStudy"));
+const HealthshieldGoldMaxStudy = lazy(() => import("./pages/HealthshieldGoldMaxStudy"));
 const SalesMastery = lazy(() => import("./pages/SalesMastery"));
 const SalesMasteryLesson = lazy(() => import("./pages/SalesMasteryLesson"));
 
@@ -136,6 +137,7 @@ const App = () => (
                     <Route path="/learning-track" element={<RequireAuth><LearningTrack /></RequireAuth>} />
                     <Route path="/product/pro-achiever/study" element={<RequireAuth><ProAchieverStudy /></RequireAuth>} />
                     <Route path="/product/platinum-wealth-venture/study" element={<RequireAuth><PlatinumWealthVentureStudy /></RequireAuth>} />
+                    <Route path="/product/healthshield-gold-max/study" element={<RequireAuth><HealthshieldGoldMaxStudy /></RequireAuth>} />
                     <Route path="/kb" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
                     <Route path="/kb/:categorySlug" element={<RequireAuth><KBCategory /></RequireAuth>} />
                     <Route path="/kb/:categorySlug/:productSlug" element={<RequireAuth><KBProduct /></RequireAuth>} />
