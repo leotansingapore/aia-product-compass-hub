@@ -1343,13 +1343,13 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
   {
     question: "A roleplay client asks: 'What if I miss a premium payment in Year 3?' What do you tell them?",
     options: [
-      "'A Premium Holiday charge of 20% annual rate applies, deducted monthly from your fund value.'",
+      "'A Premium Holiday charge of 30% annual rate applies, deducted monthly from your fund value.'",
       "'No charge applies since you've already paid for 2 years.'",
       "'The policy is immediately terminated with no refund.'",
       "'AIA waives all charges for missed payments after Year 2.'"
     ],
     correct: 0,
-    explanation: "After paying 2 annual premiums, if the 3rd is missed, a Premium Holiday charge of 20% annual rate (divided by 12 per month) applies to the annualized premium.",
+    explanation: "After paying 2 annual premiums, if the 3rd is missed, a Premium Holiday charge of 30% annual rate (divided by 12 per month) applies. The rate schedule is: after 1st premium = 100%, 2nd = 30%, 3rd = 20%, 4th = 20%, 5th+ = 0%.",
     category: 'roleplay'
   },
 
