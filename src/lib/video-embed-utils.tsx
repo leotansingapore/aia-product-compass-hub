@@ -86,13 +86,17 @@ export function VideoEmbed({ embedUrl, platform }: VideoEmbedProps) {
 
   return (
     <div className="my-4">
-      <div className="relative w-full bg-black" style={{ paddingBottom: '56.25%' }}>
+      <div className="relative w-full bg-black aspect-video">
         <iframe
           src={embedUrl}
           className="absolute top-0 left-0 w-full h-full rounded-lg border border-border shadow-sm"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
           allowFullScreen
+          // @ts-ignore — legacy attributes for Safari/Firefox fullscreen
+          webkitallowfullscreen="true"
+          mozallowfullscreen="true"
+          style={{ border: 0 }}
           title={`${platform} video`}
         />
       </div>
