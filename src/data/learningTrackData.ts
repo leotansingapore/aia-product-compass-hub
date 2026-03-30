@@ -247,6 +247,30 @@ export const learningTrack: TrackPhase[] = [
         ],
       },
       {
+        id: "p2-5",
+        title: "AIA Pro Achiever (APA) Product Pitch",
+        description: "Learn how to pitch AIA Pro Achiever — a goal-driven Investment-Linked Policy (ILP) for growth-focused clients seeking flexibility and long-term accumulation.",
+        objectives: [
+          "Understand APA's key features: regular premium ILP, curated fund access, top-up and policy loan options",
+          "Articulate the value of bonus allocation tiers and how charges vary by premium band",
+          "Confidently handle common objections like 'high fees' using cost-averaging and fund access arguments",
+          "Tailor the pitch using goal-based illustrations aligned to client milestones",
+        ],
+        actionItems: [
+          "Study the Pro Achiever product page and resources",
+          "Practice a 5-minute APA pitch with a peer or AI roleplay",
+          "Complete a graded roleplay submission pitching APA",
+        ],
+        defaultContent: [
+          link("p2-5-a", "Pro Achiever — Product Page", "/kb/investment-products/pro-achiever"),
+          link("p2-5-b", "Investment Products — Knowledge Base", "/kb/investment-products"),
+          link("p2-5-c", "AI Roleplay — Practice Your Pitch", "/roleplay"),
+          link("p2-5-d", "Concept Cards — ILP Flashcards", "/concept-cards"),
+          link("p2-5-e", "Pitch Analysis Tool", "/roleplay/pitch-analysis"),
+          text("p2-5-f", "**Key selling points for APA:**\n• Goal-driven ILP — ideal for clients with specific milestones (children's education, retirement, wealth accumulation)\n• Curated fund selection with top-up flexibility\n• Policy loan feature for liquidity without surrendering\n• Bonus allocation tiers reward higher premiums\n\n**Handling the 'high fees' objection:**\nExplain dollar-cost averaging — regular premiums smooth out market volatility over time. Emphasise the value of curated fund access and professional fund management vs. DIY investing.\n\n**Advisor tip:** Always use goal-based illustrations. Don't sell the product — sell the outcome. \"In 15 years, this could fund your child's university education.\""),
+        ],
+      },
+      {
         id: "p2-4",
         title: "Personal Marketing Kit",
         description: "Prepare a professional Personal Marketing Kit for use in client meetings and networking.",
@@ -462,6 +486,7 @@ export const assignmentChecklist: AssignmentSection[] = [
       { id: "asgn-11", title: "Completion of Policy Summary of one Family Member, Relative or Close Friend" },
       { id: "asgn-12", title: "Book Review on 1 Industry Related Book" },
       { id: "asgn-13", title: "Passed all 4 CMFAS Modules" },
+      { id: "asgn-14", title: "Submit 1 Roleplay of AIA Pro Achiever (APA) Pitch" },
     ],
   },
   {
