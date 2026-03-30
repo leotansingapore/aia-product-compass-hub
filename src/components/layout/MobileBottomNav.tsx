@@ -9,10 +9,10 @@ const navigationItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "Learn", href: "/learning-track", icon: Library },
   { name: "Scripts", href: "/scripts", icon: FileText },
-  { name: "Roleplay", href: "/roleplay", icon: MessageCircle },
 ];
 
 const quickLinkItems = [
+  { name: "Roleplay", href: "/roleplay", icon: MessageCircle, color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-950/30" },
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30" },
   { name: "Learning Track", href: "/learning-track", icon: ListChecks, color: "text-cyan-500", bg: "bg-cyan-50 dark:bg-cyan-950/30" },
   { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
@@ -35,7 +35,6 @@ export function MobileBottomNav() {
           {navigationItems.map((item) => {
             const isActive =
               location.pathname === item.href ||
-              (item.href === "/roleplay" && location.pathname.startsWith("/roleplay")) ||
               (item.href === "/kb" && (location.pathname === "/kb" || location.pathname.startsWith("/kb/"))) ||
               (item.href === "/scripts" && (
                 location.pathname.startsWith("/scripts") ||
