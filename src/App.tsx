@@ -66,8 +66,6 @@ const LearningTrack = lazy(() => import("./pages/LearningTrack"));
 const ProAchieverStudy = lazy(() => import("./pages/ProAchieverStudy"));
 const PlatinumWealthVentureStudy = lazy(() => import("./pages/PlatinumWealthVentureStudy"));
 const HealthshieldGoldMaxStudy = lazy(() => import("./pages/HealthshieldGoldMaxStudy"));
-const SalesMastery = lazy(() => import("./pages/SalesMastery"));
-const SalesMasteryLesson = lazy(() => import("./pages/SalesMasteryLesson"));
 
 const queryClient = new QueryClient();
 
@@ -141,12 +139,6 @@ const App = () => (
                     <Route path="/kb" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
                     <Route path="/kb/:categorySlug" element={<RequireAuth><KBCategory /></RequireAuth>} />
                     <Route path="/kb/:categorySlug/:productSlug" element={<RequireAuth><KBProduct /></RequireAuth>} />
-
-                    {/* Sales Mastery Course */}
-                    <Route path="/sales-mastery" element={<RequireAuth><SalesMastery /></RequireAuth>} />
-                    <Route path="/sales-mastery/:moduleId" element={<RequireAuth><SalesMasteryLesson /></RequireAuth>} />
-                    <Route path="/sales-mastery/:moduleId/lesson/:lessonId" element={<RequireAuth><SalesMasteryLesson /></RequireAuth>} />
-
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>

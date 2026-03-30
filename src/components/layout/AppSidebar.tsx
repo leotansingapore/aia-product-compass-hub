@@ -135,7 +135,7 @@ const AppSidebar = memo(function AppSidebar() {
     { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined, sectionId: "dashboard" },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
     { title: "Learning Track", url: "/learning-track", icon: TrendingUp, dataAttr: undefined, sectionId: "learning-track" },
-    { title: "Sales Mastery", url: "/sales-mastery", icon: Target, dataAttr: undefined, sectionId: "sales-mastery" },
+    
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
     { title: "My Account", url: "/my-account", icon: User, dataAttr: undefined, sectionId: "my-account" },
