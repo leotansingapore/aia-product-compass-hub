@@ -74,7 +74,13 @@ export function MobileHeader({
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => navigate('/my-account')}
+              onClick={() => {
+                if (location.pathname === '/my-account') {
+                  navigate(-1);
+                } else {
+                  navigate('/my-account');
+                }
+              }}
               className="shrink-0 rounded-full h-8 w-8 p-0"
               aria-label="My Account"
             >
