@@ -235,6 +235,9 @@ export function useProductBySlugOrId(slugOrId: string) {
     queryFn: () => fetchProductBySlugOrIdFromServer(slugOrId),
     enabled: !!slugOrId,
     staleTime: 2 * 60 * 1000,
+    // Keep embedded video players stable when users switch browser tabs.
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   const refetch = useCallback(async () => {

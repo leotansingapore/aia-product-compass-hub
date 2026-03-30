@@ -116,6 +116,11 @@ export function usePermissions() {
   useEffect(() => {
     const handleVisibilityChange = async () => {
       if (document.visibilityState === 'visible' && user) {
+        // Avoid focus-time role refresh while watching videos to prevent unnecessary player-side interruptions.
+        const path = window.location.pathname;
+        const isVideoRoute = path.includes('/video/');
+        if (isVideoRoute) return;
+
         console.log('[Permissions] Tab became visible, performing silent refresh...');
         
         try {
