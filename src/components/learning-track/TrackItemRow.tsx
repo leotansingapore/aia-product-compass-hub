@@ -85,6 +85,17 @@ export function TrackItemRow({
           aria-label={`Mark "${title}" as ${isCompleted ? "incomplete" : "complete"}`}
         />
 
+        {onDelete && (
+          <button
+            onClick={onDelete}
+            className="mt-0.5 shrink-0 text-muted-foreground hover:text-destructive transition-colors"
+            aria-label={`Delete "${title}"`}
+            title="Remove lesson"
+          >
+            <Trash2 className="h-3.5 w-3.5" />
+          </button>
+        )}
+
         <Collapsible open={expanded} onOpenChange={setExpanded} className="flex-1 min-w-0">
           <CollapsibleTrigger asChild>
             <button className="flex w-full items-start justify-between text-left group">
