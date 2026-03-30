@@ -1,0 +1,1 @@
+UPDATE user_admin_roles SET admin_role = 'admin', updated_at = now() WHERE user_id = '49d82b06-cff0-4026-a6a8-091367945049';
