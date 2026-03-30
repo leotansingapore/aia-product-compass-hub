@@ -155,12 +155,11 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   if (isMobile) {
     return (
       <div className="min-h-screen w-full overflow-x-hidden">
-        {hideMobileHeader ? (
-          <div className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
+        <MobileHeader />
+        {hideMobileHeader && (
+          <div className="sticky top-[57px] z-30 bg-background/95 backdrop-blur-sm border-b border-border">
             <ScriptsTabBar />
           </div>
-        ) : (
-          <MobileHeader />
         )}
         
         <main className="flex-1 pb-20 page-transition">
