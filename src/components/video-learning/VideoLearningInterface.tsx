@@ -338,7 +338,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                     )}
                   </CardHeader>
                   <CardContent className="px-0 pb-0 sm:px-6 sm:pb-6">
-                    <div className="relative overflow-hidden bg-muted sm:rounded-lg aspect-video">
+                    <div className="relative bg-muted sm:rounded-lg aspect-video">
                       {videoInfo.type === 'mp4' ? (
                         <video
                           src={videoInfo.embedUrl}
@@ -352,11 +352,16 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                       ) : (
                         <iframe
                           ref={iframeRef}
+                          key={videoInfo.embedUrl}
                           src={videoInfo.embedUrl}
                           title={currentVideo?.title}
-                          className="w-full h-full"
+                          className="w-full h-full absolute inset-0"
                           allowFullScreen
+                          // @ts-ignore — legacy attributes needed for Safari/Firefox fullscreen
+                          webkitallowfullscreen="true"
+                          mozallowfullscreen="true"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                          style={{ border: 0 }}
                           onLoad={() => setIsPlaying(false)}
                         />
                       )}
