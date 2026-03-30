@@ -51,6 +51,19 @@ export function useFeedback() {
 
       if (error) throw error;
       toast({ title: '✓ Submitted!', description: 'Thanks — we\'ll look into it.' });
+
+      // Send email notification to admin (fire-and-forget)
+      supabase.functions.invoke('notify-feedback-submitted', {
+        body: {
+          type: data.type,
+          title: data.title,
+          description: data.description,
+          userEmail: user.email ?? 'Unknown',
+          userName: (user as any).user_metadata?.display_name ?? (user as any).user_metadata?.full_name ?? 'Unknown User',
+          pageUrl: data.page_url ?? window.location.pathname,
+        },
+      }).catch(err => console.warn('Feedback notification email failed:', err));
+
       return true;
     } catch (e: any) {
       toast({ title: 'Submission failed', description: e.message, variant: 'destructive' });

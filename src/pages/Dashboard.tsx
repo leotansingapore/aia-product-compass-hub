@@ -5,6 +5,7 @@ import { QuickActions } from "@/components/dashboard/QuickActions";
 import { WhatsNewSection } from "@/components/dashboard/WhatsNewSection";
 import { ProductCategories } from "@/components/dashboard/ProductCategories";
 import { ContinueWhereYouLeftOff } from "@/components/dashboard/ContinueWhereYouLeftOff";
+import { AdminFeedbackAlert } from "@/components/dashboard/AdminFeedbackAlert";
 import { SearchFilters } from "@/components/dashboard/SearchFilters";
 import { SearchResults } from "@/components/dashboard/SearchResults";
 import { PageLayout } from "@/components/layout/PageLayout";
