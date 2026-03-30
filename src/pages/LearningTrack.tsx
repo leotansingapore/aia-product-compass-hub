@@ -15,6 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { usePermissions } from "@/hooks/usePermissions";
+import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { BookOpen, ClipboardCheck } from "lucide-react";
 
 export default function LearningTrack() {
@@ -26,7 +27,8 @@ export default function LearningTrack() {
   const assignmentOverrides = useAssignmentOverrides();
   const assignmentSubmissions = useAssignmentSubmissions();
   const { isMasterAdmin, isAdmin } = usePermissions();
-  const isAdminUser = isMasterAdmin() || isAdmin();
+  const { isViewingAsUser } = useViewMode();
+  const isAdminUser = (isMasterAdmin() || isAdmin()) && !isViewingAsUser;
 
   // Track progress (exclude hidden items)
   const allTrackIds = learningTrack.flatMap((phase) =>
