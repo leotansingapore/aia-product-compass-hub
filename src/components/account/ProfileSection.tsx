@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -59,7 +58,6 @@ export function ProfileSection() {
       if (data) {
         setProfile(data);
       } else {
-        // Create a default profile if none exists
         const { data: newProfile, error: createError } = await supabase
           .from('profiles')
           .insert([
@@ -111,151 +109,113 @@ export function ProfileSection() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-4xl mx-auto">
       <Card className="border-0 shadow-lg">
-        <CardHeader className="pb-6">
-          {/* Ultra mobile-friendly header */}
-          <div className="space-y-4">
-            <div>
-              <CardTitle className="flex items-center gap-3 text-xl font-bold">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <User className="h-6 w-6 text-primary" />
-                </div>
-                Profile Information
-              </CardTitle>
-              <CardDescription className="text-base mt-2 leading-relaxed">
-                Your personal information and learning progress
-              </CardDescription>
+        <CardContent className="p-6 md:p-8">
+          {/* Desktop: horizontal layout | Mobile: stacked */}
+          <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-8">
+            {/* Avatar + name block */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left shrink-0">
+              <Avatar className="h-20 w-20 md:h-24 md:w-24 border-4 border-primary/20">
+                <AvatarImage src={profile?.avatar_url || undefined} />
+                <AvatarFallback className="text-2xl font-bold bg-primary/10 text-primary">
+                  {profile?.display_name?.charAt(0)?.toUpperCase() || 
+                   profile?.first_name?.charAt(0)?.toUpperCase() || 
+                   user?.email?.charAt(0)?.toUpperCase() || 'U'}
+                </AvatarFallback>
+              </Avatar>
+              <div className="mt-3 space-y-1">
+                <h3 className="text-xl md:text-2xl font-bold">
+                  {profile?.display_name || 
+                   `${profile?.first_name || ''} ${profile?.last_name || ''}`.trim() || 
+                   'User'}
+                </h3>
+                <p className="text-sm text-muted-foreground break-all">
+                  {profile?.email || user?.email}
+                </p>
+              </div>
+              <Button 
+                variant="default" 
+                onClick={() => setEditing(true)}
+                className="mt-4 h-10 text-sm font-semibold w-full md:w-auto"
+              >
+                <Edit3 className="h-4 w-4 mr-2" />
+                Edit Profile
+              </Button>
             </div>
-            <Button 
-              variant="default" 
-              onClick={() => setEditing(true)}
-              className="w-full h-12 text-base font-semibold"
-              size="lg"
-            >
-              <Edit3 className="h-5 w-5 mr-3" />
-              Edit Profile
-            </Button>
-          </div>
-        </CardHeader>
-        
-        <CardContent className="space-y-8">
-          {/* Ultra mobile-friendly profile header */}
-          <div className="flex flex-col items-center text-center space-y-4">
-            <Avatar className="h-24 w-24 border-4 border-primary/20">
-              <AvatarImage src={profile?.avatar_url || undefined} />
-              <AvatarFallback className="text-2xl font-bold bg-primary/10 text-primary">
-                {profile?.display_name?.charAt(0)?.toUpperCase() || 
-                 profile?.first_name?.charAt(0)?.toUpperCase() || 
-                 user?.email?.charAt(0)?.toUpperCase() || 'U'}
-              </AvatarFallback>
-            </Avatar>
-            <div className="space-y-2">
-              <h3 className="text-2xl font-bold">
-                {profile?.display_name || 
-                 `${profile?.first_name || ''} ${profile?.last_name || ''}`.trim() || 
-                 'User'}
-              </h3>
-              <p className="text-base text-muted-foreground break-all px-4">
-                {profile?.email || user?.email}
-              </p>
-            </div>
-          </div>
 
-          {/* Modern stats cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {/* Current Level */}
-            <Card className="hover:shadow-lg hover:scale-[1.02] transition-all duration-300 border-border/50 group">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Current Level
-                </CardTitle>
-                <div className="p-2 rounded-lg bg-amber-500/10 group-hover:bg-amber-500/20 transition-colors">
-                  <Trophy className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">{profile?.current_level || 1}</div>
-                <p className="text-micro text-muted-foreground mt-1">
-                  Keep learning to progress
-                </p>
-              </CardContent>
-            </Card>
+            {/* Stats + personal info */}
+            <div className="flex-1 space-y-6 min-w-0">
+              {/* Stats row */}
+              <div className="grid grid-cols-3 gap-3 md:gap-4">
+                <Card className="hover:shadow-md transition-all border-border/50 group">
+                  <CardContent className="p-3 md:p-4 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="p-1.5 rounded-md bg-amber-500/10 group-hover:bg-amber-500/20 transition-colors">
+                        <Trophy className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
+                      </div>
+                      <span className="text-[11px] font-medium text-muted-foreground hidden md:inline">Level</span>
+                    </div>
+                    <div className="text-2xl md:text-3xl font-bold">{profile?.current_level || 1}</div>
+                    <p className="text-[10px] md:text-xs text-muted-foreground mt-0.5">Current Level</p>
+                  </CardContent>
+                </Card>
 
-            {/* Total XP */}
-            <Card className="hover:shadow-lg hover:scale-[1.02] transition-all duration-300 border-border/50 group">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Total XP
-                </CardTitle>
-                <div className="p-2 rounded-lg bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
-                  <Zap className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">{profile?.total_xp || 0}</div>
-                <p className="text-micro text-muted-foreground mt-1">
-                  Experience points earned
-                </p>
-              </CardContent>
-            </Card>
+                <Card className="hover:shadow-md transition-all border-border/50 group">
+                  <CardContent className="p-3 md:p-4 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="p-1.5 rounded-md bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
+                        <Zap className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <span className="text-[11px] font-medium text-muted-foreground hidden md:inline">XP</span>
+                    </div>
+                    <div className="text-2xl md:text-3xl font-bold">{profile?.total_xp || 0}</div>
+                    <p className="text-[10px] md:text-xs text-muted-foreground mt-0.5">Total XP</p>
+                  </CardContent>
+                </Card>
 
-            {/* Streak Days */}
-            <Card className="hover:shadow-lg hover:scale-[1.02] transition-all duration-300 border-border/50 group">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Streak Days
-                </CardTitle>
-                <div className="p-2 rounded-lg bg-emerald-500/10 group-hover:bg-emerald-500/20 transition-colors">
-                  <Calendar className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">{profile?.streak_days || 0}</div>
-                <p className="text-micro text-muted-foreground mt-1">
-                  Consecutive active days
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Large, touch-friendly information display */}
-          <div className="space-y-6">
-            <h4 className="text-xl font-bold">Personal Information</h4>
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-base font-semibold text-muted-foreground">Display Name</label>
-                <div className="p-4 bg-muted/50 rounded-xl border-2 border-transparent">
-                  <p className="text-lg font-medium">
-                    {profile?.display_name || 'Not set'}
-                  </p>
-                </div>
+                <Card className="hover:shadow-md transition-all border-border/50 group">
+                  <CardContent className="p-3 md:p-4 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="p-1.5 rounded-md bg-emerald-500/10 group-hover:bg-emerald-500/20 transition-colors">
+                        <Calendar className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+                      </div>
+                      <span className="text-[11px] font-medium text-muted-foreground hidden md:inline">Streak</span>
+                    </div>
+                    <div className="text-2xl md:text-3xl font-bold">{profile?.streak_days || 0}</div>
+                    <p className="text-[10px] md:text-xs text-muted-foreground mt-0.5">Streak Days</p>
+                  </CardContent>
+                </Card>
               </div>
-              
-              <div className="space-y-2">
-                <label className="text-base font-semibold text-muted-foreground">Email</label>
-                <div className="p-4 bg-muted/50 rounded-xl border-2 border-transparent">
-                  <p className="text-lg font-medium break-all">
-                    {profile?.email || user?.email}
-                  </p>
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-base font-semibold text-muted-foreground">First Name</label>
-                <div className="p-4 bg-muted/50 rounded-xl border-2 border-transparent">
-                  <p className="text-lg font-medium">
-                    {profile?.first_name || 'Not set'}
-                  </p>
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-base font-semibold text-muted-foreground">Last Name</label>
-                <div className="p-4 bg-muted/50 rounded-xl border-2 border-transparent">
-                  <p className="text-lg font-medium">
-                    {profile?.last_name || 'Not set'}
-                  </p>
+
+              {/* Personal info — 2-col grid on desktop */}
+              <div>
+                <h4 className="text-base font-semibold mb-3">Personal Information</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Display Name</label>
+                    <div className="p-3 bg-muted/50 rounded-lg border">
+                      <p className="text-sm font-medium">{profile?.display_name || 'Not set'}</p>
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Email</label>
+                    <div className="p-3 bg-muted/50 rounded-lg border">
+                      <p className="text-sm font-medium break-all">{profile?.email || user?.email}</p>
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">First Name</label>
+                    <div className="p-3 bg-muted/50 rounded-lg border">
+                      <p className="text-sm font-medium">{profile?.first_name || 'Not set'}</p>
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Last Name</label>
+                    <div className="p-3 bg-muted/50 rounded-lg border">
+                      <p className="text-sm font-medium">{profile?.last_name || 'Not set'}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
