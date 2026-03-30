@@ -147,61 +147,6 @@ export function SecuritySection() {
         </CardContent>
       </Card>
 
-      <Card className="border-0 shadow-lg border-destructive/20 bg-destructive/5">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-3 text-destructive text-xl font-bold">
-            <div className="p-2 bg-destructive/10 rounded-lg">
-              <AlertTriangle className="h-6 w-6 text-destructive" />
-            </div>
-            Danger Zone
-          </CardTitle>
-          <CardDescription className="text-base leading-relaxed">
-            Irreversible actions that affect your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <Alert className="border-destructive/30 bg-destructive/10">
-            <AlertTriangle className="h-5 w-5" />
-            <AlertDescription className="text-base leading-relaxed">
-              Deleting your account is permanent and cannot be undone. All your data will be removed.
-            </AlertDescription>
-          </Alert>
-          
-          <div className="pt-2">
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button 
-                  variant="destructive" 
-                  disabled={deleting}
-                  className="w-full h-12 text-base font-semibold"
-                  size="lg"
-                >
-                  <Trash2 className="h-5 w-5 mr-3" />
-                  {deleting ? "Deleting..." : "Delete Account"}
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent className="mx-4 max-w-md sm:max-w-lg">
-                <AlertDialogHeader>
-                  <AlertDialogTitle className="text-xl font-bold">Are you absolutely sure?</AlertDialogTitle>
-                  <AlertDialogDescription className="text-base leading-relaxed">
-                    This action cannot be undone. This will permanently delete your account
-                    and remove all your data from our servers.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter className="flex-col gap-3 sm:flex-row sm:gap-2">
-                  <AlertDialogCancel className="w-full h-12 text-base font-semibold">Cancel</AlertDialogCancel>
-                  <AlertDialogAction
-                    onClick={handleDeleteAccount}
-                    className="w-full h-12 text-base font-semibold bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                  >
-                    Delete Account
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }
