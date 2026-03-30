@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { getCategorySlugFromId } from "@/utils/slugUtils";
 import { useAllProducts } from "@/hooks/useProducts";
 import { useMemo } from "react";
-import { TrendingUp, Shield, Heart, Clock, Stethoscope, ArrowRight } from "lucide-react";
+import { TrendingUp, Shield, Heart, Clock, Stethoscope, ArrowRight, BookOpen } from "lucide-react";
 
 export function ProductCategories() {
   const navigate = useNavigate();
@@ -68,6 +68,16 @@ export function ProductCategories() {
       lightBg: "bg-violet-50 dark:bg-violet-950/30",
       iconColor: "text-violet-600 dark:text-violet-400",
       count: categoryCounts["b1024527-481f-4d85-9192-b43633e9be4a"] || 0,
+    },
+    {
+      id: "5ef0b17f-a19f-4859-8349-3e4959620e94",
+      name: "Supplementary Training",
+      description: "Additional training resources and materials",
+      icon: BookOpen,
+      gradient: "from-teal-500 to-cyan-600",
+      lightBg: "bg-teal-50 dark:bg-teal-950/30",
+      iconColor: "text-teal-600 dark:text-teal-400",
+      count: categoryCounts["5ef0b17f-a19f-4859-8349-3e4959620e94"] || 0,
     },
   ];
 
