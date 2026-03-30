@@ -20,6 +20,7 @@ export default function LearningTrack() {
   const progressHook = useLearningTrackProgress();
   const contentHook = useLearningTrackContent();
   const assignmentHook = useAssignmentProgress();
+  const trackOverrides = useTrackOverrides();
   const { isMasterAdmin, isAdmin } = usePermissions();
   const isAdminUser = isMasterAdmin() || isAdmin();
 
