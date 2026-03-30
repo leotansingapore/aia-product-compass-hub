@@ -165,14 +165,6 @@ export function useUnifiedSearch() {
     { id: 'res5', title: 'RES5 - Regulatory Framework', description: 'Financial advisory regulatory framework and compliance' },
   ], []);
 
-  // KB categories
-  const kbCategories = useMemo(() => [
-    { slug: 'investment-products', name: 'Investment Products', description: 'Pro Achiever, Pro Lifetime Protector, Platinum Wealth Venture' },
-    { slug: 'endowment-products', name: 'Endowment Products', description: 'Smart Wealth Builder, Retirement Saver' },
-    { slug: 'whole-life-products', name: 'Whole Life Products', description: 'Guaranteed Protect Plus' },
-    { slug: 'term-products', name: 'Term Products', description: 'Secure Flexi Term, Ultimate Critical Cover' },
-    { slug: 'medical-insurance-products', name: 'Medical Insurance Products', description: 'HealthShield Gold Max, Solitaire PA' },
-  ], []);
 
   const performSearch = useCallback((searchQuery: string): UnifiedSearchResult[] => {
     if (!searchQuery.trim()) return [];
@@ -264,28 +256,6 @@ export function useUnifiedSearch() {
       }
     }
 
-    // 4. Knowledge Base
-    if (!allowedTypes || allowedTypes.includes('kb')) {
-      for (const kb of kbCategories) {
-        const score = scoreItem(searchQuery, [
-          { text: kb.name, weight: 3 },
-          { text: kb.description, weight: 2 },
-        ]);
-        if (score > 0) {
-          results.push({
-            id: kb.slug,
-            title: kb.name,
-            description: kb.description,
-            type: 'kb',
-            categoryName: 'Knowledge Base',
-            relevanceScore: score,
-            route: `/kb/${kb.slug}`,
-            typeLabel: 'Knowledge Base',
-            icon: 'BookOpen',
-          });
-        }
-      }
-    }
 
     // Apply additional filters
     let filtered = results;
@@ -299,7 +269,7 @@ export function useUnifiedSearch() {
     // Sort by relevance
     filtered.sort((a, b) => b.relevanceScore - a.relevanceScore);
     return filtered.slice(0, 30);
-  }, [allProducts, scripts, cmfasModules, kbCategories, filters]);
+  }, [allProducts, scripts, cmfasModules, filters]);
 
   const [results, setResults] = useState<UnifiedSearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);

@@ -46,9 +46,6 @@ const RoleplayFeedback = lazy(() => import("./pages/RoleplayFeedback"));
 const PitchAnalysis = lazy(() => import("./pages/PitchAnalysis"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const MyAccount = lazy(() => import("./pages/MyAccount"));
-const KnowledgeBase = lazy(() => import("./pages/KnowledgeBase"));
-const KBCategory = lazy(() => import("./pages/kb/KBCategory"));
-const KBProduct = lazy(() => import("./pages/kb/KBProduct"));
 const VideoDetail = lazy(() => import("./pages/VideoDetail"));
 const ManageProductVideos = lazy(() => import("./pages/ManageProductVideos"));
 const ScriptsDatabase = lazy(() => import("./pages/ScriptsDatabase"));
@@ -136,9 +133,6 @@ const App = () => (
                     <Route path="/product/pro-achiever/study" element={<RequireAuth><ProAchieverStudy /></RequireAuth>} />
                     <Route path="/product/platinum-wealth-venture/study" element={<RequireAuth><PlatinumWealthVentureStudy /></RequireAuth>} />
                     <Route path="/product/healthshield-gold-max/study" element={<RequireAuth><HealthshieldGoldMaxStudy /></RequireAuth>} />
-                    <Route path="/kb" element={<RequireAuth><KnowledgeBase /></RequireAuth>} />
-                    <Route path="/kb/:categorySlug" element={<RequireAuth><KBCategory /></RequireAuth>} />
-                    <Route path="/kb/:categorySlug/:productSlug" element={<RequireAuth><KBProduct /></RequireAuth>} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
