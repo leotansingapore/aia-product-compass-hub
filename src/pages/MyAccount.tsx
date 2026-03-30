@@ -4,7 +4,7 @@ import { usePermissions } from "@/hooks/usePermissions";
 import { useAuth } from "@/hooks/useAuth";
 import { ProfileSection } from "@/components/account/ProfileSection";
 import { SecuritySection } from "@/components/account/SecuritySection";
-import { Leaderboard } from "@/components/account/Leaderboard";
+
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ProtectedPage } from "@/components/ProtectedPage";
@@ -94,7 +94,7 @@ export default function MyAccount() {
 
           <ProfileSection />
 
-          <Leaderboard />
+          
 
           <Separator />
 
