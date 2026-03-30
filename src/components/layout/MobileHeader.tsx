@@ -43,8 +43,16 @@ export function MobileHeader({
     return "FINternship";
   };
 
+  // Top-level pages where back should go home instead of history.back()
+  const topLevelPages = ['/learning-track', '/bookmarks', '/cmfas-exams', '/roleplay', '/my-account', '/scripts', '/how-to-use', '/search-by-profile', '/playbooks', '/flows', '/concept-cards'];
+  const isTopLevel = location.pathname === '/' || topLevelPages.some(p => location.pathname === p);
+
   const handleBack = () => {
-    window.history.back();
+    if (isTopLevel) {
+      navigate('/');
+    } else {
+      window.history.back();
+    }
   };
 
   // Get user initials
