@@ -186,7 +186,25 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         <AppSidebar />
         <ResizeHandle />
         
-        <SidebarInset className="flex-1 min-w-0">
+        <SidebarInset className="flex-1 min-w-0 flex flex-col">
+          {/* Desktop Top Bar */}
+          <header className="sticky top-0 z-30 flex h-12 items-center justify-end gap-2 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/my-account')}
+              className="rounded-full h-8 w-8 p-0"
+              aria-label="My Account"
+            >
+              <Avatar className="h-8 w-8">
+                <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
+                  {user?.email?.charAt(0).toUpperCase() || 'U'}
+                </AvatarFallback>
+              </Avatar>
+            </Button>
+          </header>
+
           <main className="flex-1 page-transition">
             {children}
           </main>
