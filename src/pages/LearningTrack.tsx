@@ -5,6 +5,7 @@ import { learningTrack, assignmentChecklist } from "@/data/learningTrackData";
 import { useLearningTrackProgress } from "@/hooks/useLearningTrackProgress";
 import { useLearningTrackContent } from "@/hooks/useLearningTrackContent";
 import { useAssignmentProgress } from "@/hooks/useAssignmentProgress";
+import { useTrackOverrides } from "@/hooks/useTrackOverrides";
 import { TrackPhaseSection } from "@/components/learning-track/TrackPhaseSection";
 import { AssignmentChecklist } from "@/components/learning-track/AssignmentChecklist";
 import { Progress } from "@/components/ui/progress";
