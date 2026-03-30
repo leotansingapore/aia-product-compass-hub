@@ -269,7 +269,7 @@ export function useUnifiedSearch() {
     // Sort by relevance
     filtered.sort((a, b) => b.relevanceScore - a.relevanceScore);
     return filtered.slice(0, 30);
-  }, [allProducts, scripts, cmfasModules, kbCategories, filters]);
+  }, [allProducts, scripts, cmfasModules, filters]);
 
   const [results, setResults] = useState<UnifiedSearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
