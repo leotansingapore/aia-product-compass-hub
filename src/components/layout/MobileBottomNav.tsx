@@ -35,7 +35,6 @@ export function MobileBottomNav() {
           {navigationItems.map((item) => {
             const isActive =
               location.pathname === item.href ||
-              (item.href === "/kb" && (location.pathname === "/kb" || location.pathname.startsWith("/kb/"))) ||
               (item.href === "/scripts" && (
                 location.pathname.startsWith("/scripts") ||
                 location.pathname.startsWith("/objections") ||
