@@ -123,7 +123,7 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
   return (
     <div className={cn(
       "bg-gradient-hero text-white",
-      variant === "compact" ? "py-2 sm:py-3 px-2 sm:px-3" : "py-2 sm:py-3 md:py-6 px-2 sm:px-3 md:px-4",
+      variant === "compact" ? "py-2 sm:py-3 px-2 sm:px-3" : "hidden sm:block sm:py-3 md:py-6 sm:px-3 md:px-4",
       className
     )}>
       <div className="w-full">

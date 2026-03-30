@@ -14,7 +14,7 @@ const navigationItems = [
 const quickLinkItems = [
   { name: "Roleplay", href: "/roleplay", icon: MessageCircle, color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-950/30" },
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30" },
-  { name: "Learning Track", href: "/learning-track", icon: ListChecks, color: "text-cyan-500", bg: "bg-cyan-50 dark:bg-cyan-950/30" },
+  
   { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
   { name: "Client Profile", href: "/search-by-profile", icon: Users, color: "text-violet-500", bg: "bg-violet-50 dark:bg-violet-950/30" },
   { name: "How to Use", href: "/how-to-use", icon: HelpCircle, color: "text-teal-500", bg: "bg-teal-50 dark:bg-teal-950/30" },

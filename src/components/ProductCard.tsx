@@ -114,7 +114,7 @@ export const ProductCard = memo(function ProductCard({ title, description, categ
         <CardHeader className="p-2.5 sm:p-3 md:p-6 pb-1.5 sm:pb-2 md:pb-3">
           <div className="flex justify-between items-start mb-1 sm:mb-2">
             <div className="flex items-center gap-1.5">
-              <Badge variant="secondary" className={`text-[10px] sm:text-xs px-1.5 sm:px-2 text-white ${categoryColors[category as keyof typeof categoryColors] || 'bg-primary'}`}>
+              <Badge variant="secondary" className={`hidden sm:inline-flex text-[10px] sm:text-xs px-1.5 sm:px-2 text-white ${categoryColors[category as keyof typeof categoryColors] || 'bg-primary'}`}>
                 {category}
               </Badge>
               {published === false && isAdmin() && (
@@ -219,7 +219,7 @@ export const ProductCard = memo(function ProductCard({ title, description, categ
               </ul>
             </div>
             
-            <Button variant="outline" className="w-full mt-2 sm:mt-4 h-8 sm:h-10 text-xs sm:text-sm mobile-touch-target transition-all duration-300 ease-in-out">
+            <Button variant="outline" className="hidden sm:flex w-full mt-2 sm:mt-4 h-8 sm:h-10 text-xs sm:text-sm mobile-touch-target transition-all duration-300 ease-in-out">
               Learn More
             </Button>
           </div>
