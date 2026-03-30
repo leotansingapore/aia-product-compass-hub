@@ -5,6 +5,7 @@ import { learningTrack, assignmentChecklist } from "@/data/learningTrackData";
 import { useLearningTrackProgress } from "@/hooks/useLearningTrackProgress";
 import { useLearningTrackContent } from "@/hooks/useLearningTrackContent";
 import { useAssignmentProgress } from "@/hooks/useAssignmentProgress";
+import { useTrackOverrides } from "@/hooks/useTrackOverrides";
 import { TrackPhaseSection } from "@/components/learning-track/TrackPhaseSection";
 import { AssignmentChecklist } from "@/components/learning-track/AssignmentChecklist";
 import { Progress } from "@/components/ui/progress";
@@ -19,6 +20,7 @@ export default function LearningTrack() {
   const progressHook = useLearningTrackProgress();
   const contentHook = useLearningTrackContent();
   const assignmentHook = useAssignmentProgress();
+  const trackOverrides = useTrackOverrides();
   const { isMasterAdmin, isAdmin } = usePermissions();
   const isAdminUser = isMasterAdmin() || isAdmin();
 
@@ -92,6 +94,7 @@ export default function LearningTrack() {
                     progressHook={progressHook}
                     contentHook={contentHook}
                     isAdmin={isAdminUser}
+                    overrides={isAdminUser ? trackOverrides : undefined}
                   />
                 ))}
               </div>

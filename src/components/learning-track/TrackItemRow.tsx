@@ -4,7 +4,10 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { ChevronRight, Target, ClipboardList, ExternalLink, Play, FileText, Trash2, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { TrackItem, ContentBlock } from "@/data/learningTrackData";
+import type { useTrackOverrides } from "@/hooks/useTrackOverrides";
 import { ContentBlockEditor } from "./ContentBlockEditor";
+import { InlineEditableText } from "./InlineEditableText";
+import { InlineEditableList } from "./InlineEditableList";
 
 interface TrackItemRowProps {
   item: TrackItem;
@@ -15,24 +18,22 @@ interface TrackItemRowProps {
   onUpdateBlock: (blockId: string, updates: Partial<ContentBlock>) => void;
   onRemoveBlock: (blockId: string) => void;
   isAdmin: boolean;
+  overrides?: ReturnType<typeof useTrackOverrides>;
 }
 
 function getVideoEmbedUrl(url: string): string | null {
   try {
     const u = new URL(url);
-    // YouTube
     if (u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be")) {
       const videoId = u.hostname.includes("youtu.be")
         ? u.pathname.slice(1)
         : u.searchParams.get("v");
       if (videoId) return `https://www.youtube-nocookie.com/embed/${videoId}`;
     }
-    // Vimeo
     if (u.hostname.includes("vimeo.com")) {
       const match = u.pathname.match(/\/(\d+)/);
       if (match) return `https://player.vimeo.com/video/${match[1]}`;
     }
-    // Loom
     if (u.hostname.includes("loom.com")) {
       const match = u.pathname.match(/\/share\/([a-zA-Z0-9]+)/);
       if (match) return `https://www.loom.com/embed/${match[1]}`;
@@ -52,12 +53,18 @@ export function TrackItemRow({
   onUpdateBlock,
   onRemoveBlock,
   isAdmin,
+  overrides,
 }: TrackItemRowProps) {
   const [expanded, setExpanded] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
   const defaultBlocks = item.defaultContent ?? [];
   const allBlocks = [...defaultBlocks, ...contentBlocks];
   const hasContent = allBlocks.length > 0;
+
+  const title = overrides?.getItemTitle(item.id, item.title) ?? item.title;
+  const description = overrides?.getItemDescription(item.id, item.description) ?? item.description;
+  const objectives = overrides?.getItemObjectives(item.id, item.objectives) ?? item.objectives;
+  const actionItems = overrides?.getItemActionItems(item.id, item.actionItems) ?? item.actionItems;
 
   return (
     <div
@@ -69,30 +76,49 @@ export function TrackItemRow({
       )}
     >
       <div className="flex items-start gap-3 p-3">
-        {/* Checkbox */}
         <Checkbox
           checked={isCompleted}
           onCheckedChange={onToggle}
           className="mt-0.5 shrink-0"
-          aria-label={`Mark "${item.title}" as ${isCompleted ? "incomplete" : "complete"}`}
+          aria-label={`Mark "${title}" as ${isCompleted ? "incomplete" : "complete"}`}
         />
 
-        {/* Content */}
         <Collapsible open={expanded} onOpenChange={setExpanded} className="flex-1 min-w-0">
           <CollapsibleTrigger asChild>
             <button className="flex w-full items-start justify-between text-left group">
               <div className="min-w-0">
-                <span
-                  className={cn(
-                    "text-sm font-medium leading-tight block",
-                    isCompleted && "line-through text-muted-foreground"
-                  )}
-                >
-                  {item.title}
-                </span>
-                <span className="text-xs text-muted-foreground mt-0.5 block line-clamp-1">
-                  {item.description}
-                </span>
+                {isAdmin && overrides ? (
+                  <InlineEditableText
+                    value={title}
+                    onSave={(v) => overrides.setItemField(item.id, "title", v)}
+                    isAdmin={isAdmin}
+                    className={cn(
+                      "text-sm font-medium leading-tight block",
+                      isCompleted && "line-through text-muted-foreground"
+                    )}
+                  />
+                ) : (
+                  <span
+                    className={cn(
+                      "text-sm font-medium leading-tight block",
+                      isCompleted && "line-through text-muted-foreground"
+                    )}
+                  >
+                    {title}
+                  </span>
+                )}
+                {isAdmin && overrides ? (
+                  <InlineEditableText
+                    value={description}
+                    onSave={(v) => overrides.setItemField(item.id, "description", v)}
+                    isAdmin={isAdmin}
+                    className="text-xs text-muted-foreground mt-0.5 block line-clamp-1"
+                  />
+                ) : (
+                  <span className="text-xs text-muted-foreground mt-0.5 block line-clamp-1">
+                    {description}
+                  </span>
+                )}
                 {hasContent && !expanded && (
                   <span className="text-[10px] text-primary mt-1 block">
                     {allBlocks.length} resource{allBlocks.length !== 1 ? "s" : ""} attached
@@ -111,42 +137,60 @@ export function TrackItemRow({
           <CollapsibleContent>
             <div className="mt-3 space-y-4 text-sm">
               {/* Objectives */}
-              {item.objectives.length > 0 && (
+              {objectives.length > 0 && (
                 <div>
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">
                     <Target className="h-3 w-3" />
                     Learning Objectives
                   </div>
-                  <ul className="space-y-1 pl-1">
-                    {item.objectives.map((obj, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
-                        <span className="mt-1.5 h-1 w-1 rounded-full bg-primary shrink-0" />
-                        {obj}
-                      </li>
-                    ))}
-                  </ul>
+                  {isAdmin && overrides ? (
+                    <InlineEditableList
+                      items={objectives}
+                      onSave={(updated) => overrides.setItemObjectives(item.id, updated)}
+                      isAdmin={isAdmin}
+                      bulletColor="bg-primary"
+                    />
+                  ) : (
+                    <ul className="space-y-1 pl-1">
+                      {objectives.map((obj, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
+                          <span className="mt-1.5 h-1 w-1 rounded-full bg-primary shrink-0" />
+                          {obj}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               )}
 
               {/* Action items */}
-              {item.actionItems.length > 0 && (
+              {actionItems.length > 0 && (
                 <div>
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">
                     <ClipboardList className="h-3 w-3" />
                     Action Items
                   </div>
-                  <ul className="space-y-1 pl-1">
-                    {item.actionItems.map((action, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
-                        <span className="mt-1.5 h-1 w-1 rounded-full bg-orange-500 shrink-0" />
-                        {action}
-                      </li>
-                    ))}
-                  </ul>
+                  {isAdmin && overrides ? (
+                    <InlineEditableList
+                      items={actionItems}
+                      onSave={(updated) => overrides.setItemActionItems(item.id, updated)}
+                      isAdmin={isAdmin}
+                      bulletColor="bg-orange-500"
+                    />
+                  ) : (
+                    <ul className="space-y-1 pl-1">
+                      {actionItems.map((action, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
+                          <span className="mt-1.5 h-1 w-1 rounded-full bg-orange-500 shrink-0" />
+                          {action}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               )}
 
-              {/* Content blocks (visible to everyone) */}
+              {/* Content blocks */}
               {allBlocks.length > 0 && (
                 <div className="space-y-3 pt-1">
                   <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
@@ -167,26 +211,14 @@ export function TrackItemRow({
                         )}
                         {block.type === "link" && (
                           isInternal ? (
-                            <a
-                              href={block.url}
-                              className="flex items-center gap-2 rounded-md border border-primary/20 bg-primary/5 p-3 transition-colors hover:bg-primary/10"
-                            >
+                            <a href={block.url} className="flex items-center gap-2 rounded-md border border-primary/20 bg-primary/5 p-3 transition-colors hover:bg-primary/10">
                               <ExternalLink className="h-3.5 w-3.5 text-primary shrink-0" />
-                              <span className="text-sm font-medium text-primary">
-                                {block.label || block.url}
-                              </span>
+                              <span className="text-sm font-medium text-primary">{block.label || block.url}</span>
                             </a>
                           ) : (
-                            <a
-                              href={block.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2 rounded-md border p-3 transition-colors hover:bg-accent/50"
-                            >
+                            <a href={block.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-md border p-3 transition-colors hover:bg-accent/50">
                               <ExternalLink className="h-3.5 w-3.5 text-primary shrink-0" />
-                              <span className="text-sm text-primary underline underline-offset-2">
-                                {block.label || block.url}
-                              </span>
+                              <span className="text-sm text-primary underline underline-offset-2">{block.label || block.url}</span>
                             </a>
                           )
                         )}
@@ -209,22 +241,13 @@ export function TrackItemRow({
                                 />
                               </div>
                             ) : (
-                              <a
-                                href={block.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 rounded-md border p-3 transition-colors hover:bg-accent/50"
-                              >
+                              <a href={block.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-md border p-3 transition-colors hover:bg-accent/50">
                                 <Play className="h-3.5 w-3.5 text-primary shrink-0" />
-                                <span className="text-sm text-primary underline underline-offset-2">
-                                  {block.label || block.url}
-                                </span>
+                                <span className="text-sm text-primary underline underline-offset-2">{block.label || block.url}</span>
                               </a>
                             )}
                           </div>
                         )}
-
-                        {/* Admin delete button — only for admin-added blocks, not defaults */}
                         {isAdmin && !isDefault && (
                           <button
                             onClick={() => onRemoveBlock(block.id)}
@@ -240,15 +263,11 @@ export function TrackItemRow({
                 </div>
               )}
 
-              {/* Admin: add content button */}
               {isAdmin && (
                 <div className="pt-1">
                   {showEditor ? (
                     <ContentBlockEditor
-                      onAdd={(block) => {
-                        onAddBlock(block);
-                        setShowEditor(false);
-                      }}
+                      onAdd={(block) => { onAddBlock(block); setShowEditor(false); }}
                       onCancel={() => setShowEditor(false)}
                     />
                   ) : (
