@@ -41,6 +41,11 @@ function getVideoEmbedInfo(url: string) {
     const hash = vimeoMatch[4] ? `?h=${vimeoMatch[4]}` : '';
     return { embedUrl: `https://player.vimeo.com/video/${vimeoMatch[3]}${hash}`, type: 'vimeo' };
   }
+  // Direct MP4 URLs
+  const mp4Match = url.match(/\.mp4(\?|$|#)/i);
+  if (mp4Match) {
+    return { embedUrl: url, type: 'mp4' };
+  }
   return null;
 }
 
@@ -334,15 +339,27 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                   </CardHeader>
                   <CardContent className="px-0 pb-0 sm:px-6 sm:pb-6">
                     <div className="relative overflow-hidden bg-muted sm:rounded-lg aspect-video">
-                      <iframe
-                        ref={iframeRef}
-                        src={videoInfo.embedUrl}
-                        title={currentVideo?.title}
-                        className="w-full h-full"
-                        allowFullScreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                        onLoad={() => setIsPlaying(false)}
-                      />
+                      {videoInfo.type === 'mp4' ? (
+                        <video
+                          src={videoInfo.embedUrl}
+                          title={currentVideo?.title}
+                          className="w-full h-full"
+                          controls
+                          controlsList="nodownload"
+                          preload="metadata"
+                          playsInline
+                        />
+                      ) : (
+                        <iframe
+                          ref={iframeRef}
+                          src={videoInfo.embedUrl}
+                          title={currentVideo?.title}
+                          className="w-full h-full"
+                          allowFullScreen
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                          onLoad={() => setIsPlaying(false)}
+                        />
+                      )}
                     </div>
                   </CardContent>
                 </Card>

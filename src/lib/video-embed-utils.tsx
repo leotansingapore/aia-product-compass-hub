@@ -5,7 +5,7 @@
 export interface VideoEmbedInfo {
   isVideo: boolean;
   embedUrl?: string;
-  platform?: 'youtube' | 'vimeo' | 'loom';
+  platform?: 'youtube' | 'vimeo' | 'loom' | 'mp4';
 }
 
 /**
@@ -48,6 +48,16 @@ export function detectVideoEmbed(url: string): VideoEmbedInfo {
     };
   }
 
+  // Direct MP4/video file URLs
+  const mp4Regex = /\.mp4(\?|$|#)/i;
+  if (mp4Regex.test(url)) {
+    return {
+      isVideo: true,
+      embedUrl: url,
+      platform: 'mp4'
+    };
+  }
+
   return { isVideo: false };
 }
 
@@ -57,6 +67,23 @@ interface VideoEmbedProps {
 }
 
 export function VideoEmbed({ embedUrl, platform }: VideoEmbedProps) {
+  if (platform === 'mp4') {
+    return (
+      <div className="my-4">
+        <div className="relative w-full bg-black rounded-lg overflow-hidden border border-border shadow-sm" style={{ paddingBottom: '56.25%' }}>
+          <video
+            src={embedUrl}
+            className="absolute top-0 left-0 w-full h-full"
+            controls
+            controlsList="nodownload"
+            preload="metadata"
+            playsInline
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="my-4">
       <div className="relative w-full bg-black" style={{ paddingBottom: '56.25%' }}>
