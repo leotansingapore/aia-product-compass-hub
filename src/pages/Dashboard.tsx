@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { SearchHero } from "@/components/dashboard/SearchHero";
 import { QuickActions } from "@/components/dashboard/QuickActions";
@@ -6,9 +6,10 @@ import { WhatsNewSection } from "@/components/dashboard/WhatsNewSection";
 import { ProductCategories } from "@/components/dashboard/ProductCategories";
 import { SearchFilters } from "@/components/dashboard/SearchFilters";
 import { SearchResults } from "@/components/dashboard/SearchResults";
-import { LearningProgressOverview } from "@/components/dashboard/LearningProgressOverview";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useDashboardSearch } from "@/hooks/useDashboardSearch";
+import { ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const Dashboard = memo(() => {
   const {
@@ -35,13 +36,15 @@ const Dashboard = memo(() => {
     clearSearch
   } = useDashboardSearch();
 
+  const [showUpdates, setShowUpdates] = useState(false);
+
   return (
     <PageLayout
       title="Dashboard - Your Learning Hub | FINternship"
       description="Access your personalized learning dashboard. Browse product categories, track progress, discover recommendations, and continue your financial advisory education journey."
       keywords="dashboard, learning hub, financial products, training progress, product categories, financial advisor platform"
     >
-      {/* Desktop Header - Hidden on mobile */}
+      {/* Desktop Header */}
       <div className="hidden md:block">
         <BrandedPageHeader
           title="FINternship Learning Platform"
@@ -51,7 +54,7 @@ const Dashboard = memo(() => {
         />
       </div>
 
-      {/* Mobile Search - Shown only on mobile */}
+      {/* Mobile Search */}
       <div className="md:hidden px-1 sm:px-4 py-2 sm:py-4">
         <SearchHero onSearch={handleSearch} />
       </div>
@@ -61,7 +64,6 @@ const Dashboard = memo(() => {
 
         {hasQuery ? (
           <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
-            {/* Filters Sidebar */}
             <div className={`${showFilters ? 'block' : 'hidden'} lg:block w-full lg:w-80 space-y-4 sm:space-y-6`}>
               <SearchFilters
                 filters={filters}
@@ -75,8 +77,6 @@ const Dashboard = memo(() => {
                 onClearFilters={clearFilters}
               />
             </div>
-
-            {/* Results */}
             <SearchResults
               query={query}
               results={results}
@@ -100,17 +100,27 @@ const Dashboard = memo(() => {
           </div>
         ) : (
           <>
-            {/* 1. Learning progress — personalised context */}
-            <LearningProgressOverview />
-
-            {/* 2. Product Categories — primary navigation */}
-            <ProductCategories />
-
-            {/* 3. Quick Actions — secondary tools */}
+            {/* 1. Quick Actions — primary navigation */}
             <QuickActions />
 
-            {/* 4. What's New — latest product updates */}
-            <WhatsNewSection />
+            {/* 2. Product Categories */}
+            <ProductCategories />
+
+            {/* 3. Recently Updated — collapsed by default */}
+            <div>
+              <button
+                onClick={() => setShowUpdates(!showUpdates)}
+                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ChevronDown className={cn("h-4 w-4 transition-transform", !showUpdates && "-rotate-90")} />
+                Recently Updated
+              </button>
+              {showUpdates && (
+                <div className="mt-3">
+                  <WhatsNewSection />
+                </div>
+              )}
+            </div>
           </>
         )}
 
