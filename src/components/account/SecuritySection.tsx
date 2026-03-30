@@ -106,41 +106,6 @@ export function SecuritySection() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-sm bg-muted/30">
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <h4 className="text-lg font-bold">Email</h4>
-                    <p className="text-base text-muted-foreground break-all">
-                      {user?.email}
-                    </p>
-                  </div>
-                  <div className="flex justify-start">
-                    <Badge variant="secondary" className="px-4 py-2 text-sm font-semibold">
-                      ✓ Verified
-                    </Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-sm bg-muted/30">
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <h4 className="text-lg font-bold">Account Status</h4>
-                    <p className="text-base text-muted-foreground">
-                      Account created on {new Date(user?.created_at || '').toLocaleDateString()}
-                    </p>
-                  </div>
-                  <div className="flex justify-start">
-                    <Badge variant="outline" className="px-4 py-2 text-sm font-semibold">
-                      ✓ Active
-                    </Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </CardContent>
       </Card>
