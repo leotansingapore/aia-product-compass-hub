@@ -139,16 +139,6 @@ export function ProfileSection() {
         <StatCard icon={Video} label="Videos" value={videoCount} color="amber" />
       </div>
 
-      {/* Personal info */}
-      <Card className="border shadow-sm">
-        <CardContent className="p-4 md:p-6">
-          <h4 className="text-sm font-semibold mb-3">Details</h4>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-            <InfoField label="First Name" value={profile?.first_name} />
-            <InfoField label="Last Name" value={profile?.last_name} />
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }
