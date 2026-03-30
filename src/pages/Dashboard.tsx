@@ -100,8 +100,7 @@ const Dashboard = memo(() => {
           </div>
         ) : (
           <>
-            {/* 1. Quick Actions — primary navigation */}
-            <QuickActions />
+            {/* 1. Product Categories */}
 
             {/* 2. Product Categories */}
             <ProductCategories />
