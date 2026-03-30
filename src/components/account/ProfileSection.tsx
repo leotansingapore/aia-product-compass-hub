@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { ProfileForm } from "./ProfileForm";
-import { Edit3, Trophy, Zap, Calendar } from "lucide-react";
+import { Edit3, BookOpen, CheckCircle2, Video } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface Profile {
@@ -28,9 +28,15 @@ export function ProfileSection() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
+  const [quizCount, setQuizCount] = useState(0);
+  const [videoCount, setVideoCount] = useState(0);
+  const [roleplayCount, setRoleplayCount] = useState(0);
 
   useEffect(() => {
-    if (user) fetchProfile();
+    if (user) {
+      fetchProfile();
+      fetchStats();
+    }
   }, [user]);
 
   const fetchProfile = async () => {
@@ -62,6 +68,16 @@ export function ProfileSection() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const fetchStats = async () => {
+    if (!user) return;
+    const [quizRes, roleplayRes] = await Promise.all([
+      supabase.from('quiz_attempts').select('id', { count: 'exact', head: true }).eq('user_id', user.id),
+      supabase.from('roleplay_sessions').select('id', { count: 'exact', head: true }).eq('user_id', user.id),
+    ]);
+    setQuizCount(quizRes.count ?? 0);
+    setRoleplayCount(roleplayRes.count ?? 0);
   };
 
   const handleProfileUpdate = (updatedProfile: Profile) => {
@@ -116,14 +132,14 @@ export function ProfileSection() {
         </CardContent>
       </Card>
 
-      {/* Stats row — compact */}
+      {/* Activity stats */}
       <div className="grid grid-cols-3 gap-2 md:gap-4">
-        <StatCard icon={Trophy} label="Level" value={profile?.current_level || 1} color="amber" />
-        <StatCard icon={Zap} label="XP" value={profile?.total_xp || 0} color="blue" />
-        <StatCard icon={Calendar} label="Streak" value={profile?.streak_days || 0} color="emerald" />
+        <StatCard icon={CheckCircle2} label="Quizzes Done" value={quizCount} color="emerald" />
+        <StatCard icon={BookOpen} label="Roleplays" value={roleplayCount} color="blue" />
+        <StatCard icon={Video} label="Videos" value={videoCount} color="amber" />
       </div>
 
-      {/* Personal info — collapsed on mobile, visible on desktop */}
+      {/* Personal info */}
       <Card className="border shadow-sm">
         <CardContent className="p-4 md:p-6">
           <h4 className="text-sm font-semibold mb-3">Details</h4>
