@@ -102,6 +102,9 @@ const Dashboard = memo(() => {
           </div>
         ) : (
           <>
+            {/* 0. Admin feedback alert */}
+            <AdminFeedbackAlert />
+
             {/* 1. Continue where you left off */}
             <ContinueWhereYouLeftOff />
 
