@@ -21,7 +21,8 @@ interface TrackPhaseSectionProps {
 
 export function TrackPhaseSection({ phase, progressHook, contentHook, isAdmin, overrides }: TrackPhaseSectionProps) {
   const [open, setOpen] = useState(true);
-  const ids = phase.items.map((s) => s.id);
+  const visibleItems = phase.items.filter((item) => !overrides?.isItemHidden(item.id));
+  const ids = visibleItems.map((s) => s.id);
   const completed = progressHook.getCompletedCount(ids);
   const total = ids.length;
   const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
@@ -77,7 +78,7 @@ export function TrackPhaseSection({ phase, progressHook, contentHook, isAdmin, o
       </CollapsibleTrigger>
       <CollapsibleContent>
         <div className="mt-2 space-y-2 pl-2">
-          {phase.items.map((item) => (
+          {visibleItems.map((item) => (
             <TrackItemRow
               key={item.id}
               item={item}
@@ -89,6 +90,7 @@ export function TrackPhaseSection({ phase, progressHook, contentHook, isAdmin, o
               onRemoveBlock={(blockId) => contentHook.removeBlock(item.id, blockId)}
               isAdmin={isAdmin}
               overrides={overrides}
+              onDelete={isAdmin && overrides ? () => overrides.hideItem(item.id) : undefined}
             />
           ))}
         </div>

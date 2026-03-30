@@ -28,8 +28,10 @@ export default function LearningTrack() {
   const { isMasterAdmin, isAdmin } = usePermissions();
   const isAdminUser = isMasterAdmin() || isAdmin();
 
-  // Track progress
-  const allTrackIds = learningTrack.flatMap((phase) => phase.items.map((i) => i.id));
+  // Track progress (exclude hidden items)
+  const allTrackIds = learningTrack.flatMap((phase) =>
+    phase.items.filter((i) => !trackOverrides.isItemHidden(i.id)).map((i) => i.id)
+  );
   const trackCompleted = progressHook.getCompletedCount(allTrackIds);
   const trackTotal = allTrackIds.length;
   const trackPercent = trackTotal > 0 ? Math.round((trackCompleted / trackTotal) * 100) : 0;

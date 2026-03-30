@@ -19,6 +19,7 @@ interface TrackItemRowProps {
   onRemoveBlock: (blockId: string) => void;
   isAdmin: boolean;
   overrides?: ReturnType<typeof useTrackOverrides>;
+  onDelete?: () => void;
 }
 
 function getVideoEmbedUrl(url: string): string | null {
@@ -54,6 +55,7 @@ export function TrackItemRow({
   onRemoveBlock,
   isAdmin,
   overrides,
+  onDelete,
 }: TrackItemRowProps) {
   const [expanded, setExpanded] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
@@ -82,6 +84,17 @@ export function TrackItemRow({
           className="mt-0.5 shrink-0"
           aria-label={`Mark "${title}" as ${isCompleted ? "incomplete" : "complete"}`}
         />
+
+        {onDelete && (
+          <button
+            onClick={onDelete}
+            className="mt-0.5 shrink-0 text-muted-foreground hover:text-destructive transition-colors"
+            aria-label={`Delete "${title}"`}
+            title="Remove lesson"
+          >
+            <Trash2 className="h-3.5 w-3.5" />
+          </button>
+        )}
 
         <Collapsible open={expanded} onOpenChange={setExpanded} className="flex-1 min-w-0">
           <CollapsibleTrigger asChild>

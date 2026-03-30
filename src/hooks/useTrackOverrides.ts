@@ -13,6 +13,8 @@ interface TrackOverrides {
     objectives?: string[];
     actionItems?: string[];
   }>;
+  /** Hidden item ids */
+  hiddenItems?: string[];
 }
 
 export function useTrackOverrides() {
@@ -119,6 +121,31 @@ export function useTrackOverrides() {
     []
   );
 
+  const isItemHidden = useCallback(
+    (itemId: string) => overrides.hiddenItems?.includes(itemId) ?? false,
+    [overrides]
+  );
+
+  const hideItem = useCallback(
+    (itemId: string) => {
+      setOverrides((prev) => ({
+        ...prev,
+        hiddenItems: [...(prev.hiddenItems ?? []), itemId],
+      }));
+    },
+    []
+  );
+
+  const unhideItem = useCallback(
+    (itemId: string) => {
+      setOverrides((prev) => ({
+        ...prev,
+        hiddenItems: (prev.hiddenItems ?? []).filter((id) => id !== itemId),
+      }));
+    },
+    []
+  );
+
   return {
     getPhaseTitle,
     getPhaseDescription,
@@ -130,5 +157,8 @@ export function useTrackOverrides() {
     setItemField,
     setItemObjectives,
     setItemActionItems,
+    isItemHidden,
+    hideItem,
+    unhideItem,
   };
 }
