@@ -101,7 +101,8 @@ const Dashboard = memo(() => {
           </div>
         ) : (
           <>
-            {/* 1. Product Categories */}
+            {/* 1. Continue where you left off */}
+            <ContinueWhereYouLeftOff />
 
             {/* 2. Product Categories */}
             <ProductCategories />
