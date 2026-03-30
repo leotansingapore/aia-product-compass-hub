@@ -1,6 +1,6 @@
 export interface VideoEmbedInfo {
   embedUrl: string;
-  type: 'youtube' | 'vimeo' | 'loom' | 'wistia';
+  type: 'youtube' | 'vimeo' | 'loom' | 'wistia' | 'mp4';
   thumbnail?: string | null;
   duration?: number | null;
 }
@@ -45,6 +45,15 @@ export function getVideoEmbedInfo(url: string): VideoEmbedInfo | null {
     return {
       embedUrl: `https://fast.wistia.net/embed/iframe/${wistiaMatch[1]}`,
       type: 'wistia',
+      thumbnail: null
+    };
+  }
+
+  // Direct MP4 URLs (e.g. GitHub releases, CDN links)
+  if (/\.mp4(\?|$|#)/i.test(url)) {
+    return {
+      embedUrl: url,
+      type: 'mp4',
       thumbnail: null
     };
   }

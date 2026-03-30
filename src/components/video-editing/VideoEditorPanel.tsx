@@ -118,13 +118,24 @@ export function VideoEditorPanel({
                 if (!embedInfo) return null;
                 return (
                   <div className="relative rounded-lg overflow-hidden bg-muted aspect-video mb-6">
-                    <iframe
-                      src={embedInfo.embedUrl}
-                      title={currentVideo.title}
-                      className="w-full h-full"
-                      allowFullScreen
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    />
+                    {embedInfo.type === 'mp4' ? (
+                      <video
+                        src={embedInfo.embedUrl}
+                        title={currentVideo.title}
+                        className="w-full h-full"
+                        controls
+                        controlsList="nodownload"
+                        preload="metadata"
+                      />
+                    ) : (
+                      <iframe
+                        src={embedInfo.embedUrl}
+                        title={currentVideo.title}
+                        className="w-full h-full"
+                        allowFullScreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      />
+                    )}
                   </div>
                 );
               })()}
