@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,7 @@ import type { useLearningTrackContent } from "@/hooks/useLearningTrackContent";
 import type { useTrackOverrides } from "@/hooks/useTrackOverrides";
 import { TrackItemRow } from "./TrackItemRow";
 import { InlineEditableText } from "./InlineEditableText";
+import { toast } from "sonner";
 
 interface TrackPhaseSectionProps {
   phase: TrackPhase;
@@ -26,6 +27,18 @@ export function TrackPhaseSection({ phase, progressHook, contentHook, isAdmin, o
   const completed = progressHook.getCompletedCount(ids);
   const total = ids.length;
   const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+  const handleHideItem = useCallback((itemId: string, itemTitle: string) => {
+    if (!overrides) return;
+    overrides.hideItem(itemId);
+    toast(`"${itemTitle}" removed`, {
+      action: {
+        label: "Undo",
+        onClick: () => overrides.unhideItem(itemId),
+      },
+      duration: 6000,
+    });
+  }, [overrides]);
 
   const phaseTitle = overrides?.getPhaseTitle(phase.id, phase.title) ?? phase.title;
   const phaseDesc = overrides?.getPhaseDescription(phase.id, phase.description) ?? phase.description;
@@ -90,7 +103,7 @@ export function TrackPhaseSection({ phase, progressHook, contentHook, isAdmin, o
               onRemoveBlock={(blockId) => contentHook.removeBlock(item.id, blockId)}
               isAdmin={isAdmin}
               overrides={overrides}
-              onDelete={isAdmin && overrides ? () => overrides.hideItem(item.id) : undefined}
+              onDelete={isAdmin && overrides ? () => handleHideItem(item.id, overrides.getItemTitle(item.id, item.title)) : undefined}
             />
           ))}
         </div>
