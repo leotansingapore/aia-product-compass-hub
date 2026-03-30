@@ -7,7 +7,7 @@ import { Bookmark, GraduationCap, Users, HelpCircle, BookOpen, GitBranch, Trendi
 
 const navigationItems = [
   { name: "Home", href: "/", icon: Home },
-  { name: "Products", href: "/", icon: Library },
+  { name: "Learn", href: "/learning-track", icon: Library },
   { name: "Scripts", href: "/scripts", icon: FileText },
   { name: "Roleplay", href: "/roleplay", icon: MessageCircle },
 ];
