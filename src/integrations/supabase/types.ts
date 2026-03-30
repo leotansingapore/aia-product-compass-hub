@@ -2318,6 +2318,17 @@ export type Database = {
         }
         Returns: string
       }
+      get_learning_leaderboard: {
+        Args: { result_limit?: number }
+        Returns: {
+          avatar_url: string
+          display_name: string
+          quizzes_completed: number
+          roleplays_completed: number
+          total_activities: number
+          user_id: string
+        }[]
+      }
       get_signup_password: { Args: { user_email: string }; Returns: string }
       get_user_access_tier: { Args: { user_id: string }; Returns: string }
       get_user_admin_role: { Args: { user_id: string }; Returns: string }
