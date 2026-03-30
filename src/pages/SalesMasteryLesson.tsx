@@ -12,6 +12,7 @@ import {
   Play, Clock, CheckCircle, ChevronLeft, ChevronRight,
   BookOpen, MessageSquare, Target, Lightbulb, Volume2,
 } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 
 // ─── Lesson Content Renderer ─────────────────────────────────────────────────
 
