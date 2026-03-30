@@ -94,6 +94,7 @@ export default function LearningTrack() {
                     progressHook={progressHook}
                     contentHook={contentHook}
                     isAdmin={isAdminUser}
+                    overrides={isAdminUser ? trackOverrides : undefined}
                   />
                 ))}
               </div>
