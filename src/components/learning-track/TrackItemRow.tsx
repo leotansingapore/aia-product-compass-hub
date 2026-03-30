@@ -19,6 +19,7 @@ interface TrackItemRowProps {
   onRemoveBlock: (blockId: string) => void;
   isAdmin: boolean;
   overrides?: ReturnType<typeof useTrackOverrides>;
+  onDelete?: () => void;
 }
 
 function getVideoEmbedUrl(url: string): string | null {
@@ -54,6 +55,7 @@ export function TrackItemRow({
   onRemoveBlock,
   isAdmin,
   overrides,
+  onDelete,
 }: TrackItemRowProps) {
   const [expanded, setExpanded] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
