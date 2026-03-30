@@ -1,21 +1,22 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useAuth } from "@/hooks/useAuth";
 import { ProfileSection } from "@/components/account/ProfileSection";
 import { SecuritySection } from "@/components/account/SecuritySection";
-import { UserManagementSection } from "@/components/account/UserManagementSection";
-import { AccountTabs } from "@/components/account/AccountTabs";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ProtectedPage } from "@/components/ProtectedPage";
-import { EmptyState } from "@/components/ui/EmptyState";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, Shield, Users, Lock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Settings } from "lucide-react";
 
 export default function MyAccount() {
   const { isMasterAdmin, hasRole } = usePermissions();
   const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState("profile");
+  const navigate = useNavigate();
+  const isAdminUser = isMasterAdmin() || hasRole('admin');
 
   if (!user) {
     return (
@@ -57,37 +58,11 @@ export default function MyAccount() {
     }
   };
 
-  const tabs = [
-    {
-      id: "profile",
-      label: "Profile",
-      icon: <User className="h-5 w-5" />,
-      component: <ProfileSection />,
-      protected: true
-    },
-    {
-      id: "security",
-      label: "Security",
-      icon: <Shield className="h-5 w-5" />,
-      component: <SecuritySection />,
-      protected: true
-    },
-    {
-      id: "admin",
-      label: "Admin",
-      icon: <Users className="h-5 w-5" />,
-      component: <UserManagementSection />,
-      protected: true,
-      condition: isMasterAdmin() || hasRole('admin')
-    }
-  ];
-
   return (
     <ProtectedPage pageId="my-account">
       <PageLayout
         title="My Account - Profile & Settings | FINternship"
-        description="Manage your FINternship learning platform account. Update profile information, security settings and access admin tools for comprehensive account management."
-        keywords="account settings, profile management, security settings, user preferences, admin tools, learning platform account"
+        description="Manage your FINternship learning platform account. Update profile information, security settings and access admin tools."
         canonical={`${window.location.origin}/my-account`}
         structuredData={structuredData}
         noIndex
@@ -103,12 +78,26 @@ export default function MyAccount() {
           onBack={() => window.history.back()}
         />
 
-        <main role="main" aria-label="Account management" className="mx-auto px-4 sm:px-6 py-4 sm:py-8 md:pb-10">
-          <AccountTabs
-            activeTab={activeTab}
-            onTabChange={setActiveTab}
-            tabs={tabs}
-          />
+        <main role="main" aria-label="Account management" className="mx-auto max-w-4xl px-4 sm:px-6 py-4 sm:py-8 md:pb-10 space-y-6">
+          {/* Admin Panel Button */}
+          {isAdminUser && (
+            <Button
+              variant="outline"
+              className="w-full h-12 text-sm font-semibold gap-2 border-primary/30 bg-primary/5 hover:bg-primary/10"
+              onClick={() => navigate("/admin")}
+            >
+              <Settings className="h-4 w-4" />
+              Go to Admin Panel
+            </Button>
+          )}
+
+          {/* Profile */}
+          <ProfileSection />
+
+          <Separator />
+
+          {/* Security */}
+          <SecuritySection />
         </main>
       </PageLayout>
     </ProtectedPage>
