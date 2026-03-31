@@ -77,7 +77,7 @@ export function useTrackOverrides() {
         .upsert(
           [{
             user_id: user.id,
-            overrides: overrides as unknown as Record<string, unknown>,
+            overrides: JSON.parse(JSON.stringify(overrides)),
             updated_at: new Date().toISOString(),
           }],
           { onConflict: 'user_id' }
