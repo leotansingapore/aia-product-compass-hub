@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/hooks/useSimplifiedAuth";
+import { useSimplifiedAuth as useAuth } from "@/hooks/useSimplifiedAuth";
 
 const LOCAL_STORAGE_KEY = "learning-track-overrides";
 
@@ -75,11 +75,11 @@ export function useTrackOverrides() {
       const { error } = await supabase
         .from('learning_track_overrides')
         .upsert(
-          {
+          [{
             user_id: user.id,
-            overrides: overrides as unknown as Record<string, unknown>,
+            overrides: JSON.parse(JSON.stringify(overrides)),
             updated_at: new Date().toISOString(),
-          },
+          }],
           { onConflict: 'user_id' }
         );
 
