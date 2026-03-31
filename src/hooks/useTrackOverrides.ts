@@ -75,11 +75,11 @@ export function useTrackOverrides() {
       const { error } = await supabase
         .from('learning_track_overrides')
         .upsert(
-          {
+          [{
             user_id: user.id,
             overrides: overrides as unknown as Record<string, unknown>,
             updated_at: new Date().toISOString(),
-          },
+          }],
           { onConflict: 'user_id' }
         );
 
