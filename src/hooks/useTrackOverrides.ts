@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/hooks/useSimplifiedAuth";
+import { useSimplifiedAuth as useAuth } from "@/hooks/useSimplifiedAuth";
 
 const LOCAL_STORAGE_KEY = "learning-track-overrides";
 
