@@ -100,7 +100,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
 
     const labels: Record<Grade, string> = { again: '🔴 Again', hard: '🟠 Hard', good: '🟢 Good', easy: '🔵 Easy' };
     toast.success(labels[grade], { duration: 900 });
-    goNext('right');
+    goNext();
   }, [card, gradeCard, goNext]);
 
   // Keyboard shortcuts
