@@ -56,8 +56,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   const [index, setIndex] = useState(initialIndex);
   // 3-step carousel: 0 = Question, 1 = Drawing, 2 = Explanation
   const [step, setStep] = useState(0);
-  const [animPhase, setAnimPhase] = useState<'idle' | 'exit' | 'enter'>('idle');
-  const [animDir, setAnimDir] = useState<'left' | 'right'>('right');
+  const [isAnimating, setIsAnimating] = useState(false);
   const [showKeys, setShowKeys] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
   const [gradedIds, setGradedIds] = useState<Set<string>>(new Set());
@@ -70,31 +69,28 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   const progress = ((index + 1) / total) * 100;
   const gradedCount = gradedIds.size;
 
-  const goNext = useCallback((dir: 'left' | 'right' = 'right') => {
-    if (index >= total - 1 || animPhase !== 'idle') return;
-    setAnimDir(dir);
-    setAnimPhase('exit');
+  const navigateTo = useCallback((newIndex: number) => {
+    if (newIndex === index || newIndex < 0 || newIndex >= total || isAnimating) return;
+    setIsAnimating(true);
+    // Brief fade-out, swap content, fade back in
     setTimeout(() => {
-      setIndex(i => i + 1);
+      setIndex(newIndex);
       setStep(0);
       setImgIndex(0);
-      setAnimPhase('enter');
-      setTimeout(() => setAnimPhase('idle'), 200);
-    }, 180);
-  }, [index, total, animPhase]);
+      // Allow next frame to render new content, then clear animation flag
+      requestAnimationFrame(() => {
+        setIsAnimating(false);
+      });
+    }, 150);
+  }, [index, total, isAnimating]);
+
+  const goNext = useCallback(() => {
+    if (index < total - 1) navigateTo(index + 1);
+  }, [index, total, navigateTo]);
 
   const goPrev = useCallback(() => {
-    if (index <= 0 || animPhase !== 'idle') return;
-    setAnimDir('left');
-    setAnimPhase('exit');
-    setTimeout(() => {
-      setIndex(i => i - 1);
-      setStep(0);
-      setImgIndex(0);
-      setAnimPhase('enter');
-      setTimeout(() => setAnimPhase('idle'), 200);
-    }, 180);
-  }, [index, animPhase]);
+    if (index > 0) navigateTo(index - 1);
+  }, [index, navigateTo]);
 
   const handleGrade = useCallback(async (grade: Grade) => {
     if (!card) return;
@@ -104,7 +100,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
 
     const labels: Record<Grade, string> = { again: '🔴 Again', hard: '🟠 Hard', good: '🟢 Good', easy: '🔵 Easy' };
     toast.success(labels[grade], { duration: 900 });
-    goNext('right');
+    goNext();
   }, [card, gradeCard, goNext]);
 
   // Keyboard shortcuts
@@ -235,12 +231,8 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
             <div className="flex-1 min-w-0 overflow-hidden">
               <div
                 className={cn(
-                  "relative w-full transition-all duration-200",
-                  animPhase === 'exit' && animDir === 'right' && "-translate-x-4 opacity-0",
-                  animPhase === 'exit' && animDir === 'left' && "translate-x-4 opacity-0",
-                  animPhase === 'enter' && animDir === 'right' && "translate-x-4 opacity-0",
-                  animPhase === 'enter' && animDir === 'left' && "-translate-x-4 opacity-0",
-                  animPhase === 'idle' && "translate-x-0 opacity-100",
+                  "relative w-full transition-all duration-150",
+                  isAnimating ? "opacity-0 scale-[0.98]" : "opacity-100 scale-100",
                 )}
                 style={{ minHeight: 'clamp(260px, 40vh, 380px)' }}
               >
@@ -426,17 +418,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
               return (
                 <button
                   key={c.id}
-                    onClick={() => {
-                      if (animPhase !== 'idle' || realIndex === index) return;
-                      setAnimDir(realIndex > index ? 'right' : 'left');
-                      setAnimPhase('exit');
-                      setTimeout(() => {
-                        setIndex(realIndex);
-                        setStep(0);
-                        setAnimPhase('enter');
-                        setTimeout(() => setAnimPhase('idle'), 200);
-                      }, 180);
-                    }}
+                    onClick={() => navigateTo(realIndex)}
                   className={cn(
                     "rounded-full transition-all duration-200",
                     realIndex === index ? "w-5 h-2 bg-primary" : "w-2 h-2",
