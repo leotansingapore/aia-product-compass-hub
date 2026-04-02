@@ -56,8 +56,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   const [index, setIndex] = useState(initialIndex);
   // 3-step carousel: 0 = Question, 1 = Drawing, 2 = Explanation
   const [step, setStep] = useState(0);
-  const [animPhase, setAnimPhase] = useState<'idle' | 'exit' | 'enter'>('idle');
-  const [animDir, setAnimDir] = useState<'left' | 'right'>('right');
+  const [isAnimating, setIsAnimating] = useState(false);
   const [showKeys, setShowKeys] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
   const [gradedIds, setGradedIds] = useState<Set<string>>(new Set());
