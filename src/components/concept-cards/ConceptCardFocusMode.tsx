@@ -71,26 +71,30 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   const gradedCount = gradedIds.size;
 
   const goNext = useCallback((dir: 'left' | 'right' = 'right') => {
-    if (index >= total - 1) return;
+    if (index >= total - 1 || animPhase !== 'idle') return;
     setAnimDir(dir);
+    setAnimPhase('exit');
     setTimeout(() => {
       setIndex(i => i + 1);
       setStep(0);
-      setAnimDir(null);
       setImgIndex(0);
+      setAnimPhase('enter');
+      setTimeout(() => setAnimPhase('idle'), 200);
     }, 180);
-  }, [index, total]);
+  }, [index, total, animPhase]);
 
   const goPrev = useCallback(() => {
-    if (index <= 0) return;
+    if (index <= 0 || animPhase !== 'idle') return;
     setAnimDir('left');
+    setAnimPhase('exit');
     setTimeout(() => {
       setIndex(i => i - 1);
       setStep(0);
-      setAnimDir(null);
       setImgIndex(0);
+      setAnimPhase('enter');
+      setTimeout(() => setAnimPhase('idle'), 200);
     }, 180);
-  }, [index]);
+  }, [index, animPhase]);
 
   const handleGrade = useCallback(async (grade: Grade) => {
     if (!card) return;
