@@ -233,13 +233,15 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
 
             {/* 3-step Carousel Card */}
             <div className="flex-1 min-w-0 overflow-hidden">
-              <div
-                className={cn(
-                  "relative w-full",
-                  animDir === 'right' && "translate-x-4 opacity-0",
-                  animDir === 'left' && "-translate-x-4 opacity-0",
-                  "transition-all duration-200"
-                )}
+                <div
+233:                 className={cn(
+234:                   "relative w-full transition-all duration-200",
+235:                   animPhase === 'exit' && animDir === 'right' && "-translate-x-4 opacity-0",
+236:                   animPhase === 'exit' && animDir === 'left' && "translate-x-4 opacity-0",
+237:                   animPhase === 'enter' && animDir === 'right' && "translate-x-4 opacity-0",
+238:                   animPhase === 'enter' && animDir === 'left' && "-translate-x-4 opacity-0",
+239:                   animPhase === 'idle' && "translate-x-0 opacity-100",
+240:                 )}
                 style={{ minHeight: 'clamp(260px, 40vh, 380px)' }}
               >
                 {/* Step indicator dots */}
