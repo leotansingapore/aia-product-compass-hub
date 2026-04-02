@@ -69,31 +69,28 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   const progress = ((index + 1) / total) * 100;
   const gradedCount = gradedIds.size;
 
-  const goNext = useCallback((dir: 'left' | 'right' = 'right') => {
-    if (index >= total - 1 || animPhase !== 'idle') return;
-    setAnimDir(dir);
-    setAnimPhase('exit');
+  const navigateTo = useCallback((newIndex: number) => {
+    if (newIndex === index || newIndex < 0 || newIndex >= total || isAnimating) return;
+    setIsAnimating(true);
+    // Brief fade-out, swap content, fade back in
     setTimeout(() => {
-      setIndex(i => i + 1);
+      setIndex(newIndex);
       setStep(0);
       setImgIndex(0);
-      setAnimPhase('enter');
-      setTimeout(() => setAnimPhase('idle'), 200);
-    }, 180);
-  }, [index, total, animPhase]);
+      // Allow next frame to render new content, then clear animation flag
+      requestAnimationFrame(() => {
+        setIsAnimating(false);
+      });
+    }, 150);
+  }, [index, total, isAnimating]);
+
+  const goNext = useCallback(() => {
+    if (index < total - 1) navigateTo(index + 1);
+  }, [index, total, navigateTo]);
 
   const goPrev = useCallback(() => {
-    if (index <= 0 || animPhase !== 'idle') return;
-    setAnimDir('left');
-    setAnimPhase('exit');
-    setTimeout(() => {
-      setIndex(i => i - 1);
-      setStep(0);
-      setImgIndex(0);
-      setAnimPhase('enter');
-      setTimeout(() => setAnimPhase('idle'), 200);
-    }, 180);
-  }, [index, animPhase]);
+    if (index > 0) navigateTo(index - 1);
+  }, [index, navigateTo]);
 
   const handleGrade = useCallback(async (grade: Grade) => {
     if (!card) return;
