@@ -426,9 +426,17 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
               return (
                 <button
                   key={c.id}
-                  onClick={() => {
-                    setAnimDir(realIndex > index ? 'right' : 'left');
-                    setTimeout(() => { setIndex(realIndex); setStep(0); setAnimDir(null); }, 180);
+                    onClick={() => {
+                      if (animPhase !== 'idle' || realIndex === index) return;
+                      setAnimDir(realIndex > index ? 'right' : 'left');
+                      setAnimPhase('exit');
+                      setTimeout(() => {
+                        setIndex(realIndex);
+                        setStep(0);
+                        setAnimPhase('enter');
+                        setTimeout(() => setAnimPhase('idle'), 200);
+                      }, 180);
+                    }}
                   }}
                   className={cn(
                     "rounded-full transition-all duration-200",
