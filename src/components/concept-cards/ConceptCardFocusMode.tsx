@@ -437,7 +437,6 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                         setTimeout(() => setAnimPhase('idle'), 200);
                       }, 180);
                     }}
-                  }
                   className={cn(
                     "rounded-full transition-all duration-200",
                     realIndex === index ? "w-5 h-2 bg-primary" : "w-2 h-2",
