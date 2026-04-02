@@ -19,8 +19,8 @@ export function useFlowHistory() {
   const takeSnapshot = useCallback(
     (nodes: Node[], edges: Edge[], description: string) => {
       const entry: HistoryEntry = {
-        nodes: structuredClone(nodes),
-        edges: structuredClone(edges),
+        nodes: JSON.parse(JSON.stringify(nodes)),
+        edges: JSON.parse(JSON.stringify(edges)),
         description,
       };
       pastRef.current = [...pastRef.current.slice(-(MAX_HISTORY - 1)), entry];

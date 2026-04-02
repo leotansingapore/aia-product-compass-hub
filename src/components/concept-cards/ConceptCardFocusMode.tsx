@@ -56,7 +56,8 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   const [index, setIndex] = useState(initialIndex);
   // 3-step carousel: 0 = Question, 1 = Drawing, 2 = Explanation
   const [step, setStep] = useState(0);
-  const [animDir, setAnimDir] = useState<'left' | 'right' | null>(null);
+  const [animPhase, setAnimPhase] = useState<'idle' | 'exit' | 'enter'>('idle');
+  const [animDir, setAnimDir] = useState<'left' | 'right'>('right');
   const [showKeys, setShowKeys] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
   const [gradedIds, setGradedIds] = useState<Set<string>>(new Set());
@@ -70,26 +71,30 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   const gradedCount = gradedIds.size;
 
   const goNext = useCallback((dir: 'left' | 'right' = 'right') => {
-    if (index >= total - 1) return;
+    if (index >= total - 1 || animPhase !== 'idle') return;
     setAnimDir(dir);
+    setAnimPhase('exit');
     setTimeout(() => {
       setIndex(i => i + 1);
       setStep(0);
-      setAnimDir(null);
       setImgIndex(0);
+      setAnimPhase('enter');
+      setTimeout(() => setAnimPhase('idle'), 200);
     }, 180);
-  }, [index, total]);
+  }, [index, total, animPhase]);
 
   const goPrev = useCallback(() => {
-    if (index <= 0) return;
+    if (index <= 0 || animPhase !== 'idle') return;
     setAnimDir('left');
+    setAnimPhase('exit');
     setTimeout(() => {
       setIndex(i => i - 1);
       setStep(0);
-      setAnimDir(null);
       setImgIndex(0);
+      setAnimPhase('enter');
+      setTimeout(() => setAnimPhase('idle'), 200);
     }, 180);
-  }, [index]);
+  }, [index, animPhase]);
 
   const handleGrade = useCallback(async (grade: Grade) => {
     if (!card) return;
@@ -230,10 +235,12 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
             <div className="flex-1 min-w-0 overflow-hidden">
               <div
                 className={cn(
-                  "relative w-full",
-                  animDir === 'right' && "translate-x-4 opacity-0",
-                  animDir === 'left' && "-translate-x-4 opacity-0",
-                  "transition-all duration-200"
+                  "relative w-full transition-all duration-200",
+                  animPhase === 'exit' && animDir === 'right' && "-translate-x-4 opacity-0",
+                  animPhase === 'exit' && animDir === 'left' && "translate-x-4 opacity-0",
+                  animPhase === 'enter' && animDir === 'right' && "translate-x-4 opacity-0",
+                  animPhase === 'enter' && animDir === 'left' && "-translate-x-4 opacity-0",
+                  animPhase === 'idle' && "translate-x-0 opacity-100",
                 )}
                 style={{ minHeight: 'clamp(260px, 40vh, 380px)' }}
               >
@@ -419,10 +426,17 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
               return (
                 <button
                   key={c.id}
-                  onClick={() => {
-                    setAnimDir(realIndex > index ? 'right' : 'left');
-                    setTimeout(() => { setIndex(realIndex); setStep(0); setAnimDir(null); }, 180);
-                  }}
+                    onClick={() => {
+                      if (animPhase !== 'idle' || realIndex === index) return;
+                      setAnimDir(realIndex > index ? 'right' : 'left');
+                      setAnimPhase('exit');
+                      setTimeout(() => {
+                        setIndex(realIndex);
+                        setStep(0);
+                        setAnimPhase('enter');
+                        setTimeout(() => setAnimPhase('idle'), 200);
+                      }, 180);
+                    }}
                   className={cn(
                     "rounded-full transition-all duration-200",
                     realIndex === index ? "w-5 h-2 bg-primary" : "w-2 h-2",
