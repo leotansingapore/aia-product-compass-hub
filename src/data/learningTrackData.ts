@@ -463,6 +463,97 @@ export const learningTrack: TrackPhase[] = [
       },
     ],
   },
+
+  // ═══════════════════════════════════════════════════════════════════
+  // PHASE 6 — Team Contributions & Assignments
+  // ═══════════════════════════════════════════════════════════════════
+  {
+    id: "phase-6",
+    title: "Phase 6 — Team Contributions & Assignments",
+    description: "Contribute to the team through event co-organisation, research projects, and knowledge sharing.",
+    items: [
+      {
+        id: "p6-1",
+        title: "Co-organise Team Monthly Webinar",
+        description: "Co-organise one (1) Team Monthly Webinar with the Direct Leader. Plan, promote, and execute a professional webinar for the team or prospects.",
+        objectives: [
+          "Learn event planning and coordination skills",
+          "Gain experience in content creation and presentation",
+          "Build confidence in leading team activities",
+        ],
+        actionItems: [
+          "Choose webinar topic with Direct Leader approval",
+          "Prepare webinar content and presentation slides",
+          "Handle logistics (Zoom setup, invitations, reminders)",
+          "Co-host the webinar and manage Q&A",
+          "Compile attendance and feedback report",
+        ],
+        defaultContent: [
+          text("p6-1-a", "Webinar planning checklist:\n1. Topic selection — choose something relevant to the team or prospects\n2. Content preparation — create slides, prepare talking points\n3. Promotion — send invitations at least 1 week in advance, follow up 1 day before\n4. Tech setup — test Zoom/Teams link, screen sharing, recording\n5. Execution — open 10 min early, record the session, manage chat/Q&A\n6. Follow-up — send recording and summary to attendees within 24 hours"),
+        ],
+      },
+      {
+        id: "p6-2",
+        title: "Co-organise Team Social Night",
+        description: "Co-organise one (1) Team Social Night with the Welfare IC. Plan and execute a team bonding event that strengthens relationships.",
+        objectives: [
+          "Build team cohesion and morale",
+          "Develop event planning and coordination skills",
+          "Strengthen relationships with team members",
+        ],
+        actionItems: [
+          "Coordinate with Welfare IC on event concept",
+          "Plan venue, budget, and logistics",
+          "Send invitations and manage RSVPs",
+          "Execute the event and ensure smooth running",
+          "Share event photos and recap with the team",
+        ],
+        defaultContent: [
+          text("p6-2-a", "Social Night planning tips:\n• Set a budget and get approval early\n• Choose a venue that's central and accessible for the team\n• Plan at least 1-2 ice-breaker activities or games\n• Consider dietary requirements when ordering food\n• Take photos for the team's social media\n• Send a thank-you message to attendees the next day"),
+        ],
+      },
+      {
+        id: "p6-3",
+        title: "TMB 5th Financial Planning Book — Research & Conceptualisation",
+        description: "Conduct conceptualisation and research for the TMB 5th Financial Planning Book. Contribute original research, case studies, or content concepts.",
+        objectives: [
+          "Contribute meaningfully to the team's published content",
+          "Deepen understanding of financial planning concepts through research",
+          "Develop professional writing and research skills",
+        ],
+        actionItems: [
+          "Meet with Direct Leader to understand the book's scope and assigned section",
+          "Research assigned topics — gather data, case studies, and examples",
+          "Draft initial content or concept outline",
+          "Submit research findings and draft to Direct Leader for review",
+        ],
+        defaultContent: [
+          text("p6-3-a", "Research approach:\n1. Understand the book's overall theme and target audience\n2. Review the previous 4 editions for tone and style reference\n3. Research your assigned section thoroughly — use MAS data, industry reports, real case studies\n4. Write in clear, accessible language — this is for clients, not advisors\n5. Include practical examples and actionable advice\n6. Cite all sources and data points"),
+          link("p6-3-b", "MoneySense — Financial Planning Resources", "https://www.moneysense.gov.sg/financial-planning"),
+        ],
+      },
+      {
+        id: "p6-4",
+        title: "Article or MDRT Journal Sharing",
+        description: "Present an Article or MDRT Journal sharing during one Team Monthly Meeting. Select a relevant article, prepare a summary, and share key insights with the team.",
+        objectives: [
+          "Develop public speaking and presentation skills",
+          "Stay current with industry best practices and thought leadership",
+          "Contribute knowledge back to the team",
+        ],
+        actionItems: [
+          "Select an article or MDRT Journal piece relevant to the team",
+          "Prepare a 10-15 minute presentation with key takeaways",
+          "Present at the Team Monthly Meeting",
+          "Lead a brief Q&A discussion after the presentation",
+        ],
+        defaultContent: [
+          link("p6-4-a", "MDRT — Round the Table Magazine", "https://www.mdrt.org/round-the-table-magazine"),
+          text("p6-4-b", "Presentation structure:\n1. Why this article — what caught your attention, why it's relevant\n2. Key insights — 3-5 main takeaways (analyse, don't just summarize)\n3. How we can apply this — practical applications for the team\n4. Discussion — pose 1-2 questions to spark team conversation"),
+        ],
+      },
+    ],
+  },
 ];
 
 // ─── Assignment Checklist Data ───────────────────────────────────────
@@ -487,6 +578,10 @@ export const assignmentChecklist: AssignmentSection[] = [
       { id: "asgn-12", title: "Book Review on 1 Industry Related Book" },
       { id: "asgn-13", title: "Passed all 4 CMFAS Modules" },
       { id: "asgn-14", title: "Submit 1 Roleplay of AIA Pro Achiever (APA) Pitch" },
+      { id: "asgn-15", title: "Co-organise one (1) Team Monthly Webinar with the Direct Leader" },
+      { id: "asgn-16", title: "Co-organise one (1) Team Social Night with the Welfare IC" },
+      { id: "asgn-17", title: "Conduct conceptualisation and research for the TMB 5th Financial Planning Book" },
+      { id: "asgn-18", title: "Present an Article or MDRT Journal sharing during one Team Monthly Meeting" },
     ],
   },
   {
