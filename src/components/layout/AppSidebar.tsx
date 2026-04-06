@@ -27,6 +27,8 @@ import {
   Sparkles,
   Video,
   Target,
+  Headset,
+  Layers,
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -75,10 +77,12 @@ const allResourceItems = [
   { title: "Pitch Analysis", url: "/roleplay/pitch-analysis", icon: Video, sectionId: "pitch-analysis" },
   { title: "Search by Client", url: "/search-by-profile", icon: Users, sectionId: "search-by-profile" },
   { title: "Sales Tools", url: "/product/sales-tools-objections", icon: TrendingUp, sectionId: "sales-tools" },
-  { title: "Scripts Database", url: "/scripts", icon: FileText, sectionId: "scripts-database" },
-  { title: "Objection Handling", url: "/objections", icon: Shield, sectionId: "objection-handling" },
-  { title: "Script Playbooks", url: "/playbooks", icon: BookOpen, sectionId: "script-playbooks" },
-  { title: "Script Flows", url: "/flows", icon: GitBranch, sectionId: "script-flows" },
+  { title: "Sales Scripts", url: "/scripts", icon: FileText, sectionId: "scripts-database" },
+  { title: "Servicing", url: "/servicing", icon: Headset, sectionId: "servicing" },
+  { title: "Objections", url: "/objections", icon: Shield, sectionId: "objections" },
+  { title: "Playbooks", url: "/playbooks", icon: BookOpen, sectionId: "playbooks" },
+  { title: "Flows", url: "/flows", icon: GitBranch, sectionId: "flows" },
+  { title: "Concept Cards", url: "/concept-cards", icon: Layers, sectionId: "concept-cards" },
 ];
 
 /** Sub-component that fetches and renders products for a single category */
@@ -480,7 +484,7 @@ const AppSidebar = memo(function AppSidebar() {
             <SidebarGroupLabel>Sales Tools</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {resourceItems.filter(i => ['sales-tools', 'scripts-database', 'objection-handling', 'script-playbooks', 'script-flows'].includes(i.sectionId)).map((item) => (
+                {resourceItems.filter(i => ['sales-tools', 'scripts-database', 'servicing', 'objections', 'playbooks', 'flows', 'concept-cards'].includes(i.sectionId)).map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
                       <NavLink to={item.url} className={getNavClassName(item.url)}>
