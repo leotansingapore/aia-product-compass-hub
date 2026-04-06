@@ -1260,24 +1260,32 @@ function CopyButton({ text }: { text: string }) {
 }
 
 function highlightText(text: string, query: string): string {
-  if (!query || query.trim().length < 2) return text;
-  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark class="bg-yellow-200 dark:bg-yellow-700/60 rounded-sm px-0.5">$1</mark>');
+  if (!text || !query || query.trim().length < 2) return text ?? "";
+  try {
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark class="bg-yellow-200 dark:bg-yellow-700/60 rounded-sm px-0.5">$1</mark>');
+  } catch {
+    return text;
+  }
 }
 
 function HighlightedTitle({ text, query }: { text: string; query: string }) {
-  if (!query || query.trim().length < 2) return <>{text}</>;
-  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const parts = text.split(new RegExp(`(${escaped})`, 'gi'));
-  return (
-    <>
-      {parts.map((part, i) =>
-        part.toLowerCase() === query.toLowerCase()
-          ? <mark key={i} className="bg-yellow-200 dark:bg-yellow-700/60 rounded-sm px-0.5">{part}</mark>
-          : part
-      )}
-    </>
-  );
+  if (!text || !query || query.trim().length < 2) return <>{text ?? ""}</>;
+  try {
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const parts = text.split(new RegExp(`(${escaped})`, 'gi'));
+    return (
+      <>
+        {parts.map((part, i) =>
+          part && part.toLowerCase() === query.toLowerCase()
+            ? <mark key={i} className="bg-yellow-200 dark:bg-yellow-700/60 rounded-sm px-0.5">{part}</mark>
+            : (part ?? "")
+        )}
+      </>
+    );
+  } catch {
+    return <>{text}</>;
+  }
 }
 
 function getSearchSnippet(versions: ScriptVersion[], query: string): string | null {
@@ -2996,6 +3004,7 @@ export default function ScriptsDatabase() {
 
   // Strict substring match: only matches if query words appear as substrings
   const strictMatch = useCallback((target: string, query: string): { match: boolean; score: number } => {
+    if (!target || !query) return { match: false, score: 0 };
     const t = target.toLowerCase();
     const q = query.toLowerCase();
     if (t.includes(q)) return { match: true, score: 2 };
