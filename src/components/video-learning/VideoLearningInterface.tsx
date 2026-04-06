@@ -61,6 +61,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const [isPlaying, setIsPlaying] = useState(false);
   const [watchTime, setWatchTime] = useState(0);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const miniNavRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
@@ -87,6 +88,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     setCurrentVideoIndex(initialVideoIndex);
     setWatchTime(0);
     setShowMobileSidebar(false);
+    setVideoError(false);
   }, [initialVideoIndex]);
 
   // Scroll mini-nav to keep current item visible
@@ -339,7 +341,13 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                   </CardHeader>
                   <CardContent className="px-0 pb-0 sm:px-6 sm:pb-6">
                     <div className="relative bg-muted sm:rounded-lg aspect-video">
-                      {videoInfo.type === 'mp4' ? (
+                      {videoError ? (
+                        <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground gap-2 p-4">
+                          <Play className="h-10 w-10 opacity-40" />
+                          <p className="text-sm font-medium">Video not available</p>
+                          <p className="text-xs text-center max-w-sm">This video hasn't been uploaded yet. Please check back later or contact your training coordinator.</p>
+                        </div>
+                      ) : videoInfo.type === 'mp4' ? (
                         <video
                           src={videoInfo.embedUrl}
                           title={currentVideo?.title}
@@ -348,6 +356,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           controlsList="nodownload"
                           preload="metadata"
                           playsInline
+                          onError={() => setVideoError(true)}
                         />
                       ) : (
                         <iframe
