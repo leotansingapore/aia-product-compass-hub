@@ -199,7 +199,7 @@ function SortableVideoItem({
       <div className="flex items-center gap-2 flex-1 min-w-0">
         <button
           type="button"
-          className="cursor-grab active:cursor-grabbing touch-none flex-shrink-0"
+          className="cursor-grab active:cursor-grabbing touch-none flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
           {...attributes}
           {...listeners}
         >
@@ -310,7 +310,7 @@ function RecursiveFolderItem({
         <div className="flex items-center gap-2 flex-1 min-w-0">
           <button
             type="button"
-            className="cursor-grab active:cursor-grabbing touch-none flex-shrink-0"
+            className="cursor-grab active:cursor-grabbing touch-none flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
             {...attributes}
             {...listeners}
           >
