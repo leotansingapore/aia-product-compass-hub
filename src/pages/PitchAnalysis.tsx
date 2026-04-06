@@ -331,6 +331,7 @@ export default function PitchAnalysisPage() {
       }
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
+      setFormStep("transcript");
     } finally {
       setSubmitting(false);
     }
@@ -532,7 +533,7 @@ export default function PitchAnalysisPage() {
             )}
 
             {/* Processing state */}
-            {(submitting || (analysis && isProcessing)) && formStep === "analysing" && (
+            {formStep === "analysing" && !isCompleted && !isFailed && (
               <Card>
                 <CardContent className="pt-6 pb-6 space-y-5">
                   <div className="flex items-center gap-3">
