@@ -225,20 +225,29 @@ export default function PitchAnalysisPage() {
   };
 
   function parseAnalysis(raw: any): PitchAnalysis {
-    const parse = (val: any) => {
-      if (!val) return undefined;
+    const parseArray = (val: any) => {
+      if (!val) return [];
+      if (Array.isArray(val)) return val;
       if (typeof val === "string") {
-        try { return JSON.parse(val); } catch { return val; }
+        try { const parsed = JSON.parse(val); return Array.isArray(parsed) ? parsed : []; } catch { return []; }
       }
-      return val;
+      return [];
+    };
+    const parseObject = (val: any) => {
+      if (!val) return {};
+      if (typeof val === "object" && !Array.isArray(val)) return val;
+      if (typeof val === "string") {
+        try { const parsed = JSON.parse(val); return typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {}; } catch { return {}; }
+      }
+      return {};
     };
     return {
       ...raw,
-      strengths: parse(raw.strengths),
-      improvement_areas: parse(raw.improvement_areas),
-      missed_key_points: parse(raw.missed_key_points),
-      recommended_follow_up: parse(raw.recommended_follow_up),
-      detailed_rubric: parse(raw.detailed_rubric),
+      strengths: parseArray(raw.strengths),
+      improvement_areas: parseArray(raw.improvement_areas),
+      missed_key_points: parseArray(raw.missed_key_points),
+      recommended_follow_up: parseArray(raw.recommended_follow_up),
+      detailed_rubric: parseObject(raw.detailed_rubric),
     };
   }
 
@@ -355,7 +364,7 @@ export default function PitchAnalysisPage() {
     .reverse()
     .map((h, i) => ({
       attempt: `#${i + 1}`,
-      date: format(new Date(h.created_at), "dd MMM"),
+      date: h.created_at ? format(new Date(h.created_at), "dd MMM") : `#${i + 1}`,
       Overall: h.overall_score ?? 0,
       "Product Knowledge": h.product_knowledge_score ?? 0,
       "Needs Discovery": h.needs_discovery_score ?? 0,
@@ -611,7 +620,7 @@ export default function PitchAnalysisPage() {
                   </button>
                   <span className="text-muted-foreground">·</span>
                   <span className="text-sm text-muted-foreground">
-                    {format(new Date(selectedHistory.created_at), "d MMM yyyy, h:mm a")}
+                    {selectedHistory.created_at ? format(new Date(selectedHistory.created_at), "d MMM yyyy, h:mm a") : "Unknown date"}
                   </span>
                 </div>
                 {selectedHistory.video_title && (
@@ -706,7 +715,7 @@ export default function PitchAnalysisPage() {
                                 <div className="flex items-center gap-3 flex-wrap">
                                   <div className="flex items-center gap-1 text-xs text-muted-foreground">
                                     <Calendar className="h-3 w-3" />
-                                    {format(new Date(item.created_at), "d MMM yyyy, h:mm a")}
+                                    {item.created_at ? format(new Date(item.created_at), "d MMM yyyy, h:mm a") : "Unknown date"}
                                   </div>
                                   {item.video_url && item.video_url !== "manual" && (
                                     <div className="flex items-center gap-1 text-xs text-muted-foreground">
@@ -830,7 +839,7 @@ function AnalysisResults({
       </Card>
 
       {/* Strengths */}
-      {analysis.strengths && analysis.strengths.length > 0 && (
+      {Array.isArray(analysis.strengths) && analysis.strengths.length > 0 && (
         <CollapsibleSection
           icon={<CheckCircle2 className="h-4 w-4 text-emerald-500" />}
           title="Strengths"
@@ -850,7 +859,7 @@ function AnalysisResults({
       )}
 
       {/* Improvement Areas */}
-      {analysis.improvement_areas && analysis.improvement_areas.length > 0 && (
+      {Array.isArray(analysis.improvement_areas) && analysis.improvement_areas.length > 0 && (
         <CollapsibleSection
           icon={<TrendingUp className="h-4 w-4 text-amber-500" />}
           title="Improvement Areas"
@@ -859,27 +868,32 @@ function AnalysisResults({
           onToggle={toggleSection}
         >
           <div className="space-y-4">
-            {analysis.improvement_areas.map((item, i) => (
-              <div key={i} className="rounded-lg border bg-muted/20 p-3.5 space-y-2">
-                <p className="font-medium text-sm">{item.area}</p>
-                <p className="text-sm text-muted-foreground">{item.issue}</p>
-                {item.quote && (
-                  <blockquote className="border-l-2 border-primary/40 pl-3 text-xs text-muted-foreground italic">
-                    "{item.quote}"
-                  </blockquote>
-                )}
-                <div className="flex gap-2 items-start pt-1">
-                  <Lightbulb className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
-                  <p className="text-xs text-foreground">{item.suggestion}</p>
+            {analysis.improvement_areas.map((item, i) => {
+              if (!item || typeof item !== "object") return null;
+              return (
+                <div key={i} className="rounded-lg border bg-muted/20 p-3.5 space-y-2">
+                  {item.area && <p className="font-medium text-sm">{item.area}</p>}
+                  {item.issue && <p className="text-sm text-muted-foreground">{item.issue}</p>}
+                  {item.quote && (
+                    <blockquote className="border-l-2 border-primary/40 pl-3 text-xs text-muted-foreground italic">
+                      "{item.quote}"
+                    </blockquote>
+                  )}
+                  {item.suggestion && (
+                    <div className="flex gap-2 items-start pt-1">
+                      <Lightbulb className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
+                      <p className="text-xs text-foreground">{item.suggestion}</p>
+                    </div>
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </CollapsibleSection>
       )}
 
       {/* Missed Key Points */}
-      {analysis.missed_key_points && analysis.missed_key_points.length > 0 && (
+      {Array.isArray(analysis.missed_key_points) && analysis.missed_key_points.length > 0 && (
         <CollapsibleSection
           icon={<AlertTriangle className="h-4 w-4 text-orange-500" />}
           title="Missed Key Points"
@@ -900,7 +914,7 @@ function AnalysisResults({
       )}
 
       {/* Recommended Follow-up */}
-      {analysis.recommended_follow_up && analysis.recommended_follow_up.length > 0 && (
+      {Array.isArray(analysis.recommended_follow_up) && analysis.recommended_follow_up.length > 0 && (
         <CollapsibleSection
           icon={<ClipboardList className="h-4 w-4 text-blue-500" />}
           title="Action Plan"
@@ -931,16 +945,20 @@ function AnalysisResults({
           onToggle={toggleSection}
         >
           <div className="space-y-3">
-            {Object.entries(analysis.detailed_rubric).map(([key, val]) => (
-              <div key={key} className="rounded-lg border p-3 space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium capitalize">{key.replace(/_/g, " ")}</span>
-                  <span className={`text-sm font-bold ${getScoreColor(val.score)}`}>{val.score}/10</span>
+            {Object.entries(analysis.detailed_rubric).map(([key, val]) => {
+              const score = val?.score ?? 0;
+              const notes = val?.notes ?? "";
+              return (
+                <div key={key} className="rounded-lg border p-3 space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium capitalize">{key.replace(/_/g, " ")}</span>
+                    <span className={`text-sm font-bold ${getScoreColor(score)}`}>{score}/10</span>
+                  </div>
+                  <Progress value={score * 10} className="h-1.5" />
+                  {notes && <p className="text-xs text-muted-foreground">{notes}</p>}
                 </div>
-                <Progress value={val.score * 10} className="h-1.5" />
-                <p className="text-xs text-muted-foreground">{val.notes}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </CollapsibleSection>
       )}
