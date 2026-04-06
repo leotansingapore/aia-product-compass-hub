@@ -545,9 +545,10 @@ export default function PitchAnalysisPage() {
                   <Progress value={progressPercent} className="h-2" />
                   <div className="space-y-2">
                     {STATUS_STEPS.map((step, i) => {
-                      const stepIndex = STATUS_STEPS.findIndex(s => s.key === analysis.status);
-                      const done = i < stepIndex || analysis.status === "completed";
-                      const active = STATUS_STEPS[i].key === analysis.status;
+                      const currentStatus = analysis?.status ?? "pending";
+                      const stepIndex = STATUS_STEPS.findIndex(s => s.key === currentStatus);
+                      const done = i < stepIndex || currentStatus === "completed";
+                      const active = STATUS_STEPS[i].key === currentStatus;
                       return (
                         <div key={step.key} className="flex items-center gap-2.5 text-sm">
                           {done ? (
