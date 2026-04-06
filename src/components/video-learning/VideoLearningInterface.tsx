@@ -168,11 +168,20 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             onVideoSelect={(index) => {
               setCurrentVideoIndex(index);
               setWatchTime(0);
+              setVideoError(false);
               setShowMobileSidebar(false);
+              const targetVideo = videos[index];
+              if (targetVideo) {
+                const videoSlug = getVideoSlug(targetVideo.title);
+                if (moduleType === 'cmfas' && moduleId) {
+                  navigate(`/cmfas/module/${moduleId}/video/${videoSlug}`, { replace: true });
+                } else if (productSlugOrId) {
+                  navigate(`/product/${productSlugOrId}/video/${videoSlug}`, { replace: true });
+                }
+              }
             }}
             getVideoProgress={getVideoProgress}
             onToggleComplete={handleToggleComplete}
-            useIndividualPages={true}
             currentVideoId={currentVideo?.id}
             moduleId={moduleId}
             moduleType={moduleType}
