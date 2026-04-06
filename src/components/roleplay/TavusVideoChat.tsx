@@ -211,9 +211,13 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
 
       console.log('Creating Tavus conversation with:', requestBody);
 
-      const { data: conversationData, error: conversationError } = await supabase.functions.invoke('tavus-session', {
+      const tavusPromise = supabase.functions.invoke('tavus-session', {
         body: requestBody
       });
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Session creation timed out after 30 seconds. The Tavus service may be unavailable — please try again.')), 30000)
+      );
+      const { data: conversationData, error: conversationError } = await Promise.race([tavusPromise, timeoutPromise]);
 
       if (conversationError) {
         console.error('Failed to create Tavus conversation:', conversationError);
