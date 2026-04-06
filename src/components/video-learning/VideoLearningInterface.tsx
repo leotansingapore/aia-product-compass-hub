@@ -62,6 +62,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const [watchTime, setWatchTime] = useState(0);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [shouldAutoplay, setShouldAutoplay] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const miniNavRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
@@ -170,6 +171,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
               setWatchTime(0);
               setVideoError(false);
               setShowMobileSidebar(false);
+              setShouldAutoplay(true);
               const targetVideo = videos[index];
               if (targetVideo) {
                 const videoSlug = getVideoSlug(targetVideo.title);
@@ -365,13 +367,14 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           controlsList="nodownload"
                           preload="metadata"
                           playsInline
+                          autoPlay={shouldAutoplay}
                           onError={() => setVideoError(true)}
                         />
                       ) : (
                         <iframe
                           ref={iframeRef}
                           key={videoInfo.embedUrl}
-                          src={videoInfo.embedUrl}
+                          src={shouldAutoplay ? `${videoInfo.embedUrl}${videoInfo.embedUrl.includes('?') ? '&' : '?'}autoplay=1` : videoInfo.embedUrl}
                           title={currentVideo?.title}
                           className="w-full h-full absolute inset-0"
                           allowFullScreen
@@ -380,7 +383,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           mozallowfullscreen="true"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                           style={{ border: 0 }}
-                          onLoad={() => setIsPlaying(false)}
+                          onLoad={() => { setIsPlaying(false); setShouldAutoplay(false); }}
                         />
                       )}
                     </div>
@@ -452,9 +455,12 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           },
                           // Always embed video links — standalone player deduplication is handled by richContentHasVideo above
                           a: ({ children, href }: any) => {
-                            const videoInfo = detectVideoEmbed(href ?? '');
-                            if (videoInfo.isVideo && videoInfo.embedUrl) {
-                              return <VideoEmbed embedUrl={videoInfo.embedUrl} platform={videoInfo.platform || 'video'} />;
+                            const embedInfo = detectVideoEmbed(href ?? '');
+                            if (embedInfo.isVideo && embedInfo.embedUrl) {
+                              const autoplayUrl = shouldAutoplay
+                                ? `${embedInfo.embedUrl}${embedInfo.embedUrl.includes('?') ? '&' : '?'}autoplay=1`
+                                : embedInfo.embedUrl;
+                              return <VideoEmbed embedUrl={autoplayUrl} platform={embedInfo.platform || 'video'} />;
                             }
                             return (
                               <a
