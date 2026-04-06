@@ -297,13 +297,14 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       // Create Tavus conversation
       const conversationData = await createTavusConversation();
 
+      if (!conversationData) {
+        return;
+      }
+
       toast({
         title: "Session Starting",
         description: "Connecting to your AI roleplay partner...",
       });
-
-      // Now the conversation will be embedded in the iframe
-      // The Tavus iframe will handle its own media stream
 
       setIsConnected(true);
       setIsRecording(true);
