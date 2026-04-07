@@ -341,6 +341,7 @@ function ResizableImageComponent({ node, updateAttributes, deleteNode, selected 
           </div>
         )}
 
+      </div>
       {/* Crop modal */}
       {showCrop && (
         <CropOverlay
