@@ -184,6 +184,7 @@ export function MinimalRichEditor({
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pdfInputRef = useRef<HTMLInputElement>(null);
+  const editorWrapperRef = useRef<HTMLDivElement>(null);
 
   // Stable ref so paste/drop handlers in useEditor can call uploadImageToStorage
   // without needing a reference to `editor` (which isn't declared yet).
