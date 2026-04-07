@@ -12,7 +12,7 @@ import { TableHeader } from '@tiptap/extension-table-header';
 import { VideoEmbedNode } from '@/components/markdown/editor/VideoEmbedNode';
 import { detectVideoEmbed } from '@/lib/video-embed-utils';
 import { Button } from "@/components/ui/button";
-import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Minus, Loader2, ImageIcon, Video, Paperclip, FileText, ExternalLink } from "lucide-react";
+import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Minus, Loader2, ImageIcon, Video, Paperclip, FileText, ExternalLink, Trash2 } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { marked } from 'marked';
@@ -184,6 +184,7 @@ export function MinimalRichEditor({
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pdfInputRef = useRef<HTMLInputElement>(null);
+  const editorWrapperRef = useRef<HTMLDivElement>(null);
 
   // Stable ref so paste/drop handlers in useEditor can call uploadImageToStorage
   // without needing a reference to `editor` (which isn't declared yet).
@@ -399,10 +400,80 @@ export function MinimalRichEditor({
     editor.chain().focus().insertContent(`<p>🔗 <a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a></p>`).run();
   }, [editor]);
 
+  // Inject delete buttons on attachment paragraphs (📎 / 🔗)
+  useEffect(() => {
+    if (!editor || !showToolbar) return;
+
+    const injectDeleteButtons = () => {
+      const wrapper = editorWrapperRef.current;
+      if (!wrapper) return;
+
+      // Remove old injected buttons
+      wrapper.querySelectorAll('.attachment-delete-btn').forEach(btn => btn.remove());
+
+      // Find paragraphs starting with 📎 or 🔗
+      const paragraphs = wrapper.querySelectorAll('.tiptap p, .ProseMirror p');
+      paragraphs.forEach((p) => {
+        const text = p.textContent || '';
+        if (text.startsWith('📎') || text.startsWith('🔗')) {
+          // Style the paragraph
+          (p as HTMLElement).style.position = 'relative';
+          (p as HTMLElement).style.paddingRight = '28px';
+
+          const btn = document.createElement('button');
+          btn.className = 'attachment-delete-btn';
+          btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>';
+          btn.title = 'Remove attachment';
+          btn.style.cssText = 'position:absolute;right:4px;top:50%;transform:translateY(-50%);background:hsl(var(--destructive)/0.1);border:none;border-radius:4px;padding:3px;cursor:pointer;color:hsl(var(--destructive));opacity:0;transition:opacity 0.15s;display:flex;align-items:center;justify-content:center;';
+          
+          (p as HTMLElement).addEventListener('mouseenter', () => { btn.style.opacity = '1'; });
+          (p as HTMLElement).addEventListener('mouseleave', () => { btn.style.opacity = '0'; });
+
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // Find the node position in ProseMirror and delete it
+            const { state } = editor;
+            const { doc } = state;
+            let targetPos: number | null = null;
+            doc.descendants((node, pos) => {
+              if (targetPos !== null) return false;
+              if (node.type.name === 'paragraph') {
+                const nodeText = node.textContent || '';
+                if (nodeText === text) {
+                  targetPos = pos;
+                  return false;
+                }
+              }
+            });
+            if (targetPos !== null) {
+              const node = doc.nodeAt(targetPos);
+              if (node) {
+                editor.chain().focus().deleteRange({ from: targetPos, to: targetPos + node.nodeSize }).run();
+                toast.success('Attachment removed');
+              }
+            }
+          });
+
+          p.appendChild(btn);
+        }
+      });
+    };
+
+    // Run on content changes
+    editor.on('update', injectDeleteButtons);
+    // Run once initially
+    setTimeout(injectDeleteButtons, 100);
+
+    return () => {
+      editor.off('update', injectDeleteButtons);
+    };
+  }, [editor, showToolbar]);
+
   if (!editor) return null;
 
   return (
-    <div className="space-y-0">
+    <div className="space-y-0" ref={editorWrapperRef}>
       {showToolbar && (
         <div className="flex items-center gap-0.5 p-1.5 border-b border-border/40 flex-wrap">
           <Button
