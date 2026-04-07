@@ -149,11 +149,7 @@ export function MinimalRichEditor({
         openOnClick: false,
         HTMLAttributes: { class: 'text-primary hover:underline cursor-pointer' },
       }),
-      Image.configure({
-        HTMLAttributes: { class: 'max-w-full rounded-md my-2' },
-        inline: false,
-        allowBase64: false,
-      }),
+      ResizableImageNode,
       Placeholder.configure({ placeholder }),
       Table.configure({ resizable: false }),
       TableRow,
