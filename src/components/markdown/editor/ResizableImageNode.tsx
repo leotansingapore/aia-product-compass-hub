@@ -341,12 +341,6 @@ function ResizableImageComponent({ node, updateAttributes, deleteNode, selected 
           </div>
         )}
 
-        {/* Drag handle */}
-        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-60 transition-opacity pointer-events-none">
-          <GripHorizontal className="h-4 w-4 text-muted-foreground" />
-        </div>
-      </div>
-
       {/* Crop modal */}
       {showCrop && (
         <CropOverlay
