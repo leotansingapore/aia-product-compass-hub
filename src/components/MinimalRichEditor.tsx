@@ -521,6 +521,31 @@ export function MinimalRichEditor({
           >
             <Video className="h-3.5 w-3.5" />
           </Button>
+          <div className="w-px h-4 bg-border mx-0.5" />
+          {/* Resource attachment dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-7 w-7 p-0"
+                title="Attach resource (PDF, link)"
+                disabled={isUploading}
+              >
+                <Paperclip className="h-3.5 w-3.5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="min-w-[160px]">
+              <DropdownMenuItem onClick={() => pdfInputRef.current?.click()}>
+                <FileText className="h-3.5 w-3.5 mr-2" />
+                Upload PDF / File
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleAttachLink}>
+                <ExternalLink className="h-3.5 w-3.5 mr-2" />
+                Add external link
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <input
             ref={fileInputRef}
             type="file"
@@ -529,6 +554,17 @@ export function MinimalRichEditor({
             onChange={e => {
               const file = e.target.files?.[0];
               if (file) handleMediaUpload(file);
+              e.target.value = '';
+            }}
+          />
+          <input
+            ref={pdfInputRef}
+            type="file"
+            accept=".pdf,.doc,.docx,.txt,.md,.csv,.xlsx,.xls,.pptx"
+            className="hidden"
+            onChange={e => {
+              const file = e.target.files?.[0];
+              if (file) handlePdfUpload(file);
               e.target.value = '';
             }}
           />
