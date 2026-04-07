@@ -424,10 +424,10 @@ export function MinimalRichEditor({
           btn.className = 'attachment-delete-btn';
           btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>';
           btn.title = 'Remove attachment';
-          btn.style.cssText = 'position:absolute;right:4px;top:50%;transform:translateY(-50%);background:hsl(var(--destructive)/0.1);border:none;border-radius:4px;padding:3px;cursor:pointer;color:hsl(var(--destructive));opacity:0;transition:opacity 0.15s;display:flex;align-items:center;justify-content:center;';
+          btn.style.cssText = 'position:absolute;right:4px;top:50%;transform:translateY(-50%);background:hsl(var(--destructive)/0.15);border:1px solid hsl(var(--destructive)/0.3);border-radius:4px;padding:4px;cursor:pointer;color:hsl(var(--destructive));opacity:1;display:flex;align-items:center;justify-content:center;z-index:10;';
           
-          (p as HTMLElement).addEventListener('mouseenter', () => { btn.style.opacity = '1'; });
-          (p as HTMLElement).addEventListener('mouseleave', () => { btn.style.opacity = '0'; });
+          btn.addEventListener('mouseenter', () => { btn.style.background = 'hsl(var(--destructive)/0.3)'; });
+          btn.addEventListener('mouseleave', () => { btn.style.background = 'hsl(var(--destructive)/0.15)'; });
 
           btn.addEventListener('click', (e) => {
             e.preventDefault();
