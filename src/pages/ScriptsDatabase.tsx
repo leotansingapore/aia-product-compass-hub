@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { copyRichContent } from "@/lib/copy-rich-content";
 import { toScriptSlug, resolveScriptSlug } from "@/lib/scriptSlug";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ReactMarkdown from "react-markdown";
@@ -1245,8 +1246,8 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
-  const handleCopy = () => {
-    navigator.clipboard.writeText(text);
+  const handleCopy = async () => {
+    await copyRichContent(text);
     setCopied(true);
     toast.success("Script copied to clipboard");
     setTimeout(() => setCopied(false), 2000);

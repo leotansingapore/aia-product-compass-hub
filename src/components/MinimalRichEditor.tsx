@@ -8,8 +8,10 @@ import { Table } from '@tiptap/extension-table';
 import { TableRow } from '@tiptap/extension-table-row';
 import { TableCell } from '@tiptap/extension-table-cell';
 import { TableHeader } from '@tiptap/extension-table-header';
+import { VideoEmbedNode } from '@/components/markdown/editor/VideoEmbedNode';
+import { detectVideoEmbed } from '@/lib/video-embed-utils';
 import { Button } from "@/components/ui/button";
-import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Minus, Loader2, ImageIcon } from "lucide-react";
+import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Minus, Loader2, ImageIcon, Video } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { marked } from 'marked';
 import TurndownService from 'turndown';
@@ -58,6 +60,17 @@ function createTurndown() {
       const src = node.getAttribute('src') || '';
       const alt = node.getAttribute('alt') || '';
       return `![${alt}](${src})`;
+    },
+  });
+  // Preserve video embeds as markdown link on its own line
+  td.addRule('videoEmbed', {
+    filter: (node: any) => {
+      return node.nodeName === 'DIV' && node.getAttribute('data-type') === 'video-embed';
+    },
+    replacement: (_content: string, node: any) => {
+      const src = node.getAttribute('data-src') || '';
+      const platform = node.getAttribute('data-platform') || 'video';
+      return `\n[${platform} video](${src})\n`;
     },
   });
   return td;
@@ -146,6 +159,7 @@ export function MinimalRichEditor({
       TableRow,
       TableHeader,
       TableCell,
+      VideoEmbedNode,
     ],
     content: mdToHtml(value),
     autofocus: autoFocus,
@@ -269,6 +283,21 @@ export function MinimalRichEditor({
     }
   }, [editor]);
 
+  const handleInsertVideo = useCallback(() => {
+    if (!editor) return;
+    const url = window.prompt('Paste a YouTube, Vimeo, or Loom URL');
+    if (!url) return;
+    const info = detectVideoEmbed(url.trim());
+    if (!info.isVideo || !info.embedUrl) {
+      toast.error('Unsupported video URL. Supports YouTube, Vimeo, and Loom.');
+      return;
+    }
+    editor.chain().focus().insertContent({
+      type: 'videoEmbed',
+      attrs: { src: url.trim(), embedUrl: info.embedUrl, platform: info.platform },
+    }).run();
+  }, [editor]);
+
   if (!editor) return null;
 
   return (
@@ -380,6 +409,16 @@ export function MinimalRichEditor({
               ? <Loader2 className="h-3.5 w-3.5 animate-spin" />
               : <ImageIcon className="h-3.5 w-3.5" />
             }
+          </Button>
+          {/* Video embed button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleInsertVideo}
+            className="h-7 w-7 p-0"
+            title="Embed video (YouTube, Vimeo, Loom)"
+          >
+            <Video className="h-3.5 w-3.5" />
           </Button>
           <input
             ref={fileInputRef}
