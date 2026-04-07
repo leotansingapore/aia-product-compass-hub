@@ -111,8 +111,33 @@ function mdToHtml(md: string): string {
   try {
     // Strip lone `>` lines used as visual spacers — they produce empty blockquotes
     const cleaned = md.replace(/^>\s*$/gm, '');
-    const result = marked.parse(cleaned, { async: false, gfm: true, breaks: true });
-    return typeof result === 'string' ? result : '';
+    let result = marked.parse(cleaned, { async: false, gfm: true, breaks: true });
+    if (typeof result !== 'string') return md.replace(/\n/g, '<br>');
+
+    // Post-process: extract image metadata from alt text (e.g. "alt|width=300,align=left")
+    result = result.replace(/<img\s+src="([^"]*?)"\s+alt="([^"]*?)"\s*\/?>/g, (_match, src, alt) => {
+      const pipeIdx = alt.indexOf('|');
+      if (pipeIdx === -1) return `<img src="${src}" alt="${alt}">`;
+
+      const realAlt = alt.substring(0, pipeIdx);
+      const metaStr = alt.substring(pipeIdx + 1);
+      const attrs: Record<string, string> = {};
+      metaStr.split(',').forEach((pair: string) => {
+        const [k, v] = pair.split('=');
+        if (k && v) attrs[k.trim()] = v.trim();
+      });
+
+      const parts = [`src="${src}"`, `alt="${realAlt}"`];
+      if (attrs.width) parts.push(`data-width="${attrs.width}"`);
+      if (attrs.align) parts.push(`data-alignment="${attrs.align}"`);
+      if (attrs.cx) parts.push(`data-crop-x="${attrs.cx}"`);
+      if (attrs.cy) parts.push(`data-crop-y="${attrs.cy}"`);
+      if (attrs.cw) parts.push(`data-crop-w="${attrs.cw}"`);
+      if (attrs.ch) parts.push(`data-crop-h="${attrs.ch}"`);
+      return `<img ${parts.join(' ')}>`;
+    });
+
+    return result;
   } catch {
     return md.replace(/\n/g, '<br>');
   }
