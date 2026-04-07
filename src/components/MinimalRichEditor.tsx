@@ -411,52 +411,65 @@ export function MinimalRichEditor({
       // Remove old injected buttons
       wrapper.querySelectorAll('.attachment-delete-btn').forEach(btn => btn.remove());
 
-      // Find paragraphs starting with 📎 or 🔗
+      // Find attachment paragraphs and place the remove button beside the link itself
       const paragraphs = wrapper.querySelectorAll('.tiptap p, .ProseMirror p');
       paragraphs.forEach((p) => {
-        const text = p.textContent || '';
-        if (text.startsWith('📎') || text.startsWith('🔗')) {
-          // Style the paragraph
-          (p as HTMLElement).style.position = 'relative';
-          (p as HTMLElement).style.paddingRight = '28px';
+        const paragraph = p as HTMLElement;
+        const link = paragraph.querySelector('a');
+        const attachmentText = (paragraph.textContent || '').replace(/\s+/g, ' ').trim();
+        const isAttachment = !!link && (attachmentText.includes('📎') || attachmentText.includes('🔗'));
 
-          const btn = document.createElement('button');
-          btn.className = 'attachment-delete-btn';
-          btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>';
-          btn.title = 'Remove attachment';
-          btn.style.cssText = 'position:absolute;right:4px;top:50%;transform:translateY(-50%);background:hsl(var(--destructive)/0.15);border:1px solid hsl(var(--destructive)/0.3);border-radius:4px;padding:4px;cursor:pointer;color:hsl(var(--destructive));opacity:1;display:flex;align-items:center;justify-content:center;z-index:10;';
-          
-          btn.addEventListener('mouseenter', () => { btn.style.background = 'hsl(var(--destructive)/0.3)'; });
-          btn.addEventListener('mouseleave', () => { btn.style.background = 'hsl(var(--destructive)/0.15)'; });
+        if (!isAttachment) return;
 
-          btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            // Find the node position in ProseMirror and delete it
-            const { state } = editor;
-            const { doc } = state;
-            let targetPos: number | null = null;
-            doc.descendants((node, pos) => {
-              if (targetPos !== null) return false;
-              if (node.type.name === 'paragraph') {
-                const nodeText = node.textContent || '';
-                if (nodeText === text) {
-                  targetPos = pos;
-                  return false;
-                }
-              }
-            });
-            if (targetPos !== null) {
-              const node = doc.nodeAt(targetPos);
-              if (node) {
-                editor.chain().focus().deleteRange({ from: targetPos, to: targetPos + node.nodeSize }).run();
-                toast.success('Attachment removed');
+        paragraph.style.display = 'flex';
+        paragraph.style.alignItems = 'center';
+        paragraph.style.flexWrap = 'wrap';
+        paragraph.style.gap = '0.5rem';
+        paragraph.style.position = 'relative';
+        paragraph.style.paddingRight = '0';
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'attachment-delete-btn';
+        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg><span>Remove</span>';
+        btn.title = 'Remove attachment';
+        btn.style.cssText = 'display:inline-flex;align-items:center;gap:4px;flex:none;background:hsl(var(--destructive)/0.12);border:1px solid hsl(var(--destructive)/0.24);border-radius:9999px;padding:3px 8px;cursor:pointer;color:hsl(var(--destructive));font-size:12px;line-height:1;white-space:nowrap;';
+
+        btn.addEventListener('mouseenter', () => { btn.style.background = 'hsl(var(--destructive)/0.18)'; });
+        btn.addEventListener('mouseleave', () => { btn.style.background = 'hsl(var(--destructive)/0.12)'; });
+        btn.addEventListener('mousedown', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const { state } = editor;
+          const { doc } = state;
+          let targetPos: number | null = null;
+
+          doc.descendants((node, pos) => {
+            if (targetPos !== null) return false;
+            if (node.type.name === 'paragraph') {
+              const nodeText = (node.textContent || '').replace(/\s+/g, ' ').trim();
+              if (nodeText === attachmentText) {
+                targetPos = pos;
+                return false;
               }
             }
           });
 
-          p.appendChild(btn);
-        }
+          if (targetPos !== null) {
+            const node = doc.nodeAt(targetPos);
+            if (node) {
+              editor.chain().focus().deleteRange({ from: targetPos, to: targetPos + node.nodeSize }).run();
+              toast.success('Attachment removed');
+            }
+          }
+        });
+
+        paragraph.appendChild(btn);
       });
     };
 
