@@ -26,24 +26,7 @@ import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 
-// Strip markdown to clean plain text (for WhatsApp/messaging copy-paste)
-function markdownToPlainText(md: string): string {
-  return md
-    .replace(/^#{1,6}\s+/gm, '')
-    .replace(/\*\*(.+?)\*\*/gs, '$1')
-    .replace(/\*(.+?)\*/gs, '$1')
-    .replace(/__(.+?)__/gs, '$1')
-    .replace(/_(.+?)_/gs, '$1')
-    .replace(/~~(.+?)~~/gs, '$1')
-    .replace(/`{1,3}[^`\n]*`{1,3}/g, (m) => m.replace(/`/g, ''))
-    .replace(/^\s*[-*+]\s+/gm, '• ')
-    .replace(/^\s*\d+\.\s+/gm, '')
-    .replace(/\[(.+?)\]\(.*?\)/g, '$1')
-    .replace(/!\[.*?\]\(.*?\)/g, '')
-    .replace(/^>\s*/gm, '')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
-}
+import { copyRichContent } from "@/lib/copy-rich-content";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -517,8 +500,8 @@ function ServicingScriptCard({
                         {v.content}
                       </ReactMarkdown>
                       <div className="flex gap-1 mt-3">
-                        <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={() => {
-                          navigator.clipboard.writeText(markdownToPlainText(v.content));
+                        <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={async () => {
+                          await copyRichContent(v.content);
                           toast.success("Copied to clipboard");
                         }}>
                           <Copy className="h-3 w-3" /> Copy
@@ -558,8 +541,8 @@ function ServicingScriptCard({
                         {uv.content}
                       </ReactMarkdown>
                       <div className="flex gap-1 mt-3">
-                        <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={() => {
-                          navigator.clipboard.writeText(markdownToPlainText(uv.content));
+                        <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={async () => {
+                          await copyRichContent(uv.content);
                           toast.success("Copied to clipboard");
                         }}>
                           <Copy className="h-3 w-3" /> Copy
