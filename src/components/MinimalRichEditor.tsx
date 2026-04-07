@@ -12,7 +12,8 @@ import { TableHeader } from '@tiptap/extension-table-header';
 import { VideoEmbedNode } from '@/components/markdown/editor/VideoEmbedNode';
 import { detectVideoEmbed } from '@/lib/video-embed-utils';
 import { Button } from "@/components/ui/button";
-import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Minus, Loader2, ImageIcon, Video } from "lucide-react";
+import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Minus, Loader2, ImageIcon, Video, Paperclip, FileText, ExternalLink } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { marked } from 'marked';
 import TurndownService from 'turndown';
@@ -182,6 +183,7 @@ export function MinimalRichEditor({
   const isInitializedRef = useRef(false);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const pdfInputRef = useRef<HTMLInputElement>(null);
 
   // Stable ref so paste/drop handlers in useEditor can call uploadImageToStorage
   // without needing a reference to `editor` (which isn't declared yet).
@@ -368,6 +370,35 @@ export function MinimalRichEditor({
     }).run();
   }, [editor]);
 
+  const handlePdfUpload = useCallback(async (file: File) => {
+    if (!editor) return;
+    const maxSize = 20 * 1024 * 1024;
+    if (file.size > maxSize) { toast.error('File must be under 20 MB'); return; }
+    setIsUploading(true);
+    try {
+      const ext = file.name.split('.').pop() || 'pdf';
+      const path = `editor-resources/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { error } = await supabase.storage.from('knowledge-files').upload(path, file, { upsert: false });
+      if (error) throw error;
+      const { data } = supabase.storage.from('knowledge-files').getPublicUrl(path);
+      const displayName = file.name;
+      editor.chain().focus().insertContent(`<p>📎 <a href="${data.publicUrl}" target="_blank" rel="noopener noreferrer">${displayName}</a></p>`).run();
+      toast.success('Resource attached');
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Failed to upload resource');
+    } finally {
+      setIsUploading(false);
+    }
+  }, [editor]);
+
+  const handleAttachLink = useCallback(() => {
+    if (!editor) return;
+    const url = window.prompt('Paste a link (e.g. Google Drive, website)');
+    if (!url) return;
+    const label = window.prompt('Display name for the link', url) || url;
+    editor.chain().focus().insertContent(`<p>🔗 <a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a></p>`).run();
+  }, [editor]);
+
   if (!editor) return null;
 
   return (
@@ -490,6 +521,31 @@ export function MinimalRichEditor({
           >
             <Video className="h-3.5 w-3.5" />
           </Button>
+          <div className="w-px h-4 bg-border mx-0.5" />
+          {/* Resource attachment dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-7 w-7 p-0"
+                title="Attach resource (PDF, link)"
+                disabled={isUploading}
+              >
+                <Paperclip className="h-3.5 w-3.5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="min-w-[160px]">
+              <DropdownMenuItem onClick={() => pdfInputRef.current?.click()}>
+                <FileText className="h-3.5 w-3.5 mr-2" />
+                Upload PDF / File
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleAttachLink}>
+                <ExternalLink className="h-3.5 w-3.5 mr-2" />
+                Add external link
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <input
             ref={fileInputRef}
             type="file"
@@ -498,6 +554,17 @@ export function MinimalRichEditor({
             onChange={e => {
               const file = e.target.files?.[0];
               if (file) handleMediaUpload(file);
+              e.target.value = '';
+            }}
+          />
+          <input
+            ref={pdfInputRef}
+            type="file"
+            accept=".pdf,.doc,.docx,.txt,.md,.csv,.xlsx,.xls,.pptx"
+            className="hidden"
+            onChange={e => {
+              const file = e.target.files?.[0];
+              if (file) handlePdfUpload(file);
               e.target.value = '';
             }}
           />
