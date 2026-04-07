@@ -3,7 +3,7 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
-import Image from '@tiptap/extension-image';
+import { ResizableImageNode } from '@/components/markdown/editor/ResizableImageNode';
 import { Table } from '@tiptap/extension-table';
 import { TableRow } from '@tiptap/extension-table-row';
 import { TableCell } from '@tiptap/extension-table-cell';
@@ -149,11 +149,7 @@ export function MinimalRichEditor({
         openOnClick: false,
         HTMLAttributes: { class: 'text-primary hover:underline cursor-pointer' },
       }),
-      Image.configure({
-        HTMLAttributes: { class: 'max-w-full rounded-md my-2' },
-        inline: false,
-        allowBase64: false,
-      }),
+      ResizableImageNode,
       Placeholder.configure({ placeholder }),
       Table.configure({ resizable: false }),
       TableRow,
@@ -204,7 +200,7 @@ export function MinimalRichEditor({
           setIsUploadingRef.current(true);
           uploadImageToStorage(file)
             .then(url => {
-              editorInstanceRef.current?.chain().focus().setImage({ src: url, alt: file.name }).run();
+              editorInstanceRef.current?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: file.name } }).run();
             })
             .catch(err => toast.error(err instanceof Error ? err.message : 'Failed to upload image'))
             .finally(() => setIsUploadingRef.current(false));
@@ -220,7 +216,7 @@ export function MinimalRichEditor({
           setIsUploadingRef.current(true);
           uploadImageToStorage(imageFile)
             .then(url => {
-              editorInstanceRef.current?.chain().focus().setImage({ src: url, alt: imageFile.name }).run();
+              editorInstanceRef.current?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: imageFile.name } }).run();
             })
             .catch(err => toast.error(err instanceof Error ? err.message : 'Failed to upload image'))
             .finally(() => setIsUploadingRef.current(false));
@@ -274,7 +270,7 @@ export function MinimalRichEditor({
     setIsUploading(true);
     try {
       const url = await uploadImageToStorage(file);
-      editor?.chain().focus().setImage({ src: url, alt: file.name }).run();
+      editor?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: file.name } }).run();
       toast.success('Image added');
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Failed to upload image');
