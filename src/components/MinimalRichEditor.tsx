@@ -155,6 +155,7 @@ export function MinimalRichEditor({
         HTMLAttributes: { class: 'text-primary hover:underline cursor-pointer' },
       }),
       ResizableImageNode,
+      InlineVideoNode,
       Placeholder.configure({ placeholder }),
       Table.configure({ resizable: false }),
       TableRow,
