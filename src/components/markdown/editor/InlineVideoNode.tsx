@@ -87,7 +87,7 @@ function InlineVideoComponent({ node, updateAttributes, deleteNode, selected }: 
   };
 
   return (
-    <NodeViewWrapper className={`my-3 flex ${justifyClass}`}>
+    <NodeViewWrapper className={`my-3 flex relative ${justifyClass}`} data-drag-handle>
       <div
         ref={containerRef}
         className={`relative group rounded-lg overflow-hidden border transition-all ${
@@ -100,10 +100,9 @@ function InlineVideoComponent({ node, updateAttributes, deleteNode, selected }: 
         {/* Drag handle - this is the only draggable element */}
         <div
           className={`absolute top-2 left-10 z-20 flex items-center justify-center w-6 h-6 rounded bg-black/50 backdrop-blur-sm cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity`}
-          data-drag-handle
           title="Drag to reorder"
         >
-          <GripVertical className="h-3.5 w-3.5 text-white" />
+          <GripVertical className="h-3.5 w-3.5 pointer-events-none text-white" />
         </div>
 
         {/* Platform badge */}
