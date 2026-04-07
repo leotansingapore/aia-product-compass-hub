@@ -159,6 +159,7 @@ export function MinimalRichEditor({
       TableRow,
       TableHeader,
       TableCell,
+      VideoEmbedNode,
     ],
     content: mdToHtml(value),
     autofocus: autoFocus,
