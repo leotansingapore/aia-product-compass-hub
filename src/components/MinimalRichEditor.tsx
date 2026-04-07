@@ -74,6 +74,16 @@ function createTurndown() {
       return `\n[${platform} video](${src})\n`;
     },
   });
+  // Preserve inline uploaded videos as markdown link
+  td.addRule('inlineVideo', {
+    filter: (node: any) => {
+      return node.nodeName === 'DIV' && node.getAttribute('data-type') === 'inline-video';
+    },
+    replacement: (_content: string, node: any) => {
+      const src = node.getAttribute('data-src') || '';
+      return `\n[video](${src})\n`;
+    },
+  });
   return td;
 }
 
@@ -456,7 +466,7 @@ export function MinimalRichEditor({
       {isUploading && (
         <div className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-muted-foreground bg-muted/40 border-b border-border/30">
           <Loader2 className="h-3 w-3 animate-spin" />
-          Uploading image…
+          Uploading media…
         </div>
       )}
 
