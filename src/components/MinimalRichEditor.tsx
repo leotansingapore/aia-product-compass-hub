@@ -200,7 +200,7 @@ export function MinimalRichEditor({
           setIsUploadingRef.current(true);
           uploadImageToStorage(file)
             .then(url => {
-              editorInstanceRef.current?.chain().focus().setImage({ src: url, alt: file.name }).run();
+              editorInstanceRef.current?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: file.name } }).run();
             })
             .catch(err => toast.error(err instanceof Error ? err.message : 'Failed to upload image'))
             .finally(() => setIsUploadingRef.current(false));
@@ -270,7 +270,7 @@ export function MinimalRichEditor({
     setIsUploading(true);
     try {
       const url = await uploadImageToStorage(file);
-      editor?.chain().focus().setImage({ src: url, alt: file.name }).run();
+      editor?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: file.name } }).run();
       toast.success('Image added');
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Failed to upload image');
