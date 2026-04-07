@@ -1,6 +1,6 @@
 import { Node, mergeAttributes } from '@tiptap/react';
 import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
-import { Trash2, Download, Maximize2, Minimize2, GripVertical } from 'lucide-react';
+import { Trash2, Download, GripVertical } from 'lucide-react';
 import { useState, useRef } from 'react';
 
 export const InlineVideoNode = Node.create({
@@ -101,7 +101,6 @@ function InlineVideoComponent({ node, updateAttributes, deleteNode, selected }: 
         <div
           className={`absolute top-2 left-10 z-20 flex items-center justify-center w-6 h-6 rounded bg-black/50 backdrop-blur-sm cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity`}
           data-drag-handle
-          draggable="true"
           title="Drag to reorder"
         >
           <GripVertical className="h-3.5 w-3.5 text-white" />
@@ -165,6 +164,7 @@ function InlineVideoComponent({ node, updateAttributes, deleteNode, selected }: 
         <video
           src={src}
           controls
+          draggable={false}
           className="w-full rounded-lg"
           preload="metadata"
           style={{ display: 'block' }}
