@@ -410,6 +410,16 @@ export function MinimalRichEditor({
               : <ImageIcon className="h-3.5 w-3.5" />
             }
           </Button>
+          {/* Video embed button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleInsertVideo}
+            className="h-7 w-7 p-0"
+            title="Embed video (YouTube, Vimeo, Loom)"
+          >
+            <Video className="h-3.5 w-3.5" />
+          </Button>
           <input
             ref={fileInputRef}
             type="file"
