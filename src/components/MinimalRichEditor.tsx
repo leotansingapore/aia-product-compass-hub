@@ -62,6 +62,17 @@ function createTurndown() {
       return `![${alt}](${src})`;
     },
   });
+  // Preserve video embeds as markdown link on its own line
+  td.addRule('videoEmbed', {
+    filter: (node: any) => {
+      return node.nodeName === 'DIV' && node.getAttribute('data-type') === 'video-embed';
+    },
+    replacement: (_content: string, node: any) => {
+      const src = node.getAttribute('data-src') || '';
+      const platform = node.getAttribute('data-platform') || 'video';
+      return `\n[${platform} video](${src})\n`;
+    },
+  });
   return td;
 }
 
