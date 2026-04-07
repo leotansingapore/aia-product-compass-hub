@@ -139,6 +139,59 @@ export const markdownComponents: Components = {
     );
   },
 
+  // Images with metadata support (width, alignment, crop from alt text)
+  img: ({ src, alt }: any) => {
+    let realAlt = alt || '';
+    let width: string | undefined;
+    let alignment = 'center';
+    let cropX = 0, cropY = 0, cropW = 100, cropH = 100;
+
+    const pipeIdx = realAlt.indexOf('|');
+    if (pipeIdx !== -1) {
+      const metaStr = realAlt.slice(pipeIdx + 1);
+      realAlt = realAlt.slice(0, pipeIdx);
+      const attrs: Record<string, string> = {};
+      metaStr.split(',').forEach((pair: string) => {
+        const [k, v] = pair.split('=');
+        if (k && v) attrs[k.trim()] = v.trim();
+      });
+      if (attrs.width) width = attrs.width;
+      if (attrs.align) alignment = attrs.align;
+      if (attrs.cx) cropX = Number(attrs.cx);
+      if (attrs.cy) cropY = Number(attrs.cy);
+      if (attrs.cw) cropW = Number(attrs.cw);
+      if (attrs.ch) cropH = Number(attrs.ch);
+    }
+
+    const hasCrop = cropX !== 0 || cropY !== 0 || cropW !== 100 || cropH !== 100;
+    const justifyClass = alignment === 'left' ? 'justify-start' : alignment === 'right' ? 'justify-end' : 'justify-center';
+
+    return (
+      <span className={`flex my-2 ${justifyClass}`}>
+        <span
+          className="inline-block overflow-hidden rounded-md"
+          style={{
+            width: width ? `${width}px` : undefined,
+            maxWidth: '100%',
+            ...(hasCrop ? { position: 'relative' as const, paddingBottom: `${(cropH / cropW) * 100}%` } : {}),
+          }}
+        >
+          <img
+            src={src}
+            alt={realAlt}
+            className={hasCrop ? 'absolute' : 'block w-full rounded-md'}
+            style={hasCrop ? {
+              left: `${-(cropX / cropW) * 100}%`,
+              top: `${-(cropY / cropH) * 100}%`,
+              width: `${100 / cropW * 100}%`,
+              height: `${100 / cropH * 100}%`,
+            } : undefined}
+          />
+        </span>
+      </span>
+    );
+  },
+
   // Horizontal rules
   hr: () => (
     <hr className="my-4 border-t border-border" />
