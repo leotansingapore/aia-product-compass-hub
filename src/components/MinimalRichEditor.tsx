@@ -54,13 +54,29 @@ function createTurndown() {
       return content + '\n>\n';
     },
   });
-  // Preserve images as markdown
+  // Preserve images as markdown — encode width/alignment/crop in alt text
   td.addRule('image', {
     filter: 'img',
     replacement: (_content: string, node: any) => {
       const src = node.getAttribute('src') || '';
       const alt = node.getAttribute('alt') || '';
-      return `![${alt}](${src})`;
+      const width = node.getAttribute('data-width');
+      const alignment = node.getAttribute('data-alignment');
+      const cropX = node.getAttribute('data-crop-x');
+      const cropY = node.getAttribute('data-crop-y');
+      const cropW = node.getAttribute('data-crop-w');
+      const cropH = node.getAttribute('data-crop-h');
+
+      const meta: string[] = [];
+      if (width && width !== 'null') meta.push(`width=${width}`);
+      if (alignment && alignment !== 'center') meta.push(`align=${alignment}`);
+      if (cropX && Number(cropX) !== 0) meta.push(`cx=${cropX}`);
+      if (cropY && Number(cropY) !== 0) meta.push(`cy=${cropY}`);
+      if (cropW && Number(cropW) !== 100) meta.push(`cw=${cropW}`);
+      if (cropH && Number(cropH) !== 100) meta.push(`ch=${cropH}`);
+
+      const altPart = meta.length > 0 ? `${alt}|${meta.join(',')}` : alt;
+      return `![${altPart}](${src})`;
     },
   });
   // Preserve video embeds as markdown link on its own line
