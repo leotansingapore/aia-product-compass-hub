@@ -223,7 +223,7 @@ function ResizableImageComponent({ node, updateAttributes, deleteNode, selected 
   }, [updateAttributes]);
 
   return (
-    <NodeViewWrapper className={cn('flex my-2', justifyClass)}>
+    <NodeViewWrapper className={cn('flex my-2 relative', justifyClass)} data-drag-handle>
       <div
         ref={containerRef}
         className={cn(
@@ -280,13 +280,12 @@ function ResizableImageComponent({ node, updateAttributes, deleteNode, selected 
 
         {/* Drag handle */}
         <div
-          data-drag-handle
           className={cn(
-            'absolute -left-7 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-8 rounded bg-popover border border-border shadow-sm cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity z-20'
+            'absolute top-1 left-1 flex items-center justify-center w-6 h-6 rounded bg-black/50 backdrop-blur-sm cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity z-20'
           )}
           title="Drag to reorder"
         >
-          <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
+          <GripVertical className="h-3.5 w-3.5 text-white" />
         </div>
 
         {/* Floating toolbar */}
