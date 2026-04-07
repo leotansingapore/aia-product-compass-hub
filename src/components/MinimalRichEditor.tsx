@@ -216,7 +216,7 @@ export function MinimalRichEditor({
           setIsUploadingRef.current(true);
           uploadImageToStorage(imageFile)
             .then(url => {
-              editorInstanceRef.current?.chain().focus().setImage({ src: url, alt: imageFile.name }).run();
+              editorInstanceRef.current?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: imageFile.name } }).run();
             })
             .catch(err => toast.error(err instanceof Error ? err.message : 'Failed to upload image'))
             .finally(() => setIsUploadingRef.current(false));
