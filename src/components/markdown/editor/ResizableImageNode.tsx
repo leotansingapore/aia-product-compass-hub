@@ -3,7 +3,7 @@ import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { 
   AlignLeft, AlignCenter, AlignRight, Crop, Trash2, 
-  GripHorizontal, RotateCcw 
+  GripVertical, RotateCcw 
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -276,6 +276,17 @@ function ResizableImageComponent({ node, updateAttributes, deleteNode, selected 
           onPointerDown={e => onResizeStart(e, 'right')}
         >
           <div className="w-1 h-8 rounded-full bg-primary/70" />
+        </div>
+
+        {/* Drag handle */}
+        <div
+          data-drag-handle
+          className={cn(
+            'absolute -left-7 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-8 rounded bg-popover border border-border shadow-sm cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity z-20'
+          )}
+          title="Drag to reorder"
+        >
+          <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
         </div>
 
         {/* Floating toolbar */}

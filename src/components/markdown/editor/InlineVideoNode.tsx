@@ -1,6 +1,6 @@
 import { Node, mergeAttributes } from '@tiptap/react';
 import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
-import { Trash2, Download, Maximize2, Minimize2 } from 'lucide-react';
+import { Trash2, Download, Maximize2, Minimize2, GripVertical } from 'lucide-react';
 import { useState, useRef } from 'react';
 
 export const InlineVideoNode = Node.create({
@@ -97,6 +97,15 @@ function InlineVideoComponent({ node, updateAttributes, deleteNode, selected }: 
         onMouseEnter={() => setShowControls(true)}
         onMouseLeave={() => setShowControls(false)}
       >
+        {/* Drag handle */}
+        <div
+          data-drag-handle
+          className={`absolute -left-7 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-8 rounded bg-popover border border-border shadow-sm cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity z-20`}
+          title="Drag to reorder"
+        >
+          <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
+        </div>
+
         {/* Platform badge */}
         <div className="absolute top-2 left-2 z-10">
           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-black/60 text-white text-[10px] font-medium backdrop-blur-sm">
