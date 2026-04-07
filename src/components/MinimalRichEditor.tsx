@@ -283,6 +283,21 @@ export function MinimalRichEditor({
     }
   }, [editor]);
 
+  const handleInsertVideo = useCallback(() => {
+    if (!editor) return;
+    const url = window.prompt('Paste a YouTube, Vimeo, or Loom URL');
+    if (!url) return;
+    const info = detectVideoEmbed(url.trim());
+    if (!info.isVideo || !info.embedUrl) {
+      toast.error('Unsupported video URL. Supports YouTube, Vimeo, and Loom.');
+      return;
+    }
+    editor.chain().focus().insertContent({
+      type: 'videoEmbed',
+      attrs: { src: url.trim(), embedUrl: info.embedUrl, platform: info.platform },
+    }).run();
+  }, [editor]);
+
   if (!editor) return null;
 
   return (
