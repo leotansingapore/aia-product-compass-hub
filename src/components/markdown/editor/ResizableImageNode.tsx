@@ -3,7 +3,7 @@ import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { 
   AlignLeft, AlignCenter, AlignRight, Crop, Trash2, 
-  GripHorizontal, RotateCcw 
+  GripVertical, RotateCcw 
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -278,6 +278,17 @@ function ResizableImageComponent({ node, updateAttributes, deleteNode, selected 
           <div className="w-1 h-8 rounded-full bg-primary/70" />
         </div>
 
+        {/* Drag handle */}
+        <div
+          data-drag-handle
+          className={cn(
+            'absolute -left-7 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-8 rounded bg-popover border border-border shadow-sm cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity z-20'
+          )}
+          title="Drag to reorder"
+        >
+          <GripVertical className="h-3.5 w-3.5 text-muted-foreground" />
+        </div>
+
         {/* Floating toolbar */}
         {(showToolbar || selected) && !isResizing && (
           <div className="absolute -top-9 left-1/2 -translate-x-1/2 flex items-center gap-0.5 px-1 py-0.5 rounded-lg bg-popover border border-border shadow-lg z-20">
@@ -330,12 +341,7 @@ function ResizableImageComponent({ node, updateAttributes, deleteNode, selected 
           </div>
         )}
 
-        {/* Drag handle */}
-        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-60 transition-opacity pointer-events-none">
-          <GripHorizontal className="h-4 w-4 text-muted-foreground" />
-        </div>
       </div>
-
       {/* Crop modal */}
       {showCrop && (
         <CropOverlay
