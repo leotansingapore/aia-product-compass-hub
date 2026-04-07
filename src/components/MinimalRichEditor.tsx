@@ -54,13 +54,29 @@ function createTurndown() {
       return content + '\n>\n';
     },
   });
-  // Preserve images as markdown
+  // Preserve images as markdown — encode width/alignment/crop in alt text
   td.addRule('image', {
     filter: 'img',
     replacement: (_content: string, node: any) => {
       const src = node.getAttribute('src') || '';
       const alt = node.getAttribute('alt') || '';
-      return `![${alt}](${src})`;
+      const width = node.getAttribute('data-width');
+      const alignment = node.getAttribute('data-alignment');
+      const cropX = node.getAttribute('data-crop-x');
+      const cropY = node.getAttribute('data-crop-y');
+      const cropW = node.getAttribute('data-crop-w');
+      const cropH = node.getAttribute('data-crop-h');
+
+      const meta: string[] = [];
+      if (width && width !== 'null') meta.push(`width=${width}`);
+      if (alignment && alignment !== 'center') meta.push(`align=${alignment}`);
+      if (cropX && Number(cropX) !== 0) meta.push(`cx=${cropX}`);
+      if (cropY && Number(cropY) !== 0) meta.push(`cy=${cropY}`);
+      if (cropW && Number(cropW) !== 100) meta.push(`cw=${cropW}`);
+      if (cropH && Number(cropH) !== 100) meta.push(`ch=${cropH}`);
+
+      const altPart = meta.length > 0 ? `${alt}|${meta.join(',')}` : alt;
+      return `![${altPart}](${src})`;
     },
   });
   // Preserve video embeds as markdown link on its own line
@@ -95,8 +111,33 @@ function mdToHtml(md: string): string {
   try {
     // Strip lone `>` lines used as visual spacers — they produce empty blockquotes
     const cleaned = md.replace(/^>\s*$/gm, '');
-    const result = marked.parse(cleaned, { async: false, gfm: true, breaks: true });
-    return typeof result === 'string' ? result : '';
+    let result = marked.parse(cleaned, { async: false, gfm: true, breaks: true });
+    if (typeof result !== 'string') return md.replace(/\n/g, '<br>');
+
+    // Post-process: extract image metadata from alt text (e.g. "alt|width=300,align=left")
+    result = result.replace(/<img\s+src="([^"]*?)"\s+alt="([^"]*?)"\s*\/?>/g, (_match, src, alt) => {
+      const pipeIdx = alt.indexOf('|');
+      if (pipeIdx === -1) return `<img src="${src}" alt="${alt}">`;
+
+      const realAlt = alt.substring(0, pipeIdx);
+      const metaStr = alt.substring(pipeIdx + 1);
+      const attrs: Record<string, string> = {};
+      metaStr.split(',').forEach((pair: string) => {
+        const [k, v] = pair.split('=');
+        if (k && v) attrs[k.trim()] = v.trim();
+      });
+
+      const parts = [`src="${src}"`, `alt="${realAlt}"`];
+      if (attrs.width) parts.push(`data-width="${attrs.width}"`);
+      if (attrs.align) parts.push(`data-alignment="${attrs.align}"`);
+      if (attrs.cx) parts.push(`data-crop-x="${attrs.cx}"`);
+      if (attrs.cy) parts.push(`data-crop-y="${attrs.cy}"`);
+      if (attrs.cw) parts.push(`data-crop-w="${attrs.cw}"`);
+      if (attrs.ch) parts.push(`data-crop-h="${attrs.ch}"`);
+      return `<img ${parts.join(' ')}>`;
+    });
+
+    return result;
   } catch {
     return md.replace(/\n/g, '<br>');
   }
