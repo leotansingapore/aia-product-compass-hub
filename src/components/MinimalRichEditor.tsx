@@ -101,10 +101,15 @@ function htmlToMd(html: string): string {
   }
 }
 
-async function uploadImageToStorage(file: File): Promise<string> {
-  if (file.size > 10 * 1024 * 1024) throw new Error('Image must be under 10 MB');
-  const ext = file.name.split('.').pop() || 'png';
-  const path = `editor-images/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+async function uploadMediaToStorage(file: File): Promise<string> {
+  const isImage = file.type.startsWith('image/');
+  const isVideo = file.type.startsWith('video/');
+  const maxSize = isVideo ? 50 * 1024 * 1024 : 10 * 1024 * 1024;
+  const label = isVideo ? 'Video' : 'Image';
+  if (file.size > maxSize) throw new Error(`${label} must be under ${maxSize / 1024 / 1024} MB`);
+  const ext = file.name.split('.').pop() || (isVideo ? 'mp4' : 'png');
+  const folder = isVideo ? 'editor-videos' : 'editor-images';
+  const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
   const { error } = await supabase.storage.from('knowledge-files').upload(path, file, { upsert: false });
   if (error) throw error;
   const { data } = supabase.storage.from('knowledge-files').getPublicUrl(path);
@@ -192,17 +197,22 @@ export function MinimalRichEditor({
       },
       handlePaste: (_view, event) => {
         const items = Array.from(event.clipboardData?.items ?? []);
-        const imageItem = items.find(item => item.type.startsWith('image/'));
-        if (imageItem) {
+        const mediaItem = items.find(item => item.type.startsWith('image/') || item.type.startsWith('video/'));
+        if (mediaItem) {
           event.preventDefault();
-          const file = imageItem.getAsFile();
+          const file = mediaItem.getAsFile();
           if (!file) return false;
+          const isVideo = file.type.startsWith('video/');
           setIsUploadingRef.current(true);
-          uploadImageToStorage(file)
+          uploadMediaToStorage(file)
             .then(url => {
-              editorInstanceRef.current?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: file.name } }).run();
+              if (isVideo) {
+                editorInstanceRef.current?.chain().focus().insertContent({ type: 'inlineVideo', attrs: { src: url } }).run();
+              } else {
+                editorInstanceRef.current?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: file.name } }).run();
+              }
             })
-            .catch(err => toast.error(err instanceof Error ? err.message : 'Failed to upload image'))
+            .catch(err => toast.error(err instanceof Error ? err.message : 'Failed to upload'))
             .finally(() => setIsUploadingRef.current(false));
           return true;
         }
@@ -210,15 +220,20 @@ export function MinimalRichEditor({
       },
       handleDrop: (_view, event) => {
         const files = Array.from(event.dataTransfer?.files ?? []);
-        const imageFile = files.find(f => f.type.startsWith('image/'));
-        if (imageFile) {
+        const mediaFile = files.find(f => f.type.startsWith('image/') || f.type.startsWith('video/'));
+        if (mediaFile) {
           event.preventDefault();
+          const isVideo = mediaFile.type.startsWith('video/');
           setIsUploadingRef.current(true);
-          uploadImageToStorage(imageFile)
+          uploadMediaToStorage(mediaFile)
             .then(url => {
-              editorInstanceRef.current?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: imageFile.name } }).run();
+              if (isVideo) {
+                editorInstanceRef.current?.chain().focus().insertContent({ type: 'inlineVideo', attrs: { src: url } }).run();
+              } else {
+                editorInstanceRef.current?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: mediaFile.name } }).run();
+              }
             })
-            .catch(err => toast.error(err instanceof Error ? err.message : 'Failed to upload image'))
+            .catch(err => toast.error(err instanceof Error ? err.message : 'Failed to upload'))
             .finally(() => setIsUploadingRef.current(false));
           return true;
         }
@@ -265,15 +280,21 @@ export function MinimalRichEditor({
     }
   }, [editor]);
 
-  const handleImageUpload = useCallback(async (file: File) => {
-    if (!file.type.startsWith('image/')) return;
+  const handleMediaUpload = useCallback(async (file: File) => {
+    const isImage = file.type.startsWith('image/');
+    const isVideo = file.type.startsWith('video/');
+    if (!isImage && !isVideo) return;
     setIsUploading(true);
     try {
-      const url = await uploadImageToStorage(file);
-      editor?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: file.name } }).run();
-      toast.success('Image added');
+      const url = await uploadMediaToStorage(file);
+      if (isVideo) {
+        editor?.chain().focus().insertContent({ type: 'inlineVideo', attrs: { src: url } }).run();
+      } else {
+        editor?.chain().focus().insertContent({ type: 'resizableImage', attrs: { src: url, alt: file.name } }).run();
+      }
+      toast.success(isVideo ? 'Video added' : 'Image added');
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : 'Failed to upload image');
+      toast.error(err instanceof Error ? err.message : 'Failed to upload');
     } finally {
       setIsUploading(false);
     }
@@ -398,7 +419,7 @@ export function MinimalRichEditor({
             size="sm"
             onClick={() => fileInputRef.current?.click()}
             className="h-7 w-7 p-0"
-            title="Insert image (or paste / drop)"
+            title="Insert image or video (or paste / drop)"
             disabled={isUploading}
           >
             {isUploading
@@ -419,11 +440,11 @@ export function MinimalRichEditor({
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/*"
+            accept="image/*,video/mp4,video/webm,video/quicktime"
             className="hidden"
             onChange={e => {
               const file = e.target.files?.[0];
-              if (file) handleImageUpload(file);
+              if (file) handleMediaUpload(file);
               e.target.value = '';
             }}
           />
