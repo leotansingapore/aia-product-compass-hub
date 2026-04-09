@@ -185,7 +185,8 @@ export function MinimalRichEditor({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pdfInputRef = useRef<HTMLInputElement>(null);
   const editorWrapperRef = useRef<HTMLDivElement>(null);
-  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dirtyRef = useRef(false);
+  const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
 
@@ -244,16 +245,14 @@ export function MinimalRichEditor({
       handleKeyDown: (view, event) => {
         if ((event.metaKey || event.ctrlKey) && event.key === 'Enter' && onSave) {
           event.preventDefault();
-          // Flush any pending debounced onChange before saving
-          if (debounceTimerRef.current) {
-            clearTimeout(debounceTimerRef.current);
-            debounceTimerRef.current = null;
-            const ed = editorInstanceRef.current;
-            if (ed && !ed.isDestroyed) {
-              const md = htmlToMd(ed.getHTML());
-              lastValueRef.current = md;
-              onChangeRef.current(md);
-            }
+          // Flush any pending content before saving
+          dirtyRef.current = true;
+          const ed = editorInstanceRef.current;
+          if (ed && !ed.isDestroyed) {
+            const md = htmlToMd(ed.getHTML());
+            lastValueRef.current = md;
+            onChangeRef.current(md);
+            dirtyRef.current = false;
           }
           onSave();
           return true;
@@ -317,22 +316,44 @@ export function MinimalRichEditor({
         isInitializedRef.current = true;
         return;
       }
-      // Debounce the expensive htmlToMd conversion + parent state update
-      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
-      debounceTimerRef.current = setTimeout(() => {
-        if (ed.isDestroyed) return;
-        const md = htmlToMd(ed.getHTML());
-        lastValueRef.current = md;
-        onChangeRef.current(md);
-      }, 300);
+      // Mark dirty — defer expensive htmlToMd conversion.
+      // Flush immediately only after 500ms idle (not every keystroke).
+      dirtyRef.current = true;
+      if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+      idleTimerRef.current = setTimeout(() => {
+        if (!ed.isDestroyed && dirtyRef.current) {
+          dirtyRef.current = false;
+          const md = htmlToMd(ed.getHTML());
+          lastValueRef.current = md;
+          onChangeRef.current(md);
+        }
+      }, 500);
     },
   });
 
-  // Clean up debounce timer on unmount
+  // Flush pending changes — converts HTML to markdown and notifies parent
+  const flushChanges = useCallback(() => {
+    if (idleTimerRef.current) { clearTimeout(idleTimerRef.current); idleTimerRef.current = null; }
+    const ed = editorInstanceRef.current;
+    if (!dirtyRef.current || !ed || ed.isDestroyed) return;
+    dirtyRef.current = false;
+    const md = htmlToMd(ed.getHTML());
+    lastValueRef.current = md;
+    onChangeRef.current(md);
+  }, []);
+
+  // Flush on blur so parent always has latest content
   useEffect(() => {
-    return () => {
-      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
-    };
+    const el = editorWrapperRef.current;
+    if (!el) return;
+    const handler = () => flushChanges();
+    el.addEventListener('focusout', handler);
+    return () => el.removeEventListener('focusout', handler);
+  }, [flushChanges]);
+
+  // Clean up idle timer on unmount
+  useEffect(() => {
+    return () => { if (idleTimerRef.current) clearTimeout(idleTimerRef.current); };
   }, []);
 
   // Keep the stable ref in sync
