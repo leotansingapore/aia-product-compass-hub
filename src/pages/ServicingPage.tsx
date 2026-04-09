@@ -147,9 +147,6 @@ function ServicingScriptCard({
       } ${
         mergeSourceId && mergeSourceId !== script.id && !tapSelectMode ? "cursor-copy" : ""
       }`}
-      draggable={!!onMergeDragStart}
-      onDragStart={(e) => { e.dataTransfer.effectAllowed = "move"; const ghost = document.createElement('div'); ghost.style.cssText = 'position:fixed;top:-1000px;width:1px;height:1px;opacity:0;'; document.body.appendChild(ghost); e.dataTransfer.setDragImage(ghost, 0, 0); setTimeout(() => document.body.removeChild(ghost), 0); onMergeDragStart?.(script.id); }}
-      onDragEnd={onMergeDragEnd}
       onDragOver={(e) => { if (mergeSourceId && mergeSourceId !== script.id) { e.preventDefault(); e.dataTransfer.dropEffect = "move"; onMergeOver?.(script.id); } }}
       onDragLeave={onMergeLeave}
       onDrop={(e) => { e.preventDefault(); if (mergeSourceId && mergeSourceId !== script.id) onMergeDrop?.(script.id); }}
@@ -167,6 +164,9 @@ function ServicingScriptCard({
                       : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted"
                   } cursor-grab active:cursor-grabbing`}
                   title="Drag to merge (desktop) or tap to select for merge (mobile)"
+                  draggable={!!onMergeDragStart}
+                  onDragStart={(e) => { e.stopPropagation(); e.dataTransfer.effectAllowed = "move"; const ghost = document.createElement('div'); ghost.style.cssText = 'position:fixed;top:-1000px;width:1px;height:1px;opacity:0;'; document.body.appendChild(ghost); e.dataTransfer.setDragImage(ghost, 0, 0); setTimeout(() => document.body.removeChild(ghost), 0); onMergeDragStart?.(script.id); }}
+                  onDragEnd={onMergeDragEnd}
                   onMouseDown={(e) => e.stopPropagation()}
                   onClick={(e) => { e.stopPropagation(); onTapSelect?.(script.id); }}
                 >
