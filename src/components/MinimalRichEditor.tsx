@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef, useCallback, useState, useMemo } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
@@ -185,6 +185,9 @@ export function MinimalRichEditor({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pdfInputRef = useRef<HTMLInputElement>(null);
   const editorWrapperRef = useRef<HTMLDivElement>(null);
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
 
   // Stable ref so paste/drop handlers in useEditor can call uploadImageToStorage
   // without needing a reference to `editor` (which isn't declared yet).
@@ -238,9 +241,20 @@ export function MinimalRichEditor({
           '[&_img]:max-w-full [&_img]:rounded-md [&_img]:my-2',
         ),
       },
-      handleKeyDown: (_, event) => {
+      handleKeyDown: (view, event) => {
         if ((event.metaKey || event.ctrlKey) && event.key === 'Enter' && onSave) {
           event.preventDefault();
+          // Flush any pending debounced onChange before saving
+          if (debounceTimerRef.current) {
+            clearTimeout(debounceTimerRef.current);
+            debounceTimerRef.current = null;
+            const ed = editorInstanceRef.current;
+            if (ed && !ed.isDestroyed) {
+              const md = htmlToMd(ed.getHTML());
+              lastValueRef.current = md;
+              onChangeRef.current(md);
+            }
+          }
           onSave();
           return true;
         }
@@ -303,11 +317,23 @@ export function MinimalRichEditor({
         isInitializedRef.current = true;
         return;
       }
-      const md = htmlToMd(ed.getHTML());
-      lastValueRef.current = md;
-      onChange(md);
+      // Debounce the expensive htmlToMd conversion + parent state update
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+      debounceTimerRef.current = setTimeout(() => {
+        if (ed.isDestroyed) return;
+        const md = htmlToMd(ed.getHTML());
+        lastValueRef.current = md;
+        onChangeRef.current(md);
+      }, 300);
     },
   });
+
+  // Clean up debounce timer on unmount
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+    };
+  }, []);
 
   // Keep the stable ref in sync
   useEffect(() => {
