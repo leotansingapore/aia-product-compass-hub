@@ -156,6 +156,22 @@ export const learningTrack: TrackPhase[] = [
     description: "Develop core sales competencies and master key presentations.",
     items: [
       {
+        id: "p2-0",
+        title: "Introduction to Canned Sales Track",
+        description: "Learn the fundamentals of the Canned Sales Track (CST) framework before practicing delivery.",
+        objectives: [
+          "Understand the CST structure and flow",
+          "Learn the key sections and transitions",
+        ],
+        actionItems: [
+          "Complete the Introduction to CST training module",
+          "Review the CST script materials",
+        ],
+        defaultContent: [
+          link("p2-0-a", "Scripts Database", "/scripts"),
+        ],
+      },
+      {
         id: "p2-1",
         title: "CST Presentation Competency",
         description: "Demonstrate competency in the Canned Sales Track (CST) Presentation, graded by the Direct Leader.",
@@ -407,7 +423,6 @@ export const assignmentChecklist: AssignmentSection[] = [
     description: "Training modules to be completed during the programme.",
     items: [
       { id: "tc-1", title: "Financial Health Check Process" },
-      { id: "tc-4", title: "Introduction to Canned Sales Track" },
       { id: "tc-5", title: "Telethon Sessions (30 Market Surveys)" },
       { id: "tc-7", title: "2.5 Days of Foundation to Success" },
     ],
