@@ -46,6 +46,7 @@ export function MobileHeader({
   // Top-level pages where back should go home instead of history.back()
   const topLevelPages = ['/learning-track', '/bookmarks', '/cmfas-exams', '/roleplay', '/my-account', '/scripts', '/how-to-use', '/search-by-profile', '/playbooks', '/flows', '/concept-cards'];
   const isTopLevel = location.pathname === '/' || topLevelPages.some(p => location.pathname === p);
+  const isHomePage = location.pathname === '/';
 
   const handleBack = () => {
     if (isTopLevel) {
