@@ -279,8 +279,8 @@ export default function ProductCategory() {
           />
         )}
 
-        {/* Search and Filters */}
-        <div className="mb-3 sm:mb-6 md:mb-8">
+        {/* Sticky Search */}
+        <div className="mb-3 sm:mb-6 md:mb-8 sticky top-[57px] md:top-[48px] z-20 bg-background/95 backdrop-blur-sm -mx-2 sm:-mx-4 md:-mx-6 px-2 sm:px-4 md:px-6 py-2">
           <EnhancedSearchBar
             onSearch={handleSearch}
             placeholder={`Search ${category.name.toLowerCase()}...`}
