@@ -167,8 +167,8 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
             />
           )}
 
-          {/* Files section - shown when there are files or when admin can upload */}
-          {(productFiles.length > 0 || canEdit) && (
+          {/* Files section - admin only */}
+          {canEdit && (
             <>
               <Separator />
               <div>
