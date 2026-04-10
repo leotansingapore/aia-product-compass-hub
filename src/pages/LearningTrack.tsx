@@ -85,11 +85,11 @@ export default function LearningTrack() {
             <TabsList className="w-full mb-6">
               <TabsTrigger value="training" className="flex-1 gap-1.5">
                 <BookOpen className="h-3.5 w-3.5" />
-                Training Track
+                Pre-RNF Learning Track
               </TabsTrigger>
               <TabsTrigger value="assignments" className="flex-1 gap-1.5">
                 <ClipboardCheck className="h-3.5 w-3.5" />
-                Assignment Checklist
+                Post-RNF Learning Track
               </TabsTrigger>
             </TabsList>
 
