@@ -244,24 +244,6 @@ export const learningTrack: TrackPhase[] = [
           text("p3-2-b", "Market Survey script framework:\n1. Open: \"Hey [name], I'm doing a quick survey for my training — takes 2 min, mind helping?\"\n2. Questions: Current insurance coverage? Biggest financial concern? Saving for anything specific?\n3. Close: \"Thanks! Based on what you shared, I might have some insights — would you be open to a 15-min chat sometime?\""),
         ],
       },
-      {
-        id: "p3-3",
-        title: "Group Coaching — 13 Weeks",
-        description: "Participate in weekly Group Coaching for the first 13 weeks, conducted by the Direct Leader.",
-        objectives: [
-          "Attend all 13 weeks of group coaching",
-          "Apply learnings from each session to fieldwork",
-          "Share experiences and learn from peers",
-        ],
-        actionItems: [
-          "Attend weekly group coaching sessions",
-          "Complete any assigned homework from coaching",
-          "Track progress against weekly goals",
-        ],
-        defaultContent: [
-          text("p3-3-a", "Group coaching covers:\n• Weekly activity review and accountability\n• Skills practice and roleplay\n• Case study discussions\n• Objection handling practice\n• Peer learning and experience sharing\n\nCome prepared each week with questions from your field experience."),
-        ],
-      },
     ],
   },
 
