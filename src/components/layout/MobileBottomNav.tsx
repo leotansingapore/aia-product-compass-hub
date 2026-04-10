@@ -9,10 +9,10 @@ const navigationItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "Learn", href: "/learning-track", icon: Library },
   { name: "Scripts", href: "/scripts", icon: FileText },
+  { name: "Roleplay", href: "/roleplay", icon: MessageCircle },
 ];
 
 const quickLinkItems = [
-  { name: "Roleplay", href: "/roleplay", icon: MessageCircle, color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-950/30" },
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30" },
   
   { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
@@ -54,8 +54,8 @@ export function MobileBottomNav() {
                 {isActive && (
                   <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full bg-primary" />
                 )}
-                <item.icon className={cn("h-5 w-5 mb-0.5 transition-transform", isActive && "scale-110")} />
-                <span className={cn("text-[10px] font-medium leading-none", isActive ? "font-semibold" : "")}>
+                <item.icon className={cn("h-5 w-5 mb-0.5 transition-all duration-200", isActive && "scale-110 drop-shadow-sm")} />
+                <span className={cn("text-[10px] font-medium leading-none transition-all duration-200", isActive ? "font-semibold" : "")}>
                   {item.name}
                 </span>
               </NavLink>

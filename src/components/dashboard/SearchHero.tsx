@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { Search, Package, GraduationCap, FileText, BookOpen } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -97,7 +96,7 @@ export function SearchHero({ onSearch, variant = "default" }: SearchHeroProps) {
 
   const content = (
     <div className={variant === "compact" ? "space-y-2" : "space-y-3"}>
-      {variant === "default" && (
+      {variant === "compact" && (
         <p className="text-sm text-muted-foreground text-center">Search products, CMFAS modules, scripts, and more</p>
       )}
 
@@ -179,9 +178,10 @@ export function SearchHero({ onSearch, variant = "default" }: SearchHeroProps) {
     return content;
   }
 
+  // Default mobile variant — slim pill-shaped bar
   return (
-    <Card className="p-4 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
+    <div className="px-1">
       {content}
-    </Card>
+    </div>
   );
 }
