@@ -373,12 +373,12 @@ export const learningTrack: TrackPhase[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════════
-  // PHASE 5 — Learning & Development
+  // PHASE 5 — Learning & Team Contributions
   // ═══════════════════════════════════════════════════════════════════
   {
     id: "phase-5",
-    title: "Phase 5 — Learning & Development",
-    description: "Complete all online learning modules and product knowledge requirements.",
+    title: "Phase 5 — Learning & Team Contributions",
+    description: "Deepen product knowledge and contribute to the team through knowledge sharing.",
     items: [
       {
         id: "p5-2",
@@ -402,17 +402,6 @@ export const learningTrack: TrackPhase[] = [
           link("p5-2-f", "Concept Cards — Study Flashcards", "/concept-cards"),
         ],
       },
-    ],
-  },
-
-  // ═══════════════════════════════════════════════════════════════════
-  // PHASE 6 — Team Contributions & Assignments
-  // ═══════════════════════════════════════════════════════════════════
-  {
-    id: "phase-6",
-    title: "Phase 6 — Team Contributions & Assignments",
-    description: "Contribute to the team through event co-organisation, research projects, and knowledge sharing.",
-    items: [
       {
         id: "p6-4",
         title: "Article or MDRT Journal Sharing",
@@ -452,9 +441,7 @@ export const assignmentChecklist: AssignmentSection[] = [
       { id: "asgn-5", title: "FC Marketing Kit" },
       { id: "asgn-6", title: "Pledge Sheet" },
       { id: "asgn-7", title: "Concept of Financial Planning Presentation (CST, SOL, etc)" },
-      { id: "asgn-8", title: "Joint Field Observation on one Opening Interview of a Senior FC / Leader" },
-      { id: "asgn-9", title: "Joint Field Observation on one Closing Interview of a Senior FC / Leader" },
-      { id: "asgn-10", title: "Joint Field Observation on one Servicing Appointment of a Senior FC / Leader" },
+      { id: "asgn-8", title: "Joint Field Observation on Opening, Closing, and Servicing Appointments of a Senior FC / Leader" },
       { id: "asgn-11", title: "Completion of Policy Summary of one Family Member, Relative or Close Friend" },
       { id: "asgn-12", title: "Book Review on 1 Industry Related Book" },
       { id: "asgn-13", title: "Passed all 4 CMFAS Modules" },
@@ -471,8 +458,7 @@ export const assignmentChecklist: AssignmentSection[] = [
       { id: "tc-2", title: "Introduction to Goal Setting and 20 Point Card" },
       { id: "tc-3", title: "Pre Approach Tools (Project 100, Market Surveys)" },
       { id: "tc-4", title: "Introduction to Canned Sales Track" },
-      { id: "tc-5", title: "Telethon Session 1 : 15 Market Surveys" },
-      { id: "tc-6", title: "Telethon Session 2 : 15 Market Surveys" },
+      { id: "tc-5", title: "Telethon Sessions (30 Market Surveys)" },
       { id: "tc-7", title: "2.5 Days of Foundation to Success" },
       { id: "tc-8", title: "Business Leadership Program" },
     ],
