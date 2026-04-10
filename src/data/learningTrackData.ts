@@ -100,44 +100,6 @@ export const learningTrack: TrackPhase[] = [
         ],
       },
       {
-        id: "p1-2",
-        title: "Digital Tools & Platform Setup",
-        description: "Set up all the digital tools and platforms you'll use daily as an advisor.",
-        objectives: [
-          "Master key digital platforms",
-          "Set up professional profiles and communication channels",
-        ],
-        actionItems: [
-          "Biz WhatsApp, Link Tree, MyWai App, AIA iSmart Platform",
-          "Install iPOS+ / iSMART+",
-          "Install and set up CRM",
-        ],
-        defaultContent: [
-          link("p1-2-a", "Academy Portal Guide", "/how-to-use"),
-          link("p1-2-b", "AIA Singapore Official Website", "https://www.aia.com.sg"),
-          text("p1-2-c", "Checklist: (1) Download WhatsApp Business and set up your professional profile. (2) Create a Linktree with your booking link. (3) Install the MyWai App. (4) Log into AIA iSmart."),
-        ],
-      },
-      {
-        id: "p1-3",
-        title: "Regulations, Expectations & Compliance",
-        description: "Understand MAS regulations, AIA expectations, and the difference between District and Agency structures.",
-        objectives: [
-          "Understand MAS regulations (first 12 weeks, sales competency, etc.)",
-          "Understand AIA expectations (FTS training, E-modules, LMS CPD hours)",
-          "Know District and Agency expectations",
-        ],
-        actionItems: [
-          "Familiarize with AIA products",
-          "Understand the difference between District and Agency",
-        ],
-        defaultContent: [
-          link("p1-3-a", "MAS — Financial Advisers Act (FAA)", "https://www.mas.gov.sg/regulation/acts/financial-advisers-act"),
-          link("p1-3-b", "Browse All Product Categories", "/"),
-          text("p1-3-c", "Key MAS rules for your first 12 weeks: You must be supervised by a qualified representative for all client meetings. You cannot give advice independently until you pass your sales competency assessments."),
-        ],
-      },
-      {
         id: "p1-6",
         title: "Completion of Remaining CMFAS Modules",
         description: "Complete all outstanding CMFAS certification modules required for advisory practice.",
@@ -210,26 +172,6 @@ export const learningTrack: TrackPhase[] = [
         ],
       },
       {
-        id: "p2-3",
-        title: "Simulated Cold-Calling Sessions (x2)",
-        description: "Participate in 2 simulated cold-calling sessions with guidance from team Financial Consultants.",
-        objectives: [
-          "Build confidence in cold-calling techniques",
-          "Practice handling objections in real-time",
-          "Receive feedback from senior FCs",
-        ],
-        actionItems: [
-          "Complete simulated cold-calling session 1",
-          "Complete simulated cold-calling session 2",
-          "Debrief with guiding FC after each session",
-        ],
-        defaultContent: [
-          link("p2-3-a", "Scripts Database — Cold Calling Scripts", "/scripts"),
-          link("p2-3-b", "Objection Handling Scripts", "/objections"),
-          text("p2-3-c", "Cold-calling tips:\n1. Have your script in front of you but don't read word-for-word\n2. Stand up while calling — it makes your voice more energetic\n3. Use \"Fatal Alternatives\" — always give two specific time options\n4. Track every call outcome\n5. Debrief with your FC after each session"),
-        ],
-      },
-      {
         id: "p2-5",
         title: "AIA Pro Achiever (APA) Product Pitch",
         description: "Learn how to pitch AIA Pro Achiever — a goal-driven Investment-Linked Policy (ILP) for growth-focused clients seeking flexibility and long-term accumulation.",
@@ -251,24 +193,6 @@ export const learningTrack: TrackPhase[] = [
           link("p2-5-d", "Concept Cards — ILP Flashcards", "/concept-cards"),
           link("p2-5-e", "Pitch Analysis Tool", "/roleplay/pitch-analysis"),
           text("p2-5-f", "**Key selling points for APA:**\n• Goal-driven ILP — ideal for clients with specific milestones (children's education, retirement, wealth accumulation)\n• Curated fund selection with top-up flexibility\n• Policy loan feature for liquidity without surrendering\n• Bonus allocation tiers reward higher premiums\n\n**Handling the 'high fees' objection:**\nExplain dollar-cost averaging — regular premiums smooth out market volatility over time. Emphasise the value of curated fund access and professional fund management vs. DIY investing.\n\n**Advisor tip:** Always use goal-based illustrations. Don't sell the product — sell the outcome. \"In 15 years, this could fund your child's university education.\""),
-        ],
-      },
-      {
-        id: "p2-4",
-        title: "Personal Marketing Kit",
-        description: "Prepare a professional Personal Marketing Kit for use in client meetings and networking.",
-        objectives: [
-          "Create a polished, professional marketing kit",
-          "Include all essential materials for client meetings",
-        ],
-        actionItems: [
-          "Design and print business cards",
-          "Prepare personal writeup / introduction page",
-          "Compile digital and physical marketing materials",
-          "Get marketing kit reviewed by Direct Leader",
-        ],
-        defaultContent: [
-          text("p2-4-a", "Marketing Kit should include:\n• Professional business cards\n• Personal writeup / bio page\n• Product summary sheets for your key products\n• Testimonials (when available)\n• Digital presence links (LinkedIn, Linktree)\n• Calculator / iPad with iPOS loaded"),
         ],
       },
     ],
@@ -318,24 +242,6 @@ export const learningTrack: TrackPhase[] = [
         defaultContent: [
           link("p3-2-a", "AI Roleplay Training — Practice with AI Clients", "/roleplay"),
           text("p3-2-b", "Market Survey script framework:\n1. Open: \"Hey [name], I'm doing a quick survey for my training — takes 2 min, mind helping?\"\n2. Questions: Current insurance coverage? Biggest financial concern? Saving for anything specific?\n3. Close: \"Thanks! Based on what you shared, I might have some insights — would you be open to a 15-min chat sometime?\""),
-        ],
-      },
-      {
-        id: "p3-3",
-        title: "Group Coaching — 13 Weeks",
-        description: "Participate in weekly Group Coaching for the first 13 weeks, conducted by the Direct Leader.",
-        objectives: [
-          "Attend all 13 weeks of group coaching",
-          "Apply learnings from each session to fieldwork",
-          "Share experiences and learn from peers",
-        ],
-        actionItems: [
-          "Attend weekly group coaching sessions",
-          "Complete any assigned homework from coaching",
-          "Track progress against weekly goals",
-        ],
-        defaultContent: [
-          text("p3-3-a", "Group coaching covers:\n• Weekly activity review and accountability\n• Skills practice and roleplay\n• Case study discussions\n• Objection handling practice\n• Peer learning and experience sharing\n\nCome prepared each week with questions from your field experience."),
         ],
       },
     ],
@@ -452,16 +358,18 @@ export const assignmentChecklist: AssignmentSection[] = [
     title: "Assignments",
     description: "Core assignments to be completed during the START programme.",
     items: [
-      { id: "asgn-2", title: "Project 100" },
-      { id: "asgn-3", title: "30 Market Surveys" },
       { id: "asgn-4", title: "FC Business Plan" },
       { id: "asgn-5", title: "FC Marketing Kit" },
       { id: "asgn-6", title: "Pledge Sheet" },
+      { id: "asgn-20", title: "Digital Tools & Platform Setup" },
+      { id: "asgn-21", title: "Regulations, Expectations & Compliance" },
+      { id: "asgn-22", title: "Simulated Cold-Calling Sessions (x2)" },
+      { id: "asgn-23", title: "Personal Marketing Kit" },
+      { id: "asgn-24", title: "Group Coaching — 13 Weeks" },
       { id: "asgn-7", title: "Concept of Financial Planning Presentation (CST, SOL, etc)" },
       { id: "asgn-8", title: "Joint Field Observation on Opening, Closing, and Servicing Appointments of a Senior FC / Leader" },
       { id: "asgn-11", title: "Completion of Policy Summary of one Family Member, Relative or Close Friend" },
       { id: "asgn-12", title: "Book Review on 1 Industry Related Book" },
-      
       { id: "asgn-14", title: "Submit 1 Roleplay of AIA Pro Achiever (APA) Pitch" },
       { id: "asgn-18", title: "Present an Article or MDRT Journal sharing during one Team Monthly Meeting" },
     ],
