@@ -137,6 +137,24 @@ export const learningTrack: TrackPhase[] = [
           text("p1-3-c", "Key MAS rules for your first 12 weeks: You must be supervised by a qualified representative for all client meetings. You cannot give advice independently until you pass your sales competency assessments."),
         ],
       },
+      {
+        id: "p1-6",
+        title: "Completion of Remaining CMFAS Modules",
+        description: "Complete all outstanding CMFAS certification modules required for advisory practice.",
+        objectives: [
+          "Pass all remaining CMFAS modules",
+          "Meet MAS certification requirements for advisory practice",
+        ],
+        actionItems: [
+          "Identify which CMFAS modules are still outstanding",
+          "Study and prepare for each remaining module",
+          "Register and sit for the exams",
+        ],
+        defaultContent: [
+          link("p1-6-a", "CMFAS Exam Modules", "/cmfas-exams"),
+          text("p1-6-b", "Ensure all required CMFAS modules are completed before proceeding to field work. Check with your Direct Leader on which modules are mandatory for your role."),
+        ],
+      },
     ],
   },
 
@@ -434,7 +452,6 @@ export const assignmentChecklist: AssignmentSection[] = [
     title: "Assignments",
     description: "Core assignments to be completed during the START programme.",
     items: [
-      { id: "asgn-1", title: "Completion of Remaining CMFAS Module(s)" },
       { id: "asgn-2", title: "Project 100" },
       { id: "asgn-3", title: "30 Market Surveys" },
       { id: "asgn-4", title: "FC Business Plan" },
@@ -444,7 +461,7 @@ export const assignmentChecklist: AssignmentSection[] = [
       { id: "asgn-8", title: "Joint Field Observation on Opening, Closing, and Servicing Appointments of a Senior FC / Leader" },
       { id: "asgn-11", title: "Completion of Policy Summary of one Family Member, Relative or Close Friend" },
       { id: "asgn-12", title: "Book Review on 1 Industry Related Book" },
-      { id: "asgn-13", title: "Passed all 4 CMFAS Modules" },
+      
       { id: "asgn-14", title: "Submit 1 Roleplay of AIA Pro Achiever (APA) Pitch" },
       { id: "asgn-18", title: "Present an Article or MDRT Journal sharing during one Team Monthly Meeting" },
     ],
