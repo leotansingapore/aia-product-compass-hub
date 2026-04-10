@@ -137,37 +137,6 @@ export const learningTrack: TrackPhase[] = [
           text("p1-3-c", "Key MAS rules for your first 12 weeks: You must be supervised by a qualified representative for all client meetings. You cannot give advice independently until you pass your sales competency assessments."),
         ],
       },
-      {
-        id: "p1-4",
-        title: "CMFAS HI Paper",
-        description: "Sit for and pass the CMFAS Health Insurance (HI) Paper.",
-        objectives: [
-          "Understand the HI exam format and syllabus",
-          "Pass the CMFAS HI Paper on first attempt",
-        ],
-        actionItems: [
-          "Complete all HI study modules",
-          "Sit for the CMFAS HI Paper",
-        ],
-        defaultContent: [
-          link("p1-4-a", "CMFAS HI Module", "/cmfas/module/hi"),
-          link("p1-4-b", "CMFAS Exam Modules", "/cmfas-exams"),
-          text("p1-4-c", "The HI paper is mandatory for selling health insurance products. Study the key topics: MediShield Life, Integrated Shield Plans, disability income, long-term care, and claims procedures."),
-        ],
-      },
-      {
-        id: "p1-5",
-        title: "Attendance of 3 Days FTS Training",
-        description: "Complete the full 3-day Foundation to Success (FTS) training programme conducted by AIA.",
-        objectives: [
-          "Complete all 3 days of FTS training",
-          "Understand the AIA sales process end-to-end",
-        ],
-        actionItems: [
-          "Register for FTS training dates",
-          "Attend all 3 days of FTS training",
-          "Complete all FTS assessments",
-        ],
         defaultContent: [
           text("p1-5-a", "FTS (Foundation to Success) is AIA's foundational training programme covering product knowledge, sales process, compliance, and client relationship management. Attendance for all 3 days is mandatory."),
         ],
@@ -416,30 +385,6 @@ export const learningTrack: TrackPhase[] = [
     description: "Complete all online learning modules and product knowledge requirements.",
     items: [
       {
-        id: "p5-1",
-        title: "8 Online Learning Modules",
-        description: "Complete all 8 learning modules in the team's online learning platform.",
-        objectives: [
-          "Complete all 8 required learning modules",
-          "Achieve passing scores on all module assessments",
-        ],
-        actionItems: [
-          "Complete Module 1 — Financial Health Check Process",
-          "Complete Module 2 — Goal Setting & 20 Point Card",
-          "Complete Module 3 — Pre Approach Tools (Project 100, Market Surveys)",
-          "Complete Module 4 — Canned Sales Track",
-          "Complete Module 5 — Telethon Session 1 (15 Market Surveys)",
-          "Complete Module 6 — Telethon Session 2 (15 Market Surveys)",
-          "Complete Module 7 — 2.5 Days Foundation to Success",
-          "Complete Module 8 — Business Leadership Program",
-        ],
-        defaultContent: [
-          link("p5-1-a", "CMFAS Exam Modules", "/cmfas-exams"),
-          link("p5-1-b", "Browse Product Categories", "/"),
-          text("p5-1-c", "Tip: Complete modules in order — each builds on the previous one. Take notes and revisit concepts you find challenging. The modules cover both theory and practical application."),
-        ],
-      },
-      {
         id: "p5-2",
         title: "Product Knowledge Mastery",
         description: "Deep dive into all core product categories and master presentations for each.",
@@ -578,9 +523,6 @@ export const assignmentChecklist: AssignmentSection[] = [
       { id: "asgn-12", title: "Book Review on 1 Industry Related Book" },
       { id: "asgn-13", title: "Passed all 4 CMFAS Modules" },
       { id: "asgn-14", title: "Submit 1 Roleplay of AIA Pro Achiever (APA) Pitch" },
-      { id: "asgn-15", title: "Co-organise one (1) Team Monthly Webinar with the Direct Leader" },
-      { id: "asgn-16", title: "Co-organise one (1) Team Social Night with the Welfare IC" },
-      { id: "asgn-17", title: "Conduct conceptualisation and research for the TMB 5th Financial Planning Book" },
       { id: "asgn-18", title: "Present an Article or MDRT Journal sharing during one Team Monthly Meeting" },
     ],
   },
