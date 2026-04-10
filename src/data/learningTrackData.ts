@@ -390,8 +390,6 @@ export const assignmentChecklist: AssignmentSection[] = [
       { id: "asgn-7", title: "Concept of Financial Planning Presentation (CST, SOL, etc)" },
       { id: "asgn-8", title: "Joint Field Observation on Opening, Closing, and Servicing Appointments of a Senior FC / Leader" },
       { id: "asgn-11", title: "Completion of Policy Summary of one Family Member, Relative or Close Friend" },
-      
-      { id: "asgn-14", title: "Submit 1 Roleplay of AIA Pro Achiever (APA) Pitch" },
       { id: "asgn-18", title: "Present an Article or MDRT Journal sharing during one Team Monthly Meeting" },
     ],
   },
