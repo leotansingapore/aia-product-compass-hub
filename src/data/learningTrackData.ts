@@ -387,7 +387,22 @@ export const learningTrack: TrackPhase[] = [
         defaultContent: [
           link("p6-4-a", "MDRT — Round the Table Magazine", "https://www.mdrt.org/round-the-table-magazine"),
           text("p6-4-b", "Presentation structure:\n1. Why this article — what caught your attention, why it's relevant\n2. Key insights — 3-5 main takeaways (analyse, don't just summarize)\n3. How we can apply this — practical applications for the team\n4. Discussion — pose 1-2 questions to spark team conversation"),
+      {
+        id: "p5-3",
+        title: "Book Review on 1 Industry Related Book",
+        description: "Read and review one industry-related book, then share key takeaways.",
+        objectives: [
+          "Broaden industry knowledge through reading",
+          "Extract and articulate key learnings",
         ],
+        actionItems: [
+          "Select an industry-related book",
+          "Read and prepare a review with key takeaways",
+          "Submit the book review",
+        ],
+        defaultContent: [],
+      },
+    ],
       },
     ],
   },
@@ -412,7 +427,7 @@ export const assignmentChecklist: AssignmentSection[] = [
       { id: "asgn-7", title: "Concept of Financial Planning Presentation (CST, SOL, etc)" },
       { id: "asgn-8", title: "Joint Field Observation on Opening, Closing, and Servicing Appointments of a Senior FC / Leader" },
       { id: "asgn-11", title: "Completion of Policy Summary of one Family Member, Relative or Close Friend" },
-      { id: "asgn-12", title: "Book Review on 1 Industry Related Book" },
+      
       { id: "asgn-14", title: "Submit 1 Roleplay of AIA Pro Achiever (APA) Pitch" },
       { id: "asgn-18", title: "Present an Article or MDRT Journal sharing during one Team Monthly Meeting" },
     ],
