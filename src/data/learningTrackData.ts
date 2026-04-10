@@ -156,22 +156,6 @@ export const learningTrack: TrackPhase[] = [
     description: "Develop core sales competencies and master key presentations.",
     items: [
       {
-        id: "p2-0",
-        title: "Introduction to Canned Sales Track",
-        description: "Learn the fundamentals of the Canned Sales Track (CST) framework before practicing delivery.",
-        objectives: [
-          "Understand the CST structure and flow",
-          "Learn the key sections and transitions",
-        ],
-        actionItems: [
-          "Complete the Introduction to CST training module",
-          "Review the CST script materials",
-        ],
-        defaultContent: [
-          link("p2-0-a", "Scripts Database", "/scripts"),
-        ],
-      },
-      {
         id: "p2-2",
         title: "Total Wealth Concept Competency",
         description: "Demonstrate competency in the Total Wealth Concept, graded by the Direct Leader.",
