@@ -438,7 +438,7 @@ export const assignmentChecklist: AssignmentSection[] = [
     description: "Training modules to be completed during the programme.",
     items: [
       { id: "tc-1", title: "Financial Health Check Process" },
-      { id: "tc-5", title: "Telethon Sessions (30 Market Surveys)" },
+      
       { id: "tc-7", title: "2.5 Days of Foundation to Success" },
     ],
   },
