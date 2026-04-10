@@ -387,6 +387,8 @@ export const learningTrack: TrackPhase[] = [
         defaultContent: [
           link("p6-4-a", "MDRT — Round the Table Magazine", "https://www.mdrt.org/round-the-table-magazine"),
           text("p6-4-b", "Presentation structure:\n1. Why this article — what caught your attention, why it's relevant\n2. Key insights — 3-5 main takeaways (analyse, don't just summarize)\n3. How we can apply this — practical applications for the team\n4. Discussion — pose 1-2 questions to spark team conversation"),
+        ],
+      },
       {
         id: "p5-3",
         title: "Book Review on 1 Industry Related Book",
@@ -401,8 +403,6 @@ export const learningTrack: TrackPhase[] = [
           "Submit the book review",
         ],
         defaultContent: [],
-      },
-    ],
       },
     ],
   },
