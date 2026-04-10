@@ -79,7 +79,7 @@ export function AssignmentSubmissionPanel({ itemId, submissionsHook }: Assignmen
   const isFileType = type === "pdf" || type === "image";
 
   return (
-    <div className="border-b bg-muted/20 px-4 py-3 space-y-3">
+    <div className="space-y-3">
       {/* Existing submissions */}
       {submissions.length > 0 && (
         <div className="space-y-2">

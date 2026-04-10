@@ -3,14 +3,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, CheckCircle2, Pencil, Plus, Trash2, GripVertical, Paperclip } from "lucide-react";
+import { ChevronDown, ChevronRight, Pencil, Plus, Trash2, GripVertical, Paperclip, CheckCircle2, ClipboardList } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { format } from "date-fns";
 import type { AssignmentSection, AssignmentItem } from "@/data/learningTrackData";
 import type { useAssignmentProgress } from "@/hooks/useAssignmentProgress";
 import type { useAssignmentOverrides } from "@/hooks/useAssignmentOverrides";
 import type { useAssignmentSubmissions } from "@/hooks/useAssignmentSubmissions";
-import { format } from "date-fns";
 import { InlineEditableText } from "./InlineEditableText";
 import { AssignmentSubmissionPanel } from "./AssignmentSubmissionPanel";
 
@@ -61,7 +61,6 @@ function AssignmentSectionCard({
   const [open, setOpen] = useState(true);
   const [addingNew, setAddingNew] = useState(false);
   const [newTitle, setNewTitle] = useState("");
-  const [draggedIdx, setDraggedIdx] = useState<number | null>(null);
 
   const effectiveItems = overrides
     ? overrides.getEffectiveItems(section)
@@ -87,27 +86,6 @@ function AssignmentSectionCard({
       setNewTitle("");
       setAddingNew(false);
     }
-  };
-
-  const handleDragStart = (idx: number) => {
-    setDraggedIdx(idx);
-  };
-
-  const handleDragOver = (e: React.DragEvent, idx: number) => {
-    e.preventDefault();
-    if (draggedIdx === null || draggedIdx === idx) return;
-    // Reorder
-    const newItems = [...effectiveItems];
-    const [moved] = newItems.splice(draggedIdx, 1);
-    newItems.splice(idx, 0, moved);
-    if (overrides) {
-      overrides.reorderItems(section.id, newItems.map((i) => i.id));
-    }
-    setDraggedIdx(idx);
-  };
-
-  const handleDragEnd = () => {
-    setDraggedIdx(null);
   };
 
   return (
@@ -159,23 +137,11 @@ function AssignmentSectionCard({
         </button>
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <div className="mt-1">
-          {/* Table header */}
-          <div className="grid grid-cols-[auto_auto_1fr_120px_120px_auto] gap-2 px-3 py-2 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider border-b">
-            {isAdmin && <div className="w-4" />}
-            <div className="w-5" />
-            <div>Task</div>
-            <div className="text-center">Date Completed</div>
-            <div className="text-center">Remarks</div>
-            <div className="text-center w-8">Files</div>
-          </div>
-
-          {/* Items */}
+        <div className="mt-2 space-y-2 pl-2">
           {effectiveItems.map((item, index) => (
-            <AssignmentRow
+            <AssignmentItemRow
               key={item.id}
               item={item}
-              index={index}
               displayIndex={index + 1}
               progressHook={progressHook}
               isAdmin={isAdmin}
@@ -186,16 +152,12 @@ function AssignmentSectionCard({
                   ? () => overrides.removeItem(section.id, item.id)
                   : undefined
               }
-              onDragStart={() => handleDragStart(index)}
-              onDragOver={(e) => handleDragOver(e, index)}
-              onDragEnd={handleDragEnd}
-              isDragging={draggedIdx === index}
             />
           ))}
 
           {/* Admin: Add new item */}
           {isAdmin && overrides && (
-            <div className="px-3 py-2 border-t">
+            <div className="px-3 py-2">
               {addingNew ? (
                 <div className="flex items-center gap-2">
                   <Input
@@ -239,39 +201,29 @@ function AssignmentSectionCard({
   );
 }
 
-function AssignmentRow({
+function AssignmentItemRow({
   item,
-  index,
   displayIndex,
   progressHook,
   isAdmin,
   overrides,
   submissionsHook,
   onRemove,
-  onDragStart,
-  onDragOver,
-  onDragEnd,
-  isDragging,
 }: {
   item: AssignmentItem;
-  index: number;
   displayIndex: number;
   progressHook: ReturnType<typeof useAssignmentProgress>;
   isAdmin: boolean;
   overrides?: ReturnType<typeof useAssignmentOverrides>;
   submissionsHook?: ReturnType<typeof useAssignmentSubmissions>;
   onRemove?: () => void;
-  onDragStart: () => void;
-  onDragOver: (e: React.DragEvent) => void;
-  onDragEnd: () => void;
-  isDragging: boolean;
 }) {
+  const [expanded, setExpanded] = useState(false);
   const isCompleted = progressHook.isCompleted(item.id);
   const completedAt = progressHook.getCompletedAt(item.id);
   const remarks = progressHook.getRemarks(item.id);
   const [editingRemarks, setEditingRemarks] = useState(false);
   const [remarkValue, setRemarkValue] = useState(remarks);
-  const [showSubmissions, setShowSubmissions] = useState(false);
 
   const itemTitle = overrides
     ? overrides.getItemTitle(item.id, item.title)
@@ -287,142 +239,164 @@ function AssignmentRow({
   };
 
   return (
-    <>
-      <div
-        className={cn(
-          "grid gap-2 px-3 py-2.5 items-center border-b last:border-b-0 group transition-colors",
-          isAdmin
-            ? "grid-cols-[auto_auto_1fr_120px_120px_auto]"
-            : "grid-cols-[auto_1fr_120px_120px_auto]",
-          isCompleted ? "bg-green-50/50 dark:bg-green-950/20" : "hover:bg-accent/30",
-          isDragging && "opacity-50 bg-accent/40"
-        )}
-        draggable={isAdmin}
-        onDragStart={(e) => {
-          e.dataTransfer.effectAllowed = "move";
-          onDragStart();
-        }}
-        onDragOver={onDragOver}
-        onDragEnd={onDragEnd}
-      >
-        {/* Drag handle (admin only) */}
-        {isAdmin && (
-          <div className="cursor-grab active:cursor-grabbing text-muted-foreground/40 hover:text-muted-foreground">
-            <GripVertical className="h-3.5 w-3.5" />
-          </div>
-        )}
-
-        {/* Checkbox */}
+    <div
+      className={cn(
+        "rounded-lg border transition-all",
+        isCompleted
+          ? "bg-green-50/50 border-green-200 dark:bg-green-950/20 dark:border-green-900"
+          : "bg-card"
+      )}
+    >
+      <div className="flex items-start gap-3 p-3">
         <Checkbox
           checked={isCompleted}
           onCheckedChange={() => progressHook.toggleItem(item.id)}
-          className="shrink-0"
+          className="mt-0.5 shrink-0"
           aria-label={`Mark "${itemTitle}" as ${isCompleted ? "incomplete" : "complete"}`}
         />
 
-        {/* Title */}
-        <div className="flex items-center gap-2 min-w-0">
-          <span className="text-xs text-muted-foreground tabular-nums shrink-0 w-5">{displayIndex}.</span>
-          {isAdmin && overrides ? (
-            <InlineEditableText
-              value={itemTitle}
-              onSave={(v) => overrides.setItemTitle(item.id, v)}
-              isAdmin={isAdmin}
-              className={cn(
-                "text-sm leading-tight",
-                isCompleted && "line-through text-muted-foreground"
-              )}
-            />
-          ) : (
-            <span
-              className={cn(
-                "text-sm leading-tight",
-                isCompleted && "line-through text-muted-foreground"
-              )}
-            >
-              {itemTitle}
-            </span>
-          )}
-          {isAdmin && onRemove && (
-            <button
-              onClick={onRemove}
-              className="hidden group-hover:flex h-4 w-4 items-center justify-center rounded-full text-destructive opacity-60 hover:opacity-100"
-              aria-label="Remove assignment"
-            >
-              <Trash2 className="h-3 w-3" />
-            </button>
-          )}
-        </div>
-
-        {/* Date Completed */}
-        <div className="text-center">
-          {isCompleted && completedAt ? (
-            <span className="text-xs text-muted-foreground flex items-center justify-center gap-1">
-              <CheckCircle2 className="h-3 w-3 text-green-600" />
-              {format(new Date(completedAt), "dd MMM yyyy")}
-            </span>
-          ) : (
-            <span className="text-xs text-muted-foreground/40">—</span>
-          )}
-        </div>
-
-        {/* Remarks */}
-        <div className="text-center">
-          {editingRemarks ? (
-            <Input
-              value={remarkValue}
-              onChange={(e) => setRemarkValue(e.target.value)}
-              className="h-6 text-xs"
-              autoFocus
-              onBlur={saveRemarks}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") saveRemarks();
-                if (e.key === "Escape") setEditingRemarks(false);
-              }}
-            />
-          ) : (
-            <button
-              onClick={() => { setRemarkValue(remarks); setEditingRemarks(true); }}
-              className="text-xs text-muted-foreground hover:text-foreground w-full text-center min-h-[20px] flex items-center justify-center gap-1"
-            >
-              {remarks || (
-                <span className="text-muted-foreground/40 flex items-center gap-1">
-                  <Pencil className="h-2.5 w-2.5" /> Add
-                </span>
-              )}
-            </button>
-          )}
-        </div>
-
-        {/* Submissions toggle */}
-        <div className="text-center">
+        {isAdmin && onRemove && (
           <button
-            onClick={() => setShowSubmissions(!showSubmissions)}
-            className={cn(
-              "relative inline-flex items-center justify-center h-7 w-7 rounded-md transition-colors",
-              showSubmissions
-                ? "bg-primary/10 text-primary"
-                : "text-muted-foreground hover:text-foreground hover:bg-accent"
-            )}
-            aria-label="Submissions"
+            onClick={onRemove}
+            className="mt-0.5 shrink-0 text-muted-foreground hover:text-destructive transition-colors"
+            aria-label={`Delete "${itemTitle}"`}
+            title="Remove assignment"
           >
-            <Paperclip className="h-3.5 w-3.5" />
-            {submissionCount > 0 && (
-              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-[9px] font-bold text-primary-foreground flex items-center justify-center">
-                {submissionCount}
-              </span>
-            )}
+            <Trash2 className="h-3.5 w-3.5" />
           </button>
-        </div>
-      </div>
+        )}
 
-      {/* Submission panel */}
-      {showSubmissions && submissionsHook && (
-        <AssignmentSubmissionPanel
-          itemId={item.id}
-          submissionsHook={submissionsHook}
-        />
-      )}
-    </>
+        <Collapsible open={expanded} onOpenChange={setExpanded} className="flex-1 min-w-0">
+          <CollapsibleTrigger asChild>
+            <button className="flex w-full items-start justify-between text-left group">
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground tabular-nums shrink-0 w-5">{displayIndex}.</span>
+                  {isAdmin && overrides ? (
+                    <InlineEditableText
+                      value={itemTitle}
+                      onSave={(v) => overrides.setItemTitle(item.id, v)}
+                      isAdmin={isAdmin}
+                      className={cn(
+                        "text-sm font-medium leading-tight",
+                        isCompleted && "line-through text-muted-foreground"
+                      )}
+                    />
+                  ) : (
+                    <span
+                      className={cn(
+                        "text-sm font-medium leading-tight",
+                        isCompleted && "line-through text-muted-foreground"
+                      )}
+                    >
+                      {itemTitle}
+                    </span>
+                  )}
+                </div>
+
+                {/* Compact info row when collapsed */}
+                {!expanded && (
+                  <div className="flex items-center gap-3 mt-1 ml-7">
+                    {isCompleted && completedAt && (
+                      <span className="text-[10px] text-muted-foreground flex items-center gap-1">
+                        <CheckCircle2 className="h-3 w-3 text-green-600" />
+                        {format(new Date(completedAt), "dd MMM yyyy")}
+                      </span>
+                    )}
+                    {submissionCount > 0 && (
+                      <span className="text-[10px] text-primary flex items-center gap-1">
+                        <Paperclip className="h-3 w-3" />
+                        {submissionCount} file{submissionCount !== 1 ? "s" : ""}
+                      </span>
+                    )}
+                    {remarks && (
+                      <span className="text-[10px] text-muted-foreground italic truncate max-w-[140px]">
+                        {remarks}
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+              <ChevronRight
+                className={cn(
+                  "h-4 w-4 shrink-0 text-muted-foreground transition-transform mt-0.5 ml-2",
+                  expanded && "rotate-90"
+                )}
+              />
+            </button>
+          </CollapsibleTrigger>
+
+          <CollapsibleContent>
+            <div className="mt-3 space-y-4 text-sm ml-7">
+              {/* Status details */}
+              <div>
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                  <ClipboardList className="h-3 w-3" />
+                  Details
+                </div>
+
+                <div className="space-y-2">
+                  {/* Date completed */}
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground text-xs">Date Completed</span>
+                    {isCompleted && completedAt ? (
+                      <span className="text-xs flex items-center gap-1">
+                        <CheckCircle2 className="h-3 w-3 text-green-600" />
+                        {format(new Date(completedAt), "dd MMM yyyy")}
+                      </span>
+                    ) : (
+                      <span className="text-xs text-muted-foreground/40">—</span>
+                    )}
+                  </div>
+
+                  {/* Remarks */}
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground text-xs">Remarks</span>
+                    {editingRemarks ? (
+                      <Input
+                        value={remarkValue}
+                        onChange={(e) => setRemarkValue(e.target.value)}
+                        className="h-6 text-xs max-w-[200px]"
+                        autoFocus
+                        onBlur={saveRemarks}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") saveRemarks();
+                          if (e.key === "Escape") setEditingRemarks(false);
+                        }}
+                      />
+                    ) : (
+                      <button
+                        onClick={() => { setRemarkValue(remarks); setEditingRemarks(true); }}
+                        className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
+                      >
+                        {remarks || (
+                          <span className="text-muted-foreground/40 flex items-center gap-1">
+                            <Pencil className="h-2.5 w-2.5" /> Add note
+                          </span>
+                        )}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Submissions */}
+              {submissionsHook && (
+                <div>
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                    <Paperclip className="h-3 w-3" />
+                    Submissions
+                  </div>
+                  <AssignmentSubmissionPanel
+                    itemId={item.id}
+                    submissionsHook={submissionsHook}
+                  />
+                </div>
+              )}
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
+      </div>
+    </div>
   );
 }
