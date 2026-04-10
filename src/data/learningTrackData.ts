@@ -172,27 +172,6 @@ export const learningTrack: TrackPhase[] = [
         ],
       },
       {
-        id: "p2-1",
-        title: "CST Presentation Competency",
-        description: "Demonstrate competency in the Canned Sales Track (CST) Presentation, graded by the Direct Leader.",
-        objectives: [
-          "Master the CST Presentation end-to-end",
-          "Deliver confidently and naturally without notes",
-          "Receive passing grade from Direct Leader",
-        ],
-        actionItems: [
-          "Practice CST Presentation until fluent",
-          "Schedule grading session with Direct Leader",
-          "Pass the CST Presentation assessment",
-        ],
-        defaultContent: [
-          link("p2-1-a", "Scripts Database — Sales Scripts", "/scripts"),
-          link("p2-1-b", "Script Playbooks", "/playbooks"),
-          link("p2-1-c", "AI Roleplay — Practice with AI Clients", "/roleplay"),
-          text("p2-1-d", "CST grading criteria:\n• Natural delivery (not robotic)\n• Smooth transitions between sections\n• Handles interruptions/questions confidently\n• Eye contact and rapport\n• Clear call to action at the close"),
-        ],
-      },
-      {
         id: "p2-2",
         title: "Total Wealth Concept Competency",
         description: "Demonstrate competency in the Total Wealth Concept, graded by the Direct Leader.",
