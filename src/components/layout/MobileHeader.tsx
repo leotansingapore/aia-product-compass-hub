@@ -66,7 +66,7 @@ export function MobileHeader({
     <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="flex h-14 items-center justify-between px-4">
         <div className="flex items-center gap-3 flex-1 min-w-0">
-          {showBackButton && (
+          {showBackButton && !isHomePage && (
             <Button variant="ghost" size="icon" onClick={handleBack} className="shrink-0" aria-label="Go back">
               <ArrowLeft className="h-5 w-5" />
             </Button>
