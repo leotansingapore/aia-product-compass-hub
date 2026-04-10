@@ -117,6 +117,33 @@ export const learningTrack: TrackPhase[] = [
           text("p1-6-b", "Ensure all required CMFAS modules are completed before proceeding to field work. Check with your Direct Leader on which modules are mandatory for your role."),
         ],
       },
+      {
+        id: "p1-7",
+        title: "Introduction to Goal Setting and 20 Point Card",
+        description: "Learn the goal setting framework and how to use the 20 Point Card for daily activity tracking.",
+        objectives: [
+          "Understand the 20 Point Card system",
+          "Set daily and weekly activity goals",
+        ],
+        actionItems: [
+          "Complete the 20 Point Card training",
+          "Begin tracking daily activities using the card",
+        ],
+        defaultContent: [],
+      },
+      {
+        id: "p1-8",
+        title: "Business Leadership Program",
+        description: "Complete the Business Leadership Program to build foundational leadership and business management skills.",
+        objectives: [
+          "Understand leadership principles for financial advisory",
+          "Develop business management skills",
+        ],
+        actionItems: [
+          "Attend and complete the Business Leadership Program",
+        ],
+        defaultContent: [],
+      },
     ],
   },
 
@@ -380,12 +407,9 @@ export const assignmentChecklist: AssignmentSection[] = [
     description: "Training modules to be completed during the programme.",
     items: [
       { id: "tc-1", title: "Financial Health Check Process" },
-      { id: "tc-2", title: "Introduction to Goal Setting and 20 Point Card" },
-      { id: "tc-3", title: "Pre Approach Tools (Project 100, Market Surveys)" },
       { id: "tc-4", title: "Introduction to Canned Sales Track" },
       { id: "tc-5", title: "Telethon Sessions (30 Market Surveys)" },
       { id: "tc-7", title: "2.5 Days of Foundation to Success" },
-      { id: "tc-8", title: "Business Leadership Program" },
     ],
   },
 ];
