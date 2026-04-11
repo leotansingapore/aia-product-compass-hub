@@ -4,6 +4,7 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
 import type { LearningTrackItem, ItemStatus } from "@/types/learning-track";
 import { ItemContentBlocks } from "./ItemContentBlocks";
+import { RelatedResources } from "./RelatedResources";
 import { SubmissionPanel } from "./SubmissionPanel";
 import { cn } from "@/lib/utils";
 
@@ -100,7 +101,7 @@ export function LearningItemRow({
             </div>
           )}
           <ItemContentBlocks blocks={item.content_blocks} />
-          {/* RelatedResources component lands in Phase 10 (deferred) */}
+          <RelatedResources item={item} />
           {item.requires_submission && (
             <SubmissionPanel itemId={item.id} userId={targetUserId} readOnly={readOnly} />
           )}
