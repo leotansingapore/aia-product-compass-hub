@@ -66,6 +66,15 @@ import {
 } from "@/components/ui/sidebar";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { useLearningTrackOverallProgress } from "@/hooks/learning-track/useLearningTrackOverallProgress";
+
+function LtBadge() {
+  const { user } = useSimplifiedAuth();
+  const { data } = useLearningTrackOverallProgress(user?.id);
+  const pct = data?.combinedPct ?? 0;
+  if (pct === 0 || pct === 100) return null;
+  return <span className="ml-auto text-xs text-muted-foreground">{pct}%</span>;
+}
 import { useAdmin } from "@/hooks/useAdmin";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { supabase } from "@/integrations/supabase/client";
@@ -136,10 +145,9 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const queryClient = useQueryClient();
 
   const allMainNavItems = useMemo(() => [
+    { title: "Learning Track", url: "/learning-track", icon: TrendingUp, dataAttr: undefined, sectionId: "learning-track" },
     { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined, sectionId: "dashboard" },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
-    { title: "Learning Track", url: "/learning-track", icon: TrendingUp, dataAttr: undefined, sectionId: "learning-track" },
-    
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
     ...(isMasterAdmin() || hasRole('admin') ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
@@ -333,6 +341,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                       >
                         <item.icon className="h-4 w-4" />
                         {!isCollapsed && <span>{item.title}</span>}
+                        {!isCollapsed && item.sectionId === "learning-track" && <LtBadge />}
                       </NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
