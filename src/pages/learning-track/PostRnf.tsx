@@ -1,3 +1,43 @@
+import { useParams } from "react-router-dom";
+import { Loader2 } from "lucide-react";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackPhases";
+import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
+import { PhaseSection } from "@/components/learning-track/PhaseSection";
+
 export default function PostRnfTrack() {
-  return <div data-testid="post-rnf-page">Post-RNF Track (stub)</div>;
+  const { itemId } = useParams<{ itemId?: string }>();
+  const { user } = useSimplifiedAuth();
+  const phasesQuery = useLearningTrackPhases("post_rnf");
+  const { isCompleted } = useLearningTrackProgress(user?.id);
+
+  if (phasesQuery.isLoading) {
+    return (
+      <div className="flex items-center justify-center py-10">
+        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+
+  if (phasesQuery.error) {
+    return (
+      <div className="rounded border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive">
+        Failed to load Post-RNF training track.
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4" data-testid="post-rnf-page">
+      {(phasesQuery.data ?? []).map((phase) => (
+        <PhaseSection
+          key={phase.id}
+          phase={phase}
+          isCompleted={isCompleted}
+          defaultOpen
+          expandedItemId={itemId}
+        />
+      ))}
+    </div>
+  );
 }
