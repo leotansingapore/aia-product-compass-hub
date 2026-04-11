@@ -2723,6 +2723,7 @@ export type Database = {
         }[]
       }
       reset_approval_request: { Args: { _email: string }; Returns: Json }
+      seed_learning_track: { Args: never; Returns: undefined }
       store_signup_password: {
         Args: { user_email: string; user_password: string }
         Returns: undefined
