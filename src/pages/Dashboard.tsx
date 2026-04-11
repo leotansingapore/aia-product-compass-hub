@@ -9,6 +9,7 @@ import { AdminFeedbackAlert } from "@/components/dashboard/AdminFeedbackAlert";
 import { SearchFilters } from "@/components/dashboard/SearchFilters";
 import { SearchResults } from "@/components/dashboard/SearchResults";
 import { PageLayout } from "@/components/layout/PageLayout";
+import { LearningTrackHeroCard } from "@/components/learning-track/LearningTrackHeroCard";
 import { useDashboardSearch } from "@/hooks/useDashboardSearch";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -63,6 +64,12 @@ const Dashboard = memo(() => {
 
       {/* Main Content */}
       <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 space-y-4 sm:space-y-6 md:space-y-8">
+
+        {!hasQuery && (
+          <div className="px-1 sm:px-0">
+            <LearningTrackHeroCard />
+          </div>
+        )}
 
         {hasQuery ? (
           <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
