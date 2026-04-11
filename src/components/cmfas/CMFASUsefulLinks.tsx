@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { EditableLinks } from "@/components/EditableLinks";
 import type { UsefulLink } from "@/hooks/useProducts";
+import { useAdmin } from "@/hooks/useAdmin";
 
 interface CMFASUsefulLinksProps {
   links: UsefulLink[];
@@ -8,6 +9,8 @@ interface CMFASUsefulLinksProps {
 }
 
 export function CMFASUsefulLinks({ links, onUpdate }: CMFASUsefulLinksProps) {
+  const { isAdmin } = useAdmin();
+
   return (
     <Card className="bg-gradient-to-br from-card via-card to-muted/20 border-2 hover:shadow-xl transition-all duration-300 group">
       <CardHeader className="pb-4">
@@ -27,7 +30,8 @@ export function CMFASUsefulLinks({ links, onUpdate }: CMFASUsefulLinksProps) {
         <div className="bg-muted/30 rounded-xl p-4 border border-muted">
           <EditableLinks
             links={links || []}
-            onSave={(newLinks) => onUpdate('useful_links', newLinks)}
+            onSave={isAdmin ? (newLinks) => onUpdate('useful_links', newLinks) : undefined}
+            readOnly={!isAdmin}
           />
         </div>
       </CardContent>
