@@ -64,17 +64,33 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error('No active session');
 
-      // Call the provision-user function
-      const { error } = await supabase.functions.invoke('provision-user', {
+      // Create user account via create-user-account edge function
+      const { data, error } = await supabase.functions.invoke('create-user-account', {
         body: { 
-          request_id: user.approval_request_id,
-          temp_password: tempPassword,
-          initial_tier: selectedTier === 'user' ? null : selectedTier
+          email: user.email,
+          password: tempPassword,
+          first_name: user.profile?.first_name || '',
+          last_name: user.profile?.last_name || '',
         },
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
 
       if (error) throw error;
+
+      // If a tier is selected (not default 'user'), assign the tier role
+      if (selectedTier !== 'user' && data?.user_id) {
+        await supabase
+          .from('user_roles')
+          .insert({ user_id: data.user_id, role: selectedTier });
+      }
+
+      // Mark approval request as approved
+      if (user.approval_request_id) {
+        await supabase
+          .from('user_approval_requests')
+          .update({ status: 'approved', reviewed_at: new Date().toISOString() })
+          .eq('id', user.approval_request_id);
+      }
 
       toast({
         title: '✅ User Provisioned',

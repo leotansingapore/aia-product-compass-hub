@@ -18,13 +18,10 @@ export function useUserActions() {
     
     setUserLoading(user.id, 'approve');
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) throw new Error('No active session');
-
-      const { error } = await supabase.functions.invoke('approve-user', {
-        body: { request_id: user.approval_request_id },
-        headers: { Authorization: `Bearer ${session.access_token}` },
-      });
+      const { error } = await supabase
+        .from('user_approval_requests')
+        .update({ status: 'approved', reviewed_at: new Date().toISOString() })
+        .eq('id', user.approval_request_id);
 
       if (error) throw error;
 
