@@ -6,7 +6,7 @@ import { DemoService } from '@/services/demoService';
 export const useSimpleAuthOperations = () => {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
-  const { signIn: authSignIn, signUp: authSignUp, resetPassword: authResetPassword } = useSimplifiedAuth();
+  const { signIn: authSignIn, resetPassword: authResetPassword } = useSimplifiedAuth();
 
   const validateFields = (fields: Record<string, string>, requiredFields: readonly string[]) => {
     return requiredFields.every(field => fields[field]?.trim());
@@ -30,24 +30,6 @@ export const useSimpleAuthOperations = () => {
     }
   };
 
-  const signUp = async (email: string, password: string, displayName: string) => {
-    if (!validateFields({ email, password, displayName }, ['email', 'password', 'displayName'])) {
-      toast({
-        variant: "destructive",
-        title: "Missing Information",
-        description: "Please fill in all fields"
-      });
-      return { success: false };
-    }
-
-    setLoading(true);
-    try {
-      const result = await authSignUp(email, password, displayName);
-      return result;
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const resetPassword = async (email: string) => {
     if (!email?.trim()) {
@@ -100,7 +82,6 @@ export const useSimpleAuthOperations = () => {
   return {
     loading,
     signIn,
-    signUp,
     resetPassword,
     demoSignIn
   };

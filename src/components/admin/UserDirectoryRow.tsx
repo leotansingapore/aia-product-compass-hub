@@ -94,21 +94,16 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
     
     setLoading('approve');
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) throw new Error('No active session');
-
-      const { data, error } = await supabase.functions.invoke('approve-user', {
-        body: { 
-          request_id: user.approval_request_id
-        },
-        headers: { Authorization: `Bearer ${session.access_token}` },
-      });
+      const { error } = await supabase
+        .from('user_approval_requests')
+        .update({ status: 'approved', reviewed_at: new Date().toISOString() })
+        .eq('id', user.approval_request_id);
 
       if (error) throw error;
 
       toast({
-        title: '✅ User Approved & Account Created',
-        description: `${user.email} has been approved and their account is ready. They can sign in immediately with their original password.`,
+        title: '✅ User Approved',
+        description: `${user.email} has been approved. They can now sign in with their original password.`,
         duration: 8000
       });
 
