@@ -5,7 +5,12 @@ import { Label } from '@/components/ui/label';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
 import { Eye, EyeOff, Mail, Lock, Loader2 } from 'lucide-react';
 
-export function SimplifiedAuthForm() {
+type SimplifiedAuthFormProps = {
+  /** When true, page provides main title; form only shows fields (split layout). */
+  hideTitle?: boolean;
+};
+
+export function SimplifiedAuthForm({ hideTitle = false }: SimplifiedAuthFormProps) {
   const { signIn, resetPassword } = useSimplifiedAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState('signin');
@@ -95,10 +100,12 @@ export function SimplifiedAuthForm() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold text-foreground font-sans">Welcome back</h2>
-        <p className="text-sm text-muted-foreground mt-1">Sign in to your account</p>
-      </div>
+      {!hideTitle && (
+        <div>
+          <h2 className="text-2xl font-bold text-foreground font-sans">Welcome back</h2>
+          <p className="text-sm text-muted-foreground mt-1">Sign in to your account</p>
+        </div>
+      )}
 
       <form onSubmit={handleSignIn} className="space-y-4">
         <div className="space-y-1.5">
