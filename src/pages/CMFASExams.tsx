@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -10,10 +11,21 @@ import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { useUsefulLinks } from "@/hooks/useUsefulLinks";
 import type { UsefulLink } from "@/hooks/useProducts";
 import { ProtectedPage } from "@/components/ProtectedPage";
+import { EditableText } from "@/components/EditableText";
+import { useAdmin } from "@/hooks/useAdmin";
+import { supabase } from "@/integrations/supabase/client";
+
+const DEFAULT_ABOUT_TEXT = `The Capital Markets Financial Advisory Services (CMFAS) certification is required for financial advisors in Singapore to provide investment advice on capital market products.
+
+Our comprehensive preparation materials are organized by module, each containing detailed syllabi, practice questions, and expert guidance. Start with the Getting Started module to complete your essential setup, then proceed through each exam module systematically.
+
+With our support package including flashcards, personal tutoring, question banks, and AI assistance, passing on your first attempt should be highly achievable.`;
 
 export default function CMFASExams() {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
+  const { isAdmin } = useAdmin();
+  const [aboutText, setAboutText] = useState(DEFAULT_ABOUT_TEXT);
   
   // Default useful links
   const defaultLinks: UsefulLink[] = [
@@ -51,10 +63,46 @@ export default function CMFASExams() {
 
   const { usefulLinks, updateUsefulLinks } = useUsefulLinks('cmfas-exams-page', defaultLinks);
 
+  // Load about text from database
+  useEffect(() => {
+    const loadAboutText = async () => {
+      try {
+        const { data } = await supabase
+          .from('products')
+          .select('description')
+          .eq('id', 'cmfas-exams-page')
+          .single();
+
+        if (data?.description) {
+          setAboutText(data.description);
+        }
+      } catch (error) {
+        console.log('Using default about text');
+      }
+    };
+    loadAboutText();
+  }, []);
+
   // Handler for updating useful links
   const handleUpdate = async (field: string, value: any) => {
     if (field === 'useful_links') {
       await updateUsefulLinks(value);
+    }
+  };
+
+  const handleAboutUpdate = async (newValue: string) => {
+    const previous = aboutText;
+    setAboutText(newValue);
+    try {
+      const { error } = await supabase
+        .from('products')
+        .update({ description: newValue })
+        .eq('id', 'cmfas-exams-page');
+      if (error) throw error;
+    } catch (error) {
+      console.error('Failed to save about text:', error);
+      setAboutText(previous);
+      throw error;
     }
   };
 
@@ -171,17 +219,14 @@ export default function CMFASExams() {
 
           <div className="mt-8 sm:mt-12 bg-card rounded-lg p-6 border shadow-card">
             <h2 className="text-xl font-semibold mb-4">About CMFAS Certification</h2>
-            <div className="space-y-4 text-muted-foreground">
-              <p>
-                The Capital Markets Financial Advisory Services (CMFAS) certification is required for financial advisors in Singapore to provide investment advice on capital market products.
-              </p>
-              <p>
-                Our comprehensive preparation materials are organized by module, each containing detailed syllabi, practice questions, and expert guidance. Start with the Getting Started module to complete your essential setup, then proceed through each exam module systematically.
-              </p>
-              <p>
-                With our support package including flashcards, personal tutoring, question banks, and AI assistance, passing on your first attempt should be highly achievable.
-              </p>
-            </div>
+            <EditableText
+              value={aboutText}
+              onSave={isAdmin ? handleAboutUpdate : undefined}
+              multiline
+              className="text-muted-foreground leading-relaxed"
+              placeholder="Add information about CMFAS certification..."
+              readOnly={!isAdmin}
+            />
           </div>
         </div>
       </PageLayout>
