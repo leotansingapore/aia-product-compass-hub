@@ -38,11 +38,14 @@ if not (VAULT_PATH and SUPABASE_URL and SERVICE_ROLE):
     sys.exit(1)
 
 FOLDERS = {
+    "SOPs": "reference",  # Pre-Retiree Sales Bible + Playbook live here
     "References": "reference",
     # "Advisor Training Guides": "training_guide",  # PRIVACY: contains real client coaching transcripts.
     # Re-enable once obsidian_resources has a `shareable` column + RLS filter.
     "Products": "product_moc",
     "Learning": "learning_moc",
+    "Business/FINternship": "reference",
+    "Business/Win Financial": "reference",
 }
 
 FRONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n(.*)$", re.DOTALL)
