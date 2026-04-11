@@ -9,7 +9,6 @@ import { Eye, EyeOff, Mail, Lock, Loader2 } from 'lucide-react';
 
 export function SimplifiedAuthForm() {
   const { signIn, resetPassword } = useSimplifiedAuth();
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState('signin');
   const [isSigningIn, setIsSigningIn] = useState(false);
