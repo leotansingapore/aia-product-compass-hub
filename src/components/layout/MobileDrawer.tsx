@@ -29,10 +29,8 @@ export function MobileDrawer() {
   const resourceItems = [
     { name: "How to Use Portal", href: "/how-to-use", icon: HelpCircle },
     { name: "Search by Client Profile", href: "/search-by-profile", icon: Users },
-    { name: "Sales Tools & Objection Handling", href: "/product/sales-tools-objections", icon: TrendingUp },
-    { name: "Scripts Database", href: "/scripts", icon: FileText },
-    { name: "Script Playbooks", href: "/playbooks", icon: BookOpen },
-    { name: "Script Flows", href: "/flows", icon: GitBranch },
+    { name: "Sales Playbooks", href: "/scripts", icon: TrendingUp },
+    { name: "Concept Cards", href: "/concept-cards", icon: BookOpen },
   ];
 
   const handleLinkClick = () => {
