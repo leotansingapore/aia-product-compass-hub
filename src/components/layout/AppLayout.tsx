@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, memo, useRef, useState, useCallback } from "react";
+import React, { ReactNode, useEffect, memo, useRef, useState, useCallback, lazy, Suspense } from "react";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
@@ -8,6 +8,7 @@ import { MobileHeader } from "./MobileHeader";
 import { Button } from "@/components/ui/button";
 import { LogIn, User } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+const ProfileSheet = lazy(() => import("@/components/profile/ProfileSheet").then(m => ({ default: m.ProfileSheet })));
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
@@ -48,6 +49,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const { autoSync } = useAppStructureSync();
   const { loading: permissionsLoading } = usePermissions();
   const isMobile = useIsMobile();
+  const [profileOpen, setProfileOpen] = useState(false);
   const location = useLocation();
 
   // Pages that manage their own mobile header (show ScriptsTabBar instead)
