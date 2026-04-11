@@ -35,17 +35,25 @@ export function clearResourceIndexCache() {
   cachedIndex = null;
 }
 
+// Titles matching these patterns never appear in the recruit-facing resource hub.
+const EXCLUDE_TITLE_PATTERNS = /^(test|dummy|sample|claude|dev environment|deployment checklist|scheduled jobs|sops moc|learning moc)/i;
+
+// Obsidian source paths starting with these are internal tooling, not recruit content.
+const EXCLUDE_OBSIDIAN_PATHS = /^References\/(Claude Code Setup|Deployment Checklist|Dev Environment|Scheduled Jobs)/i;
+
 export async function buildResourceIndex(): Promise<IndexedResource[]> {
   if (cachedIndex) return cachedIndex;
 
   const out: IndexedResource[] = [];
 
-  // Products
+  // Products — skip unpublished / test stubs
   try {
     const { data: products } = await supabase
       .from("products")
-      .select("id, title, description, tags");
+      .select("id, title, description, tags, published");
     (products ?? []).forEach((p: any) => {
+      if (p.published === false) return;
+      if (!p.title || EXCLUDE_TITLE_PATTERNS.test(p.title.trim())) return;
       out.push({
         id: `product:${p.id}`,
         kind: "product",
@@ -58,12 +66,14 @@ export async function buildResourceIndex(): Promise<IndexedResource[]> {
     // ignore
   }
 
-  // Obsidian-ingested docs (RLS limits non-admins to shareable=true)
+  // Obsidian-ingested docs — skip internal tooling docs
   try {
     const { data: obsidian } = await supabase
       .from("obsidian_resources")
-      .select("id, title, body_md, category");
+      .select("id, title, body_md, category, source_path");
     (obsidian ?? []).forEach((o: any) => {
+      if (o.source_path && EXCLUDE_OBSIDIAN_PATHS.test(o.source_path)) return;
+      if (o.title && EXCLUDE_TITLE_PATTERNS.test(o.title.trim())) return;
       out.push({
         id: `obsidian:${o.id}`,
         kind: "obsidian_doc",

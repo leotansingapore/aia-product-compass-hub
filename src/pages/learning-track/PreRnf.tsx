@@ -4,6 +4,7 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackPhases";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
 import { PhaseSection } from "@/components/learning-track/PhaseSection";
+import { TrackProgressHeader } from "@/components/learning-track/TrackProgressHeader";
 
 export default function PreRnfTrack() {
   const { itemId } = useParams<{ itemId?: string }>();
@@ -29,6 +30,7 @@ export default function PreRnfTrack() {
 
   return (
     <div className="space-y-4" data-testid="pre-rnf-page">
+      <TrackProgressHeader track="pre_rnf" />
       {(phasesQuery.data ?? []).map((phase) => (
         <PhaseSection
           key={phase.id}

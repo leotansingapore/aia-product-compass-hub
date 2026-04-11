@@ -48,17 +48,19 @@ export function LearningTrackHeroCard() {
       )}
       <div className="flex items-center gap-3">
         <Button onClick={goNext}>
-          Continue <ArrowRight className="ml-1 h-4 w-4" />
+          {data.combinedPct === 0 ? "Start Learning" : "Continue"}{" "}
+          <ArrowRight className="ml-1 h-4 w-4" />
         </Button>
-        <button
-          onClick={() => {
-            localStorage.setItem("lt-redirect-dismissed", "1");
-            navigate("/");
-          }}
-          className="text-xs text-muted-foreground hover:underline"
-        >
-          Go to dashboard instead
-        </button>
+        {data.combinedPct === 0 && (
+          <button
+            onClick={() => {
+              localStorage.setItem("lt-redirect-dismissed", "1");
+            }}
+            className="text-xs text-muted-foreground hover:underline"
+          >
+            Dismiss
+          </button>
+        )}
       </div>
     </div>
   );

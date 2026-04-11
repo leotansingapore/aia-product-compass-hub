@@ -5,11 +5,11 @@ import { useLearningTrackHeatmap, type HeatmapCell } from "@/hooks/learning-trac
 import { cn } from "@/lib/utils";
 
 function cellColor(pct: number) {
-  if (pct === 0) return "bg-muted text-muted-foreground";
-  if (pct < 33) return "bg-red-300 text-red-900";
-  if (pct < 66) return "bg-amber-300 text-amber-900";
-  if (pct < 100) return "bg-green-300 text-green-900";
-  return "bg-green-600 text-white";
+  if (pct === 0) return "bg-muted/50 text-muted-foreground border-border";
+  if (pct < 33) return "bg-red-200 dark:bg-red-950/40 text-red-900 dark:text-red-200 border-red-300";
+  if (pct < 66) return "bg-amber-200 dark:bg-amber-950/40 text-amber-900 dark:text-amber-200 border-amber-300";
+  if (pct < 100) return "bg-green-200 dark:bg-green-950/40 text-green-900 dark:text-green-200 border-green-300";
+  return "bg-green-600 text-white border-green-700";
 }
 
 interface Grid {
@@ -44,16 +44,27 @@ export default function Heatmap() {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2" data-testid="admin-heatmap-page">
+    <div className="space-y-4" data-testid="admin-heatmap-page">
+      <div className="rounded-lg border bg-card p-4 text-sm">
+        <div className="font-medium mb-2">Legend</div>
+        <div className="flex flex-wrap gap-3 text-xs">
+          <LegendChip color="bg-muted/50 border-border text-muted-foreground" label="Not started" />
+          <LegendChip color="bg-red-200 dark:bg-red-950/40 border-red-300" label="< 33%" />
+          <LegendChip color="bg-amber-200 dark:bg-amber-950/40 border-amber-300" label="33–66%" />
+          <LegendChip color="bg-green-200 dark:bg-green-950/40 border-green-300" label="66–99%" />
+          <LegendChip color="bg-green-600 border-green-700 text-white" label="100%" />
+        </div>
+      </div>
+      <div className="grid gap-6 lg:grid-cols-2">
       {(["pre", "post"] as const).map((key) => {
         const grid = grids[key];
         if (grid.recruits.length === 0) {
           return (
-            <div key={key}>
+            <div key={key} className="rounded-lg border bg-card p-4">
               <h3 className="mb-2 text-sm font-semibold uppercase">
                 {key === "pre" ? "Pre-RNF" : "Post-RNF"}
               </h3>
-              <p className="text-sm text-muted-foreground">No data yet.</p>
+              <p className="text-sm text-muted-foreground">No recruits yet.</p>
             </div>
           );
         }
@@ -111,6 +122,16 @@ export default function Heatmap() {
           </div>
         );
       })}
+      </div>
+    </div>
+  );
+}
+
+function LegendChip({ color, label }: { color: string; label: string }) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <div className={cn("h-4 w-4 rounded border", color)} />
+      <span>{label}</span>
     </div>
   );
 }
