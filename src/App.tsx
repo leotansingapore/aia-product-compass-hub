@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { SimplifiedAuthProvider } from "@/hooks/useSimplifiedAuth";
 import { ViewModeProvider, AdminViewSwitcher } from "@/components/admin/AdminViewSwitcher";
@@ -59,6 +59,14 @@ const AIAssistant = lazy(() => import("./pages/AIAssistant"));
 const ConceptCards = lazy(() => import("./pages/ConceptCards"));
 const ProductExam = lazy(() => import("./pages/ProductExam"));
 const LearningTrack = lazy(() => import("./pages/LearningTrack"));
+const LearningTrackPreRnf = lazy(() => import("./pages/learning-track/PreRnf"));
+const LearningTrackPostRnf = lazy(() => import("./pages/learning-track/PostRnf"));
+const LearningTrackResources = lazy(() => import("./pages/learning-track/Resources"));
+const LearningTrackAdminLayout = lazy(() => import("./pages/learning-track/admin/AdminLayout"));
+const LearningTrackAdminRoster = lazy(() => import("./pages/learning-track/admin/Roster"));
+const LearningTrackAdminHeatmap = lazy(() => import("./pages/learning-track/admin/Heatmap"));
+const LearningTrackAdminSubmissions = lazy(() => import("./pages/learning-track/admin/Submissions"));
+const LearningTrackAdminRecruit = lazy(() => import("./pages/learning-track/admin/RecruitDetail"));
 const ProAchieverStudy = lazy(() => import("./pages/ProAchieverStudy"));
 const PlatinumWealthVentureStudy = lazy(() => import("./pages/PlatinumWealthVentureStudy"));
 const HealthshieldGoldMaxStudy = lazy(() => import("./pages/HealthshieldGoldMaxStudy"));
@@ -127,7 +135,21 @@ const App = () => (
                     <Route path="/flows" element={<RequireAuth><ScriptFlows /></RequireAuth>} />
                     <Route path="/flows/:flowId" element={<RequireAuth><ScriptFlows /></RequireAuth>} />
                     <Route path="/concept-cards" element={<RequireAuth><ConceptCards /></RequireAuth>} />
-                    <Route path="/learning-track" element={<RequireAuth><LearningTrack /></RequireAuth>} />
+                    <Route path="/learning-track" element={<RequireAuth><LearningTrack /></RequireAuth>}>
+                      <Route index element={<Navigate to="pre-rnf" replace />} />
+                      <Route path="pre-rnf" element={<LearningTrackPreRnf />} />
+                      <Route path="pre-rnf/:itemId" element={<LearningTrackPreRnf />} />
+                      <Route path="post-rnf" element={<LearningTrackPostRnf />} />
+                      <Route path="post-rnf/:itemId" element={<LearningTrackPostRnf />} />
+                      <Route path="resources" element={<LearningTrackResources />} />
+                      <Route path="admin" element={<ProtectedAdminPage><LearningTrackAdminLayout /></ProtectedAdminPage>}>
+                        <Route index element={<Navigate to="roster" replace />} />
+                        <Route path="roster" element={<LearningTrackAdminRoster />} />
+                        <Route path="heatmap" element={<LearningTrackAdminHeatmap />} />
+                        <Route path="submissions" element={<LearningTrackAdminSubmissions />} />
+                        <Route path="recruit/:userId" element={<LearningTrackAdminRecruit />} />
+                      </Route>
+                    </Route>
                     <Route path="/product/pro-achiever/study" element={<RequireAuth><ProAchieverStudy /></RequireAuth>} />
                     <Route path="/product/platinum-wealth-venture/study" element={<RequireAuth><PlatinumWealthVentureStudy /></RequireAuth>} />
                     <Route path="/product/healthshield-gold-max/study" element={<RequireAuth><HealthshieldGoldMaxStudy /></RequireAuth>} />
