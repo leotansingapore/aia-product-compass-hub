@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, LogOut, Home, Bookmark, GraduationCap, MessageCircle, User, HelpCircle, Users, TrendingUp, FileText, BookOpen, GitBranch } from "lucide-react";
+import { Menu, X, LogOut, Home, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, FileText, BookOpen, GitBranch } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
