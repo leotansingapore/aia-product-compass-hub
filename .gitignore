@@ -30,3 +30,8 @@ BUGS.md
 # Playwright MCP logs
 .playwright-mcp/
 .vercel
+
+# Playwright
+test-results/
+playwright-report/
+

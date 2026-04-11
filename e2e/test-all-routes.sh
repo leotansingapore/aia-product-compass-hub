@@ -70,6 +70,17 @@ test_route "/playbooks" "Playbooks"
 test_route "/flows" "Script Flows"
 
 echo ""
+echo "── Learning Track ──"
+test_route "/learning-track" "Learning Track (root → redirect)"
+test_route "/learning-track/pre-rnf" "Pre-RNF Training"
+test_route "/learning-track/post-rnf" "Post-RNF Training"
+test_route "/learning-track/resources" "Resource Hub"
+test_route "/learning-track/admin" "Admin (root → roster)"
+test_route "/learning-track/admin/roster" "Admin Roster"
+test_route "/learning-track/admin/heatmap" "Admin Heatmap"
+test_route "/learning-track/admin/submissions" "Admin Submissions Queue"
+
+echo ""
 echo "── Admin ──"
 test_route "/admin" "Admin Dashboard"
 
