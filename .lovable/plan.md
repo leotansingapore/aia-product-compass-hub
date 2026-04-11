@@ -1,88 +1,46 @@
 
 
-# Add Resources Feature to Module Editor Pages
+## Revised Plan: Remove 5 Edge Functions + Clean Up
 
-## Overview
-Add an "ADD" dropdown button and a "Resources" display section to each module/lecture editor page. This lets admins attach resource links, upload resource files, and add transcripts to individual lectures. Students see the same resources as clickable links/downloads.
+### Step 1: Delete dead code
+- **Delete `src/hooks/useAuthOperations.tsx`** — orphaned, zero imports
+- **Edit `src/hooks/useSimpleAuthOperations.tsx`** — remove `signUp`/`authSignUp` from the `useSimplifiedAuth()` destructure
 
-## Key Insight: Data Model Already Exists
-The `TrainingVideo` interface already has the needed fields:
-- `useful_links` (array of `{name, url, icon}`)
-- `attachments` (array of `{id, name, url, file_size, file_type}` via `VideoAttachment`)
-- `transcript` (string)
+### Step 2: Delete 5 edge function directories
+Remove from `supabase/functions/`: `create-pending-user/`, `notify-admins-new-signup/`, `notify-user-approved/`, `approve-user/`, `provision-user/`
 
-No database migration is needed -- resources are stored in the `training_videos` JSONB column on the `products` table.
+### Step 3: Delete deployed functions
+Use `supabase--delete_edge_functions` for all 5.
 
-## Implementation Plan
+### Step 4: Clean up `supabase/config.toml`
+Remove entries for `notify-admins-new-signup`, `notify-user-approved`, `provision-user`.
 
-### 1. Create `ModuleResourcesSection` Component
-**File:** `src/components/video-editing/ModuleResourcesSection.tsx`
+### Step 5: Replace `approve-user` calls with direct DB update
+In **3 files** (`useUserActions.ts`, `UserDirectoryRow.tsx`, `BulkUserActions.tsx`), replace:
+```ts
+supabase.functions.invoke('approve-user', { body: { request_id }, headers: ... })
+```
+with:
+```ts
+supabase.from('user_approval_requests')
+  .update({ status: 'approved', reviewed_at: new Date().toISOString() })
+  .eq('id', request_id)
+```
+No RPC call. The user's auth account already exists; approval is just a status flip.
 
-Displays the combined list of resources (links + files) with appropriate icons:
-- Link icon for URL resources
-- Red PDF icon for PDFs
-- Document icon for other files
-- Each item is clickable (opens in new tab)
-- Admin view: shows edit/delete buttons per resource
-- Student view: read-only clickable list
+### Step 6: Refactor ProvisionUserDialog
+Replace the `provision-user` edge function call with:
+1. Call `create-user-account` edge function (creates auth user, profile, and user role)
+2. If a tier is selected, insert into `user_roles` directly
+3. Direct DB update to mark approval request as approved:
+```ts
+supabase.from('user_approval_requests')
+  .update({ status: 'approved', reviewed_at: new Date().toISOString() })
+  .eq('id', request_id)
+```
+Do **not** call `approve_user_request_simple` anywhere.
 
-### 2. Create `AddResourceDropdown` Component
-**File:** `src/components/video-editing/AddResourceDropdown.tsx`
-
-An "ADD" dropdown button (styled per the reference screenshots) with options:
-- **Add resource link** -- opens a dialog with Label (max 34 chars with counter) and URL fields, Cancel and Add (gold/yellow) buttons
-- **Add resource file** -- triggers file upload (PDF, images, DOCX, etc.) to the `knowledge-files` storage bucket, then adds to `attachments`
-- **Add transcript** -- scrolls to / reveals the transcript textarea
-
-### 3. Create `AddLinkDialog` Component
-**File:** `src/components/video-editing/AddLinkDialog.tsx`
-
-Modal dialog matching the reference screenshot:
-- Label field with 34-character max and live character count
-- URL field
-- Cancel button and gold/yellow "ADD" button
-- Validation: both fields required, URL format check
-
-### 4. Update `RichContentEditor` to Accept Resources Props
-**File:** `src/components/markdown/RichContentEditor.tsx`
-
-Add new props:
-- `resources` (combined links + attachments)
-- `onAddLink`, `onAddFile`, `onDeleteResource`
-- Render `ModuleResourcesSection` between content and transcript
-- Render `AddResourceDropdown` at the bottom
-
-### 5. Update `VideoEditForm` to Pass Resources Data
-**File:** `src/components/video-editing/VideoEditForm.tsx`
-
-Wire up the resources props from the `TrainingVideo` to the `RichContentEditor`:
-- Pass `useful_links` and `attachments` as resources
-- Handle add/delete callbacks that update the video via `handleChange`
-- Handle file upload to Supabase storage
-
-### 6. Update Student View (Non-Admin)
-**File:** `src/components/video-learning/VideoLearningInterface.tsx` (or relevant student-facing component)
-
-Display the Resources section read-only:
-- Show "Resources" heading with the icon list
-- Links open in new tab, files download/open in new tab
-- Show transcript content below resources if present
-
-## Technical Details
-
-- File uploads use the existing `knowledge-files` Supabase storage bucket (already public)
-- Resources are persisted as part of the `training_videos` JSONB -- no new tables needed
-- The ADD dropdown uses Radix `DropdownMenu` for proper z-index and non-transparent background
-- Character count on the label field uses controlled input with `maxLength={34}`
-- Gold/yellow button uses a custom class or inline style matching the reference
-
-## Files to Create
-1. `src/components/video-editing/ModuleResourcesSection.tsx`
-2. `src/components/video-editing/AddResourceDropdown.tsx`
-3. `src/components/video-editing/AddLinkDialog.tsx`
-
-## Files to Modify
-1. `src/components/markdown/RichContentEditor.tsx` -- add resources section
-2. `src/components/video-editing/VideoEditForm.tsx` -- wire resources props
-3. `src/hooks/useProducts.tsx` -- no changes needed (interfaces already exist)
+### Files Summary
+- **Delete:** `src/hooks/useAuthOperations.tsx`, 5 edge function dirs
+- **Edit:** `useSimpleAuthOperations.tsx`, `useUserActions.ts`, `UserDirectoryRow.tsx`, `BulkUserActions.tsx`, `ProvisionUserDialog.tsx`, `supabase/config.toml`
 
