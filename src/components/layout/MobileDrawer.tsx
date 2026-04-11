@@ -22,7 +22,6 @@ export function MobileDrawer() {
     { name: "Bookmarks", href: "/bookmarks", icon: Bookmark },
     { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap },
     { name: "Roleplay Training", href: "/roleplay", icon: MessageCircle },
-    { name: "My Account", href: "/my-account", icon: User },
   ];
 
   const resourceItems = [
