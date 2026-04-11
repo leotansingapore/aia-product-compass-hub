@@ -112,7 +112,7 @@ const CategoryProductsSub = memo(function CategoryProductsSub({ categoryId, isCo
   );
 });
 
-const AppSidebar = memo(function AppSidebar() {
+const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick?: () => void }) {
   const { state } = useSidebar();
   const location = useLocation();
   const navigate = useNavigate();
@@ -142,7 +142,6 @@ const AppSidebar = memo(function AppSidebar() {
     
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
-    { title: "My Account", url: "/my-account", icon: User, dataAttr: undefined, sectionId: "my-account" },
     ...(isMasterAdmin() || hasRole('admin') ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
   ], [isMasterAdmin, hasRole]);
 
@@ -522,9 +521,9 @@ const AppSidebar = memo(function AppSidebar() {
             <div className="space-y-1">
               {/* Profile row */}
               <button
-                onClick={() => navigate('/my-account')}
+                onClick={() => onProfileClick ? onProfileClick() : navigate('/my-account')}
                 className="flex items-center gap-3 w-full rounded-lg px-2 py-2 hover:bg-muted transition-colors text-left group"
-                aria-label="My Account"
+                aria-label="My Profile"
               >
                 <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center shrink-0 ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all">
                   <span className="text-xs font-bold text-primary-foreground">
@@ -551,10 +550,10 @@ const AppSidebar = memo(function AppSidebar() {
           ) : (
             <div className="flex flex-col items-center gap-2">
               <button
-                onClick={() => navigate('/my-account')}
-                title="My Account"
+                onClick={() => onProfileClick ? onProfileClick() : navigate('/my-account')}
+                title="My Profile"
                 className="h-8 w-8 rounded-full bg-primary flex items-center justify-center hover:opacity-80 transition-opacity ring-2 ring-primary/20"
-                aria-label="My Account"
+                aria-label="My Profile"
               >
                 <span className="text-xs font-bold text-primary-foreground">
                   {user?.email?.charAt(0).toUpperCase() || "U"}

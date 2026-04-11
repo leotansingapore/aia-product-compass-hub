@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, memo, useRef, useState, useCallback } from "react";
+import React, { ReactNode, useEffect, memo, useRef, useState, useCallback, lazy, Suspense } from "react";
 import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
@@ -8,6 +8,7 @@ import { MobileHeader } from "./MobileHeader";
 import { Button } from "@/components/ui/button";
 import { LogIn, User } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+const ProfileSheet = lazy(() => import("@/components/profile/ProfileSheet").then(m => ({ default: m.ProfileSheet })));
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
 import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
@@ -48,6 +49,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const { autoSync } = useAppStructureSync();
   const { loading: permissionsLoading } = usePermissions();
   const isMobile = useIsMobile();
+  const [profileOpen, setProfileOpen] = useState(false);
   const location = useLocation();
 
   // Pages that manage their own mobile header (show ScriptsTabBar instead)
@@ -157,7 +159,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   if (isMobile) {
     return (
       <div className="min-h-screen w-full overflow-x-hidden">
-        <MobileHeader />
+        <MobileHeader onAvatarClick={() => setProfileOpen(true)} />
         {hideMobileHeader && (
           <div className="sticky top-[57px] z-30 bg-background/95 backdrop-blur-sm border-b border-border">
             <ScriptsTabBar />
@@ -175,6 +177,12 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         <OnboardingTutorial />
         <OnboardingHelpButton />
         <FeedbackButton />
+        
+        {profileOpen && (
+          <Suspense fallback={null}>
+            <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
+          </Suspense>
+        )}
       </div>
     );
   }
@@ -183,26 +191,24 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   return (
     <SidebarProvider defaultOpen={sidebarDefaultOpen}>
       <div className="min-h-screen flex w-full">
-        <AppSidebar />
+        <AppSidebar onProfileClick={() => setProfileOpen(true)} />
         <ResizeHandle />
         
         <SidebarInset className="flex-1 min-w-0 flex flex-col">
           {/* Desktop Top Bar */}
           <header className="sticky top-0 z-30 flex h-12 items-center justify-end gap-2 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
             <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => navigate('/my-account')}
-              className="rounded-full h-8 w-8 p-0"
-              aria-label="My Account"
+            <button
+              onClick={() => setProfileOpen(true)}
+              className="rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="My Profile"
             >
               <Avatar className="h-8 w-8">
                 <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
                   {user?.email?.charAt(0).toUpperCase() || 'U'}
                 </AvatarFallback>
               </Avatar>
-            </Button>
+            </button>
           </header>
 
           <main className="flex-1 page-transition">
@@ -216,6 +222,12 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
       <OnboardingTutorial />
       <OnboardingHelpButton />
       <FeedbackButton />
+      
+      {profileOpen && (
+        <Suspense fallback={null}>
+          <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
+        </Suspense>
+      )}
     </SidebarProvider>
   );
 });

@@ -9,12 +9,14 @@ interface MobileHeaderProps {
   title?: string;
   rightAction?: React.ReactNode;
   showBackButton?: boolean;
+  onAvatarClick?: () => void;
 }
 
 export function MobileHeader({
   title,
   rightAction,
-  showBackButton = true
+  showBackButton = true,
+  onAvatarClick,
 }: MobileHeaderProps) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -78,25 +80,23 @@ export function MobileHeader({
           <ThemeToggle />
           {rightAction}
           {user && (
-            <Button
-              variant="ghost"
-              size="icon"
+            <button
               onClick={() => {
-                if (location.pathname === '/my-account') {
-                  navigate(-1);
+                if (onAvatarClick) {
+                  onAvatarClick();
                 } else {
                   navigate('/my-account');
                 }
               }}
-              className="shrink-0 rounded-full h-8 w-8 p-0"
-              aria-label="My Account"
+              className="shrink-0 rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="My Profile"
             >
               <Avatar className="h-8 w-8">
                 <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
                   {getInitials()}
                 </AvatarFallback>
               </Avatar>
-            </Button>
+            </button>
           )}
         </div>
       </div>
