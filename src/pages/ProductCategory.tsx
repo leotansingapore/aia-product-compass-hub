@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
 import { usePermissions } from "@/hooks/usePermissions";
@@ -64,6 +66,14 @@ export default function ProductCategory() {
     clearFilters,
     handleBack
   } = useProductCategory();
+
+  // CMFAS has a dedicated page at /cmfas-exams — redirect to keep both URLs in sync
+  if (
+    categorySlugOrId === "cmfas" ||
+    category?.name?.toLowerCase() === "cmfas"
+  ) {
+    return <Navigate to="/cmfas-exams" replace />;
+  }
   
   const { isAdmin } = usePermissions();
   const { isViewingAsUser } = useViewMode();
