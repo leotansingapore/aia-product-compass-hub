@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
+import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { useCategories } from "@/hooks/useProducts";
 import { getCategoryConfig } from "@/utils/categoryConfig";
 import { cn } from "@/lib/utils";
@@ -15,6 +16,7 @@ export function MobileDrawer() {
   const navigate = useNavigate();
   const { signOut } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
+  const { isViewingAsUser } = useViewMode();
   const { categories, loading: categoriesLoading } = useCategories();
 
   const mainNavItems = [
@@ -157,7 +159,7 @@ export function MobileDrawer() {
               </div>
             </div>
 
-            {isAdmin && (
+            {isAdmin && !isViewingAsUser && (
               <>
                 <Separator className="mb-6" />
                 <div>

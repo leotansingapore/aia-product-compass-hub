@@ -32,10 +32,10 @@ export default function LearningTrack() {
   }, [user?.id]);
 
   return (
-    <PageLayout>
+    <PageLayout title="Learning Track" description="Your phased onboarding programme. Complete each phase in order.">
       <BrandedPageHeader
         title="Learning Track"
-        description="Your phased onboarding programme. Complete each phase in order."
+        subtitle="Your phased onboarding programme. Complete each phase in order."
       />
 
       <nav className="flex gap-1 border-b mt-4 mb-6 overflow-x-auto" aria-label="Learning track sections">
