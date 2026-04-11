@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, LogOut, Home, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, FileText, BookOpen, GitBranch } from "lucide-react";
+import { Menu, X, LogOut, Home, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
@@ -29,10 +29,8 @@ export function MobileDrawer() {
   const resourceItems = [
     { name: "How to Use Portal", href: "/how-to-use", icon: HelpCircle },
     { name: "Search by Client Profile", href: "/search-by-profile", icon: Users },
-    { name: "Sales Tools & Objection Handling", href: "/product/sales-tools-objections", icon: TrendingUp },
-    { name: "Scripts Database", href: "/scripts", icon: FileText },
-    { name: "Script Playbooks", href: "/playbooks", icon: BookOpen },
-    { name: "Script Flows", href: "/flows", icon: GitBranch },
+    { name: "Sales Playbooks", href: "/scripts", icon: TrendingUp },
+    { name: "Concept Cards", href: "/concept-cards", icon: BookOpen },
   ];
 
   const handleLinkClick = () => {
