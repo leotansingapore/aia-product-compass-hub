@@ -34,23 +34,20 @@ export const AUTH_CONFIG = {
   validation: {
     minPasswordLength: 6,
     requiredFields: {
-      signIn: ['email', 'password'],
-      signUp: ['email', 'password', 'displayName']
+      signIn: ['email', 'password']
     }
   },
 
   messages: {
     success: {
       signIn: "Welcome back!",
-      signUp: "Registration Request Submitted!",
       accountActivated: "Account activated!",
       demoReady: "Demo Account Ready!"
     },
     errors: {
       missingInfo: "Please fill in all fields",
       invalidCredentials: "Invalid login credentials",
-      signInFailed: "Sign In Failed",
-      registrationFailed: "Registration Failed"
+      signInFailed: "Sign In Failed"
     }
   }
 } as const;

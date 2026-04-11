@@ -9,7 +9,6 @@ interface AuthContextType {
   session: Session | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, displayName?: string) => Promise<{ success: boolean; email?: string }>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
 }
@@ -236,77 +235,6 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
     }
   };
 
-  const signUp = async (email: string, password: string, displayName?: string): Promise<{ success: boolean; email?: string }> => {
-    if (!email.trim() || !displayName?.trim()) {
-      toast({
-        variant: "destructive",
-        title: "Missing Information",
-        description: "Please fill in all required fields"
-      });
-      return { success: false };
-    }
-
-    try {
-      const [firstName, lastName] = (displayName?.trim() || '').split(' ', 2);
-      
-      console.log('[SimplifiedAuth] Creating pending user via edge function');
-      
-      // Call edge function to create inactive auth account
-      const { data, error } = await supabase.functions.invoke('create-pending-user', {
-        body: {
-          email: email.trim(),
-          firstName: firstName || '',
-          lastName: lastName || '',
-          reason: 'User registration request'
-        }
-      });
-
-      // Check for error in response data first (this has the actual error message)
-      if (data?.error) {
-        console.log('[SimplifiedAuth] Registration blocked:', data.error);
-        toast({
-          variant: "destructive",
-          title: "Registration Failed",
-          description: data.error
-        });
-        return { success: false };
-      }
-
-      // Check for generic function error (less helpful message)
-      if (error) {
-        console.log('[SimplifiedAuth] Edge function error (expected for validation)');
-        toast({
-          variant: "destructive",
-          title: "Registration Failed",
-          description: "An error occurred during registration. Please try again."
-        });
-        return { success: false };
-      }
-
-      console.log('[SimplifiedAuth] Pending user created successfully');
-      
-      toast({
-        title: "Registration Request Submitted!",
-        description: "Your account request has been submitted for admin approval. You'll receive an email with a link to set your password once approved."
-      });
-      
-      // Persist email for the awaiting page
-      try { localStorage.setItem('pendingApprovalEmail', email.trim()); } catch {
-        console.log('Could not store email in localStorage');
-      }
-      
-      return { success: true, email: email.trim() };
-    } catch (error: any) {
-      console.log('[SimplifiedAuth] Unexpected signup error handled');
-      toast({
-        variant: "destructive",
-        title: "Registration Failed",
-        description: error?.message || "An unexpected error occurred"
-      });
-      return { success: false };
-    }
-  };
-
   const signOut = async () => {
     try {
       // Clear permissions cache before signing out
@@ -416,7 +344,6 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
     session,
     loading,
     signIn,
-    signUp,
     signOut,
     resetPassword
   };
@@ -437,7 +364,6 @@ export const useSimplifiedAuth = () => {
       session: null,
       loading: true,
       signIn: async () => {},
-      signUp: async () => ({ success: false }),
       signOut: async () => {},
       resetPassword: async () => {}
     };

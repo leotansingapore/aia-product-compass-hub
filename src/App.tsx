@@ -25,7 +25,6 @@ import { NewVersionBanner } from "@/components/NewVersionBanner";
 // Eagerly loaded pages (lightweight / critical path)
 import Index from "./pages/Index";
 import SimplifiedAuth from "./pages/SimplifiedAuth";
-import AwaitingApproval from "./pages/AwaitingApproval";
 import ForcePasswordChange from "./pages/ForcePasswordChange";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
@@ -84,7 +83,6 @@ const App = () => (
                   <Routes>
                     {/* Public routes — no auth required */}
                     <Route path="/auth" element={<SimplifiedAuth />} />
-                    <Route path="/awaiting-approval" element={<AwaitingApproval />} />
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
                     <Route path="/flows/view/:flowId" element={<PublicFlowView />} />

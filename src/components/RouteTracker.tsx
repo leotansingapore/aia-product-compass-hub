@@ -5,7 +5,7 @@ import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
 const ROUTE_STORAGE_KEY = 'lastVisitedRoute';
 
 // Routes that should NOT be restored (auth-related, transient)
-const EXCLUDED_ROUTES = ['/auth', '/force-password', '/reset-password', '/awaiting-approval'];
+const EXCLUDED_ROUTES = ['/auth', '/force-password', '/reset-password'];
 
 /**
  * Tracks the current route in localStorage so the app can restore it after a refresh.
