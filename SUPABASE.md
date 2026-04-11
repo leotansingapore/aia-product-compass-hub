@@ -6,24 +6,138 @@
 
 ## Pending
 
-<!-- Add pending database changes here using the format below -->
-<!--
-### [Feature Name] — [Date]
+### Learning Track Overhaul — 2026-04-11
 
-**What:** Brief description
+**What:** Moves the /learning-track feature off localStorage onto Supabase so progress and submissions persist across devices, admins can monitor recruit progress, and file submissions actually upload. Adds phase grouping to both pre-RNF and post-RNF tracks, per-item submission capability on both tracks, an admin monitoring dashboard (roster, heatmap, submissions queue), and an Obsidian reference-doc ingest for the Sales Bible and advisor training guides.
+
+**Naming note:** All new tables are prefixed `learning_track_*` to avoid collision with the existing `learning_progress` gamification/XP table.
 
 **Tables:**
-- `table_name`: Add column `column_name` (type, nullable/not null, default)
+
+- `learning_track_phases`: Create with columns:
+  - `id` (uuid PK, default `gen_random_uuid()`)
+  - `track` (text, not null, check in `('pre_rnf','post_rnf')`)
+  - `order_index` (int, not null)
+  - `title` (text, not null)
+  - `description` (text, nullable)
+  - `created_at` (timestamptz, default `now()`)
+  - `updated_at` (timestamptz, default `now()`)
+  - Unique index on (`track`, `order_index`)
+
+- `learning_track_items`: Create with columns:
+  - `id` (uuid PK, default `gen_random_uuid()`)
+  - `phase_id` (uuid, not null, FK → `learning_track_phases.id` on delete cascade)
+  - `order_index` (int, not null)
+  - `title` (text, not null)
+  - `description` (text, nullable)
+  - `objectives` (text[], nullable) — pre-RNF rich-item data
+  - `action_items` (text[], nullable)
+  - `requires_submission` (bool, not null, default `true`)
+  - `legacy_id` (text, nullable) — stores original string id from `learningTrackData.ts` for localStorage→Supabase migration
+  - `created_at`, `updated_at` (timestamptz, default `now()`)
+  - Unique index on (`phase_id`, `order_index`)
+  - Index on `legacy_id`
+
+- `learning_track_content_blocks`: Create with columns:
+  - `id` (uuid PK, default `gen_random_uuid()`)
+  - `item_id` (uuid, not null, FK → `learning_track_items.id` on delete cascade)
+  - `order_index` (int, not null)
+  - `block_type` (text, not null, check in `('text','link','video','resource_ref')`)
+  - `title` (text, nullable)
+  - `body` (text, nullable) — markdown for text blocks
+  - `url` (text, nullable) — for link/video blocks
+  - `resource_type` (text, nullable, check in `('product','kb','script','concept_card','video','obsidian_doc','notebooklm')`) — for resource_ref blocks
+  - `resource_id` (text, nullable) — FK id or external identifier
+  - `created_at` (timestamptz, default `now()`)
+  - Index on `item_id`
+
+- `learning_track_progress`: Create with columns:
+  - `id` (uuid PK, default `gen_random_uuid()`)
+  - `user_id` (uuid, not null, FK → `profiles.id` on delete cascade)
+  - `item_id` (uuid, not null, FK → `learning_track_items.id` on delete cascade)
+  - `status` (text, not null, default `'not_started'`, check in `('not_started','in_progress','completed')`)
+  - `completed_at` (timestamptz, nullable)
+  - `updated_at` (timestamptz, default `now()`)
+  - Unique constraint on (`user_id`, `item_id`)
+  - Index on `user_id`
+
+- `learning_track_submissions`: Create with columns:
+  - `id` (uuid PK, default `gen_random_uuid()`)
+  - `user_id` (uuid, not null, FK → `profiles.id` on delete cascade)
+  - `item_id` (uuid, not null, FK → `learning_track_items.id` on delete cascade)
+  - `remarks` (text, nullable)
+  - `submitted_at` (timestamptz, not null, default `now()`)
+  - `review_status` (text, not null, default `'pending'`, check in `('pending','approved','changes_requested')`)
+  - `reviewed_at` (timestamptz, nullable)
+  - `reviewed_by` (uuid, nullable, FK → `profiles.id` on delete set null)
+  - `review_feedback` (text, nullable)
+  - Index on (`user_id`, `item_id`)
+  - Index on `review_status` (for the admin submissions queue)
+
+- `learning_track_submission_files`: Create with columns:
+  - `id` (uuid PK, default `gen_random_uuid()`)
+  - `submission_id` (uuid, not null, FK → `learning_track_submissions.id` on delete cascade)
+  - `file_type` (text, not null, check in `('pdf','image','url','loom','text')`)
+  - `label` (text, nullable)
+  - `storage_path` (text, nullable) — for uploaded files (bucket path)
+  - `external_url` (text, nullable) — for url/loom/text link types
+  - `content_text` (text, nullable) — for inline text snippets
+  - `created_at` (timestamptz, default `now()`)
+  - Index on `submission_id`
+
+- `obsidian_resources`: Create with columns:
+  - `id` (uuid PK, default `gen_random_uuid()`)
+  - `source_path` (text, not null, unique) — e.g. `'References/Pre-Retiree Sales Bible.md'`
+  - `category` (text, not null, check in `('reference','training_guide','product_moc','learning_moc','other')`)
+  - `title` (text, not null)
+  - `body_md` (text, not null)
+  - `frontmatter` (jsonb, nullable)
+  - `synced_at` (timestamptz, not null, default `now()`)
+  - Index on `category`
 
 **RLS Policies:**
-- `policy_name`: [SELECT/INSERT/UPDATE/DELETE] on `table_name`
+
+Content tables (`learning_track_phases`, `learning_track_items`, `learning_track_content_blocks`, `obsidian_resources`):
+- `lt_content_select_authenticated`: SELECT — WHO: any authenticated user — CONDITION: `auth.role() = 'authenticated'`
+- `lt_content_admin_write`: INSERT/UPDATE/DELETE — WHO: admin or master_admin — CONDITION: user id exists in `user_admin_roles` with role `'admin'` or `'master_admin'`
+
+User progress table (`learning_track_progress`):
+- `lt_progress_user_select_own`: SELECT — WHO: owner — CONDITION: `auth.uid() = user_id`
+- `lt_progress_user_upsert_own`: INSERT/UPDATE — WHO: owner — CONDITION: `auth.uid() = user_id`
+- `lt_progress_admin_select_all`: SELECT — WHO: admin or master_admin — CONDITION: admin role check via `user_admin_roles`
+
+Submissions table (`learning_track_submissions`):
+- `lt_submissions_user_select_own`: SELECT — WHO: owner — CONDITION: `auth.uid() = user_id`
+- `lt_submissions_user_insert_own`: INSERT — WHO: owner — CONDITION: `auth.uid() = user_id`
+- `lt_submissions_user_update_own_unreviewed`: UPDATE — WHO: owner — CONDITION: `auth.uid() = user_id AND review_status = 'pending'` (recruits can edit remarks/files until reviewed)
+- `lt_submissions_admin_select_all`: SELECT — WHO: admin or master_admin
+- `lt_submissions_admin_review`: UPDATE — WHO: admin or master_admin — restrict to fields `review_status`, `reviewed_at`, `reviewed_by`, `review_feedback`
+
+Submission files table (`learning_track_submission_files`):
+- `lt_files_user_select_own`: SELECT — WHO: owner via join on `learning_track_submissions.user_id = auth.uid()`
+- `lt_files_user_write_own`: INSERT/DELETE — WHO: owner via join; restricted to submissions where `review_status = 'pending'`
+- `lt_files_admin_select_all`: SELECT — WHO: admin or master_admin
 
 **Functions (RPC):**
-- `function_name(params)` → return_type
+
+- `get_learning_track_roster()` → table of (user_id uuid, display_name text, pre_rnf_progress_pct numeric, post_rnf_progress_pct numeric, pending_submissions int, last_activity timestamptz)
+  - Purpose: Powers the admin roster view
+  - Logic: Joins `profiles` with `learning_track_progress` aggregated by `track`, counts pending submissions per user, returns latest `updated_at` as `last_activity`
+  - Security: `SECURITY DEFINER`, guarded by admin role check at top of function
+
+- `get_learning_track_heatmap()` → table of (user_id uuid, display_name text, phase_id uuid, phase_title text, track text, completed_count int, total_count int)
+  - Purpose: Powers the admin heatmap view (one row per recruit × phase)
+  - Logic: Cross joins all recruits (from `profiles`) with all phases, left joins `learning_track_progress` + `learning_track_items` to compute completion per cell
+  - Security: `SECURITY DEFINER`, admin guard
 
 **Storage:**
-- Bucket `bucket_name`: [create/modify]
--->
+
+- Bucket `learning-track-submissions`: Create — private bucket — purpose: stores file attachments (pdf, image) submitted by recruits against learning items
+  - Path convention: `{user_id}/{item_id}/{submission_id}/{filename}`
+  - RLS:
+    - User can INSERT/SELECT objects where `(storage.foldername(name))[1] = auth.uid()::text`
+    - Admin or master_admin can SELECT all objects
+    - No public read
 
 ---
 
