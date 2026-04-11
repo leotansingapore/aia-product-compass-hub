@@ -848,6 +848,103 @@ export type Database = {
         }
         Relationships: []
       }
+      learning_track_content_blocks: {
+        Row: {
+          block_type: string
+          body: string | null
+          created_at: string
+          id: string
+          item_id: string
+          order_index: number
+          resource_id: string | null
+          resource_type: string | null
+          title: string | null
+          url: string | null
+        }
+        Insert: {
+          block_type: string
+          body?: string | null
+          created_at?: string
+          id?: string
+          item_id: string
+          order_index: number
+          resource_id?: string | null
+          resource_type?: string | null
+          title?: string | null
+          url?: string | null
+        }
+        Update: {
+          block_type?: string
+          body?: string | null
+          created_at?: string
+          id?: string
+          item_id?: string
+          order_index?: number
+          resource_id?: string | null
+          resource_type?: string | null
+          title?: string | null
+          url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_track_content_blocks_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_track_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_track_items: {
+        Row: {
+          action_items: string[] | null
+          created_at: string
+          description: string | null
+          id: string
+          legacy_id: string | null
+          objectives: string[] | null
+          order_index: number
+          phase_id: string
+          requires_submission: boolean
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          action_items?: string[] | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          legacy_id?: string | null
+          objectives?: string[] | null
+          order_index: number
+          phase_id: string
+          requires_submission?: boolean
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          action_items?: string[] | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          legacy_id?: string | null
+          objectives?: string[] | null
+          order_index?: number
+          phase_id?: string
+          requires_submission?: boolean
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_track_items_phase_id_fkey"
+            columns: ["phase_id"]
+            isOneToOne: false
+            referencedRelation: "learning_track_phases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_track_overrides: {
         Row: {
           id: string
@@ -868,6 +965,177 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      learning_track_phases: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          order_index: number
+          title: string
+          track: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          order_index: number
+          title: string
+          track: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          order_index?: number
+          title?: string
+          track?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      learning_track_progress: {
+        Row: {
+          completed_at: string | null
+          id: string
+          item_id: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          id?: string
+          item_id: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          id?: string
+          item_id?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_track_progress_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_track_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_track_progress_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_track_submission_files: {
+        Row: {
+          content_text: string | null
+          created_at: string
+          external_url: string | null
+          file_type: string
+          id: string
+          label: string | null
+          storage_path: string | null
+          submission_id: string
+        }
+        Insert: {
+          content_text?: string | null
+          created_at?: string
+          external_url?: string | null
+          file_type: string
+          id?: string
+          label?: string | null
+          storage_path?: string | null
+          submission_id: string
+        }
+        Update: {
+          content_text?: string | null
+          created_at?: string
+          external_url?: string | null
+          file_type?: string
+          id?: string
+          label?: string | null
+          storage_path?: string | null
+          submission_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_track_submission_files_submission_id_fkey"
+            columns: ["submission_id"]
+            isOneToOne: false
+            referencedRelation: "learning_track_submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_track_submissions: {
+        Row: {
+          id: string
+          item_id: string
+          remarks: string | null
+          review_feedback: string | null
+          review_status: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          submitted_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          item_id: string
+          remarks?: string | null
+          review_feedback?: string | null
+          review_status?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          submitted_at?: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          item_id?: string
+          remarks?: string | null
+          review_feedback?: string | null
+          review_status?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          submitted_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_track_submissions_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_track_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_track_submissions_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_track_submissions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       mentor_annotations: {
         Row: {
@@ -1033,6 +1301,36 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      obsidian_resources: {
+        Row: {
+          body_md: string
+          category: string
+          frontmatter: Json | null
+          id: string
+          source_path: string
+          synced_at: string
+          title: string
+        }
+        Insert: {
+          body_md: string
+          category: string
+          frontmatter?: Json | null
+          id?: string
+          source_path: string
+          synced_at?: string
+          title: string
+        }
+        Update: {
+          body_md?: string
+          category?: string
+          frontmatter?: Json | null
+          id?: string
+          source_path?: string
+          synced_at?: string
+          title?: string
+        }
+        Relationships: []
       }
       password_reset_rate_limits: {
         Row: {
@@ -2347,6 +2645,29 @@ export type Database = {
           quizzes_completed: number
           roleplays_completed: number
           total_activities: number
+          user_id: string
+        }[]
+      }
+      get_learning_track_heatmap: {
+        Args: never
+        Returns: {
+          completed_count: number
+          display_name: string
+          phase_id: string
+          phase_title: string
+          total_count: number
+          track: string
+          user_id: string
+        }[]
+      }
+      get_learning_track_roster: {
+        Args: never
+        Returns: {
+          display_name: string
+          last_activity: string
+          pending_submissions: number
+          post_rnf_progress_pct: number
+          pre_rnf_progress_pct: number
           user_id: string
         }[]
       }
