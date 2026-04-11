@@ -14,7 +14,7 @@ export function useLearningTrackPhases(track: Track) {
           id, track, order_index, title, description,
           learning_track_items (
             id, phase_id, order_index, title, description,
-            objectives, action_items, requires_submission, hidden_resources, legacy_id,
+            objectives, action_items, requires_submission, legacy_id,
             learning_track_content_blocks (
               id, item_id, order_index, block_type, title, body, url, resource_type, resource_id
             )
@@ -43,7 +43,7 @@ export function useLearningTrackPhases(track: Track) {
             objectives: i.objectives,
             action_items: i.action_items,
             requires_submission: i.requires_submission,
-            hidden_resources: i.hidden_resources ?? [],
+            hidden_resources: [],
             legacy_id: i.legacy_id,
             content_blocks: ((i.learning_track_content_blocks ?? []) as any[]).sort(
               (a, b) => a.order_index - b.order_index
