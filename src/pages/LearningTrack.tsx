@@ -2,6 +2,8 @@ import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { usePermissions } from "@/hooks/usePermissions";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { migrateLocalProgress } from "@/lib/learning-track/migrateLocalProgress";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { PageLayout } from "@/components/layout/PageLayout";
 
@@ -11,6 +13,7 @@ const activeTabClass = "border-primary text-foreground";
 
 export default function LearningTrack() {
   const { isAdmin, isMasterAdmin } = usePermissions();
+  const { user } = useSimplifiedAuth();
   const showAdminTab = isAdmin() || isMasterAdmin();
   const location = useLocation();
 
@@ -19,6 +22,14 @@ export default function LearningTrack() {
       localStorage.setItem("lt-last-tab", location.pathname);
     }
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (user?.id) {
+      migrateLocalProgress(user.id).catch((err) =>
+        console.error("Learning track migration failed:", err)
+      );
+    }
+  }, [user?.id]);
 
   return (
     <PageLayout>
