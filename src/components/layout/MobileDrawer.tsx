@@ -157,7 +157,7 @@ export function MobileDrawer() {
               </div>
             </div>
 
-            {isAdmin && (
+            {isAdmin && !isViewingAsUser && (
               <>
                 <Separator className="mb-6" />
                 <div>
