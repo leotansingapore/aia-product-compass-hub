@@ -42,7 +42,7 @@ const CMFASVideoDetail = lazy(() => import("./pages/cmfas/CMFASVideoDetail"));
 const CMFASChat = lazy(() => import("./pages/cmfas/CMFASChat"));
 const Roleplay = lazy(() => import("./pages/Roleplay"));
 const RoleplayFeedback = lazy(() => import("./pages/RoleplayFeedback"));
-const PitchAnalysis = lazy(() => import("./pages/PitchAnalysis"));
+
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const MyAccount = lazy(() => import("./pages/MyAccount"));
 const VideoDetail = lazy(() => import("./pages/VideoDetail"));
