@@ -5,6 +5,7 @@ import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackP
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
 import { PhaseSection } from "@/components/learning-track/PhaseSection";
 import { TrackProgressHeader } from "@/components/learning-track/TrackProgressHeader";
+import { AddPhaseButton } from "@/components/learning-track/AddPhaseButton";
 
 export default function PreRnfTrack() {
   const { itemId } = useParams<{ itemId?: string }>();
@@ -28,10 +29,12 @@ export default function PreRnfTrack() {
     );
   }
 
+  const phases = phasesQuery.data ?? [];
+
   return (
     <div className="space-y-4" data-testid="pre-rnf-page">
       <TrackProgressHeader track="pre_rnf" />
-      {(phasesQuery.data ?? []).map((phase) => (
+      {phases.map((phase) => (
         <PhaseSection
           key={phase.id}
           phase={phase}
@@ -40,6 +43,7 @@ export default function PreRnfTrack() {
           expandedItemId={itemId}
         />
       ))}
+      <AddPhaseButton track="pre_rnf" currentPhaseCount={phases.length} />
     </div>
   );
 }

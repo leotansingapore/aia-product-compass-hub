@@ -1,120 +1,222 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { FileText, ExternalLink, Play } from "lucide-react";
-import { cn } from "@/lib/utils";
-import type { ContentBlock, ContentBlockType } from "@/data/learningTrackData";
+import ReactMarkdown from "react-markdown";
+import { ExternalLink, Video, Trash2, Plus, FileText, Link } from "lucide-react";
+import { useAdmin } from "@/hooks/useAdmin";
+import {
+  useCreateContentBlock,
+  useUpdateContentBlock,
+  useDeleteContentBlock,
+} from "@/hooks/learning-track/useAdminLearningTrackMutations";
+import { InlineEditableText } from "./InlineEditableText";
+import type { LearningTrackContentBlock, BlockType } from "@/types/learning-track";
 
-interface ContentBlockEditorProps {
-  onAdd: (block: Omit<ContentBlock, "id">) => void;
-  onCancel: () => void;
+interface Props {
+  blocks: LearningTrackContentBlock[];
+  itemId: string;
 }
 
-const types: { value: ContentBlockType; label: string; icon: React.ElementType }[] = [
-  { value: "text", label: "Text", icon: FileText },
-  { value: "link", label: "Link", icon: ExternalLink },
-  { value: "video", label: "Video", icon: Play },
+const BLOCK_TYPE_OPTIONS: { value: BlockType; label: string; icon: JSX.Element }[] = [
+  { value: "text", label: "Text", icon: <FileText className="h-3.5 w-3.5" /> },
+  { value: "link", label: "Link", icon: <Link className="h-3.5 w-3.5" /> },
+  { value: "video", label: "Video", icon: <Video className="h-3.5 w-3.5" /> },
 ];
 
-export function ContentBlockEditor({ onAdd, onCancel }: ContentBlockEditorProps) {
-  const [type, setType] = useState<ContentBlockType>("text");
-  const [text, setText] = useState("");
-  const [url, setUrl] = useState("");
-  const [label, setLabel] = useState("");
+export function ContentBlockEditor({ blocks, itemId }: Props) {
+  const { isAdmin } = useAdmin();
+  const renderable = blocks.filter((b) => b.block_type !== "resource_ref");
 
-  const canSubmit =
-    (type === "text" && text.trim()) ||
-    (type === "link" && url.trim()) ||
-    (type === "video" && url.trim());
+  const createBlock = useCreateContentBlock();
+  const updateBlock = useUpdateContentBlock();
+  const deleteBlock = useDeleteContentBlock();
 
-  const handleSubmit = () => {
-    if (!canSubmit) return;
-    onAdd({
-      type,
-      text: type === "text" ? text.trim() : undefined,
-      url: type !== "text" ? url.trim() : undefined,
-      label: label.trim() || undefined,
+  const [adding, setAdding] = useState<BlockType | null>(null);
+  const [newTitle, setNewTitle] = useState("");
+  const [newBody, setNewBody] = useState("");
+  const [newUrl, setNewUrl] = useState("");
+
+  const handleAdd = () => {
+    if (!adding) return;
+    const nextOrder = blocks.length > 0 ? Math.max(...blocks.map((b) => b.order_index)) + 1 : 0;
+    createBlock.mutate({
+      item_id: itemId,
+      block_type: adding,
+      title: newTitle.trim() || undefined,
+      body: adding === "text" ? newBody.trim() || undefined : undefined,
+      url: adding !== "text" ? newUrl.trim() || undefined : undefined,
+      order_index: nextOrder,
     });
+    setAdding(null);
+    setNewTitle("");
+    setNewBody("");
+    setNewUrl("");
   };
 
+  const cancelAdd = () => {
+    setAdding(null);
+    setNewTitle("");
+    setNewBody("");
+    setNewUrl("");
+  };
+
+  if (renderable.length === 0 && !isAdmin) return null;
+
   return (
-    <div className="rounded-md border bg-muted/30 p-3 space-y-3">
-      {/* Type selector */}
-      <div className="flex gap-1.5">
-        {types.map((t) => {
-          const Icon = t.icon;
-          return (
+    <div className="space-y-3">
+      {(renderable.length > 0 || isAdmin) && (
+        <h4 className="text-sm font-semibold">Content</h4>
+      )}
+      {renderable.map((b) => (
+        <div key={b.id} className="rounded border bg-muted/30 p-3 group relative">
+          {isAdmin && (
             <button
-              key={t.value}
-              onClick={() => setType(t.value)}
-              className={cn(
-                "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors border",
-                type === t.value
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-background text-muted-foreground hover:bg-accent border-transparent"
-              )}
+              onClick={() => deleteBlock.mutate(b.id)}
+              className="absolute top-2 right-2 hidden group-hover:flex h-5 w-5 items-center justify-center rounded text-destructive opacity-60 hover:opacity-100"
+              aria-label="Remove block"
             >
-              <Icon className="h-3 w-3" />
-              {t.label}
+              <Trash2 className="h-3 w-3" />
             </button>
-          );
-        })}
-      </div>
+          )}
 
-      {/* Fields */}
-      {type === "text" && (
-        <div className="space-y-1.5">
-          <Label className="text-xs">Content</Label>
-          <Textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Write notes, instructions, or tips..."
-            rows={3}
-            className="text-sm resize-none"
-          />
+          {b.title != null && (
+            isAdmin ? (
+              <InlineEditableText
+                value={b.title}
+                onSave={(v) => updateBlock.mutate({ id: b.id, title: v })}
+                isAdmin
+                as="span"
+                className="mb-1 text-sm font-medium block"
+              />
+            ) : (
+              <div className="mb-1 text-sm font-medium">{b.title}</div>
+            )
+          )}
+
+          {b.block_type === "text" && b.body && (
+            isAdmin ? (
+              <InlineEditableText
+                value={b.body}
+                onSave={(v) => updateBlock.mutate({ id: b.id, body: v })}
+                isAdmin
+                as="p"
+                multiline
+                className="text-sm text-muted-foreground"
+              />
+            ) : (
+              <div className="prose prose-sm max-w-none dark:prose-invert">
+                <ReactMarkdown>{b.body}</ReactMarkdown>
+              </div>
+            )
+          )}
+
+          {b.block_type === "link" && b.url && (
+            <div className="space-y-1">
+              <a
+                href={b.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+              >
+                {b.title ?? b.url} <ExternalLink className="h-3 w-3" />
+              </a>
+              {isAdmin && (
+                <InlineEditableText
+                  value={b.url}
+                  onSave={(v) => updateBlock.mutate({ id: b.id, url: v })}
+                  isAdmin
+                  as="span"
+                  className="text-xs text-muted-foreground block"
+                  placeholder="Edit URL..."
+                />
+              )}
+            </div>
+          )}
+
+          {b.block_type === "video" && b.url && (
+            <div className="space-y-1">
+              <a
+                href={b.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+              >
+                <Video className="h-3 w-3" /> {b.title ?? "Watch video"}
+              </a>
+              {isAdmin && (
+                <InlineEditableText
+                  value={b.url}
+                  onSave={(v) => updateBlock.mutate({ id: b.id, url: v })}
+                  isAdmin
+                  as="span"
+                  className="text-xs text-muted-foreground block"
+                  placeholder="Edit URL..."
+                />
+              )}
+            </div>
+          )}
         </div>
-      )}
+      ))}
 
-      {(type === "link" || type === "video") && (
-        <>
-          <div className="space-y-1.5">
-            <Label className="text-xs">
-              {type === "video" ? "Video URL (YouTube, Vimeo, Loom)" : "URL"}
-            </Label>
-            <Input
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder={
-                type === "video"
-                  ? "https://youtube.com/watch?v=..."
-                  : "https://example.com"
-              }
-              className="text-sm"
+      {/* Add block UI for admin */}
+      {isAdmin && (
+        adding ? (
+          <div className="rounded border border-dashed border-primary/30 bg-primary/5 p-3 space-y-2">
+            <div className="flex items-center gap-2 text-xs font-medium text-primary">
+              {BLOCK_TYPE_OPTIONS.find((o) => o.value === adding)?.icon}
+              New {adding} block
+            </div>
+            <input
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+              placeholder="Title (optional)"
+              className="w-full bg-transparent border-b border-primary/30 outline-none text-sm py-1"
+              autoFocus
             />
+            {adding === "text" && (
+              <textarea
+                value={newBody}
+                onChange={(e) => setNewBody(e.target.value)}
+                placeholder="Body text (markdown supported)"
+                className="w-full bg-transparent border-b border-primary/30 outline-none text-sm py-1 resize-none"
+                rows={3}
+              />
+            )}
+            {(adding === "link" || adding === "video") && (
+              <input
+                value={newUrl}
+                onChange={(e) => setNewUrl(e.target.value)}
+                placeholder="URL"
+                className="w-full bg-transparent border-b border-primary/30 outline-none text-sm py-1"
+              />
+            )}
+            <div className="flex gap-2">
+              <button
+                onClick={handleAdd}
+                disabled={adding === "text" ? !newBody.trim() : !newUrl.trim()}
+                className="px-3 py-1 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90 disabled:opacity-40"
+              >
+                Add
+              </button>
+              <button onClick={cancelAdd} className="px-3 py-1 text-xs text-muted-foreground hover:underline">
+                Cancel
+              </button>
+            </div>
           </div>
-          <div className="space-y-1.5">
-            <Label className="text-xs">Label (optional)</Label>
-            <Input
-              value={label}
-              onChange={(e) => setLabel(e.target.value)}
-              placeholder="Display name for this resource"
-              className="text-sm"
-            />
+        ) : (
+          <div className="flex gap-1">
+            {BLOCK_TYPE_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => setAdding(opt.value)}
+                className="flex items-center gap-1 px-2 py-1 text-[11px] text-primary hover:bg-primary/5 rounded border border-transparent hover:border-primary/20 transition-colors"
+              >
+                {opt.icon}
+                <Plus className="h-2.5 w-2.5" />
+                {opt.label}
+              </button>
+            ))}
           </div>
-        </>
+        )
       )}
-
-      {/* Actions */}
-      <div className="flex justify-end gap-2">
-        <Button variant="ghost" size="sm" onClick={onCancel} className="text-xs h-7">
-          Cancel
-        </Button>
-        <Button size="sm" onClick={handleSubmit} disabled={!canSubmit} className="text-xs h-7">
-          Add
-        </Button>
-      </div>
     </div>
   );
 }

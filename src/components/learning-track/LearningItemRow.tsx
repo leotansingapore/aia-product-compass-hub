@@ -1,11 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, ChevronRight, CheckCircle2, Circle, Clock } from "lucide-react";
+import { ChevronDown, ChevronRight, CheckCircle2, Circle, Clock, Trash2 } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { useAdmin } from "@/hooks/useAdmin";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
-import type { LearningTrackItem, ItemStatus } from "@/types/learning-track";
-import { ItemContentBlocks } from "./ItemContentBlocks";
+import { useUpdateItem, useDeleteItem } from "@/hooks/learning-track/useAdminLearningTrackMutations";
+import { InlineEditableText } from "./InlineEditableText";
+import { InlineEditableList } from "./InlineEditableList";
+import { ContentBlockEditor } from "./ContentBlockEditor";
 import { RelatedResources } from "./RelatedResources";
 import { SubmissionPanel } from "./SubmissionPanel";
+import type { LearningTrackItem, ItemStatus } from "@/types/learning-track";
 import { cn } from "@/lib/utils";
 
 interface LearningItemRowProps {
@@ -30,20 +34,30 @@ export function LearningItemRow({
   viewAsUserId,
 }: LearningItemRowProps) {
   const { user } = useSimplifiedAuth();
+  const { isAdmin } = useAdmin();
   const targetUserId = viewAsUserId ?? user?.id;
   const { setStatus, getStatus } = useLearningTrackProgress(targetUserId);
   const [expanded, setExpanded] = useState(defaultExpanded);
   const status = getStatus(item.id);
   const rowRef = useRef<HTMLDivElement>(null);
 
+  const updateItem = useUpdateItem();
+  const deleteItem = useDeleteItem();
+
+  const showAdmin = isAdmin && !readOnly;
+
   useEffect(() => {
     if (defaultExpanded) {
       setExpanded(true);
-      // Scroll deep-linked item into view
       const t = setTimeout(() => rowRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
       return () => clearTimeout(t);
     }
   }, [defaultExpanded]);
+
+  const handleDelete = () => {
+    if (!confirm(`Delete "${item.title}"? This cannot be undone.`)) return;
+    deleteItem.mutate(item.id);
+  };
 
   return (
     <div ref={rowRef} className="px-4 py-3" id={`item-${item.id}`}>
@@ -63,45 +77,117 @@ export function LearningItemRow({
         <button
           type="button"
           onClick={() => setExpanded((e) => !e)}
-          className="flex-1 text-left"
+          className="flex-1 text-left min-w-0"
           aria-expanded={expanded}
         >
           <div className="flex items-center gap-2">
-            {expanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-            <h3 className={cn("font-medium", isCompleted && "line-through text-muted-foreground")}>
-              {item.title}
-            </h3>
+            {expanded ? <ChevronDown className="h-4 w-4 shrink-0" /> : <ChevronRight className="h-4 w-4 shrink-0" />}
+            {showAdmin ? (
+              <InlineEditableText
+                value={item.title}
+                onSave={(v) => updateItem.mutate({ id: item.id, title: v })}
+                isAdmin
+                as="h3"
+                className={cn("font-medium", isCompleted && "line-through text-muted-foreground")}
+              />
+            ) : (
+              <h3 className={cn("font-medium", isCompleted && "line-through text-muted-foreground")}>
+                {item.title}
+              </h3>
+            )}
           </div>
-          {item.description && (
-            <p className="ml-6 mt-1 text-sm text-muted-foreground">{item.description}</p>
+          {showAdmin ? (
+            <div className="ml-6 mt-1">
+              <InlineEditableText
+                value={item.description ?? ""}
+                onSave={(v) => updateItem.mutate({ id: item.id, description: v || null })}
+                isAdmin
+                as="p"
+                className="text-sm text-muted-foreground"
+                placeholder="Add description..."
+              />
+            </div>
+          ) : (
+            item.description && (
+              <p className="ml-6 mt-1 text-sm text-muted-foreground">{item.description}</p>
+            )
           )}
         </button>
+
+        {/* Admin delete button */}
+        {showAdmin && (
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); handleDelete(); }}
+            className="mt-1 h-6 w-6 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors shrink-0"
+            aria-label="Delete item"
+          >
+            <Trash2 className="h-3.5 w-3.5" />
+          </button>
+        )}
       </div>
 
       {expanded && (
         <div className="ml-8 mt-4 space-y-4">
-          {item.objectives && item.objectives.length > 0 && (
+          {/* Objectives */}
+          {(item.objectives && item.objectives.length > 0) || showAdmin ? (
             <div>
               <h4 className="text-sm font-semibold">Objectives</h4>
-              <ul className="ml-4 list-disc text-sm">
-                {item.objectives.map((o, i) => (
-                  <li key={i}>{o}</li>
-                ))}
-              </ul>
+              {showAdmin ? (
+                <InlineEditableList
+                  items={item.objectives ?? []}
+                  onSave={(v) => updateItem.mutate({ id: item.id, objectives: v })}
+                  isAdmin
+                />
+              ) : (
+                <ul className="ml-4 list-disc text-sm">
+                  {(item.objectives ?? []).map((o, i) => (
+                    <li key={i}>{o}</li>
+                  ))}
+                </ul>
+              )}
             </div>
-          )}
-          {item.action_items && item.action_items.length > 0 && (
+          ) : null}
+
+          {/* Action items */}
+          {(item.action_items && item.action_items.length > 0) || showAdmin ? (
             <div>
               <h4 className="text-sm font-semibold">Action items</h4>
-              <ul className="ml-4 list-disc text-sm">
-                {item.action_items.map((a, i) => (
-                  <li key={i}>{a}</li>
-                ))}
-              </ul>
+              {showAdmin ? (
+                <InlineEditableList
+                  items={item.action_items ?? []}
+                  onSave={(v) => updateItem.mutate({ id: item.id, action_items: v })}
+                  isAdmin
+                  bulletColor="bg-amber-500"
+                />
+              ) : (
+                <ul className="ml-4 list-disc text-sm">
+                  {(item.action_items ?? []).map((a, i) => (
+                    <li key={i}>{a}</li>
+                  ))}
+                </ul>
+              )}
             </div>
+          ) : null}
+
+          {/* Submission toggle for admin */}
+          {showAdmin && (
+            <label className="flex items-center gap-2 text-sm cursor-pointer">
+              <input
+                type="checkbox"
+                checked={item.requires_submission}
+                onChange={(e) => updateItem.mutate({ id: item.id, requires_submission: e.target.checked })}
+                className="rounded border-muted-foreground/30"
+              />
+              <span className="text-muted-foreground">Requires submission</span>
+            </label>
           )}
-          <ItemContentBlocks blocks={item.content_blocks} />
+
+          {/* Content blocks - now with admin editing */}
+          <ContentBlockEditor blocks={item.content_blocks} itemId={item.id} />
+
           <RelatedResources item={item} />
+
           {item.requires_submission && (
             <SubmissionPanel itemId={item.id} userId={targetUserId} readOnly={readOnly} />
           )}

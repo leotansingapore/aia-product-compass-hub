@@ -5,6 +5,7 @@ import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackP
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
 import { PhaseSection } from "@/components/learning-track/PhaseSection";
 import { TrackProgressHeader } from "@/components/learning-track/TrackProgressHeader";
+import { AddPhaseButton } from "@/components/learning-track/AddPhaseButton";
 
 export default function PostRnfTrack() {
   const { itemId } = useParams<{ itemId?: string }>();
@@ -28,10 +29,12 @@ export default function PostRnfTrack() {
     );
   }
 
+  const phases = phasesQuery.data ?? [];
+
   return (
     <div className="space-y-4" data-testid="post-rnf-page">
       <TrackProgressHeader track="post_rnf" />
-      {(phasesQuery.data ?? []).map((phase) => (
+      {phases.map((phase) => (
         <PhaseSection
           key={phase.id}
           phase={phase}
@@ -40,6 +43,7 @@ export default function PostRnfTrack() {
           expandedItemId={itemId}
         />
       ))}
+      <AddPhaseButton track="post_rnf" currentPhaseCount={phases.length} />
     </div>
   );
 }
