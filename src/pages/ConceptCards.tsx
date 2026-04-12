@@ -363,7 +363,6 @@ export default function ConceptCardsPage() {
         title="Concept Cards"
         titlePrefix="🃏 "
         subtitle="Visual concept drawings as flashcards — tap to flip and reveal the drawing"
-        showBackButton={false}
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Concept Cards' }]}
       />
 

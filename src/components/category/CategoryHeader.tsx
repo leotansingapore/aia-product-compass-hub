@@ -8,16 +8,13 @@ interface Category {
 
 interface CategoryHeaderProps {
   category: Category;
-  onBack?: () => void;
 }
 
-export function CategoryHeader({ category, onBack }: CategoryHeaderProps) {
+export function CategoryHeader({ category }: CategoryHeaderProps) {
   return (
     <BrandedPageHeader
       title={category.name}
       subtitle={category.description || ''}
-      showBackButton
-      onBack={onBack || (() => window.history.back())}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: category.name }

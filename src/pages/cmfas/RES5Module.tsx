@@ -210,8 +210,6 @@ export default function RES5Module() {
           { label: "CMFAS Exams", href: "/cmfas-exams" },
           { label: "RES5 Module" }
         ]}
-        showBackButton={true}
-        onBack={() => window.history.back()}
       />
 
       <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 md:py-8">

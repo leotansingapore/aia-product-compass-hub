@@ -45,11 +45,13 @@ Make the `/learning-track` feature the primary onboarding surface for new recrui
 
 ### Smart redirect logic for `/learning-track`
 
+**App home (`/`):** Zero-progress recruits are **not** auto-redirected from `Index.tsx`. Onboarding is driven by the **dashboard Learning Track hero card** (“Start Learning” → `/learning-track/...`). The former `lt-redirect-dismissed` / Index redirect flow is **superseded** (removed for UX: nav “Home” must match a stable landing).
+
 ```
 if user is admin:
     navigate to /learning-track/admin/roster
-elif user has zero rows in learning_track_progress AND localStorage['lt-redirect-dismissed'] not set:
-    navigate to /learning-track/pre-rnf  (first-login experience)
+elif pathname is exactly /learning-track (index route):
+    navigate to /learning-track/pre-rnf  (React Router <Navigate to="pre-rnf" replace />)
 elif localStorage['lt-last-tab'] is set:
     navigate to localStorage['lt-last-tab']
 else:
@@ -391,11 +393,11 @@ Redirects to `/learning-track/admin/roster`. Top tab strip switches between Rost
 
 ### 5a. Prominence — three reinforcing surfaces
 
-**1. Dashboard hero card** in `Index.tsx`, above existing dashboard content. Shows current phase, progress bar, next incomplete item title, "Continue" CTA that deep-links to that item. Pins until both tracks hit 100%, then collapses to a small badge.
+**1. Dashboard hero card** in `Index.tsx`, above existing dashboard content. Shows current phase, progress bar, next incomplete item title, "Continue" / "Start Learning" CTA that deep-links to that item. Pins until both tracks hit 100%, then collapses to a small badge. **This is the primary path for zero-progress recruits** (no automatic redirect off `/`).
 
-**2. Sidebar promotion + progress badge** in `AppSidebar.tsx`. Move "Learning Track" to the top of main nav (above Dashboard). Add a progress ring showing combined % across both tracks. Tooltip on hover. Same treatment for the mobile bottom nav "Learn" entry.
+**2. Sidebar promotion + progress badge** in `AppSidebar.tsx`. **Home** (`/`) is first in main nav, then **Learning Track** with a progress badge. Tooltip on hover. Same spirit for the mobile bottom nav "Learn" entry.
 
-**3. Zero-progress redirect** in `Index.tsx`. When user has zero rows in `learning_track_progress` AND is not admin AND `localStorage['lt-redirect-dismissed']` is unset → redirect to `/learning-track/pre-rnf`. A "Go to dashboard instead" link in the hero card sets the dismiss flag. Returning recruits with any progress are never redirected.
+**3. ~~Zero-progress redirect~~ (superseded).** Previously: `Index.tsx` sent non-admins with zero completed items to `/learning-track/pre-rnf` unless `lt-redirect-dismissed` was set. **Removed:** users stay on home; hero CTA and sidebar carry prominence without surprise navigation.
 
 ### 5b. Resource linking — auto-suggest + manual override
 
@@ -451,7 +453,7 @@ Order of operations during implementation:
 3. **Refactor frontend components** — collapse 6 legacy components into 4 shared ones, build `<RelatedResources />`, build admin dashboard views. Replace localStorage hooks with Supabase-backed hooks (TanStack Query mutations).
 4. **One-time client migration** — runs on first authenticated load post-deploy, backfills any local progress into Supabase.
 5. **Obsidian sync script** — `tools/sync_obsidian_resources.py`. Run once after deploy to seed `obsidian_resources`.
-6. **Prominence surfaces** — hero card, sidebar promotion, zero-progress redirect.
+6. **Prominence surfaces** — hero card, sidebar promotion (no Index zero-progress redirect; see §5a).
 7. **QA + Playwright tests** for all new routes, deep links, admin flows, and submission upload/review cycle.
 
 ## Open questions deferred to follow-ups

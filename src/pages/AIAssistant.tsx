@@ -27,10 +27,6 @@ export default function AIAssistant() {
     enabled: !!productId,
   });
 
-  const handleBack = () => {
-    navigate(`/product/${productId}`);
-  };
-
   const handleHome = () => {
     navigate('/');
   };
@@ -75,8 +71,6 @@ export default function AIAssistant() {
           <BrandedPageHeader
             title={`🤖 ${product.title} - AI Assistant`}
             subtitle="Get instant answers about features, benefits, and sales tips"
-            showBackButton
-            onBack={handleBack}
             breadcrumbs={breadcrumbs}
             className="flex-shrink-0"
           />

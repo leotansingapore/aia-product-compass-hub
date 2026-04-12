@@ -97,8 +97,6 @@ export default function Categories() {
           { label: "Home", href: "/" },
           { label: "Product Categories" },
         ]}
-        showBackButton
-        onBack={() => window.history.length > 1 ? window.history.back() : window.location.assign('/')}
       />
 
       <div className="mx-auto px-3 sm:px-6 py-4 sm:py-8 pb-20 sm:pb-8">

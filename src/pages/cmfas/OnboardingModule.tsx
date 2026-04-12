@@ -66,8 +66,6 @@ const OnboardingModule = () => {
             { label: "CMFAS Exams", href: "/cmfas-exams" },
             { label: "Onboarding" }
           ]}
-          showBackButton={true}
-          onBack={() => window.history.back()}
         />
       </header>
 

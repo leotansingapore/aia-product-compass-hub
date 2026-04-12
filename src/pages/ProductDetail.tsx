@@ -153,7 +153,6 @@ export default function ProductDetail() {
           productTitle={product.title}
           categoryName={categoryName}
           description={product.description || ''}
-          onBack={handleBack}
           breadcrumbs={breadcrumbs}
           onTitleEdit={isAdminMode ? (newTitle) => handleUpdate('title', newTitle) : undefined}
           onDescriptionEdit={isAdminMode ? (newDesc) => handleUpdate('description', newDesc) : undefined}

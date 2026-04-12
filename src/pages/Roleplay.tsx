@@ -13,7 +13,7 @@ import { MessageCircle, Video } from 'lucide-react';
 const PitchAnalysis = lazy(() => import('@/pages/PitchAnalysis'));
 
 export default function Roleplay() {
-  const { scenarios, selectedScenario, handleStartRoleplay, handleBackToSelection } = useRoleplay();
+  const { scenarios, selectedScenario, handleStartRoleplay } = useRoleplay();
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get('tab') || 'roleplay';
 
@@ -30,8 +30,6 @@ export default function Roleplay() {
         <BrandedPageHeader
           title={`🎭 ${selectedScenario.title}`}
           subtitle={selectedScenario.description}
-          showBackButton
-          onBack={handleBackToSelection}
           breadcrumbs={[
             { label: "Home", href: "/" },
             { label: "Roleplay", href: "/roleplay" },
@@ -59,8 +57,6 @@ export default function Roleplay() {
           { label: "Home", href: "/" },
           { label: "Roleplay Training" }
         ]}
-        showBackButton={true}
-        onBack={() => window.history.length > 1 ? window.history.back() : window.location.assign('/')}
       />
 
       <div className="mx-auto px-3 sm:px-6 py-3 sm:py-6 md:py-8 pb-20 sm:pb-8">

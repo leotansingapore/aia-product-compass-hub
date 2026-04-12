@@ -3,7 +3,8 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Home, Library, FileText, MessageCircle, Grid3X3 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Bookmark, GraduationCap, Users, HelpCircle, BookOpen, GitBranch, TrendingUp, ListChecks } from "lucide-react";
+import { Bookmark, GraduationCap, Users, HelpCircle, BookOpen, GitBranch, TrendingUp, MessageSquarePlus } from "lucide-react";
+import { FeedbackModal } from "@/components/FeedbackButton";
 
 const navigationItems = [
   { name: "Home", href: "/", icon: Home },
@@ -12,7 +13,10 @@ const navigationItems = [
   { name: "Roleplay", href: "/roleplay", icon: MessageCircle },
 ];
 
+const FEEDBACK_HREF = "__feedback__" as const;
+
 const quickLinkItems = [
+  { name: "Feedback", href: FEEDBACK_HREF, icon: MessageSquarePlus, color: "text-slate-600", bg: "bg-slate-100 dark:bg-slate-900/40" },
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30" },
   
   { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
@@ -27,6 +31,7 @@ export function MobileBottomNav() {
   const location = useLocation();
   const navigate = useNavigate();
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   return (
     <>
@@ -89,7 +94,16 @@ export function MobileBottomNav() {
             {quickLinkItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => { navigate(item.href); setSheetOpen(false); }}
+                type="button"
+                onClick={() => {
+                  if (item.href === FEEDBACK_HREF) {
+                    setFeedbackOpen(true);
+                    setSheetOpen(false);
+                    return;
+                  }
+                  navigate(item.href);
+                  setSheetOpen(false);
+                }}
                 className="flex flex-col items-center gap-2 group active:scale-95 transition-transform"
               >
                 <div className={cn(
@@ -104,6 +118,8 @@ export function MobileBottomNav() {
           </div>
         </SheetContent>
       </Sheet>
+
+      <FeedbackModal open={feedbackOpen} onOpenChange={setFeedbackOpen} />
     </>
   );
 }

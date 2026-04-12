@@ -1,7 +1,5 @@
-import { memo, useMemo, useState, useRef, useCallback } from "react";
-import { ArrowLeft } from "lucide-react";
+import { memo, useMemo, useState, useRef, useCallback, type ReactNode } from "react";
 import InlineEditIcon from "@/assets/inline-edit-icon.svg";
-import { Button } from "@/components/ui/button";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -22,8 +20,6 @@ interface BrandedPageHeaderProps {
   title: string;
   titlePrefix?: string;
   subtitle?: string;
-  showBackButton?: boolean;
-  onBack?: () => void;
   breadcrumbs?: BreadcrumbItem[];
   actions?: React.ReactNode;
   searchBar?: React.ReactNode;
@@ -31,21 +27,28 @@ interface BrandedPageHeaderProps {
   className?: string;
   onTitleEdit?: (newTitle: string) => Promise<void>;
   onSubtitleEdit?: (newSubtitle: string) => Promise<void>;
+  /** Renders below the title row (e.g. underline-style tabs). */
+  headerTabs?: ReactNode;
+  /** When true, header is shown on small screens (default hero is `sm`+ only). */
+  showOnMobile?: boolean;
+  /** `hero` = brand gradient; `dark` = near-black slab (e.g. learning-style header). */
+  tone?: "hero" | "dark";
 }
 
 export const BrandedPageHeader = memo(function BrandedPageHeader({
   title,
   titlePrefix,
   subtitle,
-  showBackButton,
-  onBack,
   breadcrumbs,
   actions,
   searchBar,
   variant = "default",
   className,
   onTitleEdit,
-  onSubtitleEdit
+  onSubtitleEdit,
+  headerTabs,
+  showOnMobile = false,
+  tone = "hero",
 }: BrandedPageHeaderProps) {
 
   const [isEditingTitle, setIsEditingTitle] = useState(false);
@@ -120,13 +123,23 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
     ]).flat().filter(Boolean);
   }, [breadcrumbs]);
 
+  /** `dark` = same brand hero gradient as default (see `--gradient-hero`), not neutral gray. */
+  const toneClasses =
+    tone === "dark"
+      ? "bg-gradient-hero text-white border-b border-white/20"
+      : "bg-gradient-hero text-white";
+
+  const visibilityClasses =
+    variant === "compact"
+      ? "py-2 sm:py-3 px-2 sm:px-3"
+      : showOnMobile
+        ? "block py-4 px-3 sm:py-3 md:py-6 sm:px-3 md:px-4"
+        : "hidden sm:block sm:py-3 md:py-6 sm:px-3 md:px-4";
+
   return (
-    <div className={cn(
-      "bg-gradient-hero text-white",
-      variant === "compact" ? "py-2 sm:py-3 px-2 sm:px-3" : "hidden sm:block sm:py-3 md:py-6 sm:px-3 md:px-4",
-      className
-    )}>
-      <div className="w-full">
+    <div className={cn(toneClasses, visibilityClasses, className)}>
+      <div className="flex w-full flex-col">
+        <div className="w-full">
         {breadcrumbElements && (
           <div className="mb-2 md:mb-3 hidden sm:block">
             <Breadcrumb>
@@ -138,25 +151,17 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
         )}
 
         <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            {showBackButton && (
-              <Button
-                variant="ghost"
-                onClick={onBack}
-                className="hidden sm:flex text-white hover:bg-white/20 mobile-touch-target transition-colors"
-                aria-label="Go back to previous page"
-              >
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                <span className="ml-2">Back</span>
-              </Button>
-            )}
-            <div className="min-w-0 flex-1">
+          <div className="min-w-0 flex-1">
               {isEditingTitle ? (
                 <div className="grid min-w-[120px] max-w-full">
                   <span
                     className={cn(
                       "invisible whitespace-pre col-start-1 row-start-1 font-bold px-1",
-                      variant === "compact" ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-2xl"
+                      variant === "compact"
+                        ? "text-base sm:text-lg"
+                        : tone === "dark"
+                          ? "text-2xl sm:text-3xl md:text-4xl tracking-tight"
+                          : "text-base sm:text-lg md:text-2xl"
                     )}
                   >
                     {editValue || " "}
@@ -172,7 +177,11 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
                     className={cn(
                       "col-start-1 row-start-1 font-bold bg-transparent border-none outline-none text-white",
                       "ring-1 ring-white/30 rounded px-1",
-                      variant === "compact" ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-2xl"
+                      variant === "compact"
+                        ? "text-base sm:text-lg"
+                        : tone === "dark"
+                          ? "text-2xl sm:text-3xl md:text-4xl tracking-tight"
+                          : "text-base sm:text-lg md:text-2xl"
                     )}
                   />
                 </div>
@@ -180,7 +189,11 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
                 <h1
                   className={cn(
                     "font-bold break-words",
-                    variant === "compact" ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-2xl",
+                    variant === "compact"
+                      ? "text-base sm:text-lg"
+                      : tone === "dark"
+                        ? "text-2xl sm:text-3xl md:text-4xl tracking-tight"
+                        : "text-base sm:text-lg md:text-2xl",
                     onTitleEdit && "cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-colors group/title flex items-center gap-1.5"
                   )}
                   onClick={handleTitleClick}
@@ -194,9 +207,17 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
               {subtitle && !isEditingSubtitle && (
                 <p
                   className={cn(
-                    "hidden text-white/90 mt-1 break-words",
-                    variant === "compact" ? "text-micro md:text-sm" : "text-sm md:text-base",
-                    onSubtitleEdit ? "sm:inline-flex items-center gap-1.5 cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-all duration-300 ease-in-out group/subtitle" : "sm:block"
+                    "text-white/90 mt-1 break-words",
+                    showOnMobile
+                      ? onSubtitleEdit
+                        ? "flex flex-wrap items-center gap-1.5 cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-all duration-300 ease-in-out group/subtitle"
+                        : "block"
+                      : cn(
+                          "hidden sm:block",
+                          onSubtitleEdit &&
+                            "sm:inline-flex items-center gap-1.5 cursor-pointer hover:bg-white/10 rounded px-1 -mx-1 transition-all duration-300 ease-in-out group/subtitle"
+                        ),
+                    variant === "compact" ? "text-micro md:text-sm" : "text-sm md:text-base"
                   )}
                   onClick={onSubtitleEdit ? handleSubtitleClick : undefined}
                 >
@@ -233,7 +254,6 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
                 </div>
               )}
             </div>
-          </div>
           {actions && (
             <div className="flex items-center space-x-2">
               {actions}
@@ -244,6 +264,18 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
         {searchBar && (
           <div className="mt-4">
             {searchBar}
+          </div>
+        )}
+        </div>
+
+        {headerTabs && (
+          <div
+            className={cn(
+              "mt-5 w-full border-t border-white/15 pt-3 sm:mt-6 sm:pt-4",
+              tone === "dark" && "-mx-3 px-0 sm:mx-0 sm:px-0"
+            )}
+          >
+            {headerTabs}
           </div>
         )}
       </div>

@@ -1,16 +1,15 @@
 import { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-import { EyeOff } from "lucide-react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { EyeOff, Search } from "lucide-react";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
 import { ProductsGrid } from "@/components/category/ProductsGrid";
 import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
-import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
+import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
 import { EditableText } from "@/components/EditableText";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -21,7 +20,7 @@ import { usePermissions } from "@/hooks/usePermissions";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { cn } from "@/lib/utils";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const DEFAULT_ABOUT_TEXT = `The Capital Markets Financial Advisory Services (CMFAS) certification is required for financial advisors in Singapore to provide investment advice on capital market products.
 
@@ -40,8 +39,26 @@ const DEFAULT_USEFUL_LINKS: UsefulLink[] = [
 
 const META_PRODUCT_ID = "cmfas-exams-page";
 
+const HUB_TABS = ["modules", "resources", "about"] as const;
+type HubTab = (typeof HUB_TABS)[number];
+
+/** Underline tabs in dark header (reference: learning hub style). */
+const HUB_TAB_LIST_CLASS =
+  "bg-transparent p-0 h-auto min-h-0 w-full flex flex-nowrap justify-start gap-0 overflow-x-auto rounded-none shadow-none [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6 md:gap-8";
+const HUB_TAB_TRIGGER_CLASS =
+  "shrink-0 rounded-none border-0 border-b-2 border-transparent bg-transparent px-3 py-2.5 text-sm font-medium text-white/80 shadow-none ring-offset-transparent transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 data-[state=active]:border-white data-[state=active]:bg-transparent data-[state=active]:text-white data-[state=active]:shadow-none sm:px-2 sm:py-3 min-h-[44px] sm:min-h-0";
+
 export default function CMFASExams() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tabParam = searchParams.get("tab");
+  const activeHubTab: HubTab = HUB_TABS.includes(tabParam as HubTab)
+    ? (tabParam as HubTab)
+    : "modules";
+  const handleHubTabChange = (value: string) => {
+    setSearchParams(value === "modules" ? {} : { tab: value }, { replace: true });
+  };
+
   const { isAdmin } = usePermissions();
   const { isViewingAsUser } = useViewMode();
   const isAdminUser = isAdmin() && !isViewingAsUser;
@@ -250,21 +267,38 @@ export default function CMFASExams() {
         keywords="CMFAS exam, capital markets, financial advisory, certification, exam preparation, modules, practice tests"
         structuredData={structuredData}
       >
-        <BrandedPageHeader
-          title={cmfasCategory.name}
-          titlePrefix="📚 "
-          subtitle={cmfasCategory.description || undefined}
-          breadcrumbs={[
-            { label: "Home", href: "/" },
-            { label: cmfasCategory.name },
-          ]}
-          showBackButton
-          onBack={() => window.history.back()}
-          onTitleEdit={isAdminUser ? handleCategoryTitleEdit : undefined}
-          onSubtitleEdit={isAdminUser ? handleCategoryDescriptionEdit : undefined}
-        />
+        <Tabs
+          value={activeHubTab}
+          onValueChange={handleHubTabChange}
+          className="flex flex-col"
+        >
+          <BrandedPageHeader
+            tone="dark"
+            showOnMobile
+            title={cmfasCategory.name}
+            subtitle={cmfasCategory.description || undefined}
+            breadcrumbs={[
+              { label: "Home", href: "/" },
+              { label: cmfasCategory.name },
+            ]}
+            onTitleEdit={isAdminUser ? handleCategoryTitleEdit : undefined}
+            onSubtitleEdit={isAdminUser ? handleCategoryDescriptionEdit : undefined}
+            headerTabs={
+              <TabsList className={HUB_TAB_LIST_CLASS}>
+                <TabsTrigger value="modules" className={HUB_TAB_TRIGGER_CLASS}>
+                  Modules
+                </TabsTrigger>
+                <TabsTrigger value="resources" className={HUB_TAB_TRIGGER_CLASS}>
+                  Exam resources
+                </TabsTrigger>
+                <TabsTrigger value="about" className={HUB_TAB_TRIGGER_CLASS}>
+                  About
+                </TabsTrigger>
+              </TabsList>
+            }
+          />
 
-        <div className="mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 space-y-6">
+        <div className="mx-auto w-full max-w-6xl space-y-8 px-3 py-4 pb-24 sm:px-6 sm:py-6 sm:pb-28 md:px-8 md:py-10">
           {/* Draft banner */}
           {isAdminUser && cmfasCategory.published === false && (
             <div className="flex items-center justify-between rounded-lg border border-dashed border-muted-foreground/30 bg-muted/50 px-3 sm:px-4 py-2 sm:py-3">
@@ -285,55 +319,84 @@ export default function CMFASExams() {
             </div>
           )}
 
-          {/* Useful links (admin-editable) */}
-          <CMFASUsefulLinks links={usefulLinks} onUpdate={handleUsefulLinksUpdate} />
-
-          {/* AI tutor launcher */}
-          <CMFASChatLauncher description="Get general help with CMFAS exam preparation, study strategies, and certification requirements" />
-
-          {/* Admin module creation */}
+          {/* Admin module creation — above discovery for admins */}
           {isAdminUser && categoryId && (
             <CreateModuleForm categoryId={categoryId} onModuleCreated={refetchProducts} />
           )}
 
-          {/* Search */}
-          <div className="relative">
-            <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search CMFAS modules..."
-              className="pl-9"
-              aria-label="Search CMFAS modules"
-            />
-          </div>
+            <TabsContent value="modules" className="space-y-4 outline-none">
+              <section
+                id="cmf-modules"
+                className="space-y-5"
+                aria-labelledby="cmf-modules-heading"
+              >
+                <p className="text-sm leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
+                  Choose a module below to open lessons, videos, and study materials for that exam.
+                </p>
+                <h2 id="cmf-modules-heading" className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+                  Your modules
+                </h2>
+                <div className="relative">
+                  <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type="search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search CMFAS modules..."
+                    className="pl-9"
+                    aria-label="Search CMFAS modules"
+                  />
+                </div>
 
-          {/* Modules grid */}
-          <ProductsGrid
-            products={filteredProducts}
-            categoryName={cmfasCategory.name}
-            onProductClick={(id) => navigate(`/cmfas/module/${id.replace(/-module$/, "")}`)}
-            onClearFilters={() => setSearchQuery("")}
-            onEditProduct={isAdminUser ? handleEditProduct : undefined}
-            onDeleteProduct={isAdminUser ? handleDeleteProduct : undefined}
-            onTogglePublish={isAdminUser ? handleTogglePublish : undefined}
-            onNestingChange={refetchProducts}
-          />
+                <ProductsGrid
+                  products={filteredProducts}
+                  categoryName={cmfasCategory.name}
+                  onProductClick={(id) => navigate(`/cmfas/module/${id.replace(/-module$/, "")}`)}
+                  onClearFilters={() => setSearchQuery("")}
+                  onEditProduct={isAdminUser ? handleEditProduct : undefined}
+                  onDeleteProduct={isAdminUser ? handleDeleteProduct : undefined}
+                  onTogglePublish={isAdminUser ? handleTogglePublish : undefined}
+                  onNestingChange={refetchProducts}
+                />
+              </section>
+            </TabsContent>
 
-          {/* About section */}
-          <div className={cn("bg-card rounded-lg p-6 border shadow-card")}>
-            <h2 className="text-xl font-semibold mb-4">About CMFAS Certification</h2>
-            <EditableText
-              value={aboutText}
-              onSave={isAdminUser ? handleAboutUpdate : undefined}
-              multiline
-              className="text-muted-foreground leading-relaxed"
-              placeholder="Add information about CMFAS certification..."
-              readOnly={!isAdminUser}
-            />
-          </div>
+            <TabsContent value="resources" className="space-y-4 outline-none">
+              <CMFASUsefulLinks
+                links={usefulLinks}
+                onUpdate={handleUsefulLinksUpdate}
+                variant="hub"
+                hubCollapsible={false}
+                description="Official portals, question banks, and references for CMFAS exam preparation."
+              />
+            </TabsContent>
+
+            <TabsContent value="about" className="space-y-4 outline-none">
+              <section
+                className="rounded-lg border bg-card p-4 shadow-card sm:p-6"
+                aria-labelledby="cmf-about-heading"
+              >
+                <h2
+                  id="cmf-about-heading"
+                  className="text-base font-semibold text-foreground sm:text-lg"
+                >
+                  About CMFAS certification
+                </h2>
+                <EditableText
+                  value={aboutText}
+                  onSave={isAdminUser ? handleAboutUpdate : undefined}
+                  multiline
+                  className="mt-4 text-muted-foreground leading-relaxed"
+                  placeholder="Add information about CMFAS certification..."
+                  readOnly={!isAdminUser}
+                />
+              </section>
+            </TabsContent>
         </div>
+
+        </Tabs>
+
+        <CMFASHubChatFAB />
       </PageLayout>
     </ProtectedPage>
   );

@@ -3328,8 +3328,6 @@ export default function ScriptsDatabase() {
       <BrandedPageHeader
         title="📝 Scripts & Objections"
         subtitle="Reference scripts, objection handling, and team knowledge base"
-        showBackButton
-        onBack={() => navigate("/")}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Scripts & Objections" }]}
         className="hidden sm:block"
       />

@@ -64,7 +64,6 @@ export default function ProductCategory() {
     handleSearch,
     handleProductClick,
     clearFilters,
-    handleBack
   } = useProductCategory();
 
   // CMFAS has a dedicated page at /cmfas-exams — redirect to keep both URLs in sync
@@ -252,8 +251,6 @@ export default function ProductCategory() {
         title={category.name}
         titlePrefix={categoryInfo?.icon ? `${categoryInfo.icon} ` : undefined}
         subtitle={category.description || categoryInfo?.description}
-        showBackButton
-        onBack={handleBack}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: category.name }

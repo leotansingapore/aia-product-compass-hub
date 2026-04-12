@@ -395,7 +395,8 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
             >
               <span className="mr-2 flex-shrink-0">{link.icon}</span>
               <span className="break-words whitespace-normal text-left">{link.name}</span>
-              <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" />
+              <span className="sr-only">Opens in a new tab</span>
+              <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" aria-hidden />
             </a>
           </Button>
         ))}
@@ -518,7 +519,8 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
               >
                 <span className="mr-2 flex-shrink-0 text-lg">{link.icon}</span>
                 <span className="break-words whitespace-normal text-left font-medium">{link.name}</span>
-                <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" />
+                <span className="sr-only">Opens in a new tab</span>
+                <ExternalLink className="h-4 w-4 ml-auto flex-shrink-0" aria-hidden />
               </a>
             </Button>
           ))

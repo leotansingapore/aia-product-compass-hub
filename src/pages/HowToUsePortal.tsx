@@ -108,8 +108,6 @@ export default function HowToUsePortal() {
       <BrandedPageHeader
         title="📖 How to Use This Portal"
         subtitle="Your comprehensive guide to mastering the FINternship Learning Platform"
-        showBackButton={true}
-        onBack={() => window.history.back()}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "How to Use Portal" }

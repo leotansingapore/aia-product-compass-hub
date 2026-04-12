@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import { createPortal } from 'react-dom';
 import { MessageSquarePlus, X, Bug, Lightbulb, MessageCircle, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -15,31 +15,37 @@ const TYPES: { value: FeedbackType; label: string; icon: React.ReactNode; color:
   { value: 'feedback', label: 'General Feedback', icon: <MessageCircle className="h-4 w-4" />, color: 'text-primary' },
 ];
 
-export function FeedbackButton() {
+type FeedbackModalProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+};
+
+/** Controlled feedback form + panel (portal). Use with sidebar, mobile sheet, etc. */
+export function FeedbackModal({ open, onOpenChange }: FeedbackModalProps) {
   const { user } = useSimplifiedAuth();
   const { submitFeedback, submitting } = useFeedback();
-  const [open, setOpen] = useState(false);
   const [type, setType] = useState<FeedbackType>('feedback');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [typeOpen, setTypeOpen] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  useEffect(() => {
+    if (!open) {
+      setTitle('');
+      setDescription('');
+      setType('feedback');
+      setSuccess(false);
+      setTypeOpen(false);
+    }
+  }, [open]);
+
   if (!user) return null;
 
   const selectedType = TYPES.find(t => t.value === type)!;
 
-  const reset = () => {
-    setTitle('');
-    setDescription('');
-    setType('feedback');
-    setSuccess(false);
-    setTypeOpen(false);
-  };
-
   const handleClose = () => {
-    setOpen(false);
-    setTimeout(reset, 300);
+    onOpenChange(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,41 +54,25 @@ export function FeedbackButton() {
     const ok = await submitFeedback({ type, title: title.trim(), description: description.trim() });
     if (ok) {
       setSuccess(true);
-      setTimeout(handleClose, 1800);
+      setTimeout(() => {
+        onOpenChange(false);
+      }, 1800);
     }
   };
 
-  const button = (
-    <button
-      onClick={() => setOpen(true)}
-      aria-label="Submit feedback or bug report"
-      className={cn(
-        'fixed z-[9990] bottom-[5.5rem] right-4 sm:bottom-[5rem] sm:right-6',
-        'flex items-center gap-2 px-3 py-2 rounded-full',
-        'bg-card border border-border shadow-lg text-muted-foreground',
-        'hover:text-foreground hover:border-primary/40 hover:shadow-xl hover:scale-105',
-        'transition-all duration-200 text-xs font-medium select-none',
-        open && 'opacity-0 pointer-events-none'
-      )}
-    >
-      <MessageSquarePlus className="h-4 w-4" />
-      <span className="hidden sm:inline">Feedback</span>
-    </button>
-  );
+  if (!open) return null;
 
-  const modal = open && (
+  const modal = (
     <div
       className="fixed inset-0 z-[9991] flex items-end sm:items-end sm:justify-end pointer-events-none"
       aria-modal="true"
       role="dialog"
     >
-      {/* Backdrop (mobile only) */}
       <div
         className="absolute inset-0 bg-black/20 sm:hidden pointer-events-auto"
         onClick={handleClose}
       />
 
-      {/* Panel */}
       <div
         className={cn(
           'relative pointer-events-auto',
@@ -93,7 +83,6 @@ export function FeedbackButton() {
           'animate-in slide-in-from-bottom-4 duration-200',
         )}
       >
-        {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-border">
           <div className="flex items-center gap-2">
             <MessageSquarePlus className="h-4 w-4 text-primary" />
@@ -120,7 +109,6 @@ export function FeedbackButton() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-4 space-y-3">
-            {/* Type picker */}
             <div className="relative">
               <Label className="text-xs mb-1.5 block text-muted-foreground">Type</Label>
               <button
@@ -154,7 +142,6 @@ export function FeedbackButton() {
               )}
             </div>
 
-            {/* Title */}
             <div>
               <Label htmlFor="fb-title" className="text-xs mb-1.5 block text-muted-foreground">Title</Label>
               <Input
@@ -168,7 +155,6 @@ export function FeedbackButton() {
               />
             </div>
 
-            {/* Description */}
             <div>
               <Label htmlFor="fb-desc" className="text-xs mb-1.5 block text-muted-foreground">
                 {type === 'bug' ? 'Steps to reproduce / what happened' : 'Details'}
@@ -185,7 +171,6 @@ export function FeedbackButton() {
               />
             </div>
 
-            {/* Page */}
             <p className="text-[11px] text-muted-foreground">
               📍 Page: <span className="font-mono">{window.location.pathname}</span>
             </p>
@@ -199,11 +184,5 @@ export function FeedbackButton() {
     </div>
   );
 
-  return createPortal(
-    <>
-      {button}
-      {modal}
-    </>,
-    document.body
-  );
+  return createPortal(modal, document.body);
 }

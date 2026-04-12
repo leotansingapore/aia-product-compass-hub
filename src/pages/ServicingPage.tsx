@@ -773,8 +773,6 @@ export default function ServicingPage() {
       <BrandedPageHeader
         title="🛎️ Servicing Templates"
         subtitle="Text templates for client communication and policy servicing"
-        showBackButton
-        onBack={() => navigate("/")}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Servicing" }]}
       />
 

@@ -75,8 +75,6 @@ export default function MyAccount() {
             { label: "Home", href: "/" },
             { label: "My Account" }
           ]}
-          showBackButton={true}
-          onBack={() => window.history.back()}
         />
 
         <main role="main" aria-label="Account management" className="mx-auto max-w-4xl px-4 sm:px-6 py-4 sm:py-8 md:pb-10 space-y-6">

@@ -18,7 +18,6 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppStructureSync } from "@/hooks/useAppStructureSync";
 import { usePermissions } from "@/hooks/usePermissions";
-import { FeedbackButton } from "@/components/FeedbackButton";
 
 // Safe fallback to avoid crash if AdminProvider isn't mounted (e.g., during boot/HMR)
 const useAdminSafe = () => {
@@ -176,7 +175,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         <WelcomeModal />
         <OnboardingTutorial />
         <OnboardingHelpButton />
-        <FeedbackButton />
         
         {profileOpen && (
           <Suspense fallback={null}>
@@ -221,7 +219,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
       <WelcomeModal />
       <OnboardingTutorial />
       <OnboardingHelpButton />
-      <FeedbackButton />
       
       {profileOpen && (
         <Suspense fallback={null}>
