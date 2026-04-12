@@ -671,20 +671,7 @@ Return ONLY a valid JSON object (no markdown, no code blocks). Structure:
           const appUrl = "https://academy.finternship.com";
           const feedbackUrl = `${appUrl}/roleplay/pitch-analysis`;
 
-          const html = await renderAsync(
-            React.createElement(PitchAnalysisCompleteEmail, {
-              userName,
-              videoTitle: parsed.video_title || videoUrl,
-              overallScore: parsed.overall_score || 0,
-              productKnowledgeScore: parsed.product_knowledge_score || 0,
-              needsDiscoveryScore: parsed.needs_discovery_score || 0,
-              objectionHandlingScore: parsed.objection_handling_score || 0,
-              closingTechniqueScore: parsed.closing_technique_score || 0,
-              communicationScore: parsed.communication_score || 0,
-              executiveSummary: parsed.executive_summary || "",
-              feedbackUrl,
-            })
-          );
+          const html = `<h2>Hi ${userName},</h2><p>Your pitch analysis for <strong>${parsed.video_title || videoUrl}</strong> is ready!</p><p>Overall Score: <strong>${parsed.overall_score || 0}/10</strong></p><p>${parsed.executive_summary || ""}</p><p><a href="${feedbackUrl}">View Full Feedback →</a></p>`;
 
           await resend.emails.send({
             from: "FINternship <noreply@mail.themoneybees.co>",
