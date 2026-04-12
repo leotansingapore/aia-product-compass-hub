@@ -86,7 +86,6 @@ const allResourceItems = [
   { title: "Pitch Analysis", url: "/roleplay/pitch-analysis", icon: Video, sectionId: "pitch-analysis" },
   { title: "Search by Client", url: "/search-by-profile", icon: Users, sectionId: "search-by-profile" },
   { title: "Sales Playbooks", url: "/scripts", icon: TrendingUp, sectionId: "sales-playbooks" },
-  { title: "Concept Cards", url: "/concept-cards", icon: Layers, sectionId: "concept-cards" },
 ];
 
 /** Sub-component that fetches and renders products for a single category */
