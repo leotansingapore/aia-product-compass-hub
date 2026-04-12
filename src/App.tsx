@@ -118,6 +118,7 @@ const App = () => (
                       </RequireAuth>
                     } />
                     <Route path="/my-account" element={<RequireAuth><MyAccount /></RequireAuth>} />
+                    <Route path="/categories" element={<RequireAuth><Categories /></RequireAuth>} />
                     <Route path="/category/:categorySlugOrId" element={<RequireAuth><ProductCategory /></RequireAuth>} />
                     <Route path="/product/:productSlugOrId" element={<RequireAuth><ProductDetail /></RequireAuth>} />
                     <Route path="/product/:productSlugOrId/:pageId" element={<RequireAuth><ProductDetail /></RequireAuth>} />
