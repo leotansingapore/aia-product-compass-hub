@@ -187,61 +187,7 @@ export default function ProductDetail() {
             )}
           </div>
 
-          {/* Study Bank + Product Exam CTA */}
-          {(PRODUCTS_WITH_STUDY.has(product.id) || PRODUCTS_WITH_EXAMS.has(product.id)) && (
-            <Card className="mb-4 sm:mb-8 border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20">
-              <CardContent className="p-4 sm:p-6 space-y-4">
-                {/* Study Bank */}
-                {PRODUCTS_WITH_STUDY.has(product.id) && (
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10 shrink-0">
-                      <BookOpen className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-sm sm:text-base">Study Bank</h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground">
-                        Practice questions with instant feedback — study at your own pace
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="outline"
-                    onClick={() => navigate(`/product/${productSlugOrId}/study`)}
-                    className="shrink-0 w-full sm:w-auto"
-                  >
-                    Start Studying
-                  </Button>
-                </div>
-                )}
-                {PRODUCTS_WITH_STUDY.has(product.id) && PRODUCTS_WITH_EXAMS.has(product.id) && (
-                  <div className="border-t" />
-                )}
-                {/* Exam */}
-                {PRODUCTS_WITH_EXAMS.has(product.id) && (
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/30 shrink-0">
-                      <Brain className="h-5 w-5 text-green-700 dark:text-green-400" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-sm sm:text-base">Product Knowledge Exam</h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground">
-                        Scored exam recorded on your profile — take when you're ready
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    onClick={() => navigate(`/product/${productSlugOrId}/exam`)}
-                    className="shrink-0 w-full sm:w-auto"
-                  >
-                    Take Exam
-                  </Button>
-                </div>
-                )}
-              </CardContent>
-            </Card>
-          )}
+          
 
           {/* Training Videos Section */}
           <ProtectedSection sectionId="product_videos">
