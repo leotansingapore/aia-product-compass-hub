@@ -232,7 +232,7 @@ export default function ProductDetail() {
                   </div>
                   <Button
                     variant="outline"
-                    onClick={() => navigate(`/product/${productSlugOrId}/study`)}
+                    onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/study`)}
                     className="shrink-0 w-full sm:w-auto"
                   >
                     Start Studying
@@ -256,7 +256,7 @@ export default function ProductDetail() {
                     </div>
                   </div>
                   <Button
-                    onClick={() => navigate(`/product/${productSlugOrId}/exam`)}
+                    onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/exam`)}
                     className="shrink-0 w-full sm:w-auto"
                   >
                     Take Exam
