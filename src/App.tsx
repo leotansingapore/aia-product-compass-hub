@@ -43,6 +43,7 @@ const CMFASChat = lazy(() => import("./pages/cmfas/CMFASChat"));
 const Roleplay = lazy(() => import("./pages/Roleplay"));
 const RoleplayFeedback = lazy(() => import("./pages/RoleplayFeedback"));
 
+const Categories = lazy(() => import("./pages/Categories"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const MyAccount = lazy(() => import("./pages/MyAccount"));
 const VideoDetail = lazy(() => import("./pages/VideoDetail"));
