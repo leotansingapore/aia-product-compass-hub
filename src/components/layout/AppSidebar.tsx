@@ -28,7 +28,7 @@ import {
   Video,
   Target,
   Headset,
-  Layers,
+  
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -86,7 +86,6 @@ const allResourceItems = [
   { title: "Pitch Analysis", url: "/roleplay/pitch-analysis", icon: Video, sectionId: "pitch-analysis" },
   { title: "Search by Client", url: "/search-by-profile", icon: Users, sectionId: "search-by-profile" },
   { title: "Sales Playbooks", url: "/scripts", icon: TrendingUp, sectionId: "sales-playbooks" },
-  { title: "Concept Cards", url: "/concept-cards", icon: Layers, sectionId: "concept-cards" },
 ];
 
 /** Sub-component that fetches and renders products for a single category */
@@ -479,21 +478,21 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
             </Collapsible>
           </SidebarGroup>
 
-          {/* Resources — split into Sales Playbooks and Utilities */}
+          {/* Sales Playbooks — single entry with last-visited memory */}
           <SidebarGroup>
-            <SidebarGroupLabel>Sales Playbooks</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {resourceItems.filter(i => ['sales-playbooks', 'concept-cards'].includes(i.sectionId)).map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
-                      <NavLink to={item.url} className={getNavClassName(item.url)}>
-                        <item.icon className="h-4 w-4" />
-                        {!isCollapsed && <span>{item.title}</span>}
-                      </NavLink>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip={isCollapsed ? "Sales Playbooks" : undefined}>
+                    <NavLink
+                      to={(() => { try { return localStorage.getItem('sales-playbooks-last-route') || '/scripts'; } catch { return '/scripts'; } })()}
+                      className={getNavClassName('/scripts')}
+                    >
+                      <TrendingUp className="h-4 w-4" />
+                      {!isCollapsed && <span>Sales Playbooks</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, LogOut, Home, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, BookOpen } from "lucide-react";
+import { Menu, X, LogOut, Home, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
@@ -26,11 +26,12 @@ export function MobileDrawer() {
     { name: "Roleplay Training", href: "/roleplay", icon: MessageCircle },
   ];
 
+  const salesPlaybooksRoute = (() => { try { return localStorage.getItem('sales-playbooks-last-route') || '/scripts'; } catch { return '/scripts'; } })();
+
   const resourceItems = [
     { name: "How to Use Portal", href: "/how-to-use", icon: HelpCircle },
     { name: "Search by Client Profile", href: "/search-by-profile", icon: Users },
-    { name: "Sales Playbooks", href: "/scripts", icon: TrendingUp },
-    { name: "Concept Cards", href: "/concept-cards", icon: BookOpen },
+    { name: "Sales Playbooks", href: salesPlaybooksRoute, icon: TrendingUp },
   ];
 
   const handleLinkClick = () => {
