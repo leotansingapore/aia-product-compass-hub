@@ -108,7 +108,7 @@ const App = () => (
                     <Route path="/cmfas/chat/:moduleId?" element={<RequireAuth><CMFASChat /></RequireAuth>} />
                     <Route path="/roleplay" element={<RequireAuth><Roleplay /></RequireAuth>} />
                     <Route path="/roleplay/feedback/:sessionId" element={<RequireAuth><RoleplayFeedback /></RequireAuth>} />
-                    <Route path="/roleplay/pitch-analysis" element={<RequireAuth><PitchAnalysis /></RequireAuth>} />
+                    <Route path="/roleplay/pitch-analysis" element={<Navigate to="/roleplay?tab=pitch-analysis" replace />} />
                     <Route path="/admin" element={
                       <RequireAuth>
                         <ProtectedAdminPage>
