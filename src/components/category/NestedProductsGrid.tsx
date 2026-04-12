@@ -29,7 +29,8 @@ function buildTree(products: NestedProduct[]): NestedProduct[] {
   products.forEach(p => {
     if (p.parent_product_id && map[p.parent_product_id]) {
       map[p.parent_product_id].children!.push(map[p.id]);
-    } else if (!p.parent_product_id) {
+    } else if (!p.parent_product_id || !map[p.parent_product_id]) {
+      // Treat as root if no parent or parent is outside this list
       roots.push(map[p.id]);
     }
   });
