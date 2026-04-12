@@ -4,12 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { BarChart3, BrainCircuit, Mail, Waypoints } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { SimplifiedAuthForm } from "@/components/auth/SimplifiedAuthForm";
+import { FINTERNSHIP_LOGO_NAVY, FINTERNSHIP_LOGO_WHITE } from "@/constants/branding";
 
 const SUPPORT_EMAIL = "support@aiaproductcompass.com";
-
-/** Marks: white on dark hero; navy PNG used as alpha mask for brand-colored mark on the form column */
-const LOGO_WHITE = "/finternship-logo-white.png";
-const LOGO_NAVY = "/finternship-logo-navy.png";
 
 /** Translucent low-poly shards — right-weighted light, aligned to brand teal/cyan */
 function AuthHeroPolyLayer() {
@@ -99,7 +96,7 @@ const SimplifiedAuth = () => {
         <div className="relative z-10 flex flex-col flex-1 min-h-screen px-12 xl:px-16 py-10 xl:py-14 text-white">
           <header className="inline-flex items-center gap-0" aria-label="FINternship">
             <img
-              src={LOGO_WHITE}
+              src={FINTERNSHIP_LOGO_WHITE}
               alt=""
               width={44}
               height={44}
@@ -158,8 +155,8 @@ const SimplifiedAuth = () => {
                 aria-hidden
                 className="h-14 w-14 shrink-0 -mr-2.5 sm:-mr-3 bg-primary"
                 style={{
-                  maskImage: `url(${LOGO_NAVY})`,
-                  WebkitMaskImage: `url(${LOGO_NAVY})`,
+                  maskImage: `url(${FINTERNSHIP_LOGO_NAVY})`,
+                  WebkitMaskImage: `url(${FINTERNSHIP_LOGO_NAVY})`,
                   maskSize: "contain",
                   WebkitMaskSize: "contain",
                   maskRepeat: "no-repeat",

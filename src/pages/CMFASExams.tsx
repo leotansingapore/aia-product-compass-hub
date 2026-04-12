@@ -273,7 +273,7 @@ export default function CMFASExams() {
           className="flex flex-col"
         >
           <BrandedPageHeader
-            tone="dark"
+            layout="course"
             showOnMobile
             title={cmfasCategory.name}
             subtitle={cmfasCategory.description || undefined}

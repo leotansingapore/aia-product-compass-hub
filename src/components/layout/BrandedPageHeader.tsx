@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { FINTERNSHIP_LOGO_WHITE } from "@/constants/branding";
 
 export interface BreadcrumbItem {
   label: string;
@@ -33,6 +34,26 @@ interface BrandedPageHeaderProps {
   showOnMobile?: boolean;
   /** `hero` = brand gradient; `dark` = near-black slab (e.g. learning-style header). */
   tone?: "hero" | "dark";
+  /**
+   * Udemy-style slim bar: dark row with `brandLabel | title`, compact breadcrumbs above.
+   * Ignores `tone` surface colors in favor of a neutral dark bar.
+   */
+  layout?: "default" | "course";
+  /** Shown before the separator when no logo. Only used when `layout="course"`. */
+  brandLabel?: string;
+  /**
+   * Light logo for dark course bar. `undefined` = same asset as login (`FINTERNSHIP_LOGO_WHITE`).
+   * Pass `null` to use text `brandLabel` instead of an image.
+   */
+  brandLogoSrc?: string | null;
+}
+
+/** Trim leading non-text decoration (emoji, symbols) so the visible title starts at the first letter/digit. */
+function stripLeadingEmojiTitle(title: string): string {
+  const trimmed = title.trim();
+  const i = trimmed.search(/[\p{L}\p{N}]/u);
+  if (i <= 0) return trimmed;
+  return trimmed.slice(i).trimStart();
 }
 
 export const BrandedPageHeader = memo(function BrandedPageHeader({
@@ -49,7 +70,16 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
   headerTabs,
   showOnMobile = false,
   tone = "hero",
+  layout = "default",
+  brandLabel = "FINternship",
+  brandLogoSrc,
 }: BrandedPageHeaderProps) {
+  const resolvedBrandLogo =
+    brandLogoSrc === null || brandLogoSrc === ""
+      ? null
+      : brandLogoSrc === undefined
+        ? FINTERNSHIP_LOGO_WHITE
+        : brandLogoSrc;
 
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [editValue, setEditValue] = useState(title);
@@ -61,10 +91,14 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
 
   const handleTitleClick = useCallback(() => {
     if (!onTitleEdit) return;
-    setEditValue(title);
+    const initial =
+      layout === "course"
+        ? stripLeadingEmojiTitle(titlePrefix ? `${titlePrefix} ${title}` : title)
+        : title;
+    setEditValue(initial);
     setIsEditingTitle(true);
     setTimeout(() => inputRef.current?.select(), 0);
-  }, [onTitleEdit, title]);
+  }, [onTitleEdit, title, layout, titlePrefix]);
 
   const handleSave = useCallback(async () => {
     const trimmed = editValue.trim();
@@ -99,6 +133,14 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
     if (e.key === 'Escape') { setSubtitleEditValue(subtitle || ''); setIsEditingSubtitle(false); }
   }, [handleSubtitleSave, subtitle]);
 
+  const breadcrumbLinkClass =
+    layout === "course"
+      ? "text-white/55 hover:text-white/95 transition-colors focus-visible:outline-none focus-visible:underline focus-visible:decoration-white/80"
+      : "text-white/70 hover:text-white transition-colors focus-visible:text-white focus-visible:underline";
+  const breadcrumbCurrentClass =
+    layout === "course" ? "text-white/90 font-medium" : "text-white font-medium";
+  const breadcrumbSepClass = layout === "course" ? "text-white/35" : "text-white/50";
+
   const breadcrumbElements = useMemo(() => {
     if (!breadcrumbs || breadcrumbs.length === 0) return null;
 
@@ -106,35 +148,179 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
       <BreadcrumbItem key={`item-${index}`}>
         {item.href ? (
           <BreadcrumbLink asChild>
-            <Link
-              to={item.href}
-              className="text-white/70 hover:text-white transition-colors focus-visible:text-white focus-visible:underline"
-            >
+            <Link to={item.href} className={breadcrumbLinkClass}>
               {item.label}
             </Link>
           </BreadcrumbLink>
         ) : (
-          <BreadcrumbPage className="text-white font-medium">{item.label}</BreadcrumbPage>
+          <BreadcrumbPage className={breadcrumbCurrentClass}>{item.label}</BreadcrumbPage>
         )}
       </BreadcrumbItem>,
       index < breadcrumbs.length - 1 && (
-        <BreadcrumbSeparator key={`sep-${index}`} className="text-white/50" />
+        <BreadcrumbSeparator key={`sep-${index}`} className={breadcrumbSepClass} />
       )
     ]).flat().filter(Boolean);
-  }, [breadcrumbs]);
+  }, [breadcrumbs, breadcrumbLinkClass, breadcrumbCurrentClass, breadcrumbSepClass]);
 
-  /** `dark` = same brand hero gradient as default (see `--gradient-hero`), not neutral gray. */
+  /** `course` / `dark` = brand hero gradient + bottom border; default hero omits border. */
   const toneClasses =
-    tone === "dark"
+    layout === "course" || tone === "dark"
       ? "bg-gradient-hero text-white border-b border-white/20"
       : "bg-gradient-hero text-white";
 
   const visibilityClasses =
-    variant === "compact"
-      ? "py-2 sm:py-3 px-2 sm:px-3"
-      : showOnMobile
-        ? "block py-4 px-3 sm:py-3 md:py-6 sm:px-3 md:px-4"
-        : "hidden sm:block sm:py-3 md:py-6 sm:px-3 md:px-4";
+    layout === "course"
+      ? "block py-2.5 md:py-3 px-3 md:px-4"
+      : variant === "compact"
+        ? "py-2 sm:py-3 px-2 sm:px-3"
+        : showOnMobile
+          ? "block py-4 px-3 sm:py-3 md:py-6 sm:px-3 md:px-4"
+          : "hidden sm:block sm:py-3 md:py-6 sm:px-3 md:px-4";
+
+  const displayTitle = stripLeadingEmojiTitle(titlePrefix ? `${titlePrefix} ${title}` : title);
+
+  if (layout === "course") {
+    /** Topic / description as main `h1` when `subtitle` is set (module code stays in breadcrumbs only). */
+    const showCourseTopicFirst = Boolean(subtitle?.trim());
+    const displaySubtitle = subtitle ? stripLeadingEmojiTitle(subtitle) : "";
+
+    return (
+      <div className={cn(toneClasses, visibilityClasses, className)}>
+        <div className="mx-auto flex w-full min-w-0 max-w-6xl flex-col">
+          {breadcrumbElements && (
+            <div className="-mx-1 mb-2 overflow-x-auto overflow-y-hidden overscroll-x-contain px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <Breadcrumb>
+                <BreadcrumbList className="min-w-0 flex-nowrap text-xs sm:text-sm">
+                  {breadcrumbElements}
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+          )}
+
+          <div className="flex min-w-0 flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+            <div className="flex min-w-0 w-full flex-col gap-2 text-sm font-medium sm:flex-row sm:items-center sm:gap-2 md:gap-3 md:text-base">
+              <div className="flex shrink-0 items-center gap-2">
+                {resolvedBrandLogo ? (
+                  <span
+                    className="inline-flex shrink-0 items-center gap-0"
+                    aria-label="FINternship"
+                  >
+                    <img
+                      src={resolvedBrandLogo}
+                      alt=""
+                      decoding="async"
+                      className="h-6 w-6 shrink-0 object-contain object-left sm:-mr-2 sm:h-7 sm:w-7 md:h-8 md:w-8"
+                    />
+                    <span className="-ml-0.5 hidden text-sm font-bold leading-none tracking-tight text-white/95 sm:inline sm:text-base md:text-lg">
+                      INternship
+                    </span>
+                  </span>
+                ) : (
+                  <span className="shrink-0 font-semibold tracking-tight text-white/90">{brandLabel}</span>
+                )}
+                <span
+                  className="hidden shrink-0 text-white/30 select-none sm:inline"
+                  aria-hidden="true"
+                >
+                  |
+                </span>
+              </div>
+              <div className="flex min-w-0 flex-1 items-center gap-0 sm:gap-0">
+                {showCourseTopicFirst ? (
+                  isEditingSubtitle ? (
+                    <input
+                      ref={subtitleInputRef}
+                      value={subtitleEditValue}
+                      onChange={(e) => setSubtitleEditValue(e.target.value.slice(0, 200))}
+                      onBlur={handleSubtitleSave}
+                      onKeyDown={handleSubtitleKeyDown}
+                      maxLength={200}
+                      autoFocus
+                      className="min-w-0 w-full rounded border border-white/20 bg-white/5 px-2 py-1.5 text-sm font-semibold text-white outline-none ring-0 focus:border-white/40 sm:py-1 sm:text-base"
+                    />
+                  ) : (
+                    <h1
+                      className={cn(
+                        "min-w-0 w-full text-[15px] font-normal leading-snug text-white sm:text-base md:text-lg",
+                        "line-clamp-3 sm:line-clamp-none sm:truncate sm:leading-normal",
+                        onSubtitleEdit && "cursor-pointer rounded hover:bg-white/10"
+                      )}
+                      onClick={handleSubtitleClick}
+                    >
+                      {displaySubtitle}
+                    </h1>
+                  )
+                ) : isEditingTitle ? (
+                  <input
+                    ref={inputRef}
+                    value={editValue}
+                    onChange={(e) => setEditValue(e.target.value.slice(0, 100))}
+                    onBlur={handleSave}
+                    onKeyDown={handleKeyDown}
+                    maxLength={100}
+                    autoFocus
+                    className="min-w-0 w-full rounded border border-white/20 bg-white/5 px-2 py-1.5 text-sm font-semibold text-white outline-none ring-0 focus:border-white/40 sm:py-1 sm:text-base"
+                  />
+                ) : (
+                  <h1
+                    className={cn(
+                      "min-w-0 w-full text-[15px] font-normal leading-snug text-white sm:text-base md:text-lg",
+                      "line-clamp-3 sm:line-clamp-none sm:truncate sm:leading-normal",
+                      onTitleEdit && "cursor-pointer rounded hover:bg-white/10"
+                    )}
+                    onClick={handleTitleClick}
+                  >
+                    {displayTitle}
+                  </h1>
+                )}
+              </div>
+            </div>
+            {actions && (
+              <div className="flex shrink-0 items-center justify-end gap-2 self-stretch sm:self-center">
+                {actions}
+              </div>
+            )}
+          </div>
+
+          {!showCourseTopicFirst && (
+            <>
+              {subtitle && !isEditingSubtitle && (
+                <p
+                  className={cn(
+                    "mt-1.5 text-sm text-white/55",
+                    onSubtitleEdit && "cursor-pointer rounded hover:bg-white/10"
+                  )}
+                  onClick={onSubtitleEdit ? handleSubtitleClick : undefined}
+                >
+                  {subtitle}
+                </p>
+              )}
+              {isEditingSubtitle && (
+                <input
+                  ref={subtitleInputRef}
+                  value={subtitleEditValue}
+                  onChange={(e) => setSubtitleEditValue(e.target.value.slice(0, 200))}
+                  onBlur={handleSubtitleSave}
+                  onKeyDown={handleSubtitleKeyDown}
+                  maxLength={200}
+                  autoFocus
+                  className="mt-1.5 w-full max-w-2xl rounded border border-white/20 bg-white/5 px-2 py-1 text-sm text-white/90 outline-none"
+                />
+              )}
+            </>
+          )}
+
+          {searchBar && <div className="mt-3">{searchBar}</div>}
+
+          {headerTabs && (
+            <div className="mt-4 w-full min-w-0 border-t border-white/10 pt-3 -mx-3 px-3 md:-mx-4 md:px-4 overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {headerTabs}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={cn(toneClasses, visibilityClasses, className)}>
