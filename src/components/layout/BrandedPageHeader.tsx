@@ -186,7 +186,7 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
 
     return (
       <div className={cn(toneClasses, visibilityClasses, className)}>
-        <div className="mx-auto flex w-full min-w-0 max-w-6xl flex-col">
+        <div className="flex w-full min-w-0 flex-col">
           {breadcrumbElements && (
             <div className="-mx-1 mb-2 overflow-x-auto overflow-y-hidden overscroll-x-contain px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <Breadcrumb>
