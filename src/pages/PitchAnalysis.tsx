@@ -132,7 +132,7 @@ const TrendIcon = ({ current, previous }: { current: number; previous?: number }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-export default function PitchAnalysisPage() {
+export default function PitchAnalysisPage({ embedded = false }: { embedded?: boolean }) {
   const navigate = useNavigate();
   const { user } = useSimplifiedAuth();
 
@@ -377,20 +377,24 @@ export default function PitchAnalysisPage() {
   // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <>
-      <Helmet>
-        <title>Pitch Analysis · Pro Achiever · FINternship</title>
-        <meta name="description" content="Upload your Pro Achiever pitch video and get AI-powered feedback." />
-      </Helmet>
+      {!embedded && (
+        <Helmet>
+          <title>Pitch Analysis · Pro Achiever · FINternship</title>
+          <meta name="description" content="Upload your Pro Achiever pitch video and get AI-powered feedback." />
+        </Helmet>
+      )}
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-6">
+      <div className={embedded ? "space-y-6" : "max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-6"}>
         {/* Header */}
         <div>
-          <button
-            onClick={() => navigate("/roleplay")}
-            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-4 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" /> Back to Roleplay
-          </button>
+          {!embedded && (
+            <button
+              onClick={() => navigate("/roleplay")}
+              className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-4 transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" /> Back to Roleplay
+            </button>
+          )}
 
           <div className="flex items-start gap-3">
             <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
