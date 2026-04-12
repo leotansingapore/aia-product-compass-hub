@@ -170,7 +170,7 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
 
   const visibilityClasses =
     layout === "course"
-      ? "block py-2.5 md:py-3 px-3 md:px-4"
+      ? "block py-3 md:py-4 px-4 md:px-6"
       : variant === "compact"
         ? "py-2 sm:py-3 px-2 sm:px-3"
         : showOnMobile
