@@ -240,8 +240,8 @@ export default function ProductDetail() {
 
           {/* Study Bank + Product Exam CTA */}
           {(PRODUCTS_WITH_STUDY.has(product.id) || PRODUCTS_WITH_EXAMS.has(product.id)) && (
-            <Card className="mt-4 sm:mt-8 border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20">
-              <CardContent className="p-4 sm:p-6 space-y-4">
+            <Card className="mt-4 sm:mt-8 border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 overflow-visible">
+              <CardContent className="p-5 sm:p-6 space-y-4">
                 {PRODUCTS_WITH_STUDY.has(product.id) && (
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
