@@ -89,42 +89,25 @@ export function MobileDrawer() {
 
             <Separator className="mb-6" />
 
-            {/* Product Categories */}
+            {/* Product Categories — single link */}
             <div className="mb-6">
-              <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">
-                Product Categories
-              </h3>
               <div className="space-y-1">
-                {!categoriesLoading && categories && categories.map((category) => {
-                  const config = getCategoryConfig(category.name);
-                  return (
-                    <NavLink
-                      key={category.id}
-                      to={`/category/${category.id}`}
-                      onClick={handleLinkClick}
-                      className={({ isActive }) =>
-                        cn(
-                          "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
-                          "hover:bg-muted",
-                          isActive
-                            ? "bg-muted text-primary font-medium"
-                            : "text-muted-foreground"
-                        )
-                      }
-                    >
-                      <span className="text-lg shrink-0">{config.icon}</span>
-                      <span className="break-words leading-snug">{category.name}</span>
-                      <span className="ml-auto shrink-0 text-micro bg-muted text-muted-foreground px-2 py-1 rounded-full">
-                        {config.productCount}
-                      </span>
-                    </NavLink>
-                  );
-                })}
-                {categoriesLoading && (
-                  <div className="px-3 py-2 text-sm text-muted-foreground">
-                    Loading categories...
-                  </div>
-                )}
+                <NavLink
+                  to="/categories"
+                  onClick={handleLinkClick}
+                  className={({ isActive }) =>
+                    cn(
+                      "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
+                      "hover:bg-muted",
+                      isActive
+                        ? "bg-muted text-primary font-medium"
+                        : "text-muted-foreground"
+                    )
+                  }
+                >
+                  <Archive className="h-4 w-4 shrink-0" />
+                  <span>Product Categories</span>
+                </NavLink>
               </div>
             </div>
 

@@ -341,141 +341,23 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
             </SidebarGroupContent>
           </SidebarGroup>
 
-          {/* Product Categories */}
+          {/* Product Categories — single entry linking to hub */}
           <SidebarGroup>
-            <Collapsible open={categoriesOpen} onOpenChange={setCategoriesOpen}>
-              <SidebarGroupLabel asChild>
-                <CollapsibleTrigger className="group/catHeader flex items-center justify-between w-full">
-                  <span>Product Categories</span>
-                  <div className="flex items-center gap-0.5">
-                    {!isCollapsed && isAdminUser && (
-                      <button
-                        onClick={(e) => { e.stopPropagation(); setCreatingCategory(true); }}
-                        className="opacity-0 group-hover/catHeader:opacity-100 h-5 w-5 rounded hover:bg-muted flex items-center justify-center transition-all duration-300 ease-in-out"
-                        aria-label="Create new category"
-                      >
-                        <Plus className="h-3.5 w-3.5" />
-                      </button>
-                    )}
-                    {!isCollapsed && (
-                      <ChevronDown className={`h-4 w-4 transition-transform ${categoriesOpen ? 'rotate-180' : ''}`} />
-                    )}
-                  </div>
-                </CollapsibleTrigger>
-              </SidebarGroupLabel>
-              <CollapsibleContent>
-                <SidebarGroupContent>
-                  <SidebarMenu>
-                    {categories
-                      .filter((category) => canAccessSection(`product-category-${category.id}`))
-                      .filter((category) => !isViewingAsUser || category.published !== false)
-                      .map((category) => {
-                        const isActiveCategory = currentPath.includes(`/category/${category.id}`);
-                        return (
-                          <Collapsible key={category.id} asChild defaultOpen={isActiveCategory} className="group/collapsible">
-                            <SidebarMenuItem>
-                              <SidebarMenuButton
-                                tooltip={isCollapsed ? category.name : undefined}
-                                className={`${category.published === false ? "opacity-60" : ""} pr-1`}
-                                onClick={() => navigate(`/category/${category.id}`)}
-                              >
-                                <div className="relative shrink-0">
-                                  <Archive className="h-4 w-4" />
-                                  {category.published === false && (
-                                    <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-amber-400 border border-background" title="Draft" />
-                                  )}
-                                </div>
-                                {!isCollapsed && (
-                                  <>
-                                    <span className={`truncate flex-1 ${category.published === false ? "italic" : ""}`}>
-                                      {category.name}
-                                    </span>
-                                    <CollapsibleTrigger asChild onClick={(e) => e.stopPropagation()}>
-                                      <span className="ml-1 p-0.5 rounded hover:bg-muted/60 transition-colors">
-                                        <ChevronDown className="h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
-                                      </span>
-                                    </CollapsibleTrigger>
-                                  </>
-                                )}
-                              </SidebarMenuButton>
-                              {isAdminUser && !isCollapsed && (
-                                <DropdownMenu>
-                                  <DropdownMenuTrigger asChild>
-                                    <SidebarMenuAction showOnHover className="h-6 w-6 cursor-pointer hover:bg-muted rounded-md transition-colors">
-                                      <MoreHorizontal className="h-4 w-4" />
-                                    </SidebarMenuAction>
-                                  </DropdownMenuTrigger>
-                                  <DropdownMenuContent side="bottom" align="start" className="shadow-sm bg-popover z-50">
-                                    <DropdownMenuItem
-                                      className="cursor-pointer focus:bg-muted focus:text-foreground"
-                                      onClick={() => navigate(`/category/${category.id}`)}
-                                    >
-                                       <Eye className="h-4 w-4 mr-2" />
-                                       View Category
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem
-                                      className="cursor-pointer focus:bg-muted focus:text-foreground"
-                                      onClick={async () => {
-                                        const newPublished = !category.published;
-                                        const { error } = await supabase
-                                          .from('categories')
-                                          .update({ published: newPublished })
-                                          .eq('id', category.id);
-                                        if (error) {
-                                          toast({ title: "Error", description: "Failed to update status", variant: "destructive" });
-                                        } else {
-                                          invalidateCategoriesCache();
-                                          await queryClient.invalidateQueries({ queryKey: ['categories'] });
-                                          await refetchCategories();
-                                          toast({ title: "Success", description: newPublished ? "Category published" : "Category unpublished" });
-                                        }
-                                      }}
-                                    >
-                                      {category.published ? <ArchiveRestore className="h-4 w-4 mr-2" /> : <Globe className="h-4 w-4 mr-2" />}
-                                      {category.published ? "Unpublish" : "Publish"}
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem
-                                      className="cursor-pointer focus:bg-muted focus:text-foreground"
-                                      onClick={() => {
-                                        setEditingCategory({ id: category.id, name: category.name });
-                                        setNewCategoryName(category.name);
-                                      }}
-                                    >
-                                      <Pencil className="h-4 w-4 mr-2" />
-                                      Edit Name
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem
-                                      className="text-destructive focus:text-destructive focus:bg-muted cursor-pointer"
-                                      onClick={() => handleOpenDeleteDialog({ id: category.id, name: category.name })}
-                                    >
-                                      <Trash2 className="h-4 w-4 mr-2" />
-                                      Delete
-                                    </DropdownMenuItem>
-                                  </DropdownMenuContent>
-                                </DropdownMenu>
-                              )}
-                              <CollapsibleContent>
-                                <CategoryProductsSub categoryId={category.id} isCollapsed={isCollapsed} />
-                              </CollapsibleContent>
-                            </SidebarMenuItem>
-                          </Collapsible>
-                        );
-                      })}
-                    {isAdminUser && !isCollapsed && (
-                      <SidebarMenuItem>
-                        <button
-                          onClick={() => setCreatingCategory(true)}
-                          className="flex items-center gap-2 w-full rounded-md px-2 h-8 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-all duration-300 ease-in-out border border-dashed border-muted-foreground/30 hover:border-muted-foreground/50"
-                        >
-                          <Plus className="h-4 w-4" />
-                          <span>Add New Category</span>
-                        </button>
-                      </SidebarMenuItem>
-                    )}
-                  </SidebarMenu>
-                </SidebarGroupContent>
-              </CollapsibleContent>
-            </Collapsible>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip={isCollapsed ? "Product Categories" : undefined}>
+                    <NavLink
+                      to="/categories"
+                      className={getNavClassName('/categories')}
+                    >
+                      <Archive className="h-4 w-4" />
+                      {!isCollapsed && <span>Product Categories</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
           </SidebarGroup>
 
           {/* Sales Playbooks — single entry with last-visited memory */}
