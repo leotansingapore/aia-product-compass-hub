@@ -2,14 +2,10 @@ import { Helmet } from "react-helmet-async";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASOnboardingWizard } from "@/components/cmfas/CMFASOnboardingWizard";
-import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
+import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
 import { SkipNavigation } from "@/components/SkipNavigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Separator } from "@/components/ui/separator";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { useState, useEffect } from "react";
-import { Home, Info } from "lucide-react";
+import { useState } from "react";
 import { getCMFASModuleVideos } from "@/data/cmfasModuleData";
 
 const OnboardingModule = () => {
@@ -76,49 +72,15 @@ const OnboardingModule = () => {
         className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 space-y-3 sm:space-y-6 md:space-y-8"
         aria-label="CMFAS Onboarding Content"
       >
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="mb-4">
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">
-                  <Home className="h-4 w-4" />
-                  <span className="sr-only">Home</span>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/cmfas">CMFAS</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Onboarding</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </nav>
+        {/* Tutorial Lectures — primary learning content */}
+        <CMFASTutorialLectures
+          videos={tutorialLectures}
+          moduleId={moduleId}
+          moduleName="CMFAS Onboarding"
+          onUpdate={handleUpdate}
+        />
 
-        {/* Important Notice Alert */}
-        <Alert>
-          <Info className="h-4 w-4" aria-hidden="true" />
-          <AlertTitle>Getting Started with CMFAS</AlertTitle>
-          <AlertDescription>
-            Follow the steps below to set up your account and access study materials. Each step brings you closer to your certification goal.
-          </AlertDescription>
-        </Alert>
-
-        <Separator className="my-6" aria-hidden="true" />
-
-        {/* CMFAS Chat Launcher */}
-        <div className="animate-fade-in">
-          <CMFASChatLauncher
-            moduleId="onboarding"
-            moduleName="Getting Started - CMFAS Onboarding"
-            description="Get instant help with account setup, exam registration, and getting started with your CMFAS journey"
-          />
-        </div>
-
-        {/* Main Content with Tabs */}
+        {/* Onboarding Steps */}
         <article className="bg-card rounded-2xl border shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in">
           <div className="p-4 md:p-8 border-b">
             <div className="flex items-center gap-3 md:gap-4">
@@ -360,18 +322,6 @@ const OnboardingModule = () => {
           </Tabs>
         </article>
 
-        <Separator className="my-8" aria-hidden="true" />
-
-        {/* Tutorial Lectures Section */}
-        <section className="animate-fade-in" aria-labelledby="tutorial-lectures-heading">
-          <h2 id="tutorial-lectures-heading" className="sr-only">Tutorial Lectures</h2>
-          <CMFASTutorialLectures
-            videos={tutorialLectures}
-            moduleId={moduleId}
-            moduleName="CMFAS Onboarding"
-            onUpdate={handleUpdate}
-          />
-        </section>
 
       </main>
 
@@ -379,10 +329,11 @@ const OnboardingModule = () => {
       <footer role="contentinfo" className="mt-16 py-8 border-t bg-muted/30">
         <div className="max-w-6xl mx-auto px-4 md:px-6 text-center">
           <p className="text-sm text-muted-foreground">
-            Need help? Contact your training coordinator or use the chat assistant above.
+            Need help? Contact your training coordinator or use the AI tutor button (bottom-right).
           </p>
         </div>
       </footer>
+      <CMFASHubChatFAB moduleId="onboarding" />
     </div>
   );
 };

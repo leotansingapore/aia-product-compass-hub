@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
-import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
+import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
 import { useState, useEffect } from "react";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { supabase } from "@/integrations/supabase/client";
@@ -203,16 +203,17 @@ export default function HIModule() {
         ]}
       />
 
-      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 md:py-8">
-        {/* CMFAS Chat Launcher */}
-        <div className="mb-6 md:mb-8">
-          <CMFASChatLauncher
-            moduleId="hi"
-            moduleName="HI Module - Health Insurance"
-            description="Get instant help with HI exam topics including healthcare systems, medical insurance products, and claims processes"
-          />
-        </div>
+      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 md:py-8 space-y-6 sm:space-y-8">
 
+        {/* Tutorial Lectures — primary learning content */}
+        <CMFASTutorialLectures
+          videos={tutorialLectures}
+          moduleId="hi-module"
+          moduleName="HI Module"
+          onUpdate={handleUpdate}
+        />
+
+        {/* Module Info */}
         <div className="bg-card rounded-lg p-4 md:p-6 border mobile-card">
           <div className="flex items-center gap-3 mb-4 md:mb-6">
             <div className="w-10 h-10 md:w-12 md:h-12 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center">
@@ -353,16 +354,7 @@ export default function HIModule() {
           </div>
         </div>
 
-        {/* Tutorial Lectures Section */}
-        <div className="mt-8">
-          <CMFASTutorialLectures
-            videos={tutorialLectures}
-            moduleId="hi-module"
-            moduleName="HI Module"
-            onUpdate={handleUpdate}
-          />
-        </div>
-
+      <CMFASHubChatFAB moduleId="hi" />
     </div>
   );
 }

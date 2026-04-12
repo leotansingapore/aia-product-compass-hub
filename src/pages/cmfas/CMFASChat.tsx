@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, MessageCircle } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import { AITutorFABIcon } from "@/components/cmfas/AITutorFABIcon";
 import { CMFASChatbot } from "@/components/cmfas/CMFASChatbot";
 import { ProtectedPage } from "@/components/ProtectedPage";
 
@@ -49,8 +50,11 @@ export default function CMFASChat() {
           </Button>
           
           <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center shrink-0">
-              <MessageCircle className="h-4 w-4 text-primary-foreground" />
+            <div
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-primary-foreground shadow-sm"
+              aria-hidden
+            >
+              <AITutorFABIcon className="h-[22px] w-[22px]" />
             </div>
             <div className="min-w-0">
               <h1 className="text-sm md:text-base font-semibold text-foreground truncate">AI Tutor</h1>

@@ -60,14 +60,8 @@ export function QuickActions({
   if (actions.length === 0) return null;
 
   const content = (
-    <nav
-      aria-label="Quick questions"
-      className="space-y-2"
-    >
-      <div
-        role="list"
-        className="space-y-1"
-      >
+    <nav aria-label="Quick questions" className="min-w-0 space-y-2">
+      <div role="list" className="min-w-0 space-y-1">
         {actions.map((action, index) => (
           <div key={action.id} role="listitem">
             <Button
@@ -81,24 +75,25 @@ export function QuickActions({
               onFocus={() => setFocusedIndex(index)}
               onBlur={() => setFocusedIndex(null)}
               className={cn(
-                "w-full justify-start text-left h-auto py-3 px-3",
+                "w-full min-w-0 max-w-full justify-start text-left h-auto py-3 px-3",
+                "overflow-hidden",
                 "hover:bg-primary/5 focus:ring-2 focus:ring-primary focus:ring-offset-2",
                 "transition-colors group"
               )}
               aria-label={`Ask: ${action.question}`}
             >
-              <div className="flex items-start gap-2 w-full">
+              <div className="flex min-w-0 w-full max-w-full items-start gap-2">
                 <Sparkles
-                  className="h-4 w-4 text-primary flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform"
+                  className="h-4 w-4 shrink-0 text-primary mt-0.5 group-hover:scale-110 transition-transform"
                   aria-hidden="true"
                 />
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-foreground mb-1">
+                <div className="min-w-0 flex-1 overflow-hidden">
+                  <div className="mb-1 break-words text-sm font-medium leading-snug text-foreground">
                     {action.question}
                   </div>
                   <Badge
                     variant="secondary"
-                    className="text-[10px] font-normal"
+                    className="max-w-full whitespace-normal break-words text-left text-[10px] font-normal"
                   >
                     {action.category}
                   </Badge>
@@ -156,17 +151,16 @@ export function QuickActions({
   return (
     <aside
       className={cn(
-        "border-r bg-muted/10 p-4 overflow-y-auto",
-        "w-80 flex-shrink-0",
+        "w-80 min-w-0 shrink-0 overflow-x-hidden overflow-y-auto border-r bg-muted/10 p-4",
         className
       )}
       aria-label="Quick actions sidebar"
       role="complementary"
     >
-      <div className="space-y-3">
-        <div className="flex items-center gap-2 px-3">
+      <div className="min-w-0 space-y-3">
+        <div className="flex min-w-0 items-center gap-2 px-3">
           <Sparkles className="h-5 w-5 text-primary" aria-hidden="true" />
-          <h2 className="text-sm font-semibold text-foreground">
+          <h2 className="min-w-0 truncate text-sm font-semibold text-foreground">
             Quick Questions
           </h2>
         </div>

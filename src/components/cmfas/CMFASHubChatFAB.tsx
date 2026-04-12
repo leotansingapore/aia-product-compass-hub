@@ -4,14 +4,22 @@ import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { AITutorFABIcon } from "@/components/cmfas/AITutorFABIcon";
 
-const CHAT_PATH = "/cmfas/chat";
+const CHAT_BASE = "/cmfas/chat";
+
+export interface CMFASHubChatFABProps {
+  className?: string;
+  /** When set (e.g. `m9`, `hi`), navigates to `/cmfas/chat/:moduleId` for module-scoped tutor. Omit on CMFAS hub. */
+  moduleId?: string;
+}
 
 /**
- * Hub-only FAB: fixed to the viewport so it stays visible on every tab and does not scroll with content.
- * Portaled to `document.body` to avoid clipping from overflow/stacking contexts on main.
+ * CMFAS AI tutor FAB: fixed to the viewport; portaled to `document.body` to avoid clipping.
+ * Used on the CMFAS exams hub (no `moduleId`) and on each module page (with `moduleId`).
  */
-export function CMFASHubChatFAB({ className }: { className?: string }) {
+export function CMFASHubChatFAB({ className, moduleId }: CMFASHubChatFABProps) {
   const navigate = useNavigate();
+  const chatPath = moduleId ? `${CHAT_BASE}/${moduleId}` : CHAT_BASE;
+  const moduleLabel = moduleId ? ` (${moduleId.toUpperCase()})` : "";
 
   const fab = (
     <div
@@ -35,7 +43,7 @@ export function CMFASHubChatFAB({ className }: { className?: string }) {
       <Button
         type="button"
         size="icon"
-        onClick={() => navigate(CHAT_PATH)}
+        onClick={() => navigate(chatPath)}
         className={cn(
           "pointer-events-auto relative h-16 w-16 rounded-full border-2 border-white/45",
           "bg-gradient-primary text-primary-foreground shadow-elegant",
@@ -48,8 +56,16 @@ export function CMFASHubChatFAB({ className }: { className?: string }) {
           "motion-reduce:transition-none motion-reduce:hover:scale-100",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         )}
-        aria-label="Open CMFAS AI tutor chat"
-        title="Open AI tutor — ask CMFAS questions"
+        aria-label={
+          moduleId
+            ? `Open AI tutor for ${moduleId.toUpperCase()} module`
+            : "Open CMFAS AI tutor chat"
+        }
+        title={
+          moduleId
+            ? `AI tutor${moduleLabel} — ask questions about this module`
+            : "Open AI tutor — ask CMFAS questions"
+        }
       >
         <AITutorFABIcon className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]" />
       </Button>

@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
-import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
+import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState, useEffect } from "react";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
@@ -201,18 +201,17 @@ export default function M9Module() {
         ]}
       />
 
-      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 space-y-3 sm:space-y-6 md:space-y-8">
+      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 space-y-6 sm:space-y-8">
 
-        {/* CMFAS Chat Launcher */}
-        <div className="animate-fade-in">
-          <CMFASChatLauncher
-            moduleId="m9"
-            moduleName="M9 Module - Life Insurance & Investment-Linked Policies"
-            description="Get instant help with M9 exam topics including life insurance, ILPs, premiums, and industry practices"
-          />
-        </div>
+        {/* Tutorial Lectures — primary learning content */}
+        <CMFASTutorialLectures
+          videos={tutorialLectures}
+          moduleId="m9"
+          moduleName="M9 Module"
+          onUpdate={handleUpdate}
+        />
 
-        {/* Main Content with Tabs */}
+        {/* Module Info */}
         <div className="bg-card rounded-2xl border shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in">
           <div className="p-4 md:p-8 border-b">
             <div className="flex items-center gap-3 md:gap-4">
@@ -422,16 +421,8 @@ export default function M9Module() {
           </Tabs>
         </div>
 
-        {/* Tutorial Lectures Section */}
-        <div className="animate-fade-in">
-          <CMFASTutorialLectures
-            videos={tutorialLectures}
-            moduleId="m9"
-            moduleName="M9 Module"
-            onUpdate={handleUpdate}
-          />
-        </div>
       </div>
+      <CMFASHubChatFAB moduleId="m9" />
     </div>
   );
 }

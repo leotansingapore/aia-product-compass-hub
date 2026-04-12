@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { CMFASTutorialLectures } from "@/components/cmfas/CMFASTutorialLectures";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
-import { CMFASChatLauncher } from "@/components/cmfas/CMFASChatLauncher";
+import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
 import { useState, useEffect } from "react";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { supabase } from "@/integrations/supabase/client";
@@ -212,16 +212,17 @@ export default function RES5Module() {
         ]}
       />
 
-      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 md:py-8">
-        {/* CMFAS Chat Launcher */}
-        <div className="mb-8">
-          <CMFASChatLauncher
-            moduleId="res5"
-            moduleName="RES5 Module - Rules, Ethics & Skills for Financial Advisory Services"
-            description="Get instant help with RES5 exam topics including regulations, ethics, compliance, and professional conduct"
-          />
-        </div>
+      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-6 md:py-8 space-y-6 sm:space-y-8">
 
+        {/* Tutorial Lectures — primary learning content */}
+        <CMFASTutorialLectures
+          videos={tutorialLectures}
+          moduleId="res5-module"
+          moduleName="RES5 Module"
+          onUpdate={handleUpdate}
+        />
+
+        {/* Module Info */}
         <div className="bg-card rounded-lg p-3 sm:p-4 md:p-6 border">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 bg-red-100 dark:bg-red-900/20 rounded-lg flex items-center justify-center">
@@ -339,16 +340,7 @@ export default function RES5Module() {
           </div>
         </div>
 
-        {/* Tutorial Lectures Section */}
-        <div className="mt-8">
-          <CMFASTutorialLectures
-            videos={tutorialLectures}
-            moduleId="res5-module"
-            moduleName="RES5 Module"
-            onUpdate={handleUpdate}
-          />
-        </div>
-
+      <CMFASHubChatFAB moduleId="res5" />
     </div>
   );
 }
