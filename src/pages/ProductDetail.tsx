@@ -170,24 +170,8 @@ export default function ProductDetail() {
             <BookmarkButton productId={product.id} />
           </div>
 
-          {/* Resources Section - full width on mobile */}
-          <div className="mb-4 sm:mb-8">
-            {/* Useful Links */}
-            {productId === 'sales-tools-objections' ? (
-              <SalesToolsUsefulLinks
-                links={product.useful_links || []}
-                onUpdate={handleUpdate}
-              />
-            ) : (
-              <ProductUsefulLinks
-                links={product.useful_links || []}
-                onUpdate={handleUpdate}
-                productId={productId}
-              />
-            )}
-          </div>
 
-          
+
 
           {/* Training Videos Section */}
           <ProtectedSection sectionId="product_videos">
