@@ -300,9 +300,7 @@ export function CMFASModuleCourseLayout({
                     className="absolute inset-0 h-full w-full"
                     allowFullScreen
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    {...({ webkitallowfullscreen: "true" } as any)}
-                    // @ts-expect-error legacy
-                    mozallowfullscreen="true"
+                    {...({ webkitallowfullscreen: "true", mozallowfullscreen: "true" } as any)}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                     style={{ border: 0 }}
                     onLoad={() => setShouldAutoplay(false)}
