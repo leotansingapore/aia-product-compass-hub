@@ -20,7 +20,6 @@ export function MobileDrawer() {
   const { categories, loading: categoriesLoading } = useCategories();
 
   const mainNavItems = [
-    { name: "Home", href: "/", icon: Home },
     { name: "Bookmarks", href: "/bookmarks", icon: Bookmark },
     { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap },
     { name: "Roleplay Training", href: "/roleplay", icon: MessageCircle },
@@ -48,7 +47,11 @@ export function MobileDrawer() {
       </SheetTrigger>
       <SheetContent side="left" className="w-80 p-0">
         <SheetHeader className="p-6 pb-4">
-          <SheetTitle className="text-left">FINternship Learning Platform</SheetTitle>
+          <SheetTitle className="text-left">
+            <NavLink to="/" onClick={handleLinkClick} className="hover:opacity-80 transition-opacity">
+              FINternship Learning Platform
+            </NavLink>
+          </SheetTitle>
         </SheetHeader>
         
         <div className="flex flex-col h-full">

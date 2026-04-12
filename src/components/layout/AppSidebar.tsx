@@ -138,7 +138,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const queryClient = useQueryClient();
 
   const allMainNavItems = useMemo(() => [
-    { title: "Home", url: "/", icon: Home, dataAttr: undefined, sectionId: "dashboard" },
+    
     { title: "Learning Track", url: "/learning-track", icon: TrendingUp, dataAttr: undefined, sectionId: "learning-track" },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
@@ -299,13 +299,15 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
           ) : (
             /* Expanded state: logo + title + collapse button */
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
-                <BookOpen className="h-4 w-4 text-primary-foreground" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h2 className="font-semibold text-sm leading-tight truncate">FINternship</h2>
-                <p className="text-[10px] text-muted-foreground">Learning Platform</p>
-              </div>
+              <NavLink to="/" className="flex items-center gap-2 flex-1 min-w-0 hover:opacity-80 transition-opacity">
+                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
+                  <BookOpen className="h-4 w-4 text-primary-foreground" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h2 className="font-semibold text-sm leading-tight truncate">FINternship</h2>
+                  <p className="text-[10px] text-muted-foreground">Learning Platform</p>
+                </div>
+              </NavLink>
               <SidebarTrigger
                 className="shrink-0 h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
                 aria-label="Collapse sidebar"
