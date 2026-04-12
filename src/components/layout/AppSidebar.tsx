@@ -25,7 +25,7 @@ import {
   ArchiveRestore,
   LogOut,
   Sparkles,
-  Video,
+  
   Target,
   Headset,
   
