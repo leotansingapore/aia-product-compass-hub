@@ -264,6 +264,22 @@ export default function ProductDetail() {
             </Card>
           )}
 
+          {/* Resources Section */}
+          <div className="mt-4 sm:mt-8">
+            {productId === 'sales-tools-objections' ? (
+              <SalesToolsUsefulLinks
+                links={product.useful_links || []}
+                onUpdate={handleUpdate}
+              />
+            ) : (
+              <ProductUsefulLinks
+                links={product.useful_links || []}
+                onUpdate={handleUpdate}
+                productId={productId}
+              />
+            )}
+          </div>
+
           {/* Personal Notes — at the bottom */}
           <ProtectedSection sectionId="product_notes">
             <div className="mt-4 sm:mt-8">
