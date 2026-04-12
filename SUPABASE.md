@@ -141,6 +141,22 @@ Submission files table (`learning_track_submission_files`):
 
 ---
 
+### Learning Track Hidden Resources & Obsidian Shareability — 2026-04-12
+
+**What:** Two small schema additions: (1) allow admins to hide specific resource_ref content blocks per item without deleting them, (2) control which obsidian docs are visible to non-admin users.
+
+**Tables:**
+
+- `learning_track_items`: Add column `hidden_resources` (text[], not null, default `'{}'`) — stores content block IDs that should be hidden from the item's resource list without deleting them
+
+- `obsidian_resources`: Add column `shareable` (boolean, not null, default `false`) — controls whether the doc is visible to non-admin users
+
+**RLS Policies:**
+
+- Update existing `lt_content_select_authenticated` on `obsidian_resources`: Change SELECT condition to filter by `shareable = true` for non-admin users. Admins (users in `user_admin_roles` with role `'admin'` or `'master_admin'`) can see all rows regardless of `shareable` value.
+
+---
+
 ## Completed
 
 <!-- Move completed items here after Lovable runs migrations -->
