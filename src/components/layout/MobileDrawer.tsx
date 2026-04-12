@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, LogOut, Home, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, Archive } from "lucide-react";
+import { Menu, X, LogOut, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, Archive } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
@@ -20,7 +20,6 @@ export function MobileDrawer() {
   const { categories, loading: categoriesLoading } = useCategories();
 
   const mainNavItems = [
-    { name: "Home", href: "/", icon: Home },
     { name: "Bookmarks", href: "/bookmarks", icon: Bookmark },
     { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap },
     { name: "Roleplay Training", href: "/roleplay", icon: MessageCircle },
@@ -48,7 +47,11 @@ export function MobileDrawer() {
       </SheetTrigger>
       <SheetContent side="left" className="w-80 p-0">
         <SheetHeader className="p-6 pb-4">
-          <SheetTitle className="text-left">FINternship Learning Platform</SheetTitle>
+          <SheetTitle className="text-left">
+            <NavLink to="/" onClick={handleLinkClick} className="hover:opacity-80 transition-opacity">
+              FINternship Learning Platform
+            </NavLink>
+          </SheetTitle>
         </SheetHeader>
         
         <div className="flex flex-col h-full">
@@ -63,13 +66,7 @@ export function MobileDrawer() {
                   <NavLink
                     key={item.name}
                     to={item.href}
-                    onClick={(e) => {
-                      if (item.href === "/") {
-                        e.preventDefault();
-                        navigate("/", { replace: true });
-                      }
-                      handleLinkClick();
-                    }}
+                    onClick={handleLinkClick}
                     className={({ isActive }) =>
                       cn(
                         "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
