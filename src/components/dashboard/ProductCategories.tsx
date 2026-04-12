@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { getCategorySlugFromId } from "@/utils/slugUtils";
 import { useAllProducts } from "@/hooks/useProducts";
 import { useMemo } from "react";
-import { TrendingUp, Shield, Heart, Clock, Stethoscope, ArrowRight, BookOpen } from "lucide-react";
+import { TrendingUp, Shield, Heart, Clock, Stethoscope, ArrowRight, BookOpen, Star } from "lucide-react";
 
 export function ProductCategories() {
   const navigate = useNavigate();
@@ -78,6 +78,16 @@ export function ProductCategories() {
       lightBg: "bg-teal-50 dark:bg-teal-950/30",
       iconColor: "text-teal-600 dark:text-teal-400",
       count: categoryCounts["5ef0b17f-a19f-4859-8349-3e4959620e94"] || 0,
+    },
+    {
+      id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+      name: "Core Products",
+      description: "Most commonly sold products across all categories",
+      icon: Star,
+      gradient: "from-yellow-500 to-amber-600",
+      lightBg: "bg-yellow-50 dark:bg-yellow-950/30",
+      iconColor: "text-yellow-600 dark:text-yellow-400",
+      count: categoryCounts["f47ac10b-58cc-4372-a567-0e02b2c3d479"] || 0,
     },
   ];
 
