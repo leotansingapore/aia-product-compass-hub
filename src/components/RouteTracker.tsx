@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
 
@@ -15,10 +15,17 @@ export function RouteTracker() {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, loading } = useSimplifiedAuth();
+  const hasRestored = useRef(false);
 
   // On mount: restore last route if authenticated user lands on "/"
+  // Uses a ref to ensure this only fires once — Supabase can re-emit auth events
+  // (token refresh, session updates) which would otherwise re-trigger this effect
+  // and override intentional navigation to "/".
   useEffect(() => {
     if (loading || !user) return;
+    if (hasRestored.current) return;
+    hasRestored.current = true;
+
     const currentPath = window.location.pathname;
     if (currentPath === '/' || currentPath === '') {
       try {
