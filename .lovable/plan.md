@@ -1,46 +1,24 @@
 
 
-## Revised Plan: Remove 5 Edge Functions + Clean Up
+## Plan: Consolidate Sales Playbooks into a single nav entry with last-visited memory
 
-### Step 1: Delete dead code
-- **Delete `src/hooks/useAuthOperations.tsx`** — orphaned, zero imports
-- **Edit `src/hooks/useSimpleAuthOperations.tsx`** — remove `signUp`/`authSignUp` from the `useSimplifiedAuth()` destructure
+### What changes
 
-### Step 2: Delete 5 edge function directories
-Remove from `supabase/functions/`: `create-pending-user/`, `notify-admins-new-signup/`, `notify-user-approved/`, `approve-user/`, `provision-user/`
+The sidebar and mobile drawer currently show two buttons under "Sales Playbooks": one for "Sales Playbooks" and one for "Concept Cards". The user wants just the group label "Sales Playbooks" to act as a single clickable link that navigates to the last visited sub-page (sales tools, scripts, servicing, objections, playbooks, flows, or concept cards).
 
-### Step 3: Delete deployed functions
-Use `supabase--delete_edge_functions` for all 5.
+### Implementation
 
-### Step 4: Clean up `supabase/config.toml`
-Remove entries for `notify-admins-new-signup`, `notify-user-approved`, `provision-user`.
+1. **Add last-visited persistence** — Store the last visited sales playbook sub-route in `localStorage` (key: `sales-playbooks-last-route`, default: `/scripts`). Update it in `ScriptsTabBar.tsx` whenever a tab is clicked.
 
-### Step 5: Replace `approve-user` calls with direct DB update
-In **3 files** (`useUserActions.ts`, `UserDirectoryRow.tsx`, `BulkUserActions.tsx`), replace:
-```ts
-supabase.functions.invoke('approve-user', { body: { request_id }, headers: ... })
-```
-with:
-```ts
-supabase.from('user_approval_requests')
-  .update({ status: 'approved', reviewed_at: new Date().toISOString() })
-  .eq('id', request_id)
-```
-No RPC call. The user's auth account already exists; approval is just a status flip.
+2. **AppSidebar.tsx** — Remove the "Concept Cards" entry from `allResourceItems`. Replace the `SidebarGroup` that renders both "Sales Playbooks" and "Concept Cards" buttons (lines 482-499) with a single clickable group label that reads `localStorage` for the last route and navigates there. The active highlight logic already covers all sub-routes.
 
-### Step 6: Refactor ProvisionUserDialog
-Replace the `provision-user` edge function call with:
-1. Call `create-user-account` edge function (creates auth user, profile, and user role)
-2. If a tier is selected, insert into `user_roles` directly
-3. Direct DB update to mark approval request as approved:
-```ts
-supabase.from('user_approval_requests')
-  .update({ status: 'approved', reviewed_at: new Date().toISOString() })
-  .eq('id', request_id)
-```
-Do **not** call `approve_user_request_simple` anywhere.
+3. **MobileDrawer.tsx** — Remove "Concept Cards" from `resourceItems`. Update the "Sales Playbooks" `href` to use the last-visited route from localStorage.
 
-### Files Summary
-- **Delete:** `src/hooks/useAuthOperations.tsx`, 5 edge function dirs
-- **Edit:** `useSimpleAuthOperations.tsx`, `useUserActions.ts`, `UserDirectoryRow.tsx`, `BulkUserActions.tsx`, `ProvisionUserDialog.tsx`, `supabase/config.toml`
+4. **Fix build error** — The `analyze-pitch-video` edge function has an unrelated import error for `@react-email/render`. Will remove or fix the problematic import.
+
+### Files touched
+- `src/components/scripts/ScriptsTabBar.tsx` — save last route to localStorage on tab click
+- `src/components/layout/AppSidebar.tsx` — single Sales Playbooks link using last-visited route
+- `src/components/layout/MobileDrawer.tsx` — same consolidation
+- `supabase/functions/analyze-pitch-video/index.ts` — fix import error
 
