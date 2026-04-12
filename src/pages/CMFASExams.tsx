@@ -273,13 +273,13 @@ export default function CMFASExams() {
           className="flex flex-col"
         >
           <BrandedPageHeader
-            layout="course"
             showOnMobile
-            title={cmfasCategory.name}
-            subtitle={cmfasCategory.description || undefined}
+            tone="dark"
+            title="CMFAS Exam Preparation"
+            subtitle="Capital Markets Financial Advisory Services — Your path to certification"
             breadcrumbs={[
               { label: "Home", href: "/" },
-              { label: cmfasCategory.name },
+              { label: "CMFAS" },
             ]}
             onTitleEdit={isAdminUser ? handleCategoryTitleEdit : undefined}
             onSubtitleEdit={isAdminUser ? handleCategoryDescriptionEdit : undefined}
