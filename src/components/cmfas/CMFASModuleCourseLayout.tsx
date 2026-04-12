@@ -299,8 +299,8 @@ export function CMFASModuleCourseLayout({
                     title={currentVideo?.title}
                     className="absolute inset-0 h-full w-full"
                     allowFullScreen
-                    // @ts-expect-error legacy
-                    webkitallowfullscreen="true"
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    {...({ webkitallowfullscreen: "true" } as any)}
                     // @ts-expect-error legacy
                     mozallowfullscreen="true"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"

@@ -122,7 +122,7 @@ Feel free to ask me anything or use one of the quick starters above to get going
     messageListRef.current?.scrollToBottom();
   };
 
-  const chatStatus: ChatStatus = isLoading ? "typing" : "idle";
+  const chatStatus = (isLoading ? "typing" : "idle") as ChatStatus;
 
   return (
     <div className="h-full flex flex-col bg-background">
