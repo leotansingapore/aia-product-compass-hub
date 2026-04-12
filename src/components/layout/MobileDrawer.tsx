@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, LogOut, Home, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, Archive } from "lucide-react";
+import { Menu, X, LogOut, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, Archive } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
@@ -66,13 +66,7 @@ export function MobileDrawer() {
                   <NavLink
                     key={item.name}
                     to={item.href}
-                    onClick={(e) => {
-                      if (item.href === "/") {
-                        e.preventDefault();
-                        navigate("/", { replace: true });
-                      }
-                      handleLinkClick();
-                    }}
+                    onClick={handleLinkClick}
                     className={({ isActive }) =>
                       cn(
                         "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
