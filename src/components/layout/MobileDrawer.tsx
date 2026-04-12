@@ -20,7 +20,7 @@ export function MobileDrawer() {
   const { categories, loading: categoriesLoading } = useCategories();
 
   const mainNavItems = [
-    { name: "Dashboard", href: "/", icon: Home },
+    { name: "Home", href: "/", icon: Home },
     { name: "Bookmarks", href: "/bookmarks", icon: Bookmark },
     { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap },
     { name: "Roleplay Training", href: "/roleplay", icon: MessageCircle },

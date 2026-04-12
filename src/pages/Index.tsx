@@ -1,15 +1,11 @@
 import { useEffect, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
-import { usePermissions } from "@/hooks/usePermissions";
-import { useLearningTrackOverallProgress } from "@/hooks/learning-track/useLearningTrackOverallProgress";
 import Dashboard from "./Dashboard";
 
 const Index = memo(() => {
   const { user, loading } = useSimplifiedAuth();
-  const { isAdmin, isMasterAdmin } = usePermissions();
   const navigate = useNavigate();
-  const { data: overall } = useLearningTrackOverallProgress(user?.id);
 
   const hasRecoveryHash =
     typeof window !== "undefined" &&
@@ -25,16 +21,6 @@ const Index = memo(() => {
       navigate("/auth");
     }
   }, [user, loading, navigate, hasRecoveryHash]);
-
-  // First-time recruit zero-progress redirect (skips admins and dismissed users)
-  useEffect(() => {
-    if (!user || loading) return;
-    if (isAdmin() || isMasterAdmin()) return;
-    if (!overall) return;
-    if (overall.totalCompleted > 0) return;
-    if (localStorage.getItem("lt-redirect-dismissed") === "1") return;
-    navigate("/learning-track/pre-rnf", { replace: true });
-  }, [user, loading, overall, isAdmin, isMasterAdmin, navigate]);
 
   if (loading) {
     return (

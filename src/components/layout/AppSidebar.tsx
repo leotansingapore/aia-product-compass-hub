@@ -140,8 +140,8 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const queryClient = useQueryClient();
 
   const allMainNavItems = useMemo(() => [
+    { title: "Home", url: "/", icon: Home, dataAttr: undefined, sectionId: "dashboard" },
     { title: "Learning Track", url: "/learning-track", icon: TrendingUp, dataAttr: undefined, sectionId: "learning-track" },
-    { title: "Dashboard", url: "/", icon: Home, dataAttr: undefined, sectionId: "dashboard" },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
@@ -329,12 +329,6 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                       <NavLink
                         to={item.url}
                         className={getNavClassName(item.url)}
-                        onClick={(e) => {
-                          if (item.url === "/") {
-                            e.preventDefault();
-                            navigate("/", { replace: true });
-                          }
-                        }}
                         {...(item.dataAttr && { 'data-onboarding': item.dataAttr })}
                       >
                         <item.icon className="h-4 w-4" />

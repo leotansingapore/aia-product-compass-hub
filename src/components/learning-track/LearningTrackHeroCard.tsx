@@ -51,16 +51,6 @@ export function LearningTrackHeroCard() {
           {data.combinedPct === 0 ? "Start Learning" : "Continue"}{" "}
           <ArrowRight className="ml-1 h-4 w-4" />
         </Button>
-        {data.combinedPct === 0 && (
-          <button
-            onClick={() => {
-              localStorage.setItem("lt-redirect-dismissed", "1");
-            }}
-            className="text-xs text-muted-foreground hover:underline"
-          >
-            Dismiss
-          </button>
-        )}
       </div>
     </div>
   );

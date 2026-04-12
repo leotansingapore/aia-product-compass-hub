@@ -31,7 +31,7 @@ export function MobileHeader({
   const getPageTitle = () => {
     if (title) return title;
     const path = location.pathname;
-    if (path === "/") return "Dashboard";
+    if (path === "/") return "Home";
     if (path === "/search") return "Search";
     if (path === "/cmfas-exams") return "CMFAS Exams";
     if (path === "/bookmarks") return "Bookmarks";
