@@ -4,8 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { FileText, ChevronDown, Link2, List, Play } from "lucide-react";
+import { FileText, Link2, List, Play } from "lucide-react";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
 import type { TrainingVideo } from "@/hooks/useProducts";
@@ -126,11 +125,17 @@ export function CMFASModuleCourseLayout({
 
   const sidebarInner = (
     <div className="space-y-4 pb-8">
-      <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-base">Course videos</CardTitle>
-        </CardHeader>
-        <CardContent className="pt-2">
+      <Tabs defaultValue="videos" className="w-full">
+        <TabsList className="grid h-auto w-full grid-cols-2 gap-1 p-1">
+          <TabsTrigger value="videos" className="text-xs sm:text-sm">
+            Course videos
+          </TabsTrigger>
+          <TabsTrigger value="transcript" className="gap-1.5 text-xs sm:text-sm">
+            <FileText className="h-3.5 w-3.5 shrink-0 opacity-70" aria-hidden />
+            Transcript
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="videos" className="mt-4 focus-visible:outline-none">
           <VideosByCategory
             videos={processedVideos}
             onVideoSelect={onSelectVideoFromOutline}
@@ -141,39 +146,30 @@ export function CMFASModuleCourseLayout({
             moduleId={routeModuleId}
             moduleType="cmfas"
           />
-        </CardContent>
-      </Card>
-
-      <Collapsible defaultOpen={false}>
-        <Card>
-          <CollapsibleTrigger className="w-full">
-            <CardHeader className="pb-3 cursor-pointer hover:bg-muted/50 transition-colors">
-              <CardTitle className="text-base flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <FileText className="h-4 w-4" />
-                  Transcript
-                </div>
-                <ChevronDown className="h-4 w-4 transition-transform duration-200 [[data-state=open]_&]:rotate-180" />
-              </CardTitle>
-            </CardHeader>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            <CardContent className="pt-0">
-              {currentVideo?.transcript ? (
-                <div className="max-h-[400px] overflow-y-auto">
-                  <p className="whitespace-pre-wrap text-muted-foreground text-sm leading-relaxed">
-                    {currentVideo.transcript}
-                  </p>
-                </div>
-              ) : (
-                <div className="text-center py-4 text-muted-foreground">
-                  <p className="text-sm">No transcript available for this video.</p>
-                </div>
-              )}
-            </CardContent>
-          </CollapsibleContent>
-        </Card>
-      </Collapsible>
+        </TabsContent>
+        <TabsContent value="transcript" className="mt-4 focus-visible:outline-none">
+          <p className="mb-3 text-xs text-muted-foreground">
+            {currentVideo?.title ? (
+              <>
+                Transcript for: <span className="font-medium text-foreground">{currentVideo.title}</span>
+              </>
+            ) : (
+              "Select a lesson to view its transcript."
+            )}
+          </p>
+          {currentVideo?.transcript ? (
+            <div className="max-h-[min(55vh,28rem)] overflow-y-auto rounded-md border bg-muted/30 p-3">
+              <p className="whitespace-pre-wrap text-sm leading-relaxed text-muted-foreground">
+                {currentVideo.transcript}
+              </p>
+            </div>
+          ) : (
+            <div className="rounded-md border border-dashed py-8 text-center text-muted-foreground">
+              <p className="text-sm">No transcript available for this video.</p>
+            </div>
+          )}
+        </TabsContent>
+      </Tabs>
 
       {(currentVideo?.useful_links?.length ?? 0) > 0 || (currentVideo?.attachments?.length ?? 0) > 0 ? (
         <Card>
