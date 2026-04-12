@@ -1,9 +1,10 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { Resend } from "npm:resend@4.0.0";
-import { renderAsync } from "npm:@react-email/render@0.0.12";
-import React from "npm:react@18.3.1";
-import { PitchAnalysisCompleteEmail } from "./_templates/pitch-analysis-complete.tsx";
+// Email rendering disabled — @react-email/render not available in Deno edge runtime
+// import { renderAsync } from "npm:@react-email/render@0.0.12";
+// import React from "npm:react@18.3.1";
+// import { PitchAnalysisCompleteEmail } from "./_templates/pitch-analysis-complete.tsx";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",

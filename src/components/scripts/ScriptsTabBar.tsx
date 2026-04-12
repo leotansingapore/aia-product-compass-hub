@@ -16,6 +16,12 @@ export function ScriptsTabBar() {
 
   const currentKey = tabs.find(t => location.pathname.startsWith(t.path))?.key ?? "scripts";
 
+  // Persist last visited sales playbook sub-route
+  const matchedTab = tabs.find(t => location.pathname.startsWith(t.path));
+  if (matchedTab) {
+    try { localStorage.setItem('sales-playbooks-last-route', matchedTab.path); } catch {}
+  }
+
   return (
     <div className="lg:mb-5 lg:mx-0">
       <div className="flex overflow-x-auto scrollbar-hide border-b border-border bg-background/95 backdrop-blur-sm shadow-sm lg:shadow-none lg:border-0 lg:overflow-visible lg:flex-wrap lg:gap-1 lg:p-1 lg:bg-background/95 lg:rounded-lg lg:w-fit sticky top-0 z-40 lg:static lg:z-30 lg:border lg:border-border">
