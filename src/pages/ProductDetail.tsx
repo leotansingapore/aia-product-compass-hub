@@ -26,8 +26,11 @@ import { getVideoSlug } from "@/utils/slugUtils";
 import { Brain, BookOpen } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-const PRODUCTS_WITH_EXAMS = new Set(['pro-achiever']);
-const PRODUCTS_WITH_STUDY = new Set(['pro-achiever', 'platinum-wealth-venture', 'healthshield-gold-max']);
+const PRODUCTS_WITH_EXAMS = new Set(['pro-achiever', 'core-pro-achiever']);
+const PRODUCTS_WITH_STUDY = new Set(['pro-achiever', 'platinum-wealth-venture', 'healthshield-gold-max', 'core-pro-achiever', 'core-platinum-wealth-venture', 'core-healthshield-gold-max']);
+
+// Map core product IDs to their original slug for study/exam routes
+const getOriginalSlug = (id: string) => id.replace(/^core-/, '');
 
 export default function ProductDetail() {
   const {
@@ -229,7 +232,7 @@ export default function ProductDetail() {
                   </div>
                   <Button
                     variant="outline"
-                    onClick={() => navigate(`/product/${productSlugOrId}/study`)}
+                    onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/study`)}
                     className="shrink-0 w-full sm:w-auto"
                   >
                     Start Studying
@@ -253,7 +256,7 @@ export default function ProductDetail() {
                     </div>
                   </div>
                   <Button
-                    onClick={() => navigate(`/product/${productSlugOrId}/exam`)}
+                    onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/exam`)}
                     className="shrink-0 w-full sm:w-auto"
                   >
                     Take Exam
