@@ -43,6 +43,7 @@ const CMFASChat = lazy(() => import("./pages/cmfas/CMFASChat"));
 const Roleplay = lazy(() => import("./pages/Roleplay"));
 const RoleplayFeedback = lazy(() => import("./pages/RoleplayFeedback"));
 
+const Categories = lazy(() => import("./pages/Categories"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const MyAccount = lazy(() => import("./pages/MyAccount"));
 const VideoDetail = lazy(() => import("./pages/VideoDetail"));
@@ -117,6 +118,7 @@ const App = () => (
                       </RequireAuth>
                     } />
                     <Route path="/my-account" element={<RequireAuth><MyAccount /></RequireAuth>} />
+                    <Route path="/categories" element={<RequireAuth><Categories /></RequireAuth>} />
                     <Route path="/category/:categorySlugOrId" element={<RequireAuth><ProductCategory /></RequireAuth>} />
                     <Route path="/product/:productSlugOrId" element={<RequireAuth><ProductDetail /></RequireAuth>} />
                     <Route path="/product/:productSlugOrId/:pageId" element={<RequireAuth><ProductDetail /></RequireAuth>} />
