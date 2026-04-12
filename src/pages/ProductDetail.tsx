@@ -168,7 +168,32 @@ export default function ProductDetail() {
         <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
 
           {/* Compact Top Actions */}
-          <div className="flex justify-end gap-2 mb-2 sm:mb-4">
+          <div className="flex flex-wrap justify-end items-center gap-2 mb-2 sm:mb-4">
+            {(PRODUCTS_WITH_STUDY.has(product.id) || PRODUCTS_WITH_EXAMS.has(product.id)) && (
+              <>
+                {PRODUCTS_WITH_STUDY.has(product.id) && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/study`)}
+                    className="gap-1.5"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    Study Bank
+                  </Button>
+                )}
+                {PRODUCTS_WITH_EXAMS.has(product.id) && (
+                  <Button
+                    size="sm"
+                    onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/exam`)}
+                    className="gap-1.5"
+                  >
+                    <Brain className="h-4 w-4" />
+                    Take Exam
+                  </Button>
+                )}
+              </>
+            )}
             {isAdminMode && <ProductSyncButton productId={product.id} productName={product.title} />}
             <BookmarkButton productId={product.id} />
           </div>
