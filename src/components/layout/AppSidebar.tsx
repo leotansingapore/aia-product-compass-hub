@@ -25,7 +25,7 @@ import {
   ArchiveRestore,
   LogOut,
   Sparkles,
-  Video,
+  
   Target,
   Headset,
   
@@ -83,7 +83,6 @@ import { toast } from "@/hooks/use-toast";
 const allResourceItems = [
   { title: "How to Use Portal", url: "/how-to-use", icon: HelpCircle, sectionId: "how-to-use" },
   { title: "Changelog", url: "/changelog", icon: Sparkles, sectionId: "changelog" },
-  { title: "Pitch Analysis", url: "/roleplay/pitch-analysis", icon: Video, sectionId: "pitch-analysis" },
   { title: "Search by Client", url: "/search-by-profile", icon: Users, sectionId: "search-by-profile" },
   { title: "Sales Playbooks", url: "/scripts", icon: TrendingUp, sectionId: "sales-playbooks" },
 ];
@@ -501,7 +500,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
             <SidebarGroupLabel>Resources & Help</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {resourceItems.filter(i => ['search-by-profile', 'pitch-analysis', 'how-to-use', 'changelog'].includes(i.sectionId)).map((item) => (
+                {resourceItems.filter(i => ['search-by-profile', 'how-to-use', 'changelog'].includes(i.sectionId)).map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
                       <NavLink to={item.url} className={getNavClassName(item.url)}>

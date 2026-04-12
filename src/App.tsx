@@ -42,7 +42,7 @@ const CMFASVideoDetail = lazy(() => import("./pages/cmfas/CMFASVideoDetail"));
 const CMFASChat = lazy(() => import("./pages/cmfas/CMFASChat"));
 const Roleplay = lazy(() => import("./pages/Roleplay"));
 const RoleplayFeedback = lazy(() => import("./pages/RoleplayFeedback"));
-const PitchAnalysis = lazy(() => import("./pages/PitchAnalysis"));
+
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const MyAccount = lazy(() => import("./pages/MyAccount"));
 const VideoDetail = lazy(() => import("./pages/VideoDetail"));
@@ -108,7 +108,7 @@ const App = () => (
                     <Route path="/cmfas/chat/:moduleId?" element={<RequireAuth><CMFASChat /></RequireAuth>} />
                     <Route path="/roleplay" element={<RequireAuth><Roleplay /></RequireAuth>} />
                     <Route path="/roleplay/feedback/:sessionId" element={<RequireAuth><RoleplayFeedback /></RequireAuth>} />
-                    <Route path="/roleplay/pitch-analysis" element={<RequireAuth><PitchAnalysis /></RequireAuth>} />
+                    <Route path="/roleplay/pitch-analysis" element={<Navigate to="/roleplay?tab=pitch-analysis" replace />} />
                     <Route path="/admin" element={
                       <RequireAuth>
                         <ProtectedAdminPage>
