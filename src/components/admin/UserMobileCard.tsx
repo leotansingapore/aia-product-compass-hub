@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -37,7 +38,7 @@ interface UserMobileCardProps {
   onSendEmail: (user: UnifiedUser) => void;
 }
 
-export function UserMobileCard({ 
+export const UserMobileCard = memo(function UserMobileCard({ 
   user, 
   isSelected, 
   onSelect, 
@@ -297,4 +298,4 @@ export function UserMobileCard({
       </CardContent>
     </Card>
   );
-}
+});

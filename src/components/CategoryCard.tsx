@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, memo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -16,7 +16,7 @@ interface CategoryCardProps {
   ctaLabel?: string;
 }
 
-export function CategoryCard({ title, description, icon, productCount, onClick, gradient, borderColor = 'group-hover:border-primary', countLabel = 'product', ctaLabel = 'Explore' }: CategoryCardProps) {
+export const CategoryCard = memo(function CategoryCard({ title, description, icon, productCount, onClick, gradient, borderColor = 'group-hover:border-primary', countLabel = 'product', ctaLabel = 'Explore' }: CategoryCardProps) {
   return (
     <Card className="hover:shadow-md transition-shadow cursor-pointer group" onClick={onClick}>
       <CardHeader className="text-center pb-2 p-3 sm:p-4 md:p-6">
@@ -40,4 +40,4 @@ export function CategoryCard({ title, description, icon, productCount, onClick, 
       </CardContent>
     </Card>
   );
-}
+});

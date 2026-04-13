@@ -23,7 +23,7 @@ const OnboardingHelpButton = lazy(() => import("@/components/onboarding/Onboardi
 const WelcomeModal = lazy(() => import("@/components/onboarding/WelcomeModal").then(m => ({ default: m.WelcomeModal })));
 const NewVersionBanner = lazy(() => import("@/components/NewVersionBanner").then(m => ({ default: m.NewVersionBanner })));
 // Eagerly loaded pages (lightweight / critical path)
-import Index from "./pages/Index";
+const Index = lazy(() => import("./pages/Index"));
 import SimplifiedAuth from "./pages/SimplifiedAuth";
 import ForcePasswordChange from "./pages/ForcePasswordChange";
 import ResetPassword from "./pages/ResetPassword";
@@ -74,7 +74,16 @@ const ProLifetimeProtectorStudy = lazy(() => import("./pages/ProLifetimeProtecto
 const SolitairePaStudy = lazy(() => import("./pages/SolitairePaStudy"));
 const UltimateCriticalCoverStudy = lazy(() => import("./pages/UltimateCriticalCoverStudy"));
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 2 * 60 * 1000,      // 2 min — avoid refetch on every navigation
+      gcTime: 10 * 60 * 1000,         // 10 min — keep unused data in cache longer
+      refetchOnWindowFocus: false,    // don't refetch when user switches tabs
+      retry: 1,                       // single retry instead of default 3
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
