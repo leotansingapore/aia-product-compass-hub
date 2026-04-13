@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
+import { useState, useEffect, useMemo, useCallback, createContext, useContext, ReactNode } from 'react';
 import { useAuth } from './useAuth';
 
 interface ChecklistContextType {
@@ -49,36 +49,35 @@ export function ChecklistProvider({ children }: { children: ReactNode }) {
     }
   }, [completedItems, user]);
 
-  const completeItem = (itemId: string) => {
-    console.log('Completing checklist item:', itemId);
+  const completeItem = useCallback((itemId: string) => {
     setCompletedItems(prev => new Set([...prev, itemId]));
-  };
+  }, []);
 
-  const isItemCompleted = (itemId: string) => {
+  const isItemCompleted = useCallback((itemId: string) => {
     return completedItems.has(itemId);
-  };
+  }, [completedItems]);
 
-  const getCompletedCount = () => {
+  const getCompletedCount = useCallback(() => {
     return completedItems.size;
-  };
+  }, [completedItems]);
 
-  const resetProgress = () => {
+  const resetProgress = useCallback(() => {
     setCompletedItems(new Set());
     if (user) {
       localStorage.removeItem(`checklist-progress-${user.id}`);
     }
-  };
+  }, [user]);
+
+  const value = useMemo(() => ({
+    completedItems,
+    completeItem,
+    isItemCompleted,
+    getCompletedCount,
+    resetProgress,
+  }), [completedItems, completeItem, isItemCompleted, getCompletedCount, resetProgress]);
 
   return (
-    <ChecklistContext.Provider
-      value={{
-        completedItems,
-        completeItem,
-        isItemCompleted,
-        getCompletedCount,
-        resetProgress,
-      }}
-    >
+    <ChecklistContext.Provider value={value}>
       {children}
     </ChecklistContext.Provider>
   );
