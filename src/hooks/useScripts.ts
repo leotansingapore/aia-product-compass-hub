@@ -38,7 +38,7 @@ export function useScripts() {
     setLoading(true);
     const { data, error } = await supabase
       .from('scripts')
-      .select('id, stage, category, target_audience, script_role, tags, versions, sort_order, attachments, related_script_id, created_at, updated_at')
+      .select('*')
       .order('sort_order', { ascending: true })
       .order('created_at', { ascending: true });
 
