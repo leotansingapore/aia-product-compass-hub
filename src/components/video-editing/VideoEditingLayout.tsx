@@ -248,6 +248,18 @@ export function VideoEditingLayout({
                     <FilePlus className="h-4 w-4 mr-2" />
                     Add Page
                   </DropdownMenuItem>
+                  {onAddQuiz && (
+                    <DropdownMenuItem onClick={onAddQuiz} className="cursor-pointer">
+                      <Brain className="h-4 w-4 mr-2" />
+                      Add Quiz
+                    </DropdownMenuItem>
+                  )}
+                  {onAddAssignment && (
+                    <DropdownMenuItem onClick={onAddAssignment} className="cursor-pointer">
+                      <ClipboardList className="h-4 w-4 mr-2" />
+                      Add Assignment
+                    </DropdownMenuItem>
+                  )}
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
