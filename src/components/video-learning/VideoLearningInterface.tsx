@@ -84,16 +84,28 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     }
   }, [markVideoComplete, updateVideoProgress]);
 
-  const currentVideo = useMemo(() => videos[currentVideoIndex], [videos, currentVideoIndex]);
+  const safeVideoIndex = useMemo(() => {
+    if (videos.length === 0) return 0;
+    return Math.min(Math.max(currentVideoIndex, 0), videos.length - 1);
+  }, [currentVideoIndex, videos.length]);
+
+  const currentVideo = videos[safeVideoIndex] ?? null;
+  const currentVideoId = currentVideo?.id;
+  const currentVideoUrl = currentVideo?.url ?? '';
+  const currentVideoRichContent = currentVideo?.rich_content?.trim() ?? '';
 
   // Auto-complete handler for quiz/assignment items
   const handleItemComplete = useCallback(async () => {
-    if (currentVideo) {
-      await markVideoComplete(currentVideo.id);
+    const activeVideo = videos[safeVideoIndex];
+    if (activeVideo?.id) {
+      await markVideoComplete(activeVideo.id);
     }
-  }, [currentVideo, markVideoComplete]);
+  }, [videos, safeVideoIndex, markVideoComplete]);
 
-  const currentProgress = useMemo(() => getVideoProgress(currentVideo?.id), [getVideoProgress, currentVideo?.id]);
+  const currentProgress = useMemo(
+    () => (currentVideoId ? getVideoProgress(currentVideoId) : undefined),
+    [getVideoProgress, currentVideoId]
+  );
   const courseProgress = useMemo(() => getCourseProgress(videos.length), [getCourseProgress, videos.length]);
 
   useEffect(() => {
@@ -101,7 +113,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     setWatchTime(0);
     setShowMobileSidebar(false);
     setVideoError(false);
-  }, [initialVideoIndex]);
+  }, [initialVideoIndex, videos.length]);
 
   // Scroll mini-nav to keep current item visible
   useEffect(() => {
@@ -114,29 +126,32 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   // Track watch time
   useEffect(() => {
     let interval: NodeJS.Timeout;
-    if (isPlaying && currentVideo) {
+    const activeVideo = videos[safeVideoIndex];
+
+    if (isPlaying && activeVideo) {
       interval = setInterval(() => {
         setWatchTime(prev => {
           const newTime = prev + 1;
-          const percentage = currentVideo.duration ? Math.min((newTime / currentVideo.duration) * 100, 100) : 0;
-          if (newTime % 10 === 0) updateWatchTime(currentVideo.id, newTime, percentage);
+          const percentage = activeVideo.duration ? Math.min((newTime / activeVideo.duration) * 100, 100) : 0;
+          if (newTime % 10 === 0) updateWatchTime(activeVideo.id, newTime, percentage);
           return newTime;
         });
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [isPlaying, currentVideo, updateWatchTime]);
+  }, [isPlaying, safeVideoIndex, updateWatchTime, videos]);
 
   const handleToggleStickyComplete = useCallback(async () => {
-    if (currentVideo) {
-      await handleToggleComplete(currentVideo.id, !!currentProgress?.completed);
+    const activeVideo = videos[safeVideoIndex];
+    if (activeVideo?.id) {
+      await handleToggleComplete(activeVideo.id, !!currentProgress?.completed);
     }
-  }, [currentVideo, currentProgress, handleToggleComplete]);
+  }, [videos, safeVideoIndex, currentProgress, handleToggleComplete]);
 
   const navigateVideo = useCallback((direction: 'prev' | 'next') => {
-    let targetIndex = currentVideoIndex;
-    if (direction === 'prev' && currentVideoIndex > 0) targetIndex = currentVideoIndex - 1;
-    else if (direction === 'next' && currentVideoIndex < videos.length - 1) targetIndex = currentVideoIndex + 1;
+    let targetIndex = safeVideoIndex;
+    if (direction === 'prev' && safeVideoIndex > 0) targetIndex = safeVideoIndex - 1;
+    else if (direction === 'next' && safeVideoIndex < videos.length - 1) targetIndex = safeVideoIndex + 1;
     else return;
 
     const targetVideo = videos[targetIndex];
@@ -148,22 +163,22 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
         navigate(`/product/${productSlugOrId}/video/${videoSlug}`);
       }
     }
-  }, [currentVideoIndex, videos, moduleType, moduleId, productSlugOrId, navigate]);
+  }, [safeVideoIndex, videos, moduleType, moduleId, productSlugOrId, navigate]);
 
-  const videoInfo = useMemo(() => currentVideo ? getVideoEmbedInfo(currentVideo.url) : null, [currentVideo]);
+  const videoInfo = useMemo(() => (currentVideoUrl ? getVideoEmbedInfo(currentVideoUrl) : null), [currentVideoUrl]);
 
   // True when the rich_content markdown already embeds the same video — hides the standalone player to avoid duplicates.
   // Uses the embed URL's video ID so minor URL param differences (e.g. ?sid=) don't cause false negatives.
   const richContentHasVideo = useMemo(() => {
-    if (!currentVideo?.rich_content?.trim() || !currentVideo?.url) return false;
-    const embedInfo = detectVideoEmbed(currentVideo.url);
+    if (!currentVideoRichContent || !currentVideoUrl) return false;
+    const embedInfo = detectVideoEmbed(currentVideoUrl);
     if (!embedInfo.isVideo || !embedInfo.embedUrl) return false;
     // Extract the core video ID from the embed URL (last path segment before any query)
     const embedPath = embedInfo.embedUrl.split('?')[0];
     const videoId = embedPath.split('/').pop();
     if (!videoId) return false;
-    return currentVideo.rich_content.includes(videoId);
-  }, [currentVideo]);
+    return currentVideoRichContent.includes(videoId);
+  }, [currentVideoRichContent, currentVideoUrl]);
 
   const sidebarContent = (
     <div className="space-y-4">
