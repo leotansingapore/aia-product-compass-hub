@@ -24,7 +24,7 @@ const quickLinkItems = [
   { name: "How to Use", href: "/how-to-use", icon: HelpCircle, color: "text-teal-500", bg: "bg-teal-50 dark:bg-teal-950/30" },
   { name: "Playbooks", href: "/playbooks", icon: BookOpen, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-950/30" },
   { name: "Script Flows", href: "/flows", icon: GitBranch, color: "text-amber-500", bg: "bg-amber-50 dark:bg-amber-950/30" },
-  { name: "Sales Tools", href: "/product/sales-tools-objections", icon: TrendingUp, color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-950/30" },
+  { name: "Sales Tools", href: "/scripts", icon: TrendingUp, color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-950/30" },
 ];
 
 export function MobileBottomNav() {

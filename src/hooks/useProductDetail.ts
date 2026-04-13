@@ -59,13 +59,7 @@ export function useProductDetail() {
     
     const categoryName = (product as any).categories?.name || '';
     
-    return productId === 'sales-tools-objections' 
-      ? [
-          { label: 'Home', href: '/' },
-          { label: 'Resources', href: '/' },
-          { label: product.title }
-        ]
-      : [
+    return [
           { label: 'Home', href: '/' },
           { label: categoryName, href: `/category/${product.category_id}` },
           { label: product.title }
