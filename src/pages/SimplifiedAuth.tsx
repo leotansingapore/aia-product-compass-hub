@@ -94,19 +94,6 @@ const SimplifiedAuth = () => {
         />
 
         <div className="relative z-10 flex flex-col flex-1 min-h-screen px-12 xl:px-16 py-10 xl:py-14 text-white">
-          <header className="inline-flex items-center gap-0" aria-label="FINternship">
-            <img
-              src={FINTERNSHIP_LOGO_WHITE}
-              alt=""
-              width={44}
-              height={44}
-              decoding="async"
-              className="h-11 w-11 shrink-0 object-contain object-left drop-shadow-sm -mr-2.5 sm:-mr-3"
-            />
-            <span className="text-lg font-bold tracking-tight text-white leading-none -ml-1">
-              INternship
-            </span>
-          </header>
 
           <div className="flex-1 flex flex-col justify-center max-w-lg py-10">
             <h1 className="text-3xl xl:text-[2.35rem] font-bold leading-[1.12] tracking-tight text-white">
