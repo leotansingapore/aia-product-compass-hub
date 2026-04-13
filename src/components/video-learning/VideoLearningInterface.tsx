@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo, useCallback, memo } from 'react';
+import { useState, useRef, useEffect, useMemo, useCallback, memo, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -17,6 +17,9 @@ import rehypeRaw from 'rehype-raw';
 import { markdownComponents } from '@/lib/markdown-config';
 import { detectVideoEmbed, VideoEmbed } from '@/lib/video-embed-utils';
 import { usePermissions } from '@/hooks/usePermissions';
+
+const InlineQuiz = lazy(() => import('@/components/quiz/InlineQuiz').then(m => ({ default: m.InlineQuiz })));
+const InlineAssignment = lazy(() => import('@/components/assignments/InlineAssignment').then(m => ({ default: m.InlineAssignment })));
 
 interface VideoLearningInterfaceProps {
   videos: TrainingVideo[];
@@ -80,6 +83,13 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
       await markVideoComplete(videoId);
     }
   }, [markVideoComplete, updateVideoProgress]);
+
+  // Auto-complete handler for quiz/assignment items
+  const handleItemComplete = useCallback(async () => {
+    if (currentVideo) {
+      await markVideoComplete(currentVideo.id);
+    }
+  }, [currentVideo, markVideoComplete]);
 
   const currentVideo = useMemo(() => videos[currentVideoIndex], [videos, currentVideoIndex]);
   const currentProgress = useMemo(() => getVideoProgress(currentVideo?.id), [getVideoProgress, currentVideo?.id]);
@@ -331,6 +341,29 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             {/* Video + mini-nav column */}
             <div className="lg:col-span-2 space-y-4 sm:space-y-6 order-1 lg:order-2">
 
+              {/* Content area — switches based on item type */}
+              {currentVideo?.type === 'quiz' && currentVideo.quiz_config ? (
+                <Suspense fallback={<Card><CardContent className="p-8 text-center text-muted-foreground">Loading quiz...</CardContent></Card>}>
+                  <InlineQuiz
+                    title={currentVideo.title}
+                    description={currentVideo.description}
+                    quizConfig={currentVideo.quiz_config}
+                    onComplete={handleItemComplete}
+                  />
+                </Suspense>
+              ) : currentVideo?.type === 'assignment' && currentVideo.assignment_config ? (
+                <Suspense fallback={<Card><CardContent className="p-8 text-center text-muted-foreground">Loading assignment...</CardContent></Card>}>
+                  <InlineAssignment
+                    title={currentVideo.title}
+                    description={currentVideo.description}
+                    assignmentConfig={currentVideo.assignment_config}
+                    productId={productId}
+                    itemId={currentVideo.id}
+                    onComplete={handleItemComplete}
+                  />
+                </Suspense>
+              ) : (
+              <>
               {/* Video player — hide if rich_content already embeds this video (avoids duplicate), or if no valid URL */}
               {!richContentHasVideo && videoInfo && (
                 <Card>
@@ -495,6 +528,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                   </CardContent>
                 </Card>
               ) : null}
+              </>
+              )}
             </div>
 
             {/* Desktop Sidebar */}
