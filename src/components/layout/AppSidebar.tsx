@@ -133,7 +133,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const [newCategoryCreateName, setNewCategoryCreateName] = useState("");
   const [newCategoryCreateDescription, setNewCategoryCreateDescription] = useState("");
   const [newCategoryPublishImmediately, setNewCategoryPublishImmediately] = useState(false);
-  const [feedbackOpen, setFeedbackOpen] = useState(false);
+  
   const queryClient = useQueryClient();
 
   const allMainNavItems = useMemo(() => [
