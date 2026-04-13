@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { VideoEditForm } from './VideoEditForm';
+import QuizEditor from './QuizEditor';
+import { AssignmentEditor } from './AssignmentEditor';
 import { Button } from '@/components/ui/button';
-import { SquarePen, Eye } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { SquarePen, Eye, Brain, ClipboardList } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -66,8 +70,69 @@ export function VideoEditorPanel({
   return (
     <div className="flex-1 h-full">
       {editingIndex !== null && currentVideo ? (
+        /* ========== QUIZ EDITOR ========== */
+        currentVideo.type === 'quiz' ? (
+          <div className="border rounded-lg bg-card p-6 space-y-4">
+            <div className="flex items-center gap-2 mb-2">
+              <Brain className="h-5 w-5 text-primary" />
+              <h2 className="text-lg font-semibold">Quiz Editor</h2>
+            </div>
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">Quiz Title</Label>
+              <Input
+                value={currentVideo.title}
+                onChange={(e) => onUpdateVideo(editingIndex, { ...currentVideo, title: e.target.value })}
+                placeholder="Quiz title"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">Description (optional)</Label>
+              <Input
+                value={currentVideo.description || ''}
+                onChange={(e) => onUpdateVideo(editingIndex, { ...currentVideo, description: e.target.value })}
+                placeholder="Brief description of this quiz"
+              />
+            </div>
+            <QuizEditor
+              quizConfig={currentVideo.quiz_config || { questions: [] }}
+              onChange={(config) => onUpdateVideo(editingIndex, { ...currentVideo, quiz_config: config })}
+              sourceVideos={editVideos
+                .filter(v => (!v.type || v.type === 'video') && v.id !== currentVideo.id)
+                .map(v => ({ id: v.id, title: v.title, rich_content: v.rich_content, transcript: v.transcript }))}
+            />
+          </div>
+        ) :
+        /* ========== ASSIGNMENT EDITOR ========== */
+        currentVideo.type === 'assignment' ? (
+          <div className="border rounded-lg bg-card p-6 space-y-4">
+            <div className="flex items-center gap-2 mb-2">
+              <ClipboardList className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+              <h2 className="text-lg font-semibold">Assignment Editor</h2>
+            </div>
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">Assignment Title</Label>
+              <Input
+                value={currentVideo.title}
+                onChange={(e) => onUpdateVideo(editingIndex, { ...currentVideo, title: e.target.value })}
+                placeholder="Assignment title"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">Description (optional)</Label>
+              <Input
+                value={currentVideo.description || ''}
+                onChange={(e) => onUpdateVideo(editingIndex, { ...currentVideo, description: e.target.value })}
+                placeholder="Brief description shown to learners"
+              />
+            </div>
+            <AssignmentEditor
+              assignmentConfig={currentVideo.assignment_config || { submission_type: 'text', prompt: '' }}
+              onChange={(config) => onUpdateVideo(editingIndex, { ...currentVideo, assignment_config: config })}
+            />
+          </div>
+        ) :
         isEditing || shouldAutoEdit ? (
-          /* ========== EDIT MODE ========== */
+          /* ========== VIDEO EDIT MODE ========== */
           <div className="h-full">
             {/* Preview toggle — only show when page has content */}
             {currentVideo.rich_content || currentVideo.description ? (

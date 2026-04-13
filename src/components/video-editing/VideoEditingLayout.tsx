@@ -6,7 +6,7 @@ import { ModuleResourcesSection } from './ModuleResourcesSection';
 import { AddResourceDropdown } from './AddResourceDropdown';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoreVertical, FolderPlus, FilePlus, ChevronLeft, FileText, Link2, ChevronDown } from 'lucide-react';
+import { MoreVertical, FolderPlus, FilePlus, ChevronLeft, FileText, Link2, ChevronDown, Brain, ClipboardList } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import type { TrainingVideo, UsefulLink, VideoAttachment } from '@/hooks/useProducts';
 
@@ -27,6 +27,8 @@ interface VideoEditingLayoutProps {
   onMoveVideo: (index: number, direction: 'up' | 'down') => void;
   onNewVideoChange: (video: TrainingVideo) => void;
   onAddVideo: () => void;
+  onAddQuiz?: () => void;
+  onAddAssignment?: () => void;
   onCreateCategory: (categoryName: string) => void;
   onCreateFolder: () => void;
   onEditFolder: (folderName: string) => void;
@@ -65,6 +67,8 @@ export function VideoEditingLayout({
   onMoveVideo,
   onNewVideoChange,
   onAddVideo,
+  onAddQuiz,
+  onAddAssignment,
   onCreateCategory,
   onCreateFolder,
   onEditFolder,
@@ -137,6 +141,18 @@ export function VideoEditingLayout({
                       <FilePlus className="h-4 w-4 mr-2" />
                       Add Page
                     </DropdownMenuItem>
+                    {onAddQuiz && (
+                      <DropdownMenuItem onClick={onAddQuiz} className="cursor-pointer">
+                        <Brain className="h-4 w-4 mr-2" />
+                        Add Quiz
+                      </DropdownMenuItem>
+                    )}
+                    {onAddAssignment && (
+                      <DropdownMenuItem onClick={onAddAssignment} className="cursor-pointer">
+                        <ClipboardList className="h-4 w-4 mr-2" />
+                        Add Assignment
+                      </DropdownMenuItem>
+                    )}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>

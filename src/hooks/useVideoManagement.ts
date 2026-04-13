@@ -160,6 +160,36 @@ export function useVideoManagement({ initialVideos, onSave, productId }: UseVide
     }
   };
 
+  const addQuiz = (category?: string) => {
+    const quizItem: TrainingVideo = {
+      id: `quiz-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      title: 'New Quiz',
+      url: '',
+      type: 'quiz',
+      order: editVideos.length,
+      category: category || '',
+      quiz_config: { questions: [] },
+    };
+    setEditVideos([...editVideos, quizItem]);
+    setEditingIndex(editVideos.length);
+    toast({ title: "Quiz Added", description: "Configure quiz questions, then save." });
+  };
+
+  const addAssignment = (category?: string) => {
+    const assignmentItem: TrainingVideo = {
+      id: `assignment-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      title: 'New Assignment',
+      url: '',
+      type: 'assignment',
+      order: editVideos.length,
+      category: category || '',
+      assignment_config: { submission_type: 'text', prompt: '' },
+    };
+    setEditVideos([...editVideos, assignmentItem]);
+    setEditingIndex(editVideos.length);
+    toast({ title: "Assignment Added", description: "Configure the assignment, then save." });
+  };
+
   const updateVideo = (index: number, updatedVideo: TrainingVideo) => {
     const updated = [...editVideos];
     updated[index] = updatedVideo;
@@ -234,6 +264,8 @@ export function useVideoManagement({ initialVideos, onSave, productId }: UseVide
     handleSave,
     handleCancel,
     addVideo,
+    addQuiz,
+    addAssignment,
     updateVideo,
     removeVideo,
     moveVideo,

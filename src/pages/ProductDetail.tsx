@@ -194,6 +194,8 @@ export default function ProductDetail() {
                     onMoveVideo={videoManagement.moveVideo}
                     onNewVideoChange={videoManagement.setNewVideo}
                     onAddVideo={videoManagement.addVideo}
+                    onAddQuiz={videoManagement.addQuiz}
+                    onAddAssignment={videoManagement.addAssignment}
                     onSave={videoManagement.handleSave}
                     onCancel={() => videoManagement.handleCancel()}
                     onCreateCategory={videoManagement.addEmptyFolder}

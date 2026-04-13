@@ -23,6 +23,8 @@ interface VideoEditingInterfaceProps {
   onMoveVideo: (index: number, direction: 'up' | 'down') => void;
   onNewVideoChange: (video: TrainingVideo) => void;
   onAddVideo: () => void;
+  onAddQuiz?: () => void;
+  onAddAssignment?: () => void;
   onSave: (videos?: TrainingVideo[]) => void;
   onCancel: () => void;
   onCreateCategory: (categoryName: string) => void;
@@ -42,6 +44,8 @@ export function VideoEditingInterface({
   onMoveVideo,
   onNewVideoChange,
   onAddVideo,
+  onAddQuiz,
+  onAddAssignment,
   onSave,
   onCancel,
   onCreateCategory
@@ -232,6 +236,8 @@ export function VideoEditingInterface({
           onMoveVideo={onMoveVideo}
           onNewVideoChange={onNewVideoChange}
           onAddVideo={onAddVideo}
+          onAddQuiz={onAddQuiz}
+          onAddAssignment={onAddAssignment}
           onCreateCategory={onCreateCategory}
           onCreateFolder={folderManagement.handleCreateFolder}
           onEditFolder={folderManagement.handleEditFolder}
