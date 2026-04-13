@@ -166,33 +166,8 @@ export default function ProductDetail() {
 
         <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
 
-          {/* Compact Top Actions */}
-          <div className="flex flex-wrap justify-end items-center gap-2 mb-2 sm:mb-4">
-            {(PRODUCTS_WITH_STUDY.has(product.id) || PRODUCTS_WITH_EXAMS.has(product.id)) && (
-              <>
-                {PRODUCTS_WITH_STUDY.has(product.id) && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/study`)}
-                    className="gap-1.5"
-                  >
-                    <BookOpen className="h-4 w-4" />
-                    Study Bank
-                  </Button>
-                )}
-                {PRODUCTS_WITH_EXAMS.has(product.id) && (
-                  <Button
-                    size="sm"
-                    onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/exam`)}
-                    className="gap-1.5"
-                  >
-                    <Brain className="h-4 w-4" />
-                    Take Exam
-                  </Button>
-                )}
-              </>
-            )}
+          {/* Top-right utilities */}
+          <div className="flex justify-end items-center gap-2 mb-2 sm:mb-4">
             {isAdminMode && <ProductSyncButton productId={product.id} productName={product.title} />}
             <BookmarkButton productId={product.id} />
           </div>
@@ -237,59 +212,64 @@ export default function ProductDetail() {
           {/* Sub-modules Section */}
           <SubModulesSection parentProductId={product.id} />
 
-          {/* Study Bank + Product Exam CTA */}
-          {(PRODUCTS_WITH_STUDY.has(product.id) || PRODUCTS_WITH_EXAMS.has(product.id)) && (
-            <Card className="mt-4 sm:mt-8 border-primary/20 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 overflow-visible">
-              <CardContent className="p-5 sm:p-6 space-y-4">
-                {PRODUCTS_WITH_STUDY.has(product.id) && (
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10 shrink-0">
-                      <BookOpen className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-sm sm:text-base">Study Bank</h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground">
-                        Practice questions with instant feedback — study at your own pace
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="outline"
-                    onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/study`)}
-                    className="shrink-0 w-full sm:w-auto"
-                  >
-                    Start Studying
-                  </Button>
-                </div>
-                )}
-                {PRODUCTS_WITH_STUDY.has(product.id) && PRODUCTS_WITH_EXAMS.has(product.id) && (
-                  <div className="border-t" />
-                )}
-                {PRODUCTS_WITH_EXAMS.has(product.id) && (
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/30 shrink-0">
-                      <Brain className="h-5 w-5 text-green-700 dark:text-green-400" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-sm sm:text-base">Product Knowledge Exam</h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground">
-                        Scored exam recorded on your profile — take when you're ready
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/exam`)}
-                    className="shrink-0 w-full sm:w-auto"
-                  >
-                    Take Exam
-                  </Button>
-                </div>
-                )}
-              </CardContent>
-            </Card>
-          )}
+          {/* Learning Path -- numbered steps showing what to do next */}
+          {(PRODUCTS_WITH_STUDY.has(product.id) || PRODUCTS_WITH_EXAMS.has(product.id)) && (() => {
+            const hasStudy = PRODUCTS_WITH_STUDY.has(product.id);
+            const hasExam = PRODUCTS_WITH_EXAMS.has(product.id);
+            let stepNum = 2; // Step 1 is always the training videos above
+            return (
+              <Card className="mt-4 sm:mt-8 border-primary/20 overflow-visible">
+                <CardContent className="p-5 sm:p-6 space-y-0">
+                  <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">Continue Learning</h3>
+                  {hasStudy && (() => {
+                    const n = stepNum++;
+                    return (
+                      <div className="flex items-center gap-3 py-3 border-b last:border-b-0">
+                        <div className="flex items-center justify-center h-7 w-7 rounded-full border-2 border-primary/30 text-xs font-bold text-primary shrink-0">
+                          {n}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-medium text-sm">Study Bank</h4>
+                          <p className="text-xs text-muted-foreground">Practice questions with instant feedback</p>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/study`)}
+                          className="shrink-0"
+                        >
+                          <BookOpen className="h-3.5 w-3.5 mr-1.5" />
+                          Study
+                        </Button>
+                      </div>
+                    );
+                  })()}
+                  {hasExam && (() => {
+                    const n = stepNum++;
+                    return (
+                      <div className="flex items-center gap-3 py-3">
+                        <div className="flex items-center justify-center h-7 w-7 rounded-full border-2 border-primary/30 text-xs font-bold text-primary shrink-0">
+                          {n}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-medium text-sm">Product Knowledge Exam</h4>
+                          <p className="text-xs text-muted-foreground">Scored exam recorded on your profile</p>
+                        </div>
+                        <Button
+                          size="sm"
+                          onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/exam`)}
+                          className="shrink-0"
+                        >
+                          <Brain className="h-3.5 w-3.5 mr-1.5" />
+                          Exam
+                        </Button>
+                      </div>
+                    );
+                  })()}
+                </CardContent>
+              </Card>
+            );
+          })()}
 
           {/* Resources Section */}
           <div className="mt-4 sm:mt-8">

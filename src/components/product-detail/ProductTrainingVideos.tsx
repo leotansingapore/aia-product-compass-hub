@@ -11,7 +11,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { formatDuration } from "@/components/video-editing/videoUtils";
 import { getVideoSlug } from "@/utils/slugUtils";
 import { Progress } from "@/components/ui/progress";
-import { GraduationCap, Play, Edit, Clock, CheckCircle2 } from "lucide-react";
+import { Play, Edit, Clock, CheckCircle2 } from "lucide-react";
 import type { TrainingVideo } from "@/hooks/useProducts";
 
 interface ProductTrainingVideosProps {
@@ -73,7 +73,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
       <CardHeader className="p-3 sm:p-4 md:p-6">
         <div className="flex items-center justify-between gap-2">
           <CardTitle className="flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base md:text-lg">
-            <GraduationCap className="h-4 w-4 sm:h-5 sm:w-5" />
+            <div className="flex items-center justify-center h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-primary text-primary-foreground text-[10px] sm:text-xs font-bold shrink-0">1</div>
             Training Course
             {processedVideos.length > 0 && (
               <Badge variant="secondary" className="text-[10px] sm:text-xs px-1.5 sm:px-2">
