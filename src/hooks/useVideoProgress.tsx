@@ -30,7 +30,7 @@ export function useVideoProgress(productId: string) {
       try {
         const { data, error } = await supabase
           .from('video_progress')
-          .select('*')
+          .select('id, user_id, product_id, video_id, completed, watch_time_seconds, completion_percentage, completed_at, created_at, updated_at')
           .eq('product_id', productId)
           .eq('user_id', user.id);
 
