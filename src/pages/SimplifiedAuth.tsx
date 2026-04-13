@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { BarChart3, BrainCircuit, Waypoints } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { SimplifiedAuthForm } from "@/components/auth/SimplifiedAuthForm";
-import { FINTERNSHIP_LOGO_NAVY, FINTERNSHIP_LOGO_WHITE } from "@/constants/branding";
+import { FINTERNSHIP_LOGO, FINTERNSHIP_LOGO_NAVY, FINTERNSHIP_LOGO_WHITE } from "@/constants/branding";
 
 
 
