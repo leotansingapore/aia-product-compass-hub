@@ -3,3 +3,6 @@ export const FINTERNSHIP_LOGO_WHITE = "/finternship-logo-white.png";
 
 /** Navy logo — e.g. alpha mask on login form column. */
 export const FINTERNSHIP_LOGO_NAVY = "/finternship-logo-navy.png";
+
+/** Full-color FINternship logo — general use. */
+export const FINTERNSHIP_LOGO = "/finternship-logo.jpeg";
