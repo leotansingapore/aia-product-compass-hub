@@ -7,17 +7,11 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
-import { 
-  Play, 
-  Pause, 
-  Square, 
-  Mic, 
-  MicOff, 
-  Video, 
-  VideoOff,
-  Volume2,
-  VolumeX,
-  MessageCircle,
+import {
+  Play,
+  Square,
+  Mic,
+  Video,
   RotateCcw,
   CheckCircle,
   AlertTriangle,
@@ -27,8 +21,6 @@ import {
   Settings,
   HelpCircle,
   Camera,
-  CameraOff,
-  VolumeOff
 } from 'lucide-react';
 
 interface RoleplayScenario {
@@ -52,9 +44,6 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
   const [isConnected, setIsConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [isVideoOn, setIsVideoOn] = useState(true);
-  const [isSpeakerOn, setIsSpeakerOn] = useState(true);
   const [sessionDuration, setSessionDuration] = useState(0);
   const [connectionError, setConnectionError] = useState<string | null>(null);
   const [conversationId, setConversationId] = useState<string | null>(null);
@@ -429,30 +418,6 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
     }, 1000);
   };
 
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
-    toast({
-      title: isMuted ? "Microphone On" : "Microphone Off",
-      description: "Control your microphone in the video chat window.",
-    });
-  };
-
-  const toggleVideo = () => {
-    setIsVideoOn(!isVideoOn);
-    toast({
-      title: isVideoOn ? "Camera Off" : "Camera On",
-      description: "Control your camera in the video chat window.",
-    });
-  };
-
-  const toggleSpeaker = () => {
-    setIsSpeakerOn(!isSpeakerOn);
-    toast({
-      title: isSpeakerOn ? "Speaker Off" : "Speaker On",
-      description: "Control audio output in the video chat window.",
-    });
-  };
-
   // Category and difficulty styling
   const categoryColors = {
     sales: "border-blue-200 text-blue-800",
@@ -476,6 +441,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
           <CardHeader className="p-4 sm:p-6">
             <div className="space-y-2">
               <CardTitle className="text-base sm:text-xl font-bold">{scenario.title}</CardTitle>
+              <CardDescription className="text-xs sm:text-sm">{scenario.description}</CardDescription>
               <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
                 <Badge variant="outline" className={`${categoryColors[scenario.category]} border-current text-[10px] sm:text-xs`}>
                   {scenario.category}
@@ -490,6 +456,28 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
               </div>
             </div>
           </CardHeader>
+        </Card>
+
+        {/* Learning Objectives -- shown first so learner knows what to focus on */}
+        <Card className="border-border/50">
+          <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-2">
+            <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+              <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 dark:text-green-400" />
+              Learning Objectives
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-4 sm:p-6 pt-2 sm:pt-2">
+            <ul className="space-y-2 sm:space-y-3">
+              {scenario.objectives.map((objective, index) => (
+                <li key={index} className="flex items-start gap-2 sm:gap-3 p-1.5 sm:p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="p-0.5 sm:p-1 rounded-full bg-green-100 dark:bg-green-900 mt-0.5">
+                    <CheckCircle className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-green-600 dark:text-green-400" />
+                  </div>
+                  <span className="text-xs sm:text-sm flex-1">{objective}</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
         </Card>
 
         {/* Permission Status */}
@@ -703,28 +691,6 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
           </CardContent>
         </Card>
 
-        {/* Learning Objectives */}
-        <Card className="border-border/50">
-          <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
-              <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 dark:text-green-400" />
-              Learning Objectives
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-4 sm:p-6 pt-2 sm:pt-2">
-            <ul className="space-y-2 sm:space-y-3">
-              {scenario.objectives.map((objective, index) => (
-                <li key={index} className="flex items-start gap-2 sm:gap-3 p-1.5 sm:p-2 rounded-lg hover:bg-muted/50 transition-colors">
-                  <div className="p-0.5 sm:p-1 rounded-full bg-green-100 dark:bg-green-900 mt-0.5">
-                    <CheckCircle className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-green-600 dark:text-green-400" />
-                  </div>
-                  <span className="text-xs sm:text-sm flex-1">{objective}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-
         {/* Error Display */}
         {connectionError && (
           <Alert variant="destructive">
@@ -793,11 +759,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
               style={{ backgroundColor: '#000' }}
               referrerPolicy="no-referrer-when-downgrade"
             />
-            {/* Debug info overlay */}
-            <div className="absolute bottom-4 left-4 bg-black/70 text-white text-micro p-2 rounded">
-              ID: {conversationId}<br/>
-              URL: {conversationUrl}
-            </div>
+            {/* Debug info — admin only */}
           </>
         ) : (
           <div className="w-full h-full flex items-center justify-center text-white bg-gray-900">
@@ -863,49 +825,23 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
         <div className="flex justify-center pb-4 sm:pb-6">
           <div className="bg-black/70 backdrop-blur-sm rounded-full px-3 sm:px-6 py-2.5 sm:py-3 flex items-center gap-2 sm:space-x-3">
             <Button
-              onClick={toggleMute}
-              variant={isMuted ? "destructive" : "secondary"}
-              size="sm"
-              className="rounded-full h-9 w-9 sm:h-auto sm:w-auto p-0 sm:px-3"
-            >
-              {isMuted ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
-            </Button>
-            
-            <Button
-              onClick={toggleVideo}
-              variant={!isVideoOn ? "destructive" : "secondary"}
-              size="sm"
-              className="rounded-full h-9 w-9 sm:h-auto sm:w-auto p-0 sm:px-3"
-            >
-              {isVideoOn ? <Video className="h-4 w-4" /> : <VideoOff className="h-4 w-4" />}
-            </Button>
-            
-            <Button
-              onClick={toggleSpeaker}
-              variant={!isSpeakerOn ? "destructive" : "secondary"}
-              size="sm"
-              className="rounded-full h-9 w-9 sm:h-auto sm:w-auto p-0 sm:px-3 hidden sm:flex"
-            >
-              {isSpeakerOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-            </Button>
-
-            <Button
               onClick={handleEndSession}
               variant="destructive"
               size="sm"
-              className="rounded-full px-3 sm:px-4 text-xs sm:text-sm"
+              className="rounded-full px-4 sm:px-5 text-xs sm:text-sm"
             >
               <Square className="mr-1.5 sm:mr-2 h-3 w-3" />
-              End
+              End Session
             </Button>
 
             <Button
               onClick={handleRestart}
               variant="secondary"
               size="sm"
-              className="rounded-full h-9 w-9 sm:h-auto sm:w-auto p-0 sm:px-3 hidden sm:flex"
+              className="rounded-full px-3 sm:px-4 text-xs sm:text-sm"
             >
-              <RotateCcw className="h-4 w-4" />
+              <RotateCcw className="h-4 w-4 mr-1.5" />
+              <span className="hidden sm:inline">Restart</span>
             </Button>
           </div>
         </div>
