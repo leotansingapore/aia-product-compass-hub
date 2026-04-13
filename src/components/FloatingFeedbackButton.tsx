@@ -15,7 +15,7 @@ export function FloatingFeedbackButton() {
       <button
         onClick={() => setOpen(true)}
         className={cn(
-          "fixed bottom-6 left-6 z-[9990] flex items-center gap-2",
+          "fixed bottom-6 left-6 z-[9990] hidden md:flex items-center gap-2",
           "rounded-full px-4 py-2.5 shadow-lg",
           "bg-card border border-border text-muted-foreground",
           "hover:text-foreground hover:shadow-xl hover:border-primary/40",
