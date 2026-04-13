@@ -180,9 +180,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
           <FloatingFeedbackButton />
         </Suspense>
         {profileOpen && (
-          <Suspense fallback={null}>
-            <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
-          </Suspense>
+          <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
         )}
       </div>
     );
@@ -226,9 +224,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         <FloatingFeedbackButton />
       </Suspense>
       {profileOpen && (
-        <Suspense fallback={null}>
-          <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
-        </Suspense>
+        <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
       )}
     </SidebarProvider>
   );
