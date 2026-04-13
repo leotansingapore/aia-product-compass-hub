@@ -54,6 +54,8 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   const [avgQuizScore, setAvgQuizScore] = useState<number | null>(null);
   const [bestRoleplayScore, setBestRoleplayScore] = useState<number | null>(null);
   const [lessonProgress, setLessonProgress] = useState<number | null>(null);
+  const [videosCompleted, setVideosCompleted] = useState(0);
+  const [totalVideos, setTotalVideos] = useState(0);
 
   const isAdminUser = isMasterAdmin() || hasRole('admin');
 
@@ -85,7 +87,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
 
   const fetchStats = async () => {
     if (!user) return;
-    const [quizRes, roleplayRes, quizScoreRes, roleplayScoreRes, totalItemsRes, completedItemsRes] = await Promise.all([
+    const [quizRes, roleplayRes, quizScoreRes, roleplayScoreRes, totalItemsRes, completedItemsRes, videoCompletedRes, productVideosRes] = await Promise.all([
       supabase.from('quiz_attempts').select('id', { count: 'exact', head: true }).eq('user_id', user.id),
       supabase.from('roleplay_sessions').select('id', { count: 'exact', head: true }).eq('user_id', user.id),
       supabase.from('quiz_attempts').select('score, total_questions').eq('user_id', user.id),
@@ -94,6 +96,11 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
       supabase.from('learning_track_progress').select('id', { count: 'exact', head: true })
         .eq('user_id', profile?.id ?? '')
         .eq('status', 'completed'),
+      // Video completion: how many videos has this user completed?
+      supabase.from('video_progress').select('id', { count: 'exact', head: true })
+        .eq('user_id', user.id).eq('completed', true),
+      // Total videos across all products (count from products table training_videos JSONB)
+      supabase.from('products').select('training_videos'),
     ]);
     setQuizCount(quizRes.count ?? 0);
     setRoleplayCount(roleplayRes.count ?? 0);
@@ -111,11 +118,25 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
       setBestRoleplayScore(roleplayScoreRes.data[0].overall_score);
     }
 
-    // Learning track completion
-    const totalItems = totalItemsRes.count ?? 0;
-    const completedItems = completedItemsRes.count ?? 0;
-    if (totalItems > 0) {
-      setLessonProgress(Math.round((completedItems / totalItems) * 100));
+    // Video completion stats
+    const completedVids = videoCompletedRes.count ?? 0;
+    setVideosCompleted(completedVids);
+    if (productVideosRes.data) {
+      const total = productVideosRes.data.reduce((sum, p) => {
+        const vids = p.training_videos as any[];
+        return sum + (Array.isArray(vids) ? vids.length : 0);
+      }, 0);
+      setTotalVideos(total);
+    }
+
+    // Learning track completion (combine video progress + learning track)
+    const ltTotal = totalItemsRes.count ?? 0;
+    const ltCompleted = completedItemsRes.count ?? 0;
+    // Use whichever gives a more meaningful percentage
+    if (ltTotal > 0) {
+      setLessonProgress(Math.round((ltCompleted / ltTotal) * 100));
+    } else if (totalVideos > 0) {
+      setLessonProgress(Math.round((completedVids / totalVideos) * 100));
     }
   };
 
@@ -230,7 +251,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
 
               {/* Activity Stats */}
               <div className="grid grid-cols-3 gap-3">
-                <StatCard icon={GraduationCap} label="Lessons" value={lessonProgress !== null ? `${lessonProgress}%` : '—'} sub="completed" />
+                <StatCard icon={Video} label="Videos" value={videosCompleted} sub={totalVideos > 0 ? `of ${totalVideos}` : undefined} />
                 <StatCard icon={CheckCircle2} label="Quizzes" value={quizCount} sub={avgQuizScore !== null ? `${avgQuizScore}% avg` : undefined} />
                 <StatCard icon={Swords} label="Roleplays" value={roleplayCount} sub={bestRoleplayScore !== null ? `Best: ${bestRoleplayScore}%` : undefined} />
               </div>

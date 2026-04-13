@@ -158,7 +158,7 @@ export const VideosByCategory = memo(function VideosByCategory({
                             <Circle className="h-4 w-4" />
                           )}
                           <span className="hidden sm:inline whitespace-nowrap">
-                            {isCompleted ? 'Done' : 'Mark done'}
+                            {isCompleted ? 'Completed' : 'Mark complete'}
                           </span>
                         </button>
                       ) : (
@@ -177,7 +177,7 @@ export const VideosByCategory = memo(function VideosByCategory({
                       >
                         <div className="flex items-center gap-2 overflow-hidden">
                           <h4 className={`font-medium text-sm truncate flex-1 ${
-                            isCompleted ? 'text-muted-foreground line-through decoration-muted-foreground/40' : ''
+                            isCompleted ? 'text-muted-foreground' : ''
                           }`}>
                             {video.title}
                           </h4>
