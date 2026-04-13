@@ -148,30 +148,12 @@ const SimplifiedAuth = () => {
       <div className="flex-1 lg:w-1/2 flex flex-col lg:min-h-screen bg-white">
         <div className="flex-1 flex flex-col justify-center px-6 sm:px-10 xl:px-16 py-10 w-full max-w-md mx-auto lg:max-w-lg">
           <div className="mb-8 flex flex-col items-start gap-4">
-            <div className="inline-flex items-center gap-0">
-              <div
-                role="img"
-                aria-hidden
-                className="h-14 w-14 shrink-0 -mr-2.5 sm:-mr-3 bg-primary"
-                style={{
-                  maskImage: `url(${FINTERNSHIP_LOGO_NAVY})`,
-                  WebkitMaskImage: `url(${FINTERNSHIP_LOGO_NAVY})`,
-                  maskSize: "contain",
-                  WebkitMaskSize: "contain",
-                  maskRepeat: "no-repeat",
-                  WebkitMaskRepeat: "no-repeat",
-                  maskPosition: "left center",
-                  WebkitMaskPosition: "left center",
-                }}
-              />
-              <h2
-                className="text-2xl sm:text-3xl font-bold tracking-tight leading-none -ml-1"
-                aria-label="FINternship"
-              >
-                <span className="text-primary">IN</span>
-                <span className="text-foreground">ternship</span>
-              </h2>
-            </div>
+            <img
+              src={FINTERNSHIP_LOGO}
+              alt="FINternship"
+              className="h-14 w-auto object-contain"
+              decoding="async"
+            />
             <p className="text-sm text-muted-foreground leading-relaxed">
               Sign in to your advisor learning dashboard—products, CMFAS, scripts, and practice tools.
             </p>
