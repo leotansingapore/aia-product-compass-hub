@@ -7,147 +7,158 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
   // ============================================================
 
   {
-    question: "What is the maximum payout for major dismemberment under AIA Solitaire PA Plan 4?",
+    question: "A client on Plan 1 suffers a major dismemberment after 6 claim-free years. What is the maximum payout including the renewal bonus?",
     options: [
-      "S$1.5 million",
-      "S$2 million",
-      "S$2.25 million",
-      "S$3 million"
+      "$300,000",
+      "$390,000",
+      "$330,000",
+      "$360,000"
+    ],
+    correct: 1,
+    explanation: "Plan 1 major dismemberment is $300,000. After 6 claim-free years, the renewal bonus on Features 1-5 reaches the maximum of 30%. $300,000 x 1.30 = $390,000.",
+    category: 'product-facts'
+  },
+
+  {
+    question: "Which of the following would NOT trigger a reset of the renewal bonus on Features 1-5?",
+    options: [
+      "A claim for burns under Feature 4",
+      "A claim for medical reimbursement under Feature 6",
+      "A claim for burns and scalds under Feature 4",
+      "Both A and C would reset the bonus"
+    ],
+    correct: 1,
+    explanation: "The renewal bonus only resets if there is a claim under Feature 4 (burns/scalds). Claims under Feature 6 (medical reimbursement) or any other feature do not affect the bonus accumulation.",
+    category: 'product-facts'
+  },
+
+  {
+    question: "A Plan 4 policyholder dies in a taxi accident. What is the total death payout?",
+    options: [
+      "$750,000",
+      "$2,250,000",
+      "$1,500,000",
+      "$1,000,000"
     ],
     correct: 2,
-    explanation: "Plan 4 provides up to S$2.25 million for major dismemberment, making it the highest coverage tier. This is 7.5 times the Plan 1 dismemberment coverage of $300,000.",
+    explanation: "Plan 4 accidental death is $750,000. Feature 5 doubles the payout for public or private transport accidents. $750,000 + $750,000 = $1,500,000.",
     category: 'product-facts'
   },
+
   {
-    question: "How many plan options does AIA Solitaire PA offer, and what is the annual premium range?",
+    question: "How much MORE does Plan 4 cost per day compared to Plan 1?",
     options: [
-      "Three plans, from $200 to $700 per year",
-      "Four plans, from $224 to $855 per year",
-      "Five plans, from $150 to $1,000 per year",
-      "Two plans, from $300 to $600 per year"
-    ],
-    correct: 1,
-    explanation: "AIA Solitaire PA offers four plans: Plan 1 at $224/year ($20/month), Plan 2 at $365/year ($30/month), Plan 3 at approximately $600/year ($50/month), and Plan 4 at $855/year ($70/month).",
-    category: 'product-facts'
-  },
-  {
-    question: "What does Feature 5 of AIA Solitaire PA provide?",
-    options: [
-      "Medical reimbursement up to $10,000",
-      "TCM and chiropractor coverage",
-      "Double payout for death in public or private transport accidents",
-      "Monthly disability income benefit"
+      "About $3.50 more per day",
+      "About $2.00 more per day",
+      "About $1.73 more per day",
+      "About $1.00 more per day"
     ],
     correct: 2,
-    explanation: "Feature 5 doubles the accidental death payout if death occurs in a public or private transport accident. Under Plan 4, this means $750,000 + $750,000 = $1,500,000.",
+    explanation: "Plan 1 costs about $0.62/day ($224/yr) and Plan 4 costs about $2.35/day ($855/yr). The difference is approximately $1.73 per day for 7.5x the coverage.",
     category: 'product-facts'
   },
+
   {
-    question: "What is the medical reimbursement limit per accident under Feature 6, and how many claims are allowed per year?",
+    question: "A policyholder suffers three separate accidents in one year -- a fracture, a sprain, and food poisoning. How much total medical reimbursement can they claim under Feature 6?",
     options: [
-      "Up to $3,000 per accident, maximum 5 claims per year",
-      "Up to $5,000 per accident, unlimited claims per year",
-      "Up to $10,000 per accident, maximum 3 claims per year",
-      "Up to $5,000 per accident, maximum 10 claims per year"
-    ],
-    correct: 1,
-    explanation: "Feature 6 provides up to $5,000 in medical reimbursement per accident with unlimited claims throughout the year. It is the most commonly used feature of the policy.",
-    category: 'product-facts'
-  },
-  {
-    question: "How does the renewal bonus work on AIA Solitaire PA?",
-    options: [
-      "3% increase per year on all features, maximum 10 years, resets on any claim",
-      "5% increase per year on Features 1-5, maximum 6 years (30% total), resets only if claiming under Feature 4",
-      "10% increase every 2 years on Features 1-5, maximum 5 increases",
-      "5% increase per year on all features, maximum 5 years (25% total), no conditions"
-    ],
-    correct: 1,
-    explanation: "The renewal bonus increases Features 1-5 by 5% per claim-free year, up to 6 years for a maximum 30% bonus. It only resets if there is a claim under Feature 4 (burns/scalds).",
-    category: 'product-facts'
-  },
-  {
-    question: "Which of the following is considered an 'accident' under AIA Solitaire PA?",
-    options: [
-      "Heart attack during exercise",
-      "Self-inflicted injury",
-      "Food poisoning from a restaurant meal",
-      "Chronic lower back pain"
+      "$5,000 total for all three accidents",
+      "$10,000 total across two claims",
+      "$15,000 -- up to $5,000 per accident with unlimited claims",
+      "$3,000 total with a per-year cap"
     ],
     correct: 2,
-    explanation: "An accident under AIA Solitaire PA must be unexpected and unintentional. Food poisoning qualifies because it is unexpected. Self-inflicted injuries, illnesses, and chronic conditions are excluded.",
+    explanation: "Feature 6 provides up to $5,000 per accident with unlimited claims per year. Three accidents means up to $5,000 each, for a potential total of $15,000.",
     category: 'product-facts'
   },
+
   {
-    question: "What are the three optional riders available for AIA Solitaire PA?",
+    question: "Which step in the AIA Solitaire PA application process comes first?",
     options: [
-      "Critical Illness Rider, Hospital Cash, and Outpatient Surgery",
-      "Disability Income Benefit, Extended Medical Reimbursement, and Fracture Cover",
-      "Dental Cover, Vision Cover, and Maternity Benefit",
-      "Accidental Death Booster, Travel Extension, and Sports Cover"
+      "Financial Health Review",
+      "Medical examination",
+      "SingPass verification",
+      "Blood test and health screening"
     ],
-    correct: 1,
-    explanation: "The three optional riders are Disability Income Benefit (monthly payouts for inability to perform 2+ ADLs), Extended Medical Reimbursement, and Fracture Cover.",
+    correct: 2,
+    explanation: "The application starts with SingPass verification, followed by quotation generation and submission. No FHR or medical checkups are required at any stage.",
     category: 'product-facts'
   },
+
   {
-    question: "Up to what age does AIA Solitaire PA provide coverage?",
+    question: "A policyholder on Plan 2 visits a chiropractor after a sports injury. Which feature covers this treatment?",
     options: [
-      "65 years old",
-      "70 years old",
-      "75 years old",
-      "80 years old"
+      "Feature 6 -- Medical Reimbursement",
+      "Feature 5 -- Double Transport Payout",
+      "Feature 3 -- Total Permanent Disability",
+      "Feature 7 -- TCM and Chiropractor"
     ],
     correct: 3,
-    explanation: "AIA Solitaire PA offers extended age coverage up to 80 years old, making it suitable for retirees and elderly individuals who face increased fall and injury risks.",
+    explanation: "Feature 7 specifically covers Traditional Chinese Medicine (TCM) and chiropractor treatments with a separate limit from Feature 6's main medical reimbursement.",
     category: 'product-facts'
   },
+
   {
-    question: "What is required to apply for AIA Solitaire PA?",
+    question: "What is the annual premium for Plan 3, and what does it work out to per month?",
     options: [
-      "Full medical examination and Financial Health Review (FHR)",
-      "SingPass verification only -- no medical checkups or FHR required",
-      "Blood test and doctor's certificate",
-      "Financial Health Review and proof of income"
-    ],
-    correct: 1,
-    explanation: "AIA Solitaire PA requires only SingPass verification. No medical checkups and no Financial Health Review (FHR) are needed, making the application process simple and fast.",
-    category: 'product-facts'
-  },
-  {
-    question: "What scope of coverage does AIA Solitaire PA provide geographically?",
-    options: [
-      "Singapore only",
-      "ASEAN countries only",
-      "Asia-Pacific region",
-      "Global coverage 24/7"
-    ],
-    correct: 3,
-    explanation: "AIA Solitaire PA provides global coverage 24 hours a day, 7 days a week. Coverage is not limited to Singapore or any specific region.",
-    category: 'product-facts'
-  },
-  {
-    question: "How long can the optional Disability Income Benefit rider provide monthly payouts?",
-    options: [
-      "Up to 3 years",
-      "Up to 5 years",
-      "Up to 10 years",
-      "For life"
+      "$500/year, about $42/month",
+      "$365/year, about $30/month",
+      "$600/year, about $50/month",
+      "$700/year, about $58/month"
     ],
     correct: 2,
-    explanation: "The Disability Income Benefit rider provides monthly payouts for up to 10 years if the insured cannot perform 2 or more Activities of Daily Living (ADLs).",
+    explanation: "Plan 3 costs $600/year, which is approximately $50/month. This sits between Plan 2 ($365/yr) and Plan 4 ($855/yr).",
     category: 'product-facts'
   },
+
   {
-    question: "Which events are covered under AIA Solitaire PA?",
+    question: "Which of the following is an optional rider for AIA Solitaire PA?",
     options: [
-      "Only vehicle accidents and falls",
-      "Terrorism, hijacking, natural disasters, insect bites, food poisoning, drowning, and sports injuries",
-      "Only workplace accidents during business hours",
-      "Only accidents occurring in Singapore"
+      "Critical Illness Rider",
+      "Hospital Cash Benefit",
+      "Fracture Cover",
+      "Dental Expense Rider"
     ],
-    correct: 1,
-    explanation: "AIA Solitaire PA covers a wide range of events including terrorism, hijacking, riots, natural disasters, insect bites, food poisoning, drowning, suffocation, assault, and recreational sports injuries.",
+    correct: 2,
+    explanation: "The three optional riders are Disability Income Benefit, Extended Medical Reimbursement, and Fracture Cover. Critical illness, hospital cash, and dental are not available as riders.",
+    category: 'product-facts'
+  },
+
+  {
+    question: "A policyholder is unable to eat, wash, or walk after an accident. What rider would provide monthly payouts?",
+    options: [
+      "Extended Medical Reimbursement",
+      "Fracture Cover",
+      "Feature 3 -- TPD",
+      "Disability Income Benefit"
+    ],
+    correct: 3,
+    explanation: "The Disability Income Benefit rider provides monthly payouts for up to 10 years when the insured cannot perform 2 or more Activities of Daily Living such as eating, washing, or walking.",
+    category: 'product-facts'
+  },
+
+  {
+    question: "A Singaporean on holiday in Europe has a skiing accident. Is this covered by AIA Solitaire PA?",
+    options: [
+      "No -- only accidents in Singapore are covered",
+      "Only if the policyholder purchased the overseas rider",
+      "Yes -- AIA Solitaire PA provides global coverage 24/7 and covers recreational sports",
+      "Only emergency treatment is covered overseas"
+    ],
+    correct: 2,
+    explanation: "AIA Solitaire PA provides global 24/7 coverage and covers amateur/recreational sports injuries. A skiing accident in Europe would be fully covered.",
+    category: 'product-facts'
+  },
+
+  {
+    question: "Which of these events qualifies as a covered accident under AIA Solitaire PA?",
+    options: [
+      "A heart attack during exercise",
+      "Chronic lower back pain from poor posture",
+      "A mosquito bite leading to dengue fever",
+      "Injuries from a professional boxing match"
+    ],
+    correct: 2,
+    explanation: "Insect bites including dengue are covered because they are unexpected and unintentional. Heart attacks are illnesses, chronic pain is not accidental, and professional sports are excluded.",
     category: 'product-facts'
   },
 
@@ -156,123 +167,132 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
   // ============================================================
 
   {
-    question: "What is the key positioning of AIA Solitaire PA relative to hospital plans and life insurance?",
+    question: "When a client has both a hospital plan and a term life plan, what is the correct way to position AIA Solitaire PA?",
     options: [
-      "PA replaces both hospital and life plans with a single product",
-      "Hospital plan = inpatient, life plan = death/TPD, PA = outpatient accidents (fills the gap)",
-      "PA is a cheaper alternative to hospital plans",
-      "PA only covers what hospital plans cover but at a lower price"
+      "As a replacement for the hospital plan",
+      "As a cheaper alternative to term life",
+      "As complementary coverage filling the outpatient accident gap between inpatient and death coverage",
+      "As unnecessary since the client already has sufficient coverage"
+    ],
+    correct: 2,
+    explanation: "Hospital plans cover inpatient, term life covers death/TPD, but neither covers outpatient accident treatments. PA fills this specific gap as a complement, not a replacement.",
+    category: 'sales-angles'
+  },
+
+  {
+    question: "In the recommended sales flow, what is the correct sequence of steps?",
+    options: [
+      "Compare plans, share stories, highlight AIA service, break down cost, close",
+      "Position as complement, share stories, highlight AIA service, compare plans, break down daily cost, close",
+      "Share stories, compare plans, close",
+      "Break down daily cost, position as complement, close"
     ],
     correct: 1,
-    explanation: "PA should be positioned as the complement that fills the gap: hospital plans cover inpatient stays, life plans cover death/TPD, and PA covers the outpatient accident treatments that are most likely to occur.",
+    explanation: "The full recommended flow is: position as complement -> share stories -> highlight AIA service (Plus app) -> compare plans -> break down daily cost -> compare to daily spending -> close.",
     category: 'sales-angles'
   },
+
   {
-    question: "What is the probability argument for selling PA coverage?",
+    question: "Why does the probability argument make PA coverage compelling to sell?",
     options: [
-      "Death is the most likely event, so life insurance is more important",
-      "Major hospitalization is more likely than minor accidents",
-      "Minor accidents have the highest probability, and PA covers these at the lowest cost",
-      "All events have equal probability"
+      "PA covers high-probability, low-impact events like death and TPD",
+      "PA covers the lowest-probability events at the lowest price",
+      "Minor accidents have the highest probability of occurring, and PA covers them at a fraction of what Death/TPD costs",
+      "PA and Death/TPD cover the same probability of events"
     ],
     correct: 2,
-    explanation: "Death/TPD = very low probability, major hospitalization = low probability, minor accident = VERY HIGH probability. PA covers the most likely events at the lowest cost ($20/month vs $100-200/month for Death/TPD).",
+    explanation: "Death/TPD = very low probability. Major hospitalization = low probability. Minor accidents = very high probability. PA covers the most likely events at the lowest cost ($20/month vs $100-200/month).",
     category: 'sales-angles'
   },
+
   {
-    question: "What is the value argument when comparing Plan 1 to Plan 4?",
+    question: "What makes the PA claim threshold fundamentally different from Death/TPD coverage?",
     options: [
-      "Plan 4 is 2x the price for 2x the coverage",
-      "Plan 4 is 5x the price for 5x the coverage",
-      "Plan 4 is 3.8x the price for 7.5x the coverage",
-      "Plan 4 is 10x the price for 3x the coverage"
-    ],
-    correct: 2,
-    explanation: "Plan 4 costs 3.8 times the price of Plan 1 but provides 7.5 times the coverage. The advisor should say 'Look at the value, not the price' to guide clients toward higher plans.",
-    category: 'sales-angles'
-  },
-  {
-    question: "What is the recommended closing question in the AIA Solitaire PA sales flow?",
-    options: [
-      "'Would you like to sign up today?'",
-      "'Do you want Plan 1 or nothing at all?'",
-      "'Can I send you more information to review?'",
-      "'Which plan do you prefer?'"
+      "PA requires hospitalization to claim; Death/TPD does not",
+      "PA and Death/TPD have identical claim thresholds",
+      "Death/TPD only requires losing one limb to claim",
+      "PA pays for one cut, one finger, or one eye -- Death/TPD requires losing two limbs or two eyes"
     ],
     correct: 3,
-    explanation: "The recommended close is the assumptive 'Which plan do you prefer?' -- it frames the decision as choosing a plan rather than deciding whether to buy at all.",
+    explanation: "PA has a much lower claim threshold. One finger, one eye, or one cut qualifies for a PA claim. Death/TPD typically requires losing two arms, two legs, or two eyes.",
     category: 'sales-angles'
   },
+
   {
-    question: "In the KK Hospital Story, why was the child's stitches not covered by the family's health insurance?",
+    question: "A client earns $5,000/month and spends $6 daily on lunch. How should you frame Plan 1's cost?",
     options: [
-      "The hospital was not in the insurance network",
-      "The child was not listed on the policy",
-      "The stitches were done as outpatient treatment, which hospital plans do not cover",
-      "The injury was considered self-inflicted"
-    ],
-    correct: 2,
-    explanation: "Hospital plans only cover inpatient stays. The child's stitches at KK Hospital were an outpatient visit, so the family's hospital plan did not pay. An accident plan would have covered it.",
-    category: 'sales-angles'
-  },
-  {
-    question: "How does PA coverage compare to Death/TPD coverage in terms of claim threshold and cost?",
-    options: [
-      "Both have the same claim threshold; PA is more expensive",
-      "PA requires losing two limbs to claim; Death/TPD requires losing one limb",
-      "PA covers one finger, one eye, one cut ($20/month); Death/TPD requires two limbs or two eyes ($100-200/month)",
-      "PA and Death/TPD are interchangeable products"
-    ],
-    correct: 2,
-    explanation: "PA has a much lower claim threshold (one finger, one eye, one cut) at $20/month, while Death/TPD requires losing two arms, two legs, or two eyes and costs $100-200/month.",
-    category: 'sales-angles'
-  },
-  {
-    question: "What is the correct order of the recommended AIA Solitaire PA sales flow?",
-    options: [
-      "Compare plans -> share stories -> highlight service -> close",
-      "Position as complement -> share stories -> highlight AIA service -> compare plans -> daily cost -> compare to daily spending -> close",
-      "Discuss application -> compare plans -> share stories -> close",
-      "Highlight AIA service -> compare plans -> daily cost -> close"
+      "Compare it to their monthly salary to show it is a small percentage",
+      "Point out that Plan 1 costs less than their daily lunch -- just 62 cents a day, cheaper than an MRT fare",
+      "Tell them Plan 1 is the cheapest insurance in Singapore",
+      "Compare it to their annual tax payment"
     ],
     correct: 1,
-    explanation: "The full flow: position as complement to existing plans, share stories and claim examples, highlight AIA service (AIA Plus app), compare plans (value ratio), break down daily cost, compare to daily spending, then close with 'Which plan do you prefer?'",
+    explanation: "The daily cost framing works best: 62 cents/day is less than an MRT fare, bubble tea, or coffee. Comparing to everyday spending makes the cost feel negligible.",
     category: 'sales-angles'
   },
+
   {
-    question: "What daily cost comparisons should advisors use when framing Plan 1's premium?",
+    question: "What closing technique does the recommended sales flow use?",
     options: [
-      "A taxi ride ($10-15), a restaurant meal ($15-20)",
-      "MRT fare, bubble tea, or coffee (62 cents/day)",
-      "A Netflix subscription ($2/day)",
-      "A gym membership ($3/day)"
-    ],
-    correct: 1,
-    explanation: "Plan 1 costs just 62 cents per day -- cheaper than an MRT fare, bubble tea, or a cup of coffee. These familiar everyday items make the cost feel negligible.",
-    category: 'sales-angles'
-  },
-  {
-    question: "What makes the AIA Plus app a key selling point during the sales process?",
-    options: [
-      "It offers premium discounts for using the app",
-      "It allows self-claiming in about 5 minutes with real-time claim tracking",
-      "It provides free health screenings",
-      "It automatically adjusts coverage based on usage"
-    ],
-    correct: 1,
-    explanation: "The AIA Plus app allows policyholders to self-claim in approximately 5 minutes -- just upload documents and submit. This is a key service advantage over competitors with lengthy claims processes.",
-    category: 'sales-angles'
-  },
-  {
-    question: "Why is AIA Solitaire PA described as having very high closing rates?",
-    options: [
-      "Because it offers the highest coverage in the market",
-      "Because it has the lowest premiums of any PA product",
-      "Because the process requires no FHR, no medical checkups, and uses simple SingPass verification",
-      "Because advisors receive bonuses for meeting PA sales targets"
+      "The urgency close -- 'This offer expires today'",
+      "The trial close -- 'Try it for one month free'",
+      "The assumptive close -- 'Which plan do you prefer?'",
+      "The discount close -- 'I can offer you 10% off'"
     ],
     correct: 2,
-    explanation: "The frictionless process -- no Financial Health Review, no medical checkups, simple SingPass verification -- removes barriers and leads to very high closing rates.",
+    explanation: "The recommended closing question is 'Which plan do you prefer?' -- an assumptive close that frames the decision as which plan to choose, not whether to buy at all.",
+    category: 'sales-angles'
+  },
+
+  {
+    question: "Why should advisors present all four plans rather than only recommending Plan 1?",
+    options: [
+      "Plan 1 is being discontinued by AIA",
+      "Plan 1 does not include medical reimbursement",
+      "Higher plans offer disproportionately more value -- 3.8x the price of Plan 1 yields 7.5x the coverage at Plan 4",
+      "Commission is only paid on Plan 3 and Plan 4"
+    ],
+    correct: 2,
+    explanation: "The value ratio improves dramatically with higher plans. Plan 4 costs 3.8x Plan 1 but provides 7.5x the coverage. Advisors should present this comparison and let clients choose.",
+    category: 'sales-angles'
+  },
+
+  {
+    question: "What three factors contribute to AIA Solitaire PA's high closing rates?",
+    options: [
+      "High coverage limits, low deductibles, and free riders",
+      "Celebrity endorsements, limited-time offers, and referral bonuses",
+      "No FHR required, no medical checkups, and simple SingPass application",
+      "Guaranteed returns, cash value, and premium waivers"
+    ],
+    correct: 2,
+    explanation: "The streamlined process -- no Financial Health Review, no medical checkups, and SingPass verification -- removes friction and enables very high closing rates.",
+    category: 'sales-angles'
+  },
+
+  {
+    question: "At what point in the sales flow should the AIA Plus app be mentioned?",
+    options: [
+      "As the very first topic before discussing any plan details",
+      "Only after the client has signed up for a plan",
+      "After sharing claim stories and before comparing plans -- as a service advantage",
+      "Only if the client specifically asks about claims"
+    ],
+    correct: 2,
+    explanation: "The AIA Plus app and 5-minute self-claiming is step 3 in the sales flow -- after positioning and stories, before plan comparison. It builds confidence in AIA's service.",
+    category: 'sales-angles'
+  },
+
+  {
+    question: "How does the recurring commission structure benefit advisors long-term?",
+    options: [
+      "Advisors earn a one-time bonus of 50% on the first premium",
+      "Commission is paid for the first 3 years only",
+      "The ~30% commission recurs for the life of the policy, creating a growing income stream as the client base expands",
+      "Commission doubles every year for 5 years"
+    ],
+    correct: 2,
+    explanation: "AIA Solitaire PA pays approximately 30% recurring commission for the life of the policy. As advisors sell more policies, this creates a compounding passive income stream.",
     category: 'sales-angles'
   },
 
@@ -281,99 +301,106 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
   // ============================================================
 
   {
-    question: "A client says: 'I already have health insurance.' What is the best response?",
+    question: "Client: 'My company gives me group accident coverage already.' What is the strongest counter-argument?",
     options: [
-      "'Your health insurance is sufficient, you do not need PA.'",
-      "'Health insurance covers illness and inpatient stays. PA covers accidents -- including minor injuries, insect bites, and food poisoning -- which are more frequent. Together, you are fully protected.'",
-      "'You should cancel your health insurance and get PA instead.'",
-      "'Health insurance and PA are the same thing.'"
+      "Group coverage provides higher limits than personal PA",
+      "Company group coverage ends when you leave or change jobs -- personal PA stays with you regardless of employment",
+      "Group coverage and personal PA are identical products",
+      "Company coverage is always sufficient for accident protection"
     ],
     correct: 1,
-    explanation: "The correct approach differentiates health insurance (illness, inpatient) from PA (accidents, outpatient) and positions them as complementary, not competing products.",
+    explanation: "Company group PA is tied to employment. When the client changes jobs or retires, that coverage disappears. Personal PA provides continuous protection regardless of career changes.",
     category: 'objection-handling'
   },
+
   {
-    question: "A client says: 'I rarely get into accidents.' What is the best response?",
+    question: "Client: 'I have been setting aside $70 a month for emergencies instead of buying insurance.' How should you reframe this?",
     options: [
-      "'You are right, you probably do not need accident coverage.'",
-      "'The statistics say you will have an accident this year.'",
-      "'Everyone says that until they have one.'",
-      "'Accidents are unpredictable and costs add up. At 62 cents a day, it is better to have it and not need it than to need it and not have it.'"
+      "Agree that self-insurance is a valid strategy and move on",
+      "Tell them their emergency fund is useless",
+      "Point out that for $20/month (Plan 1), PA gives up to $5,000 per accident with unlimited claims -- far more protection than $70/month in savings could provide",
+      "Suggest they increase their monthly savings to $200 instead"
+    ],
+    correct: 2,
+    explanation: "Self-insuring at $70/month provides limited coverage. For just $20/month, PA guarantees up to $5,000 per accident with unlimited claims -- the math strongly favors PA.",
+    category: 'objection-handling'
+  },
+
+  {
+    question: "Client: 'The $5,000 per-accident limit on Feature 6 is too low.' What is the best response?",
+    options: [
+      "Agree and suggest they look at a competitor product",
+      "Explain that $5,000 is the maximum AIA can offer",
+      "$5,000 covers most outpatient treatments, claims are unlimited per year, and the Extended Medical Reimbursement rider is available for higher limits",
+      "Tell them to claim from their hospital plan for the excess amount"
+    ],
+    correct: 2,
+    explanation: "$5,000 per accident covers the vast majority of outpatient treatments. Combined with unlimited annual claims and the optional Extended Medical Reimbursement rider, the coverage is comprehensive.",
+    category: 'objection-handling'
+  },
+
+  {
+    question: "Client: 'I am 35 and have never had an accident. Why start paying now?' Which response uses both the probability argument and the renewal bonus?",
+    options: [
+      "'Accidents can happen to anyone. The earlier you start, the sooner you build the 5% annual renewal bonus -- up to 30% more coverage over 6 years. At 62 cents a day, it is peace of mind you can easily afford.'",
+      "'You are right, you probably will not need it.'",
+      "'Statistics show 35-year-olds have the most accidents.'",
+      "'The premium increases after age 40, so buy now.'"
+    ],
+    correct: 0,
+    explanation: "This combines the unpredictability argument with the concrete renewal bonus incentive (5% per year, up to 30%) and the minimal daily cost to create a compelling case for starting early.",
+    category: 'objection-handling'
+  },
+
+  {
+    question: "Client: 'My MediSave should cover accident expenses.' What is the factual correction?",
+    options: [
+      "MediSave covers all accident-related expenses including outpatient",
+      "MediSave can only be used for hospitalization and approved procedures -- outpatient accident treatments like stitches, X-rays, and physiotherapy are not covered",
+      "MediSave is being replaced by PA insurance",
+      "MediSave covers the same things as PA coverage"
+    ],
+    correct: 1,
+    explanation: "MediSave has strict usage rules and primarily covers hospitalization and approved procedures. Outpatient treatments -- which are the most common accident expenses -- are not claimable from MediSave.",
+    category: 'objection-handling'
+  },
+
+  {
+    question: "Client: 'I do not trust insurance companies to pay out.' How should you address this trust concern?",
+    options: [
+      "Tell them all insurance companies pay claims equally",
+      "Suggest they do not need insurance then",
+      "Offer to personally guarantee the payout",
+      "Highlight AIA's reputation as one of Asia's largest insurers, plus the AIA Plus app where they can self-claim in 5 minutes and track claim status in real time"
     ],
     correct: 3,
-    explanation: "Acknowledge the client's perspective, then reframe: accidents are by definition unpredictable, costs can be significant, and the daily cost is trivial at 62 cents.",
+    explanation: "Address the trust objection with AIA's established reputation, the transparent self-claiming process via the AIA Plus app, and real-time claim tracking -- all of which demonstrate accountability.",
     category: 'objection-handling'
   },
+
   {
-    question: "A client says: 'I cannot afford another premium.' How should you respond?",
+    question: "Client: 'My spouse thinks we already have enough insurance.' What is the recommended approach?",
     options: [
-      "'Then this product is not for you right now.'",
-      "'Plan 1 starts at just 62 cents a day -- less than a cup of coffee or an MRT fare. The question is: can you afford NOT to have accident coverage when it costs less than your daily coffee?'",
-      "'You should cut other expenses to afford this.'",
-      "'Let me show you the most expensive plan instead.'"
+      "Offer to include the spouse in the conversation so both partners can see how PA fills the outpatient gap at just 62 cents a day",
+      "Tell the client to sign up without their spouse knowing",
+      "Agree and end the conversation",
+      "Pressure the client to override their spouse's opinion"
     ],
-    correct: 1,
-    explanation: "Reframe the cost using daily spending comparisons. At 62 cents per day, Plan 1 is cheaper than most daily purchases, making the affordability objection easy to overcome.",
+    correct: 0,
+    explanation: "Offer to involve the spouse so both partners understand the specific gap PA fills. The low daily cost (62 cents) makes it an easy conversation once the value is clear.",
     category: 'objection-handling'
   },
+
   {
-    question: "A client says: 'My company provides group accident coverage.' What is the best response?",
+    question: "Client: 'Can I claim from both my hospital plan and this PA plan for the same accident?' What is the correct answer?",
     options: [
-      "'Company coverage is always better than personal coverage.'",
-      "'Company group coverage ends when you leave your job. Personal PA stays with you regardless of employment changes, and group plans often have lower coverage limits.'",
-      "'You definitely do not need personal PA then.'",
-      "'Ask HR if they can increase your group coverage instead.'"
+      "No -- you must choose one plan to claim from",
+      "Only if the total claim is under $10,000",
+      "Only the hospital plan will pay for accident-related claims",
+      "Yes -- the hospital plan covers inpatient costs while PA covers outpatient follow-up, so both can pay for the same accident"
     ],
-    correct: 1,
-    explanation: "Company group coverage is tied to employment status. Personal PA provides continuous coverage independent of job changes, and group plans typically have lower limits.",
-    category: 'objection-handling'
-  },
-  {
-    question: "A client says: 'I heard insurance claims are difficult to process.' How should you respond?",
-    options: [
-      "'Claims can be complicated, but that is normal.'",
-      "'You probably will not need to make a claim anyway.'",
-      "'With the AIA Plus app, you can self-claim in about 5 minutes -- just upload your documents and submit. No branch visits, no paper forms, and you can track your claim status in real time.'",
-      "'All insurers have the same claims process.'"
-    ],
-    correct: 2,
-    explanation: "Counter this objection directly with the AIA Plus app's streamlined self-claiming process -- 5 minutes, fully digital, with real-time tracking.",
-    category: 'objection-handling'
-  },
-  {
-    question: "A client says: '$5,000 per accident for medical reimbursement is not enough.' How should you respond?",
-    options: [
-      "'You are right, $5,000 is quite low for serious injuries.'",
-      "'$5,000 covers the vast majority of outpatient accident treatments. You also get unlimited claims per year, and you can add the Extended Medical Reimbursement rider for higher limits.'",
-      "'There is no way to increase the limit.'",
-      "'You should look at a hospital plan instead.'"
-    ],
-    correct: 1,
-    explanation: "$5,000 per accident covers most outpatient treatments, the unlimited claims feature means multiple accidents are covered, and the Extended Medical Reimbursement rider provides additional limits.",
-    category: 'objection-handling'
-  },
-  {
-    question: "A client says: 'I have savings to cover any accident expenses.' What is the best response?",
-    options: [
-      "'That is great, you do not need PA coverage then.'",
-      "'Your savings will never be enough.'",
-      "'Why use your savings when 62 cents a day can protect them? Keep your savings for planned expenses like retirement, travel, or your children's education.'",
-      "'Savings are a better strategy than insurance.'"
-    ],
-    correct: 2,
-    explanation: "Position PA as a way to protect savings from being depleted by unexpected accidents. At 62 cents a day, the client preserves their savings for planned goals.",
-    category: 'objection-handling'
-  },
-  {
-    question: "A client says: 'The renewal bonus condition is too restrictive.' How should you clarify?",
-    options: [
-      "'You are right, the conditions are quite strict.'",
-      "'The renewal bonus only resets if you claim under Feature 4 (burns/scalds). You can freely claim under all other features -- including medical reimbursement and TCM -- and your bonus keeps growing.'",
-      "'You cannot make any claims if you want to keep the bonus.'",
-      "'The bonus has no conditions at all.'"
-    ],
-    correct: 1,
-    explanation: "Only Feature 4 (burns/scalds) claims affect the renewal bonus. Claims under Features 1-3, 5, 6, and 7 do not reset it, making the condition quite reasonable.",
+    correct: 3,
+    explanation: "Hospital plans and PA plans cover different aspects of the same accident. Inpatient hospitalization claims go to the hospital plan, while outpatient treatment claims go to PA.",
     category: 'objection-handling'
   },
 
@@ -382,75 +409,80 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
   // ============================================================
 
   {
-    question: "A mother brings her child to KK Hospital for stitches after a playground fall. She later discovers her hospital plan did not cover the visit. As her advisor, what do you say?",
+    question: "A hawker stall owner who works with hot oil daily asks if burns from cooking are covered. What is the most effective response?",
     options: [
-      "'Hospital plans should have covered that. Contact your insurer to dispute.'",
-      "'Unfortunately, stitches are never covered by any insurance.'",
-      "'This is exactly why I recommend AIA Solitaire PA. Hospital plans only cover inpatient stays. Your child's stitches were outpatient, which PA covers. For $20/month, you would get up to $5,000 per accident with unlimited claims.'",
-      "'You should have asked the hospital to admit your child overnight so the plan would cover it.'"
+      "Suggest they get workers' compensation insurance instead",
+      "Tell them cooking burns are excluded from PA coverage",
+      "Explain that Feature 4 covers burns and scalds as a lump sum, Feature 6 covers medical treatment up to $5,000 per accident with unlimited claims -- making PA ideal for their occupation",
+      "Recommend they switch to a less dangerous occupation"
     ],
     correct: 2,
-    explanation: "Use the real situation to demonstrate the gap between hospital plans (inpatient only) and PA (outpatient). Connect directly to the client's experience for maximum impact.",
+    explanation: "Feature 4 specifically covers burns and scalds with a lump sum payout, and Feature 6 covers medical expenses. For someone working around hot oil daily, this is directly relevant.",
     category: 'roleplay'
   },
+
   {
-    question: "A 35-year-old client who commutes daily by MRT and drives on weekends asks: 'What makes Plan 4 worth the extra cost for someone like me?' What is the best response?",
+    question: "A couple is comparing Plan 2 ($365/yr) and Plan 4 ($855/yr). The wife says Plan 4 is too expensive. What value argument should you use?",
     options: [
-      "'Plan 4 is too expensive for most people, Plan 2 is better for you.'",
-      "'All plans cover the same things, Plan 4 just has higher limits.'",
-      "'As a daily commuter, Feature 5 is especially relevant -- it doubles the accidental death payout for transport accidents. Under Plan 4, that means up to $1.5 million. Plus, you get $2.25 million for dismemberment, all for about $2.35 per day.'",
-      "'You should only get Plan 4 if you travel overseas frequently.'"
+      "Tell her Plan 2 is good enough and stop pushing Plan 4",
+      "Offer a discount on Plan 4",
+      "Explain that the jump from Plan 2 to Plan 4 costs about $1.35 more per day but increases dismemberment coverage to $2.25M -- 3.8x the price of Plan 1 for 7.5x the coverage",
+      "Tell her Plan 4 is cheaper than Plan 2 in the long run"
     ],
     correct: 2,
-    explanation: "Tailor the pitch to the client's lifestyle -- daily commuting makes Feature 5 (double transport payout) highly relevant. Frame Plan 4 as $2.35/day for the value received.",
+    explanation: "Frame the cost difference in daily terms ($1.35/day more) while emphasizing the disproportionate coverage increase. The 3.8x price for 7.5x coverage ratio is the key value argument.",
     category: 'roleplay'
   },
+
   {
-    question: "A couple is comparing PA plans. The wife wants Plan 4 but the husband thinks Plan 1 is enough. How do you help them decide?",
+    question: "An elderly client's daughter asks: 'My 75-year-old father falls frequently. Can he still get coverage and is the application process complicated?' What is the best response?",
     options: [
-      "'The husband is right, Plan 1 is more than enough.'",
-      "'The wife is right, always go with the highest plan.'",
-      "'Show them the numbers: Plan 4 is 3.8x the price of Plan 1 but gives 7.5x the coverage. The difference is about $1.73 per day. Ask: for less than the cost of a bubble tea, would you want 7.5 times more protection?'",
-      "'Let them figure it out on their own and come back when they have decided.'"
+      "'At 75, the premiums would be prohibitively expensive.'",
+      "'Your father is too old for personal accident coverage.'",
+      "'He should rely on government healthcare subsidies instead.'",
+      "'AIA Solitaire PA covers him up to age 80 -- perfect for fall risk. No medical checkup needed, just SingPass verification. This protects his savings from outpatient costs like X-rays, physiotherapy, and fracture treatment.'"
     ],
-    correct: 2,
-    explanation: "Use the value ratio (3.8x price for 7.5x coverage) and frame the daily difference in relatable terms. Let the numbers guide the conversation rather than taking sides.",
+    correct: 3,
+    explanation: "Coverage extends to age 80, no medical checkup is required, and the SingPass application is simple. For elderly clients with fall risks, outpatient treatment costs are the key concern PA addresses.",
     category: 'roleplay'
   },
+
   {
-    question: "A 70-year-old retiree says: 'I fall occasionally at home. My children are worried but I do not want to burden them with medical costs.' What is the best response?",
+    question: "A young professional says: 'I cycle to work daily and play soccer on weekends. Last month I spent $2,500 on a knee injury that my hospital plan did not cover.' How should you respond?",
     options: [
-      "'At your age, falls are expected and not much can be done.'",
-      "'AIA Solitaire PA covers you up to age 80, and no medical checkup is needed to apply. For falls at home, your medical treatment costs would be covered up to $5,000 per incident with unlimited claims. This way, your children do not have to worry about the costs.'",
-      "'You should move into a nursing home where falls are less likely.'",
-      "'Your children should pay for a domestic helper instead.'"
+      "'Your hospital plan should have covered that -- you should file a complaint.'",
+      "'Hospital plans only cover inpatient stays. Your $2,500 outpatient treatment would have been fully covered under Feature 6, which pays up to $5,000 per accident. Cycling and soccer injuries are covered. All this from just 62 cents a day.'",
+      "'You should stop cycling and playing soccer to avoid injuries.'",
+      "'PA coverage would not have helped with a knee injury.'"
     ],
     correct: 1,
-    explanation: "Address the emotional concern (not burdening children) with the practical solution (PA coverage up to age 80, no medical checkup, $5,000 per accident). Connect features to the client's specific worry.",
+    explanation: "Use the client's real experience to demonstrate the exact gap. Their $2,500 is well within the $5,000 per-accident limit. Recreational sports are covered, and the daily cost framing makes it an easy decision.",
     category: 'roleplay'
   },
+
   {
-    question: "A hawker stall owner who works with hot oil daily says: 'I got a burn last month and the clinic bill was $800. My hospital plan did not pay anything.' How should you respond?",
+    question: "A new mother on a tight budget says she cannot afford any more premiums with the baby. How should you address both the budget concern and the need for coverage?",
     options: [
-      "'Burns from cooking are not covered by any insurance.'",
-      "'You should stop working with hot oil.'",
-      "'That $800 would have been fully covered under AIA Solitaire PA. Feature 4 specifically covers burns, and Feature 6 reimburses up to $5,000 per accident. With unlimited claims, every burn or cut you get on the job is covered. Plan 1 is just $20/month.'",
-      "'You need a specialized occupational insurance, not PA.'"
+      "Agree that insurance is not a priority with a new baby",
+      "Pressure her to buy Plan 4 for maximum protection",
+      "Acknowledge the tight budget, then explain Plan 1 is just 62 cents a day -- less than a packet drink -- and with a baby who will soon crawl and walk, outpatient accident coverage becomes critical",
+      "Suggest she wait until the baby is older to consider insurance"
     ],
     correct: 2,
-    explanation: "Connect directly to the client's experience. Feature 4 (burns) and Feature 6 (medical reimbursement) together provide comprehensive coverage for workplace cooking injuries.",
+    explanation: "Acknowledge the budget concern first, then reframe with the daily cost (62 cents). Connect coverage to the baby's upcoming developmental milestones where accident risk increases significantly.",
     category: 'roleplay'
   },
+
   {
-    question: "A young professional says: 'I already have a Death/TPD plan paying $200/month. My agent says I am fully covered.' What is the best response?",
+    question: "A grab driver who spends 10+ hours daily on the road asks what extra protection he gets for transport accidents. What should you highlight?",
     options: [
-      "'Your agent is right, Death/TPD is all you need.'",
-      "'You should cancel your Death/TPD and get PA instead.'",
-      "'Your Death/TPD plan covers severe events -- losing two limbs or two eyes. But what about the minor injuries that are far more likely? A sprained ankle, a fracture, food poisoning? That is what PA covers, starting at just $20/month. It is not either/or -- it is both.'",
-      "'Death/TPD plans are a waste of money.'"
+      "Tell him PA does not provide any extra protection for drivers",
+      "Suggest he get commercial vehicle insurance instead of PA",
+      "Explain that Feature 5 doubles the accidental death payout for private transport accidents -- under Plan 4, that means $750K + $750K = $1.5M, making this feature especially valuable for someone on the road all day",
+      "Tell him only public transport passengers get the double payout"
     ],
     correct: 2,
-    explanation: "Position PA as complementary, not competing. Death/TPD covers severe low-probability events; PA covers frequent minor events. The claim threshold difference makes the case clearly.",
+    explanation: "Feature 5 covers both public and private transport accidents with a double payout. For a grab driver spending 10+ hours on the road daily, this benefit is highly relevant and compelling.",
     category: 'roleplay'
   }
 ];

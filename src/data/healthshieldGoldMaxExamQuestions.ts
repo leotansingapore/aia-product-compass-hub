@@ -262,10 +262,10 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
     options: [
       "It is mandatory for all HealthShield Gold Max plans",
       "It replaces the need for a separate critical illness policy",
-      "It is only relevant for people with a family history of cancer",
-      "At $36/year (less than a single meal), it significantly boosts cancer treatment coverage -- making it a no-brainer add-on"
+      "At $36/year (less than a single meal), it significantly boosts cancer treatment coverage -- making it a no-brainer add-on",
+      "It is only relevant for people with a family history of cancer"
     ],
-    correct: 3,
+    correct: 2,
     explanation: "The $36/year price point makes the Cancer Care Rider an easy yes. Comparing it to a meal cost eliminates any price objection, and cancer being the leading cause of death in Singapore makes the relevance clear.",
     category: 'sales-angles'
   },
@@ -286,12 +286,12 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   {
     question: "When selling to parents for their children, what is the primary value proposition?",
     options: [
-      "Children receive higher annual claim limits than adults",
+      "Lock in coverage at the lowest possible premiums and guarantee lifelong insurability before any conditions develop",
       "Pediatric conditions are always fully covered without exclusions",
       "Children do not need the VitalHealth rider, saving money",
-      "Lock in coverage at the lowest possible premiums and guarantee lifelong insurability before any conditions develop"
+      "Children receive higher annual claim limits than adults"
     ],
-    correct: 3,
+    correct: 0,
     explanation: "Insuring children early locks in extremely low premiums based on the youngest age band and guarantees full insurability. Any conditions developed later in life will not affect their existing coverage, making early enrollment a strategic advantage.",
     category: 'sales-angles'
   },

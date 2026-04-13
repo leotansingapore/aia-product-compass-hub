@@ -617,7 +617,7 @@ export function FolderTreeView({
       const activePath = activeIdStr.replace('folder-', '');
       if (getParentPath(activePath) === '') {
         const overVideo = videos.find(v => v.id === overIdStr);
-        if (overVideo && (!overVideo.category || overVideo.category.trim() === '')) {
+        if (overVideo && (!overVideo.category || String(overVideo.category).trim() === '')) {
           const belongsTo = (v: TrainingVideo, fp: string) => {
             const cat = v.category ?? '';
             return cat === fp || cat.startsWith(fp + '/');

@@ -153,8 +153,8 @@ export function VideoEditingInterface({
     const currentVideos = videoOrderChanges.pendingVideos;
     
     // Separate root-level videos and folder videos
-    const rootVideos = currentVideos.filter(v => !v.category || v.category.trim() === '');
-    const folderVideos = currentVideos.filter(v => v.category && v.category.trim() !== '');
+    const rootVideos = currentVideos.filter(v => !v.category || String(v.category).trim() === '');
+    const folderVideos = currentVideos.filter(v => v.category && String(v.category).trim() !== '');
     
     // Group videos by folder, preserving their internal order
     const videosByFolder = folderVideos.reduce((acc, video) => {
