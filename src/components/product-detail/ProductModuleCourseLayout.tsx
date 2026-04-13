@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, Link2, List, Play } from "lucide-react";
+import { Brain, ClipboardList, FileText, Link2, List, Play } from "lucide-react";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
 import type { TrainingVideo } from "@/hooks/useProducts";
@@ -69,6 +69,10 @@ export function ProductModuleCourseLayout({
     () => getCourseProgress(processedVideos.length),
     [getCourseProgress, processedVideos.length]
   );
+  const completedCount = useMemo(
+    () => processedVideos.filter(v => getVideoProgress(v.id)?.completed).length,
+    [processedVideos, getVideoProgress]
+  );
 
   const handleToggleComplete = useCallback(
     async (videoId: string, currentlyCompleted: boolean) => {
@@ -124,7 +128,7 @@ export function ProductModuleCourseLayout({
       <Tabs defaultValue="videos" className="w-full">
         <TabsList className="grid h-auto w-full grid-cols-2 gap-1 p-1">
           <TabsTrigger value="videos" className="text-xs sm:text-sm">
-            Course videos
+            Lessons
           </TabsTrigger>
           <TabsTrigger value="transcript" className="gap-1.5 text-xs sm:text-sm">
             <FileText className="h-3.5 w-3.5 shrink-0 opacity-70" aria-hidden />
@@ -323,7 +327,7 @@ export function ProductModuleCourseLayout({
                     className="h-1 min-w-0 flex-1 bg-zinc-800 sm:h-1.5 sm:w-24 sm:flex-none md:w-36 [&>div]:bg-zinc-400"
                   />
                   <span className="shrink-0 whitespace-nowrap text-right text-[11px] tabular-nums text-zinc-400 sm:text-xs">
-                    {currentVideoIndex + 1}/{processedVideos.length}
+                    {completedCount}/{processedVideos.length} completed
                   </span>
                 </div>
                 <Button
@@ -389,12 +393,31 @@ export function ProductModuleCourseLayout({
                   )
                 ) : processedVideos.length > 0 ? (
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center text-zinc-400">
-                    <Play className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
-                    <p className="text-sm font-medium text-zinc-300">No video for this lesson</p>
-                    <p className="text-xs text-zinc-500 max-w-md leading-relaxed">
-                      This step may be a quiz or reading. Open the outline to pick another lesson, or add a
-                      supported video URL (YouTube, Vimeo, Loom, Wistia, or .mp4) in admin.
-                    </p>
+                    {currentVideo?.type === 'quiz' ? (
+                      <>
+                        <Brain className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
+                        <p className="text-sm font-medium text-zinc-300">Quiz</p>
+                        <p className="text-xs text-zinc-500 max-w-md leading-relaxed">
+                          Scroll down to the Course content tab to take this quiz.
+                        </p>
+                      </>
+                    ) : currentVideo?.type === 'assignment' ? (
+                      <>
+                        <ClipboardList className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
+                        <p className="text-sm font-medium text-zinc-300">Assignment</p>
+                        <p className="text-xs text-zinc-500 max-w-md leading-relaxed">
+                          Scroll down to the Course content tab to complete this assignment.
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <FileText className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
+                        <p className="text-sm font-medium text-zinc-300">Reading material</p>
+                        <p className="text-xs text-zinc-500 max-w-md leading-relaxed">
+                          Scroll down to the Course content tab to view the lesson content.
+                        </p>
+                      </>
+                    )}
                   </div>
                 ) : (
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center text-zinc-400">
@@ -473,7 +496,7 @@ export function ProductModuleCourseLayout({
           <SheetHeader>
             <SheetTitle className="flex items-center gap-2">
               <List className="h-5 w-5" />
-              Course outline
+              Lesson outline
             </SheetTitle>
           </SheetHeader>
           <div className="mt-4 flex flex-col gap-4">
@@ -481,7 +504,7 @@ export function ProductModuleCourseLayout({
               <div className="flex items-center gap-2 border-b border-border pb-4 sm:hidden">
                 <Progress value={courseProgressPct} className="h-1.5 min-w-0 flex-1" />
                 <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
-                  {currentVideoIndex + 1}/{processedVideos.length}
+                  {completedCount}/{processedVideos.length} completed
                 </span>
               </div>
             )}

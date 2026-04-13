@@ -536,7 +536,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                     </div>
                     <h3 className="font-semibold text-foreground">Content coming soon</h3>
                     <p className="text-sm text-muted-foreground max-w-xs">
-                      This lecture hasn't been set up yet. Check back later or contact your admin.
+                      This lesson hasn't been set up yet. Check back later or contact your training coordinator.
                     </p>
                   </CardContent>
                 </Card>

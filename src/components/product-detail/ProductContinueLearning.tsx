@@ -36,7 +36,7 @@ export function ProductContinueLearning({
       <div className="border-t border-white/10 bg-zinc-900/95">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-2 px-3 py-2 sm:gap-3 sm:px-4">
           <span className="text-[11px] font-medium uppercase tracking-wide text-zinc-500 sm:text-xs">
-            Continue
+            Next steps
           </span>
           <div className="flex min-w-0 flex-1 flex-wrap items-center justify-end gap-2 sm:justify-start sm:gap-2">
             {hasStudy && (
@@ -91,7 +91,7 @@ export function ProductContinueLearning({
             </div>
             <div className="min-w-0 flex-1">
               <h4 className="text-sm font-medium">Study Bank</h4>
-              <p className="text-xs text-muted-foreground">Practice questions with instant feedback</p>
+              <p className="text-xs text-muted-foreground">Practice questions with instant feedback &mdash; no scoring</p>
             </div>
             <Button
               variant="outline"
@@ -122,7 +122,7 @@ export function ProductContinueLearning({
                   </Badge>
                 )}
               </h4>
-              <p className="text-xs text-muted-foreground">Scored exam recorded on your profile</p>
+              <p className="text-xs text-muted-foreground">Timed &amp; scored &mdash; best score shown on your profile. Retake anytime.</p>
             </div>
             <Button size="sm" className="shrink-0" onClick={() => navigate(`/product/${originalSlug}/exam`)}>
               <Brain className="mr-1.5 h-3.5 w-3.5" />

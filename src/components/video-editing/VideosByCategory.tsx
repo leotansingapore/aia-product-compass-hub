@@ -187,12 +187,12 @@ export const VideosByCategory = memo(function VideosByCategory({
                           {video.type === 'quiz' && video.quiz_config ? (
                             <span className="text-xs text-primary flex-shrink-0 flex items-center gap-1 font-medium">
                               <Brain className="h-3 w-3" />
-                              {video.quiz_config.questions.length}q
+                              <span className="hidden sm:inline">Quiz &middot; </span>{video.quiz_config.questions.length} {video.quiz_config.questions.length === 1 ? 'question' : 'questions'}
                             </span>
                           ) : video.type === 'assignment' ? (
                             <span className="text-xs text-amber-600 dark:text-amber-400 flex-shrink-0 flex items-center gap-1 font-medium">
                               <ClipboardList className="h-3 w-3" />
-                              Task
+                              Assignment
                             </span>
                           ) : video.duration ? (
                             <span className="text-xs text-muted-foreground flex-shrink-0 flex items-center gap-1">
