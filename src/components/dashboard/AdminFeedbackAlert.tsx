@@ -62,7 +62,7 @@ export function AdminFeedbackAlert() {
         size="sm"
         variant="outline"
         className="shrink-0 border-destructive/30 text-destructive hover:bg-destructive hover:text-destructive-foreground"
-        onClick={() => navigate("/admin")}
+        onClick={() => navigate("/admin?tab=feedback")}
       >
         Review
       </Button>

@@ -6,14 +6,18 @@ import { FeedbackPanel } from '@/components/admin/FeedbackPanel';
 import { ProAchieverLeaderboard } from '@/components/admin/ProAchieverLeaderboard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Users, Video, Brain, MessageSquare, Trophy } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 
 export default function AdminDashboard() {
+  const [searchParams] = useSearchParams();
+  const initialTab = searchParams.get('tab') || 'users';
+
   return (
     <AdminLayout
       title="Admin Dashboard"
       description="Unified user management dashboard for registration to activation."
     >
-      <Tabs defaultValue="users">
+      <Tabs defaultValue={initialTab}>
         <TabsList className="mb-4 sm:mb-6 w-full sm:w-auto flex-wrap h-auto gap-1">
           <TabsTrigger value="users" className="flex items-center gap-1.5 flex-1 sm:flex-none">
             <Users className="h-4 w-4 shrink-0" />
