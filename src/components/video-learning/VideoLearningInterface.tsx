@@ -1,3 +1,4 @@
+// VideoLearningInterface — main video player + course sidebar
 import { useState, useRef, useEffect, useMemo, useCallback, memo, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
