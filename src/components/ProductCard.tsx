@@ -4,7 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Bookmark, BookmarkCheck, MoreVertical, Pencil, Trash2, Globe, ArchiveRestore } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { Bookmark, BookmarkCheck, CheckCircle2, MoreVertical, Pencil, Trash2, Globe, ArchiveRestore } from "lucide-react";
 import { useBookmarks } from "@/hooks/useBookmarks";
 import { usePermissions } from "@/hooks/usePermissions";
 import { cn } from "@/lib/utils";
@@ -43,12 +44,13 @@ interface ProductCardProps {
   onClick: () => void;
   productId?: string;
   published?: boolean;
+  completionPct?: number;
   onEdit?: (productId: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => void;
   onDelete?: (productId: string) => void;
   onTogglePublish?: (productId: string, published: boolean) => void;
 }
 
-export const ProductCard = memo(function ProductCard({ title, description, category, tags, highlights, onClick, productId, published, onEdit, onDelete, onTogglePublish }: ProductCardProps) {
+export const ProductCard = memo(function ProductCard({ title, description, category, tags, highlights, onClick, productId, published, completionPct, onEdit, onDelete, onTogglePublish }: ProductCardProps) {
   const { isBookmarked, toggleBookmark, loading } = useBookmarks();
   const { isAdmin } = usePermissions();
   const [showEditDialog, setShowEditDialog] = useState(false);
@@ -193,6 +195,16 @@ export const ProductCard = memo(function ProductCard({ title, description, categ
         </CardHeader>
         <CardContent className="p-2.5 sm:p-3 md:p-6 pt-0 flex-1 flex flex-col justify-end">
           <div className="space-y-2 sm:space-y-3">
+            {/* Completion progress */}
+            {completionPct != null && completionPct > 0 && (
+              <div className="flex items-center gap-2">
+                <Progress value={completionPct} className="h-1.5 flex-1" />
+                <span className="text-[10px] sm:text-xs tabular-nums text-muted-foreground shrink-0 flex items-center gap-1">
+                  {completionPct >= 100 && <CheckCircle2 className="h-3 w-3 text-primary" />}
+                  {completionPct}%
+                </span>
+              </div>
+            )}
             <div className="flex flex-wrap gap-1">
               {tags.slice(0, 3).map((tag, index) => (
                 <Badge key={index} variant="outline" className="text-[10px] sm:text-xs px-1.5 sm:px-2">

@@ -225,16 +225,6 @@ export default function ProductDetail() {
                   productTitle={product.title}
                   videos={product?.training_videos || []}
                   defaultTab="course-content"
-                  heroFooter={
-                    showContinueLearning ? (
-                      <ProductContinueLearning
-                        variant="hero-strip"
-                        hasStudy={hasStudyProduct}
-                        hasExam={hasExamProduct}
-                        originalSlug={continueOriginalSlug}
-                      />
-                    ) : undefined
-                  }
                   tabOverview={
                     <div className="space-y-4">
                       {categoryName ? (

@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Brain, ClipboardList, FileText, Link2, List, Play } from "lucide-react";
+import { Brain, CheckCircle2, ChevronLeft, ChevronRight, ClipboardList, FileText, Link2, List, Play } from "lucide-react";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
 import type { TrainingVideo } from "@/hooks/useProducts";
@@ -26,8 +26,6 @@ export interface ProductModuleCourseLayoutProps {
   tabOverview: React.ReactNode;
   tabResources: React.ReactNode;
   tabMyNotes: React.ReactNode;
-  /** Optional strip directly under the video hero (e.g. Study / Exam shortcuts). */
-  heroFooter?: React.ReactNode;
   defaultTab?: "course-content" | "overview" | "resources" | "my-notes";
   className?: string;
 }
@@ -39,7 +37,6 @@ export function ProductModuleCourseLayout({
   tabOverview,
   tabResources,
   tabMyNotes,
-  heroFooter,
   defaultTab = "course-content",
   className,
 }: ProductModuleCourseLayoutProps) {
@@ -378,6 +375,55 @@ export function ProductModuleCourseLayout({
     </>
   );
 
+  /* ── Next / Previous lesson navigation bar ── */
+  const prevVideo = currentVideoIndex > 0 ? processedVideos[currentVideoIndex - 1] : null;
+  const nextVideo = currentVideoIndex < processedVideos.length - 1 ? processedVideos[currentVideoIndex + 1] : null;
+  const isCurrentCompleted = currentVideo ? !!getVideoProgress(currentVideo.id)?.completed : false;
+
+  const lessonNav = processedVideos.length > 1 ? (
+    <div className="flex items-center justify-between gap-3 border-t bg-muted/30 px-4 py-3">
+      <Button
+        variant="ghost"
+        size="sm"
+        disabled={!prevVideo}
+        onClick={() => prevVideo && onSelectVideoFromOutline(currentVideoIndex - 1)}
+        className="gap-1.5 text-xs"
+      >
+        <ChevronLeft className="h-4 w-4" />
+        <span className="hidden sm:inline truncate max-w-[120px]">{prevVideo?.title ?? "Previous"}</span>
+        <span className="sm:hidden">Prev</span>
+      </Button>
+      {currentVideo && !isCurrentCompleted && (
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => currentVideo && handleToggleComplete(currentVideo.id, false)}
+          className="gap-1.5 text-xs"
+        >
+          <CheckCircle2 className="h-3.5 w-3.5" />
+          Mark complete
+        </Button>
+      )}
+      {currentVideo && isCurrentCompleted && (
+        <span className="flex items-center gap-1 text-xs text-primary font-medium">
+          <CheckCircle2 className="h-3.5 w-3.5" />
+          Completed
+        </span>
+      )}
+      <Button
+        variant={nextVideo ? "default" : "ghost"}
+        size="sm"
+        disabled={!nextVideo}
+        onClick={() => nextVideo && onSelectVideoFromOutline(currentVideoIndex + 1)}
+        className="gap-1.5 text-xs"
+      >
+        <span className="hidden sm:inline truncate max-w-[120px]">{nextVideo?.title ?? "Next"}</span>
+        <span className="sm:hidden">Next</span>
+        <ChevronRight className="h-4 w-4" />
+      </Button>
+    </div>
+  ) : null;
+
   return (
     <div className={cn("min-w-0 overflow-x-hidden", className)}>
       {/* ═══════════════════════════════════════════════════════════
@@ -408,8 +454,9 @@ export function ProductModuleCourseLayout({
             {currentVideo?.description && (
               <p className="px-4 pb-3 text-sm leading-relaxed text-zinc-400">{currentVideo.description}</p>
             )}
-            {heroFooter}
           </div>
+          {/* Next / Previous lesson */}
+          {lessonNav}
 
           {/* Tabs below video */}
           <div className="min-w-0 border-t bg-background">
@@ -506,8 +553,9 @@ export function ProductModuleCourseLayout({
               <p className="mt-2 px-3 text-sm leading-relaxed text-zinc-400 sm:px-4">{currentVideo.description}</p>
             )}
           </div>
-          {heroFooter}
         </div>
+        {/* Next / Previous lesson */}
+        {lessonNav}
 
         {/* Tabs below video */}
         <div className="min-w-0 border-t bg-background">

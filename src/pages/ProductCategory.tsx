@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff } from "lucide-react";
+import { useBatchVideoProgress } from "@/hooks/useBatchVideoProgress";
 
 // Helper function to get category info for backward compatibility
 function getCategoryInfo(categoryId: string) {
@@ -81,6 +82,16 @@ export default function ProductCategory() {
   const visibleProducts = isViewingAsUser
     ? filteredProducts.filter(p => p.published !== false)
     : filteredProducts;
+
+  // Batch-fetch video completion progress for all visible products
+  const productIds = visibleProducts.map(p => p.id);
+  const videoCountsByProduct = Object.fromEntries(
+    visibleProducts.map(p => [p.id, (p as any).training_videos?.length || 0])
+  );
+  const batchProgress = useBatchVideoProgress(productIds, videoCountsByProduct);
+  const completionMap = Object.fromEntries(
+    Object.entries(batchProgress).map(([id, p]) => [id, p.percentage])
+  );
 
   const handleEditProduct = async (productId: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => {
     const { error } = await supabase
@@ -304,6 +315,7 @@ export default function ProductCategory() {
           onDeleteProduct={handleDeleteProduct}
           onTogglePublish={handleToggleProductPublish}
           onNestingChange={refetch}
+          completionMap={completionMap}
         />
       </div>
     </PageLayout>

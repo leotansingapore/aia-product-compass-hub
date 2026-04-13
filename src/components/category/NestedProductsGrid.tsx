@@ -53,6 +53,7 @@ interface NestedProductsGridProps {
   onDeleteProduct?: (id: string) => void;
   onTogglePublish?: (id: string, published: boolean) => void;
   onNestingChange: () => void;
+  completionMap?: Record<string, number>;
 }
 
 interface FolderCardProps {
@@ -125,6 +126,7 @@ export function NestedProductsGrid({
   onEditProduct,
   onDeleteProduct,
   onTogglePublish,
+  completionMap,
 }: NestedProductsGridProps) {
   const { isViewingAsUser } = useViewMode();
 
@@ -176,6 +178,7 @@ export function NestedProductsGrid({
           onClick={() => onProductClick(product.id)}
           productId={product.id}
           published={product.published}
+          completionPct={completionMap?.[product.id]}
           onEdit={onEditProduct}
           onDelete={onDeleteProduct}
           onTogglePublish={onTogglePublish}

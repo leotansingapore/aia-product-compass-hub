@@ -21,17 +21,19 @@ interface ProductsGridProps {
   onDeleteProduct?: (productId: string) => void;
   onTogglePublish?: (productId: string, published: boolean) => void;
   onNestingChange?: () => void;
+  completionMap?: Record<string, number>;
 }
 
-export function ProductsGrid({ 
-  products, 
-  categoryName, 
-  onProductClick, 
+export function ProductsGrid({
+  products,
+  categoryName,
+  onProductClick,
   onClearFilters,
   onEditProduct,
   onDeleteProduct,
   onTogglePublish,
   onNestingChange,
+  completionMap,
 }: ProductsGridProps) {
   if (products.length === 0) {
     return (
@@ -60,6 +62,7 @@ export function ProductsGrid({
       onDeleteProduct={onDeleteProduct}
       onTogglePublish={onTogglePublish}
       onNestingChange={onNestingChange || (() => {})}
+      completionMap={completionMap}
     />
   );
 }
