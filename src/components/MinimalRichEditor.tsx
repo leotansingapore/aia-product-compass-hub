@@ -251,7 +251,7 @@ export function MinimalRichEditor({
           '[&_img]:max-w-full [&_img]:rounded-md [&_img]:my-2',
         ),
       },
-      handleKeyDown: async (view, event) => {
+      handleKeyDown: (view, event) => {
         if ((event.metaKey || event.ctrlKey) && event.key === 'Enter' && onSave) {
           event.preventDefault();
           // Flush any pending content before saving

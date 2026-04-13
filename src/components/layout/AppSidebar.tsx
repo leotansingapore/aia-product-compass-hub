@@ -376,17 +376,6 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
             <SidebarGroupLabel>Help</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                <SidebarMenuItem>
-                  <SidebarMenuButton
-                    type="button"
-                    onClick={() => setFeedbackOpen(true)}
-                    tooltip={isCollapsed ? "Feedback" : undefined}
-                    className={getNavClassName("/__feedback__")}
-                  >
-                    <MessageSquarePlus className="h-4 w-4" />
-                    {!isCollapsed && <span>Feedback</span>}
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
                 {resourceItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
