@@ -155,6 +155,32 @@ Submission files table (`learning_track_submission_files`):
 
 - Update existing `lt_content_select_authenticated` on `obsidian_resources`: Change SELECT condition to filter by `shareable = true` for non-admin users. Admins (users in `user_admin_roles` with role `'admin'` or `'master_admin'`) can see all rows regardless of `shareable` value.
 
+### Inline Assignments — 2026-04-13
+
+**What:** Stores learner assignment submissions (text and/or file uploads) for inline course assignments. Assignment definitions live in the `products.training_videos` JSONB array (no table needed for those).
+
+**Tables:**
+
+- `assignment_submissions`: Create with columns:
+  - `id` (uuid PK, default `gen_random_uuid()`)
+  - `user_id` (uuid, FK to `auth.users(id)`, not null)
+  - `product_id` (text, not null)
+  - `item_id` (text, not null)
+  - `submission_text` (text, nullable)
+  - `file_url` (text, nullable)
+  - `file_name` (text, nullable)
+  - `submitted_at` (timestamptz, default `now()`)
+  - `created_at` (timestamptz, default `now()`)
+
+**RLS:**
+
+- Enable RLS on `assignment_submissions`
+- Policy `assignment_submissions_owner`: Users can SELECT, INSERT, UPDATE, DELETE their own rows (`auth.uid() = user_id`)
+
+**Storage:**
+
+- Create bucket `assignment-files` (public: yes, max file size: 50MB)
+
 ---
 
 ## Completed
