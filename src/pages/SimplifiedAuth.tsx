@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
-import { BarChart3, BrainCircuit, Mail, Waypoints } from "lucide-react";
+import { BarChart3, BrainCircuit, Waypoints } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { SimplifiedAuthForm } from "@/components/auth/SimplifiedAuthForm";
 import { FINTERNSHIP_LOGO_NAVY, FINTERNSHIP_LOGO_WHITE } from "@/constants/branding";
 
-const SUPPORT_EMAIL = "support@aiaproductcompass.com";
+
 
 /** Translucent low-poly shards — right-weighted light, aligned to brand teal/cyan */
 function AuthHeroPolyLayer() {
