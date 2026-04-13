@@ -564,7 +564,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
           </div>
         )}
 
-        {/* ── Mobile Bottom bar: Prev | Mark Complete | Next ── */}
+        {/* ── Bottom bar: Mark Complete + Next Lesson ── */}
         <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t z-40 p-3 sm:p-4">
           <div className="max-w-7xl mx-auto flex items-center gap-2">
 
@@ -580,16 +580,16 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
               <ChevronLeft className="h-5 w-5" />
             </Button>
 
-            {/* Mark complete */}
+            {/* Mark complete / Completed indicator */}
             <Button
-              className="flex-1 max-w-md mx-auto h-11"
+              className={`h-11 ${currentProgress?.completed && currentVideoIndex < videos.length - 1 ? 'flex-shrink-0' : 'flex-1 max-w-md mx-auto'}`}
               onClick={handleToggleStickyComplete}
               variant={currentProgress?.completed ? "secondary" : "default"}
             >
               {currentProgress?.completed ? (
                 <>
                   <CheckCircle2 className="h-5 w-5 mr-2" />
-                  <span>Completed — tap to undo</span>
+                  <span>Completed</span>
                 </>
               ) : (
                 <>
@@ -599,17 +599,30 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
               )}
             </Button>
 
-            {/* Next — mobile only */}
-            <Button
-              variant="default"
-              size="icon"
-              className="h-11 w-11 flex-shrink-0 sm:hidden"
-              onClick={() => navigateVideo('next')}
-              disabled={currentVideoIndex === videos.length - 1}
-              aria-label="Next video"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </Button>
+            {/* Next Lesson — prominent, shown when current is completed and there's a next */}
+            {currentProgress?.completed && currentVideoIndex < videos.length - 1 && (
+              <Button
+                className="flex-1 h-11"
+                onClick={() => navigateVideo('next')}
+              >
+                <span className="truncate">Next: {videos[safeVideoIndex + 1]?.title}</span>
+                <ChevronRight className="h-5 w-5 ml-1 flex-shrink-0" />
+              </Button>
+            )}
+
+            {/* Next icon — mobile only, when NOT showing the prominent next button */}
+            {!(currentProgress?.completed && currentVideoIndex < videos.length - 1) && (
+              <Button
+                variant="default"
+                size="icon"
+                className="h-11 w-11 flex-shrink-0 sm:hidden"
+                onClick={() => navigateVideo('next')}
+                disabled={currentVideoIndex === videos.length - 1}
+                aria-label="Next video"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </Button>
+            )}
 
           </div>
         </div>
