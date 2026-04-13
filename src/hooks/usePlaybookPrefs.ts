@@ -20,7 +20,7 @@ export function usePlaybookPrefs() {
       if (!user) return [];
       const { data, error } = await supabase
         .from('playbook_user_prefs' as any)
-        .select('*')
+        .select('id, user_id, playbook_id, is_favourite, is_hidden')
         .eq('user_id', user.id);
       if (error) throw error;
       return (data || []) as unknown as PlaybookPref[];

@@ -101,7 +101,7 @@ function FlashCard({
             </div>
             {hasImages ? (
               <div className="mt-3 rounded-lg overflow-hidden border border-dashed border-border/50 h-20 flex items-center justify-center relative bg-muted/20">
-                <img src={currentImg!} alt="" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-40" />
+                <img src={currentImg!} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-40" />
                 <span className="relative z-10 text-xs text-muted-foreground font-medium">
                   Tap to reveal {allImages.length > 1 ? `${allImages.length} drawings` : 'drawing'}
                 </span>
@@ -148,7 +148,7 @@ function FlashCard({
             <div className="absolute bottom-2 right-2 z-10 text-[9px] text-muted-foreground/50 pointer-events-none">tap →</div>
             {hasImages ? (
               <>
-                <img src={currentImg!} alt={card.title} className="w-full h-full object-contain p-2 pointer-events-none" />
+                <img src={currentImg!} alt={card.title} loading="lazy" className="w-full h-full object-contain p-2 pointer-events-none" />
                 {allImages.length > 1 && (
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1" onClick={e => e.stopPropagation()}>
                     <button onClick={e => { e.stopPropagation(); setImgIndex(i => Math.max(0, i - 1)); }} disabled={imgIndex === 0}
