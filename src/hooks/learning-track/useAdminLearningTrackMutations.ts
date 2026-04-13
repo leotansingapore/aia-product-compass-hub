@@ -193,11 +193,20 @@ export function useReorderItems() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (items: { id: string; order_index: number }[]) => {
-      // Update each item's order_index
-      const promises = items.map(({ id, order_index }) =>
+      // First, move all items to temporary high order_index values to avoid
+      // unique constraint violations on (phase_id, order_index)
+      const tempPromises = items.map(({ id }, i) =>
+        supabase.from("learning_track_items").update({ order_index: 100000 + i }).eq("id", id)
+      );
+      const tempResults = await Promise.all(tempPromises);
+      const tempFailed = tempResults.find((r) => r.error);
+      if (tempFailed?.error) throw tempFailed.error;
+
+      // Now set the final order_index values
+      const finalPromises = items.map(({ id, order_index }) =>
         supabase.from("learning_track_items").update({ order_index }).eq("id", id)
       );
-      const results = await Promise.all(promises);
+      const results = await Promise.all(finalPromises);
       const failed = results.find((r) => r.error);
       if (failed?.error) throw failed.error;
     },
