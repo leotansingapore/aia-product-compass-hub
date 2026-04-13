@@ -8,6 +8,25 @@ export interface UsefulLink {
   icon: string;
 }
 
+export interface QuizItemQuestion {
+  question: string;
+  options: string[];       // exactly 4 options
+  correct_index: number;   // 0-3
+  explanation?: string;
+}
+
+export interface QuizConfig {
+  questions: QuizItemQuestion[];
+  pass_threshold?: number;   // 0-1, e.g. 0.8 = 80%
+  source_item_id?: string;   // ID of the video used to generate questions
+}
+
+export interface AssignmentConfig {
+  submission_type: 'text' | 'file' | 'both';
+  prompt: string;
+  max_file_size_mb?: number; // default 10
+}
+
 export interface TrainingVideo {
   id: string;
   title: string;
@@ -31,6 +50,10 @@ export interface TrainingVideo {
     attachments?: VideoAttachment[];
     migrated_at?: string;
   }; // Backup of original structured data when converted to rich editor
+  // Item type discriminator — defaults to 'video' for backward compat
+  type?: 'video' | 'quiz' | 'assignment';
+  quiz_config?: QuizConfig;
+  assignment_config?: AssignmentConfig;
 }
 
 export interface VideoAttachment {
