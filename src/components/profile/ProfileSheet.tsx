@@ -61,11 +61,14 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
 
   const isAdminUser = isMasterAdmin() || hasRole('admin');
 
+  // Fetch profile eagerly when user exists, not just when open
   useEffect(() => {
-    if (user && open) {
-      fetchProfile();
-      fetchStats();
-    }
+    if (user) fetchProfile();
+  }, [user]);
+
+  // Fetch stats only when panel opens (background, non-blocking)
+  useEffect(() => {
+    if (user && open) fetchStats();
   }, [user, open]);
 
   const fetchProfile = async () => {

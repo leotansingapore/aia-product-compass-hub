@@ -8,7 +8,7 @@ import { MobileHeader } from "./MobileHeader";
 import { Button } from "@/components/ui/button";
 import { LogIn, User } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-const ProfileSheet = lazy(() => import("@/components/profile/ProfileSheet").then(m => ({ default: m.ProfileSheet })));
+import { ProfileSheet } from "@/components/profile/ProfileSheet";
 import { ThemeToggle } from "@/components/ThemeToggle";
 const WelcomeModal = lazy(() => import("@/components/onboarding/WelcomeModal").then(m => ({ default: m.WelcomeModal })));
 const OnboardingTutorial = lazy(() => import("@/components/onboarding/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
@@ -180,9 +180,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
           <FloatingFeedbackButton />
         </Suspense>
         {profileOpen && (
-          <Suspense fallback={null}>
-            <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
-          </Suspense>
+          <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
         )}
       </div>
     );
@@ -226,9 +224,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         <FloatingFeedbackButton />
       </Suspense>
       {profileOpen && (
-        <Suspense fallback={null}>
-          <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
-        </Suspense>
+        <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
       )}
     </SidebarProvider>
   );
