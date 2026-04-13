@@ -8,7 +8,7 @@ import { FeedbackModal } from "@/components/FeedbackButton";
 
 const navigationItems = [
   { name: "Home", href: "/", icon: Home },
-  { name: "Products", href: "/categories", icon: Package },
+  { name: "Products", href: "/category/core-products", icon: Package },
   { name: "Scripts", href: "/scripts", icon: FileText },
   { name: "Roleplay", href: "/roleplay", icon: MessageCircle },
 ];
