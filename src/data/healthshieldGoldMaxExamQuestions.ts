@@ -140,11 +140,11 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
     question: "What is the restriction period when switching from one Integrated Shield Plan to another?",
     options: [
       "30 days",
-      "60 days",
+      "40 days",
       "90 days",
-      "40 days"
+      "60 days"
     ],
-    correct: 3,
+    correct: 1,
     explanation: "There is a 40-day restriction period when switching ISP providers. During this window, the new insurer may not cover certain conditions that arise, creating a coverage gap that prospects should understand before switching.",
     category: 'product-facts'
   },
