@@ -1,7 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 
 const tabs = [
-  { key: "sales-tools",   label: "Sales Tools",      emoji: "📊", path: "/product/sales-tools-objections" },
   { key: "scripts",       label: "Sales Scripts",    emoji: "📝", path: "/scripts" },
   { key: "servicing",     label: "Servicing",        emoji: "🛎️", path: "/servicing" },
   { key: "objections",    label: "Objections",       emoji: "🛡️", path: "/objections" },

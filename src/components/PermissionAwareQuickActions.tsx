@@ -58,7 +58,7 @@ export function PermissionAwareQuickActions() {
       {
         title: "Sales Tools",
         description: "Objection handling and sales resources",
-        route: "/product/sales-tools-objections",
+        route: "/scripts",
         icon: TrendingUp,
         sectionId: "sales-tools",
         badge: "Tools",
