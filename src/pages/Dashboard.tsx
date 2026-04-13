@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { SearchHero } from "@/components/dashboard/SearchHero";
 import { QuickActions } from "@/components/dashboard/QuickActions";
@@ -11,8 +11,6 @@ import { SearchResults } from "@/components/dashboard/SearchResults";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { LearningTrackHeroCard } from "@/components/learning-track/LearningTrackHeroCard";
 import { useDashboardSearch } from "@/hooks/useDashboardSearch";
-import { ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const Dashboard = memo(() => {
   const {
@@ -38,8 +36,6 @@ const Dashboard = memo(() => {
     clearFilters,
     clearSearch
   } = useDashboardSearch();
-
-  const [showUpdates, setShowUpdates] = useState(false);
 
   return (
     <PageLayout
@@ -118,21 +114,8 @@ const Dashboard = memo(() => {
             {/* 2. Product Categories */}
             <ProductCategories />
 
-            {/* 3. Recently Updated — collapsed by default */}
-            <div>
-              <button
-                onClick={() => setShowUpdates(!showUpdates)}
-                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <ChevronDown className={cn("h-4 w-4 transition-transform", !showUpdates && "-rotate-90")} />
-                Recently Updated
-              </button>
-              {showUpdates && (
-                <div className="mt-3">
-                  <WhatsNewSection />
-                </div>
-              )}
-            </div>
+            {/* 3. Recently Updated */}
+            <WhatsNewSection />
           </>
         )}
 

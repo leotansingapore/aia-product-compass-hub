@@ -320,9 +320,9 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
         </SidebarHeader>
 
         <SidebarContent>
-          {/* Main Navigation */}
+          {/* Learning & Training */}
           <SidebarGroup>
-            <SidebarGroupLabel>Main</SidebarGroupLabel>
+            <SidebarGroupLabel>Learning</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 {mainNavItems.map((item) => (
@@ -344,8 +344,9 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
             </SidebarGroupContent>
           </SidebarGroup>
 
-          {/* Product Categories — single entry linking to hub */}
+          {/* Reference — products and sales tools */}
           <SidebarGroup>
+            <SidebarGroupLabel>Reference</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 <SidebarMenuItem>
@@ -359,14 +360,6 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-
-          {/* Sales Playbooks — single entry with last-visited memory */}
-          <SidebarGroup>
-            <SidebarGroupContent>
-              <SidebarMenu>
                 <SidebarMenuItem>
                   <SidebarMenuButton asChild tooltip={isCollapsed ? "Sales Playbooks" : undefined}>
                     <NavLink
@@ -383,7 +376,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
           </SidebarGroup>
 
           <SidebarGroup>
-            <SidebarGroupLabel>Resources & Help</SidebarGroupLabel>
+            <SidebarGroupLabel>Help</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 <SidebarMenuItem>

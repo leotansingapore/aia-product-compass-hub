@@ -8,7 +8,7 @@ import { FeedbackModal } from "@/components/FeedbackButton";
 
 const navigationItems = [
   { name: "Home", href: "/", icon: Home },
-  { name: "Learn", href: "/learning-track", icon: Library },
+  { name: "CMFAS", href: "/cmfas-exams", icon: GraduationCap },
   { name: "Scripts", href: "/scripts", icon: FileText },
   { name: "Roleplay", href: "/roleplay", icon: MessageCircle },
 ];
@@ -19,7 +19,7 @@ const quickLinkItems = [
   { name: "Feedback", href: FEEDBACK_HREF, icon: MessageSquarePlus, color: "text-slate-600", bg: "bg-slate-100 dark:bg-slate-900/40" },
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30" },
   
-  { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
+  { name: "Learning Track", href: "/learning-track", icon: Library, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
   { name: "Client Profile", href: "/search-by-profile", icon: Users, color: "text-violet-500", bg: "bg-violet-50 dark:bg-violet-950/30" },
   { name: "How to Use", href: "/how-to-use", icon: HelpCircle, color: "text-teal-500", bg: "bg-teal-50 dark:bg-teal-950/30" },
   { name: "Playbooks", href: "/playbooks", icon: BookOpen, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-950/30" },
