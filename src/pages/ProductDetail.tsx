@@ -25,8 +25,22 @@ import { useAdmin } from "@/hooks/useAdmin";
 import type { TrainingVideo } from "@/hooks/useProducts";
 import { getVideoSlug } from "@/utils/slugUtils";
 
-const PRODUCTS_WITH_EXAMS = new Set(['pro-achiever', 'core-pro-achiever']);
-const PRODUCTS_WITH_STUDY = new Set(['pro-achiever', 'platinum-wealth-venture', 'healthshield-gold-max', 'core-pro-achiever', 'core-platinum-wealth-venture', 'core-healthshield-gold-max']);
+const PRODUCTS_WITH_EXAMS = new Set([
+  'pro-achiever', 'core-pro-achiever',
+  'platinum-wealth-venture', 'core-platinum-wealth-venture',
+  'healthshield-gold-max', 'core-healthshield-gold-max',
+  'pro-lifetime-protector', 'core-pro-lifetime-protector',
+  'solitaire-pa', 'core-solitaire-pa',
+  'ultimate-critical-cover', 'core-ultimate-critical-cover',
+]);
+const PRODUCTS_WITH_STUDY = new Set([
+  'pro-achiever', 'core-pro-achiever',
+  'platinum-wealth-venture', 'core-platinum-wealth-venture',
+  'healthshield-gold-max', 'core-healthshield-gold-max',
+  'pro-lifetime-protector', 'core-pro-lifetime-protector',
+  'solitaire-pa', 'core-solitaire-pa',
+  'ultimate-critical-cover', 'core-ultimate-critical-cover',
+]);
 
 // Map core product IDs to their original slug for study/exam routes
 const getOriginalSlug = (id: string) => id.replace(/^core-/, '');
@@ -48,6 +62,7 @@ export default function ProductDetail() {
   const isAdminMode = isAdmin;
 
   const [editingIndexFromUrl, setEditingIndexFromUrl] = useState<number | null>(null);
+
 
   // Video management setup for admins - auto-syncs to AI knowledge base after save
   const handleVideoSave = useCallback(async (updatedVideos: TrainingVideo[]) => {
@@ -73,7 +88,6 @@ export default function ProductDetail() {
     onSave: handleVideoSave,
     productId: product?.id
   });
-
 
   const existingCategories = Array.from(
     new Set(

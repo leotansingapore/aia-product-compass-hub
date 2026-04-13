@@ -3,6 +3,19 @@ import { useToast } from '@/hooks/use-toast';
 import { getVideoEmbedInfo } from '@/components/video-editing/videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
+// Safe JSON stringify that skips DOM nodes and circular references
+function safeStringify(obj: unknown): string {
+  try {
+    return JSON.stringify(obj, (_key, value) => {
+      if (value instanceof HTMLElement || value instanceof Node) return undefined;
+      if (typeof value === 'object' && value !== null && value.$$typeof) return undefined;
+      return value;
+    });
+  } catch {
+    return '{}';
+  }
+}
+
 interface UseVideoManagementProps {
   initialVideos: TrainingVideo[];
   onSave: (newVideos: TrainingVideo[]) => Promise<void>;
@@ -31,7 +44,7 @@ export function useVideoManagement({ initialVideos, onSave, productId }: UseVide
   const { toast } = useToast();
   
   // Store initial state for comparison to detect changes
-  const initialVideosRef = useRef<string>(JSON.stringify(initialVideos || []));
+  const initialVideosRef = useRef<string>(safeStringify(initialVideos || []));
 
   // Reset state when product changes (productId switches)
   useEffect(() => {
@@ -40,7 +53,7 @@ export function useVideoManagement({ initialVideos, onSave, productId }: UseVide
       count: initialVideos?.length || 0,
     });
     setEditVideos(initialVideos || []);
-    initialVideosRef.current = JSON.stringify(initialVideos || []);
+    initialVideosRef.current = safeStringify(initialVideos || []);
     setEditingIndex(null);
     setEmptyFolders([]);
     setSaveJustCompleted(false);
@@ -52,7 +65,7 @@ export function useVideoManagement({ initialVideos, onSave, productId }: UseVide
 
   const hasContentChanges = useMemo(() => {
     if (saveJustCompleted) return false;
-    const currentState = JSON.stringify(editVideos);
+    const currentState = safeStringify(editVideos);
     return currentState !== initialVideosRef.current;
   }, [editVideos, saveJustCompleted]);
 

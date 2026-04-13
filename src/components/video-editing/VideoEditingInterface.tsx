@@ -204,12 +204,12 @@ export function VideoEditingInterface({
 
   try {
     console.log('🎬 VideoEditingInterface: About to render components...');
-    
+
     if (!folderManagement) {
       console.error('🎬 VideoEditingInterface: folderManagement is null');
       throw new Error('Failed to initialize folder management');
     }
-    
+
     if (!videoActions) {
       console.error('🎬 VideoEditingInterface: videoActions is null');
       throw new Error('Failed to initialize video actions');

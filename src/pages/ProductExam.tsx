@@ -5,6 +5,11 @@ import { ProductQuiz } from '@/components/ProductQuiz';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { ProtectedPage } from '@/components/ProtectedPage';
 import { proAchieverExamQuestions } from '@/data/proAchieverExamQuestions';
+import { platinumWealthVentureExamQuestions } from '@/data/platinumWealthVentureExamQuestions';
+import { healthshieldGoldMaxExamQuestions } from '@/data/healthshieldGoldMaxExamQuestions';
+import { proLifetimeProtectorExamQuestions } from '@/data/proLifetimeProtectorExamQuestions';
+import { solitairePaExamQuestions } from '@/data/solitairePaExamQuestions';
+import { ultimateCriticalCoverExamQuestions } from '@/data/ultimateCriticalCoverExamQuestions';
 import { ArrowLeft, Brain, Target, Shield } from 'lucide-react';
 
 const examRegistry: Record<string, { title: string; productId: string; questions: typeof proAchieverExamQuestions }> = {
@@ -12,6 +17,31 @@ const examRegistry: Record<string, { title: string; productId: string; questions
     title: 'Pro Achiever',
     productId: 'pro-achiever',
     questions: proAchieverExamQuestions,
+  },
+  'platinum-wealth-venture': {
+    title: 'Platinum Wealth Venture',
+    productId: 'platinum-wealth-venture',
+    questions: platinumWealthVentureExamQuestions,
+  },
+  'healthshield-gold-max': {
+    title: 'HealthShield Gold Max',
+    productId: 'healthshield-gold-max',
+    questions: healthshieldGoldMaxExamQuestions,
+  },
+  'pro-lifetime-protector': {
+    title: 'Pro Lifetime Protector',
+    productId: 'pro-lifetime-protector',
+    questions: proLifetimeProtectorExamQuestions,
+  },
+  'solitaire-pa': {
+    title: 'Solitaire PA',
+    productId: 'solitaire-pa',
+    questions: solitairePaExamQuestions,
+  },
+  'ultimate-critical-cover': {
+    title: 'Ultimate Critical Cover',
+    productId: 'ultimate-critical-cover',
+    questions: ultimateCriticalCoverExamQuestions,
   },
 };
 

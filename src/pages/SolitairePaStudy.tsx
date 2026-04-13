@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { ProtectedPage } from '@/components/ProtectedPage';
-import { platinumWealthVentureStudyBank } from '@/data/platinumWealthVentureStudyBank';
+import { solitairePaStudyBank } from '@/data/solitairePaStudyBank';
 import { StudyQuiz } from '@/components/study/StudyQuiz';
 import { ArrowLeft, BookOpen, Brain, Target, Shield, MessageCircle, Shuffle } from 'lucide-react';
 
@@ -37,15 +37,15 @@ const categoryIcons: Record<CategoryFilter, React.ElementType> = {
   roleplay: MessageCircle,
 };
 
-export default function PlatinumWealthVentureStudy() {
+export default function SolitairePaStudy() {
   const navigate = useNavigate();
   const [quizSize, setQuizSize] = useState<QuizSize | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
-  const [activeQuestions, setActiveQuestions] = useState<typeof platinumWealthVentureStudyBank | null>(null);
+  const [activeQuestions, setActiveQuestions] = useState<typeof solitairePaStudyBank | null>(null);
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
-    for (const q of platinumWealthVentureStudyBank) {
+    for (const q of solitairePaStudyBank) {
       counts[q.category] = (counts[q.category] || 0) + 1;
     }
     return counts;
@@ -53,8 +53,8 @@ export default function PlatinumWealthVentureStudy() {
 
   const startQuiz = (size: QuizSize, category: CategoryFilter) => {
     let pool = category === 'all'
-      ? platinumWealthVentureStudyBank
-      : platinumWealthVentureStudyBank.filter(q => q.category === category);
+      ? solitairePaStudyBank
+      : solitairePaStudyBank.filter(q => q.category === category);
 
     const shuffled = shuffleArray(pool);
     const selected = shuffled.slice(0, Math.min(size, shuffled.length));
@@ -68,13 +68,12 @@ export default function PlatinumWealthVentureStudy() {
     setQuizSize(null);
   };
 
-  // Active quiz mode
   if (activeQuestions) {
     return (
-      <ProtectedPage pageId="platinum-wealth-venture-study">
+      <ProtectedPage pageId="solitaire-pa-study">
         <PageLayout
-          title="Platinum Wealth Venture Study Mode | FINternship"
-          description="Study Platinum Wealth Venture product knowledge with instant feedback."
+          title="Solitaire PA Study Mode | FINternship"
+          description="Study Solitaire PA product knowledge with instant feedback."
         >
           <div className="max-w-3xl mx-auto px-3 sm:px-6 py-4 sm:py-8">
             <Button
@@ -102,33 +101,31 @@ export default function PlatinumWealthVentureStudy() {
     );
   }
 
-  // Selection screen
   return (
-    <ProtectedPage pageId="platinum-wealth-venture-study">
+    <ProtectedPage pageId="solitaire-pa-study">
       <PageLayout
-        title="Platinum Wealth Venture Study Bank | FINternship"
-        description="Study Platinum Wealth Venture product knowledge with practice questions."
+        title="Solitaire PA Study Bank | FINternship"
+        description="Study Solitaire PA product knowledge with practice questions."
       >
         <div className="max-w-3xl mx-auto px-3 sm:px-6 py-4 sm:py-8 animate-fade-in">
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigate('/product/platinum-wealth-venture')}
+            onClick={() => navigate('/product/solitaire-pa/aia-materials')}
             className="mb-3 -ml-2"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
-            Back to Platinum Wealth Venture
+            Back to Solitaire PA
           </Button>
 
           <h1 className="text-2xl sm:text-3xl font-bold mb-2">
-            Platinum Wealth Venture — Study Bank
+            Solitaire PA — Study Bank
           </h1>
           <p className="text-muted-foreground mb-6">
-            {platinumWealthVentureStudyBank.length} practice questions to master PWV product knowledge.
+            {solitairePaStudyBank.length} practice questions to prepare you for the actual exam.
             Questions are randomized each time. Instant explanations for every answer.
           </p>
 
-          {/* Category breakdown */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
             {(['product-facts', 'sales-angles', 'objection-handling', 'roleplay'] as const).map((cat) => {
               const Icon = categoryIcons[cat];
@@ -142,7 +139,6 @@ export default function PlatinumWealthVentureStudy() {
             })}
           </div>
 
-          {/* Category filter */}
           <Card className="mb-6">
             <CardHeader className="pb-3">
               <CardTitle className="text-base">Filter by Category</CardTitle>
@@ -152,7 +148,7 @@ export default function PlatinumWealthVentureStudy() {
               <div className="flex flex-wrap gap-2">
                 {(['all', 'product-facts', 'sales-angles', 'objection-handling', 'roleplay'] as const).map((cat) => {
                   const Icon = categoryIcons[cat];
-                  const count = cat === 'all' ? platinumWealthVentureStudyBank.length : (categoryCounts[cat] || 0);
+                  const count = cat === 'all' ? solitairePaStudyBank.length : (categoryCounts[cat] || 0);
                   return (
                     <button
                       key={cat}
@@ -173,7 +169,6 @@ export default function PlatinumWealthVentureStudy() {
             </CardContent>
           </Card>
 
-          {/* Quiz size selection */}
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-base">Start Studying</CardTitle>
@@ -186,7 +181,7 @@ export default function PlatinumWealthVentureStudy() {
               <div className="grid grid-cols-3 gap-3">
                 {([25, 50, 100] as QuizSize[]).map((size) => {
                   const available = categoryFilter === 'all'
-                    ? platinumWealthVentureStudyBank.length
+                    ? solitairePaStudyBank.length
                     : (categoryCounts[categoryFilter] || 0);
                   const actualSize = Math.min(size, available);
                   return (
@@ -213,7 +208,7 @@ export default function PlatinumWealthVentureStudy() {
             </p>
             <Button
               size="sm"
-              onClick={() => navigate('/product/platinum-wealth-venture/exam')}
+              onClick={() => navigate('/product/solitaire-pa/exam')}
             >
               Take the Actual Exam
             </Button>

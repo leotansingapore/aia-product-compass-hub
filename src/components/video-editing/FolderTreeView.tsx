@@ -97,7 +97,7 @@ function buildTree(
   const rootVideos: Array<{ video: TrainingVideo; index: number }> = [];
 
   videos.forEach((video, index) => {
-    const cat = video.category?.trim() ?? '';
+    const cat = (typeof video.category === 'string' ? video.category : '').trim();
     if (!cat) {
       rootVideos.push({ video, index });
     } else {

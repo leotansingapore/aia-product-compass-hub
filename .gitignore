@@ -35,3 +35,4 @@ BUGS.md
 test-results/
 playwright-report/
 
+.gstack/

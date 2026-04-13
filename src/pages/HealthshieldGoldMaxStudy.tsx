@@ -205,6 +205,19 @@ export default function HealthshieldGoldMaxStudy() {
               </div>
             </CardContent>
           </Card>
+
+          <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 p-4">
+            <p className="text-sm font-medium mb-2">Ready for the real thing?</p>
+            <p className="text-xs text-muted-foreground mb-3">
+              Once you're confident, take the scored exam that's recorded on your profile.
+            </p>
+            <Button
+              size="sm"
+              onClick={() => navigate('/product/healthshield-gold-max/exam')}
+            >
+              Take the Actual Exam
+            </Button>
+          </div>
         </div>
       </PageLayout>
     </ProtectedPage>

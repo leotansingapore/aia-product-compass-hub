@@ -70,6 +70,9 @@ const LearningTrackAdminRecruit = lazy(() => import("./pages/learning-track/admi
 const ProAchieverStudy = lazy(() => import("./pages/ProAchieverStudy"));
 const PlatinumWealthVentureStudy = lazy(() => import("./pages/PlatinumWealthVentureStudy"));
 const HealthshieldGoldMaxStudy = lazy(() => import("./pages/HealthshieldGoldMaxStudy"));
+const ProLifetimeProtectorStudy = lazy(() => import("./pages/ProLifetimeProtectorStudy"));
+const SolitairePaStudy = lazy(() => import("./pages/SolitairePaStudy"));
+const UltimateCriticalCoverStudy = lazy(() => import("./pages/UltimateCriticalCoverStudy"));
 
 const queryClient = new QueryClient();
 
@@ -153,6 +156,9 @@ const App = () => (
                     <Route path="/product/pro-achiever/study" element={<RequireAuth><ProAchieverStudy /></RequireAuth>} />
                     <Route path="/product/platinum-wealth-venture/study" element={<RequireAuth><PlatinumWealthVentureStudy /></RequireAuth>} />
                     <Route path="/product/healthshield-gold-max/study" element={<RequireAuth><HealthshieldGoldMaxStudy /></RequireAuth>} />
+                    <Route path="/product/pro-lifetime-protector/study" element={<RequireAuth><ProLifetimeProtectorStudy /></RequireAuth>} />
+                    <Route path="/product/solitaire-pa/study" element={<RequireAuth><SolitairePaStudy /></RequireAuth>} />
+                    <Route path="/product/ultimate-critical-cover/study" element={<RequireAuth><UltimateCriticalCoverStudy /></RequireAuth>} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
