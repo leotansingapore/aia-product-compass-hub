@@ -19,7 +19,7 @@ import { detectVideoEmbed, VideoEmbed } from '@/lib/video-embed-utils';
 import { usePermissions } from '@/hooks/usePermissions';
 
 const InlineQuiz = lazy(() => import('@/components/quiz/InlineQuiz').then(m => ({ default: m.InlineQuiz })));
-const InlineAssignment = lazy(() => import('@/components/assignments/InlineAssignment').then(m => ({ default: m.InlineAssignment })));
+const InlineAssignment = lazy(() => import('@/components/assignments/InlineAssignment'));
 
 interface VideoLearningInterfaceProps {
   videos: TrainingVideo[];
@@ -84,6 +84,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     }
   }, [markVideoComplete, updateVideoProgress]);
 
+  const currentVideo = useMemo(() => videos[currentVideoIndex], [videos, currentVideoIndex]);
+
   // Auto-complete handler for quiz/assignment items
   const handleItemComplete = useCallback(async () => {
     if (currentVideo) {
@@ -91,7 +93,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     }
   }, [currentVideo, markVideoComplete]);
 
-  const currentVideo = useMemo(() => videos[currentVideoIndex], [videos, currentVideoIndex]);
   const currentProgress = useMemo(() => getVideoProgress(currentVideo?.id), [getVideoProgress, currentVideo?.id]);
   const courseProgress = useMemo(() => getCourseProgress(videos.length), [getCourseProgress, videos.length]);
 

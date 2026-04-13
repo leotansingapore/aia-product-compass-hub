@@ -25,7 +25,7 @@ import {
   ArchiveRestore,
   LogOut,
   Sparkles,
-  MessageSquarePlus,
+  
   Target,
   Headset,
   
@@ -79,7 +79,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
-import { FeedbackModal } from "@/components/FeedbackButton";
+
 
 const allResourceItems = [
   { title: "Changelog", url: "/changelog", icon: Sparkles, sectionId: "changelog" },
@@ -133,7 +133,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const [newCategoryCreateName, setNewCategoryCreateName] = useState("");
   const [newCategoryCreateDescription, setNewCategoryCreateDescription] = useState("");
   const [newCategoryPublishImmediately, setNewCategoryPublishImmediately] = useState(false);
-  const [feedbackOpen, setFeedbackOpen] = useState(false);
+  
   const queryClient = useQueryClient();
 
   const allMainNavItems = useMemo(() => [
@@ -376,17 +376,6 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
             <SidebarGroupLabel>Help</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                <SidebarMenuItem>
-                  <SidebarMenuButton
-                    type="button"
-                    onClick={() => setFeedbackOpen(true)}
-                    tooltip={isCollapsed ? "Feedback" : undefined}
-                    className={getNavClassName("/__feedback__")}
-                  >
-                    <MessageSquarePlus className="h-4 w-4" />
-                    {!isCollapsed && <span>Feedback</span>}
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
                 {resourceItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
@@ -459,7 +448,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
         </SidebarFooter>
       </Sidebar>
 
-      <FeedbackModal open={feedbackOpen} onOpenChange={setFeedbackOpen} />
+      
 
       {/* Rename Category Dialog */}
       <Dialog open={!!editingCategory} onOpenChange={(open) => !open && setEditingCategory(null)}>

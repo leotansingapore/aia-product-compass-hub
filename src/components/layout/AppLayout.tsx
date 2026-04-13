@@ -13,6 +13,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 const WelcomeModal = lazy(() => import("@/components/onboarding/WelcomeModal").then(m => ({ default: m.WelcomeModal })));
 const OnboardingTutorial = lazy(() => import("@/components/onboarding/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
 const OnboardingHelpButton = lazy(() => import("@/components/onboarding/OnboardingHelpButton").then(m => ({ default: m.OnboardingHelpButton })));
+const FloatingFeedbackButton = lazy(() => import("@/components/FloatingFeedbackButton").then(m => ({ default: m.FloatingFeedbackButton })));
 import { useAdmin } from "@/hooks/useAdmin";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -176,6 +177,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
           <WelcomeModal />
           <OnboardingTutorial />
           <OnboardingHelpButton />
+          <FloatingFeedbackButton />
         </Suspense>
         {profileOpen && (
           <Suspense fallback={null}>
@@ -221,6 +223,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         <WelcomeModal />
         <OnboardingTutorial />
         <OnboardingHelpButton />
+        <FloatingFeedbackButton />
       </Suspense>
       {profileOpen && (
         <Suspense fallback={null}>
