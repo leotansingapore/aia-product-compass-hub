@@ -296,7 +296,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
 }
 
 function StatCard({ icon: Icon, label, value, sub }: {
-  icon: React.ElementType; label: string; value: number; sub?: string;
+  icon: React.ElementType; label: string; value: number | string; sub?: string;
 }) {
   return (
     <div className="rounded-lg border bg-card p-3 text-center space-y-0.5">
