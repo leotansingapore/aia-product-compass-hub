@@ -1,6 +1,7 @@
 import { useEffect, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { SkeletonLoader } from "@/components/SkeletonLoader";
 import Dashboard from "./Dashboard";
 
 const Index = memo(() => {
@@ -23,11 +24,7 @@ const Index = memo(() => {
   }, [user, loading, navigate, hasRecoveryHash]);
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-    );
+    return <SkeletonLoader type="dashboard" />;
   }
 
   if (!user) {

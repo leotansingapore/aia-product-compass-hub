@@ -35,12 +35,25 @@ const NotFound = () => {
         <meta name="twitter:description" content="The page you're looking for doesn't exist. Return to continue your financial advisory education." />
         <meta name="twitter:image" content={`${window.location.origin}/og-default.jpg`} />
       </Helmet>
-      <div className="text-center">
+      <div className="text-center max-w-sm">
         <h1 className="text-5xl font-bold mb-2">404</h1>
-        <p className="text-muted-foreground mb-6">Oops! Page not found</p>
-        <Link to="/">
-          <Button variant="outline">Return to Home</Button>
-        </Link>
+        <p className="text-muted-foreground mb-6">This page doesn't exist or may have been moved.</p>
+        <div className="flex flex-col gap-2">
+          <Link to="/">
+            <Button className="w-full">Go to Dashboard</Button>
+          </Link>
+          <div className="flex gap-2">
+            <Link to="/categories" className="flex-1">
+              <Button variant="outline" className="w-full text-xs">Browse Products</Button>
+            </Link>
+            <Link to="/cmfas-exams" className="flex-1">
+              <Button variant="outline" className="w-full text-xs">CMFAS Exams</Button>
+            </Link>
+            <Link to="/scripts" className="flex-1">
+              <Button variant="outline" className="w-full text-xs">Sales Scripts</Button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -331,7 +331,7 @@ export default function CMFASExams() {
                 aria-labelledby="cmf-modules-heading"
               >
                 <p className="text-sm leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
-                  Choose a module below to open lessons, videos, and study materials for that exam.
+                  Start with <strong>Getting Started</strong> to complete your essential setup, then work through each exam module. Recommended order: M9 → M9A → HI → RES5.
                 </p>
                 <h2 id="cmf-modules-heading" className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
                   Your modules
