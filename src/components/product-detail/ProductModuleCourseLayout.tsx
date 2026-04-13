@@ -123,66 +123,62 @@ export function ProductModuleCourseLayout({
     setOutlineOpen(false);
   }, []);
 
-  const sidebarInner = (
-    <div className="space-y-4 pb-8">
-      <Tabs defaultValue="videos" className="w-full">
-        <TabsList className="grid h-auto w-full grid-cols-2 gap-1 p-1">
-          <TabsTrigger value="videos" className="text-xs sm:text-sm">
-            Lessons
-          </TabsTrigger>
-          <TabsTrigger value="transcript" className="gap-1.5 text-xs sm:text-sm">
-            <FileText className="h-3.5 w-3.5 shrink-0 opacity-70" aria-hidden />
-            Transcript
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="videos" className="mt-4 focus-visible:outline-none">
-          <VideosByCategory
-            videos={processedVideos}
-            onVideoSelect={onSelectVideoFromOutline}
-            getVideoProgress={getVideoProgress}
-            onToggleComplete={handleToggleComplete}
-            useIndividualPages={false}
-            currentVideoId={currentVideo?.id}
-            moduleId={productId}
-            moduleType="product"
-          />
-        </TabsContent>
-        <TabsContent value="transcript" className="mt-4 focus-visible:outline-none">
-          <p className="mb-3 text-xs text-muted-foreground">
-            {currentVideo?.title ? (
-              <>
-                Transcript for: <span className="font-medium text-foreground">{currentVideo.title}</span>
-              </>
-            ) : (
-              "Select a lesson to view its transcript."
-            )}
-          </p>
-          {currentVideo?.transcript ? (
-            <div className="max-h-[min(55vh,28rem)] overflow-y-auto rounded-md border bg-muted/30 p-3">
-              <p className="whitespace-pre-wrap text-sm leading-relaxed text-muted-foreground">
-                {currentVideo.transcript}
-              </p>
-            </div>
-          ) : (
-            <div className="rounded-md border border-dashed py-8 text-center text-muted-foreground">
-              <p className="text-sm">No transcript available for this video.</p>
-            </div>
-          )}
-        </TabsContent>
-      </Tabs>
+  /* ── Sidebar content (shared between persistent sidebar & mobile Sheet) ── */
+  const sidebarContent = (
+    <div className="space-y-4">
+      {/* Progress bar */}
+      {processedVideos.length > 0 && (
+        <div className="flex items-center gap-2">
+          <Progress value={courseProgressPct} className="h-1.5 min-w-0 flex-1" />
+          <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+            {completedCount}/{processedVideos.length}
+          </span>
+        </div>
+      )}
 
-      {(currentVideo?.useful_links?.length ?? 0) > 0 || (currentVideo?.attachments?.length ?? 0) > 0 ? (
-        <Card>
-          <CardContent className="space-y-1.5 pt-6">
-            <p className="text-sm font-semibold mb-2">Lesson resources</p>
+      {/* Lesson list */}
+      <VideosByCategory
+        videos={processedVideos}
+        onVideoSelect={onSelectVideoFromOutline}
+        getVideoProgress={getVideoProgress}
+        onToggleComplete={handleToggleComplete}
+        useIndividualPages={false}
+        currentVideoId={currentVideo?.id}
+        moduleId={productId}
+        moduleType="product"
+      />
+
+      {/* Transcript (collapsible) */}
+      {currentVideo?.transcript && (
+        <details className="group">
+          <summary className="flex cursor-pointer items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground">
+            <FileText className="h-3.5 w-3.5" />
+            Transcript
+          </summary>
+          <div className="mt-2 max-h-[min(40vh,20rem)] overflow-y-auto rounded-md border bg-muted/30 p-3">
+            <p className="whitespace-pre-wrap text-xs leading-relaxed text-muted-foreground">
+              {currentVideo.transcript}
+            </p>
+          </div>
+        </details>
+      )}
+
+      {/* Lesson resources */}
+      {((currentVideo?.useful_links?.length ?? 0) > 0 || (currentVideo?.attachments?.length ?? 0) > 0) && (
+        <details className="group">
+          <summary className="flex cursor-pointer items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground">
+            <Link2 className="h-3.5 w-3.5" />
+            Lesson resources
+          </summary>
+          <div className="mt-2 space-y-1.5">
             {currentVideo?.useful_links?.map((link, index) => (
               <div key={`link-${index}`} className="flex items-center gap-2">
-                <Link2 className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                <Link2 className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                 <a
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-primary hover:underline truncate"
+                  className="text-xs text-primary hover:underline truncate"
                 >
                   {link.name}
                 </a>
@@ -191,28 +187,111 @@ export function ProductModuleCourseLayout({
             {currentVideo?.attachments?.map((attachment) => (
               <div key={`file-${attachment.id}`} className="flex items-center gap-2">
                 {(attachment.file_type || "").toLowerCase() === "pdf" ? (
-                  <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-destructive/10 text-destructive text-xs font-bold flex-shrink-0">
+                  <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-destructive/10 text-destructive text-[10px] font-bold flex-shrink-0">
                     PDF
                   </span>
                 ) : (
-                  <FileText className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                  <FileText className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                 )}
                 <a
                   href={attachment.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-primary hover:underline truncate"
+                  className="text-xs text-primary hover:underline truncate"
                 >
                   {attachment.name}
                 </a>
               </div>
             ))}
-          </CardContent>
-        </Card>
-      ) : null}
+          </div>
+        </details>
+      )}
     </div>
   );
 
+  /* ── Video player hero ── */
+  const videoPlayer = (
+    <div className="relative overflow-hidden rounded-none bg-black shadow-xl lg:rounded-lg">
+      <div className="relative aspect-video w-full">
+        {videoInfo ? (
+          videoError ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-zinc-400 gap-2 p-4">
+              <Play className="h-10 w-10 opacity-40" />
+              <p className="text-sm font-medium">Video not available</p>
+              <p className="text-xs text-center max-w-sm text-zinc-500">
+                This video hasn&apos;t been uploaded yet. Check back later or contact your training
+                coordinator.
+              </p>
+            </div>
+          ) : videoInfo.type === "mp4" ? (
+            <video
+              src={iframeSrc || videoInfo.embedUrl}
+              title={currentVideo?.title}
+              className="h-full w-full"
+              controls
+              controlsList="nodownload"
+              preload="metadata"
+              playsInline
+              autoPlay={shouldAutoplay}
+              onError={() => setVideoError(true)}
+            />
+          ) : (
+            <iframe
+              ref={iframeRef}
+              key={iframeSrc}
+              src={iframeSrc}
+              title={currentVideo?.title}
+              className="absolute inset-0 h-full w-full"
+              allowFullScreen
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              {...({ webkitallowfullscreen: "true", mozallowfullscreen: "true" } as any)}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              style={{ border: 0 }}
+              onLoad={() => setShouldAutoplay(false)}
+            />
+          )
+        ) : processedVideos.length > 0 ? (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center text-zinc-400">
+            {currentVideo?.type === 'quiz' ? (
+              <>
+                <Brain className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
+                <p className="text-sm font-medium text-zinc-300">Quiz</p>
+                <p className="text-xs text-zinc-500 max-w-md leading-relaxed">
+                  Scroll down to the Course content tab to take this quiz.
+                </p>
+              </>
+            ) : currentVideo?.type === 'assignment' ? (
+              <>
+                <ClipboardList className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
+                <p className="text-sm font-medium text-zinc-300">Assignment</p>
+                <p className="text-xs text-zinc-500 max-w-md leading-relaxed">
+                  Scroll down to the Course content tab to complete this assignment.
+                </p>
+              </>
+            ) : (
+              <>
+                <FileText className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
+                <p className="text-sm font-medium text-zinc-300">Reading material</p>
+                <p className="text-xs text-zinc-500 max-w-md leading-relaxed">
+                  Scroll down to the Course content tab to view the lesson content.
+                </p>
+              </>
+            )}
+          </div>
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center text-zinc-400">
+            <Play className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
+            <p className="text-sm font-medium text-zinc-300">No lessons yet</p>
+            <p className="text-xs text-zinc-500 max-w-sm">
+              Training videos will appear here when they are added to this product.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  /* ── Course content (below video) ── */
   const courseContentInner = (
     <>
       {currentVideo?.rich_content?.trim() ? (
@@ -293,225 +372,212 @@ export function ProductModuleCourseLayout({
         </Card>
       ) : processedVideos.length === 0 ? (
         <p className="text-sm text-muted-foreground">
-          No training lessons yet. When videos are added, you can watch them here and track progress from the outline.
+          No training lessons yet. When lessons are added, you can learn here and track progress.
         </p>
-      ) : (
-        <p className="text-sm text-muted-foreground">
-          Lesson notes and rich content will appear here when available for the selected video. Use{" "}
-          <span className="font-medium text-foreground">Outline</span> to pick a lesson.
-        </p>
-      )}
+      ) : null}
     </>
   );
 
   return (
     <div className={cn("min-w-0 overflow-x-hidden", className)}>
-      <div className="relative w-full min-w-0 max-w-full overflow-hidden border-b bg-zinc-950">
-        <div className="mx-auto max-w-7xl px-2 pt-2 pb-1.5 sm:px-4 sm:pt-3 sm:pb-2">
-          <div className="flex min-w-0 max-w-full flex-col gap-1.5 text-zinc-100 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-            <div className="min-w-0 max-w-full flex-1 sm:flex-none sm:pr-1">
-              <p className="hidden text-xs text-zinc-400 sm:block">{productTitle}</p>
-              <h2
-                className="max-w-full truncate text-[13px] font-medium leading-tight text-zinc-100 sm:text-sm sm:leading-snug md:text-base"
-                title={currentVideo?.title ?? "Training"}
-                aria-label={`${productTitle}: ${currentVideo?.title ?? "Training"}`}
-              >
-                {currentVideo?.title ?? (processedVideos.length === 0 ? "No lessons yet" : "Select a lesson")}
-              </h2>
+      {/* ═══════════════════════════════════════════════════════════
+          DESKTOP: Persistent left sidebar + right content (lg+)
+          Like Skool classroom layout
+         ═══════════════════════════════════════════════════════════ */}
+      <div className="hidden lg:flex min-h-[calc(100vh-120px)]">
+        {/* ── Left sidebar ── */}
+        <aside className="w-72 xl:w-80 shrink-0 border-r bg-muted/30 overflow-y-auto">
+          <div className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur px-4 py-3">
+            <p className="text-xs text-muted-foreground truncate">{productTitle}</p>
+            <h2 className="text-sm font-semibold truncate mt-0.5">
+              {currentVideo?.title ?? "Select a lesson"}
+            </h2>
+          </div>
+          <div className="p-3">
+            {sidebarContent}
+          </div>
+        </aside>
+
+        {/* ── Right main content ── */}
+        <main className="flex-1 min-w-0 overflow-y-auto">
+          {/* Video player */}
+          <div className="bg-zinc-950">
+            <div className="p-4">
+              {videoPlayer}
             </div>
-            {processedVideos.length > 0 && (
-              <div className="flex w-full max-w-full min-w-0 shrink-0 items-center gap-1.5 sm:w-auto sm:gap-2">
-                <div className="hidden min-w-0 flex-1 items-center gap-1.5 sm:flex sm:flex-none sm:gap-2">
-                  <Progress
-                    value={courseProgressPct}
-                    className="h-1 min-w-0 flex-1 bg-zinc-800 sm:h-1.5 sm:w-24 sm:flex-none md:w-36 [&>div]:bg-zinc-400"
-                  />
-                  <span className="shrink-0 whitespace-nowrap text-right text-[11px] tabular-nums text-zinc-400 sm:text-xs">
-                    {completedCount}/{processedVideos.length} completed
-                  </span>
+            {currentVideo?.description && (
+              <p className="px-4 pb-3 text-sm leading-relaxed text-zinc-400">{currentVideo.description}</p>
+            )}
+            {heroFooter}
+          </div>
+
+          {/* Tabs below video */}
+          <div className="min-w-0 border-t bg-background">
+            <Tabs defaultValue={defaultTab} className="w-full min-w-0">
+              <div className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+                <div className="overflow-x-auto overflow-y-hidden px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                  <TabsList className="inline-flex h-auto w-full grid grid-cols-4 gap-1 bg-muted/50 p-1">
+                    <TabsTrigger value="course-content" className="min-h-10 text-sm">
+                      Course content
+                    </TabsTrigger>
+                    <TabsTrigger value="overview" className="min-h-10 text-sm">
+                      Overview
+                    </TabsTrigger>
+                    <TabsTrigger value="resources" className="min-h-10 text-sm">
+                      Resources
+                    </TabsTrigger>
+                    <TabsTrigger value="my-notes" className="min-h-10 text-sm">
+                      My notes
+                    </TabsTrigger>
+                  </TabsList>
                 </div>
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="default"
-                  className="ml-auto h-9 w-9 shrink-0 touch-manipulation p-0 opacity-90 hover:opacity-100 sm:ml-0 sm:h-8 sm:w-auto sm:gap-1 sm:px-3 sm:py-2"
-                  aria-expanded={outlineOpen}
-                  aria-controls={OUTLINE_SHEET_ID}
-                  aria-label="Course outline"
-                  onClick={() => setOutlineOpen(true)}
-                  title="Course outline"
-                >
-                  <List className="h-4 w-4 shrink-0" aria-hidden />
-                  <span className="hidden sm:inline">Outline</span>
-                </Button>
               </div>
-            )}
-          </div>
-        </div>
-
-        <div className="relative mx-auto max-w-7xl pb-3">
-          {/* Same aspect-video + frame as the embedded player so hero height stays consistent */}
-          <div className="px-0 sm:px-4">
-            <div className="relative overflow-hidden rounded-none bg-black shadow-xl sm:rounded-lg">
-              <div className="relative aspect-video w-full">
-                {videoInfo ? (
-                  videoError ? (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-zinc-400 gap-2 p-4">
-                      <Play className="h-10 w-10 opacity-40" />
-                      <p className="text-sm font-medium">Video not available</p>
-                      <p className="text-xs text-center max-w-sm text-zinc-500">
-                        This video hasn&apos;t been uploaded yet. Check back later or contact your training
-                        coordinator.
-                      </p>
-                    </div>
-                  ) : videoInfo.type === "mp4" ? (
-                    <video
-                      src={iframeSrc || videoInfo.embedUrl}
-                      title={currentVideo?.title}
-                      className="h-full w-full"
-                      controls
-                      controlsList="nodownload"
-                      preload="metadata"
-                      playsInline
-                      autoPlay={shouldAutoplay}
-                      onError={() => setVideoError(true)}
-                    />
-                  ) : (
-                    <iframe
-                      ref={iframeRef}
-                      key={iframeSrc}
-                      src={iframeSrc}
-                      title={currentVideo?.title}
-                      className="absolute inset-0 h-full w-full"
-                      allowFullScreen
-                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                      {...({ webkitallowfullscreen: "true", mozallowfullscreen: "true" } as any)}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                      style={{ border: 0 }}
-                      onLoad={() => setShouldAutoplay(false)}
-                    />
-                  )
-                ) : processedVideos.length > 0 ? (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center text-zinc-400">
-                    {currentVideo?.type === 'quiz' ? (
-                      <>
-                        <Brain className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
-                        <p className="text-sm font-medium text-zinc-300">Quiz</p>
-                        <p className="text-xs text-zinc-500 max-w-md leading-relaxed">
-                          Scroll down to the Course content tab to take this quiz.
-                        </p>
-                      </>
-                    ) : currentVideo?.type === 'assignment' ? (
-                      <>
-                        <ClipboardList className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
-                        <p className="text-sm font-medium text-zinc-300">Assignment</p>
-                        <p className="text-xs text-zinc-500 max-w-md leading-relaxed">
-                          Scroll down to the Course content tab to complete this assignment.
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <FileText className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
-                        <p className="text-sm font-medium text-zinc-300">Reading material</p>
-                        <p className="text-xs text-zinc-500 max-w-md leading-relaxed">
-                          Scroll down to the Course content tab to view the lesson content.
-                        </p>
-                      </>
-                    )}
-                  </div>
-                ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center text-zinc-400">
-                    <Play className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
-                    <p className="text-sm font-medium text-zinc-300">No lessons yet</p>
-                    <p className="text-xs text-zinc-500 max-w-sm">
-                      Training videos will appear here when they are added to this product.
-                    </p>
-                  </div>
-                )}
+              <div className="px-4 py-6 pb-[max(6rem,calc(4.5rem+env(safe-area-inset-bottom,0px)))]">
+                <TabsContent value="course-content" className="mt-0 focus-visible:outline-none">
+                  {courseContentInner}
+                </TabsContent>
+                <TabsContent value="overview" className="mt-0 focus-visible:outline-none">
+                  {tabOverview}
+                </TabsContent>
+                <TabsContent value="resources" className="mt-0 focus-visible:outline-none">
+                  {tabResources}
+                </TabsContent>
+                <TabsContent value="my-notes" className="mt-0 focus-visible:outline-none">
+                  {tabMyNotes}
+                </TabsContent>
               </div>
-            </div>
+            </Tabs>
           </div>
-          {currentVideo?.description && (
-            <p className="mt-2 px-3 text-sm leading-relaxed text-zinc-400 sm:px-4">{currentVideo.description}</p>
-          )}
-        </div>
-        {heroFooter}
+        </main>
       </div>
 
-      <div className="min-w-0 border-t bg-background">
-        <Tabs defaultValue={defaultTab} className="w-full min-w-0">
-          <div className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-            <div className="mx-auto max-w-7xl overflow-x-auto overflow-y-hidden px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:px-4">
-              <TabsList className="inline-flex h-auto w-max gap-1 bg-muted/50 p-1 sm:w-full sm:grid sm:grid-cols-4">
-                <TabsTrigger
-                  value="course-content"
-                  className="min-h-[44px] shrink-0 justify-center whitespace-nowrap px-2 text-xs sm:min-h-10 sm:px-3 sm:text-sm"
+      {/* ═══════════════════════════════════════════════════════════
+          MOBILE / TABLET: Original stacked layout with Sheet drawer
+         ═══════════════════════════════════════════════════════════ */}
+      <div className="lg:hidden">
+        {/* Dark hero with video */}
+        <div className="relative w-full min-w-0 max-w-full overflow-hidden border-b bg-zinc-950">
+          <div className="mx-auto max-w-7xl px-2 pt-2 pb-1.5 sm:px-4 sm:pt-3 sm:pb-2">
+            <div className="flex min-w-0 max-w-full flex-col gap-1.5 text-zinc-100 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+              <div className="min-w-0 max-w-full flex-1 sm:flex-none sm:pr-1">
+                <p className="hidden text-xs text-zinc-400 sm:block">{productTitle}</p>
+                <h2
+                  className="max-w-full truncate text-[13px] font-medium leading-tight text-zinc-100 sm:text-sm sm:leading-snug md:text-base"
+                  title={currentVideo?.title ?? "Training"}
                 >
-                  Course content
-                </TabsTrigger>
-                <TabsTrigger
-                  value="overview"
-                  className="min-h-[44px] shrink-0 justify-center whitespace-nowrap px-2 text-xs sm:min-h-10 sm:px-3 sm:text-sm"
-                >
-                  Overview
-                </TabsTrigger>
-                <TabsTrigger
-                  value="resources"
-                  className="min-h-[44px] shrink-0 justify-center whitespace-nowrap px-2 text-xs sm:min-h-10 sm:px-3 sm:text-sm"
-                >
-                  Resources
-                </TabsTrigger>
-                <TabsTrigger
-                  value="my-notes"
-                  className="min-h-[44px] shrink-0 justify-center whitespace-nowrap px-2 text-xs sm:min-h-10 sm:px-3 sm:text-sm"
-                >
-                  My notes
-                </TabsTrigger>
-              </TabsList>
+                  {currentVideo?.title ?? (processedVideos.length === 0 ? "No lessons yet" : "Select a lesson")}
+                </h2>
+              </div>
+              {processedVideos.length > 0 && (
+                <div className="flex w-full max-w-full min-w-0 shrink-0 items-center gap-1.5 sm:w-auto sm:gap-2">
+                  <div className="hidden min-w-0 flex-1 items-center gap-1.5 sm:flex sm:flex-none sm:gap-2">
+                    <Progress
+                      value={courseProgressPct}
+                      className="h-1 min-w-0 flex-1 bg-zinc-800 sm:h-1.5 sm:w-24 sm:flex-none md:w-36 [&>div]:bg-zinc-400"
+                    />
+                    <span className="shrink-0 whitespace-nowrap text-right text-[11px] tabular-nums text-zinc-400 sm:text-xs">
+                      {completedCount}/{processedVideos.length} completed
+                    </span>
+                  </div>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="default"
+                    className="ml-auto h-9 w-9 shrink-0 touch-manipulation p-0 opacity-90 hover:opacity-100 sm:ml-0 sm:h-8 sm:w-auto sm:gap-1 sm:px-3 sm:py-2"
+                    aria-expanded={outlineOpen}
+                    aria-controls={OUTLINE_SHEET_ID}
+                    aria-label="Lesson outline"
+                    onClick={() => setOutlineOpen(true)}
+                    title="Lesson outline"
+                  >
+                    <List className="h-4 w-4 shrink-0" aria-hidden />
+                    <span className="hidden sm:inline">Outline</span>
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
-          <div className="mx-auto max-w-7xl px-3 py-4 sm:px-4 sm:py-6 pb-[max(6rem,calc(4.5rem+env(safe-area-inset-bottom,0px)))]">
-            <TabsContent value="course-content" className="mt-0 focus-visible:outline-none">
-              {courseContentInner}
-            </TabsContent>
-            <TabsContent value="overview" className="mt-0 focus-visible:outline-none">
-              {tabOverview}
-            </TabsContent>
-            <TabsContent value="resources" className="mt-0 focus-visible:outline-none">
-              {tabResources}
-            </TabsContent>
-            <TabsContent value="my-notes" className="mt-0 focus-visible:outline-none">
-              {tabMyNotes}
-            </TabsContent>
-          </div>
-        </Tabs>
-      </div>
 
-      <Sheet open={outlineOpen} onOpenChange={setOutlineOpen}>
-        <SheetContent
-          side="right"
-          className="flex h-full w-full max-w-[100vw] flex-col gap-0 overflow-y-auto p-4 pt-6 sm:max-w-md sm:p-6"
-          id={OUTLINE_SHEET_ID}
-        >
-          <SheetHeader>
-            <SheetTitle className="flex items-center gap-2">
-              <List className="h-5 w-5" />
-              Lesson outline
-            </SheetTitle>
-          </SheetHeader>
-          <div className="mt-4 flex flex-col gap-4">
-            {processedVideos.length > 0 && (
-              <div className="flex items-center gap-2 border-b border-border pb-4 sm:hidden">
-                <Progress value={courseProgressPct} className="h-1.5 min-w-0 flex-1" />
-                <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
-                  {completedCount}/{processedVideos.length} completed
-                </span>
-              </div>
+          <div className="relative mx-auto max-w-7xl pb-3">
+            <div className="px-0 sm:px-4">
+              {videoPlayer}
+            </div>
+            {currentVideo?.description && (
+              <p className="mt-2 px-3 text-sm leading-relaxed text-zinc-400 sm:px-4">{currentVideo.description}</p>
             )}
-            {sidebarInner}
           </div>
-        </SheetContent>
-      </Sheet>
+          {heroFooter}
+        </div>
+
+        {/* Tabs below video */}
+        <div className="min-w-0 border-t bg-background">
+          <Tabs defaultValue={defaultTab} className="w-full min-w-0">
+            <div className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+              <div className="mx-auto max-w-7xl overflow-x-auto overflow-y-hidden px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:px-4">
+                <TabsList className="inline-flex h-auto w-max gap-1 bg-muted/50 p-1 sm:w-full sm:grid sm:grid-cols-4">
+                  <TabsTrigger
+                    value="course-content"
+                    className="min-h-[44px] shrink-0 justify-center whitespace-nowrap px-2 text-xs sm:min-h-10 sm:px-3 sm:text-sm"
+                  >
+                    Course content
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="overview"
+                    className="min-h-[44px] shrink-0 justify-center whitespace-nowrap px-2 text-xs sm:min-h-10 sm:px-3 sm:text-sm"
+                  >
+                    Overview
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="resources"
+                    className="min-h-[44px] shrink-0 justify-center whitespace-nowrap px-2 text-xs sm:min-h-10 sm:px-3 sm:text-sm"
+                  >
+                    Resources
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="my-notes"
+                    className="min-h-[44px] shrink-0 justify-center whitespace-nowrap px-2 text-xs sm:min-h-10 sm:px-3 sm:text-sm"
+                  >
+                    My notes
+                  </TabsTrigger>
+                </TabsList>
+              </div>
+            </div>
+            <div className="mx-auto max-w-7xl px-3 py-4 sm:px-4 sm:py-6 pb-[max(6rem,calc(4.5rem+env(safe-area-inset-bottom,0px)))]">
+              <TabsContent value="course-content" className="mt-0 focus-visible:outline-none">
+                {courseContentInner}
+              </TabsContent>
+              <TabsContent value="overview" className="mt-0 focus-visible:outline-none">
+                {tabOverview}
+              </TabsContent>
+              <TabsContent value="resources" className="mt-0 focus-visible:outline-none">
+                {tabResources}
+              </TabsContent>
+              <TabsContent value="my-notes" className="mt-0 focus-visible:outline-none">
+                {tabMyNotes}
+              </TabsContent>
+            </div>
+          </Tabs>
+        </div>
+
+        {/* Mobile outline drawer */}
+        <Sheet open={outlineOpen} onOpenChange={setOutlineOpen}>
+          <SheetContent
+            side="right"
+            className="flex h-full w-full max-w-[100vw] flex-col gap-0 overflow-y-auto p-4 pt-6 sm:max-w-md sm:p-6"
+            id={OUTLINE_SHEET_ID}
+          >
+            <SheetHeader>
+              <SheetTitle className="flex items-center gap-2">
+                <List className="h-5 w-5" />
+                Lesson outline
+              </SheetTitle>
+            </SheetHeader>
+            <div className="mt-4">
+              {sidebarContent}
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
     </div>
   );
 }
