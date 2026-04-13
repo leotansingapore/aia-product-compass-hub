@@ -414,12 +414,13 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                 </div>
                 <ThemeToggle />
               </button>
-              {/* Sign Out */}
+              {/* Sign Out — min tap target ~44px for sidebar footer */}
               <button
+                type="button"
                 onClick={signOut}
-                className="flex items-center gap-2 w-full rounded-lg px-2 py-1.5 text-xs text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"
+                className="flex min-h-11 items-center gap-2 w-full rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"
               >
-                <LogOut className="h-3.5 w-3.5" />
+                <LogOut className="h-4 w-4 shrink-0" aria-hidden />
                 <span>Sign out</span>
               </button>
             </div>
@@ -437,12 +438,13 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
               </button>
               <ThemeToggle />
               <button
+                type="button"
                 onClick={signOut}
                 title="Sign out"
-                className="h-7 w-7 flex items-center justify-center rounded-md text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+                className="min-h-11 min-w-11 flex items-center justify-center rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
                 aria-label="Sign out"
               >
-                <LogOut className="h-3.5 w-3.5" />
+                <LogOut className="h-4 w-4" />
               </button>
             </div>
           )}

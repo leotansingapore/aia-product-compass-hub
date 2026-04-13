@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
@@ -16,7 +16,9 @@ import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { useBatchVideoProgress } from "@/hooks/useBatchVideoProgress";
 
 // Helper function to get category info for backward compatibility
@@ -82,6 +84,8 @@ export default function ProductCategory() {
   const visibleProducts = isViewingAsUser
     ? filteredProducts.filter(p => p.published !== false)
     : filteredProducts;
+
+  const [createModuleOpen, setCreateModuleOpen] = useState(false);
 
   // Batch-fetch video completion progress for all visible products
   const productIds = visibleProducts.map(p => p.id);
@@ -290,20 +294,26 @@ export default function ProductCategory() {
           </div>
         )}
 
-        {/* Admin Module Creation */}
-        {isAdmin() && categoryId && (
-          <CreateModuleForm 
-            categoryId={categoryId} 
-            onModuleCreated={refetch}
-          />
-        )}
-
-        {/* Sticky Search */}
+        {/* Sticky Search + admin new module */}
         <div className="mb-3 sm:mb-6 md:mb-8 sticky top-[57px] md:top-[48px] z-20 bg-background/95 backdrop-blur-sm -mx-2 sm:-mx-4 md:-mx-6 px-2 sm:px-4 md:px-6 py-2">
-          <EnhancedSearchBar
-            onSearch={handleSearch}
-            placeholder={`Search ${category.name.toLowerCase()}...`}
-          />
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+            <div className="min-w-0 flex-1">
+              <EnhancedSearchBar
+                onSearch={handleSearch}
+                placeholder={`Search ${category.name.toLowerCase()}...`}
+              />
+            </div>
+            {isAdmin() && categoryId && (
+              <Button
+                type="button"
+                className="h-11 w-full shrink-0 gap-2 sm:h-10 sm:w-auto"
+                onClick={() => setCreateModuleOpen(true)}
+              >
+                <Plus className="h-4 w-4" />
+                New module
+              </Button>
+            )}
+          </div>
         </div>
 
         <ProductsGrid
@@ -317,6 +327,25 @@ export default function ProductCategory() {
           onNestingChange={refetch}
           completionMap={completionMap}
         />
+
+        {isAdmin() && categoryId && (
+          <Sheet open={createModuleOpen} onOpenChange={setCreateModuleOpen}>
+            <SheetContent side="right" className="flex w-full flex-col gap-0 sm:max-w-md overflow-y-auto">
+              <SheetHeader className="text-left">
+                <SheetTitle>Create new module</SheetTitle>
+                <SheetDescription>
+                  Add a module to {category.name}. You can add training content after creating it.
+                </SheetDescription>
+              </SheetHeader>
+              <CreateModuleForm
+                categoryId={categoryId}
+                variant="embedded"
+                onModuleCreated={refetch}
+                onEmbeddedClose={() => setCreateModuleOpen(false)}
+              />
+            </SheetContent>
+          </Sheet>
+        )}
       </div>
     </PageLayout>
   );

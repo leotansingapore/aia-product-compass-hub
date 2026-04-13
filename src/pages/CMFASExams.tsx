@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { EyeOff, Search } from "lucide-react";
+import { EyeOff, Plus, Search } from "lucide-react";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
@@ -8,6 +8,8 @@ import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { Input } from "@/components/ui/input";
 import { ProductsGrid } from "@/components/category/ProductsGrid";
 import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
 import { EditableText } from "@/components/EditableText";
@@ -83,6 +85,7 @@ export default function CMFASExams() {
 
   // Search + filter state
   const [searchQuery, setSearchQuery] = useState("");
+  const [createModuleOpen, setCreateModuleOpen] = useState(false);
   const filteredProducts = useMemo(() => {
     // Hide the meta "cmfas-exams-page" product — it's a container for the
     // useful links + about text, not a module recruits should click through.
@@ -319,11 +322,6 @@ export default function CMFASExams() {
             </div>
           )}
 
-          {/* Admin module creation — above discovery for admins */}
-          {isAdminUser && categoryId && (
-            <CreateModuleForm categoryId={categoryId} onModuleCreated={refetchProducts} />
-          )}
-
             <TabsContent value="modules" className="space-y-4 outline-none">
               <section
                 id="cmf-modules"
@@ -333,9 +331,24 @@ export default function CMFASExams() {
                 <p className="text-sm leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
                   Start with <strong>Getting Started</strong> to complete your essential setup, then work through each exam module. Recommended order: M9 → M9A → HI → RES5.
                 </p>
-                <h2 id="cmf-modules-heading" className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-                  Your modules
-                </h2>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <h2
+                    id="cmf-modules-heading"
+                    className="text-lg font-semibold tracking-tight text-foreground sm:text-xl"
+                  >
+                    Your modules
+                  </h2>
+                  {isAdminUser && categoryId && (
+                    <Button
+                      type="button"
+                      className="h-11 w-full shrink-0 gap-2 sm:h-10 sm:w-auto"
+                      onClick={() => setCreateModuleOpen(true)}
+                    >
+                      <Plus className="h-4 w-4" />
+                      New module
+                    </Button>
+                  )}
+                </div>
                 <div className="relative">
                   <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -395,6 +408,26 @@ export default function CMFASExams() {
         </div>
 
         </Tabs>
+
+        {isAdminUser && categoryId && (
+          <Sheet open={createModuleOpen} onOpenChange={setCreateModuleOpen}>
+            <SheetContent side="right" className="flex w-full flex-col gap-0 sm:max-w-md overflow-y-auto">
+              <SheetHeader className="text-left">
+                <SheetTitle>Create new module</SheetTitle>
+                <SheetDescription>
+                  Add a CMFAS module. You can add videos, quizzes, and content on the next screen.
+                </SheetDescription>
+              </SheetHeader>
+              <CreateModuleForm
+                categoryId={categoryId}
+                variant="embedded"
+                onModuleCreated={refetchProducts}
+                onEmbeddedClose={() => setCreateModuleOpen(false)}
+                getModuleUrl={(slug) => `/cmfas/module/${slug.replace(/-module$/, "")}`}
+              />
+            </SheetContent>
+          </Sheet>
+        )}
 
         <CMFASHubChatFAB />
       </PageLayout>
