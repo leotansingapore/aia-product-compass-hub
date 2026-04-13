@@ -298,4 +298,4 @@ export const UserMobileCard = memo(function UserMobileCard({
       </CardContent>
     </Card>
   );
-}
+});

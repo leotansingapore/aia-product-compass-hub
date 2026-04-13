@@ -40,4 +40,4 @@ export const CategoryCard = memo(function CategoryCard({ title, description, ico
       </CardContent>
     </Card>
   );
-}
+});
