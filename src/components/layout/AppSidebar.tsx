@@ -139,6 +139,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const allMainNavItems = useMemo(() => [
     
     { title: "Learning Track", url: "/learning-track", icon: TrendingUp, dataAttr: undefined, sectionId: "learning-track" },
+    { title: "Question Banks", url: "/question-banks", icon: Brain, dataAttr: undefined, sectionId: "question-banks" },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
