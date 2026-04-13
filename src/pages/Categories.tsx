@@ -9,6 +9,15 @@ import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 
 const CATEGORIES = [
   {
+    id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    name: "Core Products",
+    description: "A curated collection of our most commonly sold products — the essentials every advisor should know.",
+    icon: Star,
+    gradient: "from-yellow-500 to-amber-600",
+    lightBg: "bg-yellow-50 dark:bg-yellow-950/30",
+    iconColor: "text-yellow-600 dark:text-yellow-400",
+  },
+  {
     id: "c7cde8f4-12d4-4ddc-9150-7b32008a4e19",
     name: "Investment Products",
     description: "Build wealth and achieve long-term financial goals through investment-linked plans and unit trusts.",
@@ -61,15 +70,6 @@ const CATEGORIES = [
     gradient: "from-teal-500 to-cyan-600",
     lightBg: "bg-teal-50 dark:bg-teal-950/30",
     iconColor: "text-teal-600 dark:text-teal-400",
-  },
-  {
-    id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-    name: "Core Products",
-    description: "A curated collection of our most commonly sold products — the essentials every advisor should know.",
-    icon: Star,
-    gradient: "from-yellow-500 to-amber-600",
-    lightBg: "bg-yellow-50 dark:bg-yellow-950/30",
-    iconColor: "text-yellow-600 dark:text-yellow-400",
   },
 ];
 
