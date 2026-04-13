@@ -44,7 +44,7 @@ export function AdminViewSwitcher() {
   if (!isActualAdmin) return null;
 
   return (
-    <div className="fixed bottom-20 md:bottom-6 left-4 z-50">
+    <div className="fixed bottom-20 md:bottom-16 left-4 z-[9991]">
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
