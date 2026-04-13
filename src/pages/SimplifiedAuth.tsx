@@ -149,9 +149,9 @@ const SimplifiedAuth = () => {
         <div className="flex-1 flex flex-col justify-center px-6 sm:px-10 xl:px-16 py-10 w-full max-w-md mx-auto lg:max-w-lg">
           <div className="mb-8 flex flex-col items-start gap-4">
             <img
-              src={FINTERNSHIP_LOGO}
+              src={FINTERNSHIP_LOGO_NAVY}
               alt="FINternship"
-              className="h-14 w-auto object-contain"
+              className="h-20 w-auto object-contain"
               decoding="async"
             />
             <p className="text-sm text-muted-foreground leading-relaxed">
