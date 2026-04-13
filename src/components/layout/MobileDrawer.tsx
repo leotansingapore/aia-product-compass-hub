@@ -28,8 +28,6 @@ export function MobileDrawer() {
   const salesPlaybooksRoute = (() => { try { return localStorage.getItem('sales-playbooks-last-route') || '/scripts'; } catch { return '/scripts'; } })();
 
   const resourceItems = [
-    { name: "How to Use Portal", href: "/how-to-use", icon: HelpCircle },
-    { name: "Search by Client Profile", href: "/search-by-profile", icon: Users },
     { name: "Sales Playbooks", href: salesPlaybooksRoute, icon: TrendingUp },
   ];
 

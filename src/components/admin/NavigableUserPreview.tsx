@@ -96,12 +96,6 @@ const APP_STRUCTURE_WITH_ICONS = {
     path: "/admin",
     sections: APP_STRUCTURE["admin-panel"].sections
   },
-  "search-by-profile": {
-    name: "Search by Client Profile",
-    icon: Users,
-    path: "/search-by-profile",
-    sections: APP_STRUCTURE["search-by-profile"].sections
-  },
   "product-categories": {
     name: "Product Categories",
     icon: Archive,

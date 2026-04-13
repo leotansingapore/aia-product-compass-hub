@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Home, Library, FileText, MessageCircle, Grid3X3 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Bookmark, GraduationCap, Users, HelpCircle, BookOpen, GitBranch, TrendingUp, MessageSquarePlus } from "lucide-react";
+import { Bookmark, GraduationCap, BookOpen, GitBranch, TrendingUp, MessageSquarePlus } from "lucide-react";
 import { FeedbackModal } from "@/components/FeedbackButton";
 
 const navigationItems = [
@@ -20,8 +20,7 @@ const quickLinkItems = [
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30" },
   
   { name: "Learning Track", href: "/learning-track", icon: Library, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
-  { name: "Client Profile", href: "/search-by-profile", icon: Users, color: "text-violet-500", bg: "bg-violet-50 dark:bg-violet-950/30" },
-  { name: "How to Use", href: "/how-to-use", icon: HelpCircle, color: "text-teal-500", bg: "bg-teal-50 dark:bg-teal-950/30" },
+  { name: "Categories", href: "/categories", icon: Library, color: "text-teal-500", bg: "bg-teal-50 dark:bg-teal-950/30" },
   { name: "Playbooks", href: "/playbooks", icon: BookOpen, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-950/30" },
   { name: "Script Flows", href: "/flows", icon: GitBranch, color: "text-amber-500", bg: "bg-amber-50 dark:bg-amber-950/30" },
   { name: "Sales Tools", href: "/scripts", icon: TrendingUp, color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-950/30" },

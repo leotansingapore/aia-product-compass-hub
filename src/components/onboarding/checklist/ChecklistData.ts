@@ -83,12 +83,12 @@ export const createChecklistItems = (
   },
   {
     id: 'client-profile',
-    title: 'Use Client Profile Search',
-    description: 'Find products based on client demographics and needs',
+    title: 'Browse Product Categories',
+    description: 'Explore the different product categories available',
     icon: Users,
     action: () => {
       completeItem('client-profile');
-      navigate('/search-by-profile');
+      navigate('/categories');
     },
     points: 20,
     category: 'explore'

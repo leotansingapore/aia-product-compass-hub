@@ -11,11 +11,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   LogOut, Key, Settings, Edit3, CheckCircle2, BookOpen, Video,
-  Flame, Trophy, Zap, GraduationCap, Swords, BarChart3, ArrowRight,
+  Flame, Trophy, Zap, GraduationCap, Swords, BarChart3, ArrowRight, Compass,
 } from "lucide-react";
 import { SecurityForm } from "@/components/account/SecurityForm";
 import { ProfileForm } from "@/components/account/ProfileForm";
 import { useToast } from "@/hooks/use-toast";
+import { useOnboarding } from "@/hooks/useOnboarding";
 
 interface Profile {
   id: string;
@@ -44,6 +45,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   const { isMasterAdmin, hasRole } = usePermissions();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { startOnboarding } = useOnboarding();
 
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -276,6 +278,17 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                   <span className="text-sm font-medium">Theme</span>
                   <ThemeToggle />
                 </div>
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start gap-3 h-10"
+                  onClick={() => {
+                    onOpenChange(false);
+                    startOnboarding('basic');
+                  }}
+                >
+                  <Compass className="h-4 w-4" />
+                  Platform Tour
+                </Button>
                 <Button
                   variant="ghost"
                   className="w-full justify-start gap-3 h-10"

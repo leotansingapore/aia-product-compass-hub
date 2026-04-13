@@ -211,19 +211,6 @@ export function OnboardingHelpButton() {
                 {isComplete ? "Take Another Tour" : "Start Interactive Tour"}
               </Button>
 
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  window.open('/how-to-use', '_blank');
-                  setShowMenu(false);
-                }}
-                className="w-full justify-start"
-              >
-                <BookOpen className="w-4 h-4 mr-2" />
-                Help Documentation
-              </Button>
-
               {(progress > 0 || isComplete) && (
                 <Button
                   variant="ghost"

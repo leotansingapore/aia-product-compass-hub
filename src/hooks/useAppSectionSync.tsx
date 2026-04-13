@@ -64,15 +64,6 @@ export const APP_STRUCTURE = {
       { id: "system-settings", name: "System Settings", description: "Global configuration" }
     ]
   },
-  "search-by-profile": {
-    name: "Search by Client Profile",
-    path: "/search-by-profile",
-    sections: [
-      { id: "client-profile-search", name: "Client Profile Search", description: "Search products by client demographics" },
-      { id: "profile-filters", name: "Profile Filters", description: "Age, income, risk tolerance filters" },
-      { id: "recommendation-engine", name: "Recommendation Engine", description: "AI-powered product suggestions" }
-    ]
-  },
   "product-categories": {
     name: "Product Categories",
     path: "/category/*",

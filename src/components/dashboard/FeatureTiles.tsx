@@ -29,29 +29,13 @@ export function FeatureTiles() {
       sectionId: "roleplay"
     },
     {
-      title: "Client Profiling",
-      description: "Search by client needs",
-      route: "/search-by-profile",
-      icon: Users,
-      gradient: "from-green-500/10 to-green-600/20",
-      sectionId: "search-by-profile"
-    },
-    {
       title: "Sales Tools",
       description: "Resources and calculators",
-      route: "/sales-tools",
+      route: "/scripts",
       icon: TrendingUp,
       gradient: "from-purple-500/10 to-purple-600/20",
       badge: "Tools",
       sectionId: "sales-tools"
-    },
-    {
-      title: "How to Use",
-      description: "Platform guide",
-      route: "/how-to-use",
-      icon: HelpCircle,
-      gradient: "from-orange-500/10 to-orange-600/20",
-      sectionId: "how-to-use"
     }
   ];
 

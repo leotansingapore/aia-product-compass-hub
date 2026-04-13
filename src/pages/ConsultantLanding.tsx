@@ -324,9 +324,9 @@ const ConsultantLanding = () => {
                 Get Started Now
               </Button>
             </Link>
-            <Link to="/how-to-use">
+            <Link to="/categories">
               <Button size="xl" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 w-full sm:w-auto min-h-[44px]">
-                Learn More
+                Browse Products
               </Button>
             </Link>
           </div>

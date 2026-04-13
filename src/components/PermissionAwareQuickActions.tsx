@@ -48,14 +48,6 @@ export function PermissionAwareQuickActions() {
         priority: 9
       },
       {
-        title: "Search by Client Profile",
-        description: "Find products for specific client needs",
-        route: "/search-by-profile",
-        icon: Users,
-        sectionId: "search-by-profile",
-        priority: 8
-      },
-      {
         title: "Sales Tools",
         description: "Objection handling and sales resources",
         route: "/scripts",
@@ -63,14 +55,6 @@ export function PermissionAwareQuickActions() {
         sectionId: "sales-tools",
         badge: "Tools",
         priority: 7
-      },
-      {
-        title: "How to Use Portal",
-        description: "Learn to navigate the platform",
-        route: "/how-to-use",
-        icon: HelpCircle,
-        sectionId: "how-to-use",
-        priority: 6
       }
     ];
 

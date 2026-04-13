@@ -94,7 +94,7 @@ export const learningTrack: TrackPhase[] = [
           "Set up MS Calendar and Masterplan",
         ],
         defaultContent: [
-          link("p1-1-a", "How to Use the Academy Portal", "/how-to-use"),
+          link("p1-1-a", "Browse Product Categories", "/categories"),
           link("p1-1-b", "MDRT — Building Your Practice", "https://www.mdrt.org/build-your-business"),
           text("p1-1-c", "Tip: Block out 2 hours each morning for prospecting in your calendar before filling in client meetings. Protect this time — it's the engine of your business."),
         ],
@@ -295,7 +295,7 @@ export const learningTrack: TrackPhase[] = [
         ],
         defaultContent: [
           link("p4-2-a", "Browse All Products", "/"),
-          link("p4-2-b", "Search Products by Client Profile", "/search-by-profile"),
+          link("p4-2-b", "Browse Product Categories", "/categories"),
           text("p4-2-c", "Portfolio Summary steps:\n1. Request existing policies from the person\n2. List all current coverage: type, sum assured, premium, maturity date\n3. Identify gaps against recommended coverage levels\n4. Note any duplicate or over-insured areas\n5. Present the summary with clear recommendations"),
         ],
       },

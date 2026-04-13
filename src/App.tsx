@@ -32,8 +32,6 @@ import NotFound from "./pages/NotFound";
 // Lazy loaded pages (heavy / secondary routes)
 const ProductCategory = lazy(() => import("./pages/ProductCategory"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
-const HowToUsePortal = lazy(() => import("./pages/HowToUsePortal"));
-const SearchByProfile = lazy(() => import("./pages/SearchByProfile"));
 const Bookmarks = lazy(() => import("./pages/Bookmarks"));
 const ConsultantLanding = lazy(() => import("./pages/ConsultantLanding"));
 const CMFASExams = lazy(() => import("./pages/CMFASExams"));
@@ -100,8 +98,6 @@ const App = () => (
                     {/* All other routes require authentication */}
                     <Route path="/" element={<RequireAuth><Index /></RequireAuth>} />
                     <Route path="/consultant-landing" element={<RequireAuth><ConsultantLanding /></RequireAuth>} />
-                    <Route path="/how-to-use" element={<RequireAuth><HowToUsePortal /></RequireAuth>} />
-                    <Route path="/search-by-profile" element={<RequireAuth><SearchByProfile /></RequireAuth>} />
                     <Route path="/bookmarks" element={<RequireAuth><Bookmarks /></RequireAuth>} />
                     <Route path="/cmfas-exams" element={<RequireAuth><CMFASExams /></RequireAuth>} />
                     <Route path="/cmfas/module/:moduleId" element={<RequireAuth><CMFASModuleDetail /></RequireAuth>} />
