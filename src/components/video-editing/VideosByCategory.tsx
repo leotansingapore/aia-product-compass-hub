@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronDown, ChevronRight, Play, Clock, CheckCircle2, Circle } from 'lucide-react';
+import { ChevronDown, ChevronRight, Play, Clock, CheckCircle2, Circle, Brain, ClipboardList } from 'lucide-react';
 import { formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 import { getVideoSlug } from '@/utils/slugUtils';
@@ -163,7 +163,10 @@ export const VideosByCategory = memo(function VideosByCategory({
                         </button>
                       ) : (
                         <div className={`flex-shrink-0 ${isCompleted ? 'text-primary' : 'text-muted-foreground'}`}>
-                          {isCompleted ? <CheckCircle2 className="h-5 w-5" /> : <Play className="h-5 w-5" />}
+                          {isCompleted ? <CheckCircle2 className="h-5 w-5" /> :
+                           video.type === 'quiz' ? <Brain className="h-5 w-5" /> :
+                           video.type === 'assignment' ? <ClipboardList className="h-5 w-5" /> :
+                           <Play className="h-5 w-5" />}
                         </div>
                       )}
 
@@ -181,12 +184,22 @@ export const VideosByCategory = memo(function VideosByCategory({
                           }`}>
                             {video.title}
                           </h4>
-                          {video.duration && (
+                          {video.type === 'quiz' && video.quiz_config ? (
+                            <span className="text-xs text-primary flex-shrink-0 flex items-center gap-1 font-medium">
+                              <Brain className="h-3 w-3" />
+                              {video.quiz_config.questions.length}q
+                            </span>
+                          ) : video.type === 'assignment' ? (
+                            <span className="text-xs text-amber-600 dark:text-amber-400 flex-shrink-0 flex items-center gap-1 font-medium">
+                              <ClipboardList className="h-3 w-3" />
+                              Task
+                            </span>
+                          ) : video.duration ? (
                             <span className="text-xs text-muted-foreground flex-shrink-0 flex items-center gap-1">
                               <Clock className="h-3 w-3" />
                               {formatDuration(video.duration)}
                             </span>
-                          )}
+                          ) : null}
                         </div>
                         {video.description && (
                           <p className="text-xs text-muted-foreground truncate mt-0.5">
@@ -195,13 +208,15 @@ export const VideosByCategory = memo(function VideosByCategory({
                         )}
                       </div>
 
-                      {/* Play CTA */}
+                      {/* CTA icon */}
                       <button
                         onClick={() => handleVideoClick(video, index)}
                         className="flex-shrink-0 p-1.5 rounded-md text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
-                        aria-label="Watch video"
+                        aria-label={video.type === 'quiz' ? 'Start quiz' : video.type === 'assignment' ? 'View assignment' : 'Watch video'}
                       >
-                        <Play className="h-4 w-4" />
+                        {video.type === 'quiz' ? <Brain className="h-4 w-4" /> :
+                         video.type === 'assignment' ? <ClipboardList className="h-4 w-4" /> :
+                         <Play className="h-4 w-4" />}
                       </button>
                     </div>
                   </div>
