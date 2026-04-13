@@ -936,6 +936,7 @@ export type Database = {
           action_items: string[] | null
           created_at: string
           description: string | null
+          hidden_resources: string[]
           id: string
           legacy_id: string | null
           objectives: string[] | null
@@ -949,6 +950,7 @@ export type Database = {
           action_items?: string[] | null
           created_at?: string
           description?: string | null
+          hidden_resources?: string[]
           id?: string
           legacy_id?: string | null
           objectives?: string[] | null
@@ -962,6 +964,7 @@ export type Database = {
           action_items?: string[] | null
           created_at?: string
           description?: string | null
+          hidden_resources?: string[]
           id?: string
           legacy_id?: string | null
           objectives?: string[] | null
@@ -1344,6 +1347,7 @@ export type Database = {
           category: string
           frontmatter: Json | null
           id: string
+          shareable: boolean
           source_path: string
           synced_at: string
           title: string
@@ -1353,6 +1357,7 @@ export type Database = {
           category: string
           frontmatter?: Json | null
           id?: string
+          shareable?: boolean
           source_path: string
           synced_at?: string
           title: string
@@ -1362,6 +1367,7 @@ export type Database = {
           category?: string
           frontmatter?: Json | null
           id?: string
+          shareable?: boolean
           source_path?: string
           synced_at?: string
           title?: string
