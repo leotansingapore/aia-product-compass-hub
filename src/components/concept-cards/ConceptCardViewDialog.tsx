@@ -697,7 +697,7 @@ function Whiteboard({
             <div className="absolute top-2 left-2 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40">
               Reference
             </div>
-            <img src={referenceImageUrl} alt="Reference" className="max-w-full max-h-full object-contain p-3" />
+            <img src={referenceImageUrl} alt="Reference" loading="lazy" className="max-w-full max-h-full object-contain p-3" />
           </div>
         )}
       </div>

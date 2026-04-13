@@ -34,8 +34,8 @@ export function useObjections() {
   const fetchAll = useCallback(async () => {
     setLoading(true);
     const [entriesRes, responsesRes] = await Promise.all([
-      supabase.from('objection_entries').select('*').order('sort_order').order('created_at'),
-      supabase.from('objection_responses').select('*').order('created_at', { ascending: true }),
+      supabase.from('objection_entries').select('id, title, category, description, tags, sort_order, created_by, created_at, updated_at').order('sort_order').order('created_at'),
+      supabase.from('objection_responses').select('id, objection_id, content, author_name, user_id, upvotes, created_at, updated_at').order('created_at', { ascending: true }),
     ]);
 
     if (entriesRes.error) {

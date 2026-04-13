@@ -12,7 +12,7 @@ export function useContributionKudos(scriptId: string) {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('contribution_kudos' as any)
-        .select('*');
+        .select('id, contribution_id, user_id');
       if (error) throw error;
       // Group by contribution_id: { contributionId: { count, userGave } }
       const map: Record<string, { count: number; userGave: boolean; userKudoId?: string }> = {};

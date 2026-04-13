@@ -43,39 +43,31 @@ export function useUserManagement() {
   const fetchAllUsers = async () => {
     try {
       // Get all approval requests
-      const { data: approvalRequests, error: approvalsError } = await supabase
-        .from('user_approval_requests')
-        .select('*')
-        .order('requested_at', { ascending: false });
+      // Fetch all 4 tables in parallel with narrowed columns
+      const [approvalsRes, profilesRes, adminRolesRes, tiersRes] = await Promise.all([
+        supabase
+          .from('user_approval_requests')
+          .select('id, email, first_name, last_name, status, requested_at')
+          .order('requested_at', { ascending: false }),
+        supabase
+          .from('profiles')
+          .select('user_id, email, display_name, first_name, last_name, avatar_url, created_at'),
+        supabase
+          .from('user_admin_roles')
+          .select('user_id, admin_role'),
+        supabase
+          .from('user_access_tiers')
+          .select('user_id, tier_level'),
+      ]);
 
-      if (approvalsError) throw approvalsError;
-
-      // Get all profiles (active users)
-      const { data: profiles, error: profilesError } = await supabase
-        .from('profiles')
-        .select('*');
-
-      if (profilesError && !profilesError.message.includes('permission')) {
-        throw profilesError;
-      }
-
-      // Get user admin roles
-      const { data: userAdminRoles, error: adminRolesError } = await supabase
-        .from('user_admin_roles')
-        .select('*');
-
-      if (adminRolesError && !adminRolesError.message.includes('permission')) {
-        throw adminRolesError;
-      }
-
-      // Get user access tiers
-      const { data: userAccessTiers, error: tiersError } = await supabase
-        .from('user_access_tiers')
-        .select('*');
-
-      if (tiersError && !tiersError.message.includes('permission')) {
-        throw tiersError;
-      }
+      if (approvalsRes.error) throw approvalsRes.error;
+      const approvalRequests = approvalsRes.data;
+      const profiles = profilesRes.error?.message?.includes('permission') ? null : profilesRes.data;
+      if (profilesRes.error && !profilesRes.error.message.includes('permission')) throw profilesRes.error;
+      const userAdminRoles = adminRolesRes.error?.message?.includes('permission') ? null : adminRolesRes.data;
+      if (adminRolesRes.error && !adminRolesRes.error.message.includes('permission')) throw adminRolesRes.error;
+      const userAccessTiers = tiersRes.error?.message?.includes('permission') ? null : tiersRes.data;
+      if (tiersRes.error && !tiersRes.error.message.includes('permission')) throw tiersRes.error;
 
       const unifiedUsers: UnifiedUser[] = [];
 

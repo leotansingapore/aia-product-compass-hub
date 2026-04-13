@@ -14,7 +14,7 @@ export function useScriptFavourites() {
       if (!userId) return [];
       const { data, error } = await supabase
         .from('script_favourites' as any)
-        .select('*')
+        .select('id, script_id')
         .eq('user_id', userId);
       if (error) throw error;
       return (data || []) as unknown as { id: string; script_id: string }[];
