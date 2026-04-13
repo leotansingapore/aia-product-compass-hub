@@ -57,6 +57,7 @@ const PublicPlaybookView = lazy(() => import("./pages/PublicPlaybookView"));
 const AIAssistant = lazy(() => import("./pages/AIAssistant"));
 const ConceptCards = lazy(() => import("./pages/ConceptCards"));
 const ProductExam = lazy(() => import("./pages/ProductExam"));
+const QuestionBanks = lazy(() => import("./pages/QuestionBanks"));
 const LearningTrack = lazy(() => import("./pages/LearningTrack"));
 const LearningTrackPreRnf = lazy(() => import("./pages/learning-track/PreRnf"));
 const LearningTrackPostRnf = lazy(() => import("./pages/learning-track/PostRnf"));
