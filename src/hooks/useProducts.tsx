@@ -119,7 +119,7 @@ function transformProduct(product: any): Product {
 async function fetchCategoriesFromServer(): Promise<Category[]> {
   const { data, error } = await supabase
     .from('categories')
-    .select('*')
+    .select('id, name, description, published, useful_links, created_at, updated_at')
     .order('name');
   if (error) throw error;
   return data || [];

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
@@ -19,31 +19,25 @@ export interface ConceptCard {
 }
 
 export function useConceptCards() {
-  const [cards, setCards] = useState<ConceptCard[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: cards = [], isLoading: loading, refetch } = useQuery({
+    queryKey: ['concept-cards'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('concept_cards')
+        .select('id, title, description, image_url, original_image_url, image_urls, audience, product_type, tags, sort_order, created_by, created_at, updated_at')
+        .order('sort_order', { ascending: true })
+        .order('created_at', { ascending: false });
 
-  const fetchCards = useCallback(async () => {
-    setLoading(true);
-    const { data, error } = await supabase
-      .from('concept_cards')
-      .select('*')
-      .order('sort_order', { ascending: true })
-      .order('created_at', { ascending: false });
+      if (error) {
+        console.error('Error fetching concept cards:', error);
+        toast.error('Failed to load concept cards');
+        throw error;
+      }
+      return (data || []) as ConceptCard[];
+    },
+  });
 
-    if (error) {
-      console.error('Error fetching concept cards:', error);
-      toast.error('Failed to load concept cards');
-    } else {
-      setCards((data || []) as ConceptCard[]);
-    }
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    fetchCards();
-  }, [fetchCards]);
-
-  return { cards, loading, refetch: fetchCards };
+  return { cards, loading, refetch };
 }
 
 export function useConceptCardsMutations() {

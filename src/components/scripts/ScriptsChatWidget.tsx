@@ -325,7 +325,7 @@ export function ScriptsChatWidget({ initialMode = "scripts" }: ScriptsChatWidget
                 )}
               >
                 {msg.image && (
-                  <img src={msg.image} alt="Pasted screenshot" className="rounded-lg mb-2 max-h-40 w-auto" />
+                  <img src={msg.image} alt="Pasted screenshot" loading="lazy" className="rounded-lg mb-2 max-h-40 w-auto" />
                 )}
                 {msg.role === "assistant" ? (
                   <div className="prose prose-sm dark:prose-invert max-w-none [&_p]:my-1 [&_ul]:my-1 [&_ol]:my-1 [&_li]:my-0.5">

@@ -288,7 +288,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                     <h2 className="text-lg sm:text-xl md:text-2xl font-bold leading-snug flex-1">{card.title}</h2>
                     {cardImages.length > 0 ? (
                       <div className="mt-3 rounded-xl overflow-hidden border border-dashed border-border/60 h-16 sm:h-20 flex items-center justify-center relative bg-muted/20">
-                        <img src={cardImages[0]} alt="" className="absolute inset-0 w-full h-full object-contain blur-md opacity-30" />
+                        <img src={cardImages[0]} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-contain blur-md opacity-30" />
                         <span className="relative z-10 text-xs text-muted-foreground font-medium">
                           Tap to reveal {cardImages.length > 1 ? `${cardImages.length} drawings` : 'drawing'} →
                         </span>
@@ -322,7 +322,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                       <ChevronRight className="h-3.5 w-3.5" />
                     </button>
                     {currentImg
-                      ? <img src={currentImg} alt={card.title} className="w-full h-full object-contain p-4 pointer-events-none" />
+                      ? <img src={currentImg} alt={card.title} loading="lazy" className="w-full h-full object-contain p-4 pointer-events-none" />
                       : <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm pointer-events-none">No drawing yet</div>
                     }
                     {cardImages.length > 1 && (
