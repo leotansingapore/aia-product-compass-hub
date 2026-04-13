@@ -448,7 +448,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
         </SidebarFooter>
       </Sidebar>
 
-      <FeedbackModal open={feedbackOpen} onOpenChange={setFeedbackOpen} />
+      
 
       {/* Rename Category Dialog */}
       <Dialog open={!!editingCategory} onOpenChange={(open) => !open && setEditingCategory(null)}>
