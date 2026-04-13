@@ -148,6 +148,42 @@ export type Database = {
           },
         ]
       }
+      assignment_submissions: {
+        Row: {
+          created_at: string | null
+          file_name: string | null
+          file_url: string | null
+          id: string
+          item_id: string
+          product_id: string
+          submission_text: string | null
+          submitted_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          file_name?: string | null
+          file_url?: string | null
+          id?: string
+          item_id: string
+          product_id: string
+          submission_text?: string | null
+          submitted_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          file_name?: string | null
+          file_url?: string | null
+          id?: string
+          item_id?: string
+          product_id?: string
+          submission_text?: string | null
+          submitted_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       booking_audit_log: {
         Row: {
           action: string

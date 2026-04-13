@@ -57,6 +57,7 @@ const PublicPlaybookView = lazy(() => import("./pages/PublicPlaybookView"));
 const AIAssistant = lazy(() => import("./pages/AIAssistant"));
 const ConceptCards = lazy(() => import("./pages/ConceptCards"));
 const ProductExam = lazy(() => import("./pages/ProductExam"));
+const QuestionBanks = lazy(() => import("./pages/QuestionBanks"));
 const LearningTrack = lazy(() => import("./pages/LearningTrack"));
 const LearningTrackPreRnf = lazy(() => import("./pages/learning-track/PreRnf"));
 const LearningTrackPostRnf = lazy(() => import("./pages/learning-track/PostRnf"));
@@ -122,6 +123,7 @@ const App = () => (
                     <Route path="/product/:productId/ai-assistant" element={<RequireAuth><AIAssistant /></RequireAuth>} />
                     <Route path="/product/:productSlugOrId/exam" element={<RequireAuth><ProductExam /></RequireAuth>} />
                     <Route path="/product/:productSlugOrId/video/:videoId" element={<RequireAuth><VideoDetail /></RequireAuth>} />
+                    <Route path="/question-banks" element={<RequireAuth><QuestionBanks /></RequireAuth>} />
                     <Route path="/changelog" element={<RequireAuth><Changelog /></RequireAuth>} />
                     <Route path="/scripts" element={<RequireAuth><ScriptsDatabase /></RequireAuth>} />
                     <Route path="/scripts/:scriptId" element={<RequireAuth><ScriptsDatabase /></RequireAuth>} />
