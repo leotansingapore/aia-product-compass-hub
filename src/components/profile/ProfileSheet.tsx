@@ -85,11 +85,15 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
 
   const fetchStats = async () => {
     if (!user) return;
-    const [quizRes, roleplayRes, quizScoreRes, roleplayScoreRes] = await Promise.all([
+    const [quizRes, roleplayRes, quizScoreRes, roleplayScoreRes, totalItemsRes, completedItemsRes] = await Promise.all([
       supabase.from('quiz_attempts').select('id', { count: 'exact', head: true }).eq('user_id', user.id),
       supabase.from('roleplay_sessions').select('id', { count: 'exact', head: true }).eq('user_id', user.id),
       supabase.from('quiz_attempts').select('score, total_questions').eq('user_id', user.id),
       supabase.from('roleplay_feedback').select('overall_score, session_id').order('overall_score', { ascending: false }).limit(1),
+      supabase.from('learning_track_items').select('id', { count: 'exact', head: true }),
+      supabase.from('learning_track_progress').select('id', { count: 'exact', head: true })
+        .eq('user_id', profile?.id ?? '')
+        .eq('status', 'completed'),
     ]);
     setQuizCount(quizRes.count ?? 0);
     setRoleplayCount(roleplayRes.count ?? 0);
@@ -105,6 +109,13 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
     // Best roleplay score
     if (roleplayScoreRes.data && roleplayScoreRes.data.length > 0) {
       setBestRoleplayScore(roleplayScoreRes.data[0].overall_score);
+    }
+
+    // Learning track completion
+    const totalItems = totalItemsRes.count ?? 0;
+    const completedItems = completedItemsRes.count ?? 0;
+    if (totalItems > 0) {
+      setLessonProgress(Math.round((completedItems / totalItems) * 100));
     }
   };
 
