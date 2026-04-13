@@ -179,6 +179,7 @@ export const markdownComponents: Components = {
           <img
             src={src}
             alt={realAlt}
+            loading="lazy"
             className={hasCrop ? 'absolute' : 'block w-full rounded-md'}
             style={hasCrop ? {
               left: `${-(cropX / cropW) * 100}%`,
