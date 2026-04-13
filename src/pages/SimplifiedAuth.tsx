@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
-import { BarChart3, BrainCircuit, Mail, Waypoints } from "lucide-react";
+import { BarChart3, BrainCircuit, Waypoints } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { SimplifiedAuthForm } from "@/components/auth/SimplifiedAuthForm";
 import { FINTERNSHIP_LOGO_NAVY, FINTERNSHIP_LOGO_WHITE } from "@/constants/branding";
 
-const SUPPORT_EMAIL = "support@aiaproductcompass.com";
+
 
 /** Translucent low-poly shards — right-weighted light, aligned to brand teal/cyan */
 function AuthHeroPolyLayer() {
@@ -140,7 +140,6 @@ const SimplifiedAuth = () => {
                 </span>
               </div>
             </div>
-            <p className="mt-8 pt-6 border-t border-white/15 text-xs text-white/45">© {new Date().getFullYear()} AIA Singapore</p>
           </div>
         </div>
       </div>
@@ -181,18 +180,6 @@ const SimplifiedAuth = () => {
           <SimplifiedAuthForm hideTitle />
         </div>
 
-        <div className="px-6 sm:px-10 xl:px-16 pb-8 pt-2 w-full max-w-md mx-auto lg:max-w-lg">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-muted-foreground border-t border-border pt-6">
-            <span>© {new Date().getFullYear()} AIA Singapore</span>
-            <a
-              href={`mailto:${SUPPORT_EMAIL}`}
-              className="inline-flex items-center gap-1.5 text-primary hover:underline underline-offset-2 font-medium"
-            >
-              <Mail className="h-3.5 w-3.5 shrink-0" aria-hidden />
-              {SUPPORT_EMAIL}
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   );
