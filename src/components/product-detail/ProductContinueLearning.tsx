@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Brain, BookOpen } from "lucide-react";
+import { Brain, BookOpen, Trophy } from "lucide-react";
+import { useExamBestScore } from "@/hooks/useExamBestScore";
 
 export type ProductContinueLearningVariant = "card" | "hero-strip";
 
@@ -16,7 +18,7 @@ export interface ProductContinueLearningProps {
 /**
  * Study bank + product exam CTAs for products that define those paths.
  * - `hero-strip`: compact row under the video hero (high visibility).
- * - `card`: full “Continue learning” block below the tabbed module layout.
+ * - `card`: full "Continue learning" block below the tabbed module layout.
  */
 export function ProductContinueLearning({
   hasStudy,
@@ -25,6 +27,7 @@ export function ProductContinueLearning({
   variant,
 }: ProductContinueLearningProps) {
   const navigate = useNavigate();
+  const best = useExamBestScore(hasExam ? originalSlug : undefined);
 
   if (!hasStudy && !hasExam) return null;
 
@@ -57,6 +60,15 @@ export function ProductContinueLearning({
               >
                 <Brain className="h-3.5 w-3.5 mr-1.5" />
                 Exam
+                {best && (
+                  <Badge
+                    variant="secondary"
+                    className="ml-1.5 text-[10px] px-1.5 py-0 bg-primary-foreground/20 text-primary-foreground"
+                  >
+                    <Trophy className="h-2.5 w-2.5 mr-0.5" />
+                    {best.pct}%
+                  </Badge>
+                )}
               </Button>
             )}
           </div>
@@ -98,7 +110,18 @@ export function ProductContinueLearning({
               {stepNum++}
             </div>
             <div className="min-w-0 flex-1">
-              <h4 className="text-sm font-medium">Product Knowledge Exam</h4>
+              <h4 className="text-sm font-medium flex items-center gap-2">
+                Product Knowledge Exam
+                {best && (
+                  <Badge
+                    variant={best.pct >= 80 ? "default" : best.pct >= 50 ? "secondary" : "outline"}
+                    className="text-[10px] px-1.5 py-0 gap-0.5"
+                  >
+                    <Trophy className="h-2.5 w-2.5" />
+                    Best: {best.pct}%
+                  </Badge>
+                )}
+              </h4>
               <p className="text-xs text-muted-foreground">Scored exam recorded on your profile</p>
             </div>
             <Button size="sm" className="shrink-0" onClick={() => navigate(`/product/${originalSlug}/exam`)}>

@@ -6,8 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { PageLayout } from '@/components/layout/PageLayout';
 import { ProtectedPage } from '@/components/ProtectedPage';
 import { proAchieverStudyBank } from '@/data/proAchieverStudyBank';
-import { StudyQuiz } from '@/components/study/StudyQuiz';
-import { ArrowLeft, BookOpen, Brain, Target, Shield, MessageCircle, Shuffle } from 'lucide-react';
+import { StudyQuiz, loadWeakQuestions } from '@/components/study/StudyQuiz';
+import { ArrowLeft, BookOpen, Brain, Target, Shield, MessageCircle, Shuffle, AlertTriangle } from 'lucide-react';
 
 type QuizSize = 25 | 50 | 100;
 type CategoryFilter = 'all' | 'product-facts' | 'sales-angles' | 'objection-handling' | 'roleplay';
@@ -51,12 +51,18 @@ export default function ProAchieverStudy() {
     return counts;
   }, []);
 
+  const weakQuestions = useMemo(() => loadWeakQuestions('pro-achiever'), []);
+  const weakCount = Object.keys(weakQuestions).length;
+
   const startQuiz = (size: QuizSize, category: CategoryFilter) => {
     let pool = category === 'all'
       ? proAchieverStudyBank
       : proAchieverStudyBank.filter(q => q.category === category);
 
-    const shuffled = shuffleArray(pool);
+    // Prioritize weak questions: put them first, then shuffle the rest
+    const weak = pool.filter(q => weakQuestions[q.question]);
+    const strong = pool.filter(q => !weakQuestions[q.question]);
+    const shuffled = [...shuffleArray(weak), ...shuffleArray(strong)];
     const selected = shuffled.slice(0, Math.min(size, shuffled.length));
     setQuizSize(size);
     setCategoryFilter(category);
@@ -95,7 +101,7 @@ export default function ProAchieverStudy() {
               </Badge>
             </div>
 
-            <StudyQuiz questions={activeQuestions} onFinish={handleRestart} />
+            <StudyQuiz questions={activeQuestions} onFinish={handleRestart} productSlug="pro-achiever" />
           </div>
         </PageLayout>
       </ProtectedPage>
@@ -127,6 +133,16 @@ export default function ProAchieverStudy() {
             {proAchieverStudyBank.length} practice questions to prepare you for the actual exam.
             Questions are randomized each time. Instant explanations for every answer.
           </p>
+
+          {/* Weak questions indicator */}
+          {weakCount > 0 && (
+            <div className="rounded-lg border border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950/20 p-3 mb-4 flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4 text-amber-500 shrink-0" />
+              <p className="text-xs text-amber-700 dark:text-amber-400">
+                <strong>{weakCount} weak question{weakCount !== 1 ? 's' : ''}</strong> detected from past sessions. These will appear first in your next study set.
+              </p>
+            </div>
+          )}
 
           {/* Category breakdown */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
