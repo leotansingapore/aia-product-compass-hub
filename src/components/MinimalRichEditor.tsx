@@ -254,16 +254,18 @@ export function MinimalRichEditor({
       handleKeyDown: (view, event) => {
         if ((event.metaKey || event.ctrlKey) && event.key === 'Enter' && onSave) {
           event.preventDefault();
-          // Flush any pending content before saving
           dirtyRef.current = true;
           const ed = editorInstanceRef.current;
           if (ed && !ed.isDestroyed) {
-            const md = await htmlToMd(ed.getHTML());
-            lastValueRef.current = md;
-            onChangeRef.current(md);
-            dirtyRef.current = false;
+            htmlToMd(ed.getHTML()).then(md => {
+              lastValueRef.current = md;
+              onChangeRef.current(md);
+              dirtyRef.current = false;
+              onSave();
+            });
+          } else {
+            onSave();
           }
-          onSave();
           return true;
         }
         if (event.key === 'Escape' && onCancel) {
