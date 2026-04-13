@@ -29,7 +29,7 @@ export function useBookmarks() {
         const userId = user?.id || '00000000-0000-0000-0000-000000000000';
         const { data, error } = await supabase
           .from('user_bookmarks')
-          .select('*')
+          .select('id, user_id, product_id, created_at')
           .eq('user_id', userId)
           .order('created_at', { ascending: false });
 
