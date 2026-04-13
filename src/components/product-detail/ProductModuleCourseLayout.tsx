@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Brain, CheckCircle2, ChevronLeft, ChevronRight, ClipboardList, FileText, Link2, List, Play } from "lucide-react";
+import { BookOpen, Brain, CheckCircle2, ChevronLeft, ChevronRight, ClipboardList, Clock, FileText, Lightbulb, Link2, List, Play } from "lucide-react";
+import { formatDuration } from "@/components/video-editing/videoUtils";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
 import type { TrainingVideo } from "@/hooks/useProducts";
@@ -15,6 +16,7 @@ import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { areSameVideoEmbedSource, detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
 import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
 
 const OUTLINE_SHEET_ID = "product-course-outline";
 
@@ -28,6 +30,11 @@ export interface ProductModuleCourseLayoutProps {
   tabMyNotes: React.ReactNode;
   defaultTab?: "course-content" | "overview" | "resources" | "my-notes";
   className?: string;
+  /** Study/Exam paths shown in sidebar */
+  hasStudy?: boolean;
+  hasExam?: boolean;
+  /** Route slug for study/exam links (e.g. 'pro-achiever') */
+  originalSlug?: string;
 }
 
 export function ProductModuleCourseLayout({
@@ -39,6 +46,9 @@ export function ProductModuleCourseLayout({
   tabMyNotes,
   defaultTab = "course-content",
   className,
+  hasStudy,
+  hasExam,
+  originalSlug,
 }: ProductModuleCourseLayoutProps) {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [outlineOpen, setOutlineOpen] = useState(false);
@@ -70,6 +80,12 @@ export function ProductModuleCourseLayout({
     () => processedVideos.filter(v => getVideoProgress(v.id)?.completed).length,
     [processedVideos, getVideoProgress]
   );
+  const totalDuration = useMemo(
+    () => processedVideos.reduce((sum, v) => sum + (v.duration || 0), 0),
+    [processedVideos]
+  );
+  const isFirstVisit = completedCount === 0 && processedVideos.length > 0;
+  const navigate = useNavigate();
 
   const handleToggleComplete = useCallback(
     async (videoId: string, currentlyCompleted: boolean) => {
@@ -122,14 +138,40 @@ export function ProductModuleCourseLayout({
 
   /* ── Sidebar content (shared between persistent sidebar & mobile Sheet) ── */
   const sidebarContent = (
-    <div className="space-y-4">
-      {/* Progress bar */}
+    <div className="space-y-3">
+      {/* Progress + duration summary */}
       {processedVideos.length > 0 && (
-        <div className="flex items-center gap-2">
-          <Progress value={courseProgressPct} className="h-1.5 min-w-0 flex-1" />
-          <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
-            {completedCount}/{processedVideos.length}
-          </span>
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <Progress value={courseProgressPct} className="h-1.5 min-w-0 flex-1" />
+            <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+              {completedCount}/{processedVideos.length}
+            </span>
+          </div>
+          {totalDuration > 0 && (
+            <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+              <Clock className="h-3 w-3" />
+              <span>Total: {totalDuration >= 3600
+                ? `${Math.floor(totalDuration / 3600)}h ${Math.floor((totalDuration % 3600) / 60)}m`
+                : formatDuration(totalDuration)
+              }</span>
+              <span className="mx-1">|</span>
+              <span>{processedVideos.length} lessons</span>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* First-visit guidance */}
+      {isFirstVisit && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-3 space-y-1.5">
+          <div className="flex items-center gap-1.5 text-xs font-medium text-primary">
+            <Lightbulb className="h-3.5 w-3.5" />
+            Getting started
+          </div>
+          <p className="text-[11px] leading-relaxed text-muted-foreground">
+            Work through the lessons in order. Mark each one complete as you go -- your progress is saved automatically.
+          </p>
         </div>
       )}
 
@@ -145,9 +187,40 @@ export function ProductModuleCourseLayout({
         moduleType="product"
       />
 
+      {/* Study & Exam shortcuts */}
+      {(hasStudy || hasExam) && originalSlug && (
+        <div className="space-y-2 pt-2 border-t">
+          <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">Next steps</p>
+          {hasStudy && (
+            <button
+              onClick={() => navigate(`/product/${originalSlug}/study`)}
+              className="flex w-full items-center gap-2.5 rounded-lg border px-3 py-2.5 text-left transition-colors hover:bg-muted/50"
+            >
+              <BookOpen className="h-4 w-4 text-muted-foreground shrink-0" />
+              <div className="min-w-0">
+                <p className="text-xs font-medium">Study Bank</p>
+                <p className="text-[11px] text-muted-foreground">Practice questions -- no scoring</p>
+              </div>
+            </button>
+          )}
+          {hasExam && (
+            <button
+              onClick={() => navigate(`/product/${originalSlug}/exam`)}
+              className="flex w-full items-center gap-2.5 rounded-lg border px-3 py-2.5 text-left transition-colors hover:bg-muted/50"
+            >
+              <Brain className="h-4 w-4 text-muted-foreground shrink-0" />
+              <div className="min-w-0">
+                <p className="text-xs font-medium">Product Exam</p>
+                <p className="text-[11px] text-muted-foreground">Timed &amp; scored. Retake anytime.</p>
+              </div>
+            </button>
+          )}
+        </div>
+      )}
+
       {/* Transcript (collapsible) */}
       {currentVideo?.transcript && (
-        <details className="group">
+        <details className="group pt-1">
           <summary className="flex cursor-pointer items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground">
             <FileText className="h-3.5 w-3.5" />
             Transcript
