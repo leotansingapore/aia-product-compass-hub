@@ -1,6 +1,6 @@
 export interface VideoEmbedInfo {
   embedUrl: string;
-  type: 'youtube' | 'vimeo' | 'loom' | 'wistia' | 'mp4';
+  type: 'youtube' | 'vimeo' | 'loom' | 'wistia' | 'mp4' | 'iframe';
   thumbnail?: string | null;
   duration?: number | null;
 }
@@ -8,8 +8,29 @@ export interface VideoEmbedInfo {
 // Function to get video embed URL and type
 export function getVideoEmbedInfo(url: string): VideoEmbedInfo | null {
   if (!url) return null;
+
+  // YouTube Shorts
+  const shortsMatch = url.match(/youtube\.com\/shorts\/([^"&?\s/]{11})/);
+  if (shortsMatch) {
+    return {
+      embedUrl: `https://www.youtube.com/embed/${shortsMatch[1]}`,
+      type: 'youtube',
+      thumbnail: `https://img.youtube.com/vi/${shortsMatch[1]}/maxresdefault.jpg`,
+    };
+  }
+
+  // Google Drive file (view / share links)
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (driveMatch) {
+    return {
+      embedUrl: `https://drive.google.com/file/d/${driveMatch[1]}/preview`,
+      type: 'iframe',
+      thumbnail: null,
+    };
+  }
+
   // YouTube
-  const youtubeMatch = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+  const youtubeMatch = url.match(/(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\s/]{11})/);
   if (youtubeMatch) {
     return {
       embedUrl: `https://www.youtube.com/embed/${youtubeMatch[1]}`,
@@ -19,7 +40,7 @@ export function getVideoEmbedInfo(url: string): VideoEmbedInfo | null {
   }
 
   // Vimeo
-  const vimeoMatch = url.match(/vimeo\.com\/(?:manage\/videos\/|channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/)?(\d+)(?:\/([a-f0-9]+))?(?:$|\/|\?)/);
+  const vimeoMatch = url.match(/vimeo\.com\/(?:manage\/videos\/|channels\/(?:\w+\/)?|groups\/([^/]*)\/videos\/|album\/(\d+)\/video\/|video\/)?(\d+)(?:\/([a-f0-9]+))?(?:$|\/|\?)/);
   if (vimeoMatch) {
     const hash = vimeoMatch[4] ? `?h=${vimeoMatch[4]}` : '';
     return {
@@ -49,8 +70,8 @@ export function getVideoEmbedInfo(url: string): VideoEmbedInfo | null {
     };
   }
 
-  // Direct MP4 URLs (e.g. GitHub releases, CDN links)
-  if (/\.mp4(\?|$|#)/i.test(url)) {
+  // Direct MP4 / WebM URLs (e.g. GitHub releases, CDN links)
+  if (/\.(mp4|webm)(\?|$|#)/i.test(url)) {
     return {
       embedUrl: url,
       type: 'mp4',
@@ -93,7 +114,7 @@ async function fetchYouTubeDuration(url: string): Promise<number | null> {
     if (!response.ok) return null;
     
     // YouTube oEmbed doesn't provide duration, but we can try to get it from the video ID
-    const youtubeMatch = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+    const youtubeMatch = url.match(/(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\s/]{11})/);
     if (!youtubeMatch) return null;
     
     // For now, return null since we don't have API key for YouTube Data API

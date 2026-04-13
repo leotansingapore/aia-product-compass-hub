@@ -172,6 +172,18 @@ export default function ProductDetail() {
           categoryName={categoryName}
           description={product.description || ''}
           breadcrumbs={breadcrumbs}
+          actions={
+            <>
+              {isAdminMode && (
+                <ProductSyncButton
+                  productId={product.id}
+                  productName={product.title}
+                  onDarkSurface
+                />
+              )}
+              <BookmarkButton productId={product.id} onDarkSurface />
+            </>
+          }
           onTitleEdit={isAdminMode ? (newTitle) => handleUpdate('title', newTitle) : undefined}
           onDescriptionEdit={isAdminMode ? (newDesc) => handleUpdate('description', newDesc) : undefined}
         />
@@ -183,15 +195,6 @@ export default function ProductDetail() {
         />
 
         <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
-
-          {/* Top-right utilities */}
-          <div className="flex justify-end items-center gap-2 mb-2 sm:mb-4">
-            {isAdminMode && <ProductSyncButton productId={product.id} productName={product.title} />}
-            <BookmarkButton productId={product.id} />
-          </div>
-
-
-
 
           {/* Training Videos Section */}
           <ProtectedSection sectionId="product_videos">
@@ -228,25 +231,6 @@ export default function ProductDetail() {
                   hasStudy={hasStudyProduct}
                   hasExam={hasExamProduct}
                   originalSlug={continueOriginalSlug}
-                  tabOverview={
-                    <div className="space-y-4">
-                      {categoryName ? (
-                        <p className="text-sm text-muted-foreground">
-                          <span className="font-medium text-foreground">Category: </span>
-                          {categoryName}
-                        </p>
-                      ) : null}
-                      {product.description ? (
-                        <div className="rounded-lg border bg-card p-4 sm:p-6">
-                          <p className="text-sm leading-relaxed text-foreground whitespace-pre-wrap">
-                            {product.description}
-                          </p>
-                        </div>
-                      ) : (
-                        <p className="text-sm text-muted-foreground">No overview description available.</p>
-                      )}
-                    </div>
-                  }
                   tabResources={
                     <ProductUsefulLinks
                       links={product.useful_links || []}

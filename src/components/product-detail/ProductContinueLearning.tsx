@@ -80,7 +80,7 @@ export function ProductContinueLearning({
   let stepNum = 2;
   return (
     <Card className="mt-4 border-primary/20 sm:mt-6 overflow-visible">
-      <CardContent className="space-y-0 p-5 sm:p-6">
+      <CardContent className="space-y-0 p-5 pt-5 sm:p-6 sm:pt-6 md:pt-6">
         <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           Continue learning
         </h3>

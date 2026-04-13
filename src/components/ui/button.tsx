@@ -21,7 +21,10 @@ const buttonVariants = cva(
         hero: "bg-gradient-primary text-primary-foreground hover:shadow-elegant transform hover:scale-105 transition-all duration-300",
         category: "bg-gradient-card border border-border hover:[background-image:none] hover:bg-primary/90 hover:text-primary-foreground hover:shadow-card hover:scale-105 transition-all duration-200 text-foreground",
         success: "bg-success text-success-foreground hover:bg-success/90",
-        warning: "bg-warning text-warning-foreground hover:bg-warning/90"
+        warning: "bg-warning text-warning-foreground hover:bg-warning/90",
+        /** Glass outline for actions on dark / gradient hero headers (high contrast). */
+        heroOutline:
+          "border border-white/40 bg-white/15 text-white shadow-sm backdrop-blur-sm hover:bg-white/25 hover:text-white hover:border-white/55 [&_svg]:text-white focus-visible:ring-white/60 focus-visible:ring-offset-0 focus-visible:ring-offset-transparent",
       },
       size: {
         default: "h-10 px-4 py-2",

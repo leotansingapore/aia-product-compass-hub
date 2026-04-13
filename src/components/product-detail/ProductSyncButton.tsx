@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { RefreshCw, Database } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 
 interface ProductSyncButtonProps {
   productId: string;
   productName: string;
+  onDarkSurface?: boolean;
 }
 
-export function ProductSyncButton({ productId, productName }: ProductSyncButtonProps) {
+export function ProductSyncButton({ productId, productName, onDarkSurface }: ProductSyncButtonProps) {
   const [syncing, setSyncing] = useState(false);
 
   const handleSync = async () => {
@@ -32,7 +34,13 @@ export function ProductSyncButton({ productId, productName }: ProductSyncButtonP
   };
 
   return (
-    <Button variant="outline" size="sm" onClick={handleSync} disabled={syncing}>
+    <Button
+      variant={onDarkSurface ? "heroOutline" : "outline"}
+      size="sm"
+      onClick={handleSync}
+      disabled={syncing}
+      className={cn(onDarkSurface && "font-medium")}
+    >
       {syncing ? <RefreshCw className="h-4 w-4 mr-1.5 animate-spin" /> : <Database className="h-4 w-4 mr-1.5" />}
       {syncing ? "Syncing…" : "Sync to AI"}
     </Button>
