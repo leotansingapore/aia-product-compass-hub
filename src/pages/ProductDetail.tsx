@@ -7,7 +7,8 @@ import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLin
 
 import { FloatingAIChat } from "@/components/product-detail/FloatingAIChat";
 import { ProductSyncButton } from "@/components/product-detail/ProductSyncButton";
-import { ProductTrainingVideos } from "@/components/product-detail/ProductTrainingVideos";
+import { ProductModuleCourseLayout } from "@/components/product-detail/ProductModuleCourseLayout";
+import { ProductContinueLearning } from "@/components/product-detail/ProductContinueLearning";
 import { SubModulesSection } from "@/components/product-detail/SubModulesSection";
 import { VideoEditingInterface } from "@/components/video-editing/VideoEditingInterface";
 import { useVideoManagement } from "@/hooks/useVideoManagement";
@@ -23,8 +24,6 @@ import { useProductDetail } from "@/hooks/useProductDetail";
 import { useAdmin } from "@/hooks/useAdmin";
 import type { TrainingVideo } from "@/hooks/useProducts";
 import { getVideoSlug } from "@/utils/slugUtils";
-import { Brain, BookOpen } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 
 const PRODUCTS_WITH_EXAMS = new Set(['pro-achiever', 'core-pro-achiever']);
 const PRODUCTS_WITH_STUDY = new Set(['pro-achiever', 'platinum-wealth-venture', 'healthshield-gold-max', 'core-pro-achiever', 'core-platinum-wealth-venture', 'core-healthshield-gold-max']);
@@ -143,6 +142,11 @@ export default function ProductDetail() {
     );
   }
 
+  const hasStudyProduct = PRODUCTS_WITH_STUDY.has(product.id);
+  const hasExamProduct = PRODUCTS_WITH_EXAMS.has(product.id);
+  const showContinueLearning = hasStudyProduct || hasExamProduct;
+  const continueOriginalSlug = getOriginalSlug(product.id);
+
   return (
     <ProtectedPage pageId="product-detail">
       <PageLayout
@@ -202,92 +206,68 @@ export default function ProductDetail() {
                   />
                 </ErrorBoundary>
               ) : (
-                <ProductTrainingVideos
-                  videos={product?.training_videos || []}
+                <ProductModuleCourseLayout
                   productId={product.id}
-                  onUpdate={handleUpdate}
+                  productTitle={product.title}
+                  videos={product?.training_videos || []}
+                  defaultTab="course-content"
+                  heroFooter={
+                    showContinueLearning ? (
+                      <ProductContinueLearning
+                        variant="hero-strip"
+                        hasStudy={hasStudyProduct}
+                        hasExam={hasExamProduct}
+                        originalSlug={continueOriginalSlug}
+                      />
+                    ) : undefined
+                  }
+                  tabOverview={
+                    <div className="space-y-4">
+                      {categoryName ? (
+                        <p className="text-sm text-muted-foreground">
+                          <span className="font-medium text-foreground">Category: </span>
+                          {categoryName}
+                        </p>
+                      ) : null}
+                      {product.description ? (
+                        <div className="rounded-lg border bg-card p-4 sm:p-6">
+                          <p className="text-sm leading-relaxed text-foreground whitespace-pre-wrap">
+                            {product.description}
+                          </p>
+                        </div>
+                      ) : (
+                        <p className="text-sm text-muted-foreground">No overview description available.</p>
+                      )}
+                    </div>
+                  }
+                  tabResources={
+                    <ProductUsefulLinks
+                      links={product.useful_links || []}
+                      onUpdate={handleUpdate}
+                      productId={productId}
+                    />
+                  }
+                  tabMyNotes={
+                    <ProtectedSection sectionId="product_notes">
+                      <PersonalNotes productId={product.id} />
+                    </ProtectedSection>
+                  }
                 />
               )}
             </div>
           </ProtectedSection>
 
+          {showContinueLearning && (
+            <ProductContinueLearning
+              variant="card"
+              hasStudy={hasStudyProduct}
+              hasExam={hasExamProduct}
+              originalSlug={continueOriginalSlug}
+            />
+          )}
+
           {/* Sub-modules Section */}
           <SubModulesSection parentProductId={product.id} />
-
-          {/* Learning Path -- numbered steps showing what to do next */}
-          {(PRODUCTS_WITH_STUDY.has(product.id) || PRODUCTS_WITH_EXAMS.has(product.id)) && (() => {
-            const hasStudy = PRODUCTS_WITH_STUDY.has(product.id);
-            const hasExam = PRODUCTS_WITH_EXAMS.has(product.id);
-            let stepNum = 2; // Step 1 is always the training videos above
-            return (
-              <Card className="mt-4 sm:mt-8 border-primary/20 overflow-visible">
-                <CardContent className="p-5 sm:p-6 space-y-0">
-                  <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">Continue Learning</h3>
-                  {hasStudy && (() => {
-                    const n = stepNum++;
-                    return (
-                      <div className="flex items-center gap-3 py-3 border-b last:border-b-0">
-                        <div className="flex items-center justify-center h-7 w-7 rounded-full border-2 border-primary/30 text-xs font-bold text-primary shrink-0">
-                          {n}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-medium text-sm">Study Bank</h4>
-                          <p className="text-xs text-muted-foreground">Practice questions with instant feedback</p>
-                        </div>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/study`)}
-                          className="shrink-0"
-                        >
-                          <BookOpen className="h-3.5 w-3.5 mr-1.5" />
-                          Study
-                        </Button>
-                      </div>
-                    );
-                  })()}
-                  {hasExam && (() => {
-                    const n = stepNum++;
-                    return (
-                      <div className="flex items-center gap-3 py-3">
-                        <div className="flex items-center justify-center h-7 w-7 rounded-full border-2 border-primary/30 text-xs font-bold text-primary shrink-0">
-                          {n}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-medium text-sm">Product Knowledge Exam</h4>
-                          <p className="text-xs text-muted-foreground">Scored exam recorded on your profile</p>
-                        </div>
-                        <Button
-                          size="sm"
-                          onClick={() => navigate(`/product/${getOriginalSlug(product.id)}/exam`)}
-                          className="shrink-0"
-                        >
-                          <Brain className="h-3.5 w-3.5 mr-1.5" />
-                          Exam
-                        </Button>
-                      </div>
-                    );
-                  })()}
-                </CardContent>
-              </Card>
-            );
-          })()}
-
-          {/* Resources Section */}
-          <div className="mt-4 sm:mt-8">
-            <ProductUsefulLinks
-                links={product.useful_links || []}
-                onUpdate={handleUpdate}
-                productId={productId}
-              />
-          </div>
-
-          {/* Personal Notes — at the bottom */}
-          <ProtectedSection sectionId="product_notes">
-            <div className="mt-4 sm:mt-8">
-              <PersonalNotes productId={product.id} />
-            </div>
-          </ProtectedSection>
 
         </div>
       </PageLayout>

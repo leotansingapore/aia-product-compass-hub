@@ -253,7 +253,8 @@ export default function ProductCategory() {
         subtitle={category.description || categoryInfo?.description}
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: category.name }
+          { label: "Product Categories", href: "/categories" },
+          { label: category.name },
         ]}
         onTitleEdit={isAdmin() ? handleCategoryTitleEdit : undefined}
         onSubtitleEdit={isAdmin() ? handleCategoryDescriptionEdit : undefined}

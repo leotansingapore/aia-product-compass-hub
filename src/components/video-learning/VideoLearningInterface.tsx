@@ -16,7 +16,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { markdownComponents } from '@/lib/markdown-config';
-import { detectVideoEmbed, VideoEmbed } from '@/lib/video-embed-utils';
+import { areSameVideoEmbedSource, detectVideoEmbed, VideoEmbed } from '@/lib/video-embed-utils';
 import { usePermissions } from '@/hooks/usePermissions';
 
 const InlineQuiz = lazy(() => import('@/components/quiz/InlineQuiz').then(m => ({ default: m.InlineQuiz })));
@@ -167,19 +167,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   }, [safeVideoIndex, videos, moduleType, moduleId, productSlugOrId, navigate]);
 
   const videoInfo = useMemo(() => (currentVideoUrl ? getVideoEmbedInfo(currentVideoUrl) : null), [currentVideoUrl]);
-
-  // True when the rich_content markdown already embeds the same video — hides the standalone player to avoid duplicates.
-  // Uses the embed URL's video ID so minor URL param differences (e.g. ?sid=) don't cause false negatives.
-  const richContentHasVideo = useMemo(() => {
-    if (!currentVideoRichContent || !currentVideoUrl) return false;
-    const embedInfo = detectVideoEmbed(currentVideoUrl);
-    if (!embedInfo.isVideo || !embedInfo.embedUrl) return false;
-    // Extract the core video ID from the embed URL (last path segment before any query)
-    const embedPath = embedInfo.embedUrl.split('?')[0];
-    const videoId = embedPath.split('/').pop();
-    if (!videoId) return false;
-    return currentVideoRichContent.includes(videoId);
-  }, [currentVideoRichContent, currentVideoUrl]);
 
   const sidebarContent = (
     <div className="space-y-4">
@@ -381,8 +368,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </Suspense>
               ) : (
               <>
-              {/* Video player — hide if rich_content already embeds this video (avoids duplicate), or if no valid URL */}
-              {!richContentHasVideo && videoInfo && (
+              {/* Video player — primary lesson URL; markdown duplicates same clip are collapsed to a note */}
+              {videoInfo && (
                 <Card>
                   <CardHeader className="py-3 px-4 sm:py-4 sm:px-6">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
@@ -503,10 +490,19 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                             if (hasBlock) return <div className="mb-3 last:mb-0">{children}</div>;
                             return <p className="mb-3 last:mb-0 leading-relaxed text-foreground">{children}</p>;
                           },
-                          // Always embed video links — standalone player deduplication is handled by richContentHasVideo above
                           a: ({ children, href }: any) => {
                             const embedInfo = detectVideoEmbed(href ?? '');
                             if (embedInfo.isVideo && embedInfo.embedUrl) {
+                              if (
+                                currentVideo?.url &&
+                                areSameVideoEmbedSource(href ?? '', currentVideo.url)
+                              ) {
+                                return (
+                                  <span className="my-2 block rounded-md border border-border/60 bg-muted/30 px-3 py-2 text-sm text-muted-foreground">
+                                    Same as the lesson video above — notes continue below.
+                                  </span>
+                                );
+                              }
                               const autoplayUrl = shouldAutoplay
                                 ? `${embedInfo.embedUrl}${embedInfo.embedUrl.includes('?') ? '&' : '?'}autoplay=1`
                                 : embedInfo.embedUrl;

@@ -61,6 +61,39 @@ export function detectVideoEmbed(url: string): VideoEmbedInfo {
   return { isVideo: false };
 }
 
+/**
+ * True when two URLs resolve to the same playable video (YouTube / Vimeo / Loom / same MP4 path).
+ * Used to avoid rendering duplicate players in hero + markdown.
+ */
+export function areSameVideoEmbedSource(urlA: string, urlB: string): boolean {
+  const a = detectVideoEmbed(urlA.trim());
+  const b = detectVideoEmbed(urlB.trim());
+  if (!a.isVideo || !a.embedUrl || !b.isVideo || !b.embedUrl) return false;
+  if (a.platform !== b.platform) return false;
+
+  if (a.platform === "mp4") {
+    const strip = (u: string) => u.trim().split("?")[0].split("#")[0].toLowerCase();
+    return strip(urlA) === strip(urlB);
+  }
+
+  try {
+    const ua = new URL(a.embedUrl);
+    const ub = new URL(b.embedUrl);
+    if (a.platform === "youtube") {
+      return ua.pathname.replace(/\/$/, "") === ub.pathname.replace(/\/$/, "");
+    }
+    if (a.platform === "vimeo") {
+      return `${ua.pathname}${ua.search}` === `${ub.pathname}${ub.search}`;
+    }
+    if (a.platform === "loom") {
+      return ua.pathname.replace(/\/$/, "") === ub.pathname.replace(/\/$/, "");
+    }
+  } catch {
+    return a.embedUrl.split("?")[0] === b.embedUrl.split("?")[0];
+  }
+  return false;
+}
+
 interface VideoEmbedProps {
   embedUrl: string;
   platform: string;
