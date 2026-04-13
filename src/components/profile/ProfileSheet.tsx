@@ -53,6 +53,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   const [roleplayCount, setRoleplayCount] = useState(0);
   const [avgQuizScore, setAvgQuizScore] = useState<number | null>(null);
   const [bestRoleplayScore, setBestRoleplayScore] = useState<number | null>(null);
+  const [lessonProgress, setLessonProgress] = useState<number | null>(null);
 
   const isAdminUser = isMasterAdmin() || hasRole('admin');
 
