@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronRight, Plus, Trash2, GripVertical } from "lucide-react";
+import { ChevronDown, ChevronRight, Plus, Trash2, GripVertical, FileText } from "lucide-react";
 import {
   DndContext,
   closestCenter,
@@ -18,12 +18,14 @@ import { CSS } from "@dnd-kit/utilities";
 import { useAdmin } from "@/hooks/useAdmin";
 import {
   useCreateItem,
+  useCreateItemFromTemplate,
   useUpdatePhase,
   useDeletePhase,
   useReorderItems,
 } from "@/hooks/learning-track/useAdminLearningTrackMutations";
 import { InlineEditableText } from "./InlineEditableText";
 import { LearningItemRow } from "./LearningItemRow";
+import { LEARNING_ITEM_TEMPLATES } from "@/data/learningItemTemplates";
 import type { LearningTrackPhase, LearningTrackItem } from "@/types/learning-track";
 
 interface PhaseSectionProps {
@@ -99,10 +101,12 @@ export function PhaseSection({
   const updatePhase = useUpdatePhase();
   const deletePhase = useDeletePhase();
   const createItem = useCreateItem();
+  const createItemFromTemplate = useCreateItemFromTemplate();
   const reorderItems = useReorderItems();
 
   const [addingItem, setAddingItem] = useState(false);
   const [newItemTitle, setNewItemTitle] = useState("");
+  const [showTemplates, setShowTemplates] = useState(false);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
@@ -127,15 +131,28 @@ export function PhaseSection({
     );
   };
 
+  const nextOrderIndex = () =>
+    phase.items.length > 0
+      ? Math.max(...phase.items.map((i) => i.order_index)) + 1
+      : 0;
+
   const handleAddItem = () => {
     const title = newItemTitle.trim();
     if (!title) return;
-    const nextOrder = phase.items.length > 0
-      ? Math.max(...phase.items.map((i) => i.order_index)) + 1
-      : 0;
-    createItem.mutate({ phase_id: phase.id, title, order_index: nextOrder });
+    createItem.mutate({ phase_id: phase.id, title, order_index: nextOrderIndex() });
     setNewItemTitle("");
     setAddingItem(false);
+  };
+
+  const handleAddFromTemplate = (templateKey: string) => {
+    const template = LEARNING_ITEM_TEMPLATES.find((t) => t.key === templateKey);
+    if (!template) return;
+    createItemFromTemplate.mutate({
+      phase_id: phase.id,
+      order_index: nextOrderIndex(),
+      template,
+    });
+    setShowTemplates(false);
   };
 
   const handleDeletePhase = () => {
@@ -261,14 +278,49 @@ export function PhaseSection({
                     Cancel
                   </button>
                 </div>
+              ) : showTemplates ? (
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-medium text-muted-foreground">
+                      Pick a template
+                    </span>
+                    <button
+                      onClick={() => setShowTemplates(false)}
+                      className="text-xs text-muted-foreground hover:text-foreground"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  <div className="grid gap-1 sm:grid-cols-2">
+                    {LEARNING_ITEM_TEMPLATES.map((t) => (
+                      <button
+                        key={t.key}
+                        onClick={() => handleAddFromTemplate(t.key)}
+                        className="text-left rounded border border-border/60 hover:border-primary/50 hover:bg-muted/40 px-2 py-1.5 transition-colors"
+                      >
+                        <div className="text-xs font-medium">{t.label}</div>
+                        <div className="text-[11px] text-muted-foreground">{t.hint}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
               ) : (
-                <button
-                  onClick={() => setAddingItem(true)}
-                  className="flex items-center gap-1 text-xs text-primary hover:underline"
-                >
-                  <Plus className="h-3 w-3" />
-                  Add item
-                </button>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setAddingItem(true)}
+                    className="flex items-center gap-1 text-xs text-primary hover:underline"
+                  >
+                    <Plus className="h-3 w-3" />
+                    Add item
+                  </button>
+                  <button
+                    onClick={() => setShowTemplates(true)}
+                    className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
+                  >
+                    <FileText className="h-3 w-3" />
+                    From template
+                  </button>
+                </div>
               )}
             </div>
           )}

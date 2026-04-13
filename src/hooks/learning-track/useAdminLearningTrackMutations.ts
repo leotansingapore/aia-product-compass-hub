@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { Track, BlockType } from "@/types/learning-track";
+import type { LearningItemTemplate } from "@/data/learningItemTemplates";
 
 // ---- Phase mutations ----
 
@@ -85,6 +86,63 @@ export function useCreateItem() {
       qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
     },
     onError: () => toast.error("Failed to create item"),
+  });
+}
+
+export function useCreateItemFromTemplate() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      phase_id,
+      order_index,
+      template,
+      titleOverride,
+    }: {
+      phase_id: string;
+      order_index: number;
+      template: LearningItemTemplate;
+      titleOverride?: string;
+    }) => {
+      const title = (titleOverride?.trim() || template.title).trim();
+
+      const { data: item, error: itemError } = await supabase
+        .from("learning_track_items")
+        .insert({
+          phase_id,
+          title,
+          description: template.description ?? null,
+          objectives: template.objectives ?? null,
+          action_items: template.action_items ?? null,
+          requires_submission: template.requires_submission ?? false,
+          order_index,
+        })
+        .select("id")
+        .single();
+      if (itemError) throw itemError;
+
+      const blocks = template.content_blocks ?? [];
+      if (blocks.length > 0) {
+        const rows = blocks.map((b, idx) => ({
+          item_id: item.id,
+          block_type: b.block_type,
+          title: b.title ?? null,
+          body: b.body ?? null,
+          url: b.url ?? null,
+          order_index: idx,
+        }));
+        const { error: blocksError } = await supabase
+          .from("learning_track_content_blocks")
+          .insert(rows);
+        if (blocksError) throw blocksError;
+      }
+
+      return item;
+    },
+    onSuccess: (_, v) => {
+      toast.success(`Item created from "${v.template.label}" template`);
+      qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
+    },
+    onError: () => toast.error("Failed to create item from template"),
   });
 }
 
