@@ -229,8 +229,9 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
               </div>
 
               {/* Activity Stats */}
-              <div className="grid grid-cols-2 gap-3">
-                <StatCard icon={CheckCircle2} label="Quizzes Taken" value={quizCount} sub={avgQuizScore !== null ? `${avgQuizScore}% avg` : undefined} />
+              <div className="grid grid-cols-3 gap-3">
+                <StatCard icon={GraduationCap} label="Lessons" value={lessonProgress !== null ? `${lessonProgress}%` : '—'} sub="completed" />
+                <StatCard icon={CheckCircle2} label="Quizzes" value={quizCount} sub={avgQuizScore !== null ? `${avgQuizScore}% avg` : undefined} />
                 <StatCard icon={Swords} label="Roleplays" value={roleplayCount} sub={bestRoleplayScore !== null ? `Best: ${bestRoleplayScore}%` : undefined} />
               </div>
 
