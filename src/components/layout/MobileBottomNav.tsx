@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Home, Library, FileText, MessageCircle, Grid3X3 } from "lucide-react";
+import { Home, Library, FileText, MessageCircle, Grid3X3, Package } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Bookmark, GraduationCap, BookOpen, GitBranch, TrendingUp, MessageSquarePlus } from "lucide-react";
@@ -8,7 +8,7 @@ import { FeedbackModal } from "@/components/FeedbackButton";
 
 const navigationItems = [
   { name: "Home", href: "/", icon: Home },
-  { name: "CMFAS", href: "/cmfas-exams", icon: GraduationCap },
+  { name: "Products", href: "/categories", icon: Package },
   { name: "Scripts", href: "/scripts", icon: FileText },
   { name: "Roleplay", href: "/roleplay", icon: MessageCircle },
 ];
