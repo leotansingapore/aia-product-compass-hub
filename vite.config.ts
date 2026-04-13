@@ -22,10 +22,30 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        // Ensure proper asset naming for consistent builds
         assetFileNames: 'assets/[name]-[hash][extname]',
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-query': ['@tanstack/react-query'],
+          'vendor-supabase': ['@supabase/supabase-js'],
+          'vendor-tiptap': [
+            '@tiptap/react',
+            '@tiptap/starter-kit',
+            '@tiptap/extension-link',
+            '@tiptap/extension-placeholder',
+            '@tiptap/extension-table',
+            '@tiptap/extension-table-row',
+            '@tiptap/extension-table-cell',
+            '@tiptap/extension-table-header',
+          ],
+          'vendor-dnd': [
+            '@dnd-kit/core',
+            '@dnd-kit/sortable',
+            '@dnd-kit/utilities',
+          ],
+          'vendor-markdown': ['marked', 'dompurify'],
+        },
       },
     },
   },

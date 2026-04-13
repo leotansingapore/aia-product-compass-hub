@@ -16,8 +16,7 @@ import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, Lis
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { marked } from 'marked';
-import TurndownService from 'turndown';
-import { gfm } from 'turndown-plugin-gfm';
+import type TurndownService from 'turndown';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
@@ -31,9 +30,20 @@ interface MinimalRichEditorProps {
   showToolbar?: boolean;
 }
 
-// Configure turndown for clean markdown output
-function createTurndown() {
-  const td = new TurndownService({
+// Configure turndown for clean markdown output — loaded on first use
+let _turndownInstance: TurndownService | null = null;
+async function getTurndown(): Promise<TurndownService> {
+  if (_turndownInstance) return _turndownInstance;
+  const [{ default: TurndownServiceCtor }, { gfm }] = await Promise.all([
+    import('turndown'),
+    import('turndown-plugin-gfm'),
+  ]);
+  _turndownInstance = createTurndown(TurndownServiceCtor, gfm);
+  return _turndownInstance;
+}
+
+function createTurndown(TurndownServiceCtor: typeof TurndownService, gfm: any) {
+  const td = new TurndownServiceCtor({
     headingStyle: 'atx',
     bulletListMarker: '-',
     codeBlockStyle: 'fenced',
@@ -104,8 +114,6 @@ function createTurndown() {
   return td;
 }
 
-const turndown = createTurndown();
-
 // Convert markdown to HTML using marked
 function mdToHtml(md: string): string {
   if (!md) return '';
@@ -144,11 +152,12 @@ function mdToHtml(md: string): string {
   }
 }
 
-// Convert HTML to markdown using turndown
-function htmlToMd(html: string): string {
+// Convert HTML to markdown using turndown (lazy-loaded)
+async function htmlToMd(html: string): Promise<string> {
   if (!html || html === '<p></p>') return '';
   try {
-    return turndown.turndown(html).trim();
+    const td = await getTurndown();
+    return td.turndown(html).trim();
   } catch {
     return html.replace(/<[^>]*>/g, '');
   }
@@ -242,14 +251,14 @@ export function MinimalRichEditor({
           '[&_img]:max-w-full [&_img]:rounded-md [&_img]:my-2',
         ),
       },
-      handleKeyDown: (view, event) => {
+      handleKeyDown: async (view, event) => {
         if ((event.metaKey || event.ctrlKey) && event.key === 'Enter' && onSave) {
           event.preventDefault();
           // Flush any pending content before saving
           dirtyRef.current = true;
           const ed = editorInstanceRef.current;
           if (ed && !ed.isDestroyed) {
-            const md = htmlToMd(ed.getHTML());
+            const md = await htmlToMd(ed.getHTML());
             lastValueRef.current = md;
             onChangeRef.current(md);
             dirtyRef.current = false;
@@ -320,10 +329,10 @@ export function MinimalRichEditor({
       // Flush immediately only after 500ms idle (not every keystroke).
       dirtyRef.current = true;
       if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
-      idleTimerRef.current = setTimeout(() => {
+      idleTimerRef.current = setTimeout(async () => {
         if (!ed.isDestroyed && dirtyRef.current) {
           dirtyRef.current = false;
-          const md = htmlToMd(ed.getHTML());
+          const md = await htmlToMd(ed.getHTML());
           lastValueRef.current = md;
           onChangeRef.current(md);
         }
@@ -332,12 +341,12 @@ export function MinimalRichEditor({
   });
 
   // Flush pending changes — converts HTML to markdown and notifies parent
-  const flushChanges = useCallback(() => {
+  const flushChanges = useCallback(async () => {
     if (idleTimerRef.current) { clearTimeout(idleTimerRef.current); idleTimerRef.current = null; }
     const ed = editorInstanceRef.current;
     if (!dirtyRef.current || !ed || ed.isDestroyed) return;
     dirtyRef.current = false;
-    const md = htmlToMd(ed.getHTML());
+    const md = await htmlToMd(ed.getHTML());
     lastValueRef.current = md;
     onChangeRef.current(md);
   }, []);

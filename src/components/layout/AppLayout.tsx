@@ -10,9 +10,9 @@ import { LogIn, User } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 const ProfileSheet = lazy(() => import("@/components/profile/ProfileSheet").then(m => ({ default: m.ProfileSheet })));
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
-import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
-import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
+const WelcomeModal = lazy(() => import("@/components/onboarding/WelcomeModal").then(m => ({ default: m.WelcomeModal })));
+const OnboardingTutorial = lazy(() => import("@/components/onboarding/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
+const OnboardingHelpButton = lazy(() => import("@/components/onboarding/OnboardingHelpButton").then(m => ({ default: m.OnboardingHelpButton })));
 import { useAdmin } from "@/hooks/useAdmin";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -171,11 +171,12 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         
         <MobileBottomNav />
         
-        {/* Onboarding Components */}
-        <WelcomeModal />
-        <OnboardingTutorial />
-        <OnboardingHelpButton />
-        
+        {/* Onboarding Components — lazy-loaded */}
+        <Suspense fallback={null}>
+          <WelcomeModal />
+          <OnboardingTutorial />
+          <OnboardingHelpButton />
+        </Suspense>
         {profileOpen && (
           <Suspense fallback={null}>
             <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
@@ -215,11 +216,12 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         </SidebarInset>
       </div>
       
-      {/* Onboarding Components */}
-      <WelcomeModal />
-      <OnboardingTutorial />
-      <OnboardingHelpButton />
-      
+      {/* Onboarding Components — lazy-loaded */}
+      <Suspense fallback={null}>
+        <WelcomeModal />
+        <OnboardingTutorial />
+        <OnboardingHelpButton />
+      </Suspense>
       {profileOpen && (
         <Suspense fallback={null}>
           <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />

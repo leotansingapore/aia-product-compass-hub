@@ -18,10 +18,10 @@ import { RequireAuth } from "@/components/RequireAuth";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { RouteTracker } from "@/components/RouteTracker";
 
-import { OnboardingTutorial } from "@/components/onboarding/OnboardingTutorial";
-import { OnboardingHelpButton } from "@/components/onboarding/OnboardingHelpButton";
-import { WelcomeModal } from "@/components/onboarding/WelcomeModal";
-import { NewVersionBanner } from "@/components/NewVersionBanner";
+const OnboardingTutorial = lazy(() => import("@/components/onboarding/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
+const OnboardingHelpButton = lazy(() => import("@/components/onboarding/OnboardingHelpButton").then(m => ({ default: m.OnboardingHelpButton })));
+const WelcomeModal = lazy(() => import("@/components/onboarding/WelcomeModal").then(m => ({ default: m.WelcomeModal })));
+const NewVersionBanner = lazy(() => import("@/components/NewVersionBanner").then(m => ({ default: m.NewVersionBanner })));
 // Eagerly loaded pages (lightweight / critical path)
 import Index from "./pages/Index";
 import SimplifiedAuth from "./pages/SimplifiedAuth";
@@ -160,11 +160,13 @@ const App = () => (
                   </Routes>
                   </Suspense>
 
-                  {/* Enhanced Onboarding Components */}
-                  <OnboardingTutorial />
-                  <OnboardingHelpButton />
-                  <WelcomeModal />
-                  <NewVersionBanner />
+                  {/* Enhanced Onboarding Components — lazy-loaded */}
+                  <Suspense fallback={null}>
+                    <OnboardingTutorial />
+                    <OnboardingHelpButton />
+                    <WelcomeModal />
+                    <NewVersionBanner />
+                  </Suspense>
                   </AppLayout>
                 </ChecklistProvider>
               </OnboardingProvider>
