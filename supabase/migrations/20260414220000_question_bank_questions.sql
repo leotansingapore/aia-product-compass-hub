@@ -30,8 +30,8 @@ create policy "Admins can insert questions"
   with check (
     exists (
       select 1 from public.user_admin_roles
-      where user_id = auth.uid()
-      and role in ('admin', 'master_admin')
+      where user_id = auth.uid()::text
+      and admin_role in ('admin', 'master_admin')
     )
   );
 
@@ -42,8 +42,8 @@ create policy "Admins can update questions"
   using (
     exists (
       select 1 from public.user_admin_roles
-      where user_id = auth.uid()
-      and role in ('admin', 'master_admin')
+      where user_id = auth.uid()::text
+      and admin_role in ('admin', 'master_admin')
     )
   );
 
@@ -54,8 +54,8 @@ create policy "Admins can delete questions"
   using (
     exists (
       select 1 from public.user_admin_roles
-      where user_id = auth.uid()
-      and role in ('admin', 'master_admin')
+      where user_id = auth.uid()::text
+      and admin_role in ('admin', 'master_admin')
     )
   );
 

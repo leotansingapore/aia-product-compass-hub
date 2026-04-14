@@ -4,8 +4,9 @@ import { VideoProgressPanel } from '@/components/admin/VideoProgressPanel';
 import { QuizScoresPanel } from '@/components/admin/QuizScoresPanel';
 import { FeedbackPanel } from '@/components/admin/FeedbackPanel';
 import { ProAchieverLeaderboard } from '@/components/admin/ProAchieverLeaderboard';
+import { QuestionBankManager } from '@/components/admin/QuestionBankManager';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Users, Video, Brain, MessageSquare, Trophy } from 'lucide-react';
+import { Users, Video, Brain, MessageSquare, Trophy, BookOpen } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 
 export default function AdminDashboard() {
@@ -34,6 +35,11 @@ export default function AdminDashboard() {
             <span className="hidden xs:inline sm:inline">Quiz Scores</span>
             <span className="xs:hidden sm:hidden">Quizzes</span>
           </TabsTrigger>
+          <TabsTrigger value="question-bank" className="flex items-center gap-1.5 flex-1 sm:flex-none">
+            <BookOpen className="h-4 w-4 shrink-0" />
+            <span className="hidden xs:inline sm:inline">Question Bank</span>
+            <span className="xs:hidden sm:hidden">Bank</span>
+          </TabsTrigger>
           <TabsTrigger value="leaderboard" className="flex items-center gap-1.5 flex-1 sm:flex-none">
             <Trophy className="h-4 w-4 shrink-0" />
             <span className="hidden xs:inline sm:inline">Leaderboard</span>
@@ -56,6 +62,10 @@ export default function AdminDashboard() {
 
         <TabsContent value="quiz-scores">
           <QuizScoresPanel />
+        </TabsContent>
+
+        <TabsContent value="question-bank">
+          <QuestionBankManager />
         </TabsContent>
 
         <TabsContent value="leaderboard">
