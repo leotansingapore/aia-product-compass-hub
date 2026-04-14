@@ -1,5 +1,7 @@
 import type { BlockType } from "@/types/learning-track";
 
+export type TemplateCategory = "General" | "Lesson" | "Practice" | "Assessment";
+
 /**
  * Learning item templates — boilerplates instructors can pick from when
  * adding a new item to a phase. Add/edit templates here; changes ship
@@ -26,6 +28,8 @@ export interface LearningItemTemplate {
   label: string;
   /** One-line helper shown under the label */
   hint: string;
+  /** Grouping in the picker UI */
+  category: TemplateCategory;
   /** Default title — admins rename after creation */
   title: string;
   description?: string;
@@ -40,12 +44,14 @@ export const LEARNING_ITEM_TEMPLATES: LearningItemTemplate[] = [
     key: "blank",
     label: "Blank item",
     hint: "Title only — fill in the rest inline.",
+    category: "General",
     title: "New item",
   },
   {
     key: "video_lesson",
     label: "Video lesson",
     hint: "Watch a video, then reflect.",
+    category: "Lesson",
     title: "Video lesson: [topic]",
     description: "Watch the video below and note the three key takeaways.",
     objectives: [
@@ -73,6 +79,7 @@ export const LEARNING_ITEM_TEMPLATES: LearningItemTemplate[] = [
     key: "reading",
     label: "Reading / reference",
     hint: "Read a document or external resource.",
+    category: "Lesson",
     title: "Reading: [topic]",
     description: "Review the linked material and be ready to discuss in your next check-in.",
     objectives: [
@@ -94,6 +101,7 @@ export const LEARNING_ITEM_TEMPLATES: LearningItemTemplate[] = [
     key: "roleplay",
     label: "Role-play exercise",
     hint: "Practice a conversation, get scored.",
+    category: "Practice",
     title: "Role-play: [scenario]",
     description: "Run the role-play scenario with the AI avatar and review your feedback.",
     objectives: [
@@ -118,6 +126,7 @@ export const LEARNING_ITEM_TEMPLATES: LearningItemTemplate[] = [
     key: "submission",
     label: "Submission task",
     hint: "Submit work for admin review.",
+    category: "Assessment",
     title: "Submit: [deliverable]",
     description: "Complete the task below and submit your work for review.",
     objectives: [
@@ -141,6 +150,7 @@ export const LEARNING_ITEM_TEMPLATES: LearningItemTemplate[] = [
     key: "knowledge_check",
     label: "Knowledge check / quiz",
     hint: "Short quiz to reinforce learning.",
+    category: "Assessment",
     title: "Knowledge check: [topic]",
     description: "Test your understanding with this short quiz.",
     objectives: [
@@ -162,6 +172,7 @@ export const LEARNING_ITEM_TEMPLATES: LearningItemTemplate[] = [
     key: "checklist",
     label: "Action checklist",
     hint: "Structured list of real-world actions.",
+    category: "Practice",
     title: "Checklist: [goal]",
     description: "Work through the checklist below. Tick each action as you complete it.",
     action_items: [

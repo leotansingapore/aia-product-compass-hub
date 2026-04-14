@@ -25,8 +25,11 @@ import {
 } from "@/hooks/learning-track/useAdminLearningTrackMutations";
 import { InlineEditableText } from "./InlineEditableText";
 import { LearningItemRow } from "./LearningItemRow";
-import { LEARNING_ITEM_TEMPLATES } from "@/data/learningItemTemplates";
+import { TemplatePreviewDialog } from "./TemplatePreviewDialog";
+import { LEARNING_ITEM_TEMPLATES, type TemplateCategory, type LearningItemTemplate } from "@/data/learningItemTemplates";
 import type { LearningTrackPhase, LearningTrackItem } from "@/types/learning-track";
+
+const TEMPLATE_CATEGORY_ORDER: TemplateCategory[] = ["General", "Lesson", "Practice", "Assessment"];
 
 interface PhaseSectionProps {
   phase: LearningTrackPhase;
@@ -107,6 +110,7 @@ export function PhaseSection({
   const [addingItem, setAddingItem] = useState(false);
   const [newItemTitle, setNewItemTitle] = useState("");
   const [showTemplates, setShowTemplates] = useState(false);
+  const [previewTemplate, setPreviewTemplate] = useState<LearningItemTemplate | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
@@ -144,14 +148,14 @@ export function PhaseSection({
     setAddingItem(false);
   };
 
-  const handleAddFromTemplate = (templateKey: string) => {
-    const template = LEARNING_ITEM_TEMPLATES.find((t) => t.key === templateKey);
-    if (!template) return;
+  const handleConfirmTemplate = () => {
+    if (!previewTemplate) return;
     createItemFromTemplate.mutate({
       phase_id: phase.id,
       order_index: nextOrderIndex(),
-      template,
+      template: previewTemplate,
     });
+    setPreviewTemplate(null);
     setShowTemplates(false);
   };
 
@@ -279,10 +283,10 @@ export function PhaseSection({
                   </button>
                 </div>
               ) : showTemplates ? (
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between mb-1">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-muted-foreground">
-                      Pick a template
+                      Pick a template — click to preview before inserting
                     </span>
                     <button
                       onClick={() => setShowTemplates(false)}
@@ -291,34 +295,46 @@ export function PhaseSection({
                       Cancel
                     </button>
                   </div>
-                  <div className="grid gap-1 sm:grid-cols-2">
-                    {LEARNING_ITEM_TEMPLATES.map((t) => (
-                      <button
-                        key={t.key}
-                        onClick={() => handleAddFromTemplate(t.key)}
-                        className="text-left rounded border border-border/60 hover:border-primary/50 hover:bg-muted/40 px-2 py-1.5 transition-colors"
-                      >
-                        <div className="text-xs font-medium">{t.label}</div>
-                        <div className="text-[11px] text-muted-foreground">{t.hint}</div>
-                      </button>
-                    ))}
-                  </div>
+                  {TEMPLATE_CATEGORY_ORDER.map((cat) => {
+                    const items = LEARNING_ITEM_TEMPLATES.filter((t) => t.category === cat);
+                    if (items.length === 0) return null;
+                    return (
+                      <div key={cat}>
+                        <div className="text-[10px] uppercase tracking-wide font-semibold text-muted-foreground/70 mb-1">
+                          {cat}
+                        </div>
+                        <div className="grid gap-1 sm:grid-cols-2">
+                          {items.map((t) => (
+                            <button
+                              key={t.key}
+                              onClick={() => setPreviewTemplate(t)}
+                              className="text-left rounded border border-border/60 hover:border-primary/50 hover:bg-muted/40 px-2 py-1.5 transition-colors"
+                            >
+                              <div className="text-xs font-medium">{t.label}</div>
+                              <div className="text-[11px] text-muted-foreground">{t.hint}</div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               ) : (
                 <div className="flex items-center gap-3">
                   <button
-                    onClick={() => setAddingItem(true)}
+                    onClick={() => setShowTemplates(true)}
                     className="flex items-center gap-1 text-xs text-primary hover:underline"
                   >
-                    <Plus className="h-3 w-3" />
-                    Add item
+                    <FileText className="h-3 w-3" />
+                    Add from template
                   </button>
+                  <span className="text-muted-foreground/40">·</span>
                   <button
-                    onClick={() => setShowTemplates(true)}
+                    onClick={() => setAddingItem(true)}
                     className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
                   >
-                    <FileText className="h-3 w-3" />
-                    From template
+                    <Plus className="h-3 w-3" />
+                    Quick blank item
                   </button>
                 </div>
               )}
@@ -326,6 +342,11 @@ export function PhaseSection({
           )}
         </div>
       )}
+      <TemplatePreviewDialog
+        template={previewTemplate}
+        onConfirm={handleConfirmTemplate}
+        onClose={() => setPreviewTemplate(null)}
+      />
     </section>
   );
 }
