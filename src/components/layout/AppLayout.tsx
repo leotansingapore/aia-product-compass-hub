@@ -1,5 +1,4 @@
 import React, { ReactNode, useEffect, memo, useRef, useState, useCallback, lazy, Suspense } from "react";
-import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
@@ -52,7 +51,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const [profileOpen, setProfileOpen] = useState(false);
   const location = useLocation();
 
-  // Pages that manage their own mobile header (show ScriptsTabBar instead)
+  // Hide generic mobile top bar on script hub routes (each page uses BrandedPageHeader + hub tabs)
   const scriptsRoutes = ['/scripts', '/servicing', '/objections', '/playbooks', '/flows', '/concept-cards'];
   const hideMobileHeader = isMobile && scriptsRoutes.some(r => location.pathname.startsWith(r));
 
@@ -160,12 +159,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
     return (
       <div className="min-h-screen w-full overflow-x-hidden">
         <MobileHeader onAvatarClick={() => setProfileOpen(true)} />
-        {hideMobileHeader && (
-          <div className="sticky top-[57px] z-30 bg-background/95 backdrop-blur-sm border-b border-border">
-            <ScriptsTabBar />
-          </div>
-        )}
-        
+
         <main className="flex-1 pb-20 page-transition">
           {children}
         </main>

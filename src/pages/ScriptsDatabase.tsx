@@ -34,7 +34,7 @@ import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useSc
 import { useScriptFavourites } from "@/hooks/useScriptFavourites";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
-import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
+import { ScriptsHubHeaderTabs } from "@/components/scripts/ScriptsTabBar";
 
 type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "fact-finding" | "tips" | "servicing" | "sales-scripts";
 
@@ -3326,14 +3326,15 @@ export default function ScriptsDatabase() {
       description="Reference scripts for cold calling, follow-up messages, referrals, appointment confirmations, and handling common objections."
     >
       <BrandedPageHeader
-        title="📝 Scripts & Objections"
+        tone="dark"
+        showOnMobile
+        title="Scripts & Objections"
         subtitle="Reference scripts, objection handling, and team knowledge base"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Scripts & Objections" }]}
-        className="hidden sm:block"
+        headerTabs={<ScriptsHubHeaderTabs />}
       />
 
       <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-4xl">
-        <div className="hidden md:block"><ScriptsTabBar /></div>
 
         {activeTab === "objections" ? (
           <ObjectionHandlingDatabase />

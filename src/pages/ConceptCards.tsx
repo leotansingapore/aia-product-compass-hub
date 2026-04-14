@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { BrandedPageHeader } from '@/components/layout/BrandedPageHeader';
-import { ScriptsTabBar } from '@/components/scripts/ScriptsTabBar';
+import { ScriptsHubHeaderTabs } from '@/components/scripts/ScriptsTabBar';
 import { useConceptCards, ConceptCard } from '@/hooks/useConceptCards';
 import { useConceptCardsMutations } from '@/hooks/useConceptCards';
 import { usePermissions } from '@/hooks/usePermissions';
@@ -360,14 +360,15 @@ export default function ConceptCardsPage() {
   return (
     <PageLayout title="Concept Cards — FINternship" description="Visual concept flashcards for financial advisors">
       <BrandedPageHeader
+        tone="dark"
+        showOnMobile
         title="Concept Cards"
-        titlePrefix="🃏 "
         subtitle="Visual concept drawings as flashcards — tap to flip and reveal the drawing"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Concept Cards' }]}
+        headerTabs={<ScriptsHubHeaderTabs />}
       />
 
       <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-5xl overflow-x-hidden">
-        <div className="hidden md:block"><ScriptsTabBar /></div>
 
         {/* Toolbar — row 1: search + filters */}
         <div className="flex flex-col gap-2 mb-3">

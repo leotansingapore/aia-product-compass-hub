@@ -25,7 +25,8 @@ import { AIFlowChat } from '@/components/flows/AIFlowChat';
 import { NodeSearch } from '@/components/flows/controls/NodeSearch';
 import DOMPurify from 'dompurify';
 import { toast } from 'sonner';
-import { ScriptsTabBar } from '@/components/scripts/ScriptsTabBar';
+import { BrandedPageHeader } from '@/components/layout/BrandedPageHeader';
+import { ScriptsHubHeaderTabs } from '@/components/scripts/ScriptsTabBar';
 import { useNavigate, useParams } from 'react-router-dom';
 
 /** Format a date as a human-readable relative time */
@@ -791,8 +792,15 @@ export default function ScriptFlows() {
 
   return (
     <PageLayout title="Script Flows" description="Build visual flowcharts for your sales and prospecting processes">
+      <BrandedPageHeader
+        tone="dark"
+        showOnMobile
+        title="Script Flows"
+        subtitle="Build visual flowcharts for your sales and prospecting processes"
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Flows" }]}
+        headerTabs={<ScriptsHubHeaderTabs />}
+      />
       <div className="px-3 lg:px-6 max-w-5xl mx-auto pb-20">
-      <div className="hidden md:block"><ScriptsTabBar /></div>
       {isLoading ? (
         <div className="text-center py-12 text-muted-foreground">Loading flows...</div>
       ) : (

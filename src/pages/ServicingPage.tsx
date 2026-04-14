@@ -4,7 +4,7 @@ import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
-import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
+import { ScriptsHubHeaderTabs } from "@/components/scripts/ScriptsTabBar";
 import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
 import { useScripts, useScriptsMutations, ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
@@ -771,13 +771,15 @@ export default function ServicingPage() {
       description="Text templates for servicing and communicating with clients."
     >
       <BrandedPageHeader
-        title="🛎️ Servicing Templates"
+        tone="dark"
+        showOnMobile
+        title="Servicing Templates"
         subtitle="Text templates for client communication and policy servicing"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Servicing" }]}
+        headerTabs={<ScriptsHubHeaderTabs />}
       />
 
       <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-4xl">
-        <div className="hidden md:block"><ScriptsTabBar /></div>
 
         {/* Search + Add */}
         <div className="mb-4 sm:mb-5 flex gap-2 sm:gap-3 items-start">

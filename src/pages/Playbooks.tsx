@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -17,25 +17,10 @@ import { usePlaybookPrefs } from "@/hooks/usePlaybookPrefs";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { usePermissions } from "@/hooks/usePermissions";
 import { format } from "date-fns";
-import { ScriptsTabBar } from "@/components/scripts/ScriptsTabBar";
+import { ScriptsHubHeaderTabs } from "@/components/scripts/ScriptsTabBar";
 import { cn } from "@/lib/utils";
 import { Playbook } from "@/hooks/usePlaybooks";
 
-/** Header tab styling — underline style matching Learning Track */
-const SCRIPTS_TAB_NAV_CLASS =
-  "flex w-full flex-nowrap justify-start gap-0 overflow-x-auto sm:gap-6 md:gap-8 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden";
-const SCRIPTS_TAB_LINK_CLASS =
-  "shrink-0 rounded-none border-0 border-b-2 border-transparent bg-transparent px-3 py-2.5 text-sm font-medium text-white/75 shadow-none transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px] sm:min-h-0 sm:px-2 sm:py-3";
-const SCRIPTS_TAB_ACTIVE_CLASS = "border-white text-white";
-
-const SCRIPT_TABS = [
-  { key: "scripts", label: "Sales Scripts", emoji: "📝", path: "/scripts" },
-  { key: "servicing", label: "Servicing", emoji: "🛎️", path: "/servicing" },
-  { key: "objections", label: "Objections", emoji: "🛡️", path: "/objections" },
-  { key: "playbooks", label: "Playbooks", emoji: "📚", path: "/playbooks" },
-  { key: "flows", label: "Flows", emoji: "🔀", path: "/flows" },
-  { key: "concept-cards", label: "Concept Cards", emoji: "🃏", path: "/concept-cards" },
-];
 
 function PlaybookCard({
   pb,
@@ -153,11 +138,8 @@ export default function Playbooks() {
   const { playbooks, isLoading, createPlaybook, updatePlaybook, deletePlaybook, userId } = usePlaybooks();
   const { isFavourite, isHidden, toggleFavourite, toggleHidden } = usePlaybookPrefs();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const canManage = (createdBy: string) => userId === createdBy || isMasterAdmin() || hasRole('admin');
-
-  const currentTabKey = SCRIPT_TABS.find(t => location.pathname.startsWith(t.path))?.key ?? "playbooks";
 
   const [tab, setTab] = useState("mine");
   const [createOpen, setCreateOpen] = useState(false);
@@ -238,20 +220,7 @@ export default function Playbooks() {
         showOnMobile
         title="Script Playbooks"
         subtitle="Create curated collections of scripts for different scenarios"
-        headerTabs={
-          <nav className={SCRIPTS_TAB_NAV_CLASS} aria-label="Sales playbooks sections">
-            {SCRIPT_TABS.map(tab => (
-              <button
-                key={tab.key}
-                onClick={() => navigate(tab.path)}
-                className={cn(SCRIPTS_TAB_LINK_CLASS, currentTabKey === tab.key && SCRIPTS_TAB_ACTIVE_CLASS)}
-              >
-                <span className="mr-1">{tab.emoji}</span>
-                {tab.label}
-              </button>
-            ))}
-          </nav>
-        }
+        headerTabs={<ScriptsHubHeaderTabs />}
       />
 
       <div className="px-3 md:px-6 lg:px-8 max-w-6xl mx-auto pb-20">
