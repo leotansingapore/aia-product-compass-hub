@@ -8,7 +8,7 @@ import {
   useDeleteContentBlock,
 } from "@/hooks/learning-track/useAdminLearningTrackMutations";
 import { InlineEditableText } from "./InlineEditableText";
-import { isVideoUrl } from "@/lib/learning-track-url";
+import { isVideoUrl, isImageUrl } from "@/lib/learning-track-url";
 import type { LearningTrackContentBlock, BlockType } from "@/types/learning-track";
 
 interface Props {
@@ -114,15 +114,26 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
           )}
 
           {b.block_type === "link" && b.url && (
-            <div className="space-y-1">
-              <a
-                href={b.url}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-              >
-                {b.title ?? b.url} <ExternalLink className="h-3 w-3" />
-              </a>
+            <div className="space-y-2">
+              {isImageUrl(b.url) ? (
+                <a href={b.url} target="_blank" rel="noreferrer" className="block">
+                  <img
+                    src={b.url}
+                    alt={b.title ?? "Image"}
+                    className="max-h-64 rounded border object-contain bg-muted/30"
+                    loading="lazy"
+                  />
+                </a>
+              ) : (
+                <a
+                  href={b.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+                >
+                  {b.title ?? b.url} <ExternalLink className="h-3 w-3" />
+                </a>
+              )}
               {isAdmin && (
                 <InlineEditableText
                   value={b.url}
@@ -204,6 +215,11 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
                 {adding === "link" && newUrl.trim() && isVideoUrl(newUrl.trim()) && (
                   <p className="text-[11px] text-amber-600 dark:text-amber-400 mt-1">
                     Detected video link — will be saved as a video block.
+                  </p>
+                )}
+                {adding === "link" && newUrl.trim() && isImageUrl(newUrl.trim()) && (
+                  <p className="text-[11px] text-blue-600 dark:text-blue-400 mt-1">
+                    Detected image — will render inline in the lesson.
                   </p>
                 )}
               </div>
