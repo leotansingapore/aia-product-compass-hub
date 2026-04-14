@@ -84,11 +84,11 @@ export default function ProductExam() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => navigate(`/product/${productSlugOrId}`)}
+              onClick={() => navigate(cameFromQuestionBank ? '/question-banks' : `/product/${productSlugOrId}`)}
               className="mb-3 -ml-2"
             >
               <ArrowLeft className="h-4 w-4 mr-1" />
-              Back to {exam.title}
+              {cameFromQuestionBank ? 'Back to Question Banks' : `Back to ${exam.title}`}
             </Button>
 
             <h1 className="text-2xl sm:text-3xl font-bold mb-2">
