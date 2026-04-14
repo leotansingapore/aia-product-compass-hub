@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Home, Library, FileText, MessageCircle, Grid3X3, Package } from "lucide-react";
+import { Home, Library, FileText, MessageCircle, Grid3X3, Package, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Bookmark, GraduationCap, BookOpen, GitBranch, TrendingUp, MessageSquarePlus } from "lucide-react";
@@ -10,15 +10,15 @@ const navigationItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "Products", href: "/category/core-products", icon: Package },
   { name: "Scripts", href: "/scripts", icon: FileText },
-  { name: "Roleplay", href: "/roleplay", icon: MessageCircle },
+  { name: "Q-Banks", href: "/question-banks", icon: HelpCircle },
 ];
 
 const FEEDBACK_HREF = "__feedback__" as const;
 
 const quickLinkItems = [
+  { name: "Roleplay", href: "/roleplay", icon: MessageCircle, color: "text-purple-500", bg: "bg-purple-50 dark:bg-purple-950/30" },
   { name: "Feedback", href: FEEDBACK_HREF, icon: MessageSquarePlus, color: "text-slate-600", bg: "bg-slate-100 dark:bg-slate-900/40" },
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30" },
-  
   { name: "Learning Track", href: "/learning-track", icon: Library, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
   { name: "Categories", href: "/categories", icon: Library, color: "text-teal-500", bg: "bg-teal-50 dark:bg-teal-950/30" },
   { name: "Playbooks", href: "/playbooks", icon: BookOpen, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-950/30" },
