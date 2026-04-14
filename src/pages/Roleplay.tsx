@@ -90,7 +90,7 @@ export default function Roleplay() {
       <div className="mx-auto px-3 sm:px-6 py-3 sm:py-6 md:py-8 pb-20 sm:pb-8">
         <Tabs value={activeTab} onValueChange={handleTabChange}>
           <TabsContent value="roleplay" className="space-y-3 sm:space-y-8 md:space-y-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-5 md:gap-6">
+            <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-5 md:gap-6">
               {scenarios.map((scenario) => (
                 <RoleplayScenarioCard
                   key={scenario.id}
