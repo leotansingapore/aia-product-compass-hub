@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { Track, BlockType } from "@/types/learning-track";
 import type { LearningItemTemplate } from "@/data/learningItemTemplates";
+import type { ParsedItem } from "@/lib/parseLearningItemsMarkdown";
 
 // ---- Phase mutations ----
 
@@ -291,6 +292,82 @@ export function useDeleteItem() {
       qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
     },
     onError: () => toast.error("Failed to delete item"),
+  });
+}
+
+export function useBulkImportItems() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      phase_id,
+      items,
+    }: {
+      phase_id: string;
+      items: ParsedItem[];
+    }) => {
+      if (items.length === 0) return { inserted: 0 };
+
+      const { data: existing, error: existErr } = await supabase
+        .from("learning_track_items")
+        .select("order_index")
+        .eq("phase_id", phase_id)
+        .order("order_index", { ascending: false })
+        .limit(1);
+      if (existErr) throw existErr;
+      const startOrder = existing && existing.length > 0 ? existing[0].order_index + 1 : 0;
+
+      const itemInserts = items.map((it, idx) => ({
+        phase_id,
+        title: it.title,
+        description: it.description ?? null,
+        objectives: it.objectives.length > 0 ? it.objectives : null,
+        action_items: it.action_items.length > 0 ? it.action_items : null,
+        requires_submission: false,
+        order_index: startOrder + idx,
+      }));
+
+      const { data: inserted, error: insErr } = await supabase
+        .from("learning_track_items")
+        .insert(itemInserts)
+        .select("id");
+      if (insErr) throw insErr;
+      if (!inserted) return { inserted: 0 };
+
+      const blockRows: Array<{
+        item_id: string;
+        block_type: "text" | "link" | "video";
+        title: string | null;
+        body: string | null;
+        url: string | null;
+        order_index: number;
+      }> = [];
+      items.forEach((it, idx) => {
+        it.content_blocks.forEach((b, bIdx) => {
+          blockRows.push({
+            item_id: inserted[idx].id,
+            block_type: b.block_type,
+            title: b.title ?? null,
+            body: b.body ?? null,
+            url: b.url ?? null,
+            order_index: bIdx,
+          });
+        });
+      });
+
+      if (blockRows.length > 0) {
+        const { error: blocksErr } = await supabase
+          .from("learning_track_content_blocks")
+          .insert(blockRows);
+        if (blocksErr) throw blocksErr;
+      }
+
+      return { inserted: inserted.length };
+    },
+    onSuccess: (res) => {
+      toast.success(`Imported ${res.inserted} item${res.inserted === 1 ? "" : "s"}`);
+      qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
+    },
+    onError: () => toast.error("Failed to import items"),
   });
 }
 

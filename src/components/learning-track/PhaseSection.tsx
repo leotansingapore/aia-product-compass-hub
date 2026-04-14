@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronRight, Plus, Trash2, GripVertical, FileText, Copy } from "lucide-react";
+import { ChevronDown, ChevronRight, Plus, Trash2, GripVertical, FileText, Copy, Upload } from "lucide-react";
 import {
   DndContext,
   closestCenter,
@@ -28,6 +28,7 @@ import type { Track } from "@/types/learning-track";
 import { InlineEditableText } from "./InlineEditableText";
 import { LearningItemRow } from "./LearningItemRow";
 import { TemplatePreviewDialog } from "./TemplatePreviewDialog";
+import { BulkImportDialog } from "./BulkImportDialog";
 import { LEARNING_ITEM_TEMPLATES, type TemplateCategory, type LearningItemTemplate } from "@/data/learningItemTemplates";
 import type { LearningTrackPhase, LearningTrackItem } from "@/types/learning-track";
 
@@ -114,6 +115,7 @@ export function PhaseSection({
   const [newItemTitle, setNewItemTitle] = useState("");
   const [showTemplates, setShowTemplates] = useState(false);
   const [previewTemplate, setPreviewTemplate] = useState<LearningItemTemplate | null>(null);
+  const [bulkImportOpen, setBulkImportOpen] = useState(false);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
@@ -359,6 +361,14 @@ export function PhaseSection({
                     <Plus className="h-3 w-3" />
                     Quick blank item
                   </button>
+                  <span className="text-muted-foreground/40">·</span>
+                  <button
+                    onClick={() => setBulkImportOpen(true)}
+                    className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
+                  >
+                    <Upload className="h-3 w-3" />
+                    Bulk import
+                  </button>
                 </div>
               )}
             </div>
@@ -369,6 +379,12 @@ export function PhaseSection({
         template={previewTemplate}
         onConfirm={handleConfirmTemplate}
         onClose={() => setPreviewTemplate(null)}
+      />
+      <BulkImportDialog
+        open={bulkImportOpen}
+        onClose={() => setBulkImportOpen(false)}
+        phaseId={phase.id}
+        phaseTitle={phase.title}
       />
     </section>
   );
