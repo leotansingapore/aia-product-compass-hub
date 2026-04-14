@@ -24,7 +24,10 @@ export function SubModulesSection({ parentProductId }: SubModulesSectionProps) {
         .order('title', { ascending: true });
 
       if (!error && data) {
-        setSubModules(data.map(p => ({
+        // Guard against self-referencing rows (a product listing itself as its own sub-module)
+        // and duplicate-title rows that share the parent's title.
+        const filtered = data.filter(p => p.id !== parentProductId);
+        setSubModules(filtered.map(p => ({
           ...p,
           training_videos: Array.isArray(p.training_videos) ? (p.training_videos as unknown as Product['training_videos']) : [],
         })) as unknown as Product[]);

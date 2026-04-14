@@ -161,6 +161,25 @@ export default function ProductDetail() {
   const showContinueLearning = hasStudyProduct || hasExamProduct;
   const continueOriginalSlug = getOriginalSlug(product.id);
 
+  // Count product-level resources so the Resources tab can show a badge.
+  // useful_links can be: flat array | { type: 'with_files', links, files } | { type: 'folder_structure', folders: [{ links }] }
+  const resourceCount = (() => {
+    const raw: any = product.useful_links;
+    if (!raw) return 0;
+    if (Array.isArray(raw)) return raw.length;
+    if (raw.type === "with_files") {
+      return (Array.isArray(raw.links) ? raw.links.length : 0) +
+        (Array.isArray(raw.files) ? raw.files.length : 0);
+    }
+    if (raw.type === "folder_structure" && Array.isArray(raw.folders)) {
+      return raw.folders.reduce(
+        (sum: number, f: any) => sum + (Array.isArray(f?.links) ? f.links.length : 0),
+        0,
+      );
+    }
+    return 0;
+  })();
+
   return (
     <ProtectedPage pageId="product-detail">
       <PageLayout
@@ -231,6 +250,7 @@ export default function ProductDetail() {
                   hasStudy={hasStudyProduct}
                   hasExam={hasExamProduct}
                   originalSlug={continueOriginalSlug}
+                  resourceCount={resourceCount}
                   tabResources={
                     <ProductUsefulLinks
                       links={product.useful_links || []}

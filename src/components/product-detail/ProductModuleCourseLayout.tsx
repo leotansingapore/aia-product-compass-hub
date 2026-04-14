@@ -94,6 +94,8 @@ export interface ProductModuleCourseLayoutProps {
   hasExam?: boolean;
   /** Route slug for study/exam links (e.g. 'pro-achiever') */
   originalSlug?: string;
+  /** Count of product-level resources (links + files). Drives the Resources tab badge. */
+  resourceCount?: number;
 }
 
 export function ProductModuleCourseLayout({
@@ -107,11 +109,14 @@ export function ProductModuleCourseLayout({
   hasStudy,
   hasExam,
   originalSlug,
+  resourceCount = 0,
 }: ProductModuleCourseLayoutProps) {
+  const resourcesLabel = resourceCount > 0 ? `Resources (${resourceCount})` : "Resources";
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [outlineOpen, setOutlineOpen] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [shouldAutoplay, setShouldAutoplay] = useState(false);
+  const [activeTab, setActiveTab] = useState<"course-content" | "resources" | "my-notes">(defaultTab);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const { getVideoProgress, markVideoComplete, updateVideoProgress, getCourseProgress } =
@@ -624,6 +629,22 @@ export function ProductModuleCourseLayout({
         <p className="text-sm leading-relaxed text-muted-foreground">{currentVideo.description}</p>
       ) : null}
       {courseContentInner}
+      {resourceCount > 0 && (
+        <button
+          type="button"
+          onClick={() => setActiveTab("resources")}
+          className="flex w-full items-center justify-between gap-3 rounded-md border border-dashed bg-muted/40 px-4 py-3 text-left transition-colors hover:bg-muted"
+        >
+          <span className="flex items-center gap-2">
+            <Link2 className="h-4 w-4 text-primary" />
+            <span className="text-sm font-medium">Product resources</span>
+            <span className="text-xs text-muted-foreground">
+              {resourceCount} {resourceCount === 1 ? "item" : "items"}
+            </span>
+          </span>
+          <ChevronRight className="h-4 w-4 text-muted-foreground" />
+        </button>
+      )}
     </div>
   );
 
@@ -649,7 +670,7 @@ export function ProductModuleCourseLayout({
 
         {/* ── Right main content ── */}
         <main className="flex-1 min-w-0 overflow-y-auto">
-          <Tabs defaultValue={defaultTab} className="w-full min-w-0">
+          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as typeof activeTab)} className="w-full min-w-0">
             {useZincLessonChrome ? (
               <div className="bg-zinc-950">
                 <div className="p-4">{lessonHeroMain}</div>
@@ -661,7 +682,7 @@ export function ProductModuleCourseLayout({
                         Course content
                       </TabsTrigger>
                       <TabsTrigger value="resources" className="min-h-10 text-sm">
-                        Resources
+                        {resourcesLabel}
                       </TabsTrigger>
                       <TabsTrigger value="my-notes" className="min-h-10 text-sm">
                         My notes
@@ -680,7 +701,7 @@ export function ProductModuleCourseLayout({
                         Course content
                       </TabsTrigger>
                       <TabsTrigger value="resources" className="min-h-10 text-sm">
-                        Resources
+                        {resourcesLabel}
                       </TabsTrigger>
                       <TabsTrigger value="my-notes" className="min-h-10 text-sm">
                         My notes
@@ -712,7 +733,7 @@ export function ProductModuleCourseLayout({
           MOBILE / TABLET: Original stacked layout with Sheet drawer
          ═══════════════════════════════════════════════════════════ */}
       <div className="lg:hidden">
-        <Tabs defaultValue={defaultTab} className="w-full min-w-0">
+        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as typeof activeTab)} className="w-full min-w-0">
           {/* Lesson bar + video + nav + tab strip (stacked under player when embed exists) */}
           <div
             className={cn(
@@ -809,7 +830,7 @@ export function ProductModuleCourseLayout({
                     value="resources"
                     className="min-h-[44px] shrink-0 justify-center whitespace-nowrap px-2 text-xs sm:min-h-10 sm:px-3 sm:text-sm"
                   >
-                    Resources
+                    {resourcesLabel}
                   </TabsTrigger>
                   <TabsTrigger
                     value="my-notes"
