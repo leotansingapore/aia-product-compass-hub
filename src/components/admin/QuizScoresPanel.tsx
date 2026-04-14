@@ -105,12 +105,18 @@ function UserQuizMobileCard({ stat }: { stat: UserQuizStat }) {
                   Best: {pb.best_score}/{pb.best_total} ({pb.best_score_pct}%)
                 </span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mb-1.5">
                 <Progress value={pb.best_score_pct} className="h-1.5 flex-1" />
                 <span className="text-xs text-muted-foreground w-16 text-right">
                   {pb.attempts} attempt{pb.attempts !== 1 ? 's' : ''}
                 </span>
               </div>
+              {pb.study_total > 0 && (
+                <div className="text-xs text-muted-foreground flex items-center gap-1">
+                  <Trophy className="h-3 w-3 text-yellow-500" />
+                  Mastery: {pb.mastered_count}/{pb.study_total} ({Math.round((pb.mastered_count / pb.study_total) * 100)}%)
+                </div>
+              )}
             </div>
           ))}
           <p className="text-xs text-muted-foreground pt-1">
@@ -183,6 +189,14 @@ function UserQuizRow({ stat }: { stat: UserQuizStat }) {
                       <Trophy className="h-3 w-3" />
                       <span>Best: {pb.best_score}/{pb.best_total} ({pb.best_score_pct}%)</span>
                     </div>
+                    {pb.study_total > 0 && (
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
+                        <Trophy className="h-3 w-3 text-yellow-500" />
+                        <span>
+                          Mastery: {pb.mastered_count}/{pb.study_total} ({Math.round((pb.mastered_count / pb.study_total) * 100)}%)
+                        </span>
+                      </div>
+                    )}
                     <div className="flex flex-col items-end gap-1 shrink-0">
                       <Progress value={pb.best_score_pct} className="h-1.5 w-20" />
                       <span className="text-xs text-muted-foreground">Avg {pb.avg_score_pct}%</span>
