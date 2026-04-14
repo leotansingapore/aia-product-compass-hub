@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronRight, Plus, Trash2, GripVertical, FileText } from "lucide-react";
+import { ChevronDown, ChevronRight, Plus, Trash2, GripVertical, FileText, Copy } from "lucide-react";
 import {
   DndContext,
   closestCenter,
@@ -21,8 +21,10 @@ import {
   useCreateItemFromTemplate,
   useUpdatePhase,
   useDeletePhase,
+  useDuplicatePhase,
   useReorderItems,
 } from "@/hooks/learning-track/useAdminLearningTrackMutations";
+import type { Track } from "@/types/learning-track";
 import { InlineEditableText } from "./InlineEditableText";
 import { LearningItemRow } from "./LearningItemRow";
 import { TemplatePreviewDialog } from "./TemplatePreviewDialog";
@@ -103,6 +105,7 @@ export function PhaseSection({
 
   const updatePhase = useUpdatePhase();
   const deletePhase = useDeletePhase();
+  const duplicatePhase = useDuplicatePhase();
   const createItem = useCreateItem();
   const createItemFromTemplate = useCreateItemFromTemplate();
   const reorderItems = useReorderItems();
@@ -164,6 +167,15 @@ export function PhaseSection({
     deletePhase.mutate(phase.id);
   };
 
+  const handleCopyPhase = (targetTrack: Track) => {
+    const trackLabel = targetTrack === "pre_rnf" ? "Pre-RNF" : "Post-RNF";
+    if (!confirm(`Copy "${phase.title}" and all items to ${trackLabel}?`)) return;
+    duplicatePhase.mutate({ sourcePhaseId: phase.id, targetTrack });
+  };
+
+  const otherTrack: Track = phase.track === "pre_rnf" ? "post_rnf" : "pre_rnf";
+  const otherTrackLabel = otherTrack === "pre_rnf" ? "Pre-RNF" : "Post-RNF";
+
   const showAdmin = isAdmin && !readOnly;
 
   return (
@@ -206,14 +218,25 @@ export function PhaseSection({
         </div>
         <div className="flex items-center gap-2 shrink-0">
           {showAdmin && (
-            <button
-              type="button"
-              onClick={(e) => { e.stopPropagation(); handleDeletePhase(); }}
-              className="h-6 w-6 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
-              aria-label="Delete phase"
-            >
-              <Trash2 className="h-3.5 w-3.5" />
-            </button>
+            <>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); handleCopyPhase(otherTrack); }}
+                className="h-6 w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+                aria-label={`Copy phase to ${otherTrackLabel}`}
+                title={`Copy entire phase to ${otherTrackLabel}`}
+              >
+                <Copy className="h-3.5 w-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); handleDeletePhase(); }}
+                className="h-6 w-6 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
+                aria-label="Delete phase"
+              >
+                <Trash2 className="h-3.5 w-3.5" />
+              </button>
+            </>
           )}
           <span className="rounded-full bg-muted px-2 py-1 text-xs font-medium">
             {completedCount} / {phase.items.length}

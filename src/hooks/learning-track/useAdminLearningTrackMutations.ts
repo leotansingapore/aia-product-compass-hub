@@ -28,6 +28,111 @@ export function useCreatePhase() {
   });
 }
 
+export function useDuplicatePhase() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      sourcePhaseId,
+      targetTrack,
+    }: {
+      sourcePhaseId: string;
+      targetTrack: Track;
+    }) => {
+      const { data: source, error: srcErr } = await supabase
+        .from("learning_track_phases")
+        .select("track, title, description")
+        .eq("id", sourcePhaseId)
+        .single();
+      if (srcErr) throw srcErr;
+
+      const { data: existing, error: existErr } = await supabase
+        .from("learning_track_phases")
+        .select("order_index")
+        .eq("track", targetTrack)
+        .order("order_index", { ascending: false })
+        .limit(1);
+      if (existErr) throw existErr;
+      const nextOrder = existing && existing.length > 0 ? existing[0].order_index + 1 : 0;
+
+      const titleSuffix = source.track === targetTrack ? " (copy)" : "";
+      const { data: newPhase, error: phaseErr } = await supabase
+        .from("learning_track_phases")
+        .insert({
+          track: targetTrack,
+          title: `${source.title}${titleSuffix}`,
+          description: source.description,
+          order_index: nextOrder,
+        })
+        .select("id")
+        .single();
+      if (phaseErr) throw phaseErr;
+
+      // Fetch source items and their blocks
+      const { data: items, error: itemsErr } = await supabase
+        .from("learning_track_items")
+        .select(
+          "id, title, description, objectives, action_items, requires_submission, hidden_resources, order_index"
+        )
+        .eq("phase_id", sourcePhaseId)
+        .order("order_index", { ascending: true });
+      if (itemsErr) throw itemsErr;
+      if (!items || items.length === 0) return newPhase;
+
+      // Insert cloned items
+      const itemInserts = items.map((it, idx) => ({
+        phase_id: newPhase.id,
+        title: it.title,
+        description: it.description,
+        objectives: it.objectives,
+        action_items: it.action_items,
+        requires_submission: it.requires_submission,
+        hidden_resources: it.hidden_resources,
+        order_index: idx,
+      }));
+      const { data: newItems, error: insItemsErr } = await supabase
+        .from("learning_track_items")
+        .insert(itemInserts)
+        .select("id");
+      if (insItemsErr) throw insItemsErr;
+
+      // Fetch source blocks
+      const sourceItemIds = items.map((i) => i.id);
+      const { data: blocks, error: blocksErr } = await supabase
+        .from("learning_track_content_blocks")
+        .select("item_id, block_type, title, body, url, resource_type, resource_id, order_index")
+        .in("item_id", sourceItemIds)
+        .order("order_index", { ascending: true });
+      if (blocksErr) throw blocksErr;
+
+      if (blocks && blocks.length > 0 && newItems) {
+        const idMap = new Map<string, string>();
+        items.forEach((it, idx) => idMap.set(it.id, newItems[idx].id));
+        const blockRows = blocks.map((b) => ({
+          item_id: idMap.get(b.item_id)!,
+          block_type: b.block_type,
+          title: b.title,
+          body: b.body,
+          url: b.url,
+          resource_type: b.resource_type,
+          resource_id: b.resource_id,
+          order_index: b.order_index,
+        }));
+        const { error: insBlocksErr } = await supabase
+          .from("learning_track_content_blocks")
+          .insert(blockRows);
+        if (insBlocksErr) throw insBlocksErr;
+      }
+
+      return newPhase;
+    },
+    onSuccess: (_, v) => {
+      toast.success(`Phase copied to ${v.targetTrack === "pre_rnf" ? "Pre-RNF" : "Post-RNF"}`);
+      qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
+    },
+    onError: () => toast.error("Failed to copy phase"),
+  });
+}
+
 export function useUpdatePhase() {
   const qc = useQueryClient();
   return useMutation({
