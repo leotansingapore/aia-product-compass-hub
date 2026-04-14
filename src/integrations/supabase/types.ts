@@ -884,6 +884,39 @@ export type Database = {
         }
         Relationships: []
       }
+      learning_track_activity_log: {
+        Row: {
+          action: string
+          created_at: string
+          diff: Json | null
+          entity_id: string
+          entity_type: string
+          id: string
+          track: string | null
+          user_id: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          diff?: Json | null
+          entity_id: string
+          entity_type: string
+          id?: string
+          track?: string | null
+          user_id: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          diff?: Json | null
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          track?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       learning_track_content_blocks: {
         Row: {
           block_type: string
@@ -931,6 +964,41 @@ export type Database = {
           },
         ]
       }
+      learning_track_item_revisions: {
+        Row: {
+          change_reason: string | null
+          changed_by: string | null
+          created_at: string
+          id: string
+          item_id: string
+          snapshot: Json
+        }
+        Insert: {
+          change_reason?: string | null
+          changed_by?: string | null
+          created_at?: string
+          id?: string
+          item_id: string
+          snapshot: Json
+        }
+        Update: {
+          change_reason?: string | null
+          changed_by?: string | null
+          created_at?: string
+          id?: string
+          item_id?: string
+          snapshot?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_track_item_revisions_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "learning_track_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learning_track_items: {
         Row: {
           action_items: string[] | null
@@ -942,6 +1010,7 @@ export type Database = {
           objectives: string[] | null
           order_index: number
           phase_id: string
+          published_at: string | null
           requires_submission: boolean
           title: string
           updated_at: string
@@ -956,6 +1025,7 @@ export type Database = {
           objectives?: string[] | null
           order_index: number
           phase_id: string
+          published_at?: string | null
           requires_submission?: boolean
           title: string
           updated_at?: string
@@ -970,6 +1040,7 @@ export type Database = {
           objectives?: string[] | null
           order_index?: number
           phase_id?: string
+          published_at?: string | null
           requires_submission?: boolean
           title?: string
           updated_at?: string
@@ -1011,6 +1082,7 @@ export type Database = {
           description: string | null
           id: string
           order_index: number
+          published_at: string | null
           title: string
           track: string
           updated_at: string
@@ -1020,6 +1092,7 @@ export type Database = {
           description?: string | null
           id?: string
           order_index: number
+          published_at?: string | null
           title: string
           track: string
           updated_at?: string
@@ -1029,6 +1102,7 @@ export type Database = {
           description?: string | null
           id?: string
           order_index?: number
+          published_at?: string | null
           title?: string
           track?: string
           updated_at?: string
@@ -1175,6 +1249,57 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      learning_track_templates: {
+        Row: {
+          action_items: string[] | null
+          category: string
+          content_blocks: Json | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          hint: string | null
+          id: string
+          key: string
+          label: string
+          objectives: string[] | null
+          requires_submission: boolean
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          action_items?: string[] | null
+          category: string
+          content_blocks?: Json | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          hint?: string | null
+          id?: string
+          key: string
+          label: string
+          objectives?: string[] | null
+          requires_submission?: boolean
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          action_items?: string[] | null
+          category?: string
+          content_blocks?: Json | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          hint?: string | null
+          id?: string
+          key?: string
+          label?: string
+          objectives?: string[] | null
+          requires_submission?: boolean
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       mentor_annotations: {
         Row: {
@@ -2749,6 +2874,7 @@ export type Database = {
           source_type: string
         }[]
       }
+      lt_build_item_snapshot: { Args: { p_item_id: string }; Returns: Json }
       match_knowledge_chunks: {
         Args: {
           filter_product_id?: string
