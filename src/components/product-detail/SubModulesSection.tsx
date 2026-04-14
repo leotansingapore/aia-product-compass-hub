@@ -47,19 +47,29 @@ export function SubModulesSection({ parentProductId }: SubModulesSectionProps) {
         <span className="text-xs text-muted-foreground">({subModules.length})</span>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-        {subModules.map(sub => (
-          <ProductCard
-            key={sub.id}
-            title={sub.title}
-            description={sub.description || ''}
-            category={(sub as any).categories?.name || ''}
-            tags={sub.tags || []}
-            highlights={sub.highlights || []}
-            onClick={() => navigate(`/product/${sub.id}`)}
-            productId={sub.id}
-            published={sub.published}
-          />
-        ))}
+        {subModules.map(sub => {
+          // When a child ID is just `core-<parent>`, the title is typically identical to
+          // the parent's. Prefix "Core version -" so learners can tell them apart.
+          const isCoreVariant =
+            typeof sub.id === 'string' &&
+            sub.id === `core-${parentProductId}`;
+          const displayTitle = isCoreVariant && !/^core/i.test(sub.title)
+            ? `Core version - ${sub.title}`
+            : sub.title;
+          return (
+            <ProductCard
+              key={sub.id}
+              title={displayTitle}
+              description={sub.description || ''}
+              category={(sub as any).categories?.name || ''}
+              tags={sub.tags || []}
+              highlights={sub.highlights || []}
+              onClick={() => navigate(`/product/${sub.id}`)}
+              productId={sub.id}
+              published={sub.published}
+            />
+          );
+        })}
       </div>
     </div>
   );
