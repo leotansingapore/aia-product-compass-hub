@@ -120,7 +120,7 @@ export function useSaveItemAsTemplate() {
         objectives: item.objectives,
         action_items: item.action_items,
         requires_submission: item.requires_submission,
-        content_blocks: contentBlocks.length > 0 ? (contentBlocks as unknown as Json) : null,
+        content_blocks: contentBlocks.length > 0 ? contentBlocks : null,
       } as any);
       if (insErr) throw insErr;
     },
