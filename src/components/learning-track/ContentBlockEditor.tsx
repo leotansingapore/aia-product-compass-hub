@@ -177,13 +177,21 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
               autoFocus
             />
             {adding === "text" && (
-              <textarea
-                value={newBody}
-                onChange={(e) => setNewBody(e.target.value)}
-                placeholder="Body text (markdown supported)"
-                className="w-full bg-transparent border-b border-primary/30 outline-none text-sm py-1 resize-none"
-                rows={3}
-              />
+              <div>
+                <textarea
+                  value={newBody}
+                  onChange={(e) => setNewBody(e.target.value)}
+                  placeholder="Body text (markdown supported)"
+                  className="w-full bg-transparent border-b border-primary/30 outline-none text-sm py-1 resize-none"
+                  rows={3}
+                />
+                <p className="text-[11px] text-muted-foreground mt-1">
+                  Markdown: <code className="px-1 rounded bg-muted">**bold**</code>{" "}
+                  <code className="px-1 rounded bg-muted">*italic*</code>{" "}
+                  <code className="px-1 rounded bg-muted">[link](url)</code>{" "}
+                  <code className="px-1 rounded bg-muted">- bullet</code>
+                </p>
+              </div>
             )}
             {(adding === "link" || adding === "video") && (
               <div>
