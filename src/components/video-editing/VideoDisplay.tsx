@@ -48,19 +48,29 @@ function VideoItem({ video }: VideoItemProps) {
         )}
       </div>
       {videoInfo ? (
-        <div 
+        <div
           ref={containerRef}
           className="group relative aspect-video rounded-lg overflow-hidden bg-black"
           style={{ height: isFullscreen ? '100vh' : undefined }}
         >
-          <iframe
-            src={videoInfo.embedUrl}
-            title={video.title}
-            className="w-full h-full"
-            style={{ borderRadius: isFullscreen ? '0' : undefined }}
-            allowFullScreen
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          />
+          {videoInfo.type === 'mp4' ? (
+            <video
+              src={videoInfo.embedUrl}
+              title={video.title}
+              className="w-full h-full"
+              controls
+              preload="metadata"
+            />
+          ) : (
+            <iframe
+              src={videoInfo.embedUrl}
+              title={video.title}
+              className="w-full h-full"
+              style={{ borderRadius: isFullscreen ? '0' : undefined }}
+              allowFullScreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            />
+          )}
           <Button
             variant="ghost"
             size="icon"

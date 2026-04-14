@@ -8,6 +8,7 @@ import { ProtectedPage } from '@/components/ProtectedPage';
 import { proLifetimeProtectorStudyBank } from '@/data/proLifetimeProtectorStudyBank';
 import { StudyQuiz, loadWeakQuestions } from '@/components/study/StudyQuiz';
 import { ArrowLeft, BookOpen, Brain, Target, Shield, MessageCircle, Shuffle, AlertTriangle } from 'lucide-react';
+import { StudyResourcesSidebar } from '@/components/study/StudyResourcesSidebar';
 
 type QuizSize = 25 | 50 | 100;
 type CategoryFilter = 'all' | 'product-facts' | 'sales-angles' | 'objection-handling' | 'roleplay';
@@ -112,7 +113,9 @@ export default function ProLifetimeProtectorStudy() {
         title="Pro Lifetime Protector Study Bank | FINternship"
         description="Study Pro Lifetime Protector product knowledge with practice questions."
       >
-        <div className="max-w-3xl mx-auto px-3 sm:px-6 py-4 sm:py-8 animate-fade-in">
+        <div className="max-w-5xl mx-auto px-3 sm:px-6 py-4 sm:py-8 animate-fade-in">
+          <div className="flex flex-col lg:flex-row gap-6">
+          <div className="flex-1 min-w-0">
           <Button
             variant="ghost"
             size="sm"
@@ -226,6 +229,13 @@ export default function ProLifetimeProtectorStudy() {
             >
               Take the Actual Exam
             </Button>
+          </div>
+          </div>
+          <div className="w-full lg:w-64 shrink-0 order-first lg:order-last">
+            <div className="lg:sticky lg:top-20">
+              <StudyResourcesSidebar productSlug="pro-lifetime-protector" />
+            </div>
+          </div>
           </div>
         </div>
       </PageLayout>
