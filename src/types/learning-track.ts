@@ -35,6 +35,7 @@ export interface LearningTrackItem {
   requires_submission: boolean;
   hidden_resources: string[];
   legacy_id: string | null;
+  published_at: string | null;
   content_blocks: LearningTrackContentBlock[];
 }
 
@@ -44,5 +45,6 @@ export interface LearningTrackPhase {
   order_index: number;
   title: string;
   description: string | null;
+  published_at: string | null;
   items: LearningTrackItem[];
 }

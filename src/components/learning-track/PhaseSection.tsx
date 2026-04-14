@@ -29,6 +29,7 @@ import { InlineEditableText } from "./InlineEditableText";
 import { LearningItemRow } from "./LearningItemRow";
 import { TemplatePreviewDialog } from "./TemplatePreviewDialog";
 import { BulkImportDialog } from "./BulkImportDialog";
+import { PublishToggle } from "./PublishToggle";
 import { LEARNING_ITEM_TEMPLATES, type TemplateCategory, type LearningItemTemplate } from "@/data/learningItemTemplates";
 import { useCustomTemplates, useDeleteCustomTemplate } from "@/hooks/learning-track/useCustomTemplates";
 import type { LearningTrackPhase, LearningTrackItem } from "@/types/learning-track";
@@ -249,6 +250,10 @@ export function PhaseSection({
         <div className="flex items-center gap-2 shrink-0">
           {showAdmin && (
             <>
+              <PublishToggle
+                publishedAt={phase.published_at}
+                onToggle={(next) => updatePhase.mutate({ id: phase.id, published_at: next })}
+              />
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); handleCopyPhase(otherTrack); }}

@@ -15,6 +15,7 @@ import { RelatedResources } from "./RelatedResources";
 import { SubmissionPanel } from "./SubmissionPanel";
 import { SaveAsTemplateDialog } from "./SaveAsTemplateDialog";
 import { ItemHistoryDialog } from "./ItemHistoryDialog";
+import { PublishToggle } from "./PublishToggle";
 import type { LearningTrackItem, ItemStatus } from "@/types/learning-track";
 import { cn } from "@/lib/utils";
 
@@ -130,6 +131,10 @@ export function LearningItemRow({
         {/* Admin action buttons */}
         {showAdmin && (
           <div className="flex items-center gap-1 shrink-0">
+            <PublishToggle
+              publishedAt={item.published_at}
+              onToggle={(next) => updateItem.mutate({ id: item.id, published_at: next })}
+            />
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); setHistoryOpen(true); }}

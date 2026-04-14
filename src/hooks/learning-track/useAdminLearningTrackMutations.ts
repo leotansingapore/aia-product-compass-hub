@@ -138,7 +138,11 @@ export function useUpdatePhase() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async ({ id, ...fields }: {
-      id: string; title?: string; description?: string | null; order_index?: number;
+      id: string;
+      title?: string;
+      description?: string | null;
+      order_index?: number;
+      published_at?: string | null;
     }) => {
       const { error } = await supabase
         .from("learning_track_phases")
@@ -263,6 +267,7 @@ export function useUpdateItem() {
       action_items?: string[] | null;
       requires_submission?: boolean;
       order_index?: number;
+      published_at?: string | null;
     }) => {
       const { error } = await supabase
         .from("learning_track_items")
