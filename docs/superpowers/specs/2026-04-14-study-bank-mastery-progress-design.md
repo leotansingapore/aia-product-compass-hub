@@ -22,20 +22,24 @@ A question is **mastered** when the user answers it correctly **twice in a row**
 
 ## Data Model
 
+### Discovery
+
+Study questions already live in Supabase in table `question_bank_questions` (columns: `id uuid`, `product_slug`, `bank_type`, `category`, `question`, `options`, `correct_answer`, `explanation`, `sort_order`). Each question has a stable UUID — no hash needed.
+
 ### New table: `user_question_progress`
 
 ```sql
 CREATE TABLE user_question_progress (
   user_id             uuid        NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-  product_slug        text        NOT NULL,         -- e.g. "pro-achiever"
-  question_hash       text        NOT NULL,         -- stable hash of question text
+  question_id         uuid        NOT NULL REFERENCES question_bank_questions(id) ON DELETE CASCADE,
+  product_slug        text        NOT NULL,         -- denormalised for fast per-product queries
   consecutive_correct smallint    NOT NULL DEFAULT 0,
   mastered            boolean     NOT NULL DEFAULT false,
   total_attempts      int         NOT NULL DEFAULT 0,
   total_correct       int         NOT NULL DEFAULT 0,
   last_correct        boolean,
   last_answered_at    timestamptz NOT NULL DEFAULT now(),
-  PRIMARY KEY (user_id, product_slug, question_hash)
+  PRIMARY KEY (user_id, question_id)
 );
 
 CREATE INDEX idx_uqp_user_product ON user_question_progress (user_id, product_slug);
@@ -71,17 +75,15 @@ Implemented client-side via a read-modify-upsert in `useQuestionProgress` (a sin
 
 ## Question Identity
 
-Questions are hardcoded in TypeScript. We derive a **stable identifier** by hashing the question text:
+Questions already have stable UUIDs in `question_bank_questions.id`. We use a foreign-key reference. The existing `QuizQuestion` shape used by `StudyQuiz` drops the id, so we extend it with an optional `id` field and populate it in `dbRowToQuizQuestion`.
 
-- `questionHash(text: string): string` — produces a 16-char hex digest from SHA-256 (via `crypto.subtle.digest`). Hashes are computed once per question at module load and memoized.
-- Edits to a question's text produce a new hash; the old progress row becomes an orphan. This is acceptable — orphans fall out of filters naturally. A future cleanup job can prune rows whose `question_hash` is no longer present.
+Deleting a question cascades to its progress rows via the FK; no orphan cleanup needed.
 
 ## Components & Files
 
 ### Create
 
-- `src/lib/questionHash.ts` — async SHA-256 hasher + in-memory cache helper that returns a `Map<string, string>` keyed by question text.
-- `src/hooks/useQuestionProgress.tsx` — loads a user's progress for a product, exposes `recordAnswer(questionHash, isCorrect)` and derived counters `{ masteredCount, totalCount, unansweredHashes, reviewHashes }`.
+- `src/hooks/useQuestionProgress.tsx` — loads a user's progress for a product, exposes `recordAnswer(questionId, isCorrect)` and derived counters `{ masteredCount, totalCount, unansweredIds, reviewIds }`.
 - `src/components/study/StudyModePicker.tsx` — three-card picker (Fresh / Review / Redo All) with live counts; disabled state when a mode has 0 eligible questions.
 - `supabase/migrations/<timestamp>_user_question_progress.sql` — the schema above.
 
