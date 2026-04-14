@@ -6,6 +6,78 @@
 
 ## Pending
 
+### Learning Track Admin Tooling Phase 2 — 2026-04-14
+
+**What:** Empowers non-Lovable instructors to safely build and maintain the learning track. Adds custom templates, undo via versioning, draft/publish workflow, first-class image blocks, and an activity audit log. Complements the inline editing, template picker, bulk import, and cross-track copy already shipped in code.
+
+**Tables:**
+
+- `learning_track_templates`: Admin-authored templates that appear alongside the built-in ones.
+  - `id` (uuid PK, default `gen_random_uuid()`)
+  - `key` (text, unique, not null) — kebab-case slug
+  - `label` (text, not null)
+  - `hint` (text, nullable)
+  - `category` (text, not null, check in `('General','Lesson','Practice','Assessment')`)
+  - `title` (text, not null)
+  - `description` (text, nullable)
+  - `objectives` (text[], nullable)
+  - `action_items` (text[], nullable)
+  - `requires_submission` (bool, default false)
+  - `content_blocks` (jsonb, nullable) — array of `{block_type, title?, body?, url?}`
+  - `created_by` (uuid, FK → auth.users.id, nullable)
+  - `created_at` / `updated_at` (timestamptz, default `now()`)
+
+- `learning_track_item_revisions`: Immutable snapshot per item update for undo.
+  - `id` (uuid PK)
+  - `item_id` (uuid, not null, FK → `learning_track_items.id` on delete cascade)
+  - `snapshot` (jsonb, not null) — full item + its content_blocks at time of write
+  - `changed_by` (uuid, FK → auth.users.id, nullable)
+  - `change_reason` (text, nullable) — free-text optional note
+  - `created_at` (timestamptz, default `now()`)
+  - Index on (`item_id`, `created_at DESC`)
+
+- `learning_track_activity_log`: Who changed what, when.
+  - `id` (uuid PK)
+  - `user_id` (uuid, FK → auth.users.id, not null)
+  - `entity_type` (text, not null, check in `('phase','item','content_block','submission')`)
+  - `entity_id` (uuid, not null)
+  - `action` (text, not null, check in `('create','update','delete','duplicate','import')`)
+  - `diff` (jsonb, nullable) — `{before, after}` for updates
+  - `track` (text, nullable) — convenience for filtering admin dashboards
+  - `created_at` (timestamptz, default `now()`)
+  - Index on (`created_at DESC`), (`entity_type`, `entity_id`), (`user_id`, `created_at DESC`)
+
+**Column additions:**
+
+- `learning_track_phases`:
+  - Add `published_at` (timestamptz, nullable) — null means draft; non-null means visible to learners.
+- `learning_track_items`:
+  - Add `published_at` (timestamptz, nullable) — same semantics, overrides phase when set.
+
+**Enum expansion:**
+
+- `learning_track_content_blocks.block_type` check constraint: extend to allow `'image'` in addition to the current `('text','link','video','resource_ref')`. This gives images a first-class type rather than relying on client-side URL detection.
+
+**RLS:**
+
+- `learning_track_templates`: admins (`user_admin_roles` lookup) can INSERT/UPDATE/DELETE; any authenticated user can SELECT (picker reads it).
+- `learning_track_item_revisions`: admins can SELECT + INSERT; no UPDATE/DELETE (immutable audit).
+- `learning_track_activity_log`: admins can SELECT; INSERT via service role only (triggered from a Postgres trigger on `learning_track_*` tables — see below).
+
+**Triggers (recommended):**
+
+- `AFTER INSERT OR UPDATE OR DELETE` on `learning_track_items` and `learning_track_content_blocks`:
+  - Insert a row into `learning_track_activity_log` capturing the actor (`auth.uid()`), entity IDs, action, and JSON diff.
+  - On UPDATE of `learning_track_items`, also write a row to `learning_track_item_revisions` with the previous state (join in its content_blocks via a CTE or a plpgsql helper).
+
+**Learner-visible filter (server-side):**
+
+- The existing `useLearningTrackPhases` query should add `.is("published_at", "not.null")` for non-admin users. Once `published_at` columns exist, I'll wire the filter in code.
+
+**Why now:** The code-side tooling shipped today (templates, bulk import, cross-track copy, duplicate, image rendering) gives instructors the ability to move fast. These DB changes add the safety net (undo, draft mode, audit log) and the scaling path (admin-owned templates, native image blocks) so multiple instructors can collaborate without fear of breaking production content.
+
+---
+
 ### Learning Track Overhaul — 2026-04-11
 
 **What:** Moves the /learning-track feature off localStorage onto Supabase so progress and submissions persist across devices, admins can monitor recruit progress, and file submissions actually upload. Adds phase grouping to both pre-RNF and post-RNF tracks, per-item submission capability on both tracks, an admin monitoring dashboard (roster, heatmap, submissions queue), and an Obsidian reference-doc ingest for the Sales Bible and advisor training guides.
