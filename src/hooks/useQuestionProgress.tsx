@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
@@ -27,7 +27,10 @@ const MASTERY_THRESHOLD = 2;
 export function useQuestionProgress(productSlug: string) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
-  const queryKey = ['question-progress', user?.id, productSlug];
+  const queryKey = useMemo(
+    () => ['question-progress', user?.id, productSlug],
+    [user?.id, productSlug],
+  );
 
   const { data: rows = [], isLoading } = useQuery({
     queryKey,
@@ -45,7 +48,10 @@ export function useQuestionProgress(productSlug: string) {
     staleTime: 30_000,
   });
 
-  const progressByQuestion = new Map(rows.map(r => [r.question_id, r]));
+  const progressByQuestion = useMemo(
+    () => new Map(rows.map(r => [r.question_id, r])),
+    [rows],
+  );
 
   const recordAnswer = useCallback(
     async (questionId: string, isCorrect: boolean) => {
