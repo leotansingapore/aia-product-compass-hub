@@ -8,6 +8,7 @@ import {
   useDeleteContentBlock,
 } from "@/hooks/learning-track/useAdminLearningTrackMutations";
 import { InlineEditableText } from "./InlineEditableText";
+import { isVideoUrl } from "@/lib/learning-track-url";
 import type { LearningTrackContentBlock, BlockType } from "@/types/learning-track";
 
 interface Props {
@@ -37,12 +38,16 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
   const handleAdd = () => {
     if (!adding) return;
     const nextOrder = blocks.length > 0 ? Math.max(...blocks.map((b) => b.order_index)) + 1 : 0;
+    const trimmedUrl = newUrl.trim();
+    // Auto-upgrade link → video when URL is from a known video host.
+    const effectiveType: BlockType =
+      adding === "link" && trimmedUrl && isVideoUrl(trimmedUrl) ? "video" : adding;
     createBlock.mutate({
       item_id: itemId,
-      block_type: adding,
+      block_type: effectiveType,
       title: newTitle.trim() || undefined,
       body: adding === "text" ? newBody.trim() || undefined : undefined,
-      url: adding !== "text" ? newUrl.trim() || undefined : undefined,
+      url: adding !== "text" ? trimmedUrl || undefined : undefined,
       order_index: nextOrder,
     });
     setAdding(null);
@@ -181,12 +186,19 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
               />
             )}
             {(adding === "link" || adding === "video") && (
-              <input
-                value={newUrl}
-                onChange={(e) => setNewUrl(e.target.value)}
-                placeholder="URL"
-                className="w-full bg-transparent border-b border-primary/30 outline-none text-sm py-1"
-              />
+              <div>
+                <input
+                  value={newUrl}
+                  onChange={(e) => setNewUrl(e.target.value)}
+                  placeholder={adding === "video" ? "Video URL (YouTube, Vimeo, Loom...)" : "URL"}
+                  className="w-full bg-transparent border-b border-primary/30 outline-none text-sm py-1"
+                />
+                {adding === "link" && newUrl.trim() && isVideoUrl(newUrl.trim()) && (
+                  <p className="text-[11px] text-amber-600 dark:text-amber-400 mt-1">
+                    Detected video link — will be saved as a video block.
+                  </p>
+                )}
+              </div>
             )}
             <div className="flex gap-2">
               <button
