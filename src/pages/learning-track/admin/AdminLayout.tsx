@@ -18,6 +18,9 @@ export default function AdminLayout() {
         <NavLink to="submissions" className={({ isActive }) => cn(tab, isActive && active)}>
           Submissions
         </NavLink>
+        <NavLink to="activity" className={({ isActive }) => cn(tab, isActive && active)}>
+          Activity
+        </NavLink>
       </nav>
       <Outlet />
     </div>

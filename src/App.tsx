@@ -67,6 +67,7 @@ const LearningTrackAdminRoster = lazy(() => import("./pages/learning-track/admin
 const LearningTrackAdminHeatmap = lazy(() => import("./pages/learning-track/admin/Heatmap"));
 const LearningTrackAdminSubmissions = lazy(() => import("./pages/learning-track/admin/Submissions"));
 const LearningTrackAdminRecruit = lazy(() => import("./pages/learning-track/admin/RecruitDetail"));
+const LearningTrackAdminActivity = lazy(() => import("./pages/learning-track/admin/Activity"));
 const ProAchieverStudy = lazy(() => import("./pages/ProAchieverStudy"));
 const PlatinumWealthVentureStudy = lazy(() => import("./pages/PlatinumWealthVentureStudy"));
 const HealthshieldGoldMaxStudy = lazy(() => import("./pages/HealthshieldGoldMaxStudy"));
@@ -159,6 +160,7 @@ const App = () => (
                         <Route path="roster" element={<LearningTrackAdminRoster />} />
                         <Route path="heatmap" element={<LearningTrackAdminHeatmap />} />
                         <Route path="submissions" element={<LearningTrackAdminSubmissions />} />
+                        <Route path="activity" element={<LearningTrackAdminActivity />} />
                         <Route path="recruit/:userId" element={<LearningTrackAdminRecruit />} />
                       </Route>
                     </Route>
