@@ -385,7 +385,7 @@ export function PhaseSection({
                                     onClick={(e) => {
                                       e.stopPropagation();
                                       if (!confirm(`Delete template "${t.label}"?`)) return;
-                                      deleteCustomTemplate.mutate((t as LearningItemTemplate & { id: string }).id);
+                                      deleteCustomTemplate.mutate((t as unknown as { id: string }).id);
                                     }}
                                     className="absolute top-1 right-1 hidden group-hover:flex h-5 w-5 items-center justify-center rounded text-destructive/70 hover:text-destructive hover:bg-destructive/10"
                                     aria-label="Delete template"
