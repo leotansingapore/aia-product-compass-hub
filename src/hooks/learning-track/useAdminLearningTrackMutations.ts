@@ -189,6 +189,77 @@ export function useDeleteItem() {
   });
 }
 
+export function useDuplicateItem() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      sourceItemId,
+      targetPhaseId,
+      order_index,
+    }: {
+      sourceItemId: string;
+      targetPhaseId?: string;
+      order_index: number;
+    }) => {
+      const { data: source, error: srcErr } = await supabase
+        .from("learning_track_items")
+        .select(
+          "phase_id, title, description, objectives, action_items, requires_submission, hidden_resources"
+        )
+        .eq("id", sourceItemId)
+        .single();
+      if (srcErr) throw srcErr;
+
+      const { data: blocks, error: blocksErr } = await supabase
+        .from("learning_track_content_blocks")
+        .select("block_type, title, body, url, resource_type, resource_id, order_index")
+        .eq("item_id", sourceItemId)
+        .order("order_index", { ascending: true });
+      if (blocksErr) throw blocksErr;
+
+      const { data: item, error: itemErr } = await supabase
+        .from("learning_track_items")
+        .insert({
+          phase_id: targetPhaseId ?? source.phase_id,
+          title: `${source.title} (copy)`,
+          description: source.description,
+          objectives: source.objectives,
+          action_items: source.action_items,
+          requires_submission: source.requires_submission,
+          hidden_resources: source.hidden_resources,
+          order_index,
+        })
+        .select("id")
+        .single();
+      if (itemErr) throw itemErr;
+
+      if (blocks && blocks.length > 0) {
+        const rows = blocks.map((b, idx) => ({
+          item_id: item.id,
+          block_type: b.block_type,
+          title: b.title,
+          body: b.body,
+          url: b.url,
+          resource_type: b.resource_type,
+          resource_id: b.resource_id,
+          order_index: idx,
+        }));
+        const { error: insErr } = await supabase
+          .from("learning_track_content_blocks")
+          .insert(rows);
+        if (insErr) throw insErr;
+      }
+
+      return item;
+    },
+    onSuccess: () => {
+      toast.success("Item duplicated");
+      qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
+    },
+    onError: () => toast.error("Failed to duplicate item"),
+  });
+}
+
 export function useReorderItems() {
   const qc = useQueryClient();
   return useMutation({

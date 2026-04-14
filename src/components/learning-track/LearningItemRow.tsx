@@ -1,9 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, ChevronRight, CheckCircle2, Circle, Clock, Trash2 } from "lucide-react";
+import { ChevronDown, ChevronRight, CheckCircle2, Circle, Clock, Trash2, Copy } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
-import { useUpdateItem, useDeleteItem } from "@/hooks/learning-track/useAdminLearningTrackMutations";
+import {
+  useUpdateItem,
+  useDeleteItem,
+  useDuplicateItem,
+} from "@/hooks/learning-track/useAdminLearningTrackMutations";
 import { InlineEditableText } from "./InlineEditableText";
 import { InlineEditableList } from "./InlineEditableList";
 import { ContentBlockEditor } from "./ContentBlockEditor";
@@ -43,6 +47,7 @@ export function LearningItemRow({
 
   const updateItem = useUpdateItem();
   const deleteItem = useDeleteItem();
+  const duplicateItem = useDuplicateItem();
 
   const showAdmin = isAdmin && !readOnly;
 
@@ -57,6 +62,13 @@ export function LearningItemRow({
   const handleDelete = () => {
     if (!confirm(`Delete "${item.title}"? This cannot be undone.`)) return;
     deleteItem.mutate(item.id);
+  };
+
+  const handleDuplicate = () => {
+    duplicateItem.mutate({
+      sourceItemId: item.id,
+      order_index: item.order_index + 1,
+    });
   };
 
   return (
@@ -114,16 +126,27 @@ export function LearningItemRow({
           )}
         </button>
 
-        {/* Admin delete button */}
+        {/* Admin action buttons */}
         {showAdmin && (
-          <button
-            type="button"
-            onClick={(e) => { e.stopPropagation(); handleDelete(); }}
-            className="mt-1 h-6 w-6 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors shrink-0"
-            aria-label="Delete item"
-          >
-            <Trash2 className="h-3.5 w-3.5" />
-          </button>
+          <div className="flex items-center gap-1 shrink-0">
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); handleDuplicate(); }}
+              className="mt-1 h-6 w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+              aria-label="Duplicate item"
+              title="Duplicate this item"
+            >
+              <Copy className="h-3.5 w-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); handleDelete(); }}
+              className="mt-1 h-6 w-6 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
+              aria-label="Delete item"
+            >
+              <Trash2 className="h-3.5 w-3.5" />
+            </button>
+          </div>
         )}
       </div>
 
