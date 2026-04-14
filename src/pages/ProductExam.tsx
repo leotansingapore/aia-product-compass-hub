@@ -4,46 +4,9 @@ import { Badge } from '@/components/ui/badge';
 import { ProductQuiz } from '@/components/ProductQuiz';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { ProtectedPage } from '@/components/ProtectedPage';
-import { proAchieverExamQuestions } from '@/data/proAchieverExamQuestions';
-import { platinumWealthVentureExamQuestions } from '@/data/platinumWealthVentureExamQuestions';
-import { healthshieldGoldMaxExamQuestions } from '@/data/healthshieldGoldMaxExamQuestions';
-import { proLifetimeProtectorExamQuestions } from '@/data/proLifetimeProtectorExamQuestions';
-import { solitairePaExamQuestions } from '@/data/solitairePaExamQuestions';
-import { ultimateCriticalCoverExamQuestions } from '@/data/ultimateCriticalCoverExamQuestions';
-import { ArrowLeft, Brain, Target, Shield } from 'lucide-react';
-
-const examRegistry: Record<string, { title: string; productId: string; questions: typeof proAchieverExamQuestions }> = {
-  'pro-achiever': {
-    title: 'Pro Achiever',
-    productId: 'pro-achiever',
-    questions: proAchieverExamQuestions,
-  },
-  'platinum-wealth-venture': {
-    title: 'Platinum Wealth Venture',
-    productId: 'platinum-wealth-venture',
-    questions: platinumWealthVentureExamQuestions,
-  },
-  'healthshield-gold-max': {
-    title: 'HealthShield Gold Max',
-    productId: 'healthshield-gold-max',
-    questions: healthshieldGoldMaxExamQuestions,
-  },
-  'pro-lifetime-protector': {
-    title: 'Pro Lifetime Protector',
-    productId: 'pro-lifetime-protector',
-    questions: proLifetimeProtectorExamQuestions,
-  },
-  'solitaire-pa': {
-    title: 'Solitaire PA',
-    productId: 'solitaire-pa',
-    questions: solitairePaExamQuestions,
-  },
-  'ultimate-critical-cover': {
-    title: 'Ultimate Critical Cover',
-    productId: 'ultimate-critical-cover',
-    questions: ultimateCriticalCoverExamQuestions,
-  },
-};
+import { useQuestionBank } from '@/hooks/useQuestionBank';
+import { PRODUCT_LABELS } from '@/types/questionBank';
+import { ArrowLeft, Brain, Target, Shield, Loader2 } from 'lucide-react';
 
 export default function ProductExam() {
   const { productSlugOrId } = useParams();
@@ -51,9 +14,15 @@ export default function ProductExam() {
   const location = useLocation();
   const cameFromQuestionBank = location.state?.from === 'question-banks';
 
-  const exam = examRegistry[productSlugOrId || ''];
+  const productSlug = productSlugOrId || '';
+  const title = PRODUCT_LABELS[productSlug];
+  const { data: questions, isLoading, error } = useQuestionBank({
+    productSlug,
+    bankType: 'exam',
+    enabled: !!title,
+  });
 
-  if (!exam) {
+  if (!title) {
     return (
       <PageLayout title="Exam Not Found | FINternship" description="No exam available for this product.">
         <div className="min-h-screen bg-background flex items-center justify-center">
@@ -67,39 +36,62 @@ export default function ProductExam() {
     );
   }
 
-  const factCount = exam.questions.filter(q => q.category === 'product-facts').length;
-  const salesCount = exam.questions.filter(q => q.category === 'sales-angles').length;
-  const objectionCount = exam.questions.filter(q => q.category === 'objection-handling').length;
-  const roleplayCount = exam.questions.filter(q => q.category === 'roleplay').length;
+  if (isLoading) {
+    return (
+      <PageLayout title={`${title} Exam | FINternship`} description="Loading exam questions...">
+        <div className="min-h-screen flex items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        </div>
+      </PageLayout>
+    );
+  }
+
+  if (error || !questions || questions.length === 0) {
+    return (
+      <PageLayout title={`${title} Exam | FINternship`} description="Exam unavailable">
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">Exam Unavailable</h1>
+            <p className="text-muted-foreground mb-4">
+              {error ? 'Failed to load exam questions.' : 'No questions have been added to this exam yet.'}
+            </p>
+            <Button onClick={() => navigate(-1)}>Go Back</Button>
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  const factCount = questions.filter((q) => q.category === 'product-facts').length;
+  const salesCount = questions.filter((q) => q.category === 'sales-angles').length;
+  const objectionCount = questions.filter((q) => q.category === 'objection-handling').length;
 
   return (
     <ProtectedPage pageId="product-exam">
       <PageLayout
-        title={`${exam.title} Exam | FINternship`}
-        description={`Test your knowledge of ${exam.title} — product facts, sales angles, and objection handling.`}
+        title={`${title} Exam | FINternship`}
+        description={`Test your knowledge of ${title} — product facts, sales angles, and objection handling.`}
       >
         <div className="max-w-3xl mx-auto px-3 sm:px-6 py-4 sm:py-8 animate-fade-in">
-          {/* Header */}
           <div className="mb-6">
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => navigate(cameFromQuestionBank ? '/question-banks' : `/product/${productSlugOrId}`)}
+              onClick={() => navigate(cameFromQuestionBank ? '/question-banks' : `/product/${productSlug}`)}
               className="mb-3 -ml-2"
             >
               <ArrowLeft className="h-4 w-4 mr-1" />
-              {cameFromQuestionBank ? 'Back to Question Banks' : `Back to ${exam.title}`}
+              {cameFromQuestionBank ? 'Back to Question Banks' : `Back to ${title}`}
             </Button>
 
             <h1 className="text-2xl sm:text-3xl font-bold mb-2">
-              {exam.title} — Product Exam
+              {title} — Product Exam
             </h1>
             <p className="text-muted-foreground mb-4">
               Test your knowledge on product facts, sales angles, and objection handling.
               Your score will be recorded and visible to admins.
             </p>
 
-            {/* Category breakdown badges */}
             <div className="flex flex-wrap gap-2">
               <Badge variant="secondary" className="flex items-center gap-1">
                 <Brain className="h-3 w-3" />
@@ -116,8 +108,7 @@ export default function ProductExam() {
             </div>
           </div>
 
-          {/* Quiz */}
-          <ProductQuiz questions={exam.questions} productId={exam.productId} />
+          <ProductQuiz questions={questions} productId={productSlug} />
         </div>
       </PageLayout>
     </ProtectedPage>

@@ -1,95 +1,70 @@
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, Brain, GraduationCap } from "lucide-react";
-import { proAchieverStudyBank } from "@/data/proAchieverStudyBank";
-import { proAchieverExamQuestions } from "@/data/proAchieverExamQuestions";
-import { platinumWealthVentureStudyBank } from "@/data/platinumWealthVentureStudyBank";
-import { platinumWealthVentureExamQuestions } from "@/data/platinumWealthVentureExamQuestions";
-import { healthshieldGoldMaxStudyBank } from "@/data/healthshieldGoldMaxStudyBank";
-import { healthshieldGoldMaxExamQuestions } from "@/data/healthshieldGoldMaxExamQuestions";
-import { proLifetimeProtectorStudyBank } from "@/data/proLifetimeProtectorStudyBank";
-import { proLifetimeProtectorExamQuestions } from "@/data/proLifetimeProtectorExamQuestions";
-import { solitairePaStudyBank } from "@/data/solitairePaStudyBank";
-import { solitairePaExamQuestions } from "@/data/solitairePaExamQuestions";
-import { ultimateCriticalCoverStudyBank } from "@/data/ultimateCriticalCoverStudyBank";
-import { ultimateCriticalCoverExamQuestions } from "@/data/ultimateCriticalCoverExamQuestions";
+import { BookOpen, Brain, GraduationCap, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { PRODUCT_SLUGS, PRODUCT_LABELS } from "@/types/questionBank";
 
 interface ProductQuizEntry {
   id: string;
   title: string;
   description: string;
-  studyCount: number;
-  examCount: number;
   studyRoute: string;
   examRoute: string;
 }
 
-const products: ProductQuizEntry[] = [
-  {
-    id: "pro-achiever",
-    title: "Pro Achiever",
-    description: "Regular premium ILP — AIA's best-selling investment plan.",
-    studyCount: proAchieverStudyBank.length,
-    examCount: proAchieverExamQuestions.length,
-    studyRoute: "/product/pro-achiever/study",
-    examRoute: "/product/pro-achiever/exam",
-  },
-  {
-    id: "platinum-wealth-venture",
-    title: "Platinum Wealth Venture",
-    description: "Limited premium ILP with wealth accumulation focus.",
-    studyCount: platinumWealthVentureStudyBank.length,
-    examCount: platinumWealthVentureExamQuestions.length,
-    studyRoute: "/product/platinum-wealth-venture/study",
-    examRoute: "/product/platinum-wealth-venture/exam",
-  },
-  {
-    id: "healthshield-gold-max",
-    title: "HealthShield Gold Max",
-    description: "Integrated Shield Plan for hospitalization and surgical coverage.",
-    studyCount: healthshieldGoldMaxStudyBank.length,
-    examCount: healthshieldGoldMaxExamQuestions.length,
-    studyRoute: "/product/healthshield-gold-max/study",
-    examRoute: "/product/healthshield-gold-max/exam",
-  },
-  {
-    id: "pro-lifetime-protector",
-    title: "Pro Lifetime Protector",
-    description: "Hybrid ILP combining lifetime protection with investment growth.",
-    studyCount: proLifetimeProtectorStudyBank.length,
-    examCount: proLifetimeProtectorExamQuestions.length,
-    studyRoute: "/product/pro-lifetime-protector/study",
-    examRoute: "/product/pro-lifetime-protector/exam",
-  },
-  {
-    id: "solitaire-pa",
-    title: "Solitaire PA",
-    description: "Personal accident plan for outpatient and accident coverage.",
-    studyCount: solitairePaStudyBank.length,
-    examCount: solitairePaExamQuestions.length,
-    studyRoute: "/product/solitaire-pa/study",
-    examRoute: "/product/solitaire-pa/exam",
-  },
-  {
-    id: "ultimate-critical-cover",
-    title: "Ultimate Critical Cover",
-    description: "Multi-pay critical illness plan with unlimited claims.",
-    studyCount: ultimateCriticalCoverStudyBank.length,
-    examCount: ultimateCriticalCoverExamQuestions.length,
-    studyRoute: "/product/ultimate-critical-cover/study",
-    examRoute: "/product/ultimate-critical-cover/exam",
-  },
-];
+const productDescriptions: Record<string, string> = {
+  "pro-achiever": "Regular premium ILP — AIA's best-selling investment plan.",
+  "platinum-wealth-venture": "Limited premium ILP with wealth accumulation focus.",
+  "healthshield-gold-max": "Integrated Shield Plan for hospitalization and surgical coverage.",
+  "pro-lifetime-protector": "Hybrid ILP combining lifetime protection with investment growth.",
+  "solitaire-pa": "Personal accident plan for outpatient and accident coverage.",
+  "ultimate-critical-cover": "Multi-pay critical illness plan with unlimited claims.",
+};
+
+const products: ProductQuizEntry[] = PRODUCT_SLUGS.map((slug) => ({
+  id: slug,
+  title: PRODUCT_LABELS[slug],
+  description: productDescriptions[slug] || "",
+  studyRoute: `/product/${slug}/study`,
+  examRoute: `/product/${slug}/exam`,
+}));
+
+interface BankCounts {
+  [productSlug: string]: { study: number; exam: number };
+}
+
+function useBankCounts() {
+  return useQuery({
+    queryKey: ["question-bank-counts"],
+    queryFn: async (): Promise<BankCounts> => {
+      const { data, error } = await supabase
+        .from("question_bank_questions" as never)
+        .select("product_slug, bank_type");
+      if (error) throw error;
+      const counts: BankCounts = {};
+      for (const row of (data ?? []) as Array<{ product_slug: string; bank_type: "study" | "exam" }>) {
+        if (!counts[row.product_slug]) counts[row.product_slug] = { study: 0, exam: 0 };
+        counts[row.product_slug][row.bank_type]++;
+      }
+      return counts;
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+}
 
 export default function QuestionBanks() {
   const navigate = useNavigate();
+  const { data: counts = {}, isLoading } = useBankCounts();
 
-  const totalStudy = products.reduce((sum, p) => sum + p.studyCount, 0);
-  const totalExam = products.reduce((sum, p) => sum + p.examCount, 0);
+  const getStudyCount = (id: string) => counts[id]?.study ?? 0;
+  const getExamCount = (id: string) => counts[id]?.exam ?? 0;
+  const totalStudy = Object.values(counts).reduce((s, c) => s + c.study, 0);
+  const totalExam = Object.values(counts).reduce((s, c) => s + c.exam, 0);
 
   return (
     <ProtectedPage pageId="question-banks">
@@ -106,11 +81,15 @@ export default function QuestionBanks() {
             <div className="flex flex-wrap gap-3">
               <div className="flex items-center gap-2 rounded-lg border bg-card px-3 py-2">
                 <BookOpen className="h-4 w-4 text-blue-500" />
-                <span className="text-sm font-medium">{totalStudy} Study Questions</span>
+                <span className="text-sm font-medium">
+                  {isLoading ? "…" : totalStudy} Study Questions
+                </span>
               </div>
               <div className="flex items-center gap-2 rounded-lg border bg-card px-3 py-2">
                 <GraduationCap className="h-4 w-4 text-emerald-500" />
-                <span className="text-sm font-medium">{totalExam} Exam Questions</span>
+                <span className="text-sm font-medium">
+                  {isLoading ? "…" : totalExam} Exam Questions
+                </span>
               </div>
               <div className="flex items-center gap-2 rounded-lg border bg-card px-3 py-2">
                 <Brain className="h-4 w-4 text-primary" />
@@ -119,51 +98,62 @@ export default function QuestionBanks() {
             </div>
           </div>
 
-          <div className="grid gap-4">
-            {products.map((product) => (
-              <Card key={product.id} className="transition-all duration-200 hover:shadow-md hover:border-primary/30">
-                <CardHeader className="pb-2">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-2">
-                      <Brain className="h-5 w-5 text-primary shrink-0" />
-                      <CardTitle className="text-lg">{product.title}</CardTitle>
-                    </div>
-                    <Badge variant="secondary">
-                      {product.studyCount + product.examCount} total
-                    </Badge>
-                  </div>
-                  <CardDescription className="mt-1">{product.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="flex flex-wrap gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="gap-1.5"
-                      onClick={() => navigate(product.studyRoute)}
-                    >
-                      <BookOpen className="h-3.5 w-3.5" />
-                      Study Bank
-                      <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
-                        {product.studyCount}
-                      </Badge>
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="gap-1.5"
-                      onClick={() => navigate(product.examRoute, { state: { from: 'question-banks' } })}
-                    >
-                      <GraduationCap className="h-3.5 w-3.5" />
-                      Product Exam
-                      <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0 bg-primary-foreground/20 text-primary-foreground">
-                        {product.examCount}
-                      </Badge>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+            </div>
+          ) : (
+            <div className="grid gap-4">
+              {products.map((product) => {
+                const studyCount = getStudyCount(product.id);
+                const examCount = getExamCount(product.id);
+                return (
+                  <Card key={product.id} className="transition-all duration-200 hover:shadow-md hover:border-primary/30">
+                    <CardHeader className="pb-2">
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-center gap-2">
+                          <Brain className="h-5 w-5 text-primary shrink-0" />
+                          <CardTitle className="text-lg">{product.title}</CardTitle>
+                        </div>
+                        <Badge variant="secondary">{studyCount + examCount} total</Badge>
+                      </div>
+                      <CardDescription className="mt-1">{product.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <div className="flex flex-wrap gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="gap-1.5"
+                          onClick={() => navigate(product.studyRoute)}
+                        >
+                          <BookOpen className="h-3.5 w-3.5" />
+                          Study Bank
+                          <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
+                            {studyCount}
+                          </Badge>
+                        </Button>
+                        <Button
+                          size="sm"
+                          className="gap-1.5"
+                          onClick={() => navigate(product.examRoute, { state: { from: "question-banks" } })}
+                        >
+                          <GraduationCap className="h-3.5 w-3.5" />
+                          Product Exam
+                          <Badge
+                            variant="secondary"
+                            className="ml-1 text-[10px] px-1.5 py-0 bg-primary-foreground/20 text-primary-foreground"
+                          >
+                            {examCount}
+                          </Badge>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
         </div>
       </PageLayout>
     </ProtectedPage>
