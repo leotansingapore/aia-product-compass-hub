@@ -195,11 +195,9 @@ export function useDuplicateItem() {
     mutationFn: async ({
       sourceItemId,
       targetPhaseId,
-      order_index,
     }: {
       sourceItemId: string;
       targetPhaseId?: string;
-      order_index: number;
     }) => {
       const { data: source, error: srcErr } = await supabase
         .from("learning_track_items")
@@ -209,6 +207,17 @@ export function useDuplicateItem() {
         .eq("id", sourceItemId)
         .single();
       if (srcErr) throw srcErr;
+
+      // Append at end of destination phase — avoids unique (phase_id, order_index) collision.
+      const destPhaseId = targetPhaseId ?? source.phase_id;
+      const { data: siblings, error: sibErr } = await supabase
+        .from("learning_track_items")
+        .select("order_index")
+        .eq("phase_id", destPhaseId)
+        .order("order_index", { ascending: false })
+        .limit(1);
+      if (sibErr) throw sibErr;
+      const order_index = siblings && siblings.length > 0 ? siblings[0].order_index + 1 : 0;
 
       const { data: blocks, error: blocksErr } = await supabase
         .from("learning_track_content_blocks")
@@ -220,7 +229,7 @@ export function useDuplicateItem() {
       const { data: item, error: itemErr } = await supabase
         .from("learning_track_items")
         .insert({
-          phase_id: targetPhaseId ?? source.phase_id,
+          phase_id: destPhaseId,
           title: `${source.title} (copy)`,
           description: source.description,
           objectives: source.objectives,

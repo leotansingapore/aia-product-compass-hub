@@ -65,10 +65,7 @@ export function LearningItemRow({
   };
 
   const handleDuplicate = () => {
-    duplicateItem.mutate({
-      sourceItemId: item.id,
-      order_index: item.order_index + 1,
-    });
+    duplicateItem.mutate({ sourceItemId: item.id });
   };
 
   return (
