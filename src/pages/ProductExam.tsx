@@ -48,6 +48,8 @@ const examRegistry: Record<string, { title: string; productId: string; questions
 export default function ProductExam() {
   const { productSlugOrId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const cameFromQuestionBank = location.state?.from === 'question-banks';
 
   const exam = examRegistry[productSlugOrId || ''];
 
