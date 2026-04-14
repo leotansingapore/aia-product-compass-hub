@@ -82,7 +82,7 @@ export default function PlatinumWealthVentureStudy() {
           title="Platinum Wealth Venture Study Mode | FINternship"
           description="Study Platinum Wealth Venture product knowledge with instant feedback."
         >
-          <div className="max-w-3xl mx-auto px-3 sm:px-6 py-4 sm:py-8">
+          <div className="max-w-5xl mx-auto px-3 sm:px-6 py-4 sm:py-8">
             <Button
               variant="ghost"
               size="sm"
@@ -93,6 +93,8 @@ export default function PlatinumWealthVentureStudy() {
               Back to Study Menu
             </Button>
 
+            <div className="flex flex-col lg:flex-row gap-6">
+            <div className="flex-1 min-w-0">
             <div className="mb-4 flex flex-wrap items-center gap-2">
               <Badge variant="outline">{activeQuestions.length} Questions</Badge>
               <Badge variant="secondary">{categoryLabels[categoryFilter]}</Badge>
@@ -102,6 +104,13 @@ export default function PlatinumWealthVentureStudy() {
             </div>
 
             <StudyQuiz questions={activeQuestions} onFinish={handleRestart} productSlug="platinum-wealth-venture" />
+            </div>
+            <div className="w-full lg:w-64 shrink-0">
+              <div className="lg:sticky lg:top-20">
+                <StudyResourcesSidebar productSlug="platinum-wealth-venture" />
+              </div>
+            </div>
+            </div>
           </div>
         </PageLayout>
       </ProtectedPage>

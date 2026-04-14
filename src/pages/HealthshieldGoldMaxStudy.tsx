@@ -82,7 +82,7 @@ export default function HealthshieldGoldMaxStudy() {
           title="HealthShield Gold Max Study Mode | FINternship"
           description="Study HealthShield Gold Max product knowledge with instant feedback."
         >
-          <div className="max-w-3xl mx-auto px-3 sm:px-6 py-4 sm:py-8">
+          <div className="max-w-5xl mx-auto px-3 sm:px-6 py-4 sm:py-8">
             <Button
               variant="ghost"
               size="sm"
@@ -93,6 +93,8 @@ export default function HealthshieldGoldMaxStudy() {
               Back to Study Menu
             </Button>
 
+            <div className="flex flex-col lg:flex-row gap-6">
+            <div className="flex-1 min-w-0">
             <div className="mb-4 flex flex-wrap items-center gap-2">
               <Badge variant="outline">{activeQuestions.length} Questions</Badge>
               <Badge variant="secondary">{categoryLabels[categoryFilter]}</Badge>
@@ -102,6 +104,13 @@ export default function HealthshieldGoldMaxStudy() {
             </div>
 
             <StudyQuiz questions={activeQuestions} onFinish={handleRestart} productSlug="healthshield-gold-max" />
+            </div>
+            <div className="w-full lg:w-64 shrink-0">
+              <div className="lg:sticky lg:top-20">
+                <StudyResourcesSidebar productSlug="healthshield-gold-max" />
+              </div>
+            </div>
+            </div>
           </div>
         </PageLayout>
       </ProtectedPage>
