@@ -1874,6 +1874,48 @@ export type Database = {
         }
         Relationships: []
       }
+      question_bank_questions: {
+        Row: {
+          bank_type: string
+          category: string
+          correct_answer: number
+          created_at: string
+          explanation: string
+          id: string
+          options: Json
+          product_slug: string
+          question: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          bank_type: string
+          category: string
+          correct_answer: number
+          created_at?: string
+          explanation: string
+          id?: string
+          options: Json
+          product_slug: string
+          question: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          bank_type?: string
+          category?: string
+          correct_answer?: number
+          created_at?: string
+          explanation?: string
+          id?: string
+          options?: Json
+          product_slug?: string
+          question?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       quiz_attempts: {
         Row: {
           completed_at: string
@@ -2676,6 +2718,50 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      user_question_progress: {
+        Row: {
+          consecutive_correct: number
+          last_answered_at: string
+          last_correct: boolean | null
+          mastered: boolean
+          product_slug: string
+          question_id: string
+          total_attempts: number
+          total_correct: number
+          user_id: string
+        }
+        Insert: {
+          consecutive_correct?: number
+          last_answered_at?: string
+          last_correct?: boolean | null
+          mastered?: boolean
+          product_slug: string
+          question_id: string
+          total_attempts?: number
+          total_correct?: number
+          user_id: string
+        }
+        Update: {
+          consecutive_correct?: number
+          last_answered_at?: string
+          last_correct?: boolean | null
+          mastered?: boolean
+          product_slug?: string
+          question_id?: string
+          total_attempts?: number
+          total_correct?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_question_progress_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank_questions"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
