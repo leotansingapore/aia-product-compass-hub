@@ -6,6 +6,7 @@ import { Progress } from '@/components/ui/progress';
 import { CheckCircle2, XCircle, ChevronLeft, ChevronRight, RotateCcw, Trophy, BookOpen, AlertTriangle, Save } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { StudyQuestion } from '@/data/proAchieverStudyBank';
+import { MasteryProgressBar } from '@/components/study/MasteryProgressBar';
 
 // ── Spaced repetition helpers ───────────────────────────────────────────
 const WEAK_KEY = (productSlug: string) => `study_weak_${productSlug}`;
@@ -72,9 +73,21 @@ interface StudyQuizProps {
   onFinish: () => void;
   /** Product slug for persistence, e.g. "pro-achiever" */
   productSlug?: string;
+  /** Called whenever the user answers a question. Used to persist per-question mastery. */
+  onAnswered?: (questionId: string, isCorrect: boolean) => void;
+  /** If both provided, renders a mastery progress bar above the session progress bar. */
+  masteryMastered?: number;
+  masteryTotal?: number;
 }
 
-export function StudyQuiz({ questions, onFinish, productSlug = '' }: StudyQuizProps) {
+export function StudyQuiz({
+  questions,
+  onFinish,
+  productSlug = '',
+  onAnswered,
+  masteryMastered,
+  masteryTotal,
+}: StudyQuizProps) {
   // Generate shuffle maps per question (stable per session)
   const [shuffleMaps, setShuffleMaps] = useState<number[][]>(() => {
     const saved = productSlug ? loadSession(productSlug, questions.length) : null;
@@ -126,8 +139,11 @@ export function StudyQuiz({ questions, onFinish, productSlug = '' }: StudyQuizPr
     const next = [...selectedAnswers];
     next[currentIdx] = displayIdx;
     setSelectedAnswers(next);
-    if (displayIdx === correctDisplay) setScore((s) => s + 1);
-  }, [currentIdx, hasAnswered, correctDisplay, selectedAnswers]);
+    const correct = displayIdx === correctDisplay;
+    if (correct) setScore((s) => s + 1);
+    const qId = (questions[currentIdx] as unknown as { id?: string }).id;
+    if (qId && onAnswered) onAnswered(qId, correct);
+  }, [currentIdx, hasAnswered, correctDisplay, selectedAnswers, onAnswered, questions]);
 
   const handleNext = useCallback(() => {
     if (currentIdx < questions.length - 1) {
@@ -289,6 +305,11 @@ export function StudyQuiz({ questions, onFinish, productSlug = '' }: StudyQuizPr
             </span>
           </div>
         </div>
+        {typeof masteryMastered === 'number' && typeof masteryTotal === 'number' && masteryTotal > 0 && (
+          <div className="mb-2">
+            <MasteryProgressBar mastered={masteryMastered} total={masteryTotal} compact />
+          </div>
+        )}
         <Progress value={percent} className="h-1.5" />
       </CardHeader>
 
