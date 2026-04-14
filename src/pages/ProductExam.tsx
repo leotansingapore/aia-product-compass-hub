@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ProductQuiz } from '@/components/ProductQuiz';
@@ -48,6 +48,8 @@ const examRegistry: Record<string, { title: string; productId: string; questions
 export default function ProductExam() {
   const { productSlugOrId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const cameFromQuestionBank = location.state?.from === 'question-banks';
 
   const exam = examRegistry[productSlugOrId || ''];
 
@@ -82,11 +84,11 @@ export default function ProductExam() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => navigate(`/product/${productSlugOrId}`)}
+              onClick={() => navigate(cameFromQuestionBank ? '/question-banks' : `/product/${productSlugOrId}`)}
               className="mb-3 -ml-2"
             >
               <ArrowLeft className="h-4 w-4 mr-1" />
-              Back to {exam.title}
+              {cameFromQuestionBank ? 'Back to Question Banks' : `Back to ${exam.title}`}
             </Button>
 
             <h1 className="text-2xl sm:text-3xl font-bold mb-2">

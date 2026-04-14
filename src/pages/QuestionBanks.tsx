@@ -151,7 +151,7 @@ export default function QuestionBanks() {
                     <Button
                       size="sm"
                       className="gap-1.5"
-                      onClick={() => navigate(product.examRoute)}
+                      onClick={() => navigate(product.examRoute, { state: { from: 'question-banks' } })}
                     >
                       <GraduationCap className="h-3.5 w-3.5" />
                       Product Exam
