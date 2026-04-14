@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useMemo, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -10,6 +10,9 @@ import { StudyQuiz, loadWeakQuestions } from '@/components/study/StudyQuiz';
 import { ArrowLeft, BookOpen, Brain, Target, Shield, MessageCircle, Shuffle, AlertTriangle, Loader2 } from 'lucide-react';
 import { StudyResourcesSidebar } from '@/components/study/StudyResourcesSidebar';
 import type { QuizQuestion } from '@/types/questionBank';
+import { useQuestionProgress } from '@/hooks/useQuestionProgress';
+import { StudyModePicker, type StudyMode } from '@/components/study/StudyModePicker';
+import { MasteryProgressBar } from '@/components/study/MasteryProgressBar';
 
 type QuizSize = 25 | 50 | 100;
 type CategoryFilter = 'all' | 'product-facts' | 'sales-angles' | 'objection-handling' | 'roleplay';
@@ -49,11 +52,14 @@ interface ProductStudyPageProps {
 
 export function ProductStudyPage({ productSlug, productTitle, backRoute, backLabel, pageId }: ProductStudyPageProps) {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [, setQuizSize] = useState<QuizSize | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
   const [activeQuestions, setActiveQuestions] = useState<QuizQuestion[] | null>(null);
+  const [selectedMode, setSelectedMode] = useState<StudyMode | null>(null);
 
   const { data: studyBank = [], isLoading } = useQuestionBank({ productSlug, bankType: 'study' });
+  const { progressByQuestion, masteredCount, recordAnswer } = useQuestionProgress(productSlug);
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -66,8 +72,26 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
   const weakQuestions = useMemo(() => loadWeakQuestions(productSlug), [productSlug]);
   const weakCount = Object.keys(weakQuestions).length;
 
-  const startQuiz = (size: QuizSize, category: CategoryFilter) => {
-    const pool = category === 'all' ? studyBank : studyBank.filter((q) => q.category === category);
+  const { freshPool, reviewPool, allPool } = useMemo(() => {
+    const fresh = studyBank.filter(q => !q.id || !progressByQuestion.has(q.id));
+    const review = studyBank.filter(q => q.id && progressByQuestion.has(q.id) && !progressByQuestion.get(q.id)!.mastered);
+    return { freshPool: fresh, reviewPool: review, allPool: studyBank };
+  }, [studyBank, progressByQuestion]);
+
+  // Honour ?mode= query param from the QuestionBanks landing page deep-links.
+  useEffect(() => {
+    const urlMode = searchParams.get('mode');
+    if (urlMode === 'fresh' || urlMode === 'review' || urlMode === 'all') {
+      setSelectedMode(urlMode);
+    }
+  }, [searchParams]);
+
+  const startQuiz = (size: QuizSize, category: CategoryFilter, mode: StudyMode) => {
+    const modePool =
+      mode === 'fresh' ? freshPool :
+      mode === 'review' ? reviewPool :
+      allPool;
+    const pool = category === 'all' ? modePool : modePool.filter((q) => q.category === category);
     const weak = pool.filter((q) => weakQuestions[q.question]);
     const strong = pool.filter((q) => !weakQuestions[q.question]);
     const shuffled = [...shuffleArray(weak), ...shuffleArray(strong)];
@@ -113,7 +137,14 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                     <Shuffle className="h-3 w-3" /> Randomized
                   </Badge>
                 </div>
-                <StudyQuiz questions={activeQuestions} onFinish={handleRestart} productSlug={productSlug} />
+                <StudyQuiz
+                  questions={activeQuestions}
+                  onFinish={handleRestart}
+                  productSlug={productSlug}
+                  onAnswered={recordAnswer}
+                  masteryMastered={masteredCount}
+                  masteryTotal={studyBank.length}
+                />
               </div>
               <div className="w-full lg:w-64 shrink-0">
                 <div className="lg:sticky lg:top-20">
@@ -155,6 +186,31 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                   </p>
                 </div>
               )}
+
+              <div className="rounded-lg border bg-card p-4 mb-4">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-sm font-medium">Your Mastery</p>
+                </div>
+                <MasteryProgressBar mastered={masteredCount} total={studyBank.length} />
+              </div>
+
+              <Card className="mb-6">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-base">Choose a learning mode</CardTitle>
+                  <CardDescription className="text-xs">
+                    Fresh = unseen questions. Review = attempted but not mastered. Redo All = everything.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <StudyModePicker
+                    freshCount={freshPool.length}
+                    reviewCount={reviewPool.length}
+                    totalCount={allPool.length}
+                    selectedMode={selectedMode}
+                    onPick={setSelectedMode}
+                  />
+                </CardContent>
+              </Card>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
                 {(['product-facts', 'sales-angles', 'objection-handling', 'roleplay'] as const).map((cat) => {
@@ -210,18 +266,24 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                 <CardContent>
                   <div className="grid grid-cols-3 gap-3">
                     {([25, 50, 100] as QuizSize[]).map((size) => {
-                      const available = categoryFilter === 'all' ? studyBank.length : (categoryCounts[categoryFilter] || 0);
-                      const actualSize = Math.min(size, available);
+                      const modePool =
+                        selectedMode === 'fresh' ? freshPool :
+                        selectedMode === 'review' ? reviewPool :
+                        allPool;
+                      const filtered = categoryFilter === 'all' ? modePool : modePool.filter(q => q.category === categoryFilter);
+                      const actualSize = Math.min(size, filtered.length);
                       return (
                         <Button
                           key={size}
                           variant="outline"
                           className="h-auto py-4 flex flex-col gap-1"
-                          onClick={() => startQuiz(size, categoryFilter)}
-                          disabled={available === 0}
+                          onClick={() => selectedMode && startQuiz(size, categoryFilter, selectedMode)}
+                          disabled={!selectedMode || filtered.length === 0}
                         >
                           <span className="text-xl font-bold">{actualSize}</span>
-                          <span className="text-xs text-muted-foreground">Questions</span>
+                          <span className="text-xs text-muted-foreground">
+                            {selectedMode ? 'Questions' : 'Pick mode first'}
+                          </span>
                         </Button>
                       );
                     })}
