@@ -180,8 +180,28 @@ export function PhaseSection({
 
   const showAdmin = isAdmin && !readOnly;
 
+  const handleSectionKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (!showAdmin || !open) return;
+    const target = e.target as HTMLElement;
+    if (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable) return;
+    if (addingItem || showTemplates || previewTemplate || bulkImportOpen) return;
+    if (e.key.toLowerCase() === "n" && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      e.preventDefault();
+      setAddingItem(true);
+    }
+    if (e.key.toLowerCase() === "t" && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      e.preventDefault();
+      setShowTemplates(true);
+    }
+  };
+
   return (
-    <section className="rounded-lg border bg-card">
+    <section
+      className="rounded-lg border bg-card focus:outline-none"
+      onKeyDown={handleSectionKeyDown}
+      tabIndex={showAdmin ? 0 : -1}
+      aria-label={showAdmin ? `Phase: ${phase.title}. Press N for new item, T for template.` : undefined}
+    >
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
