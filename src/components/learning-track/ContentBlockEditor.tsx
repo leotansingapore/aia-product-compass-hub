@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { ExternalLink, Video, Trash2, Plus, FileText, Link } from "lucide-react";
+import { ExternalLink, Video, Trash2, Plus, FileText, Link, Image as ImageIcon } from "lucide-react";
 import { useAdmin } from "@/hooks/useAdmin";
 import {
   useCreateContentBlock,
@@ -20,6 +20,7 @@ const BLOCK_TYPE_OPTIONS: { value: BlockType; label: string; icon: JSX.Element }
   { value: "text", label: "Text", icon: <FileText className="h-3.5 w-3.5" /> },
   { value: "link", label: "Link", icon: <Link className="h-3.5 w-3.5" /> },
   { value: "video", label: "Video", icon: <Video className="h-3.5 w-3.5" /> },
+  { value: "image", label: "Image", icon: <ImageIcon className="h-3.5 w-3.5" /> },
 ];
 
 export function ContentBlockEditor({ blocks, itemId }: Props) {
@@ -39,9 +40,12 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
     if (!adding) return;
     const nextOrder = blocks.length > 0 ? Math.max(...blocks.map((b) => b.order_index)) + 1 : 0;
     const trimmedUrl = newUrl.trim();
-    // Auto-upgrade link → video when URL is from a known video host.
-    const effectiveType: BlockType =
-      adding === "link" && trimmedUrl && isVideoUrl(trimmedUrl) ? "video" : adding;
+    // Auto-upgrade link → video/image when URL matches a known pattern.
+    let effectiveType: BlockType = adding;
+    if (adding === "link" && trimmedUrl) {
+      if (isVideoUrl(trimmedUrl)) effectiveType = "video";
+      else if (isImageUrl(trimmedUrl)) effectiveType = "image";
+    }
     createBlock.mutate({
       item_id: itemId,
       block_type: effectiveType,
@@ -147,6 +151,29 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
             </div>
           )}
 
+          {b.block_type === "image" && b.url && (
+            <div className="space-y-1">
+              <a href={b.url} target="_blank" rel="noreferrer" className="block">
+                <img
+                  src={b.url}
+                  alt={b.title ?? "Image"}
+                  className="max-h-64 rounded border object-contain bg-muted/30"
+                  loading="lazy"
+                />
+              </a>
+              {isAdmin && (
+                <InlineEditableText
+                  value={b.url}
+                  onSave={(v) => updateBlock.mutate({ id: b.id, url: v })}
+                  isAdmin
+                  as="span"
+                  className="text-xs text-muted-foreground block"
+                  placeholder="Edit image URL..."
+                />
+              )}
+            </div>
+          )}
+
           {b.block_type === "video" && b.url && (
             <div className="space-y-1">
               <a
@@ -204,12 +231,18 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
                 </p>
               </div>
             )}
-            {(adding === "link" || adding === "video") && (
+            {(adding === "link" || adding === "video" || adding === "image") && (
               <div>
                 <input
                   value={newUrl}
                   onChange={(e) => setNewUrl(e.target.value)}
-                  placeholder={adding === "video" ? "Video URL (YouTube, Vimeo, Loom...)" : "URL"}
+                  placeholder={
+                    adding === "video"
+                      ? "Video URL (YouTube, Vimeo, Loom...)"
+                      : adding === "image"
+                      ? "Image URL"
+                      : "URL"
+                  }
                   className="w-full bg-transparent border-b border-primary/30 outline-none text-sm py-1"
                 />
                 {adding === "link" && newUrl.trim() && isVideoUrl(newUrl.trim()) && (
@@ -219,7 +252,7 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
                 )}
                 {adding === "link" && newUrl.trim() && isImageUrl(newUrl.trim()) && (
                   <p className="text-[11px] text-blue-600 dark:text-blue-400 mt-1">
-                    Detected image — will render inline in the lesson.
+                    Detected image — will be saved as an image block.
                   </p>
                 )}
               </div>
