@@ -24,9 +24,12 @@ export function SubModulesSection({ parentProductId }: SubModulesSectionProps) {
         .order('title', { ascending: true });
 
       if (!error && data) {
-        // Guard against self-referencing rows (a product listing itself as its own sub-module)
-        // and duplicate-title rows that share the parent's title.
-        const filtered = data.filter(p => p.id !== parentProductId);
+        // Exclude self-referencing rows and `core-<parent>` variants. The Core variant is
+        // the same product with simplified content, not a distinct sub-module, so it
+        // should not appear here (it's reachable via Study/Exam CTAs instead).
+        const filtered = data.filter(
+          p => p.id !== parentProductId && p.id !== `core-${parentProductId}`,
+        );
         setSubModules(filtered.map(p => ({
           ...p,
           training_videos: Array.isArray(p.training_videos) ? (p.training_videos as unknown as Product['training_videos']) : [],
@@ -47,29 +50,19 @@ export function SubModulesSection({ parentProductId }: SubModulesSectionProps) {
         <span className="text-xs text-muted-foreground">({subModules.length})</span>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-        {subModules.map(sub => {
-          // When a child ID is just `core-<parent>`, the title is typically identical to
-          // the parent's. Prefix "Core version -" so learners can tell them apart.
-          const isCoreVariant =
-            typeof sub.id === 'string' &&
-            sub.id === `core-${parentProductId}`;
-          const displayTitle = isCoreVariant && !/^core/i.test(sub.title)
-            ? `Core version - ${sub.title}`
-            : sub.title;
-          return (
-            <ProductCard
-              key={sub.id}
-              title={displayTitle}
-              description={sub.description || ''}
-              category={(sub as any).categories?.name || ''}
-              tags={sub.tags || []}
-              highlights={sub.highlights || []}
-              onClick={() => navigate(`/product/${sub.id}`)}
-              productId={sub.id}
-              published={sub.published}
-            />
-          );
-        })}
+        {subModules.map(sub => (
+          <ProductCard
+            key={sub.id}
+            title={sub.title}
+            description={sub.description || ''}
+            category={(sub as any).categories?.name || ''}
+            tags={sub.tags || []}
+            highlights={sub.highlights || []}
+            onClick={() => navigate(`/product/${sub.id}`)}
+            productId={sub.id}
+            published={sub.published}
+          />
+        ))}
       </div>
     </div>
   );
