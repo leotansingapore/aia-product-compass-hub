@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, ChevronRight, CheckCircle2, Circle, Clock, Trash2, Copy } from "lucide-react";
+import { ChevronDown, ChevronRight, CheckCircle2, Circle, Clock, Trash2, Copy, Bookmark } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
@@ -13,6 +13,7 @@ import { InlineEditableList } from "./InlineEditableList";
 import { ContentBlockEditor } from "./ContentBlockEditor";
 import { RelatedResources } from "./RelatedResources";
 import { SubmissionPanel } from "./SubmissionPanel";
+import { SaveAsTemplateDialog } from "./SaveAsTemplateDialog";
 import type { LearningTrackItem, ItemStatus } from "@/types/learning-track";
 import { cn } from "@/lib/utils";
 
@@ -48,6 +49,7 @@ export function LearningItemRow({
   const updateItem = useUpdateItem();
   const deleteItem = useDeleteItem();
   const duplicateItem = useDuplicateItem();
+  const [saveTemplateOpen, setSaveTemplateOpen] = useState(false);
 
   const showAdmin = isAdmin && !readOnly;
 
@@ -126,6 +128,15 @@ export function LearningItemRow({
         {/* Admin action buttons */}
         {showAdmin && (
           <div className="flex items-center gap-1 shrink-0">
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); setSaveTemplateOpen(true); }}
+              className="mt-1 h-6 w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+              aria-label="Save as template"
+              title="Save this item as a reusable template"
+            >
+              <Bookmark className="h-3.5 w-3.5" />
+            </button>
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); handleDuplicate(); }}
@@ -213,6 +224,12 @@ export function LearningItemRow({
           )}
         </div>
       )}
+      <SaveAsTemplateDialog
+        open={saveTemplateOpen}
+        onClose={() => setSaveTemplateOpen(false)}
+        itemId={item.id}
+        itemTitle={item.title}
+      />
     </div>
   );
 }

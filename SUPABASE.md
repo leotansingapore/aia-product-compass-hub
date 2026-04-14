@@ -6,6 +6,15 @@
 
 ## Pending
 
+_(none — all prior items completed)_
+
+## Completed
+
+### Learning Track Admin Tooling Phase 2 — DONE 2026-04-14
+
+Migration: `20260414025934_459bc09d-ce78-42b5-89a5-3a7e46e73598.sql`.
+Created `learning_track_templates`, `learning_track_item_revisions`, `learning_track_activity_log`; added `published_at` to phases + items; extended `block_type` enum with `image`; added audit triggers on items + content_blocks. Original spec below.
+
 ### Learning Track Admin Tooling Phase 2 — 2026-04-14
 
 **What:** Empowers non-Lovable instructors to safely build and maintain the learning track. Adds custom templates, undo via versioning, draft/publish workflow, first-class image blocks, and an activity audit log. Complements the inline editing, template picker, bulk import, and cross-track copy already shipped in code.

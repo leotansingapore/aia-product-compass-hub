@@ -30,6 +30,7 @@ import { LearningItemRow } from "./LearningItemRow";
 import { TemplatePreviewDialog } from "./TemplatePreviewDialog";
 import { BulkImportDialog } from "./BulkImportDialog";
 import { LEARNING_ITEM_TEMPLATES, type TemplateCategory, type LearningItemTemplate } from "@/data/learningItemTemplates";
+import { useCustomTemplates, useDeleteCustomTemplate } from "@/hooks/learning-track/useCustomTemplates";
 import type { LearningTrackPhase, LearningTrackItem } from "@/types/learning-track";
 
 const TEMPLATE_CATEGORY_ORDER: TemplateCategory[] = ["General", "Lesson", "Practice", "Assessment"];
@@ -110,6 +111,13 @@ export function PhaseSection({
   const createItem = useCreateItem();
   const createItemFromTemplate = useCreateItemFromTemplate();
   const reorderItems = useReorderItems();
+  const { data: customTemplates = [] } = useCustomTemplates();
+  const deleteCustomTemplate = useDeleteCustomTemplate();
+
+  const allTemplates: LearningItemTemplate[] = [
+    ...LEARNING_ITEM_TEMPLATES,
+    ...customTemplates,
+  ];
 
   const [addingItem, setAddingItem] = useState(false);
   const [newItemTitle, setNewItemTitle] = useState("");
@@ -341,7 +349,7 @@ export function PhaseSection({
                     </button>
                   </div>
                   {TEMPLATE_CATEGORY_ORDER.map((cat) => {
-                    const items = LEARNING_ITEM_TEMPLATES.filter((t) => t.category === cat);
+                    const items = allTemplates.filter((t) => t.category === cat);
                     if (items.length === 0) return null;
                     return (
                       <div key={cat}>
@@ -349,16 +357,40 @@ export function PhaseSection({
                           {cat}
                         </div>
                         <div className="grid gap-1 sm:grid-cols-2">
-                          {items.map((t) => (
-                            <button
-                              key={t.key}
-                              onClick={() => setPreviewTemplate(t)}
-                              className="text-left rounded border border-border/60 hover:border-primary/50 hover:bg-muted/40 px-2 py-1.5 transition-colors"
-                            >
-                              <div className="text-xs font-medium">{t.label}</div>
-                              <div className="text-[11px] text-muted-foreground">{t.hint}</div>
-                            </button>
-                          ))}
+                          {items.map((t) => {
+                            const custom = "isCustom" in t && t.isCustom;
+                            return (
+                              <div key={t.key} className="relative group">
+                                <button
+                                  onClick={() => setPreviewTemplate(t)}
+                                  className="w-full text-left rounded border border-border/60 hover:border-primary/50 hover:bg-muted/40 px-2 py-1.5 transition-colors"
+                                >
+                                  <div className="text-xs font-medium flex items-center gap-1">
+                                    {t.label}
+                                    {custom && (
+                                      <span className="text-[9px] px-1 py-px rounded bg-primary/10 text-primary">
+                                        custom
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="text-[11px] text-muted-foreground">{t.hint}</div>
+                                </button>
+                                {custom && (
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      if (!confirm(`Delete template "${t.label}"?`)) return;
+                                      deleteCustomTemplate.mutate((t as LearningItemTemplate & { id: string }).id);
+                                    }}
+                                    className="absolute top-1 right-1 hidden group-hover:flex h-5 w-5 items-center justify-center rounded text-destructive/70 hover:text-destructive hover:bg-destructive/10"
+                                    aria-label="Delete template"
+                                  >
+                                    <Trash2 className="h-3 w-3" />
+                                  </button>
+                                )}
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                     );
