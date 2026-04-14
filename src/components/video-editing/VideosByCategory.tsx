@@ -146,7 +146,7 @@ export const VideosByCategory = memo(function VideosByCategory({
                           }}
                           className={`flex-shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 ${
                             isCompleted
-                              ? 'bg-primary/10 border-primary/30 text-primary hover:bg-primary/20'
+                              ? 'bg-green-600 border-green-600 text-white hover:bg-green-700'
                               : 'bg-background border-border text-muted-foreground hover:bg-primary/5 hover:border-primary/40 hover:text-primary'
                           }`}
                           title={isCompleted ? 'Click to mark incomplete' : 'Click to mark complete'}
