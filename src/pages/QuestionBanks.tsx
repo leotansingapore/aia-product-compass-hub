@@ -5,9 +5,11 @@ import { ProtectedPage } from "@/components/ProtectedPage";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, Brain, GraduationCap, Loader2 } from "lucide-react";
+import { BookOpen, Brain, GraduationCap, Loader2, Sparkles, RotateCcw, Layers } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { PRODUCT_SLUGS, PRODUCT_LABELS } from "@/types/questionBank";
+import { useAuth } from "@/hooks/useAuth";
+import { MasteryProgressBar } from "@/components/study/MasteryProgressBar";
 
 interface ProductQuizEntry {
   id: string;
@@ -57,12 +59,42 @@ function useBankCounts() {
   });
 }
 
+interface MasteryBySlug {
+  [productSlug: string]: { mastered: number; touched: number };
+}
+
+function useMasteryBySlug() {
+  const { user } = useAuth();
+  return useQuery({
+    queryKey: ["all-product-progress", user?.id],
+    queryFn: async (): Promise<MasteryBySlug> => {
+      if (!user?.id) return {};
+      const { data, error } = await supabase
+        .from("user_question_progress")
+        .select("product_slug, mastered")
+        .eq("user_id", user.id);
+      if (error) throw error;
+      const out: MasteryBySlug = {};
+      for (const row of (data ?? []) as Array<{ product_slug: string; mastered: boolean }>) {
+        if (!out[row.product_slug]) out[row.product_slug] = { mastered: 0, touched: 0 };
+        out[row.product_slug].touched += 1;
+        if (row.mastered) out[row.product_slug].mastered += 1;
+      }
+      return out;
+    },
+    enabled: !!user?.id,
+    staleTime: 30_000,
+  });
+}
+
 export default function QuestionBanks() {
   const navigate = useNavigate();
   const { data: counts = {}, isLoading } = useBankCounts();
+  const { data: masteryBySlug = {} } = useMasteryBySlug();
 
   const getStudyCount = (id: string) => counts[id]?.study ?? 0;
   const getExamCount = (id: string) => counts[id]?.exam ?? 0;
+  const getMastery = (id: string) => masteryBySlug[id] ?? { mastered: 0, touched: 0 };
   const totalStudy = Object.values(counts).reduce((s, c) => s + c.study, 0);
   const totalExam = Object.values(counts).reduce((s, c) => s + c.exam, 0);
 
@@ -119,35 +151,89 @@ export default function QuestionBanks() {
                       </div>
                       <CardDescription className="mt-1">{product.description}</CardDescription>
                     </CardHeader>
-                    <CardContent className="pt-0">
-                      <div className="flex flex-wrap gap-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="gap-1.5"
-                          onClick={() => navigate(product.studyRoute)}
-                        >
-                          <BookOpen className="h-3.5 w-3.5" />
-                          Study Bank
-                          <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
-                            {studyCount}
-                          </Badge>
-                        </Button>
-                        <Button
-                          size="sm"
-                          className="gap-1.5"
-                          onClick={() => navigate(product.examRoute, { state: { from: "question-banks" } })}
-                        >
-                          <GraduationCap className="h-3.5 w-3.5" />
-                          Product Exam
-                          <Badge
-                            variant="secondary"
-                            className="ml-1 text-[10px] px-1.5 py-0 bg-primary-foreground/20 text-primary-foreground"
+                    <CardContent className="pt-0 space-y-3">
+                      {studyCount > 0 && (() => {
+                        const mastery = getMastery(product.id);
+                        const freshCount = Math.max(studyCount - mastery.touched, 0);
+                        const reviewCount = Math.max(mastery.touched - mastery.mastered, 0);
+                        return (
+                          <>
+                            <MasteryProgressBar mastered={mastery.mastered} total={studyCount} />
+                            <div className="flex flex-wrap gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="gap-1.5"
+                                onClick={() => navigate(`${product.studyRoute}?mode=fresh`)}
+                                disabled={freshCount <= 0}
+                              >
+                                <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+                                Fresh
+                                <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
+                                  {freshCount}
+                                </Badge>
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="gap-1.5"
+                                onClick={() => navigate(`${product.studyRoute}?mode=review`)}
+                                disabled={reviewCount <= 0}
+                              >
+                                <RotateCcw className="h-3.5 w-3.5 text-amber-600" />
+                                Review
+                                <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
+                                  {reviewCount}
+                                </Badge>
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="gap-1.5"
+                                onClick={() => navigate(`${product.studyRoute}?mode=all`)}
+                              >
+                                <Layers className="h-3.5 w-3.5 text-primary" />
+                                Redo All
+                                <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
+                                  {studyCount}
+                                </Badge>
+                              </Button>
+                              <Button
+                                size="sm"
+                                className="gap-1.5"
+                                onClick={() => navigate(product.examRoute, { state: { from: "question-banks" } })}
+                              >
+                                <GraduationCap className="h-3.5 w-3.5" />
+                                Product Exam
+                                <Badge
+                                  variant="secondary"
+                                  className="ml-1 text-[10px] px-1.5 py-0 bg-primary-foreground/20 text-primary-foreground"
+                                >
+                                  {examCount}
+                                </Badge>
+                              </Button>
+                            </div>
+                          </>
+                        );
+                      })()}
+                      {studyCount === 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          <Button
+                            size="sm"
+                            className="gap-1.5"
+                            onClick={() => navigate(product.examRoute, { state: { from: "question-banks" } })}
                           >
-                            {examCount}
-                          </Badge>
-                        </Button>
-                      </div>
+                            <GraduationCap className="h-3.5 w-3.5" />
+                            Product Exam
+                            <Badge
+                              variant="secondary"
+                              className="ml-1 text-[10px] px-1.5 py-0 bg-primary-foreground/20 text-primary-foreground"
+                            >
+                              {examCount}
+                            </Badge>
+                          </Button>
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
                 );
