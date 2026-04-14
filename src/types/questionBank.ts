@@ -17,6 +17,7 @@ export interface QuestionBankQuestion {
 
 // Shape used by existing quiz/study components
 export interface QuizQuestion {
+  id?: string;              // question_bank_questions.id, populated when questions come from DB
   question: string;
   options: string[];
   correct: number;
@@ -51,6 +52,7 @@ export const CATEGORY_LABELS: Record<QuestionCategory, string> = {
 
 export function dbRowToQuizQuestion(row: QuestionBankQuestion): QuizQuestion {
   return {
+    id: row.id,
     question: row.question,
     options: row.options,
     correct: row.correct_answer,
