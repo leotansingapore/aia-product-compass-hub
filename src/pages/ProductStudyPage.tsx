@@ -299,11 +299,6 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                 </Button>
               </div>
             </div>
-            <div className="w-full lg:w-64 shrink-0 order-first lg:order-last">
-              <div className="lg:sticky lg:top-20">
-                <StudyResourcesSidebar productSlug={productSlug} />
-              </div>
-            </div>
           </div>
         </div>
       </PageLayout>
