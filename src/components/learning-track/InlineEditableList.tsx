@@ -92,10 +92,10 @@ export function InlineEditableList({
           {isAdmin && editingIdx !== i && (
             <button
               onClick={(e) => { e.stopPropagation(); removeItem(i); }}
-              className="hidden group-hover:flex h-4 w-4 items-center justify-center rounded-full text-destructive opacity-60 hover:opacity-100 shrink-0 mt-0.5"
+              className="flex sm:hidden sm:group-hover:flex h-5 w-5 items-center justify-center rounded-full text-destructive opacity-60 hover:opacity-100 shrink-0 mt-0.5"
               aria-label="Remove item"
             >
-              <Trash2 className="h-2.5 w-2.5" />
+              <Trash2 className="h-3 w-3" />
             </button>
           )}
         </div>

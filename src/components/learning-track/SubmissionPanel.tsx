@@ -110,9 +110,9 @@ export function SubmissionPanel({ itemId, userId, readOnly = false }: Props) {
       )}
 
       {canEdit && (
-        <div className="space-y-2">
-          <label className="inline-flex cursor-pointer items-center gap-2 text-sm">
-            <Paperclip className="h-4 w-4" />
+        <div className="space-y-3">
+          <label className="inline-flex cursor-pointer items-center gap-2 rounded-md border border-border bg-background px-3 py-2 text-sm hover:bg-muted transition-colors min-h-[44px]">
+            <Paperclip className="h-4 w-4 text-muted-foreground" />
             <input
               type="file"
               accept="application/pdf,image/*"
@@ -124,17 +124,21 @@ export function SubmissionPanel({ itemId, userId, readOnly = false }: Props) {
           <div className="flex gap-2">
             <input
               type="url"
-              placeholder="Or paste a link (Loom, Google Drive, etc)"
+              placeholder="Or paste a link (Loom, Drive, etc)"
               value={linkUrl}
               onChange={(e) => setLinkUrl(e.target.value)}
-              className="flex-1 rounded border px-2 py-1 text-sm"
+              className="flex-1 rounded-md border border-border bg-background px-3 py-2 text-sm min-h-[44px]"
             />
-            <Button size="sm" onClick={handleAddLink} disabled={!linkUrl || !submission}>
+            <Button size="sm" className="min-h-[44px] sm:min-h-0" onClick={handleAddLink} disabled={!linkUrl || !submission}>
               Add link
             </Button>
           </div>
-          <Button onClick={handleSave} size="sm" disabled={upsert.isPending}>
-            {submission ? "Save / Resubmit" : "Submit for review"}
+          <Button onClick={handleSave} size="sm" className="w-full sm:w-auto min-h-[44px] sm:min-h-0" disabled={upsert.isPending}>
+            {upsert.isPending ? (
+              <><Loader2 className="h-4 w-4 animate-spin mr-2" />{submission ? "Saving…" : "Submitting…"}</>
+            ) : (
+              submission ? "Save / Resubmit" : "Submit for review"
+            )}
           </Button>
         </div>
       )}

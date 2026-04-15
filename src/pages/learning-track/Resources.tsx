@@ -75,7 +75,15 @@ export default function Resources() {
       </div>
 
       {filtered.length === 0 ? (
-        <p className="text-sm text-muted-foreground">No resources match.</p>
+        <div className="rounded-lg border border-dashed p-8 text-center">
+          <Search className="h-8 w-8 mx-auto text-muted-foreground/40 mb-2" />
+          <p className="text-sm text-muted-foreground">No resources match your search.</p>
+          {search && (
+            <button onClick={() => setSearch("")} className="mt-2 text-xs text-primary hover:underline">
+              Clear search
+            </button>
+          )}
+        </div>
       ) : (
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((r) => {
