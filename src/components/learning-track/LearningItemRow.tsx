@@ -169,6 +169,33 @@ export function LearningItemRow({
               >
                 <Copy className="h-3.5 w-3.5" />
               </button>
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); setShowMoveMenu((v) => !v); }}
+                  className="h-7 w-7 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+                  aria-label="Move to another phase"
+                  title="Move to another phase"
+                >
+                  <ArrowRightLeft className="h-3.5 w-3.5" />
+                </button>
+                {showMoveMenu && (
+                  <div className="absolute left-0 top-8 z-50 min-w-[200px] rounded-md border bg-popover p-1 shadow-md" onClick={(e) => e.stopPropagation()}>
+                    <div className="px-2 py-1 text-[10px] uppercase tracking-wide font-semibold text-muted-foreground">Move to phase</div>
+                    {[...(preRnfPhases.data ?? []), ...(postRnfPhases.data ?? [])].filter((p) => p.id !== item.phase_id).map((p) => (
+                      <button
+                        key={p.id}
+                        type="button"
+                        onClick={() => { moveItem.mutate({ itemId: item.id, targetPhaseId: p.id }); setShowMoveMenu(false); }}
+                        className="w-full text-left rounded px-2 py-1.5 text-sm hover:bg-accent transition-colors flex items-center gap-2"
+                      >
+                        <span className="text-[10px] text-muted-foreground shrink-0">{p.track === "pre_rnf" ? "Pre" : "Post"}</span>
+                        <span className="truncate">{p.title}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); handleDelete(); }}
