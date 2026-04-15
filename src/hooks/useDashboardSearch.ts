@@ -24,12 +24,13 @@ export function useDashboardSearch() {
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState("relevance");
 
-  // Initialize search with URL params
+  // Initialize search with URL params — only run once on mount
   useEffect(() => {
-    if (initialQuery && initialQuery !== query) {
+    if (initialQuery) {
       setQuery(initialQuery);
     }
-  }, [initialQuery, query, setQuery]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSearch = (newQuery: string) => {
     setQuery(newQuery);
