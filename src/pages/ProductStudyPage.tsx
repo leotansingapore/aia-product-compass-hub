@@ -53,7 +53,7 @@ interface ProductStudyPageProps {
 export function ProductStudyPage({ productSlug, productTitle, backRoute, backLabel, pageId }: ProductStudyPageProps) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [, setQuizSize] = useState<QuizSize | null>(null);
+  const [quizSize, setQuizSize] = useState<QuizSize | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
   const [activeQuestions, setActiveQuestions] = useState<QuizQuestion[] | null>(null);
   const [selectedMode, setSelectedMode] = useState<StudyMode | null>(null);
@@ -252,30 +252,40 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-3 gap-3">
-                    {([25, 50, 100] as QuizSize[]).map((size) => {
-                      const modePool =
-                        selectedMode === 'fresh' ? freshPool :
-                        selectedMode === 'review' ? reviewPool :
-                        allPool;
-                      const filtered = categoryFilter === 'all' ? modePool : modePool.filter(q => q.category === categoryFilter);
-                      const actualSize = Math.min(size, filtered.length);
-                      return (
-                        <Button
-                          key={size}
-                          variant="outline"
-                          className="h-auto py-4 flex flex-col gap-1 min-h-[72px]"
-                          onClick={() => selectedMode && startQuiz(size, categoryFilter, selectedMode)}
+                  {(() => {
+                    const modePool =
+                      selectedMode === 'fresh' ? freshPool :
+                      selectedMode === 'review' ? reviewPool :
+                      allPool;
+                    const filtered = categoryFilter === 'all' ? modePool : modePool.filter(q => q.category === categoryFilter);
+                    return (
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <select
+                          value={quizSize ?? ''}
+                          onChange={(e) => setQuizSize(e.target.value ? Number(e.target.value) as QuizSize : null)}
+                          className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring"
                           disabled={!selectedMode || filtered.length === 0}
                         >
-                          <span className="text-xl font-bold">{actualSize}</span>
-                          <span className="text-[10px] sm:text-xs text-muted-foreground leading-tight text-center">
-                            {!selectedMode ? 'Select mode ↑' : filtered.length === 0 ? 'No questions' : 'Questions'}
-                          </span>
+                          <option value="">Select number of questions</option>
+                          {([25, 50, 100] as QuizSize[]).map((size) => {
+                            const actualSize = Math.min(size, filtered.length);
+                            return (
+                              <option key={size} value={size}>
+                                {actualSize} Questions
+                              </option>
+                            );
+                          })}
+                        </select>
+                        <Button
+                          className="min-h-[44px]"
+                          onClick={() => selectedMode && quizSize && startQuiz(quizSize, categoryFilter, selectedMode)}
+                          disabled={!selectedMode || !quizSize || filtered.length === 0}
+                        >
+                          {!selectedMode ? 'Select a mode first' : 'Start'}
                         </Button>
-                      );
-                    })}
-                  </div>
+                      </div>
+                    );
+                  })()}
                 </CardContent>
               </Card>
 
