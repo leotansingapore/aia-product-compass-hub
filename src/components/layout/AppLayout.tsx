@@ -16,8 +16,6 @@ const FloatingFeedbackButton = lazy(() => import("@/components/FloatingFeedbackB
 import { useAdmin } from "@/hooks/useAdmin";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAppStructureSync } from "@/hooks/useAppStructureSync";
-import { usePermissions } from "@/hooks/usePermissions";
 
 // Safe fallback to avoid crash if AdminProvider isn't mounted (e.g., during boot/HMR)
 const useAdminSafe = () => {
@@ -45,8 +43,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const { isAdmin } = useAdminSafe();
   const { user, loading, signOut } = useSimplifiedAuthSafe();
   const navigate = useNavigate();
-  const { autoSync } = useAppStructureSync();
-  const { loading: permissionsLoading } = usePermissions();
   const isMobile = useIsMobile();
   const [profileOpen, setProfileOpen] = useState(false);
   const location = useLocation();
