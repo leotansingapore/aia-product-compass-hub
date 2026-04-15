@@ -35,6 +35,11 @@ export function MobileBottomNav() {
   const navigate = useNavigate();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const { isAdmin } = useAdmin();
+  const { isViewingAsUser } = useViewMode();
+  const showAdmin = isAdmin && !isViewingAsUser;
+
+  const allQuickLinks = showAdmin ? [...quickLinkItems, adminQuickLink] : quickLinkItems;
 
   return (
     <>
@@ -94,7 +99,7 @@ export function MobileBottomNav() {
             <SheetTitle className="text-base">Quick Links</SheetTitle>
           </SheetHeader>
           <div className="grid grid-cols-4 gap-3">
-            {quickLinkItems.map((item) => (
+            {allQuickLinks.map((item) => (
               <button
                 key={item.name}
                 type="button"
