@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, ChevronRight, CheckCircle2, Circle, Clock, Trash2, Copy, Bookmark, History } from "lucide-react";
+import { ChevronDown, ChevronRight, CheckCircle2, Circle, Clock, Trash2, Copy, Bookmark, History, ArrowRightLeft } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
@@ -7,7 +7,9 @@ import {
   useUpdateItem,
   useDeleteItem,
   useDuplicateItem,
+  useMoveItemToPhase,
 } from "@/hooks/learning-track/useAdminLearningTrackMutations";
+import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackPhases";
 import { InlineEditableText } from "./InlineEditableText";
 import { InlineEditableList } from "./InlineEditableList";
 import { ContentBlockEditor } from "./ContentBlockEditor";
