@@ -194,30 +194,11 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                 <MasteryProgressBar mastered={masteredCount} total={studyBank.length} />
               </div>
 
-              <Card className="mb-6">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-base">Choose a learning mode</CardTitle>
-                  <CardDescription className="text-xs">
-                    Fresh = unseen questions. Review = attempted but not mastered. Redo All = everything.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <StudyModePicker
-                    freshCount={freshPool.length}
-                    reviewCount={reviewPool.length}
-                    totalCount={allPool.length}
-                    selectedMode={selectedMode}
-                    onPick={setSelectedMode}
-                  />
-                </CardContent>
-              </Card>
-
-
               <Card>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-base">Start Studying</CardTitle>
                   <CardDescription className="text-xs">
-                    Choose a category and number of questions, then hit Start.
+                    Pick a mode, category, and number of questions, then hit Start.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -228,11 +209,18 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                       allPool;
                     const filtered = categoryFilter === 'all' ? modePool : modePool.filter(q => q.category === categoryFilter);
                     return (
-                      <div className="flex flex-col sm:flex-row gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-[1fr_1fr_1fr_auto] gap-3">
+                        <StudyModePicker
+                          freshCount={freshPool.length}
+                          reviewCount={reviewPool.length}
+                          totalCount={allPool.length}
+                          selectedMode={selectedMode}
+                          onPick={setSelectedMode}
+                        />
                         <select
                           value={categoryFilter}
                           onChange={(e) => setCategoryFilter(e.target.value as CategoryFilter)}
-                          className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring"
+                          className="rounded-md border border-input bg-background px-3 py-2 text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring"
                         >
                           {(['all', 'product-facts', 'sales-angles', 'objection-handling', 'roleplay'] as const).map((cat) => {
                             const count = cat === 'all' ? studyBank.length : (categoryCounts[cat] || 0);
@@ -246,7 +234,7 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                         <select
                           value={quizSize ?? ''}
                           onChange={(e) => setQuizSize(e.target.value ? Number(e.target.value) as QuizSize : null)}
-                          className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring"
+                          className="rounded-md border border-input bg-background px-3 py-2 text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring"
                           disabled={!selectedMode || filtered.length === 0}
                         >
                           <option value="">No. of questions</option>
@@ -264,7 +252,7 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                           onClick={() => selectedMode && quizSize && startQuiz(quizSize, categoryFilter, selectedMode)}
                           disabled={!selectedMode || !quizSize || filtered.length === 0}
                         >
-                          {!selectedMode ? 'Select a mode first' : 'Start'}
+                          Start
                         </Button>
                       </div>
                     );
