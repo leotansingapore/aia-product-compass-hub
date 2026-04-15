@@ -174,6 +174,40 @@ export function LearningItemRow({
               >
                 <Copy className="h-3.5 w-3.5" />
               </button>
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); setMoveMenuOpen(o => !o); }}
+                  className="h-7 w-7 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+                  aria-label="Move to another phase"
+                  title="Move to another phase"
+                >
+                  <ArrowRightLeft className="h-3.5 w-3.5" />
+                </button>
+                {moveMenuOpen && (
+                  <div className="absolute left-0 top-full mt-1 z-50 bg-popover border rounded-md shadow-lg py-1 min-w-[220px] max-h-[300px] overflow-y-auto">
+                    <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground">Move to phase…</div>
+                    {allPhases.map(p => (
+                      <button
+                        key={p.id}
+                        type="button"
+                        className="w-full text-left px-3 py-1.5 text-sm hover:bg-muted transition-colors flex items-center gap-2"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          moveItem.mutate({ itemId: item.id, targetPhaseId: p.id });
+                          setMoveMenuOpen(false);
+                        }}
+                      >
+                        <span className="text-xs text-muted-foreground font-medium shrink-0">{p.trackLabel}</span>
+                        <span className="truncate">{p.title}</span>
+                      </button>
+                    ))}
+                    {allPhases.length === 0 && (
+                      <div className="px-3 py-2 text-sm text-muted-foreground">No other phases available</div>
+                    )}
+                  </div>
+                )}
+              </div>
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); handleDelete(); }}
