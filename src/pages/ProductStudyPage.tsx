@@ -212,18 +212,6 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                 </CardContent>
               </Card>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-                {(['product-facts', 'sales-angles', 'objection-handling', 'roleplay'] as const).map((cat) => {
-                  const Icon = categoryIcons[cat];
-                  return (
-                    <div key={cat} className="rounded-lg border bg-card p-3 text-center">
-                      <Icon className="h-4 w-4 mx-auto mb-1 text-primary" />
-                      <div className="text-lg font-bold tabular-nums">{categoryCounts[cat] || 0}</div>
-                      <div className="text-[11px] text-muted-foreground">{categoryLabels[cat]}</div>
-                    </div>
-                  );
-                })}
-              </div>
 
               <Card className="mb-6">
                 <CardHeader className="pb-3">
