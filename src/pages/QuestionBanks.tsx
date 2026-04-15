@@ -5,7 +5,7 @@ import { ProtectedPage } from "@/components/ProtectedPage";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, Brain, GraduationCap, Loader2, Sparkles, RotateCcw, Layers } from "lucide-react";
+import { BookOpen, Brain, GraduationCap, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { PRODUCT_SLUGS, PRODUCT_LABELS } from "@/types/questionBank";
 import { useAuth } from "@/hooks/useAuth";
@@ -154,46 +154,18 @@ export default function QuestionBanks() {
                     <CardContent className="pt-0 space-y-3 px-4 sm:px-6">
                       {studyCount > 0 && (() => {
                         const mastery = getMastery(product.id);
-                        const freshCount = Math.max(studyCount - mastery.touched, 0);
-                        const reviewCount = Math.max(mastery.touched - mastery.mastered, 0);
                         return (
                           <>
                             <MasteryProgressBar mastered={mastery.mastered} total={studyCount} />
-                            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-2">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 className="gap-1.5 min-h-[44px] sm:min-h-0 text-xs sm:text-sm"
-                                onClick={() => navigate(`${product.studyRoute}?mode=fresh`)}
-                                disabled={freshCount <= 0}
+                                onClick={() => navigate(product.studyRoute)}
                               >
-                                <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
-                                Fresh
-                                <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
-                                  {freshCount}
-                                </Badge>
-                              </Button>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="gap-1.5 min-h-[44px] sm:min-h-0 text-xs sm:text-sm"
-                                onClick={() => navigate(`${product.studyRoute}?mode=review`)}
-                                disabled={reviewCount <= 0}
-                              >
-                                <RotateCcw className="h-3.5 w-3.5 text-amber-600" />
-                                Review
-                                <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
-                                  {reviewCount}
-                                </Badge>
-                              </Button>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="gap-1.5 min-h-[44px] sm:min-h-0 text-xs sm:text-sm"
-                                onClick={() => navigate(`${product.studyRoute}?mode=all`)}
-                              >
-                                <Layers className="h-3.5 w-3.5 text-primary" />
-                                Redo All
+                                <BookOpen className="h-3.5 w-3.5 text-blue-500" />
+                                Question Bank
                                 <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
                                   {studyCount}
                                 </Badge>
