@@ -282,7 +282,32 @@ export function useUpdateItem() {
   });
 }
 
-export function useDeleteItem() {
+export function useMoveItemToPhase() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ itemId, targetPhaseId }: { itemId: string; targetPhaseId: string }) => {
+      // Get the max order_index in the target phase
+      const { data: existing } = await supabase
+        .from("learning_track_items")
+        .select("order_index")
+        .eq("phase_id", targetPhaseId)
+        .order("order_index", { ascending: false })
+        .limit(1);
+      const nextOrder = existing && existing.length > 0 ? (existing[0] as any).order_index + 1 : 0;
+      const { error } = await supabase
+        .from("learning_track_items")
+        .update({ phase_id: targetPhaseId, order_index: nextOrder })
+        .eq("id", itemId);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast.success("Item moved");
+      qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
+    },
+    onError: () => toast.error("Failed to move item"),
+  });
+}
+
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
