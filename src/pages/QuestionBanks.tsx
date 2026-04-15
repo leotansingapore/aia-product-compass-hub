@@ -5,7 +5,7 @@ import { ProtectedPage } from "@/components/ProtectedPage";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, Brain, GraduationCap, Loader2, Sparkles, RotateCcw, Layers } from "lucide-react";
+import { BookOpen, Brain, GraduationCap, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { PRODUCT_SLUGS, PRODUCT_LABELS } from "@/types/questionBank";
 import { useAuth } from "@/hooks/useAuth";
