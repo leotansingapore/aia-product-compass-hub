@@ -29,7 +29,7 @@ export function QuizNavigation({
           size="sm"
           onClick={onPrevious}
           disabled={currentQuestion === 0}
-          className="shrink-0"
+          className="shrink-0 min-h-[44px] sm:min-h-0"
         >
           ← Prev
         </Button>
@@ -40,7 +40,7 @@ export function QuizNavigation({
               variant="outline"
               size="sm"
               onClick={onRestart}
-              className="flex items-center gap-1"
+              className="flex items-center gap-1 min-h-[44px] sm:min-h-0"
             >
               <RotateCcw className="h-3 w-3" />
               <span className="hidden sm:inline">Restart</span>
@@ -53,6 +53,7 @@ export function QuizNavigation({
               size="sm"
               onClick={onNext}
               disabled={!showResult}
+              className="min-h-[44px] sm:min-h-0 min-w-[80px]"
             >
               Next →
             </Button>
@@ -62,7 +63,7 @@ export function QuizNavigation({
                 onClick={onNext}
                 variant="hero"
                 size="sm"
-                className="px-4 text-xs sm:text-sm"
+                className="px-4 text-xs sm:text-sm min-h-[44px] sm:min-h-0"
               >
                 Complete ✓
               </Button>

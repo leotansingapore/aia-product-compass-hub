@@ -32,7 +32,7 @@ export function QuizQuestion({
             key={index}
             onClick={() => onAnswerSelect(index)}
             disabled={showResult}
-            className={`w-full text-left p-3 sm:p-4 rounded-lg border transition-all text-sm sm:text-base ${
+            className={`w-full text-left p-3 sm:p-4 rounded-lg border transition-all text-sm sm:text-base min-h-[48px] ${
               showResult
                 ? index === question.correct
                   ? 'border-success bg-success/10 text-success'
@@ -41,7 +41,7 @@ export function QuizQuestion({
                   : 'border-muted bg-muted/50'
                 : selectedAnswer === index
                 ? 'border-primary bg-primary/10'
-                : 'border-border hover:border-primary/50 hover:bg-accent/50'
+                : 'border-border hover:border-primary/50 hover:bg-accent/50 active:bg-accent/70'
             }`}
           >
             <div className="flex items-start justify-between gap-2">

@@ -141,17 +141,17 @@ export default function QuestionBanks() {
                 const examCount = getExamCount(product.id);
                 return (
                   <Card key={product.id} className="transition-all duration-200 hover:shadow-md hover:border-primary/30">
-                    <CardHeader className="pb-2">
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center gap-2">
+                    <CardHeader className="pb-2 px-4 sm:px-6">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex items-center gap-2 min-w-0">
                           <Brain className="h-5 w-5 text-primary shrink-0" />
-                          <CardTitle className="text-lg">{product.title}</CardTitle>
+                          <CardTitle className="text-base sm:text-lg truncate">{product.title}</CardTitle>
                         </div>
-                        <Badge variant="secondary">{studyCount + examCount} total</Badge>
+                        <Badge variant="secondary" className="shrink-0">{studyCount + examCount} total</Badge>
                       </div>
-                      <CardDescription className="mt-1">{product.description}</CardDescription>
+                      <CardDescription className="mt-1 text-xs sm:text-sm">{product.description}</CardDescription>
                     </CardHeader>
-                    <CardContent className="pt-0 space-y-3">
+                    <CardContent className="pt-0 space-y-3 px-4 sm:px-6">
                       {studyCount > 0 && (() => {
                         const mastery = getMastery(product.id);
                         const freshCount = Math.max(studyCount - mastery.touched, 0);
@@ -159,11 +159,11 @@ export default function QuestionBanks() {
                         return (
                           <>
                             <MasteryProgressBar mastered={mastery.mastered} total={studyCount} />
-                            <div className="flex flex-wrap gap-2">
+                            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="gap-1.5"
+                                className="gap-1.5 min-h-[44px] sm:min-h-0 text-xs sm:text-sm"
                                 onClick={() => navigate(`${product.studyRoute}?mode=fresh`)}
                                 disabled={freshCount <= 0}
                               >
@@ -176,7 +176,7 @@ export default function QuestionBanks() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="gap-1.5"
+                                className="gap-1.5 min-h-[44px] sm:min-h-0 text-xs sm:text-sm"
                                 onClick={() => navigate(`${product.studyRoute}?mode=review`)}
                                 disabled={reviewCount <= 0}
                               >
@@ -189,7 +189,7 @@ export default function QuestionBanks() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="gap-1.5"
+                                className="gap-1.5 min-h-[44px] sm:min-h-0 text-xs sm:text-sm"
                                 onClick={() => navigate(`${product.studyRoute}?mode=all`)}
                               >
                                 <Layers className="h-3.5 w-3.5 text-primary" />
@@ -200,11 +200,11 @@ export default function QuestionBanks() {
                               </Button>
                               <Button
                                 size="sm"
-                                className="gap-1.5"
+                                className="gap-1.5 min-h-[44px] sm:min-h-0 text-xs sm:text-sm"
                                 onClick={() => navigate(product.examRoute, { state: { from: "question-banks" } })}
                               >
                                 <GraduationCap className="h-3.5 w-3.5" />
-                                Product Exam
+                                Exam
                                 <Badge
                                   variant="secondary"
                                   className="ml-1 text-[10px] px-1.5 py-0 bg-primary-foreground/20 text-primary-foreground"
@@ -217,22 +217,20 @@ export default function QuestionBanks() {
                         );
                       })()}
                       {studyCount === 0 && (
-                        <div className="flex flex-wrap gap-2">
-                          <Button
-                            size="sm"
-                            className="gap-1.5"
-                            onClick={() => navigate(product.examRoute, { state: { from: "question-banks" } })}
+                        <Button
+                          size="sm"
+                          className="gap-1.5 min-h-[44px] sm:min-h-0 w-full sm:w-auto"
+                          onClick={() => navigate(product.examRoute, { state: { from: "question-banks" } })}
+                        >
+                          <GraduationCap className="h-3.5 w-3.5" />
+                          Product Exam
+                          <Badge
+                            variant="secondary"
+                            className="ml-1 text-[10px] px-1.5 py-0 bg-primary-foreground/20 text-primary-foreground"
                           >
-                            <GraduationCap className="h-3.5 w-3.5" />
-                            Product Exam
-                            <Badge
-                              variant="secondary"
-                              className="ml-1 text-[10px] px-1.5 py-0 bg-primary-foreground/20 text-primary-foreground"
-                            >
-                              {examCount}
-                            </Badge>
-                          </Button>
-                        </div>
+                            {examCount}
+                          </Badge>
+                        </Button>
                       )}
                     </CardContent>
                   </Card>

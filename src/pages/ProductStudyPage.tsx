@@ -231,7 +231,7 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                   <CardDescription className="text-xs">Choose a specific area to focus on, or study all categories.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {(['all', 'product-facts', 'sales-angles', 'objection-handling', 'roleplay'] as const).map((cat) => {
                       const Icon = categoryIcons[cat];
                       const count = cat === 'all' ? studyBank.length : (categoryCounts[cat] || 0);
@@ -239,14 +239,14 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                         <button
                           key={cat}
                           onClick={() => setCategoryFilter(cat)}
-                          className={`flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition-colors ${
+                          className={`flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition-colors shrink-0 min-h-[44px] sm:min-h-0 ${
                             categoryFilter === cat
                               ? 'bg-primary text-primary-foreground border-primary'
-                              : 'bg-background hover:bg-accent'
+                              : 'bg-background hover:bg-accent active:bg-accent/70'
                           }`}
                         >
                           <Icon className="h-3.5 w-3.5" />
-                          {categoryLabels[cat]}
+                          <span className="whitespace-nowrap">{categoryLabels[cat]}</span>
                           <span className="text-xs opacity-70">({count})</span>
                         </button>
                       );
@@ -276,13 +276,13 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                         <Button
                           key={size}
                           variant="outline"
-                          className="h-auto py-4 flex flex-col gap-1"
+                          className="h-auto py-4 flex flex-col gap-1 min-h-[72px]"
                           onClick={() => selectedMode && startQuiz(size, categoryFilter, selectedMode)}
                           disabled={!selectedMode || filtered.length === 0}
                         >
                           <span className="text-xl font-bold">{actualSize}</span>
-                          <span className="text-xs text-muted-foreground">
-                            {selectedMode ? 'Questions' : 'Pick mode first'}
+                          <span className="text-[10px] sm:text-xs text-muted-foreground leading-tight text-center">
+                            {!selectedMode ? 'Select mode ↑' : filtered.length === 0 ? 'No questions' : 'Questions'}
                           </span>
                         </Button>
                       );
