@@ -69,17 +69,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   }, []);
 
   // Auto-sync disabled to improve performance
-  // useEffect(() => {
-  //   if (isAdmin) {
-  //     autoSync();
-  //   }
-  // }, [autoSync, isAdmin]);
 
-  // Password change is optional now; previously enforced via redirect
-  useEffect(() => {
-    // No-op: keep effect to reference variables and avoid unused warnings
-  }, [user?.id, location.pathname, navigate]);
-  
   // Show loading state while auth initializes
   if (loading) {
     return (
