@@ -78,13 +78,13 @@ export function LearningItemRow({
       <div className="flex items-start gap-3">
         <button
           type="button"
-          disabled={readOnly}
+          disabled={readOnly || setStatus.isPending}
           onClick={() => {
             const next: ItemStatus = isCompleted ? "not_started" : "completed";
             setStatus.mutate({ itemId: item.id, status: next });
           }}
           aria-label={isCompleted ? "Mark incomplete" : "Mark complete"}
-          className="mt-1"
+          className={cn("mt-1 rounded-full p-0.5 transition-all min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 flex items-center justify-center", setStatus.isPending && "opacity-50 animate-pulse")}
         >
           {STATUS_ICON[status]}
         </button>

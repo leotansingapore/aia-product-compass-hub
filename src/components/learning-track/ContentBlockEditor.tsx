@@ -79,10 +79,10 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
           {isAdmin && (
             <button
               onClick={() => deleteBlock.mutate(b.id)}
-              className="absolute top-2 right-2 hidden group-hover:flex h-5 w-5 items-center justify-center rounded text-destructive opacity-60 hover:opacity-100"
+              className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded text-destructive opacity-60 hover:opacity-100 sm:hidden sm:group-hover:flex"
               aria-label="Remove block"
             >
-              <Trash2 className="h-3 w-3" />
+              <Trash2 className="h-3.5 w-3.5" />
             </button>
           )}
 

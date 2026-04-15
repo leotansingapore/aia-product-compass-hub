@@ -28,13 +28,13 @@ export function TrackProgressHeader({ track }: Props) {
           {pct === 0 ? "Not started" : `${pct}% complete`}
         </span>
       </div>
-      <div className="relative h-2 w-full overflow-hidden rounded-full bg-muted">
+      <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-muted">
         <div
           className={cn(
-            "absolute inset-y-0 left-0 rounded-full transition-all",
+            "absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out",
             pct === 0 ? "bg-muted" : pct < 33 ? "bg-red-400" : pct < 66 ? "bg-amber-400" : pct < 100 ? "bg-green-500" : "bg-green-600"
           )}
-          style={{ width: `${pct}%` }}
+          style={{ width: `${Math.max(pct, pct > 0 ? 3 : 0)}%` }}
         />
       </div>
     </div>
