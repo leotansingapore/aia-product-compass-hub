@@ -53,8 +53,12 @@ export function LearningItemRow({
   const updateItem = useUpdateItem();
   const deleteItem = useDeleteItem();
   const duplicateItem = useDuplicateItem();
+  const moveItem = useMoveItemToPhase();
+  const preRnfPhases = useLearningTrackPhases("pre_rnf");
+  const postRnfPhases = useLearningTrackPhases("post_rnf");
   const [saveTemplateOpen, setSaveTemplateOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
+  const [showMoveMenu, setShowMoveMenu] = useState(false);
 
   const showAdmin = isAdmin && !readOnly;
 
