@@ -53,8 +53,17 @@ export function LearningItemRow({
   const updateItem = useUpdateItem();
   const deleteItem = useDeleteItem();
   const duplicateItem = useDuplicateItem();
+  const moveItem = useMoveItemToPhase();
+  const prePhases = useLearningTrackPhases("pre_rnf");
+  const postPhases = useLearningTrackPhases("post_rnf");
   const [saveTemplateOpen, setSaveTemplateOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
+  const [moveMenuOpen, setMoveMenuOpen] = useState(false);
+
+  const allPhases = [
+    ...((prePhases.data ?? []).map(p => ({ ...p, trackLabel: "Pre" }))),
+    ...((postPhases.data ?? []).map(p => ({ ...p, trackLabel: "Post" }))),
+  ].filter(p => p.id !== item.phase_id);
 
   const showAdmin = isAdmin && !readOnly;
 
