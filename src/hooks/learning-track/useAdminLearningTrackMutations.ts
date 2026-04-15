@@ -308,6 +308,7 @@ export function useMoveItemToPhase() {
   });
 }
 
+export function useDeleteItem() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
