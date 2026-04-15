@@ -157,7 +157,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   // Mobile Layout for authenticated users
   if (isMobile) {
     return (
-      <div className="min-h-screen w-full overflow-x-hidden">
+      <div className="min-h-screen w-full overflow-x-clip">
         <MobileHeader onAvatarClick={() => setProfileOpen(true)} />
 
         <main className="flex-1 pb-20 page-transition">
