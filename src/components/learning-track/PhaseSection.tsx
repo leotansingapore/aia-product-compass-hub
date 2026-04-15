@@ -211,14 +211,18 @@ export function PhaseSection({
       tabIndex={showAdmin ? 0 : -1}
       aria-label={showAdmin ? `Phase: ${phase.title}. Press N for new item, T for template.` : undefined}
     >
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={0}
         onClick={() => setOpen((o) => !o)}
-        className="flex w-full items-center justify-between px-4 py-3 text-left"
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen((o) => !o); } }}
+        className="w-full px-4 py-3 text-left cursor-pointer"
         aria-expanded={open}
       >
-        <div className="flex items-center gap-2 flex-1 min-w-0">
-          {open ? <ChevronDown className="h-4 w-4 shrink-0" /> : <ChevronRight className="h-4 w-4 shrink-0" />}
+        <div className="flex items-start gap-2">
+          <div className="mt-1 shrink-0">
+            {open ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+          </div>
           <div className="min-w-0 flex-1">
             {showAdmin ? (
               <InlineEditableText
@@ -245,39 +249,45 @@ export function PhaseSection({
                 <p className="text-sm text-muted-foreground">{phase.description}</p>
               )
             )}
+            {/* Admin controls below title on mobile */}
+            {showAdmin && (
+              <div className="flex items-center gap-1 mt-2 flex-wrap">
+                <PublishToggle
+                  publishedAt={phase.published_at}
+                  onToggle={(next) => updatePhase.mutate({ id: phase.id, published_at: next })}
+                />
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); handleCopyPhase(otherTrack); }}
+                  className="h-7 w-7 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+                  aria-label={`Copy phase to ${otherTrackLabel}`}
+                  title={`Copy entire phase to ${otherTrackLabel}`}
+                >
+                  <Copy className="h-3.5 w-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); handleDeletePhase(); }}
+                  className="h-7 w-7 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
+                  aria-label="Delete phase"
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                </button>
+                <span className="rounded-full bg-muted px-2 py-1 text-xs font-medium whitespace-nowrap ml-auto">
+                  {completedCount} / {phase.items.length}
+                </span>
+              </div>
+            )}
+            {!showAdmin && (
+              <div className="flex items-center mt-2">
+                <span className="rounded-full bg-muted px-2 py-1 text-xs font-medium whitespace-nowrap">
+                  {completedCount} / {phase.items.length}
+                </span>
+              </div>
+            )}
           </div>
         </div>
-        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
-          {showAdmin && (
-            <>
-              <PublishToggle
-                publishedAt={phase.published_at}
-                onToggle={(next) => updatePhase.mutate({ id: phase.id, published_at: next })}
-              />
-              <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); handleCopyPhase(otherTrack); }}
-                className="min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
-                aria-label={`Copy phase to ${otherTrackLabel}`}
-                title={`Copy entire phase to ${otherTrackLabel}`}
-              >
-                <Copy className="h-3.5 w-3.5" />
-              </button>
-              <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); handleDeletePhase(); }}
-                className="min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
-                aria-label="Delete phase"
-              >
-                <Trash2 className="h-3.5 w-3.5" />
-              </button>
-            </>
-          )}
-          <span className="rounded-full bg-muted px-2 py-1 text-xs font-medium whitespace-nowrap">
-            {completedCount} / {phase.items.length}
-          </span>
-        </div>
-      </button>
+      </div>
 
       {open && (
         <div className="border-t divide-y">

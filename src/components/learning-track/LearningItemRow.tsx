@@ -88,90 +88,92 @@ export function LearningItemRow({
         >
           {STATUS_ICON[status]}
         </button>
-        <button
-          type="button"
-          onClick={() => setExpanded((e) => !e)}
-          className="flex-1 text-left min-w-0"
-          aria-expanded={expanded}
-        >
-          <div className="flex items-center gap-2">
-            {expanded ? <ChevronDown className="h-4 w-4 shrink-0" /> : <ChevronRight className="h-4 w-4 shrink-0" />}
-            {showAdmin ? (
-              <InlineEditableText
-                value={item.title}
-                onSave={(v) => updateItem.mutate({ id: item.id, title: v })}
-                isAdmin
-                as="h3"
-                className={cn("font-medium", isCompleted && "line-through text-muted-foreground")}
-              />
-            ) : (
-              <h3 className={cn("font-medium", isCompleted && "line-through text-muted-foreground")}>
-                {item.title}
-              </h3>
-            )}
-          </div>
-          {showAdmin ? (
-            <div className="ml-6 mt-1">
-              <InlineEditableText
-                value={item.description ?? ""}
-                onSave={(v) => updateItem.mutate({ id: item.id, description: v || null })}
-                isAdmin
-                as="p"
-                className="text-sm text-muted-foreground"
-                placeholder="Add description..."
-              />
+        <div className="flex-1 min-w-0">
+          <button
+            type="button"
+            onClick={() => setExpanded((e) => !e)}
+            className="w-full text-left"
+            aria-expanded={expanded}
+          >
+            <div className="flex items-center gap-2">
+              {expanded ? <ChevronDown className="h-4 w-4 shrink-0" /> : <ChevronRight className="h-4 w-4 shrink-0" />}
+              {showAdmin ? (
+                <InlineEditableText
+                  value={item.title}
+                  onSave={(v) => updateItem.mutate({ id: item.id, title: v })}
+                  isAdmin
+                  as="h3"
+                  className={cn("font-medium", isCompleted && "line-through text-muted-foreground")}
+                />
+              ) : (
+                <h3 className={cn("font-medium", isCompleted && "line-through text-muted-foreground")}>
+                  {item.title}
+                </h3>
+              )}
             </div>
-          ) : (
-            item.description && (
-              <p className="ml-6 mt-1 text-sm text-muted-foreground">{item.description}</p>
-            )
-          )}
-        </button>
+            {showAdmin ? (
+              <div className="ml-6 mt-1">
+                <InlineEditableText
+                  value={item.description ?? ""}
+                  onSave={(v) => updateItem.mutate({ id: item.id, description: v || null })}
+                  isAdmin
+                  as="p"
+                  className="text-sm text-muted-foreground"
+                  placeholder="Add description..."
+                />
+              </div>
+            ) : (
+              item.description && (
+                <p className="ml-6 mt-1 text-sm text-muted-foreground">{item.description}</p>
+              )
+            )}
+          </button>
 
-        {/* Admin action buttons */}
-        {showAdmin && (
-          <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
-            <PublishToggle
-              publishedAt={item.published_at}
-              onToggle={(next) => updateItem.mutate({ id: item.id, published_at: next })}
-            />
-            <button
-              type="button"
-              onClick={(e) => { e.stopPropagation(); setHistoryOpen(true); }}
-              className="mt-1 min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
-              aria-label="View history"
-              title="View version history / undo"
-            >
-              <History className="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={(e) => { e.stopPropagation(); setSaveTemplateOpen(true); }}
-              className="mt-1 min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
-              aria-label="Save as template"
-              title="Save this item as a reusable template"
-            >
-              <Bookmark className="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={(e) => { e.stopPropagation(); handleDuplicate(); }}
-              className="mt-1 min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
-              aria-label="Duplicate item"
-              title="Duplicate this item"
-            >
-              <Copy className="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={(e) => { e.stopPropagation(); handleDelete(); }}
-              className="mt-1 min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
-              aria-label="Delete item"
-            >
-              <Trash2 className="h-3.5 w-3.5" />
-            </button>
-          </div>
-        )}
+          {/* Admin action buttons — below title on mobile, inline on desktop */}
+          {showAdmin && (
+            <div className="flex items-center gap-1 mt-2 ml-6 flex-wrap">
+              <PublishToggle
+                publishedAt={item.published_at}
+                onToggle={(next) => updateItem.mutate({ id: item.id, published_at: next })}
+              />
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setHistoryOpen(true); }}
+                className="h-7 w-7 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+                aria-label="View history"
+                title="View version history / undo"
+              >
+                <History className="h-3.5 w-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setSaveTemplateOpen(true); }}
+                className="h-7 w-7 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+                aria-label="Save as template"
+                title="Save this item as a reusable template"
+              >
+                <Bookmark className="h-3.5 w-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); handleDuplicate(); }}
+                className="h-7 w-7 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+                aria-label="Duplicate item"
+                title="Duplicate this item"
+              >
+                <Copy className="h-3.5 w-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); handleDelete(); }}
+                className="h-7 w-7 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
+                aria-label="Delete item"
+              >
+                <Trash2 className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       {expanded && (
