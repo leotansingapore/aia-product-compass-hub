@@ -34,10 +34,10 @@ export function QuizProgress({
       </div>
 
       {/* Single progress bar — works for any number of questions */}
-      <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+      <div className="w-full h-2.5 bg-muted rounded-full overflow-hidden">
         <div
-          className="h-full bg-primary rounded-full transition-all duration-300"
-          style={{ width: `${progressPct}%` }}
+          className="h-full bg-primary rounded-full transition-all duration-500 ease-out"
+          style={{ width: `${Math.max(progressPct, progressPct > 0 ? 3 : 0)}%` }}
         />
       </div>
     </div>

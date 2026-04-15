@@ -105,15 +105,22 @@ export function QuizSummary({ score, totalQuestions, questions, selectedAnswers,
       {missed.length > 0 && (
         <div className="rounded-lg border border-border bg-background px-4 py-3 space-y-1.5">
           <div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
-            <AlertCircle className="h-3.5 w-3.5 text-destructive" />
-            Review these questions: {missed.map(n => `Q${n}`).join(", ")}
+            <AlertCircle className="h-3.5 w-3.5 text-destructive shrink-0" />
+            Review {missed.length} missed question{missed.length !== 1 ? 's' : ''}
           </div>
-          <p className="text-xs text-muted-foreground">Use the Prev button to revisit any question and re-read the explanation.</p>
+          <div className="flex flex-wrap gap-1.5">
+            {missed.map(n => (
+              <span key={n} className="inline-flex items-center rounded bg-destructive/10 px-1.5 py-0.5 text-[11px] font-medium text-destructive">
+                Q{n}
+              </span>
+            ))}
+          </div>
+          <p className="text-xs text-muted-foreground">Use Prev to revisit and re-read explanations.</p>
         </div>
       )}
 
       {/* Restart */}
-      <Button variant="outline" className="w-full gap-2" onClick={onRestart}>
+      <Button variant="outline" className="w-full gap-2 min-h-[48px]" onClick={onRestart}>
         <RotateCcw className="h-4 w-4" />
         Retake Exam
       </Button>

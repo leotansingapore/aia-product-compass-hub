@@ -78,7 +78,7 @@ export default function ProductExam() {
               variant="ghost"
               size="sm"
               onClick={() => navigate(cameFromQuestionBank ? '/question-banks' : `/product/${productSlug}`)}
-              className="mb-3 -ml-2"
+              className="mb-3 -ml-2 min-h-[44px] sm:min-h-0"
             >
               <ArrowLeft className="h-4 w-4 mr-1" />
               {cameFromQuestionBank ? 'Back to Question Banks' : `Back to ${title}`}
