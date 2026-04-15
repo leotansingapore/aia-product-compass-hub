@@ -28,6 +28,18 @@ interface LegacySubmission {
 export async function migrateLocalProgress(userId: string): Promise<void> {
   if (localStorage.getItem(FLAG_KEY) === "1") return;
 
+  try {
+    await _doMigrate(userId);
+  } catch (err) {
+    // If migration fails (e.g. FK constraint), mark it done so we stop retrying
+    console.warn("Learning track migration failed, skipping future attempts:", err);
+  }
+  // Always mark complete to prevent retries on every page load
+  localStorage.setItem(FLAG_KEY, "1");
+}
+
+async function _doMigrate(userId: string): Promise<void> {
+
   const localProgress: Record<string, LegacyProgressEntry> = {};
   for (const key of PROGRESS_KEYS) {
     try {
@@ -120,7 +132,6 @@ export async function migrateLocalProgress(userId: string): Promise<void> {
     // ignore
   }
 
-  localStorage.setItem(FLAG_KEY, "1");
   PROGRESS_KEYS.forEach((k) => localStorage.removeItem(k));
   localStorage.removeItem(SUBMISSIONS_KEY);
 }

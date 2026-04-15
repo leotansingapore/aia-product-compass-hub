@@ -14,7 +14,7 @@ export function useLearningTrackProgress(userId: string | undefined) {
   const query = useQuery<Record<string, ProgressRow>>({
     queryKey: ["learning-track-progress", userId],
     enabled: !!userId,
-    staleTime: 60 * 1000,
+    staleTime: 5 * 60 * 1000,
     queryFn: async () => {
       const { data, error } = await supabase
         .from("learning_track_progress")
