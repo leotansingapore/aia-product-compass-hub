@@ -1,18 +1,25 @@
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
-import { useLearningTrackOverallProgress } from "@/hooks/learning-track/useLearningTrackOverallProgress";
+import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
 import { cn } from "@/lib/utils";
+import type { LearningTrackPhase } from "@/types/learning-track";
 
 interface Props {
   track: "pre_rnf" | "post_rnf";
+  phases?: LearningTrackPhase[];
 }
 
-export function TrackProgressHeader({ track }: Props) {
+export function TrackProgressHeader({ track, phases }: Props) {
   const { user } = useSimplifiedAuth();
-  const { data, isLoading } = useLearningTrackOverallProgress(user?.id);
+  const { progress, isLoading } = useLearningTrackProgress(user?.id);
 
-  if (!user || isLoading || !data) return null;
+  if (!user || isLoading || !phases || phases.length === 0) return null;
 
-  const pct = track === "pre_rnf" ? data.preRnfPct : data.postRnfPct;
+  const allItemIds = phases.flatMap((p) => p.items.map((i) => i.id));
+  const total = allItemIds.length;
+  if (total === 0) return null;
+
+  const completed = allItemIds.filter((id) => progress[id]?.status === "completed").length;
+  const pct = Math.round((completed / total) * 100);
   const label = track === "pre_rnf" ? "Pre-RNF Training" : "Post-RNF Training";
 
   return (
