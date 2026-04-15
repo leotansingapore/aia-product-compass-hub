@@ -8,8 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { BookOpen, Brain, GraduationCap, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { PRODUCT_SLUGS, PRODUCT_LABELS } from "@/types/questionBank";
-import { useAuth } from "@/hooks/useAuth";
 import { MasteryProgressBar } from "@/components/study/MasteryProgressBar";
+import { useStudyMasteryBySlug } from "@/hooks/useStudyMasteryBySlug";
 
 interface ProductQuizEntry {
   id: string;
@@ -59,42 +59,15 @@ function useBankCounts() {
   });
 }
 
-interface MasteryBySlug {
-  [productSlug: string]: { mastered: number; touched: number };
-}
-
-function useMasteryBySlug() {
-  const { user } = useAuth();
-  return useQuery({
-    queryKey: ["all-product-progress", user?.id],
-    queryFn: async (): Promise<MasteryBySlug> => {
-      if (!user?.id) return {};
-      const { data, error } = await supabase
-        .from("user_question_progress")
-        .select("product_slug, mastered")
-        .eq("user_id", user.id);
-      if (error) throw error;
-      const out: MasteryBySlug = {};
-      for (const row of (data ?? []) as Array<{ product_slug: string; mastered: boolean }>) {
-        if (!out[row.product_slug]) out[row.product_slug] = { mastered: 0, touched: 0 };
-        out[row.product_slug].touched += 1;
-        if (row.mastered) out[row.product_slug].mastered += 1;
-      }
-      return out;
-    },
-    enabled: !!user?.id,
-    staleTime: 30_000,
-  });
-}
-
 export default function QuestionBanks() {
   const navigate = useNavigate();
   const { data: counts = {}, isLoading } = useBankCounts();
-  const { data: masteryBySlug = {} } = useMasteryBySlug();
+  const { data: studyMasteryBySlug = {} } = useStudyMasteryBySlug();
 
   const getStudyCount = (id: string) => counts[id]?.study ?? 0;
   const getExamCount = (id: string) => counts[id]?.exam ?? 0;
-  const getMastery = (id: string) => masteryBySlug[id] ?? { mastered: 0, touched: 0 };
+  const getStudyMastery = (id: string) =>
+    studyMasteryBySlug[id] ?? { mastered: 0, progressPercent: 0 };
   const totalStudy = Object.values(counts).reduce((s, c) => s + c.study, 0);
   const totalExam = Object.values(counts).reduce((s, c) => s + c.exam, 0);
 
@@ -153,10 +126,14 @@ export default function QuestionBanks() {
                     </CardHeader>
                     <CardContent className="pt-0 space-y-3 px-4 sm:px-6">
                       {studyCount > 0 && (() => {
-                        const mastery = getMastery(product.id);
+                        const mastery = getStudyMastery(product.id);
                         return (
                           <>
-                            <MasteryProgressBar mastered={mastery.mastered} total={studyCount} />
+                            <MasteryProgressBar
+                              mastered={mastery.mastered}
+                              total={studyCount}
+                              progressPercent={mastery.progressPercent}
+                            />
                             <div className="flex flex-wrap gap-2">
                               <Button
                                 variant="outline"

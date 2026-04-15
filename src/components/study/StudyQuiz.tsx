@@ -35,15 +35,16 @@ interface PersistedSession {
   currentIdx: number;
 }
 
-function loadSession(productSlug: string, questionCount: number): PersistedSession | null {
+function loadSession(productSlug: string, questions: StudyQuestion[]): PersistedSession | null {
   try {
     const raw = localStorage.getItem(SESSION_KEY(productSlug));
     if (!raw) return null;
     const parsed: PersistedSession = JSON.parse(raw);
-    if (parsed.selectedAnswers?.length === questionCount &&
-        parsed.questionTexts?.length === questionCount) {
-      return parsed;
-    }
+    const n = questions.length;
+    if (parsed.selectedAnswers?.length !== n || parsed.questionTexts?.length !== n) return null;
+    const textsMatch = parsed.questionTexts.every((t, i) => t === questions[i]?.question);
+    if (!textsMatch) return null;
+    return parsed;
   } catch { /* ignore */ }
   return null;
 }
@@ -78,6 +79,8 @@ interface StudyQuizProps {
   /** If both provided, renders a mastery progress bar above the session progress bar. */
   masteryMastered?: number;
   masteryTotal?: number;
+  /** Overall bank progress % (streak-based); see ProductStudyPage studyBankMastery. */
+  masteryProgressPercent?: number;
 }
 
 export function StudyQuiz({
@@ -87,31 +90,35 @@ export function StudyQuiz({
   onAnswered,
   masteryMastered,
   masteryTotal,
+  masteryProgressPercent,
 }: StudyQuizProps) {
   // Generate shuffle maps per question (stable per session)
   const [shuffleMaps, setShuffleMaps] = useState<number[][]>(() => {
-    const saved = productSlug ? loadSession(productSlug, questions.length) : null;
+    const saved = productSlug ? loadSession(productSlug, questions) : null;
     if (saved?.shuffleMaps?.length === questions.length) return saved.shuffleMaps;
     return questions.map(q => createShuffleMap(q.options.length));
   });
 
   const [currentIdx, setCurrentIdx] = useState(() => {
-    const saved = productSlug ? loadSession(productSlug, questions.length) : null;
+    const saved = productSlug ? loadSession(productSlug, questions) : null;
     return saved?.currentIdx ?? 0;
   });
 
   const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(() => {
-    const saved = productSlug ? loadSession(productSlug, questions.length) : null;
+    const saved = productSlug ? loadSession(productSlug, questions) : null;
     if (saved?.selectedAnswers?.length === questions.length) return saved.selectedAnswers;
     return new Array(questions.length).fill(null);
   });
 
   const [score, setScore] = useState(() => {
-    const saved = productSlug ? loadSession(productSlug, questions.length) : null;
+    const saved = productSlug ? loadSession(productSlug, questions) : null;
     return saved?.score ?? 0;
   });
 
   const [showSummary, setShowSummary] = useState(false);
+
+  // Snapshot mastery at session start to calculate newly mastered this session
+  const [sessionStartMastered] = useState(() => masteryMastered ?? 0);
 
   const q = questions[currentIdx];
   const map = shuffleMaps[currentIdx];
@@ -197,12 +204,17 @@ export function StudyQuiz({
     const gradeLabel = scorePercent === 100 ? 'Perfect!' : scorePercent >= 80 ? 'Excellent' : scorePercent >= 60 ? 'Good effort' : scorePercent >= 40 ? 'Keep practising' : 'Review needed';
 
     const handleRetryMissed = () => {
-      // Reset state to only show the missed questions
-      const missedQuestions = missed.map(i => questions[i]);
-      // We can't change questions prop, so reset to review mode with missed highlighted
+      // Reset answers for missed questions only so user can re-attempt them
+      const newAnswers = [...selectedAnswers];
+      missed.forEach(i => {
+        newAnswers[i] = null;
+      });
+      setSelectedAnswers(newAnswers);
       setShowSummary(false);
       setCurrentIdx(missed[0]);
     };
+
+    const newlyMastered = masteryMastered ? masteryMastered - sessionStartMastered : 0;
 
     return (
       <Card className="border-accent/20">
@@ -216,6 +228,11 @@ export function StudyQuiz({
           <CardDescription className="text-base font-medium">
             {gradeLabel} — {scorePercent}%
           </CardDescription>
+          {newlyMastered > 0 && (
+            <div className="mt-2 px-3 py-1.5 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900 rounded text-xs font-medium text-green-700 dark:text-green-400">
+              🎉 You mastered {newlyMastered} new question{newlyMastered !== 1 ? 's' : ''} this session!
+            </div>
+          )}
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Category breakdown */}
@@ -307,7 +324,12 @@ export function StudyQuiz({
         </div>
         {typeof masteryMastered === 'number' && typeof masteryTotal === 'number' && masteryTotal > 0 && (
           <div className="mb-2">
-            <MasteryProgressBar mastered={masteryMastered} total={masteryTotal} compact />
+            <MasteryProgressBar
+              mastered={masteryMastered}
+              total={masteryTotal}
+              compact
+              progressPercent={masteryProgressPercent}
+            />
           </div>
         )}
         <Progress value={percent} className="h-1.5" />

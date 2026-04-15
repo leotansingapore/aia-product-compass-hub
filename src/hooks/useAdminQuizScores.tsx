@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { PRODUCT_LABELS } from '@/types/questionBank';
+import { PRODUCT_SLUGS, PRODUCT_LABELS } from '@/types/questionBank';
 
 export interface UserQuizStat {
   user_id: string;
@@ -11,6 +11,7 @@ export interface UserQuizStat {
   best_score_pct: number;
   last_attempt: string | null;
   product_breakdown: QuizProductBreakdown[];
+  has_taken_quiz: boolean;
 }
 
 export interface QuizProductBreakdown {
@@ -105,24 +106,35 @@ export function useAdminQuizScores() {
         (productsData || []).map(p => [p.id, p.title])
       );
 
-      // Group by user
-      const userMap = new Map<string, RawQuizAttempt[]>();
+      // Map slug → product_id (for padding not-taken product rows)
+      const slugToProductId = new Map<string, string>();
+      for (const p of (productsData || [])) {
+        const slug = titleToSlug[p.title];
+        if (slug) slugToProductId.set(slug, p.id);
+      }
+
+      // Group attempts by user
+      const attemptsByUser = new Map<string, RawQuizAttempt[]>();
       for (const row of (attemptsData || []) as RawQuizAttempt[]) {
-        if (!userMap.has(row.user_id)) userMap.set(row.user_id, []);
-        userMap.get(row.user_id)!.push(row);
+        if (!attemptsByUser.has(row.user_id)) attemptsByUser.set(row.user_id, []);
+        attemptsByUser.get(row.user_id)!.push(row);
       }
 
       const result: UserQuizStat[] = [];
 
-      for (const [userId, rows] of userMap.entries()) {
-        const profile = profileMap.get(userId);
+      // Iterate over ALL profiles so we include users who haven't taken any quiz
+      for (const profile of profilesData || []) {
+        const userId = profile.user_id;
+        const rows = attemptsByUser.get(userId) ?? [];
+        const hasTakenQuiz = rows.length > 0;
+
         const displayName =
-          profile?.display_name ||
-          (profile?.first_name && profile?.last_name
+          profile.display_name ||
+          (profile.first_name && profile.last_name
             ? `${profile.first_name} ${profile.last_name}`
             : null);
 
-        // Product breakdown
+        // Product breakdown (empty if user has no attempts)
         const byProduct = new Map<string, RawQuizAttempt[]>();
         for (const row of rows) {
           if (!byProduct.has(row.product_id)) byProduct.set(row.product_id, []);
@@ -130,10 +142,10 @@ export function useAdminQuizScores() {
         }
 
         const product_breakdown: QuizProductBreakdown[] = [];
+        const attemptedProductIds = new Set<string>();
         for (const [productId, pRows] of byProduct.entries()) {
           const scorePcts = pRows.map(r => r.total_questions > 0 ? (r.score / r.total_questions) * 100 : 0);
           const bestIdx = scorePcts.indexOf(Math.max(...scorePcts));
-          const totalXp = pRows.reduce((s, r) => s + (r.xp_earned || 0), 0);
           const avgPct = Math.round(scorePcts.reduce((a, b) => a + b, 0) / scorePcts.length);
           const lastAttempt = pRows.reduce(
             (latest, r) => (!latest || r.completed_at > latest ? r.completed_at : latest),
@@ -145,6 +157,7 @@ export function useAdminQuizScores() {
           const masteredCount = slug ? (masteryByUserSlug.get(userId)?.get(slug) ?? 0) : 0;
           const studyTotal = slug ? (studyTotalBySlug.get(slug) ?? 0) : 0;
 
+          attemptedProductIds.add(productId);
           product_breakdown.push({
             product_id: productId,
             product_title: productTitle,
@@ -159,10 +172,38 @@ export function useAdminQuizScores() {
           });
         }
 
+        // Pad breakdown with stubs for products the user hasn't attempted
+        for (const slug of PRODUCT_SLUGS) {
+          const productId = slugToProductId.get(slug);
+          if (!productId || attemptedProductIds.has(productId)) continue;
+          const masteredCount = masteryByUserSlug.get(userId)?.get(slug) ?? 0;
+          const studyTotal = studyTotalBySlug.get(slug) ?? 0;
+          product_breakdown.push({
+            product_id: productId,
+            product_title: PRODUCT_LABELS[slug] ?? slug,
+            attempts: 0,
+            best_score: 0,
+            best_total: 0,
+            best_score_pct: 0,
+            avg_score_pct: 0,
+            last_attempt: null,
+            mastered_count: masteredCount,
+            study_total: studyTotal,
+          });
+        }
+
+        // Sort: attempted (by best_score desc) first, then not-attempted (alphabetical)
+        product_breakdown.sort((a, b) => {
+          const aAttempted = a.attempts > 0;
+          const bAttempted = b.attempts > 0;
+          if (aAttempted !== bAttempted) return aAttempted ? -1 : 1;
+          if (aAttempted) return b.best_score_pct - a.best_score_pct;
+          return a.product_title.localeCompare(b.product_title);
+        });
+
         const allPcts = rows.map(r => r.total_questions > 0 ? (r.score / r.total_questions) * 100 : 0);
-        const avgScorePct = Math.round(allPcts.reduce((a, b) => a + b, 0) / allPcts.length);
-        const bestScorePct = Math.round(Math.max(...allPcts));
-        const totalXp = rows.reduce((s, r) => s + (r.xp_earned || 0), 0);
+        const avgScorePct = allPcts.length > 0 ? Math.round(allPcts.reduce((a, b) => a + b, 0) / allPcts.length) : 0;
+        const bestScorePct = allPcts.length > 0 ? Math.round(Math.max(...allPcts)) : 0;
         const lastAttempt = rows.reduce(
           (latest, r) => (!latest || r.completed_at > latest ? r.completed_at : latest),
           null as string | null
@@ -171,17 +212,21 @@ export function useAdminQuizScores() {
         result.push({
           user_id: userId,
           display_name: displayName,
-          email: profile?.email || null,
+          email: profile.email || null,
           total_attempts: rows.length,
           avg_score_pct: avgScorePct,
           best_score_pct: bestScorePct,
           last_attempt: lastAttempt,
           product_breakdown,
+          has_taken_quiz: hasTakenQuiz,
         });
       }
 
-      // Sort by best score descending
-      result.sort((a, b) => b.best_score_pct - a.best_score_pct);
+      // Sort: users who have taken quizzes first (by best score desc), then never-taken users
+      result.sort((a, b) => {
+        if (a.has_taken_quiz !== b.has_taken_quiz) return a.has_taken_quiz ? -1 : 1;
+        return b.best_score_pct - a.best_score_pct;
+      });
       setStats(result);
     } catch (err: any) {
       console.error('Error fetching admin quiz scores:', err);
