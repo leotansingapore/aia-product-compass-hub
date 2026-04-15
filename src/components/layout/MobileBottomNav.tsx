@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Home, Library, FileText, MessageCircle, Grid3X3, Package, HelpCircle } from "lucide-react";
+import { Home, Library, FileText, MessageCircle, Grid3X3, Package, HelpCircle, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Bookmark, GraduationCap, BookOpen, GitBranch, TrendingUp, MessageSquarePlus } from "lucide-react";
 import { FeedbackModal } from "@/components/FeedbackButton";
+import { useAdmin } from "@/hooks/useAdmin";
+import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 
 const navigationItems = [
   { name: "Home", href: "/", icon: Home },
@@ -26,11 +28,18 @@ const quickLinkItems = [
   { name: "Sales Tools", href: "/scripts", icon: TrendingUp, color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-950/30" },
 ];
 
+const adminQuickLink = { name: "Admin Panel", href: "/admin", icon: ShieldCheck, color: "text-red-500", bg: "bg-red-50 dark:bg-red-950/30" };
+
 export function MobileBottomNav() {
   const location = useLocation();
   const navigate = useNavigate();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const { isAdmin } = useAdmin();
+  const { isViewingAsUser } = useViewMode();
+  const showAdmin = isAdmin && !isViewingAsUser;
+
+  const allQuickLinks = showAdmin ? [...quickLinkItems, adminQuickLink] : quickLinkItems;
 
   return (
     <>
@@ -90,7 +99,7 @@ export function MobileBottomNav() {
             <SheetTitle className="text-base">Quick Links</SheetTitle>
           </SheetHeader>
           <div className="grid grid-cols-4 gap-3">
-            {quickLinkItems.map((item) => (
+            {allQuickLinks.map((item) => (
               <button
                 key={item.name}
                 type="button"

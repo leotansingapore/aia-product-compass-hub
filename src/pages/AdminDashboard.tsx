@@ -19,7 +19,7 @@ export default function AdminDashboard() {
       description="Unified user management dashboard for registration to activation."
     >
       <Tabs defaultValue={initialTab}>
-        <TabsList className="mb-4 sm:mb-6 w-full sm:w-auto flex-wrap h-auto gap-1">
+        <TabsList className="mb-4 sm:mb-6 w-full sm:w-auto flex-nowrap overflow-x-auto h-auto gap-1 justify-start">
           <TabsTrigger value="users" className="flex items-center gap-1.5 flex-1 sm:flex-none">
             <Users className="h-4 w-4 shrink-0" />
             <span className="hidden xs:inline sm:inline">User Management</span>
