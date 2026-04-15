@@ -144,7 +144,8 @@ export function useUnifiedSearch() {
   const { allProducts, loading: productsLoading } = useAllProducts();
 
   // Fetch scripts for search
-  const { data: scripts } = useQuery({
+  const EMPTY_SCRIPTS: any[] = [];
+  const { data: scriptsData } = useQuery({
     queryKey: ['search-scripts'],
     queryFn: async () => {
       const { data } = await supabase
@@ -155,6 +156,7 @@ export function useUnifiedSearch() {
     },
     staleTime: 5 * 60 * 1000,
   });
+  const scripts = scriptsData ?? EMPTY_SCRIPTS;
 
   // CMFAS modules as static data
   const cmfasModules = useMemo(() => [

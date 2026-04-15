@@ -222,6 +222,8 @@ export function useProducts(categoryId?: string) {
   };
 }
 
+const EMPTY_PRODUCTS: any[] = [];
+
 export function useAllProducts() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['products', 'all'],
@@ -230,7 +232,7 @@ export function useAllProducts() {
   });
 
   return {
-    allProducts: data || [],
+    allProducts: data ?? EMPTY_PRODUCTS,
     loading: isLoading,
     error: error ? (error instanceof Error ? error.message : 'Failed to fetch products') : null,
   };
