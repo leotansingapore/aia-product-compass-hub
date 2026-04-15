@@ -247,7 +247,7 @@ export function PhaseSection({
             )}
           </div>
         </div>
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           {showAdmin && (
             <>
               <PublishToggle
@@ -257,7 +257,7 @@ export function PhaseSection({
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); handleCopyPhase(otherTrack); }}
-                className="h-6 w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+                className="min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
                 aria-label={`Copy phase to ${otherTrackLabel}`}
                 title={`Copy entire phase to ${otherTrackLabel}`}
               >
@@ -266,14 +266,14 @@ export function PhaseSection({
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); handleDeletePhase(); }}
-                className="h-6 w-6 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
+                className="min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
                 aria-label="Delete phase"
               >
                 <Trash2 className="h-3.5 w-3.5" />
               </button>
             </>
           )}
-          <span className="rounded-full bg-muted px-2 py-1 text-xs font-medium">
+          <span className="rounded-full bg-muted px-2 py-1 text-xs font-medium whitespace-nowrap">
             {completedCount} / {phase.items.length}
           </span>
         </div>

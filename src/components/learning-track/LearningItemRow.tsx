@@ -130,7 +130,7 @@ export function LearningItemRow({
 
         {/* Admin action buttons */}
         {showAdmin && (
-          <div className="flex items-center gap-1 shrink-0">
+          <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
             <PublishToggle
               publishedAt={item.published_at}
               onToggle={(next) => updateItem.mutate({ id: item.id, published_at: next })}
@@ -138,7 +138,7 @@ export function LearningItemRow({
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); setHistoryOpen(true); }}
-              className="mt-1 h-6 w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+              className="mt-1 min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
               aria-label="View history"
               title="View version history / undo"
             >
@@ -147,7 +147,7 @@ export function LearningItemRow({
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); setSaveTemplateOpen(true); }}
-              className="mt-1 h-6 w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+              className="mt-1 min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
               aria-label="Save as template"
               title="Save this item as a reusable template"
             >
@@ -156,7 +156,7 @@ export function LearningItemRow({
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); handleDuplicate(); }}
-              className="mt-1 h-6 w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+              className="mt-1 min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
               aria-label="Duplicate item"
               title="Duplicate this item"
             >
@@ -165,7 +165,7 @@ export function LearningItemRow({
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); handleDelete(); }}
-              className="mt-1 h-6 w-6 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
+              className="mt-1 min-h-[44px] min-w-[36px] sm:min-h-0 sm:min-w-0 h-7 w-7 sm:h-6 sm:w-6 flex items-center justify-center rounded text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
               aria-label="Delete item"
             >
               <Trash2 className="h-3.5 w-3.5" />
