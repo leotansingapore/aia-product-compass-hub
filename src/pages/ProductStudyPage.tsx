@@ -213,42 +213,11 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
               </Card>
 
 
-              <Card className="mb-6">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-base">Filter by Category</CardTitle>
-                  <CardDescription className="text-xs">Choose a specific area to focus on, or study all categories.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    {(['all', 'product-facts', 'sales-angles', 'objection-handling', 'roleplay'] as const).map((cat) => {
-                      const Icon = categoryIcons[cat];
-                      const count = cat === 'all' ? studyBank.length : (categoryCounts[cat] || 0);
-                      return (
-                        <button
-                          key={cat}
-                          onClick={() => setCategoryFilter(cat)}
-                          className={`flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition-colors shrink-0 min-h-[44px] sm:min-h-0 ${
-                            categoryFilter === cat
-                              ? 'bg-primary text-primary-foreground border-primary'
-                              : 'bg-background hover:bg-accent active:bg-accent/70'
-                          }`}
-                        >
-                          <Icon className="h-3.5 w-3.5" />
-                          <span className="whitespace-nowrap">{categoryLabels[cat]}</span>
-                          <span className="text-xs opacity-70">({count})</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </CardContent>
-              </Card>
-
               <Card>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-base">Start Studying</CardTitle>
                   <CardDescription className="text-xs">
-                    Pick how many questions you want. They'll be randomly selected from
-                    {categoryFilter === 'all' ? ' the full bank' : ` ${categoryLabels[categoryFilter]}`}.
+                    Choose a category and number of questions, then hit Start.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -261,12 +230,26 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                     return (
                       <div className="flex flex-col sm:flex-row gap-3">
                         <select
+                          value={categoryFilter}
+                          onChange={(e) => setCategoryFilter(e.target.value as CategoryFilter)}
+                          className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring"
+                        >
+                          {(['all', 'product-facts', 'sales-angles', 'objection-handling', 'roleplay'] as const).map((cat) => {
+                            const count = cat === 'all' ? studyBank.length : (categoryCounts[cat] || 0);
+                            return (
+                              <option key={cat} value={cat}>
+                                {categoryLabels[cat]} ({count})
+                              </option>
+                            );
+                          })}
+                        </select>
+                        <select
                           value={quizSize ?? ''}
                           onChange={(e) => setQuizSize(e.target.value ? Number(e.target.value) as QuizSize : null)}
                           className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring"
                           disabled={!selectedMode || filtered.length === 0}
                         >
-                          <option value="">Select number of questions</option>
+                          <option value="">No. of questions</option>
                           {([25, 50, 100] as QuizSize[]).map((size) => {
                             const actualSize = Math.min(size, filtered.length);
                             return (
