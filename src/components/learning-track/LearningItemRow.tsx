@@ -54,11 +54,16 @@ export function LearningItemRow({
   const deleteItem = useDeleteItem();
   const duplicateItem = useDuplicateItem();
   const moveItem = useMoveItemToPhase();
-  const preRnfPhases = useLearningTrackPhases("pre_rnf");
-  const postRnfPhases = useLearningTrackPhases("post_rnf");
+  const prePhases = useLearningTrackPhases("pre_rnf");
+  const postPhases = useLearningTrackPhases("post_rnf");
   const [saveTemplateOpen, setSaveTemplateOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
-  const [showMoveMenu, setShowMoveMenu] = useState(false);
+  const [moveMenuOpen, setMoveMenuOpen] = useState(false);
+
+  const allPhases = [
+    ...((prePhases.data ?? []).map(p => ({ ...p, trackLabel: "Pre" }))),
+    ...((postPhases.data ?? []).map(p => ({ ...p, trackLabel: "Post" }))),
+  ].filter(p => p.id !== item.phase_id);
 
   const showAdmin = isAdmin && !readOnly;
 
@@ -172,27 +177,34 @@ export function LearningItemRow({
               <div className="relative">
                 <button
                   type="button"
-                  onClick={(e) => { e.stopPropagation(); setShowMoveMenu((v) => !v); }}
+                  onClick={(e) => { e.stopPropagation(); setMoveMenuOpen(o => !o); }}
                   className="h-7 w-7 flex items-center justify-center rounded text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
                   aria-label="Move to another phase"
                   title="Move to another phase"
                 >
                   <ArrowRightLeft className="h-3.5 w-3.5" />
                 </button>
-                {showMoveMenu && (
-                  <div className="absolute left-0 top-8 z-50 min-w-[200px] rounded-md border bg-popover p-1 shadow-md" onClick={(e) => e.stopPropagation()}>
-                    <div className="px-2 py-1 text-[10px] uppercase tracking-wide font-semibold text-muted-foreground">Move to phase</div>
-                    {[...(preRnfPhases.data ?? []), ...(postRnfPhases.data ?? [])].filter((p) => p.id !== item.phase_id).map((p) => (
+                {moveMenuOpen && (
+                  <div className="absolute left-0 top-full mt-1 z-50 bg-popover border rounded-md shadow-lg py-1 min-w-[220px] max-h-[300px] overflow-y-auto">
+                    <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground">Move to phase…</div>
+                    {allPhases.map(p => (
                       <button
                         key={p.id}
                         type="button"
-                        onClick={() => { moveItem.mutate({ itemId: item.id, targetPhaseId: p.id }); setShowMoveMenu(false); }}
-                        className="w-full text-left rounded px-2 py-1.5 text-sm hover:bg-accent transition-colors flex items-center gap-2"
+                        className="w-full text-left px-3 py-1.5 text-sm hover:bg-muted transition-colors flex items-center gap-2"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          moveItem.mutate({ itemId: item.id, targetPhaseId: p.id });
+                          setMoveMenuOpen(false);
+                        }}
                       >
-                        <span className="text-[10px] text-muted-foreground shrink-0">{p.track === "pre_rnf" ? "Pre" : "Post"}</span>
+                        <span className="text-xs text-muted-foreground font-medium shrink-0">{p.trackLabel}</span>
                         <span className="truncate">{p.title}</span>
                       </button>
                     ))}
+                    {allPhases.length === 0 && (
+                      <div className="px-3 py-2 text-sm text-muted-foreground">No other phases available</div>
+                    )}
                   </div>
                 )}
               </div>
