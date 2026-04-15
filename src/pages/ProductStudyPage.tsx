@@ -53,7 +53,7 @@ interface ProductStudyPageProps {
 export function ProductStudyPage({ productSlug, productTitle, backRoute, backLabel, pageId }: ProductStudyPageProps) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [, setQuizSize] = useState<QuizSize | null>(null);
+  const [quizSize, setQuizSize] = useState<QuizSize | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
   const [activeQuestions, setActiveQuestions] = useState<QuizQuestion[] | null>(null);
   const [selectedMode, setSelectedMode] = useState<StudyMode | null>(null);
