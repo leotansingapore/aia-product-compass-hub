@@ -33,7 +33,7 @@ export default function PreRnfTrack() {
 
   return (
     <div className="space-y-4" data-testid="pre-rnf-page">
-      <TrackProgressHeader track="pre_rnf" />
+      <TrackProgressHeader track="pre_rnf" phases={phases} />
       {phases.map((phase) => (
         <PhaseSection
           key={phase.id}

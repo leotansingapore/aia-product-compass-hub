@@ -33,7 +33,7 @@ export default function PostRnfTrack() {
 
   return (
     <div className="space-y-4" data-testid="post-rnf-page">
-      <TrackProgressHeader track="post_rnf" />
+      <TrackProgressHeader track="post_rnf" phases={phases} />
       {phases.map((phase) => (
         <PhaseSection
           key={phase.id}
