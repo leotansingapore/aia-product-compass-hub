@@ -2518,6 +2518,45 @@ export type Database = {
         }
         Relationships: []
       }
+      tier_upgrade_requests: {
+        Row: {
+          admin_note: string | null
+          created_at: string
+          from_tier: string
+          id: string
+          reason: string | null
+          reviewed_at: string | null
+          reviewer_id: string | null
+          status: string
+          to_tier: string
+          user_id: string
+        }
+        Insert: {
+          admin_note?: string | null
+          created_at?: string
+          from_tier: string
+          id?: string
+          reason?: string | null
+          reviewed_at?: string | null
+          reviewer_id?: string | null
+          status?: string
+          to_tier: string
+          user_id: string
+        }
+        Update: {
+          admin_note?: string | null
+          created_at?: string
+          from_tier?: string
+          id?: string
+          reason?: string | null
+          reviewed_at?: string | null
+          reviewer_id?: string | null
+          status?: string
+          to_tier?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_access_tiers: {
         Row: {
           created_at: string
