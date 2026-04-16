@@ -1,12 +1,18 @@
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
 import { cn } from "@/lib/utils";
-import type { LearningTrackPhase } from "@/types/learning-track";
+import type { LearningTrackPhase, Track } from "@/types/learning-track";
 
 interface Props {
-  track: "pre_rnf" | "post_rnf";
+  track: Track;
   phases?: LearningTrackPhase[];
 }
+
+const TRACK_LABEL: Record<Track, string> = {
+  explorer: "Explorer",
+  pre_rnf: "Pre-RNF Training",
+  post_rnf: "Post-RNF Training",
+};
 
 export function TrackProgressHeader({ track, phases }: Props) {
   const { user } = useSimplifiedAuth();
@@ -20,7 +26,7 @@ export function TrackProgressHeader({ track, phases }: Props) {
 
   const completed = allItemIds.filter((id) => progress[id]?.status === "completed").length;
   const pct = Math.round((completed / total) * 100);
-  const label = track === "pre_rnf" ? "Pre-RNF Training" : "Post-RNF Training";
+  const label = TRACK_LABEL[track];
 
   return (
     <div className="rounded-lg border bg-card p-4 mb-4">

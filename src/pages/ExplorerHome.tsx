@@ -1,50 +1,90 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Compass, BookOpen, TrendingUp, Target, Sparkles, Lock } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Compass, BookOpen, TrendingUp, Target, Sparkles, ArrowRight, Lock, type LucideIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { TierBadge } from '@/components/tier/TierBadge';
 import { RequestUpgradeButton } from '@/components/tier/RequestUpgradeButton';
+import { useLearningTrackPhases } from '@/hooks/learning-track/useLearningTrackPhases';
+import { useAdmin } from '@/hooks/useAdmin';
+import type { LearningTrackPhase } from '@/types/learning-track';
 
-interface ExplorerModule {
-  title: string;
-  description: string;
-  icon: React.ElementType;
-  status: 'coming-soon';
+const PHASE_ICONS: LucideIcon[] = [Compass, BookOpen, Target, TrendingUp];
+
+function pickIcon(orderIndex: number): LucideIcon {
+  const i = ((orderIndex % PHASE_ICONS.length) + PHASE_ICONS.length) % PHASE_ICONS.length;
+  return PHASE_ICONS[i];
 }
 
-const EXPLORER_MODULES: ExplorerModule[] = [
-  {
-    title: 'Finternship Orientation',
-    description: 'What Academy is, how the journey works, and how to get the most out of your time here.',
-    icon: Compass,
-    status: 'coming-soon',
-  },
-  {
-    title: 'Financial Planning Basics',
-    description: 'The fundamentals every advisor should know before stepping into the industry.',
-    icon: BookOpen,
-    status: 'coming-soon',
-  },
-  {
-    title: 'Advisory Fundamentals',
-    description: 'How great advisors think, communicate, and build trust with clients.',
-    icon: Target,
-    status: 'coming-soon',
-  },
-  {
-    title: 'Why This Career Matters',
-    description: 'Purpose, impact, and what a career in financial advisory can look like.',
-    icon: TrendingUp,
-    status: 'coming-soon',
-  },
-];
+function PhaseCard({ phase }: { phase: LearningTrackPhase }) {
+  const Icon = pickIcon(phase.order_index);
+  const description = phase.description?.trim() || 'Open module to get started.';
+  return (
+    <Link
+      to="/learning-track/explorer"
+      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
+    >
+      <Card className="relative h-full border-muted transition-all group-hover:border-primary/40 group-hover:shadow-md">
+        <CardHeader className="pb-3">
+          <div className="flex items-start justify-between gap-2">
+            <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-950/30 shrink-0">
+              <Icon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            </div>
+            <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" />
+          </div>
+          <CardTitle className="text-base mt-2">{phase.title}</CardTitle>
+          <CardDescription className="text-xs sm:text-sm leading-relaxed">
+            {description}
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    </Link>
+  );
+}
 
-/**
- * Landing page for users with `tier = 'explorer'`. Minimal and orientation
- * focused — the real content (modules 1–4) is being ported from Skool
- * in Phase 4. For now we render "Coming soon" placeholders plus a nudge
- * toward requesting an upgrade once the user is ready to take papers.
- */
+function PhaseCardSkeleton() {
+  return (
+    <Card className="border-muted">
+      <CardHeader className="pb-3">
+        <div className="flex items-start justify-between gap-2">
+          <Skeleton className="h-9 w-9 rounded-lg" />
+        </div>
+        <Skeleton className="h-4 w-3/4 mt-3" />
+        <Skeleton className="h-3 w-full mt-2" />
+        <Skeleton className="h-3 w-5/6 mt-1" />
+      </CardHeader>
+    </Card>
+  );
+}
+
+function EmptyStateCard({ isAdmin }: { isAdmin: boolean }) {
+  return (
+    <Card className="border-dashed border-muted-foreground/30 bg-muted/30">
+      <CardHeader className="pb-3">
+        <div className="p-2 rounded-lg bg-muted w-fit">
+          <Lock className="h-5 w-5 text-muted-foreground" />
+        </div>
+        <CardTitle className="text-base mt-2">Coming soon</CardTitle>
+        <CardDescription className="text-xs sm:text-sm leading-relaxed">
+          Your orientation modules will appear here once an admin publishes them.
+        </CardDescription>
+        {isAdmin && (
+          <Link
+            to="/learning-track/explorer"
+            className="text-xs text-primary hover:underline inline-flex items-center gap-1 mt-2"
+          >
+            Add the first phase on the Explorer track <ArrowRight className="h-3 w-3" />
+          </Link>
+        )}
+      </CardHeader>
+    </Card>
+  );
+}
+
 export default function ExplorerHome() {
+  const { isAdmin } = useAdmin();
+  const phasesQuery = useLearningTrackPhases('explorer');
+  const phases = phasesQuery.data ?? [];
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 animate-fade-in">
@@ -62,39 +102,34 @@ export default function ExplorerHome() {
           </p>
         </div>
 
-        {/* Orientation modules (placeholder cards until content port in Phase 4) */}
+        {/* Orientation modules — live from the Explorer learning track */}
         <section className="mb-10">
           <div className="flex items-baseline justify-between mb-4">
             <h2 className="text-lg font-semibold">Start here</h2>
-            <span className="text-xs text-muted-foreground">Content coming soon</span>
+            <Link
+              to="/learning-track/explorer"
+              className="text-xs text-primary hover:underline inline-flex items-center gap-1"
+            >
+              Open Explorer track <ArrowRight className="h-3 w-3" />
+            </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {EXPLORER_MODULES.map((module) => {
-              const Icon = module.icon;
-              return (
-                <Card
-                  key={module.title}
-                  className="relative border-muted transition-all hover:border-primary/30 hover:shadow-md opacity-80"
-                >
-                  <CardHeader className="pb-3">
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-950/30 shrink-0">
-                        <Icon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                      </div>
-                      <Badge variant="outline" className="gap-1 text-[10px] shrink-0">
-                        <Lock className="h-3 w-3" />
-                        Coming soon
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-base mt-2">{module.title}</CardTitle>
-                    <CardDescription className="text-xs sm:text-sm leading-relaxed">
-                      {module.description}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              );
-            })}
-          </div>
+
+          {phasesQuery.isLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <PhaseCardSkeleton />
+              <PhaseCardSkeleton />
+            </div>
+          ) : phases.length === 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <EmptyStateCard isAdmin={isAdmin} />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {phases.map((phase) => (
+                <PhaseCard key={phase.id} phase={phase} />
+              ))}
+            </div>
+          )}
         </section>
 
         {/* Upgrade nudge */}

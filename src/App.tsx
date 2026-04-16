@@ -60,6 +60,8 @@ const ConceptCards = lazy(() => import("./pages/ConceptCards"));
 const ProductExam = lazy(() => import("./pages/ProductExam"));
 const QuestionBanks = lazy(() => import("./pages/QuestionBanks"));
 const LearningTrack = lazy(() => import("./pages/LearningTrack"));
+const LearningTrackIndex = lazy(() => import("./pages/learning-track/LearningTrackIndex"));
+const LearningTrackExplorer = lazy(() => import("./pages/learning-track/Explorer"));
 const LearningTrackPreRnf = lazy(() => import("./pages/learning-track/PreRnf"));
 const LearningTrackPostRnf = lazy(() => import("./pages/learning-track/PostRnf"));
 const LearningTrackResources = lazy(() => import("./pages/learning-track/Resources"));
@@ -150,7 +152,9 @@ const App = () => (
                     <Route path="/flows/:flowId" element={<RequireAuth><RequireTier feature="flows"><ScriptFlows /></RequireTier></RequireAuth>} />
                     <Route path="/concept-cards" element={<RequireAuth><RequireTier feature="concept-cards"><ConceptCards /></RequireTier></RequireAuth>} />
                     <Route path="/learning-track" element={<RequireAuth><LearningTrack /></RequireAuth>}>
-                      <Route index element={<Navigate to="pre-rnf" replace />} />
+                      <Route index element={<LearningTrackIndex />} />
+                      <Route path="explorer" element={<RequireTier feature="explorer-track"><LearningTrackExplorer /></RequireTier>} />
+                      <Route path="explorer/:itemId" element={<RequireTier feature="explorer-track"><LearningTrackExplorer /></RequireTier>} />
                       <Route path="pre-rnf" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
                       <Route path="pre-rnf/:itemId" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
                       <Route path="post-rnf" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />

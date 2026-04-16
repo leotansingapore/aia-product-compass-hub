@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { FEATURES } from "@/lib/tiers";
 import { migrateLocalProgress } from "@/lib/learning-track/migrateLocalProgress";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -17,7 +19,12 @@ const LT_TAB_ACTIVE_CLASS = "border-white text-white";
 export default function LearningTrack() {
   const { isAdmin, isMasterAdmin } = usePermissions();
   const { user } = useSimplifiedAuth();
+  const { can, isAdminBypass } = useFeatureAccess();
   const showAdminTab = isAdmin() || isMasterAdmin();
+  const showExplorerTab = isAdminBypass || can(FEATURES.EXPLORER_TRACK);
+  const showPreRnfTab = isAdminBypass || can(FEATURES.PRE_RNF_TRACK);
+  const showPostRnfTab = isAdminBypass || can(FEATURES.POST_RNF_TRACK);
+  const showResourcesTab = isAdminBypass || can(FEATURES.PRE_RNF_TRACK);
   const location = useLocation();
 
   useEffect(() => {
@@ -43,24 +50,38 @@ export default function LearningTrack() {
         subtitle="Your phased onboarding programme. Complete each phase in order."
         headerTabs={
           <nav className={LT_TAB_NAV_CLASS} aria-label="Learning track sections">
-            <NavLink
-              to="/learning-track/pre-rnf"
-              className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
-            >
-              Pre-RNF Training
-            </NavLink>
-            <NavLink
-              to="/learning-track/post-rnf"
-              className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
-            >
-              Post-RNF Training
-            </NavLink>
-            <NavLink
-              to="/learning-track/resources"
-              className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
-            >
-              Resources
-            </NavLink>
+            {showExplorerTab && (
+              <NavLink
+                to="/learning-track/explorer"
+                className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
+              >
+                Explorer
+              </NavLink>
+            )}
+            {showPreRnfTab && (
+              <NavLink
+                to="/learning-track/pre-rnf"
+                className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
+              >
+                Pre-RNF Training
+              </NavLink>
+            )}
+            {showPostRnfTab && (
+              <NavLink
+                to="/learning-track/post-rnf"
+                className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
+              >
+                Post-RNF Training
+              </NavLink>
+            )}
+            {showResourcesTab && (
+              <NavLink
+                to="/learning-track/resources"
+                className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
+              >
+                Resources
+              </NavLink>
+            )}
             {showAdminTab && (
               <NavLink
                 to="/learning-track/admin"

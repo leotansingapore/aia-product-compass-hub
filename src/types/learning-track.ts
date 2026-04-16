@@ -1,4 +1,4 @@
-export type Track = "pre_rnf" | "post_rnf";
+export type Track = "pre_rnf" | "post_rnf" | "explorer";
 export type ItemStatus = "not_started" | "in_progress" | "completed";
 export type ReviewStatus = "pending" | "approved" | "changes_requested";
 export type BlockType = "text" | "link" | "video" | "resource_ref" | "image";

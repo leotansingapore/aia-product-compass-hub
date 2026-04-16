@@ -1,14 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import type { Track } from "@/types/learning-track";
 
 export interface OverallProgress {
   totalCompleted: number;
   totalItems: number;
+  explorerPct: number;
   preRnfPct: number;
   postRnfPct: number;
   combinedPct: number;
-  nextItem: { id: string; title: string; track: "pre_rnf" | "post_rnf" } | null;
+  nextItem: { id: string; title: string; track: Track } | null;
 }
+
+const TRACK_ORDER: Record<Track, number> = { explorer: 0, pre_rnf: 1, post_rnf: 2 };
 
 export function useLearningTrackOverallProgress(userId: string | undefined) {
   return useQuery<OverallProgress>({
@@ -37,39 +41,44 @@ export function useLearningTrackOverallProgress(userId: string | undefined) {
       type FlatItem = {
         id: string;
         title: string;
-        track: "pre_rnf" | "post_rnf";
+        track: Track;
         phaseOrder: number;
         itemOrder: number;
       };
       const allItems: FlatItem[] = [];
       ((phases ?? []) as any[]).forEach((p) => {
+        const track = p.track as Track;
+        if (track !== "explorer" && track !== "pre_rnf" && track !== "post_rnf") return;
         ((p.learning_track_items ?? []) as any[]).forEach((i) => {
           allItems.push({
             id: i.id,
             title: i.title,
-            track: p.track as "pre_rnf" | "post_rnf",
+            track,
             phaseOrder: p.order_index,
             itemOrder: i.order_index,
           });
         });
       });
       allItems.sort((a, b) => {
-        if (a.track !== b.track) return a.track === "pre_rnf" ? -1 : 1;
+        if (a.track !== b.track) return TRACK_ORDER[a.track] - TRACK_ORDER[b.track];
         if (a.phaseOrder !== b.phaseOrder) return a.phaseOrder - b.phaseOrder;
         return a.itemOrder - b.itemOrder;
       });
 
+      const explorerItems = allItems.filter((i) => i.track === "explorer");
       const preItems = allItems.filter((i) => i.track === "pre_rnf");
       const postItems = allItems.filter((i) => i.track === "post_rnf");
+      const explorerCompleted = explorerItems.filter((i) => completedSet.has(i.id)).length;
       const preCompleted = preItems.filter((i) => completedSet.has(i.id)).length;
       const postCompleted = postItems.filter((i) => completedSet.has(i.id)).length;
-      const totalCompleted = preCompleted + postCompleted;
+      const totalCompleted = explorerCompleted + preCompleted + postCompleted;
       const totalItems = allItems.length;
       const nextItem = allItems.find((i) => !completedSet.has(i.id)) ?? null;
 
       return {
         totalCompleted,
         totalItems,
+        explorerPct: explorerItems.length ? Math.round((explorerCompleted / explorerItems.length) * 100) : 0,
         preRnfPct: preItems.length ? Math.round((preCompleted / preItems.length) * 100) : 0,
         postRnfPct: postItems.length ? Math.round((postCompleted / postItems.length) * 100) : 0,
         combinedPct: totalItems ? Math.round((totalCompleted / totalItems) * 100) : 0,
