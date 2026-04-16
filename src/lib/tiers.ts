@@ -71,3 +71,80 @@ export function normalizeTier(raw: string | null | undefined): TierLevel {
 export function isTierAtLeast(current: TierLevel, minimum: TierLevel): boolean {
   return TIER_META[current].rank >= TIER_META[minimum].rank;
 }
+
+/**
+ * Feature keys used as `resource_id` values in the `tier_permissions` table.
+ * Each key represents a coarse-grained area of the app (roughly one per
+ * top-level route or nav item). A user with a given tier can access a feature
+ * iff a row exists in `tier_permissions` where `tier_level = user's tier`
+ * AND `resource_id = feature key`.
+ *
+ * Admins (`admin`, `master_admin`) bypass this check — see `useFeatureAccess`.
+ */
+export const FEATURES = {
+  HOME: 'home',
+  BOOKMARKS: 'bookmarks',
+  MY_ACCOUNT: 'my-account',
+  EXPLORER_TRACK: 'explorer-track',
+  PRE_RNF_TRACK: 'pre-rnf-track',
+  POST_RNF_TRACK: 'post-rnf-track',
+  CMFAS: 'cmfas',
+  PRODUCTS: 'products',
+  QUESTION_BANKS: 'question-banks',
+  ROLEPLAY: 'roleplay',
+  KB: 'kb',
+  PLAYBOOKS: 'playbooks',
+  FLOWS: 'flows',
+  SCRIPTS: 'scripts',
+  SERVICING: 'servicing',
+  CONCEPT_CARDS: 'concept-cards',
+  CONSULTANT_LANDING: 'consultant-landing',
+} as const;
+
+export type FeatureKey = (typeof FEATURES)[keyof typeof FEATURES];
+
+/**
+ * Source-of-truth feature matrix. Mirrors the rows seeded into
+ * `tier_permissions` in the Phase 2 DB migration. Kept here as a fallback so
+ * the UI can still gate features correctly if the DB query fails, and to
+ * document intent alongside the type system.
+ */
+export const TIER_FEATURE_MATRIX: Record<TierLevel, readonly FeatureKey[]> = {
+  explorer: [
+    FEATURES.HOME,
+    FEATURES.BOOKMARKS,
+    FEATURES.MY_ACCOUNT,
+    FEATURES.EXPLORER_TRACK,
+  ],
+  papers_taker: [
+    FEATURES.HOME,
+    FEATURES.BOOKMARKS,
+    FEATURES.MY_ACCOUNT,
+    FEATURES.EXPLORER_TRACK,
+    FEATURES.PRE_RNF_TRACK,
+    FEATURES.CMFAS,
+    FEATURES.PRODUCTS,
+    FEATURES.QUESTION_BANKS,
+    FEATURES.ROLEPLAY,
+    FEATURES.KB,
+  ],
+  post_rnf: [
+    FEATURES.HOME,
+    FEATURES.BOOKMARKS,
+    FEATURES.MY_ACCOUNT,
+    FEATURES.EXPLORER_TRACK,
+    FEATURES.PRE_RNF_TRACK,
+    FEATURES.POST_RNF_TRACK,
+    FEATURES.CMFAS,
+    FEATURES.PRODUCTS,
+    FEATURES.QUESTION_BANKS,
+    FEATURES.ROLEPLAY,
+    FEATURES.KB,
+    FEATURES.PLAYBOOKS,
+    FEATURES.FLOWS,
+    FEATURES.SCRIPTS,
+    FEATURES.SERVICING,
+    FEATURES.CONCEPT_CARDS,
+    FEATURES.CONSULTANT_LANDING,
+  ],
+};
