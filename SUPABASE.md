@@ -6,101 +6,6 @@
 
 ## Pending
 
-### Academy Tier Upgrade Requests (Phase 3 of Academy plan)
-
-**What:** Introduces a request-and-approve flow so users can ask to move up a tier (Explorer → Papers, or Papers → Post-RNF). An admin reviews the queue and approves/rejects. Both actions notify the user via email + in-app toast.
-
-**New table `tier_upgrade_requests`:**
-
-```sql
-CREATE TABLE public.tier_upgrade_requests (
-  id           uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id      uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-  from_tier    text NOT NULL CHECK (from_tier IN ('explorer', 'papers_taker', 'post_rnf')),
-  to_tier      text NOT NULL CHECK (to_tier IN ('explorer', 'papers_taker', 'post_rnf')),
-  status       text NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
-  reason       text,                  -- user-provided "why I'm ready"
-  admin_note   text,                  -- optional admin note (esp. on reject)
-  created_at   timestamptz NOT NULL DEFAULT now(),
-  reviewed_at  timestamptz,
-  reviewer_id  uuid REFERENCES auth.users(id) ON DELETE SET NULL
-);
-
--- Only one pending request per user at a time (re-request allowed after decision)
-CREATE UNIQUE INDEX tier_upgrade_requests_one_pending_per_user
-  ON public.tier_upgrade_requests (user_id)
-  WHERE status = 'pending';
-
-ALTER TABLE public.tier_upgrade_requests ENABLE ROW LEVEL SECURITY;
-
--- Users can read their own requests
-CREATE POLICY "Users read own requests"
-  ON public.tier_upgrade_requests FOR SELECT
-  TO authenticated
-  USING (user_id = auth.uid());
-
--- Users can create requests for themselves
-CREATE POLICY "Users create own requests"
-  ON public.tier_upgrade_requests FOR INSERT
-  TO authenticated
-  WITH CHECK (user_id = auth.uid() AND status = 'pending');
-
--- Admins can read and update all
-CREATE POLICY "Admins manage all requests"
-  ON public.tier_upgrade_requests FOR ALL
-  TO authenticated
-  USING  (has_role(auth.uid(), 'admin') OR has_role(auth.uid(), 'master_admin'))
-  WITH CHECK (has_role(auth.uid(), 'admin') OR has_role(auth.uid(), 'master_admin'));
-```
-
-**New edge function `notify-tier-change`:** follows the same pattern as the existing `send-password-reset` function.
-
-- **Input body:** `{ userId: uuid, toTier: 'explorer'|'papers_taker'|'post_rnf', status: 'approved'|'rejected', adminNote?: string }`
-- **What it does:**
-  1. Authenticate the caller as admin (reuse the bearer-token pattern from `send-password-reset`).
-  2. Look up the target user's email from `profiles`.
-  3. Send an email via the same email provider used for password resets.
-     - Approved subject: `You're now {Papers-taker|Post-RNF} on Academy`
-     - Rejected subject: `Update on your upgrade request`
-     - Body includes `adminNote` if provided.
-  4. Return `{ success: true, emailSent: boolean }`.
-- Uses the same Supabase edge-function runtime and same environment secrets already configured for `send-password-reset`.
-
-**Realtime:** no schema change needed. The UI uses `supabase.channel(...)` to subscribe to `user_access_tiers` changes filtered by the logged-in user, so when an admin approves a request (updating `user_access_tiers`) the user's tab re-fetches their tier and the sidebar unlocks.
-
-**Types impact:** after the migration runs, `types.ts` will include the new `tier_upgrade_requests` table. Until then the code casts via `as any` / `as never`.
-
----
-
-### Fix RLS on `user_access_tiers` — users can't read their own tier (URGENT)
-
-**Symptom:** Papers-taker users log in and see the Explorer-only sidebar (just "Bookmarks"). Admin UI correctly shows their tier as `papers_taker`, but the user's own React Query for `user_access_tiers` returns empty → `useUserTier` falls back to the default (`explorer`).
-
-**Root cause:** The RLS policy from migration `20260416101424` compares UUID to text incorrectly:
-
-```sql
--- Current (broken):
-USING (user_id = auth.uid()::text);
-```
-
-`user_id` is a `uuid` column; `auth.uid()::text` produces text. Postgres has no implicit cast between `uuid` and `text`, so the predicate silently matches nothing. Admin policy works because it uses the `has_role()` function instead of comparing `user_id`.
-
-**Fix:** Drop the policy and recreate it without the unnecessary cast.
-
-```sql
-DROP POLICY IF EXISTS "Users can view own tier" ON public.user_access_tiers;
-
-CREATE POLICY "Users can view own tier"
-  ON public.user_access_tiers
-  FOR SELECT
-  TO authenticated
-  USING (user_id = auth.uid());
-```
-
-No data change. No schema change. After this, Papers and Post-RNF users will see the correct tier and their sidebars will unlock.
-
----
-
 ### Academy Tier Permissions Seed (Phase 2 of Academy plan)
 
 **What:** Populates `tier_permissions` with the feature matrix so the app can gate nav items and routes by tier. Without these rows, the `useFeatureAccess` hook falls back to a hard-coded matrix in `src/lib/tiers.ts` — this step moves that matrix into the DB so future tier/feature changes don't require a code deploy.
@@ -162,6 +67,10 @@ INSERT INTO public.tier_permissions (tier_level, resource_id, access_type) VALUE
 ---
 
 ## Completed
+
+### Academy Tier Upgrade Requests (Phase 3) — DONE 2026-04-16
+
+Migrations: `20260416113225_d46dfe99-abde-431e-8c9f-9d3aa4ed9e1c.sql` (table + RLS + user_access_tiers RLS refresh) and `20260416115814_b41a1ea4-1b83-4268-be33-ae63cea67462.sql` (helper function `get_user_access_tier`). Edge function `notify-tier-change` at `supabase/functions/notify-tier-change/index.ts` uses Resend for emails. Created `tier_upgrade_requests` (uuid PK, user_id FK auth.users, from_tier/to_tier/status CHECK constraints, reason/admin_note, reviewed_at, reviewer_id); unique partial index prevents more than one pending row per user; RLS lets users read/insert their own rows and admins manage all. `user_access_tiers.user_id` is confirmed `text`, so the existing policy comparing with `auth.uid()::text` is correct — no type fix needed.
 
 ### Academy Tier Foundation (Phase 1) — DONE 2026-04-16
 
