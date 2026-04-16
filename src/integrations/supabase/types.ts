@@ -1142,13 +1142,6 @@ export type Database = {
             referencedRelation: "learning_track_items"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "learning_track_progress_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
         ]
       }
       learning_track_submission_files: {
