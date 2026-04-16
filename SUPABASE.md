@@ -6,54 +6,16 @@
 
 ## Pending
 
-### Academy Tier Foundation (Phase 1 of Academy plan)
-
-**What:** Introduces the three-tier persona system (Explorer / Papers-taker / Post-RNF) so the Academy can replace Skool with a single linear journey. This is Phase 1 of the full plan in `ACADEMY_IMPLEMENTATION_PLAN.md`. Only DB layer — UI changes land alongside in a separate code commit.
-
-**Data migration:** Existing `user_access_tiers.tier_level` column already has legacy values `'level_1'` (CMFAS only) and `'level_2'` (Everything). Remap them to the new persona tiers so no one loses access:
-
-```sql
-UPDATE user_access_tiers SET tier_level = 'papers_taker' WHERE tier_level = 'level_1';
-UPDATE user_access_tiers SET tier_level = 'post_rnf'     WHERE tier_level = 'level_2';
-```
-
-**Auto-assign Explorer on signup:** Trigger on `AFTER INSERT` to `profiles`. Ensures every new user has a tier row. Existing users without a tier row: leave them alone (admin can backfill via UI).
-
-```sql
-CREATE OR REPLACE FUNCTION public.assign_default_tier_on_profile_insert()
-RETURNS TRIGGER LANGUAGE plpgsql SECURITY DEFINER AS $$
-BEGIN
-  IF NOT EXISTS (SELECT 1 FROM public.user_access_tiers WHERE user_id = NEW.user_id) THEN
-    INSERT INTO public.user_access_tiers (user_id, tier_level, granted_at)
-    VALUES (NEW.user_id, 'explorer', now());
-  END IF;
-  RETURN NEW;
-END; $$;
-
-CREATE TRIGGER trg_assign_default_tier_on_profile_insert
-AFTER INSERT ON public.profiles
-FOR EACH ROW EXECUTE FUNCTION public.assign_default_tier_on_profile_insert();
-```
-
-**CHECK constraint (recommended, applied AFTER the data migration above):**
-
-```sql
-ALTER TABLE public.user_access_tiers
-  ADD CONSTRAINT user_access_tiers_tier_level_check
-  CHECK (tier_level IN ('explorer', 'papers_taker', 'post_rnf'));
-```
-
-**RLS policies on `user_access_tiers`:**
-- `SELECT`: user can read their own row (`auth.uid() = user_id`); admins can read all.
-- `INSERT` / `UPDATE` / `DELETE`: admins only (check `user_admin_roles` table).
-
-**Note on `tier_permissions` table:** it already exists but isn't queried by any code today. No schema change needed in Phase 1 — it will be seeded and wired in Phase 2 of the Academy plan.
-
-**Types impact:** after migration runs, `types.ts` will regenerate with the same `tier_level: string` column (no enum at the type level unless we also add a Postgres enum — the CHECK constraint above is sufficient for our purposes).
-
----
+_(none — all prior items completed)_
 
 ## Completed
+
+### Academy Tier Foundation (Phase 1) — DONE 2026-04-16
+
+Migration: `20260416101424_31148e72-062a-49a1-afca-7ba1b6010bf7.sql`.
+Dropped old `valid_tier_level` CHECK; migrated `level_1 → papers_taker` and `level_2 → post_rnf` plus fallback of any other values → `explorer`; set column default to `'explorer'`; added new CHECK restricting to `('explorer', 'papers_taker', 'post_rnf')`; added `AFTER INSERT` trigger `on_profile_created_assign_tier` on `profiles` that upserts a default `explorer` tier row (`SECURITY DEFINER`, idempotent); rewired RLS so users can read own row and admins (`has_role`) can do everything.
+
+---
 
 ### Learning Track Admin Tooling Phase 2 — DONE 2026-04-14
 
