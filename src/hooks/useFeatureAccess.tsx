@@ -44,19 +44,27 @@ export function useFeatureAccess() {
     staleTime: 5 * 60_000,
   });
 
-  // Build tier → Set<featureKey> lookup. Uses the DB rows if available,
-  // otherwise falls back to the static matrix. This keeps the UI functional
-  // during initial load and if the DB is temporarily unreachable.
+  // Build tier → Set<featureKey> lookup. DB rows win per tier when present,
+  // but we always start from the static `TIER_FEATURE_MATRIX` so a partially
+  // seeded (or legacy-valued) `tier_permissions` table can't accidentally
+  // lock users out. If the DB only has rows for 'explorer' and 'level_1',
+  // 'papers_taker' and 'post_rnf' still get their full static feature set.
   const permissionsByTier = useMemo(() => {
     const map = new Map<string, Set<string>>();
+    // Seed every known tier from the static matrix first.
+    for (const [t, features] of Object.entries(TIER_FEATURE_MATRIX)) {
+      map.set(t, new Set(features));
+    }
+    // DB rows: for any tier that appears in rows, clear the static set and
+    // rebuild it from the DB (so DB is authoritative when seeded). Tiers
+    // absent from rows keep their static fallback.
     if (rows && rows.length > 0) {
-      for (const row of rows) {
-        if (!map.has(row.tier_level)) map.set(row.tier_level, new Set());
-        map.get(row.tier_level)!.add(row.resource_id);
+      const tiersInRows = new Set(rows.map((r) => r.tier_level));
+      for (const t of tiersInRows) {
+        map.set(t, new Set());
       }
-    } else {
-      for (const [t, features] of Object.entries(TIER_FEATURE_MATRIX)) {
-        map.set(t, new Set(features));
+      for (const row of rows) {
+        map.get(row.tier_level)!.add(row.resource_id);
       }
     }
     return map;
