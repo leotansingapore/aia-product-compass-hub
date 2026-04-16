@@ -6,6 +6,35 @@
 
 ## Pending
 
+### Fix RLS on `user_access_tiers` — users can't read their own tier (URGENT)
+
+**Symptom:** Papers-taker users log in and see the Explorer-only sidebar (just "Bookmarks"). Admin UI correctly shows their tier as `papers_taker`, but the user's own React Query for `user_access_tiers` returns empty → `useUserTier` falls back to the default (`explorer`).
+
+**Root cause:** The RLS policy from migration `20260416101424` compares UUID to text incorrectly:
+
+```sql
+-- Current (broken):
+USING (user_id = auth.uid()::text);
+```
+
+`user_id` is a `uuid` column; `auth.uid()::text` produces text. Postgres has no implicit cast between `uuid` and `text`, so the predicate silently matches nothing. Admin policy works because it uses the `has_role()` function instead of comparing `user_id`.
+
+**Fix:** Drop the policy and recreate it without the unnecessary cast.
+
+```sql
+DROP POLICY IF EXISTS "Users can view own tier" ON public.user_access_tiers;
+
+CREATE POLICY "Users can view own tier"
+  ON public.user_access_tiers
+  FOR SELECT
+  TO authenticated
+  USING (user_id = auth.uid());
+```
+
+No data change. No schema change. After this, Papers and Post-RNF users will see the correct tier and their sidebars will unlock.
+
+---
+
 ### Academy Tier Permissions Seed (Phase 2 of Academy plan)
 
 **What:** Populates `tier_permissions` with the feature matrix so the app can gate nav items and routes by tier. Without these rows, the `useFeatureAccess` hook falls back to a hard-coded matrix in `src/lib/tiers.ts` — this step moves that matrix into the DB so future tier/feature changes don't require a code deploy.
