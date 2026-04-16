@@ -6,8 +6,9 @@ import { StudyProgressPanel } from '@/components/admin/StudyProgressPanel';
 import { FeedbackPanel } from '@/components/admin/FeedbackPanel';
 import { ProAchieverLeaderboard } from '@/components/admin/ProAchieverLeaderboard';
 import { QuestionBankManager } from '@/components/admin/QuestionBankManager';
+import { TierRequestsPanel } from '@/components/admin/TierRequestsPanel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Users, Video, Brain, MessageSquare, Trophy, BookOpen, GraduationCap, BarChart3 } from 'lucide-react';
+import { Users, Video, Brain, MessageSquare, Trophy, BookOpen, GraduationCap, BarChart3, Inbox } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 
 export default function AdminDashboard() {
@@ -62,6 +63,14 @@ export default function AdminDashboard() {
             <span className="xs:hidden sm:hidden">Board</span>
           </TabsTrigger>
           <TabsTrigger
+            value="tier-requests"
+            className="flex items-center gap-1.5 flex-1 sm:flex-none rounded-none border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
+          >
+            <Inbox className="h-4 w-4 shrink-0" />
+            <span className="hidden xs:inline sm:inline">Tier Requests</span>
+            <span className="xs:hidden sm:hidden">Requests</span>
+          </TabsTrigger>
+          <TabsTrigger
             value="feedback"
             className="flex items-center gap-1.5 flex-1 sm:flex-none rounded-none border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
           >
@@ -112,6 +121,10 @@ export default function AdminDashboard() {
 
         <TabsContent value="leaderboard">
           <ProAchieverLeaderboard />
+        </TabsContent>
+
+        <TabsContent value="tier-requests">
+          <TierRequestsPanel />
         </TabsContent>
 
         <TabsContent value="feedback">

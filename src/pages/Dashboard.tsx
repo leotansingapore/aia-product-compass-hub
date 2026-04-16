@@ -10,6 +10,7 @@ import { SearchFilters } from "@/components/dashboard/SearchFilters";
 import { SearchResults } from "@/components/dashboard/SearchResults";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { LearningTrackHeroCard } from "@/components/learning-track/LearningTrackHeroCard";
+import { TierUpgradePrompt } from "@/components/tier/TierUpgradePrompt";
 import { useDashboardSearch } from "@/hooks/useDashboardSearch";
 
 const Dashboard = memo(() => {
@@ -107,6 +108,9 @@ const Dashboard = memo(() => {
           <>
             {/* 0. Admin feedback alert */}
             <AdminFeedbackAlert />
+
+            {/* 0.5 Tier upgrade prompt (only renders for papers_taker non-admin users) */}
+            <TierUpgradePrompt />
 
             {/* 1. Continue where you left off */}
             <ContinueWhereYouLeftOff />

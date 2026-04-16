@@ -1,8 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Compass, BookOpen, TrendingUp, Target, Sparkles, ArrowRight, Lock } from 'lucide-react';
+import { Compass, BookOpen, TrendingUp, Target, Sparkles, Lock } from 'lucide-react';
 import { TierBadge } from '@/components/tier/TierBadge';
+import { RequestUpgradeButton } from '@/components/tier/RequestUpgradeButton';
 
 interface ExplorerModule {
   title: string;
@@ -110,10 +110,11 @@ export default function ExplorerHome() {
                 Papers tier. An admin will review and unlock the next section for you.
               </p>
             </div>
-            <Button disabled className="shrink-0 gap-1.5" title="Request upgrade — wiring in Phase 3">
-              Request upgrade
-              <ArrowRight className="h-4 w-4" />
-            </Button>
+            <RequestUpgradeButton
+              fromTier="explorer"
+              toTier="papers_taker"
+              className="shrink-0"
+            />
           </CardContent>
         </Card>
 
