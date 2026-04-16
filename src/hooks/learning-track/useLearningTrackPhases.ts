@@ -13,10 +13,10 @@ export function useLearningTrackPhases(track: Track) {
         .from("learning_track_phases")
         .select(
           `
-          id, track, order_index, title, description, published_at,
+          id, track, order_index, title, description, published_at, prerequisite_phase_id,
           learning_track_items (
             id, phase_id, order_index, title, description,
-            objectives, action_items, requires_submission, legacy_id, published_at,
+            objectives, action_items, requires_submission, legacy_id, published_at, prerequisite_item_ids,
             learning_track_content_blocks (
               id, item_id, order_index, block_type, title, body, url, resource_type, resource_id
             )
@@ -35,6 +35,7 @@ export function useLearningTrackPhases(track: Track) {
         title: p.title,
         description: p.description,
         published_at: p.published_at ?? null,
+        prerequisite_phase_id: p.prerequisite_phase_id ?? null,
         items: ((p.learning_track_items ?? []) as any[])
           .sort((a, b) => a.order_index - b.order_index)
           .map((i: any) => ({
@@ -49,6 +50,7 @@ export function useLearningTrackPhases(track: Track) {
             hidden_resources: [],
             legacy_id: i.legacy_id,
             published_at: i.published_at ?? null,
+            prerequisite_item_ids: i.prerequisite_item_ids ?? null,
             content_blocks: ((i.learning_track_content_blocks ?? []) as any[]).sort(
               (a, b) => a.order_index - b.order_index
             ),
