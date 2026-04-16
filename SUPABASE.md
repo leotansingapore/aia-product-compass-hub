@@ -6,35 +6,15 @@
 
 ## Pending
 
-### Widen `learning_track_phases.track` CHECK to allow `'explorer'`
-
-**Why:** Phase 4 introduces a third learning track (`'explorer'`) alongside `'pre_rnf'` and `'post_rnf'`. The frontend (`Track` type, `/learning-track/explorer` route, `AddPhaseButton track="explorer"`, `ExplorerHome` reading `useLearningTrackPhases("explorer")`) is already wired up, but admin "Add phase" calls fail today because the original migration restricts `track` to two values:
-
-```sql
--- Current (from supabase/migrations/20260411140049_d59d3696-61cc-40e4-81a3-8fbda0afbbd0.sql:11)
-track text NOT NULL CHECK (track IN ('pre_rnf','post_rnf'))
-```
-
-**What to do:** drop the existing CHECK and recreate it allowing `'explorer'`:
-
-```sql
-ALTER TABLE public.learning_track_phases
-  DROP CONSTRAINT IF EXISTS learning_track_phases_track_check;
-
-ALTER TABLE public.learning_track_phases
-  ADD CONSTRAINT learning_track_phases_track_check
-  CHECK (track IN ('pre_rnf','post_rnf','explorer'));
-```
-
-(The constraint name may differ if Postgres auto-named it — Lovable should look up the actual name via `pg_constraint` if needed.)
-
-No data migration needed — no existing rows have `track='explorer'` yet.
-
-No other tables need changes: `learning_track_items` and `learning_track_content_blocks` reference phases by FK, no track column of their own.
+_(none — all prior items completed)_
 
 
 
 ## Completed
+
+### Explorer track CHECK constraint widened (Phase 4) — DONE 2026-04-16
+
+Migration: `20260416132931_6333313a-971b-474c-a004-c2a74bc8e58a.sql`. Dropped `learning_track_phases_track_check` and recreated it as `CHECK (track IN ('pre_rnf','post_rnf','explorer'))`. Unblocks `AddPhaseButton track="explorer"` on `/learning-track/explorer`. No data changes needed; no other tables affected.
 
 ### Academy Tier Permissions Seed (Phase 2) — DONE 2026-04-16
 
