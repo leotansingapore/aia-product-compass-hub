@@ -1010,6 +1010,7 @@ export type Database = {
           objectives: string[] | null
           order_index: number
           phase_id: string
+          prerequisite_item_ids: string[] | null
           published_at: string | null
           requires_submission: boolean
           title: string
@@ -1025,6 +1026,7 @@ export type Database = {
           objectives?: string[] | null
           order_index: number
           phase_id: string
+          prerequisite_item_ids?: string[] | null
           published_at?: string | null
           requires_submission?: boolean
           title: string
@@ -1040,6 +1042,7 @@ export type Database = {
           objectives?: string[] | null
           order_index?: number
           phase_id?: string
+          prerequisite_item_ids?: string[] | null
           published_at?: string | null
           requires_submission?: boolean
           title?: string
@@ -1082,6 +1085,7 @@ export type Database = {
           description: string | null
           id: string
           order_index: number
+          prerequisite_phase_id: string | null
           published_at: string | null
           title: string
           track: string
@@ -1092,6 +1096,7 @@ export type Database = {
           description?: string | null
           id?: string
           order_index: number
+          prerequisite_phase_id?: string | null
           published_at?: string | null
           title: string
           track: string
@@ -1102,12 +1107,21 @@ export type Database = {
           description?: string | null
           id?: string
           order_index?: number
+          prerequisite_phase_id?: string | null
           published_at?: string | null
           title?: string
           track?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "learning_track_phases_prerequisite_phase_id_fkey"
+            columns: ["prerequisite_phase_id"]
+            isOneToOne: false
+            referencedRelation: "learning_track_phases"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       learning_track_progress: {
         Row: {
