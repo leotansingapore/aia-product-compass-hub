@@ -27,6 +27,8 @@ import { useUserActions } from '@/hooks/useUserActions';
 import { getDisplayName, getStatusConfig, getRoleBadgeVariant, AVAILABLE_STATUSES, AVAILABLE_ADMIN_ROLES } from '@/utils/userUtils';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
+import { TierBadge } from '@/components/tier/TierBadge';
+import { TierControl } from '@/components/admin/TierControl';
 
 interface UserTableRowProps {
   user: UnifiedUser;
@@ -210,6 +212,22 @@ export const UserTableRow = memo(function UserTableRow({
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+        )}
+      </TableCell>
+
+      {/* Tier */}
+      <TableCell>
+        {adminRole === 'master_admin' ? (
+          <TierBadge tier={user.access_tier} compact />
+        ) : user.status === 'active' ? (
+          <TierControl
+            userId={user.id}
+            currentTier={user.access_tier}
+            compact
+            onChange={() => onUpdate()}
+          />
+        ) : (
+          <TierBadge tier={user.access_tier} compact />
         )}
       </TableCell>
 
