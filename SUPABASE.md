@@ -6,67 +6,13 @@
 
 ## Pending
 
-### Academy Tier Permissions Seed (Phase 2 of Academy plan)
-
-**What:** Populates `tier_permissions` with the feature matrix so the app can gate nav items and routes by tier. Without these rows, the `useFeatureAccess` hook falls back to a hard-coded matrix in `src/lib/tiers.ts` — this step moves that matrix into the DB so future tier/feature changes don't require a code deploy.
-
-**Wipe + seed `tier_permissions`** (safe — table isn't queried by any code today):
-
-```sql
-DELETE FROM public.tier_permissions;
-
--- Explorer: home, bookmarks, my-account, explorer-track
-INSERT INTO public.tier_permissions (tier_level, resource_id, access_type) VALUES
-  ('explorer',     'home',               'read'),
-  ('explorer',     'bookmarks',          'read'),
-  ('explorer',     'my-account',         'read'),
-  ('explorer',     'explorer-track',     'read'),
-
--- Papers-taker: everything Explorer has PLUS pre-rnf, cmfas, products, q-banks, roleplay, kb
-  ('papers_taker', 'home',               'read'),
-  ('papers_taker', 'bookmarks',          'read'),
-  ('papers_taker', 'my-account',         'read'),
-  ('papers_taker', 'explorer-track',     'read'),
-  ('papers_taker', 'pre-rnf-track',      'read'),
-  ('papers_taker', 'cmfas',              'read'),
-  ('papers_taker', 'products',           'read'),
-  ('papers_taker', 'question-banks',     'read'),
-  ('papers_taker', 'roleplay',           'read'),
-  ('papers_taker', 'kb',                 'read'),
-
--- Post-RNF: everything Papers has PLUS post-rnf-track, playbooks, flows, scripts, servicing, concept-cards, consultant-landing
-  ('post_rnf',     'home',               'read'),
-  ('post_rnf',     'bookmarks',          'read'),
-  ('post_rnf',     'my-account',         'read'),
-  ('post_rnf',     'explorer-track',     'read'),
-  ('post_rnf',     'pre-rnf-track',      'read'),
-  ('post_rnf',     'post-rnf-track',     'read'),
-  ('post_rnf',     'cmfas',              'read'),
-  ('post_rnf',     'products',           'read'),
-  ('post_rnf',     'question-banks',     'read'),
-  ('post_rnf',     'roleplay',           'read'),
-  ('post_rnf',     'kb',                 'read'),
-  ('post_rnf',     'playbooks',          'read'),
-  ('post_rnf',     'flows',              'read'),
-  ('post_rnf',     'scripts',            'read'),
-  ('post_rnf',     'servicing',          'read'),
-  ('post_rnf',     'concept-cards',      'read'),
-  ('post_rnf',     'consultant-landing', 'read');
-```
-
-**RLS on `tier_permissions`:**
-- `SELECT`: any authenticated user can read (permissions list is non-sensitive and needed by every page load).
-- `INSERT` / `UPDATE` / `DELETE`: admins only (`has_role(auth.uid(), 'admin') OR has_role(auth.uid(), 'master_admin')`).
-
-**Why `DELETE FROM` first:** the table isn't queried by any code today, so any existing rows are stale / leftover from earlier iterations. Wipe-and-reseed keeps the migration idempotent and the data aligned with `TIER_FEATURE_MATRIX` in `src/lib/tiers.ts`.
-
-**No schema changes:** `tier_permissions` already has `tier_level (text)`, `resource_id (text)`, `access_type (text)`. We just need rows.
-
-**Types impact:** none — `types.ts` is already in sync.
-
----
+_(none — all prior items completed)_
 
 ## Completed
+
+### Academy Tier Permissions Seed (Phase 2) — DONE 2026-04-16
+
+Migration: `20260416125449_992b4fda-ef14-4969-8583-e18766816fdc.sql`. Wiped `tier_permissions` and re-seeded 31 rows mirroring the `TIER_FEATURE_MATRIX` constant in `src/lib/tiers.ts`: 4 rows for Explorer (home, bookmarks, my-account, explorer-track), 10 for Papers-taker (Explorer set + pre-rnf-track, cmfas, products, question-banks, roleplay, kb), and 17 for Post-RNF (Papers set + post-rnf-track, playbooks, flows, scripts, servicing, concept-cards, consultant-landing). Added RLS: authenticated users can `SELECT`, admins only can `INSERT`/`UPDATE`/`DELETE`. `useFeatureAccess` now reads the DB rows; if the query fails or returns partial data, the hook still falls back to the static matrix so gating never degrades open.
 
 ### Academy Tier Upgrade Requests (Phase 3) — DONE 2026-04-16
 
