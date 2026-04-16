@@ -21,6 +21,8 @@ import {
 import type { UnifiedUser } from "@/hooks/useUserManagement";
 import { SendEmailDialog } from "./SendEmailDialog";
 import { getRoleBadgeVariant } from "@/utils/userUtils";
+import { TierBadge } from "@/components/tier/TierBadge";
+import { TierControl } from "@/components/admin/TierControl";
 
 interface UserDirectoryRowProps {
   user: UnifiedUser;
@@ -293,7 +295,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
       </div>
       
       <div className="flex items-center gap-3">
-        {/* Role Badge */}
+        {/* Role + Tier Badges */}
         <div className="flex flex-wrap gap-1">
           <Badge
             variant={getLocalRoleBadgeVariant(user.admin_role || 'user')}
@@ -302,6 +304,7 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
             <Shield className="h-3 w-3" />
             {user.admin_role || 'user'}
           </Badge>
+          <TierBadge tier={user.access_tier} compact />
         </div>
 
         {/* Admin Role Management */}
@@ -320,6 +323,16 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
               </SelectContent>
             </Select>
           </div>
+        )}
+
+        {/* Tier Management */}
+        {user.status === 'active' && user.admin_role !== 'master_admin' && (
+          <TierControl
+            userId={user.id}
+            currentTier={user.access_tier}
+            compact
+            onChange={() => onUpdate()}
+          />
         )}
       </div>
 

@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { DEFAULT_TIER } from '@/lib/tiers';
 
 export interface UnifiedUser {
   id: string;
@@ -75,7 +76,7 @@ export function useUserManagement() {
       approvalRequests?.forEach(request => {
         const existingProfile = profiles?.find(p => p.email === request.email);
         const adminRole = userAdminRoles?.find(ur => ur.user_id === existingProfile?.user_id)?.admin_role || 'user';
-        const accessTier = userAccessTiers?.find(ut => ut.user_id === existingProfile?.user_id)?.tier_level || 'level_1';
+        const accessTier = userAccessTiers?.find(ut => ut.user_id === existingProfile?.user_id)?.tier_level || DEFAULT_TIER;
         
         let status: UnifiedUser['status'] = 'pending_approval';
         if (request.status === 'rejected') {
@@ -114,7 +115,7 @@ export function useUserManagement() {
         const hasApprovalRequest = approvalRequests?.some(req => req.email === profile.email);
         if (!hasApprovalRequest) {
           const adminRole = userAdminRoles?.find(ur => ur.user_id === profile.user_id)?.admin_role || 'user';
-          const accessTier = userAccessTiers?.find(ut => ut.user_id === profile.user_id)?.tier_level || 'level_1';
+          const accessTier = userAccessTiers?.find(ut => ut.user_id === profile.user_id)?.tier_level || DEFAULT_TIER;
           
           unifiedUsers.push({
             id: profile.user_id,

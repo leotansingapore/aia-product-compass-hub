@@ -6,6 +6,9 @@ import { Shield, User, Crown, Layers, Mail, Key } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { TierBadge } from "@/components/tier/TierBadge";
+import { TierControl } from "@/components/admin/TierControl";
+import { normalizeTier } from "@/lib/tiers";
 
 interface User {
   id: string;
@@ -33,7 +36,7 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
   
   // Use admin_role and access_tier from props (single source of truth)
   const adminRole = user.admin_role || 'user';
-  const accessTier = user.access_tier || 'level_1';
+  const accessTier = normalizeTier(user.access_tier);
 
   const handleAdminRoleChange = async (newRole: string) => {
     try {
@@ -70,39 +73,6 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
     }
   };
 
-  const handleAccessTierChange = async (newTier: string) => {
-    try {
-      // Update access tier in user_access_tiers table
-      const { error: deleteError } = await supabase
-        .from('user_access_tiers')
-        .delete()
-        .eq('user_id', user.id);
-
-      if (deleteError) throw deleteError;
-
-      const { error: insertError } = await supabase
-        .from('user_access_tiers')
-        .insert({
-          user_id: user.id,
-          tier_level: newTier
-        });
-
-      if (insertError) throw insertError;
-
-      toast({
-        title: "Success",
-        description: `Access tier updated to ${newTier === 'level_1' ? 'Level 1 (CMFAS Only)' : 'Level 2 (Everything)'}`,
-      });
-    } catch (error: any) {
-      console.error('Error updating access tier:', error);
-      toast({
-        title: "Error",
-        description: error.message || "Failed to update access tier",
-        variant: "destructive",
-      });
-    }
-  };
-
   const getRoleBadgeVariant = (role: string) => {
     switch (role) {
       case 'master_admin':
@@ -115,10 +85,6 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
       default:
         return 'outline';
     }
-  };
-
-  const getTierBadgeVariant = (tier: string) => {
-    return tier === 'level_2' ? 'default' : 'secondary';
   };
 
   const [loadingAction, setLoadingAction] = useState<'reset' | 'set' | null>(null);
@@ -201,13 +167,7 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
             <Shield className="h-3 w-3 mr-1" />
             {adminRole.replace('_', ' ')}
           </Badge>
-          <Badge
-            variant={getTierBadgeVariant(accessTier)}
-            className="capitalize text-xs"
-          >
-            <Layers className="h-3 w-3 mr-1" />
-            {accessTier === 'level_1' ? 'L1: CMFAS' : 'L2: All'}
-          </Badge>
+          <TierBadge tier={accessTier} compact />
         </div>
 
         {/* Admin Role Selector - only show if not master admin */}
@@ -235,18 +195,7 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
         {adminRole !== 'master_admin' && (
           <div className="flex items-center gap-1">
             <Layers className="hidden sm:inline-block h-4 w-4 text-muted-foreground" />
-            <Select
-              value={accessTier}
-              onValueChange={handleAccessTierChange}
-            >
-              <SelectTrigger className="w-36 sm:w-40 text-xs sm:text-sm">
-                <SelectValue placeholder="Access Level" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="level_1">Level 1: CMFAS</SelectItem>
-                <SelectItem value="level_2">Level 2: Everything</SelectItem>
-              </SelectContent>
-            </Select>
+            <TierControl userId={user.id} currentTier={accessTier} />
           </div>
         )}
         

@@ -27,6 +27,8 @@ import { useUserActions } from '@/hooks/useUserActions';
 import { getDisplayName, getStatusConfig, getRoleBadgeVariant, AVAILABLE_STATUSES, AVAILABLE_ADMIN_ROLES } from '@/utils/userUtils';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
+import { TierBadge } from '@/components/tier/TierBadge';
+import { TierControl } from '@/components/admin/TierControl';
 
 interface UserMobileCardProps {
   user: UnifiedUser;
@@ -247,7 +249,22 @@ export const UserMobileCard = memo(function UserMobileCard({
               </DropdownMenuContent>
             </DropdownMenu>
           )}
+
+          <TierBadge tier={user.access_tier} compact />
         </div>
+
+        {/* Tier control (hidden for master admin) */}
+        {user.status === 'active' && adminRole !== 'master_admin' && (
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">Tier</span>
+            <TierControl
+              userId={user.id}
+              currentTier={user.access_tier}
+              compact
+              onChange={() => onUpdate()}
+            />
+          </div>
+        )}
 
         {/* Quick Actions for Pending Users */}
         {user.status === 'pending_approval' && (
