@@ -6,7 +6,38 @@
 
 ## Pending
 
-_(none — all prior items completed)_
+### Phase 6 — Within-track prerequisite gating
+
+**Why:** Today every learning-track item is unlocked the moment its phase loads, regardless of whether earlier items have been completed. The Academy plan calls for "complete X to unlock Y" semantics so Pre-RNF Phase 2 stays locked until Phase 1 is fully done, and individual items can require specific other items first. Frontend will gate visually (lock icon, dim, tooltip "Complete X first") — no RLS changes needed because the data itself isn't sensitive.
+
+**What to do:** add two nullable columns. No data backfill required (null = no prereqs = always unlocked, which matches today's behaviour).
+
+```sql
+-- 1. Per-item prerequisites (which sibling items must be completed first).
+ALTER TABLE public.learning_track_items
+  ADD COLUMN IF NOT EXISTS prerequisite_item_ids uuid[] NULL;
+
+COMMENT ON COLUMN public.learning_track_items.prerequisite_item_ids IS
+  'Array of learning_track_items.id that must be completed before this item unlocks. NULL or empty = no prereqs.';
+
+-- 2. Per-phase prerequisite (which prior phase must be fully completed).
+ALTER TABLE public.learning_track_phases
+  ADD COLUMN IF NOT EXISTS prerequisite_phase_id uuid NULL
+  REFERENCES public.learning_track_phases(id) ON DELETE SET NULL;
+
+COMMENT ON COLUMN public.learning_track_phases.prerequisite_phase_id IS
+  'If set, this phase only unlocks once every published item in the referenced phase has a completed progress row for the user. NULL = no prereq.';
+
+-- 3. Helpful index for the FK lookup.
+CREATE INDEX IF NOT EXISTS learning_track_phases_prerequisite_phase_id_idx
+  ON public.learning_track_phases (prerequisite_phase_id);
+```
+
+**RLS:** no changes — existing policies on `learning_track_phases` and `learning_track_items` cover the new columns automatically (read for everyone; write for admins).
+
+**Constraints:** intentionally NOT adding referential integrity for `prerequisite_item_ids` (Postgres doesn't support per-element FK on array types without triggers). Frontend will silently ignore unknown ids.
+
+
 
 
 
