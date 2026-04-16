@@ -62,7 +62,8 @@ export function useLearningTrackProgress(userId: string | undefined) {
       }));
       return { previous };
     },
-    onError: (_err, _vars, ctx) => {
+    onError: (err, _vars, ctx) => {
+      console.error("setStatus failed:", err);
       if (ctx?.previous) qc.setQueryData(["learning-track-progress", userId], ctx.previous);
     },
     onSettled: () => {
