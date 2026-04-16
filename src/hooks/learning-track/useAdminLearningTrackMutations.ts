@@ -143,6 +143,7 @@ export function useUpdatePhase() {
       description?: string | null;
       order_index?: number;
       published_at?: string | null;
+      prerequisite_phase_id?: string | null;
     }) => {
       const { error } = await supabase
         .from("learning_track_phases")
@@ -293,6 +294,7 @@ export function useUpdateItem() {
       requires_submission?: boolean;
       order_index?: number;
       published_at?: string | null;
+      prerequisite_item_ids?: string[] | null;
     }) => {
       const { error } = await supabase
         .from("learning_track_items")

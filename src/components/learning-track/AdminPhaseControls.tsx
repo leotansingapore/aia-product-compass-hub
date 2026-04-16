@@ -24,11 +24,13 @@ import {
   useReorderItems,
 } from "@/hooks/learning-track/useAdminLearningTrackMutations";
 import type { Track, LearningTrackPhase, LearningTrackItem } from "@/types/learning-track";
+import type { LockMap } from "@/hooks/learning-track/useLockMap";
 import { InlineEditableText } from "./InlineEditableText";
 import { LearningItemRow } from "./LearningItemRow";
 import { TemplatePreviewDialog } from "./TemplatePreviewDialog";
 import { BulkImportDialog } from "./BulkImportDialog";
 import { PublishToggle } from "./PublishToggle";
+import { PrerequisitePhasePicker } from "./admin/PrerequisitePhasePicker";
 import { LEARNING_ITEM_TEMPLATES, type TemplateCategory, type LearningItemTemplate } from "@/data/learningItemTemplates";
 import { useCustomTemplates, useDeleteCustomTemplate } from "@/hooks/learning-track/useCustomTemplates";
 
@@ -40,6 +42,8 @@ interface Props {
   expandedItemId?: string;
   readOnly?: boolean;
   viewAsUserId?: string;
+  lockMap?: LockMap;
+  trackPhases?: LearningTrackPhase[];
 }
 
 function SortableItemWrapper({
@@ -48,12 +52,16 @@ function SortableItemWrapper({
   expandedItemId,
   readOnly,
   viewAsUserId,
+  lockResult,
+  trackPhases,
 }: {
   item: LearningTrackItem;
   isCompleted: boolean;
   expandedItemId?: string;
   readOnly?: boolean;
   viewAsUserId?: string;
+  lockResult?: ReturnType<NonNullable<LockMap["getItemLock"]>> | null;
+  trackPhases?: LearningTrackPhase[];
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: item.id });
@@ -81,6 +89,8 @@ function SortableItemWrapper({
           defaultExpanded={item.id === expandedItemId}
           readOnly={readOnly}
           viewAsUserId={viewAsUserId}
+          lockResult={lockResult}
+          trackPhases={trackPhases}
         />
       </div>
     </div>
@@ -93,6 +103,8 @@ export default function AdminPhaseControls({
   expandedItemId,
   readOnly,
   viewAsUserId,
+  lockMap,
+  trackPhases,
 }: Props) {
   const updatePhase = useUpdatePhase();
   const deletePhase = useDeletePhase();
@@ -199,6 +211,11 @@ export default function AdminPhaseControls({
         >
           <Trash2 className="h-3.5 w-3.5" />
         </button>
+        {trackPhases && trackPhases.length > 1 && (
+          <div className="ml-auto">
+            <PrerequisitePhasePicker phase={phase} trackPhases={trackPhases} />
+          </div>
+        )}
       </div>
 
       {/* Sortable items */}
@@ -213,6 +230,8 @@ export default function AdminPhaseControls({
                 expandedItemId={expandedItemId}
                 readOnly={readOnly}
                 viewAsUserId={viewAsUserId}
+                lockResult={lockMap?.getItemLock(item.id) ?? null}
+                trackPhases={trackPhases}
               />
             ))}
           </SortableContext>

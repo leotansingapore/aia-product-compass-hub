@@ -3,6 +3,7 @@ import { Loader2 } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackPhases";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
+import { useLockMap } from "@/hooks/learning-track/useLockMap";
 import { PhaseSection } from "@/components/learning-track/PhaseSection";
 import { TrackProgressHeader } from "@/components/learning-track/TrackProgressHeader";
 import { AddPhaseButton } from "@/components/learning-track/AddPhaseButton";
@@ -12,6 +13,8 @@ export default function PreRnfTrack() {
   const { user } = useSimplifiedAuth();
   const phasesQuery = useLearningTrackPhases("pre_rnf");
   const { isCompleted } = useLearningTrackProgress(user?.id);
+  const phases = phasesQuery.data ?? [];
+  const lockMap = useLockMap(phases);
 
   if (phasesQuery.isLoading) {
     return (
@@ -29,8 +32,6 @@ export default function PreRnfTrack() {
     );
   }
 
-  const phases = phasesQuery.data ?? [];
-
   return (
     <div className="space-y-4" data-testid="pre-rnf-page">
       <TrackProgressHeader track="pre_rnf" phases={phases} />
@@ -41,6 +42,8 @@ export default function PreRnfTrack() {
           isCompleted={isCompleted}
           defaultOpen
           expandedItemId={itemId}
+          lockMap={lockMap}
+          trackPhases={phases}
         />
       ))}
       <AddPhaseButton track="pre_rnf" currentPhaseCount={phases.length} />

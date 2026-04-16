@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, ChevronRight, CheckCircle2, Circle, Clock, Trash2, Copy, Bookmark, History, ArrowRightLeft } from "lucide-react";
+import { ChevronDown, ChevronRight, CheckCircle2, Circle, Clock, Trash2, Copy, Bookmark, History, ArrowRightLeft, Lock } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
@@ -18,7 +18,9 @@ import { SubmissionPanel } from "./SubmissionPanel";
 import { SaveAsTemplateDialog } from "./SaveAsTemplateDialog";
 import { ItemHistoryDialog } from "./ItemHistoryDialog";
 import { PublishToggle } from "./PublishToggle";
-import type { LearningTrackItem, ItemStatus } from "@/types/learning-track";
+import { PrerequisiteItemPicker } from "./admin/PrerequisiteItemPicker";
+import type { LearningTrackItem, LearningTrackPhase, ItemStatus } from "@/types/learning-track";
+import type { LockResult } from "@/lib/learning-track/unlock";
 import { cn } from "@/lib/utils";
 
 interface LearningItemRowProps {
@@ -27,6 +29,10 @@ interface LearningItemRowProps {
   defaultExpanded?: boolean;
   readOnly?: boolean;
   viewAsUserId?: string;
+  /** Result of `useLockMap().getItemLock(item.id)`. Null = no gating (admin or not provided). */
+  lockResult?: LockResult | null;
+  /** Phases in the same track, used by the admin prerequisite picker. */
+  trackPhases?: LearningTrackPhase[];
 }
 
 const STATUS_ICON: Record<ItemStatus, JSX.Element> = {
@@ -41,6 +47,8 @@ export function LearningItemRow({
   defaultExpanded = false,
   readOnly = false,
   viewAsUserId,
+  lockResult,
+  trackPhases,
 }: LearningItemRowProps) {
   const { user } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
@@ -84,20 +92,36 @@ export function LearningItemRow({
     duplicateItem.mutate({ sourceItemId: item.id });
   };
 
+  const isLocked = !!lockResult?.locked;
+  const lockTooltip = isLocked
+    ? lockResult.reason === "phase"
+      ? `Complete the previous phase first: ${lockResult.missingTitles.join(", ")}`
+      : `Complete first: ${lockResult.missingTitles.join(", ")}`
+    : undefined;
+
   return (
-    <div ref={rowRef} className="px-4 py-3" id={`item-${item.id}`}>
+    <div
+      ref={rowRef}
+      className={cn("px-4 py-3", isLocked && "opacity-60")}
+      id={`item-${item.id}`}
+    >
       <div className="flex items-start gap-3">
         <button
           type="button"
-          disabled={readOnly || setStatus.isPending}
+          disabled={readOnly || setStatus.isPending || isLocked}
           onClick={() => {
             const next: ItemStatus = isCompleted ? "not_started" : "completed";
             setStatus.mutate({ itemId: item.id, status: next });
           }}
-          aria-label={isCompleted ? "Mark incomplete" : "Mark complete"}
-          className={cn("mt-1 rounded-full p-0.5 transition-all min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 flex items-center justify-center", setStatus.isPending && "opacity-50 animate-pulse")}
+          aria-label={isLocked ? lockTooltip : isCompleted ? "Mark incomplete" : "Mark complete"}
+          title={lockTooltip}
+          className={cn(
+            "mt-1 rounded-full p-0.5 transition-all min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 flex items-center justify-center",
+            setStatus.isPending && "opacity-50 animate-pulse",
+            isLocked && "cursor-not-allowed",
+          )}
         >
-          {STATUS_ICON[status]}
+          {isLocked ? <Lock className="h-5 w-5 text-muted-foreground" /> : STATUS_ICON[status]}
         </button>
         <div className="flex-1 min-w-0">
           <button
@@ -223,6 +247,22 @@ export function LearningItemRow({
 
       {expanded && (
         <div className="ml-8 mt-4 space-y-4">
+          {/* Locked notice (non-admin only — admins see content regardless) */}
+          {isLocked && (
+            <div className="rounded border border-amber-300 bg-amber-50 dark:bg-amber-950/30 dark:border-amber-800 px-3 py-2 text-sm text-amber-800 dark:text-amber-200 flex items-start gap-2">
+              <Lock className="h-4 w-4 shrink-0 mt-0.5" />
+              <div>
+                <div className="font-medium">Locked</div>
+                <div className="text-xs">
+                  {lockResult?.reason === "phase"
+                    ? "Complete the previous phase first:"
+                    : "Complete these first:"}{" "}
+                  {lockResult?.missingTitles.join(", ")}
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Objectives */}
           {(item.objectives && item.objectives.length > 0) || showAdmin ? (
             <div>
@@ -275,6 +315,11 @@ export function LearningItemRow({
               />
               <span className="text-muted-foreground">Requires submission</span>
             </label>
+          )}
+
+          {/* Prerequisite picker for admin */}
+          {showAdmin && trackPhases && trackPhases.length > 0 && (
+            <PrerequisiteItemPicker item={item} trackPhases={trackPhases} />
           )}
 
           {/* Content blocks - now with admin editing */}
