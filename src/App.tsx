@@ -15,6 +15,7 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { ProtectedAdminPage } from "@/components/ProtectedAdminPage";
 import { RequireAuth } from "@/components/RequireAuth";
+import { RequireTier } from "@/components/RequireTier";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { RouteTracker } from "@/components/RouteTracker";
 
@@ -111,14 +112,14 @@ const App = () => (
 
                     {/* All other routes require authentication */}
                     <Route path="/" element={<RequireAuth><Index /></RequireAuth>} />
-                    <Route path="/consultant-landing" element={<RequireAuth><ConsultantLanding /></RequireAuth>} />
+                    <Route path="/consultant-landing" element={<RequireAuth><RequireTier feature="consultant-landing"><ConsultantLanding /></RequireTier></RequireAuth>} />
                     <Route path="/bookmarks" element={<RequireAuth><Bookmarks /></RequireAuth>} />
-                    <Route path="/cmfas-exams" element={<RequireAuth><CMFASExams /></RequireAuth>} />
-                    <Route path="/cmfas/module/:moduleId" element={<RequireAuth><CMFASModuleDetail /></RequireAuth>} />
-                    <Route path="/cmfas/module/:moduleId/video/:videoSlugOrId" element={<RequireAuth><CMFASVideoDetail /></RequireAuth>} />
-                    <Route path="/cmfas/chat/:moduleId?" element={<RequireAuth><CMFASChat /></RequireAuth>} />
-                    <Route path="/roleplay" element={<RequireAuth><Roleplay /></RequireAuth>} />
-                    <Route path="/roleplay/feedback/:sessionId" element={<RequireAuth><RoleplayFeedback /></RequireAuth>} />
+                    <Route path="/cmfas-exams" element={<RequireAuth><RequireTier feature="cmfas"><CMFASExams /></RequireTier></RequireAuth>} />
+                    <Route path="/cmfas/module/:moduleId" element={<RequireAuth><RequireTier feature="cmfas"><CMFASModuleDetail /></RequireTier></RequireAuth>} />
+                    <Route path="/cmfas/module/:moduleId/video/:videoSlugOrId" element={<RequireAuth><RequireTier feature="cmfas"><CMFASVideoDetail /></RequireTier></RequireAuth>} />
+                    <Route path="/cmfas/chat/:moduleId?" element={<RequireAuth><RequireTier feature="cmfas"><CMFASChat /></RequireTier></RequireAuth>} />
+                    <Route path="/roleplay" element={<RequireAuth><RequireTier feature="roleplay"><Roleplay /></RequireTier></RequireAuth>} />
+                    <Route path="/roleplay/feedback/:sessionId" element={<RequireAuth><RequireTier feature="roleplay"><RoleplayFeedback /></RequireTier></RequireAuth>} />
                     <Route path="/roleplay/pitch-analysis" element={<Navigate to="/roleplay?tab=pitch-analysis" replace />} />
                     <Route path="/admin" element={
                       <RequireAuth>
@@ -128,33 +129,33 @@ const App = () => (
                       </RequireAuth>
                     } />
                     <Route path="/my-account" element={<RequireAuth><MyAccount /></RequireAuth>} />
-                    <Route path="/categories" element={<RequireAuth><Categories /></RequireAuth>} />
-                    <Route path="/category/:categorySlugOrId" element={<RequireAuth><ProductCategory /></RequireAuth>} />
-                    <Route path="/product/:productSlugOrId" element={<RequireAuth><ProductDetail /></RequireAuth>} />
-                    <Route path="/product/:productSlugOrId/:pageId" element={<RequireAuth><ProductDetail /></RequireAuth>} />
-                    <Route path="/product/:productSlugOrId/manage-videos" element={<RequireAuth><ManageProductVideos /></RequireAuth>} />
-                    <Route path="/product/:productId/ai-assistant" element={<RequireAuth><AIAssistant /></RequireAuth>} />
-                    <Route path="/product/:productSlugOrId/exam" element={<RequireAuth><ProductExam /></RequireAuth>} />
-                    <Route path="/product/:productSlugOrId/video/:videoId" element={<RequireAuth><VideoDetail /></RequireAuth>} />
-                    <Route path="/question-banks" element={<RequireAuth><QuestionBanks /></RequireAuth>} />
+                    <Route path="/categories" element={<RequireAuth><RequireTier feature="products"><Categories /></RequireTier></RequireAuth>} />
+                    <Route path="/category/:categorySlugOrId" element={<RequireAuth><RequireTier feature="products"><ProductCategory /></RequireTier></RequireAuth>} />
+                    <Route path="/product/:productSlugOrId" element={<RequireAuth><RequireTier feature="products"><ProductDetail /></RequireTier></RequireAuth>} />
+                    <Route path="/product/:productSlugOrId/:pageId" element={<RequireAuth><RequireTier feature="products"><ProductDetail /></RequireTier></RequireAuth>} />
+                    <Route path="/product/:productSlugOrId/manage-videos" element={<RequireAuth><RequireTier feature="products"><ManageProductVideos /></RequireTier></RequireAuth>} />
+                    <Route path="/product/:productId/ai-assistant" element={<RequireAuth><RequireTier feature="products"><AIAssistant /></RequireTier></RequireAuth>} />
+                    <Route path="/product/:productSlugOrId/exam" element={<RequireAuth><RequireTier feature="question-banks"><ProductExam /></RequireTier></RequireAuth>} />
+                    <Route path="/product/:productSlugOrId/video/:videoId" element={<RequireAuth><RequireTier feature="products"><VideoDetail /></RequireTier></RequireAuth>} />
+                    <Route path="/question-banks" element={<RequireAuth><RequireTier feature="question-banks"><QuestionBanks /></RequireTier></RequireAuth>} />
                     <Route path="/changelog" element={<RequireAuth><Changelog /></RequireAuth>} />
-                    <Route path="/scripts" element={<RequireAuth><ScriptsDatabase /></RequireAuth>} />
-                    <Route path="/scripts/:scriptId" element={<RequireAuth><ScriptsDatabase /></RequireAuth>} />
-                    <Route path="/objections" element={<RequireAuth><ScriptsDatabase /></RequireAuth>} />
-                    <Route path="/servicing" element={<RequireAuth><ServicingPage /></RequireAuth>} />
-                    <Route path="/servicing/:scriptId" element={<RequireAuth><ServicingPage /></RequireAuth>} />
-                    <Route path="/playbooks" element={<RequireAuth><Playbooks /></RequireAuth>} />
-                    <Route path="/playbooks/:playbookId" element={<RequireAuth><PlaybookDetail /></RequireAuth>} />
-                    <Route path="/flows" element={<RequireAuth><ScriptFlows /></RequireAuth>} />
-                    <Route path="/flows/:flowId" element={<RequireAuth><ScriptFlows /></RequireAuth>} />
-                    <Route path="/concept-cards" element={<RequireAuth><ConceptCards /></RequireAuth>} />
+                    <Route path="/scripts" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
+                    <Route path="/scripts/:scriptId" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
+                    <Route path="/objections" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
+                    <Route path="/servicing" element={<RequireAuth><RequireTier feature="servicing"><ServicingPage /></RequireTier></RequireAuth>} />
+                    <Route path="/servicing/:scriptId" element={<RequireAuth><RequireTier feature="servicing"><ServicingPage /></RequireTier></RequireAuth>} />
+                    <Route path="/playbooks" element={<RequireAuth><RequireTier feature="playbooks"><Playbooks /></RequireTier></RequireAuth>} />
+                    <Route path="/playbooks/:playbookId" element={<RequireAuth><RequireTier feature="playbooks"><PlaybookDetail /></RequireTier></RequireAuth>} />
+                    <Route path="/flows" element={<RequireAuth><RequireTier feature="flows"><ScriptFlows /></RequireTier></RequireAuth>} />
+                    <Route path="/flows/:flowId" element={<RequireAuth><RequireTier feature="flows"><ScriptFlows /></RequireTier></RequireAuth>} />
+                    <Route path="/concept-cards" element={<RequireAuth><RequireTier feature="concept-cards"><ConceptCards /></RequireTier></RequireAuth>} />
                     <Route path="/learning-track" element={<RequireAuth><LearningTrack /></RequireAuth>}>
                       <Route index element={<Navigate to="pre-rnf" replace />} />
-                      <Route path="pre-rnf" element={<LearningTrackPreRnf />} />
-                      <Route path="pre-rnf/:itemId" element={<LearningTrackPreRnf />} />
-                      <Route path="post-rnf" element={<LearningTrackPostRnf />} />
-                      <Route path="post-rnf/:itemId" element={<LearningTrackPostRnf />} />
-                      <Route path="resources" element={<LearningTrackResources />} />
+                      <Route path="pre-rnf" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
+                      <Route path="pre-rnf/:itemId" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
+                      <Route path="post-rnf" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
+                      <Route path="post-rnf/:itemId" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
+                      <Route path="resources" element={<RequireTier feature="pre-rnf-track"><LearningTrackResources /></RequireTier>} />
                       <Route path="admin" element={<ProtectedAdminPage><LearningTrackAdminLayout /></ProtectedAdminPage>}>
                         <Route index element={<Navigate to="roster" replace />} />
                         <Route path="roster" element={<LearningTrackAdminRoster />} />
@@ -164,12 +165,12 @@ const App = () => (
                         <Route path="recruit/:userId" element={<LearningTrackAdminRecruit />} />
                       </Route>
                     </Route>
-                    <Route path="/product/pro-achiever/study" element={<RequireAuth><ProAchieverStudy /></RequireAuth>} />
-                    <Route path="/product/platinum-wealth-venture/study" element={<RequireAuth><PlatinumWealthVentureStudy /></RequireAuth>} />
-                    <Route path="/product/healthshield-gold-max/study" element={<RequireAuth><HealthshieldGoldMaxStudy /></RequireAuth>} />
-                    <Route path="/product/pro-lifetime-protector/study" element={<RequireAuth><ProLifetimeProtectorStudy /></RequireAuth>} />
-                    <Route path="/product/solitaire-pa/study" element={<RequireAuth><SolitairePaStudy /></RequireAuth>} />
-                    <Route path="/product/ultimate-critical-cover/study" element={<RequireAuth><UltimateCriticalCoverStudy /></RequireAuth>} />
+                    <Route path="/product/pro-achiever/study" element={<RequireAuth><RequireTier feature="question-banks"><ProAchieverStudy /></RequireTier></RequireAuth>} />
+                    <Route path="/product/platinum-wealth-venture/study" element={<RequireAuth><RequireTier feature="question-banks"><PlatinumWealthVentureStudy /></RequireTier></RequireAuth>} />
+                    <Route path="/product/healthshield-gold-max/study" element={<RequireAuth><RequireTier feature="question-banks"><HealthshieldGoldMaxStudy /></RequireTier></RequireAuth>} />
+                    <Route path="/product/pro-lifetime-protector/study" element={<RequireAuth><RequireTier feature="question-banks"><ProLifetimeProtectorStudy /></RequireTier></RequireAuth>} />
+                    <Route path="/product/solitaire-pa/study" element={<RequireAuth><RequireTier feature="question-banks"><SolitairePaStudy /></RequireTier></RequireAuth>} />
+                    <Route path="/product/ultimate-critical-cover/study" element={<RequireAuth><RequireTier feature="question-banks"><UltimateCriticalCoverStudy /></RequireTier></RequireAuth>} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>

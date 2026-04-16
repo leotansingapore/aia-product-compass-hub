@@ -66,6 +66,8 @@ import {
 } from "@/components/ui/sidebar";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { featuresForNavSection } from "@/lib/nav-features";
 import { useLearningTrackOverallProgress } from "@/hooks/learning-track/useLearningTrackOverallProgress";
 
 function LtBadge() {
@@ -121,6 +123,17 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const { user, signOut } = useSimplifiedAuth();
   const { isAdmin: isAdminUser } = useAdmin();
   const { isViewingAsUser } = useViewMode();
+  const { canAny, isAdminBypass } = useFeatureAccess();
+
+  // Nav-section-level tier gate. Returns true if the section has no tier
+  // requirement OR the user's tier unlocks any of the required features.
+  // Admins always pass.
+  const sectionVisibleForTier = useCallback((sectionId: string | undefined) => {
+    if (isAdminBypass) return true;
+    const required = featuresForNavSection(sectionId);
+    if (!required) return true;
+    return canAny(required);
+  }, [canAny, isAdminBypass]);
 
   const [categoriesOpen, setCategoriesOpen] = useState(true);
   const [editingCategory, setEditingCategory] = useState<{ id: string; name: string } | null>(null);
@@ -146,14 +159,18 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
     ...(isAdminUser ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
   ], [isMasterAdmin, hasRole]);
 
-  const mainNavItems = useMemo(() => 
-    allMainNavItems.filter(item => canAccessSection(item.sectionId)), 
-    [allMainNavItems, canAccessSection]
+  const mainNavItems = useMemo(() =>
+    allMainNavItems.filter(item =>
+      canAccessSection(item.sectionId) && sectionVisibleForTier(item.sectionId)
+    ),
+    [allMainNavItems, canAccessSection, sectionVisibleForTier]
   );
-  
-  const resourceItems = useMemo(() => 
-    allResourceItems.filter(item => canAccessSection(item.sectionId)), 
-    [canAccessSection]
+
+  const resourceItems = useMemo(() =>
+    allResourceItems.filter(item =>
+      canAccessSection(item.sectionId) && sectionVisibleForTier(item.sectionId)
+    ),
+    [canAccessSection, sectionVisibleForTier]
   );
 
   const isCollapsed = state === "collapsed";
@@ -343,35 +360,41 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
           </SidebarGroup>
 
           {/* Reference — products and sales tools */}
-          <SidebarGroup>
-            <SidebarGroupLabel>Reference</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                <SidebarMenuItem>
-                  <SidebarMenuButton asChild tooltip={isCollapsed ? "Product Categories" : undefined}>
-                    <NavLink
-                      to="/categories"
-                      className={getNavClassName('/categories')}
-                    >
-                      <Archive className="h-4 w-4" />
-                      {!isCollapsed && <span>Product Categories</span>}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-                <SidebarMenuItem>
-                  <SidebarMenuButton asChild tooltip={isCollapsed ? "Sales Playbooks" : undefined}>
-                    <NavLink
-                      to={(() => { try { return localStorage.getItem('sales-playbooks-last-route') || '/scripts'; } catch { return '/scripts'; } })()}
-                      className={getNavClassName('/scripts')}
-                    >
-                      <TrendingUp className="h-4 w-4" />
-                      {!isCollapsed && <span>Sales Playbooks</span>}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
+          {(sectionVisibleForTier('categories') || sectionVisibleForTier('sales-playbooks')) && (
+            <SidebarGroup>
+              <SidebarGroupLabel>Reference</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {sectionVisibleForTier('categories') && (
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild tooltip={isCollapsed ? "Product Categories" : undefined}>
+                        <NavLink
+                          to="/categories"
+                          className={getNavClassName('/categories')}
+                        >
+                          <Archive className="h-4 w-4" />
+                          {!isCollapsed && <span>Product Categories</span>}
+                        </NavLink>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )}
+                  {sectionVisibleForTier('sales-playbooks') && (
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild tooltip={isCollapsed ? "Sales Playbooks" : undefined}>
+                        <NavLink
+                          to={(() => { try { return localStorage.getItem('sales-playbooks-last-route') || '/scripts'; } catch { return '/scripts'; } })()}
+                          className={getNavClassName('/scripts')}
+                        >
+                          <TrendingUp className="h-4 w-4" />
+                          {!isCollapsed && <span>Sales Playbooks</span>}
+                        </NavLink>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          )}
 
           <SidebarGroup>
             <SidebarGroupLabel>Help</SidebarGroupLabel>
