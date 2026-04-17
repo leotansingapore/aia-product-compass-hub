@@ -9,6 +9,10 @@ export interface OverallProgress {
   preRnfPct: number;
   postRnfPct: number;
   combinedPct: number;
+  /** Combined Pre-RNF + Post-RNF only (excludes Explorer). */
+  rnfCombinedCompleted: number;
+  rnfCombinedTotal: number;
+  rnfCombinedPct: number;
   nextItem: { id: string; title: string; track: Track } | null;
 }
 
