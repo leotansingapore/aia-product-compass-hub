@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, User } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
 interface MobileHeaderProps {
