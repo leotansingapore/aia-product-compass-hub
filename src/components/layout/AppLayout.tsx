@@ -182,11 +182,10 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
               className="rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               aria-label="My Profile"
             >
-              <Avatar className="h-8 w-8">
-                <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
-                  {user?.email?.charAt(0).toUpperCase() || 'U'}
-                </AvatarFallback>
-              </Avatar>
+              <AvatarWithProgress
+                size={32}
+                initials={user?.email?.charAt(0).toUpperCase() || 'U'}
+              />
             </button>
           </header>
 
