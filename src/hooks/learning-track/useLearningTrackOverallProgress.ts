@@ -9,6 +9,10 @@ export interface OverallProgress {
   preRnfPct: number;
   postRnfPct: number;
   combinedPct: number;
+  /** Combined Pre-RNF + Post-RNF only (excludes Explorer). */
+  rnfCombinedCompleted: number;
+  rnfCombinedTotal: number;
+  rnfCombinedPct: number;
   nextItem: { id: string; title: string; track: Track } | null;
 }
 
@@ -75,6 +79,9 @@ export function useLearningTrackOverallProgress(userId: string | undefined) {
       const totalItems = allItems.length;
       const nextItem = allItems.find((i) => !completedSet.has(i.id)) ?? null;
 
+      const rnfCombinedCompleted = preCompleted + postCompleted;
+      const rnfCombinedTotal = preItems.length + postItems.length;
+
       return {
         totalCompleted,
         totalItems,
@@ -82,6 +89,9 @@ export function useLearningTrackOverallProgress(userId: string | undefined) {
         preRnfPct: preItems.length ? Math.round((preCompleted / preItems.length) * 100) : 0,
         postRnfPct: postItems.length ? Math.round((postCompleted / postItems.length) * 100) : 0,
         combinedPct: totalItems ? Math.round((totalCompleted / totalItems) * 100) : 0,
+        rnfCombinedCompleted,
+        rnfCombinedTotal,
+        rnfCombinedPct: rnfCombinedTotal ? Math.round((rnfCombinedCompleted / rnfCombinedTotal) * 100) : 0,
         nextItem: nextItem
           ? { id: nextItem.id, title: nextItem.title, track: nextItem.track }
           : null,

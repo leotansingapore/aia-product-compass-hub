@@ -6,7 +6,7 @@ import { MobileBottomNav } from "./MobileBottomNav";
 import { MobileHeader } from "./MobileHeader";
 import { Button } from "@/components/ui/button";
 import { LogIn, User } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
 import { ProfileSheet } from "@/components/profile/ProfileSheet";
 import { ThemeToggle } from "@/components/ThemeToggle";
 const WelcomeModal = lazy(() => import("@/components/onboarding/WelcomeModal").then(m => ({ default: m.WelcomeModal })));
@@ -182,11 +182,10 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
               className="rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               aria-label="My Profile"
             >
-              <Avatar className="h-8 w-8">
-                <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
-                  {user?.email?.charAt(0).toUpperCase() || 'U'}
-                </AvatarFallback>
-              </Avatar>
+              <AvatarWithProgress
+                size={32}
+                initials={user?.email?.charAt(0).toUpperCase() || 'U'}
+              />
             </button>
           </header>
 
