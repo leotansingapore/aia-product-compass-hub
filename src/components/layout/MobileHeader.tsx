@@ -91,11 +91,7 @@ export function MobileHeader({
               className="shrink-0 rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               aria-label="My Profile"
             >
-              <Avatar className="h-8 w-8">
-                <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
-                  {getInitials()}
-                </AvatarFallback>
-              </Avatar>
+              <AvatarWithProgress size={32} initials={getInitials()} />
             </button>
           )}
         </div>
