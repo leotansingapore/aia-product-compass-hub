@@ -15,8 +15,10 @@ interface Props {
   onClose: () => void;
   productSlug: string;
   bankType: BankType;
-  question?: QuestionBankQuestion | null; // null = create, set = edit
+  question?: QuestionBankQuestion | null;
+  mode: 'create' | 'edit' | 'duplicate';
   defaultSortOrder?: number;
+  onEditComplete?: (previousQuestion: QuestionBankQuestion) => void;
 }
 
 const emptyForm = (productSlug: string, bankType: BankType, sortOrder: number): QuestionInput => ({
@@ -30,48 +32,71 @@ const emptyForm = (productSlug: string, bankType: BankType, sortOrder: number): 
   sort_order: sortOrder,
 });
 
-export function QuestionFormDialog({ open, onClose, productSlug, bankType, question, defaultSortOrder = 0 }: Props) {
+function questionToForm(q: QuestionBankQuestion): QuestionInput {
+  return {
+    product_slug: q.product_slug,
+    bank_type: q.bank_type,
+    category: q.category,
+    question: q.question,
+    options: [...q.options, '', '', '', ''].slice(0, 4),
+    correct_answer: q.correct_answer,
+    explanation: q.explanation,
+    sort_order: q.sort_order,
+  };
+}
+
+export function QuestionFormDialog({
+  open,
+  onClose,
+  productSlug,
+  bankType,
+  question,
+  mode,
+  defaultSortOrder = 0,
+  onEditComplete,
+}: Props) {
   const { createQuestion, updateQuestion } = useQuestionBankAdmin();
-  const isEdit = !!question;
+  const isEdit = mode === 'edit' && !!question;
+  const isDuplicate = mode === 'duplicate' && !!question;
+
   const [form, setForm] = useState<QuestionInput>(() =>
-    question
-      ? {
-          product_slug: question.product_slug,
-          bank_type: question.bank_type,
-          category: question.category,
-          question: question.question,
-          options: [...question.options, '', '', '', ''].slice(0, 4),
-          correct_answer: question.correct_answer,
-          explanation: question.explanation,
-          sort_order: question.sort_order,
-        }
-      : emptyForm(productSlug, bankType, defaultSortOrder)
+    question ? questionToForm(question) : emptyForm(productSlug, bankType, defaultSortOrder)
   );
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     if (open) {
-      setForm(
-        question
-          ? {
-              product_slug: question.product_slug,
-              bank_type: question.bank_type,
-              category: question.category,
-              question: question.question,
-              options: [...question.options, '', '', '', ''].slice(0, 4),
-              correct_answer: question.correct_answer,
-              explanation: question.explanation,
-              sort_order: question.sort_order,
-            }
-          : emptyForm(productSlug, bankType, defaultSortOrder)
-      );
+      if (question && (isEdit || isDuplicate)) {
+        const f = questionToForm(question);
+        if (isDuplicate) {
+          f.question = `${f.question} (copy)`;
+          f.sort_order = defaultSortOrder;
+        }
+        setForm(f);
+      } else {
+        setForm(emptyForm(productSlug, bankType, defaultSortOrder));
+      }
+      setTouched({});
     }
-  }, [open, question, productSlug, bankType, defaultSortOrder]);
+  }, [open, question, productSlug, bankType, defaultSortOrder, isEdit, isDuplicate]);
 
   const updateOption = (i: number, val: string) => {
     const next = [...form.options];
     next[i] = val;
     setForm({ ...form, options: next });
   };
+
+  const markTouched = (field: string) => {
+    setTouched((t) => ({ ...t, [field]: true }));
+  };
+
+  // --- Improvement 7: Per-field validation ---
+  const errors: Record<string, string> = {};
+  if (touched.question && !form.question.trim()) errors.question = 'Question is required';
+  if (touched.explanation && !form.explanation.trim()) errors.explanation = 'Explanation is required';
+  form.options.forEach((o, i) => {
+    if (touched[`option-${i}`] && !o.trim()) errors[`option-${i}`] = `Option ${String.fromCharCode(65 + i)} is required`;
+  });
 
   const isValid =
     form.question.trim().length > 0 &&
@@ -80,26 +105,54 @@ export function QuestionFormDialog({ open, onClose, productSlug, bankType, quest
     form.correct_answer >= 0 &&
     form.correct_answer < 4;
 
-  const handleSubmit = async () => {
+  // --- Improvement 3: Save & Add Another ---
+  const handleSave = async (addAnother: boolean) => {
+    // Touch all fields to show validation
+    setTouched({
+      question: true,
+      explanation: true,
+      'option-0': true,
+      'option-1': true,
+      'option-2': true,
+      'option-3': true,
+    });
     if (!isValid) return;
+
     if (isEdit && question) {
       await updateQuestion.mutateAsync({ id: question.id, updates: form });
+      // --- Improvement 8: Notify parent for undo toast ---
+      onEditComplete?.(question);
+      onClose();
     } else {
       await createQuestion.mutateAsync(form);
+      if (addAnother) {
+        // Keep category, reset the rest
+        setForm({
+          ...emptyForm(productSlug, bankType, defaultSortOrder),
+          category: form.category,
+        });
+        setTouched({});
+      } else {
+        onClose();
+      }
     }
-    onClose();
   };
 
   const saving = createQuestion.isPending || updateQuestion.isPending;
+
+  const title = isEdit ? 'Edit Question' : isDuplicate ? 'Duplicate Question' : 'Add Question';
+  const description = isEdit
+    ? 'Update this question and its answers.'
+    : isDuplicate
+      ? 'Create a copy of this question. Modify as needed.'
+      : 'Create a new question for this question bank.';
 
   return (
     <Dialog open={open} onOpenChange={(o) => !o && !saving && onClose()}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{isEdit ? 'Edit Question' : 'Add Question'}</DialogTitle>
-          <DialogDescription>
-            {isEdit ? 'Update this question and its answers.' : 'Create a new question for this question bank.'}
-          </DialogDescription>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">
@@ -129,12 +182,16 @@ export function QuestionFormDialog({ open, onClose, productSlug, bankType, quest
           </div>
 
           <div>
-            <Label>Question</Label>
+            <Label className={errors.question ? 'text-destructive' : ''}>
+              Question {errors.question && <span className="font-normal ml-1">-- {errors.question}</span>}
+            </Label>
             <Textarea
               rows={3}
               value={form.question}
               onChange={(e) => setForm({ ...form, question: e.target.value })}
+              onBlur={() => markTouched('question')}
               placeholder="Enter the question text..."
+              className={errors.question ? 'border-destructive' : ''}
             />
           </div>
 
@@ -145,35 +202,64 @@ export function QuestionFormDialog({ open, onClose, productSlug, bankType, quest
               onValueChange={(v) => setForm({ ...form, correct_answer: parseInt(v) })}
               className="space-y-2 mt-1"
             >
-              {form.options.map((opt, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <RadioGroupItem value={String(i)} id={`opt-${i}`} />
-                  <Input
-                    value={opt}
-                    onChange={(e) => updateOption(i, e.target.value)}
-                    placeholder={`Option ${i + 1}${i === form.correct_answer ? ' (correct)' : ''}`}
-                    className={i === form.correct_answer ? 'border-green-500' : ''}
-                  />
-                </div>
-              ))}
+              {form.options.map((opt, i) => {
+                const fieldKey = `option-${i}`;
+                const hasError = !!errors[fieldKey];
+                return (
+                  <div key={i} className="flex items-center gap-2">
+                    <RadioGroupItem value={String(i)} id={`opt-${i}`} />
+                    <div className="flex-1">
+                      <Input
+                        value={opt}
+                        onChange={(e) => updateOption(i, e.target.value)}
+                        onBlur={() => markTouched(fieldKey)}
+                        placeholder={`Option ${String.fromCharCode(65 + i)}${i === form.correct_answer ? ' (correct)' : ''}`}
+                        className={`${i === form.correct_answer ? 'border-green-500' : ''} ${hasError ? 'border-destructive' : ''}`}
+                      />
+                      {hasError && (
+                        <p className="text-[11px] text-destructive mt-0.5">{errors[fieldKey]}</p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </RadioGroup>
           </div>
 
           <div>
-            <Label>Explanation</Label>
+            <Label className={errors.explanation ? 'text-destructive' : ''}>
+              Explanation {errors.explanation && <span className="font-normal ml-1">-- {errors.explanation}</span>}
+            </Label>
             <Textarea
               rows={3}
               value={form.explanation}
               onChange={(e) => setForm({ ...form, explanation: e.target.value })}
+              onBlur={() => markTouched('explanation')}
               placeholder="Why the correct answer is correct..."
+              className={errors.explanation ? 'border-destructive' : ''}
             />
           </div>
         </div>
 
-        <DialogFooter>
+        <DialogFooter className="flex-col sm:flex-row gap-2">
           <Button variant="outline" onClick={onClose} disabled={saving}>Cancel</Button>
-          <Button onClick={handleSubmit} disabled={!isValid || saving}>
-            {saving ? 'Saving...' : isEdit ? 'Save Changes' : 'Create Question'}
+          {!isEdit && (
+            <Button
+              variant="secondary"
+              onClick={() => handleSave(true)}
+              disabled={saving}
+            >
+              {saving ? 'Saving...' : 'Save & Add Another'}
+            </Button>
+          )}
+          <Button onClick={() => handleSave(false)} disabled={saving}>
+            {saving
+              ? 'Saving...'
+              : isEdit
+                ? 'Save Changes'
+                : isDuplicate
+                  ? 'Create Duplicate'
+                  : 'Create Question'}
           </Button>
         </DialogFooter>
       </DialogContent>
