@@ -100,7 +100,7 @@ const SimplifiedAuth = () => {
               Master Your Future.
             </h1>
             <p className="mt-5 text-base xl:text-lg leading-relaxed text-white/85 max-w-prose">
-              The definitive training ecosystem for AIA Singapore financial advisors—bringing product depth, regulatory
+              The definitive training ecosystem for future financial leaders—bringing product depth, regulatory
               rigour, and client conversations together in one place. Stay exam-ready and conversation-ready, whether
               you&apos;re at your desk or on the move.
             </p>
