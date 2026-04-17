@@ -219,28 +219,37 @@ export default function ProductDetail() {
           <ProtectedSection sectionId="product_videos">
             <div className="pt-4 sm:pt-8">
               {isAdminMode ? (
-                <ErrorBoundary>
-                  <VideoEditingInterface
-                    editVideos={videoManagement.editVideos}
-                    editingIndex={editingIndexFromUrl ?? videoManagement.editingIndex}
-                    newVideo={videoManagement.newVideo}
-                    saving={videoManagement.saving}
-                    existingCategories={existingCategories}
-                    hasContentChanges={videoManagement.hasContentChanges}
-                    onEditingIndexChange={handleEditingIndexChange}
-                    onUpdateVideo={videoManagement.updateVideo}
-                    onSetEditVideos={videoManagement.setEditVideos}
-                    onRemoveVideo={videoManagement.removeVideo}
-                    onMoveVideo={videoManagement.moveVideo}
-                    onNewVideoChange={videoManagement.setNewVideo}
-                    onAddVideo={videoManagement.addVideo}
-                    onAddQuiz={videoManagement.addQuiz}
-                    onAddAssignment={videoManagement.addAssignment}
-                    onSave={videoManagement.handleSave}
-                    onCancel={() => videoManagement.handleCancel()}
-                    onCreateCategory={videoManagement.addEmptyFolder}
-                  />
-                </ErrorBoundary>
+                <>
+                  <ErrorBoundary>
+                    <VideoEditingInterface
+                      editVideos={videoManagement.editVideos}
+                      editingIndex={editingIndexFromUrl ?? videoManagement.editingIndex}
+                      newVideo={videoManagement.newVideo}
+                      saving={videoManagement.saving}
+                      existingCategories={existingCategories}
+                      hasContentChanges={videoManagement.hasContentChanges}
+                      onEditingIndexChange={handleEditingIndexChange}
+                      onUpdateVideo={videoManagement.updateVideo}
+                      onSetEditVideos={videoManagement.setEditVideos}
+                      onRemoveVideo={videoManagement.removeVideo}
+                      onMoveVideo={videoManagement.moveVideo}
+                      onNewVideoChange={videoManagement.setNewVideo}
+                      onAddVideo={videoManagement.addVideo}
+                      onAddQuiz={videoManagement.addQuiz}
+                      onAddAssignment={videoManagement.addAssignment}
+                      onSave={videoManagement.handleSave}
+                      onCancel={() => videoManagement.handleCancel()}
+                      onCreateCategory={videoManagement.addEmptyFolder}
+                    />
+                  </ErrorBoundary>
+                  <div className="mt-6 sm:mt-8">
+                    <ProductUsefulLinks
+                      links={product.useful_links || []}
+                      onUpdate={handleUpdate}
+                      productId={productId}
+                    />
+                  </div>
+                </>
               ) : (
                 <ProductModuleCourseLayout
                   productId={product.id}
