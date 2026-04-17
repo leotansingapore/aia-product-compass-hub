@@ -6,7 +6,7 @@ import { MobileBottomNav } from "./MobileBottomNav";
 import { MobileHeader } from "./MobileHeader";
 import { Button } from "@/components/ui/button";
 import { LogIn, User } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
 import { ProfileSheet } from "@/components/profile/ProfileSheet";
 import { ThemeToggle } from "@/components/ThemeToggle";
 const WelcomeModal = lazy(() => import("@/components/onboarding/WelcomeModal").then(m => ({ default: m.WelcomeModal })));
