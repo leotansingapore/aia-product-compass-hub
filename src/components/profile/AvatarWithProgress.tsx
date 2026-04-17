@@ -27,22 +27,8 @@ export function AvatarWithProgress({
   const { user } = useSimplifiedAuth();
   const { data } = useLearningTrackOverallProgress(user?.id);
 
-  // Combined Pre + Post RNF progress (exclude explorer track)
-  const pct = (() => {
-    if (!data) return 0;
-    // Reconstruct counts from percentages is lossy; recompute from totals instead.
-    // We have totalCompleted/totalItems but those include explorer. So derive
-    // pre+post counts from percentages and item totals via simple weighting:
-    // Use preRnfPct/postRnfPct combined by summing completed/total of those tracks.
-    // We don't have raw counts here, so approximate: average if both have items,
-    // else use whichever is non-zero.
-    const pre = data.preRnfPct;
-    const post = data.postRnfPct;
-    // If only one track has any items (the other will still be 0 and have 0 items),
-    // return that one. Otherwise average them.
-    if (pre === 0 && post === 0) return 0;
-    return Math.round((pre + post) / 2);
-  })();
+  // Combined Pre-RNF + Post-RNF progress (excludes Explorer track)
+  const pct = data?.rnfCombinedPct ?? 0;
 
   const outerSize = size + ringWidth * 2 + 4; // padding for ring
   const radius = (outerSize - ringWidth) / 2;
