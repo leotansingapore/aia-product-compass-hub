@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import { useAuth } from "@/hooks/useAuth";
 import { usePermissions } from "@/hooks/usePermissions";
 import { supabase } from "@/integrations/supabase/client";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
 import {
   LogOut, Key, Settings, Edit3, CheckCircle2, BookOpen, Video,
   Flame, Trophy, Zap, GraduationCap, Swords, BarChart3, ArrowRight, Compass,
@@ -199,12 +199,13 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
             <>
               {/* Profile header */}
               <div className="flex items-center gap-4">
-                <Avatar className="h-16 w-16 border-2 border-primary/20 shrink-0">
-                  <AvatarImage src={profile?.avatar_url || undefined} />
-                  <AvatarFallback className="text-xl font-bold bg-primary/10 text-primary">
-                    {initials}
-                  </AvatarFallback>
-                </Avatar>
+                <AvatarWithProgress
+                  size={64}
+                  initials={initials}
+                  avatarUrl={profile?.avatar_url}
+                  ringWidth={3}
+                  showTooltip={false}
+                />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-bold truncate">{displayName}</h3>
