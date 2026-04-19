@@ -78,17 +78,23 @@ This work is relational, not transactional. We're in the room when clients buy t
 
 ## Our philosophy to clients
 
-Everyone has goals — a wedding, a home, children, a real retirement. Between those goals and today sit a hundred uncertainties that can wipe years of saving out in a bad week.
+Everyone has goals — a wedding, a home, children, a real retirement, the option to stop working before they're too tired to enjoy it. Between those goals and today sit two different obstacles: **life's uncertainties** that can wipe years of saving out in a bad week, and **the quiet erosion** of money that sits idle, earning nothing, while inflation and lifestyle creep quietly undo progress.
 
-Our job is to hand them the map, the vehicle, and the co-pilot to get to the life they said they wanted. Not a policy. A plan. Not a product pitch. A professional they can hire for the next thirty years of their financial life.
+Our job is to hand clients the map, the vehicle, and the co-pilot to get to the life they said they wanted. That takes two things in balance:
 
-In practice, that means:
+- **We protect what they've already built** — income, family, assets — so a single bad event can't reset them to zero.
+- **We help them build real wealth, systematically** — so their money compounds towards the retirement, the freedom, the choices they actually want. Not left in a savings account to rot.
 
-- **Protect the floor before chasing a ceiling.** Risk management comes before accumulation. Always.
+Done well, these two halves work together: protection gives them the nerve to let wealth compound without panicking; wealth gives them the resources to keep protection funded for life.
+
+In practice, our philosophy shows up as:
+
+- **Protect the floor before chasing a ceiling.** Risk management comes first. Always.
+- **Build wealth on purpose, not by accident.** We plan the retirement number backwards, then solve for the monthly rate that gets them there.
 - **Tell them the truth** — even when it loses us the sale. Especially then.
 - **Stay in their corner** in Year 1, Year 5, Year 15. The close is the starting line, not the finish.
 
-A client isn't buying a policy from us. They're hiring a professional. The professional has to be worth hiring.
+A client isn't buying a policy from us. They're hiring a professional for the full arc of their financial life — protection *and* freedom. The professional has to be worth hiring.
 
 ---
 
