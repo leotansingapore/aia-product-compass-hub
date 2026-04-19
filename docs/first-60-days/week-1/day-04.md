@@ -98,11 +98,11 @@ This is not motivational. It's mechanical. If you repeat what you already do, yo
 
 **Rule:** Every week, do at least **one thing that scares you professionally.** Not catastrophically — just uncomfortably.
 
-Examples for Week 1:
-- Call a friend-of-a-friend you've never spoken to.
+Examples for Week 1 — all zero-sales:
+- Call a friend-of-a-friend you've never spoken to, just to catch up.
 - Post one genuine finance observation on LinkedIn (not a polished one).
 - Ask your mentor a question you think is "too basic."
-- Run a SPIN practice on a real family member.
+- Do **one Reconnecting catch-up** (see Day 1's first task) — a casual coffee where you share that you've started this career. Pure widening of connections, no pitch, no survey, no SPIN. You'll learn SPIN in Week 8 when you're ready for it.
 
 You'll fail at some of these. That's the point.
 
