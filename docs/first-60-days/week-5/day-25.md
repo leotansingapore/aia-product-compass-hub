@@ -1,178 +1,132 @@
 ---
 week: 5
 day: 25
-title: "Weekly Team Rhythms — Monday Meeting, Thursday Training, District Sales Builder"
+title: "Your Personal Weekly Rhythm"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources: []
-duration_minutes: 20
+duration_minutes: 15
 tags: [first-60-days, week-5, skills]
 ---
 
-# Day 25 — Weekly Team Rhythms
+# Day 25 — Your Personal Weekly Rhythm
 
-> **The one idea for today:** A solo FC with no team rhythm rarely makes it past Month 12. The weekly rhythm of meetings, training, and district-level activity isn't overhead — it's the scaffolding that keeps you upright when your individual motivation dips.
+> **The one idea for today:** A weekly rhythm turns motivation into a system. Motivation fades on bad days. A system doesn't. These next 55 days are the window to install the rhythm you'll keep for a career.
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **Explain** why weekly rhythms matter more than monthly goals for a new FC.
-2. **Show up** to the three standing commitments (Monday meeting, Thursday training, district sales builder) with purpose, not just attendance.
-3. **Create** your own personal weekly rhythm as a complement to the team rhythms.
+1. **Name** the three personal rituals that anchor a professional week.
+2. **Set up** your first Sunday review, daily opening, and Friday wrap — starting this week.
+3. **Explain** why these rituals matter more than any monthly target you set.
 
 ---
 
-## 1. Why weekly rhythms beat monthly goals
+## 1. Rhythms beat goals
 
-A monthly goal is a target. A weekly rhythm is a **behaviour**.
-
-Targets without behaviours are wishful thinking. Behaviours without targets drift. You need both — but the behaviour layer is what holds the career together.
+A goal is a target. A rhythm is a **behaviour**. Targets without behaviours are wishful thinking. Behaviours without targets drift — but the behaviour layer is what actually holds the week together.
 
 **What a weekly rhythm gives you:**
 
-- **Accountability** — others notice if you skip.
-- **Social proof** — seeing peers grind normalises the grind.
-- **Learning cadence** — new skills, scripts, product info delivered predictably.
-- **Pipeline pressure** — knowing Monday's meeting requires a pipeline update forces you to work the pipeline all week.
-- **Identity reinforcement** — "I'm the kind of FC who shows up on Thursdays" becomes true after 10 weeks.
+- **Momentum** — you don't start from zero every Monday.
+- **Recovery** — a bad day doesn't spiral, because Sunday review resets you.
+- **Identity reinforcement** — "I'm the kind of person who reviews every Sunday" becomes true after 8 Sundays.
+- **Calm** — nothing is lost, because there's a ritual for catching it.
 
-The FCs who get through rough weeks are usually the ones who can't skip their weekly rhythms. They'd feel the absence too sharply.
+People who make it in a skill-based career are almost always people with strong weekly rhythms. That's not a coincidence.
 
-## 2. The Monday meeting — setting the week
+## 2. The three personal rituals
 
-Purpose: **start the week with intention, not inertia.**
+These three are non-negotiable. Install them now, so they're already running by the time you're licensed and in front of prospects.
 
-Typical agenda:
-- Team announcements (campaigns, compliance updates).
-- Individual pipeline check — who's presenting, closing, or struggling.
-- Focus theme for the week (e.g., "prospecting push," "year-end tax planning season").
-- Q&A, wins, lessons from last week.
+### Sunday — the 30-minute review
+**When:** any 30-minute window on Sunday evening.
 
-### How to get maximum value
+- Look back at the week that just ended. What worked? What didn't? What did you learn?
+- Look ahead at the week coming. What are the 3 priorities you'll protect?
+- Calendar-block those 3 priorities into the week before you do anything else.
 
-**Before the meeting:**
-- Have your pipeline open. Know your numbers.
-- Note one thing you need help on — don't wait to be asked.
+**The signal you did it right:** Monday morning feels like a continuation, not a cold start.
 
-**During the meeting:**
-- Contribute. Even a 30-second "I struggled with X this week, figured out Y" adds value and sharpens your own memory.
-- Take notes — not everything, just what's new.
-- Listen for patterns. What are senior FCs talking about? What's working?
+### Daily opening — the 15-minute set-up
+**When:** first 15 minutes of every workday, before email or messages.
 
-**After the meeting:**
-- Within 30 min, block the week based on the focus theme.
-- Message one person you learned from and say so specifically.
+- Review today's 3 priorities (from Sunday's list).
+- Identify the single most important conversation or task to tackle first.
+- Decide: what do I *not* do today? (This is the bit most people skip.)
 
-New FCs who treat the Monday meeting as **mandatory attendance** underuse it. Those who treat it as **weekly strategy reset** compound faster.
+**The signal you did it right:** your 10am feels directed, not reactive.
 
-## 3. Thursday training — the skill upgrade
+### Friday — the 10-minute wrap
+**When:** last 10 minutes of the workweek.
 
-Purpose: **one new capability added per week**, systematically.
+- What closed or moved forward this week? Note it.
+- What got dropped? Why?
+- Any thank-yous, follow-ups, or notes to leave for Monday-you? Send / write them now.
+- Clear the decks: inbox triaged, notes filed, CRM (if any) updated.
 
-Over 52 Thursdays, that's 52 skill upgrades. Over 5 years, 250. Most people don't intentionally learn 250 new professional skills in a lifetime.
+**The signal you did it right:** the weekend starts without an open loop buzzing in your head.
 
-### How to get maximum value
+## 3. The learning rhythm — for the next 55 days
 
-**Before the session:**
-- Check the topic. If it's on a product you don't know well, pre-read the product PDF in iResource.
-- If it's a skill (closing, objection handling), try it once in the week leading up, so the training is refinement not introduction.
+On top of the three rituals above, during this 60-day program your week also has a **learning rhythm**. Don't skip this part — the advisors who finish strong are the ones who studied consistently, not those who crammed.
 
-**During the session:**
-- Put your phone away. Really.
-- Take notes on three things: (1) new tactic, (2) new language/script, (3) new mental frame.
-- If role-plays happen, volunteer. The people watching learn 20% of what the participants learn.
+- **15 minutes a day** on the current day's lesson. Every day. Including weekends.
+- **One weekly read-back** — on Sunday, re-skim the week's 6 days of lessons before your review.
+- **One practice rep per week** — a conversation where you *try* a frame you've learned. Could be over coffee with a friend. Not a pitch. Just practice.
 
-**After the session:**
-- Use the new tactic in a real situation within 72 hours. If you don't, it fades.
-- Teach one peer something you learned. Teaching encodes.
+Over 8 weeks, that's 56 micro-lessons deeply read, 8 weekly integrations, and 8 real-world practice reps. That's a foundation most advisors never build.
 
-**Non-negotiable:** block Thursday 8pm in your calendar. Decline conflicts. "I have weekly training" is a legitimate reason to say no to almost anything.
+## 4. How to protect these rituals
 
-## 4. District sales builder — the volume game
+A ritual you don't defend isn't a ritual. It's a suggestion.
 
-Purpose: **collective prospecting pressure.**
+- **Block them in your calendar** with real start and end times.
+- **Decline conflicts** using a simple line: *"I have a weekly review at that time — can we do earlier or later?"* Almost nobody will push back.
+- **Audit every 4 weeks.** If a ritual has gone stale, change it. Don't default to attending forever without evaluating.
 
-A district sales builder session is typically:
-- A block of time (half-day, evening) where the team collectively prospects — calls, messaging, social outreach, in-person appointments.
-- Mixed team: senior FCs, mid-tier, and new FCs together.
-- Shared motivation, shared leaderboard, shared wins.
-
-### Why this is so valuable for a new FC
-
-1. **You learn by proximity.** Hearing a senior FC open a cold call three times in one hour teaches more than watching 10 YouTube videos.
-2. **The social energy is real.** You'll make 50% more calls in a group setting than alone.
-3. **Objection responses are shared live.** When a senior FC handles a tough objection, everyone learns.
-4. **The leaderboard doesn't care about experience.** New FCs can sometimes top the call count — a confidence builder.
-
-**The rule for a new FC:** attend every district sales builder session. Sit near the senior person you want to learn from. Listen, ask, imitate.
-
-## 5. Your personal weekly rhythm
-
-On top of the team rhythms, build **three personal rituals**:
-
-### Sunday 30-min review (from Day 22)
-- Review last week (wins, losses, pipeline).
-- Pick 3 priorities for next week.
-- Calendar-block the big rocks.
-
-### Daily opening ritual (15 min, at start of each workday)
-- Review the 3 priorities for today.
-- Check pipeline (who's pending action from you?).
-- Decide: what's the single most important outreach/call to make first?
-
-### Friday wrap (10 min, end of workweek)
-- Summarise what closed this week.
-- Send any outstanding thank-yous.
-- Clear your desk / inbox / CRM so Monday starts clean.
-
-These three rituals, done every week, protect you from drift.
-
-## 6. The shadow side of rhythms — staying alive to what's not working
-
-The risk of strong weekly rhythms: they can turn into **going through the motions.**
-
-Every 8 weeks, audit:
-- Is the Monday meeting adding value, or is it an information broadcast that could be a message?
-- Is Thursday training still hitting skills I need, or am I past some of the content?
-- Is the district sales builder session producing outreach reps for me, or am I sitting and watching?
-
-If you find a rhythm has gone stale, talk to your mentor. Sometimes the answer is to shift your contribution ("can I lead a segment next Thursday?"). Sometimes it's to drop something that no longer serves you. Don't default to attending forever without evaluating.
-
----
-
-## Reflection worksheet
-
-**1. What are the three standing weekly commitments in your current team?**
-> If you don't know, find out this week. If you're not attending, start this week.
-
-**2. What's your personal weekly rhythm? Write it now — Sunday review, daily opening, Friday wrap.**
-> If it doesn't exist, build the first draft tonight.
-
-**3. Who in your team do you want to learn from most? Sit next to them at the next district builder.**
-> Not "try to hang out with." Physically sit near. Listen to how they work.
+Strong rhythms don't feel like effort after a few cycles. They feel like the week would be weird without them. That's when you know they've stuck.
 
 ---
 
 ## Quick quiz
 
-1. **What's the main purpose of the Monday team meeting?**
- - A) Check attendance
- - B) Start the week with intention, align with team focus theme ✓
- - C) Distribute leads
- - D) Force accountability for missing last week's target
+1. **Why do weekly rhythms beat monthly goals?**
+ - A) Rhythms don't require effort
+ - B) Rhythms are the behaviour layer that holds the week together — targets without behaviours drift ✓
+ - C) Monthly goals are outdated
+ - D) Rhythms replace planning entirely
 
-2. **The "rule" for Thursday training attendance:**
- - A) Attend when you have time
- - B) Attend every session; non-negotiable, decline conflicts ✓
- - C) Attend only topics that match your current clients
- - D) Watch the recording later
+2. **What is the Sunday review for?**
+ - A) Clearing the inbox
+ - B) Looking back at the week, setting 3 priorities for next week, and calendar-blocking them ✓
+ - C) Writing a to-do list for Monday morning
+ - D) Catching up on missed work
 
-3. **Why is the district sales builder session valuable for a new FC?**
- - A) It's compulsory
- - B) Group prospecting produces more reps than solo, plus you learn by proximity ✓
- - C) The leaderboard prize
- - D) Easier to find clients in a group setting
+3. **What should the daily opening include?**
+ - A) Checking social media
+ - B) Reviewing today's 3 priorities, picking the most important task first, and deciding what NOT to do ✓
+ - C) Checking email for 30 minutes
+ - D) Long planning session
+
+4. **The learning rhythm during the 60 days is:**
+ - A) Cram everything the weekend before the final exam
+ - B) 15 minutes a day + weekly read-back on Sunday + one practice rep per week ✓
+ - C) 2 hours every Sunday
+ - D) Whenever you have spare time
+
+5. **A ritual you don't defend is:**
+ - A) A habit
+ - B) A system
+ - C) Just a suggestion ✓
+ - D) Self-discipline
+
+6. **Friday wrap's main purpose is to:**
+ - A) Brag about wins
+ - B) Close open loops so the weekend starts clean ✓
+ - C) Plan next week's meetings
+ - D) Review KPIs
 
 ---
 
