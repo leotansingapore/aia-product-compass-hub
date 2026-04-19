@@ -10,6 +10,12 @@ export type QuizQuestion = {
   options: QuizOption[];
 };
 
+export type ReflectionPrompt = {
+  index: number;
+  question: string;
+  hint?: string;
+};
+
 export type DayFrontmatter = {
   week: number;
   day: number;
@@ -29,6 +35,7 @@ export type Day = {
   frontmatter: DayFrontmatter;
   markdown: string;
   quiz: QuizQuestion[];
+  reflection: ReflectionPrompt[];
 };
 
 export type Week = {

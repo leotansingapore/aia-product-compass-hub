@@ -6,6 +6,8 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 const LEGACY_KEY = "first-60-days-progress-v1";
 const MIGRATION_FLAG = "first-60-days-migration-done";
 
+export type ReflectionAnswers = Record<string, string>;
+
 export type DayProgress = {
   readAt?: string;
   slidesViewedAt?: string;
@@ -13,6 +15,8 @@ export type DayProgress = {
   quizPassedAt?: string;
   quizScore?: number;
   quizAttempts?: number;
+  reflectionAnswers?: ReflectionAnswers;
+  reflectionSubmittedAt?: string;
 };
 
 type Row = {
@@ -24,8 +28,19 @@ type Row = {
   quiz_score: number | null;
   quiz_attempts: number;
   quiz_passed_at: string | null;
+  reflection_answers: unknown;
+  reflection_submitted_at: string | null;
   updated_at: string;
 };
+
+function coerceAnswers(raw: unknown): ReflectionAnswers | undefined {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return undefined;
+  const out: ReflectionAnswers = {};
+  for (const [k, v] of Object.entries(raw as Record<string, unknown>)) {
+    if (typeof v === "string") out[k] = v;
+  }
+  return Object.keys(out).length > 0 ? out : undefined;
+}
 
 function rowToDayProgress(row: Row): DayProgress {
   return {
@@ -35,6 +50,8 @@ function rowToDayProgress(row: Row): DayProgress {
     quizPassedAt: row.quiz_passed_at ?? undefined,
     quizScore: row.quiz_score ?? undefined,
     quizAttempts: row.quiz_attempts,
+    reflectionAnswers: coerceAnswers(row.reflection_answers),
+    reflectionSubmittedAt: row.reflection_submitted_at ?? undefined,
   };
 }
 
@@ -54,7 +71,7 @@ async function fetchProgress(userId: string): Promise<Record<number, DayProgress
 
 type LegacyShape = {
   startedAt?: string;
-  days?: Record<number, DayProgress>;
+  days?: Record<number, Omit<DayProgress, "reflectionAnswers" | "reflectionSubmittedAt">>;
 };
 
 async function migrateLegacyIfNeeded(userId: string): Promise<boolean> {
@@ -127,6 +144,8 @@ export function useFirst60DaysProgress() {
         quiz_score: number | null;
         quiz_attempts: number;
         quiz_passed_at: string | null;
+        reflection_answers: ReflectionAnswers | null;
+        reflection_submitted_at: string | null;
       }>;
     }) => {
       if (!userId) throw new Error("Not signed in");
@@ -153,6 +172,14 @@ export function useFirst60DaysProgress() {
           input.patch.quiz_passed_at !== undefined
             ? input.patch.quiz_passed_at
             : existing.quizPassedAt ?? null,
+        reflection_answers:
+          input.patch.reflection_answers !== undefined
+            ? input.patch.reflection_answers
+            : existing.reflectionAnswers ?? null,
+        reflection_submitted_at:
+          input.patch.reflection_submitted_at !== undefined
+            ? input.patch.reflection_submitted_at
+            : existing.reflectionSubmittedAt ?? null,
       };
       const { error } = await supabase
         .from("first_60_days_progress")
@@ -190,6 +217,14 @@ export function useFirst60DaysProgress() {
             input.patch.quiz_attempts !== undefined
               ? input.patch.quiz_attempts
               : existing.quizAttempts,
+          reflectionAnswers:
+            input.patch.reflection_answers !== undefined
+              ? input.patch.reflection_answers ?? undefined
+              : existing.reflectionAnswers,
+          reflectionSubmittedAt:
+            input.patch.reflection_submitted_at !== undefined
+              ? input.patch.reflection_submitted_at ?? undefined
+              : existing.reflectionSubmittedAt,
         };
         return { ...base, [input.dayNumber]: patched };
       });
@@ -244,6 +279,28 @@ export function useFirst60DaysProgress() {
     [userId, daysMap, upsertMutation]
   );
 
+  const saveReflection = useCallback(
+    (dayNumber: number, answers: ReflectionAnswers, submit: boolean) => {
+      if (!userId) return;
+      const existing = daysMap[dayNumber] ?? {};
+      upsertMutation.mutate({
+        dayNumber,
+        patch: {
+          reflection_answers: answers,
+          reflection_submitted_at: submit
+            ? existing.reflectionSubmittedAt ?? new Date().toISOString()
+            : existing.reflectionSubmittedAt ?? null,
+        },
+      });
+    },
+    [userId, daysMap, upsertMutation]
+  );
+
+  const isReflectionSubmitted = useCallback(
+    (dayNumber: number): boolean => Boolean(daysMap[dayNumber]?.reflectionSubmittedAt),
+    [daysMap]
+  );
+
   const recordQuiz = useCallback(
     (dayNumber: number, score: number, passed: boolean) => {
       if (!userId) return;
@@ -277,11 +334,13 @@ export function useFirst60DaysProgress() {
     isLoading: progressQuery.isLoading,
     getDay,
     isQuizPassed,
+    isReflectionSubmitted,
     isUnlocked,
     currentDay,
     completedCount,
     markRead,
     recordQuiz,
+    saveReflection,
     reset,
   };
 }

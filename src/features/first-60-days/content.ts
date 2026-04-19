@@ -1,5 +1,5 @@
 import type { Day, Week } from "./types";
-import { parseFrontmatter, parseQuiz, stripAppendix } from "./parse";
+import { parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "./parse";
 
 const rawFiles = import.meta.glob("/docs/first-60-days/week-*/day-*.md", {
   query: "?raw",
@@ -33,6 +33,7 @@ function buildDays(): Day[] {
     const week = frontmatter.week;
     const dayInWeek = ((dayNumber - 1) % 6) + 1;
     const quiz = parseQuiz(body);
+    const reflection = parseReflection(body);
     days.push({
       dayNumber,
       week,
@@ -42,6 +43,7 @@ function buildDays(): Day[] {
       frontmatter,
       markdown: stripAppendix(body),
       quiz,
+      reflection,
     });
   }
   days.sort((a, b) => a.dayNumber - b.dayNumber);

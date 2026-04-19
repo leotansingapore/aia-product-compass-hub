@@ -11,6 +11,7 @@ import {
   Film,
   Lock,
   ClipboardCheck,
+  NotebookPen,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -22,6 +23,7 @@ import { getDay, getAllDays, WEEK_META } from "@/features/first-60-days/content"
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 import { useFirst60DaysDayMeta } from "@/hooks/first-60-days/useFirst60DaysDayMeta";
 import { DayQuiz } from "@/components/first-60-days/DayQuiz";
+import { DayReflection } from "@/components/first-60-days/DayReflection";
 
 export default function First60DaysDay() {
   const { dayNumber: raw } = useParams<{ dayNumber: string }>();
@@ -120,6 +122,15 @@ export default function First60DaysDay() {
             <Film className="mr-2 h-4 w-4" />
             Video
           </TabsTrigger>
+          <TabsTrigger value="reflection">
+            <NotebookPen className="mr-2 h-4 w-4" />
+            Reflection
+            {day.reflection.length > 0 && (
+              <Badge variant="secondary" className="ml-2">
+                {day.reflection.length}
+              </Badge>
+            )}
+          </TabsTrigger>
           <TabsTrigger value="quiz">
             <ClipboardCheck className="mr-2 h-4 w-4" />
             Quiz
@@ -200,6 +211,10 @@ export default function First60DaysDay() {
               </CardContent>
             </Card>
           )}
+        </TabsContent>
+
+        <TabsContent value="reflection" className="mt-4">
+          <DayReflection dayNumber={dayNumber} prompts={day.reflection} />
         </TabsContent>
 
         <TabsContent value="quiz" className="mt-4">

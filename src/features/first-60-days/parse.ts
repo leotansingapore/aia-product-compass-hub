@@ -1,4 +1,4 @@
-import type { DayFrontmatter, QuizQuestion, QuizOption } from "./types";
+import type { DayFrontmatter, QuizQuestion, QuizOption, ReflectionPrompt } from "./types";
 
 const FRONTMATTER_RE = /^---\s*\n([\s\S]*?)\n---\s*\n?/;
 
@@ -60,14 +60,15 @@ function coerceYamlValue(raw: string): unknown {
 }
 
 const QUIZ_HEADING_RE = /^##\s+Quick quiz\s*$/m;
+const REFLECTION_HEADING_RE = /^##\s+(Reflection worksheet|Final reflection[^\n]*)$/m;
 const NEXT_HEADING_RE = /^##\s+\S/m;
-const APPENDIX_CUT_RE = /\n##\s+(Quick quiz|Related)\b/;
+const APPENDIX_CUT_RE = /\n##\s+(Reflection worksheet|Final reflection|Quick quiz|Related)\b/;
 
 /**
- * Remove the Quick quiz and Related sections from a day's body markdown.
- * The quiz is rendered separately by the Quiz tab; the Related section uses
- * Obsidian wikilinks which don't render in react-markdown, and navigation is
- * handled by the page's prev/next buttons.
+ * Remove the Reflection worksheet, Quick quiz, and Related sections from a day's
+ * body markdown. Each lives in its own tab now (Reflection / Quiz); the Related
+ * section uses Obsidian wikilinks that don't render cleanly and its navigation
+ * is handled by the page's prev/next buttons.
  */
 export function stripAppendix(body: string): string {
   const match = body.match(APPENDIX_CUT_RE);
@@ -75,6 +76,41 @@ export function stripAppendix(body: string): string {
   let out = body.slice(0, match.index);
   out = out.replace(/\n+---\s*$/, "");
   return out.trimEnd();
+}
+
+export function parseReflection(body: string): ReflectionPrompt[] {
+  const heading = body.match(REFLECTION_HEADING_RE);
+  if (!heading || heading.index === undefined) return [];
+  const afterHeading = body.slice(heading.index + heading[0].length);
+  const nextMatch = afterHeading.match(NEXT_HEADING_RE);
+  const section = nextMatch ? afterHeading.slice(0, nextMatch.index) : afterHeading;
+
+  const prompts: ReflectionPrompt[] = [];
+  const blocks = section.split(/\n(?=\*\*\d+\.\s)/);
+  for (const block of blocks) {
+    const trimmed = block.trim();
+    if (!/^\*\*\d+\.\s/.test(trimmed)) continue;
+    const p = parseReflectionBlock(trimmed, prompts.length + 1);
+    if (p) prompts.push(p);
+  }
+  return prompts;
+}
+
+function parseReflectionBlock(block: string, index: number): ReflectionPrompt | null {
+  const questionMatch = block.match(/^\*\*\d+\.\s+(.+?)\*\*\s*(?:\n|$)/s);
+  if (!questionMatch) return null;
+  const question = questionMatch[1].trim().replace(/\s*:\s*$/, "");
+
+  const rest = block.slice(questionMatch[0].length);
+  const hintLines: string[] = [];
+  for (const line of rest.split("\n")) {
+    const hintMatch = line.match(/^\s*>\s*(.*)$/);
+    if (hintMatch) hintLines.push(hintMatch[1].trim());
+    else if (line.trim() === "") continue;
+    else break;
+  }
+  const hint = hintLines.join(" ").trim() || undefined;
+  return { index, question, hint };
 }
 
 export function parseQuiz(body: string): QuizQuestion[] {

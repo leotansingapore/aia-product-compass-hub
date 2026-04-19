@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { parseFrontmatter, parseQuiz, stripAppendix } from "./parse";
+import { parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "./parse";
 
 const SAMPLE = `---
 week: 1
@@ -74,6 +74,54 @@ describe("parseQuiz", () => {
   it("returns [] when no Quick quiz section", () => {
     const noQuiz = SAMPLE.split("## Quick quiz")[0];
     expect(parseQuiz(noQuiz)).toEqual([]);
+  });
+});
+
+describe("parseReflection", () => {
+  const WITH_REFLECTION = `# Day
+
+## Reflection worksheet
+
+Write your answers — don't just think them.
+
+**1. Why are you really here?**
+> Not the "tell mum and dad" answer. Keep it to 3 sentences.
+
+**2. Which skill are you weakest in?**
+> And give one example.
+
+**3. What does growth look like?**
+
+---
+
+## Quick quiz
+`;
+
+  it("extracts numbered questions with optional hints", () => {
+    const prompts = parseReflection(WITH_REFLECTION);
+    expect(prompts).toHaveLength(3);
+    expect(prompts[0].question).toBe("Why are you really here?");
+    expect(prompts[0].hint).toMatch(/tell mum and dad/);
+    expect(prompts[1].question).toBe("Which skill are you weakest in?");
+    expect(prompts[2].question).toBe("What does growth look like?");
+    expect(prompts[2].hint).toBeUndefined();
+  });
+
+  it("matches the Final reflection heading used on Day 60", () => {
+    const dy60 = `## Final reflection — the 60-day wrap\n\n**1. What did you learn?**\n> one sentence.\n\n**2. What will you keep?**\n`;
+    const prompts = parseReflection(dy60);
+    expect(prompts).toHaveLength(2);
+    expect(prompts[0].question).toBe("What did you learn?");
+  });
+
+  it("returns [] when no reflection heading present", () => {
+    expect(parseReflection("# just content\n\n## Some other\n")).toEqual([]);
+  });
+
+  it("strips trailing colon from question text", () => {
+    const withColon = `## Reflection worksheet\n\n**1. The most valuable thing:**\n> one sentence.`;
+    const prompts = parseReflection(withColon);
+    expect(prompts[0].question).toBe("The most valuable thing");
   });
 });
 
