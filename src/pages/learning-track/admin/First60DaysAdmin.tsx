@@ -7,12 +7,14 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { getAllDays } from "@/features/first-60-days/content";
 import {
   useAllFirst60DaysDayMeta,
   type DayMeta,
 } from "@/hooks/first-60-days/useFirst60DaysDayMeta";
+import First60DaysSubmissions from "./First60DaysSubmissions";
 
 type RowPatch = Partial<Omit<DayMeta, "day_number">>;
 
@@ -84,6 +86,12 @@ export default function First60DaysAdmin() {
 
   return (
     <div className="space-y-3" data-testid="first-60-days-admin">
+      <Tabs defaultValue="urls">
+        <TabsList>
+          <TabsTrigger value="urls">Day URLs</TabsTrigger>
+          <TabsTrigger value="submissions">Reflection submissions</TabsTrigger>
+        </TabsList>
+        <TabsContent value="urls" className="space-y-3">
       <Card>
         <CardContent className="p-4 text-sm text-muted-foreground">
           Paste Google Slides embed URLs (<code>.../embed?start=...</code>) and YouTube / Vimeo
@@ -189,6 +197,11 @@ export default function First60DaysAdmin() {
           </tbody>
         </table>
       </div>
+        </TabsContent>
+        <TabsContent value="submissions" className="space-y-3">
+          <First60DaysSubmissions />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
