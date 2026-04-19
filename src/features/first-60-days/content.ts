@@ -1,5 +1,5 @@
 import type { Day, Week } from "./types";
-import { parseFrontmatter, parseQuiz } from "./parse";
+import { parseFrontmatter, parseQuiz, stripAppendix } from "./parse";
 
 const rawFiles = import.meta.glob("/docs/first-60-days/week-*/day-*.md", {
   query: "?raw",
@@ -40,7 +40,7 @@ function buildDays(): Day[] {
       title: frontmatter.title,
       path: relPath,
       frontmatter,
-      markdown: body,
+      markdown: stripAppendix(body),
       quiz,
     });
   }

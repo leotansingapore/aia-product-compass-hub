@@ -61,6 +61,21 @@ function coerceYamlValue(raw: string): unknown {
 
 const QUIZ_HEADING_RE = /^##\s+Quick quiz\s*$/m;
 const NEXT_HEADING_RE = /^##\s+\S/m;
+const APPENDIX_CUT_RE = /\n##\s+(Quick quiz|Related)\b/;
+
+/**
+ * Remove the Quick quiz and Related sections from a day's body markdown.
+ * The quiz is rendered separately by the Quiz tab; the Related section uses
+ * Obsidian wikilinks which don't render in react-markdown, and navigation is
+ * handled by the page's prev/next buttons.
+ */
+export function stripAppendix(body: string): string {
+  const match = body.match(APPENDIX_CUT_RE);
+  if (!match || match.index === undefined) return body;
+  let out = body.slice(0, match.index);
+  out = out.replace(/\n+---\s*$/, "");
+  return out.trimEnd();
+}
 
 export function parseQuiz(body: string): QuizQuestion[] {
   const quizMatch = body.match(QUIZ_HEADING_RE);

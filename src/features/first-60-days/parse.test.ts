@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { parseFrontmatter, parseQuiz } from "./parse";
+import { parseFrontmatter, parseQuiz, stripAppendix } from "./parse";
 
 const SAMPLE = `---
 week: 1
@@ -74,5 +74,26 @@ describe("parseQuiz", () => {
   it("returns [] when no Quick quiz section", () => {
     const noQuiz = SAMPLE.split("## Quick quiz")[0];
     expect(parseQuiz(noQuiz)).toEqual([]);
+  });
+});
+
+describe("stripAppendix", () => {
+  it("removes the Quick quiz section and everything after", () => {
+    const { body } = parseFrontmatter(SAMPLE);
+    const stripped = stripAppendix(body);
+    expect(stripped).not.toMatch(/Quick quiz/);
+    expect(stripped).not.toMatch(/Correct answer/);
+    expect(stripped).not.toMatch(/✓/);
+    expect(stripped).toMatch(/Body content here/);
+  });
+
+  it("removes the Related section when it appears first", () => {
+    const onlyRelated = `body text\n\n## Related\n- Next: [[day-02|...]]`;
+    expect(stripAppendix(onlyRelated)).toBe("body text");
+  });
+
+  it("strips trailing --- horizontal rule before the cut", () => {
+    const withRule = `some content\n\n---\n\n## Quick quiz\n\n1. **q?**\n - A) x\n`;
+    expect(stripAppendix(withRule)).toBe("some content");
   });
 });
