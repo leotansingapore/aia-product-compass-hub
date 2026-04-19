@@ -257,23 +257,23 @@ export const ProductCard = memo(function ProductCard({
           </div>
 
           {/* Title — primary headline */}
-          <div className="space-y-2">
+          <div className="space-y-1">
             <CardTitle
               title={title}
-              className="line-clamp-2 text-lg font-bold leading-snug tracking-tight text-foreground sm:text-xl"
+              className="line-clamp-2 text-lg font-bold font-serif leading-snug tracking-tight text-foreground"
             >
               {title}
             </CardTitle>
             <CardDescription
               title={description}
-              className="line-clamp-2 min-h-[2.75rem] text-sm leading-relaxed text-muted-foreground"
+              className="line-clamp-2 text-sm leading-relaxed text-muted-foreground"
             >
               {description?.trim() ? description : "No description yet."}
             </CardDescription>
           </div>
         </CardHeader>
 
-        <CardContent className="flex flex-1 flex-col gap-4 p-4 pt-5 sm:p-5 sm:pt-6">
+        <CardContent className="flex flex-1 flex-col gap-3 p-4 pt-3 sm:p-5 sm:pt-4">
           {completionPct != null && completionPct > 0 && (
             <div className="flex items-center gap-2.5">
               <Progress value={completionPct} className="h-1.5 flex-1" />
@@ -284,25 +284,25 @@ export const ProductCard = memo(function ProductCard({
             </div>
           )}
 
-          <div className="flex min-h-[5.5rem] flex-1 flex-col border-t border-border/60 pt-4">
+          <div className="flex flex-1 flex-col border-t border-border/60 pt-3">
             {highlights.length > 0 ? (
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                   Key points
                 </p>
-                <ul className="space-y-2 text-sm leading-snug text-muted-foreground">
+                <ul className="space-y-1.5 text-sm leading-snug text-muted-foreground">
                   {highlights.slice(0, 3).map((highlight, index) => (
-                    <li key={index} className="flex gap-2.5">
+                    <li key={index} className="flex gap-2">
                       <span className="mt-0.5 shrink-0 text-primary" aria-hidden>
                         •
                       </span>
-                      <span className="min-w-0 line-clamp-2 [overflow-wrap:anywhere]">{highlight}</span>
+                      <span className="min-w-0 line-clamp-1 [overflow-wrap:anywhere]">{highlight}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             ) : tags.length > 0 ? (
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Tags</p>
                 <div className="flex flex-wrap gap-1.5">
                   {tags.slice(0, 4).map((tag, index) => (
@@ -317,17 +317,13 @@ export const ProductCard = memo(function ProductCard({
                   )}
                 </div>
               </div>
-            ) : (
-              <p className="text-sm leading-relaxed text-muted-foreground/80">
-                Open the module for videos, resources, and notes.
-              </p>
-            )}
+            ) : null}
           </div>
 
           <Button
             type="button"
             variant="default"
-            className="mt-auto h-10 w-full gap-2 text-sm font-semibold sm:h-11"
+            className="mt-auto h-10 w-full gap-2 text-sm font-semibold"
             onClick={handleCtaClick}
           >
             Learn more

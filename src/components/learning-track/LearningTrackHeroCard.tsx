@@ -31,23 +31,25 @@ export function LearningTrackHeroCard() {
   };
 
   return (
-    <div className="rounded-lg border bg-card p-6 shadow-sm" data-testid="lt-hero-card">
-      <div className="mb-3 flex items-center justify-between">
-        <h2 className="flex items-center gap-2 text-lg font-semibold">
-          <GraduationCap className="h-5 w-5" />
+    <div className="rounded-2xl p-6 sm:p-8 shadow-lg bg-gradient-to-br from-primary/5 via-card to-accent/5 ring-1 ring-primary/10" data-testid="lt-hero-card">
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="flex items-center gap-2 text-lg font-semibold font-serif">
+          <div className="p-2 rounded-xl bg-primary/10">
+            <GraduationCap className="h-5 w-5 text-primary" />
+          </div>
           Your Learning Track
         </h2>
-        <span className="text-sm text-muted-foreground">{data.combinedPct}%</span>
+        <span className="text-sm font-medium tabular-nums">{data.combinedPct}%</span>
       </div>
-      <Progress value={data.combinedPct} className="mb-4" />
+      <Progress value={data.combinedPct} className="mb-4 h-3" />
       {data.nextItem && (
-        <p className="mb-4 text-sm">
+        <p className="mb-5 text-sm">
           <span className="text-muted-foreground">Next up: </span>
           <span className="font-medium">{data.nextItem.title}</span>
         </p>
       )}
       <div className="flex items-center gap-3">
-        <Button onClick={goNext}>
+        <Button size="lg" onClick={goNext} className="shadow-lg shadow-primary/20">
           {data.combinedPct === 0 ? "Start Learning" : "Continue"}{" "}
           <ArrowRight className="ml-1 h-4 w-4" />
         </Button>

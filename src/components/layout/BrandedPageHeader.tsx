@@ -374,7 +374,7 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
               ) : (
                 <h1
                   className={cn(
-                    "font-bold break-words",
+                    "font-bold break-words font-serif",
                     variant === "compact"
                       ? "text-base sm:text-lg"
                       : tone === "dark"

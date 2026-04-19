@@ -33,6 +33,8 @@ interface LearningItemRowProps {
   lockResult?: LockResult | null;
   /** Phases in the same track, used by the admin prerequisite picker. */
   trackPhases?: LearningTrackPhase[];
+  /** Called when the learner marks this item complete. Used for auto-advance. */
+  onComplete?: (itemId: string) => void;
 }
 
 const STATUS_ICON: Record<ItemStatus, JSX.Element> = {
@@ -49,6 +51,7 @@ export function LearningItemRow({
   viewAsUserId,
   lockResult,
   trackPhases,
+  onComplete,
 }: LearningItemRowProps) {
   const { user } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
@@ -111,7 +114,13 @@ export function LearningItemRow({
           disabled={readOnly || setStatus.isPending || isLocked}
           onClick={() => {
             const next: ItemStatus = isCompleted ? "not_started" : "completed";
-            setStatus.mutate({ itemId: item.id, status: next });
+            setStatus.mutate({ itemId: item.id, status: next }, {
+              onSuccess: () => {
+                if (next === "completed" && onComplete) {
+                  onComplete(item.id);
+                }
+              },
+            });
           }}
           aria-label={isLocked ? lockTooltip : isCompleted ? "Mark incomplete" : "Mark complete"}
           title={lockTooltip}

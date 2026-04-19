@@ -17,6 +17,7 @@ export function useLearningTrackPhases(track: Track) {
           learning_track_items (
             id, phase_id, order_index, title, description,
             objectives, action_items, requires_submission, legacy_id, published_at, prerequisite_item_ids,
+            hidden_resources,
             learning_track_content_blocks (
               id, item_id, order_index, block_type, title, body, url, resource_type, resource_id
             )
@@ -47,7 +48,7 @@ export function useLearningTrackPhases(track: Track) {
             objectives: i.objectives,
             action_items: i.action_items,
             requires_submission: i.requires_submission,
-            hidden_resources: [],
+            hidden_resources: Array.isArray(i.hidden_resources) ? i.hidden_resources : [],
             legacy_id: i.legacy_id,
             published_at: i.published_at ?? null,
             prerequisite_item_ids: i.prerequisite_item_ids ?? null,

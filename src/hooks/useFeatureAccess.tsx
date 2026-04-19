@@ -21,7 +21,10 @@ interface TierPermissionRow {
  * - `tier` — the user's current tier (from useUserTier).
  * - `isAdminBypass` — whether admin role is causing the bypass (useful for
  *   rendering a visual hint like "Admin view — this would be hidden for a
- *   regular user").
+ *   regular user"). Until `permissionsLoading` is false, this may be false even
+ *   for admins — do not redirect on tier until permissions resolve.
+ * - `permissionsLoading` — while true, `get_user_admin_role` has not returned;
+ *   RequireTier waits before evaluating access.
  *
  * The hook pulls `tier_permissions` from Supabase but falls back to the static
  * `TIER_FEATURE_MATRIX` if the DB query hasn't loaded / fails — so gating is
@@ -29,7 +32,7 @@ interface TierPermissionRow {
  */
 export function useFeatureAccess() {
   const { tier } = useUserTier();
-  const { hasRole, isMasterAdmin } = usePermissions();
+  const { hasRole, isMasterAdmin, loading: permissionsLoading } = usePermissions();
   const isAdminBypass = isMasterAdmin() || hasRole('admin');
 
   const { data: rows } = useQuery<TierPermissionRow[]>({
@@ -88,5 +91,12 @@ export function useFeatureAccess() {
     [permissionsByTier, tier, isAdminBypass],
   );
 
-  return { can, canAny, tier: tier as TierLevel, isAdminBypass };
+  return {
+    can,
+    canAny,
+    tier: tier as TierLevel,
+    isAdminBypass,
+    /** True while `get_user_admin_role` is in flight — tier route guards must wait (see RequireTier). */
+    permissionsLoading,
+  };
 }

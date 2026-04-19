@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useState, useMemo } from 'react';
+import { useEffect, useRef, useCallback, useState, forwardRef, useImperativeHandle } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
@@ -12,7 +12,7 @@ import { TableHeader } from '@tiptap/extension-table-header';
 import { VideoEmbedNode } from '@/components/markdown/editor/VideoEmbedNode';
 import { detectVideoEmbed } from '@/lib/video-embed-utils';
 import { Button } from "@/components/ui/button";
-import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Minus, Loader2, ImageIcon, Video, Paperclip, FileText, ExternalLink, Trash2 } from "lucide-react";
+import { Bold, Italic, Link as LinkIcon, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Minus, Loader2, ImageIcon, Video, Paperclip, FileText, ExternalLink } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { marked } from 'marked';
@@ -29,6 +29,11 @@ interface MinimalRichEditorProps {
   autoFocus?: boolean;
   showToolbar?: boolean;
 }
+
+/** Call before persisting: flushes debounced edits and returns markdown from the live editor HTML. */
+export type MinimalRichEditorHandle = {
+  getMarkdownForSave: () => Promise<string>;
+};
 
 // Configure turndown for clean markdown output — loaded on first use
 let _turndownInstance: TurndownService | null = null;
@@ -123,6 +128,24 @@ function mdToHtml(md: string): string {
     let result = marked.parse(cleaned, { async: false, gfm: true, breaks: true });
     if (typeof result !== 'string') return md.replace(/\n/g, '<br>');
 
+    // Post-process: convert video markdown links back to video embed / inline-video nodes
+    // Turndown saves embeds as [platform video](url) or [video](url) — marked turns those
+    // into <p><a href="url">platform video</a></p> which TipTap treats as a plain link.
+    result = result.replace(
+      /<p>\s*<a\s+href="([^"]+)"[^>]*>((?:youtube|vimeo|loom|mp4)\s+video|video)<\/a>\s*<\/p>/gi,
+      (_m, url, label) => {
+        const info = detectVideoEmbed(url);
+        if (info.isVideo && info.embedUrl) {
+          return `<div data-type="video-embed" data-src="${url}" data-embed-url="${info.embedUrl}" data-platform="${info.platform}">${info.platform}</div>`;
+        }
+        // Uploaded video files (label is just "video")
+        if (/^video$/i.test(label.trim())) {
+          return `<div data-type="inline-video" data-src="${url}">video</div>`;
+        }
+        return _m;
+      }
+    );
+
     // Post-process: extract image metadata from alt text (e.g. "alt|width=300,align=left")
     result = result.replace(/<img\s+src="([^"]*?)"\s+alt="([^"]*?)"\s*\/?>/g, (_match, src, alt) => {
       const pipeIdx = alt.indexOf('|');
@@ -178,15 +201,15 @@ async function uploadMediaToStorage(file: File): Promise<string> {
   return data.publicUrl;
 }
 
-export function MinimalRichEditor({
+export const MinimalRichEditor = forwardRef<MinimalRichEditorHandle, MinimalRichEditorProps>(function MinimalRichEditor({
   value,
   onChange,
   onSave,
   onCancel,
   placeholder = "Start typing...",
   autoFocus = false,
-  showToolbar = true
-}: MinimalRichEditorProps) {
+  showToolbar = true,
+}, ref) {
   const isUpdatingRef = useRef(false);
   const lastValueRef = useRef(value);
   const isInitializedRef = useRef(false);
@@ -276,6 +299,41 @@ export function MinimalRichEditor({
         return false;
       },
       handlePaste: (_view, event) => {
+        const ed = editorInstanceRef.current;
+        if (!ed || ed.isDestroyed) return false;
+
+        // Paste a bare YouTube / Loom / Vimeo / MP4 URL → embed player (not a plain link).
+        // Run this BEFORE binary clipboard items: many apps put a preview image + URL; we prefer the embed.
+        const tryEmbedFromUrl = (raw: string): boolean => {
+          const trimmed = raw.trim();
+          if (!trimmed) return false;
+          const lines = trimmed.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+          if (lines.length !== 1) return false;
+          const url = lines[0];
+          if (!/^https?:\/\//i.test(url)) return false;
+          const info = detectVideoEmbed(url);
+          if (!info.isVideo || !info.embedUrl) return false;
+          event.preventDefault();
+          ed.chain()
+            .focus()
+            .insertContent({
+              type: 'videoEmbed',
+              attrs: { src: url, embedUrl: info.embedUrl, platform: info.platform },
+            })
+            .run();
+          return true;
+        };
+
+        const plain = event.clipboardData?.getData('text/plain') ?? '';
+        if (tryEmbedFromUrl(plain)) return true;
+
+        const uriList = event.clipboardData?.getData('text/uri-list') ?? '';
+        const uriFromList = uriList
+          .split(/\r?\n/)
+          .map((l) => l.trim())
+          .find((l) => /^https?:\/\//i.test(l) && !l.startsWith('#'));
+        if (uriFromList && tryEmbedFromUrl(uriFromList)) return true;
+
         const items = Array.from(event.clipboardData?.items ?? []);
         const mediaItem = items.find(item => item.type.startsWith('image/') || item.type.startsWith('video/'));
         if (mediaItem) {
@@ -296,6 +354,7 @@ export function MinimalRichEditor({
             .finally(() => setIsUploadingRef.current(false));
           return true;
         }
+
         return false;
       },
       handleDrop: (_view, event) => {
@@ -371,6 +430,28 @@ export function MinimalRichEditor({
   useEffect(() => {
     editorInstanceRef.current = editor;
   }, [editor]);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      getMarkdownForSave: async () => {
+        if (idleTimerRef.current) {
+          clearTimeout(idleTimerRef.current);
+          idleTimerRef.current = null;
+        }
+        const ed = editorInstanceRef.current;
+        if (!ed || ed.isDestroyed) {
+          return lastValueRef.current ?? "";
+        }
+        const md = await htmlToMd(ed.getHTML());
+        lastValueRef.current = md;
+        onChangeRef.current(md);
+        dirtyRef.current = false;
+        return md;
+      },
+    }),
+    []
+  );
 
   // Sync external value changes (e.g. AI classification filling in content)
   useEffect(() => {
@@ -457,89 +538,6 @@ export function MinimalRichEditor({
     const label = window.prompt('Display name for the link', url) || url;
     editor.chain().focus().insertContent(`<p>🔗 <a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a></p>`).run();
   }, [editor]);
-
-  // Inject delete buttons on attachment paragraphs (📎 / 🔗)
-  useEffect(() => {
-    if (!editor || !showToolbar) return;
-
-    const injectDeleteButtons = () => {
-      const wrapper = editorWrapperRef.current;
-      if (!wrapper) return;
-
-      // Remove old injected buttons
-      wrapper.querySelectorAll('.attachment-delete-btn').forEach(btn => btn.remove());
-
-      // Find attachment paragraphs and place the remove button beside the link itself
-      const paragraphs = wrapper.querySelectorAll('.tiptap p, .ProseMirror p');
-      paragraphs.forEach((p) => {
-        const paragraph = p as HTMLElement;
-        const link = paragraph.querySelector('a');
-        const attachmentText = (paragraph.textContent || '').replace(/\s+/g, ' ').trim();
-        const isAttachment = !!link && (attachmentText.includes('📎') || attachmentText.includes('🔗'));
-
-        if (!isAttachment) return;
-
-        paragraph.style.display = 'flex';
-        paragraph.style.alignItems = 'center';
-        paragraph.style.flexWrap = 'wrap';
-        paragraph.style.gap = '0.5rem';
-        paragraph.style.position = 'relative';
-        paragraph.style.paddingRight = '0';
-
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'attachment-delete-btn';
-        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg><span>Remove</span>';
-        btn.title = 'Remove attachment';
-        btn.style.cssText = 'display:inline-flex;align-items:center;gap:4px;flex:none;background:hsl(var(--destructive)/0.12);border:1px solid hsl(var(--destructive)/0.24);border-radius:9999px;padding:3px 8px;cursor:pointer;color:hsl(var(--destructive));font-size:12px;line-height:1;white-space:nowrap;';
-
-        btn.addEventListener('mouseenter', () => { btn.style.background = 'hsl(var(--destructive)/0.18)'; });
-        btn.addEventListener('mouseleave', () => { btn.style.background = 'hsl(var(--destructive)/0.12)'; });
-        btn.addEventListener('mousedown', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        });
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-
-          const { state } = editor;
-          const { doc } = state;
-          let targetPos: number | null = null;
-
-          doc.descendants((node, pos) => {
-            if (targetPos !== null) return false;
-            if (node.type.name === 'paragraph') {
-              const nodeText = (node.textContent || '').replace(/\s+/g, ' ').trim();
-              if (nodeText === attachmentText) {
-                targetPos = pos;
-                return false;
-              }
-            }
-          });
-
-          if (targetPos !== null) {
-            const node = doc.nodeAt(targetPos);
-            if (node) {
-              editor.chain().focus().deleteRange({ from: targetPos, to: targetPos + node.nodeSize }).run();
-              toast.success('Attachment removed');
-            }
-          }
-        });
-
-        paragraph.appendChild(btn);
-      });
-    };
-
-    // Run on content changes
-    editor.on('update', injectDeleteButtons);
-    // Run once initially
-    setTimeout(injectDeleteButtons, 100);
-
-    return () => {
-      editor.off('update', injectDeleteButtons);
-    };
-  }, [editor, showToolbar]);
 
   if (!editor) return null;
 
@@ -723,4 +721,6 @@ export function MinimalRichEditor({
       <EditorContent editor={editor} />
     </div>
   );
-}
+});
+
+MinimalRichEditor.displayName = "MinimalRichEditor";

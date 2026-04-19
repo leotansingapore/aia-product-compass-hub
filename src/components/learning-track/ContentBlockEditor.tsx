@@ -9,6 +9,7 @@ import {
 } from "@/hooks/learning-track/useAdminLearningTrackMutations";
 import { InlineEditableText } from "./InlineEditableText";
 import { isVideoUrl, isImageUrl } from "@/lib/learning-track-url";
+import { detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
 import type { LearningTrackContentBlock, BlockType } from "@/types/learning-track";
 
 interface Props {
@@ -69,14 +70,13 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
 
   if (renderable.length === 0 && !isAdmin) return null;
 
-  return (
-    <div className="space-y-3">
-      {(renderable.length > 0 || isAdmin) && (
+  // ---- Admin view: block-by-block editor with borders ----
+  if (isAdmin) {
+    return (
+      <div className="space-y-3">
         <h4 className="text-sm font-semibold">Content</h4>
-      )}
-      {renderable.map((b) => (
-        <div key={b.id} className="rounded border bg-muted/30 p-3 group relative">
-          {isAdmin && (
+        {renderable.map((b) => (
+          <div key={b.id} className="rounded border bg-muted/30 p-3 group relative">
             <button
               onClick={() => deleteBlock.mutate(b.id)}
               className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded text-destructive opacity-60 hover:opacity-100 sm:hidden sm:group-hover:flex"
@@ -84,10 +84,8 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
             >
               <Trash2 className="h-3.5 w-3.5" />
             </button>
-          )}
 
-          {b.title != null && (
-            isAdmin ? (
+            {b.title != null && (
               <InlineEditableText
                 value={b.title}
                 onSave={(v) => updateBlock.mutate({ id: b.id, title: v })}
@@ -95,13 +93,9 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
                 as="span"
                 className="mb-1 text-sm font-medium block"
               />
-            ) : (
-              <div className="mb-1 text-sm font-medium">{b.title}</div>
-            )
-          )}
+            )}
 
-          {b.block_type === "text" && b.body && (
-            isAdmin ? (
+            {b.block_type === "text" && b.body && (
               <InlineEditableText
                 value={b.body}
                 onSave={(v) => updateBlock.mutate({ id: b.id, body: v })}
@@ -110,93 +104,34 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
                 multiline
                 className="text-sm text-muted-foreground"
               />
-            ) : (
-              <div className="prose prose-sm max-w-none dark:prose-invert">
-                <ReactMarkdown>{b.body}</ReactMarkdown>
+            )}
+
+            {(b.block_type === "link" || b.block_type === "video" || b.block_type === "image") && b.url && (
+              <div className="space-y-1">
+                {(b.block_type === "image" || (b.block_type === "link" && isImageUrl(b.url))) && (
+                  <img src={b.url} alt={b.title ?? "Image"} className="max-h-64 rounded border object-contain bg-muted/30" loading="lazy" />
+                )}
+                {b.block_type === "video" && (
+                  <a href={b.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sm text-primary hover:underline">
+                    <Video className="h-3 w-3" /> {b.title ?? "Watch video"}
+                  </a>
+                )}
+                {b.block_type === "link" && !isImageUrl(b.url) && (
+                  <a href={b.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sm text-primary hover:underline">
+                    {b.title ?? b.url} <ExternalLink className="h-3 w-3" />
+                  </a>
+                )}
+                <InlineEditableText
+                  value={b.url}
+                  onSave={(v) => updateBlock.mutate({ id: b.id, url: v })}
+                  isAdmin
+                  as="span"
+                  className="text-xs text-muted-foreground block"
+                  placeholder="Edit URL..."
+                />
               </div>
-            )
-          )}
-
-          {b.block_type === "link" && b.url && (
-            <div className="space-y-2">
-              {isImageUrl(b.url) ? (
-                <a href={b.url} target="_blank" rel="noreferrer" className="block">
-                  <img
-                    src={b.url}
-                    alt={b.title ?? "Image"}
-                    className="max-h-64 rounded border object-contain bg-muted/30"
-                    loading="lazy"
-                  />
-                </a>
-              ) : (
-                <a
-                  href={b.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-                >
-                  {b.title ?? b.url} <ExternalLink className="h-3 w-3" />
-                </a>
-              )}
-              {isAdmin && (
-                <InlineEditableText
-                  value={b.url}
-                  onSave={(v) => updateBlock.mutate({ id: b.id, url: v })}
-                  isAdmin
-                  as="span"
-                  className="text-xs text-muted-foreground block"
-                  placeholder="Edit URL..."
-                />
-              )}
-            </div>
-          )}
-
-          {b.block_type === "image" && b.url && (
-            <div className="space-y-1">
-              <a href={b.url} target="_blank" rel="noreferrer" className="block">
-                <img
-                  src={b.url}
-                  alt={b.title ?? "Image"}
-                  className="max-h-64 rounded border object-contain bg-muted/30"
-                  loading="lazy"
-                />
-              </a>
-              {isAdmin && (
-                <InlineEditableText
-                  value={b.url}
-                  onSave={(v) => updateBlock.mutate({ id: b.id, url: v })}
-                  isAdmin
-                  as="span"
-                  className="text-xs text-muted-foreground block"
-                  placeholder="Edit image URL..."
-                />
-              )}
-            </div>
-          )}
-
-          {b.block_type === "video" && b.url && (
-            <div className="space-y-1">
-              <a
-                href={b.url}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-              >
-                <Video className="h-3 w-3" /> {b.title ?? "Watch video"}
-              </a>
-              {isAdmin && (
-                <InlineEditableText
-                  value={b.url}
-                  onSave={(v) => updateBlock.mutate({ id: b.id, url: v })}
-                  isAdmin
-                  as="span"
-                  className="text-xs text-muted-foreground block"
-                  placeholder="Edit URL..."
-                />
-              )}
-            </div>
-          )}
-        </div>
+            )}
+          </div>
       ))}
 
       {/* Add block UI for admin */}
@@ -287,5 +222,69 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
         )
       )}
     </div>
+    );
+  }
+
+  // ---- Learner view: clean flowing document (no boxes, no borders) ----
+  return (
+    <article className="prose prose-sm max-w-none dark:prose-invert prose-headings:font-serif prose-a:text-primary prose-img:rounded-lg">
+      {renderable.map((b) => (
+        <div key={b.id}>
+          {b.title && b.block_type !== "text" && (
+            <h4>{b.title}</h4>
+          )}
+
+          {b.block_type === "text" && b.body && (
+            <ReactMarkdown
+              components={{
+                a: ({ href, children, ...props }) => {
+                  if (href) {
+                    const text = String(children ?? "").trim();
+                    // Match turndown patterns: "[platform video](url)" or "[video](url)"
+                    if (/^(?:youtube|vimeo|loom|mp4)\s+video$/i.test(text) || /^video$/i.test(text)) {
+                      const info = detectVideoEmbed(href);
+                      if (info.isVideo && info.embedUrl) {
+                        return <VideoEmbed embedUrl={info.embedUrl} platform={info.platform!} />;
+                      }
+                    }
+                  }
+                  return <a href={href} target="_blank" rel="noreferrer" {...props}>{children}</a>;
+                },
+              }}
+            >
+              {b.body}
+            </ReactMarkdown>
+          )}
+
+          {b.block_type === "link" && b.url && (
+            isImageUrl(b.url) ? (
+              <figure>
+                <img src={b.url} alt={b.title ?? "Image"} loading="lazy" />
+              </figure>
+            ) : (
+              <p>
+                <a href={b.url} target="_blank" rel="noreferrer">
+                  {b.title ?? b.url} <ExternalLink className="inline h-3 w-3" />
+                </a>
+              </p>
+            )
+          )}
+
+          {b.block_type === "image" && b.url && (
+            <figure>
+              <img src={b.url} alt={b.title ?? "Image"} loading="lazy" />
+            </figure>
+          )}
+
+          {b.block_type === "video" && b.url && (
+            <p>
+              <a href={b.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5">
+                <Video className="h-4 w-4" /> {b.title ?? "Watch video"}
+              </a>
+            </p>
+          )}
+        </div>
+      ))}
+    </article>
   );
 }

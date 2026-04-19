@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 import type { ItemStatus } from "@/types/learning-track";
 
 interface ProgressRow {
@@ -64,6 +65,11 @@ export function useLearningTrackProgress(userId: string | undefined) {
     },
     onError: (_err, _vars, ctx) => {
       if (ctx?.previous) qc.setQueryData(["learning-track-progress", userId], ctx.previous);
+    },
+    onSuccess: (_data, params) => {
+      if (params.status === "completed") {
+        toast({ title: "Lesson complete!", description: "Keep going — you're making progress." });
+      }
     },
     onSettled: () => {
       qc.invalidateQueries({ queryKey: ["learning-track-progress", userId] });

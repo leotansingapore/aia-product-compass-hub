@@ -150,7 +150,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const queryClient = useQueryClient();
 
   const allMainNavItems = useMemo(() => [
-    
+    { title: "Home", url: "/", icon: Home, dataAttr: undefined, sectionId: "home" },
     { title: "Learning Track", url: "/learning-track", icon: TrendingUp, dataAttr: undefined, sectionId: "learning-track" },
     { title: "Question Banks", url: "/question-banks", icon: Brain, dataAttr: undefined, sectionId: "question-banks" },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
@@ -188,7 +188,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
     const isCurrentlyActive = isActive(path);
     return `flex items-center w-full text-left transition-colors ${
       isCurrentlyActive
-        ? "bg-primary text-primary-foreground font-medium cursor-default hover:!bg-primary hover:!text-primary-foreground"
+        ? "bg-primary/10 text-primary font-semibold border-l-[3px] border-primary cursor-default hover:!bg-primary/10 hover:!text-primary"
         : "hover:bg-accent hover:text-accent-foreground"
     }`;
   }, [isActive]);
@@ -337,7 +337,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
         <SidebarContent>
           {/* Learning & Training */}
           <SidebarGroup>
-            <SidebarGroupLabel>Learning</SidebarGroupLabel>
+            <SidebarGroupLabel>Your Journey</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 {mainNavItems.map((item) => (
@@ -362,7 +362,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
           {/* Reference — products and sales tools */}
           {(sectionVisibleForTier('categories') || sectionVisibleForTier('sales-playbooks')) && (
             <SidebarGroup>
-              <SidebarGroupLabel>Reference</SidebarGroupLabel>
+              <SidebarGroupLabel>Library</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   {sectionVisibleForTier('categories') && (
@@ -397,7 +397,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
           )}
 
           <SidebarGroup>
-            <SidebarGroupLabel>Help</SidebarGroupLabel>
+            <SidebarGroupLabel>More</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 {resourceItems.map((item) => (

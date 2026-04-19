@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import { Loader2 } from 'lucide-react';
 import { useFeatureAccess } from '@/hooks/useFeatureAccess';
 import { toast } from '@/hooks/use-toast';
 import type { FeatureKey } from '@/lib/tiers';
@@ -25,12 +26,13 @@ interface RequireTierProps {
  */
 export function RequireTier({ feature, children, redirectTo = '/' }: RequireTierProps) {
   const location = useLocation();
-  const { can, isAdminBypass } = useFeatureAccess();
+  const { can, isAdminBypass, permissionsLoading } = useFeatureAccess();
   const toastShownRef = useRef(false);
 
   const allowed = isAdminBypass || can(feature);
 
   useEffect(() => {
+    if (permissionsLoading) return;
     if (!allowed && !toastShownRef.current) {
       toastShownRef.current = true;
       toast({
@@ -39,7 +41,15 @@ export function RequireTier({ feature, children, redirectTo = '/' }: RequireTier
         variant: 'destructive',
       });
     }
-  }, [allowed]);
+  }, [allowed, permissionsLoading]);
+
+  if (permissionsLoading) {
+    return (
+      <div className="flex min-h-[40vh] items-center justify-center py-12" aria-busy="true" aria-label="Loading access">
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
 
   if (!allowed) {
     return <Navigate to={redirectTo} replace state={{ from: location }} />;

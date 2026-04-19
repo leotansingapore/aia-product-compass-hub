@@ -41,64 +41,72 @@ export default function LearningTrack() {
     }
   }, [user?.id]);
 
+  // Explorer-only users (no Pre-RNF, Post-RNF, Resources, or Admin tabs) get a
+  // clean page without the dark branded header — Explorer.tsx renders its own
+  // beginner-friendly welcome hero instead.
+  const tabCount = [showExplorerTab, showPreRnfTab, showPostRnfTab, showResourcesTab, showAdminTab].filter(Boolean).length;
+  const explorerOnly = tabCount === 1 && showExplorerTab;
+
   return (
-    <PageLayout title="Learning Track" description="Your phased onboarding programme. Complete each phase in order.">
-      <BrandedPageHeader
-        tone="dark"
-        showOnMobile
-        title="Learning Track"
-        subtitle="Your phased onboarding programme. Complete each phase in order."
-        headerTabs={
-          <nav className={LT_TAB_NAV_CLASS} aria-label="Learning track sections">
-            {showExplorerTab && (
+    <PageLayout title="Learning Track" description="Your learning journey. Complete each module in order.">
+      {!explorerOnly && (
+        <BrandedPageHeader
+          tone="dark"
+          showOnMobile
+          title="Learning Track"
+          subtitle="Your learning journey. Complete each module in order."
+          headerTabs={
+            <nav className={LT_TAB_NAV_CLASS} aria-label="Learning track sections">
+              {showExplorerTab && (
+                <NavLink
+                  to="/learning-track/explorer"
+                  className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
+                >
+                  Explorer
+                </NavLink>
+              )}
+              {showPreRnfTab && (
+                <NavLink
+                  to="/learning-track/pre-rnf"
+                  className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
+                >
+                  Pre-RNF Training
+                </NavLink>
+              )}
+              {showPostRnfTab && (
+                <NavLink
+                  to="/learning-track/post-rnf"
+                  className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
+                >
+                  Post-RNF Training
+                </NavLink>
+              )}
+              {showResourcesTab && (
+                <NavLink
+                  to="/learning-track/resources"
+                  className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
+                >
+                  Resources
+                </NavLink>
+              )}
               <NavLink
-                to="/learning-track/explorer"
+                to="/learning-track/first-60-days"
                 className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
               >
-                Explorer
+                First 60 Days
               </NavLink>
-            )}
-            {showPreRnfTab && (
-              <NavLink
-                to="/learning-track/pre-rnf"
-                className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
-              >
-                Pre-RNF Training
-              </NavLink>
-            )}
-            {showPostRnfTab && (
-              <NavLink
-                to="/learning-track/post-rnf"
-                className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
-              >
-                Post-RNF Training
-              </NavLink>
-            )}
-            {showResourcesTab && (
-              <NavLink
-                to="/learning-track/resources"
-                className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
-              >
-                Resources
-              </NavLink>
-            )}
-            <NavLink
-              to="/learning-track/first-60-days"
-              className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
-            >
-              First 60 Days
-            </NavLink>
-            {showAdminTab && (
-              <NavLink
-                to="/learning-track/admin"
-                className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
-              >
-                Admin
-              </NavLink>
-            )}
-          </nav>
-        }
-      />
+              {showAdminTab && (
+                <NavLink
+                  to="/learning-track/admin"
+                  className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
+                >
+                  Admin
+                </NavLink>
+              )}
+            </nav>
+          }
+        />
+      )}
 
       <div className="mx-auto px-2 pb-10 pt-4 sm:px-4 md:px-6">
         <Outlet />

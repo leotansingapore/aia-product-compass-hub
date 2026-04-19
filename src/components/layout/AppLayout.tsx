@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, memo, useRef, useState, useCallback, lazy,
 import { useIsMobile } from "@/hooks/use-mobile";
 import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
+import { TopNav } from "./TopNav";
 import { MobileBottomNav } from "./MobileBottomNav";
 import { MobileHeader } from "./MobileHeader";
 import { Button } from "@/components/ui/button";
@@ -167,35 +168,59 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   }
 
   // Desktop Layout for authenticated users
-  return (
-    <SidebarProvider defaultOpen={sidebarDefaultOpen}>
-      <div className="min-h-screen flex w-full">
-        <AppSidebar onProfileClick={() => setProfileOpen(true)} />
-        <ResizeHandle />
-        
-        <SidebarInset className="flex-1 min-w-0 flex flex-col">
-          {/* Desktop Top Bar */}
-          <header className="sticky top-0 z-30 flex h-12 items-center justify-end gap-2 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
-            <ThemeToggle />
-            <button
-              onClick={() => setProfileOpen(true)}
-              className="rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              aria-label="My Profile"
-            >
-              <AvatarWithProgress
-                size={32}
-                initials={user?.email?.charAt(0).toUpperCase() || 'U'}
-              />
-            </button>
-          </header>
+  // Admins / master admins always get the sidebar; learners get the top nav
+  const useSidebarLayout = isAdmin;
 
-          <main className="flex-1 page-transition">
-            {children}
-          </main>
-        </SidebarInset>
-      </div>
-      
-      {/* Onboarding Components — lazy-loaded */}
+  if (useSidebarLayout) {
+    return (
+      <SidebarProvider defaultOpen={sidebarDefaultOpen}>
+        <div className="min-h-screen flex w-full">
+          <AppSidebar onProfileClick={() => setProfileOpen(true)} />
+          <ResizeHandle />
+
+          <SidebarInset className="flex-1 min-w-0 flex flex-col">
+            <header className="sticky top-0 z-30 flex h-12 items-center justify-end gap-2 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
+              <ThemeToggle />
+              <button
+                onClick={() => setProfileOpen(true)}
+                className="rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                aria-label="My Profile"
+              >
+                <AvatarWithProgress
+                  size={32}
+                  initials={user?.email?.charAt(0).toUpperCase() || 'U'}
+                />
+              </button>
+            </header>
+
+            <main className="flex-1 page-transition">
+              {children}
+            </main>
+          </SidebarInset>
+        </div>
+
+        <Suspense fallback={null}>
+          <WelcomeModal />
+          <OnboardingTutorial />
+          <OnboardingHelpButton />
+          <FloatingFeedbackButton />
+        </Suspense>
+        {profileOpen && (
+          <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
+        )}
+      </SidebarProvider>
+    );
+  }
+
+  // Learner routes: top nav, full-width content, no sidebar
+  return (
+    <div className="min-h-screen flex flex-col">
+      <TopNav onProfileClick={() => setProfileOpen(true)} />
+
+      <main className="flex-1 page-transition">
+        {children}
+      </main>
+
       <Suspense fallback={null}>
         <WelcomeModal />
         <OnboardingTutorial />
@@ -205,7 +230,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
       {profileOpen && (
         <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
       )}
-    </SidebarProvider>
+    </div>
   );
 });
 

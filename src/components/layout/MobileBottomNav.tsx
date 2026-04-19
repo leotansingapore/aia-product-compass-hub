@@ -1,34 +1,68 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Home, Library, FileText, MessageCircle, Grid3X3, Package, HelpCircle, ShieldCheck } from "lucide-react";
+import {
+  Home,
+  GraduationCap,
+  Brain,
+  BookOpen,
+  Grid3X3,
+  Bookmark,
+  MessageCircle,
+  MessageSquarePlus,
+  ShieldCheck,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Bookmark, GraduationCap, BookOpen, GitBranch, TrendingUp, MessageSquarePlus } from "lucide-react";
 import { FeedbackModal } from "@/components/FeedbackButton";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
-
-const navigationItems = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "Products", href: "/category/core-products", icon: Package },
-  { name: "Scripts", href: "/scripts", icon: FileText },
-  { name: "Q-Banks", href: "/question-banks", icon: HelpCircle },
-];
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { FEATURES } from "@/lib/tiers";
 
 const FEEDBACK_HREF = "__feedback__" as const;
 
-const quickLinkItems = [
-  { name: "Roleplay", href: "/roleplay", icon: MessageCircle, color: "text-purple-500", bg: "bg-purple-50 dark:bg-purple-950/30" },
-  { name: "Feedback", href: FEEDBACK_HREF, icon: MessageSquarePlus, color: "text-slate-600", bg: "bg-slate-100 dark:bg-slate-900/40" },
-  { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30" },
-  { name: "Learning Track", href: "/learning-track", icon: Library, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
-  { name: "Categories", href: "/categories", icon: Library, color: "text-teal-500", bg: "bg-teal-50 dark:bg-teal-950/30" },
-  { name: "Playbooks", href: "/playbooks", icon: BookOpen, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-950/30" },
-  { name: "Script Flows", href: "/flows", icon: GitBranch, color: "text-amber-500", bg: "bg-amber-50 dark:bg-amber-950/30" },
-  { name: "Sales Tools", href: "/scripts", icon: TrendingUp, color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-950/30" },
+interface MobileNavItem {
+  name: string;
+  href: string;
+  icon: React.ElementType;
+  features?: readonly string[];
+}
+
+const PRIMARY_ITEMS: MobileNavItem[] = [
+  {
+    name: "My Learning",
+    href: "/learning-track",
+    icon: GraduationCap,
+    features: [FEATURES.EXPLORER_TRACK, FEATURES.PRE_RNF_TRACK, FEATURES.POST_RNF_TRACK],
+  },
+  { name: "Practice", href: "/question-banks", icon: Brain, features: [FEATURES.QUESTION_BANKS] },
+  { name: "Exams", href: "/cmfas-exams", icon: GraduationCap, features: [FEATURES.CMFAS] },
+  { name: "Library", href: "/categories", icon: BookOpen, features: [FEATURES.PRODUCTS] },
 ];
 
-const adminQuickLink = { name: "Admin Panel", href: "/admin", icon: ShieldCheck, color: "text-red-500", bg: "bg-red-50 dark:bg-red-950/30" };
+interface QuickLink {
+  name: string;
+  href: string;
+  icon: React.ElementType;
+  color: string;
+  bg: string;
+  features?: readonly string[];
+}
+
+const QUICK_LINKS: QuickLink[] = [
+  { name: "Roleplay", href: "/roleplay", icon: MessageCircle, color: "text-purple-500", bg: "bg-purple-50 dark:bg-purple-950/30", features: [FEATURES.ROLEPLAY] },
+  { name: "Exams", href: "/cmfas-exams", icon: GraduationCap, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30", features: [FEATURES.CMFAS] },
+  { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30", features: [FEATURES.BOOKMARKS] },
+  { name: "Feedback", href: FEEDBACK_HREF, icon: MessageSquarePlus, color: "text-slate-600", bg: "bg-slate-100 dark:bg-slate-900/40" },
+];
+
+const ADMIN_LINK: QuickLink = {
+  name: "Admin Panel",
+  href: "/admin",
+  icon: ShieldCheck,
+  color: "text-red-500",
+  bg: "bg-red-50 dark:bg-red-950/30",
+};
 
 export function MobileBottomNav() {
   const location = useLocation();
@@ -37,22 +71,35 @@ export function MobileBottomNav() {
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const { isAdmin } = useAdmin();
   const { isViewingAsUser } = useViewMode();
+  const { canAny, isAdminBypass } = useFeatureAccess();
   const showAdmin = isAdmin && !isViewingAsUser;
 
-  const allQuickLinks = showAdmin ? [...quickLinkItems, adminQuickLink] : quickLinkItems;
+  const visiblePrimary = useMemo(() => {
+    return PRIMARY_ITEMS.filter((item) => {
+      if (!item.features) return true;
+      if (isAdminBypass) return true;
+      return canAny(item.features as any);
+    });
+  }, [canAny, isAdminBypass]);
+
+  const visibleQuickLinks = useMemo(() => {
+    const filtered = QUICK_LINKS.filter((item) => {
+      if (!item.features) return true;
+      if (isAdminBypass) return true;
+      return canAny(item.features as any);
+    });
+    return showAdmin ? [...filtered, ADMIN_LINK] : filtered;
+  }, [canAny, isAdminBypass, showAdmin]);
 
   return (
     <>
       <nav className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md border-t border-border z-50 safe-area-pb">
         <div className="flex items-stretch justify-around">
-          {navigationItems.map((item) => {
+          {visiblePrimary.map((item) => {
             const isActive =
-              location.pathname === item.href ||
-              (item.href === "/scripts" && (
-                location.pathname.startsWith("/scripts") ||
-                location.pathname.startsWith("/objections") ||
-                location.pathname.startsWith("/servicing")
-              ));
+              item.href === "/"
+                ? location.pathname === "/"
+                : location.pathname.startsWith(item.href);
 
             return (
               <NavLink
@@ -63,7 +110,6 @@ export function MobileBottomNav() {
                   isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                {/* Active indicator bar */}
                 {isActive && (
                   <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full bg-primary" />
                 )}
@@ -99,7 +145,7 @@ export function MobileBottomNav() {
             <SheetTitle className="text-base">Quick Links</SheetTitle>
           </SheetHeader>
           <div className="grid grid-cols-4 gap-3">
-            {allQuickLinks.map((item) => (
+            {visibleQuickLinks.map((item) => (
               <button
                 key={item.name}
                 type="button"

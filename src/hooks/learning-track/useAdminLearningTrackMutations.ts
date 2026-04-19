@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import type { Track, BlockType } from "@/types/learning-track";
+import type { Track, BlockType, LearningTrackPhase } from "@/types/learning-track";
+import { isModuleFolder } from "@/lib/learning-track/moduleGrouping";
 import type { LearningItemTemplate } from "@/data/learningItemTemplates";
 import type { ParsedItem } from "@/lib/parseLearningItemsMarkdown";
 
@@ -508,6 +509,81 @@ export function useReorderItems() {
       qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
     },
     onError: () => toast.error("Failed to reorder items"),
+  });
+}
+
+/** Prevents duplicate concurrent normalization for the same phase (React Strict Mode). */
+const normalizingPhaseIds = new Set<string>();
+
+/**
+ * Ensures lessons sit under module folder rows: inserts "Module 1" when none exist,
+ * or moves items that appear before the first module under that module.
+ */
+export function useNormalizePhaseModuleStructure() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ phase }: { phase: LearningTrackPhase }) => {
+      if (normalizingPhaseIds.has(phase.id)) return;
+      normalizingPhaseIds.add(phase.id);
+      try {
+        const items = [...phase.items].sort((a, b) => a.order_index - b.order_index);
+        const hasModule = items.some(isModuleFolder);
+
+        if (!hasModule && items.length > 0) {
+          const tempPromises = items.map((row, i) =>
+            supabase.from("learning_track_items").update({ order_index: 100000 + i }).eq("id", row.id)
+          );
+          const tempResults = await Promise.all(tempPromises);
+          const tempFailed = tempResults.find((r) => r.error);
+          if (tempFailed?.error) throw tempFailed.error;
+
+          const { error: insErr } = await supabase.from("learning_track_items").insert({
+            phase_id: phase.id,
+            title: "Module 1",
+            order_index: 0,
+            requires_submission: false,
+            hidden_resources: ["module"],
+          });
+          if (insErr) throw insErr;
+
+          const lessonUpdates = items.map((row, i) =>
+            supabase.from("learning_track_items").update({ order_index: i + 1 }).eq("id", row.id)
+          );
+          const lessonResults = await Promise.all(lessonUpdates);
+          const lessonFailed = lessonResults.find((r) => r.error);
+          if (lessonFailed?.error) throw lessonFailed.error;
+          return;
+        }
+
+        const firstModIdx = items.findIndex(isModuleFolder);
+        if (firstModIdx <= 0) return;
+
+        const orphans = items.slice(0, firstModIdx);
+        const rest = items.slice(firstModIdx);
+        const newOrder = [rest[0], ...orphans, ...rest.slice(1)];
+        const updates = newOrder.map((row, idx) => ({ id: row.id, order_index: idx }));
+
+        const tempPromises = updates.map(({ id }, i) =>
+          supabase.from("learning_track_items").update({ order_index: 300000 + i }).eq("id", id)
+        );
+        const tempResults2 = await Promise.all(tempPromises);
+        const tempFailed2 = tempResults2.find((r) => r.error);
+        if (tempFailed2?.error) throw tempFailed2.error;
+
+        const finalPromises = updates.map(({ id, order_index }) =>
+          supabase.from("learning_track_items").update({ order_index }).eq("id", id)
+        );
+        const results = await Promise.all(finalPromises);
+        const failed = results.find((r) => r.error);
+        if (failed?.error) throw failed.error;
+      } finally {
+        normalizingPhaseIds.delete(phase.id);
+      }
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
+    },
+    onError: () => toast.error("Failed to organize course modules"),
   });
 }
 

@@ -93,7 +93,7 @@ export default function ExplorerHome() {
           <div className="flex items-center gap-2 mb-3">
             <TierBadge tier="explorer" />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold font-serif tracking-tight mb-3">
             Welcome to Academy 👋
           </h1>
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl leading-relaxed">
