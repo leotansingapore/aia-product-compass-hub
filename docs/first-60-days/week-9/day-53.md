@@ -98,6 +98,17 @@ Using the data you collected in the CFR, show their actual exposure.
 >
 > So there are gaps. None of this is to scare you — it's just the map of what we'd want to address."
 
+**The 4 emotional triggers behind every gap.** When you're surfacing the gap, pick the one trigger that matches the client's actual fear — the reframe lands harder when you name the right emotion:
+
+| Trigger | Who it hits hardest | Sample follow-up |
+|---|---|---|
+| **Security** | Breadwinners, new parents | "If your income disappeared for 3 years, what would your family sell first?" |
+| **Love** | Parents, caregivers | "If something happened to you tomorrow, who'd take on your role for the kids?" |
+| **Freedom** | High-income professionals, would-be retirees | "Which of these gaps is the one that'd force you to keep working past 60?" |
+| **Regret** | Clients who've seen a friend or parent get hit | "If this happened and we hadn't addressed it, what would that conversation sound like?" |
+
+Pick one. Don't stack all four — stacking is scare-selling.
+
 ### 5. The transition (30 sec)
 Move to recommendation.
 

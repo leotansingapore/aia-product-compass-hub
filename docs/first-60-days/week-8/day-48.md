@@ -79,6 +79,19 @@ Good Situation questions are **open-ended** and **specific to planning categorie
 
 **Rule:** ask these casually. They're conversation, not checklist. Let the client's answers shape your follow-up questions.
 
+### The FORM mnemonic — the 4-letter shortcut
+
+When nerves spike and the 10 questions feel like too much, fall back to **FORM**. It covers 80% of what you need in any first meeting:
+
+| Letter | Prompt stem | What you're learning |
+|---|---|---|
+| **F — Family** | "Tell me about your family — who are you planning for?" | Dependents, decision-makers, shared goals |
+| **O — Occupation** | "What do you do for work, and how stable is it?" | Income level, employer coverage, career stage |
+| **R — Recreation** | "What do you do for fun? How do you want that to look in 10 years?" | Lifestyle priorities, travel/retirement dreams |
+| **M — Money** | "How did you land on your current approach to saving and insurance?" | Relationship with money, past decisions, openness |
+
+**Use it when** you blank on what to ask next. **Drop it when** the client has already volunteered the answers — don't re-ask just to complete the mnemonic.
+
 ## 4. Situation Questions — pre-meeting homework
 
 Many Situation questions should be answered **before the meeting starts**, not during.

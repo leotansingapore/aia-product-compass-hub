@@ -170,6 +170,17 @@ Most new FCs break silence by volunteering more information, discounts, or fallb
 
 **Why it works:** packaging three decisions as one "yes" reduces decision fatigue.
 
+### Technique 6: "Let me think about it" close
+**When:** the client is stalling but hasn't objected — the default delay response.
+
+Don't concede the delay. Reframe it with risk-reversal + scarcity:
+
+> "Of course. Two things worth knowing before you do: your premium is locked in at today's age — every year you wait it goes up, permanently. And there's a **14-day free-look period** after policy issue, so you can cancel for a full refund if you change your mind.
+>
+> Would it make sense to lock in today's rate and use those 14 days to decide if it still feels right? Worst case, you cancel — best case, you've saved a year of premium increase."
+
+**Why it works:** you're not pushing the sale. You're offering a reversible commitment. Most "think about it" objections evaporate when the downside of starting is zero and the upside of waiting is zero.
+
 ## 5. When resistance is actually emotional
 
 **The principle:** "When it comes to a closing, if you have been competent in your work, resistance is largely emotional, not logical."
@@ -226,6 +237,13 @@ After the client says yes:
 3. **Send a thank-you message** within 24 hours — personal, not templated.
 4. **Follow up within 7 days** on application progress.
 5. **Onboard to your service cadence** — annual review, birthday call, claim help.
+6. **Ask for the referral — once, cleanly.** At the end of the paperwork meeting or in the thank-you message, not during the close itself.
+
+**The referral script:**
+
+> "One last thing. The way I build this practice is entirely through clients like you introducing me to one or two people they care about. Who are the 2–3 people in your life you'd want to have the same conversation we just had? I'll reach out warmly — no pressure, no pitch — and if they're interested, great. If not, also fine."
+
+**Why this script works:** it's specific (2–3 people), low-pressure (no pitch), and names the reciprocity ("people you care about"). Generic "Do you know anyone else?" closes produce generic no's.
 
 A new client who feels cared-for in the first 90 days becomes a 20-year client. One who feels abandoned becomes a lapsed policy and a lost opportunity.
 
