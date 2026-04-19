@@ -38,23 +38,25 @@ Job B pays less when well — but pays *in every scenario that matters.*
 
 Which one do you take?
 
-## 2. Why this matters
+## 2. Why this matters — what you're really selling
 
-Most people — including most clients — evaluate a job offer using only the first column. Annual salary. Maybe bonus.
+Most people — including most of your future clients — evaluate a job offer using only the first column. Annual salary. Maybe bonus.
 
-They ignore the other five columns entirely. Those columns are **benefit structures** — and they represent the difference between a job that funds a good life and a job that leaves you exposed.
+They ignore the other five columns entirely. Those columns are **benefit structures** — and they are the difference between a job that funds a good life and a job that leaves a family exposed.
 
-**The uncomfortable truth:** you are currently being paid like Job A in almost every way. A standard employment contract pays when you work, and the moment you can't work, the payments stop.
+**The uncomfortable truth for the client:** they are currently living on a Job A income. A standard salary pays when they show up. The moment they can't show up — sick, injured, critically ill, dead, retired — the payments stop.
 
-**What this career does, when you're consistent:**
-- Job A salary (commissions from production) ✓
-- Sick/injured income (renewal commissions keep coming) ✓
-- Dead (your CI/life policies, built cheaply because you understand them) ✓
-- Hospitalised (AIA staff benefits + your own plans) ✓
-- Kids' college (accumulation plans you sold yourself) ✓
-- Retirement ($50K/year stream from renewals + CPF + accumulation) ✓
+**This is what you're selling when you sell a financial plan.** You are helping the client convert their Job A income into a Job B life. They agree to set aside roughly 10–20% of their income *today* — into protection and long-term savings. In exchange, their future selves get paid across every scenario Job A ignores:
 
-You're not just selling Job B to clients. You're architecting your own.
+- The retirement where they can finally stop showing up
+- The critical-illness diagnosis they survive without selling the house
+- The hospitalisation bill that doesn't eat their emergency fund
+- The life payout that keeps their children on their feet if they're gone
+- The education fund that survives Singapore's tuition inflation
+
+The "cost" of Job B isn't a premium. It's the Job A version of them who wants to spend that 10–20% on lifestyle right now. Your job is to help them see the trade-off clearly — and choose it willingly.
+
+Clients don't buy insurance. They buy the version of their life where they still have options in the worst scenarios.
 
 ## 3. The standard rebuttal — "but my company gives me benefits"
 
@@ -77,7 +79,7 @@ Use this checklist in any fact-finding meeting. Map the client's actual coverage
 | **Critically ill** | CI payout 5× annual income for major CI | Usually 0 or grossly underfunded |
 | **Dead** | Life insurance 10× annual income | Employer policies: 1–3× at best |
 | **Hospitalised** | Max-tier hospital plan + rider | Employer plan ends with employment |
-| **Kids' education** | Dedicated savings / endowment plan | Usually just "CPF plus hope" |
+| **Kids' education** | Dedicated savings / endowment plan started early | Usually unplanned — CPF cannot be used to pay school or university fees, so it falls entirely on savings, loans, or scholarships the family may or may not win |
 | **Retirement** | Income stream ~70% of working income | Most Singaporeans under-save |
 
 A Job A client with gaps in 4+ rows is one bad week away from a catastrophe they can't fix retroactively.
