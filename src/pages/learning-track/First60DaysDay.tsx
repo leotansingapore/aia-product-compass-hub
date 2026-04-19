@@ -17,8 +17,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { markdownComponents } from "@/lib/markdown-config";
+import { detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
 import { getDay, getAllDays, WEEK_META } from "@/features/first-60-days/content";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
+import { useFirst60DaysDayMeta } from "@/hooks/first-60-days/useFirst60DaysDayMeta";
 import { DayQuiz } from "@/components/first-60-days/DayQuiz";
 
 export default function First60DaysDay() {
@@ -28,6 +30,8 @@ export default function First60DaysDay() {
 
   const day = useMemo(() => getDay(dayNumber), [dayNumber]);
   const { isUnlocked, isQuizPassed, markRead } = useFirst60DaysProgress();
+  const dayMetaQuery = useFirst60DaysDayMeta(dayNumber);
+  const dayMeta = dayMetaQuery.data;
   const unlocked = isUnlocked(dayNumber);
   const passed = isQuizPassed(dayNumber);
 
@@ -138,27 +142,64 @@ export default function First60DaysDay() {
         </TabsContent>
 
         <TabsContent value="slides" className="mt-4">
-          <Card>
-            <CardContent className="flex flex-col items-center gap-3 p-10 text-center">
-              <FileText className="h-8 w-8 text-muted-foreground" />
-              <h3 className="text-lg font-semibold">Slides coming soon</h3>
-              <p className="text-sm text-muted-foreground">
-                The slide deck for this day hasn't been added yet. Continue with Read + Quiz.
-              </p>
-            </CardContent>
-          </Card>
+          {dayMeta?.slides_url ? (
+            <Card>
+              <CardContent className="p-0">
+                <div className="relative aspect-video w-full overflow-hidden rounded-md bg-black">
+                  <iframe
+                    src={dayMeta.slides_url}
+                    className="absolute inset-0 h-full w-full"
+                    allowFullScreen
+                    title={`Day ${dayNumber} slides`}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <Card>
+              <CardContent className="flex flex-col items-center gap-3 p-10 text-center">
+                <FileText className="h-8 w-8 text-muted-foreground" />
+                <h3 className="text-lg font-semibold">Slides coming soon</h3>
+                <p className="text-sm text-muted-foreground">
+                  The slide deck for this day hasn't been added yet. Continue with Read + Quiz.
+                </p>
+              </CardContent>
+            </Card>
+          )}
         </TabsContent>
 
         <TabsContent value="video" className="mt-4">
-          <Card>
-            <CardContent className="flex flex-col items-center gap-3 p-10 text-center">
-              <Film className="h-8 w-8 text-muted-foreground" />
-              <h3 className="text-lg font-semibold">Video coming soon</h3>
-              <p className="text-sm text-muted-foreground">
-                The video lecture for this day hasn't been recorded yet. Continue with Read + Quiz.
-              </p>
-            </CardContent>
-          </Card>
+          {dayMeta?.video_url ? (
+            <Card>
+              <CardContent className="p-0">
+                {(() => {
+                  const info = detectVideoEmbed(dayMeta.video_url);
+                  if (info.embedUrl) {
+                    return <VideoEmbed embedUrl={info.embedUrl} platform={info.platform} />;
+                  }
+                  return (
+                    <div className="p-6 text-sm text-muted-foreground">
+                      Video URL stored but not recognised by the player.{" "}
+                      <a href={dayMeta.video_url} target="_blank" rel="noreferrer" className="underline">
+                        Open in new tab
+                      </a>
+                      .
+                    </div>
+                  );
+                })()}
+              </CardContent>
+            </Card>
+          ) : (
+            <Card>
+              <CardContent className="flex flex-col items-center gap-3 p-10 text-center">
+                <Film className="h-8 w-8 text-muted-foreground" />
+                <h3 className="text-lg font-semibold">Video coming soon</h3>
+                <p className="text-sm text-muted-foreground">
+                  The video lecture for this day hasn't been recorded yet. Continue with Read + Quiz.
+                </p>
+              </CardContent>
+            </Card>
+          )}
         </TabsContent>
 
         <TabsContent value="quiz" className="mt-4">
