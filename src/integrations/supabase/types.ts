@@ -710,6 +710,91 @@ export type Database = {
           },
         ]
       }
+      first_60_days_day_meta: {
+        Row: {
+          day_number: number
+          notes: string | null
+          published: boolean
+          slides_url: string | null
+          updated_at: string
+          updated_by: string | null
+          video_duration_sec: number | null
+          video_url: string | null
+        }
+        Insert: {
+          day_number: number
+          notes?: string | null
+          published?: boolean
+          slides_url?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          video_duration_sec?: number | null
+          video_url?: string | null
+        }
+        Update: {
+          day_number?: number
+          notes?: string | null
+          published?: boolean
+          slides_url?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          video_duration_sec?: number | null
+          video_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "first_60_days_day_meta_updated_by_fkey"
+            columns: ["updated_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      first_60_days_progress: {
+        Row: {
+          day_number: number
+          quiz_attempts: number
+          quiz_passed_at: string | null
+          quiz_score: number | null
+          read_at: string | null
+          slides_viewed_at: string | null
+          updated_at: string
+          user_id: string
+          video_watched_at: string | null
+        }
+        Insert: {
+          day_number: number
+          quiz_attempts?: number
+          quiz_passed_at?: string | null
+          quiz_score?: number | null
+          read_at?: string | null
+          slides_viewed_at?: string | null
+          updated_at?: string
+          user_id: string
+          video_watched_at?: string | null
+        }
+        Update: {
+          day_number?: number
+          quiz_attempts?: number
+          quiz_passed_at?: string | null
+          quiz_score?: number | null
+          read_at?: string | null
+          slides_viewed_at?: string | null
+          updated_at?: string
+          user_id?: string
+          video_watched_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "first_60_days_progress_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       flow_annotations: {
         Row: {
           author_name: string
