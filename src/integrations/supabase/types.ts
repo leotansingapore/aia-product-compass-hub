@@ -758,6 +758,8 @@ export type Database = {
           quiz_passed_at: string | null
           quiz_score: number | null
           read_at: string | null
+          reflection_answers: Json | null
+          reflection_submitted_at: string | null
           slides_viewed_at: string | null
           updated_at: string
           user_id: string
@@ -769,6 +771,8 @@ export type Database = {
           quiz_passed_at?: string | null
           quiz_score?: number | null
           read_at?: string | null
+          reflection_answers?: Json | null
+          reflection_submitted_at?: string | null
           slides_viewed_at?: string | null
           updated_at?: string
           user_id: string
@@ -780,6 +784,8 @@ export type Database = {
           quiz_passed_at?: string | null
           quiz_score?: number | null
           read_at?: string | null
+          reflection_answers?: Json | null
+          reflection_submitted_at?: string | null
           slides_viewed_at?: string | null
           updated_at?: string
           user_id?: string
