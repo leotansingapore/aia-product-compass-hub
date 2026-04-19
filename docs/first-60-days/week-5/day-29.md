@@ -159,19 +159,6 @@ You don't guilt them. You give them the number. Let them decide.
 
 ---
 
-## Reflection worksheet
-
-**1. Memorise the Rule of 72 tonight. Quiz yourself tomorrow.**
-> How long does money double at 4%? 6%? 9%? Answer in under 5 seconds each.
-
-**2. Calculate: if you invest $1,000/month at 7% p.a. from today until age 65, what do you have?**
-> Use the financial calculator. Write the number. Internalise the magnitude.
-
-**3. Practise explaining the Alice vs Bob example in your own words.**
-> The early-starter-wins story is one of the most persuasive pieces of client education in this career. Own it.
-
----
-
 ## Quick quiz
 
 1. **The Rule of 72 formula:**
@@ -191,6 +178,36 @@ You don't guilt them. You give them the number. Let them decide.
  - B) Early contributions compound for longer, producing disproportionate growth ✓
  - C) Insurance premiums are lower when young
  - D) Young people can take more risk
+
+4. **At 6% per year, roughly how many years does money take to double?**
+ - A) 6 years
+ - B) 10 years
+ - C) 12 years ✓
+ - D) 18 years
+
+5. **A 25-year-old contributes $500/month until 35, then stops. A 35-year-old starts at 35 and contributes $500/month until 65. Assuming the same return, who ends up with more at 65?**
+ - A) The 35-year-old (more total years contributing)
+ - B) The 25-year-old (earlier years compound longer) ✓
+ - C) They tie
+ - D) Depends on the rate
+
+6. **When a client wants to pause a long-term plan, the most useful framing is:**
+ - A) Tell them they'll regret it
+ - B) Calculate the cost of lost compounding and present the number without guilt ✓
+ - C) Remind them of their contract obligations
+ - D) Warn them about market timing
+
+7. **The biggest enemy of compounding is:**
+ - A) Low interest rates
+ - B) Interrupting the plan — stopping, withdrawing, or restarting ✓
+ - C) Inflation
+ - D) Taxes
+
+8. **Compounding is described as "the 8th wonder of the world" because:**
+ - A) It's rare
+ - B) Its output looks magical but it's just mechanical — small inputs over long time grow non-linearly ✓
+ - C) Einstein said so
+ - D) Banks use it as marketing
 
 ---
 
