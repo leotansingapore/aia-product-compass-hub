@@ -160,7 +160,37 @@ Average: __/10.
 
 If you're hitting the targets, you're on track. If not, review what's blocking and adjust next month's plan.
 
-## 6. The next 60 days — the plan
+## 6. Your operating cycle from here
+
+From Day 61 onward, your week is no longer a series of lessons — it's a repeating loop. Every client relationship moves through the same stages, in the same order. Your job is to run the loop cleanly, over and over, for every name on your list.
+
+```mermaid
+flowchart LR
+    A[Reconnect<br/>warm circle + referrals] --> B[Introduce<br/>the approach, elevator pitch]
+    B --> C[Review<br/>gather the policy summary]
+    C --> D[Needs Analysis<br/>CST / fact-find]
+    D --> E[Solution<br/>proposal + close]
+    E --> F[Service<br/>claims, annual reviews]
+    F --> G[Referral<br/>feedback form, names]
+    G --> A
+```
+
+The loop never stops. A client you closed in Month 2 re-enters the cycle at "Service" in Month 14. A referral from that client starts again at "Reconnect." Your book of business is just the sum of how many people are moving through this loop at any given time.
+
+### Weekly target cadence (first 180 days)
+
+These are the numbers that produce a sustainable pipeline. Miss them for a week — recover. Miss them for a month — you're rebuilding.
+
+| Activity | Weekly target | Why this number |
+|---|---|---|
+| **Reconnecting meetings** | 5 | Keeps the top of the funnel warm |
+| **CSTs / fact-finds** | 5 | The main skill-rep |
+| **Policy summaries + proposals** | 3 | Where closes get manufactured |
+| **Referrals asked for** | 20 | You get ~50% names → ~40% meetings |
+
+These four numbers, run every week for 180 days, produce what most call "a real practice."
+
+## 7. The next 60 days — the plan
 
 Day 60 is not a finish line. It's a checkpoint.
 
@@ -180,7 +210,7 @@ You've been taught the full arc. Now you run the arc, dozens of times, refining 
 
 **The reps from here are what make you a career FC.**
 
-## 7. The 3-year target
+## 8. The 3-year target
 
 Today is Day 60. Three years from today = Day 1,095.
 
@@ -198,7 +228,7 @@ What does the Year-3 version of you look like?
 
 **The math:** Day 60 you → Day 1,095 you is roughly 18× more capable. Not 2×. Not 5×. Eighteen times.
 
-## 8. The final frame
+## 9. The final frame
 
 Six 10-word truths to carry into Day 61:
 
