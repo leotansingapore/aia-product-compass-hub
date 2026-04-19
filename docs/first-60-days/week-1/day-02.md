@@ -120,9 +120,9 @@ You'll use this three-layer model in every client conversation for the rest of y
 
 ```mermaid
 flowchart BT
-    L1["<b>Layer 1: Risk Management</b><br/>The foundation — insurance, emergency fund"]
-    L2["<b>Layer 2: Wealth Accumulation</b><br/>Investments, CPF, ILPs"]
-    L3["<b>Layer 3: Wealth Preservation</b><br/>Legacy, trusts, estate planning"]
+    L1["Layer 1: Risk Management<br/>The foundation — insurance, emergency fund"]
+    L2["Layer 2: Wealth Accumulation<br/>Investments, CPF, ILPs"]
+    L3["Layer 3: Wealth Preservation<br/>Legacy, trusts, estate planning"]
     L1 --> L2 --> L3
 ```
 
