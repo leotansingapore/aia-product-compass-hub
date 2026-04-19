@@ -150,19 +150,6 @@ Same FC, wrong diagnosis — just doing more calls — keeps the frustration run
 
 ---
 
-## Reflection worksheet
-
-**1. Score yourself 0–10 on Activities, Skills, Knowledge today.**
-> Honest scores. Average across last 4 weeks. Where's the weakest link?
-
-**2. Build your weekly scorecard. 8 columns, running from Week 1.**
-> Simple. Google Sheet or notebook. Start tracking this week, backfill what you can.
-
-**3. Calculate your current weekly ratios (outreach → appointment, appointment → meeting, meeting → close).**
-> If the data doesn't exist, your CRM is the first thing to fix.
-
----
-
 ## Quick quiz
 
 1. **The production formula is:**
@@ -182,6 +169,24 @@ Same FC, wrong diagnosis — just doing more calls — keeps the frustration run
  - B) Skills ✓
  - C) Knowledge
  - D) Product selection
+
+4. **Why is the formula multiplicative (×) rather than additive (+)?**
+ - A) It makes the math harder
+ - B) If any one factor is zero, the result is zero — so all three must be non-zero every week ✓
+ - C) Because production compounds
+ - D) So managers can weight factors
+
+5. **Running a personal scorecard weekly helps you:**
+ - A) Compare yourself to peers
+ - B) Diagnose the weakest of the three factors and focus the next week's effort on it ✓
+ - C) Feel better on good weeks
+ - D) Hit monthly targets automatically
+
+6. **An FC with strong outreach but low close rate should:**
+ - A) Do 2× more outreach
+ - B) Study more products
+ - C) Invest in skill reps — role-play, recorded meetings, feedback from a mentor ✓
+ - D) Lower their close-rate target
 
 ---
 
