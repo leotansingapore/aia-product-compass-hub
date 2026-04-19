@@ -133,19 +133,6 @@ This is the psychological move that separates 10X practitioners from people who 
 
 ---
 
-## Reflection worksheet
-
-**1. Write your daily 10X numbers. Outreaches, content, role-plays.**
-> Specific integers. Write them. Put them on your calendar tomorrow.
-
-**2. Name your MAD-day minimum. Something you CAN hit on a bad day.**
-> Low enough to be realistic. High enough to maintain momentum.
-
-**3. When did you last miss twice in a row? What caused it?**
-> Pattern recognition saves you from the next slide.
-
----
-
 ## Quick quiz
 
 1. **Which activities deserve 10X volume?**
@@ -165,6 +152,24 @@ This is the psychological move that separates 10X practitioners from people who 
  - B) Punish yourself next day
  - C) Diagnose what blocked the effort; return to baseline; keep the target ✓
  - D) Give up for the week
+
+4. **What makes 10X different from ordinary "work harder" advice?**
+ - A) It demands 10× the effort on every task
+ - B) It targets activities where volume itself creates the skill and the outcome ✓
+ - C) It applies only to cold calling
+ - D) It replaces quality with quantity
+
+5. **The risk of setting an unrealistic 10X target is:**
+ - A) You hit it accidentally
+ - B) You miss it, feel bad, and abandon the rhythm — which destroys the compound ✓
+ - C) You outperform peers too quickly
+ - D) Your manager will lower it
+
+6. **A "MAD" (minimum activity day) rule exists to:**
+ - A) Let you skip work when tired
+ - B) Preserve the daily pattern when motivation dips, so streaks don't break ✓
+ - C) Make you feel good about doing less
+ - D) Replace full targets permanently
 
 ---
 
