@@ -158,19 +158,6 @@ Use TVM to **project scenarios** and **compare options.** Don't use it to promis
 
 ---
 
-## Reflection worksheet
-
-**1. Install a financial calculator app tonight. Solve the Susan example to confirm it works.**
-> If you can't replicate i ≈ 3.52%, something's off. Check BGN mode, signs, and input order.
-
-**2. Write your own TVM scenario using your own numbers.**
-> Your age, target retirement fund, plausible interest rate. Calculate the annual premium needed.
-
-**3. Explain TVM to a non-financial friend in 60 seconds (aloud).**
-> If they look confused, simplify. If they say "oh I get it," you've got the level right.
-
----
-
 ## Quick quiz
 
 1. **What are the five TVM variables?**
@@ -190,6 +177,36 @@ Use TVM to **project scenarios** and **compare options.** Don't use it to promis
  - B) BGN (payments at beginning of period) ✓
  - C) No mode needed
  - D) Simple interest mode
+
+4. **A client pays $2,400/year for 20 years into a plan and gets back $80,000 at maturity. Roughly what return is implied?**
+ - A) 0–1%
+ - B) ~3.5% ✓
+ - C) ~7%
+ - D) Cannot be calculated
+
+5. **Why must you be strict with the sign convention when solving for i?**
+ - A) Because the calculator manual says so
+ - B) Mixing signs gives a "no solution" error or a misleading rate ✓
+ - C) Insurance regulators require it
+ - D) It doesn't actually matter
+
+6. **A client says "my plan returns 5% but inflation is 3%." Their real return is closest to:**
+ - A) 5%
+ - B) 8%
+ - C) ~2% ✓
+ - D) 0%
+
+7. **TVM is best thought of as:**
+ - A) An investment philosophy
+ - B) A calculation tool for projecting scenarios and comparing options ✓
+ - C) A guaranteed-outcome formula
+ - D) A replacement for fact-finding
+
+8. **The most common TVM mistake with new FCs is:**
+ - A) Forgetting to use a calculator
+ - B) Using END mode when the product is BGN, or mixing up payment signs ✓
+ - C) Rounding too much
+ - D) Using decimals instead of percentages
 
 ---
 
