@@ -143,19 +143,6 @@ Memorise that sentence. You'll use it for the rest of your career.
 
 ---
 
-## Reflection worksheet
-
-**1. Calculate your own DCA scenario. Pick $500/month, 25 years, 6% p.a.**
-> Use the financial calculator or any compound interest tool. Write the final number.
-
-**2. Practise the client message: "Time in the market beats timing the market."**
-> Extend to 3 sentences max. Use your own voice. Say it aloud.
-
-**3. Identify one volatile investment (any asset) you've personally been tempted to "time."**
-> Honest question: would you have done better with DCA over the same period?
-
----
-
 ## Quick quiz
 
 1. **DCA means:**
@@ -175,6 +162,30 @@ Memorise that sentence. You'll use it for the rest of your career.
  - B) It removes emotional decisions and automates the right behaviour ✓
  - C) Tax benefits
  - D) Compound interest
+
+4. **DCA is least useful when:**
+ - A) The investment horizon is 20+ years
+ - B) The investment horizon is under 2 years ✓
+ - C) The market is volatile
+ - D) The investor is young
+
+5. **The single sentence a client should take away from a DCA conversation:**
+ - A) "DCA guarantees returns."
+ - B) "Time in the market beats timing the market." ✓
+ - C) "Never invest in volatile assets."
+ - D) "Always invest lump sums."
+
+6. **A DCA plan works best when the client:**
+ - A) Monitors markets daily
+ - B) Automates the contribution and doesn't interrupt it ✓
+ - C) Pauses during downturns
+ - D) Increases contributions when the market is high
+
+7. **When lump-sum beats DCA, it's usually because:**
+ - A) The market rose steadily over the period ✓
+ - B) The client was younger
+ - C) Fees were lower
+ - D) The investment horizon was shorter
 
 ---
 
