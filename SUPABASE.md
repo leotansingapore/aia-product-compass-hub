@@ -6,7 +6,62 @@
 
 ## Pending
 
-_(none — all prior items completed)_
+### First 60 Days Progress + Day Metadata — 2026-04-19
+
+**What:** Powers the new `/learning-track/first-60-days` track. Swaps client-side localStorage progress for cross-device Supabase persistence, and adds a day-level metadata row so admins can paste Slides + Video embed URLs per day without a code deploy. Content (markdown + quiz questions) stays source-of-truth in the repo — only *progress* and *embed URLs* live in the DB.
+
+**Tables:**
+
+- `first_60_days_day_meta`: One row per day (1..60). Admin-writable, public-readable.
+  - `day_number` (int, PK, CHECK `day_number BETWEEN 1 AND 60`)
+  - `slides_url` (text, nullable) — Google Slides or other embeddable slide URL
+  - `video_url` (text, nullable) — YouTube / Vimeo / Bunny / Mux video URL
+  - `video_duration_sec` (int, nullable)
+  - `published` (boolean, not null, default `true`) — lets admins hide a day in progress
+  - `notes` (text, nullable) — internal admin notes not shown to learners
+  - `updated_at` (timestamptz, not null, default `now()`)
+  - `updated_by` (uuid, nullable, FK → `profiles(id)` ON DELETE SET NULL)
+  - Seed: INSERT 60 rows `(day_number=1..60, slides_url=NULL, video_url=NULL)` so admin UI can edit in place without INSERTs.
+
+- `first_60_days_progress`: One row per (user, day). Owner-writable only.
+  - `user_id` (uuid, not null, FK → `profiles(id)` ON DELETE CASCADE)
+  - `day_number` (int, not null, CHECK `day_number BETWEEN 1 AND 60`)
+  - `read_at` (timestamptz, nullable)
+  - `slides_viewed_at` (timestamptz, nullable)
+  - `video_watched_at` (timestamptz, nullable) — set when playhead reaches 90%
+  - `quiz_score` (int, nullable) — most recent attempt score (0..3)
+  - `quiz_attempts` (int, not null, default `0`)
+  - `quiz_passed_at` (timestamptz, nullable) — set once on first pass; unlocks Day N+1
+  - `updated_at` (timestamptz, not null, default `now()`)
+  - PRIMARY KEY `(user_id, day_number)`
+  - INDEX `idx_first_60_days_progress_user_updated (user_id, updated_at DESC)` for the "continue where you left off" query.
+
+**RLS Policies:**
+
+- `first_60_days_day_meta_select_public`: SELECT on `first_60_days_day_meta`
+  - WHO: `authenticated` (any signed-in user)
+  - CONDITION: `published = true` OR user is admin (via `user_admin_roles`)
+  - Unpublished rows stay visible to admins for preview.
+
+- `first_60_days_day_meta_write_admin`: INSERT / UPDATE / DELETE on `first_60_days_day_meta`
+  - WHO: admin or master_admin (check `user_admin_roles` — same pattern used by `learning_track_items`)
+  - CONDITION: admin-only
+
+- `first_60_days_progress_owner_all`: SELECT / INSERT / UPDATE / DELETE on `first_60_days_progress`
+  - WHO: owner
+  - CONDITION: `auth.uid() = user_id`
+  - No admin-reads policy — progress is private by default. If admin analytics are needed later, add a separate read-only policy via a dedicated view.
+
+**Functions (RPC):** _(none — the client uses direct upserts via PostgREST)_
+
+**Storage:** _(none)_
+
+**Client migration path (no Lovable action needed — handled by Claude Code after migration lands):**
+
+1. Replace `useFirst60DaysProgress` localStorage with Supabase-backed hook that upserts into `first_60_days_progress`.
+2. One-time migration on first sign-in: read any existing localStorage key `first-60-days-progress-v1`, upsert rows into `first_60_days_progress`, then delete the localStorage key (mirrors the existing `migrateLocalProgress` pattern in `src/lib/learning-track/migrateLocalProgress.ts`).
+3. Day page `Slides` and `Video` tabs switch from "coming soon" to rendering `slides_url` / `video_url` iframes when present.
+4. Add `/learning-track/admin/first-60-days` page: table of 60 rows, inline-edit slides/video URLs.
 
 ### Nested Categories (2-level) — DONE 2026-04-19
 
