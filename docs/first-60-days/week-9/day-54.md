@@ -146,7 +146,29 @@ By the end of today you should be able to:
 ### The close (1 min)
 > "For your situation — [spouse], two kids, mortgage, parents — a properly sized life cover would be $[X]. Let me show you how that structures."
 
-## 6. Building your own concepts
+## 6. Your full advisor toolkit — 9 planning solutions
+
+The three concepts above are the most common. But your real toolkit is broader. Every client walks in with a life stage and a concern — your job is to have a planning angle for every one of them.
+
+Keep this table open when you're preparing for a meeting. The right concept is usually the one that matches their current life moment.
+
+| # | Solution | Client trigger | What you cover |
+|---|---|---|---|
+| 1 | **Basic Financial Planning** | Any first-time meeting | How much to cover, why risk management comes first, simple budgeting, loan management |
+| 2 | **Wedding Budgeting** | Engaged / recently married | Setting aside for the wedding *and* locking in financial planning in the same window |
+| 3 | **Home Budgeting (BTO / Property)** | Applying for BTO or upgrading | Good-debt concept, leveraging the housing loan to grow the first property asset |
+| 4 | **Baby Planning** | Pregnant / recent parent | Prenatal, delivery, diapering, education planning, reviewing the parent's existing coverage |
+| 5 | **Wealth Building — CPF** | Working adult with CPF balance | Building wealth through CPF, maximising the resources already in their account |
+| 6 | **Tax Savings** | Taxable income, wants to reduce | CPF top-ups, SRS contributions, the retirement angle these unlock |
+| 7 | **Investments** | Saving but earning nothing | Basic investment knowledge so they can make informed calls |
+| 8 | **"One Retirement"** | Mid-career, wondering if they're on track | Putting the entire portfolio together to determine comfortable retirement on ~20% of the capital most people assume they need |
+| 9 | **GoalsMapper / timeline simulation** | Wants to see the big picture | Charting the full financial timeline, stress-testing scenarios to see if the portfolio holds |
+
+**This list is not exhaustive** — and it's not product-specific. It's a set of planning *conversations.* The product comes after you've established which conversation the client actually needs.
+
+**Rule of thumb:** by Month 6 you should be able to walk any prospect through any of these 9 in 5 minutes flat. Until then, over-prepare before each meeting.
+
+## 7. Building your own concepts
 
 The three concepts above are starting points. Build your own library of 8–10 concepts over time. Each one:
 
@@ -156,7 +178,7 @@ The three concepts above are starting points. Build your own library of 8–10 c
 
 **Rule:** every concept must end with a recommendation path. Concepts without product tie-ins are wasted time.
 
-## 7. When NOT to concept-sell
+## 8. When NOT to concept-sell
 
 Not every meeting needs concept selling.
 
@@ -172,7 +194,7 @@ Not every meeting needs concept selling.
 - The client is comparison-shopping (concepts beat feature-comparison).
 - You want a referral-quality client (someone who can explain their plan to others).
 
-## 8. The concept → product handoff
+## 9. The concept → product handoff
 
 A clean concept close transitions into product specifics:
 
