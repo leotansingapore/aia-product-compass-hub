@@ -93,7 +93,48 @@ You can't. You shouldn't try. The only goal of a prospecting call is **to book a
 **The rule:** if the conversation strays into product or advice, gently redirect:
 > "That's a great question — the honest answer depends on your situation, which I'd rather understand properly before answering. Can we find 30 minutes this week?"
 
-## 4. The "by the way" call
+## 4. When the meeting is booked — the 4-step introduction
+
+Booking the meeting is half the work. The other half is running the meeting itself with structure, so you're never improvising in front of a prospect. Every first meeting follows four steps in this order.
+
+```mermaid
+flowchart LR
+    S1[1 · Set the meeting<br/>confirm time, location, purpose] --> S2[2 · Re-share the purpose<br/>thank them for helping you out]
+    S2 --> S3[3 · Introduce yourself + agency<br/>your why, what you do, who you work with]
+    S3 --> S4[4 · Run the presentation<br/>leads to one of three outcomes]
+```
+
+### Step 1 — Set the meeting
+Confirm time, place, and purpose the day before. Short message:
+> "Looking forward to tomorrow 3pm at Starbucks Raffles Place. I'll run through the financial planning survey we spoke about — takes ~30 mins. Any questions, let me know!"
+
+### Step 2 — Re-share the purpose
+Open the meeting by restating why you're there and thanking them. Low pressure, humble. This is the frame-setting that stops them from treating you as a salesperson.
+
+### Step 3 — Introduce yourself and the agency
+Three artefacts you walk them through:
+- **Your write-up** — your *why*, your *what*, and the kind of people you help
+- **The agency philosophy** — what the team stands for
+- **The ecosystem** — the community, partners, and support the prospect is plugging into when they work with you
+
+These exist precisely so you don't have to improvise credibility. Build them once; reuse them with every prospect.
+
+### Step 4 — Run the presentation → three outcomes
+
+```mermaid
+flowchart TD
+    P[Financial Planning<br/>presentation] --> Q1[Find out their<br/>current coverage]
+    Q1 --> Q2[Learn why planning<br/>matters to them]
+    Q2 --> O1[Outcome 1<br/>Take action if they<br/>haven't planned yet]
+    Q2 --> O2[Outcome 2<br/>Review and restructure<br/>existing portfolio]
+    Q2 --> O3[Outcome 3<br/>No immediate need —<br/>collect feedback + referrals]
+```
+
+There is **no fourth outcome**. Even the "no immediate need" case is still productive — the referral ask is the way this industry's top performers compound. A meeting that ends with 5 names in your notebook is a meeting that paid for itself.
+
+**The mental shift:** stop judging a meeting by whether they bought. Judge it by whether it ended in one of these three outcomes cleanly.
+
+## 5. The "by the way" call
 
 One of the most elegant prospecting techniques:
 
@@ -114,7 +155,7 @@ During lunch, friends naturally ask "what are you doing these days?" — and you
 
 **Lunch is showmanship.** You're not pitching; you're being a friend with a new chapter they want to know about.
 
-## 5. Cold call ≠ only FCs do this
+## 6. Cold call ≠ only FCs do this
 
 Many new FCs feel cold calling is "beneath them." Everyone does it:
 
@@ -129,7 +170,7 @@ Many new FCs feel cold calling is "beneath them." Everyone does it:
 
 **Cold calling is a universal business skill.** Anyone who claims to "not do it" is either very established or lying. Owning this skill gives you leverage for your entire career, not just this one.
 
-## 6. Your elevator pitch — AIDA framework
+## 7. Your elevator pitch — AIDA framework
 
 When a prospect asks "what do you do?", you have ~20–30 seconds. Use the AIDA framework.
 
@@ -151,7 +192,7 @@ The CTA.
 
 **Total: ~30 seconds.** Practise until it flows naturally.
 
-## 7. Structuring your elevator pitch — the 5 questions
+## 8. Structuring your elevator pitch — the 5 questions
 
 Before writing, answer:
 
@@ -163,7 +204,7 @@ Before writing, answer:
 
 A pitch built from these 5 answers will always feel specific and useful. A pitch that skips them feels generic.
 
-## 8. The "you are the product" mindset
+## 9. The "you are the product" mindset
 
 New FCs focus pitches on AIA, policies, or products. That's wrong at the Approach stage.
 
