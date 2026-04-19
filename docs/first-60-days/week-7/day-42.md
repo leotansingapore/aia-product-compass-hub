@@ -199,7 +199,7 @@ Our agency also runs Facebook Ads to help you acquire clients. This works but ha
 - **Skill:** converting cold paid leads is harder than warm social leads. Expect 10–20% conversion vs 30–50% warm.
 - **Compliance:** MAS rules on representations and claims apply.
 
-**For your first 60 days: don't buy leads.** Master organic lead-gen via yo first. Paid becomes cost-effective once you know your close rate and CLV.
+**For your first 60 days: don't buy leads.** Master organic lead-gen via your natural market first. Paid becomes cost-effective once you know your close rate and CLV.
 
 ---
 
