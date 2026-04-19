@@ -82,6 +82,12 @@ export default function LearningTrack() {
                 Resources
               </NavLink>
             )}
+            <NavLink
+              to="/learning-track/first-60-days"
+              className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}
+            >
+              First 60 Days
+            </NavLink>
             {showAdminTab && (
               <NavLink
                 to="/learning-track/admin"
