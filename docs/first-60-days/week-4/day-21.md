@@ -159,8 +159,8 @@ New FCs talk when they're nervous. Top producers know silence is productive.
 **2. Write out the 5-phase structure from memory, with target minutes.**
 > Do it without looking. Where did you forget? That's your gap.
 
-**3. Pick ONE closing technique to practise this week.**
-> Find a low-stakes context (family member on a non-work decision). Try it. See how it feels.
+**3. Pick ONE phase of the 5-phase structure you want to get good at first.**
+> You won't run a real meeting until Week 8 — but you can mentally rehearse now. Which phase will feel hardest when you're actually across from a prospect? Write down the reason.
 
 ---
 
