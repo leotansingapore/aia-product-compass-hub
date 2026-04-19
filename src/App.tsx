@@ -66,6 +66,7 @@ const LearningTrackPreRnf = lazy(() => import("./pages/learning-track/PreRnf"));
 const LearningTrackPostRnf = lazy(() => import("./pages/learning-track/PostRnf"));
 const LearningTrackResources = lazy(() => import("./pages/learning-track/Resources"));
 const LearningTrackFirst60Days = lazy(() => import("./pages/learning-track/First60Days"));
+const LearningTrackFirst60DaysDay = lazy(() => import("./pages/learning-track/First60DaysDay"));
 const LearningTrackAdminLayout = lazy(() => import("./pages/learning-track/admin/AdminLayout"));
 const LearningTrackAdminRoster = lazy(() => import("./pages/learning-track/admin/Roster"));
 const LearningTrackAdminHeatmap = lazy(() => import("./pages/learning-track/admin/Heatmap"));
@@ -162,6 +163,7 @@ const App = () => (
                       <Route path="post-rnf/:itemId" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
                       <Route path="resources" element={<RequireTier feature="pre-rnf-track"><LearningTrackResources /></RequireTier>} />
                       <Route path="first-60-days" element={<LearningTrackFirst60Days />} />
+                      <Route path="first-60-days/day/:dayNumber" element={<LearningTrackFirst60DaysDay />} />
                       <Route path="admin" element={<ProtectedAdminPage><LearningTrackAdminLayout /></ProtectedAdminPage>}>
                         <Route index element={<Navigate to="roster" replace />} />
                         <Route path="roster" element={<LearningTrackAdminRoster />} />
