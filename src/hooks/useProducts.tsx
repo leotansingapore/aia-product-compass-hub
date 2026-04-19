@@ -94,8 +94,36 @@ export interface Category {
   name: string;
   description: string;
   published?: boolean;
+  parent_id: string | null;
+  sort_order: number;
   created_at: string;
   updated_at: string;
+}
+
+export interface CategoryNode extends Category {
+  children: Category[];
+}
+
+export function buildCategoryTree(categories: Category[]): CategoryNode[] {
+  const parents = categories
+    .filter((c) => c.parent_id === null)
+    .sort((a, b) => a.sort_order - b.sort_order || a.name.localeCompare(b.name));
+
+  return parents.map((parent) => ({
+    ...parent,
+    children: categories
+      .filter((c) => c.parent_id === parent.id)
+      .sort((a, b) => a.sort_order - b.sort_order || a.name.localeCompare(b.name)),
+  }));
+}
+
+export function getCategoryChildren(
+  parentId: string,
+  categories: Category[],
+): Category[] {
+  return categories
+    .filter((c) => c.parent_id === parentId)
+    .sort((a, b) => a.sort_order - b.sort_order || a.name.localeCompare(b.name));
 }
 
 const PRODUCTS_SELECT = `
@@ -119,8 +147,9 @@ function transformProduct(product: any): Product {
 async function fetchCategoriesFromServer(): Promise<Category[]> {
   const { data, error } = await supabase
     .from('categories')
-    .select('id, name, description, published, useful_links, created_at, updated_at')
-    .order('name');
+    .select('id, name, description, published, useful_links, parent_id, sort_order, created_at, updated_at')
+    .order('sort_order', { ascending: true })
+    .order('name', { ascending: true });
   if (error) throw error;
   return data || [];
 }

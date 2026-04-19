@@ -9,9 +9,16 @@ import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ProductsGrid } from "@/components/category/ProductsGrid";
+import { ChildCategoriesGrid } from "@/components/category/ChildCategoriesGrid";
+import { getCategorySlug } from "@/utils/slugUtils";
 import { useProductCategory } from "@/hooks/useProductCategory";
 import { supabase } from "@/integrations/supabase/client";
-import { invalidateCategoriesCache } from "@/hooks/useProducts";
+import {
+  invalidateCategoriesCache,
+  useCategories,
+  useAllProducts,
+  getCategoryChildren,
+} from "@/hooks/useProducts";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
@@ -89,6 +96,28 @@ export default function ProductCategory() {
 
   const { isAdmin } = usePermissions();
   const { isViewingAsUser } = useViewMode();
+
+  // Nested categories: if the current category is a parent (has children),
+  // render the children as a sub-category grid instead of products.
+  const { categories: allCategories } = useCategories();
+  const { allProducts } = useAllProducts();
+  const childCategories = categoryId
+    ? getCategoryChildren(categoryId, allCategories)
+    : [];
+  const visibleChildCategories = isViewingAsUser
+    ? childCategories.filter((c) => c.published !== false)
+    : childCategories;
+  const isParentCategory = visibleChildCategories.length > 0;
+  const productCountByChild: Record<string, number> = {};
+  allProducts.forEach((p) => {
+    productCountByChild[p.category_id] =
+      (productCountByChild[p.category_id] || 0) + 1;
+  });
+
+  // Resolve parent chain for breadcrumbs when viewing a child category
+  const parentCategory = category?.parent_id
+    ? allCategories.find((c) => c.id === category.parent_id)
+    : undefined;
 
   // Filter out unpublished products when viewing as user
   const visibleProducts = isViewingAsUser
@@ -296,6 +325,14 @@ export default function ProductCategory() {
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Product Categories", href: "/categories" },
+          ...(parentCategory
+            ? [
+                {
+                  label: parentCategory.name,
+                  href: `/category/${getCategorySlug(parentCategory.name)}`,
+                },
+              ]
+            : []),
           { label: category.name },
         ]}
         onTitleEdit={isAdmin() ? handleCategoryTitleEdit : undefined}
@@ -326,39 +363,49 @@ export default function ProductCategory() {
           </div>
         )}
 
-        {/* Sticky Search + admin new module */}
-        <div className="mb-3 sm:mb-6 md:mb-8 sticky top-[57px] md:top-[48px] z-20 bg-background/95 backdrop-blur-sm -mx-2 sm:-mx-4 md:-mx-6 px-2 sm:px-4 md:px-6 py-2">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
-            <div className="min-w-0 flex-1">
-              <EnhancedSearchBar
-                onSearch={handleSearch}
-                placeholder={`Search ${category.name.toLowerCase()}...`}
-              />
+        {/* Sticky Search + admin new module (hidden when showing sub-categories) */}
+        {!isParentCategory && (
+          <div className="mb-3 sm:mb-6 md:mb-8 sticky top-[57px] md:top-[48px] z-20 bg-background/95 backdrop-blur-sm -mx-2 sm:-mx-4 md:-mx-6 px-2 sm:px-4 md:px-6 py-2">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+              <div className="min-w-0 flex-1">
+                <EnhancedSearchBar
+                  onSearch={handleSearch}
+                  placeholder={`Search ${category.name.toLowerCase()}...`}
+                />
+              </div>
+              {isAdmin() && categoryId && (
+                <Button
+                  type="button"
+                  className="h-11 w-full shrink-0 gap-2 sm:h-10 sm:w-auto"
+                  onClick={() => setCreateModuleOpen(true)}
+                >
+                  <Plus className="h-4 w-4" />
+                  New module
+                </Button>
+              )}
             </div>
-            {isAdmin() && categoryId && (
-              <Button
-                type="button"
-                className="h-11 w-full shrink-0 gap-2 sm:h-10 sm:w-auto"
-                onClick={() => setCreateModuleOpen(true)}
-              >
-                <Plus className="h-4 w-4" />
-                New module
-              </Button>
-            )}
           </div>
-        </div>
+        )}
 
-        <ProductsGrid
-          products={visibleProducts}
-          categoryName={category.name}
-          onProductClick={handleProductClick}
-          onClearFilters={clearFilters}
-          onEditProduct={handleEditProduct}
-          onDeleteProduct={handleDeleteProduct}
-          onTogglePublish={handleToggleProductPublish}
-          onNestingChange={refetch}
-          completionMap={completionMap}
-        />
+        {isParentCategory ? (
+          <ChildCategoriesGrid
+            parentName={category.name}
+            subCategories={visibleChildCategories}
+            productCounts={productCountByChild}
+          />
+        ) : (
+          <ProductsGrid
+            products={visibleProducts}
+            categoryName={category.name}
+            onProductClick={handleProductClick}
+            onClearFilters={clearFilters}
+            onEditProduct={handleEditProduct}
+            onDeleteProduct={handleDeleteProduct}
+            onTogglePublish={handleToggleProductPublish}
+            onNestingChange={refetch}
+            completionMap={completionMap}
+          />
+        )}
 
         {isAdmin() && categoryId && (
           <Sheet open={createModuleOpen} onOpenChange={setCreateModuleOpen}>

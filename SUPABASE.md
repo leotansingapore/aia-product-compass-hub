@@ -8,6 +8,10 @@
 
 _(none — all prior items completed)_
 
+### Nested Categories (2-level) — DONE 2026-04-19
+
+Migration: `20260419012658_58a41f6a-297b-43e7-8927-646578fa94fd.sql`. Added `categories.parent_id uuid` (nullable FK → `categories.id` ON DELETE SET NULL) and `categories.sort_order int NOT NULL DEFAULT 0`, plus `CHECK (parent_id IS NULL OR parent_id <> id)` self-reference guard and index `idx_categories_parent_sort (parent_id, sort_order)`. Trigger `trg_categories_two_level` enforces strict 2-level hierarchy on INSERT/UPDATE (rejects grandchildren and rejects demoting a parent that has children). Seeded a new top-level "Supplementary Products" row and moved Investment / Endowment / Whole Life / Term / Medical Insurance under it; set top-level `sort_order` so final order is Core Products (10) → Supplementary Products (20) → Supplementary Training (30). Types regenerated.
+
 
 
 
