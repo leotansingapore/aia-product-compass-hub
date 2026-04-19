@@ -18,7 +18,7 @@ tags: [first-60-days, week-2, knowledge]
 
 By the end of today you should be able to:
 
-1. **Draw** the five-level pyramid from memory and explain what fits on each level.
+1. **Draw** the four-level pyramid from memory and explain what fits on each level.
 2. **Diagnose** which level a client is *actually* on, versus the level their lifestyle suggests.
 3. **Use** the pyramid as the mental map for every recommendation you make.
 
@@ -28,23 +28,13 @@ By the end of today you should be able to:
 
 You already saw this on Day 10. Today you lock it in.
 
-```
- ╱╲
- ╱ ╲ Level 5 — Wealth Legacy
- ╱────╲ (Estate planning, generational transfer)
- ╱ ╲
- ╱────────╲ Level 4 — Wealth Preservation
- ╱ ╲ (Protect what you've built)
- ╱────────────╲
- ╱ ╲ Level 3 — Wealth Accumulation
- ╱ ╲ (Investments, CPF, ILPs, endowments)
- ╱──────────────────╲
- ╱ ╲ Level 2 — Short-Term Savings
- ╱ ╲ (Emergency fund: 3–6 months expenses)
- ╱────────────────────────╲
- ╱ ╲ Level 1 — Risk Management
-╱ ╲ (Insurance: Death/TPD, CI, Hospital)
-──────────────────────────────
+```mermaid
+flowchart BT
+    L1["Level 1 — Risk Management<br/>Insurance: Death/TPD, CI, Hospital"]
+    L2["Level 2 — Short-Term Savings<br/>Emergency fund: 3–6 months expenses"]
+    L3["Level 3 — Wealth Accumulation<br/>Investments, CPF, ILPs, endowments"]
+    L4["Level 4 — Wealth Legacy<br/>Estate planning, generational transfer"]
+    L1 --> L2 --> L3 --> L4
 ```
 
 **The non-negotiable rule:** you cannot permanently build a level above without the level below. Any plan that does so is a tower on sand.
@@ -103,21 +93,7 @@ Ten years of consistent investing beats one well-timed bet 99% of the time.
 - One-time lump-sum investments with no regular contribution.
 - Chasing last year's best-performing fund.
 
-## 5. Level 4 — Wealth Preservation
-
-**Purpose:** protect what you've built, once it's significant.
-
-**What changes at this level:** the game shifts from *making more* to *losing less.* A 50% portfolio drop 2 years before retirement is a catastrophe; the same drop at age 30 is an inconvenience.
-
-**Components:**
-- **Shift to lower-volatility assets** as retirement approaches (bonds, guaranteed-income plans, annuities).
-- **De-risk concentrated positions** (single stock, employer shares).
-- **Review insurance for adequacy** — coverage needs shift with age and assets.
-- **Estate planning begins** — will, CPF nominations, power of attorney.
-
-This level is for clients in their late 40s onwards. You don't sell preservation to a 25-year-old. You introduce it later, when it's appropriate.
-
-## 6. Level 5 — Wealth Legacy
+## 5. Level 4 — Wealth Legacy
 
 **Purpose:** what you leave behind, and to whom.
 
@@ -130,7 +106,7 @@ This level is for clients in their late 40s onwards. You don't sell preservation
 
 You will rarely have Legacy conversations with new clients. But you'll serve them long enough that these conversations will arrive.
 
-## 7. How to use this in every meeting
+## 6. How to use this in every meeting
 
 Treat the pyramid as a **diagnostic tool.** In every fact-finding meeting, silently check:
 
@@ -139,12 +115,11 @@ Treat the pyramid as a **diagnostic tool.** In every fact-finding meeting, silen
 | 1 | Are the four risks (death, CI, hospital, disability) adequately covered? |
 | 2 | Can this household survive 3–6 months of lost income? |
 | 3 | Is there a regular, diversified accumulation plan? |
-| 4 | Given their age/assets, is preservation being addressed? |
-| 5 | Are will, CPF nominations, and dependents' plans in place? |
+| 4 | Are will, CPF nominations, and dependents' plans in place? |
 
 **When you find a gap:** start at the lowest missing level. Don't try to fill all gaps at once. Most clients can't absorb more than one or two decisions per meeting.
 
-## 8. The common mistake — selling above the client's real level
+## 7. The common mistake — selling above the client's real level
 
 The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) product to a client with a clear Level 1 gap.
 
@@ -176,7 +151,7 @@ The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) pr
  - A) Short-term savings
  - B) Risk management ✓
  - C) Wealth accumulation
- - D) Wealth preservation
+ - D) Wealth legacy
 
 2. **A 25-year-old client with $500/month to allocate. Their company offers hospitalisation. What's your first priority?**
  - A) Start a regular savings plan immediately
