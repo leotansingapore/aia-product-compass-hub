@@ -222,6 +222,30 @@ Our agency also runs Facebook Ads to help you acquire clients. This works but ha
  - C) Using emojis
  - D) Asking too many questions
 
+4. **Stories (Layer 2) serve a different purpose than Posts (Layer 1). What is it?**
+ - A) Generate new leads who do not follow you yet
+ - B) Build trust with people who already follow you ✓
+ - C) Convert warm DM conversations into booked meetings
+ - D) Boost reach through the algorithm
+
+5. **An FC posts a well-researched CPF carousel but includes no CTA. What is the predictable outcome?**
+ - A) High saves and shares, but zero direct leads generated ✓
+ - B) Reduced organic reach due to missing keywords
+ - C) The post will be flagged as financial advice by the platform
+ - D) Comments will replace DMs as the lead channel
+
+6. **During Week 3 of a 30-day lead-gen push, the recommended action toward warm-market contacts is:**
+ - A) Ask them directly for a meeting
+ - B) Send the contacts a cold DM with a product explainer
+ - C) Message them saying you have started posting more and ask them to share if useful ✓
+ - D) Pause outreach and focus entirely on producing new content
+
+7. **Why does Day 42 advise against buying paid leads in the first 60 days?**
+ - A) Facebook Ads are too expensive for new FCs
+ - B) MAS does not allow paid digital advertising for new advisors
+ - C) Converting cold paid leads is harder; the FC should master organic first and know their close rate before spending on ads ✓
+ - D) Paid leads are lower quality than organic leads in all situations
+
 ---
 
 ## Related

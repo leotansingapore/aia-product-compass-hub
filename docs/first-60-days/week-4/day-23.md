@@ -180,6 +180,30 @@ Feel-Good Productivity isn't about being happy at work all the time. It's about 
  - C) Social media scrolling ✓
  - D) Physical activity you enjoy
 
+4. **Kevin is in Month 6 and notices that even small tasks feel heavy, he drifts to distractions constantly, and he keeps questioning if the career is worth it. According to today's framework, the most likely root cause is:**
+ - A) He is in the Paralysis blocker
+ - B) His alignment is low — his daily work has disconnected from his deeper purpose ✓
+ - C) He has exhausted the Play energiser
+ - D) He needs a longer recharge period
+
+5. **Doing prospecting calls in a co-working session with two peers rather than alone primarily activates which energiser?**
+ - A) Play
+ - B) Power
+ - C) People ✓
+ - D) Conserve
+
+6. **The A/B/C task-priority system under the Conserve sustainer is designed to:**
+ - A) Rank tasks by deadline
+ - B) Ensure the most leveraged work receives peak-hour energy ✓
+ - C) Delegate all C tasks to admin staff
+ - D) Reduce total tasks each week
+
+7. **An FC notices she has been avoiding writing a proposal for three days. Applying the framework, she names the feeling as anxiety about rejection. What is the prescribed first unblocker step?**
+ - A) Ask a mentor to write it instead
+ - B) Schedule a full afternoon block and power through
+ - C) Make the first step tiny — open the document and write one sentence ✓
+ - D) Apply the 80% rule and submit a rough draft immediately
+
 ---
 
 ## Related

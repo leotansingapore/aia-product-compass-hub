@@ -189,6 +189,30 @@ You don't get commission for this advice. Which is exactly why it builds **long-
  - C) CPF LIFE starts paying out
  - D) CPF rates increase
 
+4. **A client earning $6,000/month (under 55) asks how much flows into CPF each month. Your quick estimate is:**
+ - A) $1,200
+ - B) $1,800
+ - C) $2,220 ✓
+ - D) $3,000
+
+5. **A client asks whether they should use OA money to invest through CPFIS. The most accurate caution is:**
+ - A) CPFIS investments are tax-inefficient and should be avoided entirely
+ - B) CPFIS is only available for SA, not OA
+ - C) Most CPFIS investors underperform the OA's guaranteed floor rate; it only makes sense if the investment consistently beats OA returns plus risk ✓
+ - D) CPFIS locks money until age 65 regardless of performance
+
+6. **Why does recommending a CPF SA top-up — even though you earn no commission — build long-term client trust?**
+ - A) It demonstrates deep technical knowledge that clients rarely expect from new FCs
+ - B) It proves you are prioritising the client's best interest over your own earnings, which creates durable credibility ✓
+ - C) It guarantees the client will refer others immediately
+ - D) MAS regulations require advisors to mention CPF before selling any product
+
+7. **CPF LIFE's Escalating Plan is best suited for a client who:**
+ - A) Wants the largest possible bequest for their children
+ - B) Needs the highest payout in the first year of retirement
+ - C) Is worried that a fixed monthly payout will lose real value to inflation over a long retirement ✓
+ - D) Plans to withdraw all funds at age 55
+
 ---
 
 ## Related

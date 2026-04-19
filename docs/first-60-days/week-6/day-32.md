@@ -186,6 +186,30 @@ For 99% of client conversations (rates 2–12%, periods 5–40 years), the rule 
  - C) Rates between 2–12%, periods 5–40 years ✓
  - D) Short-term calculations only
 
+4. **A client, age 35, has $50,000 in CPF SA earning 4% p.a. Without any additional contributions, the approximate balance at age 65 is:**
+ - A) $100,000
+ - B) $130,000
+ - C) $162,000 ✓
+ - D) $250,000
+
+5. **A client says "I'll start investing in 5 years when I'm more settled." At 6% compounding, the cost of this 5-year delay in terms of final retirement capital is approximately:**
+ - A) 5%
+ - B) 10%
+ - C) 25% ✓
+ - D) 50%
+
+6. **Your client is 40 and holds a $500K life insurance policy. Inflation is 3% p.a. In real purchasing-power terms, what will $500K buy their family in 30 years?**
+ - A) Roughly $500K — nominal value is preserved
+ - B) Roughly $350K
+ - C) Roughly $210K ✓
+ - D) Roughly $100K
+
+7. **A 4-year Australian business degree costs $100,000 today. A client's child is 8. Using 8% education inflation, the target amount when the child turns 21 is closest to:**
+ - A) $150,000
+ - B) $200,000
+ - C) $270,000 ✓
+ - D) $400,000
+
 ---
 
 ## Related

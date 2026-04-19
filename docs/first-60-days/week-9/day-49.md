@@ -193,6 +193,30 @@ Some answer: "Actually, I'm concerned about X." → gold. That's the real object
    - C) As the transition from SPIN into scheduling the next meeting + surfacing remaining objections ✓
    - D) During rapport building
 
+4. **A client says "I know I should save more for retirement but haven't started." You've acknowledged the problem. What's the correct next move?**
+   - A) Jump straight to recommending a plan
+   - B) Ask a Need-Payoff question to have them describe what acting would mean
+   - C) Ask an Implication question to make them feel the consequences of not starting ✓
+   - D) Summarise and close the meeting
+
+5. **You've just asked three Implication questions in a row. The client looks uncomfortable. What should you do?**
+   - A) Keep going — the discomfort is doing your work
+   - B) Reassure them everything will be fine
+   - C) Pivot to a Need-Payoff question to shift the emotional tone toward the solution ✓
+   - D) Stop and present the product immediately
+
+6. **Which of these is a correctly framed Need-Payoff question?**
+   - A) "Wouldn't it be great if your family was protected?"
+   - B) "Have you thought about how much retirement income you need?"
+   - C) "What would it mean to you to know right now that your retirement plan is fully on track?" ✓
+   - D) "Are you aware that CPF alone won't be enough?"
+
+7. **A client answers your Need-Payoff question with "It would be a huge relief — my wife worries about this too." What is the most important thing to do next?**
+   - A) Nod and immediately move to the product presentation
+   - B) Ask another Implication question to deepen the concern
+   - C) Wait for the full answer and let it sit — that sentence is the most valuable in the meeting ✓
+   - D) Introduce the Colombo Close right away
+
 ---
 
 ## Related

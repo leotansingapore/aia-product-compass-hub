@@ -170,6 +170,30 @@ New FCs talk when they're nervous. Top producers know silence is productive.
  - C) Prices
  - D) Comparisons
 
+4. **James asks for the close, the client goes silent, and James fills the silence with more product details. What is the most likely outcome?**
+ - A) The extra information reassures the client and seals the deal
+ - B) James loses momentum — speaking first after the close weakens his position ✓
+ - C) The silence means the client has already decided no
+ - D) The additional detail triggers a referral
+
+5. **A prospect says they are 80% ready to proceed. Which closing technique is best suited to this situation?**
+ - A) Summary close — tie all benefits together
+ - B) Urgency close — manufacturing a deadline
+ - C) Small commitments first — get KYC or basic details started ✓
+ - D) Option close — ask them to choose between two products
+
+6. **During Phase 3, a client reveals they have no idea how much retirement savings they need. What is the FC's correct next move?**
+ - A) Move immediately to Phase 4 and present a savings plan
+ - B) Pause after the answer, let the client sit with the gap, and ask a follow-up question ✓
+ - C) Provide the number for them to reduce discomfort
+ - D) Skip to Phase 5 and show the illustration
+
+7. **Why must a personal mission statement be delivered in Phase 2, before any discovery questions?**
+ - A) It is a compliance requirement
+ - B) It repositions the FC from "insurance salesperson" to trusted advisor before the prospect forms a negative assumption ✓
+ - C) It replaces the need for rapport-building
+ - D) It gives the prospect time to research the FC online
+
 ---
 
 ## Related

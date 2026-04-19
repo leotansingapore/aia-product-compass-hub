@@ -229,6 +229,30 @@ Most clients agree. Some need reassurance — offer it:
    - C) The goal with the highest product margin
    - D) The goal that requires the cheapest product
 
+4. **A client answers "Two kids, ages 6 and 4" and stops. What should you do?**
+   - A) Move on to the next Situation question
+   - B) Write the answer in your notes and ask about income next
+   - C) Probe with a follow-up — "Any thoughts on what you want for their future?" — to surface implied needs ✓
+   - D) Skip to Problem Questions since you have a data point
+
+5. **A client mentions 5 goals in passing. You haven't ranked them yet. What's the risk of jumping straight to Problem Questions?**
+   - A) No risk — you can rank as you go
+   - B) You may present solutions matched to the wrong priority and lose emotional engagement ✓
+   - C) The client may feel rushed
+   - D) You'll run out of time for Section 3
+
+6. **During Section 2, a client gives a shallow answer: "Yeah, I know I should do more for retirement." What do you do?**
+   - A) Accept it and move to the next goal
+   - B) Proceed to Implication questions — the need is acknowledged
+   - C) Probe further: "How long has this been on your mind?" until a real problem is acknowledged ✓
+   - D) Pivot to financial numbers immediately
+
+7. **You're mid-CFR and the client gets defensive when you begin Section 3. This most likely means:**
+   - A) The client has something to hide
+   - B) Sections 1 and 2 weren't done well enough to earn the trust required for financial disclosure ✓
+   - C) You should reschedule the meeting
+   - D) The client is a high-D personality and prefers to skip to numbers
+
 ---
 
 ## Related

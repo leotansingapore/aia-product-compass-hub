@@ -222,6 +222,30 @@ This transparency builds trust. A client who chooses an ILP after this conversat
    - C) 4% and 8% ✓
    - D) Guaranteed only
 
+4. **A client surrenders their ILP after 18 months because of a job loss. What outcome should you have warned them about at point of sale?**
+   - A) The policy reverts to a term plan automatically
+   - B) Early surrender within the front-loaded years means likely receiving back less than total premiums paid ✓
+   - C) The insurer charges a flat $500 surrender fee only
+   - D) The fund value is frozen for 30 days pending final pricing
+
+5. **A client with a 20-year ILP has watched markets drop 25% this year. She wants to switch all funds to cash. What is the correct guidance?**
+   - A) Approve immediately — capital preservation is always the priority
+   - B) Discuss the rebalancing policy: switching entirely to cash during a downturn locks in losses and removes long-term recovery potential; review her risk tolerance first ✓
+   - C) Decline — fund switches are not permitted under AIA policy
+   - D) Advise surrendering the policy and restarting when markets recover
+
+6. **Why is an ILP described as "investments wrapped in an insurance policy" rather than simply an investment account?**
+   - A) ILPs are taxed differently from direct investments under Singapore law
+   - B) The insurance wrapper provides forced savings, a death benefit, and tax-advantaged structure — but also adds insurance charges and admin fees ✓
+   - C) ILPs are managed by AIA's fund managers rather than external fund houses
+   - D) The insurance wrapper guarantees the principal invested
+
+7. **A 45-year-old client who is a sophisticated investor, already DCA-ing into ETFs monthly, asks whether an ILP adds value. What is your honest answer?**
+   - A) Yes — ILPs always outperform direct ETFs because of professional fund management
+   - B) Not likely — a cost-sensitive investor with existing discipline benefits less from the wrapper since the fees outweigh the forced-savings advantage ✓
+   - C) Yes — the insurance wrapper eliminates market risk
+   - D) It depends entirely on the chosen fund, not the client's existing behaviour
+
 ---
 
 ## Related

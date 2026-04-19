@@ -182,6 +182,30 @@ If you're in Month 8 and still 90% natural market, **something is wrong.** Eithe
  - C) Before starting the Financial Health Review ✓
  - D) After the proposal
 
+4. **A prospect says "What's the idea?" Your correct response is:**
+ - A) Explain the full product over the phone to save time
+ - B) Tell them it is about insurance and give a quote
+ - C) Say you need illustrations in person and ask for an appointment ✓
+ - D) Send a brochure and follow up next week
+
+5. **The referred market has close rates 3–5x higher than cold because:**
+ - A) Referred prospects are wealthier on average
+ - B) Trust is pre-transferred from the person who introduced you ✓
+ - C) FCs are more confident when calling referred leads
+ - D) Referred leads have already bought from someone else
+
+6. **An FC in Month 8 is still sourcing 90% of meetings from their natural market. The most likely root cause is:**
+ - A) Their service quality is excellent
+ - B) They have not been asking for referrals consistently ✓
+ - C) Their natural market is unusually large
+ - D) They are not old enough to have a referred market
+
+7. **The "D" in the ABCD Four Promises asks the prospect for:**
+ - A) Their date of birth and income
+ - B) Full disclosure of personal information so the FC can make the best recommendation ✓
+ - C) A decision on whether to proceed
+ - D) Details of their existing insurance policies
+
 ---
 
 ## Related

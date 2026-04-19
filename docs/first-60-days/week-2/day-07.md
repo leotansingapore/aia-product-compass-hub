@@ -114,6 +114,30 @@ This silent labelling sharpens your listening. Do it on every call for a month a
  - C) Wealthier, safer, fuller lives
  - D) Longer, stronger, smarter lives
 
+4. **A client says, "My mum was just diagnosed with cancer." Which segment should this raise in your mind first?**
+ - A) Death / TPD — she may need to update her beneficiaries
+ - B) Critical Illness — the salience event signals a gap to review ✓
+ - C) Savings / Investments — medical costs will deplete her retirement fund
+ - D) Hospitalisation — this is purely a medical-bill problem
+
+5. **A prospect asks, "Why AIA instead of a broker?" The most honest and accurate response is:**
+ - A) AIA products are always cheaper than what a broker can source
+ - B) A tied agent goes deeper on one insurer's products, which leads to better-fitted recommendations ✓
+ - C) Brokers are not regulated and cannot be trusted
+ - D) AIA has the highest claims payout ratio in Singapore
+
+6. **Which scenario best illustrates the "silent labelling" habit from today's lesson?**
+ - A) Memorising the coverage amounts for every AIA product before each meeting
+ - B) Listening to a client mention a promotion and mentally flagging Death/TPD and Savings needs ✓
+ - C) Opening iPos the moment you arrive at a client's home
+ - D) Sending a campaign link via iSmart before the meeting starts
+
+7. **You are about to meet a new client. You have iSmart on your phone but forgot to charge the iPad with iPos. What is the impact?**
+ - A) None — iSmart can do everything iPos can
+ - B) You can share campaign updates but cannot complete a straight-through application on the spot ✓
+ - C) You cannot show any product information without iPos
+ - D) The meeting must be rescheduled; you cannot proceed without both tools
+
 ---
 
 ## Related

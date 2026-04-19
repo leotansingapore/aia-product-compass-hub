@@ -163,6 +163,24 @@ Start stupid small. Momentum handles the rest.
  - C) The first 10 minutes of starting ✓
  - D) Concentration during the middle
 
+4. **Sarah spends her Sunday evening planning next week. She has 10 things she wants to achieve. Applying today's lesson, how many should she designate as her weekly priorities?**
+ - A) All 10 — ambition is good
+ - B) 5, ranked by urgency
+ - C) 3, specific and measurable ✓
+ - D) 1 stretch goal and the rest as stretch targets
+
+5. **An FC rewrites their cold-call opener for the fourth time without having tested it on a real prospect. According to the MVP principle, the better action is:**
+ - A) Refine one more time until it feels perfect
+ - B) Have a mentor review it before using
+ - C) Use the current version for 20 calls and iterate based on real responses ✓
+ - D) Draft two versions and A/B test them in theory
+
+6. **The weekly planning ritual described includes protecting one evening per week for personal life. The primary reason given is:**
+ - A) Work-life balance is a company policy
+ - B) Without protected personal time, burnout hits around Month 3 ✓
+ - C) Evenings are low-productivity anyway
+ - D) It keeps relationships strong for referral purposes
+
 ---
 
 ## Related

@@ -241,6 +241,30 @@ People want to work with **people**, not products. The Approach phase is where y
  - C) Refuse to answer
  - D) Send them collateral instead
 
+4. **You finish a first meeting and the prospect has no immediate need. The productive next step is:**
+ - A) Accept the loss and move on to new prospects
+ - B) Follow up in 6 months with a generic check-in
+ - C) Ask for referrals and collect names before leaving ✓
+ - D) Send a quote anyway to keep them warm
+
+5. **A new FC is about to call a prospect and feels nervous. According to the 6-part Telephone Technique, the first step is:**
+ - A) Dial and open with enthusiasm
+ - B) Prepare — have your list, scripts, and top-5 objection responses ready ✓
+ - C) Set your phone to silent and review your elevator pitch
+ - D) Send a WhatsApp message first to warm them up
+
+6. **When offering appointment times, the correct approach is:**
+ - A) Ask open-endedly: "When are you free?"
+ - B) Give one specific option to keep it simple
+ - C) Offer two specific time slots and let the prospect choose ✓
+ - D) Leave it to them to suggest a time after they've reviewed the material
+
+7. **The "you are the product" mindset at the Approach stage means:**
+ - A) Lead with the AIA brand and its market reputation
+ - B) Emphasise your policies' features and premium rates
+ - C) Focus on your personal why, service orientation, and values — not products ✓
+ - D) Demonstrate technical expertise to build credibility fast
+
 ---
 
 ## Related

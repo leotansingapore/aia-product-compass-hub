@@ -145,6 +145,30 @@ No one in this meeting said "insurance." And yet the client just bought an insur
  - C) Compare them to their peers
  - D) Run a Monte Carlo simulation
 
+4. **A 40-year-old client has a strong investment portfolio (Level 3) but no CI or death coverage. According to the pyramid, what should your first recommendation be?**
+ - A) Add a wealth preservation vehicle to protect the portfolio
+ - B) Compliment the portfolio and suggest a top-up plan
+ - C) Address the Level 1 gap — CI and death coverage — before any further accumulation ✓
+ - D) Open a retirement income plan to complement the investments
+
+5. **Mr Tan's CPF LIFE will pay $2,500/month at 65. His projected expenses are $9,000/month. What monthly gap must his insurance-based accumulation plans fill?**
+ - A) $2,500/month
+ - B) $6,500/month ✓
+ - C) $9,000/month
+ - D) $11,500/month
+
+6. **Why is "passive income > monthly expenses" a more useful goal than "save $2 million"?**
+ - A) It is easier to achieve in a shorter time frame
+ - B) It focuses the client on building income streams, not chasing an abstract number ✓
+ - C) CPF automatically provides this without additional planning
+ - D) It removes the need for any insurance coverage at retirement
+
+7. **A $200K-a-year doctor working 70-hour weeks with no savings is described as "less free" than a $70K teacher with a paid-off house and retirement savings. What concept does this illustrate?**
+ - A) Income is irrelevant to financial planning
+ - B) Property ownership is the primary driver of freedom
+ - C) Optionality — freedom comes from passive income covering expenses, not from income level alone ✓
+ - D) High earners are always poor planners
+
 ---
 
 ## Related

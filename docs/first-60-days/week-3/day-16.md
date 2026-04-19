@@ -142,6 +142,30 @@ The recurring/non-recurring frame helps clients understand why:
  - C) Focus on the biggest premiums
  - D) Avoid annual reviews (clients re-evaluate)
 
+4. **An FC has been in the industry for 10 years, consistently closing 30 policies/year with $3,000 average premium. Approximately what portion of their income now arrives from renewals regardless of new sales?**
+ - A) Less than 10%
+ - B) About 25%
+ - C) More than half ✓
+ - D) Close to 100%
+
+5. **A client asks why they should put money into a CPF LIFE plan instead of taking a retirement lump sum. The best recurring/non-recurring frame is:**
+ - A) CPF LIFE has better returns than lump-sum investments
+ - B) A lump sum is harder to manage in old age
+ - C) CPF LIFE is recurring income for life — it's more valuable because it cannot be outlived ✓
+ - D) Lump sum payouts are taxed more heavily
+
+6. **Which of the following advisor behaviours most directly threatens renewal income?**
+ - A) Doing annual reviews and suggesting policy upgrades
+ - B) Recommending a lower premium than the client originally asked for
+ - C) Selling a client a premium they cannot sustain in a bad year, leading to a lapse ✓
+ - D) Using renewal commissions as a reason to recommend longer-tenure policies
+
+7. **The subscription economy analogy (Netflix, gym, mobile plans) is useful when explaining your business model because:**
+ - A) It shows clients that recurring payments are always fair value
+ - B) It helps clients understand that you, like those businesses, are paid renewals for continued service — making client retention your business model ✓
+ - C) It positions insurance as a consumer product
+ - D) It makes the commission conversation less awkward
+
 ---
 
 ## Related

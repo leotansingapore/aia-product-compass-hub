@@ -188,6 +188,30 @@ Fix these four mental errors before learning a single script — and everything 
  - C) The first meeting should focus on 1–2 highest-priority gaps; the rest unfolds over years ✓
  - D) Clients should be educated before they buy
 
+4. **A new FC who oversells the first meeting — recommending every gap at once — risks:**
+ - A) Earning more commission upfront
+ - B) Destroying the trust needed for honest fact-finding in Step 2 ✓
+ - C) Skipping directly to Step 5 (implementation)
+ - D) Getting a faster referral
+
+5. **Your warm market of 300 contacts realistically yields roughly how many clients?**
+ - A) 150–200
+ - B) 50–75
+ - C) 25 ✓
+ - D) 5–10
+
+6. **A Type B (referred) prospect is described as "hardest to get, easiest to close" because:**
+ - A) They have more money to spend
+ - B) The referrer has already transferred trust to you ✓
+ - C) They respond better to cold scripts
+ - D) They are more financially literate
+
+7. **Which behaviour does the CLV mindset most directly change for a new FC?**
+ - A) Quoting higher premiums to maximise first-year commission
+ - B) Treating a small first policy as the start of a $25K lifetime relationship ✓
+ - C) Rushing prospects to sign before they change their mind
+ - D) Avoiding annual reviews to reduce workload
+
 ---
 
 ## Related

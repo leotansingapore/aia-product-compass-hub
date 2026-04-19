@@ -247,6 +247,30 @@ This is a small move. It has an outsized impact on meeting quality.
  - C) 80% listen, 20% talk ✓
  - D) 100% listen
 
+4. **An FC asks "Where do you work?" to a prospect whose LinkedIn clearly states their employer. What has gone wrong?**
+ - A) Nothing — it's a standard Situation question
+ - B) The FC has signalled poor preparation, creating a trust leak before the meeting properly starts ✓
+ - C) The FC has moved to Problem questions too early
+ - D) The FC has violated PDPA by researching the prospect
+
+5. **A client pauses for 5 seconds after being asked "If you were unable to work for 3 years, what would your family's situation look like?" The right move is:**
+ - A) Rephrase the question to help them answer
+ - B) Move to the next question to avoid awkwardness
+ - C) Let the silence sit — the pause signals the client is feeling the weight of the question ✓
+ - D) Fill the pause with a product recommendation
+
+6. **The FORM mnemonic is most useful when:**
+ - A) Running through the full 10-question Situation checklist systematically
+ - B) You blank mid-meeting and need a quick mental anchor to stay on track ✓
+ - C) The client is C-profile and wants structured data
+ - D) Transitioning from Problem to Implication questions
+
+7. **When transitioning from Situation to Problem questions, why is a verbal signal important?**
+ - A) It gives the client time to prepare their financial documents
+ - B) It signals a shift in tone so the deeper questions feel deliberate and respectful, not abrupt ✓
+ - C) It satisfies a compliance requirement for fact-finding meetings
+ - D) It gives the FC time to review their notes before proceeding
+
 ---
 
 ## Related

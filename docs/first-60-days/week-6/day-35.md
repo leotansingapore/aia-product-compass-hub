@@ -186,6 +186,30 @@ Certain products handle inflation better than others. Keep this in mind:
  - C) $5,400/month ✓
  - D) $8,000/month
 
+4. **A client insists "my money is safe in the bank." The most accurate reframe is:**
+ - A) Banks are riskier than they appear because of counterparty risk
+ - B) The nominal balance is safe, but purchasing power erodes silently at the inflation rate each year ✓
+ - C) Bank interest is taxable, making it inferior to all other assets
+ - D) The government guarantee only covers the first $75K
+
+5. **Jane keeps $100,000 in a savings account earning 0.5% while inflation runs at 2%. After 30 years, the real purchasing power of her account (in today's dollars) is closest to:**
+ - A) $100,000
+ - B) $85,000
+ - C) $65,000 ✓
+ - D) $45,000
+
+6. **When building an education savings plan, why is it wrong to use the general CPI rate of 2% as the inflation assumption?**
+ - A) The CPI rate is a nominal figure and must be converted to a real rate first
+ - B) Education inflation historically runs at 5–8% p.a. — using 2% will severely underestimate the future cost ✓
+ - C) CPI only covers food and housing, not education
+ - D) Education costs are fixed by government regulation and do not inflate
+
+7. **A product illustration shows a fixed payout of $3,000/month for 30 years starting at retirement. The main inflation risk of this structure is:**
+ - A) The payout may be reduced if investment returns disappoint
+ - B) The fixed $3,000 will represent only about $1,650/month in real purchasing power by year 30 at 2% inflation ✓
+ - C) Fixed payouts trigger higher income tax in retirement
+ - D) The insurer may convert the fixed payout to a variable one during the policy term
+
 ---
 
 ## Related

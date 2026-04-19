@@ -159,6 +159,30 @@ A client who tries to jump to Layer 2 without Layer 1 is building a house on san
  - C) Temporary job loss ✓
  - D) Hospitalisation
 
+4. **A 32-year-old client earns $6,000/month. He has $20,000 in savings and no insurance. He says "I'm healthy, so I don't need insurance yet." What's the most accurate reframe?**
+ - A) "You're right — start investing first, then protect later."
+ - B) "Your emergency fund covers temporary income loss, but it can't replace your income if you're critically ill for years." ✓
+ - C) "Insurance is compulsory under MAS rules for working adults."
+ - D) "At your age, premiums are cheapest, so it's financially optimal to buy now."
+
+5. **Under the one-third rule, where do insurance premiums belong?**
+ - A) Short-term third, because they are a monthly expense
+ - B) Mid-term third, because they protect near-term goals
+ - C) Long-term third, because they protect the 40-year version of the client ✓
+ - D) It depends on the type of policy
+
+6. **A client asks how much critical illness coverage she needs. Her annual income is $60,000. According to the rule of thumb, what range should you recommend?**
+ - A) $60,000–$120,000
+ - B) $120,000–$300,000 ✓
+ - C) $300,000–$600,000
+ - D) $600,000 or more
+
+7. **A client has no emergency fund, no insurance, and wants to start an investment portfolio. Using the three-layer model, what is the correct sequencing advice?**
+ - A) Start investing immediately — time in the market beats timing the market
+ - B) Build the emergency fund and risk management layer first, then add investment layer ✓
+ - C) Split contributions equally across all three layers from Day 1
+ - D) Focus on wealth preservation first since it has the longest time horizon
+
 ---
 
 ## Related

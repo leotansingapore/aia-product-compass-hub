@@ -214,6 +214,30 @@ This is **the textbook CST-aware relationship arc** for a new client. By 3 meeti
    - C) Clients should worry less
    - D) Insurance covers everything
 
+4. **A client has just recovered from a serious health scare. Which CST should you lead with, and why?**
+   - A) Wealth Angle — focus on building back their financial plan
+   - B) Risks Angle — their present life tension is protection, not accumulation ✓
+   - C) Either works — the order doesn't matter
+   - D) Neither — avoid insurance topics when emotions are high
+
+5. **During the Risks CST gap reveal, you quote a client's actual numbers from the CFR. Why does this matter?**
+   - A) It is legally required for compliance
+   - B) Using their real numbers makes the gap concrete and personalised, not a generic scary statistic ✓
+   - C) It shows you were listening, which builds rapport
+   - D) It shortens the meeting by combining data collection with the CST
+
+6. **A client's hospital plan through their employer has a $20K per claim limit. You point out they'd lose this coverage if they leave the job. Which of the four emotional triggers does this most directly target?**
+   - A) Love — their family would be affected
+   - B) Regret — they've seen this happen to someone else
+   - C) Security — the loss of cover could jeopardise financial stability after a job change ✓
+   - D) Freedom — it limits their ability to retire early
+
+7. **You've just run the Risks CST and closed a protection plan. At the next meeting, the client is ready to talk wealth building. This is an example of:**
+   - A) An upsell — treat it carefully
+   - B) The textbook CST-aware relationship arc: Risks first to secure the foundation, then Wealth to build above it ✓
+   - C) Skipping the proper sequencing — you should have done both in one meeting
+   - D) A client who was mis-sold a protection plan they didn't need
+
 ---
 
 ## Related

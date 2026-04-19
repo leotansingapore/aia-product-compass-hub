@@ -156,6 +156,30 @@ This isn't a 30-day project. It's a 5–10 year rebuild. Your job is to walk alo
  - C) Because real wealth is hidden
  - D) Because displays of wealth are taxed more
 
+4. **A client owns a condo worth $1.1M with a $900K mortgage, a car on a $60K loan, and $150K in CPF. What is their approximate real net worth?**
+ - A) $1.26M
+ - B) $500,000
+ - C) $290,000 ✓
+ - D) $1.1M
+
+5. **A client who earns $150K/year drives a Mercedes, wears a Rolex, and takes three overseas holidays per year gets defensive when you suggest their net worth may be lower than expected. The right move is:**
+ - A) Show them a comparison of their lifestyle vs a peer's investment portfolio
+ - B) Back off, reschedule, and return when they're ready — shame loses clients ✓
+ - C) Proceed anyway — the numbers are facts, not opinions
+ - D) Focus the meeting on protection products instead of net worth
+
+6. **Which of the following items is correctly classified as an ASSET using the one-sentence test?**
+ - A) A primary home with $400K outstanding mortgage and $2,000/month in maintenance costs
+ - B) A second car used occasionally for family trips
+ - C) An investment property generating $800/month net rental income after all costs ✓
+ - D) A $20,000 designer watch purchased last year
+
+7. **After a client sees their honest balance sheet for the first time and falls quiet, you should:**
+ - A) Summarise the gaps and hand them a product brochure
+ - B) Fill the silence with reassurance that their situation is common
+ - C) Let the silence sit — the realisation is working, and interrupting it breaks the moment ✓
+ - D) Suggest they consult their spouse before proceeding
+
 ---
 
 ## Related

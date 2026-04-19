@@ -129,6 +129,30 @@ Impact is slow to arrive and uneven in distribution. You may work for 18 months 
  - C) Working more hours than last week ✓
  - D) Weekly 1-1 with mentor, with agenda
 
+4. **A new FC in Month 8 is discouraged because her income is lower than her former salary. Based on today's earning-pattern lesson, what is the most accurate reframe?**
+ - A) She should consider switching to a salaried role while the market is tough
+ - B) Month 8 is still in the slow part of the curve; evaluating on Year 1 income leads most FCs to quit prematurely ✓
+ - C) Her income should already be higher than a corporate peer by Month 8
+ - D) If she works twice as many hours, she will immediately cross her former salary
+
+5. **Which of the five career factors does this career score lowest on during Year 1–2, but highest on by Year 3+?**
+ - A) Impact
+ - B) Independence
+ - C) Work-life balance ✓
+ - D) Job security
+
+6. **Two FCs both work 45 hours a week. FC A has a CRM, a weekly mentor review, and a referral workflow. FC B relies on memory and works by instinct. After three years, who is more likely to outperform — and why?**
+ - A) FC B, because instinct develops faster than systems
+ - B) FC A, because infrastructure compounds skill and income over time ✓
+ - C) They will be equal — effort is the only variable that matters
+ - D) FC B, because rigid systems slow down client relationships
+
+7. **The reason passive income (renewal commissions) is described as a "compounding force" is:**
+ - A) Renewal rates increase every year the client ages
+ - B) Each well-serviced policy adds to a book that pays regardless of this month's new sales ✓
+ - C) The commission percentage doubles after Year 3
+ - D) Clients automatically refer friends, multiplying the book with no extra effort
+
 ---
 
 ## Related

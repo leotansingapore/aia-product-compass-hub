@@ -301,6 +301,30 @@ By Week 10, you should be comfortable doing this in front of a real prospect wit
  - C) Any unit; the calculator adjusts
  - D) Quarterly periods
 
+4. **In Problem 9 (closing the gap), the correct two-step approach is:**
+ - A) Subtract desired savings from CPF balance, then solve for i
+ - B) Project CPF forward at its rate, calculate the shortfall, then solve for the PMT needed to fund that shortfall at a separate rate ✓
+ - C) Solve for total PMT at a blended rate of CPF and external returns
+ - D) Use the Rule of 72 to estimate both CPF growth and the gap simultaneously
+
+5. **A client watches you run a TVM calculation in under 90 seconds during the meeting. The primary advisor benefit of this skill is:**
+ - A) It satisfies MAS requirements for fact-finding documentation
+ - B) It allows you to upsell a higher-premium product
+ - C) It demonstrates real-time competence and builds instant credibility, reducing the client's need to "think about it" ✓
+ - D) It eliminates the need for a formal financial needs analysis
+
+6. **You solve Problem 5 and find Option A (lump sum $50K) outperforms Option B (annual $3,000) despite Option B's higher total outlay. The reason is:**
+ - A) Lump sums benefit from preferential tax treatment
+ - B) Annual premiums stop compounding after 10 years
+ - C) The full $50K earns compound returns from day one, whereas Option B's capital is only gradually accumulated over 20 years ✓
+ - D) BGN mode artificially inflates the lump-sum result
+
+7. **A new FC scores 6 out of 10 on the practice set. The recommended next step is:**
+ - A) Move to Week 7 — the practice set is just supplementary
+ - B) Review Days 28–32 and re-run the full set the next day ✓
+ - C) Consult a senior FC to work through the problems together
+ - D) Focus only on the two or three problem types most likely to appear in client meetings
+
 ---
 
 ## Related

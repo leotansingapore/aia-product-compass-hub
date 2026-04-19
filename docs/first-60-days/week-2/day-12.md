@@ -151,6 +151,30 @@ The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) pr
  - C) Level 2 is CPF; Level 1 is private plans
  - D) Level 1 is for young people; Level 2 is for older people
 
+4. **A client is enthusiastic about starting an ILP (Level 3). During fact-finding you learn he has no CI coverage and only a basic employer hospital plan. What is the correct next step?**
+ - A) Start the ILP — the client's enthusiasm means higher retention
+ - B) Sell a smaller ILP and add CI as a rider to keep it simple
+ - C) Redirect the conversation to Level 1 gaps before recommending any accumulation product ✓
+ - D) Defer CI coverage until the ILP matures and provides cash value
+
+5. **Which of the following is a symptom of a weak Level 2, NOT a weak Level 1?**
+ - A) "My death coverage is only $50,000 through my employer."
+ - B) "I don't have any CI plan."
+ - C) "A $2,000 surprise expense last month became credit card debt." ✓
+ - D) "My hospital plan ends when I leave my company."
+
+6. **Why is selling an ILP to a client with a clear Level 1 gap described as a risk to your career, not just the client?**
+ - A) ILPs are not suitable for clients without existing CI cover under MAS regulations
+ - B) A CI diagnosis could force the client to surrender the ILP at a loss, breaking the relationship and triggering negative word-of-mouth ✓
+ - C) The ILP commission will be clawed back immediately if the client has no hospitalisation plan
+ - D) AIA does not allow ILP sales until Level 1 is complete
+
+7. **A client has a will, updated CPF nominations, and is planning a trust structure for her business. Which pyramid level is she working on?**
+ - A) Level 2 — short-term savings
+ - B) Level 3 — wealth accumulation
+ - C) Level 4 — wealth legacy ✓
+ - D) Level 1 — risk management
+
 ---
 
 ## Related

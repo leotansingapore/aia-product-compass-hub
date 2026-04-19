@@ -189,6 +189,30 @@ A 10,000-follower FC with shallow relationships underperforms a 500-follower FC 
  - C) Business conference ✓
  - D) Reality TV
 
+4. **A prospect in Stage 2 (Curious Follower) is primarily deciding:**
+ - A) Whether to buy a product
+ - B) Whether to give a referral
+ - C) Whether the FC knows what they are talking about and is worth more attention ✓
+ - D) Whether the FC's prices are competitive
+
+5. **An FC whose ideal clients are 25–40 Singaporean professionals should prioritise which platform combination?**
+ - A) TikTok + YouTube
+ - B) Facebook + X (Twitter)
+ - C) LinkedIn + Instagram ✓
+ - D) Facebook + TikTok
+
+6. **The hygiene rule about political hot takes exists because:**
+ - A) MAS regulations prohibit political commentary
+ - B) Taking a political position can alienate roughly half your potential market instantly ✓
+ - C) LinkedIn's algorithm penalises political content
+ - D) Clients only want to see finance content
+
+7. **An FC has 10,000 Instagram followers but zero DM conversations last month. What does Day 40 say about this?**
+ - A) They need more followers to generate DMs
+ - B) They should switch platforms
+ - C) Follower count is a vanity metric; conversion quality matters far more than raw numbers ✓
+ - D) They should post more authority content
+
 ---
 
 ## Related

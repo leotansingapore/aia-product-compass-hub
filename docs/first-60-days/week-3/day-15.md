@@ -137,6 +137,30 @@ Clients who can state their goal in SMART form are 10x more likely to follow the
  - C) It can't be invested
  - D) It limits commission income
 
+4. **A 25-year-old client wants $4,000/month (today's dollars) in retirement at 65. After adjusting for 2% inflation over 40 years, roughly how much will they need per month at retirement?**
+ - A) $4,200/month
+ - B) $6,000/month
+ - C) $8,830/month ✓
+ - D) $12,000/month
+
+5. **A 45-year-old client says they'll start investing "in a couple of years." What's the most accurate way to quantify the cost of delay?**
+ - A) Tell them compounding doesn't really kick in until after 30 years anyway
+ - B) Use a retirement calculator to show that delaying 2 years typically costs 20-30% of total retirement capital ✓
+ - C) Remind them that markets are unpredictable, so timing isn't critical
+ - D) Reassure them that CPF will cover most of the gap
+
+6. **Which of the following is a SMART retirement goal?**
+ - A) "I want to be financially comfortable when I stop working"
+ - B) "I want enough passive income in my 60s"
+ - C) "$6,000/month passive income in today's dollars, starting at age 62, adjusted for 2% inflation" ✓
+ - D) "I want to retire early with a million dollars"
+
+7. **At a modest 6% annual return, a 25-year-old saving $500/month over 40 years accumulates roughly $1M. The key insight this illustrates is:**
+ - A) Picking the right fund matters most
+ - B) Over $760,000 comes from compounding — not from the client's own contributions ✓
+ - C) High-risk investments are necessary for retirement
+ - D) CPF contributions alone are sufficient for most Singaporeans
+
 ---
 
 ## Related

@@ -209,6 +209,30 @@ Within 30 min of the meeting ending:
    - C) Collect payment
    - D) Extend the meeting
 
+4. **A client shares that their hospital plan is through work with a $20K per claim limit. You ask about private hospital costs and they don't know. What's the ideal follow-up?**
+   - A) Tell them their coverage is fine and move on
+   - B) Skip the topic — insurance is for Day 53
+   - C) State the real cost range (e.g. $80–150K for major surgery) and ask "How would you feel about that gap?" — a grounded Implication question ✓
+   - D) Ask if they'd like to upgrade their employer plan
+
+5. **Why does the CFR transition script say "one or two basic questions" even though you'll ask many more?**
+   - A) To be honest about the workload
+   - B) To manage expectations downward and lower the client's resistance to financial disclosure ✓
+   - C) Because only two questions are mandatory in Section 3
+   - D) To avoid scaring a high-C client with too much detail
+
+6. **You finish the CFR and the client raises an objection in response to the Colombo close. What's the correct response?**
+   - A) Drop the Colombo close next time — it created a problem
+   - B) Treat it as a failure and reschedule
+   - C) Welcome it — you now have time before the next meeting to address the real objection in your proposal ✓
+   - D) Answer it immediately and attempt to close on the spot
+
+7. **The "24-hour rule" in post-meeting discipline says:**
+   - A) Wait 24 hours before expanding your notes
+   - B) Meeting details are 90% fresh within 24 hours — expand notes and draft recommendations while it's hot ✓
+   - C) Always schedule the follow-up meeting within 24 hours
+   - D) Send a WhatsApp recap to the client within 24 hours
+
 ---
 
 ## Related

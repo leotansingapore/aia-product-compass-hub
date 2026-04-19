@@ -178,6 +178,30 @@ The trap:
  - C) Discarded after Year 1
  - D) Shared with your team
 
+4. **A contact aged 28, recently married, steadily employed, and open to financial advice scores as:**
+ - A) Priority C — too young to have real needs
+ - B) Priority B — needs reconnection first
+ - C) Priority A — warm, in a prime planning life stage, likely to meet within 30 days ✓
+ - D) Priority B — finances may not be stable yet
+
+5. **The primary reason the Project 100 target is 100 names rather than 500 is:**
+ - A) It takes too long to find 500 warm contacts
+ - B) 100 is the Goldilocks number — large enough to sustain a pipeline, small enough to manage ✓
+ - C) AIA policy caps the list at 100
+ - D) Digital tools cannot handle more than 100 contacts
+
+6. **An FC lists 100 names in Week 1 but has called only 5 by Week 4. What does Day 39 identify as the real problem?**
+ - A) The script is not good enough
+ - B) The list has too many C-priority contacts
+ - C) The calling itself — avoidance behaviour, not list quality ✓
+ - D) The market survey questions need updating
+
+7. **What is the recommended weekly addition target to keep Project 100 alive?**
+ - A) 1 new name
+ - B) 5 new names ✓
+ - C) 20 new names
+ - D) No set target — add whenever you meet someone new
+
 ---
 
 ## Related

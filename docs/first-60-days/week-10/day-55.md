@@ -232,6 +232,30 @@ Every mature client has **multiple policies across categories:**
    - C) 4–7 policies across 3–5 categories ✓
    - D) 20+ policies
 
+4. **A client says: "I have $80K in savings and want to grow it long-term but also want some protection." Which category fits best?**
+   - A) Term — cheapest protection option
+   - B) Single Premium ILP — lump-sum goes into funds with an insurance wrapper ✓
+   - C) Disability income — replaces income if they can't work
+   - D) Endowment — best for capital preservation goals
+
+5. **A client needs coverage only until her mortgage is paid off in 20 years and has a tight budget. Which category is most appropriate?**
+   - A) Whole Life — permanent coverage with cash value
+   - B) Universal Life — high leverage for estate planning
+   - C) Term — time-bound, pure protection at lowest premium ✓
+   - D) Endowment — structured savings with insurance element
+
+6. **Why does the recommended FC workflow start with category before selecting a specific plan?**
+   - A) iPos requires a category to be selected before opening illustrations
+   - B) Starting with a specific plan creates product-comparison clients who focus on features and price ✓
+   - C) AIA compliance rules prohibit recommending named products in a first meeting
+   - D) Categories are easier to remember than plan names
+
+7. **Which product type is most appropriate for a high-net-worth client who wants a $1M death benefit but wants to deploy only $150K of capital?**
+   - A) Whole Life — builds cash value steadily
+   - B) Endowment — guaranteed floor returns
+   - C) Universal Life — 3-10x leverage on premium deployed ✓
+   - D) Protection-focused ILP — mixes coverage and growth
+
 ---
 
 ## Related

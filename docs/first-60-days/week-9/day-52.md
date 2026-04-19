@@ -191,6 +191,30 @@ This respects what the government has already built, honours the client's existi
    - C) Silence, pause, lean-in
    - D) Objections, clarifications, counter-questions
 
+4. **A 29-year-old client with no dependents wants to "start investing." Which Wealth CST variation is most appropriate?**
+   - A) Income streams and de-risking — they need to think about preservation
+   - B) Systematisation and automation — consistency beats timing
+   - C) Time and compounding — emphasise the head start they have while young ✓
+   - D) CPF LIFE gap analysis — retirement income is the key lever
+
+5. **You deliver the Wealth CST formula: passive income > monthly expenses = freedom. The client is silent and doesn't respond. What should you do?**
+   - A) Continue to the levers section immediately
+   - B) Repeat the formula using different words
+   - C) Check whether the frame landed: "Does this way of thinking about money make sense to you?" ✓
+   - D) Skip to the product recommendation — the silence means they agree
+
+6. **The Wealth CST covers two levers for closing the freedom gap. What are they?**
+   - A) Saving more and spending less
+   - B) Investing aggressively and cutting debt
+   - C) Growing passive income and right-sizing expenses through deliberate distinction of needs vs lifestyle inflation ✓
+   - D) Maximising CPF and buying property
+
+7. **For a Singaporean client, the Wealth CST should acknowledge CPF LIFE because:**
+   - A) CPF LIFE is enough on its own — no gap to address
+   - B) It shows respect for existing efforts and positions your plan as a complement to close the remaining income gap ✓
+   - C) It avoids any conversation about the government
+   - D) It is required by MAS regulations before recommending any plan
+
 ---
 
 ## Related

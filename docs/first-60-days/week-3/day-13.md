@@ -132,6 +132,30 @@ Never recommend based on the story alone. Use it to open a conversation, then do
  - C) Fill in the blanks with estimates
  - D) Close the meeting and send a proposal
 
+4. **A client says "I earn $120K and have great company benefits." What's the most important follow-up question?**
+ - A) "How much does your company plan cost?"
+ - B) "What happens to those benefits if you leave or get retrenched?" ✓
+ - C) "How long have you been at the company?"
+ - D) "Do you have any dependants?"
+
+5. **According to the life-stage test, a client with gaps in 4+ columns is:**
+ - A) Unlikely to be interested in financial planning
+ - B) Already well-covered by CPF
+ - C) One bad week away from a catastrophe they can't fix retroactively ✓
+ - D) A good candidate for investment products only
+
+6. **Why should you leave blank columns blank when drawing the Job A/B table with a client?**
+ - A) It keeps the meeting short
+ - B) Blank columns reflect the client's actual gaps and prompt them to confront reality themselves ✓
+ - C) You shouldn't have blank columns — fill them with industry averages
+ - D) Blanks indicate areas outside your scope
+
+7. **A client is 45, has a $2M mortgage, two kids in secondary school, and no critical illness cover. Using the Job A/B frame, which column is most urgent to address first?**
+ - A) Retirement income
+ - B) Kids' education fund
+ - C) Critical illness coverage — it's underfunded and the financial impact would be immediate ✓
+ - D) Life insurance top-up
+
 ---
 
 ## Related

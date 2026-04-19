@@ -220,6 +220,30 @@ A well-done policy review often produces:
    - C) Only when there's a clear-cut case — major mis-match, under-coverage, or inferior product ✓
    - D) When the client is bored with their existing insurer
 
+4. **During a policy review, you discover a client's whole life policy names her ex-husband as sole beneficiary. She remarried three years ago. What is the correct action?**
+   - A) Note it but defer — beneficiary changes are the client's responsibility
+   - B) Flag it immediately — outdated beneficiary nominations are one of the six common gaps and should be updated ✓
+   - C) Recommend cancelling the old policy and buying a new one
+   - D) Contact the insurer directly to update the nomination without the client's instruction
+
+5. **A client's $150K whole life policy was taken out 12 years ago when she earned $30K/year. She now earns $90K/year with two dependents. What specific gap does this reveal?**
+   - A) The policy type is wrong — she needs an endowment instead
+   - B) The sum assured is severely under-sized — target is 10x annual income ($900K), leaving a $750K life coverage gap ✓
+   - C) No gap — whole life policies automatically increase coverage with inflation
+   - D) The riders are likely outdated but the base sum assured is sufficient
+
+6. **You give a client a one-page policy snapshot after the review. She shares it with her sister who asks for the same service. What does this illustrate about the policy review?**
+   - A) Clients are unlikely to share financial documents
+   - B) The policy snapshot builds professional credibility before any sale and naturally generates referrals ✓
+   - C) Clients only value the review if it leads to a recommendation they accept
+   - D) The snapshot is a compliance requirement, not a relationship tool
+
+7. **A client has no hospital rider — just a basic Integrated Shield Plan. In practical terms, what does this mean for their next hospitalisation?**
+   - A) Claims are rejected entirely without the rider
+   - B) The client must pay a deductible and co-insurance out of pocket, which can reach $5,000 or more per claim ✓
+   - C) The Shield Plan covers 100% with a fixed $200 admin fee
+   - D) Only outpatient treatment is affected; inpatient is fully covered
+
 ---
 
 ## Related

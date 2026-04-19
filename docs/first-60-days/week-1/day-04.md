@@ -127,6 +127,30 @@ You'll fail at some of these. That's the point.
  - C) Reps — dials, appointments, meetings run ✓
  - D) Your NPS score from clients
 
+4. **You've had a terrible week — two no-shows and three rejections. A fixed-mindset FC would likely:**
+ - A) Ask their mentor which part of the approach to adjust
+ - B) Re-listen to the last rejected call and identify what to change
+ - C) Conclude the market is bad this month and scale back activity ✓
+ - D) Track the objection patterns across the five rejections
+
+5. **According to the "obstacle is the way" concept, what does every rejection on a cold call actually represent?**
+ - A) Evidence that the prospect was not a suitable lead
+ - B) A rep that builds the exact skill you're here to develop ✓
+ - C) A sign to shift your prospecting approach
+ - D) Useful data only if the rejection includes specific feedback
+
+6. **The "not yet" reframe works because it:**
+ - A) Makes failure feel less serious
+ - B) Reassures the client that you will improve
+ - C) Separates your current competence level from your permanent identity ✓
+ - D) Delays the need to take action on a skill gap
+
+7. **An FC who feels they've cracked the code after a great Week 3 should:**
+ - A) Lock in their pipeline strategy immediately — consistency matters
+ - B) Set a new stretch target to capitalise on momentum
+ - C) Treat the feeling as data and keep running the same reps, not making big promises ✓
+ - D) Share the technique with the team before testing it further
+
 ---
 
 ## Related

@@ -164,6 +164,30 @@ Your first 60 days is one of those 10X sprints. After that, you'll find the cade
  - C) A client's buying decision ✓
  - D) Your fear threshold
 
+4. **An FC misses their FYC target in Month 3. According to the 10X Rule, the correct response is:**
+ - A) Reduce the Month 4 target to something more achievable
+ - B) Take a week off to recover and reset expectations
+ - C) Keep the target and raise activity volume — more calls, more outreach ✓
+ - D) Consult a mentor to identify if the goal was realistic
+
+5. **A new FC is afraid to post on LinkedIn. According to Principle 5, the most effective way to overcome this fear is:**
+ - A) Draft posts privately for a month before publishing
+ - B) Study successful FC LinkedIn profiles first
+ - C) Hit post — action precedes clarity, not the other way around ✓
+ - D) Ask their mentor to review their first post before it goes live
+
+6. **The 10X Rule works for activity volume but NOT for skill acquisition speed. This means:**
+ - A) New FCs should limit practice sessions to avoid burnout
+ - B) Doing 10X more calls won't necessarily make you 10X better at objection handling overnight — some skills need reps over time ✓
+ - C) Skills should be learned before activity is increased
+ - D) Product knowledge is more important than prospecting volume in Year 1
+
+7. **Why is it unsustainable to run at 10X effort for 12 straight months?**
+ - A) Clients become fatigued by high-contact advisors
+ - B) Regulators may flag unusually high submission volumes
+ - C) FCs who try to sustain 10X indefinitely burn out in Year 2 — the pattern that works is 10X sprints inside a sustainable yearly cadence ✓
+ - D) 10X effort produces diminishing returns after 6 months
+
 ---
 
 ## Related

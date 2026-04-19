@@ -183,6 +183,30 @@ Adjust for client risk tolerance. When in doubt, **illustrate multiple scenarios
  - C) 6% (balanced)
  - D) Inflation-matching
 
+4. **Nancy needs $250,000 at age 60, is currently 25, and the plan projects 9% p.a. Using PV discounting, the lump sum required today is closest to:**
+ - A) $25,000
+ - B) $12,247 ✓
+ - C) $50,000
+ - D) $114,240
+
+5. **A 40-year-old client wants $1M at 65 and asks "Can I get there?" You run the calculator at 6% over 25 years. The most useful output to show first is:**
+ - A) The final FV confirmation of $1M
+ - B) The required monthly PMT so they can judge affordability ✓
+ - C) The discount rate needed to reach $1M with no effort
+ - D) The historical equity market return
+
+6. **A client has four financial goals totalling $5,540/month but only $3,000/month in savings capacity. The best advisor response is to:**
+ - A) Tell the client to invest more aggressively to close the gap with higher returns
+ - B) Ignore the lower-priority goals and focus on retirement only
+ - C) Use the math to surface the trade-off and discuss extending timelines, reducing targets, or increasing income ✓
+ - D) Recommend a lump-sum investment to replace all regular savings
+
+7. **Why does a lump-sum investment at 9% outperform annual premiums at 9% targeting the same final amount?**
+ - A) Lump sums attract lower fees
+ - B) The full lump-sum amount compounds from day one, whereas regular premiums are still being built up over time ✓
+ - C) Annual premiums carry insurance risk that reduces net returns
+ - D) The calculator uses END mode for lump sums, which inflates the result
+
 ---
 
 ## Related

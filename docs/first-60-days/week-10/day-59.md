@@ -268,6 +268,30 @@ A new client who feels cared-for in the first 90 days becomes a 20-year client. 
    - C) "Of course. What specifically would you like to think about?" ✓
    - D) "Why? Is something unclear?"
 
+4. **A client has reviewed the full proposal, nodded along, but has not verbally committed. You say: "Your preferred monthly debit date — 1st or 15th?" Which closing technique are you using?**
+   - A) Columbo Close — reopening the conversation before they leave
+   - B) Summary Close — packaging multiple decisions into one yes
+   - C) Assumption Close — assuming forward motion when all signals are positive ✓
+   - D) Silent Close — waiting for the client to speak first
+
+5. **You present a plan and ask "Shall we proceed?" The client is silent for 10 seconds. A new FC's instinct is to fill the silence with more options. Why is this a mistake?**
+   - A) It is rude to speak while the client is processing
+   - B) Adding choices during silence rewards hesitation, increases decision fatigue, and signals you are eager to concede ✓
+   - C) It violates MAS guidelines on unsolicited advice
+   - D) Clients interpret additional options as a sign the original plan was flawed
+
+6. **Your proposal runs to 14 pages with full illustrations included in the main document. What hygiene rule does this violate?**
+   - A) Proposals must be submitted in Word format, not PDF
+   - B) Proposals over 4-6 pages cause clients to skim, forget key points, and generate more objections — illustrations should be an appendix ✓
+   - C) 14 pages is acceptable; the issue is the font size must be at least 12pt
+   - D) Client names must appear on every page of a proposal above this length
+
+7. **A client signs and you have the paperwork ready. She says: "Actually, can I bring this home and sign tonight?" What is the risk, and what is the correct response?**
+   - A) No risk — clients always follow through when they have committed verbally
+   - B) Post-meeting momentum is fragile; handle paperwork immediately where possible, or ask what would make her comfortable completing it now ✓
+   - C) Agree and schedule a courier — never pressure a client after the close
+   - D) Remind her about the 14-day free-look period and reschedule for next week
+
 ---
 
 ## Related

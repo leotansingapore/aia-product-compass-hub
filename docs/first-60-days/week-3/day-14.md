@@ -136,6 +136,30 @@ Compliance matters. The story opens the conversation; the actual product illustr
  - C) On a second meeting
  - D) In a group setting
 
+4. **A client correctly calculates that their $3,000/year bank savings earns only $1.50 in interest in Year 1. What should you do next?**
+ - A) Immediately recommend a specific endowment plan
+ - B) Contrast it with an illustrative long-term instrument return, then wait for the client to ask ✓
+ - C) Show them a fund performance chart
+ - D) Ask them to sign a needs analysis form
+
+5. **Why does the Bank A vs Bank B script use pen and paper instead of a calculator app?**
+ - A) It avoids compliance issues with digital tools
+ - B) Writing slows the client down and makes the numbers land emotionally ✓
+ - C) Calculators can give inaccurate projections
+ - D) It signals that the advisor isn't reliant on technology
+
+6. **After running Bank A vs Bank B, a client asks "so which plan should I get?" The correct response is:**
+ - A) Recommend the AIA product with the best projected return
+ - B) Offer to do a proper review first — there are different instruments depending on goals and timeline ✓
+ - C) Send a detailed comparison table that evening
+ - D) Ask the client's budget before recommending anything
+
+7. **The Bank A vs Bank B story reframes "safe" savings as expensive because:**
+ - A) Banks charge hidden fees that reduce savings
+ - B) Government inflation erodes cash savings
+ - C) The foregone compounding return — roughly $23,000 over 25 years — is the real cost of low-interest savings ✓
+ - D) Bank deposits are not insured above $75,000
+
 ---
 
 ## Related

@@ -172,6 +172,30 @@ Doesn't matter which one. What matters: **it happens even on terrible days**. Th
  - C) Run in parallel every week ✓
  - D) Be automated wherever possible
 
+4. **You closed two clients in January. According to the 30–60 day lag, those commissions most likely came from prospecting done in:**
+ - A) January
+ - B) The week before closing
+ - C) November or December ✓
+ - D) The same month as the fact-find
+
+5. **A new FC is getting 1 close per 100 approaches. To hit $50K FYC in Year 1, the daily outreach minimum should be closest to:**
+ - A) 3 per day
+ - B) 5 per day
+ - C) 10 per day ✓
+ - D) 20 per day
+
+6. **Maria frames her cold-call sessions as "how many no's can I collect today?" rather than "how many appointments will I set?" What is the primary benefit of this mindset?**
+ - A) It lowers the quality bar so she makes more calls
+ - B) It shifts focus to a controllable metric and reframes rejection as progress ✓
+ - C) It reduces the need to track results
+ - D) It removes accountability for conversion rates
+
+7. **Which of the following is NOT one of the three prospecting activity buckets described in today's lesson?**
+ - A) Getting leads
+ - B) Making calls or messages
+ - C) Closing the deal ✓
+ - D) Meeting the people
+
 ---
 
 ## Related

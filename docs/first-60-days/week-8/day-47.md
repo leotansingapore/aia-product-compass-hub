@@ -224,6 +224,30 @@ The "hard sell" approach produces faster first-year results but burns out the ad
  - C) Seriousness of problem > cost of solution ✓
  - D) The client has budget
 
+4. **A prospect says "the premium feels expensive." Based on the buy/don't-buy scale, the best response is to:**
+ - A) Offer a cheaper plan immediately
+ - B) Justify the price with competitor comparisons
+ - C) Explore whether the seriousness of the problem has been fully felt — the price objection often signals an underweighted problem ✓
+ - D) Agree to revisit when their income increases
+
+5. **Need-Payoff questions work because:**
+ - A) They reveal hidden objections the client hasn't shared
+ - B) They let the advisor summarise the product benefits clearly
+ - C) The client articulates the value of solving the problem themselves — they sell themselves ✓
+ - D) They move the conversation back to facts after the emotional peak
+
+6. **An FC jumps straight into presenting a retirement plan after 10 minutes of Situation questions. What has likely been skipped?**
+ - A) The rapport phase
+ - B) Problem and Implication questions — the client's need hasn't been made explicit or felt yet ✓
+ - C) The NLP mirroring techniques
+ - D) The DISC identification step
+
+7. **"You are a consultant, not a salesperson" means, in practice:**
+ - A) Charge a consulting fee before recommending products
+ - B) Avoid recommending specific products
+ - C) Lead with questions and insight; let trust — not persuasion — drive the relationship ✓
+ - D) Focus exclusively on investment products, not insurance
+
 ---
 
 ## Related

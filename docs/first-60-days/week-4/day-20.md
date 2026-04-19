@@ -176,6 +176,30 @@ Start before you feel ready. Publish before it's polished. Send before you've re
  - C) Revenue-generating work (prospecting, proposals, client prep) ✓
  - D) Planning the rest of the day
 
+4. **A client sends a non-urgent WhatsApp asking for their policy number while you are in your morning revenue block. Applying today's lesson, the right response is:**
+ - A) Reply immediately so the client feels valued
+ - B) Set an auto-reply and handle it later in your Admin Block ✓
+ - C) Ignore it until the next day
+ - D) Step out of the block for two minutes — it is only two minutes
+
+5. **According to the time-tracking data cited, what percentage of a new FC's week is typically spent in distraction?**
+ - A) 10%
+ - B) 20%
+ - C) 30% ✓
+ - D) 40%
+
+6. **Which of the following is explicitly listed as a revenue-generating activity?**
+ - A) Reorganising your CRM
+ - B) Attending training
+ - C) Annual policy review with a client ✓
+ - D) Expense reporting
+
+7. **The "ten-minute rule" helps overcome procrastination because:**
+ - A) Most tasks can be completed in ten minutes
+ - B) Short timers reduce the quality standard required
+ - C) Starting is the hardest part — momentum usually carries you beyond ten minutes ✓
+ - D) It creates accountability to a manager
+
 ---
 
 ## Related

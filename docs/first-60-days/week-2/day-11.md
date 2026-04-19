@@ -148,6 +148,30 @@ You don't need to quit anything. You just need to start shifting the mix.
  - C) Income that can be cancelled anytime
  - D) Gig-economy pay
 
+4. **A freelance graphic designer charges $5,000 per project. She works for herself and sets her own hours. Which quadrant does she occupy?**
+ - A) E — she works under client contracts
+ - B) S — she is self-employed and income stops when she stops ✓
+ - C) B — she owns her own business
+ - D) I — design skills are an intangible asset
+
+5. **An FC in Year 6 has 300 active clients, two junior associates she mentors, and a referral engine that generates 4 new leads per month without her active involvement. Which quadrant shift best describes her situation?**
+ - A) Still in S — she is personally licensed and still serves clients
+ - B) Transitioning from S into B — a system runs without requiring her daily effort ✓
+ - C) Fully in I — passive income now exceeds active income
+ - D) In E — she is effectively employed by her clients
+
+6. **Why does school training make the E-to-B quadrant shift harder for most people?**
+ - A) School teaches investment strategies that favour the I quadrant instead
+ - B) School optimises students to follow instructions and defer to authority, reinforcing the E mindset ✓
+ - C) School discourages savings, leaving people without capital to invest
+ - D) School teaches sales skills that only work in the S quadrant
+
+7. **A new FC is debating whether to leave because Year 1 commissions are low. The cashflow quadrant lesson suggests the most important question to ask is:**
+ - A) "Am I closing enough policies this month?"
+ - B) "Is my renewal book growing in a way that will shift me from S toward B over time?" ✓
+ - C) "Should I move to an IFA model to access more products?"
+ - D) "Is my hourly rate competitive with my corporate peer's salary?"
+
 ---
 
 ## Related

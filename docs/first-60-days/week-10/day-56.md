@@ -214,6 +214,30 @@ This is the "fully loaded" baseline. Year 1 might cover 2–3 layers. Over time,
    - C) Poor claims service
    - D) Restricted hospital choice
 
+4. **A client is diagnosed with cancer and survives. Two years later, a second cancer is diagnosed. Which CI rider type pays out on the second claim?**
+   - A) Major CI rider — covers all major illnesses
+   - B) Early CI rider — catches illnesses at earlier stages
+   - C) Multiplier rider — doubles coverage during working years
+   - D) Multi-pay CI rider — designed for multiple payouts including recurrence ✓
+
+5. **A freelance graphic designer with no employer sick leave asks what insurance is most often overlooked for people like her. What do you recommend addressing?**
+   - A) Term insurance — cheapest coverage for her age
+   - B) Disability Income — replaces monthly income if she cannot work, which has no employer fallback ✓
+   - C) Hospital rider — reduces out-of-pocket claims cost
+   - D) Universal Life — high leverage for legacy planning
+
+6. **Using the "layered protection" model, which layer should typically be established first for a 32-year-old breadwinner with two young children?**
+   - A) Layer 5 — accident and multi-pay CI riders
+   - B) Layer 4 — Disability Income plan
+   - C) Layer 1 — Term insurance for maximum coverage during the highest-need years ✓
+   - D) Layer 3 — Integrated Shield Plan upgrade
+
+7. **A client says: "I already have CI coverage from my whole life plan — do I really need an Early CI rider too?" What is the accurate response?**
+   - A) No — if Major CI is covered, Early CI is redundant
+   - B) Yes — Early CI pays at diagnosis of pre-major stages, when treatment costs are highest and a Major CI rider would not yet pay out ✓
+   - C) It depends on the insurer — some whole life plans include early stage coverage by default
+   - D) Early CI is mainly for clients over 50
+
 ---
 
 ## Related

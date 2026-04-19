@@ -203,6 +203,30 @@ The best storyteller FCs sound like friends telling you about someone you both k
  - C) They're funnier
  - D) They come from personal experience
 
+4. **An FC is meeting a prospect who has already dismissed CI insurance twice before. The best move is:**
+ - A) Present the product features again with updated numbers
+ - B) Use storytelling — a client story is harder to argue with than a repeated fact ✓
+ - C) Skip CI and focus on a product the prospect hasn't rejected
+ - D) Ask the prospect to explain their objection in detail
+
+5. **In the 6P framework, the "Pain" element is:**
+ - A) The product limitation the client should know about
+ - B) The emotional consequence of the problem, not just the technical fact ✓
+ - C) The premium cost the client will pay
+ - D) The risk rating of the product
+
+6. **Which of the following violates the emotional discipline rules for storytelling?**
+ - A) Adapting the same story skeleton to match the client in front of you
+ - B) Using a real anonymised client case
+ - C) Fabricating details to make the story more dramatic ✓
+ - D) Keeping the story to under 90 seconds
+
+7. **After a well-told 6P story, the ideal client response is:**
+ - A) "Can you email me the policy document?"
+ - B) "I'll think about it."
+ - C) "So what would that look like for me?" — transitioning into their own planning ✓
+ - D) "That's a sad story — I hope they're okay."
+
 ---
 
 ## Related

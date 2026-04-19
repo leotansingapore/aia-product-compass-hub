@@ -227,6 +227,30 @@ Recommending aggressive portfolios to conservative clients → they panic on the
  - C) Diversified ETFs or balanced funds ✓
  - D) Unit trusts only
 
+4. **A client says "I made 40% in crypto last year — I want to put my whole retirement fund into it." As their advisor, you should:**
+ - A) Comply — the client's risk tolerance overrides all other considerations
+ - B) Recommend the highest-returning fund in your product range as a compromise
+ - C) Explain the distinction between speculation and investing, separate the "fun money" pot, and cap speculative exposure at a small percentage ✓
+ - D) Decline to advise further until the client has passed a financial literacy test
+
+5. **Which combination of attributes is impossible to find in a single investment product?**
+ - A) High safety and low liquidity
+ - B) High return and low safety
+ - C) Guaranteed high returns, very short time horizon, and full liquidity ✓
+ - D) Low return and high safety
+
+6. **A conservative client is placed into an aggressive 100%-equity portfolio because the projected returns look better. What is the most likely negative outcome?**
+ - A) The client earns too much and triggers additional tax
+ - B) The client panics on the first market drop, sells at the bottom, and permanently distrusts the advisor and the industry ✓
+ - C) MAS issues a compliance warning against the advisor
+ - D) The portfolio underperforms a balanced fund over 20 years
+
+7. **The key difference between a Wealth Focus ILP and a Protection Focus ILP is:**
+ - A) Only Wealth Focus ILPs allow CPF OA/SA as the funding source
+ - B) Wealth Focus ILPs direct most of the premium into funds with minimal insurance; Protection Focus ILPs prioritise coverage, with insurance costs reducing fund growth ✓
+ - C) Protection Focus ILPs carry no market risk because returns are guaranteed
+ - D) Wealth Focus ILPs cannot be surrendered before maturity
+
 ---
 
 ## Related

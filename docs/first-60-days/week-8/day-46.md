@@ -225,6 +225,30 @@ After 100 classifications, your intuition sharpens. By Month 3, you'll read new 
  - C) An IQ measure
  - D) A job-fit assessment
 
+4. **A client walks in, shakes hands briefly and firmly, and immediately says "What do you have for me today?" This signals:**
+ - A) S-style — they want to ease in with small talk first
+ - B) C-style — they've pre-researched and want data
+ - C) D-style — they want efficiency and a fast bottom line ✓
+ - D) i-style — they're testing whether you're engaging enough
+
+5. **You are presenting to a client who takes detailed notes, asks about policy limitations unprompted, and seems skeptical of your social-proof story. You should:**
+ - A) Tell more client success stories to build emotional resonance
+ - B) Shift to a data-driven pitch — illustrations, fee structure, explicit trade-offs ✓
+ - C) Slow down and focus more on the relationship
+ - D) Offer to reschedule once you have more printed materials
+
+6. **An FC with a high D style is meeting a high S client. The most likely failure mode is:**
+ - A) The FC gives too many data points
+ - B) The FC moves too fast and comes across as aggressive to the relationship-oriented client ✓
+ - C) The FC tells too many stories
+ - D) The FC skips the product entirely
+
+7. **In the DISC observation window, which cue best distinguishes a C-style from an S-style client?**
+ - A) Eye contact warmth
+ - B) Whether they arrived on time
+ - C) Their opening question — "What are the details?" (C) vs. "How are you?" (S) ✓
+ - D) Whether they brought a notebook
+
 ---
 
 ## Related

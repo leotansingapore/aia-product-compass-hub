@@ -144,6 +144,30 @@ None of these moments feel heroic on the day. Stack enough of them across a care
  - C) Having financial security that's independent of your job ✓
  - D) Being in the top 1% of net worth
 
+4. **A client earns $18,000/month, drives a Tesla, lives in a condo, and has $10,000 in savings. By the cash-flow framework, how would you classify them?**
+ - A) Wealthy — their income is very high
+ - B) Middle class — comfortable income but liabilities likely exceed assets ✓
+ - C) Poor — $10,000 savings is below the poverty line
+ - D) Wealthy — they own a property (the condo)
+
+5. **You ask a middle-class client: "If your income stopped next month, how long could your lifestyle continue?" They say "about 6 weeks." What does this reveal?**
+ - A) They are on a clear path to wealth with a solid emergency fund
+ - B) They have less than 2 months of emergency savings and are financially fragile despite their salary ✓
+ - C) 6 weeks is the recommended emergency buffer for most Singaporeans
+ - D) This is a normal result — most Singaporeans keep 4–6 weeks of savings
+
+6. **Which of the following is correctly classified as an ASSET under today's definition?**
+ - A) A personal car used for daily commute
+ - B) A primary home with an outstanding mortgage
+ - C) A rental property where rent exceeds all costs ✓
+ - D) A luxury watch purchased as a "store of value"
+
+7. **The quote "looking rich and being rich are two different projects" is most useful in a client conversation when:**
+ - A) You want to upsell a client from term to whole-life coverage
+ - B) A high-income client has minimal assets and resists acknowledging a financial gap ✓
+ - C) A client asks why AIA's premiums are higher than competitors
+ - D) You need to explain the difference between CI and hospitalisation coverage
+
 ---
 
 ## Related

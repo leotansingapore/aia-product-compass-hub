@@ -226,6 +226,30 @@ Most new FCs quit at Month 2. **They miss the compounding precisely because they
  - C) Ignore until they send a second message
  - D) Reply with a pre-written script
 
+4. **A prospect DMs: "My SA is only $20K at age 32 — is that bad?" The high-conversion response is to:**
+ - A) Immediately send a calendar link for a 30-min consultation
+ - B) Answer briefly, then ask about their overall savings and how the $20K was contributed ✓
+ - C) Tell them the SA target for their age
+ - D) Send a CPF infographic and ask them to read it first
+
+5. **The 3-part weekly content system is designed to solve which core problem?**
+ - A) FC's lack product knowledge
+ - B) Most new FCs only post when they feel inspired, which is unreliable ✓
+ - C) Posting too frequently burns out the audience
+ - D) Content takes too long to produce without a system
+
+6. **Why does the daily 15-minute engagement block (commenting on others' posts) help lead generation?**
+ - A) It earns the FC goodwill points in the algorithm
+ - B) Prospects discover the FC through thoughtful comments on posts they already read ✓
+ - C) It is required by the platform to avoid account suspension
+ - D) It generates more likes on the FC's own posts
+
+7. **An FC has posted consistently for 4 weeks and received zero DMs. According to Day 41, what is the most likely cause?**
+ - A) The audience is too small to generate DMs yet
+ - B) Posts contain no CTA inviting interaction, or the profile does not clearly state what the FC does ✓
+ - C) The content is too educational and not social enough
+ - D) The posting frequency is too low
+
 ---
 
 ## Related

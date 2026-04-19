@@ -196,6 +196,30 @@ Welcome to the career. Welcome to the team.
  - C) Better than yesterday
  - D) Lift the team ✓
 
+4. **A new teammate asks whether they should share a closing script that's been working well for them. According to team philosophy, what should they do?**
+ - A) Keep it private until they've hit MDRT — then share
+ - B) Share it immediately, because zero hoarding is the standard ✓
+ - C) Share only with the mentor, not the whole team
+ - D) Wait for the manager to decide if it's appropriate
+
+5. **The three-pillar philosophy puts "Protect first" at the foundation. Why does protection come before wealth accumulation?**
+ - A) Insurance policies pay higher commissions than investment products
+ - B) Clients are more emotionally ready to discuss protection
+ - C) A single bad event can wipe out years of savings without a protection floor ✓
+ - D) MAS regulations require coverage before investments
+
+6. **Your client is excited about growing their wealth and wants to skip directly to investments. According to the Day 1 philosophy, your best response is:**
+ - A) Agree — client satisfaction comes first
+ - B) Explain why protection must be funded first before chasing returns ✓
+ - C) Split the conversation: do investments now, revisit protection later
+ - D) Defer to what their existing bank advisor recommended
+
+7. **"The close is the starting line, not the finish line." What does this mean for how you treat a client after a policy is issued?**
+ - A) The FC's role ends once the policy is active
+ - B) Follow-ups are optional but appreciated
+ - C) Long-term presence across years and life events is the actual job ✓
+ - D) The client should self-manage from this point forward
+
 ---
 
 ## Related

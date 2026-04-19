@@ -203,6 +203,30 @@ Most weeks will go off-script in some way. That's fine. You still moved 3–5 bi
  - C) Schedule Q2 priorities on the calendar before anything else ✓
  - D) Rank tasks by duration
 
+4. **An FC spends most of her week chasing policy lapses, compliance deadlines, and urgent client complaints. According to the matrix, this pattern most likely indicates:**
+ - A) She is highly productive and responsive
+ - B) She neglected Q2 work earlier, causing Q2 issues to escalate into Q1 crises ✓
+ - C) Her client base is unusually demanding
+ - D) She is correctly prioritising Quadrant I
+
+5. **Delivering a birthday gift to a client's office falls into which quadrant, and what is the recommended handling?**
+ - A) Q1 — handle immediately
+ - B) Q2 — schedule in your peak-focus block
+ - C) Q3 — delegate or batch into a single admin block ✓
+ - D) Q4 — avoid entirely
+
+6. **A new FC has tracked his week and found the following split: Q1 30%, Q2 15%, Q3 25%, Q4 30%. Which single shift would have the highest impact on his career trajectory?**
+ - A) Cutting Q1 from 30% to 15%
+ - B) Eliminating Q4 entirely
+ - C) Moving Q2 from 15% toward 60% by scheduling it on the calendar first ✓
+ - D) Batching Q3 more tightly
+
+7. **In the "big rocks" analogy, what do the sand and water represent in an FC's weekly calendar?**
+ - A) Non-negotiable client meetings and deep work
+ - B) Q3 admin tasks and Q4 downtime, which fill whatever space remains after big rocks are placed ✓
+ - C) Study time and content creation
+ - D) Breaks and exercise
+
 ---
 
 ## Related

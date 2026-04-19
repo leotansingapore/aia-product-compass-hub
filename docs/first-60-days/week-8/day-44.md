@@ -188,6 +188,30 @@ FCs who ignore this get burned out by Month 4 and quit. The ones who last build 
  - C) Send one more message with value
  - D) Remove from your active list but re-add in 6 months
 
+4. **A prospect says "Post it out." The correct response is:**
+ - A) Email them the brochure and wait for a reply
+ - B) Agree and follow up in two weeks
+ - C) Explain that the material only works when tailored to their situation — request a meeting ✓
+ - D) Ask them to review the company website instead
+
+5. **An FC receives 17 reflex objections in one session. The healthiest interpretation is:**
+ - A) The pitch needs a complete rewrite
+ - B) This week's list is poor quality
+ - C) Normal — reflex objections reflect the prospect's energy, not a verdict on you ✓
+ - D) Time to take a break from prospecting for a few days
+
+6. **The 6-touch follow-up sequence is designed to:**
+ - A) Pressure a prospect into a decision within 12 weeks
+ - B) Stay memorable and catch prospects when life circumstances change ✓
+ - C) Replace in-person meetings with digital contact
+ - D) Qualify prospects before spending time on a meeting
+
+7. **What makes the "obstinate objector" response unique compared to the others?**
+ - A) It argues back with facts and logic
+ - B) It withdraws the meeting ask entirely and reframes contact as casual and low-pressure ✓
+ - C) It offers a discount to change the prospect's mind
+ - D) It asks a clarifying question to surface the real objection
+
 ---
 
 ## Related

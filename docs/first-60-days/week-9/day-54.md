@@ -228,6 +228,30 @@ Clean handoff = clean decision.
    - C) Client asks too many questions
    - D) Never — always concept-sell
 
+4. **A client says "I want to buy a second property for rental income." Which concept frame is most relevant?**
+   - A) Life Insurance as a Family Asset — leverage is the key theme
+   - B) The Bank Deposit Alternative — idle savings are the real problem
+   - C) The Non-Property Alternative — a participating plan can deliver similar income streams with less friction ✓
+   - D) The CPF Wealth concept — maximise existing government resources first
+
+5. **After walking through the Bank Deposit Alternative, the client understands the concept but asks for a competitor quote. What does this most likely indicate?**
+   - A) The concept landed well and they're engaged
+   - B) The concept frame did not fully install — they are still in feature-comparison mode ✓
+   - C) They are a high-D personality who likes options
+   - D) You need to present a better yield projection
+
+6. **What is the key difference between a concept client and a product client?**
+   - A) A concept client is wealthier and requires a more sophisticated approach
+   - B) A concept client owns the idea and can explain their plan to others; a product client compares features and shops around ✓
+   - C) A concept client buys more products
+   - D) A product client needs a follow-up meeting; a concept client decides on the spot
+
+7. **You are preparing for a meeting with a newly married couple who are applying for a BTO. Which of the 9 planning solutions is the best starting concept?**
+   - A) "One Retirement" — put their whole portfolio together
+   - B) Investments — they need to start growing wealth early
+   - C) Home Budgeting (BTO/Property) — matches their current life moment ✓
+   - D) Tax Savings — CPF top-ups and SRS are the highest-leverage entry point
+
 ---
 
 ## Related

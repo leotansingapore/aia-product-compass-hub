@@ -126,6 +126,30 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
  - C) Multiple income streams including renewal commissions ✓
  - D) A base salary component
 
+4. **A friend tells you your job is risky because there's no guaranteed salary. What is the most accurate counter-argument based on Day 3?**
+ - A) "AIA provides a base allowance for the first 2 years."
+ - B) "Fixed salaries are also at risk — one reorg and they're gone. Renewal commissions compound over time regardless of where I work." ✓
+ - C) "Top FCs earn far more than salaried employees, so the risk is worth it."
+ - D) "You're right, but the career fulfillment makes up for the instability."
+
+5. **Which of the six development capabilities listed in Day 3 is described as "what you do when no one is watching"?**
+ - A) Entrepreneurial spirit
+ - B) Discipline and grit
+ - C) Moral compass ✓
+ - D) Ability to influence others
+
+6. **An FC has been in the role for 8 months. His renewal commissions now cover half his monthly expenses. According to Day 3's definitions, which stage has he reached?**
+ - A) Financially free
+ - B) Financially independent
+ - C) Neither — he needs full coverage before either term applies ✓
+ - D) Both terms apply once passive income exceeds 50% of expenses
+
+7. **Why do FCs who stay 20+ years tend to be "the most loyal" advisors rather than "the flashiest"?**
+ - A) Flashy FCs move to fund management after 10 years
+ - B) Longevity depends on a service-focused attitude and strong moral compass, not deal volume ✓
+ - C) Regulators penalise high-commission-generating advisors after Year 10
+ - D) Flashy marketing works in Year 1 but clients self-select away over time
+
 ---
 
 ## Related

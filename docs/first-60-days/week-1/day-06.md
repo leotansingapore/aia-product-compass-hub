@@ -163,6 +163,30 @@ Which group you end up in is largely decided in the first 60 days.
  - C) Top 10% earn 70% of income; 20% earn nothing
  - D) 10% have natural talent; 70% need years to develop; 20% can be taught in weeks
 
+4. **An FC sets a goal to "make 10 calls a day" but has no system in place. By Week 3, motivation fades and call count drops. What does Day 6 say was the real failure?**
+ - A) The goal was too ambitious for a new FC
+ - B) She needed external accountability, not self-discipline
+ - C) She built a goal without a system — no scaffolding to fall back on when motivation dropped ✓
+ - D) 10 calls per day is only sustainable for top 10% performers
+
+5. **You want to break the habit of checking your phone first thing in the morning. According to the 4-law inversion, which action targets the Cue?**
+ - A) Remind yourself of time wasted each time you scroll
+ - B) Set a 15-minute app lockout
+ - C) Leave the phone in a different room overnight ✓
+ - D) Replace scrolling with a 5-minute journaling habit
+
+6. **"I am the kind of FC who prospects every day" is an example of identity-based habit formation. Why is this more durable than "I want to make 10 calls a day"?**
+ - A) Identity-based goals have clearer metrics
+ - B) Skipping a day violates who you say you are, not just a number — the brain notices ✓
+ - C) Identity-based habits require less time to install
+ - D) Daily numerical goals create anxiety that undermines performance
+
+7. **According to the FYC formula (Activities x Skills x Knowledge), an FC who is making plenty of calls but never studies products or practises SPIN will:**
+ - A) Still perform adequately — activity volume compensates for skill gaps
+ - B) Hit a ceiling quickly once prospects ask detailed product questions ✓
+ - C) Succeed in early months but plateau only after Year 2
+ - D) Be coached to balance this automatically by their mentor
+
 ---
 
 ## Related

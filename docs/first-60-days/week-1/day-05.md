@@ -132,6 +132,30 @@ This is the most important thing on this page.
  - C) Could you explain it to the client's children 10 years from now without flinching? ✓
  - D) Is it the newest product?
 
+4. **You're reconnecting with a cousin you see once a year. She asks why you switched careers. Using the pre-framing structure, what should your response include?**
+ - A) Your commission potential and career progression path
+ - B) A brief pitch about the products you now sell
+ - C) Your personal why, what kind of advisor you aspire to be, and what you're doing now to earn it ✓
+ - D) Social proof from your senior colleagues' track records
+
+5. **Why does the Day 5 framework recommend the "middle tier" of warm contacts rather than your closest friends for Week 1 outreach?**
+ - A) Closest friends are more likely to give negative feedback
+ - B) Middle-tier contacts are socially valid but not yet emotionally complicated — they have no preconceptions about you in sales ✓
+ - C) Closer relationships should be reserved for later when you have more experience
+ - D) Middle-tier contacts have higher purchasing power on average
+
+6. **An FC is new and worried they lack credibility. According to Day 5, the correct move is:**
+ - A) Wait until CMFAS is passed before speaking to any prospects
+ - B) Lean on the agency's brand name until personal credibility is built
+ - C) Own the newness and convert it into a reason to work with you — you'll give more attention than a cruising senior ✓
+ - D) Avoid mentioning how long you've been in the role
+
+7. **Which of the following would make a "why" statement most likely to hold up under pressure in Month 4?**
+ - A) "I want to build financial freedom for myself through commissions."
+ - B) "My manager believes I have the right personality for this."
+ - C) "I watched a close family member suffer a financial setback that insurance could have prevented." ✓
+ - D) "I want to prove that I can succeed in a hard career."
+
 ---
 
 ## Related
