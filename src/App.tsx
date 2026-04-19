@@ -73,6 +73,7 @@ const LearningTrackAdminHeatmap = lazy(() => import("./pages/learning-track/admi
 const LearningTrackAdminSubmissions = lazy(() => import("./pages/learning-track/admin/Submissions"));
 const LearningTrackAdminRecruit = lazy(() => import("./pages/learning-track/admin/RecruitDetail"));
 const LearningTrackAdminActivity = lazy(() => import("./pages/learning-track/admin/Activity"));
+const LearningTrackAdminFirst60Days = lazy(() => import("./pages/learning-track/admin/First60DaysAdmin"));
 const ProAchieverStudy = lazy(() => import("./pages/ProAchieverStudy"));
 const PlatinumWealthVentureStudy = lazy(() => import("./pages/PlatinumWealthVentureStudy"));
 const HealthshieldGoldMaxStudy = lazy(() => import("./pages/HealthshieldGoldMaxStudy"));
@@ -171,6 +172,7 @@ const App = () => (
                         <Route path="submissions" element={<LearningTrackAdminSubmissions />} />
                         <Route path="activity" element={<LearningTrackAdminActivity />} />
                         <Route path="recruit/:userId" element={<LearningTrackAdminRecruit />} />
+                        <Route path="first-60-days" element={<LearningTrackAdminFirst60Days />} />
                       </Route>
                     </Route>
                     <Route path="/product/pro-achiever/study" element={<RequireAuth><RequireTier feature="question-banks"><ProAchieverStudy /></RequireTier></RequireAuth>} />

@@ -21,6 +21,9 @@ export default function AdminLayout() {
         <NavLink to="activity" className={({ isActive }) => cn(tab, isActive && active)}>
           Activity
         </NavLink>
+        <NavLink to="first-60-days" className={({ isActive }) => cn(tab, isActive && active)}>
+          First 60 Days
+        </NavLink>
       </nav>
       <Outlet />
     </div>
