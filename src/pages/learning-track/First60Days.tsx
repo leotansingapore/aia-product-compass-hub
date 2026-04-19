@@ -10,7 +10,7 @@ import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProg
 
 export default function First60Days() {
   const weeks = getAllWeeks();
-  const { currentDay, completedCount, isQuizPassed, isUnlocked } = useFirst60DaysProgress();
+  const { currentDay, completedCount, isDayComplete, isUnlocked } = useFirst60DaysProgress();
 
   const done = completedCount();
   const pct = TOTAL_DAYS === 0 ? 0 : Math.round((done / TOTAL_DAYS) * 100);
@@ -53,7 +53,7 @@ export default function First60Days() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {weeks.map((week) => {
-          const weekDone = week.days.filter((d) => isQuizPassed(d.dayNumber)).length;
+          const weekDone = week.days.filter((d) => isDayComplete(d.dayNumber)).length;
           return (
             <Card key={week.weekNumber} className="flex flex-col">
               <CardHeader className="space-y-1 p-4 pb-2">
@@ -68,7 +68,7 @@ export default function First60Days() {
               </CardHeader>
               <CardContent className="flex-1 space-y-1 p-4 pt-2">
                 {week.days.map((day) => {
-                  const passed = isQuizPassed(day.dayNumber);
+                  const passed = isDayComplete(day.dayNumber);
                   const unlocked = isUnlocked(day.dayNumber);
                   const isCurrent = day.dayNumber === current && !passed && unlocked;
                   const statusIcon = passed ? (

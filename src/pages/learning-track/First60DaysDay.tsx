@@ -31,11 +31,14 @@ export default function First60DaysDay() {
   const navigate = useNavigate();
 
   const day = useMemo(() => getDay(dayNumber), [dayNumber]);
-  const { isUnlocked, isQuizPassed, markRead } = useFirst60DaysProgress();
+  const { isUnlocked, isDayComplete, isQuizPassed, isReflectionSubmitted, markRead } =
+    useFirst60DaysProgress();
   const dayMetaQuery = useFirst60DaysDayMeta(dayNumber);
   const dayMeta = dayMetaQuery.data;
   const unlocked = isUnlocked(dayNumber);
-  const passed = isQuizPassed(dayNumber);
+  const completed = isDayComplete(dayNumber);
+  const quizPassed = isQuizPassed(dayNumber);
+  const reflectionSubmitted = isReflectionSubmitted(dayNumber);
 
   useEffect(() => {
     if (day && unlocked) markRead(dayNumber);
@@ -75,7 +78,7 @@ export default function First60DaysDay() {
   const idx = allDays.findIndex((d) => d.dayNumber === dayNumber);
   const prev = idx > 0 ? allDays[idx - 1] : undefined;
   const next = idx >= 0 && idx < allDays.length - 1 ? allDays[idx + 1] : undefined;
-  const nextUnlocked = next ? isQuizPassed(dayNumber) : false;
+  const nextUnlocked = next ? isDayComplete(dayNumber) : false;
   const weekMeta = WEEK_META[day.week];
 
   return (
@@ -97,10 +100,16 @@ export default function First60DaysDay() {
             <Badge variant="outline">
               Week {day.week} · {weekMeta?.title ?? ""}
             </Badge>
-            {passed && (
+            {completed && (
               <Badge className="border-emerald-500/60 bg-emerald-500/10 text-emerald-600">
-                <CheckCircle2 className="mr-1 h-3 w-3" /> Quiz passed
+                <CheckCircle2 className="mr-1 h-3 w-3" /> Day complete
               </Badge>
+            )}
+            {!completed && quizPassed && (
+              <Badge variant="outline">Quiz passed — reflection pending</Badge>
+            )}
+            {!completed && !quizPassed && reflectionSubmitted && (
+              <Badge variant="outline">Reflection submitted — quiz pending</Badge>
             )}
             <Badge variant="outline">~{day.frontmatter.duration_minutes} min</Badge>
           </div>
@@ -237,7 +246,13 @@ export default function First60DaysDay() {
             disabled={!nextUnlocked}
             onClick={() => nextUnlocked && navigate(`/learning-track/first-60-days/day/${next.dayNumber}`)}
           >
-            {nextUnlocked ? `Day ${next.dayNumber}` : "Finish quiz to unlock next"}
+            {nextUnlocked
+              ? `Day ${next.dayNumber}`
+              : !quizPassed && !reflectionSubmitted
+              ? "Finish quiz + reflection to unlock next"
+              : !quizPassed
+              ? "Pass the quiz to unlock next"
+              : "Submit reflection to unlock next"}
             {nextUnlocked && <ArrowRight className="ml-2 h-4 w-4" />}
           </Button>
         )}

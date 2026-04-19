@@ -248,24 +248,33 @@ export function useFirst60DaysProgress() {
     [daysMap]
   );
 
-  const isUnlocked = useCallback(
+  const isDayComplete = useCallback(
     (dayNumber: number): boolean => {
-      if (dayNumber <= 1) return true;
-      return Boolean(daysMap[dayNumber - 1]?.quizPassedAt);
+      const d = daysMap[dayNumber];
+      if (!d) return false;
+      return Boolean(d.quizPassedAt && d.reflectionSubmittedAt);
     },
     [daysMap]
   );
 
+  const isUnlocked = useCallback(
+    (dayNumber: number): boolean => {
+      if (dayNumber <= 1) return true;
+      return isDayComplete(dayNumber - 1);
+    },
+    [isDayComplete]
+  );
+
   const currentDay = useCallback((): number => {
-    for (let d = 1; d <= 60; d++) if (!daysMap[d]?.quizPassedAt) return d;
+    for (let d = 1; d <= 60; d++) if (!isDayComplete(d)) return d;
     return 60;
-  }, [daysMap]);
+  }, [isDayComplete]);
 
   const completedCount = useCallback((): number => {
     let n = 0;
-    for (let d = 1; d <= 60; d++) if (daysMap[d]?.quizPassedAt) n++;
+    for (let d = 1; d <= 60; d++) if (isDayComplete(d)) n++;
     return n;
-  }, [daysMap]);
+  }, [isDayComplete]);
 
   const markRead = useCallback(
     (dayNumber: number) => {
@@ -335,6 +344,7 @@ export function useFirst60DaysProgress() {
     getDay,
     isQuizPassed,
     isReflectionSubmitted,
+    isDayComplete,
     isUnlocked,
     currentDay,
     completedCount,
