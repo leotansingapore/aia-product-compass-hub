@@ -97,41 +97,42 @@ This is what we stand for. If any of this doesn't sit right with you, now is the
 
 The mission is about the client's freedom, not ours. The vision is about the industry we want to leave behind us, not the commissions we collect. Read them again. If they sound like words on a wall, they are. What makes them real is the six values on the next page — how we actually behave when no one is watching.
 
-## 5. The six values — our manifesto
+## 5. The six values — how they show up in your week
 
-This is the standard. We hold each other to it. These aren't posters. They're how decisions get made when no one is watching.
+Not posters. Operating standards. Here's what each one looks like when you're on track, and the drift signal that says you're falling off.
 
-### 1. Extreme Ownership
-We own it end-to-end — the result, the communication, the client experience. We don't wait to be told. If something's broken, it's ours to fix, whether we caused it or not.
-**Default mindset:** *"If not me, then who?"*
+| Value | What a good week looks like | The drift signal |
+|---|---|---|
+| **Extreme Ownership** | You caught a broken client expectation early and fixed it before anyone complained | You're waiting for your manager to remind you about a follow-up |
+| **Radical Honesty** | You told a prospect their existing plan already covers a gap — and let the short-term sale go | You softened real feedback to a teammate because the direct version felt awkward |
+| **Raise Our Standards** | You rewatched one of your own roleplays and found three things to sharpen | You're leaning on charm or luck instead of reps |
+| **Team Before Ego** | You shared a script that worked for you in the team chat the same day | You're privately tracking who closes more — instead of what they do differently |
+| **Fast But Thoughtful** | You replied to a fresh lead within the hour with a specific question, not "Hi there" | You're rushing to close and skipping the fact-find |
+| **Client-Obsessed** | You said "I don't think this product is right for you" to someone's face | You're thinking about your MDRT number before the client's reality |
 
-### 2. Radical Honesty
-We speak the truth with clarity and respect. Internally, we give direct feedback that sharpens each other. Externally, we guide clients toward what they need — not just what they want to hear.
-**Default mindset:** *"Clarity over comfort."*
+**The internal voice for each value** — memorise these; they're the fastest self-correction tools you have:
 
-### 3. Raise Our Standards
-We don't settle. We audit ourselves. We refine our pitch, our follow-ups, our financial literacy, our presence. We are students of mastery.
-**Default mindset:** *"Am I better than yesterday?"*
+- Extreme Ownership → *"If not me, then who?"*
+- Radical Honesty → *"Clarity over comfort."*
+- Raise Our Standards → *"Am I better than yesterday?"*
+- Team Before Ego → *"Who can I lift today?"*
+- Fast But Thoughtful → *"Think fast, act sharp."*
+- Client-Obsessed → *"Would I recommend this to my own family?"*
 
-### 4. Team Before Ego
-We win as one. We share knowledge, give credit, and ask for help. The mission is bigger than individual pride.
-**Default mindset:** *"How can I elevate someone else today?"*
+## 6. When the values collide
 
-### 5. Fast But Thoughtful
-We move with urgency but never recklessly. We balance speed with intention — fast action, sharp planning.
-**Default mindset:** *"Think fast, act sharp."*
+The interesting work happens when two values pull in opposite directions. Here's how to resolve the common ones.
 
-### 6. Client-Obsessed
-We aren't selling policies. We're earning lifelong trust. We understand each client's story and guide them with care, clarity, and conviction.
-**Default mindset:** *"Would I recommend this to my own family?"*
+**Radical Honesty vs Client-Obsessed.**
+A prospect wants to buy a policy they already have coverage for. Honesty says "tell them." Client-obsession says "earn long-term trust." Both point to the same answer — you lose the short-term sale, you keep the client for life. Easy one.
 
-## 6. What we look for in each other
+**Fast But Thoughtful vs Extreme Ownership.**
+A new lead just came in. You have 20 minutes before your next meeting. Fast says "reply now." Ownership says "reply well." Thoughtful beats fast: a one-line reply with a sharp question beats a rushed full pitch.
 
-Three questions, asked at every review, every promotion, every difficult conversation:
+**Team Before Ego vs Raise Our Standards.**
+A teammate closed a case using a technique you think is borderline. Team-first says "don't undermine." Standards say "say something." The answer: say it privately, to the person, once. Then drop it.
 
-1. **Does this person lift the team?** (Team Before Ego)
-2. **Do they own outcomes — especially when things go wrong?** (Extreme Ownership)
-3. **Do they have a real desire to win — not for the status, for the standard?** (Raise Our Standards)
+**The tiebreaker, when you're stuck:** whichever path produces a better *client* outcome wins. Always.
 
 You won't master all six values in 60 days. Nobody does. But by Day 60 you should know which one is *your* weakest — and be visibly working on it.
 
