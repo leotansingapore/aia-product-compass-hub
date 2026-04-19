@@ -57,10 +57,10 @@ Four, not six. Easy to memorise. Hard to live.
 
 ```mermaid
 flowchart TD
-    V1[1. Own the outcome<br/>If it's on your plate, it's on you]
-    V2[2. Truth before comfort<br/>Clear feedback over easy feedback]
-    V3[3. Better than yesterday<br/>Small reps, compounded, always]
-    V4[4. In service of the client<br/>Their freedom is the north star]
+    V1["1 · Own the outcome<br/>If it is on your plate, it is on you"]
+    V2["2 · Truth before comfort<br/>Clear feedback over easy feedback"]
+    V3["3 · Better than yesterday<br/>Small reps, compounded, always"]
+    V4["4 · In service of the client<br/>Their freedom is the north star"]
     V1 --> V2 --> V3 --> V4
 ```
 
