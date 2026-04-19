@@ -36,3 +36,8 @@ test-results/
 playwright-report/
 
 .gstack/
+
+# First 60 Days — internal planning / source material (not student-facing)
+docs/first-60-days/_source-decks/
+docs/first-60-days/_source-supplementary/
+docs/first-60-days/STRUCTURE.md

@@ -1,0 +1,324 @@
+---
+week: 6
+day: 36
+title: "TVM & Investment Practice Problems"
+primary_source: internal-reference
+primary_slides: "n/a"
+supporting_sources: []
+duration_minutes: 30
+tags: [first-60-days, week-6, practice]
+---
+
+# Day 36 — TVM & Investment Practice Problems
+
+> **The one idea for today:** Concepts don't earn commissions. **Problem-solving speed** in client meetings does. Today is all reps — practise until these feel automatic.
+
+## What you'll walk away with
+
+By the end of today you should be able to:
+
+1. **Solve** any of 10 standard TVM problems within 60 seconds each.
+2. **Frame** each solution in a client-friendly sentence.
+3. **Identify** which problem you struggle most with — and plan extra practice.
+
+---
+
+## 1. How to use this page
+
+- Work through each problem **before looking at the solution.**
+- Use your financial calculator or app. Time yourself.
+- After solving, write the **client-friendly version** in plain English.
+- Circle the problems you struggled with. Return to them tomorrow.
+
+---
+
+## Problem 1 — Retirement Target (Future Value)
+
+**Mike, 30, invests $2,000/year into a plan projecting 5% p.a. until age 65. How much will he have at 65?**
+
+<details><summary>Solution</summary>
+
+- **PMT** = −$2,000
+- **n** = 35
+- **i** = 5
+- **PV** = 0
+- **Mode:** BGN
+- **Solve:** FV
+
+**FV ≈ $188,453**
+
+**Client-friendly:**
+> "If you put aside $2,000 a year from age 30 to 65, at a projected 5% return, you'll have about $188K at retirement."
+
+</details>
+
+---
+
+## Problem 2 — Education Funding (Present Value of Payment)
+
+**Sarah wants to save $250,000 for her newborn's university in 18 years. Assume 6% p.a. return. What monthly amount does she need to save?**
+
+<details><summary>Solution</summary>
+
+- **FV** = $250,000
+- **n** = 18 × 12 = 216 months
+- **i** = 6/12 = 0.5% per month
+- **PV** = 0
+- **Mode:** BGN
+- **Solve:** PMT
+
+**PMT ≈ −$640/month**
+
+**Client-friendly:**
+> "About $640/month for 18 years, at a projected 6% return, gets you to $250K for her university."
+
+</details>
+
+---
+
+## Problem 3 — Implied Interest Rate
+
+**An AIA plan shows: annual premium of $1,500, paid for 30 years, projected payout at 60 is $85,000. What's the effective interest rate?**
+
+<details><summary>Solution</summary>
+
+- **PMT** = −$1,500
+- **n** = 30
+- **FV** = $85,000
+- **PV** = 0
+- **Mode:** BGN
+- **Solve:** i
+
+**i ≈ 2.95%**
+
+**Client-friendly:**
+> "The projected return on this plan is roughly 3% a year — a bit above long-term bank rates but with additional benefits (insurance coverage, forced discipline)."
+
+</details>
+
+---
+
+## Problem 4 — How Much Today to Hit a Future Goal (PV)
+
+**David needs $500,000 at age 55 for an early retirement. He's 35 and has a lump sum available. Assuming 6% p.a. returns, how much does he need to invest today?**
+
+<details><summary>Solution</summary>
+
+- **FV** = $500,000
+- **n** = 20
+- **i** = 6
+- **PMT** = 0
+- **Solve:** PV
+
+**PV ≈ −$155,906**
+
+**Client-friendly:**
+> "If you can invest roughly $156K today at 6%, you'll hit $500K by 55. If you don't have $156K, we look at a monthly contribution plan instead."
+
+</details>
+
+---
+
+## Problem 5 — Comparing Options
+
+**Option A:** $50,000 lump sum today, invested at 5%, held for 20 years.
+**Option B:** $3,000/year for 20 years, invested at 5%.
+
+**Which produces more at year 20?**
+
+<details><summary>Solution</summary>
+
+**Option A:**
+- PV = −$50,000, i = 5, n = 20, PMT = 0
+- FV ≈ **$132,665**
+
+**Option B:**
+- PMT = −$3,000, i = 5, n = 20, PV = 0, BGN mode
+- FV ≈ **$104,157**
+
+**Option A wins by about $28K**, despite Option B's total outlay ($60K) being larger than Option A ($50K) — because A's full amount compounds from day 1.
+
+**Client-friendly:**
+> "The lump sum does more work — the full $50K is compounding from day 1, while the monthly version is still being built up. If you have the $50K, A beats B by roughly $28,000."
+
+</details>
+
+---
+
+## Problem 6 — Inflation Impact
+
+**Jane's monthly expenses are $5,000 today. She plans to retire in 30 years. Inflation: 2% p.a. What will her equivalent expenses be at retirement?**
+
+<details><summary>Solution</summary>
+
+- **PV** = −$5,000
+- **n** = 30
+- **i** = 2
+- **PMT** = 0
+- **Solve:** FV
+
+**FV ≈ $9,054/month**
+
+**Client-friendly:**
+> "The lifestyle that costs you $5,000/month today will cost about $9,000/month in 30 years — just from inflation. Your retirement plan has to target the $9K number, not the $5K one."
+
+</details>
+
+---
+
+## Problem 7 — Real Return
+
+**A plan projects 5% p.a. nominal return. Inflation is 2%. What's the real return?**
+
+<details><summary>Solution</summary>
+
+**Simplified:** 5% − 2% = **3%**
+**Actual:** (1.05/1.02) − 1 = **2.94%**
+
+**Client-friendly:**
+> "The plan's projected 5% becomes about 3% after inflation. Still positive — you're growing purchasing power. But the real number is what matters for future quality of life."
+
+</details>
+
+---
+
+## Problem 8 — Education Inflation Specifically
+
+**A business degree costs $80,000 today. Jenny's kid is 6. Education inflation: 8%. Cost when the kid is 18?**
+
+<details><summary>Solution</summary>
+
+- **PV** = −$80,000
+- **n** = 12
+- **i** = 8
+- **PMT** = 0
+- **Solve:** FV
+
+**FV ≈ $201,411**
+
+**Client-friendly:**
+> "That same $80K degree will cost about $200K when your child hits 18. If we plan for $80K, you'll come up $120K short — which means loans or delaying the degree."
+
+</details>
+
+---
+
+## Problem 9 — Closing the Gap
+
+**Client has $100K in CPF at 40. Target at 65: $800K total. Assume 4% growth on CPF alone. What additional monthly savings (at 5%) are needed to close the gap?**
+
+<details><summary>Solution</summary>
+
+**Step 1 — Project CPF alone:**
+- PV = −$100,000, n = 25, i = 4, PMT = 0
+- FV ≈ **$266,584**
+
+**Step 2 — Gap = $800K − $266K = $533,416**
+
+**Step 3 — Required additional savings:**
+- FV = $533,416, n = 25, i = 5, PV = 0, BGN
+- PMT ≈ **−$1,050/month**
+
+**Client-friendly:**
+> "Your CPF alone projects to about $267K at 65. To hit your $800K target, you'd need to add about $1,050/month for 25 years at 5% — outside CPF."
+
+</details>
+
+---
+
+## Problem 10 — Rule of 72 Mental Math
+
+**No calculator allowed. Answer each in 5 seconds:**
+
+1. At 6%, how long to double?
+2. At 4%, how much is $10K after 36 years?
+3. At 2% inflation, will $100 today buy what $100 buys in 72 years?
+
+<details><summary>Solutions</summary>
+
+1. **12 years** (72/6).
+2. **$40K** — at 4%, doubles every 18 years; 36 years = 2 doublings = 4× = $40K.
+3. **No** — at 2% inflation, prices double every 36 years. In 72 years, prices have doubled twice → 4× higher. $100 will buy what **$25 buys today.**
+
+</details>
+
+---
+
+## 2. Scoring yourself
+
+**Target for a well-prepared FC:**
+- 10/10 correct.
+- Average time: < 60 seconds per problem (except #9 which needs 2 steps).
+- Mental math for Problem 10: < 5 seconds each.
+
+**If you got fewer than 7:** review Days 28–32 and run this set again tomorrow.
+
+**If you got 7–9:** practise the specific types you missed. Write out the client-friendly versions 3 times.
+
+**If you got 10/10:** the next step is speed. Can you do all 10 in under 10 minutes?
+
+## 3. Common error patterns
+
+Watch for these — they account for 80% of mistakes:
+
+| Error | How to catch it |
+|---|---|
+| Sign error (PMT +/−) | Check direction of cash flow |
+| Mode (BGN vs END) | Insurance = BGN; loans = END usually |
+| n in years vs months | If PMT is monthly, n must be in months and i in monthly rate |
+| Using nominal rate when real is asked | Apply inflation formula explicitly |
+| Forgetting to inflate the target itself | A $250K education goal in today's dollars must be inflated before solving PMT |
+
+## 4. The client speed test
+
+Top producers can run a full TVM calculation in a live meeting, while the client watches, in under 90 seconds.
+
+To practise:
+- Set up common scenarios (retirement, education, house downpayment).
+- Use different variable inputs.
+- Time yourself from "client asks the question" to "client-friendly answer delivered."
+
+By Week 10, you should be comfortable doing this in front of a real prospect without visible calculator struggles. It's an instant credibility signal.
+
+---
+
+## Reflection worksheet
+
+**1. Score yourself on the 10 problems. Note which you got wrong.**
+> Be honest. Return to the failed ones tomorrow.
+
+**2. Build 3 of your own problems using your real client demographics.**
+> 25-year-old, $5K/month, target retirement at 65, etc. Solve them.
+
+**3. Time yourself running through all 10. Target: under 15 min total.**
+> Speed reveals fluency. Fluency builds client confidence.
+
+---
+
+## Quick quiz
+
+1. **The most common sign error is:**
+ - A) PV
+ - B) FV
+ - C) PMT direction ✓
+ - D) n
+
+2. **Insurance premium calculations usually use:**
+ - A) END mode
+ - B) BGN mode ✓
+ - C) No mode
+ - D) Simple interest mode
+
+3. **If PMT is given monthly, n and i must be in:**
+ - A) Years
+ - B) Months, with monthly rate ✓
+ - C) Any unit; the calculator adjusts
+ - D) Quarterly periods
+
+---
+
+## Related
+
+- Previous: [[day-35|Day 35 — Inflation: The Silent Wealth Killer]]
+- Next: [[../week-7/day-37|Day 37 — The Approach: Why It Matters]]
+- Week 6 summary: [[README|Week 6 — Financial Fundamentals]]

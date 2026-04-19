@@ -1,0 +1,247 @@
+---
+week: 8
+day: 46
+title: "Identifying DISC — Reading People in 60 Seconds"
+primary_source: internal-reference
+primary_slides: "n/a"
+supporting_sources: []
+duration_minutes: 25
+tags: [first-60-days, week-8, skills]
+---
+
+# Day 46 — Identifying DISC: Reading People in 60 Seconds
+
+> **The one idea for today:** The same pitch works brilliantly on one client and falls flat on another — because people buy the same things differently. DISC is the fastest framework to read the person in front of you and adjust your style within the first 60 seconds of a meeting.
+
+## What you'll walk away with
+
+By the end of today you should be able to:
+
+1. **Identify** the 4 primary DISC profiles and their dominant motivations.
+2. **Adapt** your pitch style to match each profile.
+3. **Avoid** the classic mismatch — selling D-style to a C-style client, and vice versa.
+
+---
+
+## 1. What DISC is (and isn't)
+
+**DISC** measures **behaviour styles**, not intelligence or personality. It's a tool for:
+
+- **Dialogue**, not diagnosis.
+- **Communication**, not labelling.
+- **Adaptation**, not judgment.
+
+Each of us is a **blend** of all four styles, with one or two dominant.
+
+The four primary styles:
+
+| Letter | Style | Archetype | Motivation |
+|---|---|---|---|
+| **D** | Dominance | "The Winner" | Results, control, action |
+| **i** | Influence | "The Enthusiast" | Recognition, fun, people |
+| **S** | Steadiness | "The Peacekeeper" | Relationships, stability |
+| **C** | Conscientiousness | "The Analyst" | Accuracy, data, standards |
+
+**Rule:** DISC is **descriptive, not prescriptive.** It describes patterns you're likely to see. It doesn't define the person.
+
+## 2. D — Dominance ("The Winner")
+
+**Motivation:** results and control.
+
+**Signals (how you'll spot them):**
+- Direct, sometimes blunt communication.
+- Impatient with small talk.
+- Asks "what's the bottom line?" early.
+- Confident body language, firm handshake, strong eye contact.
+- Wants options and decisions, not discussions.
+
+**How to sell to D:**
+- Get to the point fast.
+- Use data and evidence, briefly.
+- Show how you can solve their problem the fastest, most efficient way.
+- Offer 2–3 options and let them choose.
+- Respect their time — 30 min, not 60.
+
+**What kills sales with D:**
+- Too much rapport-building.
+- Long stories without a point.
+- Vagueness about next steps.
+- Asking them to "think about it."
+
+**Sample D-appropriate pitch:**
+> "Based on what you've shared, you've got two gaps: CI and hospital. We can close both with a plan at $X/month. Want me to send you the specifics by Friday or walk through now?"
+
+## 3. i — Influence ("The Enthusiast")
+
+**Motivation:** recognition, popularity, engagement.
+
+**Signals:**
+- Talkative, warm, expressive.
+- Asks about *you* and your story.
+- Uses stories and analogies themselves.
+- Open body language, animated.
+- Cares more about how you make them feel than the data.
+
+**How to sell to i:**
+- Build personal connection early (but don't overdo).
+- **Tell stories** — other clients, success cases, social proof.
+- Focus on **who** (similar clients to them) and **how** (the experience).
+- Minimise heavy data — summarise, don't drown them.
+- Let them talk. They'll tell you what they need if you ask open questions.
+
+**What kills sales with i:**
+- Drowning them in spreadsheets.
+- Being too technical.
+- Seeming cold or all-business.
+- Not validating their feelings or story.
+
+**Sample i-appropriate pitch:**
+> "You know what, I had another client — very similar to you, also in marketing, same age — who started with this exact plan two years ago. She told me last week it completely changed how she thinks about her future. I'd love to do the same for you."
+
+## 4. S — Steadiness ("The Peacekeeper")
+
+**Motivation:** relationships, stability, calm environment.
+
+**Signals:**
+- Soft-spoken, friendly.
+- Listens more than talks.
+- Asks gentle, cooperative questions.
+- Hesitant about decisions — wants to consult others.
+- Conflict-averse.
+
+**How to sell to S:**
+- **Go slow.** Don't rush.
+- Build the relationship first; sell second.
+- Show you genuinely care about them as a person, not a transaction.
+- Emphasise stability — "this plan gives you peace of mind for the next 30 years."
+- Give them space to talk to family / partner.
+
+**What kills sales with S:**
+- Urgency-based closes.
+- Aggressive eye contact or body language.
+- Pressuring them for a same-day decision.
+- Dismissing their need to "discuss with my spouse."
+
+**Sample S-appropriate pitch:**
+> "No pressure at all — I know this is a big decision and you want to think it through with your family. Here's the summary and the illustration. Take a week. I'll check in next Friday to see if you have any questions. Either way, I'm here to help."
+
+## 5. C — Conscientiousness ("The Analyst")
+
+**Motivation:** accuracy, quality, making the right decision.
+
+**Signals:**
+- Reserved, precise in language.
+- Asks detailed questions — wants the full picture.
+- Takes notes.
+- Researches before meetings.
+- Skeptical of anything that sounds like a pitch.
+
+**How to sell to C:**
+- **Ask for their criteria** — "What matters most when you evaluate a product like this?"
+- Use **data, illustrations, comparisons.**
+- Present **limitations** too — "Here's what this plan won't do..." (builds trust).
+- Provide written materials they can review.
+- Don't push for same-day decisions.
+- Testimonials are less important than facts.
+
+**What kills sales with C:**
+- Emotional sales tactics.
+- Stories without data.
+- Ignoring their questions or answering imprecisely.
+- Glossing over limitations.
+
+**Sample C-appropriate pitch:**
+> "You asked about the non-guaranteed portion — here's the full illustration including both the guaranteed floor and the bonus scenarios. The fee structure is on page 4. The three limitations you should know about are: surrender penalty in years 1–3, a 1.5% annual charge, and a pre-existing conditions clause. Let me know what else you'd like to dig into."
+
+## 6. Blended styles — the reality
+
+In practice, most clients are **blends** of two styles:
+
+| Blend | Pattern | Approach |
+|---|---|---|
+| **Di** or **iD** | Results-oriented + charismatic | Fast, impressive, story + data combo |
+| **iS** or **Si** | People-oriented + stable | Warm, slow, relationship-first |
+| **SC** or **CS** | Stable + precise | Slow, thorough, written materials |
+| **CD** or **DC** | Analytical + driven | Data-heavy + fast-paced decisions |
+
+**The skill:** identify the dominant style in the first 60 seconds. Lead with that. Pick up secondary style cues as the meeting progresses.
+
+## 7. The DISC observation window
+
+Your first 60 seconds should be diagnostic, not performative:
+
+| What to watch | What it tells you |
+|---|---|
+| **Handshake** | Firm + brief → D. Warm + lingering → i/S. Short + correct → C. |
+| **Office / home setup** | Awards, photos of family, diplomas, minimalist → profile clues |
+| **Opening small talk** | Direct ("what do you have for me?") → D. Chatty → i. Warm ("how are you?") → S. Reserved → C. |
+| **Eye contact** | Strong, sustained → D. Engaged, expressive → i. Gentle → S. Careful, measured → C. |
+| **Body language** | Open and forward → D/i. Relaxed → S. Reserved → C. |
+| **First question** | "Bottom line?" → D. "Who else does this?" → i. "Can I think about it?" → S. "What are the details?" → C. |
+
+**Don't over-analyse.** Make a quick read in 60 seconds, commit to it, and adapt.
+
+## 8. Common mismatches (and their cost)
+
+Most failed client meetings are **style mismatches** — not product mismatches.
+
+| You are... | Client is... | What goes wrong |
+|---|---|---|
+| High D | High S | You feel they're wasting your time. They feel you're aggressive. |
+| High i | High C | You tell stories, they want data. |
+| High S | High D | You're warm; they feel you're not getting to the point. |
+| High C | High i | You give data, they want connection. |
+
+**The adult move:** adapt to the client, not the other way around. You're the professional. Flex your style to theirs.
+
+## 9. Practising DISC
+
+For the next 2 weeks, practise on:
+
+- **Existing relationships.** Classify family members and friends. What's your mum's DISC? Your boss's?
+- **Public figures.** Watch a TV interview. Classify the guest. Were you right?
+- **Project 100 contacts.** Before each call, take 30 seconds to guess their DISC based on what you know. Adjust your script.
+
+After 100 classifications, your intuition sharpens. By Month 3, you'll read new clients in 60 seconds without thinking about it.
+
+---
+
+## Reflection worksheet
+
+**1. Classify yourself. Which is your dominant DISC style?**
+> Be honest. Are you selling as if everyone is your style?
+
+**2. Classify 5 people you know well (family, friends, mentors).**
+> Note which styles you naturally click with, and which feel harder.
+
+**3. For your next 3 prospect meetings, write down your DISC guess before the meeting. Check after.**
+> Pattern recognition grows with reps.
+
+---
+
+## Quick quiz
+
+1. **A D-style client wants:**
+ - A) Data and thorough analysis
+ - B) Warm relationship-building
+ - C) Fast, efficient results and control ✓
+ - D) Recognition and stories
+
+2. **A C-style client is killed by:**
+ - A) Data and detail
+ - B) Emotional sales tactics and missing limitations ✓
+ - C) Written materials
+ - D) Long timelines
+
+3. **DISC is best described as:**
+ - A) A personality test
+ - B) A tool for dialogue and communication adaptation ✓
+ - C) An IQ measure
+ - D) A job-fit assessment
+
+---
+
+## Related
+
+- Previous: [[day-45|Day 45 — Storytelling: The Hook]]
+- Next: [[day-47|Day 47 — SPIN: The Framework]]
