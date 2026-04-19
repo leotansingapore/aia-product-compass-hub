@@ -50,6 +50,12 @@ const START_HERE_IDS = new Set<string>([
   "f47ac10b-58cc-4372-a567-0e02b2c3d479", // Core Products
 ]);
 
+// IDs of categories that have their own dedicated page and should not appear
+// in the generic /categories grid.
+const HIDDEN_FROM_GRID_IDS = new Set<string>([
+  "be7504d3-e88b-4107-aae2-f8027fd884e0", // CMFAS → /cmfas-exams
+]);
+
 function getVisual(name: string): CategoryVisual {
   return VISUAL_BY_NAME[name.trim().toLowerCase()] ?? DEFAULT_VISUAL;
 }
@@ -70,7 +76,7 @@ export default function Categories() {
   const topLevel = useMemo(
     () =>
       categories
-        .filter((c) => c.parent_id === null)
+        .filter((c) => c.parent_id === null && !HIDDEN_FROM_GRID_IDS.has(c.id))
         .sort(
           (a, b) => a.sort_order - b.sort_order || a.name.localeCompare(b.name),
         ),
