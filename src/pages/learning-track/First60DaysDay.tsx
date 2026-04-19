@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { markdownComponents } from "@/lib/markdown-config";
+import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
 import { detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
 import { getDay, getAllDays, WEEK_META } from "@/features/first-60-days/content";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
@@ -154,7 +154,7 @@ export default function First60DaysDay() {
         <TabsContent value="read" className="mt-4">
           <Card>
             <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base">
-              <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={dayMarkdownComponents}>
                 {day.markdown}
               </ReactMarkdown>
             </CardContent>

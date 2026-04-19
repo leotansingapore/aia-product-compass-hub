@@ -92,6 +92,15 @@ Good for **catastrophic risks** that would destroy your financial life if they o
 
 **The rule:** transfer what you can't afford to retain.
 
+```mermaid
+flowchart TD
+    R[New risk identified] --> Q1{Can I change behaviour<br/>to avoid it at low cost?}
+    Q1 -->|Yes| AV[Avoid<br/>don't smoke, seatbelt, etc.]
+    Q1 -->|No| Q2{Can I afford to<br/>cover the full cost myself?}
+    Q2 -->|Yes, it's small| RE[Retain<br/>self-insure via savings]
+    Q2 -->|No, it's catastrophic| TR[Transfer<br/>pay insurer to take the risk]
+```
+
 ## 4. How much coverage is enough?
 
 This is where most clients need your guidance. A rough rule of thumb for a Singapore context:
@@ -109,10 +118,12 @@ Wealth accumulation uses a different calculation: work backwards from your targe
 
 You'll use this three-layer model in every client conversation for the rest of your career:
 
-```
-Layer 3: Wealth Preservation (later, once wealth is built)
-Layer 2: Wealth Accumulation (middle — investments, CPF, ILPs)
-Layer 1: Risk Management (first — the foundation)
+```mermaid
+flowchart BT
+    L1["<b>Layer 1: Risk Management</b><br/>The foundation — insurance, emergency fund"]
+    L2["<b>Layer 2: Wealth Accumulation</b><br/>Investments, CPF, ILPs"]
+    L3["<b>Layer 3: Wealth Preservation</b><br/>Legacy, trusts, estate planning"]
+    L1 --> L2 --> L3
 ```
 
 A client who tries to jump to Layer 2 without Layer 1 is building a house on sand. Your job is to explain why — without shaming them and without selling.

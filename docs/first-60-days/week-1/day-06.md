@@ -75,6 +75,14 @@ Goals are binary (you hit it or you don't). Systems are durable (they keep produ
 
 James Clear's framework gives you a mechanical way to install any habit or kill any bad one.
 
+```mermaid
+flowchart LR
+    A[1. Cue<br/><i>Make it obvious</i>] --> B[2. Craving<br/><i>Make it attractive</i>]
+    B --> C[3. Response<br/><i>Make it easy</i>]
+    C --> D[4. Reward<br/><i>Make it satisfying</i>]
+    D -->|reinforces the cue| A
+```
+
 ### To create a good habit
 
 | Law | Principle | Example: daily prospecting calls |

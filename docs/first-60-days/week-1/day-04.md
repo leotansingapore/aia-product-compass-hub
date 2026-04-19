@@ -81,6 +81,15 @@ You can't get the skill without the obstacle. So the obstacle isn't something to
 
 The cold-call rep **is** the skill acquisition. If it were easy, it wouldn't pay.
 
+```mermaid
+flowchart LR
+    A[Cold call / meeting] --> B[Rejection or objection]
+    B --> C[Analyze<br/>tone, opener, objection handled]
+    C --> D[Adjust ONE thing]
+    D --> A
+    C -.->|compound over 100 reps| E([Skill])
+```
+
 ## 5. Step out of the comfort zone — this week
 
 "If you want something you never had before, you have to do something you've never done before."
