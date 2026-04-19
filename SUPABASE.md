@@ -6,7 +6,38 @@
 
 ## Pending
 
-_(none — all prior items completed)_
+### First 60 Days Reflection Submissions — 2026-04-19
+
+**What:** Lets learners submit written answers to each day's reflection worksheet, and lets admins read all submissions for coaching + roster review. Reflection submission becomes a gating requirement for unlocking Day N+1 (alongside the quiz pass). Questions are parsed from the markdown body, so no separate questions table is needed — only the answers persist.
+
+**Tables (modify existing):**
+
+- `first_60_days_progress`: Add two columns
+  - `reflection_answers` (jsonb, nullable) — shape: `{ "1": "answer text", "2": "answer text", ... }` keyed by question index from the markdown worksheet
+  - `reflection_submitted_at` (timestamptz, nullable) — set when the learner clicks "Submit reflection". Nulling this out on edit isn't needed — updates just bump `updated_at`.
+
+No other tables.
+
+**RLS Policies (add / update):**
+
+- Existing `first_60_days_progress_owner_all` policy still covers owner SELECT/INSERT/UPDATE/DELETE on the reflection columns — no change needed for learners.
+
+- Add `first_60_days_progress_admin_select`: SELECT on `first_60_days_progress`
+  - WHO: admin or master_admin (check `user_admin_roles` — same pattern as `first_60_days_day_meta_write_admin`)
+  - CONDITION: admin bypass — read all rows
+  - No admin write policy. Admins can read but not edit learner progress.
+
+**Functions (RPC):** _(none — client reads/writes via PostgREST)_
+
+**Storage:** _(none)_
+
+**Client migration path (no Lovable action — handled by Claude Code after columns land):**
+
+1. Add `parseReflection` to the existing markdown parser (pulls numbered `**N. question**` items from the `## Reflection worksheet` section).
+2. Strip the Reflection worksheet section from the Read tab body (same pattern as Quiz).
+3. New "Reflection" tab on the day page: textarea per question + Save button + last-saved indicator.
+4. Update `isUnlocked(N)` in `useFirst60DaysProgress` — Day N+1 unlocks only if Day N has both `quiz_passed_at` AND `reflection_submitted_at` non-null.
+5. Admin view at `/learning-track/admin/first-60-days` gains a Submissions tab: table of user × day with submitted reflection content, filterable by day or user.
 
 ### First 60 Days Progress + Day Metadata — DONE 2026-04-19
 
