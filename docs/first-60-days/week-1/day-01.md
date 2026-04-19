@@ -19,7 +19,7 @@ tags: [first-60-days, week-1, mindset]
 By the end of today you should be able to:
 
 1. **See the arc** of the next 10 weeks and what each phase builds in you.
-2. **Recite** our mission, vision, and motto in your own words.
+2. **Recite** our mission and vision in your own words.
 3. **Name** the six values we hold each other to — and pick the one you'll be tested on first.
 
 ---
@@ -85,7 +85,7 @@ Think of this as the three axes you'll be scored on — by yourself, not by anyo
 
 ---
 
-## 4. Our mission, vision, and motto
+## 4. Our mission and vision
 
 This is what we stand for. If any of this doesn't sit right with you, now is the time to say so.
 
@@ -95,17 +95,14 @@ This is what we stand for. If any of this doesn't sit right with you, now is the
 ### Vision
 > **To be the most trusted financial advisory team in the region** — known for our results, our integrity, and our mission to raise the standard of advice across the industry.
 
-### Motto
-> **Guiding you through life's adventure.**
-
-The mission is about the client's freedom, not ours. The vision is about the industry we want to leave behind us, not the commissions we collect. The motto is a reminder that this work is a privilege — clients trust us with decisions that shape decades of their life.
+The mission is about the client's freedom, not ours. The vision is about the industry we want to leave behind us, not the commissions we collect. Read them again. If they sound like words on a wall, they are. What makes them real is the six values on the next page — how we actually behave when no one is watching.
 
 ## 5. The six values — our manifesto
 
 This is the standard. We hold each other to it. These aren't posters. They're how decisions get made when no one is watching.
 
 ### 1. Extreme Ownership
-We take full responsibility — for results, for communication, for the client experience. We don't wait to be told. We act. We lead. We solve.
+We own it end-to-end — the result, the communication, the client experience. We don't wait to be told. If something's broken, it's ours to fix, whether we caused it or not.
 **Default mindset:** *"If not me, then who?"*
 
 ### 2. Radical Honesty
@@ -132,8 +129,8 @@ We aren't selling policies. We're earning lifelong trust. We understand each cli
 
 Three questions, asked at every review, every promotion, every difficult conversation:
 
-1. **Is this person a team player?** (Team Before Ego)
-2. **Do they take full responsibility — especially when things go wrong?** (Extreme Ownership)
+1. **Does this person lift the team?** (Team Before Ego)
+2. **Do they own outcomes — especially when things go wrong?** (Extreme Ownership)
 3. **Do they have a real desire to win — not for the status, for the standard?** (Raise Our Standards)
 
 You won't master all six values in 60 days. Nobody does. But by Day 60 you should know which one is *your* weakest — and be visibly working on it.
