@@ -23,21 +23,31 @@ By the end of today you should be able to:
 
 ---
 
-## 1. The three buckets every income earner needs
+## 1. The one-third rule — how every income earner should split their money
 
 When a client tells you they "already save some money," ask where it goes. Most people have one bucket — a bank account. That's not a plan. It's a default.
 
-A real plan has three buckets, in strict priority order:
+A real plan divides take-home income into three equal parts:
 
-| Bucket | Purpose | % of income | Priority |
-|---|---|---:|---:|
-| **Short-term savings** | Housing, wedding, holidays, car, baby — goals in the next 1–5 years | 20–25% | 2nd |
-| **Wealth accumulation** | Long-term goals — retirement being the biggest | 10–15% | 3rd |
-| **Risk management** | Making sure one event doesn't break the other two | 10–15% | **1st** |
+| Third | Purpose | What it looks like |
+|---|---|---|
+| **Short-term** | Today's life | Daily necessities, bills, utilities, entertainment, transport, holidays |
+| **Mid-term** | Life in the next 1–5 years | House, renovation, wedding, car, children's education, life milestones |
+| **Long-term** | Life in 10+ years | Retirement savings, investments, and risk management (insurance) |
 
-Total: ~40–55% of income is being **directed**. The rest is lifestyle expenses.
+Most people get this backwards. Their short-term bucket balloons — lifestyle inflation is silent — and their long-term bucket stays empty. By 40, they realise the gap. By 55, the gap is too wide to close.
 
-**Why risk management is first, not third:** If your foundation isn't protected, one critical illness diagnosis or accident can force you to liquidate your investments at a loss, drain your emergency fund, and borrow against your future. The hard work of accumulation gets wiped out in weeks.
+### The reframe — long-term first, not last
+
+Here is the mental shift your client needs:
+
+**Most people ask:** *"What's left for long-term savings after I pay for everything else?"*
+
+**Our job is to flip that:** *"Once the long-term third is secured, what's left to spend on mid-term and short-term?"*
+
+That single reorder changes everything. It forces discipline into the only bucket that actually compounds. The other two take care of themselves once this one is locked in.
+
+**Why long-term includes risk management:** insurance and retirement are both playing the same game — protecting the 40-year version of you. If risk management fails (a CI diagnosis wipes out the fund), the long-term bucket collapses. If retirement fails (no savings at 65), the same ending arrives, just slower. That's why protection and accumulation live in the same third, with protection funded first.
 
 ## 2. Permanent vs temporary risks
 
@@ -132,8 +142,8 @@ A client who tries to jump to Layer 2 without Layer 1 is building a house on san
 
 ## Reflection worksheet
 
-**1. Map your own three buckets.**
-> Right now, what percentage of your income is going to short-term savings, wealth accumulation, and risk management? Be honest. Most people can't answer.
+**1. Map your own one-third rule — honestly.**
+> Roughly what percentage of your take-home is going into short-term, mid-term, and long-term (retirement + insurance) right now? Most people can't answer — and that's the point.
 
 **2. Which of your current risks are you "avoiding," "retaining," and "transferring"?**
 > List one for each. Are any in the wrong category?
@@ -145,11 +155,11 @@ A client who tries to jump to Layer 2 without Layer 1 is building a house on san
 
 ## Quick quiz
 
-1. **Which bucket should be filled first?**
- - A) Short-term savings
- - B) Wealth accumulation
- - C) Risk management ✓
- - D) Lifestyle expenses
+1. **Under the one-third rule, which third should be locked in first?**
+ - A) Short-term (daily necessities, bills, lifestyle)
+ - B) Mid-term (house, wedding, kids' education)
+ - C) Long-term — risk management and retirement ✓
+ - D) Whichever is easiest that month
 
 2. **What's the standard rule of thumb for death/TPD coverage?**
  - A) 3× annual income
