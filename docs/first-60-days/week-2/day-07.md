@@ -52,6 +52,10 @@ Why this matters: when a prospect's first question is "why AIA?" — you don't w
 
 AIA's systems are genuinely ahead of most of the industry. Learn where each tool fits; don't memorise screens — memorise workflows.
 
+![AIA iMO (Interactive Mobile Office) dashboard — Contacts, FNA, Quotation, E-Application, E-Submission, Forms, AIA Vitality and more all live here|width=520](/first-60-days/images/aia-imo-dashboard.png)
+
+*The iPos iPad platform now sits inside iMO — the Interactive Mobile Office. From one dashboard you reach Contacts, FNA, Quotation, E-Application, E-Submission, Forms, AIA Vitality, and Biz Planner. Learn the shape of this home screen; the rest of your career on the iPad radiates from it.*
+
 ### AIA iSmart (mobile app)
 - **What it is:** mobile app with real-time client information and campaign updates.
 - **Use when:** you're out of the office, need to share a campaign update, or want to push product collateral directly through WhatsApp/Telegram to a prospect.
@@ -66,6 +70,10 @@ AIA's systems are genuinely ahead of most of the industry. Learn where each tool
 - **What it is:** resource hub with the Financial Needs Calculator, product concept presentations, memos, and campaign updates.
 - **Use when:** preparing for an appointment, sending a proposal, or studying a product.
 - **Workflow:** client sends their data → you build a needs analysis + concept presentation the night before.
+
+![AIA iResource hub — campaigns, collateral, product collections, and operational memos in one place|width=520](/first-60-days/images/aia-resource-hub.png)
+
+*iResource is where you find the latest campaign decks, collection matrix tables, and MEMOs (e.g. shield coverage updates, field-work bug fixes). Bookmark the "Recently Updated" section — it's your morning check-in for anything that changed while you were sleeping.*
 
 **Rule:** never walk into a client meeting without iPos ready. Never leave home without iSmart on your phone. Never build a proposal from scratch when iResource has a template.
 
