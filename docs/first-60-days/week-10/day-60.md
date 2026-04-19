@@ -190,7 +190,66 @@ These are the numbers that produce a sustainable pipeline. Miss them for a week 
 
 These four numbers, run every week for 180 days, produce what most call "a real practice."
 
-## 7. The next 60 days — the plan
+## 7. Proactive service — the four buckets
+
+Claims are *reactive* service — you're handling an event that already happened. The other, more important half of service is **proactive**: staying present in the client's life so that when something does happen, they call you first, not their bank, not Google, not another FC.
+
+Proactive service splits into four buckets. Run all four, every year, for every client. This is how you build a book that refers, renews, and never churns.
+
+### Bucket 1 — Immediately after a sale
+The first 30 days after a close set the tone for the next 30 years.
+
+- Email confirmation of what was purchased
+- Red folder handover (policies, contacts, benefits summary)
+- Personalised policy summary (what they actually own, in plain English)
+- Thank-you gift
+- Beneficiary nomination (don't skip this)
+- Referral ask (warm, not pushy)
+
+### Bucket 2 — Pre / Post appointment
+Every meeting before and after the close.
+
+- Proposal (ahead of the meeting)
+- Policy summary (live document, updated each meeting)
+- Post-appointment summary (objectives discussed, next action, timeline)
+
+### Bucket 3 — Routine systems
+Annual cadences. Cheap to run. Expensive to forget.
+
+- Birthday greeting + small gift
+- Mooncake delivery (Mid-Autumn)
+- CNY / Deepavali / Hari Raya / Christmas greetings
+- End-of-year greeting card
+- Annual diary / calendar delivery
+- Pending-service memos (renewal notices, premium alerts)
+
+### Bucket 4 — Ad hoc life events
+Client's life keeps moving. You show up when it matters.
+
+- Wedding
+- New home
+- Hospitalisation
+- New child
+- Bereavement
+- Major career move
+
+## 8. The calendar year — when each touchpoint fires
+
+Your service calendar isn't optional. These touchpoints should be recurring in your calendar for every client — scheduled once, fired yearly.
+
+```mermaid
+flowchart LR
+    J[Dec–Jan<br/>CNY greeting<br/>Year-end card<br/>Diary delivery<br/>Renewal pending memo] --> M[Mar–May<br/>Birthday treats<br/>Policy-summary refresh<br/>Post-appt summaries]
+    M --> J2[Jun–Aug<br/>Mid-year review<br/>Referral asks<br/>Closing + thank-you gifts]
+    J2 --> S[Sep–Nov<br/>Mooncake delivery<br/>Diary order request<br/>Hospitalisation hampers<br/>Renewal pending memo]
+    S --> J
+```
+
+Every client should touch at least one bucket per quarter. Most will touch two. The ones who go a full year without a real touchpoint are the ones who leave for another FC at renewal.
+
+**The operator's rule:** service is not something you do when you have time. It is the thing that *makes* the time, because it creates the renewals and referrals that mean you don't have to keep climbing from zero.
+
+## 9. The next 60 days — the plan
 
 Day 60 is not a finish line. It's a checkpoint.
 
@@ -210,7 +269,7 @@ You've been taught the full arc. Now you run the arc, dozens of times, refining 
 
 **The reps from here are what make you a career FC.**
 
-## 8. The 3-year target
+## 10. The 3-year target
 
 Today is Day 60. Three years from today = Day 1,095.
 
@@ -228,7 +287,7 @@ What does the Year-3 version of you look like?
 
 **The math:** Day 60 you → Day 1,095 you is roughly 18× more capable. Not 2×. Not 5×. Eighteen times.
 
-## 9. The final frame
+## 11. The final frame
 
 Six 10-word truths to carry into Day 61:
 
