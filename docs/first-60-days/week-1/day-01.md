@@ -1,7 +1,7 @@
 ---
 week: 1
 day: 1
-title: "Orientation — Welcome to the FINternship"
+title: "Orientation — The 60-Day Journey Ahead"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources:
@@ -10,25 +10,50 @@ duration_minutes: 20
 tags: [first-60-days, week-1, mindset]
 ---
 
-# Day 1 — Orientation: Welcome to the FINternship
+# Day 1 — Orientation: The 60-Day Journey Ahead
 
-> **The one idea for today:** You are not here to sell insurance. You are here to acquire four high-income skills — human nature, negotiation, money, and sales — that compound for the rest of your career.
+> **The one idea for today:** You're not here to sell insurance. You're here to acquire four high-income skills — human nature, negotiation, money, and sales — under a team that holds you to a standard you can't hold yourself to yet.
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **Explain** why the FINternship exists and what makes it different from a 9-5 internship.
-2. **Name** the three dimensions you'll grow in — personal, professional, financial — and give one concrete example of each.
-3. **Complete** the five onboarding actions needed before Day 2.
+1. **See the arc** of the next 10 weeks and what each phase builds in you.
+2. **Recite** our mission, vision, and motto in your own words.
+3. **Name** the six values we hold each other to — and pick the one you'll be tested on first.
 
 ---
 
-## 1. Why this exists
+## 1. The 60-day arc — what's ahead
 
-Most careers ask you to trade time for money. This one asks you to trade **reps** for **skills that make money chase you.**
+You're already on the journey. Here's the map of the next 10 weeks so you know where you are at all times.
 
-The four skills you'll build here — and why they matter for the rest of your life, not just this career:
+```mermaid
+flowchart LR
+    W1[Week 1<br/>Foundation<br/>& Identity] --> W2[Week 2<br/>Industry Context<br/>& Freedom Business]
+    W2 --> W3[Week 3<br/>Wealth Building<br/>Principles]
+    W3 --> W4[Week 4<br/>Productivity<br/>Principles]
+    W4 --> W5[Week 5<br/>Operating Rhythms<br/>& Discipline]
+    W5 --> W6[Week 6<br/>Financial<br/>Fundamentals]
+    W6 --> W7[Week 7<br/>The Approach<br/>& Prospecting]
+    W7 --> W8[Week 8<br/>Fact Finding<br/>& Reading People]
+    W8 --> W9[Week 9<br/>Uncovering Needs<br/>& Sales Concepts]
+    W9 --> W10[Week 10<br/>Product Mastery<br/>& Graduation]
+```
+
+**Three phases, three jobs.**
+
+| Phase | Weeks | Your job |
+|---|---|---|
+| **Inner game** | 1–5 | Rebuild how you think, how you spend your time, and the standards you hold yourself to. No client work yet — we're fixing the operator before we hand you the machine. |
+| **Fundamentals** | 6–7 | Get the financial knowledge into muscle memory so you can speak about money with a straight back. Start the approach work. |
+| **Client game** | 8–10 | Sit with real prospects. Run fact-finds, uncover needs, match products. By graduation you've done this live, not just on paper. |
+
+**The honest trade-off:** The first 90 days are the hardest part of this career. You're building skill while your friends in fixed-salary jobs are already earning. What you're really buying is the compounding that kicks in during Year 2–3. Very few careers let a 25-year-old out-earn their parents by 30. This is one of them.
+
+## 2. Why this career builds four high-income skills
+
+Most careers ask you to trade time for money. This one asks you to trade **reps for skills that make money chase you.** These four skills compound for the rest of your life — whether you stay in this industry for 2 years or 30.
 
 | Skill | What it looks like in practice | Why it compounds |
 |---|---|---|
@@ -39,62 +64,79 @@ The four skills you'll build here — and why they matter for the rest of your l
 
 You will practise all four, on real people, with real stakes, for the next eight weeks. That's the deal.
 
-## 2. The three dimensions of growth
+## 3. The three dimensions you'll grow in
 
 Think of this as the three axes you'll be scored on — by yourself, not by anyone else.
 
-### Personal growth
-- Build a daily operating system (habits, time-blocks, reviews) that you keep for life.
+### Personal
+- Build a daily operating system (habits, time-blocks, reviews) you keep for life.
 - Learn to sit with discomfort — rejection, silence, being told no.
 - Get feedback faster than any of your peers in any other job.
 
-### Professional growth
-- Accredited training (CMFAS papers sponsored — details on Day 2).
+### Professional
+- Accredited training (CMFAS papers sponsored).
 - International designations to work towards: **MDRT → COT → TOT**.
-- Mentorship from people who have already walked the path.
+- Mentorship from people who've already walked the path.
 
-### Financial growth
-- Base income + commissions + bonuses (up to 4 months of income, performance-based).
+### Financial
+- Base + commissions + performance bonuses.
 - Recurring commissions (you get paid again on policies already sold).
-- Retirement scheme tied to your long-term production.
+- A retirement scheme tied to your long-term production.
 
-**The honest trade-off:** The first 90 days are the hardest. You're learning skills while earning less than your peers in fixed-salary jobs. Year 2–3 is when the compounding kicks in.
+---
 
-## 3. Who we're looking for — the 4 Cs
+## 4. Our mission, vision, and motto
 
-This program is selective because the work is hard. You fit if you have:
+This is what we stand for. If any of this doesn't sit right with you, now is the time to say so.
 
-1. **Can-do spirit** — when blocked, you find the way around, not an excuse.
-2. **Consistently hard working** — you show up on the days you don't feel like it.
-3. **Creative & resourceful** — you don't wait for permission or perfect conditions.
-4. **Continually improving** — you ask "how would I do this better next time?" after every rep.
+### Mission
+> **To guide individuals and families toward financial freedom — with professional excellence and client-obsessed service, one conversation at a time.**
 
-**You don't need all four on Day 1.** You need to be willing to build them.
+### Vision
+> **To be the most trusted financial advisory team in the region** — known for our results, our integrity, and our mission to raise the standard of advice across the industry.
 
-## 4. Your onboarding timeline
+### Motto
+> **Guiding you through life's adventure.**
 
-```
-Week 1 (this week) → Introduction: you are here
-Week 2-3 → Incubation: CMFAS study + orientation modules
-Week 4-6 → Induction: training sessions, job shadowing, 1-1 coaching
-Week 7-8 → Interview selection + licensing (RNF) submission
-```
+The mission is about the client's freedom, not ours. The vision is about the industry we want to leave behind us, not the commissions we collect. The motto is a reminder that this work is a privilege — clients trust us with decisions that shape decades of their life.
 
-**What happens after graduation:**
-- Flex-Scheme (part-time) or 6-Week Full-Time Internship (optional path)
-- $1,000 onboarding incentive on RNF submission
-- 3-day crash course
-- 2-month post-onboarding training (for full-timers)
+## 5. The six values — our manifesto
 
-## 5. Before Day 2 — your action items
+This is the standard. We hold each other to it. These aren't posters. They're how decisions get made when no one is watching.
 
-Do these in this order. Expect ~60 minutes total.
+### 1. Extreme Ownership
+We take full responsibility — for results, for communication, for the client experience. We don't wait to be told. We act. We lead. We solve.
+**Default mindset:** *"If not me, then who?"*
 
-- [ ] **Register your Skool account** — welcome email has the link
-- [ ] **Read the FINternship Orientation Module** on Skool
-- [ ] **Join the Telegram group** — this is where daily check-ins and Q&A live
-- [ ] **Book your onboarding call** — calendar link in welcome email
-- [ ] **Block Thursday 8pm weekly** in your calendar — non-negotiable training session
+### 2. Radical Honesty
+We speak the truth with clarity and respect. Internally, we give direct feedback that sharpens each other. Externally, we guide clients toward what they need — not just what they want to hear.
+**Default mindset:** *"Clarity over comfort."*
+
+### 3. Raise Our Standards
+We don't settle. We audit ourselves. We refine our pitch, our follow-ups, our financial literacy, our presence. We are students of mastery.
+**Default mindset:** *"Am I better than yesterday?"*
+
+### 4. Team Before Ego
+We win as one. We share knowledge, give credit, and ask for help. The mission is bigger than individual pride.
+**Default mindset:** *"How can I elevate someone else today?"*
+
+### 5. Fast But Thoughtful
+We move with urgency but never recklessly. We balance speed with intention — fast action, sharp planning.
+**Default mindset:** *"Think fast, act sharp."*
+
+### 6. Client-Obsessed
+We aren't selling policies. We're earning lifelong trust. We understand each client's story and guide them with care, clarity, and conviction.
+**Default mindset:** *"Would I recommend this to my own family?"*
+
+## 6. What we look for in each other
+
+Three questions, asked at every review, every promotion, every difficult conversation:
+
+1. **Is this person a team player?** (Team Before Ego)
+2. **Do they take full responsibility — especially when things go wrong?** (Extreme Ownership)
+3. **Do they have a real desire to win — not for the status, for the standard?** (Raise Our Standards)
+
+You won't master all six values in 60 days. Nobody does. But by Day 60 you should know which one is *your* weakest — and be visibly working on it.
 
 ---
 
@@ -102,14 +144,14 @@ Do these in this order. Expect ~60 minutes total.
 
 Write your answers — don't just think them.
 
-**1. Why are you really here?**
-> Not the "tell mum and dad" answer. The real one. Keep it to 3 sentences.
+**1. Which of the six values is already strong in you, and how do you know?**
+> Be specific. "I'm honest" is not an answer. "Last month I told my manager X even though it cost me Y" is.
 
-**2. Which of the four skills (human nature, negotiation, money, sales) do you currently rate yourself lowest in?**
-> And what's one situation in the last month where that gap cost you?
+**2. Which value are you weakest in right now? Pick one and be specific about what that looks like in your life today.**
+> No scoring. No judgment. Just name the gap. This is the one you'll be tested on first.
 
-**3. What does "growth" look like to you 12 months from today?**
-> Write it concretely. Not "I'll be better." What would you be doing, earning, or saying no to?
+**3. If you had to describe our mission in one sentence to your mum, how would you say it?**
+> The test of whether you understand something is whether you can explain it without jargon.
 
 ---
 
@@ -121,21 +163,21 @@ Write your answers — don't just think them.
  - C) CMFAS, MDRT, COT, TOT
  - D) Prospecting, approach, SPIN, closing
 
-2. **What are the three dimensions of growth?**
- - A) Income, impact, independence
- - B) Skills, systems, people
- - C) Personal, professional, financial ✓
- - D) Mindset, skillset, toolkit
+2. **Which of the six values corresponds to the mindset "Clarity over comfort"?**
+ - A) Extreme Ownership
+ - B) Radical Honesty ✓
+ - C) Raise Our Standards
+ - D) Client-Obsessed
 
-3. **What onboarding incentive do you receive on RNF submission?**
- - A) $500
- - B) $1,000 ✓
- - C) $2,000
- - D) 1 month base income
+3. **In the 10-week arc, which weeks are the "inner game" phase?**
+ - A) Weeks 1–5 ✓
+ - B) Weeks 1–10
+ - C) Weeks 6–7
+ - D) Weeks 8–10
 
 ---
 
 ## Related
 
-- Next: [[day-02|Day 2 — Four Assurances of this Career]]
+- Next: [[day-02|Day 2 — Why Financial Planning Matters]]
 - Week 1 overview: [[README|Week 1 — Foundation & Identity Shift]]
