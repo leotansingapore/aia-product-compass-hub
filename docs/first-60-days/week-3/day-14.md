@@ -115,20 +115,6 @@ The story uses an illustrative ~$1,000/year return on a $75,000 total capital �
 
 Compliance matters. The story opens the conversation; the actual product illustration must follow the rules.
 
----
-
-## Reflection worksheet
-
-**1. Practise the script on paper — alone, 3 times tonight.**
-> Say it out loud. Write the numbers as you go. Time yourself. Target: under 3 minutes start to finish.
-
-**2. Now practise it on a real person this week.**
-> Not a client — a friend or family member who'll give you honest feedback on clarity.
-
-**3. Write down the ONE question you'll stay silent after, to let the client ask first.**
-> Hint: it's a specific question on this page. Circle it.
-
----
 
 ## Quick quiz
 

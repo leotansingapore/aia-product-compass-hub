@@ -105,20 +105,6 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
 
 **The lesson:** evaluate this career on a 5-year horizon, not a 1-year horizon. If you're making a 1-year decision, you're probably going to make the wrong one.
 
----
-
-## Reflection worksheet
-
-**1. Which of the four assurances matters most to you personally?**
-> Be specific. "Autonomy" isn't enough — what would you do differently if you genuinely had it?
-
-**2. If passive income could cover your monthly expenses 7 years from now, what would that change about the next 12 months?**
-> This question is the reason most people either double down or quit. Answer it.
-
-**3. Name one person — not in this industry — whose career path you're unconsciously measuring yourself against.**
-> Why them? Is it the right comparison? (Hint: probably not.)
-
----
 
 ## Quick quiz
 

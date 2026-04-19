@@ -142,20 +142,6 @@ So the tactical move: **lower the activation energy.**
 
 Start stupid small. Momentum handles the rest.
 
----
-
-## Reflection worksheet
-
-**1. Block 30 minutes this Sunday for your weekly review + planning.**
-> Calendar invite to yourself, right now. Recurring weekly. If it's not booked, it won't happen.
-
-**2. Name 3 things you've been perfectionist about in the last month.**
-> Be specific. Then ask: did the extra polishing change any outcome?
-
-**3. Pick one task you're currently procrastinating on. Schedule "first 10 minutes only" tomorrow.**
-> Just 10 minutes. Watch what happens.
-
----
 
 ## Quick quiz
 

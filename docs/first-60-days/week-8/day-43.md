@@ -220,20 +220,6 @@ When pitching yourself, emphasise:
 
 People want to work with **people**, not products. The Approach phase is where you establish that you're worth working with.
 
----
-
-## Reflection worksheet
-
-**1. Draft your 30-second AIDA elevator pitch. Say it aloud 5 times tonight.**
-> Record yourself. Listen back. Does it sound natural or robotic?
-
-**2. Map the 6-part Telephone Technique to your last 3 prospecting calls.**
-> Which part did you skip? That's your weak link.
-
-**3. Plan a "by the way" call this week — a social lunch/coffee where you naturally raise the career.**
-> Who? When? What's the transition line?
-
----
 
 ## Quick quiz
 

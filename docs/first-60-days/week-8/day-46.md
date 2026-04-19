@@ -204,20 +204,6 @@ For the next 2 weeks, practise on:
 
 After 100 classifications, your intuition sharpens. By Month 3, you'll read new clients in 60 seconds without thinking about it.
 
----
-
-## Reflection worksheet
-
-**1. Classify yourself. Which is your dominant DISC style?**
-> Be honest. Are you selling as if everyone is your style?
-
-**2. Classify 5 people you know well (family, friends, mentors).**
-> Note which styles you naturally click with, and which feel harder.
-
-**3. For your next 3 prospect meetings, write down your DISC guess before the meeting. Check after.**
-> Pattern recognition grows with reps.
-
----
 
 ## Quick quiz
 

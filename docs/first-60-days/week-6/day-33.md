@@ -168,20 +168,6 @@ You don't get commission for this advice. Which is exactly why it builds **long-
 
 **The durable FC-client relationship:** "my advisor told me to top up SA before selling me anything. I trust them." That trust pays you for 20 years.
 
----
-
-## Reflection worksheet
-
-**1. Log in to your own CPF statement tonight. Know your balances.**
-> If you don't know your OA/SA/MA balance, you're not CPF-literate yet. Fix it tonight.
-
-**2. Calculate the monthly CPF contribution for a friend at a salary you know.**
-> 37% of gross. Practise the OA (2/3), SA (1/6), MA (1/6) split.
-
-**3. Project your own SA at age 65 using Rule of 72.**
-> Current balance × (2^(30/18)) = roughly 3.2×. Write the number.
-
----
 
 ## Quick quiz
 

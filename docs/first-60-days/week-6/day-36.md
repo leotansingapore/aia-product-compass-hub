@@ -280,20 +280,6 @@ To practise:
 
 By Week 10, you should be comfortable doing this in front of a real prospect without visible calculator struggles. It's an instant credibility signal.
 
----
-
-## Reflection worksheet
-
-**1. Score yourself on the 10 problems. Note which you got wrong.**
-> Be honest. Return to the failed ones tomorrow.
-
-**2. Build 3 of your own problems using your real client demographics.**
-> 25-year-old, $5K/month, target retirement at 65, etc. Solve them.
-
-**3. Time yourself running through all 10. Target: under 15 min total.**
-> Speed reveals fluency. Fluency builds client confidence.
-
----
 
 ## Quick quiz
 

@@ -165,20 +165,6 @@ The rule is an approximation. It breaks down at:
 
 For 99% of client conversations (rates 2–12%, periods 5–40 years), the rule is accurate within 3–5%. That's good enough for projection; use the calculator for any commitment.
 
----
-
-## Reflection worksheet
-
-**1. Quiz yourself: how long does $1 double at 3%, 6%, 9%? Answer in 5 seconds each.**
-> 24, 12, 8. If you had to think, you haven't memorised yet.
-
-**2. Run the 4 scenarios (retirement, inflation, education, legacy) using your own numbers.**
-> Use your family's real situation or a recent prospect's. Calculate mentally. Verify with the calculator.
-
-**3. Write your "cost of waiting" script for a client who wants to delay 5 years.**
-> 3 sentences max. Not guilt-tripping. Just math + silence.
-
----
 
 ## Quick quiz
 

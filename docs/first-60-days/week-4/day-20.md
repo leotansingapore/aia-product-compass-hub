@@ -155,20 +155,6 @@ Start before you feel ready. Publish before it's polished. Send before you've re
 
 **Velocity matters more than polish** in Year 1. Polish comes from reps. Reps come from velocity.
 
----
-
-## Reflection worksheet
-
-**1. What's your peak-focus hour? Block it tomorrow.**
-> Actually put it on the calendar now. Not "I'll think about it." Now.
-
-**2. Track your time for 3 days this week (minimum). Confront the gap.**
-> Where's the leakage? Usually it's messaging, context-switching, or "research."
-
-**3. Pick ONE of the three rules (2-min, one-touch, 10-min) you will apply every day this week.**
-> Just one. Don't try all three. Install one until it's automatic, then add another.
-
----
 
 ## Quick quiz
 

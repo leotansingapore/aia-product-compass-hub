@@ -151,20 +151,6 @@ Common starting points:
 
 Doesn't matter which one. What matters: **it happens even on terrible days**. The days you don't feel like it are precisely when it matters most — because that's when everyone else stops, and you stop catching up to them.
 
----
-
-## Reflection worksheet
-
-**1. Your weekly rejection quota: how many no's will you deliberately chase next week?**
-> Write the number. If it's under 30, you're not training yet.
-
-**2. Pick your daily non-negotiable prospecting action.**
-> One sentence, calendar-blocked, with a clear trigger (time of day).
-
-**3. Reflect on where your current activity lives — leads, calls, or meetings.**
-> If you're 80%+ in one bucket, you're in trouble within 3 weeks. Rebalance.
-
----
 
 ## Quick quiz
 

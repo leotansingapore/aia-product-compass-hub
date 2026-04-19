@@ -162,20 +162,6 @@ New FCs sometimes quote aggressive rates (e.g., 8% for all scenarios). This crea
 
 Adjust for client risk tolerance. When in doubt, **illustrate multiple scenarios** (conservative, moderate, aggressive).
 
----
-
-## Reflection worksheet
-
-**1. Pick a goal you personally have. Calculate PV (or monthly PMT) using the calculator.**
-> Retirement, first property downpayment, kid's education — anything. Do the math.
-
-**2. Practise the 40-year-old-wanting-$1M example aloud. Calculate on the spot.**
-> Simulate being asked by a client. Do it in 60 seconds.
-
-**3. Build a 3-goal table for a hypothetical client (or yourself).**
-> Three goals, three timelines, three rates. Total monthly required. Is it achievable?
-
----
 
 ## Quick quiz
 

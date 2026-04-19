@@ -142,20 +142,6 @@ The 10-70-20 rule (industry data):
 
 Which group you end up in is largely decided in the first 60 days.
 
----
-
-## Reflection worksheet
-
-**1. Pick ONE new habit to install this week. Write all 4 laws for it.**
-> Cue, Craving, Response, Reward. Be specific about each. Generic habits fail.
-
-**2. Pick ONE bad habit to break. Write the inverted 4 laws.**
-> What will you remove from your environment? Don't rely on willpower.
-
-**3. Rewrite your #1 career goal as an identity statement.**
-> Instead of "I want to earn $X." Try "I am the kind of FC who ___."
-
----
 
 ## Quick quiz
 

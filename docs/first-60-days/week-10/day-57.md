@@ -201,20 +201,6 @@ Many clients have seen Reddit / online threads criticising ILPs. Be ready.
 
 This transparency builds trust. A client who chooses an ILP after this conversation owns the decision.
 
----
-
-## Reflection worksheet
-
-**1. For the premium allocation table in Section 3, re-draw it from memory.**
-> If you can't, your fluency on this topic isn't yet meeting-ready.
-
-**2. Identify which of the 3 "wrong client" profiles you'd most likely misdiagnose.**
-> Honest self-check. Short horizon, pure investor, or risk-averse?
-
-**3. Practise the ILP recommendation script aloud — including the "15+ years" commitment language.**
-> Record. Listen. Does it sound transparent or hedging?
-
----
 
 ## Quick quiz
 

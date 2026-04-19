@@ -182,20 +182,6 @@ Combining Day 22's weekly planning ritual with the matrix:
 
 Most weeks will go off-script in some way. That's fine. You still moved 3–5 big rocks — which most FCs never do in a week.
 
----
-
-## Reflection worksheet
-
-**1. Classify yesterday into the four quadrants — rough percentages.**
-> Q1: __% Q2: __% Q3: __% Q4: __%. Total = 100%. Where's the leak?
-
-**2. Name the top 3 Q3 activities (urgent, not important) eating your week.**
-> These are your delegate/batch/automate candidates.
-
-**3. Name the top 3 Q2 activities you've been neglecting.**
-> These are the big rocks you need on next week's calendar.
-
----
 
 ## Quick quiz
 

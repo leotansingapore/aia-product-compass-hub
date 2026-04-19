@@ -226,20 +226,6 @@ This is a small move. It has an outsized impact on meeting quality.
 
 **3 Problem questions, asked with permission, framed gently.** The client will likely pause. That pause is the door opening.
 
----
-
-## Reflection worksheet
-
-**1. Write 10 Situation questions and 10 Problem questions specific to your ideal client profile.**
-> Save them in a document. Refine monthly.
-
-**2. Practise the "permission move" aloud.**
-> "Do you mind if I ask a few questions about the parts of your plan that might feel a bit less sorted?"
-
-**3. Run the SPIN first-half on a willing friend or family member this week.**
-> 10 Situation + 10 Problem questions. Time: 30 min. Note their reactions.
-
----
 
 ## Quick quiz
 

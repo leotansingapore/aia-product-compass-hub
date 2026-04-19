@@ -170,20 +170,6 @@ For Singaporean clients, always anchor the Wealth CST to CPF. They already have 
 
 This respects what the government has already built, honours the client's existing efforts, and positions your plan as the **complement** — not a replacement.
 
----
-
-## Reflection worksheet
-
-**1. Write your own 5-part Wealth CST — hook, reframe, formula, levers, transition.**
-> 5–7 minutes when delivered aloud. Use generic numbers for now.
-
-**2. Adapt it to 3 client profiles: 25-year-old, 40-year-old, 55-year-old.**
-> The core frame stays. The emphasis shifts.
-
-**3. Practise aloud tonight. Record yourself. Listen.**
-> Does it sound like a friend explaining, or like a sales pitch?
-
----
 
 ## Quick quiz
 

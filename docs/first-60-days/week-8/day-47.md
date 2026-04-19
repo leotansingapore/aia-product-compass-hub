@@ -203,20 +203,6 @@ The "hard sell" approach produces faster first-year results but burns out the ad
 
 **You're in this for 20 years. Choose accordingly.**
 
----
-
-## Reflection worksheet
-
-**1. Write 3 Situation questions, 3 Problem questions, 3 Implication questions, 3 Need-Payoff questions for a retirement-planning meeting.**
-> 12 questions total. Save them. You'll use them in real meetings.
-
-**2. Identify a recent meeting (yours or observed) where SPIN was skipped.**
-> What happened? Was the close weaker because of it?
-
-**3. Which of the 4 M's (style, mood, body language, representational system) are you weakest at?**
-> That's your practice area this week.
-
----
 
 ## Quick quiz
 

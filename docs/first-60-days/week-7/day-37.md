@@ -167,20 +167,6 @@ Today was psychological because **most Approach failures are not tactical.** The
 
 Fix these four mental errors before learning a single script — and everything downstream gets easier.
 
----
-
-## Reflection worksheet
-
-**1. Name 5 people in your warm market you plan to approach in the next 2 weeks. Categorise each as A/B/C.**
-> Be honest. Most will be A. Plan how to build B and C over the next 30 days.
-
-**2. Calculate your target CLV for a typical client. What first-year commission would it produce?**
-> Use 25× multiplier. Realistic number, not inspirational.
-
-**3. Write one sentence describing what your first meeting should make the prospect *feel*.**
-> Not what it achieves. What it feels like, from their side.
-
----
 
 ## Quick quiz
 

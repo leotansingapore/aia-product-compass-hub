@@ -206,20 +206,6 @@ Recommending aggressive portfolios to conservative clients → they panic on the
 **"I want something that guarantees 8%."**
 > Doesn't exist. Educate. Offer a realistic alternative (diversified portfolio targeting 5–7% over long horizon).
 
----
-
-## Reflection worksheet
-
-**1. Identify one speculative pot you currently have (crypto, single stock bets, meme investments).**
-> Separate it from your long-term investments on paper. Cap it at a % you can afford to lose.
-
-**2. Describe each of the 5 investment types in 30 seconds aloud.**
-> Record yourself. Listen. Are you clear, or vague?
-
-**3. Which AIA investment solution best fits a moderate-risk 35-year-old with $500/month to invest?**
-> Think it through. Justify your answer.
-
----
 
 ## Quick quiz
 

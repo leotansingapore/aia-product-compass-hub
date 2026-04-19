@@ -193,20 +193,6 @@ Now that protection is done, pivot to accumulation. The client feels their plan 
 
 This is **the textbook CST-aware relationship arc** for a new client. By 3 meetings in, you've covered both angles, closed 2 products, and set up a long relationship.
 
----
-
-## Reflection worksheet
-
-**1. Write your own 5-part Risks Angle CST. Use generic numbers for now.**
-> 5–7 minutes aloud. Practise.
-
-**2. Describe the difference between a "temporary risk" and "permanent risk" in your own words.**
-> 3 sentences max. This is a core idea.
-
-**3. For your own life today, map 3 controllable and 3 uncontrollable risks.**
-> The exercise you'd do with a client.
-
----
 
 ## Quick quiz
 

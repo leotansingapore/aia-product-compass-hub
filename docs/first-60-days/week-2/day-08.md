@@ -108,20 +108,6 @@ Impact is slow to arrive and uneven in distribution. You may work for 18 months 
 
 **Be the advisor your clients talk about at funerals.** That sounds dark. It's actually the highest bar in this profession.
 
----
-
-## Reflection worksheet
-
-**1. Rate your current career path (or this one, if you're deciding) on the 5 factors.**
-> Give each a score out of 10. Where does it fall short? Is this career genuinely better?
-
-**2. Draw the income curve. Put yourself on it. Mark where you quit if Year 1 is "too hard."**
-> Then ask: 5 years from now, which version of you do you want to have been?
-
-**3. List the 6 infrastructure elements. Which do you have? Which are missing?**
-> Don't score yourself kindly. Missing elements become visible failure points by Month 3.
-
----
 
 ## Quick quiz
 

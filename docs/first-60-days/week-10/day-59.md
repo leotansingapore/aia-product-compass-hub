@@ -247,20 +247,6 @@ After the client says yes:
 
 A new client who feels cared-for in the first 90 days becomes a 20-year client. One who feels abandoned becomes a lapsed policy and a lost opportunity.
 
----
-
-## Reflection worksheet
-
-**1. Use the 5-part template to draft a proposal for a hypothetical client from your Week 9 practice.**
-> 4–6 pages. PDF-ready.
-
-**2. Match each of the 5 closing techniques to the right scenario.**
-> When would you use Columbo? Option? Assumption? Silent? Summary?
-
-**3. Practise the Silent Close — literally count to 30 in silence after asking a friend "shall we proceed?"**
-> It feels long. That's the point. Learn the discipline.
-
----
 
 ## Quick quiz
 

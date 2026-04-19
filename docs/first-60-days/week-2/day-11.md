@@ -127,20 +127,6 @@ Every policy you sell well is a vote for your future B. Every dollar invested fr
 
 You don't need to quit anything. You just need to start shifting the mix.
 
----
-
-## Reflection worksheet
-
-**1. Map your current income by quadrant. What % is E, S, B, I?**
-> Most new FCs are 80%+ E. That's fine. Awareness is the first move.
-
-**2. What would your income mix look like in 5 years, if everything goes right?**
-> Write percentages. Be realistic but not pessimistic.
-
-**3. What's ONE specific action you can take this month to start shifting a dollar from the left side to the right side?**
-> Not "invest more." Something concrete. E.g., "open a regular savings plan at $300/month into SPY index ETF."
-
----
 
 ## Quick quiz
 

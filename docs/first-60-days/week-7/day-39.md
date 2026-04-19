@@ -157,20 +157,6 @@ The trap:
 
 **Goal for Week 7:** call **at least 20 people from your Project 100 list.** Not "prepare to call." Actually call.
 
----
-
-## Reflection worksheet
-
-**1. Build your Project 100 spreadsheet tonight. Minimum 80 names to start.**
-> 80 is fine if you add 2–3/week as you meet people. The key: start now.
-
-**2. Tag each name with Priority A/B/C. Be ruthless.**
-> You're not ranking their worth as a human. You're ranking the likelihood of a first meeting.
-
-**3. From your A-list, pick the 10 people you'll call this week. Block the calls on your calendar.**
-> Calendar blocks, not "I'll do it when I have time."
-
----
 
 ## Quick quiz
 

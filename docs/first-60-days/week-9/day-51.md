@@ -188,20 +188,6 @@ Within 30 min of the meeting ending:
 
 **The 24-hour rule:** the meeting's emotional and factual details are 90% fresh within 24 hours. By 48 hours, 50% fades. By a week, you're guessing. **Work fast while the meeting is still hot.**
 
----
-
-## Reflection worksheet
-
-**1. Practise the "smooth transition" script until it's natural.**
-> "In order to plan for the future, we need to know where you are today..."
-
-**2. List the 6 data categories from memory.**
-> Income, Expenses, Assets, Liabilities, Coverage, Budget. If you can't list them tomorrow, you haven't internalised yet.
-
-**3. Role-play the Colombo close with a peer tonight.**
-> "If the plan I come back with addresses [X], [Y], [Z], within [budget], can you see any reason why we wouldn't move forward?" Say it 5 times.
-
----
 
 ## Quick quiz
 

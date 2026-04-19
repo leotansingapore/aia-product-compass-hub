@@ -123,20 +123,6 @@ It sounds big. It starts small:
 
 None of these moments feel heroic on the day. Stack enough of them across a career, and you've helped hundreds of families cross a line their parents never crossed.
 
----
-
-## Reflection worksheet
-
-**1. Calculate your own net worth tonight. Assets minus liabilities.**
-> No cheating. Cars and expensive possessions at honest resale value. Write the number down. Don't share it. Just know it.
-
-**2. Write down 3 things you own that you've been calling "assets" but are actually liabilities.**
-> Forgive yourself — everyone has them. Then ask: would I still buy them, knowing what I know now?
-
-**3. Write one sentence that describes your mission in this career, in your own words.**
-> Starts with "I help ___." Keep it under 15 words.
-
----
 
 ## Quick quiz
 

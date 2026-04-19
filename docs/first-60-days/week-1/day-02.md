@@ -138,20 +138,6 @@ flowchart BT
 
 A client who tries to jump to Layer 2 without Layer 1 is building a house on sand. Your job is to explain why — without shaming them and without selling.
 
----
-
-## Reflection worksheet
-
-**1. Map your own one-third rule — honestly.**
-> Roughly what percentage of your take-home is going into short-term, mid-term, and long-term (retirement + insurance) right now? Most people can't answer — and that's the point.
-
-**2. Which of your current risks are you "avoiding," "retaining," and "transferring"?**
-> List one for each. Are any in the wrong category?
-
-**3. If you lost your income tomorrow, how many months could your household continue before something broke?**
-> This is the single most important number a client will ever calculate. Calculate yours.
-
----
 
 ## Quick quiz
 

@@ -201,20 +201,6 @@ Our agency also runs Facebook Ads to help you acquire clients. This works but ha
 
 **For your first 60 days: don't buy leads.** Master organic lead-gen via your natural market first. Paid becomes cost-effective once you know your close rate and CLV.
 
----
-
-## Reflection worksheet
-
-**1. Identify the pillar for your content: Interest / Identity / Topic / Market.**
-> Which 1–2 pillars feel most authentic? Build from there.
-
-**2. Plan your 30-day lead-gen push. Week-by-week actions. Calendar-block them.**
-> If the plan isn't on a calendar, it won't happen.
-
-**3. Run through your recent DMs. Which did you close, which died? Why?**
-> Pattern recognition is the fastest skill-up.
-
----
 
 ## Quick quiz
 

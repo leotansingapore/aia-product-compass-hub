@@ -182,20 +182,6 @@ Storytelling is powerful. It's also easy to misuse.
 
 The best storyteller FCs sound like friends telling you about someone you both know. Not salespeople performing.
 
----
-
-## Reflection worksheet
-
-**1. Write one 6P story using a real client of your mentor's (ask for one).**
-> Anonymise. 300 words first. Then compress to 100.
-
-**2. Practise telling it aloud. Time yourself.**
-> Target: 60–90 seconds. If you're over 2 minutes, it's too long.
-
-**3. List 3 moments in your recent conversations where a story would've helped — but you told facts instead.**
-> That's your training plan for next week.
-
----
 
 ## Quick quiz
 

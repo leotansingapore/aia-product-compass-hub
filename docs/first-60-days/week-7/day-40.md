@@ -168,20 +168,6 @@ A 10,000-follower FC with shallow relationships underperforms a 500-follower FC 
 
 **Follower growth is a leading indicator.** But the **quality of conversion** (DM to meeting to close) matters far more than the raw number.
 
----
-
-## Reflection worksheet
-
-**1. Pick the ONE primary platform you'll focus on for the next 90 days.**
-> Match it to your ideal client profile. Don't split focus across 5 platforms.
-
-**2. Audit your current profile. Score it out of 10 on: photo, bio, cover, connections.**
-> Fix each gap this weekend.
-
-**3. Reconnect with 20 warm-market people via DM this week.**
-> Use the reconnection script. Track replies.
-
----
 
 ## Quick quiz
 

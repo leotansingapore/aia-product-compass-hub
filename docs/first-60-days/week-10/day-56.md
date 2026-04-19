@@ -193,20 +193,6 @@ Layer 5: Specific riders (accident, multi-pay CI) — for specific exposures
 
 This is the "fully loaded" baseline. Year 1 might cover 2–3 layers. Over time, layers get added as income grows and life stages change.
 
----
-
-## Reflection worksheet
-
-**1. For your own life right now, score yourself on each of the 5 minimum portfolio items.**
-> Do you have death cover, CI, hospital, disability, daily hospital income? Be honest. Where are your gaps?
-
-**2. Explain the difference between CI and Disability Income in 3 sentences.**
-> Core concept — many clients confuse these.
-
-**3. For a hypothetical 35-year-old, sole breadwinner, $100K income, $3K/month savings: sketch their minimum protection portfolio.**
-> Amounts for each layer. Estimated total premium.
-
----
 
 ## Quick quiz
 

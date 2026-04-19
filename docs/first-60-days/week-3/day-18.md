@@ -143,20 +143,6 @@ The new FCs who burn out in Year 2 are usually the ones who tried to run 10X for
 
 Your first 60 days is one of those 10X sprints. After that, you'll find the cadence that fits you.
 
----
-
-## Reflection worksheet
-
-**1. Pick ONE goal you're setting right now. 10X it. What would the target look like?**
-> Write the new target. Don't plan yet. Just sit with the size.
-
-**2. Now plan the 10X'ed actions for that target.**
-> Don't worry about execution. What would a 10X version of your monthly plan actually require?
-
-**3. Name your biggest fear about the next 60 days. What's the specific action that would attack it?**
-> Not "get more confident." A specific action, a specific day.
-
----
 
 ## Quick quiz
 

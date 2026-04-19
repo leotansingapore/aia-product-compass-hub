@@ -111,20 +111,6 @@ Job A vs Job B is a powerful story but it's a **simplification**. Real clients h
 
 Never recommend based on the story alone. Use it to open a conversation, then do the proper fact-finding (Weeks 8–9) before making any recommendation.
 
----
-
-## Reflection worksheet
-
-**1. Fill in the Job A / Job B table for YOURSELF. Honestly.**
-> Which cells are covered? Which are blank? The blanks are your priority list.
-
-**2. Write the "employer benefits" rebuttal in your own words.**
-> Practise it out loud until it sounds like you, not a script.
-
-**3. Draw the table from memory tomorrow morning.**
-> If you can't, you haven't internalised it. Do it again.
-
----
 
 ## Quick quiz
 

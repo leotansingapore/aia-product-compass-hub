@@ -211,20 +211,6 @@ Every mature client has **multiple policies across categories:**
 
 **The honest truth:** one policy does not build a full plan. Stop trying to make it.
 
----
-
-## Reflection worksheet
-
-**1. Memorise the 7 categories. Write them from memory tomorrow morning.**
-> Investment-Linked, Whole Life, Endowment, Term, Universal Life, Disability, Accident & Health. Know them cold.
-
-**2. For a hypothetical 32-year-old client, new parent, $6K/month income, $500/month savings capacity — map which 2 categories you'd lead with.**
-> Justify in 3 sentences.
-
-**3. Open iPos and iResource tonight. Navigate to each category. Click through 2 plans per category.**
-> Familiarity comes from repetition. This is tonight's study.
-
----
 
 ## Quick quiz
 

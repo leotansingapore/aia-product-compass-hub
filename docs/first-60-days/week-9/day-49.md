@@ -172,20 +172,6 @@ Some answer: "Well, I'd need to check with my spouse." → that's real informati
 
 Some answer: "Actually, I'm concerned about X." → gold. That's the real objection. Handle that before you walk out.
 
----
-
-## Reflection worksheet
-
-**1. Write 5 of your own Implication questions for a specific topic (retirement, CI, education).**
-> Specific. Not generic. Use language your clients would use.
-
-**2. Write 5 Need-Payoff questions paired to those same problems.**
-> Same rule: their language, not textbook language.
-
-**3. Practise the Colombo Close aloud 5 times tonight.**
-> "Before I leave, just one final question..." Memorise the structure. Fill in client-specific details.
-
----
 
 ## Quick quiz
 

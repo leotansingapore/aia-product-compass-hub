@@ -116,20 +116,6 @@ Vague goals produce vague outcomes. A good retirement goal is:
 
 Clients who can state their goal in SMART form are 10x more likely to follow the plan. Your job in early meetings is to help them articulate this.
 
----
-
-## Reflection worksheet
-
-**1. Write your own SMART retirement goal.**
-> Specific monthly amount, in today's dollars. Target age. Not "a comfortable retirement."
-
-**2. Using the 25-year-old example, calculate: if you started investing $500/month at 6% p.a. from your current age to age 65, what do you project?**
-> Use any online compound interest calculator. Write the number.
-
-**3. Which of the five wealth streams (CPF, property, investments, insurance-based accumulation, business income) do you currently have? Which do you want to add first?**
-> A client with only one stream is fragile. You — and they — need multiple.
-
----
 
 ## Quick quiz
 

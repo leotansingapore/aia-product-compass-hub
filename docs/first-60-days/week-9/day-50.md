@@ -208,20 +208,6 @@ Most clients agree. Some need reassurance — offer it:
 
 > "Everything you share stays confidential. I'm just making sure the plan I propose is realistic for your actual situation, not a generic template."
 
----
-
-## Reflection worksheet
-
-**1. Draft a 6-question Section 1 / opening script using your own voice.**
-> Not generic. Your phrasing. Practise aloud.
-
-**2. For each of your ICP's top 3 likely goals, write 4 Problem Questions.**
-> 12 questions total. Save them. Use them next meeting.
-
-**3. Practise the "priority ranking" question aloud.**
-> "Sometimes we can't tackle everything at once..." Say it until it's natural.
-
----
 
 ## Quick quiz
 

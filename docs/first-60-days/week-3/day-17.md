@@ -135,20 +135,6 @@ Once a client sees their real balance sheet, the path forward is clear:
 
 This isn't a 30-day project. It's a 5–10 year rebuild. Your job is to walk alongside them.
 
----
-
-## Reflection worksheet
-
-**1. Calculate YOUR real net worth tonight.**
-> Be brutal on pseudo-assets. Realistic resale values only. Write the number.
-
-**2. Identify your ONE biggest pseudo-asset.**
-> The thing you've been calling an "investment" that's actually a drain. Name it. You don't have to get rid of it — just stop lying to yourself.
-
-**3. Draft the "I'm not here to criticise how you've spent money" framing in your own voice.**
-> 3 sentences max. Practise it aloud. You'll use it for the next 20 years.
-
----
 
 ## Quick quiz
 

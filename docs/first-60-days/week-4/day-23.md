@@ -159,20 +159,6 @@ The FCs who make it to Year 5, Year 10, Year 20 aren't the hardest-working. They
 
 Feel-Good Productivity isn't about being happy at work all the time. It's about **not ruining yourself in pursuit of short-term output.** That distinction compounds.
 
----
-
-## Reflection worksheet
-
-**1. Of the three energisers (Play, Power, People), which is lowest in your current week?**
-> Be specific. If it's People — you're probably working alone too much. If it's Power — you're probably not tracking learning. If it's Play — you're grinding without creativity.
-
-**2. Which of the three unblockers (Procrastination, Paralysis, Perfectionism) shows up for you most?**
-> Most people have a pattern — same blocker in different tasks. Name yours.
-
-**3. When did you last genuinely rest?**
-> Not "took an evening off while watching Instagram." Real rest. If it's been >2 weeks, you're on the burnout track.
-
----
 
 ## Quick quiz
 

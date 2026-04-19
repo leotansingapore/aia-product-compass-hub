@@ -130,20 +130,6 @@ The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) pr
 
 **The discipline:** even when quota is tight, build bottom-up. A smaller Level 1 policy sold correctly is worth more over a career than a larger Level 3 policy sold at the wrong level.
 
----
-
-## Reflection worksheet
-
-**1. Map yourself on the pyramid. Which levels are solid, weak, or missing?**
-> Do this before you diagnose a single client. You can't sell what you haven't personally internalised.
-
-**2. Pick one friend or family member you know well. Silently diagnose which level they're weakest at.**
-> Don't talk to them about it. Just practise the diagnostic instinct.
-
-**3. Write 3 signal phrases that tell you a client is lying to themselves about their pyramid status.**
-> Example: "My company covers me." (often a weak Level 1 in disguise.)
-
----
 
 ## Quick quiz
 

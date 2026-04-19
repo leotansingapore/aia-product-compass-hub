@@ -207,20 +207,6 @@ A clean concept close transitions into product specifics:
 
 Clean handoff = clean decision.
 
----
-
-## Reflection worksheet
-
-**1. Pick ONE of the 3 concepts (property alternative, bank alternative, insurance as asset). Rewrite it in your own voice.**
-> 5 minutes delivered aloud. Use your expected client's context.
-
-**2. Identify 2 additional concepts you could build based on your ICP's most common confusions.**
-> What misconceptions do they have? Each concept should address one.
-
-**3. Practise the concept → product handoff.**
-> "So that's the idea. Now let me show you the specific plan that delivers it." Say it 5 times.
-
----
 
 ## Quick quiz
 

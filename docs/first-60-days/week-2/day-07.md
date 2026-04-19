@@ -93,20 +93,6 @@ Every meeting maps to one or more of the four segments. Make a habit of silently
 
 This silent labelling sharpens your listening. Do it on every call for a month and it becomes automatic.
 
----
-
-## Reflection worksheet
-
-**1. Write your 60-second AIA positioning in your own words.**
-> Memorise it. Practise it in the mirror until you can say it while making eye contact.
-
-**2. For each of the four insurance segments, describe (in 1 line) a friend or family member who has a gap.**
-> Not a prospect — someone you know. This is how you internalise the frame.
-
-**3. Which of the two tools (iSmart or iPos) will you open first tomorrow, and what for?**
-> If the answer is "none," you haven't started exploring them. Fix that today.
-
----
 
 ## Quick quiz
 

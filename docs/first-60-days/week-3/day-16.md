@@ -121,20 +121,6 @@ The recurring/non-recurring frame helps clients understand why:
 
 **The client realisation:** "I've been building my career to produce a bigger salary. I should also be building a machine that produces income when I don't."
 
----
-
-## Reflection worksheet
-
-**1. List every recurring-revenue stream you currently have (positive or negative).**
-> Both sides. Salary (recurring while employed). Subscriptions (recurring out). Dividends (recurring in). Be thorough. Most people's negative list is 5× longer than their positive list.
-
-**2. Estimate the value of your future renewal book if you consistently close 30 policies/year for 10 years.**
-> Use the model above. Even a rough number is motivating.
-
-**3. Name 3 behaviours that will protect your renewal book.**
-> These are your compounding-protection habits. Make them non-negotiable.
-
----
 
 ## Quick quiz
 

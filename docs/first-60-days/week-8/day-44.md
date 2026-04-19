@@ -167,20 +167,6 @@ Rejection is cumulative. 50 no's in a week will feel heavier than 5 no's a day.
 
 FCs who ignore this get burned out by Month 4 and quit. The ones who last build rejection into their emotional planning.
 
----
-
-## Reflection worksheet
-
-**1. Memorise 3 of the 10 objection responses word-for-word tonight.**
-> Add 3 more tomorrow. All 10 by end of the week.
-
-**2. Review your last 10 prospecting calls. How many were reflex vs real objections?**
-> Pattern recognition speeds up your response over time.
-
-**3. Build your 6-touch follow-up cadence template.**
-> A simple doc. Week 0, 2, 4, 6, 8, 12 — what goes in each? Save in your CRM or notes.
-
----
 
 ## Quick quiz
 

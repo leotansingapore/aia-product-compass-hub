@@ -175,20 +175,6 @@ You're not starting from zero. You're starting with 60 days of structure, a team
 
 Welcome to the career. Welcome to the team.
 
----
-
-## Reflection worksheet
-
-**1. Why did you really say yes to this career?**
-> Not the "tell mum and dad" answer. The honest one. 2–3 sentences.
-
-**2. Which of our four values already shows up in how you live — and which one will stretch you?**
-> Name the value. Give one example from your life this month.
-
-**3. Who are the first three people you'll schedule a reconnect with?**
-> Names. Not categories. If you can't name them, you haven't started.
-
----
 
 ## Quick quiz
 

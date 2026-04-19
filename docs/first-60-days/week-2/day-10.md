@@ -124,20 +124,6 @@ Here's how the pyramid + freedom formula show up in a real meeting:
 
 No one in this meeting said "insurance." And yet the client just bought an insurance plan. That's the difference between pitching product and teaching outcomes.
 
----
-
-## Reflection worksheet
-
-**1. Calculate YOUR freedom number.**
-> Monthly expenses at 65, inflation-adjusted at 2% × 12 × 25 years. What is it?
-
-**2. Draw the Financial Freedom Pyramid from memory, tonight.**
-> No cheating. Label all 5 levels. Check against this page tomorrow.
-
-**3. Write one paragraph (100 words) explaining the freedom formula to a smart 16-year-old.**
-> If you can't explain it to a teenager, you can't explain it to a client. Try it on an actual teenager this week.
-
----
 
 ## Quick quiz
 

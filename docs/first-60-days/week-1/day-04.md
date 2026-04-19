@@ -106,20 +106,6 @@ Examples for Week 1 — all zero-sales:
 
 You'll fail at some of these. That's the point.
 
----
-
-## Reflection worksheet
-
-**1. Rewrite three recent "I can't" statements using "not yet."**
-> Write the original and the rewrite side by side. Which feels more honest?
-
-**2. What's one thing you've been too comfortable doing for too long?**
-> It can be a habit, a social pattern, a topic you avoid. Name it specifically.
-
-**3. What's one uncomfortable thing you'll do this week, by when?**
-> Not "I'll be more outgoing." A specific action, a specific day, a specific person.
-
----
 
 ## Quick quiz
 

@@ -205,20 +205,6 @@ Most new FCs quit at Month 2. **They miss the compounding precisely because they
 
 **Treat digital content like investing.** Contribute consistently. Don't check the results every day. Let it compound.
 
----
-
-## Reflection worksheet
-
-**1. Build your 3-part weekly content system. Block Sunday/Tuesday/Thursday slots in your calendar.**
-> If it's not calendar-blocked, it won't happen.
-
-**2. Write your first post this week. Use the Authority + Social + CTA structure.**
-> Actually publish it. Don't draft for a month.
-
-**3. Engage on 5 posts daily for 7 days. Note any conversations that started.**
-> Substantive comments, not 👍.
-
----
 
 ## Quick quiz
 

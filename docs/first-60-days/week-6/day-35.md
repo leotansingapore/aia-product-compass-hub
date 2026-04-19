@@ -165,20 +165,6 @@ Certain products handle inflation better than others. Keep this in mind:
 
 **When presenting a product:** always illustrate the **future dollars AND today's purchasing power.** Clients need both numbers to evaluate properly.
 
----
-
-## Reflection worksheet
-
-**1. Calculate YOUR expenses at retirement age, inflation-adjusted.**
-> Today's monthly expenses × (1.02)^(years to retirement). Write the number. Does your current plan target that?
-
-**2. Calculate the real return on your bank savings, if any.**
-> Current rate minus 2%. If negative, acknowledge it. Then decide what to do.
-
-**3. Practise the "keeping it safe" response aloud.**
-> Time yourself. Target: under 60 seconds, calm and clear, no technical jargon.
-
----
 
 ## Quick quiz
 

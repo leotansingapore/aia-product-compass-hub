@@ -199,20 +199,6 @@ A well-done policy review often produces:
 
 **The relationship economy:** a single policy sale is ~$1,000 FYC. A multi-decade review-and-service relationship is ~$25,000+ CLV. The review is how that relationship starts.
 
----
-
-## Reflection worksheet
-
-**1. If you have existing policies, do a full policy summary review on yourself tonight.**
-> Apply the 5 checks. Document it. Fix your own gaps first.
-
-**2. Build a "policy snapshot" template (Google Sheet or doc).**
-> Use it on your next client meeting. It's a differentiator.
-
-**3. Name the ONE gap you're most likely to under-recommend out of fear.**
-> Usually it's CI (clients resist) or Disability Income (clients haven't heard of it). Commit to addressing it honestly from now on.
-
----
 
 ## Quick quiz
 

@@ -161,20 +161,6 @@ If you're in Month 8 and still 90% natural market, **something is wrong.** Eithe
 
 **Diagnostic:** how many referral asks have you made in the last 30 days? If it's under 10, that's the fix.
 
----
-
-## Reflection worksheet
-
-**1. Call 3 people from your warm market this week and run the market survey script.**
-> Record yourself (with their permission). Listen back. Where did you stumble?
-
-**2. Memorise the ABCD Four Promises word-for-word.**
-> Write them out from memory tomorrow morning without peeking.
-
-**3. After every meeting for the next 14 days, ask for a referral using the standard ask.**
-> Track: how many asked? How many names received? What was the pattern?
-
----
 
 ## Quick quiz
 

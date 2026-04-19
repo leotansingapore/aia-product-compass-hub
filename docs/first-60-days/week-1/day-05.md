@@ -111,20 +111,6 @@ If yes, sell it. If no, don't.
 
 This is the most important thing on this page.
 
----
-
-## Reflection worksheet
-
-**1. Draft your elevator pitch — Why, What (End), What (Now).**
-> Handwrite it. Read it out loud. Iterate 3 times. Send the final version to your mentor.
-
-**2. Make your Reconnection List of 10 — the slightly-uncomfortable tier.**
-> Name, relationship, last contact, one thing you genuinely want to ask them.
-
-**3. Describe, in 3 sentences, a recommendation you would NOT make — even if it paid well.**
-> If you can't name one, you haven't thought about your moral compass yet.
-
----
 
 ## Quick quiz
 
