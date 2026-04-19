@@ -19,7 +19,7 @@ By the end of today you should be able to:
 
 1. **Name** the four segments of personal insurance and describe the problem each one solves.
 2. **Explain** AIA Singapore's positioning in the market in one minute.
-3. **Locate** the three digital tools (iSmart, iPos, iResource) and know when each is used.
+3. **Locate** the two digital tools you'll live in every day — **iPos (iMO)** and **iSmart** — and know when each is used.
 
 ---
 
@@ -66,16 +66,7 @@ AIA's systems are genuinely ahead of most of the industry. Learn where each tool
 - **Use when:** you're at the client's home/office, running the actual sales appointment and submitting the application on the spot.
 - **Workflow:** complete financial review → illustrate plan → client signs → straight-through submission.
 
-### AIA iResource
-- **What it is:** resource hub with the Financial Needs Calculator, product concept presentations, memos, and campaign updates.
-- **Use when:** preparing for an appointment, sending a proposal, or studying a product.
-- **Workflow:** client sends their data → you build a needs analysis + concept presentation the night before.
-
-![AIA iResource hub — campaigns, collateral, product collections, and operational memos in one place|width=520](/first-60-days/images/aia-resource-hub.png)
-
-*iResource is where you find the latest campaign decks, collection matrix tables, and MEMOs (e.g. shield coverage updates, field-work bug fixes). Bookmark the "Recently Updated" section — it's your morning check-in for anything that changed while you were sleeping.*
-
-**Rule:** never walk into a client meeting without iPos ready. Never leave home without iSmart on your phone. Never build a proposal from scratch when iResource has a template.
+**Rule:** never walk into a client meeting without iPos ready. Never leave home without iSmart on your phone. Everything else — memos, campaign updates, product collateral — pushes to you through these two.
 
 ## 4. Where AIA sits in the Singapore market
 
@@ -112,7 +103,7 @@ This silent labelling sharpens your listening. Do it on every call for a month a
 **2. For each of the four insurance segments, describe (in 1 line) a friend or family member who has a gap.**
 > Not a prospect — someone you know. This is how you internalise the frame.
 
-**3. Which of the three digital tools (iSmart, iPos, iResource) will you open first tomorrow, and what for?**
+**3. Which of the two tools (iSmart or iPos) will you open first tomorrow, and what for?**
 > If the answer is "none," you haven't started exploring them. Fix that today.
 
 ---
@@ -126,10 +117,10 @@ This silent labelling sharpens your listening. Do it on every call for a month a
  - D) Savings / Investments
 
 2. **Which tool would you use to submit an application on the spot at a client's home?**
- - A) iSmart
- - B) iPos ✓
- - C) iResource
- - D) AIA+ mobile app
+ - A) iSmart (mobile app for sharing campaigns)
+ - B) iPos / iMO (the iPad point-of-sale) ✓
+ - C) WhatsApp
+ - D) AIA+ mobile app (client-facing)
 
 3. **In one phrase, AIA's mission is to help people live:**
  - A) Safer, richer, longer lives
