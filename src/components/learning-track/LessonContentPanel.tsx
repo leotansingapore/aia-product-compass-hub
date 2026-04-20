@@ -5,6 +5,8 @@ import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrac
 import { ContentBlockEditor } from "./ContentBlockEditor";
 import { RelatedResources } from "./RelatedResources";
 import { SubmissionPanel } from "./SubmissionPanel";
+import { isModuleFolder } from "@/lib/learning-track/moduleGrouping";
+import { Folder } from "lucide-react";
 import type { LearningTrackItem, ItemStatus } from "@/types/learning-track";
 import type { LockResult } from "@/lib/learning-track/unlock";
 import { cn } from "@/lib/utils";
