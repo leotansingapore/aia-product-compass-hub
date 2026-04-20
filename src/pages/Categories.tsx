@@ -219,7 +219,7 @@ export default function Categories() {
                     </div>
                     <p
                       title={category.description}
-                      className="mt-2 min-h-[5rem] flex-1 line-clamp-4 text-sm leading-relaxed text-muted-foreground [overflow-wrap:anywhere] sm:min-h-[5.25rem]"
+                      className="mt-2 flex-1 line-clamp-4 text-sm leading-relaxed text-muted-foreground [overflow-wrap:anywhere] sm:min-h-[5.25rem]"
                     >
                       {category.description}
                     </p>

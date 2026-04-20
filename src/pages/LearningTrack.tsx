@@ -112,45 +112,51 @@ export default function LearningTrack() {
                       )} />
                     )}
 
-                    {/* Step node */}
-                    <NavLink
-                      to={accessible ? step.path : "#"}
-                      onClick={(e) => { if (!accessible) e.preventDefault(); }}
-                      className={cn(
+                    {/* Step node — locked tiers render as a div so the anchor
+                        doesn't leave `#` in history or show a focus ring. */}
+                    {(() => {
+                      const stepClasses = cn(
                         "group flex items-center gap-2.5 rounded-xl px-3 py-2 transition-all",
                         isActive && "bg-primary/10 ring-1 ring-primary/20",
                         !isActive && accessible && "hover:bg-muted/60",
                         isLocked && "cursor-not-allowed opacity-50",
-                      )}
-                    >
-                      {/* Circle icon */}
-                      <div className={cn(
-                        "shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all",
-                        isDone && "bg-green-100 dark:bg-green-950/40",
-                        isCurrent && "bg-primary/15 ring-2 ring-primary/30 ring-offset-1 ring-offset-background",
-                        isLocked && "bg-muted",
-                        isActive && isCurrent && "ring-primary/50",
-                      )}>
-                        {isDone ? (
-                          <CheckCircle2 className="h-5 w-5 text-green-600" />
-                        ) : isLocked ? (
-                          <Lock className="h-3.5 w-3.5 text-muted-foreground" />
-                        ) : (
-                          <step.icon className={cn("h-4 w-4", isActive ? "text-primary" : "text-muted-foreground")} />
-                        )}
-                      </div>
-
-                      {/* Label */}
-                      <div className="hidden sm:block min-w-0">
-                        <p className={cn(
-                          "text-xs font-semibold leading-tight truncate",
-                          isActive ? "text-primary" : isDone ? "text-green-700 dark:text-green-400" : isLocked ? "text-muted-foreground" : "text-foreground",
-                        )}>
-                          {step.label}
-                        </p>
-                        <p className="text-[10px] text-muted-foreground leading-tight truncate">{step.desc}</p>
-                      </div>
-                    </NavLink>
+                      );
+                      const inner = (
+                        <>
+                          <div className={cn(
+                            "shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all",
+                            isDone && "bg-green-100 dark:bg-green-950/40",
+                            isCurrent && "bg-primary/15 ring-2 ring-primary/30 ring-offset-1 ring-offset-background",
+                            isLocked && "bg-muted",
+                            isActive && isCurrent && "ring-primary/50",
+                          )}>
+                            {isDone ? (
+                              <CheckCircle2 className="h-5 w-5 text-green-600" />
+                            ) : isLocked ? (
+                              <Lock className="h-3.5 w-3.5 text-muted-foreground" />
+                            ) : (
+                              <step.icon className={cn("h-4 w-4", isActive ? "text-primary" : "text-muted-foreground")} />
+                            )}
+                          </div>
+                          <div className="hidden sm:block min-w-0">
+                            <p className={cn(
+                              "text-xs font-semibold leading-tight truncate",
+                              isActive ? "text-primary" : isDone ? "text-green-700 dark:text-green-400" : isLocked ? "text-muted-foreground" : "text-foreground",
+                            )}>
+                              {step.label}
+                            </p>
+                            <p className="text-[10px] text-muted-foreground leading-tight truncate">{step.desc}</p>
+                          </div>
+                        </>
+                      );
+                      return accessible ? (
+                        <NavLink to={step.path} className={stepClasses}>
+                          {inner}
+                        </NavLink>
+                      ) : (
+                        <div aria-disabled className={stepClasses}>{inner}</div>
+                      );
+                    })()}
                   </div>
                 );
               })}

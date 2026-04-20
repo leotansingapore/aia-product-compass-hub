@@ -27,7 +27,7 @@ export default function MyAccount() {
           noIndex
         >
           <div className="flex items-center justify-center min-h-screen">
-            <Card className="w-[400px]">
+            <Card className="w-full max-w-md">
               <CardHeader>
                 <CardTitle>Access Denied</CardTitle>
                 <CardDescription>

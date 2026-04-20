@@ -247,7 +247,7 @@ export default function Playbooks() {
 
         {/* Tabs */}
         <Tabs value={tab} onValueChange={setTab}>
-          <TabsList className="mb-4 flex-wrap h-auto gap-1">
+          <TabsList className="mb-4 h-auto gap-1 flex-nowrap w-full justify-start overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <TabsTrigger value="mine" className="gap-1.5">
               My Playbooks
               {myPlaybooks.length > 0 && (
