@@ -26,6 +26,8 @@ function LearnerSidebar({
   isCompleted,
   lockMap,
   onSelectLesson,
+  onToggleComplete,
+  toggleBusy,
 }: {
   phase: LearningTrackPhase;
   moduleIdx: number;
@@ -33,6 +35,8 @@ function LearnerSidebar({
   isCompleted: (id: string) => boolean;
   lockMap: ReturnType<typeof useLockMap>;
   onSelectLesson: (id: string) => void;
+  onToggleComplete: (itemId: string, currentlyCompleted: boolean) => void;
+  toggleBusy: boolean;
 }) {
   const { segments } = useMemo(() => groupItemsIntoModules(phase.items), [phase.items]);
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
@@ -49,6 +53,8 @@ function LearnerSidebar({
     const completed = isCompleted(item.id);
     const itemLock = lockMap?.getItemLock(item.id);
     const isActive = item.id === activeItemId;
+    const isFolder = isModuleFolder(item);
+    const canToggle = !itemLock?.locked && !isFolder;
     return (
       <button
         key={item.id}
@@ -63,7 +69,29 @@ function LearnerSidebar({
           itemLock?.locked && "opacity-40 cursor-not-allowed",
         )}
       >
-        <span className="shrink-0">
+        <span
+          role={canToggle ? "button" : undefined}
+          tabIndex={canToggle ? 0 : -1}
+          aria-label={canToggle ? (completed ? "Mark incomplete" : "Mark complete") : undefined}
+          onClick={(e) => {
+            if (!canToggle) return;
+            e.stopPropagation();
+            onToggleComplete(item.id, completed);
+          }}
+          onKeyDown={(e) => {
+            if (!canToggle) return;
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              e.stopPropagation();
+              onToggleComplete(item.id, completed);
+            }
+          }}
+          className={cn(
+            "shrink-0 rounded-full p-0.5 transition-colors",
+            canToggle && "hover:bg-muted cursor-pointer",
+            toggleBusy && "opacity-50",
+          )}
+        >
           {itemLock?.locked ? (
             <Lock className="h-3.5 w-3.5 text-muted-foreground" />
           ) : completed ? (
@@ -200,7 +228,7 @@ export default function ExplorerTrack() {
   const { user } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
   const phasesQuery = useLearningTrackPhases("explorer");
-  const { isCompleted } = useLearningTrackProgress(user?.id);
+  const { isCompleted, setStatus } = useLearningTrackProgress(user?.id);
   const phases = phasesQuery.data ?? [];
   const lockMap = useLockMap(phases);
   const [activePhaseId, setActivePhaseId] = useState<string | null>(() => {
@@ -476,6 +504,18 @@ export default function ExplorerTrack() {
                   isCompleted={isCompleted}
                   lockMap={lockMap}
                   onSelectLesson={setExpandedItemId}
+                  toggleBusy={setStatus.isPending}
+                  onToggleComplete={(itemId, currentlyCompleted) => {
+                    const next = currentlyCompleted ? "not_started" : "completed";
+                    setStatus.mutate(
+                      { itemId, status: next },
+                      {
+                        onSuccess: () => {
+                          if (next === "completed") handleLessonComplete(itemId);
+                        },
+                      },
+                    );
+                  }}
                 />
 
                 {/* Content panel — active lesson */}
