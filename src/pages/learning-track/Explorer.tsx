@@ -1,4 +1,4 @@
-import { useState, useMemo, Fragment } from "react";
+import { useState, useMemo, useEffect, useRef, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { Loader2, Sparkles, Compass, ArrowLeft, ChevronRight, ChevronDown, Lock, CheckCircle2, Circle, Clock, Folder } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -140,6 +140,93 @@ function LearnerSidebar({
   );
 }
 
+const COUNTDOWN_SECONDS = 5;
+
+function ModuleCompleteOverlay({
+  title,
+  hasNext,
+  onGoNext,
+  onBack,
+}: {
+  title: string;
+  hasNext: boolean;
+  onGoNext: () => void;
+  onBack: () => void;
+}) {
+  const [remaining, setRemaining] = useState(COUNTDOWN_SECONDS);
+  const fired = useRef(false);
+
+  useEffect(() => {
+    if (!hasNext) return;
+    const id = setInterval(() => {
+      setRemaining((r) => {
+        if (r <= 1) {
+          clearInterval(id);
+          if (!fired.current) { fired.current = true; onGoNext(); }
+          return 0;
+        }
+        return r - 1;
+      });
+    }, 1000);
+    return () => clearInterval(id);
+  }, [hasNext, onGoNext]);
+
+  const progress = hasNext ? ((COUNTDOWN_SECONDS - remaining) / COUNTDOWN_SECONDS) * 100 : 0;
+
+  return (
+    <div className="space-y-6 max-w-3xl mx-auto" data-testid="explorer-page">
+      <div className="rounded-2xl border bg-gradient-to-br from-green-50 via-background to-emerald-50/50 dark:from-green-950/20 dark:via-background dark:to-emerald-950/20 p-8 sm:p-12 text-center">
+        <div className="mx-auto w-16 h-16 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center mb-4">
+          <CheckCircle2 className="h-8 w-8 text-green-600" />
+        </div>
+        <h2 className="text-2xl font-bold font-serif mb-2">Module complete!</h2>
+        <p className="text-muted-foreground mb-6">{title} — done and dusted.</p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          {hasNext && (
+            <div className="relative">
+              {/* Countdown ring around button */}
+              <svg
+                className="absolute -inset-1 w-[calc(100%+8px)] h-[calc(100%+8px)] -rotate-90 pointer-events-none"
+                viewBox="0 0 120 44"
+                fill="none"
+                preserveAspectRatio="none"
+              >
+                <rect
+                  x="1" y="1" width="118" height="42" rx="8"
+                  stroke="hsl(var(--primary) / 0.15)"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <rect
+                  x="1" y="1" width="118" height="42" rx="8"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="2.5"
+                  fill="none"
+                  strokeDasharray="320"
+                  strokeDashoffset={320 - (320 * progress) / 100}
+                  className="transition-all duration-1000 ease-linear"
+                />
+              </svg>
+              <Button
+                onClick={() => { fired.current = true; onGoNext(); }}
+                className="gap-2 relative z-10"
+              >
+                Go to next module
+                <span className="text-xs opacity-70 tabular-nums">{remaining}s</span>
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+          )}
+          <Button variant="outline" onClick={onBack}>
+            Back to learning track
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ExplorerModuleCard({
   phase,
   moduleNumber,
@@ -239,7 +326,11 @@ export default function ExplorerTrack() {
     return null;
   });
   const [expandedItemId, setExpandedItemId] = useState<string | null>(itemId ?? null);
-  const [celebratingModule, setCelebratingModule] = useState<string | null>(null);
+  const [moduleComplete, setModuleComplete] = useState<{
+    title: string;
+    nextPhaseId: string | null;
+    nextLessonId: string | null;
+  } | null>(null);
 
   const greeting = user?.email?.split("@")[0] || "there";
   const allLessonIds = phases.flatMap((p) => p.items.filter((i) => !isModuleFolder(i)).map((i) => i.id));
@@ -315,29 +406,18 @@ export default function ExplorerTrack() {
       return p.items.some((i) => !isModuleFolder(i));
     });
 
-    if (nextPhaseWithLesson) {
-      const firstLesson = nextPhaseWithLesson.items.find(
-        (i) => !isModuleFolder(i) && !lockMap?.getItemLock(i.id)?.locked,
-      );
-      if (firstLesson) {
-        setTimeout(() => {
-          setActivePhaseId(nextPhaseWithLesson.id);
-          setExpandedItemId(firstLesson.id);
-        }, 800);
-        return;
-      }
-    }
-
-    // 3) Nothing further — celebrate module completion.
+    // 3) Module done — show completion modal with countdown to next module.
     const allDone = items.every((i) => i.id === completedItemId || isModuleFolder(i) || isCompleted(i.id));
-    if (allDone) {
-      setCelebratingModule(activePhase.title);
-      setTimeout(() => {
-        setCelebratingModule(null);
-        setActivePhaseId(null);
-        setExpandedItemId(null);
-      }, 2500);
-    }
+    if (!allDone) return;
+
+    const firstNextLesson = nextPhaseWithLesson?.items.find(
+      (i) => !isModuleFolder(i),
+    );
+    setModuleComplete({
+      title: activePhase.title,
+      nextPhaseId: nextPhaseWithLesson?.id ?? null,
+      nextLessonId: firstNextLesson?.id ?? null,
+    });
   };
 
   if (phasesQuery.isLoading) {
@@ -370,18 +450,32 @@ export default function ExplorerTrack() {
     );
   }
 
-  // ---- Module completion celebration overlay ----
-  if (celebratingModule) {
+  const goToNextModule = () => {
+    if (moduleComplete?.nextPhaseId) {
+      setActivePhaseId(moduleComplete.nextPhaseId);
+      setExpandedItemId(moduleComplete.nextLessonId);
+    } else {
+      setActivePhaseId(null);
+      setExpandedItemId(null);
+    }
+    setModuleComplete(null);
+  };
+
+  const goBackToTrack = () => {
+    setModuleComplete(null);
+    setActivePhaseId(null);
+    setExpandedItemId(null);
+  };
+
+  // ---- Module completion modal with countdown ----
+  if (moduleComplete) {
     return (
-      <div className="space-y-6 max-w-3xl mx-auto" data-testid="explorer-page">
-        <div className="rounded-2xl border bg-gradient-to-br from-green-50 via-background to-emerald-50/50 dark:from-green-950/20 dark:via-background dark:to-emerald-950/20 p-8 sm:p-12 text-center">
-          <div className="mx-auto w-16 h-16 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center mb-4">
-            <CheckCircle2 className="h-8 w-8 text-green-600" />
-          </div>
-          <h2 className="text-2xl font-bold font-serif mb-2">Module complete!</h2>
-          <p className="text-muted-foreground">{celebratingModule} — done and dusted.</p>
-        </div>
-      </div>
+      <ModuleCompleteOverlay
+        title={moduleComplete.title}
+        hasNext={!!moduleComplete.nextPhaseId}
+        onGoNext={goToNextModule}
+        onBack={goBackToTrack}
+      />
     );
   }
 
