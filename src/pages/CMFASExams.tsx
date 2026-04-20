@@ -233,7 +233,24 @@ export default function CMFASExams() {
 
   const loading = categoriesLoading || productsLoading;
 
-  if (loading) return <SkeletonLoader type="category" />;
+  if (loading) {
+    return (
+      <PageLayout
+        title="CMFAS Exams | FINternship Learning Platform"
+        description="Prepare for CMFAS exams with interactive modules, study videos, and an AI tutor."
+      >
+        <BrandedPageHeader
+          tone="dark"
+          showOnMobile
+          title="CMFAS Exams"
+          subtitle="Master the papers that unlock your RNF status."
+        />
+        <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 py-6">
+          <SkeletonLoader type="category" />
+        </div>
+      </PageLayout>
+    );
+  }
 
   if (!cmfasCategory) {
     return (

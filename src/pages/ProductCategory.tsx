@@ -366,7 +366,7 @@ export default function ProductCategory() {
 
         {/* Sticky Search + admin new module (hidden when showing sub-categories) */}
         {!isParentCategory && (
-          <div className="mb-3 sm:mb-6 md:mb-8 sticky top-[57px] md:top-[48px] z-20 bg-background/95 backdrop-blur-sm -mx-2 sm:-mx-4 md:-mx-6 px-2 sm:px-4 md:px-6 py-2">
+          <div className="mb-3 sm:mb-6 md:mb-8 sticky top-0 z-20 bg-background/95 backdrop-blur-sm -mx-2 sm:-mx-4 md:-mx-6 px-2 sm:px-4 md:px-6 py-2">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
               <div className="min-w-0 flex-1">
                 <EnhancedSearchBar

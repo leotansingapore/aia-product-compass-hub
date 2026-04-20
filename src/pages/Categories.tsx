@@ -125,6 +125,14 @@ export default function Categories() {
           ) : null}
         </p>
 
+        {loading && topLevel.length === 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="h-44 rounded-xl border bg-muted/30 animate-pulse" />
+            ))}
+          </div>
+        )}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 items-stretch">
           {topLevel.map((category) => {
             const visual = getVisual(category.name);
