@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef, Fragment } from "react";
 import { useParams } from "react-router-dom";
-import { Loader2, Sparkles, Compass, ArrowLeft, ChevronRight, ChevronDown, Lock, CheckCircle2, Circle, Clock, Folder } from "lucide-react";
+import { Loader2, Sparkles, Compass, ArrowLeft, ChevronRight, ChevronDown, Lock, CheckCircle2, Circle, Clock, Folder, BookOpen, GraduationCap, ShoppingBag, MessageSquare } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import { LearningItemRow } from "@/components/learning-track/LearningItemRow";
 import { LessonContentPanel } from "@/components/learning-track/LessonContentPanel";
 import { AdminTrackView } from "@/components/learning-track/AdminTrackView";
 import { RequestUpgradeButton } from "@/components/tier/RequestUpgradeButton";
+import { useMyTierRequests } from "@/hooks/useTierRequests";
 import { TierBadge } from "@/components/tier/TierBadge";
 import { groupItemsIntoModules, isModuleFolder } from "@/lib/learning-track/moduleGrouping";
 import { cn } from "@/lib/utils";
@@ -300,6 +301,7 @@ export default function ExplorerTrack() {
   // Advisory Fundamentals is unpublished so learners already can't see it; admins keep access.
   const phases = allPhases.filter((p) => p.title.toLowerCase() !== "financial planning basics");
   const lockMap = useLockMap(phases);
+  const { pendingRequest } = useMyTierRequests();
   const [activePhaseId, setActivePhaseId] = useState<string | null>(() => {
     if (itemId) {
       const p = phases.find((ph) => ph.items.some((i) => i.id === itemId));
@@ -319,6 +321,7 @@ export default function ExplorerTrack() {
   const totalItems = allLessonIds.length;
   const completedItems = allLessonIds.filter((id) => isCompleted(id)).length;
   const progressPct = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+  const allExplorerComplete = totalItems > 0 && completedItems === totalItems;
 
   // Find the next incomplete item across all phases (for the "Continue" hero)
   const nextItem = (() => {
@@ -533,21 +536,90 @@ export default function ExplorerTrack() {
         </div>
       )}
 
-      {/* All-done hero */}
+      {/* All-done hero — celebration + upgrade CTA */}
       {!nextItem && totalItems > 0 && !activePhaseId && (
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-50 via-background to-emerald-50/50 dark:from-green-950/20 dark:via-background dark:to-emerald-950/20 p-6 sm:p-8">
-          <div className="relative">
-            <div className="flex items-center gap-2 mb-3">
-              <TierBadge tier="explorer" />
-              <CheckCircle2 className="h-4 w-4 text-green-600" />
+        <div className="space-y-4">
+          {/* Celebration */}
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-50 via-background to-emerald-50/50 dark:from-green-950/20 dark:via-background dark:to-emerald-950/20 p-6 sm:p-8">
+            <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-green-500/10 blur-3xl pointer-events-none" />
+            <div className="relative text-center">
+              <div className="mx-auto w-16 h-16 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center mb-4">
+                <CheckCircle2 className="h-8 w-8 text-green-600" />
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-bold font-serif tracking-tight mb-2">
+                Congratulations!
+              </h1>
+              <p className="text-muted-foreground text-sm max-w-md mx-auto mb-4">
+                You've completed all Explorer modules. You're ready to take the next step in your FINternship journey.
+              </p>
+              {/* 100% progress bar */}
+              <div className="max-w-xs mx-auto">
+                <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
+                  <span>Explorer progress</span>
+                  <span className="font-semibold text-green-600">100%</span>
+                </div>
+                <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
+                  <div className="h-full rounded-full bg-green-500 w-full" />
+                </div>
+              </div>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold font-serif tracking-tight mb-2">
-              All modules complete!
-            </h1>
-            <p className="text-muted-foreground text-sm max-w-lg">
-              You've finished every Explorer module. When you're ready, request an upgrade to unlock the next stage.
-            </p>
           </div>
+
+          {/* What's next — unlock preview */}
+          <Card className="border-primary/20">
+            <CardContent className="p-5 sm:p-6 space-y-4">
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Sparkles className="h-5 w-5 text-primary" />
+                  <h2 className="text-lg font-bold font-serif">Unlock your next stage</h2>
+                </div>
+                <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                  Request an upgrade to <span className="font-semibold text-foreground">Papers-taker</span> tier and get access to:
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { icon: BookOpen, label: "First 60 Days", desc: "Daily training program" },
+                  { icon: GraduationCap, label: "CMFAS Exam Prep", desc: "Certification study" },
+                  { icon: ShoppingBag, label: "Product Training", desc: "Insurance & investment" },
+                  { icon: MessageSquare, label: "AI Roleplay", desc: "Practice scenarios" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-lg border border-dashed border-border/60 bg-muted/20 p-3 text-center space-y-1.5"
+                  >
+                    <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
+                      <item.icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <p className="text-xs font-semibold leading-tight">{item.label}</p>
+                    <p className="text-[10px] text-muted-foreground leading-tight">{item.desc}</p>
+                    <Badge variant="outline" className="text-[9px] px-1.5 py-0 text-muted-foreground">
+                      <Lock className="h-2.5 w-2.5 mr-0.5" />
+                      Locked
+                    </Badge>
+                  </div>
+                ))}
+              </div>
+
+              <div className="text-center pt-2">
+                {pendingRequest ? (
+                  <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">
+                    <Clock className="h-4 w-4 text-amber-600 animate-pulse" />
+                    <span className="text-sm font-medium text-amber-700 dark:text-amber-400">
+                      Upgrade requested — awaiting admin approval
+                    </span>
+                  </div>
+                ) : (
+                  <RequestUpgradeButton
+                    fromTier="explorer"
+                    toTier="papers_taker"
+                    label="Request upgrade to Papers-taker"
+                  />
+                )}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       )}
 
@@ -715,8 +787,8 @@ export default function ExplorerTrack() {
         </>
       )}
 
-      {/* Upgrade nudge */}
-      {!activePhaseId && (
+      {/* Upgrade nudge — only when still in progress (hero has the CTA when all done) */}
+      {!activePhaseId && !allExplorerComplete && (
         <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
           <CardContent className="p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="p-3 rounded-xl bg-primary/10 shrink-0">
