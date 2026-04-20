@@ -8,6 +8,7 @@ export type QuizQuestion = {
   index: number;
   question: string;
   options: QuizOption[];
+  explanation?: string;
 };
 
 export type ReflectionPrompt = {

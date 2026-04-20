@@ -139,17 +139,36 @@ function parseQuestionBlock(block: string, index: number): QuizQuestion | null {
   const question = questionMatch[1].trim();
 
   const options: QuizOption[] = [];
+  const explanationLines: string[] = [];
+  let sawOption = false;
   for (let i = 1; i < lines.length; i++) {
     const line = lines[i];
     const optMatch = line.match(/^\s*[-*]\s+([A-Z])\)\s+(.+?)\s*$/);
-    if (!optMatch) continue;
-    const key = optMatch[1];
-    let text = optMatch[2];
-    const correct = /\s*✓\s*$/.test(text);
-    if (correct) text = text.replace(/\s*✓\s*$/, "").trim();
-    options.push({ key, text, correct });
+    if (optMatch) {
+      sawOption = true;
+      const key = optMatch[1];
+      let text = optMatch[2];
+      const correct = /\s*✓\s*$/.test(text);
+      if (correct) text = text.replace(/\s*✓\s*$/, "").trim();
+      options.push({ key, text, correct });
+      continue;
+    }
+    if (!sawOption) continue;
+    const quoteMatch = line.match(/^\s*>\s?(.*)$/);
+    if (quoteMatch) {
+      explanationLines.push(quoteMatch[1].trim());
+    }
   }
 
   if (options.length === 0) return null;
-  return { index, question, options };
+  const explanation = explanationLines
+    .join(" ")
+    .replace(/^(?:Explanation|Why|Because)\s*[:—-]\s*/i, "")
+    .trim();
+  return {
+    index,
+    question,
+    options,
+    explanation: explanation.length > 0 ? explanation : undefined,
+  };
 }

@@ -108,9 +108,7 @@ export default function First60DaysDay() {
   const nextUnlocked = next ? isDayComplete(dayNumber) : false;
   const weekMeta = WEEK_META[day.week];
 
-  const progressSteps = [completed || quizPassed, reflectionSubmitted, quizPassed].filter(
-    Boolean,
-  ).length;
+  const progressSteps = [unlocked, reflectionSubmitted, quizPassed].filter(Boolean).length;
   const totalSteps = 3;
   const progressPct = Math.round((progressSteps / totalSteps) * 100);
 
