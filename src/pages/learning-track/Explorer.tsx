@@ -299,9 +299,7 @@ export default function ExplorerTrack() {
   // Learners only see FINternship Orientation — Financial Planning Basics moved to
   // Supplementary Training, Advisory Fundamentals absorbed into First 60 Days.
   const HIDDEN_PHASE_TITLES = ["Financial Planning Basics", "Advisory Fundamentals"];
-  const phases = isAdmin
-    ? allPhases
-    : allPhases.filter((p) => !HIDDEN_PHASE_TITLES.some((t) => p.title.toLowerCase() === t.toLowerCase()));
+  const phases = allPhases.filter((p) => !HIDDEN_PHASE_TITLES.some((t) => p.title.toLowerCase() === t.toLowerCase()));
   const lockMap = useLockMap(phases);
   const [activePhaseId, setActivePhaseId] = useState<string | null>(() => {
     if (itemId) {
