@@ -87,7 +87,7 @@ export function MermaidDiagram({ code }: Props) {
         mermaid.initialize({
           startOnLoad: false,
           theme: "base",
-          securityLevel: "strict",
+          securityLevel: "loose",
           themeVariables: isDark ? DARK_THEME_VARS : LIGHT_THEME_VARS,
           flowchart: {
             htmlLabels: true,

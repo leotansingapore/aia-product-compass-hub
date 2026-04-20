@@ -7,7 +7,6 @@ import {
   ArrowRight,
   BookOpen,
   CheckCircle2,
-  FileText,
   Film,
   Lock,
   ClipboardCheck,
@@ -108,9 +107,12 @@ export default function First60DaysDay() {
   const nextUnlocked = next ? isDayComplete(dayNumber) : false;
   const weekMeta = WEEK_META[day.week];
 
-  const progressSteps = [unlocked, reflectionSubmitted, quizPassed].filter(Boolean).length;
-  const totalSteps = 3;
-  const progressPct = Math.round((progressSteps / totalSteps) * 100);
+  const hasReflection = day.reflection.length > 0;
+  const steps = hasReflection
+    ? [unlocked, reflectionSubmitted, quizPassed]
+    : [unlocked, quizPassed];
+  const progressSteps = steps.filter(Boolean).length;
+  const progressPct = Math.round((progressSteps / steps.length) * 100);
 
   return (
     <div className="mx-auto max-w-5xl space-y-6" data-testid="first-60-days-day">
@@ -193,12 +195,14 @@ export default function First60DaysDay() {
                 </Badge>
               )}
               <StatusChip icon={BookOpen} label="Read" done={unlocked} />
-              <StatusChip
-                icon={NotebookPen}
-                label="Reflection"
-                done={reflectionSubmitted}
-                dim={!reflectionSubmitted}
-              />
+              {hasReflection && (
+                <StatusChip
+                  icon={NotebookPen}
+                  label="Reflection"
+                  done={reflectionSubmitted}
+                  dim={!reflectionSubmitted}
+                />
+              )}
               <StatusChip
                 icon={ClipboardCheck}
                 label="Quiz"
@@ -243,31 +247,24 @@ export default function First60DaysDay() {
             Read
           </TabsTrigger>
           <TabsTrigger
-            value="slides"
-            className="gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
-          >
-            <FileText className="h-4 w-4" />
-            Slides
-          </TabsTrigger>
-          <TabsTrigger
             value="video"
             className="gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
           >
             <Film className="h-4 w-4" />
             Video
           </TabsTrigger>
-          <TabsTrigger
-            value="reflection"
-            className="gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
-          >
-            <NotebookPen className="h-4 w-4" />
-            Reflection
-            {day.reflection.length > 0 && (
+          {hasReflection && (
+            <TabsTrigger
+              value="reflection"
+              className="gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+            >
+              <NotebookPen className="h-4 w-4" />
+              Reflection
               <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground data-[state=active]:bg-primary-foreground/20 data-[state=active]:text-primary-foreground">
                 {day.reflection.length}
               </span>
-            )}
-          </TabsTrigger>
+            </TabsTrigger>
+          )}
           <TabsTrigger
             value="quiz"
             className="gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
@@ -290,35 +287,6 @@ export default function First60DaysDay() {
               </ReactMarkdown>
             </CardContent>
           </Card>
-        </TabsContent>
-
-        <TabsContent value="slides" className="mt-5 animate-fade-in">
-          {dayMeta?.slides_url ? (
-            <Card className="overflow-hidden border-border/60 shadow-card">
-              <CardContent className="p-0">
-                <div className="relative aspect-video w-full overflow-hidden rounded-md bg-black">
-                  <iframe
-                    src={dayMeta.slides_url}
-                    className="absolute inset-0 h-full w-full"
-                    allowFullScreen
-                    title={`Day ${dayNumber} slides`}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          ) : (
-            <Card className="border-dashed border-border/80 bg-muted/20">
-              <CardContent className="flex flex-col items-center gap-3 p-12 text-center">
-                <div className="grid h-12 w-12 place-items-center rounded-full bg-muted">
-                  <FileText className="h-5 w-5 text-muted-foreground" />
-                </div>
-                <h3 className="font-serif text-lg font-semibold">Slides coming soon</h3>
-                <p className="max-w-sm text-sm text-muted-foreground">
-                  The slide deck for this day hasn&apos;t been added yet. Continue with Read + Quiz.
-                </p>
-              </CardContent>
-            </Card>
-          )}
         </TabsContent>
 
         <TabsContent value="video" className="mt-5 animate-fade-in">
@@ -410,7 +378,7 @@ export default function First60DaysDay() {
                 </span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </>
-            ) : !quizPassed && !reflectionSubmitted ? (
+            ) : hasReflection && !quizPassed && !reflectionSubmitted ? (
               "Finish quiz + reflection to unlock next"
             ) : !quizPassed ? (
               "Pass the quiz to unlock next"

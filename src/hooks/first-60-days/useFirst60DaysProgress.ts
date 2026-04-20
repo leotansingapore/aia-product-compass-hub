@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { usePermissions } from "@/hooks/usePermissions";
+import { getDay as getDayContent } from "@/features/first-60-days/content";
 
 const LEGACY_KEY = "first-60-days-progress-v1";
 const MIGRATION_FLAG = "first-60-days-migration-done";
@@ -255,7 +256,11 @@ export function useFirst60DaysProgress() {
     (dayNumber: number): boolean => {
       const d = daysMap[dayNumber];
       if (!d) return false;
-      return Boolean(d.quizPassedAt && d.reflectionSubmittedAt);
+      if (!d.quizPassedAt) return false;
+      const content = getDayContent(dayNumber);
+      const needsReflection = (content?.reflection.length ?? 0) > 0;
+      if (needsReflection && !d.reflectionSubmittedAt) return false;
+      return true;
     },
     [daysMap]
   );
