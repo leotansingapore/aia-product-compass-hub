@@ -31,7 +31,7 @@ export function MermaidDiagram({ code }: Props) {
         const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
         const { svg: rendered } = await mermaid.render(id, code);
         const clean = DOMPurify.sanitize(rendered, {
-          USE_PROFILES: { svg: true, svgFilters: true },
+          USE_PROFILES: { html: true, svg: true, svgFilters: true },
         });
         if (!cancelled) setSvg(clean);
       } catch (e) {
