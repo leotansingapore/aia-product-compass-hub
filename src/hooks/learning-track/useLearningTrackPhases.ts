@@ -3,11 +3,16 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAdmin } from "@/hooks/useAdmin";
 import type { LearningTrackPhase, Track } from "@/types/learning-track";
 
-export function useLearningTrackPhases(track: Track) {
+export function useLearningTrackPhases(
+  track: Track,
+  options: { enabled?: boolean } = {},
+) {
   const { isAdmin } = useAdmin();
+  const enabled = options.enabled ?? true;
   return useQuery<LearningTrackPhase[]>({
     queryKey: ["learning-track-phases", track, isAdmin ? "admin" : "learner"],
     staleTime: 5 * 60 * 1000,
+    enabled,
     queryFn: async () => {
       const { data, error } = await supabase
         .from("learning_track_phases")

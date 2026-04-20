@@ -25,10 +25,11 @@ const WelcomeModal = lazy(() => import("@/components/onboarding/WelcomeModal").t
 const NewVersionBanner = lazy(() => import("@/components/NewVersionBanner").then(m => ({ default: m.NewVersionBanner })));
 // Eagerly loaded pages (lightweight / critical path)
 const Index = lazy(() => import("./pages/Index"));
-import SimplifiedAuth from "./pages/SimplifiedAuth";
-import ForcePasswordChange from "./pages/ForcePasswordChange";
-import ResetPassword from "./pages/ResetPassword";
-import NotFound from "./pages/NotFound";
+// Auth-related pages are lazy: most sessions never hit them (already signed in).
+const SimplifiedAuth = lazy(() => import("./pages/SimplifiedAuth"));
+const ForcePasswordChange = lazy(() => import("./pages/ForcePasswordChange"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Lazy loaded pages (heavy / secondary routes)
 const ProductCategory = lazy(() => import("./pages/ProductCategory"));

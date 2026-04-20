@@ -80,6 +80,9 @@ export function useFeatureAccess() {
   const can = useCallback(
     (featureKey: FeatureKey): boolean => {
       if (isAdminBypass) return true;
+      // Hard exclusions overriding any stale `tier_permissions` rows.
+      // Explorer-tier learners don't get Bookmarks.
+      if (tier === 'explorer' && featureKey === FEATURES.BOOKMARKS) return false;
       return permissionsByTier.get(tier)?.has(featureKey) ?? false;
     },
     [permissionsByTier, tier, isAdminBypass],

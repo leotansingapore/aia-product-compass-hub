@@ -10,9 +10,8 @@ import { LogIn, User } from "lucide-react";
 import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
 import { ProfileSheet } from "@/components/profile/ProfileSheet";
 import { ThemeToggle } from "@/components/ThemeToggle";
-const WelcomeModal = lazy(() => import("@/components/onboarding/WelcomeModal").then(m => ({ default: m.WelcomeModal })));
-const OnboardingTutorial = lazy(() => import("@/components/onboarding/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
-const OnboardingHelpButton = lazy(() => import("@/components/onboarding/OnboardingHelpButton").then(m => ({ default: m.OnboardingHelpButton })));
+// WelcomeModal, OnboardingTutorial, OnboardingHelpButton are rendered once at
+// the App.tsx root (inside OnboardingProvider) — don't re-render them here.
 const FloatingFeedbackButton = lazy(() => import("@/components/FloatingFeedbackButton").then(m => ({ default: m.FloatingFeedbackButton })));
 import { useAdmin } from "@/hooks/useAdmin";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
@@ -152,12 +151,8 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         </main>
         
         <MobileBottomNav />
-        
-        {/* Onboarding Components — lazy-loaded */}
+
         <Suspense fallback={null}>
-          <WelcomeModal />
-          <OnboardingTutorial />
-          <OnboardingHelpButton />
           <FloatingFeedbackButton />
         </Suspense>
         {profileOpen && (
@@ -200,9 +195,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         </div>
 
         <Suspense fallback={null}>
-          <WelcomeModal />
-          <OnboardingTutorial />
-          <OnboardingHelpButton />
           <FloatingFeedbackButton />
         </Suspense>
         {profileOpen && (
@@ -222,9 +214,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
       </main>
 
       <Suspense fallback={null}>
-        <WelcomeModal />
-        <OnboardingTutorial />
-        <OnboardingHelpButton />
         <FloatingFeedbackButton />
       </Suspense>
       {profileOpen && (

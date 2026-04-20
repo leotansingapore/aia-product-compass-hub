@@ -65,18 +65,23 @@ export function LearningItemRow({
   const deleteItem = useDeleteItem();
   const duplicateItem = useDuplicateItem();
   const moveItem = useMoveItemToPhase();
-  const prePhases = useLearningTrackPhases("pre_rnf");
-  const postPhases = useLearningTrackPhases("post_rnf");
   const [saveTemplateOpen, setSaveTemplateOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [moveMenuOpen, setMoveMenuOpen] = useState(false);
 
-  const allPhases = [
-    ...((prePhases.data ?? []).map(p => ({ ...p, trackLabel: "Pre" }))),
-    ...((postPhases.data ?? []).map(p => ({ ...p, trackLabel: "Post" }))),
-  ].filter(p => p.id !== item.phase_id);
-
   const showAdmin = isAdmin && !readOnly;
+
+  // Only admins need the "Move to phase" dropdown, so only admins pay for the
+  // two cross-track phase fetches (each is a large nested Supabase query).
+  const prePhases = useLearningTrackPhases("pre_rnf", { enabled: showAdmin });
+  const postPhases = useLearningTrackPhases("post_rnf", { enabled: showAdmin });
+
+  const allPhases = showAdmin
+    ? [
+        ...((prePhases.data ?? []).map(p => ({ ...p, trackLabel: "Pre" }))),
+        ...((postPhases.data ?? []).map(p => ({ ...p, trackLabel: "Post" }))),
+      ].filter(p => p.id !== item.phase_id)
+    : [];
 
   useEffect(() => {
     if (defaultExpanded) {
