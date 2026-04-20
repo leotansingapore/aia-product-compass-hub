@@ -103,6 +103,9 @@ function ServicingScriptCard({
   const [editUserVersionName, setEditUserVersionName] = useState("");
   const [editContent, setEditContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const newVersionEditorRef = useRef<MinimalRichEditorHandle>(null);
+  const editVersionEditorRef = useRef<MinimalRichEditorHandle>(null);
+  const editUserVersionEditorRef = useRef<MinimalRichEditorHandle>(null);
   const [editingTitle, setEditingTitle] = useState(false);
   const [titleDraft, setTitleDraft] = useState(script.stage);
   const [addingTag, setAddingTag] = useState(false);
