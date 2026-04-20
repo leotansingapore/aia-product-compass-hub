@@ -242,9 +242,9 @@ export default function ExplorerTrack() {
   const [celebratingModule, setCelebratingModule] = useState<string | null>(null);
 
   const greeting = user?.email?.split("@")[0] || "there";
-  const allItemIds = phases.flatMap((p) => p.items.map((i) => i.id));
-  const totalItems = allItemIds.length;
-  const completedItems = allItemIds.filter((id) => isCompleted(id)).length;
+  const allLessonIds = phases.flatMap((p) => p.items.filter((i) => !isModuleFolder(i)).map((i) => i.id));
+  const totalItems = allLessonIds.length;
+  const completedItems = allLessonIds.filter((id) => isCompleted(id)).length;
   const progressPct = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
 
   // Find the next incomplete item across all phases (for the "Continue" hero)
@@ -460,7 +460,7 @@ export default function ExplorerTrack() {
         const activePhase = phases.find((p) => p.id === activePhaseId);
         if (!activePhase) return null;
         const moduleIdx = phases.indexOf(activePhase);
-        const phaseItemIds = activePhase.items.map((i) => i.id);
+        const phaseItemIds = activePhase.items.filter((i) => !isModuleFolder(i)).map((i) => i.id);
         const phaseCompleted = phaseItemIds.filter((id) => isCompleted(id)).length;
         const phasePct = phaseItemIds.length > 0 ? Math.round((phaseCompleted / phaseItemIds.length) * 100) : 0;
         const activeItem = activePhase.items.find((i) => i.id === expandedItemId) ?? activePhase.items[0];
@@ -595,7 +595,7 @@ export default function ExplorerTrack() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {phases.map((phase, idx) => {
-              const ids = phase.items.map((i) => i.id);
+              const ids = phase.items.filter((i) => !isModuleFolder(i)).map((i) => i.id);
               const completed = ids.filter((id) => isCompleted(id)).length;
               const phaseLock = lockMap?.getPhaseLock(phase.id);
               return (

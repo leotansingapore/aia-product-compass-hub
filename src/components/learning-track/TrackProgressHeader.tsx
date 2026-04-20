@@ -1,6 +1,7 @@
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
 import { cn } from "@/lib/utils";
+import { isModuleFolder } from "@/lib/learning-track/moduleGrouping";
 import type { LearningTrackPhase, Track } from "@/types/learning-track";
 
 interface Props {
@@ -20,7 +21,7 @@ export function TrackProgressHeader({ track, phases }: Props) {
 
   if (!user || isLoading || !phases || phases.length === 0) return null;
 
-  const allItemIds = phases.flatMap((p) => p.items.map((i) => i.id));
+  const allItemIds = phases.flatMap((p) => p.items.filter((i) => !isModuleFolder(i)).map((i) => i.id));
   const total = allItemIds.length;
   if (total === 0) return null;
 

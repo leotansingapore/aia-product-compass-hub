@@ -5,6 +5,7 @@ import type { LearningTrackPhase, LearningTrackItem } from "@/types/learning-tra
 import type { LockMap } from "@/hooks/learning-track/useLockMap";
 import { cn } from "@/lib/utils";
 import { LearningItemRow } from "./LearningItemRow";
+import { isModuleFolder } from "@/lib/learning-track/moduleGrouping";
 
 const AdminPhaseControls = lazy(() => import("./AdminPhaseControls"));
 
@@ -34,8 +35,9 @@ export function PhaseSection({
 }: PhaseSectionProps) {
   const [open, setOpen] = useState(defaultOpen);
   const { isAdmin } = useAdmin();
-  const completedCount = phase.items.filter((i) => isCompleted(i.id)).length;
-  const totalCount = phase.items.length;
+  const lessons = phase.items.filter((i) => !isModuleFolder(i));
+  const completedCount = lessons.filter((i) => isCompleted(i.id)).length;
+  const totalCount = lessons.length;
   const allDone = totalCount > 0 && completedCount === totalCount;
   const showAdmin = isAdmin && !readOnly;
   const phaseLock = lockMap?.getPhaseLock(phase.id) ?? null;
