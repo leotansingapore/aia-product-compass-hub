@@ -49,11 +49,16 @@ The 60 days break into three phases. Each one earns the next.
 
 ```mermaid
 flowchart LR
-    P1["Phase 1 · Weeks 1–5<br/>Inner game<br/>How you think, how you spend time,<br/>the standards you hold yourself to"]
-    P2["Phase 2 · Weeks 6–7<br/>Fundamentals<br/>Financial knowledge into<br/>muscle memory"]
-    P3["Phase 3 · Weeks 8–10<br/>Client game<br/>Real prospects, real fact-finds,<br/>real proposals"]
+    P1["Phase 1 · Weeks 1 to 5<br/>Inner game"]
+    P2["Phase 2 · Weeks 6 to 7<br/>Fundamentals"]
+    P3["Phase 3 · Weeks 8 to 10<br/>Client game"]
     P1 --> P2 --> P3
 ```
+
+**What each phase means:**
+- **Inner game** — how you think, how you spend time, the standards you hold yourself to.
+- **Fundamentals** — financial knowledge into muscle memory.
+- **Client game** — real prospects, real fact-finds, real proposals.
 
 You won't meet a real prospect until Week 8. That's intentional. We fix the operator before we hand over the machine.
 
