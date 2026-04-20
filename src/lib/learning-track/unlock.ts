@@ -1,4 +1,5 @@
 import type { LearningTrackItem, LearningTrackPhase } from "@/types/learning-track";
+import { isModuleFolder } from "@/lib/learning-track/moduleGrouping";
 
 export interface LockResult {
   locked: boolean;
@@ -25,6 +26,7 @@ export function computePhaseLocked(
   if (!prereq) return UNLOCKED;
   const missing = prereq.items
     .filter((i) => i.published_at !== null)
+    .filter((i) => !isModuleFolder(i))
     .filter((i) => !isCompleted(i.id));
   if (missing.length === 0) return UNLOCKED;
   return {
