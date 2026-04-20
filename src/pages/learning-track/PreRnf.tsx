@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { Loader2 } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
+import { GraduationCap, Loader2, ChevronRight } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackPhases";
@@ -7,6 +7,25 @@ import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrac
 import { useLockMap } from "@/hooks/learning-track/useLockMap";
 import { AdminTrackView } from "@/components/learning-track/AdminTrackView";
 import { TrackLearnerView } from "@/components/learning-track/TrackLearnerView";
+import type { LearningTrackPhase } from "@/types/learning-track";
+
+/**
+ * Rewrite raw phase titles for the Pre-RNF learner view:
+ *   "Phase 1 — Industry Understanding" is dropped (curriculum-deleted).
+ *   "Phase 2 — ..." is relabelled to "Assignment 1 — ..." (and so on).
+ * Admins see the raw titles via AdminTrackView so they can edit them.
+ */
+function reshapePreRnfPhasesForLearner(phases: LearningTrackPhase[]): LearningTrackPhase[] {
+  return phases
+    .filter((p) => !/^phase\s*1\b/i.test(p.title.trim()))
+    .map((p, idx) => {
+      const stripped = p.title.replace(/^phase\s*\d+\s*[—-]\s*/i, "").trim();
+      const rewritten = stripped.length > 0 && stripped !== p.title
+        ? `Assignment ${idx + 1} — ${stripped}`
+        : p.title;
+      return { ...p, title: rewritten };
+    });
+}
 
 export default function PreRnfTrack() {
   const { itemId } = useParams<{ itemId?: string }>();
@@ -14,7 +33,8 @@ export default function PreRnfTrack() {
   const { isAdmin } = useAdmin();
   const phasesQuery = useLearningTrackPhases("pre_rnf", { includeContent: isAdmin });
   const { isCompleted } = useLearningTrackProgress(user?.id);
-  const phases = phasesQuery.data ?? [];
+  const rawPhases = phasesQuery.data ?? [];
+  const phases = isAdmin ? rawPhases : reshapePreRnfPhasesForLearner(rawPhases);
   const lockMap = useLockMap(phases);
 
   if (phasesQuery.isLoading) {
@@ -56,6 +76,20 @@ export default function PreRnfTrack() {
 
   return (
     <div className="space-y-4" data-testid="pre-rnf-page">
+      <Link
+        to="/cmfas-exams"
+        className="group relative flex items-center gap-4 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-4 sm:p-5 max-w-3xl mx-auto transition-all hover:border-primary/40 hover:shadow-md"
+      >
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+          <GraduationCap className="h-6 w-6" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">Required</p>
+          <h3 className="text-base font-bold font-serif leading-snug">CMFAS Exams</h3>
+          <p className="text-xs text-muted-foreground line-clamp-1">Study modules, videos, and the AI tutor that prepare you to clear the papers.</p>
+        </div>
+        <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+      </Link>
       <TrackLearnerView
         phases={phases}
         isCompleted={isCompleted}

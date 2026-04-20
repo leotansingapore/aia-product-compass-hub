@@ -103,6 +103,10 @@ export function useFeatureAccess() {
         if (tier === 'explorer' && key === FEATURES.BOOKMARKS) return false;
         if (tier === 'post_rnf' && key === FEATURES.CMFAS) return false;
         if (tier === 'papers_taker' && key === FEATURES.ROLEPLAY) return false;
+        // Papers-takers reach CMFAS from inside the Pre-RNF learning track,
+        // not the global nav — hide nav entry only, keep the route reachable
+        // (so this exclusion is NOT mirrored in `can`).
+        if (tier === 'papers_taker' && key === FEATURES.CMFAS) return false;
         return allowed.has(key);
       });
     },
