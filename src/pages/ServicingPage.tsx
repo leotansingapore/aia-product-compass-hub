@@ -455,6 +455,7 @@ function ServicingScriptCard({
                     autoFocus
                   />
                   <MinimalRichEditor
+                    ref={newVersionEditorRef}
                     value={newVersionContent}
                     onChange={setNewVersionContent}
                     placeholder="Write your version... (supports markdown)"
@@ -463,9 +464,11 @@ function ServicingScriptCard({
                     <Button variant="ghost" size="sm" onClick={() => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); }}>
                       <X className="h-3.5 w-3.5 mr-1" /> Cancel
                     </Button>
-                    <Button size="sm" disabled={!newVersionContent.trim() || addVersion.isPending} onClick={() => {
+                    <Button size="sm" disabled={!newVersionContent.trim() || addVersion.isPending} onClick={async () => {
+                      const latest = (await newVersionEditorRef.current?.getMarkdownForSave()) ?? newVersionContent;
+                      if (!latest.trim()) return;
                       addVersion.mutate(
-                        { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
+                        { content: latest.trim(), authorName: newVersionName.trim() || "My Version" },
                         { onSuccess: () => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); } }
                       );
                     }}>
