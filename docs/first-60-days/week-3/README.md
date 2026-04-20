@@ -22,12 +22,12 @@ tags: [first-60-days, week-3]
 
 ## What you should have learnt by now
 
-- The **Job A vs Job B** frame — why insured income is the real coverage, not just income while well.
-- The **opportunity cost** hidden inside "safe" bank savings, and how to surface it in a 30-second script.
-- The wealth-building mechanics: **multiple streams**, **accumulation vs preservation**, and the math of starting early.
-- The difference between **recurring and non-recurring revenue** — and why it shapes your career economics too.
-- The **one-sentence asset/liability test** and what "real net worth" looks like once pseudo-assets are stripped out.
-- What **10X** actually means: massive goals paired with massive action, and why it protects you from average effort.
+- The [**Job A vs Job B**](/learning-track/first-60-days/day/13) frame — why insured income is the real coverage, not just income while well.
+- The [**opportunity cost**](/learning-track/first-60-days/day/14) hidden inside "safe" bank savings, and how to surface it in a 30-second script.
+- The [**wealth-building mechanics**](/learning-track/first-60-days/day/15): multiple streams, accumulation vs preservation, and the math of starting early.
+- The difference between [**recurring and non-recurring revenue**](/learning-track/first-60-days/day/16) — and why it shapes your career economics too.
+- The [**one-sentence asset/liability test**](/learning-track/first-60-days/day/17) and what "real net worth" looks like once pseudo-assets are stripped out.
+- What [**10X**](/learning-track/first-60-days/day/18) actually means: massive goals paired with massive action, and why it protects you from average effort.
 
 ## The single line to remember from Week 3
 

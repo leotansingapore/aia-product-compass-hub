@@ -22,12 +22,12 @@ tags: [first-60-days, week-1]
 
 ## What you should have learnt by now
 
-- Why this career is **skill acquisition, not a job** — and why that framing decides who survives Year 1.
-- The **three financial buckets** every household needs, and the **three risk strategies** (avoid / retain / transfer) that apply to each.
-- The **four assurances** of this career: autonomy, development, security, fulfilment.
-- How a **growth mindset** responds differently from a fixed mindset to rejection, plateaus, and feedback.
-- What your own **Why** sounds like in one sentence — and why it has to be true before it's useful.
-- How **identity-based habits** compound in a way that goal-based habits don't.
+- Why this career is [**skill acquisition, not a job**](/learning-track/first-60-days/day/1) — and why that framing decides who survives Year 1.
+- The [**three financial buckets**](/learning-track/first-60-days/day/2) every household needs, and the **three risk strategies** (avoid / retain / transfer) that apply to each.
+- The [**four assurances**](/learning-track/first-60-days/day/3) of this career: autonomy, development, security, fulfilment.
+- How a [**growth mindset**](/learning-track/first-60-days/day/4) responds differently from a fixed mindset to rejection, plateaus, and feedback.
+- What your own [**Why**](/learning-track/first-60-days/day/5) sounds like in one sentence — and why it has to be true before it's useful.
+- How [**identity-based habits**](/learning-track/first-60-days/day/6) compound in a way that goal-based habits don't.
 
 ## The single line to remember from Week 1
 

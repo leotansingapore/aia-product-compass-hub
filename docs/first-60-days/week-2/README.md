@@ -22,12 +22,12 @@ tags: [first-60-days, week-2]
 
 ## What you should have learnt by now
 
-- The **four segments** of the insurance industry and how AIA is positioned inside them.
-- Why **class is a cashflow behaviour**, not a salary figure — and how that changes the conversation with a client.
-- The **freedom formula** and what the **freedom number** actually represents for an individual or household.
-- How to map any household onto the **5-level Financial Freedom Pyramid** (Security → Freedom → Wealth).
-- The **Cashflow Quadrant** (E/S/B/I) and why this career forces a crossing from left side to right side.
-- The real product you're selling: **freedom**, not insurance.
+- The [**four segments**](/learning-track/first-60-days/day/7) of the insurance industry and how AIA is positioned inside them.
+- Why [**class is a cashflow behaviour**](/learning-track/first-60-days/day/9), not a salary figure — and how that changes the conversation with a client.
+- The [**freedom formula**](/learning-track/first-60-days/day/10) and what the **freedom number** actually represents for an individual or household.
+- How to map any household onto the [**5-level Financial Freedom Pyramid**](/learning-track/first-60-days/day/12) (Security → Freedom → Wealth).
+- The [**Cashflow Quadrant**](/learning-track/first-60-days/day/11) (E/S/B/I) and why this career forces a crossing from left side to right side.
+- The real product you're selling: [**freedom, not insurance**](/learning-track/first-60-days/day/10).
 
 ## The single line to remember from Week 2
 

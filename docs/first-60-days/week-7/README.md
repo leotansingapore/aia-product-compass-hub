@@ -22,12 +22,12 @@ tags: [first-60-days, week-7]
 
 ## What you should have learnt by now
 
-- The **6-step Financial Planning Process** and what **Client Lifetime Value** means for how you run first meetings.
-- The **Market Survey** script, the **ABCD Four Promises**, and how to handle resistance without pitching.
-- How to build a **Project 100** list — with A/B/C priority tiers and the 100 → 8–15 conversion funnel.
-- The **4-stage Social Media Journey**, so you know which stage you're at and what content fits it.
-- A **two-prong content strategy** — authority posts plus trust-building stories — and why both are needed.
-- The **3-channel lead-gen funnel** (Posts / Stories / DMs) and the **4 content pillars** that feed it.
+- The [**6-step Financial Planning Process**](/learning-track/first-60-days/day/37) and what Client Lifetime Value means for how you run first meetings.
+- The [**Market Survey** script and **ABCD Four Promises**](/learning-track/first-60-days/day/38), and how to handle resistance without pitching.
+- How to build a [**Project 100**](/learning-track/first-60-days/day/39) list — with A/B/C priority tiers and the 100 → 8–15 conversion funnel.
+- The [**4-stage Social Media Journey**](/learning-track/first-60-days/day/40), so you know which stage you're at and what content fits it.
+- A [**two-prong content strategy**](/learning-track/first-60-days/day/41) — authority posts plus trust-building stories — and why both are needed.
+- The [**3-channel lead-gen funnel**](/learning-track/first-60-days/day/42) (Posts / Stories / DMs) and the 4 content pillars that feed it.
 
 ## The single line to remember from Week 7
 

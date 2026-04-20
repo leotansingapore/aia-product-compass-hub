@@ -22,12 +22,12 @@ tags: [first-60-days, week-10]
 
 ## What you should have learnt by now
 
-- The **7 AIA product categories** and when each one is the right fit — ILP, Whole Life, Endowment, Universal Life, Term, CI, A&H/Disability Income.
-- How **Investment-Linked Plans** actually work: premium allocation, the **3 right and 3 wrong** client profiles, and what honest disclosure sounds like.
-- The **5 Policy Summary checks** — riders, exclusions, structure, gaps, snapshot — so you can review any existing policy with confidence.
-- The **5-part proposal template** and the **5 closing techniques**, including when a graceful exit beats a close.
-- How **claims handling** works for both minor and major claims, and why it's the moment the career earns its reputation.
-- Where you stand after 60 days, and what a realistic **Day 61–1,095** arc looks like from here.
+- The [**7 AIA product categories**](/learning-track/first-60-days/day/55) and when each one is the right fit — ILP, Whole Life, Endowment, Universal Life, Term, CI, A&H/Disability Income.
+- How [**Investment-Linked Plans**](/learning-track/first-60-days/day/57) actually work: premium allocation, the 3 right and 3 wrong client profiles, and what honest disclosure sounds like.
+- The [**5 Policy Summary checks**](/learning-track/first-60-days/day/58) — riders, exclusions, structure, gaps, snapshot — so you can review any existing policy with confidence.
+- The [**5-part proposal template and 5 closing techniques**](/learning-track/first-60-days/day/59), including when a graceful exit beats a close.
+- How [**claims handling**](/learning-track/first-60-days/day/60) works for both minor and major claims, and why it's the moment the career earns its reputation.
+- Where you stand after 60 days, and what a realistic [**Day 61–1,095 arc**](/learning-track/first-60-days/day/60) looks like from here.
 
 ## The single line to remember from Week 10
 

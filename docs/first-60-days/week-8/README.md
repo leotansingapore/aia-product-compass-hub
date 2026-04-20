@@ -22,12 +22,12 @@ tags: [first-60-days, week-8]
 
 ## What you should have learnt by now
 
-- The **6-part Telephone Technique** and the **AIDA elevator pitch** — what each move does and the order it happens in.
-- The difference between **reflex and real** objections, and a calibrated response for the 10 most common ones.
-- The **6P storytelling method** and how compression makes a good story actually usable in a meeting.
-- How to **identify DISC profiles** in the first 60 seconds — and adjust tone, pace, and detail accordingly.
-- The **SPIN framework** as a whole, and why moving from implied to explicit need is the heart of consultative selling.
-- How **Situation** and **Problem** questions set up the rest of the meeting — with the permission move and proper note discipline.
+- The [**6-part Telephone Technique** and **AIDA elevator pitch**](/learning-track/first-60-days/day/43) — what each move does and the order it happens in.
+- The difference between [**reflex and real objections**](/learning-track/first-60-days/day/44), and a calibrated response for the 10 most common ones.
+- The [**6P storytelling method**](/learning-track/first-60-days/day/45) and how compression makes a good story actually usable in a meeting.
+- How to [**identify DISC profiles**](/learning-track/first-60-days/day/46) in the first 60 seconds — and adjust tone, pace, and detail accordingly.
+- The [**SPIN framework**](/learning-track/first-60-days/day/47) as a whole, and why moving from implied to explicit need is the heart of consultative selling.
+- How [**Situation and Problem questions**](/learning-track/first-60-days/day/48) set up the rest of the meeting — with the permission move and proper note discipline.
 
 ## The single line to remember from Week 8
 

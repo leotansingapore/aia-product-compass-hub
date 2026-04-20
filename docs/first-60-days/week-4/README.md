@@ -22,12 +22,12 @@ tags: [first-60-days, week-4]
 
 ## What you should have learnt by now
 
-- Why today's income was decided **30–60 days ago**, and what that means for how you treat prospecting.
-- The **3 daily activities** that move results — and why counting rejections matters more than counting yeses.
-- The **5-phase sales meeting** from first greeting to close, and the role of a mission statement inside it.
-- The **time management matrix** — all four quadrants, and why Q2 is where careers are built.
-- The productivity micro-rules: **2-minute, one-touch, 10-minute** — what each protects against.
-- How to pick **energisers, unblockers, sustainers** so you last a full 12 months, not a sprint.
+- Why today's income was decided [**30–60 days ago**](/learning-track/first-60-days/day/19), and what that means for how you treat prospecting.
+- The [**3 daily activities**](/learning-track/first-60-days/day/19) that move results — and why counting rejections matters more than counting yeses.
+- The [**5-phase sales meeting**](/learning-track/first-60-days/day/21) from first greeting to close, and the role of a mission statement inside it.
+- The [**time management matrix**](/learning-track/first-60-days/day/24) — all four quadrants, and why Q2 is where careers are built.
+- The productivity micro-rules: [**2-minute, one-touch, 10-minute**](/learning-track/first-60-days/day/20) — what each protects against.
+- How to pick [**energisers, unblockers, sustainers**](/learning-track/first-60-days/day/23) so you last a full 12 months, not a sprint.
 
 ## The single line to remember from Week 4
 

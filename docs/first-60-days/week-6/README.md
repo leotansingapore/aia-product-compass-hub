@@ -22,12 +22,12 @@ tags: [first-60-days, week-6]
 
 ## What you should have learnt by now
 
-- How to calculate **present value** and apply it to retirement, education, and legacy goals.
-- The **Rule of 72** as a shortcut for doubling time, inflation, and education-cost math.
-- The **four CPF accounts**, contribution rates, the ages 55 and 65 milestones, and how **CPF LIFE** works.
-- The **5 investment product categories** and how to match each to a client's risk profile — not the other way around.
-- The difference between **nominal and real returns**, and why category-specific inflation quietly destroys cash savings.
-- Why the client line "I'm keeping it safe in the bank" is usually the **riskiest** position over 10+ years.
+- How to calculate [**present value**](/learning-track/first-60-days/day/31) and apply it to retirement, education, and legacy goals.
+- The [**Rule of 72**](/learning-track/first-60-days/day/32) as a shortcut for doubling time, inflation, and education-cost math.
+- The [**four CPF accounts**](/learning-track/first-60-days/day/33), contribution rates, the ages 55 and 65 milestones, and how CPF LIFE works.
+- The [**5 investment product categories**](/learning-track/first-60-days/day/34) and how to match each to a client's risk profile — not the other way around.
+- The difference between [**nominal and real returns**](/learning-track/first-60-days/day/35), and why category-specific inflation quietly destroys cash savings.
+- Why the client line "I'm keeping it safe in the bank" is usually the [**riskiest position**](/learning-track/first-60-days/day/35) over 10+ years.
 
 ## The single line to remember from Week 6
 

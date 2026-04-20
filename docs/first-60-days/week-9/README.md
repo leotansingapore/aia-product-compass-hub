@@ -22,12 +22,12 @@ tags: [first-60-days, week-9]
 
 ## What you should have learnt by now
 
-- How **Implication** and **Need-Payoff** questions work in SPIN — the moment a client stops being sold to and starts selling themselves.
-- The **3-section CFR structure** (Situation + priorities → Problem development → Financial numbers) end to end.
-- The **6 data categories** inside the numbers section, and how the **Colombo close** lands the meeting.
-- The **Wealth angle CST** — reframing wealth-building as freedom-building in 5 minutes.
-- The **Risks angle CST** — reframing insurance as the foundation that makes everything else possible.
-- **Concept selling** vs product selling — and what it takes to start building your own library of 3 concepts.
+- How [**Implication and Need-Payoff questions**](/learning-track/first-60-days/day/49) work in SPIN — the moment a client stops being sold to and starts selling themselves.
+- The [**3-section CFR structure**](/learning-track/first-60-days/day/50) (Situation + priorities → Problem development → Financial numbers) end to end.
+- The [**6 data categories and Colombo close**](/learning-track/first-60-days/day/51) that land the financial numbers section of the CFR.
+- The [**Wealth angle CST**](/learning-track/first-60-days/day/52) — reframing wealth-building as freedom-building in 5 minutes.
+- The [**Risks angle CST**](/learning-track/first-60-days/day/53) — reframing insurance as the foundation that makes everything else possible.
+- [**Concept selling** vs product selling](/learning-track/first-60-days/day/54) — and what it takes to start building your own library of 3 concepts.
 
 ## The single line to remember from Week 9
 

@@ -22,12 +22,12 @@ tags: [first-60-days, week-5]
 
 ## What you should have learnt by now
 
-- The **weekly team rhythms** (Monday meeting, Thursday training, district builder) and how your personal rhythm plugs in.
-- How to translate **10X** from a slogan into specific daily numbers, plus how to recover from misses with **MAD days**.
-- The **Activity × Skills × Knowledge = FYC** scorecard, and the weekly ratios that predict your first-year result.
-- The **5 TVM variables** (n, i, PV, PMT, FV), sign conventions, and which variable solves which client question.
-- **Compounding** vs simple interest — and the **Rule of 72** as a 10-second mental model.
-- Why **DCA** beats timing for most clients, and how to explain it without using jargon.
+- The [**weekly team rhythms**](/learning-track/first-60-days/day/25) (Monday meeting, Thursday training, district builder) and how your personal rhythm plugs in.
+- How to translate [**10X into specific daily numbers**](/learning-track/first-60-days/day/26), plus how to recover from misses with MAD days.
+- The [**Activity × Skills × Knowledge = FYC** scorecard](/learning-track/first-60-days/day/27), and the weekly ratios that predict your first-year result.
+- The [**5 TVM variables**](/learning-track/first-60-days/day/28) (n, i, PV, PMT, FV), sign conventions, and which variable solves which client question.
+- [**Compounding** vs simple interest](/learning-track/first-60-days/day/29) — and the **Rule of 72** as a 10-second mental model.
+- Why [**DCA** beats timing](/learning-track/first-60-days/day/30) for most clients, and how to explain it without using jargon.
 
 ## The single line to remember from Week 5
 

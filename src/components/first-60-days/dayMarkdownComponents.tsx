@@ -1,9 +1,27 @@
 import type { Components } from "react-markdown";
+import { Link } from "react-router-dom";
 import { markdownComponents } from "@/lib/markdown-config";
 import { MermaidDiagram } from "./MermaidDiagram";
 
 export const dayMarkdownComponents: Components = {
   ...markdownComponents,
+  a: ({ children, href, ...rest }: any) => {
+    const url = typeof href === "string" ? href : "";
+    const isInternal = url.startsWith("/") && !url.startsWith("//");
+    if (isInternal) {
+      return (
+        <Link
+          to={url}
+          className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+          {...rest}
+        >
+          {children}
+        </Link>
+      );
+    }
+    const Fallback = markdownComponents.a as any;
+    return <Fallback href={url} {...rest}>{children}</Fallback>;
+  },
   code: ({ className, children, ...rest }: any) => {
     const lang = typeof className === "string" ? className.replace("language-", "") : "";
     if (lang === "mermaid") {
