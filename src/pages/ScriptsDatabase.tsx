@@ -1692,8 +1692,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const saveInlineEdit = async () => {
     if (editingVersionIdx === null || !onInlineSave) return;
     setIsSaving(true);
+    const latest =
+      (await inlineEditorRefA.current?.getMarkdownForSave()) ??
+      (await inlineEditorRefB.current?.getMarkdownForSave()) ??
+      editContent;
     const updatedVersions = script.versions.map((v, i) =>
-      i === editingVersionIdx ? { ...v, content: editContent } : v
+      i === editingVersionIdx ? { ...v, content: latest } : v
     );
     await onInlineSave(script.id, updatedVersions);
     setEditingVersionIdx(null);
