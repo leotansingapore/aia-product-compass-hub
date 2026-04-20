@@ -652,90 +652,35 @@ export default function ExplorerTrack() {
         </div>
       )}
 
-      {/* All-done hero — celebration + upgrade CTA */}
+      {/* All-done banner — compact so module cards below are visible */}
       {!nextItem && totalItems > 0 && !activePhaseId && (
-        <div className="space-y-4">
-          {/* Celebration */}
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-50 via-background to-emerald-50/50 dark:from-green-950/20 dark:via-background dark:to-emerald-950/20 p-6 sm:p-8">
-            <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-green-500/10 blur-3xl pointer-events-none" />
-            <div className="relative text-center">
-              <div className="mx-auto w-16 h-16 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center mb-4">
-                <CheckCircle2 className="h-8 w-8 text-green-600" />
-              </div>
-              <h1 className="text-2xl sm:text-3xl font-bold font-serif tracking-tight mb-2">
-                Congratulations!
-              </h1>
-              <p className="text-muted-foreground text-sm max-w-md mx-auto mb-4">
-                You've completed all Explorer modules. You're ready to take the next step in your FINternship journey.
+        <div className="rounded-xl border bg-gradient-to-r from-green-50 via-background to-primary/5 dark:from-green-950/20 dark:via-background dark:to-primary/5 p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            <div className="shrink-0 w-10 h-10 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center">
+              <CheckCircle2 className="h-5 w-5 text-green-600" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold">All Explorer modules complete!</p>
+              <p className="text-xs text-muted-foreground">
+                Upgrade to <span className="font-medium text-foreground">Papers-taker</span> to unlock First 60 Days, CMFAS, Product Training & more.
               </p>
-              {/* 100% progress bar */}
-              <div className="max-w-xs mx-auto">
-                <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
-                  <span>Explorer progress</span>
-                  <span className="font-semibold text-green-600">100%</span>
-                </div>
-                <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
-                  <div className="h-full rounded-full bg-green-500 w-full" />
-                </div>
-              </div>
             </div>
           </div>
-
-          {/* What's next — unlock preview */}
-          <Card className="border-primary/20">
-            <CardContent className="p-5 sm:p-6 space-y-4">
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Sparkles className="h-5 w-5 text-primary" />
-                  <h2 className="text-lg font-bold font-serif">Unlock your next stage</h2>
-                </div>
-                <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                  Request an upgrade to <span className="font-semibold text-foreground">Papers-taker</span> tier and get access to:
-                </p>
+          <div className="shrink-0">
+            {pendingRequest ? (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">
+                <Clock className="h-3.5 w-3.5 text-amber-600 animate-pulse" />
+                <span className="text-xs font-medium text-amber-700 dark:text-amber-400">Awaiting approval</span>
               </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {[
-                  { icon: BookOpen, label: "First 60 Days", desc: "Daily training program" },
-                  { icon: GraduationCap, label: "CMFAS Exam Prep", desc: "Certification study" },
-                  { icon: ShoppingBag, label: "Product Training", desc: "Insurance & investment" },
-                  { icon: MessageSquare, label: "AI Roleplay", desc: "Practice scenarios" },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-lg border border-dashed border-border/60 bg-muted/20 p-3 text-center space-y-1.5"
-                  >
-                    <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
-                      <item.icon className="h-4 w-4 text-primary" />
-                    </div>
-                    <p className="text-xs font-semibold leading-tight">{item.label}</p>
-                    <p className="text-[10px] text-muted-foreground leading-tight">{item.desc}</p>
-                    <Badge variant="outline" className="text-[9px] px-1.5 py-0 text-muted-foreground">
-                      <Lock className="h-2.5 w-2.5 mr-0.5" />
-                      Locked
-                    </Badge>
-                  </div>
-                ))}
-              </div>
-
-              <div className="text-center pt-2">
-                {pendingRequest ? (
-                  <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">
-                    <Clock className="h-4 w-4 text-amber-600 animate-pulse" />
-                    <span className="text-sm font-medium text-amber-700 dark:text-amber-400">
-                      Upgrade requested — awaiting admin approval
-                    </span>
-                  </div>
-                ) : (
-                  <RequestUpgradeButton
-                    fromTier="explorer"
-                    toTier="papers_taker"
-                    label="Request upgrade to Papers-taker"
-                  />
-                )}
-              </div>
-            </CardContent>
-          </Card>
+            ) : (
+              <RequestUpgradeButton
+                fromTier="explorer"
+                toTier="papers_taker"
+                label="Request upgrade"
+                compact
+              />
+            )}
+          </div>
         </div>
       )}
 
