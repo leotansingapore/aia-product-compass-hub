@@ -20,7 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
 import { detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
-import { loadDay, WEEK_META } from "@/features/first-60-days/content";
+import { loadDay, loadWeekReadme, WEEK_META } from "@/features/first-60-days/content";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 import type { Day } from "@/features/first-60-days/types";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
@@ -50,6 +50,54 @@ function StatusChip({ icon: Icon, label, done, dim = false }: StatusChipProps) {
       {done ? <CheckCircle2 className="h-3 w-3" /> : <Icon className="h-3 w-3" />}
       {label}
     </span>
+  );
+}
+
+function WeekWrapup({ weekNumber }: { weekNumber: number }) {
+  const [body, setBody] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    let cancelled = false;
+    loadWeekReadme(weekNumber)
+      .then((b) => {
+        if (!cancelled) {
+          setBody(b ?? null);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [weekNumber]);
+
+  if (loading) return null;
+  if (!body) return null;
+
+  return (
+    <section className="relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-card shadow-card">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.4]"
+        aria-hidden
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.14), transparent 55%), radial-gradient(ellipse at bottom left, hsl(var(--accent) / 0.12), transparent 55%)",
+        }}
+      />
+      <div className="relative px-5 py-5 sm:px-8 sm:py-8">
+        <div className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+          <Sparkles className="h-3 w-3" />
+          Week {weekNumber} wrap-up
+        </div>
+        <article className="prose prose-sm max-w-none dark:prose-invert prose-headings:font-serif prose-a:text-primary prose-img:rounded-lg">
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={dayMarkdownComponents}>
+            {body}
+          </ReactMarkdown>
+        </article>
+      </div>
+    </section>
   );
 }
 
@@ -366,6 +414,9 @@ export default function First60DaysDay() {
           <DayQuiz dayNumber={dayNumber} questions={day.quiz} />
         </TabsContent>
       </Tabs>
+
+      {/* Week wrap-up — rendered on the last day of each week (day 6, 12, …, 60). */}
+      {dayNumber % 6 === 0 && <WeekWrapup weekNumber={day.week} />}
 
       {/* Footer nav */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-5">

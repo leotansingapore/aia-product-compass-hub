@@ -9,6 +9,13 @@ const rawLoaders = import.meta.glob<string>("/docs/first-60-days/week-*/day-*.md
   import: "default",
 });
 
+// Week README loaders — same lazy pattern. Used to show the week wrap-up on the
+// last day of each week.
+const weekReadmeLoaders = import.meta.glob<string>(
+  "/docs/first-60-days/week-*/README.md",
+  { query: "?raw", import: "default" },
+);
+
 const PATH_RE = /\/docs\/first-60-days\/week-\d+\/day-(\d+)\.md$/;
 
 const loaderByDay: Record<number, () => Promise<string>> = {};
@@ -41,6 +48,21 @@ export function getDaySummaries(): DaySummary[] {
 
 export function getDaySummary(dayNumber: number): DaySummary | undefined {
   return DAY_SUMMARIES.find((d) => d.dayNumber === dayNumber);
+}
+
+const weekReadmeCache = new Map<number, string>();
+
+export async function loadWeekReadme(weekNumber: number): Promise<string | undefined> {
+  const cached = weekReadmeCache.get(weekNumber);
+  if (cached !== undefined) return cached;
+  const key = `/docs/first-60-days/week-${weekNumber}/README.md`;
+  const loader = weekReadmeLoaders[key];
+  if (!loader) return undefined;
+  const raw = await loader();
+  // Strip frontmatter before rendering.
+  const body = raw.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, "").trim();
+  weekReadmeCache.set(weekNumber, body);
+  return body;
 }
 
 export async function loadDay(dayNumber: number): Promise<Day | undefined> {
