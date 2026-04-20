@@ -90,6 +90,7 @@ export default function First60DaysSubmissions() {
   const [dayFilter, setDayFilter] = useState<string>("all");
   const [submittedOnly, setSubmittedOnly] = useState<string>("all");
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [loadedDays, setLoadedDays] = useState<Record<number, Day | undefined>>({});
 
   useEffect(() => {
     const openDays = new Set<number>();
@@ -108,7 +109,6 @@ export default function First60DaysSubmissions() {
     () => new Map(DAY_SUMMARIES.map((d) => [d.dayNumber, d])),
     [],
   );
-  const [loadedDays, setLoadedDays] = useState<Record<number, Day | undefined>>({});
 
   const filtered = useMemo(() => {
     const all = query.data ?? [];
