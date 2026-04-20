@@ -49,6 +49,21 @@ export function LessonContentPanel({ item, lockResult, onComplete }: LessonConte
     );
   }
 
+  // Module folders are organizational only — no "Mark as complete" button, no lesson content.
+  if (isModuleFolder(item)) {
+    return (
+      <div className="p-6 sm:p-8 text-center">
+        <div className="mx-auto w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-3">
+          <Folder className="h-6 w-6 text-muted-foreground" />
+        </div>
+        <h3 className="font-semibold mb-1">{item.title}</h3>
+        <p className="text-sm text-muted-foreground max-w-xs mx-auto">
+          Select a lesson from the sidebar to begin.
+        </p>
+      </div>
+    );
+  }
+
   const hasObjectives = item.objectives && item.objectives.length > 0;
   const hasActionItems = item.action_items && item.action_items.length > 0;
   const hasContent = item.content_blocks && item.content_blocks.length > 0;
