@@ -419,24 +419,26 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
           {!isCollapsed ? (
             <div className="space-y-1">
               {/* Profile row */}
-              <button
-                onClick={() => onProfileClick ? onProfileClick() : navigate('/my-account')}
-                className="flex items-center gap-3 w-full rounded-lg px-2 py-2 hover:bg-muted transition-colors text-left group"
-                aria-label="My Profile"
-              >
-                <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center shrink-0 ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all">
-                  <span className="text-xs font-bold text-primary-foreground">
-                    {user?.email?.charAt(0).toUpperCase() || "U"}
-                  </span>
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-semibold truncate text-foreground">{user?.email || "Account"}</p>
-                  <p className="text-[10px] text-muted-foreground">
-                    {isMasterAdmin() ? 'Master Admin' : isAdmin() ? 'Admin' : 'My Account'}
-                  </p>
-                </div>
+              <div className="flex items-center gap-1 w-full">
+                <button
+                  onClick={() => onProfileClick ? onProfileClick() : navigate('/my-account')}
+                  className="flex items-center gap-3 flex-1 min-w-0 rounded-lg px-2 py-2 hover:bg-muted transition-colors text-left group"
+                  aria-label="My Profile"
+                >
+                  <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center shrink-0 ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all">
+                    <span className="text-xs font-bold text-primary-foreground">
+                      {user?.email?.charAt(0).toUpperCase() || "U"}
+                    </span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-semibold truncate text-foreground">{user?.email || "Account"}</p>
+                    <p className="text-[10px] text-muted-foreground">
+                      {isMasterAdmin() ? 'Master Admin' : isAdmin() ? 'Admin' : 'My Account'}
+                    </p>
+                  </div>
+                </button>
                 <ThemeToggle />
-              </button>
+              </div>
               {/* Sign Out — min tap target ~44px for sidebar footer */}
               <button
                 type="button"
