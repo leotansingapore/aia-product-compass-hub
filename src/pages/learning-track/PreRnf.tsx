@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { GraduationCap, Loader2, ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackPhases";
@@ -7,7 +9,10 @@ import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrac
 import { useLockMap } from "@/hooks/learning-track/useLockMap";
 import { AdminTrackView } from "@/components/learning-track/AdminTrackView";
 import { TrackLearnerView } from "@/components/learning-track/TrackLearnerView";
+import First60Days from "@/pages/learning-track/First60Days";
 import type { LearningTrackPhase } from "@/types/learning-track";
+
+type PreRnfView = "first60" | "assignments";
 
 /**
  * Rewrite raw phase titles for the Pre-RNF learner view:
@@ -74,6 +79,25 @@ export default function PreRnfTrack() {
     );
   }
 
+  // Papers-takers land on First 60 Days by default. If they deep-link to a
+  // specific assignment item (`/learning-track/pre-rnf/:itemId`), jump
+  // straight to the Assignments view so the linked lesson opens.
+  return <PreRnfLearnerView phases={phases} isCompleted={isCompleted} lockMap={lockMap} itemId={itemId} />;
+}
+
+function PreRnfLearnerView({
+  phases,
+  isCompleted,
+  lockMap,
+  itemId,
+}: {
+  phases: LearningTrackPhase[];
+  isCompleted: (itemId: string) => boolean;
+  lockMap: ReturnType<typeof useLockMap>;
+  itemId: string | undefined;
+}) {
+  const [view, setView] = useState<PreRnfView>(itemId ? "assignments" : "first60");
+
   return (
     <div className="space-y-4" data-testid="pre-rnf-page">
       <Link
@@ -90,12 +114,50 @@ export default function PreRnfTrack() {
         </div>
         <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
       </Link>
-      <TrackLearnerView
-        phases={phases}
-        isCompleted={isCompleted}
-        lockMap={lockMap}
-        expandedItemId={itemId}
-      />
+
+      <div className="max-w-3xl mx-auto">
+        <div
+          role="tablist"
+          aria-label="Pre-RNF training sections"
+          className="inline-flex rounded-full border bg-muted/50 p-1 text-xs font-semibold"
+        >
+          <button
+            type="button"
+            role="tab"
+            aria-selected={view === "first60"}
+            onClick={() => setView("first60")}
+            className={cn(
+              "rounded-full px-4 py-1.5 transition-colors",
+              view === "first60" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+            )}
+          >
+            First 60 Days
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={view === "assignments"}
+            onClick={() => setView("assignments")}
+            className={cn(
+              "rounded-full px-4 py-1.5 transition-colors",
+              view === "assignments" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+            )}
+          >
+            Assignments
+          </button>
+        </div>
+      </div>
+
+      {view === "first60" ? (
+        <First60Days />
+      ) : (
+        <TrackLearnerView
+          phases={phases}
+          isCompleted={isCompleted}
+          lockMap={lockMap}
+          expandedItemId={itemId}
+        />
+      )}
     </div>
   );
 }
