@@ -8,7 +8,7 @@ import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { ScriptsChatWidget } from "@/components/scripts/ScriptsChatWidget";
 import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
-import { MinimalRichEditor } from "@/components/MinimalRichEditor";
+import { MinimalRichEditor, type MinimalRichEditorHandle } from "@/components/MinimalRichEditor";
 import { KnowledgeManagement } from "@/components/scripts/KnowledgeManagement";
 import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
 import { PageLayout } from "@/components/layout/PageLayout";
