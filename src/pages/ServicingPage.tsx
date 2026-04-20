@@ -24,7 +24,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
-import { MinimalRichEditor } from "@/components/MinimalRichEditor";
+import { MinimalRichEditor, type MinimalRichEditorHandle } from "@/components/MinimalRichEditor";
 
 import { copyRichContent } from "@/lib/copy-rich-content";
 
@@ -103,6 +103,9 @@ function ServicingScriptCard({
   const [editUserVersionName, setEditUserVersionName] = useState("");
   const [editContent, setEditContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const newVersionEditorRef = useRef<MinimalRichEditorHandle>(null);
+  const editVersionEditorRef = useRef<MinimalRichEditorHandle>(null);
+  const editUserVersionEditorRef = useRef<MinimalRichEditorHandle>(null);
   const [editingTitle, setEditingTitle] = useState(false);
   const [titleDraft, setTitleDraft] = useState(script.stage);
   const [addingTag, setAddingTag] = useState(false);
@@ -452,6 +455,7 @@ function ServicingScriptCard({
                     autoFocus
                   />
                   <MinimalRichEditor
+                    ref={newVersionEditorRef}
                     value={newVersionContent}
                     onChange={setNewVersionContent}
                     placeholder="Write your version... (supports markdown)"
@@ -460,9 +464,11 @@ function ServicingScriptCard({
                     <Button variant="ghost" size="sm" onClick={() => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); }}>
                       <X className="h-3.5 w-3.5 mr-1" /> Cancel
                     </Button>
-                    <Button size="sm" disabled={!newVersionContent.trim() || addVersion.isPending} onClick={() => {
+                    <Button size="sm" disabled={!newVersionContent.trim() || addVersion.isPending} onClick={async () => {
+                      const latest = (await newVersionEditorRef.current?.getMarkdownForSave()) ?? newVersionContent;
+                      if (!latest.trim()) return;
                       addVersion.mutate(
-                        { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
+                        { content: latest.trim(), authorName: newVersionName.trim() || "My Version" },
                         { onSuccess: () => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); } }
                       );
                     }}>
@@ -477,11 +483,12 @@ function ServicingScriptCard({
                 <TabsContent key={i} value={String(i)}>
                   {editingVersionIdx === i ? (
                     <div className="space-y-2">
-                      <MinimalRichEditor value={editContent} onChange={setEditContent} />
+                      <MinimalRichEditor ref={editVersionEditorRef} value={editContent} onChange={setEditContent} />
                       <div className="flex gap-2">
                         <Button size="sm" disabled={isSaving} onClick={async () => {
                           setIsSaving(true);
-                          const updatedVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, content: editContent } : ver);
+                          const latest = (await editVersionEditorRef.current?.getMarkdownForSave()) ?? editContent;
+                          const updatedVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, content: latest } : ver);
                           if (onInlineSave) await onInlineSave(script.id, updatedVersions);
                           setEditingVersionIdx(null); setEditContent(""); setIsSaving(false);
                         }}>
@@ -520,10 +527,11 @@ function ServicingScriptCard({
                 <TabsContent key={`uv-${uv.id}`} value={`uv-${uv.id}`}>
                   {editingUserVersionId === uv.id && currentUserId === uv.user_id && editUserVersionContent !== "__name_only__" ? (
                     <div className="space-y-2">
-                      <MinimalRichEditor value={editUserVersionContent} onChange={setEditUserVersionContent} />
+                      <MinimalRichEditor ref={editUserVersionEditorRef} value={editUserVersionContent} onChange={setEditUserVersionContent} />
                       <div className="flex gap-2">
-                        <Button size="sm" disabled={updateVersion.isPending} onClick={() => {
-                          updateVersion.mutate({ id: uv.id, content: editUserVersionContent.trim(), authorName: uv.author_name });
+                        <Button size="sm" disabled={updateVersion.isPending} onClick={async () => {
+                          const latest = (await editUserVersionEditorRef.current?.getMarkdownForSave()) ?? editUserVersionContent;
+                          updateVersion.mutate({ id: uv.id, content: latest.trim(), authorName: uv.author_name });
                           setEditingUserVersionId(null); setEditUserVersionContent("");
                         }}>
                           {updateVersion.isPending ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Saving…</> : "Save"}

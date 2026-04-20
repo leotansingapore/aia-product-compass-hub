@@ -8,7 +8,7 @@ import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { ScriptsChatWidget } from "@/components/scripts/ScriptsChatWidget";
 import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
-import { MinimalRichEditor } from "@/components/MinimalRichEditor";
+import { MinimalRichEditor, type MinimalRichEditorHandle } from "@/components/MinimalRichEditor";
 import { KnowledgeManagement } from "@/components/scripts/KnowledgeManagement";
 import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -1339,6 +1339,7 @@ function MobileVersionSelector({
   const [editing, setEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const editorRef = useRef<MinimalRichEditorHandle>(null);
   const idx = parseInt(activeVersion);
   const v = versions[idx] || versions[0];
 
@@ -1355,7 +1356,8 @@ function MobileVersionSelector({
   const saveEdit = async () => {
     if (!onInlineSave || !scriptId) return;
     setIsSaving(true);
-    const updated = versions.map((ver, i) => i === idx ? { ...ver, content: editContent } : ver);
+    const latest = (await editorRef.current?.getMarkdownForSave()) ?? editContent;
+    const updated = versions.map((ver, i) => i === idx ? { ...ver, content: latest } : ver);
     await onInlineSave(scriptId, updated);
     setIsSaving(false);
     setEditing(false);
@@ -1394,6 +1396,7 @@ function MobileVersionSelector({
         <div className="space-y-2">
           <div className="border rounded-lg overflow-hidden">
             <MinimalRichEditor
+              ref={editorRef}
               value={editContent}
               onChange={setEditContent}
               onSave={saveEdit}
@@ -1579,6 +1582,9 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [newVersionContent, setNewVersionContent] = useState("");
   const [editingUserVersionId, setEditingUserVersionId] = useState<string | null>(null);
   const [editUserVersionName, setEditUserVersionName] = useState("");
+  const newVersionEditorRef = useRef<MinimalRichEditorHandle>(null);
+  const inlineEditorRefA = useRef<MinimalRichEditorHandle>(null);
+  const inlineEditorRefB = useRef<MinimalRichEditorHandle>(null);
   // Read initial version tab from URL if this card is the one in the URL
   const urlVersionParam = useMemo(() => {
     // The URL may contain a slug (e.g. "warm-market-intro-8f42b1c3") — just rely on isOpenByUrl
@@ -1686,8 +1692,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const saveInlineEdit = async () => {
     if (editingVersionIdx === null || !onInlineSave) return;
     setIsSaving(true);
+    const latest =
+      (await inlineEditorRefA.current?.getMarkdownForSave()) ??
+      (await inlineEditorRefB.current?.getMarkdownForSave()) ??
+      editContent;
     const updatedVersions = script.versions.map((v, i) =>
-      i === editingVersionIdx ? { ...v, content: editContent } : v
+      i === editingVersionIdx ? { ...v, content: latest } : v
     );
     await onInlineSave(script.id, updatedVersions);
     setEditingVersionIdx(null);
@@ -2157,6 +2167,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         autoFocus
                       />
                       <MinimalRichEditor
+                        ref={newVersionEditorRef}
                         value={newVersionContent}
                         onChange={setNewVersionContent}
                         placeholder="Write your version… (supports markdown)"
@@ -2165,9 +2176,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         <Button variant="ghost" size="sm" onClick={() => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); }}>
                           <X className="h-3.5 w-3.5 mr-1" /> Cancel
                         </Button>
-                        <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={() => {
+                        <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={async () => {
+                          const latest = (await newVersionEditorRef.current?.getMarkdownForSave()) ?? newVersionContent;
+                          if (!latest.trim()) return;
                           addUserVersion.mutate(
-                            { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
+                            { content: latest.trim(), authorName: newVersionName.trim() || "My Version" },
                             { onSuccess: (newVersion) => {
                                 setShowNewVersionForm(false);
                                 setNewVersionContent("");
@@ -2195,6 +2208,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         <div className="space-y-2" onBlur={handleEditorBlur}>
                           <div className="border rounded-lg overflow-hidden">
                             <MinimalRichEditor
+                              ref={inlineEditorRefA}
                               value={editContent}
                               onChange={setEditContent}
                               autoFocus
@@ -2397,6 +2411,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 <div className="space-y-2" onBlur={handleEditorBlur}>
                   <div className="border rounded-lg overflow-hidden">
                     <MinimalRichEditor
+                      ref={inlineEditorRefB}
                       value={editContent}
                       onChange={setEditContent}
                       autoFocus
@@ -2508,6 +2523,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         autoFocus
                       />
                       <MinimalRichEditor
+                        ref={newVersionEditorRef}
                         value={newVersionContent}
                         onChange={setNewVersionContent}
                         placeholder="Write your version… (supports markdown)"
@@ -2516,9 +2532,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         <Button variant="ghost" size="sm" onClick={() => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); }}>
                           <X className="h-3.5 w-3.5 mr-1" /> Cancel
                         </Button>
-                        <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={() => {
+                        <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={async () => {
+                          const latest = (await newVersionEditorRef.current?.getMarkdownForSave()) ?? newVersionContent;
+                          if (!latest.trim()) return;
                           addUserVersion.mutate(
-                            { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
+                            { content: latest.trim(), authorName: newVersionName.trim() || "My Version" },
                             { onSuccess: () => {
                                 setShowNewVersionForm(false);
                                 setNewVersionContent("");
