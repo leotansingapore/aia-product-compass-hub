@@ -2,6 +2,7 @@ import { CheckCircle2, Circle, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
+import { useItemContentBlocks } from "@/hooks/learning-track/useLearningTrackPhases";
 import { ContentBlockEditor } from "./ContentBlockEditor";
 import { RelatedResources } from "./RelatedResources";
 import { SubmissionPanel } from "./SubmissionPanel";
@@ -64,9 +65,16 @@ export function LessonContentPanel({ item, lockResult, onComplete }: LessonConte
     );
   }
 
+  // Learner list queries skip content_blocks to stay small — fetch them per
+  // item when the panel opens. Admin-mode queries return blocks inline.
+  const needsFetch = !item.content_blocks || item.content_blocks.length === 0;
+  const blocksQuery = useItemContentBlocks(item.id, { enabled: needsFetch });
+  const effectiveBlocks =
+    needsFetch ? blocksQuery.data ?? [] : item.content_blocks ?? [];
+
   const hasObjectives = item.objectives && item.objectives.length > 0;
   const hasActionItems = item.action_items && item.action_items.length > 0;
-  const hasContent = item.content_blocks && item.content_blocks.length > 0;
+  const hasContent = effectiveBlocks.length > 0;
 
   const completeButton = (
     <Button
@@ -136,7 +144,14 @@ export function LessonContentPanel({ item, lockResult, onComplete }: LessonConte
 
       {/* Content blocks — the main lesson content, no wrapper label */}
       {hasContent && (
-        <ContentBlockEditor blocks={item.content_blocks} itemId={item.id} />
+        <ContentBlockEditor blocks={effectiveBlocks} itemId={item.id} />
+      )}
+      {needsFetch && blocksQuery.isLoading && (
+        <div className="space-y-2">
+          <div className="h-4 w-2/3 animate-pulse rounded bg-muted" />
+          <div className="h-4 w-full animate-pulse rounded bg-muted" />
+          <div className="h-4 w-4/5 animate-pulse rounded bg-muted" />
+        </div>
       )}
 
       {/* Related resources */}

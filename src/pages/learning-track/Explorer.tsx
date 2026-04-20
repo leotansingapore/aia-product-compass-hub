@@ -409,7 +409,9 @@ export default function ExplorerTrack() {
   const navigate = useNavigate();
   const { user } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
-  const phasesQuery = useLearningTrackPhases("explorer");
+  // Admin editor needs full content for bulk editing; learners lazy-load blocks
+  // per-lesson inside LessonContentPanel via useItemContentBlocks.
+  const phasesQuery = useLearningTrackPhases("explorer", { includeContent: isAdmin });
   const { isCompleted, setStatus } = useLearningTrackProgress(user?.id);
   const allPhases = phasesQuery.data ?? [];
   // Financial Planning Basics moved to Supplementary Training — hide from Explorer for everyone.

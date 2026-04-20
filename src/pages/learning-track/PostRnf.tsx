@@ -13,7 +13,7 @@ export default function PostRnfTrack() {
   const { itemId } = useParams<{ itemId?: string }>();
   const { user } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
-  const phasesQuery = useLearningTrackPhases("post_rnf");
+  const phasesQuery = useLearningTrackPhases("post_rnf", { includeContent: isAdmin });
   const { isCompleted } = useLearningTrackProgress(user?.id);
   const phases = phasesQuery.data ?? [];
   const lockMap = useLockMap(phases);
