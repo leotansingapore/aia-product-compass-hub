@@ -647,7 +647,7 @@ export default function ServicingPage() {
       const q = searchQuery.toLowerCase();
       result = result.filter(s =>
         s.stage.toLowerCase().includes(q) ||
-        s.versions.some(v => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q))
+        s.versions.some(v => (v.content || '').toLowerCase().includes(q) || (v.author || '').toLowerCase().includes(q))
       );
     }
     return result;
@@ -699,8 +699,8 @@ export default function ServicingPage() {
       const q = searchQuery.toLowerCase();
       result = result.filter(s =>
         s.stage.toLowerCase().includes(q) ||
-        s.versions.some(v => v.content.toLowerCase().includes(q) || v.author.toLowerCase().includes(q)) ||
-        (s.tags || []).some(t => t.toLowerCase().includes(q))
+        s.versions.some(v => (v.content || '').toLowerCase().includes(q) || (v.author || '').toLowerCase().includes(q)) ||
+        (s.tags || []).some(t => (t || '').toLowerCase().includes(q))
       );
     }
     return result;
