@@ -135,8 +135,21 @@ export function useUserManagement() {
         }
       });
 
-      unifiedUsers.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-      setUsers(unifiedUsers);
+      // Deduplicate by email — keep the entry with highest-priority status
+      // (active > approved > pending_approval > rejected > suspended)
+      const statusRank: Record<string, number> = { active: 5, approved: 4, pending_approval: 3, rejected: 2, suspended: 1 };
+      const deduped = new Map<string, UnifiedUser>();
+      for (const u of unifiedUsers) {
+        const key = u.email.toLowerCase();
+        const existing = deduped.get(key);
+        if (!existing || (statusRank[u.status] ?? 0) > (statusRank[existing.status] ?? 0)) {
+          deduped.set(key, u);
+        }
+      }
+
+      const final = [...deduped.values()];
+      final.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      setUsers(final);
     } catch (error) {
       console.error('Error fetching users:', error);
       toast({
