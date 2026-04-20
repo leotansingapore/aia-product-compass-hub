@@ -14,7 +14,7 @@ import { LessonContentPanel } from "@/components/learning-track/LessonContentPan
 import { AdminTrackView } from "@/components/learning-track/AdminTrackView";
 import { RequestUpgradeButton } from "@/components/tier/RequestUpgradeButton";
 import { TierBadge } from "@/components/tier/TierBadge";
-import { groupItemsIntoModules } from "@/lib/learning-track/moduleGrouping";
+import { groupItemsIntoModules, isModuleFolder } from "@/lib/learning-track/moduleGrouping";
 import { cn } from "@/lib/utils";
 import type { LearningTrackPhase } from "@/types/learning-track";
 
@@ -234,38 +234,63 @@ export default function ExplorerTrack() {
     return null;
   })();
 
-  // Auto-advance: when a lesson is completed, open the next one or celebrate module completion
+  // Auto-advance: when a lesson is completed, open the next real lesson — skipping
+  // module-folder rows (organizational only) and crossing into the next phase if needed.
   const handleLessonComplete = (completedItemId: string) => {
     const activePhase = phases.find((p) => p.id === activePhaseId);
     if (!activePhase) return;
+
+    const isAdvanceable = (i: typeof activePhase.items[0]) => {
+      if (isModuleFolder(i)) return false;
+      const lock = lockMap?.getItemLock(i.id);
+      return !lock?.locked;
+    };
 
     const items = activePhase.items;
     const currentIdx = items.findIndex((i) => i.id === completedItemId);
     if (currentIdx === -1) return;
 
-    // Check if there's a next unlocked item in this phase
-    const nextInPhase = items.slice(currentIdx + 1).find((i) => {
-      const lock = lockMap?.getItemLock(i.id);
-      return !lock?.locked;
-    });
+    // 1) Try to find the next real (non-folder, unlocked) lesson in the same module.
+    const nextInPhase = items.slice(currentIdx + 1).find(isAdvanceable);
 
     if (nextInPhase) {
-      // Auto-advance to next lesson after a brief delay
       setTimeout(() => {
         setExpandedItemId(nextInPhase.id);
         document.getElementById(`item-${nextInPhase.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 800);
-    } else {
-      // All lessons in this module done — celebrate
-      const allDone = items.every((i) => i.id === completedItemId || isCompleted(i.id));
-      if (allDone) {
-        setCelebratingModule(activePhase.title);
+      return;
+    }
+
+    // 2) No more lessons in this module — jump to the first real lesson of the next unlocked phase.
+    const phaseIdx = phases.findIndex((p) => p.id === activePhase.id);
+    const nextPhaseWithLesson = phases.slice(phaseIdx + 1).find((p) => {
+      const phaseLock = lockMap?.getPhaseLock(p.id);
+      if (phaseLock?.locked) return false;
+      return p.items.some((i) => !isModuleFolder(i) && !lockMap?.getItemLock(i.id)?.locked);
+    });
+
+    if (nextPhaseWithLesson) {
+      const firstLesson = nextPhaseWithLesson.items.find(
+        (i) => !isModuleFolder(i) && !lockMap?.getItemLock(i.id)?.locked,
+      );
+      if (firstLesson) {
         setTimeout(() => {
-          setCelebratingModule(null);
-          setActivePhaseId(null);
-          setExpandedItemId(null);
-        }, 2500);
+          setActivePhaseId(nextPhaseWithLesson.id);
+          setExpandedItemId(firstLesson.id);
+        }, 800);
+        return;
       }
+    }
+
+    // 3) Nothing further — celebrate module completion.
+    const allDone = items.every((i) => i.id === completedItemId || isModuleFolder(i) || isCompleted(i.id));
+    if (allDone) {
+      setCelebratingModule(activePhase.title);
+      setTimeout(() => {
+        setCelebratingModule(null);
+        setActivePhaseId(null);
+        setExpandedItemId(null);
+      }, 2500);
     }
   };
 
