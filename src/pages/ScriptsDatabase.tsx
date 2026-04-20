@@ -2167,6 +2167,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         autoFocus
                       />
                       <MinimalRichEditor
+                        ref={newVersionEditorRef}
                         value={newVersionContent}
                         onChange={setNewVersionContent}
                         placeholder="Write your version… (supports markdown)"
@@ -2205,6 +2206,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         <div className="space-y-2" onBlur={handleEditorBlur}>
                           <div className="border rounded-lg overflow-hidden">
                             <MinimalRichEditor
+                              ref={inlineEditorRefA}
                               value={editContent}
                               onChange={setEditContent}
                               autoFocus
@@ -2407,6 +2409,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                 <div className="space-y-2" onBlur={handleEditorBlur}>
                   <div className="border rounded-lg overflow-hidden">
                     <MinimalRichEditor
+                      ref={inlineEditorRefB}
                       value={editContent}
                       onChange={setEditContent}
                       autoFocus
