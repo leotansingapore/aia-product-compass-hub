@@ -1,8 +1,10 @@
 import { useEffect, useRef, useCallback, useState, forwardRef, useImperativeHandle } from 'react';
-import { useEditor, EditorContent } from '@tiptap/react';
+import { useEditor, EditorContent, Extension } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
+import { Plugin, PluginKey } from '@tiptap/pm/state';
+import { Decoration, DecorationSet } from '@tiptap/pm/view';
 import { ResizableImageNode } from '@/components/markdown/editor/ResizableImageNode';
 import { InlineVideoNode } from '@/components/markdown/editor/InlineVideoNode';
 import { Table } from '@tiptap/extension-table';
@@ -47,6 +49,33 @@ async function getTurndown(): Promise<TurndownService> {
   return _turndownInstance;
 }
 
+/**
+ * ProseMirror plugin that adds `blank-spacer` class to empty paragraphs.
+ * This lets us style them with reduced margins so that pressing Enter once
+ * looks like ONE blank line — not double — after the markdown roundtrip.
+ */
+const EmptyParagraphSpacer = Extension.create({
+  name: 'emptyParagraphSpacer',
+  addProseMirrorPlugins() {
+    return [
+      new Plugin({
+        key: new PluginKey('emptyParagraphSpacer'),
+        props: {
+          decorations(state) {
+            const ds: Decoration[] = [];
+            state.doc.descendants((node, pos) => {
+              if (node.type.name === 'paragraph' && node.content.size === 0) {
+                ds.push(Decoration.node(pos, pos + node.nodeSize, { class: 'blank-spacer' }));
+              }
+            });
+            return DecorationSet.create(state.doc, ds);
+          },
+        },
+      }),
+    ];
+  },
+});
+
 function createTurndown(TurndownServiceCtor: typeof TurndownService, gfm: any) {
   const td = new TurndownServiceCtor({
     headingStyle: 'atx',
@@ -55,9 +84,14 @@ function createTurndown(TurndownServiceCtor: typeof TurndownService, gfm: any) {
     emDelimiter: '*',
     strongDelimiter: '**',
     hr: '---',
+    // Empty blocks default to "\n\n" which marked collapses — blank lines disappear on reload.
+    // TipTap empty paragraphs are often <p></p> (blank) or <p><br></p> (handled by emptyParagraphBr rule).
     blankReplacement: (_content: string, node: any) => {
       if (node.nodeName === 'BR') return '\n';
-      return '\n\n';
+      if (node.nodeName === 'P' && node.parentNode?.nodeName !== 'BLOCKQUOTE') {
+        return '\n\n&nbsp;\n\n';
+      }
+      return node.isBlock ? '\n\n' : '';
     },
   });
   td.use(gfm);
@@ -116,6 +150,24 @@ function createTurndown(TurndownServiceCtor: typeof TurndownService, gfm: any) {
       return `\n[video](${src})\n`;
     },
   });
+  // <p> with only <br> (ProseMirror empty line) is not "blank" in Turndown because of hasVoid — without this,
+  // it becomes "  \n" hard breaks and round-trips poorly vs Enter between real paragraphs.
+  td.addRule('emptyParagraphBr', {
+    filter: (node: any) => {
+      if (node.nodeName !== 'P') return false;
+      if (node.parentNode?.nodeName === 'BLOCKQUOTE') return false;
+      const children = node.childNodes;
+      if (children.length === 0) return false;
+      for (let i = 0; i < children.length; i++) {
+        const c = children[i];
+        if (c.nodeName === 'BR') continue;
+        if (c.nodeType === 3 && /^\s*$/.test(c.textContent || '')) continue;
+        return false;
+      }
+      return true;
+    },
+    replacement: () => '\n\n&nbsp;\n\n',
+  });
   return td;
 }
 
@@ -127,6 +179,10 @@ function mdToHtml(md: string): string {
     const cleaned = md.replace(/^>\s*$/gm, '');
     let result = marked.parse(cleaned, { async: false, gfm: true, breaks: true });
     if (typeof result !== 'string') return md.replace(/\n/g, '<br>');
+
+    // Turndown stores intentional blank lines as `<p>&nbsp;</p>` so markdown round-trips. Marked renders
+    // that as a normal paragraph, so prose margins stack (gap looks ~2× TipTap’s native `<p><br></p>`).
+    result = result.replace(/<p>\s*(?:&nbsp;|&#160;|&#x0*A0;)\s*<\/p>/gi, '<p><br></p>');
 
     // Post-process: convert video markdown links back to video embed / inline-video nodes
     // Turndown saves embeds as [platform video](url) or [video](url) — marked turns those
@@ -168,6 +224,11 @@ function mdToHtml(md: string): string {
       if (attrs.ch) parts.push(`data-crop-h="${attrs.ch}"`);
       return `<img ${parts.join(' ')}>`;
     });
+
+    // Post-process: convert &nbsp; blank-line markers back to <br> empty paragraphs.
+    // Turndown saves empty paragraphs (from pressing Enter) as "&nbsp;" in markdown.
+    // Marked produces <p>&nbsp;</p>, but TipTap expects <p><br></p> for empty lines.
+    result = result.replace(/<p>&nbsp;<\/p>/g, '<p><br></p>');
 
     return result;
   } catch {
@@ -253,6 +314,7 @@ export const MinimalRichEditor = forwardRef<MinimalRichEditorHandle, MinimalRich
       TableHeader,
       TableCell,
       VideoEmbedNode,
+      EmptyParagraphSpacer,
     ],
     content: mdToHtml(value),
     autofocus: autoFocus,
@@ -272,6 +334,7 @@ export const MinimalRichEditor = forwardRef<MinimalRichEditorHandle, MinimalRich
           '[&_hr]:my-3 [&_hr]:border-border',
           '[&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5',
           '[&_img]:max-w-full [&_img]:rounded-md [&_img]:my-2',
+          '[&_p.blank-spacer]:!my-0 [&_p.blank-spacer]:!leading-[0.5]',
         ),
       },
       handleKeyDown: (view, event) => {

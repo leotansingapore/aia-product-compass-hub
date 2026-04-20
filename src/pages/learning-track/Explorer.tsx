@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { Loader2, Sparkles, Compass, ArrowLeft, ChevronRight, ChevronDown, Lock, CheckCircle2, Circle, Clock, Folder } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -14,7 +14,7 @@ import { LessonContentPanel } from "@/components/learning-track/LessonContentPan
 import { AdminTrackView } from "@/components/learning-track/AdminTrackView";
 import { RequestUpgradeButton } from "@/components/tier/RequestUpgradeButton";
 import { TierBadge } from "@/components/tier/TierBadge";
-import { groupItemsIntoModules, isModuleFolder } from "@/lib/learning-track/moduleGrouping";
+import { groupItemsIntoModules } from "@/lib/learning-track/moduleGrouping";
 import { cn } from "@/lib/utils";
 import type { LearningTrackPhase } from "@/types/learning-track";
 
@@ -34,7 +34,7 @@ function LearnerSidebar({
   lockMap: ReturnType<typeof useLockMap>;
   onSelectLesson: (id: string) => void;
 }) {
-  const { groups, orphanLessons } = useMemo(() => groupItemsIntoModules(phase.items), [phase.items]);
+  const { segments } = useMemo(() => groupItemsIntoModules(phase.items), [phase.items]);
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
 
   const toggleModule = (id: string) => {
@@ -83,15 +83,14 @@ function LearnerSidebar({
         <h3 className="text-sm font-semibold truncate">{phase.title}</h3>
       </div>
       <div className="flex-1 overflow-y-auto">
-        {/* Orphan lessons (no module above them) */}
-        {orphanLessons.filter((i) => !isModuleFolder(i)).map(renderLesson)}
-
-        {/* Grouped: module headers with lessons */}
-        {groups.map((group) => {
+        {segments.map((seg) => {
+          if (seg.type === "standalone") {
+            return <Fragment key={seg.item.id}>{renderLesson(seg.item)}</Fragment>;
+          }
+          const group = { module: seg.module, lessons: seg.lessons };
           const isCollapsed = collapsed.has(group.module.id);
           return (
             <div key={group.module.id} className="border-b border-border/30 last:border-b-0">
-              {/* Module header */}
               <button
                 type="button"
                 onClick={() => toggleModule(group.module.id)}
@@ -104,8 +103,6 @@ function LearnerSidebar({
                 <span className="text-xs font-semibold truncate flex-1">{group.module.title}</span>
                 <span className="text-[10px] text-muted-foreground shrink-0">{group.lessons.length}</span>
               </button>
-
-              {/* Lessons */}
               {!isCollapsed && group.lessons.map(renderLesson)}
             </div>
           );

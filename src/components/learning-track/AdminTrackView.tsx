@@ -27,6 +27,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
   useSortable,
+  arrayMove,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import {
@@ -52,8 +53,14 @@ import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import {
+  buildOutlineSegments,
   groupItemsIntoModules,
   isModuleFolder,
+  isStandaloneRootPage,
+  nextHiddenResourcesForLesson,
+  outlineSegmentsToFlat,
+  STANDALONE_PAGE_TAG,
+  type OutlineSegment,
 } from "@/lib/learning-track/moduleGrouping";
 
 interface AdminTrackViewProps {
@@ -162,25 +169,6 @@ function CourseEditor({
   const qc = useQueryClient();
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }));
 
-  // Reorder modules: move a module + its lessons as a block
-  const handleModuleDragEnd = (event: any) => {
-    const { active, over } = event;
-    if (!over || active.id === over.id) return;
-    const moduleIds = groups.map((g) => g.module.id);
-    const oldIdx = moduleIds.indexOf(active.id);
-    const newIdx = moduleIds.indexOf(over.id);
-    if (oldIdx === -1 || newIdx === -1) return;
-    // Rebuild the full item list with modules in new order
-    const reorderedGroups = [...groups];
-    const [moved] = reorderedGroups.splice(oldIdx, 1);
-    reorderedGroups.splice(newIdx, 0, moved);
-    const newOrder = [
-      ...orphanLessons,
-      ...reorderedGroups.flatMap((g) => [g.module, ...g.lessons]),
-    ];
-    reorderItems.mutate(newOrder.map((item, idx) => ({ id: item.id, order_index: idx })));
-  };
-
   // Reorder lessons within a module
   const handleLessonDragEnd = (moduleId: string, event: any) => {
     const { active, over } = event;
@@ -193,15 +181,10 @@ function CourseEditor({
     if (oldIdx === -1 || newIdx === -1) return;
     const [moved] = lessons.splice(oldIdx, 1);
     lessons.splice(newIdx, 0, moved);
-    // Rebuild full list keeping everything else in place
-    const newOrder = [
-      ...orphanLessons,
-      ...groups.flatMap((g) =>
-        g.module.id === moduleId
-          ? [g.module, ...lessons]
-          : [g.module, ...g.lessons]
-      ),
-    ];
+    const newSegs = buildOutlineSegments(phase.items).map((s) =>
+      s.type === "module" && s.module.id === moduleId ? { ...s, lessons } : s,
+    );
+    const newOrder = outlineSegmentsToFlat(newSegs);
     reorderItems.mutate(newOrder.map((item, idx) => ({ id: item.id, order_index: idx })));
   };
 
@@ -209,8 +192,56 @@ function CourseEditor({
   const [courseTitleValue, setCourseTitleValue] = useState(phase.title);
   const isPublished = !!phase.published_at;
 
-  const { groups, orphanLessons } = useMemo(() => groupItemsIntoModules(phase.items), [phase.items]);
+  const { groups, orphanLessons, segments } = useMemo(() => groupItemsIntoModules(phase.items), [phase.items]);
   const moduleFolders = useMemo(() => phase.items.filter(isModuleFolder), [phase.items]);
+  const standaloneLessons = useMemo(
+    () => orphanLessons.filter((i) => !isModuleFolder(i)),
+    [orphanLessons],
+  );
+
+  /** Top-level sidebar order: standalone lessons (pages) interleaved with module folders — same drag plane. */
+  const outlineSortableIds = useMemo(
+    () => segments.flatMap((s) => (s.type === "standalone" ? [s.item.id] : [s.module.id])),
+    [segments],
+  );
+
+  const handleOutlineDragEnd = async (event: { active: { id: string | number }; over: { id: string | number } | null }) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    const topLevelIds = segments.flatMap((s) => (s.type === "standalone" ? [s.item.id] : [s.module.id]));
+    const oldIndex = topLevelIds.indexOf(active.id as string);
+    const newIndex = topLevelIds.indexOf(over.id as string);
+    if (oldIndex === -1 || newIndex === -1) return;
+    const nextIds = arrayMove(topLevelIds, oldIndex, newIndex);
+    const flat: LearningTrackItem[] = [];
+    for (const id of nextIds) {
+      const seg = segments.find((s) => s.type === "standalone" && s.item.id === id) as Extract<OutlineSegment, { type: "standalone" }> | undefined;
+      if (seg) {
+        flat.push(seg.item);
+        continue;
+      }
+      const group = groups.find((g) => g.module.id === id);
+      if (group) flat.push(group.module, ...group.lessons);
+    }
+    await reorderItems.mutateAsync(flat.map((item, idx) => ({ id: item.id, order_index: idx })));
+    const hrPatches: { id: string; hidden_resources: string[] }[] = [];
+    for (const item of flat) {
+      if (isModuleFolder(item)) continue;
+      const isRootOutlineSlot = nextIds.includes(item.id);
+      const nextHr = nextHiddenResourcesForLesson(item, isRootOutlineSlot);
+      const prev = JSON.stringify([...(item.hidden_resources ?? [])].sort());
+      const nxt = JSON.stringify([...nextHr].sort());
+      if (prev !== nxt) hrPatches.push({ id: item.id, hidden_resources: nextHr });
+    }
+    if (hrPatches.length > 0) {
+      await Promise.all(
+        hrPatches.map((p) =>
+          supabase.from("learning_track_items").update({ hidden_resources: p.hidden_resources }).eq("id", p.id),
+        ),
+      );
+    }
+    await qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
+  };
 
   const activeItem = phase.items.find((i) => i.id === activeLessonId);
 
@@ -274,6 +305,7 @@ function CourseEditor({
     let insertAfter = modulePos;
     for (let i = modulePos + 1; i < ordered.length; i++) {
       if (isModuleFolder(ordered[i])) break;
+      if (isStandaloneRootPage(ordered[i])) break;
       insertAfter = i;
     }
     // Build new order: insert the new item right after insertAfter
@@ -297,7 +329,7 @@ function CourseEditor({
     }
   };
 
-  /** Inserts a lesson as a standalone row (with uncategorized lessons, before the first module). */
+  /** Inserts a standalone page at the end of the outline (`order_index` = max + 1). */
   const handleAddStandaloneLesson = async () => {
     if (creatingLesson) return;
     setCreatingLesson(true);
@@ -310,25 +342,13 @@ function CourseEditor({
           title: "Untitled lesson",
           order_index: maxOrder + 1,
           requires_submission: false,
+          hidden_resources: [STANDALONE_PAGE_TAG],
         })
         .select("id")
         .single();
       if (error || !data) return;
 
-      const ordered = [...phase.items].sort((a, b) => a.order_index - b.order_index);
-      const firstModuleIdx = ordered.findIndex(isModuleFolder);
-      if (firstModuleIdx === -1) {
-        await qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
-        setActiveLessonId(data.id);
-        return;
-      }
-
-      const reorderedIds = [
-        ...ordered.slice(0, firstModuleIdx).map((i) => i.id),
-        data.id,
-        ...ordered.slice(firstModuleIdx).map((i) => i.id),
-      ];
-      await reorderItems.mutateAsync(reorderedIds.map((id, idx) => ({ id, order_index: idx })));
+      await qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
       setActiveLessonId(data.id);
     } finally {
       setCreatingLesson(false);
@@ -374,7 +394,7 @@ function CourseEditor({
                   <Folder className="h-3.5 w-3.5 mr-2" /> Add module
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => void handleAddStandaloneLesson()} disabled={creatingLesson}>
-                  <Plus className="h-3.5 w-3.5 mr-2" /> Add lesson
+                  <Plus className="h-3.5 w-3.5 mr-2" /> Add standalone page
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => { setCourseTitleValue(phase.title); setEditingCourseTitle(true); }}>
@@ -405,7 +425,7 @@ function CourseEditor({
               className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-muted/60 transition-colors disabled:opacity-50"
             >
               {creatingLesson ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
-              Add standalone lesson
+              Add standalone page
             </button>
           </div>
         </div>
@@ -493,7 +513,7 @@ function CourseEditor({
                     <Folder className="h-3.5 w-3.5 mr-2" /> Add module
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => void handleAddStandaloneLesson()} disabled={creatingLesson}>
-                    <Plus className="h-3.5 w-3.5 mr-2" /> Add lesson
+                    <Plus className="h-3.5 w-3.5 mr-2" /> Add standalone page
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => { setCourseTitleValue(phase.title); setEditingCourseTitle(true); }}>
@@ -518,76 +538,78 @@ function CourseEditor({
             </span>
           </div>
 
-          {/* Modules → Lessons tree */}
+          {/* Modules → Lessons tree: render segments in order so standalone pages stay at their actual position */}
           <div className="flex-1 overflow-y-auto">
-            {/* Standalone lessons (not inside any module) */}
-            {orphanLessons.map((lesson) => (
-              <SidebarLesson
-                key={lesson.id}
-                item={lesson}
-                isActive={lesson.id === activeLessonId}
-                onClick={() => setActiveLessonId(lesson.id)}
-                moduleFolders={moduleFolders}
-                currentModuleId={null}
-                allItems={phase.items}
-              />
-            ))}
+            {segments.length > 0 && (
+              <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleOutlineDragEnd}>
+                <SortableContext items={outlineSortableIds} strategy={verticalListSortingStrategy}>
+                  {segments.map((seg) => {
+                    if (seg.type === "standalone") {
+                      return (
+                        <SortableLessonWrapper key={seg.item.id} id={seg.item.id}>
+                          <SidebarLesson
+                            item={seg.item}
+                            isActive={seg.item.id === activeLessonId}
+                            onClick={() => setActiveLessonId(seg.item.id)}
+                            moduleFolders={moduleFolders}
+                            currentModuleId={null}
+                            allItems={phase.items}
+                            isOrphan
+                          />
+                        </SortableLessonWrapper>
+                      );
+                    }
+                    const group = seg;
+                    const isCollapsed = collapsedModules.has(group.module.id);
+                    return (
+                      <SortableModule key={group.module.id} id={group.module.id}>
+                        <SidebarModuleHeader
+                          item={group.module}
+                          isCollapsed={isCollapsed}
+                          lessonCount={group.lessons.length}
+                          onToggle={() => toggleModule(group.module.id)}
+                          onAddLesson={() => handleAddLessonInstant(group.module.id)}
+                        />
 
-            {/* Draggable modules */}
-            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleModuleDragEnd}>
-              <SortableContext items={groups.map((g) => g.module.id)} strategy={verticalListSortingStrategy}>
-                {groups.map((group) => {
-                  const isCollapsed = collapsedModules.has(group.module.id);
-                  return (
-                    <SortableModule key={group.module.id} id={group.module.id}>
-                      {/* Module folder header */}
-                      <SidebarModuleHeader
-                        item={group.module}
-                        isCollapsed={isCollapsed}
-                        lessonCount={group.lessons.length}
-                        onToggle={() => toggleModule(group.module.id)}
-                        onAddLesson={() => handleAddLessonInstant(group.module.id)}
-                      />
+                        {!isCollapsed && (
+                          <div className="pb-1">
+                            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={(e) => handleLessonDragEnd(group.module.id, e)}>
+                              <SortableContext items={group.lessons.map((l) => l.id)} strategy={verticalListSortingStrategy}>
+                                {group.lessons.map((lesson) => (
+                                  <SortableLessonWrapper key={lesson.id} id={lesson.id}>
+                                    <SidebarLesson
+                                      item={lesson}
+                                      isActive={lesson.id === activeLessonId}
+                                      onClick={() => setActiveLessonId(lesson.id)}
+                                      moduleFolders={moduleFolders}
+                                      currentModuleId={group.module.id}
+                                      allItems={phase.items}
+                                    />
+                                  </SortableLessonWrapper>
+                                ))}
+                              </SortableContext>
+                            </DndContext>
 
-                      {/* Draggable lessons inside this module */}
-                      {!isCollapsed && (
-                        <div className="pb-1">
-                          <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={(e) => handleLessonDragEnd(group.module.id, e)}>
-                            <SortableContext items={group.lessons.map((l) => l.id)} strategy={verticalListSortingStrategy}>
-                              {group.lessons.map((lesson) => (
-                                <SortableLessonWrapper key={lesson.id} id={lesson.id}>
-                                  <SidebarLesson
-                                    item={lesson}
-                                    isActive={lesson.id === activeLessonId}
-                                    onClick={() => setActiveLessonId(lesson.id)}
-                                    moduleFolders={moduleFolders}
-                                    currentModuleId={group.module.id}
-                                    allItems={phase.items}
-                                  />
-                                </SortableLessonWrapper>
-                              ))}
-                            </SortableContext>
-                          </DndContext>
-
-                          <button
-                            type="button"
-                            onClick={() => handleAddLessonInstant(group.module.id)}
-                            disabled={creatingLesson}
-                            className={cn(
-                              "flex items-center gap-1 px-3 py-1 pl-8 text-[10px] text-muted-foreground/50 hover:text-primary transition-colors w-full",
-                              creatingLesson && "opacity-50 pointer-events-none",
-                            )}
-                          >
-                            {creatingLesson ? <Loader2 className="h-3 w-3 animate-spin" /> : <Plus className="h-3 w-3" />}
-                            {creatingLesson ? "Creating..." : "Add lesson"}
-                          </button>
-                        </div>
-                      )}
-                    </SortableModule>
-                  );
-                })}
-              </SortableContext>
-            </DndContext>
+                            <button
+                              type="button"
+                              onClick={() => handleAddLessonInstant(group.module.id)}
+                              disabled={creatingLesson}
+                              className={cn(
+                                "flex items-center gap-1 px-3 py-1 pl-8 text-[10px] text-muted-foreground/50 hover:text-primary transition-colors w-full",
+                                creatingLesson && "opacity-50 pointer-events-none",
+                              )}
+                            >
+                              {creatingLesson ? <Loader2 className="h-3 w-3 animate-spin" /> : <Plus className="h-3 w-3" />}
+                              {creatingLesson ? "Creating..." : "Add lesson"}
+                            </button>
+                          </div>
+                        )}
+                      </SortableModule>
+                    );
+                  })}
+                </SortableContext>
+              </DndContext>
+            )}
           </div>
 
         </div>
@@ -774,6 +796,7 @@ function SidebarLesson({
   const duplicateItem = useDuplicateItem();
   const updateItem = useUpdateItem();
   const reorderItems = useReorderItems();
+  const qc = useQueryClient();
   const [showMoveMenu, setShowMoveMenu] = useState(false);
 
   const otherModules = moduleFolders.filter((m) => m.id !== currentModuleId);
