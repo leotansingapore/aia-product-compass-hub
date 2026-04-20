@@ -527,10 +527,11 @@ function ServicingScriptCard({
                 <TabsContent key={`uv-${uv.id}`} value={`uv-${uv.id}`}>
                   {editingUserVersionId === uv.id && currentUserId === uv.user_id && editUserVersionContent !== "__name_only__" ? (
                     <div className="space-y-2">
-                      <MinimalRichEditor value={editUserVersionContent} onChange={setEditUserVersionContent} />
+                      <MinimalRichEditor ref={editUserVersionEditorRef} value={editUserVersionContent} onChange={setEditUserVersionContent} />
                       <div className="flex gap-2">
-                        <Button size="sm" disabled={updateVersion.isPending} onClick={() => {
-                          updateVersion.mutate({ id: uv.id, content: editUserVersionContent.trim(), authorName: uv.author_name });
+                        <Button size="sm" disabled={updateVersion.isPending} onClick={async () => {
+                          const latest = (await editUserVersionEditorRef.current?.getMarkdownForSave()) ?? editUserVersionContent;
+                          updateVersion.mutate({ id: uv.id, content: latest.trim(), authorName: uv.author_name });
                           setEditingUserVersionId(null); setEditUserVersionContent("");
                         }}>
                           {updateVersion.isPending ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Saving…</> : "Save"}
