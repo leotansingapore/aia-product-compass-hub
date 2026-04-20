@@ -2,12 +2,12 @@ import { useEffect, memo } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 import Dashboard from "./Dashboard";
 
 const Index = memo(() => {
   const { user, loading } = useSimplifiedAuth();
-  const { isMasterAdmin, hasRole } = usePermissions();
+  const { isAdmin } = useAdmin();
   const navigate = useNavigate();
 
   const hasRecoveryHash =
@@ -35,8 +35,6 @@ const Index = memo(() => {
 
   // Admins see the full dashboard (search, categories, progress overview).
   // Regular learners go straight to their learning track — no intermediary.
-  const isAdmin = isMasterAdmin() || hasRole('admin');
-
   if (!isAdmin) {
     return <Navigate to="/learning-track" replace />;
   }

@@ -1,7 +1,7 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useFeatureAccess } from "@/hooks/useFeatureAccess";
 import { FEATURES } from "@/lib/tiers";
@@ -17,10 +17,10 @@ const LT_TAB_LINK_CLASS =
 const LT_TAB_ACTIVE_CLASS = "border-white text-white";
 
 export default function LearningTrack() {
-  const { isAdmin, isMasterAdmin } = usePermissions();
+  const { isAdmin } = useAdmin();
   const { user } = useSimplifiedAuth();
   const { can, isAdminBypass } = useFeatureAccess();
-  const showAdminTab = isAdmin() || isMasterAdmin();
+  const showAdminTab = isAdmin;
   const showExplorerTab = isAdminBypass || can(FEATURES.EXPLORER_TRACK);
   const showPreRnfTab = isAdminBypass || can(FEATURES.PRE_RNF_TRACK);
   const showPostRnfTab = isAdminBypass || can(FEATURES.POST_RNF_TRACK);
