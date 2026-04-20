@@ -1,5 +1,25 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
+/**
+ * Repair common paste artefacts in markdown bodies before rendering:
+ * - collapse newlines inside image alt text (`![alt\n...](url)` → `![alt ...](url)`)
+ *   because CommonMark requires alt text to be single-line, and Google Docs
+ *   pastes frequently break this.
+ * - collapse newlines inside link labels (`[label\n...](url)` → `[label ...](url)`)
+ * - trim stray whitespace in URLs.
+ */
+function repairMarkdown(src: string): string {
+  if (!src) return src;
+  return src
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt, url) =>
+      `![${String(alt).replace(/\s+/g, " ").trim()}](${String(url).trim()})`
+    )
+    .replace(/(^|[^!])\[([^\]]*?)\]\(([^)]+)\)/g, (_m, lead, text, url) =>
+      `${lead}[${String(text).replace(/\s+/g, " ").trim()}](${String(url).trim()})`
+    );
+}
 import { ExternalLink, Video, Trash2, Plus, FileText, Link, Image as ImageIcon } from "lucide-react";
 import { useAdmin } from "@/hooks/useAdmin";
 import {
@@ -236,6 +256,7 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
 
           {b.block_type === "text" && b.body && (
             <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
               components={{
                 a: ({ href, children, ...props }) => {
                   if (href) {
@@ -250,9 +271,22 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
                   }
                   return <a href={href} target="_blank" rel="noreferrer" {...props}>{children}</a>;
                 },
+                img: ({ src, alt, ...props }) => (
+                  <img
+                    src={src}
+                    alt={alt ?? ""}
+                    loading="lazy"
+                    onError={(e) => {
+                      // Hide broken images (e.g. expired Google Slides export URLs)
+                      // rather than leaving a broken-icon placeholder.
+                      (e.currentTarget as HTMLImageElement).style.display = "none";
+                    }}
+                    {...props}
+                  />
+                ),
               }}
             >
-              {b.body}
+              {repairMarkdown(b.body)}
             </ReactMarkdown>
           )}
 
