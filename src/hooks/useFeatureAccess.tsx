@@ -85,6 +85,8 @@ export function useFeatureAccess() {
       if (tier === 'explorer' && featureKey === FEATURES.BOOKMARKS) return false;
       // Post-RNF consultants have already passed CMFAS — hide the exam module.
       if (tier === 'post_rnf' && featureKey === FEATURES.CMFAS) return false;
+      // Papers-takers focus on exams — no Roleplay until they clear RNF.
+      if (tier === 'papers_taker' && featureKey === FEATURES.ROLEPLAY) return false;
       return permissionsByTier.get(tier)?.has(featureKey) ?? false;
     },
     [permissionsByTier, tier, isAdminBypass],
@@ -100,6 +102,7 @@ export function useFeatureAccess() {
         // stale `tier_permissions` rows.
         if (tier === 'explorer' && key === FEATURES.BOOKMARKS) return false;
         if (tier === 'post_rnf' && key === FEATURES.CMFAS) return false;
+        if (tier === 'papers_taker' && key === FEATURES.ROLEPLAY) return false;
         return allowed.has(key);
       });
     },

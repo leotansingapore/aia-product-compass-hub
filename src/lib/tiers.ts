@@ -124,7 +124,6 @@ export const TIER_FEATURE_MATRIX: Record<TierLevel, readonly FeatureKey[]> = {
     FEATURES.CMFAS,
     FEATURES.PRODUCTS,
     FEATURES.QUESTION_BANKS,
-    FEATURES.ROLEPLAY,
     FEATURES.KB,
   ],
   post_rnf: [
