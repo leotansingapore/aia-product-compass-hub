@@ -24,7 +24,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
-import { MinimalRichEditor } from "@/components/MinimalRichEditor";
+import { MinimalRichEditor, type MinimalRichEditorHandle } from "@/components/MinimalRichEditor";
 
 import { copyRichContent } from "@/lib/copy-rich-content";
 
