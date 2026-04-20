@@ -230,27 +230,6 @@ export default function First60DaysDay() {
             </div>
           </div>
 
-          {/* Right: completion ring */}
-          <div className="hidden md:flex md:flex-col md:items-center md:gap-2">
-            <div
-              className="relative grid h-20 w-20 place-items-center rounded-full"
-              style={{
-                background: `conic-gradient(hsl(var(--primary)) ${progressPct * 3.6}deg, hsl(var(--muted)) 0deg)`,
-              }}
-              aria-label={`${progressPct} percent complete`}
-              role="img"
-            >
-              <div className="grid h-[68px] w-[68px] place-items-center rounded-full bg-card">
-                <span className="font-serif text-lg font-semibold tabular-nums text-foreground">
-                  {progressPct}
-                  <span className="text-xs text-muted-foreground">%</span>
-                </span>
-              </div>
-            </div>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-              Completion
-            </span>
-          </div>
         </div>
       </section>
 
