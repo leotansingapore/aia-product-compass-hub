@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
 import { usePermissions } from "@/hooks/usePermissions";
@@ -72,6 +73,7 @@ function getCategoryInfo(categoryId: string) {
 }
 
 export default function ProductCategory() {
+  const navigate = useNavigate();
   const {
     categorySlugOrId,
     categoryId,
@@ -258,19 +260,16 @@ export default function ProductCategory() {
 
   if (!category) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-2">Category not found</h1>
-          <p className="text-muted-foreground mb-4">
-            The category "{categorySlugOrId}" doesn't exist. Category ID:{" "}
-            {categoryId}
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <div className="max-w-md text-center">
+          <h1 className="font-serif text-2xl font-bold mb-2">Category not found</h1>
+          <p className="text-sm text-muted-foreground mb-6">
+            The category <span className="font-mono">{categorySlugOrId}</span> doesn&apos;t exist.
           </p>
-          <button
-            onClick={() => window.history.back()}
-            className="text-primary hover:underline"
-          >
-            Go back to home
-          </button>
+          <Button onClick={() => navigate("/categories")} className="gap-2">
+            <ArrowLeft className="h-4 w-4" />
+            Back to Categories
+          </Button>
         </div>
       </div>
     );

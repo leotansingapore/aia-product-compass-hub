@@ -269,14 +269,14 @@ export default function First60DaysDay() {
         <TabsList className="inline-flex h-auto w-full justify-start gap-1 overflow-x-auto rounded-xl border border-border/60 bg-card/80 p-1 shadow-sm backdrop-blur">
           <TabsTrigger
             value="read"
-            className="gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+            className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
           >
             <BookOpen className="h-4 w-4" />
             Read
           </TabsTrigger>
           <TabsTrigger
             value="video"
-            className="gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+            className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
           >
             <Film className="h-4 w-4" />
             Video
@@ -284,7 +284,7 @@ export default function First60DaysDay() {
           {hasReflection && (
             <TabsTrigger
               value="reflection"
-              className="gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+              className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
             >
               <NotebookPen className="h-4 w-4" />
               Reflection
@@ -295,7 +295,7 @@ export default function First60DaysDay() {
           )}
           <TabsTrigger
             value="quiz"
-            className="gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+            className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
           >
             <ClipboardCheck className="h-4 w-4" />
             Quiz
@@ -390,6 +390,11 @@ export default function First60DaysDay() {
           <Button
             variant={nextUnlocked ? "default" : "secondary"}
             disabled={!nextUnlocked}
+            aria-label={
+              nextUnlocked
+                ? `Go to Day ${next.dayNumber}`
+                : `Complete today's ${hasReflection ? "quiz and reflection" : "quiz"} to unlock Day ${next.dayNumber}`
+            }
             onClick={() => nextUnlocked && navigate(`/learning-track/first-60-days/day/${next.dayNumber}`)}
             className={cn(
               "group gap-2",

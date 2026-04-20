@@ -8,7 +8,7 @@ import { RoleplayScenarioCard } from '@/components/roleplay/RoleplayScenarioCard
 import { RoleplayGuide } from '@/components/roleplay/RoleplayGuide';
 import { useRoleplay } from '@/hooks/useRoleplay';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { MessageCircle, Video } from 'lucide-react';
+import { MessageCircle, Video, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const PitchAnalysis = lazy(() => import('@/pages/PitchAnalysis'));
@@ -46,6 +46,14 @@ export default function Roleplay() {
         />
 
         <div className="mx-auto px-4 sm:px-6 py-4 sm:py-8 md:pb-10 animate-fade-in">
+          <button
+            type="button"
+            onClick={() => setSelectedScenario(null)}
+            className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to scenarios
+          </button>
           <RoleplayDiagnostics scenario={selectedScenario} />
           <TavusVideoChat scenario={selectedScenario} />
         </div>
