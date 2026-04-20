@@ -253,6 +253,7 @@ export default function ExplorerTrack() {
       const phaseLock = lockMap?.getPhaseLock(phase.id);
       if (phaseLock?.locked) continue;
       for (const item of phase.items) {
+        if (isModuleFolder(item)) continue;
         if (!isCompleted(item.id)) {
           const itemLock = lockMap?.getItemLock(item.id);
           if (!itemLock?.locked) return { phase, item };
