@@ -178,88 +178,110 @@ function ModuleCompleteOverlay({
 
   // All Explorer content done + no next module → show upgrade encouragement
   if (allDone && !hasNext) {
+    const unlockItems = [
+      { icon: BookOpen, label: "First 60 Days", desc: "Daily hands-on training program", color: "text-blue-600 bg-blue-50 dark:bg-blue-950/40", delay: "animate-celebrate-card" },
+      { icon: GraduationCap, label: "CMFAS Exam Prep", desc: "Certification study modules", color: "text-purple-600 bg-purple-50 dark:bg-purple-950/40", delay: "animate-celebrate-card-delay-1" },
+      { icon: ShoppingBag, label: "Product Training", desc: "Insurance & investment products", color: "text-amber-600 bg-amber-50 dark:bg-amber-950/40", delay: "animate-celebrate-card-delay-2" },
+      { icon: MessageSquare, label: "AI Roleplay", desc: "Client conversation practice", color: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40", delay: "animate-celebrate-card-delay-3" },
+    ];
+
     return (
-      <div className="space-y-4 max-w-3xl mx-auto" data-testid="explorer-page">
-        {/* Celebration */}
-        <div className="relative overflow-hidden rounded-2xl border bg-gradient-to-br from-green-50 via-background to-emerald-50/50 dark:from-green-950/20 dark:via-background dark:to-emerald-950/20 p-8 sm:p-10 text-center">
-          <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-green-500/10 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
-          <div className="relative">
-            <div className="mx-auto w-20 h-20 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center mb-5 ring-4 ring-green-200/50 dark:ring-green-800/30">
+      <div className="max-w-2xl mx-auto py-4" data-testid="explorer-page">
+        {/* === Single card — unified visual flow === */}
+        <div className="relative overflow-hidden rounded-2xl border bg-card">
+          {/* Decorative blurs */}
+          <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-green-500/8 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-20 -left-20 w-56 h-56 rounded-full bg-primary/8 blur-3xl pointer-events-none" />
+
+          {/* Confetti dots — playful touch */}
+          <div className="absolute top-8 left-[15%] w-2 h-2 rounded-full bg-green-400 animate-confetti" />
+          <div className="absolute top-12 right-[20%] w-1.5 h-1.5 rounded-full bg-primary animate-confetti" style={{ animationDelay: "0.15s" }} />
+          <div className="absolute top-6 left-[40%] w-2.5 h-2.5 rounded-full bg-amber-400 animate-confetti" style={{ animationDelay: "0.3s" }} />
+          <div className="absolute top-10 right-[35%] w-2 h-2 rounded-full bg-purple-400 animate-confetti" style={{ animationDelay: "0.45s" }} />
+          <div className="absolute top-14 left-[60%] w-1.5 h-1.5 rounded-full bg-emerald-400 animate-confetti" style={{ animationDelay: "0.2s" }} />
+
+          {/* Section 1: Celebration */}
+          <div className="relative px-6 pt-10 pb-6 sm:px-10 sm:pt-12 text-center">
+            {/* Icon — bounces in */}
+            <div className="animate-celebrate-icon mx-auto w-20 h-20 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center mb-6 ring-4 ring-green-200/50 dark:ring-green-800/30 shadow-lg shadow-green-500/10">
               <CheckCircle2 className="h-10 w-10 text-green-600" />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold font-serif tracking-tight mb-2">
-              You did it!
-            </h1>
-            <p className="text-muted-foreground text-sm max-w-md mx-auto mb-5">
-              You've completed <span className="font-semibold text-foreground">{title}</span> and
-              finished all Explorer modules. Your FINternship journey is just getting started.
-            </p>
-            <div className="max-w-xs mx-auto">
-              <div className="h-2.5 w-full rounded-full bg-muted overflow-hidden">
-                <div className="h-full rounded-full bg-gradient-to-r from-green-500 to-emerald-500 w-full transition-all duration-1000" />
+
+            {/* Heading + subtitle — fades up */}
+            <div className="animate-celebrate-text space-y-2 mb-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Explorer complete</p>
+              <h1 className="text-3xl sm:text-4xl font-bold font-serif tracking-tight">
+                Congratulations!
+              </h1>
+              <p className="text-muted-foreground text-sm max-w-sm mx-auto leading-relaxed">
+                You've finished all Explorer modules. Time to level up your FINternship journey.
+              </p>
+            </div>
+
+            {/* Progress bar — fills in */}
+            <div className="max-w-[200px] mx-auto">
+              <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
+                <div className="animate-celebrate-progress h-full rounded-full bg-gradient-to-r from-green-500 to-emerald-400" />
               </div>
-              <p className="text-[11px] text-green-600 font-semibold mt-1.5">Explorer 100% complete</p>
+              <p className="text-[10px] text-green-600/80 font-medium mt-1.5 tabular-nums">100% complete</p>
             </div>
           </div>
-        </div>
 
-        {/* Unlock next tier */}
-        <Card className="border-primary/20 overflow-hidden">
-          <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 px-5 py-3 border-b border-primary/10">
-            <div className="flex items-center justify-center gap-2">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <h2 className="text-sm font-bold uppercase tracking-wider text-primary">Unlock your next stage</h2>
+          {/* Divider */}
+          <div className="mx-6 sm:mx-10 border-t border-border/50" />
+
+          {/* Section 2: What unlocks */}
+          <div className="relative px-6 py-6 sm:px-10 sm:py-8">
+            <div className="animate-celebrate-card text-center mb-5">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 mb-3">
+                <Sparkles className="h-3.5 w-3.5 text-primary" />
+                <span className="text-xs font-semibold text-primary">What's next</span>
+              </div>
+              <h2 className="text-lg font-bold font-serif mb-1">Upgrade to Papers-taker</h2>
+              <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+                Request an upgrade to unlock advanced training, certification prep, and hands-on practice tools.
+              </p>
             </div>
-          </div>
-          <CardContent className="p-5 sm:p-6 space-y-5">
-            <p className="text-sm text-muted-foreground text-center max-w-md mx-auto">
-              Upgrade to <span className="font-semibold text-foreground">Papers-taker</span> to access advanced training, certification prep, and hands-on practice.
-            </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {[
-                { icon: BookOpen, label: "First 60 Days", desc: "Daily training program", color: "text-blue-600 bg-blue-100 dark:bg-blue-950/40" },
-                { icon: GraduationCap, label: "CMFAS Exam Prep", desc: "Certification study", color: "text-purple-600 bg-purple-100 dark:bg-purple-950/40" },
-                { icon: ShoppingBag, label: "Product Training", desc: "Insurance & investment", color: "text-amber-600 bg-amber-100 dark:bg-amber-950/40" },
-                { icon: MessageSquare, label: "AI Roleplay", desc: "Practice scenarios", color: "text-emerald-600 bg-emerald-100 dark:bg-emerald-950/40" },
-              ].map((item) => (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              {unlockItems.map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-xl border bg-card p-3.5 text-center space-y-2 hover:border-primary/20 transition-colors"
+                  className={cn("rounded-xl border border-border/60 p-3 text-center space-y-1.5 hover:shadow-sm transition-shadow", item.delay)}
                 >
-                  <div className={cn("mx-auto w-10 h-10 rounded-full flex items-center justify-center", item.color)}>
-                    <item.icon className="h-5 w-5" />
+                  <div className={cn("mx-auto w-9 h-9 rounded-lg flex items-center justify-center", item.color)}>
+                    <item.icon className="h-4 w-4" />
                   </div>
-                  <p className="text-xs font-semibold leading-tight">{item.label}</p>
-                  <p className="text-[10px] text-muted-foreground leading-tight">{item.desc}</p>
+                  <p className="text-[11px] font-semibold leading-tight">{item.label}</p>
+                  <p className="text-[9px] text-muted-foreground leading-snug">{item.desc}</p>
                 </div>
               ))}
             </div>
+          </div>
 
-            <div className="text-center pt-1 space-y-3">
-              {pendingUpgrade ? (
-                <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">
-                  <Clock className="h-4 w-4 text-amber-600 animate-pulse" />
-                  <span className="text-sm font-medium text-amber-700 dark:text-amber-400">
-                    Upgrade requested — awaiting admin approval
-                  </span>
-                </div>
-              ) : (
-                <RequestUpgradeButton
-                  fromTier="explorer"
-                  toTier="papers_taker"
-                  label="Request upgrade to Papers-taker"
-                />
-              )}
-              <div>
-                <Button variant="ghost" size="sm" onClick={onBack} className="text-muted-foreground">
-                  Back to learning track
-                </Button>
+          {/* Section 3: CTA */}
+          <div className="animate-celebrate-cta px-6 pb-8 sm:px-10 text-center space-y-3">
+            {pendingUpgrade ? (
+              <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">
+                <Clock className="h-4 w-4 text-amber-600 animate-pulse" />
+                <span className="text-sm font-medium text-amber-700 dark:text-amber-400">
+                  Upgrade requested — awaiting admin approval
+                </span>
               </div>
+            ) : (
+              <RequestUpgradeButton
+                fromTier="explorer"
+                toTier="papers_taker"
+                label="Request upgrade to Papers-taker"
+              />
+            )}
+            <div>
+              <Button variant="ghost" size="sm" onClick={onBack} className="text-xs text-muted-foreground/60 hover:text-muted-foreground">
+                Back to learning track
+              </Button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     );
   }
