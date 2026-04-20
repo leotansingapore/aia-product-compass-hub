@@ -99,69 +99,115 @@ export function LessonContentPanel({ item, lockResult, onComplete }: LessonConte
   );
 
   return (
-    <article className="px-5 py-5 sm:px-6 sm:py-6 space-y-5">
-      {/* Title row with completion CTA on the right */}
-      <div className="flex items-start justify-between gap-3">
-        <h2 className="text-lg sm:text-xl font-bold font-serif tracking-tight">
-          {item.title}
-        </h2>
-        {completeButton}
+    <article className="w-full">
+      {/* Hero header — establishes context, status, and primary CTA */}
+      <header className="border-b bg-gradient-to-br from-primary/5 via-background to-background px-5 sm:px-8 pt-6 pb-5 sm:pt-8 sm:pb-6">
+        <div className="flex items-center gap-2 mb-3">
+          <span
+            className={cn(
+              "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider",
+              completed
+                ? "bg-green-500/10 text-green-700 dark:text-green-400"
+                : status === "in_progress"
+                  ? "bg-blue-500/10 text-blue-700 dark:text-blue-400"
+                  : "bg-muted text-muted-foreground",
+            )}
+          >
+            {completed ? (
+              <CheckCircle2 className="h-3 w-3" />
+            ) : (
+              <Circle className="h-3 w-3" />
+            )}
+            {completed ? "Completed" : status === "in_progress" ? "In Progress" : "Not Started"}
+          </span>
+        </div>
+
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0 flex-1 space-y-2">
+            <h2 className="text-xl sm:text-2xl font-bold font-serif tracking-tight leading-tight">
+              {item.title}
+            </h2>
+            {item.description && (
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
+                {item.description}
+              </p>
+            )}
+          </div>
+          <div className="hidden sm:block">{completeButton}</div>
+        </div>
+
+        <div className="sm:hidden mt-4">{completeButton}</div>
+      </header>
+
+      {/* Body content */}
+      <div className="px-5 py-6 sm:px-8 sm:py-8 space-y-7">
+        {/* Objectives + Action items — side-by-side on wider screens */}
+        {(hasObjectives || hasActionItems) && (
+          <div className="grid gap-4 md:grid-cols-2">
+            {hasObjectives && (
+              <div className="rounded-xl border bg-card/50 p-4 sm:p-5">
+                <h4 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+                  Objectives
+                </h4>
+                <ul className="space-y-2 text-sm leading-relaxed">
+                  {item.objectives!.map((o, i) => (
+                    <li key={i} className="flex gap-2.5">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                      <span>{o}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {hasActionItems && (
+              <div className="rounded-xl border bg-card/50 p-4 sm:p-5">
+                <h4 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+                  Action items
+                </h4>
+                <ol className="space-y-2 text-sm leading-relaxed">
+                  {item.action_items!.map((a, i) => (
+                    <li key={i} className="flex gap-2.5">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary tabular-nums">
+                        {i + 1}
+                      </span>
+                      <span className="pt-0.5">{a}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Content blocks — the main lesson content */}
+        {hasContent && (
+          <ContentBlockEditor blocks={effectiveBlocks} itemId={item.id} />
+        )}
+        {needsFetch && blocksQuery.isLoading && (
+          <div className="space-y-2">
+            <div className="h-4 w-2/3 animate-pulse rounded bg-muted" />
+            <div className="h-4 w-full animate-pulse rounded bg-muted" />
+            <div className="h-4 w-4/5 animate-pulse rounded bg-muted" />
+          </div>
+        )}
+
+        {/* Related resources */}
+        <RelatedResources item={item} />
+
+        {/* Submission panel */}
+        {item.requires_submission && (
+          <SubmissionPanel itemId={item.id} userId={user?.id} />
+        )}
+
+        {/* Footer completion CTA — bottom-of-page convenience */}
+        <div className="pt-4 border-t flex items-center justify-between gap-3">
+          <p className="text-xs text-muted-foreground">
+            {completed ? "Nice work — this lesson is complete." : "Done with this lesson?"}
+          </p>
+          {completeButton}
+        </div>
       </div>
-
-      {/* Description — flows naturally under title */}
-      {item.description && (
-        <p className="text-sm text-muted-foreground leading-relaxed -mt-2">
-          {item.description}
-        </p>
-      )}
-
-      {/* Objectives — inline, no box */}
-      {hasObjectives && (
-        <div>
-          <h4 className="text-sm font-semibold mb-1.5">Objectives</h4>
-          <ul className="space-y-1 text-sm leading-relaxed">
-            {item.objectives!.map((o, i) => (
-              <li key={i} className="flex gap-2">
-                <span className="text-primary mt-0.5 shrink-0">•</span>
-                <span>{o}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Action items — inline, no box */}
-      {hasActionItems && (
-        <div>
-          <h4 className="text-sm font-semibold mb-1.5">Action items</h4>
-          <ol className="space-y-1 text-sm leading-relaxed list-decimal list-inside">
-            {item.action_items!.map((a, i) => (
-              <li key={i}>{a}</li>
-            ))}
-          </ol>
-        </div>
-      )}
-
-      {/* Content blocks — the main lesson content, no wrapper label */}
-      {hasContent && (
-        <ContentBlockEditor blocks={effectiveBlocks} itemId={item.id} />
-      )}
-      {needsFetch && blocksQuery.isLoading && (
-        <div className="space-y-2">
-          <div className="h-4 w-2/3 animate-pulse rounded bg-muted" />
-          <div className="h-4 w-full animate-pulse rounded bg-muted" />
-          <div className="h-4 w-4/5 animate-pulse rounded bg-muted" />
-        </div>
-      )}
-
-      {/* Related resources */}
-      <RelatedResources item={item} />
-
-      {/* Submission panel */}
-      {item.requires_submission && (
-        <SubmissionPanel itemId={item.id} userId={user?.id} />
-      )}
-
     </article>
   );
 }
