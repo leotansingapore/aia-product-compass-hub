@@ -48,8 +48,6 @@ export default function LearningTrack() {
     }
   }, [user?.id]);
 
-  const explorerOnly = !showPreRnfTab && !showPostRnfTab && !showAdminTab;
-
   // ---- Admin: keep tab navigation ----
   if (isAdmin) {
     return (
@@ -89,8 +87,9 @@ export default function LearningTrack() {
 
   return (
     <PageLayout title="Learning Track" description="Your learning journey.">
-      {/* Journey path bar — only show when user has access to more than just Explorer */}
-      {!explorerOnly && (
+      {/* Journey path bar — always shown so Explorer-only learners still see
+          a roadmap of future phases (Papers-taker, Post-RNF) as locked steps. */}
+      {(
         <div className="border-b bg-card/50">
           <div className="mx-auto max-w-4xl px-4 py-4 sm:px-6">
             {/* Horizontal journey path */}
