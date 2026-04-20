@@ -56,39 +56,29 @@ function LearnerSidebar({
     const isFolder = isModuleFolder(item);
     const canToggle = !itemLock?.locked && !isFolder;
     return (
-      <button
+      <div
         key={item.id}
-        type="button"
-        onClick={() => onSelectLesson(item.id)}
-        disabled={!!itemLock?.locked}
         className={cn(
-          "w-full flex items-center gap-2.5 pl-8 pr-3 py-2 text-left text-xs transition-colors",
+          "w-full flex items-center text-xs transition-colors",
           isActive
             ? "bg-primary/10 text-primary font-semibold border-l-[3px] border-l-primary"
             : "hover:bg-muted/50",
-          itemLock?.locked && "opacity-40 cursor-not-allowed",
+          itemLock?.locked && "opacity-40",
         )}
       >
-        <span
-          role={canToggle ? "button" : undefined}
-          tabIndex={canToggle ? 0 : -1}
+        <button
+          type="button"
+          disabled={!canToggle || toggleBusy}
           aria-label={canToggle ? (completed ? "Mark incomplete" : "Mark complete") : undefined}
           onClick={(e) => {
-            if (!canToggle) return;
             e.stopPropagation();
+            if (!canToggle) return;
             onToggleComplete(item.id, completed);
           }}
-          onKeyDown={(e) => {
-            if (!canToggle) return;
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              e.stopPropagation();
-              onToggleComplete(item.id, completed);
-            }
-          }}
           className={cn(
-            "shrink-0 rounded-full p-0.5 transition-colors",
-            canToggle && "hover:bg-muted cursor-pointer",
+            "shrink-0 pl-8 pr-1 py-2 flex items-center justify-center",
+            canToggle && "cursor-pointer hover:opacity-70",
+            !canToggle && "cursor-default",
             toggleBusy && "opacity-50",
           )}
         >
@@ -99,9 +89,19 @@ function LearnerSidebar({
           ) : (
             <Circle className="h-3.5 w-3.5 text-muted-foreground" />
           )}
-        </span>
-        <span className="truncate">{item.title}</span>
-      </button>
+        </button>
+        <button
+          type="button"
+          onClick={() => onSelectLesson(item.id)}
+          disabled={!!itemLock?.locked}
+          className={cn(
+            "flex-1 min-w-0 text-left pl-1.5 pr-3 py-2",
+            itemLock?.locked && "cursor-not-allowed",
+          )}
+        >
+          <span className="truncate block">{item.title}</span>
+        </button>
+      </div>
     );
   };
 
