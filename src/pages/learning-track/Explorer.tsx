@@ -279,8 +279,13 @@ export default function ExplorerTrack() {
     const currentIdx = items.findIndex((i) => i.id === completedItemId);
     if (currentIdx === -1) return;
 
-    // 1) Try to find the next real (non-folder, unlocked) lesson in the same module.
-    const nextInPhase = items.slice(currentIdx + 1).find(isAdvanceable);
+    // 1) Try to find the next real (non-folder, unlocked) lesson in the same phase.
+    //    Look forward first, then wrap around to check earlier items (standalone pages
+    //    may sit before the modules in order_index).
+    const forwardMatch = items.slice(currentIdx + 1).find(isAdvanceable);
+    const nextInPhase =
+      forwardMatch ??
+      items.find((i) => i.id !== completedItemId && isAdvanceable(i) && !isCompleted(i.id));
 
     if (nextInPhase) {
       setTimeout(() => {
@@ -290,12 +295,24 @@ export default function ExplorerTrack() {
       return;
     }
 
-    // 2) No more lessons in this module — jump to the first real lesson of the next unlocked phase.
+    // 2) No more lessons in this module — jump to the first real lesson of the next phase.
+    //    lockMap may be stale (computed before this completion), so re-check prerequisite
+    //    completion including the just-completed item.
     const phaseIdx = phases.findIndex((p) => p.id === activePhase.id);
+    const isCompletedNow = (id: string) => id === completedItemId || isCompleted(id);
     const nextPhaseWithLesson = phases.slice(phaseIdx + 1).find((p) => {
-      const phaseLock = lockMap?.getPhaseLock(p.id);
-      if (phaseLock?.locked) return false;
-      return p.items.some((i) => !isModuleFolder(i) && !lockMap?.getItemLock(i.id)?.locked);
+      // Re-check phase lock with updated completion
+      if (p.prerequisite_phase_id) {
+        const prereq = phases.find((ph) => ph.id === p.prerequisite_phase_id);
+        if (prereq) {
+          const stillMissing = prereq.items
+            .filter((i) => i.published_at !== null)
+            .filter((i) => !isModuleFolder(i))
+            .some((i) => !isCompletedNow(i.id));
+          if (stillMissing) return false;
+        }
+      }
+      return p.items.some((i) => !isModuleFolder(i));
     });
 
     if (nextPhaseWithLesson) {
