@@ -94,8 +94,9 @@ export default function ProductCategory() {
     return <Navigate to="/cmfas-exams" replace />;
   }
 
-  const { isAdmin } = usePermissions();
+  const { isAdmin: rawIsAdmin } = usePermissions();
   const { isViewingAsUser } = useViewMode();
+  const isAdmin = () => rawIsAdmin() && !isViewingAsUser;
 
   // Nested categories: if the current category is a parent (has children),
   // render the children as a sub-category grid instead of products.
