@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { ChevronDown, ChevronRight, CheckCircle2, Circle, Clock, Trash2, Copy, Bookmark, History, ArrowRightLeft, Lock } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -15,10 +15,17 @@ import { InlineEditableList } from "./InlineEditableList";
 import { ContentBlockEditor } from "./ContentBlockEditor";
 import { RelatedResources } from "./RelatedResources";
 import { SubmissionPanel } from "./SubmissionPanel";
-import { SaveAsTemplateDialog } from "./SaveAsTemplateDialog";
-import { ItemHistoryDialog } from "./ItemHistoryDialog";
 import { PublishToggle } from "./PublishToggle";
-import { PrerequisiteItemPicker } from "./admin/PrerequisiteItemPicker";
+// Admin-only dialogs — lazy so learner bundles don't ship them.
+const SaveAsTemplateDialog = lazy(() =>
+  import("./SaveAsTemplateDialog").then((m) => ({ default: m.SaveAsTemplateDialog })),
+);
+const ItemHistoryDialog = lazy(() =>
+  import("./ItemHistoryDialog").then((m) => ({ default: m.ItemHistoryDialog })),
+);
+const PrerequisiteItemPicker = lazy(() =>
+  import("./admin/PrerequisiteItemPicker").then((m) => ({ default: m.PrerequisiteItemPicker })),
+);
 import type { LearningTrackItem, LearningTrackPhase, ItemStatus } from "@/types/learning-track";
 import type { LockResult } from "@/lib/learning-track/unlock";
 import { cn } from "@/lib/utils";
@@ -333,7 +340,9 @@ export function LearningItemRow({
 
           {/* Prerequisite picker for admin */}
           {showAdmin && trackPhases && trackPhases.length > 0 && (
-            <PrerequisiteItemPicker item={item} trackPhases={trackPhases} />
+            <Suspense fallback={null}>
+              <PrerequisiteItemPicker item={item} trackPhases={trackPhases} />
+            </Suspense>
           )}
 
           {/* Content blocks - now with admin editing */}
@@ -346,18 +355,28 @@ export function LearningItemRow({
           )}
         </div>
       )}
-      <SaveAsTemplateDialog
-        open={saveTemplateOpen}
-        onClose={() => setSaveTemplateOpen(false)}
-        itemId={item.id}
-        itemTitle={item.title}
-      />
-      <ItemHistoryDialog
-        open={historyOpen}
-        onClose={() => setHistoryOpen(false)}
-        itemId={item.id}
-        itemTitle={item.title}
-      />
+      {/* Admin-only dialogs — only mount when actually opened so the bundle
+          doesn't load until needed. */}
+      {saveTemplateOpen && (
+        <Suspense fallback={null}>
+          <SaveAsTemplateDialog
+            open={saveTemplateOpen}
+            onClose={() => setSaveTemplateOpen(false)}
+            itemId={item.id}
+            itemTitle={item.title}
+          />
+        </Suspense>
+      )}
+      {historyOpen && (
+        <Suspense fallback={null}>
+          <ItemHistoryDialog
+            open={historyOpen}
+            onClose={() => setHistoryOpen(false)}
+            itemId={item.id}
+            itemTitle={item.title}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }
