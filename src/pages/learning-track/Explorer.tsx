@@ -349,29 +349,35 @@ export default function ExplorerTrack() {
     const currentIdx = items.findIndex((i) => i.id === completedItemId);
     if (currentIdx === -1) return;
 
-    // 1) Try to find the next real (non-folder, unlocked) lesson in the same phase.
-    //    Look forward first, then wrap around to check earlier items (standalone pages
-    //    may sit before the modules in order_index).
-    const forwardMatch = items.slice(currentIdx + 1).find(isAdvanceable);
-    const nextInPhase =
-      forwardMatch ??
-      items.find((i) => i.id !== completedItemId && isAdvanceable(i) && !isCompleted(i.id));
+    // Check if ALL lessons in this phase are now complete (including the just-completed one).
+    // If so, skip straight to the completion modal — even if the completed lesson isn't
+    // the "last" one in order (e.g. user undid lesson #15, then re-completed it).
+    const isCompletedNow = (id: string) => id === completedItemId || isCompleted(id);
+    const allDoneInPhase = items.every((i) => isModuleFolder(i) || isCompletedNow(i.id));
 
-    if (nextInPhase) {
-      setTimeout(() => {
-        setExpandedItemId(nextInPhase.id);
-        document.getElementById(`item-${nextInPhase.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 800);
+    if (!allDoneInPhase) {
+      // 1) Find the next incomplete lesson in the same phase.
+      //    Look forward first, then wrap around (standalone pages may sit before modules).
+      const isNextTarget = (i: typeof items[0]) =>
+        isAdvanceable(i) && i.id !== completedItemId && !isCompleted(i.id);
+      const nextInPhase =
+        items.slice(currentIdx + 1).find(isNextTarget) ??
+        items.find(isNextTarget);
+
+      if (nextInPhase) {
+        setTimeout(() => {
+          setExpandedItemId(nextInPhase.id);
+          document.getElementById(`item-${nextInPhase.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 800);
+      }
       return;
     }
 
-    // 2) No more lessons in this module — jump to the first real lesson of the next phase.
+    // 2) All lessons done — find the next phase to offer in the completion modal.
     //    lockMap may be stale (computed before this completion), so re-check prerequisite
     //    completion including the just-completed item.
     const phaseIdx = phases.findIndex((p) => p.id === activePhase.id);
-    const isCompletedNow = (id: string) => id === completedItemId || isCompleted(id);
     const nextPhaseWithLesson = phases.slice(phaseIdx + 1).find((p) => {
-      // Re-check phase lock with updated completion
       if (p.prerequisite_phase_id) {
         const prereq = phases.find((ph) => ph.id === p.prerequisite_phase_id);
         if (prereq) {
@@ -384,10 +390,6 @@ export default function ExplorerTrack() {
       }
       return p.items.some((i) => !isModuleFolder(i));
     });
-
-    // 3) Module done — show completion modal with countdown to next module.
-    const allDone = items.every((i) => i.id === completedItemId || isModuleFolder(i) || isCompleted(i.id));
-    if (!allDone) return;
 
     const firstNextLesson = nextPhaseWithLesson?.items.find(
       (i) => !isModuleFolder(i),
