@@ -6,7 +6,14 @@
 
 ## Pending
 
-_(none — all prior items completed)_
+### Curriculum edits: delete Pre-RNF Phase 1, optionally relabel remaining phases, drop stale permission rows
+
+- In `learning_track_phases`, delete the Pre-RNF "Phase 1 — Industry Understanding" row (and any `learning_track_items` / `learning_track_content_blocks` that FK to it). Cascade via existing FKs if present; otherwise delete children first. After deletion, close the gap in `order_index` for remaining Pre-RNF phases.
+- Optional (preferred): rename remaining Pre-RNF phase titles from `Phase N — <topic>` to `Assignment N — <topic>` so raw DB titles match what learners see. The client currently rewrites these at render time; removing that rewrite once the DB is updated will clean up `src/pages/learning-track/PreRnf.tsx::reshapePreRnfPhasesForLearner`.
+- In `tier_permissions`, delete the following now-stale rows so the DB matches `TIER_FEATURE_MATRIX`:
+  - `(tier_level='post_rnf', resource_id='cmfas')` — Post-RNF no longer sees CMFAS.
+  - `(tier_level='papers_taker', resource_id='roleplay')` — Papers-taker no longer sees Roleplay.
+  - Keep `(tier_level='papers_taker', resource_id='cmfas')` — papers-takers still reach `/cmfas-exams` from inside the Pre-RNF learning track, just not from the global nav (hidden client-side in `useFeatureAccess.canAny`).
 
 ### First 60 Days Reflection Submissions — DONE 2026-04-19
 
