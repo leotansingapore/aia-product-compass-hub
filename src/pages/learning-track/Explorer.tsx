@@ -228,7 +228,7 @@ export default function ExplorerTrack() {
   const { user } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
   const phasesQuery = useLearningTrackPhases("explorer");
-  const { isCompleted } = useLearningTrackProgress(user?.id);
+  const { isCompleted, setStatus } = useLearningTrackProgress(user?.id);
   const phases = phasesQuery.data ?? [];
   const lockMap = useLockMap(phases);
   const [activePhaseId, setActivePhaseId] = useState<string | null>(() => {
@@ -504,6 +504,18 @@ export default function ExplorerTrack() {
                   isCompleted={isCompleted}
                   lockMap={lockMap}
                   onSelectLesson={setExpandedItemId}
+                  toggleBusy={setStatus.isPending}
+                  onToggleComplete={(itemId, currentlyCompleted) => {
+                    const next = currentlyCompleted ? "not_started" : "completed";
+                    setStatus.mutate(
+                      { itemId, status: next },
+                      {
+                        onSuccess: () => {
+                          if (next === "completed") handleLessonComplete(itemId);
+                        },
+                      },
+                    );
+                  }}
                 />
 
                 {/* Content panel — active lesson */}
