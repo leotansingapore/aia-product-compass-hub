@@ -44,8 +44,8 @@ export default defineConfig(({ mode }) => ({
             '@dnd-kit/sortable',
             '@dnd-kit/utilities',
           ],
-          'vendor-markdown': ['marked', 'dompurify', 'react-markdown', 'remark-gfm', 'rehype-raw'],
-          'vendor-charts': ['recharts'],
+          // react-markdown + recharts intentionally NOT pinned — letting Rollup
+          // split them per-route keeps pages that don't use them lean.
         },
       },
     },

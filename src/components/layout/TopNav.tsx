@@ -1,26 +1,17 @@
-import { memo, useMemo, useCallback } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { memo, useMemo } from "react";
+import { NavLink } from "react-router-dom";
 import {
-  Home,
   BookOpen,
   GraduationCap,
   Brain,
   MessageCircle,
   Bookmark,
   Shield,
-  LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
-import { usePermissions } from "@/hooks/usePermissions";
 import { useFeatureAccess } from "@/hooks/useFeatureAccess";
 import { useAdmin } from "@/hooks/useAdmin";
 import { FEATURES } from "@/lib/tiers";
@@ -57,11 +48,9 @@ export const TopNav = memo(function TopNav({
 }: {
   onProfileClick?: () => void;
 }) {
-  const { user, signOut } = useSimplifiedAuth();
-  const { isMasterAdmin, isAdmin: isAdminRole } = usePermissions();
+  const { user } = useSimplifiedAuth();
   const { canAny, isAdminBypass } = useFeatureAccess();
   const { isAdmin: isAdminUser } = useAdmin();
-  const navigate = useNavigate();
 
   const visibleItems = useMemo(() => {
     return ALL_NAV_ITEMS.filter((item) => {
@@ -108,38 +97,18 @@ export const TopNav = memo(function TopNav({
       {/* Right side */}
       <div className="flex items-center gap-2">
         <ThemeToggle />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button
-              className="rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              aria-label="Account menu"
-            >
-              <Avatar className="h-8 w-8">
-                <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
-                  {user?.email?.charAt(0).toUpperCase() || "U"}
-                </AvatarFallback>
-              </Avatar>
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-48">
-            <DropdownMenuItem
-              className="text-xs text-muted-foreground cursor-default"
-              disabled
-            >
-              {user?.email}
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate("/my-account")}>
-              My Account
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={signOut}
-              className="text-destructive focus:text-destructive"
-            >
-              <LogOut className="h-4 w-4 mr-2" />
-              Sign out
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <button
+          type="button"
+          onClick={() => onProfileClick?.()}
+          className="rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          aria-label="Open profile"
+        >
+          <Avatar className="h-8 w-8">
+            <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
+              {user?.email?.charAt(0).toUpperCase() || "U"}
+            </AvatarFallback>
+          </Avatar>
+        </button>
       </div>
     </nav>
   );

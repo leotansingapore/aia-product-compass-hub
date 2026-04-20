@@ -4,7 +4,7 @@ import { BrandedPageHeader } from '@/components/layout/BrandedPageHeader';
 import { ScriptsHubHeaderTabs } from '@/components/scripts/ScriptsTabBar';
 import { useConceptCards, ConceptCard } from '@/hooks/useConceptCards';
 import { useConceptCardsMutations } from '@/hooks/useConceptCards';
-import { usePermissions } from '@/hooks/usePermissions';
+import { useAdmin } from '@/hooks/useAdmin';
 import { useSpacedRepetition } from '@/hooks/useSpacedRepetition';
 import { ConceptCardUploadDialog } from '@/components/concept-cards/ConceptCardUploadDialog';
 import { ConceptCardFocusMode } from '@/components/concept-cards/ConceptCardFocusMode';
@@ -289,7 +289,7 @@ function QuizBanner({
 export default function ConceptCardsPage() {
   const { cards, loading, refetch } = useConceptCards();
   const { deleteCard } = useConceptCardsMutations();
-  const { isAdmin } = usePermissions();
+  const { isAdmin } = useAdmin();
   const [uploadOpen, setUploadOpen] = useState(false);
   const [viewCard, setViewCard] = useState<ConceptCard | null>(null);
   const [drawCard, setDrawCard] = useState<ConceptCard | null>(null);
@@ -382,7 +382,7 @@ export default function ConceptCardsPage() {
                 className="pl-9"
               />
             </div>
-            {isAdmin() && (
+            {isAdmin && (
               <Button onClick={() => setUploadOpen(true)} className="shrink-0">
                 <Plus className="h-4 w-4 sm:mr-1.5" />
                 <span className="hidden sm:inline">Add Card</span>
@@ -556,7 +556,7 @@ export default function ConceptCardsPage() {
                   ? 'No cards marked for review'
                   : 'No cards match your filters'}
             </p>
-            {isAdmin() && cards.length === 0 && (
+            {isAdmin && cards.length === 0 && (
               <Button onClick={() => setUploadOpen(true)} variant="outline">
                 <Plus className="h-4 w-4 mr-1.5" /> Add the first card
               </Button>
@@ -580,7 +580,7 @@ export default function ConceptCardsPage() {
                 onDraw={setDrawCard}
                 onDelete={handleDelete}
                 onEdit={setEditCard}
-                isAdmin={isAdmin()}
+                isAdmin={isAdmin}
                 quizMode={quizMode}
                 onKnow={handleKnow}
                 onReview={handleReview}

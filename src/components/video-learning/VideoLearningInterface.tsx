@@ -17,7 +17,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { markdownComponents } from '@/lib/markdown-config';
 import { areSameVideoEmbedSource, detectVideoEmbed, VideoEmbed } from '@/lib/video-embed-utils';
-import { usePermissions } from '@/hooks/usePermissions';
+import { useAdmin } from '@/hooks/useAdmin';
 
 const InlineQuiz = lazy(() => import('@/components/quiz/InlineQuiz').then(m => ({ default: m.InlineQuiz })));
 const InlineAssignment = lazy(() => import('@/components/assignments/InlineAssignment'));
@@ -72,8 +72,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const isMobile = useIsMobile();
   const { productSlugOrId } = useParams();
   const navigate = useNavigate();
-  const { isMasterAdmin, hasRole } = usePermissions();
-  const isAdmin = isMasterAdmin() || hasRole('admin');
+  const { isAdmin } = useAdmin();
 
   const { getVideoProgress, markVideoComplete, updateVideoProgress, updateWatchTime, getCourseProgress } = useVideoProgress(productId);
 

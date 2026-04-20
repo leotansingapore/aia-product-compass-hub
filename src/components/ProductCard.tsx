@@ -17,7 +17,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useBookmarks } from "@/hooks/useBookmarks";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import {
@@ -94,7 +94,7 @@ export const ProductCard = memo(function ProductCard({
   onTogglePublish,
 }: ProductCardProps) {
   const { isBookmarked, toggleBookmark, loading } = useBookmarks();
-  const { isAdmin } = usePermissions();
+  const { isAdmin } = useAdmin();
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [editTitle, setEditTitle] = useState(title);
@@ -156,7 +156,7 @@ export const ProductCard = memo(function ProductCard({
         className={cn(
           "mobile-card flex h-full cursor-pointer flex-col transition-all duration-300 ease-in-out",
           "hover:border-primary/20 hover:shadow-lg",
-          published === false && isAdmin() && "opacity-50"
+          published === false && isAdmin && "opacity-50"
         )}
         onClick={onClick}
       >
@@ -173,7 +173,7 @@ export const ProductCard = memo(function ProductCard({
               >
                 <span className="truncate">{category}</span>
               </Badge>
-              {published === false && isAdmin() && (
+              {published === false && isAdmin && (
                 <Badge
                   variant="outline"
                   className="h-5 shrink-0 px-1.5 text-[10px] font-medium text-muted-foreground"
@@ -207,7 +207,7 @@ export const ProductCard = memo(function ProductCard({
                     </TooltipContent>
                   </Tooltip>
                 )}
-                {isAdmin() && productId && (
+                {isAdmin && productId && (
                   <DropdownMenu modal={false}>
                     <Tooltip>
                       <TooltipTrigger asChild>

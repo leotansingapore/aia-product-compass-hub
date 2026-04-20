@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -38,7 +38,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
+import type { EmojiClickData } from 'emoji-picker-react';
+
+const EmojiPicker = lazy(() => import('emoji-picker-react'));
+const EmojiPickerFallback = () => (
+  <div className="h-[350px] w-[300px] animate-pulse rounded-md bg-muted" />
+);
 
 interface EditableLinksProps {
   links: UsefulLink[];
@@ -116,13 +121,15 @@ function SortableLinkItem({ link, index, isEditing, onEdit, onUpdate, onRemove, 
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-full p-0 border-0" align="start">
-                    <EmojiPicker
-                      onEmojiClick={handleEmojiClick}
-                      width={350}
-                      height={400}
-                      searchPlaceHolder="Search emoji..."
-                      previewConfig={{ showPreview: false }}
-                    />
+                    <Suspense fallback={<EmojiPickerFallback />}>
+                      <EmojiPicker
+                        onEmojiClick={handleEmojiClick}
+                        width={350}
+                        height={400}
+                        searchPlaceHolder="Search emoji..."
+                        previewConfig={{ showPreview: false }}
+                      />
+                    </Suspense>
                   </PopoverContent>
                 </Popover>
                 <Input
@@ -450,13 +457,15 @@ export function EditableLinks({ links, onSave, className = "", readOnly = false 
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-full p-0 border-0" align="start">
-                  <EmojiPicker
-                    onEmojiClick={handleNewLinkEmojiClick}
-                    width={350}
-                    height={400}
-                    searchPlaceHolder="Search emoji..."
-                    previewConfig={{ showPreview: false }}
-                  />
+                  <Suspense fallback={<EmojiPickerFallback />}>
+                    <EmojiPicker
+                      onEmojiClick={handleNewLinkEmojiClick}
+                      width={350}
+                      height={400}
+                      searchPlaceHolder="Search emoji..."
+                      previewConfig={{ showPreview: false }}
+                    />
+                  </Suspense>
                 </PopoverContent>
               </Popover>
               <Input

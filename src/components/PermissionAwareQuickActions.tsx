@@ -17,6 +17,7 @@ import {
   Shield
 } from "lucide-react";
 import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 import { useCategories } from "@/hooks/useProducts";
 
 interface QuickAction {
@@ -31,7 +32,8 @@ interface QuickAction {
 
 export function PermissionAwareQuickActions() {
   const navigate = useNavigate();
-  const { canAccessSection, isAdmin } = usePermissions();
+  const { canAccessSection } = usePermissions();
+  const { isAdmin } = useAdmin();
   const { categories } = useCategories();
   const [availableActions, setAvailableActions] = useState<QuickAction[]>([]);
 
@@ -92,7 +94,7 @@ export function PermissionAwareQuickActions() {
     <div className="w-full">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold">Quick Actions</h3>
-        {isAdmin() && (
+        {isAdmin && (
           <Badge variant="outline" className="text-micro">
             Admin Access
           </Badge>

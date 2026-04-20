@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import { useAuth } from "@/hooks/useAuth";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 import { supabase } from "@/integrations/supabase/client";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
@@ -42,7 +42,7 @@ const xpForLevel = (level: number) => level * 100;
 
 export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   const { user, signOut } = useAuth();
-  const { isMasterAdmin, hasRole } = usePermissions();
+  const { isAdmin: isAdminUser } = useAdmin();
   const navigate = useNavigate();
   const { toast } = useToast();
   const { startOnboarding } = useOnboarding();
@@ -59,7 +59,6 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   const [videosCompleted, setVideosCompleted] = useState(0);
   const [totalVideos, setTotalVideos] = useState(0);
 
-  const isAdminUser = isMasterAdmin() || hasRole('admin');
 
   // Fetch profile eagerly when user exists, not just when open
   useEffect(() => {
@@ -222,7 +221,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                   </p>
                   {isAdminUser && (
                     <span className="text-xs font-medium text-primary">
-                      {isMasterAdmin() ? 'Master Admin' : 'Admin'}
+                      Admin
                     </span>
                   )}
                 </div>

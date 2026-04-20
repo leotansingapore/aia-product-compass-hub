@@ -7,6 +7,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { FEATURES } from "@/lib/tiers";
 import { useCategories } from "@/hooks/useProducts";
 import { getCategoryConfig } from "@/utils/categoryConfig";
 import { cn } from "@/lib/utils";
@@ -17,13 +19,14 @@ export function MobileDrawer() {
   const { signOut } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
   const { isViewingAsUser } = useViewMode();
+  const { can } = useFeatureAccess();
   const { categories, loading: categoriesLoading } = useCategories();
 
   const mainNavItems = [
-    { name: "Bookmarks", href: "/bookmarks", icon: Bookmark },
-    { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap },
-    { name: "Roleplay Training", href: "/roleplay", icon: MessageCircle },
-  ];
+    { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, feature: FEATURES.BOOKMARKS },
+    { name: "CMFAS Exams", href: "/cmfas-exams", icon: GraduationCap, feature: FEATURES.CMFAS },
+    { name: "Roleplay Training", href: "/roleplay", icon: MessageCircle, feature: FEATURES.ROLEPLAY },
+  ].filter((item) => can(item.feature));
 
   const salesPlaybooksRoute = (() => { try { return localStorage.getItem('sales-playbooks-last-route') || '/scripts'; } catch { return '/scripts'; } })();
 

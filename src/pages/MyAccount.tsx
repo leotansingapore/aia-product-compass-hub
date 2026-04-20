@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 import { useAuth } from "@/hooks/useAuth";
 import { ProfileSection } from "@/components/account/ProfileSection";
 import { SecuritySection } from "@/components/account/SecuritySection";
@@ -14,10 +14,9 @@ import { Separator } from "@/components/ui/separator";
 import { Settings } from "lucide-react";
 
 export default function MyAccount() {
-  const { isMasterAdmin, hasRole } = usePermissions();
+  const { isAdmin: isAdminUser } = useAdmin();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const isAdminUser = isMasterAdmin() || hasRole('admin');
 
   if (!user) {
     return (

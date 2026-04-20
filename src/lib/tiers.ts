@@ -112,7 +112,6 @@ export type FeatureKey = (typeof FEATURES)[keyof typeof FEATURES];
 export const TIER_FEATURE_MATRIX: Record<TierLevel, readonly FeatureKey[]> = {
   explorer: [
     FEATURES.HOME,
-    FEATURES.BOOKMARKS,
     FEATURES.MY_ACCOUNT,
     FEATURES.EXPLORER_TRACK,
   ],
