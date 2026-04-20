@@ -1,5 +1,5 @@
-import { useState, useMemo, useEffect, useRef, Fragment } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useMemo, useEffect, useRef, Fragment, useCallback } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Loader2, Sparkles, Compass, ArrowLeft, ChevronRight, ChevronDown, Lock, CheckCircle2, Circle, Clock, Folder, BookOpen, GraduationCap, ShoppingBag, MessageSquare } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -406,6 +406,7 @@ function ExplorerModuleCard({
 
 export default function ExplorerTrack() {
   const { itemId } = useParams<{ itemId?: string }>();
+  const navigate = useNavigate();
   const { user } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
   const phasesQuery = useLearningTrackPhases("explorer");
@@ -416,14 +417,21 @@ export default function ExplorerTrack() {
   const phases = allPhases.filter((p) => p.title.toLowerCase() !== "financial planning basics");
   const lockMap = useLockMap(phases);
   const { pendingRequest } = useMyTierRequests();
-  const [activePhaseId, setActivePhaseId] = useState<string | null>(() => {
-    if (itemId) {
-      const p = phases.find((ph) => ph.items.some((i) => i.id === itemId));
-      return p?.id ?? null;
-    }
-    return null;
-  });
-  const [expandedItemId, setExpandedItemId] = useState<string | null>(itemId ?? null);
+
+  // URL is the source of truth: derive active phase + lesson from :itemId param.
+  const expandedItemId = itemId ?? null;
+  const activePhaseId = useMemo(() => {
+    if (!itemId) return null;
+    const p = phases.find((ph) => ph.items.some((i) => i.id === itemId));
+    return p?.id ?? null;
+  }, [itemId, phases]);
+
+  const goToLesson = useCallback(
+    (id: string | null) => {
+      navigate(id ? `/learning-track/explorer/${id}` : "/learning-track/explorer");
+    },
+    [navigate],
+  );
   const [moduleComplete, setModuleComplete] = useState<{
     title: string;
     nextPhaseId: string | null;
@@ -486,7 +494,7 @@ export default function ExplorerTrack() {
 
       if (nextInPhase) {
         setTimeout(() => {
-          setExpandedItemId(nextInPhase.id);
+          goToLesson(nextInPhase.id);
           document.getElementById(`item-${nextInPhase.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
         }, 800);
       }
@@ -552,20 +560,13 @@ export default function ExplorerTrack() {
   }
 
   const goToNextModule = () => {
-    if (moduleComplete?.nextPhaseId) {
-      setActivePhaseId(moduleComplete.nextPhaseId);
-      setExpandedItemId(moduleComplete.nextLessonId);
-    } else {
-      setActivePhaseId(null);
-      setExpandedItemId(null);
-    }
+    goToLesson(moduleComplete?.nextLessonId ?? null);
     setModuleComplete(null);
   };
 
   const goBackToTrack = () => {
     setModuleComplete(null);
-    setActivePhaseId(null);
-    setExpandedItemId(null);
+    goToLesson(null);
   };
 
   // ---- Module completion modal with countdown ----
@@ -615,10 +616,7 @@ export default function ExplorerTrack() {
             {/* Next lesson card */}
             <Card
               className="cursor-pointer hover:border-primary/30 hover:shadow-md transition-all"
-              onClick={() => {
-                setActivePhaseId(nextItem.phase.id);
-                setExpandedItemId(nextItem.item.id);
-              }}
+              onClick={() => goToLesson(nextItem.item.id)}
             >
               <CardContent className="!p-4 flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -706,7 +704,7 @@ export default function ExplorerTrack() {
             <div className="flex items-center justify-between">
               <button
                 type="button"
-                onClick={() => { setActivePhaseId(null); setExpandedItemId(null); }}
+                onClick={() => goToLesson(null)}
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" />
@@ -738,7 +736,7 @@ export default function ExplorerTrack() {
                   activeItemId={activeItem?.id ?? null}
                   isCompleted={isCompleted}
                   lockMap={lockMap}
-                  onSelectLesson={setExpandedItemId}
+                  onSelectLesson={goToLesson}
                   toggleBusy={setStatus.isPending}
                   onToggleComplete={(itemId, currentlyCompleted) => {
                     const next = currentlyCompleted ? "not_started" : "completed";
@@ -842,11 +840,9 @@ export default function ExplorerTrack() {
                   totalCount={ids.length}
                   isLocked={!!phaseLock?.locked}
                   onClick={() => {
-                    setActivePhaseId(phase.id);
-                    // Auto-expand the first incomplete lesson (skip module folders)
                     const phaseLessons = phase.items.filter((i) => !isModuleFolder(i));
                     const firstIncomplete = phaseLessons.find((i) => !isCompleted(i.id));
-                    setExpandedItemId(firstIncomplete?.id ?? phaseLessons[0]?.id ?? null);
+                    goToLesson(firstIncomplete?.id ?? phaseLessons[0]?.id ?? null);
                   }}
                 />
               );
