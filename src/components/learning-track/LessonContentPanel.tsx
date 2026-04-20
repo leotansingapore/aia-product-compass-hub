@@ -51,12 +51,37 @@ export function LessonContentPanel({ item, lockResult, onComplete }: LessonConte
   const hasActionItems = item.action_items && item.action_items.length > 0;
   const hasContent = item.content_blocks && item.content_blocks.length > 0;
 
+  const completeButton = (
+    <Button
+      variant={completed ? "outline" : "default"}
+      size="sm"
+      disabled={setStatus.isPending}
+      onClick={handleToggleComplete}
+      className={cn("gap-2 shrink-0", setStatus.isPending && "opacity-50")}
+    >
+      {completed ? (
+        <>
+          <CheckCircle2 className="h-4 w-4 text-green-600" />
+          Completed — undo
+        </>
+      ) : (
+        <>
+          <Circle className="h-4 w-4" />
+          Mark as complete
+        </>
+      )}
+    </Button>
+  );
+
   return (
     <article className="px-5 py-5 sm:px-6 sm:py-6 space-y-5">
-      {/* Title */}
-      <h2 className="text-lg sm:text-xl font-bold font-serif tracking-tight">
-        {item.title}
-      </h2>
+      {/* Title row with completion CTA on the right */}
+      <div className="flex items-start justify-between gap-3">
+        <h2 className="text-lg sm:text-xl font-bold font-serif tracking-tight">
+          {item.title}
+        </h2>
+        {completeButton}
+      </div>
 
       {/* Description — flows naturally under title */}
       {item.description && (
@@ -105,27 +130,6 @@ export function LessonContentPanel({ item, lockResult, onComplete }: LessonConte
         <SubmissionPanel itemId={item.id} userId={user?.id} />
       )}
 
-      {/* Completion — sticky-ish at the bottom, clear CTA */}
-      <div className="pt-3 border-t">
-        <Button
-          variant={completed ? "outline" : "default"}
-          disabled={setStatus.isPending}
-          onClick={handleToggleComplete}
-          className={cn("w-full gap-2", setStatus.isPending && "opacity-50")}
-        >
-          {completed ? (
-            <>
-              <CheckCircle2 className="h-4 w-4 text-green-600" />
-              Completed — undo
-            </>
-          ) : (
-            <>
-              <Circle className="h-4 w-4" />
-              Mark as complete
-            </>
-          )}
-        </Button>
-      </div>
     </article>
   );
 }

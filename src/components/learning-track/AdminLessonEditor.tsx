@@ -259,7 +259,7 @@ export function AdminLessonEditor({ item, trackPhases, onBack, hideBackButton }:
       {item.requires_submission && (
         <div className="px-5 py-5 border-b">
           <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Submissions</h3>
-          <SubmissionPanel itemId={item.id} />
+          <SubmissionPanel itemId={item.id} userId={undefined} />
         </div>
       )}
 
