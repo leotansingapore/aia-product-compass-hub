@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useUserTier } from '@/hooks/useUserTier';
 import { usePermissions } from '@/hooks/usePermissions';
 import { useViewMode } from '@/components/admin/AdminViewSwitcher';
-import { TIER_FEATURE_MATRIX, type FeatureKey, type TierLevel } from '@/lib/tiers';
+import { FEATURES, TIER_FEATURE_MATRIX, type FeatureKey, type TierLevel } from '@/lib/tiers';
 
 export const tierPermissionsQueryKey = ['tier-permissions'] as const;
 
