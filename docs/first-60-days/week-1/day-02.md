@@ -104,11 +104,11 @@ Good for **catastrophic risks** that would destroy your financial life if they o
 
 ```mermaid
 flowchart TD
-    R[New risk identified] --> Q1{Can I change behaviour<br/>to avoid it at low cost?}
-    Q1 -->|Yes| AV[Avoid<br/>don't smoke, seatbelt, etc.]
-    Q1 -->|No| Q2{Can I afford to<br/>cover the full cost myself?}
-    Q2 -->|Yes, it's small| RE[Retain<br/>self-insure via savings]
-    Q2 -->|No, it's catastrophic| TR[Transfer<br/>pay insurer to take the risk]
+    R["New risk identified"] --> Q1{"Can I change behaviour<br/>to avoid it at low cost?"}
+    Q1 -->|Yes| AV["Avoid<br/>no smoking, seatbelt, etc."]
+    Q1 -->|No| Q2{"Can I afford to<br/>cover the full cost myself?"}
+    Q2 -->|Yes, small cost| RE["Retain<br/>self-insure via savings"]
+    Q2 -->|No, catastrophic| TR["Transfer<br/>pay insurer to take the risk"]
 ```
 
 ## 4. How much coverage is enough?
