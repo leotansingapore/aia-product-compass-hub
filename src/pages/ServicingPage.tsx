@@ -483,11 +483,12 @@ function ServicingScriptCard({
                 <TabsContent key={i} value={String(i)}>
                   {editingVersionIdx === i ? (
                     <div className="space-y-2">
-                      <MinimalRichEditor value={editContent} onChange={setEditContent} />
+                      <MinimalRichEditor ref={editVersionEditorRef} value={editContent} onChange={setEditContent} />
                       <div className="flex gap-2">
                         <Button size="sm" disabled={isSaving} onClick={async () => {
                           setIsSaving(true);
-                          const updatedVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, content: editContent } : ver);
+                          const latest = (await editVersionEditorRef.current?.getMarkdownForSave()) ?? editContent;
+                          const updatedVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, content: latest } : ver);
                           if (onInlineSave) await onInlineSave(script.id, updatedVersions);
                           setEditingVersionIdx(null); setEditContent(""); setIsSaving(false);
                         }}>
