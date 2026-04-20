@@ -48,6 +48,89 @@ import { isVideoUrl, isImageUrl } from "@/lib/learning-track-url";
 import { detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
 import type { LearningTrackContentBlock, BlockType } from "@/types/learning-track";
 
+/**
+ * Rich editor row for existing text blocks. Click-to-edit; on save flushes
+ * Tiptap → clean markdown via the same ref/getMarkdownForSave path the
+ * add-new flow uses, so paste artefacts are cleaned on every save.
+ */
+function TextBlockRichEditor({
+  value,
+  onSave,
+}: {
+  value: string;
+  onSave: (next: string) => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(value);
+  const ref = useRef<MinimalRichEditorHandle | null>(null);
+
+  if (!editing) {
+    return (
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={() => {
+          setDraft(value);
+          setEditing(true);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            setDraft(value);
+            setEditing(true);
+          }
+        }}
+        className="prose prose-sm max-w-none dark:prose-invert cursor-text rounded px-1 -mx-1 hover:bg-primary/5 border border-transparent hover:border-dashed hover:border-primary/30"
+        title="Click to edit"
+      >
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{repairMarkdown(value)}</ReactMarkdown>
+      </div>
+    );
+  }
+
+  const save = async () => {
+    const md = ref.current ? (await ref.current.getMarkdownForSave()).trim() : draft.trim();
+    setEditing(false);
+    if (md && md !== value) onSave(md);
+  };
+
+  return (
+    <div className="rounded-md border border-primary/30 bg-background">
+      <Suspense
+        fallback={
+          <textarea
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            className="w-full bg-transparent outline-none text-sm p-3 resize-none"
+            rows={4}
+          />
+        }
+      >
+        <MinimalRichEditor
+          ref={ref}
+          value={draft}
+          onChange={setDraft}
+          autoFocus
+          placeholder="Edit block…"
+        />
+      </Suspense>
+      <div className="flex gap-2 p-2 border-t border-border/40">
+        <button
+          onClick={save}
+          className="px-3 py-1 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90"
+        >
+          Save
+        </button>
+        <button
+          onClick={() => setEditing(false)}
+          className="px-3 py-1 text-xs text-muted-foreground hover:underline"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+}
+
 interface Props {
   blocks: LearningTrackContentBlock[];
   itemId: string;
@@ -142,13 +225,9 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
             )}
 
             {b.block_type === "text" && b.body && (
-              <InlineEditableText
+              <TextBlockRichEditor
                 value={b.body}
                 onSave={(v) => updateBlock.mutate({ id: b.id, body: v })}
-                isAdmin
-                as="p"
-                multiline
-                className="text-sm text-muted-foreground"
               />
             )}
 
