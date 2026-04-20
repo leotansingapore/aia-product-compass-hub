@@ -31,7 +31,8 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 export function useAdmin() {
   const context = useContext(AdminContext);
   if (context === undefined) {
-    throw new Error('useAdmin must be used within an AdminProvider');
+    // Safe fallback to avoid crashing if provider isn't mounted yet (e.g. HMR)
+    return { isAdmin: false, isActualAdmin: false };
   }
   return context;
 }
