@@ -130,27 +130,6 @@ export function LessonContentPanel({ item, lockResult, onComplete }: LessonConte
         <SubmissionPanel itemId={item.id} userId={user?.id} />
       )}
 
-      {/* Completion — sticky-ish at the bottom, clear CTA */}
-      <div className="pt-3 border-t">
-        <Button
-          variant={completed ? "outline" : "default"}
-          disabled={setStatus.isPending}
-          onClick={handleToggleComplete}
-          className={cn("w-full gap-2", setStatus.isPending && "opacity-50")}
-        >
-          {completed ? (
-            <>
-              <CheckCircle2 className="h-4 w-4 text-green-600" />
-              Completed — undo
-            </>
-          ) : (
-            <>
-              <Circle className="h-4 w-4" />
-              Mark as complete
-            </>
-          )}
-        </Button>
-      </div>
     </article>
   );
 }
