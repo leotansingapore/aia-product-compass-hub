@@ -2176,9 +2176,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         <Button variant="ghost" size="sm" onClick={() => { setShowNewVersionForm(false); setNewVersionContent(""); setNewVersionName(""); }}>
                           <X className="h-3.5 w-3.5 mr-1" /> Cancel
                         </Button>
-                        <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={() => {
+                        <Button size="sm" disabled={!newVersionContent.trim() || addUserVersion.isPending} onClick={async () => {
+                          const latest = (await newVersionEditorRef.current?.getMarkdownForSave()) ?? newVersionContent;
+                          if (!latest.trim()) return;
                           addUserVersion.mutate(
-                            { content: newVersionContent.trim(), authorName: newVersionName.trim() || "My Version" },
+                            { content: latest.trim(), authorName: newVersionName.trim() || "My Version" },
                             { onSuccess: (newVersion) => {
                                 setShowNewVersionForm(false);
                                 setNewVersionContent("");
