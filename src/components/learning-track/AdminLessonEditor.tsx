@@ -8,7 +8,12 @@ import {
   ArrowRightLeft,
   Eye,
   EyeOff,
+  SquarePen,
 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import { detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -98,6 +103,7 @@ export function AdminLessonEditor({ item, trackPhases, onBack, hideBackButton }:
         if (data) blockIdRef.current = data.id;
       }
       setContentSaveStatus("saved");
+      setIsEditingContent(false);
       await qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
     } catch (err: unknown) {
       console.error("Save failed:", err);
@@ -116,6 +122,10 @@ export function AdminLessonEditor({ item, trackPhases, onBack, hideBackButton }:
   const [saveTemplateOpen, setSaveTemplateOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [moveMenuOpen, setMoveMenuOpen] = useState(false);
+
+  // Edit/preview toggle — auto-enter edit mode when content is empty
+  const initialBody = item.content_blocks?.find((b) => b.block_type === "text")?.body ?? "";
+  const [isEditingContent, setIsEditingContent] = useState(!initialBody.trim());
 
   const allPhases = [
     ...((explorerPhases.data ?? []).map(p => ({ ...p, trackLabel: "Explorer" }))),
@@ -196,15 +206,41 @@ export function AdminLessonEditor({ item, trackPhases, onBack, hideBackButton }:
         />
       </div>
 
-      {/* Content — rich text editor */}
+      {/* Content — edit/preview toggle */}
       <div className="px-5 py-5 space-y-4 border-b">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Content</h3>
-        <LessonRichEditor
-          key={item.id}
-          ref={richEditorRef}
-          item={item}
-          onContentChange={handleEditorMarkdownChange}
-        />
+        <div className="flex items-center justify-between">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Content</h3>
+          {isEditingContent ? (
+            <button
+              type="button"
+              onClick={() => setIsEditingContent(false)}
+              className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Eye className="h-3.5 w-3.5" />
+              Preview
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setIsEditingContent(true)}
+              className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <SquarePen className="h-3.5 w-3.5" />
+              Edit
+            </button>
+          )}
+        </div>
+
+        {isEditingContent ? (
+          <LessonRichEditor
+            key={item.id}
+            ref={richEditorRef}
+            item={item}
+            onContentChange={handleEditorMarkdownChange}
+          />
+        ) : (
+          <LessonContentPreview body={contentRef.current ?? initialBody} onEdit={() => setIsEditingContent(true)} />
+        )}
         <RelatedResources item={item} />
       </div>
 
@@ -326,6 +362,47 @@ export function AdminLessonEditor({ item, trackPhases, onBack, hideBackButton }:
         itemId={item.id}
         itemTitle={item.title}
       />
+    </div>
+  );
+}
+
+/** Rendered preview of lesson markdown content. */
+function LessonContentPreview({ body, onEdit }: { body: string; onEdit: () => void }) {
+  if (!body.trim()) {
+    return (
+      <div
+        className="min-h-[120px] rounded-lg border border-dashed bg-muted/20 flex items-center justify-center cursor-pointer hover:bg-muted/40 transition-colors"
+        onClick={onEdit}
+      >
+        <p className="text-sm text-muted-foreground">No content yet. Click Edit to start writing.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-lg border bg-background p-4">
+      <article className="prose prose-sm max-w-none dark:prose-invert prose-headings:font-serif prose-a:text-primary prose-img:rounded-lg">
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+          components={{
+            a: ({ href, children, ...props }) => {
+              if (href) {
+                const text = String(children ?? "").trim();
+                if (/^(?:youtube|vimeo|loom|mp4)\s+video$/i.test(text) || /^video$/i.test(text)) {
+                  const info = detectVideoEmbed(href);
+                  if (info.isVideo && info.embedUrl) {
+                    return <VideoEmbed embedUrl={info.embedUrl} platform={info.platform!} />;
+                  }
+                }
+              }
+              return <a href={href} target="_blank" rel="noreferrer" {...props}>{children}</a>;
+            },
+          }}
+        >
+          {body}
+        </ReactMarkdown>
+      </article>
     </div>
   );
 }
