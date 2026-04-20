@@ -9,14 +9,24 @@ import remarkGfm from "remark-gfm";
  *   pastes frequently break this.
  * - collapse newlines inside link labels (`[label\n...](url)` → `[label ...](url)`)
  * - trim stray whitespace in URLs.
+ * - drop transient Google Slides export images (lh{n}-rt.googleusercontent.com/slidesz/)
+ *   that 403 for anyone but the original author, replacing them with italicised
+ *   alt text so the paragraph still flows.
  */
+const TRANSIENT_IMAGE_HOST = /^https:\/\/lh[0-9-]+\.googleusercontent\.com\/slidesz\//;
+
 function repairMarkdown(src: string): string {
   if (!src) return src;
   return src
-    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt, url) =>
-      `![${String(alt).replace(/\s+/g, " ").trim()}](${String(url).trim()})`
-    )
-    .replace(/(^|[^!])\[([^\]]*?)\]\(([^)]+)\)/g, (_m, lead, text, url) =>
+    .replace(/!\[([^\]]*)\]\(\s*([^)]+?)\s*\)/g, (_m, alt, url) => {
+      const cleanAlt = String(alt).replace(/\s+/g, " ").trim();
+      const cleanUrl = String(url).trim();
+      if (TRANSIENT_IMAGE_HOST.test(cleanUrl)) {
+        return cleanAlt ? `*${cleanAlt}*` : "";
+      }
+      return `![${cleanAlt}](${cleanUrl})`;
+    })
+    .replace(/(^|[^!])\[([^\]]*?)\]\(\s*([^)]+?)\s*\)/g, (_m, lead, text, url) =>
       `${lead}[${String(text).replace(/\s+/g, " ").trim()}](${String(url).trim()})`
     );
 }
