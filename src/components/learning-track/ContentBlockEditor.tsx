@@ -1,6 +1,12 @@
-import { useState } from "react";
+import { useRef, useState, lazy, Suspense } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+
+// Rich editor is admin-only and heavy — lazy-load so learners don't ship Tiptap.
+const MinimalRichEditor = lazy(() =>
+  import("@/components/MinimalRichEditor").then((m) => ({ default: m.MinimalRichEditor })),
+);
+type MinimalRichEditorHandle = import("@/components/MinimalRichEditor").MinimalRichEditorHandle;
 
 /**
  * Repair common paste artefacts in markdown bodies before rendering:
@@ -66,8 +72,9 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
   const [newTitle, setNewTitle] = useState("");
   const [newBody, setNewBody] = useState("");
   const [newUrl, setNewUrl] = useState("");
+  const richEditorRef = useRef<MinimalRichEditorHandle | null>(null);
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     if (!adding) return;
     const nextOrder = blocks.length > 0 ? Math.max(...blocks.map((b) => b.order_index)) + 1 : 0;
     const trimmedUrl = newUrl.trim();
@@ -77,11 +84,20 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
       if (isVideoUrl(trimmedUrl)) effectiveType = "video";
       else if (isImageUrl(trimmedUrl)) effectiveType = "image";
     }
+    // For text blocks, flush the live Tiptap editor state to clean markdown
+    // before saving so paste artefacts don't hit the database.
+    let body: string | undefined;
+    if (adding === "text") {
+      const md = richEditorRef.current
+        ? (await richEditorRef.current.getMarkdownForSave()).trim()
+        : newBody.trim();
+      body = md || undefined;
+    }
     createBlock.mutate({
       item_id: itemId,
       block_type: effectiveType,
       title: newTitle.trim() || undefined,
-      body: adding === "text" ? newBody.trim() || undefined : undefined,
+      body,
       url: adding !== "text" ? trimmedUrl || undefined : undefined,
       order_index: nextOrder,
     });
@@ -180,20 +196,26 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
               autoFocus
             />
             {adding === "text" && (
-              <div>
-                <textarea
-                  value={newBody}
-                  onChange={(e) => setNewBody(e.target.value)}
-                  placeholder="Body text (markdown supported)"
-                  className="w-full bg-transparent border-b border-primary/30 outline-none text-sm py-1 resize-none"
-                  rows={3}
-                />
-                <p className="text-[11px] text-muted-foreground mt-1">
-                  Markdown: <code className="px-1 rounded bg-muted">**bold**</code>{" "}
-                  <code className="px-1 rounded bg-muted">*italic*</code>{" "}
-                  <code className="px-1 rounded bg-muted">[link](url)</code>{" "}
-                  <code className="px-1 rounded bg-muted">- bullet</code>
-                </p>
+              <div className="rounded-md border border-border/60 bg-background">
+                <Suspense
+                  fallback={
+                    <textarea
+                      value={newBody}
+                      onChange={(e) => setNewBody(e.target.value)}
+                      placeholder="Loading editor…"
+                      className="w-full bg-transparent outline-none text-sm p-3 resize-none"
+                      rows={4}
+                    />
+                  }
+                >
+                  <MinimalRichEditor
+                    ref={richEditorRef}
+                    value={newBody}
+                    onChange={setNewBody}
+                    placeholder="Paste or type lesson content — Google Docs formatting is auto-cleaned"
+                    autoFocus
+                  />
+                </Suspense>
               </div>
             )}
             {(adding === "link" || adding === "video" || adding === "image") && (
