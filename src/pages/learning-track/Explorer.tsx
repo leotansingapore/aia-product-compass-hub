@@ -146,18 +146,21 @@ const COUNTDOWN_SECONDS = 5;
 function ModuleCompleteOverlay({
   title,
   hasNext,
+  allDone,
+  pendingUpgrade,
   onGoNext,
   onBack,
 }: {
   title: string;
   hasNext: boolean;
+  allDone: boolean;
+  pendingUpgrade: boolean;
   onGoNext: () => void;
   onBack: () => void;
 }) {
   const [remaining, setRemaining] = useState(COUNTDOWN_SECONDS);
   const fired = useRef(false);
 
-  // Text countdown only — the border animation is pure CSS (60fps)
   useEffect(() => {
     if (!hasNext) return;
     const id = setInterval(() => {
@@ -173,6 +176,95 @@ function ModuleCompleteOverlay({
     return () => clearInterval(id);
   }, [hasNext, onGoNext]);
 
+  // All Explorer content done + no next module → show upgrade encouragement
+  if (allDone && !hasNext) {
+    return (
+      <div className="space-y-4 max-w-3xl mx-auto" data-testid="explorer-page">
+        {/* Celebration */}
+        <div className="relative overflow-hidden rounded-2xl border bg-gradient-to-br from-green-50 via-background to-emerald-50/50 dark:from-green-950/20 dark:via-background dark:to-emerald-950/20 p-8 sm:p-10 text-center">
+          <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-green-500/10 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
+          <div className="relative">
+            <div className="mx-auto w-20 h-20 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center mb-5 ring-4 ring-green-200/50 dark:ring-green-800/30">
+              <CheckCircle2 className="h-10 w-10 text-green-600" />
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-bold font-serif tracking-tight mb-2">
+              You did it!
+            </h1>
+            <p className="text-muted-foreground text-sm max-w-md mx-auto mb-5">
+              You've completed <span className="font-semibold text-foreground">{title}</span> and
+              finished all Explorer modules. Your FINternship journey is just getting started.
+            </p>
+            <div className="max-w-xs mx-auto">
+              <div className="h-2.5 w-full rounded-full bg-muted overflow-hidden">
+                <div className="h-full rounded-full bg-gradient-to-r from-green-500 to-emerald-500 w-full transition-all duration-1000" />
+              </div>
+              <p className="text-[11px] text-green-600 font-semibold mt-1.5">Explorer 100% complete</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Unlock next tier */}
+        <Card className="border-primary/20 overflow-hidden">
+          <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 px-5 py-3 border-b border-primary/10">
+            <div className="flex items-center justify-center gap-2">
+              <Sparkles className="h-4 w-4 text-primary" />
+              <h2 className="text-sm font-bold uppercase tracking-wider text-primary">Unlock your next stage</h2>
+            </div>
+          </div>
+          <CardContent className="p-5 sm:p-6 space-y-5">
+            <p className="text-sm text-muted-foreground text-center max-w-md mx-auto">
+              Upgrade to <span className="font-semibold text-foreground">Papers-taker</span> to access advanced training, certification prep, and hands-on practice.
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { icon: BookOpen, label: "First 60 Days", desc: "Daily training program", color: "text-blue-600 bg-blue-100 dark:bg-blue-950/40" },
+                { icon: GraduationCap, label: "CMFAS Exam Prep", desc: "Certification study", color: "text-purple-600 bg-purple-100 dark:bg-purple-950/40" },
+                { icon: ShoppingBag, label: "Product Training", desc: "Insurance & investment", color: "text-amber-600 bg-amber-100 dark:bg-amber-950/40" },
+                { icon: MessageSquare, label: "AI Roleplay", desc: "Practice scenarios", color: "text-emerald-600 bg-emerald-100 dark:bg-emerald-950/40" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-xl border bg-card p-3.5 text-center space-y-2 hover:border-primary/20 transition-colors"
+                >
+                  <div className={cn("mx-auto w-10 h-10 rounded-full flex items-center justify-center", item.color)}>
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <p className="text-xs font-semibold leading-tight">{item.label}</p>
+                  <p className="text-[10px] text-muted-foreground leading-tight">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center pt-1 space-y-3">
+              {pendingUpgrade ? (
+                <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">
+                  <Clock className="h-4 w-4 text-amber-600 animate-pulse" />
+                  <span className="text-sm font-medium text-amber-700 dark:text-amber-400">
+                    Upgrade requested — awaiting admin approval
+                  </span>
+                </div>
+              ) : (
+                <RequestUpgradeButton
+                  fromTier="explorer"
+                  toTier="papers_taker"
+                  label="Request upgrade to Papers-taker"
+                />
+              )}
+              <div>
+                <Button variant="ghost" size="sm" onClick={onBack} className="text-muted-foreground">
+                  Back to learning track
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Normal module complete (has next module or not all done yet)
   return (
     <div className="space-y-6 max-w-3xl mx-auto" data-testid="explorer-page">
       <div className="rounded-2xl border bg-gradient-to-br from-green-50 via-background to-emerald-50/50 dark:from-green-950/20 dark:via-background dark:to-emerald-950/20 p-8 sm:p-12 text-center">
@@ -460,6 +552,8 @@ export default function ExplorerTrack() {
       <ModuleCompleteOverlay
         title={moduleComplete.title}
         hasNext={!!moduleComplete.nextPhaseId}
+        allDone={allExplorerComplete}
+        pendingUpgrade={!!pendingRequest}
         onGoNext={goToNextModule}
         onBack={goBackToTrack}
       />
