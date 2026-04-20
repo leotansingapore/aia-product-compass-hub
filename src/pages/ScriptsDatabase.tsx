@@ -1339,6 +1339,7 @@ function MobileVersionSelector({
   const [editing, setEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const editorRef = useRef<MinimalRichEditorHandle>(null);
   const idx = parseInt(activeVersion);
   const v = versions[idx] || versions[0];
 
@@ -1355,7 +1356,8 @@ function MobileVersionSelector({
   const saveEdit = async () => {
     if (!onInlineSave || !scriptId) return;
     setIsSaving(true);
-    const updated = versions.map((ver, i) => i === idx ? { ...ver, content: editContent } : ver);
+    const latest = (await editorRef.current?.getMarkdownForSave()) ?? editContent;
+    const updated = versions.map((ver, i) => i === idx ? { ...ver, content: latest } : ver);
     await onInlineSave(scriptId, updated);
     setIsSaving(false);
     setEditing(false);
