@@ -179,11 +179,15 @@ This respects what the government has already built, honours the client's existi
    - C) From saver to investor
    - D) From risk-averse to risk-taking
 
+   **Why:** The Wealth Angle specifically addresses the two unproductive money mindsets — scarcity (hoard cash, under-invest) and consumption (spend everything, no plan) — and reframes wealth-building as buying optionality and freedom. The shift from poor to rich (A) is an outcome, not a mindset reframe. Saver to investor (C) is a behaviour change, not the conceptual shift the CST is designed to produce. Risk tolerance (D) is never mentioned as the target of the Wealth CST.
+
 2. **The core formula for the Wealth CST:**
    - A) Income × Years = Wealth
    - B) Passive income > Monthly expenses = Freedom ✓
    - C) Save 20% = Financial independence
    - D) Compounding × Time = Wealth
+
+   **Why:** The formula "passive income > monthly expenses = freedom" is the exact frame the Wealth CST is built around — it defines freedom as a mathematical threshold, not a feeling or a number. The 20% rule (C) is a generic savings heuristic, not the CST's framework. Compounding and time (D) are important levers but are not the core formula. Income times years (A) is not a concept used anywhere in the CST.
 
 3. **The 3 signals that tell you the CST is landing:**
    - A) Smiles, nods, handshakes
@@ -191,11 +195,15 @@ This respects what the government has already built, honours the client's existi
    - C) Silence, pause, lean-in
    - D) Objections, clarifications, counter-questions
 
+   **Why:** The three verbal signal phrases specifically indicate a cognitive frame shift ("never thought of it that way"), intellectual agreement ("that makes sense"), and readiness for recommendation ("so how do I do that?"). Physical cues like smiles or nods (A) are ambiguous and not the specific diagnostic signals named in the material. Silence (C) could indicate confusion, not agreement. Objections and counter-questions (D) suggest the CST hasn't landed and needs more work.
+
 4. **A 29-year-old client with no dependents wants to "start investing." Which Wealth CST variation is most appropriate?**
    - A) Income streams and de-risking — they need to think about preservation
    - B) Systematisation and automation — consistency beats timing
    - C) Time and compounding — emphasise the head start they have while young ✓
    - D) CPF LIFE gap analysis — retirement income is the key lever
+
+   **Why:** A 25–35 year old in the accumulation phase has the single greatest advantage no one can buy — time. The compounding variation speaks directly to this and maximises the motivational case for starting early. Preservation and de-risking (A) is for pre-retirees who have already built wealth. Systematisation (B) is the 35–50 catch-up framing. CPF LIFE gap analysis (D) is a useful integration point but not the primary variation for this life stage.
 
 5. **You deliver the Wealth CST formula: passive income > monthly expenses = freedom. The client is silent and doesn't respond. What should you do?**
    - A) Continue to the levers section immediately
@@ -203,17 +211,23 @@ This respects what the government has already built, honours the client's existi
    - C) Check whether the frame landed: "Does this way of thinking about money make sense to you?" ✓
    - D) Skip to the product recommendation — the silence means they agree
 
+   **Why:** Silence after a reframe can mean confusion, processing, or non-engagement — you need to diagnose which before moving forward. Asking directly whether the frame makes sense is the prescribed check. Continuing immediately (A) risks building on a foundation that hasn't been accepted. Repeating it (B) may help if the issue is phrasing, but the better move is to invite feedback first. Silence does not mean agreement (D); proceeding to product without confirmation risks presenting to someone who hasn't bought the frame.
+
 6. **The Wealth CST covers two levers for closing the freedom gap. What are they?**
    - A) Saving more and spending less
    - B) Investing aggressively and cutting debt
    - C) Growing passive income and right-sizing expenses through deliberate distinction of needs vs lifestyle inflation ✓
    - D) Maximising CPF and buying property
 
+   **Why:** The two levers are growing passive income (investing, saving, compounding) and right-sizing expenses by distinguishing genuine needs from lifestyle inflation — without moralising about spending. "Saving more and spending less" (A) is close but too blunt and doesn't capture the non-judgmental nuance of the CST framing. Aggressive investing and debt cutting (B) are tactics, not the conceptual levers. CPF and property (D) are specific tools, not the two structural levers.
+
 7. **For a Singaporean client, the Wealth CST should acknowledge CPF LIFE because:**
    - A) CPF LIFE is enough on its own — no gap to address
    - B) It shows respect for existing efforts and positions your plan as a complement to close the remaining income gap ✓
    - C) It avoids any conversation about the government
    - D) It is required by MAS regulations before recommending any plan
+
+   **Why:** Acknowledging CPF LIFE respects what the client has already built and what the government has provided, positioning your recommendation as the complement rather than a replacement. CPF LIFE alone is explicitly not enough for most clients — there is nearly always a gap between the CPF payout and the target retirement expense (A is wrong). Avoiding government topics (C) is irrelevant — the material endorses referencing CPF openly. There is no MAS requirement to reference CPF LIFE before making a recommendation (D).
 
 ---
 

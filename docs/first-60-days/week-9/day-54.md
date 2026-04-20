@@ -216,11 +216,15 @@ Clean handoff = clean decision.
    - C) It skips products entirely
    - D) It uses more data
 
+   **Why:** Concept selling installs a way of thinking about money — the product is introduced as the tool that delivers the concept, not as the centrepiece of the pitch. This produces clients who own the idea and can explain it to their spouse or refer it to others. Product selling focuses on features and invites comparison-shopping; it is not faster (A) in terms of close rate (15–25% vs 35–50%). Concept selling does not skip products (C) — every concept must end with a recommendation path. It does not inherently require more data (D).
+
 2. **The comparison in Concept 2 (bank deposit alternative) exposes:**
    - A) Banks are bad
    - B) The opportunity cost of idle cash in low-interest accounts ✓
    - C) Banks are going broke
    - D) All savings should be in plans
+
+   **Why:** Concept 2 highlights that cash sitting in a bank at 0.5–1% is silently losing purchasing power to inflation, and that a systematic savings plan with a small insurance component typically delivers 3–4% projected returns plus estate-transfer benefits. The concept is not anti-bank (A, C) — the positioning explicitly says the bank account should be kept for immediate access. The conclusion is also not that all savings should move into plans (D), but that idle medium-to-long-term savings should.
 
 3. **When you should NOT concept-sell:**
    - A) Client is confused
@@ -228,11 +232,15 @@ Clean handoff = clean decision.
    - C) Client asks too many questions
    - D) Never — always concept-sell
 
+   **Why:** Concept selling is not appropriate when time is insufficient (concepts need 5+ minutes), when the client is a high-C personality who prefers data and structure over frames, or when the concept is so basic the client would find it patronising. A confused client (A) actually benefits from a well-delivered concept. Too many questions (C) indicate engagement, not a reason to avoid concept selling. Always concept-selling (D) ignores situations where the client already has a clear, well-informed preference.
+
 4. **A client says "I want to buy a second property for rental income." Which concept frame is most relevant?**
    - A) Life Insurance as a Family Asset — leverage is the key theme
    - B) The Bank Deposit Alternative — idle savings are the real problem
    - C) The Non-Property Alternative — a participating plan can deliver similar income streams with less friction ✓
    - D) The CPF Wealth concept — maximise existing government resources first
+
+   **Why:** The Non-Property Alternative is specifically designed for clients who want passive income from property but may not be ready for the complexity — it directly addresses the same goal (income streams) with a different vehicle (participating plan). Life Insurance as a Family Asset (A) addresses leverage and estate, not income streams. The Bank Deposit Alternative (B) targets idle low-interest cash. The CPF Wealth concept (D) is about a different planning angle entirely.
 
 5. **After walking through the Bank Deposit Alternative, the client understands the concept but asks for a competitor quote. What does this most likely indicate?**
    - A) The concept landed well and they're engaged
@@ -240,17 +248,23 @@ Clean handoff = clean decision.
    - C) They are a high-D personality who likes options
    - D) You need to present a better yield projection
 
+   **Why:** One of the stated benefits of concept selling is that it reduces competitor shopping because the client evaluates the idea, not the features. If the client is still asking for competitor quotes after a concept delivery, the frame has not fully installed — they are still comparing products rather than owning the concept. This is a signal to revisit the concept using more of their personal numbers, not to improve yield projections (D) or default to a personality explanation (C).
+
 6. **What is the key difference between a concept client and a product client?**
    - A) A concept client is wealthier and requires a more sophisticated approach
    - B) A concept client owns the idea and can explain their plan to others; a product client compares features and shops around ✓
    - C) A concept client buys more products
    - D) A product client needs a follow-up meeting; a concept client decides on the spot
 
+   **Why:** A concept client can articulate why they have what they have — they own the frame, not just the product. That makes them referral-quality clients who bring in others who've heard the explanation. Wealth level (A) is irrelevant to concept vs product distinction. Buying more products (C) may be a downstream effect but is not the defining difference. Decision speed (D) is not a reliable differentiator — concept selling affects conviction, not necessarily meeting count.
+
 7. **You are preparing for a meeting with a newly married couple who are applying for a BTO. Which of the 9 planning solutions is the best starting concept?**
    - A) "One Retirement" — put their whole portfolio together
    - B) Investments — they need to start growing wealth early
    - C) Home Budgeting (BTO/Property) — matches their current life moment ✓
    - D) Tax Savings — CPF top-ups and SRS are the highest-leverage entry point
+
+   **Why:** The rule of thumb is that the right concept matches the client's current life moment — and a couple actively applying for a BTO is squarely in a home-budgeting conversation. Home Budgeting (BTO/Property) covers the good-debt concept and leveraging the housing loan, which is immediately relevant and actionable. Retirement (A) and investments (B) are important but premature given where the clients are emotionally and financially right now. Tax savings (D) may be relevant later but is not the natural entry point for this life stage.
 
 ---
 

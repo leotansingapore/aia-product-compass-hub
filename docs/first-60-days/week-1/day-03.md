@@ -114,11 +114,15 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
  - C) No debt
  - D) Retired
 
+ **Why:** Day 3 defines financial freedom precisely as passive income exceeding expenses — the threshold where you no longer need to sell to survive. A gross income figure (A) says nothing about what the expenses are, so a $10k earner with $12k in expenses is not free. Debt-free (C) is a net-worth metric, not an income-flow metric. Retirement (D) is a life stage, not a financial definition — an FC can be financially free at 35, or retired but not free.
+
 2. **What's the most common reason new FCs quit in Year 1?**
  - A) Lack of leads
  - B) Difficulty of training
  - C) Comparing their income vs peers on fixed salaries ✓
  - D) Product complexity
+
+ **Why:** Day 3 names the Year-1 trap explicitly: new FCs compare their early commission income against their peers' fixed salaries and make a short-term verdict. The honest comparison is Year 5 vs Year 5, when an FC who persisted is often 2-4x ahead with passive income on top. Lead availability (A) and product complexity (D) are challenges, but they are not the named cause. Training difficulty (B) is not mentioned as a quit trigger.
 
 3. **What creates real job security in this career?**
  - A) A large agency
@@ -126,11 +130,15 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
  - C) Multiple income streams including renewal commissions ✓
  - D) A base salary component
 
+ **Why:** Day 3 argues that real security comes from multiple income streams, specifically the renewal commission book that keeps paying years after the original sale. A large agency (A) and MDRT status (B) are external markers that can be lost or that don't pay your bills when activity dips. A base salary component (D) is exactly the "security in a job" that Day 3 calls an illusion — one reorg ends it.
+
 4. **A friend tells you your job is risky because there's no guaranteed salary. What is the most accurate counter-argument based on Day 3?**
  - A) "AIA provides a base allowance for the first 2 years."
  - B) "Fixed salaries are also at risk — one reorg and they're gone. Renewal commissions compound over time regardless of where I work." ✓
  - C) "Top FCs earn far more than salaried employees, so the risk is worth it."
  - D) "You're right, but the career fulfillment makes up for the instability."
+
+ **Why:** B directly applies Day 3's argument that salaried jobs carry their own hidden risk (reorg, redundancy, AI replacement) while renewal commissions are an owned, compounding asset independent of your employer. A may be factually true but it concedes the frame that a base is what makes the job safe. C is a comparison argument, not a structural one. D concedes the instability point rather than refuting it.
 
 5. **Which of the six development capabilities listed in Day 3 is described as "what you do when no one is watching"?**
  - A) Entrepreneurial spirit
@@ -138,17 +146,23 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
  - C) Moral compass ✓
  - D) Ability to influence others
 
+ **Why:** Day 3 lists moral compass with the exact phrase "what you do when no one is watching." Discipline and grit (B) is about showing up on hard days — it's behavioural, not ethical. Entrepreneurial spirit (A) is about treating yourself as a business. Influence (D) is about moving people from hesitation to decision.
+
 6. **An FC has been in the role for 8 months. His renewal commissions now cover half his monthly expenses. According to Day 3's definitions, which stage has he reached?**
  - A) Financially free
  - B) Financially independent
  - C) Neither — he needs full coverage before either term applies ✓
  - D) Both terms apply once passive income exceeds 50% of expenses
 
+ **Why:** Day 3 defines financially independent as passive income covering monthly expenses and financially free as passive income exceeding expenses — both require full coverage, not partial. At 50% coverage the FC still needs active sales income to survive, so neither threshold is met. D invents a 50% rule that does not exist in the framework.
+
 7. **Why do FCs who stay 20+ years tend to be "the most loyal" advisors rather than "the flashiest"?**
  - A) Flashy FCs move to fund management after 10 years
  - B) Longevity depends on a service-focused attitude and strong moral compass, not deal volume ✓
  - C) Regulators penalise high-commission-generating advisors after Year 10
  - D) Flashy marketing works in Year 1 but clients self-select away over time
+
+ **Why:** Day 3 directly states that longevity depends on a service-focused attitude and strong moral compass — the money-driven trap (the "dark side") is what ends careers early. The best long-term FCs are the ones clients refer to their children, which is a trust outcome, not a marketing outcome. A and C are not in the content. D contains a grain of truth but misses the deeper structural reason: it is the moral compass, not client self-selection, that drives staying power.
 
 ---
 

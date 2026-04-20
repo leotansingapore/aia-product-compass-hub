@@ -171,11 +171,15 @@ Adjust for client risk tolerance. When in doubt, **illustrate multiple scenarios
  - C) What's the historical return?
  - D) What's the inflation-adjusted return?
 
+ **Why:** PV is the backward direction of TVM — you know the future target and solve for the today's-dollar requirement. Future Value (A) is the forward direction: you know what you have today and solve for where it ends up. Historical return (C) is a data lookup, not a TVM calculation. Inflation-adjusted return (D) is a real-return concept, not a PV question.
+
 2. **A lump sum and a regular premium with the same rate and target differ because:**
  - A) Regular premiums are taxed differently
  - B) The lump sum compounds for longer on the full amount ✓
  - C) Regular premiums are always cheaper
  - D) Lump sums are riskier
+
+ **Why:** With a lump sum the entire capital sits in the account compounding from day one; regular premiums are still being accumulated, so earlier contributions have more time but the average capital in the account is much lower. Tax treatment (A) is not the driver of this mathematical difference. Regular premiums are not always cheaper (C) — as the table shows, total regular outlay can be nearly 10x the lump sum at the same rate. Risk (D) depends on the vehicle, not the payment structure.
 
 3. **For a 3-year goal, which rate assumption is most reasonable?**
  - A) 8% (aggressive equity)
@@ -183,11 +187,15 @@ Adjust for client risk tolerance. When in doubt, **illustrate multiple scenarios
  - C) 6% (balanced)
  - D) Inflation-matching
 
+ **Why:** Short horizons under 3 years leave no time to recover from market swings, so conservative cash or bond returns (1–3%) are the appropriate assumption. An 8% equity assumption (A) is wildly optimistic over a period where a single downturn could not recover in time. A 6% balanced assumption (C) still carries meaningful equity risk for a 3-year window. Inflation-matching (D) is a real-return target concept, not a rate assumption for a specific asset.
+
 4. **Nancy needs $250,000 at age 60, is currently 25, and the plan projects 9% p.a. Using PV discounting, the lump sum required today is closest to:**
  - A) $25,000
  - B) $12,247 ✓
  - C) $50,000
  - D) $114,240
+
+ **Why:** FV = $250,000, n = 35, i = 9%, PMT = 0 solves to PV ≈ $12,247 — a dramatically small lump sum because 35 years of 9% compounding does most of the work. $25,000 (A) and $50,000 (C) are too high; they would overshoot $250,000 at this rate over this period. $114,240 (D) is the total outlay of the annual-premium alternative at 4%, not the PV of the single premium.
 
 5. **A 40-year-old client wants $1M at 65 and asks "Can I get there?" You run the calculator at 6% over 25 years. The most useful output to show first is:**
  - A) The final FV confirmation of $1M
@@ -195,17 +203,23 @@ Adjust for client risk tolerance. When in doubt, **illustrate multiple scenarios
  - C) The discount rate needed to reach $1M with no effort
  - D) The historical equity market return
 
+ **Why:** The client already knows the target is $1M — confirming FV = $1M (A) tells them nothing new. The useful output is the monthly PMT, because that translates the goal into an actionable monthly commitment the client can immediately compare against their budget. A discount rate with no effort (C) doesn't exist — it's not a meaningful calculation. Historical equity returns (D) are background context, not a personalised answer.
+
 6. **A client has four financial goals totalling $5,540/month but only $3,000/month in savings capacity. The best advisor response is to:**
  - A) Tell the client to invest more aggressively to close the gap with higher returns
  - B) Ignore the lower-priority goals and focus on retirement only
  - C) Use the math to surface the trade-off and discuss extending timelines, reducing targets, or increasing income ✓
  - D) Recommend a lump-sum investment to replace all regular savings
 
+ **Why:** When the math reveals a gap, the advisor's job is to make the trade-offs explicit and let the client choose — not to hide them by chasing higher risk (A) or unilaterally dropping goals (B). Recommending a lump sum (D) is irrelevant if the client doesn't have one and doesn't address the affordability problem. The four levers the day identifies are extending timelines, reducing targets, finding more income, or adjusting the rate assumption — all of which require a conversation.
+
 7. **Why does a lump-sum investment at 9% outperform annual premiums at 9% targeting the same final amount?**
  - A) Lump sums attract lower fees
  - B) The full lump-sum amount compounds from day one, whereas regular premiums are still being built up over time ✓
  - C) Annual premiums carry insurance risk that reduces net returns
  - D) The calculator uses END mode for lump sums, which inflates the result
+
+ **Why:** The lump sum's edge is timing: the entire $12,247 earns compound interest for all 35 years, while annual premiums start small and only reach their full size near the end of the period, so average capital under management is far lower. Fees (A) vary by product, not by payment structure in TVM theory. Insurance risk (C) is a product feature, not a mathematical reason. BGN/END mode (D) affects annuity calculations, not single-payment lump sums.
 
 ---
 

@@ -117,11 +117,15 @@ Impact is slow to arrive and uneven in distribution. You may work for 18 months 
  - C) Year 2–3 ✓
  - D) Year 5
 
+ **Why:** The earning-pattern chart shows Year 1 income below the corporate peer, a crossover around Year 2-3, and a widening gap from Year 3 onward as skill and renewal commissions compound. Month 6 (A) is still deep in the slow ramp. End of Year 1 (B) is too early — most FCs are still building their book. Year 5 (D) would mean five years of under-earning before any advantage, which contradicts the chart.
+
 2. **What is the real purpose of an income guarantee for a new FC?**
  - A) A floor on earnings so you never earn less than peers
  - B) Runway to focus on skill-building before the book sustains itself ✓
  - C) A safety net that lasts until MDRT
  - D) A replacement for commission
+
+ **Why:** Today's content frames the income guarantee explicitly as a bridge — bought time for skill-building, not a permanent floor. It runs out, which is why squandering Year 1 on unproductive activity is fatal. It does not guarantee parity with peers (A), does not last until MDRT (C), and does not replace commission (D) — it supplements income while the book is still small.
 
 3. **Which of these is NOT infrastructure?**
  - A) Sunday 30-min review of the week
@@ -129,11 +133,15 @@ Impact is slow to arrive and uneven in distribution. You may work for 18 months 
  - C) Working more hours than last week ✓
  - D) Weekly 1-1 with mentor, with agenda
 
+ **Why:** Infrastructure is a system that multiplies effort — CRM discipline, review cadences, mentor access are all named examples in today's table. Working more hours is raw effort, not a system. As the lesson states, you can work 60 hours a week with poor infrastructure and stay broke. More hours without better systems just amplifies existing inefficiency.
+
 4. **A new FC in Month 8 is discouraged because her income is lower than her former salary. Based on today's earning-pattern lesson, what is the most accurate reframe?**
  - A) She should consider switching to a salaried role while the market is tough
  - B) Month 8 is still in the slow part of the curve; evaluating on Year 1 income leads most FCs to quit prematurely ✓
  - C) Her income should already be higher than a corporate peer by Month 8
  - D) If she works twice as many hours, she will immediately cross her former salary
+
+ **Why:** The lesson explicitly states: "if you evaluate this career on Year 1 income, you will quit." Month 8 is still Year 1 — the trap the chart warns against. Switching to salaried (A) is exactly the response that cuts the compounding curve short. Crossing peers by Month 8 (C) is wrong per the chart. Doubling hours (D) conflates effort with infrastructure; raw hours don't produce an immediate income jump.
 
 5. **Which of the five career factors does this career score lowest on during Year 1–2, but highest on by Year 3+?**
  - A) Impact
@@ -141,17 +149,23 @@ Impact is slow to arrive and uneven in distribution. You may work for 18 months 
  - C) Work-life balance ✓
  - D) Job security
 
+ **Why:** The five-factor table explicitly scores work-life balance as "Low in Y1-2, high in Y3+" — the only factor with that trajectory. Impact is direct and visible from the first claim moment, not delayed. Independence is high from Day 1 per the table. Job security is described as being based on your own book and skill, which builds over time but is not the factor with the starkest Y1-vs-Y3 contrast.
+
 6. **Two FCs both work 45 hours a week. FC A has a CRM, a weekly mentor review, and a referral workflow. FC B relies on memory and works by instinct. After three years, who is more likely to outperform — and why?**
  - A) FC B, because instinct develops faster than systems
  - B) FC A, because infrastructure compounds skill and income over time ✓
  - C) They will be equal — effort is the only variable that matters
  - D) FC B, because rigid systems slow down client relationships
 
+ **Why:** The lesson is unambiguous: "you can work 35 hours a week with good infrastructure and outperform" someone working 60 hours without it. Systems compound because every referral asked, every CRM note written, and every mentor session compounds the next one. Instinct (A) is not the variable — systems are. Effort parity (C) ignores the multiplier effect. Systems don't slow relationships (D); they make follow-up more consistent, which clients experience as attentiveness.
+
 7. **The reason passive income (renewal commissions) is described as a "compounding force" is:**
  - A) Renewal rates increase every year the client ages
  - B) Each well-serviced policy adds to a book that pays regardless of this month's new sales ✓
  - C) The commission percentage doubles after Year 3
  - D) Clients automatically refer friends, multiplying the book with no extra effort
+
+ **Why:** Renewal commissions are passive because the work was done once (the sale and service) and keeps generating income every year the client maintains the policy. Each new policy adds to the book, so the passive layer grows with every year of production. Renewal rates do not increase with age (A). Commission percentages do not double at Year 3 (C). Referrals are a separate benefit — they do not happen automatically without a referral workflow (D).
 
 ---
 

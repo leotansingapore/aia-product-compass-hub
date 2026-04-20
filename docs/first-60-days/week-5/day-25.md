@@ -98,11 +98,15 @@ Strong rhythms don't feel like effort after a few cycles. They feel like the wee
  - C) Monthly goals are outdated
  - D) Rhythms replace planning entirely
 
+ **Why:** A rhythm is a repeatable behaviour, not just a target — behaviours are what actually hold the week together even when motivation dips. A requires no effort is false; rituals take deliberate protection. Monthly goals (C) are useful but without daily and weekly behaviours they remain wishful thinking. Rhythms don't replace planning (D) — the Sunday review is planning; the rhythm is what makes the planning happen reliably.
+
 2. **What is the Sunday review for?**
  - A) Clearing the inbox
  - B) Looking back at the week, setting 3 priorities for next week, and calendar-blocking them ✓
  - C) Writing a to-do list for Monday morning
  - D) Catching up on missed work
+
+ **Why:** The Sunday review has three explicit steps: look back at the week, set 3 priorities, and calendar-block them before anything else. Clearing the inbox (A) is a Friday wrap task, not a Sunday ritual. A to-do list (C) is a product of the review but not the full purpose — the calendar-blocking is the critical step most people skip. Catching up on missed work (D) is not the intent; the signal you did it right is that Monday feels like a continuation, not a recovery session.
 
 3. **What should the daily opening include?**
  - A) Checking social media
@@ -110,11 +114,15 @@ Strong rhythms don't feel like effort after a few cycles. They feel like the wee
  - C) Checking email for 30 minutes
  - D) Long planning session
 
+ **Why:** The daily opening has three components: review the 3 priorities from Sunday, identify the single most important task first, and explicitly decide what not to do that day — the third step is the one most people skip. Social media (A) and email (C) are reactive modes that undermine the directed start the opening is designed to create. A long planning session (D) defeats the 15-minute time cap and slides into procrastination.
+
 4. **The learning rhythm during the 60 days is:**
  - A) Cram everything the weekend before the final exam
  - B) 15 minutes a day + weekly read-back on Sunday + one practice rep per week ✓
  - C) 2 hours every Sunday
  - D) Whenever you have spare time
+
+ **Why:** The program specifies three interlocking habits: 15 daily minutes on the current lesson (every day including weekends), a Sunday re-skim of the week's lessons, and one real-world practice rep per week. Cramming (A) produces shallow retention and was explicitly called out as what distinguishes advisors who finish strong from those who don't. Two hours every Sunday (C) ignores the daily touchpoint that builds the knowledge gradually. "Whenever you have spare time" (D) is not a rhythm — it's drift.
 
 5. **A ritual you don't defend is:**
  - A) A habit
@@ -122,11 +130,15 @@ Strong rhythms don't feel like effort after a few cycles. They feel like the wee
  - C) Just a suggestion ✓
  - D) Self-discipline
 
+ **Why:** The day states directly: "A ritual you don't defend isn't a ritual. It's a suggestion." Habits (A) and systems (B) both imply consistent execution — but without active defence (calendar blocking, declining conflicts), rituals get crowded out and revert to occasional good intentions. Self-discipline (D) is a quality, not what an undefended ritual becomes; the point is that intention alone is not enough.
+
 6. **Friday wrap's main purpose is to:**
  - A) Brag about wins
  - B) Close open loops so the weekend starts clean ✓
  - C) Plan next week's meetings
  - D) Review KPIs
+
+ **Why:** The Friday wrap's explicit signal of success is "the weekend starts without an open loop buzzing in your head" — inbox triaged, notes filed, thank-yous sent, CRM updated. Celebrating wins (A) is not mentioned as a purpose; Monday-you notes cover forward continuity. Planning next week's meetings (C) is the Sunday review's job, not Friday's. KPI review (D) is a management concept not covered in this ritual.
 
 ---
 

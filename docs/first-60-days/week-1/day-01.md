@@ -189,11 +189,15 @@ Welcome to the career. Welcome to the team.
  - C) Inner game ✓
  - D) Graduation
 
+ **Why:** Weeks 1–5 is the Inner game — how you think, how you spend time, the standards you hold yourself to. Fundamentals is Weeks 6–7 (financial knowledge into muscle memory). Client game is Weeks 8–10 (real prospects, fact-finds, proposals). There is no "graduation" phase in this program — Day 60 is a handover, not a finish line.
+
 2. **What's the purpose of the Reconnecting Exercise?**
  - A) Close your first case
  - B) Build warm contact and let your circle see you in your new role — no selling ✓
  - C) Collect policy summaries
  - D) Hit a target number of meetings
+
+ **Why:** Reconnecting is explicitly a *no-sell* warm-contact exercise so your circle associates your new role with presence, not pressure. Closing a case (A) comes later — you won't meet a real prospect until Week 8. Policy summaries (C) belong to existing-client servicing, not prospecting. Hitting a meeting target (D) would reintroduce the pressure the exercise is designed to remove.
 
 3. **Which value says "your teammate's win is your win; their miss is yours to notice"?**
  - A) Own the outcome
@@ -201,11 +205,15 @@ Welcome to the career. Welcome to the team.
  - C) Better than yesterday
  - D) Lift the team ✓
 
+ **Why:** "Lift the team" is the team-ownership value — their wins are yours, their misses are yours to notice. Own the outcome (A) is about individual accountability for what's on your plate. Truth before comfort (B) is about honest feedback over polite silence. Better than yesterday (C) is about personal compounding. All four matter, but only one explicitly makes teammates' outcomes your problem.
+
 4. **A new teammate asks whether they should share a closing script that's been working well for them. According to team philosophy, what should they do?**
  - A) Keep it private until they've hit MDRT — then share
  - B) Share it immediately, because zero hoarding is the standard ✓
  - C) Share only with the mentor, not the whole team
  - D) Wait for the manager to decide if it's appropriate
+
+ **Why:** "When the team wins, I win twice" — zero hoarding is explicit in the team philosophy. Hoarding until MDRT (A) protects ego, not outcomes. Sharing only with a mentor (C) is still hoarding with extra steps. Asking the manager for permission (D) outsources a decision the value already makes for you.
 
 5. **The three-pillar philosophy puts "Protect first" at the foundation. Why does protection come before wealth accumulation?**
  - A) Insurance policies pay higher commissions than investment products
@@ -213,17 +221,23 @@ Welcome to the career. Welcome to the team.
  - C) A single bad event can wipe out years of savings without a protection floor ✓
  - D) MAS regulations require coverage before investments
 
+ **Why:** Protection is the floor — one uncovered event (CI, TPD, hospital) can force the client to liquidate investments at the worst moment, wiping out compounding. A is wrong and also the exact framing the industry should push against. B is empirically untrue — most clients find protection the least exciting topic. D is not a MAS rule; sequencing is a planning principle, not a regulation.
+
 6. **Your client is excited about growing their wealth and wants to skip directly to investments. According to the Day 1 philosophy, your best response is:**
  - A) Agree — client satisfaction comes first
  - B) Explain why protection must be funded first before chasing returns ✓
  - C) Split the conversation: do investments now, revisit protection later
  - D) Defer to what their existing bank advisor recommended
 
+ **Why:** Your job is to advise, not to agree. B respects both the client's goal and the sequencing that protects it. A mistakes customer service for advice. C sounds balanced but leaves the client exposed precisely when their investment money is building up. D abdicates the role you're being paid to play.
+
 7. **"The close is the starting line, not the finish line." What does this mean for how you treat a client after a policy is issued?**
  - A) The FC's role ends once the policy is active
  - B) Follow-ups are optional but appreciated
  - C) Long-term presence across years and life events is the actual job ✓
  - D) The client should self-manage from this point forward
+
+ **Why:** The first sale opens a 20-year relationship — annual reviews, claims help, life-event updates. That back-loaded service is where the real career (and real compensation) lives. A and D misread the role as transactional. B treats servicing as a nice-to-have; the whole pyramid model only works if you stay in the room.
 
 ---
 

@@ -166,11 +166,15 @@ Use TVM to **project scenarios** and **compare options.** Don't use it to promis
  - C) Principal, Interest, Payment, Return, Term
  - D) Now, Interest, Present, Payment, Forecast
 
+ **Why:** The five TVM variables are n (periods), i (interest rate per period), PV (present value), PMT (periodic payment), and FV (future value) — you solve for one when you know the other four. B substitutes inflation and term for the actual variables n and PMT, which will not work on a financial calculator. C and D use different names that do not map to calculator keys and would produce errors in practice.
+
 2. **Sign convention: money flowing OUT of you is:**
  - A) Positive
  - B) Negative ✓
  - C) Doesn't matter
  - D) Zero
+
+ **Why:** The cash-flow convention is strict: money flowing out (premiums, contributions) is entered as negative; money flowing in (payouts, withdrawals) is positive. Reversing this (A) causes the calculator to see both sides of the transaction as inflows, which produces a "no solution" error or a nonsensical result. It always matters (C) — mixing signs is cited as the number-one cause of TVM errors. Payments are not zero (D); that is only true when there are no periodic contributions.
 
 3. **What mode do most insurance policies use?**
  - A) END (payments at end of period)
@@ -178,11 +182,15 @@ Use TVM to **project scenarios** and **compare options.** Don't use it to promis
  - C) No mode needed
  - D) Simple interest mode
 
+ **Why:** Insurance premiums are typically paid at the start of each period (beginning of year), so BGN mode is the industry default for policy calculations. END mode (A) assumes payments come at the close of each period, which is more common for loan amortisations. No mode needed (C) is false — leaving the calculator in the wrong mode is a common source of off-by-one-period errors. TVM uses compound interest, not simple interest (D).
+
 4. **A client pays $2,400/year for 20 years into a plan and gets back $80,000 at maturity. Roughly what return is implied?**
  - A) 0–1%
  - B) ~3.5% ✓
  - C) ~7%
  - D) Cannot be calculated
+
+ **Why:** Setting n=20, PMT=-2400, FV=80000, PV=0 in BGN mode and solving for i yields approximately 3.5% p.a. — consistent with the Life Plus worked example in the lesson. 0–1% (A) is far too low; even a savings account at that rate on $48K total contributions would not reach $80K. ~7% (C) would require the plan to roughly triple contributions, which the numbers don't support. This is a straightforward TVM solve (D is wrong).
 
 5. **Why must you be strict with the sign convention when solving for i?**
  - A) Because the calculator manual says so
@@ -190,11 +198,15 @@ Use TVM to **project scenarios** and **compare options.** Don't use it to promis
  - C) Insurance regulators require it
  - D) It doesn't actually matter
 
+ **Why:** If both PMT and FV are entered with the same sign, the calculator cannot find an interest rate that satisfies the equation and returns an error — or, worse, returns a nonsensical negative rate that looks like a valid answer. The manual (A) follows from the math, not the other way round. There is no MAS regulation on calculator sign convention (C). It very much matters (D) — a wrong sign produces a wrong answer that could be quoted to a client.
+
 6. **A client says "my plan returns 5% but inflation is 3%." Their real return is closest to:**
  - A) 5%
  - B) 8%
  - C) ~2% ✓
  - D) 0%
+
+ **Why:** The simplified formula is real rate = nominal rate minus inflation = 5% - 3% = 2%; the more precise formula (1.05/1.03 - 1) gives ~1.94%, which rounds to roughly 2%. The nominal rate (A) ignores the purchasing-power erosion inflation causes. Adding instead of subtracting (B) is a common error that has no financial meaning. Zero (D) would require inflation to equal the nominal return exactly; 3% does not equal 5%.
 
 7. **TVM is best thought of as:**
  - A) An investment philosophy
@@ -202,11 +214,15 @@ Use TVM to **project scenarios** and **compare options.** Don't use it to promis
  - C) A guaranteed-outcome formula
  - D) A replacement for fact-finding
 
+ **Why:** TVM is a calculation framework — it lets you project scenarios and compare options, but it assumes a stable rate and cannot account for volatility, fees, or behaviour. It is not a philosophy (A); it is maths that serves whatever planning philosophy you hold. It assumes a rate of return that is not guaranteed (C); the day explicitly warns against using TVM to promise outcomes. It is an input to fact-finding conversations, not a substitute for them (D).
+
 8. **The most common TVM mistake with new FCs is:**
  - A) Forgetting to use a calculator
  - B) Using END mode when the product is BGN, or mixing up payment signs ✓
  - C) Rounding too much
  - D) Using decimals instead of percentages
+
+ **Why:** The two most frequent errors are mode confusion (END vs BGN) and sign errors — both produce wrong answers that can be confidently quoted to a client. Forgetting the calculator (A) is a preparation issue, not a calculation error. Rounding (C) at the level of cents is rarely consequential in financial planning conversations. Entering 4 instead of 4% (D) is a beginner slip that calculators typically handle, and it is not the primary mistake flagged in the lesson.
 
 ---
 

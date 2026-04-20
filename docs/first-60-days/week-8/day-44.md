@@ -176,11 +176,15 @@ FCs who ignore this get burned out by Month 4 and quit. The ones who last build 
  - C) Deflect, change topic, rebook
  - D) Apologise, send info, follow up
 
+ **Why:** Every standard objection response follows the same three-beat pattern — acknowledge the prospect's position so they feel heard, reframe to show why the meeting is still worth having, then return cleanly to the appointment ask. Arguing (A) creates resistance; deflecting (C) abandons the ask; apologising and sending info (D) removes your own credibility and gives the prospect a way to stall indefinitely.
+
 2. **"Not interested" is most likely:**
  - A) A real final no
  - B) A reflex objection — a social defence ✓
  - C) A sign of deeper issues
  - D) A legal notice
+
+ **Why:** "Not interested" is the most common reflex objection — the prospect is defending their afternoon, not evaluating your offer. They have no information to base a real decision on, so what they are really saying is "I don't want to engage right now." A real final no (A) contains specific content, such as an existing advisor or explicit instruction to stop contact. Signs of deeper issues (C) and legal notices (D) are not what "not interested" signals.
 
 3. **When a prospect says "please don't contact me again":**
  - A) Follow up in 2 weeks to confirm
@@ -188,11 +192,15 @@ FCs who ignore this get burned out by Month 4 and quit. The ones who last build 
  - C) Send one more message with value
  - D) Remove from your active list but re-add in 6 months
 
+ **Why:** An explicit "do not contact" request is a real final no, not a reflex. Continuing contact after this point violates Singapore's PDPA and, more importantly, damages your professional reputation — a client who felt harassed will tell ten friends. Following up in two weeks (A), sending one last message (C), or re-adding in six months (D) all disregard the stated boundary and compound the harm.
+
 4. **A prospect says "Post it out." The correct response is:**
  - A) Email them the brochure and wait for a reply
  - B) Agree and follow up in two weeks
  - C) Explain that the material only works when tailored to their situation — request a meeting ✓
  - D) Ask them to review the company website instead
+
+ **Why:** The "post it out" objection is a polite dismissal — the prospect expects generic material they can ignore. The correct reframe is that any useful material needs to be personalised, which requires a short conversation. Sending the brochure (A) or agreeing and following up later (B) hands the prospect a way to say "read it, not for me" without ever meeting. Redirecting to the website (D) removes you from the equation entirely.
 
 5. **An FC receives 17 reflex objections in one session. The healthiest interpretation is:**
  - A) The pitch needs a complete rewrite
@@ -200,17 +208,23 @@ FCs who ignore this get burned out by Month 4 and quit. The ones who last build 
  - C) Normal — reflex objections reflect the prospect's energy, not a verdict on you ✓
  - D) Time to take a break from prospecting for a few days
 
+ **Why:** Reflex objections are a baseline feature of prospecting, not a signal about your pitch quality or list quality. The prospect's "not interested" is about their energy and attention at that moment, not an evaluation of you. Rewriting the pitch (A) or blaming the list (B) misattributes a social defence as personal feedback. Taking a multi-day break (D) compounds the emotional response instead of processing it as normal activity data.
+
 6. **The 6-touch follow-up sequence is designed to:**
  - A) Pressure a prospect into a decision within 12 weeks
  - B) Stay memorable and catch prospects when life circumstances change ✓
  - C) Replace in-person meetings with digital contact
  - D) Qualify prospects before spending time on a meeting
 
+ **Why:** Life circumstances change — a prospect who was not open at Week 0 may have had a health scare, a new baby, or a job change by Week 8 that makes them receptive. The sequence is built around staying present and useful without pressure, so you are the person they think of when the moment arrives. Pressuring a decision (A) is exactly what the value-add messages are designed to avoid. The sequence supplements meetings (C) rather than replacing them, and it is not a qualification filter (D).
+
 7. **What makes the "obstinate objector" response unique compared to the others?**
  - A) It argues back with facts and logic
  - B) It withdraws the meeting ask entirely and reframes contact as casual and low-pressure ✓
  - C) It offers a discount to change the prospect's mind
  - D) It asks a clarifying question to surface the real objection
+
+ **Why:** All other objection responses end with "Would you be free...?" — they maintain the meeting ask. The obstinate objector response is different because it drops the ask entirely and replaces it with a casual "if I'm in your neighbourhood" framing, removing all pressure and keeping a door open without forcing it. There are no facts or arguments (A), no discounts (C), and no clarifying questions (D) — just a graceful exit that preserves the relationship for a future approach.
 
 ---
 

@@ -217,11 +217,15 @@ Most clients agree. Some need reassurance — offer it:
    - C) Get the client talking, spot implied needs, rank priorities ✓
    - D) Negotiate price
 
+   **Why:** Section 1 is deliberately general — it builds rapport, gets the client talking about themselves, and surfaces implied needs through follow-up questions. Financial data collection belongs to Section 3, and product pitching has no place in any part of the CFR. Ranking priorities happens at the end of Section 1 and directly shapes which Problem Questions you lead with in Section 2.
+
 2. **When transitioning from general discussion into Problem Questions:**
    - A) Skip it — just start asking
    - B) Ask permission first, signal the shift is to more personal questions ✓
    - C) Announce you're about to sell
    - D) Pause for 2 minutes
+
+   **Why:** The permission move ("these are a bit more personal — feel free to pass on anything too private") signals respect and lowers the client's defences before you probe sensitive topics. Skipping the transition (A) feels abrupt and can cause the client to close off. Announcing a sales intent (C) would trigger resistance immediately. A 2-minute pause (D) is awkward and serves no purpose.
 
 3. **After ranking goals, you start Problem Questions with:**
    - A) The easiest goal
@@ -229,11 +233,15 @@ Most clients agree. Some need reassurance — offer it:
    - C) The goal with the highest product margin
    - D) The goal that requires the cheapest product
 
+   **Why:** Emotional engagement is highest on the client's self-declared #1 priority — that's where they're most willing to go deep and acknowledge real gaps. Starting with the easiest goal (A) wastes the emotional opening. Leading with the most profitable goal for you (C) or the cheapest product (D) signals you're optimising for yourself, not for the client's outcomes.
+
 4. **A client answers "Two kids, ages 6 and 4" and stops. What should you do?**
    - A) Move on to the next Situation question
    - B) Write the answer in your notes and ask about income next
    - C) Probe with a follow-up — "Any thoughts on what you want for their future?" — to surface implied needs ✓
    - D) Skip to Problem Questions since you have a data point
+
+   **Why:** The first factual answer is not the important one — the follow-up question is what surfaces the implied need. A client who says "Two kids, 6 and 4" is giving you an entry point, not a complete picture. Moving to income immediately (B) breaks rapport and misses the implied education-funding need. Jumping to Problem Questions (D) without first surfacing implied needs means you're probing without direction.
 
 5. **A client mentions 5 goals in passing. You haven't ranked them yet. What's the risk of jumping straight to Problem Questions?**
    - A) No risk — you can rank as you go
@@ -241,17 +249,23 @@ Most clients agree. Some need reassurance — offer it:
    - C) The client may feel rushed
    - D) You'll run out of time for Section 3
 
+   **Why:** Without prioritisation, you don't know which goal carries the most emotional weight — so your Problem Questions may develop the wrong topic first, and your eventual recommendations won't match the client's own stated hierarchy. Ranking as you go (A) means the client never explicitly commits to their priorities. Running short on time for Section 3 (D) is a time-management issue, not a consequence of skipping prioritisation.
+
 6. **During Section 2, a client gives a shallow answer: "Yeah, I know I should do more for retirement." What do you do?**
    - A) Accept it and move to the next goal
    - B) Proceed to Implication questions — the need is acknowledged
    - C) Probe further: "How long has this been on your mind?" until a real problem is acknowledged ✓
    - D) Pivot to financial numbers immediately
 
+   **Why:** A shallow acknowledgement is not a real problem statement — it's a social deflection. You need to probe until the client has genuinely named a specific gap they feel, not just mentioned it politely. Accepting the surface answer (A) leaves you without the emotional material needed for Implication questions. Moving to Implication too early (B) on a shallow acknowledgement produces a weak response because the client hasn't really felt the problem yet.
+
 7. **You're mid-CFR and the client gets defensive when you begin Section 3. This most likely means:**
    - A) The client has something to hide
    - B) Sections 1 and 2 weren't done well enough to earn the trust required for financial disclosure ✓
    - C) You should reschedule the meeting
    - D) The client is a high-D personality and prefers to skip to numbers
+
+   **Why:** Financial data is sensitive, and clients only share it when trust has been established through a quality Section 1 and Section 2. If they become defensive, the trust simply hasn't been earned yet — the correct response is to spend more time in conversation, not reschedule or attribute it to personality type. Assuming the client is hiding something (A) is uncharitable and likely wrong. Rescheduling (C) wastes the progress already made.
 
 ---
 

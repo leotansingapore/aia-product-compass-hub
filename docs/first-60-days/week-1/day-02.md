@@ -147,11 +147,15 @@ A client who tries to jump to Layer 2 without Layer 1 is building a house on san
  - C) Long-term — risk management and retirement ✓
  - D) Whichever is easiest that month
 
+ **Why:** The entire Day 2 reframe is to flip the default order — lock in the long-term third first, then let mid and short-term fill what remains. Short-term (A) and mid-term (B) are where lifestyle inflation eats the plan; prioritising them leaves the compounding bucket empty. "Whichever is easiest" (D) is precisely the default behaviour that leaves clients with one bucket and no plan by age 40.
+
 2. **What's the standard rule of thumb for death/TPD coverage?**
  - A) 3× annual income
  - B) 5× annual income
  - C) 10× annual income ✓
  - D) 1× net worth
+
+ **Why:** The Day 2 coverage table specifies 10x annual income for death/TPD — enough to replace income for roughly a decade while the family adjusts. 5x (B) is the rule of thumb for major critical illness, not death. 3x (A) is too low to sustain a family past the immediate shock. Net worth (D) is not the right metric because a young earner with low net worth but high income potential would be drastically underinsured.
 
 3. **Which risk should be retained (not transferred)?**
  - A) Critical illness
@@ -159,11 +163,15 @@ A client who tries to jump to Layer 2 without Layer 1 is building a house on san
  - C) Temporary job loss ✓
  - D) Hospitalisation
 
+ **Why:** Temporary job loss is the textbook case for retention — the planning response is a 3–6 month emergency fund, which is exactly the self-insure tool. The other three (critical illness, permanent disability, hospitalisation) are permanent or catastrophic risks that would exhaust any emergency fund and destroy long-term financial plans — Day 2's rule is clear: transfer what you cannot afford to retain.
+
 4. **A 32-year-old client earns $6,000/month. He has $20,000 in savings and no insurance. He says "I'm healthy, so I don't need insurance yet." What's the most accurate reframe?**
  - A) "You're right — start investing first, then protect later."
  - B) "Your emergency fund covers temporary income loss, but it can't replace your income if you're critically ill for years." ✓
  - C) "Insurance is compulsory under MAS rules for working adults."
  - D) "At your age, premiums are cheapest, so it's financially optimal to buy now."
+
+ **Why:** B targets the exact blind spot Day 2 identifies — clients confuse their emergency fund (designed for temporary income loss) with a substitute for permanent-risk coverage. $20,000 cannot fund years of critical illness recovery or replace a family's income after death. A validates the wrong sequencing. C is factually false — health insurance is not legally compulsory for working adults. D may be true but it's a commission-motivated angle, not the honest client-centred reframe.
 
 5. **Under the one-third rule, where do insurance premiums belong?**
  - A) Short-term third, because they are a monthly expense
@@ -171,17 +179,23 @@ A client who tries to jump to Layer 2 without Layer 1 is building a house on san
  - C) Long-term third, because they protect the 40-year version of the client ✓
  - D) It depends on the type of policy
 
+ **Why:** Day 2 explicitly states that risk management and retirement live in the long-term third because "protection and accumulation are playing the same game" — protecting the decades-long version of the client. Treating premiums as a short-term expense (A) is the framing that causes clients to cancel policies during tight months. Mid-term (B) misreads the time horizon. "Depends on policy type" (D) is a dodge — the one-third rule categorises all risk management as long-term without exception.
+
 6. **A client asks how much critical illness coverage she needs. Her annual income is $60,000. According to the rule of thumb, what range should you recommend?**
  - A) $60,000–$120,000
  - B) $120,000–$300,000 ✓
  - C) $300,000–$600,000
  - D) $600,000 or more
 
+ **Why:** The Day 2 table gives two CI benchmarks: early CI at 2x annual income and major CI at 5x. For $60,000 income that gives a range of $120,000 (2x) to $300,000 (5x), which is exactly option B. A ($60k-$120k) undershoots the early CI floor. C and D overshoot the major CI ceiling without clinical justification.
+
 7. **A client has no emergency fund, no insurance, and wants to start an investment portfolio. Using the three-layer model, what is the correct sequencing advice?**
  - A) Start investing immediately — time in the market beats timing the market
  - B) Build the emergency fund and risk management layer first, then add investment layer ✓
  - C) Split contributions equally across all three layers from Day 1
  - D) Focus on wealth preservation first since it has the longest time horizon
+
+ **Why:** The three-layer model is explicitly sequential — Layer 1 (risk management) must be funded before Layer 2 (wealth accumulation), because a single uninsured event can force liquidation of investments at the worst moment. A is a finance cliche that ignores the risk floor. C sounds balanced but leaves the client exposed precisely as their investment balance grows. D inverts the pyramid entirely — wealth preservation (Layer 3) is built last, not first.
 
 ---
 

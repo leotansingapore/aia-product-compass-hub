@@ -115,11 +115,15 @@ You'll fail at some of these. That's the point.
  - C) Commission
  - D) Reputation with clients
 
+ **Why:** Day 4 explains that "not yet" stops a temporary skill gap from hardening into a permanent identity claim — it separates who you are from what you can do right now. Ego (A) is what the fixed mindset protects; "not yet" does the opposite by forcing honest acknowledgement of where you are. Commission (C) and client reputation (D) are downstream outcomes, not what the reframe is designed to protect.
+
 2. **Which of these is a growth-mindset response to rejection?**
  - A) "That prospect wasn't serious"
  - B) "I'm not meant for this"
  - C) "Which objection did I fumble?" ✓
  - D) "Cold calling doesn't work anymore"
+
+ **Why:** Growth-mindset responses contain a specific, concrete next action — "which objection did I fumble?" names the exact question that leads to an adjustment. A blames the prospect (external attribution, no learning). B is a classic identity-claim response — the tell Day 4 flags for fixed mindset. D generalises the problem to the method rather than the execution, which kills the rep without producing a lesson.
 
 3. **What should you track instead of mood?**
  - A) Commission earned this week
@@ -127,11 +131,15 @@ You'll fail at some of these. That's the point.
  - C) Reps — dials, appointments, meetings run ✓
  - D) Your NPS score from clients
 
+ **Why:** Day 4 states explicitly: "Track reps, not mood. Dials made, appointments booked, meetings run — these are honest. Feelings lie." Reps are leading indicators under your direct control. Commission (A) is a lagging output that tells you what happened weeks ago. Social reactions (B) and NPS scores (D) depend on others' behaviour and can move without any change in your effort.
+
 4. **You've had a terrible week — two no-shows and three rejections. A fixed-mindset FC would likely:**
  - A) Ask their mentor which part of the approach to adjust
  - B) Re-listen to the last rejected call and identify what to change
  - C) Conclude the market is bad this month and scale back activity ✓
  - D) Track the objection patterns across the five rejections
+
+ **Why:** Attributing results to external market conditions instead of examining specific execution is the textbook fixed-mindset move — it removes agency and creates permission to reduce effort. A, B, and D are all growth-mindset responses: each involves analysing what happened and generating a specific next action, which is exactly what Day 4's comparison table shows growth mindset doing.
 
 5. **According to the "obstacle is the way" concept, what does every rejection on a cold call actually represent?**
  - A) Evidence that the prospect was not a suitable lead
@@ -139,17 +147,23 @@ You'll fail at some of these. That's the point.
  - C) A sign to shift your prospecting approach
  - D) Useful data only if the rejection includes specific feedback
 
+ **Why:** Day 4 states directly: "Rejection is the rep. The rep is the skill." The obstacle (rejection) and the skill acquisition are the same thing — you cannot get the skill without running the obstacle. A blames the prospect and produces no learning. C treats rejection as a verdict on the method rather than input to refine it. D conditions the value of the rep on receiving explicit feedback, which most calls will never provide.
+
 6. **The "not yet" reframe works because it:**
  - A) Makes failure feel less serious
  - B) Reassures the client that you will improve
  - C) Separates your current competence level from your permanent identity ✓
  - D) Delays the need to take action on a skill gap
 
+ **Why:** "Not yet" works mechanically: it puts the competence gap in the category of temporary state rather than permanent trait. Day 4 says "the tyranny of the now turns a temporary skill gap into a permanent identity" — "not yet" is the antidote to that. A softens failure but misses the identity-protection mechanism. B is about client communication, not mindset. D reverses the intent: "not yet" keeps you in the game, it does not postpone action.
+
 7. **An FC who feels they've cracked the code after a great Week 3 should:**
  - A) Lock in their pipeline strategy immediately — consistency matters
  - B) Set a new stretch target to capitalise on momentum
  - C) Treat the feeling as data and keep running the same reps, not making big promises ✓
  - D) Share the technique with the team before testing it further
+
+ **Why:** Day 4 warns against making big promises on good weeks just as much as it warns against quitting on bad ones — both are emotional overreactions to what is fundamentally just one week's data. The right move is to keep running the reps and let the trend confirm itself. A and B both act on the feeling rather than treating it sceptically. D is premature sharing before the approach has been stress-tested beyond a single good week.
 
 ---
 

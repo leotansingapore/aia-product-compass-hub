@@ -120,11 +120,15 @@ Never recommend based on the story alone. Use it to open a conversation, then do
  - C) Self-employment beats employment
  - D) AIA's career beats a corporate career
 
+ **Why:** Job B pays *less* when things are fine but delivers income across every scenario that matters — illness, death, hospitalisation, education, retirement — which is the whole point of the comparison. A is wrong because Job A pays more in the "Well" column. C and D import conclusions the story never makes; the frame is about benefit structures, not career paths.
+
 2. **The best response to "my company already gives me insurance":**
  - A) "Your company plan isn't enough"
  - B) "Corporate plans are always inadequate"
  - C) "Employer benefits are tied to the job. Let's build coverage tied to you — so it stays when the job ends." ✓
  - D) "Let me quote you a private plan for comparison"
+
+ **Why:** C surfaces the real gap — portability — without attacking the employer plan, which keeps the client open rather than defensive. A and B make blanket criticisms that feel pushy and are not always true. D jumps straight to a product comparison before any needs have been uncovered, skipping the trust-building step entirely.
 
 3. **In a meeting, after filling in the Job A/B table with client data, you should:**
  - A) Start presenting products
@@ -132,11 +136,15 @@ Never recommend based on the story alone. Use it to open a conversation, then do
  - C) Fill in the blanks with estimates
  - D) Close the meeting and send a proposal
 
+ **Why:** Asking the client which column worries them most turns their own gaps into their own needs analysis — in their words, not yours. A and D skip diagnosis entirely and pitch before understanding, which breaks trust. C is explicitly discouraged; leaving blank columns blank is what prompts the client to confront reality themselves.
+
 4. **A client says "I earn $120K and have great company benefits." What's the most important follow-up question?**
  - A) "How much does your company plan cost?"
  - B) "What happens to those benefits if you leave or get retrenched?" ✓
  - C) "How long have you been at the company?"
  - D) "Do you have any dependants?"
+
+ **Why:** The core vulnerability of employer-linked benefits is that they disappear when the employment ends — B surfaces exactly that gap without being combative. A focuses on cost rather than coverage gap, which misses the point. C is irrelevant to the portability issue. D is useful for life-insurance sizing but doesn't address the key flaw in relying on employer benefits.
 
 5. **According to the life-stage test, a client with gaps in 4+ columns is:**
  - A) Unlikely to be interested in financial planning
@@ -144,17 +152,23 @@ Never recommend based on the story alone. Use it to open a conversation, then do
  - C) One bad week away from a catastrophe they can't fix retroactively ✓
  - D) A good candidate for investment products only
 
+ **Why:** The day's content states this directly — four or more uncovered columns means a single bad event (CI, hospitalisation, death, forced retirement) could wipe out the family without any safety net to fall back on. A gets this backwards; widespread gaps are precisely what motivates clients to act. B is wrong — CPF does not cover critical illness income, education fees, or adequate retirement for most Singaporeans. D ignores the most urgent gaps (protection) in favour of investment.
+
 6. **Why should you leave blank columns blank when drawing the Job A/B table with a client?**
  - A) It keeps the meeting short
  - B) Blank columns reflect the client's actual gaps and prompt them to confront reality themselves ✓
  - C) You shouldn't have blank columns — fill them with industry averages
  - D) Blanks indicate areas outside your scope
 
+ **Why:** Empty cells in the table represent uncovered scenarios and force the client to look at their own situation rather than argue with an advisor's pitch. A is not the reason — this is a diagnosis tool, not a time-saving trick. C is wrong; filling blanks with averages replaces the client's real data with fiction and removes the self-confrontation moment. D confuses visual presentation technique with scope of service.
+
 7. **A client is 45, has a $2M mortgage, two kids in secondary school, and no critical illness cover. Using the Job A/B frame, which column is most urgent to address first?**
  - A) Retirement income
  - B) Kids' education fund
  - C) Critical illness coverage — it's underfunded and the financial impact would be immediate ✓
  - D) Life insurance top-up
+
+ **Why:** A CI diagnosis at 45 with a $2M mortgage and no cover would be financially catastrophic immediately — the family could be forced to liquidate assets or take on debt to cover treatment and lost income. Retirement (A) is a future concern that compounding can still address. Education (B) has a longer timeline and some flexibility. Life insurance (D) matters but covers death, not the more likely scenario of surviving a serious illness with no income.
 
 ---
 

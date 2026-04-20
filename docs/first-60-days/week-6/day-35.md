@@ -174,11 +174,15 @@ Certain products handle inflation better than others. Keep this in mind:
  - C) Nominal − inflation ✓
  - D) Inflation / nominal
 
+ **Why:** Real return is what remains of your nominal growth after inflation has taken its share of purchasing power — a subtraction, not a multiplication, addition, or division. Multiplying (A) would produce an astronomically large number with no financial meaning. Adding (B) would give a higher number than nominal, which is logically wrong — inflation reduces, not enhances, real return. Dividing (D) produces a dimensionless ratio, not a return percentage.
+
 2. **A client earning 2% in a fixed deposit with 2% inflation has a real return of:**
  - A) 2%
  - B) 0% ✓
  - C) 4%
  - D) −2%
+
+ **Why:** 2% nominal − 2% inflation = 0% real return; the client's purchasing power is perfectly flat — they are neither growing nor losing real wealth. 2% (A) is the nominal return, ignoring inflation entirely. 4% (C) would result from adding rather than subtracting. −2% (D) would occur if inflation exceeded nominal return, which is not the case here.
 
 3. **For retirement planning of $3,000/month in today's dollars, 30 years out at 2% inflation, the future dollar need is approximately:**
  - A) $3,500/month
@@ -186,11 +190,15 @@ Certain products handle inflation better than others. Keep this in mind:
  - C) $5,400/month ✓
  - D) $8,000/month
 
+ **Why:** $3,000 × (1.02)^30 ≈ $3,000 × 1.811 ≈ $5,433/month; the day's example rounds this to ~$5,400. $3,500 (A) implies only trivial inflation over 30 years. $4,500 (B) is roughly 20 years of 2% inflation — correct time period is 30, not 20. $8,000 (D) would require roughly 3.5% inflation sustained for 30 years, not 2%.
+
 4. **A client insists "my money is safe in the bank." The most accurate reframe is:**
  - A) Banks are riskier than they appear because of counterparty risk
  - B) The nominal balance is safe, but purchasing power erodes silently at the inflation rate each year ✓
  - C) Bank interest is taxable, making it inferior to all other assets
  - D) The government guarantee only covers the first $75K
+
+ **Why:** The bank's nominal safety is real — the number on the statement doesn't fall — but purchasing power declines invisibly at the inflation rate every year, which is the actual risk for long-term wealth. Counterparty risk (A) is theoretically true for any institution but not the primary planning concern for SDIC-covered deposits. Bank interest in Singapore is not subject to income tax (C is incorrect). The government guarantee threshold (D) is a factual detail that does not address the inflation risk the client needs to understand.
 
 5. **Jane keeps $100,000 in a savings account earning 0.5% while inflation runs at 2%. After 30 years, the real purchasing power of her account (in today's dollars) is closest to:**
  - A) $100,000
@@ -198,17 +206,23 @@ Certain products handle inflation better than others. Keep this in mind:
  - C) $65,000 ✓
  - D) $45,000
 
+ **Why:** The real return is 0.5% − 2% = −1.5% p.a.; $100,000 × (0.985)^30 ≈ $64,000 in today's purchasing power. $100,000 (A) assumes zero inflation impact, which is incorrect. $85,000 (B) implies only about a decade of 1.5% real loss, not 30 years. $45,000 (D) would require a larger negative real return (closer to −2.5% per year) than the actual −1.5%.
+
 6. **When building an education savings plan, why is it wrong to use the general CPI rate of 2% as the inflation assumption?**
  - A) The CPI rate is a nominal figure and must be converted to a real rate first
  - B) Education inflation historically runs at 5–8% p.a. — using 2% will severely underestimate the future cost ✓
  - C) CPI only covers food and housing, not education
  - D) Education costs are fixed by government regulation and do not inflate
 
+ **Why:** Education is a high-inflation category running at 5–8% p.a. — using the general 2% CPI will leave the plan 50–70% short of the actual future cost, a potentially mortgage-sized miscalculation. CPI is already an inflation rate — it does not need conversion to a real rate (A conflates concepts). CPI does cover a basket of goods including education (C is factually wrong). Education costs in Singapore are not frozen by regulation and have risen substantially (D is false).
+
 7. **A product illustration shows a fixed payout of $3,000/month for 30 years starting at retirement. The main inflation risk of this structure is:**
  - A) The payout may be reduced if investment returns disappoint
  - B) The fixed $3,000 will represent only about $1,650/month in real purchasing power by year 30 at 2% inflation ✓
  - C) Fixed payouts trigger higher income tax in retirement
  - D) The insurer may convert the fixed payout to a variable one during the policy term
+
+ **Why:** $3,000 × (1/1.02)^30 ≈ $1,655 in today's purchasing power — the payout is nominally stable but real value decays by roughly 45% over 30 years, which the client will feel as a gradually worsening retirement standard of living. A variable return reducing the payout (A) is a different risk — investment-linked, not inflation-linked — and fixed payouts by definition are not subject to return variability. Fixed annuity income in Singapore is not typically subject to income tax (C). An insurer converting fixed payouts to variable payouts mid-policy (D) would be a contract breach, not a standard inflation risk.
 
 ---
 

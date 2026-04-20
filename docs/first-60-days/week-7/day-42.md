@@ -210,11 +210,15 @@ Our agency also runs Facebook Ads to help you acquire clients. This works but ha
  - C) Cold → Warm → Hot
  - D) Awareness → Consideration → Decision
 
+ **Why:** The three layers are Posts (top of funnel — generate leads), Stories (middle — build trust with existing followers), and DMs (bottom — convert to meetings and sales). Most new FCs only use Posts and ignore Stories and DMs, which is why their returns are low — the three channels multiply each other. Options A, C, and D describe generic marketing frameworks, not the specific platform-layer model taught in this lesson.
+
 2. **Authority content should centre on:**
  - A) Interest or Identity
  - B) Topic or Market ✓
  - C) Hobbies or lifestyle
  - D) Personal opinions
+
+ **Why:** The lesson splits the four pillars by content type — Interest and Identity are social content pillars (humanise you), while Topic and Market are authority content pillars (establish competence and attract a specific audience). Authority content is where lead generation happens, so it needs to signal expertise in a financial topic or a client segment. Hobbies and lifestyle (C) belong to the social pillar. Personal opinions (D) are not one of the four named pillars at all.
 
 3. **The most common DM mistake is:**
  - A) Replying too quickly
@@ -222,11 +226,15 @@ Our agency also runs Facebook Ads to help you acquire clients. This works but ha
  - C) Using emojis
  - D) Asking too many questions
 
+ **Why:** Leading with a meeting request before building any rapport is listed as an "instant block" — it skips every trust-building step and signals that you're interested in the sale, not the person. Replying quickly (A) is actually encouraged — within 24 hours is the standard, 12 hours is ideal. Emojis (C) are fine and the lesson says to match the prospect's tone. Asking questions (D) is explicitly recommended as a way to show you give personalised advice.
+
 4. **Stories (Layer 2) serve a different purpose than Posts (Layer 1). What is it?**
  - A) Generate new leads who do not follow you yet
  - B) Build trust with people who already follow you ✓
  - C) Convert warm DM conversations into booked meetings
  - D) Boost reach through the algorithm
+
+ **Why:** Stories are the middle-of-funnel layer — daily life, behind-the-scenes, quick tips — designed to build trust with people who already follow you, deepening the relationship between discovery and decision. Generating new leads (A) is Posts' job because posts are discoverable by non-followers. Converting DM conversations (C) is the DM layer's job. Algorithm reach (D) is a secondary benefit, not the stated purpose of stories.
 
 5. **An FC posts a well-researched CPF carousel but includes no CTA. What is the predictable outcome?**
  - A) High saves and shares, but zero direct leads generated ✓
@@ -234,17 +242,23 @@ Our agency also runs Facebook Ads to help you acquire clients. This works but ha
  - C) The post will be flagged as financial advice by the platform
  - D) Comments will replace DMs as the lead channel
 
+ **Why:** The lesson states that a CTA is mandatory — without it, content produces zero leads even if it gets strong engagement. A no-CTA educational post can earn saves and shares (which signal future reference value) but provides no mechanism for prospects to take action. Organic reach (B) is not dependent on CTAs. Platform flagging (C) is not how social platforms work for FC content. Comments replacing DMs (D) is not a documented substitution — both require a CTA to generate.
+
 6. **During Week 3 of a 30-day lead-gen push, the recommended action toward warm-market contacts is:**
  - A) Ask them directly for a meeting
  - B) Send the contacts a cold DM with a product explainer
  - C) Message them saying you have started posting more and ask them to share if useful ✓
  - D) Pause outreach and focus entirely on producing new content
 
+ **Why:** Week 3 is the amplification phase — the specific script is: "Just started posting more — if you find any of this useful, sharing would help." This is low-pressure, provides a reason to reach out, and can generate organic reach at no cost. Asking directly for a meeting (A) is too forward at this stage of the push. Sending a product explainer (B) is the aggressive DM approach the lesson explicitly warns against. Pausing outreach entirely (D) kills the momentum the first two weeks built.
+
 7. **Why does Day 42 advise against buying paid leads in the first 60 days?**
  - A) Facebook Ads are too expensive for new FCs
  - B) MAS does not allow paid digital advertising for new advisors
  - C) Converting cold paid leads is harder; the FC should master organic first and know their close rate before spending on ads ✓
  - D) Paid leads are lower quality than organic leads in all situations
+
+ **Why:** Cold paid leads convert at 10–20% versus 30–50% for warm organic leads — and without knowing your own close rate and CLV, you cannot assess whether the ad spend is cost-effective. Mastering organic lead-gen first gives you the benchmarks to run paid ads profitably. Cost alone (A) is not the stated reason — the lesson cites skill and conversion rate, not budget. There is no MAS rule banning paid ads for new advisors (B). D overstates the case — paid leads can become effective once the FC has mastered organic conversion, they are just not appropriate in the first 60 days.
 
 ---
 

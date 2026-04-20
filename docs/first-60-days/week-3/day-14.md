@@ -124,11 +124,15 @@ Compliance matters. The story opens the conversation; the actual product illustr
  - C) Pause and wait for the client to ask about the instrument ✓
  - D) Show a fund performance chart
 
+ **Why:** The script explicitly instructs "do not answer for them — wait," so the client asks about the instrument unprompted, which means they are now pulling toward a conversation rather than being pushed into one. A short-circuits the trust-building and jumps to prescription before the client is ready. B is closer but still fills the silence with a question; the instruction is to wait, not to prompt. D introduces a chart that wasn't part of the pen-and-paper approach and shifts the dynamic away from the client's own arithmetic.
+
 2. **Why is this story effective?**
  - A) It uses the advisor's credibility
  - B) The client does their own arithmetic and discovers the insight ✓
  - C) It includes compelling visuals
  - D) It involves large numbers that shock
+
+ **Why:** The story works because the client calculates each number themselves — $1.50, $3, roughly $1,000 over 25 years — which means they own the discovery rather than being told it by a salesperson. A reverses the dynamic: the whole point is that the advisor's authority doesn't carry the story, the client's own math does. C is wrong — the script uses pen and paper, deliberately avoiding digital visuals. D is wrong too; the numbers ($3,000/year, $1.50 interest) are deliberately small and relatable, not large and shocking.
 
 3. **When should you NOT use Bank A vs Bank B?**
  - A) With a young prospect
@@ -136,11 +140,15 @@ Compliance matters. The story opens the conversation; the actual product illustr
  - C) On a second meeting
  - D) In a group setting
 
+ **Why:** The content explicitly lists this as one of the four situations where the story is inappropriate — if risk management (protection) is the obvious unfilled need, leading with a wealth-accumulation story addresses the wrong priority and may leave the client exposed. A is wrong; young prospects with bank savings are exactly the intended audience. C and D are not exclusions listed in the content — meeting number and setting are not criteria for skipping this story.
+
 4. **A client correctly calculates that their $3,000/year bank savings earns only $1.50 in interest in Year 1. What should you do next?**
  - A) Immediately recommend a specific endowment plan
  - B) Contrast it with an illustrative long-term instrument return, then wait for the client to ask ✓
  - C) Show them a fund performance chart
  - D) Ask them to sign a needs analysis form
+
+ **Why:** The script's next step is to present the contrasting instrument return ($1,000/year vs $1.50) and then pause — the contrast is what generates the client's curiosity that opens fact-finding. A is the classic new-FC trap the content specifically warns against; recommending a product before fact-finding is the wrong move. C introduces visuals that are not part of the pen-and-paper approach. D jumps to paperwork before the client has even expressed interest.
 
 5. **Why does the Bank A vs Bank B script use pen and paper instead of a calculator app?**
  - A) It avoids compliance issues with digital tools
@@ -148,17 +156,23 @@ Compliance matters. The story opens the conversation; the actual product illustr
  - C) Calculators can give inaccurate projections
  - D) It signals that the advisor isn't reliant on technology
 
+ **Why:** The content is explicit: "the physical act of writing slows the client down and makes the numbers land." The pacing is the point — it gives the client time to feel the weight of each number as it appears. A invents a compliance concern that isn't mentioned in the content. C is false — pen-and-paper arithmetic and a calculator produce the same numbers. D is a possible side effect but not the stated reason.
+
 6. **After running Bank A vs Bank B, a client asks "so which plan should I get?" The correct response is:**
  - A) Recommend the AIA product with the best projected return
  - B) Offer to do a proper review first — there are different instruments depending on goals and timeline ✓
  - C) Send a detailed comparison table that evening
  - D) Ask the client's budget before recommending anything
 
+ **Why:** The right move is to transition into fact-finding — the story has opened the door, but a product recommendation requires knowing the client's actual goals, timeline, and circumstances. A skips fact-finding and pitches a product by return alone, which is the classic trap the content warns against. C delays the conversation and sends collateral instead of building the relationship. D is closer but still jumps ahead; budget is one input in a full fact-find, not the starting point.
+
 7. **The Bank A vs Bank B story reframes "safe" savings as expensive because:**
  - A) Banks charge hidden fees that reduce savings
  - B) Government inflation erodes cash savings
  - C) The foregone compounding return — roughly $23,000 over 25 years — is the real cost of low-interest savings ✓
  - D) Bank deposits are not insured above $75,000
+
+ **Why:** The story quantifies the cost of "safe": $75,000 saved in a bank earns roughly $1,000 total over 25 years, while the same amount in a long-term instrument generates around $24,000 — a $23,000 difference that is the real price of keeping money in the bank. A invents hidden fees that are not part of the story. B is a valid concern in real life but is not what the Bank A vs Bank B narrative uses to make its case. D is a factual error; Singapore's SDIC insures deposits up to $100,000, and in-scheme insurance is not raised in this story.
 
 ---
 

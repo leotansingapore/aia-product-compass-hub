@@ -220,11 +220,15 @@ Every mature client has **multiple policies across categories:**
    - C) Mass-market, HNW, investment, protection
    - D) Savings, coverage, investment, claims
 
+ **Why:** AIA's product catalogue groups every plan into these 7 categories, each mapping to a distinct client need — growth, lifelong cover, savings goals, time-bound protection, high-leverage legacy, income replacement, and medical costs. Options A, C, and D describe client segments or outcomes, not product categories, and none of them capture the full set of plan types an FC must be able to navigate.
+
 2. **When would you recommend Term over Whole Life?**
    - A) Never
    - B) When the client needs time-bound coverage (e.g., 25-year mortgage) and is premium-sensitive ✓
    - C) Only for young clients
    - D) For HNW clients
+
+ **Why:** Term's core advantage is high coverage at low premium for a fixed period — exactly right when the need has a known end date (mortgage paid off, kids financially independent) and budget is tight. "Never" (A) ignores Term's legitimate role as a core protection tool. Age alone (C) is not the decision driver — time horizon and budget are. HNW clients (D) are actually the primary candidates for Universal Life, not Term.
 
 3. **A mature client portfolio typically contains:**
    - A) 1 all-in-one policy
@@ -232,11 +236,15 @@ Every mature client has **multiple policies across categories:**
    - C) 4–7 policies across 3–5 categories ✓
    - D) 20+ policies
 
+ **Why:** No single plan covers all five coverage pillars — death, CI, hospital, disability, and savings — so a well-structured client accumulates policies across multiple categories over time. The "one all-in-one" instinct (A) is what new FCs fall into; it doesn't exist in practice. Two policies (B) is a common starting point for Year-1 clients, not a mature portfolio. Twenty or more (D) is over-insurance and financially inefficient.
+
 4. **A client says: "I have $80K in savings and want to grow it long-term but also want some protection." Which category fits best?**
    - A) Term — cheapest protection option
    - B) Single Premium ILP — lump-sum goes into funds with an insurance wrapper ✓
    - C) Disability income — replaces income if they can't work
    - D) Endowment — best for capital preservation goals
+
+ **Why:** A Single Premium ILP accepts a lump-sum, invests it in chosen funds for long-term growth, and wraps it in an insurance benefit — matching all three elements of the client's request. Term (A) provides protection only and has no investment component. Disability Income (C) replaces earned income during inability to work, which is unrelated to deploying lump-sum savings. Endowment (D) is right for capital preservation with guaranteed floors, not for a client seeking long-term market-linked growth.
 
 5. **A client needs coverage only until her mortgage is paid off in 20 years and has a tight budget. Which category is most appropriate?**
    - A) Whole Life — permanent coverage with cash value
@@ -244,17 +252,23 @@ Every mature client has **multiple policies across categories:**
    - C) Term — time-bound, pure protection at lowest premium ✓
    - D) Endowment — structured savings with insurance element
 
+ **Why:** Term is purpose-built for time-bound needs: it provides the highest death/TPD coverage per dollar during exactly the window the client needs it, then ends — matching her 20-year mortgage exposure perfectly. Whole Life (A) costs 5-10x more for the same coverage and extends past the need. Universal Life (B) is designed for HNW legacy planning, not budget-constrained mortgage protection. Endowment (D) is primarily a savings vehicle; its protection element is incidental and the premium is higher than Term for the same coverage amount.
+
 6. **Why does the recommended FC workflow start with category before selecting a specific plan?**
    - A) iPos requires a category to be selected before opening illustrations
    - B) Starting with a specific plan creates product-comparison clients who focus on features and price ✓
    - C) AIA compliance rules prohibit recommending named products in a first meeting
    - D) Categories are easier to remember than plan names
 
+ **Why:** When a client hears a plan name first, the conversation shifts to comparing that plan against competitors — price, features, fund performance — rather than whether the underlying need is solved. Starting with the concept and category anchors the conversation in the client's goal. A is a practical quirk of the system, not the reason for the rule. C is false — there is no such MAS prohibition. D is true but trivial; convenience of memory is not the reason for the sequencing principle.
+
 7. **Which product type is most appropriate for a high-net-worth client who wants a $1M death benefit but wants to deploy only $150K of capital?**
    - A) Whole Life — builds cash value steadily
    - B) Endowment — guaranteed floor returns
    - C) Universal Life — 3-10x leverage on premium deployed ✓
    - D) Protection-focused ILP — mixes coverage and growth
+
+ **Why:** Universal Life is the leverage vehicle — a $150K single premium can secure a $1M or greater death benefit through its 3-10x multiplier, which is precisely the HNW legacy-planning use case. Whole Life (A) builds cash value but does not offer this leverage ratio; achieving $1M death benefit with Whole Life would require far more premium deployed. Endowment (B) is a savings plan — its death benefit is modest and not designed for leverage. Protection-focused ILP (D) mixes coverage and investment growth but at nowhere near the leverage ratio Universal Life provides.
 
 ---
 

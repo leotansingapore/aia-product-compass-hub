@@ -166,11 +166,15 @@ The trap:
  - C) 300
  - D) 500
 
+ **Why:** 100 is explicitly described as the Goldilocks number — large enough to produce a working funnel, small enough to manage systematically. 30 (A) is the market-survey floor, not the list size. 300 and 500 are mentally exhausting to manage and push beyond the warm-market sweet spot into contacts that are effectively strangers. The discipline of 100 ensures each name gets proper attention.
+
 2. **A typical conversion funnel from 100 names is:**
  - A) 50 meetings, 25 closes
  - B) 30–40 market surveys, 20 fact-finds, 8–15 closes ✓
  - C) 100 meetings, 50 closes
  - D) 10 meetings, 5 closes
+
+ **Why:** The stated funnel is: 100 names → 60–70 reached → 30–40 market surveys → 20 fact-finds → 8–15 closes. Option A overstates how many people agree to a meeting. Option C assumes everyone on the list becomes a meeting, which ignores normal drop-off at each stage. Option D undershoots the expected outcome and would make the whole exercise seem not worth the effort.
 
 3. **Your Project 100 list should be:**
  - A) Built once in Week 1 and worked through
@@ -178,11 +182,15 @@ The trap:
  - C) Discarded after Year 1
  - D) Shared with your team
 
+ **Why:** Project 100 is explicitly a living document: add 5 names weekly, re-sort monthly as warmth changes, archive closed clients, and reactivate contacts who said "not now" every quarter. Treating it as a one-time build (A) is called out as the biggest mistake new FCs make. Discarding it after Year 1 (C) throws away the compounding asset. Sharing the list with your team (D) is not part of the process described and would conflict with client confidentiality.
+
 4. **A contact aged 28, recently married, steadily employed, and open to financial advice scores as:**
  - A) Priority C — too young to have real needs
  - B) Priority B — needs reconnection first
  - C) Priority A — warm, in a prime planning life stage, likely to meet within 30 days ✓
  - D) Priority B — finances may not be stable yet
+
+ **Why:** The natural market profile check scores this contact green on all five factors — age in the 25–50 prime planning window, stable income, a triggering life event (marriage), open attitude to advice, and presumably warm enough to call. Priority C (A) misreads the age bracket. Priority B for reconnection (B) applies to cooler contacts, not someone you'd "happily call." Finances being unstable (D) contradicts the "steadily employed" condition in the question.
 
 5. **The primary reason the Project 100 target is 100 names rather than 500 is:**
  - A) It takes too long to find 500 warm contacts
@@ -190,17 +198,23 @@ The trap:
  - C) AIA policy caps the list at 100
  - D) Digital tools cannot handle more than 100 contacts
 
+ **Why:** The lesson explicitly calls 100 the "Goldilocks number" — under 50 starves the funnel, over 200 becomes unmanageable and mentally exhausting. There is no AIA policy cap (C). Most FCs can find 200–300 warm contacts if they go wide (D is a red herring). The real constraint is cognitive and operational manageability, not time or technology.
+
 6. **An FC lists 100 names in Week 1 but has called only 5 by Week 4. What does Day 39 identify as the real problem?**
  - A) The script is not good enough
  - B) The list has too many C-priority contacts
  - C) The calling itself — avoidance behaviour, not list quality ✓
  - D) The market survey questions need updating
 
+ **Why:** Day 39 directly names the trap: the list is not the problem, the calling is. The FC is inventing reasons to delay — researching better scripts, questioning list quality, anything but picking up the phone. Script quality (A) and list composition (B) are surface justifications for avoidance. Updating survey questions (D) is another delay tactic. The Day 26 reference to the 10X Rule and Day 19 on counting rejections are the prescribed antidotes.
+
 7. **What is the recommended weekly addition target to keep Project 100 alive?**
  - A) 1 new name
  - B) 5 new names ✓
  - C) 20 new names
  - D) No set target — add whenever you meet someone new
+
+ **Why:** The lesson specifies 5 new names per week as the target to keep the list growing steadily. 1 name per week (A) is too slow to replace closed or exhausted contacts over time. 20 per week (C) is more than most FCs can meaningfully add with proper context and notes. "No set target" (D) is the approach that lets the list go stale — a specific weekly number creates a habit, not an aspiration.
 
 ---
 

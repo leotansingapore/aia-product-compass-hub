@@ -214,11 +214,15 @@ Most new FCs quit at Month 2. **They miss the compounding precisely because they
  - C) 3 hours in one session
  - D) 10 hours across the week
 
+ **Why:** The 3-part weekly system is Sunday ideation (30 min), Tuesday drafting (30 min), Thursday edit and publish (15 min) — totalling 60–75 minutes split across three days. 15 minutes (A) is the daily engagement block, not a content post. 3 hours in one session (C) is what happens without a system — the lesson is specifically designed to replace that marathon approach with a sustainable rhythm. 10 hours (D) is far beyond what's needed and would be unsustainable alongside a full client-facing week.
+
 2. **Every post should contain:**
  - A) A hard sell
  - B) A personal story
  - C) Authority + Social + a soft CTA ✓
  - D) A promotional offer
+
+ **Why:** Every post needs authority (demonstrating competence), social (demonstrating humanity), and a soft CTA (inviting interaction) — missing the CTA means zero leads regardless of how good the content is. A hard sell (A) and promotional offers (D) are the exact approach the lesson warns against. A personal story (B) covers the social component but omits authority and the CTA, which means the post teaches but doesn't convert.
 
 3. **When a DM comes in, the best response is to:**
  - A) Send a calendar link immediately
@@ -226,11 +230,15 @@ Most new FCs quit at Month 2. **They miss the compounding precisely because they
  - C) Ignore until they send a second message
  - D) Reply with a pre-written script
 
+ **Why:** The DM strategy is to answer the question briefly to show value, then ask a genuine follow-up — this keeps the conversation alive and signals that you give personalised, not generic advice. Sending a calendar link immediately (A) is the "bad reply" example explicitly in the lesson; it demands a meeting before trust is built and converts at 5x lower rates. Ignoring a DM (C) kills the conversation entirely. A pre-written script (D) produces exactly the generic feel that DMs are meant to avoid.
+
 4. **A prospect DMs: "My SA is only $20K at age 32 — is that bad?" The high-conversion response is to:**
  - A) Immediately send a calendar link for a 30-min consultation
  - B) Answer briefly, then ask about their overall savings and how the $20K was contributed ✓
  - C) Tell them the SA target for their age
  - D) Send a CPF infographic and ask them to read it first
+
+ **Why:** The lesson uses this exact example — the high-conversion reply answers the question ("not necessarily — depends on your overall plan") and then asks two follow-up questions about external savings and how the SA was built. A is the "bad reply" in the lesson and represents demanding a meeting before earning it. C gives an answer without context, which is generic advice that doesn't differentiate you. D sends the prospect away to read something instead of deepening the conversation.
 
 5. **The 3-part weekly content system is designed to solve which core problem?**
  - A) FC's lack product knowledge
@@ -238,17 +246,23 @@ Most new FCs quit at Month 2. **They miss the compounding precisely because they
  - C) Posting too frequently burns out the audience
  - D) Content takes too long to produce without a system
 
+ **Why:** The system's explicit purpose is to replace inspiration-based posting with a reliable weekly rhythm — Sunday ideation, Tuesday draft, Thursday publish. Inspiration is described as unreliable; systems are reliable. Product knowledge (A) is not a content production problem. Posting frequency (C) is not the issue the system solves — 1 post per week is already conservative. Content taking too long (D) is a symptom of not having a system, not the root problem the system names.
+
 6. **Why does the daily 15-minute engagement block (commenting on others' posts) help lead generation?**
  - A) It earns the FC goodwill points in the algorithm
  - B) Prospects discover the FC through thoughtful comments on posts they already read ✓
  - C) It is required by the platform to avoid account suspension
  - D) It generates more likes on the FC's own posts
 
+ **Why:** When you leave substantive comments on posts that your ideal prospects already follow, those prospects see your name and perspective in a context they trust — and may click through to your profile. This is distribution beyond your own follower base. Algorithm benefits (A) are a secondary effect, not the stated reason. Platform suspension (C) is false — engagement is optional. More likes on your own posts (D) are not the mechanism described; the engagement block is about appearing in others' feeds.
+
 7. **An FC has posted consistently for 4 weeks and received zero DMs. According to Day 41, what is the most likely cause?**
  - A) The audience is too small to generate DMs yet
  - B) Posts contain no CTA inviting interaction, or the profile does not clearly state what the FC does ✓
  - C) The content is too educational and not social enough
  - D) The posting frequency is too low
+
+ **Why:** Day 41 states that if DMs are zero for 3 weeks, the content is not inviting interaction or the profile isn't clear about what the FC does — both are fixable immediately. A small audience (A) can still generate DMs if posts have strong CTAs and a clear profile. Content balance (C) is worth reviewing but is not the primary diagnostic flag named. Posting frequency (D) is not the problem — 1 quality post per week is the recommended floor, and 4 posts over 4 weeks meets that standard.
 
 ---
 

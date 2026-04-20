@@ -164,11 +164,15 @@ Start before you feel ready. Publish before it's polished. Send before you've re
  - C) Forcing focus
  - D) Making work feel easier
 
+ **Why:** Every time you switch task types, your brain pays roughly a 20-minute refocus penalty — four task switches per day wastes up to 80 minutes that is otherwise invisible. Batching groups the same type of work into one continuous block so the refocus cost is paid once, not repeatedly. Batching does not reduce the total number of tasks (A), force focus through external pressure (C), or inherently make work feel easier (D) — it simply eliminates the switching penalty.
+
 2. **The "Will this matter in 6 months?" question is used to:**
  - A) Decide what to delete
  - B) Evaluate project scope
  - C) Decide whether to handle now vs batch to Admin Block ✓
  - D) Set yearly goals
+
+ **Why:** The question is a triage tool for interruptions that arrive during a revenue block — if the answer is no, the task goes into the next Admin Block rather than breaking your focus now. It does not trigger deletion (A), which requires a different judgment, nor does it evaluate project scope (B) or help set annual goals (D). The point is to protect peak-focus time from tasks whose apparent urgency is the client's perception rather than a real deadline.
 
 3. **The best use of your 60–90 minute peak-focus hour:**
  - A) Checking email and clearing the inbox
@@ -176,11 +180,15 @@ Start before you feel ready. Publish before it's polished. Send before you've re
  - C) Revenue-generating work (prospecting, proposals, client prep) ✓
  - D) Planning the rest of the day
 
+ **Why:** The peak-focus hour is your highest-quality cognitive window, and the lesson explicitly reserves it for activities that directly or nearly-directly produce commissions — prospecting, proposal writing, client meeting prep, or content creation. Email (A), training (B), and daily planning (D) are all explicitly listed as non-revenue-generating activities that belong in other batched blocks, not in the protected peak hour.
+
 4. **A client sends a non-urgent WhatsApp asking for their policy number while you are in your morning revenue block. Applying today's lesson, the right response is:**
  - A) Reply immediately so the client feels valued
  - B) Set an auto-reply and handle it later in your Admin Block ✓
  - C) Ignore it until the next day
  - D) Step out of the block for two minutes — it is only two minutes
+
+ **Why:** A non-urgent client enquiry belongs in the late-afternoon Admin Block — the client gets the same result whether you reply in 30 minutes or 3 hours, and the urgency is their perception rather than a real deadline. Replying immediately (A) breaks the revenue block and pays the 20-minute context-switching tax. Ignoring until tomorrow (C) risks service quality unnecessarily. Stepping out "for two minutes" (D) nearly always costs 20+ minutes of lost focus once re-entry is counted.
 
 5. **According to the time-tracking data cited, what percentage of a new FC's week is typically spent in distraction?**
  - A) 10%
@@ -188,17 +196,23 @@ Start before you feel ready. Publish before it's polished. Send before you've re
  - C) 30% ✓
  - D) 40%
 
+ **Why:** The lesson's breakdown for a typical new FC is 20% in revenue-generating activity, 50% in preparation and admin, and 30% in distraction — social media, messaging, and non-purposeful research. Twenty percent (B) is what a new FC spends on actual revenue work, not distraction. Ten percent (A) and 40% (D) do not appear in the cited data.
+
 6. **Which of the following is explicitly listed as a revenue-generating activity?**
  - A) Reorganising your CRM
  - B) Attending training
  - C) Annual policy review with a client ✓
  - D) Expense reporting
 
+ **Why:** Service touchpoints — including annual reviews, claim help, and policy updates — are explicitly listed under revenue-generating activities because they directly maintain and deepen client relationships that produce renewals and referrals. CRM reorganisation (A), training attendance (B), and expense reporting (D) are all explicitly listed as non-revenue-generating activities that "feel productive" but do not directly produce commissions.
+
 7. **The "ten-minute rule" helps overcome procrastination because:**
  - A) Most tasks can be completed in ten minutes
  - B) Short timers reduce the quality standard required
  - C) Starting is the hardest part — momentum usually carries you beyond ten minutes ✓
  - D) It creates accountability to a manager
+
+ **Why:** The rule works because the resistance to any task sits almost entirely at the start line, not inside the task itself — once you begin, flow carries you past the 10-minute mark 90% of the time. It is not designed for tasks that fit inside 10 minutes (A), nor does it lower quality expectations (B). It creates self-generated momentum, not external accountability to a manager (D).
 
 ---
 

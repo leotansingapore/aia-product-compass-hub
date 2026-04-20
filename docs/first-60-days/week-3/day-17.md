@@ -144,11 +144,15 @@ This isn't a 30-day project. It's a 5–10 year rebuild. Your job is to walk alo
  - C) Does it appreciate over time?
  - D) Do you own it outright?
 
+ **Why:** The lesson defines an asset as anything that puts money into your pocket and a liability as anything that takes money out — price and ownership status are not the criteria. A sets a cost threshold that has nothing to do with cash flow. C is a common misconception; an appreciating item that generates no cash inflow (e.g., a primary home) is still mostly a liability by this framework. D ignores the cash-flow test entirely — something owned outright but generating no income is still not an asset under this definition.
+
 2. **A primary home with a mortgage is classified as:**
  - A) Asset (always)
  - B) Liability (always)
  - C) Mostly liability — the mortgage, tax, and upkeep flow outward ✓
  - D) Neither — it's a "shelter expense"
+
+ **Why:** The content classifies a primary home with a mortgage as "mostly liability" because mortgage repayments, property tax, maintenance, and insurance all flow outward — it only becomes a modest asset once fully paid off, and even then carrying costs continue. A is the common misclassification this lesson corrects. B overstates it — "mostly" is the key word; there is equity building even with a mortgage. D invents a category that does not appear in the lesson's framework.
 
 3. **Why does "looking rich" rarely mean "being rich"?**
  - A) Because rich people don't display their wealth
@@ -156,11 +160,15 @@ This isn't a 30-day project. It's a 5–10 year rebuild. Your job is to walk alo
  - C) Because real wealth is hidden
  - D) Because displays of wealth are taxed more
 
+ **Why:** The Person A vs Person B example shows that visible wealth markers — a condo with a large mortgage, a Tesla on a car loan, a watch collection — are mostly liabilities that drain cash, leaving a true net worth of only $300–350K despite an impressive lifestyle. A makes a behavioural claim about wealthy people that is not the lesson's point. C is vague and not the explanation offered by the content. D is false; there is no display-of-wealth tax in Singapore.
+
 4. **A client owns a condo worth $1.1M with a $900K mortgage, a car on a $60K loan, and $150K in CPF. What is their approximate real net worth?**
  - A) $1.26M
  - B) $500,000
  - C) $290,000 ✓
  - D) $1.1M
+
+ **Why:** Net of the $900K mortgage the condo contributes $200K equity; the car contributes roughly zero once the $60K loan is netted against a depreciated value; CPF adds $150K — total approximately $290K. A and D count the condo at gross value without netting the mortgage, which inflates the figure. B overstates the net by roughly $200K.
 
 5. **A client who earns $150K/year drives a Mercedes, wears a Rolex, and takes three overseas holidays per year gets defensive when you suggest their net worth may be lower than expected. The right move is:**
  - A) Show them a comparison of their lifestyle vs a peer's investment portfolio
@@ -168,17 +176,23 @@ This isn't a 30-day project. It's a 5–10 year rebuild. Your job is to walk alo
  - C) Proceed anyway — the numbers are facts, not opinions
  - D) Focus the meeting on protection products instead of net worth
 
+ **Why:** The content explicitly says some defensive clients need time — back off and reschedule, because shame loses clients and the goal is to eventually put real numbers in their hands, not win an argument today. A risks doubling the defensiveness by introducing a social comparison. C is technically true but practically counterproductive; a defensive client who shuts down is not a client who takes action. D sidesteps the conversation rather than creating the conditions to have it later.
+
 6. **Which of the following items is correctly classified as an ASSET using the one-sentence test?**
  - A) A primary home with $400K outstanding mortgage and $2,000/month in maintenance costs
  - B) A second car used occasionally for family trips
  - C) An investment property generating $800/month net rental income after all costs ✓
  - D) A $20,000 designer watch purchased last year
 
+ **Why:** C passes the one-sentence test cleanly — $800/month net flows into the owner's pocket, making it an asset by definition. A has a mortgage and $2,000/month in outflows — money flows out, so it is mostly a liability. B generates no income and incurs fuel, insurance, and depreciation costs. D is a designer item that depreciates; the content classifies luxury goods as liabilities unless held for resale at scale.
+
 7. **After a client sees their honest balance sheet for the first time and falls quiet, you should:**
  - A) Summarise the gaps and hand them a product brochure
  - B) Fill the silence with reassurance that their situation is common
  - C) Let the silence sit — the realisation is working, and interrupting it breaks the moment ✓
  - D) Suggest they consult their spouse before proceeding
+
+ **Why:** The content specifically identifies the quiet client as one where the realisation is working, and says the goal is to put real numbers in their hands then ask what they want to do — the silence is productive and should not be interrupted. A jumps to a product pitch before the client has processed the realisation, which breaks trust. B normalises the situation prematurely and defuses the motivation that the silence is building. D introduces a third party before the client has even decided they want to act.
 
 ---
 

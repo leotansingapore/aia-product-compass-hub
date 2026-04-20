@@ -152,11 +152,15 @@ Your first 60 days is one of those 10X sprints. After that, you'll find the cade
  - C) 10X targets fail because they're unrealistic
  - D) 10X targets only work for top performers
 
+ **Why:** The worked example in the lesson shows this clearly — a new FC who aims for $300K FYC typically lands at $150–200K, which is still 2.5–3x what a $60K-targeting peer achieves. A misrepresents the rule; the point is that even partial achievement of a 10X goal outperforms full achievement of a 1X goal. C is wrong — the content shows that missing a 10X target still produces outsized results. D is a common misconception; the principle works through activity volume, not innate talent.
+
 2. **When you miss a 10X target, the correct response is:**
  - A) Lower the target next period
  - B) Give up and try a different approach
  - C) Keep the target; increase the action ✓
  - D) Analyse what went wrong before trying again
+
+ **Why:** Principle 3 states explicitly: "targets don't get achieved by lowering them" — when you miss, the response is to raise activity volume, not reduce ambition. A is the "lazy response" the content calls out by name. B abandons the target and the activity discipline together. D sounds rational but the 10X Rule treats analysis as secondary to action; the content says "failure is feedback" — adjust and move, don't stop to analyse.
 
 3. **What can you NOT 10X?**
  - A) Your outreach volume
@@ -164,11 +168,15 @@ Your first 60 days is one of those 10X sprints. After that, you'll find the cade
  - C) A client's buying decision ✓
  - D) Your fear threshold
 
+ **Why:** The content lists client outcomes explicitly under "it doesn't work for" — you cannot 10X something you don't control, and a client's decision to buy is theirs alone. A, B, and D are all listed under what the rule does work for (activity volume, study volume, and fear thresholds respectively), so 10X'ing each of them is correct and expected.
+
 4. **An FC misses their FYC target in Month 3. According to the 10X Rule, the correct response is:**
  - A) Reduce the Month 4 target to something more achievable
  - B) Take a week off to recover and reset expectations
  - C) Keep the target and raise activity volume — more calls, more outreach ✓
  - D) Consult a mentor to identify if the goal was realistic
+
+ **Why:** Principle 3 is unambiguous: keep the target and increase action — the example in the lesson says to raise calls from 50 to 150/week and warm outreach from 10 to 30/week. A is the lazy response called out by name in the content. B reduces activity at the exact moment more is needed. D introduces a pause for analysis before acting; the 10X Rule treats action as the primary corrective tool, not reflection.
 
 5. **A new FC is afraid to post on LinkedIn. According to Principle 5, the most effective way to overcome this fear is:**
  - A) Draft posts privately for a month before publishing
@@ -176,17 +184,23 @@ Your first 60 days is one of those 10X sprints. After that, you'll find the cade
  - C) Hit post — action precedes clarity, not the other way around ✓
  - D) Ask their mentor to review their first post before it goes live
 
+ **Why:** Principle 5 states that for fear, "action precedes clarity" — the only thing that kills the fear of posting is posting, just as the only thing that kills the fear of a cold call is making the call. A, B, and D all delay action under the guise of preparation, which is exactly what Principle 5 is designed to counter; the commitment and the doing are what generate the clarity and confidence.
+
 6. **The 10X Rule works for activity volume but NOT for skill acquisition speed. This means:**
  - A) New FCs should limit practice sessions to avoid burnout
  - B) Doing 10X more calls won't necessarily make you 10X better at objection handling overnight — some skills need reps over time ✓
  - C) Skills should be learned before activity is increased
  - D) Product knowledge is more important than prospecting volume in Year 1
 
+ **Why:** The content places skill acquisition in the "doesn't work for" category alongside relationships — some skills require time and repetition to internalise, not just more volume in a short period. A misreads the point; limiting practice sessions is not the lesson. C reverses the intended message — the lesson encourages action before full readiness, not waiting until skills are mastered. D is a prioritisation claim not supported by the content, which treats both product knowledge and activity volume as 10X-able inputs.
+
 7. **Why is it unsustainable to run at 10X effort for 12 straight months?**
  - A) Clients become fatigued by high-contact advisors
  - B) Regulators may flag unusually high submission volumes
  - C) FCs who try to sustain 10X indefinitely burn out in Year 2 — the pattern that works is 10X sprints inside a sustainable yearly cadence ✓
  - D) 10X effort produces diminishing returns after 6 months
+
+ **Why:** The "shadow side" section states this directly — the FCs who build 30-year careers run 10X sprints of 60–90 days inside a sustainable year, alternating with periods of 3–5X steady state and recovery. A and B are concerns not raised in the content. D invents a diminishing-returns timeline that the lesson does not support; the issue is human energy and health, not mathematical returns.
 
 ---
 

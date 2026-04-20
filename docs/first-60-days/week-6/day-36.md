@@ -289,11 +289,15 @@ By Week 10, you should be comfortable doing this in front of a real prospect wit
  - C) PMT direction ✓
  - D) n
 
+ **Why:** PMT is the variable most frequently entered with the wrong sign because it represents a recurring cash flow — premiums paid out are negative, income received is positive, and new advisors often enter whichever feels natural. PV and FV (A, B) are single-entry values where the sign is typically intuitive (PV is money going in today, FV is money received in future). n (D) is a count of periods and cannot have a sign error.
+
 2. **Insurance premium calculations usually use:**
  - A) END mode
  - B) BGN mode ✓
  - C) No mode
  - D) Simple interest mode
+
+ **Why:** Insurance premiums are typically paid at the beginning of each period (you pay before you're covered), which is the definition of BGN (beginning) mode. END mode (A) assumes payments occur at the end of each period — correct for most loan repayments but not for insurance. Calculators always operate in one of the two annuity modes (C is incorrect). TVM calculations use compound interest, not simple interest (D is not a valid calculator mode for this purpose).
 
 3. **If PMT is given monthly, n and i must be in:**
  - A) Years
@@ -301,11 +305,15 @@ By Week 10, you should be comfortable doing this in front of a real prospect wit
  - C) Any unit; the calculator adjusts
  - D) Quarterly periods
 
+ **Why:** All three variables — n, i, and PMT — must use the same compounding period; if PMT is monthly, n must be the number of months and i must be the monthly rate (annual rate ÷ 12). Using years for n (A) while PMT is monthly would produce a wildly incorrect answer. The calculator does not auto-convert units (C) — this is the most dangerous misconception because the calculation will proceed without an error message. Quarterly periods (D) only apply if PMT is also quarterly.
+
 4. **In Problem 9 (closing the gap), the correct two-step approach is:**
  - A) Subtract desired savings from CPF balance, then solve for i
  - B) Project CPF forward at its rate, calculate the shortfall, then solve for the PMT needed to fund that shortfall at a separate rate ✓
  - C) Solve for total PMT at a blended rate of CPF and external returns
  - D) Use the Rule of 72 to estimate both CPF growth and the gap simultaneously
+
+ **Why:** CPF and the external investment grow at different rates (4% and 5% respectively), so they must be handled in separate calculations — first project CPF to find its terminal value, then solve for the PMT that funds the remaining gap at the external rate. Subtracting and solving for i (A) does not answer the question. A blended rate (C) is mathematically inaccurate when the two pools grow at different rates with different capital. Rule of 72 (D) can approximate CPF growth but cannot solve for the required PMT with the necessary precision.
 
 5. **A client watches you run a TVM calculation in under 90 seconds during the meeting. The primary advisor benefit of this skill is:**
  - A) It satisfies MAS requirements for fact-finding documentation
@@ -313,17 +321,23 @@ By Week 10, you should be comfortable doing this in front of a real prospect wit
  - C) It demonstrates real-time competence and builds instant credibility, reducing the client's need to "think about it" ✓
  - D) It eliminates the need for a formal financial needs analysis
 
+ **Why:** Running the numbers live transforms a vague retirement worry into a concrete, answerable question — clients who see the math in real time trust the advisor's competence and feel their specific situation has been addressed, which reduces hesitation. MAS fact-finding documentation (A) requires a formal written process, not a live calculator demonstration. The skill enables accurate product matching, not upselling (B). A TVM calculation is an input to the financial needs analysis, not a replacement for it (D).
+
 6. **You solve Problem 5 and find Option A (lump sum $50K) outperforms Option B (annual $3,000) despite Option B's higher total outlay. The reason is:**
  - A) Lump sums benefit from preferential tax treatment
  - B) Annual premiums stop compounding after 10 years
  - C) The full $50K earns compound returns from day one, whereas Option B's capital is only gradually accumulated over 20 years ✓
  - D) BGN mode artificially inflates the lump-sum result
 
+ **Why:** Lump-sum compounding is maximally efficient because the full principal is working from year one — by contrast, Option B's capital is still being built up during the 20-year period, so average capital under management is far lower. Tax treatment (A) is not part of the TVM model and is identical for both options in this comparison. Annual premiums continue compounding throughout the period (B is false). BGN/END mode applies to annuities, not to single-payment calculations (D is false).
+
 7. **A new FC scores 6 out of 10 on the practice set. The recommended next step is:**
  - A) Move to Week 7 — the practice set is just supplementary
  - B) Review Days 28–32 and re-run the full set the next day ✓
  - C) Consult a senior FC to work through the problems together
  - D) Focus only on the two or three problem types most likely to appear in client meetings
+
+ **Why:** The day explicitly states that a score below 7 requires reviewing Days 28–32 and re-running the full set the next day — because the goal is 10/10 with sub-60-second speed, not just passing. Moving to Week 7 (A) would carry forward gaps that will surface as credibility failures in live client meetings. Consulting a senior FC (C) is valuable but not the structured first step the day prescribes. Narrowing to a subset of problems (D) leaves blind spots that will appear in the exact client situations you didn't practise.
 
 ---
 

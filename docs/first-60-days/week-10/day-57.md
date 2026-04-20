@@ -210,11 +210,15 @@ This transparency builds trust. A client who chooses an ILP after this conversat
    - C) Year 10
    - D) Always 100%
 
+ **Why:** ILP fee structures are front-loaded — in Years 1-2, insurance charges and admin fees can consume 40-85% of the premium, with only 15-50% allocated to units. By Year 3-5 the allocation approaches 100%. Year 1 (A) is actually the worst allocation period, not the best. Year 10 (C) understates how quickly allocation improves — it normalises well before then. Always 100% (D) is never true; there are always some ongoing insurance charges and admin fees throughout the policy life.
+
 2. **Which client should NOT buy an ILP?**
    - A) 30-year-old with 25-year horizon
    - B) 50-year-old with 5-year horizon who needs the money ✓
    - C) Disciplined long-term investor
    - D) Client who wants forced savings
+
+ **Why:** A 5-year horizon is a textbook disqualifier for ILPs — front-loaded fees in Years 1-3 mean early surrender would almost certainly return less than premiums paid, and market exposure on a short horizon amplifies that risk. The 30-year-old with a 25-year horizon (A) fits the ideal ILP profile. Disciplined long-term investors (C) and clients who want forced savings (D) are both explicitly named as suitable ILP profiles in the day's content.
 
 3. **The two projected rates typically shown in an ILP illustration:**
    - A) 2% and 6%
@@ -222,11 +226,15 @@ This transparency builds trust. A client who chooses an ILP after this conversat
    - C) 4% and 8% ✓
    - D) Guaranteed only
 
+ **Why:** 4% and 8% are the industry-standard non-guaranteed illustrated rates used in Singapore ILP benefit illustrations — the low scenario for conservative planning and the high scenario for optimistic projection. These are not actual guarantees; they are illustration assumptions mandated by MAS for comparability. The other rate pairs (A and B) are not standard and would not match a real benefit illustration a client would receive. Showing guaranteed values only (D) would omit the non-guaranteed projections that MAS requires to be displayed alongside.
+
 4. **A client surrenders their ILP after 18 months because of a job loss. What outcome should you have warned them about at point of sale?**
    - A) The policy reverts to a term plan automatically
    - B) Early surrender within the front-loaded years means likely receiving back less than total premiums paid ✓
    - C) The insurer charges a flat $500 surrender fee only
    - D) The fund value is frozen for 30 days pending final pricing
+
+ **Why:** The front-loaded fee structure means that in the first 1-3 years only 15-70% of premium reaches the investment units; surrendering at 18 months means the accumulated fund value is almost certainly below total premiums paid. This is the key disclosure that must happen at point of sale so the client understands liquidity is restricted. Policies do not automatically revert to term on surrender (A). The surrender impact is structural, not a flat fee (C). A 30-day fund freeze (D) is not standard AIA policy.
 
 5. **A client with a 20-year ILP has watched markets drop 25% this year. She wants to switch all funds to cash. What is the correct guidance?**
    - A) Approve immediately — capital preservation is always the priority
@@ -234,17 +242,23 @@ This transparency builds trust. A client who chooses an ILP after this conversat
    - C) Decline — fund switches are not permitted under AIA policy
    - D) Advise surrendering the policy and restarting when markets recover
 
+ **Why:** Switching entirely to cash during a 25% market drop crystallises the loss and removes the portfolio from the recovery that historically follows downturns — the opposite of sound long-term investment behaviour. The correct approach is to review her actual risk tolerance, not the one she thought she had when markets were up, and rebalance thoughtfully. Approving immediately (A) prioritises the client's emotional reaction over their 20-year financial interest. Fund switches are generally permitted in ILPs (C). Surrendering and restarting (D) would incur front-loaded fees all over again and is almost never the right advice.
+
 6. **Why is an ILP described as "investments wrapped in an insurance policy" rather than simply an investment account?**
    - A) ILPs are taxed differently from direct investments under Singapore law
    - B) The insurance wrapper provides forced savings, a death benefit, and tax-advantaged structure — but also adds insurance charges and admin fees ✓
    - C) ILPs are managed by AIA's fund managers rather than external fund houses
    - D) The insurance wrapper guarantees the principal invested
 
+ **Why:** The insurance policy structure is what distinguishes an ILP from a direct unit trust — it adds a death benefit, forced-savings discipline, and a tax-advantaged wrapper, but those benefits come at a cost: insurance charges and admin fees that reduce net investment return. Tax treatment of ILPs versus direct investments in Singapore is not a material distinguishing factor for most retail clients (A). ILP funds are typically managed by third-party fund houses, not AIA itself (C). The wrapper explicitly does not guarantee principal — non-guaranteed returns are a core disclosure requirement (D).
+
 7. **A 45-year-old client who is a sophisticated investor, already DCA-ing into ETFs monthly, asks whether an ILP adds value. What is your honest answer?**
    - A) Yes — ILPs always outperform direct ETFs because of professional fund management
    - B) Not likely — a cost-sensitive investor with existing discipline benefits less from the wrapper since the fees outweigh the forced-savings advantage ✓
    - C) Yes — the insurance wrapper eliminates market risk
    - D) It depends entirely on the chosen fund, not the client's existing behaviour
+
+ **Why:** The ILP wrapper's main value propositions are forced savings discipline and the death benefit — both of which this client already has via his own DCA habit and separate life cover. Adding the wrapper means paying insurance charges and admin fees on top of fund management fees, which nets below what direct ETF investing would return. ILPs do not consistently outperform direct ETFs (A) — the wrapper costs reduce net return. The insurance wrapper carries full market risk (C); it does not eliminate it. Fund selection matters, but it is secondary to whether the client fits the product profile (D) — the wrong client with a great fund is still the wrong recommendation.
 
 ---
 

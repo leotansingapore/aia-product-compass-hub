@@ -141,11 +141,13 @@ function parseQuestionBlock(block: string, index: number): QuizQuestion | null {
   const options: QuizOption[] = [];
   const explanationLines: string[] = [];
   let sawOption = false;
+  let inExplanationParagraph = false;
   for (let i = 1; i < lines.length; i++) {
     const line = lines[i];
     const optMatch = line.match(/^\s*[-*]\s+([A-Z])\)\s+(.+?)\s*$/);
     if (optMatch) {
       sawOption = true;
+      inExplanationParagraph = false;
       const key = optMatch[1];
       let text = optMatch[2];
       const correct = /\s*✓\s*$/.test(text);
@@ -157,6 +159,20 @@ function parseQuestionBlock(block: string, index: number): QuizQuestion | null {
     const quoteMatch = line.match(/^\s*>\s?(.*)$/);
     if (quoteMatch) {
       explanationLines.push(quoteMatch[1].trim());
+      continue;
+    }
+    const whyStart = line.match(/^\s*\*\*(?:Why|Explanation|Because)[:：]?\*\*\s*[:：]?\s*(.*)$/i);
+    if (whyStart) {
+      inExplanationParagraph = true;
+      if (whyStart[1].trim()) explanationLines.push(whyStart[1].trim());
+      continue;
+    }
+    if (inExplanationParagraph) {
+      if (line.trim() === "") {
+        inExplanationParagraph = false;
+        continue;
+      }
+      explanationLines.push(line.trim());
     }
   }
 

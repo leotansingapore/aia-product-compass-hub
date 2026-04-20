@@ -174,11 +174,15 @@ For 99% of client conversations (rates 2–12%, periods 5–40 years), the rule 
  - C) 12 years ✓
  - D) 15 years
 
+ **Why:** Rule of 72 gives 72 ÷ 6 = 12 years exactly. 6 years (A) would require a 12% return. 10 years (B) corresponds to roughly 7.2%, not 6%. 15 years (D) corresponds to roughly 4.8% — a common confuse with the CPF OA rate.
+
 2. **If education inflation is 8% p.a., a $100K degree in 13 years will cost roughly:**
  - A) $150K
  - B) $200K
  - C) $270K ✓
  - D) $400K
+
+ **Why:** At 8%, money doubles every 9 years (72 ÷ 8); 13 years is 1.44 doublings, giving $100K × 2^1.44 ≈ $272K, confirmed by the calculator as $272,000. $150K (A) reflects only simple linear growth and badly underestimates compounding. $200K (B) is roughly one doubling, which would require 9 years, not 13. $400K (D) would require nearly two full doublings, i.e., 18 years.
 
 3. **Rule of 72 is most accurate for:**
  - A) Rates below 1%
@@ -186,11 +190,15 @@ For 99% of client conversations (rates 2–12%, periods 5–40 years), the rule 
  - C) Rates between 2–12%, periods 5–40 years ✓
  - D) Short-term calculations only
 
+ **Why:** The rule is an algebraic approximation that holds within 3–5% of the exact answer for rates in the 2–12% band across medium-to-long time horizons — exactly the range of most financial planning conversations. Below 1% (A), compounding is so slow the approximation loses meaning. Above 20% (B), the rule starts overshooting the true doubling time. Short-term periods (D) are precisely where compounding frequency and volatility make the approximation less reliable, not more.
+
 4. **A client, age 35, has $50,000 in CPF SA earning 4% p.a. Without any additional contributions, the approximate balance at age 65 is:**
  - A) $100,000
  - B) $130,000
  - C) $162,000 ✓
  - D) $250,000
+
+ **Why:** At 4%, money doubles every 18 years (72 ÷ 4); 30 years from 35 to 65 is 30 ÷ 18 ≈ 1.67 doublings, giving $50K × 2^1.67 ≈ $159K; the exact calculator answer is $162,170. $100K (A) is just one doubling, which would require 18 years, not 30. $130K (B) falls short of even 1.5 doublings. $250K (D) would require nearly 2.3 doublings — closer to 41 years at 4%.
 
 5. **A client says "I'll start investing in 5 years when I'm more settled." At 6% compounding, the cost of this 5-year delay in terms of final retirement capital is approximately:**
  - A) 5%
@@ -198,17 +206,23 @@ For 99% of client conversations (rates 2–12%, periods 5–40 years), the rule 
  - C) 25% ✓
  - D) 50%
 
+ **Why:** At 6%, money doubles in 12 years; a 5-year delay sacrifices roughly 5/12 ≈ 0.42 doublings, which translates to about 25% less final capital on the same contribution plan. 5% (A) dramatically understates the compounding loss. 10% (B) is closer but still underestimates because the delay costs compounding on every future contribution, not just the first. 50% (D) would imply almost a full doubling lost, which requires a much longer delay or a higher rate.
+
 6. **Your client is 40 and holds a $500K life insurance policy. Inflation is 3% p.a. In real purchasing-power terms, what will $500K buy their family in 30 years?**
  - A) Roughly $500K — nominal value is preserved
  - B) Roughly $350K
  - C) Roughly $210K ✓
  - D) Roughly $100K
 
+ **Why:** At 3% inflation, prices double every 24 years (72 ÷ 3); in 30 years prices are 2.38× higher, so $500K in future dollars buys only $500K ÷ 2.38 ≈ $210K in today's purchasing power. A is wrong because the nominal face value is unchanged but purchasing power is not. $350K (B) understates the inflation erosion over 30 years. $100K (D) overstates it — that level of erosion would require roughly 5% inflation sustained for 30 years.
+
 7. **A 4-year Australian business degree costs $100,000 today. A client's child is 8. Using 8% education inflation, the target amount when the child turns 21 is closest to:**
  - A) $150,000
  - B) $200,000
  - C) $270,000 ✓
  - D) $400,000
+
+ **Why:** This is the same calculation as question 2 — 13 years at 8% gives 1.44 doublings, arriving at approximately $272K, confirmed precisely by the calculator. $150K (A) represents near-linear growth and ignores compounding entirely. $200K (B) reflects only one full doubling at 9 years, not 13. $400K (D) requires roughly two doublings (18 years), almost 50% more time than is available.
 
 ---
 

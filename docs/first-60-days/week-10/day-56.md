@@ -202,11 +202,15 @@ This is the "fully loaded" baseline. Year 1 might cover 2–3 layers. Over time,
    - C) 20× annual income
    - D) $1M
 
+ **Why:** 10x annual income is the benchmark for Death/TPD because it gives dependants enough capital to replace the breadwinner's income stream for roughly a decade while they adjust their finances. 5x (A) is the target for Major CI coverage, not death cover. 20x (C) would over-insure most clients and is prohibitively expensive. A flat $1M (D) ignores income entirely — $1M is too little for a high earner and potentially excessive for someone earning $40K/year.
+
 2. **Why is Disability Income often overlooked?**
    - A) It's expensive
    - B) Clients assume CI covers this — but CI is a lump sum, not continuing income ✓
    - C) It's hard to qualify for
    - D) It's not available in Singapore
+
+ **Why:** CI pays a one-off lump sum when a critical illness is diagnosed, which may be spent quickly on treatment or debt clearance; it does not replace the steady monthly income a disabled person needs for years. Most clients conflate the two products and assume they are covered. Disability Income is not particularly expensive compared to CI riders (A). It is available in Singapore (D). Qualification (C) is no harder than other protection products.
 
 3. **The biggest risk of relying on company hospital coverage is:**
    - A) Low coverage limits
@@ -214,11 +218,15 @@ This is the "fully loaded" baseline. Year 1 might cover 2–3 layers. Over time,
    - C) Poor claims service
    - D) Restricted hospital choice
 
+ **Why:** Company hospital plans are tied to the employment contract — they lapse the moment the client resigns, is retrenched, or retires. Reapplying for personal coverage years later means the client is older, potentially has pre-existing conditions recorded, and faces higher premiums or specific exclusions. Low limits (A) and hospital choice (D) are real inconveniences but are secondary to the portability problem. Claims service (C) varies by insurer, not by group versus individual plan type.
+
 4. **A client is diagnosed with cancer and survives. Two years later, a second cancer is diagnosed. Which CI rider type pays out on the second claim?**
    - A) Major CI rider — covers all major illnesses
    - B) Early CI rider — catches illnesses at earlier stages
    - C) Multiplier rider — doubles coverage during working years
    - D) Multi-pay CI rider — designed for multiple payouts including recurrence ✓
+
+ **Why:** A standard Major CI rider (A) typically pays out once per policy, which means the first cancer claim exhausts the benefit and the second claim receives nothing. The Multi-pay CI rider is specifically structured to allow multiple payouts — including recurrence of the same illness after a qualifying survival period. Early CI (B) pays at pre-major stages, not on recurrence. The Multiplier rider (C) increases the payout amount during working years but does not enable a second separate claim.
 
 5. **A freelance graphic designer with no employer sick leave asks what insurance is most often overlooked for people like her. What do you recommend addressing?**
    - A) Term insurance — cheapest coverage for her age
@@ -226,17 +234,23 @@ This is the "fully loaded" baseline. Year 1 might cover 2–3 layers. Over time,
    - C) Hospital rider — reduces out-of-pocket claims cost
    - D) Universal Life — high leverage for legacy planning
 
+ **Why:** Disability Income is the stealth-priority product most FCs forget, and it is critical for the self-employed because there is no employer sick pay or group disability scheme to fall back on. A freelancer who cannot work for 6 months due to illness or injury faces total income loss — exactly what Disability Income is designed to cover. Term (A) addresses death cover, not income during disability. Hospital rider (C) reduces out-of-pocket medical bills but does not replace lost income. Universal Life (D) is a legacy tool for HNW clients, not a priority for a freelancer's income protection.
+
 6. **Using the "layered protection" model, which layer should typically be established first for a 32-year-old breadwinner with two young children?**
    - A) Layer 5 — accident and multi-pay CI riders
    - B) Layer 4 — Disability Income plan
    - C) Layer 1 — Term insurance for maximum coverage during the highest-need years ✓
    - D) Layer 3 — Integrated Shield Plan upgrade
 
+ **Why:** Layer 1 (Term) is the foundation precisely because it delivers the largest death/TPD coverage at the lowest cost — the right starting point for a young breadwinner whose family needs maximum income-replacement protection and who likely has limited premium budget. Specialised riders (A) at Layer 5 add refinement to an already-built base, not the base itself. Disability Income (B) and the hospital upgrade (D) are important but are built on top of the fundamental life-cover floor, not before it.
+
 7. **A client says: "I already have CI coverage from my whole life plan — do I really need an Early CI rider too?" What is the accurate response?**
    - A) No — if Major CI is covered, Early CI is redundant
    - B) Yes — Early CI pays at diagnosis of pre-major stages, when treatment costs are highest and a Major CI rider would not yet pay out ✓
    - C) It depends on the insurer — some whole life plans include early stage coverage by default
    - D) Early CI is mainly for clients over 50
+
+ **Why:** Major CI riders only trigger at advanced or late-stage illness diagnosis — by that point the client has often already incurred substantial treatment costs at the earlier stages with no payout. Early CI fills exactly that gap, paying out when an illness is first detected at a pre-major stage so the client has cash while treatment is most intensive. A is incorrect because the two riders cover different stages of the same illnesses, not the same events. C misrepresents standard whole life policy design; basic CI riders almost never include early-stage coverage without an explicit rider. D is wrong — Early CI is most valuable for clients in their 30s and 40s when the probability of early-stage detection is high and the financial impact is severe.
 
 ---
 

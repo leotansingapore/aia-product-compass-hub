@@ -202,11 +202,15 @@ This is **the textbook CST-aware relationship arc** for a new client. By 3 meeti
    - C) Boring → exciting
    - D) Expensive → cheap
 
+   **Why:** The Risks Angle's core reframe is that insurance is not an optional cost but the structural guarantee that a single uncontrollable event won't destroy the client's entire financial plan. "Necessary evil to smart investment" (A) still frames insurance as a cost with a return, which misses the point. Making it exciting (C) or cheap (D) are surface-level pitches, not conceptual reframes. The correct shift is from discretionary expense to foundational requirement.
+
 2. **When should you lead with the Risks Angle (not Wealth)?**
    - A) Young singles with no dependents
    - B) New parents, pre-retirees, clients after a health scare ✓
    - C) Every meeting
    - D) Never — always lead with Wealth
+
+   **Why:** You lead with the angle that matches the client's present life tension. New parents, pre-retirees with wealth to preserve, and clients who have just experienced a health scare all have protection as their dominant concern — the Risks Angle speaks directly to their current emotional state. Young singles with no dependents (A) have minimal protection needs and respond better to the Wealth Angle. Neither angle is universal (C, D) — context determines the choice.
 
 3. **The "uncontrollable event" principle says:**
    - A) Life is random
@@ -214,11 +218,15 @@ This is **the textbook CST-aware relationship arc** for a new client. By 3 meeti
    - C) Clients should worry less
    - D) Insurance covers everything
 
+   **Why:** The principle draws a sharp distinction between controllable risks (over-leveraging, lifestyle inflation) and uncontrollable risks (cancer, accidents, genetic conditions, pandemics) — and states that structural protection is the mechanism for the latter. "Life is random" (A) is philosophically adjacent but misses the actionable point. "Worry less" (C) is the opposite of what the CST is designed to do at this moment. Insurance doesn't cover everything (D) — it covers specific uncontrollable events you cannot self-insure against.
+
 4. **A client has just recovered from a serious health scare. Which CST should you lead with, and why?**
    - A) Wealth Angle — focus on building back their financial plan
    - B) Risks Angle — their present life tension is protection, not accumulation ✓
    - C) Either works — the order doesn't matter
    - D) Neither — avoid insurance topics when emotions are high
+
+   **Why:** The rule is to lead with the angle that matches the client's present life tension — and someone who has just experienced a health scare is acutely aware of how exposed they are. The Risks Angle meets them exactly where they are. The Wealth Angle (A) would feel tone-deaf given the immediate concern. Order always matters (C) because the wrong angle at the wrong time falls flat or feels misaligned. Avoiding insurance precisely when the client's health experience has primed them to understand the need (D) is the opposite of good advising.
 
 5. **During the Risks CST gap reveal, you quote a client's actual numbers from the CFR. Why does this matter?**
    - A) It is legally required for compliance
@@ -226,17 +234,23 @@ This is **the textbook CST-aware relationship arc** for a new client. By 3 meeti
    - C) It shows you were listening, which builds rapport
    - D) It shortens the meeting by combining data collection with the CST
 
+   **Why:** A gap stated in the client's own numbers ("your $20K employer plan vs $80–150K for major surgery") is real and felt — it's not a generic statistic that the client can dismiss as unlikely to apply to them. Personalisation is what makes the Implication land. It is not a compliance requirement (A). While it does build rapport (C), that is a secondary effect, not the primary reason. The CFR and the CST are separate phases — combining them (D) is not the intent.
+
 6. **A client's hospital plan through their employer has a $20K per claim limit. You point out they'd lose this coverage if they leave the job. Which of the four emotional triggers does this most directly target?**
    - A) Love — their family would be affected
    - B) Regret — they've seen this happen to someone else
    - C) Security — the loss of cover could jeopardise financial stability after a job change ✓
    - D) Freedom — it limits their ability to retire early
 
+   **Why:** The scenario specifically surfaces the risk of losing coverage at the moment of a job change — which threatens the client's financial security and insurability. Security is the trigger for breadwinners and anyone whose financial stability depends on continuous employment. Love (A) is triggered by scenarios where the client's absence harms dependents. Regret (B) requires a past reference point. Freedom (D) is about retirement timing, not coverage continuity.
+
 7. **You've just run the Risks CST and closed a protection plan. At the next meeting, the client is ready to talk wealth building. This is an example of:**
    - A) An upsell — treat it carefully
    - B) The textbook CST-aware relationship arc: Risks first to secure the foundation, then Wealth to build above it ✓
    - C) Skipping the proper sequencing — you should have done both in one meeting
    - D) A client who was mis-sold a protection plan they didn't need
+
+   **Why:** This is the intended two-meeting sequencing: Risks CST closes protection first (securing the floor), and the Wealth CST at the next meeting builds accumulation on top of that foundation. Calling it an upsell (A) misreads the architecture — these are two distinct and necessary conversations, not an add-on sale. Doing both in one meeting (C) would be too much and is explicitly warned against. A client who has closed protection and is now asking about wealth-building has demonstrated exactly the right progression (D is wrong).  
 
 ---
 

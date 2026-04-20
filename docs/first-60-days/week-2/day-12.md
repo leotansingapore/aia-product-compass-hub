@@ -139,11 +139,15 @@ The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) pr
  - C) Wealth accumulation
  - D) Wealth legacy
 
+ **Why:** Level 1 is Risk Management — the non-negotiable foundation. The pyramid's core rule is that no level above can be permanently built without the one below. Short-term savings is Level 2, wealth accumulation is Level 3, and wealth legacy is Level 4. One uninsured CI diagnosis can force a client to surrender their Level 3 portfolio, which is exactly what Level 1 exists to prevent.
+
 2. **A 25-year-old client with $500/month to allocate. Their company offers hospitalisation. What's your first priority?**
  - A) Start a regular savings plan immediately
  - B) Check Level 1 gaps (Death/TPD, CI, private hospital plan) ✓
  - C) Begin wealth preservation
  - D) Open an ILP
+
+ **Why:** An employer hospital plan is a common Level 1 symptom — it creates the illusion of a solid foundation while leaving Death/TPD, CI, and private-tier hospitalisation uncovered. Today's lesson lists "my company has hospitalisation for me" as a weak-Level-1 symptom. A savings plan (A) and an ILP (D) are Level 2 and 3 respectively, and should not be recommended before Level 1 is checked. Wealth preservation (C) is Level 4 — many levels too early.
 
 3. **What distinguishes Level 2 from Level 1?**
  - A) Level 2 is insurance; Level 1 is savings
@@ -151,11 +155,15 @@ The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) pr
  - C) Level 2 is CPF; Level 1 is private plans
  - D) Level 1 is for young people; Level 2 is for older people
 
+ **Why:** Today's content states clearly that insurance protects you from catastrophe (Level 1) while emergency savings protect you from inconvenience (Level 2) — different problems requiring different tools. A reverses the tools incorrectly. CPF is part of Level 3 accumulation, not Level 2. The pyramid is not age-segmented (D) — every adult needs all four levels regardless of age.
+
 4. **A client is enthusiastic about starting an ILP (Level 3). During fact-finding you learn he has no CI coverage and only a basic employer hospital plan. What is the correct next step?**
  - A) Start the ILP — the client's enthusiasm means higher retention
  - B) Sell a smaller ILP and add CI as a rider to keep it simple
  - C) Redirect the conversation to Level 1 gaps before recommending any accumulation product ✓
  - D) Defer CI coverage until the ILP matures and provides cash value
+
+ **Why:** This is the exact scenario today's "common mistake" section describes. A CI diagnosis could force the client to surrender the ILP at a loss, breaking the relationship and triggering negative word-of-mouth. Enthusiasm does not override a structural gap (A). Bundling CI as a rider does not address the discipline of building bottom-up — and a rider on an ILP is not the same as standalone Level 1 coverage (B). Deferring CI to wait for ILP cash value (D) is exactly the sequence the pyramid forbids.
 
 5. **Which of the following is a symptom of a weak Level 2, NOT a weak Level 1?**
  - A) "My death coverage is only $50,000 through my employer."
@@ -163,17 +171,23 @@ The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) pr
  - C) "A $2,000 surprise expense last month became credit card debt." ✓
  - D) "My hospital plan ends when I leave my company."
 
+ **Why:** Level 2 is the emergency fund — 3-6 months of liquid expenses. A $2,000 surprise triggering credit card debt signals a near-zero emergency buffer, which is the Level 2 symptom listed in today's content. Inadequate death coverage (A), no CI plan (B), and employer-dependent hospital cover (D) are all Level 1 gaps — catastrophic risk exposure, not temporary-expense exposure.
+
 6. **Why is selling an ILP to a client with a clear Level 1 gap described as a risk to your career, not just the client?**
  - A) ILPs are not suitable for clients without existing CI cover under MAS regulations
  - B) A CI diagnosis could force the client to surrender the ILP at a loss, breaking the relationship and triggering negative word-of-mouth ✓
  - C) The ILP commission will be clawed back immediately if the client has no hospitalisation plan
  - D) AIA does not allow ILP sales until Level 1 is complete
 
+ **Why:** Today's "common mistake" section traces the exact causal chain: CI diagnosis forces ILP surrender at a loss, the client relationship breaks, and "the client tells ten friends not to work with you." That reputational damage compounds over a career. There is no MAS rule prohibiting ILPs for uninsured clients (A). Commission clawback (C) is a possibility in some cases but is not the stated reason here. There is no AIA policy requiring Level 1 completion before ILP sales (D).
+
 7. **A client has a will, updated CPF nominations, and is planning a trust structure for her business. Which pyramid level is she working on?**
  - A) Level 2 — short-term savings
  - B) Level 3 — wealth accumulation
  - C) Level 4 — wealth legacy ✓
  - D) Level 1 — risk management
+
+ **Why:** Level 4 components listed in today's content are exactly these: a will, CPF nominations, and trust structures for clients with complex families or business interests. Short-term savings (A) is a liquid emergency fund. Wealth accumulation (B) covers CPF contributions, endowments, ILPs, and investments. Risk management (D) covers Death/TPD, CI, hospitalisation, and disability cover.
 
 ---
 

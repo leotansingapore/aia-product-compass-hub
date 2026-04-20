@@ -215,11 +215,15 @@ Recommending aggressive portfolios to conservative clients → they panic on the
  - C) Type of asset
  - D) Tax treatment
 
+ **Why:** Investing is defined by long time horizons, fundamental research, and ownership for compounding; speculation is defined by short-term price timing regardless of underlying value. The same asset (e.g., an equity) can be either, depending on why and how long you hold it. Amount (A) and tax treatment (D) are irrelevant to the definition. Type of asset (C) can overlap — you can speculate on bonds and invest in equities.
+
 2. **An investment promising guaranteed high returns with short time horizon:**
  - A) Is rare but exists
  - B) Exists for accredited investors only
  - C) Doesn't exist — trade-offs between safety, return, and liquidity are unavoidable ✓
  - D) Requires deep market expertise to find
+
+ **Why:** The trade-off triangle between safety, return, and liquidity is a fundamental constraint — you can get two of the three, never all three simultaneously. Any product claiming otherwise is either a scam or misrepresenting one of the three dimensions. It does not become available to accredited investors (B) — the laws of finance apply equally at all wealth levels. Expertise (D) cannot manufacture risk-free high returns; it can only improve probability of good risk-adjusted returns.
 
 3. **The default recommendation for a moderate-risk retail investor is often:**
  - A) Individual stocks
@@ -227,11 +231,15 @@ Recommending aggressive portfolios to conservative clients → they panic on the
  - C) Diversified ETFs or balanced funds ✓
  - D) Unit trusts only
 
+ **Why:** Diversified ETFs or balanced funds give moderate-risk retail investors broad market exposure, low fees, and single-company risk absorption — the right tool for the profile. Individual stocks (A) carry concentrated company risk that mismatches a moderate risk profile. Direct property (B) is illiquid, capital-intensive, and operationally complex — not a default for retail investors. Unit trusts (D) are one valid option but their higher fees and active manager risk make them not universally preferred over passive ETFs.
+
 4. **A client says "I made 40% in crypto last year — I want to put my whole retirement fund into it." As their advisor, you should:**
  - A) Comply — the client's risk tolerance overrides all other considerations
  - B) Recommend the highest-returning fund in your product range as a compromise
  - C) Explain the distinction between speculation and investing, separate the "fun money" pot, and cap speculative exposure at a small percentage ✓
  - D) Decline to advise further until the client has passed a financial literacy test
+
+ **Why:** Your role is to educate and advise, not simply comply — especially when a client is confusing speculation with investing. Compliance (A) abdicates the advisory duty; the client is not qualified to override a retirement-critical decision without understanding the risk. Recommending a high-return product (B) is just a different form of speculation-chasing that still skips the education step. Declining to advise (D) is unhelpful and not required by any regulatory standard.
 
 5. **Which combination of attributes is impossible to find in a single investment product?**
  - A) High safety and low liquidity
@@ -239,17 +247,23 @@ Recommending aggressive portfolios to conservative clients → they panic on the
  - C) Guaranteed high returns, very short time horizon, and full liquidity ✓
  - D) Low return and high safety
 
+ **Why:** C combines all three desirable properties at once — guaranteed high return (safety + return), short horizon (liquidity in time), and full liquidity. The trade-off framework says you can only have two of the three. High safety and low liquidity (A) is achievable — government bonds are an example. High return and low safety (B) describes equities or private equity. Low return and high safety (D) describes cash and fixed deposits.
+
 6. **A conservative client is placed into an aggressive 100%-equity portfolio because the projected returns look better. What is the most likely negative outcome?**
  - A) The client earns too much and triggers additional tax
  - B) The client panics on the first market drop, sells at the bottom, and permanently distrusts the advisor and the industry ✓
  - C) MAS issues a compliance warning against the advisor
  - D) The portfolio underperforms a balanced fund over 20 years
 
+ **Why:** The day explicitly names this as the failure pattern: a mismatch between risk profile and portfolio leads to panic selling at the worst moment, locking in losses and destroying the relationship. Earning too much and triggering tax (A) is not a realistic risk for equity portfolios in Singapore's tax environment. A MAS compliance issue (C) is possible but the more immediate and human consequence is the client outcome described in B. Underperformance (D) is possible but secondary — the bigger harm is behavioural, not statistical.
+
 7. **The key difference between a Wealth Focus ILP and a Protection Focus ILP is:**
  - A) Only Wealth Focus ILPs allow CPF OA/SA as the funding source
  - B) Wealth Focus ILPs direct most of the premium into funds with minimal insurance; Protection Focus ILPs prioritise coverage, with insurance costs reducing fund growth ✓
  - C) Protection Focus ILPs carry no market risk because returns are guaranteed
  - D) Wealth Focus ILPs cannot be surrendered before maturity
+
+ **Why:** The structural difference is in how the premium is split between insurance charges and fund investment — Wealth Focus minimises the insurance component so more money compounds, while Protection Focus makes insurance coverage the primary objective. Both types of ILP can potentially use CPF OA funding through CPFIS (A is false). Protection Focus ILPs still invest in funds and carry full market risk (C is false). Both ILP types can generally be surrendered, subject to surrender charges (D is false).
 
 ---
 

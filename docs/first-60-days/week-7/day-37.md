@@ -176,11 +176,15 @@ Fix these four mental errors before learning a single script — and everything 
  - C) Establish / Define the Client–Planner Relationship ✓
  - D) Implement a solution
 
+ **Why:** Step 1 is Establish / Define — building the client-planner relationship before anything else. Gathering data is Step 2, which only works once trust is established. Presenting a recommendation is Step 4. Implementing a solution is Step 5. Rushing past Step 1 damages everything downstream.
+
 2. **Typical CLV of a well-serviced client is what multiple of first-year commission?**
  - A) 2–3×
  - B) 5–10×
  - C) 20–30× ✓
  - D) 50–100×
+
+ **Why:** The lesson states that cross-sells and upgrades over a 30-year relationship produce roughly 20–30x the initial first-year commission, translating to $20,000–$30,000 per client over their lifetime. 2–3x and 5–10x dramatically understate the long-term value and would lead FCs to under-invest in service. 50–100x is aspirational but not the realistic benchmark cited in the material.
 
 3. **"No one buys everything at one go" means:**
  - A) Clients are indecisive
@@ -188,11 +192,15 @@ Fix these four mental errors before learning a single script — and everything 
  - C) The first meeting should focus on 1–2 highest-priority gaps; the rest unfolds over years ✓
  - D) Clients should be educated before they buy
 
+ **Why:** The principle is about disciplined sequencing — address the one or two most urgent gaps first, then return for future meetings as needs evolve over 20+ years. It is not a commentary on client decisiveness (A), which misreads the mindset. Needing "more meetings to close" (B) implies the same sale is dragged out, not that different products are sold across different life stages. Education (D) is a tactic, not what this principle is about.
+
 4. **A new FC who oversells the first meeting — recommending every gap at once — risks:**
  - A) Earning more commission upfront
  - B) Destroying the trust needed for honest fact-finding in Step 2 ✓
  - C) Skipping directly to Step 5 (implementation)
  - D) Getting a faster referral
+
+ **Why:** Overselling the first meeting signals that the FC is chasing commission, not genuinely helping — this breaks the trust required for the candid data-sharing needed in Step 2. A is what the FC thinks they're gaining, but it sacrifices the CLV that makes a long-term book valuable. Skipping to Step 5 (C) is a different error. A forced, over-pitched first meeting actually reduces referral likelihood (D), not increases it.
 
 5. **Your warm market of 300 contacts realistically yields roughly how many clients?**
  - A) 150–200
@@ -200,17 +208,23 @@ Fix these four mental errors before learning a single script — and everything 
  - C) 25 ✓
  - D) 5–10
 
+ **Why:** The funnel works as follows: 300 contacts → 100 close connections → 50 willing to meet → 25 become clients → 10 give referrals. The other 275 are "imaginary." 150–200 and 50–75 overestimate conversion at each stage. 5–10 is too pessimistic and would undercut planning. 25 is the realistic baseline, which is why warm-market-only pipelines exhaust around Year 1.
+
 6. **A Type B (referred) prospect is described as "hardest to get, easiest to close" because:**
  - A) They have more money to spend
  - B) The referrer has already transferred trust to you ✓
  - C) They respond better to cold scripts
  - D) They are more financially literate
 
+ **Why:** Referred prospects arrive with pre-built trust transferred from the person who introduced you, which dramatically shortens the journey from skepticism to decision. Wealth (A) is not the reason — the source of the trust advantage is the referrer, not the prospect's income. Referred leads don't need cold scripts (C); they need warm conversation. Financial literacy (D) is irrelevant to why referrals close faster.
+
 7. **Which behaviour does the CLV mindset most directly change for a new FC?**
  - A) Quoting higher premiums to maximise first-year commission
  - B) Treating a small first policy as the start of a $25K lifetime relationship ✓
  - C) Rushing prospects to sign before they change their mind
  - D) Avoiding annual reviews to reduce workload
+
+ **Why:** When you internalise that a $1,000 first-year commission represents roughly $25,000 of lifetime value, you invest in post-sale service and annual reviews rather than chasing the biggest first sale. A and C reflect the FYC-first mindset that CLV thinking is designed to replace. D is the opposite of what CLV demands — annual reviews are how the 20–30x multiple gets realised.
 
 ---
 

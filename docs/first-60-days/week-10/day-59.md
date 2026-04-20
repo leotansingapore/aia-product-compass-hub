@@ -256,11 +256,15 @@ A new client who feels cared-for in the first 90 days becomes a 20-year client. 
    - C) Compliance disclaimers
    - D) Advisor biography
 
+ **Why:** Page 1 of the proposal restates the client's own goals in their own words — this is the signal that you listened, not that you prepared a generic product deck. When a client sees themselves on the opening page, the rest of the document lands in a completely different way. Product specs (A) belong in the appendix illustrations, not the opening. Compliance disclaimers (C) are mandatory but are not what drives trust or the close. The advisor biography (D) adds nothing to a client who is already meeting with you.
+
 2. **The Silent Close works because:**
    - A) It makes clients uncomfortable
    - B) The first to speak is usually the most eager — let the client speak first ✓
    - C) It saves the advisor from talking
    - D) It's culturally polite
+
+ **Why:** "He who breaks silence first is the most eager to make a deal" — if the FC speaks first, they are signalling they need the yes more than the client needs the plan, which invites objections, discounts, and delay. Letting the client speak first reveals their actual position: a yes, a specific concern, or a real objection you can address. Making the client uncomfortable (A) is a side effect the technique sometimes has, but it is not the mechanism. Saving the FC from talking (C) and cultural politeness (D) are irrelevant to why the technique works.
 
 3. **When a client says "let me think about it" — the best response is:**
    - A) "OK, I'll call you next week"
@@ -268,11 +272,15 @@ A new client who feels cared-for in the first 90 days becomes a 20-year client. 
    - C) "Of course. What specifically would you like to think about?" ✓
    - D) "Why? Is something unclear?"
 
+ **Why:** "Let me think about it" is almost always a mask over a specific, addressable concern — price, spousal approval, timing, or uncertainty about one feature. Asking what specifically surfaces the real objection so you can handle it now rather than losing momentum. Conceding the delay (A) and adding more information (B) both let the real objection remain buried, which typically means the client never comes back. Option D is technically fine but sounds defensive; option C is warmer and opens the same door.
+
 4. **A client has reviewed the full proposal, nodded along, but has not verbally committed. You say: "Your preferred monthly debit date — 1st or 15th?" Which closing technique are you using?**
    - A) Columbo Close — reopening the conversation before they leave
    - B) Summary Close — packaging multiple decisions into one yes
    - C) Assumption Close — assuming forward motion when all signals are positive ✓
    - D) Silent Close — waiting for the client to speak first
+
+ **Why:** The Assumption Close skips the yes/no question entirely by treating the decision as already made and asking a downstream detail — if the client answers "15th," they have implicitly committed. All signals here are positive (proposal reviewed, nodding along) so the technique is appropriate. Columbo (A) is used at the end of a meeting to pre-commit the client to a future yes, before a proposal exists. The Summary Close (B) packages multiple benefits into one verbal yes. The Silent Close (D) is about withholding speech after asking for the close, which is different from assuming forward motion.
 
 5. **You present a plan and ask "Shall we proceed?" The client is silent for 10 seconds. A new FC's instinct is to fill the silence with more options. Why is this a mistake?**
    - A) It is rude to speak while the client is processing
@@ -280,17 +288,23 @@ A new client who feels cared-for in the first 90 days becomes a 20-year client. 
    - C) It violates MAS guidelines on unsolicited advice
    - D) Clients interpret additional options as a sign the original plan was flawed
 
+ **Why:** Breaking the silence with more options creates three compounding problems: it teaches the client that hesitation produces concessions, it adds new decisions on top of the one they are already processing, and it broadcasts that the FC is more eager to close than the client is to decide — all of which make a yes less likely. A is true as an observation but misses the strategic reason. C is not a MAS rule. D may happen sometimes but is a symptom, not the mechanism — the core problem is decision fatigue and the eagerness signal.
+
 6. **Your proposal runs to 14 pages with full illustrations included in the main document. What hygiene rule does this violate?**
    - A) Proposals must be submitted in Word format, not PDF
    - B) Proposals over 4-6 pages cause clients to skim, forget key points, and generate more objections — illustrations should be an appendix ✓
    - C) 14 pages is acceptable; the issue is the font size must be at least 12pt
    - D) Client names must appear on every page of a proposal above this length
 
+ **Why:** The proposal hygiene rules cap the main document at 4-6 pages so the client reads it fully and the key messages land clearly. Illustrations should be moved to an appendix — they are reference documents, not the persuasive narrative. A longer document causes clients to skim, lose the thread, and surface objections about details they would not have focused on in a tighter document. PDF format (A) is actually required, not prohibited. Font and page-count rules (C) and per-page name placement (D) are not real constraints stated in the training material.
+
 7. **A client signs and you have the paperwork ready. She says: "Actually, can I bring this home and sign tonight?" What is the risk, and what is the correct response?**
    - A) No risk — clients always follow through when they have committed verbally
    - B) Post-meeting momentum is fragile; handle paperwork immediately where possible, or ask what would make her comfortable completing it now ✓
    - C) Agree and schedule a courier — never pressure a client after the close
    - D) Remind her about the 14-day free-look period and reschedule for next week
+
+ **Why:** Momentum is fragile the moment a client leaves the room — a conversation with a spouse, a Google search, or a night of second-guessing can all reverse a verbal yes. The post-close discipline rule is to handle paperwork immediately. The right response is not pressure but a gentle inquiry: "What would make you comfortable completing it now?" which surfaces any remaining concern without being pushy. Verbal commitments do not always convert (A) — that belief costs FCs closed cases. Scheduling a courier (C) defers unnecessarily and adds a day of cooling-off for no benefit. Rescheduling entirely (D) with a free-look reminder is counterproductive when the client is ready today.
 
 ---
 

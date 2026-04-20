@@ -208,11 +208,15 @@ A well-done policy review often produces:
    - C) Insurer, year, coverage, cost, end date
    - D) Age, health, income, dependents, assets
 
+ **Why:** These five dimensions give a complete diagnostic of whether any policy still fits the client's current life: whether the coverage amount is adequate, what optional benefits are attached, what scenarios are not covered, who receives the payout, and whether the payout format (lump sum, coupons, annuity) still matches the client's needs. Option A mixes in "fees" which is not a distinct review item. Options C and D describe useful background information but not the actual policy-level checklist items that surface gaps.
+
 2. **The most common gap you'll find in existing client portfolios:**
    - A) Too much life insurance
    - B) No or insufficient CI coverage ✓
    - C) Too many riders
    - D) Overly complex plans
+
+ **Why:** Most clients have a basic death benefit (often a whole life bought in their parents' time) but no Critical Illness coverage, and even fewer have Early CI. CI is the most commonly absent product category in real portfolios, making it the gap an FC encounters in the majority of reviews. Over-insurance (A) and too many riders (C) are almost never the presenting problem in a first review. Complexity (D) is not a coverage gap at all.
 
 3. **When should you recommend replacing an existing policy?**
    - A) Whenever you find a newer product
@@ -220,11 +224,15 @@ A well-done policy review often produces:
    - C) Only when there's a clear-cut case — major mis-match, under-coverage, or inferior product ✓
    - D) When the client is bored with their existing insurer
 
+ **Why:** Replacing a policy lightly causes real harm — the client loses accumulated cash value, built-up benefits, and may restart waiting periods for claims. Replacement should only be recommended when there is a clear-cut, documentable reason: the existing plan is fundamentally wrong for the current life stage, materially under-covers a need, or is an objectively inferior product. Always finding a reason to replace (A) is a churning risk and a compliance liability. Never replacing (B) ignores cases where an old policy genuinely no longer serves the client. Client boredom (D) is not a valid financial planning reason.
+
 4. **During a policy review, you discover a client's whole life policy names her ex-husband as sole beneficiary. She remarried three years ago. What is the correct action?**
    - A) Note it but defer — beneficiary changes are the client's responsibility
    - B) Flag it immediately — outdated beneficiary nominations are one of the six common gaps and should be updated ✓
    - C) Recommend cancelling the old policy and buying a new one
    - D) Contact the insurer directly to update the nomination without the client's instruction
+
+ **Why:** An outdated beneficiary nomination is one of the six most common gaps and carries serious consequences — if the client dies without correcting it, the payout could legally go to someone no longer in her life. Flagging it and facilitating the update is part of the FC's service responsibility. Deferring (A) puts the client at risk and fails the service standard. Cancelling the policy (C) over a beneficiary issue is disproportionate and harmful. Contacting the insurer without the client's instruction (D) is not permitted — the policyholder must authorise any nomination change.
 
 5. **A client's $150K whole life policy was taken out 12 years ago when she earned $30K/year. She now earns $90K/year with two dependents. What specific gap does this reveal?**
    - A) The policy type is wrong — she needs an endowment instead
@@ -232,17 +240,23 @@ A well-done policy review often produces:
    - C) No gap — whole life policies automatically increase coverage with inflation
    - D) The riders are likely outdated but the base sum assured is sufficient
 
+ **Why:** The 10x income rule means she now needs $900K in life cover, but she only has $150K — a $750K gap. The policy was appropriately sized at $300K (10x $30K) when it was taken out, but income growth and new dependants have made it woefully inadequate. Whole life policies do not automatically increase sum assured with inflation or income changes (C) — the coverage is fixed at the original sum assured. The sum assured is the primary gap here, not just the riders (D). Product type (A) is not the issue; a whole life is still appropriate, just under-sized.
+
 6. **You give a client a one-page policy snapshot after the review. She shares it with her sister who asks for the same service. What does this illustrate about the policy review?**
    - A) Clients are unlikely to share financial documents
    - B) The policy snapshot builds professional credibility before any sale and naturally generates referrals ✓
    - C) Clients only value the review if it leads to a recommendation they accept
    - D) The snapshot is a compliance requirement, not a relationship tool
 
+ **Why:** The policy snapshot delivers visible, tangible value — a consolidated view the client has never had before — and that value creates the impulse to share it with people they care about. This is the referral mechanism at work: the review earns trust before any transaction, which is precisely what produces organic introductions. Option A is contradicted by the scenario. Option C is wrong — the snapshot creates value regardless of whether the client buys anything that day. The snapshot is a relationship and referral tool, not a compliance document (D).
+
 7. **A client has no hospital rider — just a basic Integrated Shield Plan. In practical terms, what does this mean for their next hospitalisation?**
    - A) Claims are rejected entirely without the rider
    - B) The client must pay a deductible and co-insurance out of pocket, which can reach $5,000 or more per claim ✓
    - C) The Shield Plan covers 100% with a fixed $200 admin fee
    - D) Only outpatient treatment is affected; inpatient is fully covered
+
+ **Why:** An Integrated Shield Plan without a rider leaves the client liable for the deductible (typically $1,500-$3,500) and co-insurance (typically 10%) on every claim — costs that can stack to $5,000 or more for a single admission. The rider covers these out-of-pocket amounts so the client pays near zero. Claims are not rejected without a rider (A) — the Shield Plan still covers the main hospitalisation cost. There is no flat $200 admin fee structure (C). The Shield Plan covers inpatient hospitalisation regardless of the rider; the rider reduces the client's personal share, not the coverage category (D).
 
 ---
 

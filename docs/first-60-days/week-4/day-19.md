@@ -160,11 +160,15 @@ Doesn't matter which one. What matters: **it happens even on terrible days**. Th
  - C) The market
  - D) Competitor activity
 
+ **Why:** Prospecting is the leading indicator and commissions are the lagging one — the full sales cycle from first touch to commission payment takes roughly 30–90 days. A slump today reflects insufficient activity from 1–3 months ago, not external factors. Bad product fit (A), the market (C), and competitor activity (D) are all lagging rationalisations that distract from the only variable a new FC truly controls: daily prospecting volume.
+
 2. **What should you count to stay consistent?**
  - A) Appointments set
  - B) Commissions earned
  - C) Rejections received ✓
  - D) Hours worked
+
+ **Why:** You control the number of rejections, not the number of yeses — counting rejections shifts focus to an output you can actually hit daily and turns each "no" into a measurable rep that sharpens skill. Appointments set (A) and commissions earned (B) are downstream results that can swing with conversion luck and are demotivating in slow weeks. Hours worked (D) is an input that can be filled with low-value activity and tells you nothing about prospecting effort.
 
 3. **The three prospecting activities — getting leads, making calls, meeting people — should:**
  - A) Be done sequentially
@@ -172,11 +176,15 @@ Doesn't matter which one. What matters: **it happens even on terrible days**. Th
  - C) Run in parallel every week ✓
  - D) Be automated wherever possible
 
+ **Why:** The classic new-FC mistake is spending all time on meetings already booked (bucket C) while letting the lead pipeline (bucket A) dry up — leading to a calendar emergency three weeks later. Running all three buckets in parallel ensures a continuous flow from leads to conversations to meetings without boom-bust gaps. Doing them sequentially (A) or on rotation (B) guarantees the downstream steps starve while you focus upstream.
+
 4. **You closed two clients in January. According to the 30–60 day lag, those commissions most likely came from prospecting done in:**
  - A) January
  - B) The week before closing
  - C) November or December ✓
  - D) The same month as the fact-find
+
+ **Why:** The sales cycle runs first touch → discovery → fact-find → proposal → close → underwriting → commission, totalling roughly 30–90 days end to end. A January close traces back to first prospecting touches in November or December. Prospecting in January (A) or the week before closing (B) is far too late for a same-month commission; the fact-find (D) happens mid-cycle, not at the start.
 
 5. **A new FC is getting 1 close per 100 approaches. To hit $50K FYC in Year 1, the daily outreach minimum should be closest to:**
  - A) 3 per day
@@ -184,17 +192,23 @@ Doesn't matter which one. What matters: **it happens even on terrible days**. Th
  - C) 10 per day ✓
  - D) 20 per day
 
+ **Why:** The lesson states that $50K FYC may require 3,000+ opening approaches across the year, which works out to roughly 60 per week or 10 per day on a 5-day week. Three or five touches per day (A, B) are the typical new-FC output — well short of what the numbers require. Twenty per day (D) would be above the stated baseline minimum and is not cited as the target figure.
+
 6. **Maria frames her cold-call sessions as "how many no's can I collect today?" rather than "how many appointments will I set?" What is the primary benefit of this mindset?**
  - A) It lowers the quality bar so she makes more calls
  - B) It shifts focus to a controllable metric and reframes rejection as progress ✓
  - C) It reduces the need to track results
  - D) It removes accountability for conversion rates
 
+ **Why:** Counting rejections is the counterintuitive move that sets top producers apart because you control the number of no's you receive, while appointments are determined by the prospect. Each rejection is a rep that sharpens opener and objection-handling skill, removing the emotional sting and keeping activity high in slow conversion weeks. It does not lower quality (A), eliminate tracking (C), or dodge accountability (D) — conversion rates are still tracked alongside rejection volume.
+
 7. **Which of the following is NOT one of the three prospecting activity buckets described in today's lesson?**
  - A) Getting leads
  - B) Making calls or messages
  - C) Closing the deal ✓
  - D) Meeting the people
+
+ **Why:** The three buckets are getting leads, making calls or messages, and meeting the people — closing is what happens inside a meeting, not a separate prospecting bucket. Closing belongs to the sales appointment framework covered in later lessons. All three of the other options (A, B, D) are explicitly named buckets in today's content.
 
 ---
 

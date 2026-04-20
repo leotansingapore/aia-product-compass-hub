@@ -229,11 +229,15 @@ People want to work with **people**, not products. The Approach phase is where y
  - C) Book an appointment ✓
  - D) Build a long relationship
 
+ **Why:** The phone is for one purpose only — securing a face-to-face meeting. Products and advice require the full context of an in-person fact-find, which a phone call cannot replicate. Trying to sell a policy on the call (A) or deliver advice (B) skips the trust-building steps the client needs. Building a long relationship (D) is a worthy goal but it is the result of many meetings, not the outcome of a single call.
+
 2. **The AIDA framework stands for:**
  - A) Action, Interest, Desire, Approach
  - B) Attention, Interest, Desire, Action ✓
  - C) Ask, Inform, Deliver, Ask
  - D) Attention, Intent, Decision, Action
+
+ **Why:** AIDA is a four-part elevator-pitch structure — Attention grabs the first second, Interest explains what makes you different, Desire paints the outcome, and Action delivers the call to action. The order matters: you cannot generate Desire before creating Interest, and you cannot call for Action before Desire is felt. Options A, C, and D rearrange or rename the steps in ways that break the logical flow.
 
 3. **When a prospect asks product questions on a prospecting call, you should:**
  - A) Answer in detail
@@ -241,11 +245,15 @@ People want to work with **people**, not products. The Approach phase is where y
  - C) Refuse to answer
  - D) Send them collateral instead
 
+ **Why:** Answering product questions in detail (A) turns the call into an unsolicited consultation and removes the prospect's reason to meet you. The correct move is to acknowledge the question, validate it as good, and redirect it to the meeting — which is where context-dependent advice can actually be given well. Refusing outright (C) is rude; sending collateral (D) hands the prospect a reason to say "I've read it, no thanks" before you've built any rapport.
+
 4. **You finish a first meeting and the prospect has no immediate need. The productive next step is:**
  - A) Accept the loss and move on to new prospects
  - B) Follow up in 6 months with a generic check-in
  - C) Ask for referrals and collect names before leaving ✓
  - D) Send a quote anyway to keep them warm
+
+ **Why:** There is no fourth outcome in a first meeting — even a "no immediate need" meeting is productive if it ends with referrals. A meeting that generates five warm names in your notebook has paid for itself. Accepting the loss (A) wastes the relational capital you just built. A generic check-in in six months (B) ignores the referral opportunity available right now. Sending an unsolicited quote (D) breaks trust by pitching after being told there is no current need.
 
 5. **A new FC is about to call a prospect and feels nervous. According to the 6-part Telephone Technique, the first step is:**
  - A) Dial and open with enthusiasm
@@ -253,17 +261,23 @@ People want to work with **people**, not products. The Approach phase is where y
  - C) Set your phone to silent and review your elevator pitch
  - D) Send a WhatsApp message first to warm them up
 
+ **Why:** Preparation is Step 1 of the six-part technique — your list, scripts, and objection responses should all be in front of you before you dial. Dialling cold without preparation (A) means every objection forces improvisation, which collapses under pressure. Reviewing only the elevator pitch (C) is partial preparation and misses the objection-handling readiness. WhatsApp warm-ups (D) are not part of the structured technique and can dilute the call's impact.
+
 6. **When offering appointment times, the correct approach is:**
  - A) Ask open-endedly: "When are you free?"
  - B) Give one specific option to keep it simple
  - C) Offer two specific time slots and let the prospect choose ✓
  - D) Leave it to them to suggest a time after they've reviewed the material
 
+ **Why:** Two specific options create a binary decision — the prospect chooses between Tuesday and Thursday, not between "yes" and "no." An open-ended ask (A) creates decision fatigue and invites delay. A single option (B) feels like a demand and removes the prospect's sense of control. Leaving the timing to them (D) gives them an easy way to defer indefinitely.
+
 7. **The "you are the product" mindset at the Approach stage means:**
  - A) Lead with the AIA brand and its market reputation
  - B) Emphasise your policies' features and premium rates
  - C) Focus on your personal why, service orientation, and values — not products ✓
  - D) Demonstrate technical expertise to build credibility fast
+
+ **Why:** At the Approach stage the prospect is deciding whether they like and trust you — not whether they want a policy. Products and features are irrelevant until after that personal connection is made. Leading with the AIA brand (A) outsources credibility to the company rather than building it yourself. Premium rates (B) and technical expertise (D) are product-stage and fact-find tools; deploying them at the Approach stage signals you are selling, not connecting.
 
 ---
 

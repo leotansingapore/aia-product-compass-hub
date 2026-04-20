@@ -168,11 +168,15 @@ Feel-Good Productivity isn't about being happy at work all the time. It's about 
  - C) Push, Pull, Pause
  - D) Produce, Perform, Persist
 
+ **Why:** The framework from Ali Abdaal's Feel-Good Productivity names exactly three energisers — Play (making work feel like a game), Power (building competence), and People (doing hard work alongside others). None of the other answer options (A, C, D) appear in the framework. These three states generate energy while you work, which is what makes productivity sustainable at 6 and 12 months, not just in a sprint.
+
 2. **According to the framework, perfectionism is a form of:**
  - A) High standards (good)
  - B) Procrastination driven by fear of judgement ✓
  - C) Lack of experience
  - D) Attention to detail
+
+ **Why:** The lesson is explicit: perfectionism is an unblocker category because its root cause is fear of being judged on the output, not genuine quality commitment. When an FC rewrites their proposal for the seventh time, they are managing anxiety, not serving the client. High standards (A) and attention to detail (D) are distractors that conflate the feeling of perfectionism with its function. Lack of experience (C) is a separate issue — experienced FCs are equally susceptible to perfectionism.
 
 3. **Real rest excludes:**
  - A) Sleep
@@ -180,11 +184,15 @@ Feel-Good Productivity isn't about being happy at work all the time. It's about 
  - C) Social media scrolling ✓
  - D) Physical activity you enjoy
 
+ **Why:** The lesson draws a hard distinction between real rest and fake rest — social media scrolling is listed explicitly under "not rest" because it keeps the brain in reactive mode rather than allowing genuine recovery. Sleep (A), phone-free walks (B), and physical activity you enjoy (D) are all cited in the "real rest" list. Your brain does background processing during genuine rest, and cutting that recovery reliably reduces output.
+
 4. **Kevin is in Month 6 and notices that even small tasks feel heavy, he drifts to distractions constantly, and he keeps questioning if the career is worth it. According to today's framework, the most likely root cause is:**
  - A) He is in the Paralysis blocker
  - B) His alignment is low — his daily work has disconnected from his deeper purpose ✓
  - C) He has exhausted the Play energiser
  - D) He needs a longer recharge period
+
+ **Why:** The Align sustainer section describes exactly these three symptoms — heavy tasks, constant drifting, and career questioning — as the signs of low alignment between daily work and deeper purpose. The lesson prescribes revisiting the Day 5 purpose statement when this pattern persists beyond two weeks. Paralysis (A) is a single-task blocker, not a month-long pattern. Exhausted Play (C) would show as low energy, not existential questioning. Recharge (D) is a sustainer but the symptom cluster points specifically at Align.
 
 5. **Doing prospecting calls in a co-working session with two peers rather than alone primarily activates which energiser?**
  - A) Play
@@ -192,17 +200,23 @@ Feel-Good Productivity isn't about being happy at work all the time. It's about 
  - C) People ✓
  - D) Conserve
 
+ **Why:** The People energiser is specifically about doing difficult work in the company of others — shared effort reduces perceived difficulty, and human coordination wired into us makes the same activity feel easier and more sustainable. Play (A) would involve gamifying the session (e.g., tracking no's as a competition), and Power (B) is about building competence through deliberate learning. Conserve (D) is a sustainer, not an energiser.
+
 6. **The A/B/C task-priority system under the Conserve sustainer is designed to:**
  - A) Rank tasks by deadline
  - B) Ensure the most leveraged work receives peak-hour energy ✓
  - C) Delegate all C tasks to admin staff
  - D) Reduce total tasks each week
 
+ **Why:** The Conserve principle says 20% of your tasks produce 80% of results — A tasks get peak-hour full effort, B tasks get medium effort, and C tasks get whatever is left over or get delegated and deleted. The purpose is to allocate finite energy to the highest-leverage work, not simply to rank by urgency (A). C tasks are not automatically delegated to staff (C) — a solo new FC may batch or drop them. The system does not reduce total tasks (D); it prioritises how energy is spent across them.
+
 7. **An FC notices she has been avoiding writing a proposal for three days. Applying the framework, she names the feeling as anxiety about rejection. What is the prescribed first unblocker step?**
  - A) Ask a mentor to write it instead
  - B) Schedule a full afternoon block and power through
  - C) Make the first step tiny — open the document and write one sentence ✓
  - D) Apply the 80% rule and submit a rough draft immediately
+
+ **Why:** Once the root cause (fear) is named, the procrastination unblocker prescribes making the first step tiny — "open Pages, type the client's name, save" is a complete goal. Tiny first steps lower the activation energy that the anxiety has raised, and momentum handles the rest. Asking a mentor to write it (A) avoids the task entirely rather than unblocking it. Scheduling a full afternoon block (B) is too large an activation jump and re-triggers the anxiety. Submitting an 80% draft immediately (D) skips the starting problem that has kept her stuck for three days.
 
 ---
 

@@ -213,11 +213,15 @@ After 100 classifications, your intuition sharpens. By Month 3, you'll read new 
  - C) Fast, efficient results and control ✓
  - D) Recognition and stories
 
+ **Why:** The D-style is motivated by results and control — they want efficiency, clear options, and a fast bottom line. Data and thorough analysis (A) is the C-style preference. Warm relationship-building (B) is the S-style priority. Recognition and stories (D) describe the i-style. Confusing these motivations is the most common DISC mismatch in client meetings.
+
 2. **A C-style client is killed by:**
  - A) Data and detail
  - B) Emotional sales tactics and missing limitations ✓
  - C) Written materials
  - D) Long timelines
+
+ **Why:** C-style clients are accuracy-driven and highly skeptical of anything that feels like a pitch — emotional tactics feel manipulative to them, and glossing over limitations destroys trust immediately. Data and detail (A) are what they want, not what kills the sale. Written materials (C) are actively encouraged for C-profiles. Long timelines (D) are acceptable to them because they prefer not to be rushed into decisions.
 
 3. **DISC is best described as:**
  - A) A personality test
@@ -225,11 +229,15 @@ After 100 classifications, your intuition sharpens. By Month 3, you'll read new 
  - C) An IQ measure
  - D) A job-fit assessment
 
+ **Why:** DISC measures behaviour styles, not personality, intelligence, or job suitability — it is explicitly a communication and adaptation tool. The key distinction is that DISC is descriptive and situational, not diagnostic or fixed. Calling it a personality test (A) implies it defines who someone is. IQ (C) and job-fit (D) assessments measure cognitive and competency dimensions that DISC does not address.
+
 4. **A client walks in, shakes hands briefly and firmly, and immediately says "What do you have for me today?" This signals:**
  - A) S-style — they want to ease in with small talk first
  - B) C-style — they've pre-researched and want data
  - C) D-style — they want efficiency and a fast bottom line ✓
  - D) i-style — they're testing whether you're engaging enough
+
+ **Why:** A firm, brief handshake and an immediate "what do you have for me?" are classic D-style signals — impatient with small talk, wants the bottom line fast. S-style (A) clients open with "how are you?" and ease into conversation. C-style (B) clients ask detailed questions but tend to be reserved, not abrupt. i-style (D) clients are warm and talkative, not curt.
 
 5. **You are presenting to a client who takes detailed notes, asks about policy limitations unprompted, and seems skeptical of your social-proof story. You should:**
  - A) Tell more client success stories to build emotional resonance
@@ -237,17 +245,23 @@ After 100 classifications, your intuition sharpens. By Month 3, you'll read new 
  - C) Slow down and focus more on the relationship
  - D) Offer to reschedule once you have more printed materials
 
+ **Why:** Detailed note-taking, probing for limitations, and skepticism of social proof are three clear C-style signals. The correct adaptation is to give them exactly what they are asking for: illustrations, fee structures, and honest trade-offs. More stories (A) will increase skepticism. Relationship-focus (C) is an S-style adjustment. Rescheduling (D) wastes the meeting already in progress when the right materials can be presented now.
+
 6. **An FC with a high D style is meeting a high S client. The most likely failure mode is:**
  - A) The FC gives too many data points
  - B) The FC moves too fast and comes across as aggressive to the relationship-oriented client ✓
  - C) The FC tells too many stories
  - D) The FC skips the product entirely
 
+ **Why:** D-style advisors are wired for speed and directness, which clashes with S-style clients who need a slow, warm, relationship-first environment. The high-D FC will feel the S client is wasting time, push for a close too soon, and come across as aggressive — which is precisely what kills sales with S-profiles. Too many data points (A) is a D/C mismatch. Too many stories (C) is an i/C mismatch. Skipping the product (D) is not a DISC-driven failure mode.
+
 7. **In the DISC observation window, which cue best distinguishes a C-style from an S-style client?**
  - A) Eye contact warmth
  - B) Whether they arrived on time
  - C) Their opening question — "What are the details?" (C) vs. "How are you?" (S) ✓
  - D) Whether they brought a notebook
+
+ **Why:** The opening question is the clearest differentiator — C-style clients open with precision-seeking ("What are the details?" or "What's the agenda?") while S-style clients open with relational warmth ("How are you?" or "How's your week going?"). Eye contact (A) can overlap between the two styles — both tend toward careful rather than dominant. Punctuality (B) and notebooks (D) are not reliable DISC indicators on their own.
 
 ---
 

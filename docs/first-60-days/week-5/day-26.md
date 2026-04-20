@@ -141,11 +141,15 @@ This is the psychological move that separates 10X practitioners from people who 
  - C) Client-facing work only
  - D) Whatever feels productive
 
+ **Why:** Only activities where volume directly drives skill improvement and results deserve 10X intensity — outreach touches, content creation, and role-plays. 10X'ing everything (A) causes burnout and was explicitly called a trap. Client-facing meetings (C) each deserve full attention; more is better but not 10X. "Whatever feels productive" (D) is how low-leverage admin gets inflated at the expense of high-leverage outreach.
+
 2. **On a MAD (minimum activity day), you should:**
  - A) Skip the day entirely and rest
  - B) Try to hit normal targets anyway
  - C) Hit a pre-declared minimum (e.g., 5 outreaches) to maintain pattern ✓
  - D) Double up tomorrow
+
+ **Why:** The MAD rule exists to protect the streak on hard days by hitting a declared floor rather than zero — the day says a MAD day (5 outreaches) is distinct from an off day (deliberate zero). Skipping entirely (A) turns a MAD day into an ambiguous drift day, which is described as deadly. Trying to hit full targets (B) on a bad day courts failure and discouragement. Doubling up tomorrow (D) is explicitly called punishment, not recovery, and usually triggers another miss.
 
 3. **When you miss a 10X target, the correct response is:**
  - A) Lower the target
@@ -153,11 +157,15 @@ This is the psychological move that separates 10X practitioners from people who 
  - C) Diagnose what blocked the effort; return to baseline; keep the target ✓
  - D) Give up for the week
 
+ **Why:** Cardone's core insight is that the target is never the problem — the effort is; so the correct move is to diagnose what blocked effort (energy, calendar, avoidance) and return immediately to baseline. Lowering the target (A) is the lazy response the day explicitly names as wrong. Doubling next day (B) is punishment that usually triggers another miss. Giving up for the week (D) turns one miss into a pattern and then an identity shift.
+
 4. **What makes 10X different from ordinary "work harder" advice?**
  - A) It demands 10× the effort on every task
  - B) It targets activities where volume itself creates the skill and the outcome ✓
  - C) It applies only to cold calling
  - D) It replaces quality with quantity
+
+ **Why:** 10X is selective — it applies to the specific activities where doing more reps is inseparable from getting better at them, namely outreach, content, and role-plays. Demanding 10× on every task (A) would be exhausting and counterproductive, which is why the day distinguishes what deserves 10X from what doesn't. Cold calling (C) is one outreach channel, not the whole rule. Volume times important work compounds; volume times unimportant work is churn (D).
 
 5. **The risk of setting an unrealistic 10X target is:**
  - A) You hit it accidentally
@@ -165,11 +173,15 @@ This is the psychological move that separates 10X practitioners from people who 
  - C) You outperform peers too quickly
  - D) Your manager will lower it
 
+ **Why:** The realistic target for a 60-day sprint is 3–5X of current volume, not a literal 10X — because targets that are too high get missed, generate discouragement, and kill the compound effect that the rule depends on. Hitting the target accidentally (A) is not a risk. Outperforming peers (C) is not a downside. Managers lowering targets (D) is not mentioned and is not the relevant failure mode.
+
 6. **A "MAD" (minimum activity day) rule exists to:**
  - A) Let you skip work when tired
  - B) Preserve the daily pattern when motivation dips, so streaks don't break ✓
  - C) Make you feel good about doing less
  - D) Replace full targets permanently
+
+ **Why:** The MAD rule protects the streak by ensuring even a hard day ends with something done, keeping the pattern alive until a full day returns. It is not permission to skip (A) — skipping is only for declared off days (sick, holiday). Making you feel good (C) is a side effect, not the purpose; the rule is structural, not emotional. It is a floor, not a replacement for full targets (D) — the table distinguishes MAD days from full days explicitly.
 
 ---
 

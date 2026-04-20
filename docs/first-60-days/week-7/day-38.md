@@ -170,11 +170,15 @@ If you're in Month 8 and still 90% natural market, **something is wrong.** Eithe
  - C) 50
  - D) 100
 
+ **Why:** 30 surveys is the stated minimum to get enough real practice and build a solid prospect list before moving to the next phase. 10 is too few to generate sufficient appointments and internalise the script. 50 and 100 are excessive for the warm-up phase and would delay progression unnecessarily. The 30-survey floor also ensures you've heard the most common objections and learned to handle them.
+
 2. **When a prospect says "I'm not interested," the correct response is:**
  - A) Apologise and hang up
  - B) Send them information to change their mind
  - C) Acknowledge, reframe, and ask again for the appointment ✓
  - D) Move on to the next person
+
+ **Why:** The objection-handling pattern is always: acknowledge, reframe, return to the appointment ask. "Not interested" is described as a reflex, not a rejection — the prospect hasn't seen the idea yet, so they can't be genuinely uninterested. Apologising and hanging up (A) surrenders the conversation immediately. Sending information (B) delays the meeting and removes your ability to tailor the conversation. Moving on (D) wastes a contact who may simply need a calm reframe.
 
 3. **The ABCD Four Promises are used:**
  - A) At the end of the sale
@@ -182,11 +186,15 @@ If you're in Month 8 and still 90% natural market, **something is wrong.** Eithe
  - C) Before starting the Financial Health Review ✓
  - D) After the proposal
 
+ **Why:** The four promises are the opening frame for the first real meeting (Financial Health Review) — they flip the tone from "being sold to" to "someone is here to help me" before data is gathered. Using them at the end of a sale (A) or after the proposal (D) is too late; the emotional frame needs to be set before questions are asked. The Approach call (B) is earlier, lighter contact — the promises are too formal for that stage.
+
 4. **A prospect says "What's the idea?" Your correct response is:**
  - A) Explain the full product over the phone to save time
  - B) Tell them it is about insurance and give a quote
  - C) Say you need illustrations in person and ask for an appointment ✓
  - D) Send a brochure and follow up next week
+
+ **Why:** The script specifically says: "To explain it properly, I'll need to show you some illustrations and discuss them in person." The goal of every Approach call is to book the appointment — not to explain the product. Explaining over the phone (A) eliminates the reason for the meeting. Giving a quote unsolicited (B) introduces price before value. A brochure (D) gives the prospect a reason to say no without ever meeting you.
 
 5. **The referred market has close rates 3–5x higher than cold because:**
  - A) Referred prospects are wealthier on average
@@ -194,17 +202,23 @@ If you're in Month 8 and still 90% natural market, **something is wrong.** Eithe
  - C) FCs are more confident when calling referred leads
  - D) Referred leads have already bought from someone else
 
+ **Why:** The referred market's advantage is entirely about trust transfer — the referrer has already vouched for you, so the prospect arrives with their skepticism partially resolved. Wealth (A) is not a consistent pattern in referrals — it depends on the referrer's network. FC confidence (C) may be a secondary benefit, but it's not the cause of the higher close rate. Referred leads have not necessarily bought before (D) — they are new prospects, just warm ones.
+
 6. **An FC in Month 8 is still sourcing 90% of meetings from their natural market. The most likely root cause is:**
  - A) Their service quality is excellent
  - B) They have not been asking for referrals consistently ✓
  - C) Their natural market is unusually large
  - D) They are not old enough to have a referred market
 
+ **Why:** By Month 7–12, a healthy pipeline should be roughly 30% natural, 50% referred, 20% cold. Staying at 90% natural at Month 8 almost always means referral asks are not happening — the diagnostic is to count how many asks were made in the last 30 days. Good service (A) is necessary but not sufficient without actually asking. An unusually large warm market (C) delays the problem but doesn't explain the stalled transition. Age (D) is irrelevant — referred markets are built by asking, not by age.
+
 7. **The "D" in the ABCD Four Promises asks the prospect for:**
  - A) Their date of birth and income
  - B) Full disclosure of personal information so the FC can make the best recommendation ✓
  - C) A decision on whether to proceed
  - D) Details of their existing insurance policies
+
+ **Why:** D stands for Full Disclosure — the FC explains that the more information the prospect shares, the better the recommendation can be tailored to their actual needs. Date of birth and income (A) are data points collected during fact-finding, not what the promise itself is about. Asking for a decision (C) is premature at the opening of the first meeting. Existing policies (D) are part of the fact-find, not the promise frame.
 
 ---
 

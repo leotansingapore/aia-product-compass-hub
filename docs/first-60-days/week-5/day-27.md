@@ -158,11 +158,15 @@ Same FC, wrong diagnosis — just doing more calls — keeps the frustration run
  - C) Activities × Time = FYC
  - D) Skills × Experience = FYC
 
+ **Why:** The formula is multiplicative — zero in any one factor produces zero output regardless of the other two, which is why it's not additive. Activities plus skills plus knowledge (A) would let a factor near zero be partially offset by the others, which doesn't reflect reality. Time (C) is not one of the three factors; it affects compounding but isn't a stand-alone input in this formula. Experience (D) is not the same as skills, which are tracked through ratios and reps, not tenure.
+
 2. **"FYC × 4 in first 90 days" means:**
  - A) Your first-90-day FYC should be 4× a typical new FC's
  - B) Aim to reach ~4× your first-90-day production by Year 4 ✓
  - C) Make 4× as many calls
  - D) Close 4× as many policies
+
+ **Why:** The benchmark is forward-looking: whatever you earn in your first 90 days is the base, and the goal is to quadruple that number by Year 4 as skills and knowledge compound on a consistent activity base. It says nothing about comparing to other FCs (A). It is a revenue trajectory, not an activity count (C) or a policy volume target (D). The value of this benchmark is that it makes first-90-day effort feel consequential beyond the immediate income.
 
 3. **If your outreach is high but close rate is 1 in 10, the weakest link is:**
  - A) Activities
@@ -170,11 +174,15 @@ Same FC, wrong diagnosis — just doing more calls — keeps the frustration run
  - C) Knowledge
  - D) Product selection
 
+ **Why:** A close rate of 1 in 10 against an "acceptable" benchmark of 1 in 5 points directly to skills — specifically closing execution — as the bottleneck. High outreach (A) is already strong, so adding more activity would just compound inefficiency. Knowledge (C) is a secondary factor; modest product-depth improvement won't fix a poor close rate. Product selection (D) is a subset of knowledge, and the worked example diagnoses the same situation as a skills gap fixed by role-play, not product study.
+
 4. **Why is the formula multiplicative (×) rather than additive (+)?**
  - A) It makes the math harder
  - B) If any one factor is zero, the result is zero — so all three must be non-zero every week ✓
  - C) Because production compounds
  - D) So managers can weight factors
+
+ **Why:** The multiplicative structure means a zero in any single factor collapses the whole output — zero activity means zero FYC regardless of skill or knowledge. Making the math harder (A) is incidental, not the point. Production does compound over time (C), but that's a separate idea about trajectory, not why the formula uses multiplication. Weighting by managers (D) is not mentioned; the formula is a personal diagnostic tool, not a management metric.
 
 5. **Running a personal scorecard weekly helps you:**
  - A) Compare yourself to peers
@@ -182,11 +190,15 @@ Same FC, wrong diagnosis — just doing more calls — keeps the frustration run
  - C) Feel better on good weeks
  - D) Hit monthly targets automatically
 
+ **Why:** The scorecard turns "vague feelings" into actual evidence, specifically so you can identify which of activities, skills, or knowledge is the weakest link and direct next week's energy there. The day explicitly says competitors are not the benchmark — you compete with your own last version (A). Feeling good (C) may follow, but it is not the diagnostic purpose. The scorecard does not automatically hit targets (D); it surfaces where to focus, which is a different function.
+
 6. **An FC with strong outreach but low close rate should:**
  - A) Do 2× more outreach
  - B) Study more products
  - C) Invest in skill reps — role-play, recorded meetings, feedback from a mentor ✓
  - D) Lower their close-rate target
+
+ **Why:** When skills are the weakest link, the fix is deliberate skill reps — role-playing the close, recording meetings, and getting mentor feedback — not more activity. More outreach (A) on a broken close rate just produces more failed closes; the worked example explicitly calls this the wrong diagnosis. Product study (B) offers modest improvement but won't fix execution gaps at the close. Lowering the target (D) masks the problem and is the equivalent of the lazy response described in Day 26.
 
 ---
 

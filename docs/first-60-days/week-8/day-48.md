@@ -235,11 +235,15 @@ This is a small move. It has an outsized impact on meeting quality.
  - C) They're illegal
  - D) They give away your strategy
 
+ **Why:** Situation questions serve a legitimate purpose — gathering context — but overusing them makes the meeting feel like a government form and wastes time that should be spent on Problem and Implication questions. Crucially, a well-prepared FC already knows 60–70% of the basic facts from LinkedIn and referrer notes before sitting down. Situation questions are not offensive (A), illegal (C), or strategically revealing (D) — they are simply low-leverage when overused.
+
 2. **The rule for Problem Questions:**
  - A) Lead the client toward your preferred product
  - B) Scare the client into action
  - C) Stay neutral and curious; never accusatory or leading ✓
  - D) Summarise your recommendation
+
+ **Why:** Problem questions are designed to surface the client's own dissatisfactions — they work only when the client feels genuinely heard, not nudged toward a predetermined answer. A leading question or accusatory tone triggers defensiveness and closes the conversation down. Leading toward a preferred product (A) and scaring the client into action (B) are manipulation tactics that violate the consultative selling philosophy. Summarising a recommendation (D) is a proposal-stage activity, not a question type.
 
 3. **The correct listening ratio in Situation + Problem phases is:**
  - A) 50% listen, 50% talk
@@ -247,11 +251,15 @@ This is a small move. It has an outsized impact on meeting quality.
  - C) 80% listen, 20% talk ✓
  - D) 100% listen
 
+ **Why:** In the exploration phase your job is to understand the client, not to present — listening 80% of the time gives them space to reveal their real concerns, priorities, and hesitations in their own words. An equal split (A) is too FC-heavy for a discovery phase. Talking 80% (B) is the classic rookie mistake — filling silence with pitching instead of questions. Pure silence (D) is not practical; you need 20% talk to ask questions and signal you are engaged.
+
 4. **An FC asks "Where do you work?" to a prospect whose LinkedIn clearly states their employer. What has gone wrong?**
  - A) Nothing — it's a standard Situation question
  - B) The FC has signalled poor preparation, creating a trust leak before the meeting properly starts ✓
  - C) The FC has moved to Problem questions too early
  - D) The FC has violated PDPA by researching the prospect
+
+ **Why:** Asking for publicly available information signals you did not prepare, which undermines your credibility before the fact-find even begins. A trust leak at this stage is costly because the client's openness throughout the rest of the meeting is shaped by that first impression. It is not a PDPA violation (D) to view a public LinkedIn profile — that is expected pre-meeting research. It is not a Problem-question timing error (C); it is simply avoidable carelessness.
 
 5. **A client pauses for 5 seconds after being asked "If you were unable to work for 3 years, what would your family's situation look like?" The right move is:**
  - A) Rephrase the question to help them answer
@@ -259,17 +267,23 @@ This is a small move. It has an outsized impact on meeting quality.
  - C) Let the silence sit — the pause signals the client is feeling the weight of the question ✓
  - D) Fill the pause with a product recommendation
 
+ **Why:** A pause after an Implication question is a signal the client is genuinely imagining the scenario and feeling its weight — that is exactly what the question is designed to do. Interrupting that moment (A, B, D) breaks the emotional process and resets the client to a defensive or analytical mode. The sentence that follows a meaningful pause is almost always the most valuable thing the client says in the entire meeting.
+
 6. **The FORM mnemonic is most useful when:**
  - A) Running through the full 10-question Situation checklist systematically
  - B) You blank mid-meeting and need a quick mental anchor to stay on track ✓
  - C) The client is C-profile and wants structured data
  - D) Transitioning from Problem to Implication questions
 
+ **Why:** FORM — Family, Occupation, Recreation, Money — is a mental fallback for when nerves spike or the conversation loses direction mid-meeting. It covers about 80% of what a Situation phase needs and is fast to recall under pressure. It is not a systematic substitute for the full 10-question set (A), it does not serve a C-profile's need for data structure (C), and it has no role in the Situation-to-Problem transition (D) — that requires a deliberate verbal signal, not a mnemonic.
+
 7. **When transitioning from Situation to Problem questions, why is a verbal signal important?**
  - A) It gives the client time to prepare their financial documents
  - B) It signals a shift in tone so the deeper questions feel deliberate and respectful, not abrupt ✓
  - C) It satisfies a compliance requirement for fact-finding meetings
  - D) It gives the FC time to review their notes before proceeding
+
+ **Why:** The transition from "what is" to "what's not quite right" is a meaningful shift in depth and personal territory — without a signal, deeper questions can feel like an ambush. A brief phrase like "thanks for sharing all that — let me ask about the parts you're a bit less sure about" frames the shift as intentional and respectful, lowering the client's defences before you go deeper. It is not a compliance requirement (C), and it is not a pause for the FC's benefit (D) — it is entirely for the client's psychological comfort.
 
 ---
 

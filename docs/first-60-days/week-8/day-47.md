@@ -212,11 +212,15 @@ The "hard sell" approach produces faster first-year results but burns out the ad
  - C) The client has named the problem and wants action
  - D) The client has decided to buy
 
+ **Why:** An implied need is a Stage 1 or 2 awareness — the client senses something is not quite right but has not named or weighted it yet. Explicit need (Stages 3–4) is where the problem has been named and the client feels its urgency. Options A and D describe someone who is already at the buy decision, which is the end state SPIN is designed to reach. Option C describes the transition between implied and explicit, not the implied stage itself.
+
 2. **The role of Implication questions is to:**
  - A) Gather factual background
  - B) Make the client feel the weight/seriousness of the problem ✓
  - C) Move the client to an emotional decision
  - D) Close the sale
+
+ **Why:** Implication questions are the engine of SPIN — they take a named problem and intensify it by asking the client to imagine its real-world consequences. This is where implied need becomes explicit need because the client feels the weight of the gap for the first time. Gathering factual background (A) is the role of Situation questions. Moving to an emotional decision (C) is the result, not the mechanism. Closing the sale (D) is what Need-Payoff questions set up.
 
 3. **A client buys when:**
  - A) The advisor is persuasive
@@ -224,11 +228,15 @@ The "hard sell" approach produces faster first-year results but burns out the ad
  - C) Seriousness of problem > cost of solution ✓
  - D) The client has budget
 
+ **Why:** The buy/don't-buy decision is a scale — a client buys when the felt weight of the problem outweighs the cost and effort of the solution. This is why a prospect who says "it's too expensive" often has an underweighted problem, not a price problem. Persuasion (A) alone does not sustain a buy decision; clients who feel pushed reverse decisions. Being cheapest (B) and having budget (D) are contributing factors but are not the causal mechanism — many clients with budget and cheap options still do not buy.
+
 4. **A prospect says "the premium feels expensive." Based on the buy/don't-buy scale, the best response is to:**
  - A) Offer a cheaper plan immediately
  - B) Justify the price with competitor comparisons
  - C) Explore whether the seriousness of the problem has been fully felt — the price objection often signals an underweighted problem ✓
  - D) Agree to revisit when their income increases
+
+ **Why:** A price objection almost always means the problem has not been made serious enough relative to the cost — the scale is still tipping toward "cost > seriousness." The correct move is to go back and deepen the Implication questioning so the problem's weight grows. Offering a cheaper plan (A) concedes value without fixing the underlying issue. Competitor comparisons (B) are analytical and miss the emotional gap. Revisiting when income increases (D) abandons the meeting.
 
 5. **Need-Payoff questions work because:**
  - A) They reveal hidden objections the client hasn't shared
@@ -236,17 +244,23 @@ The "hard sell" approach produces faster first-year results but burns out the ad
  - C) The client articulates the value of solving the problem themselves — they sell themselves ✓
  - D) They move the conversation back to facts after the emotional peak
 
+ **Why:** Need-Payoff questions flip the client from problem-focus to solution-focus by asking them to describe what life looks like with the problem solved. When a client says "yes, knowing my retirement is locked in would completely change how I feel day-to-day" — that is self-persuasion, which is far more powerful than advisor persuasion. Surfacing hidden objections (A) is a Problem-question role. Summarising benefits (B) is what the advisor does, not the client. Moving back to facts (D) would undo the emotional momentum built during Implication.
+
 6. **An FC jumps straight into presenting a retirement plan after 10 minutes of Situation questions. What has likely been skipped?**
  - A) The rapport phase
  - B) Problem and Implication questions — the client's need hasn't been made explicit or felt yet ✓
  - C) The NLP mirroring techniques
  - D) The DISC identification step
 
+ **Why:** Situation questions only establish facts — they do not surface the client's dissatisfactions or make them feel the urgency of those gaps. Without Problem questions the need is still implied, and without Implication questions it has no emotional weight. A presentation delivered at this stage lands on a client who has not yet felt any reason to buy. Rapport (A) is a pre-SPIN step and is usually covered in the opening. NLP mirroring (C) and DISC (D) are style-adaptation tools, not SPIN phases.
+
 7. **"You are a consultant, not a salesperson" means, in practice:**
  - A) Charge a consulting fee before recommending products
  - B) Avoid recommending specific products
  - C) Lead with questions and insight; let trust — not persuasion — drive the relationship ✓
  - D) Focus exclusively on investment products, not insurance
+
+ **Why:** Consultative selling means your primary output is insight (from good questions and listening) and your primary currency is trust built over time — not a persuasive pitch delivered in one meeting. Charging fees (A) is a different business model, not what this philosophy describes. Avoiding product recommendations (B) would make you useless to the client. Focusing only on investments (D) is a product scope decision unrelated to the consultative philosophy.
 
 ---
 

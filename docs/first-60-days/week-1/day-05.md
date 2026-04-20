@@ -120,11 +120,15 @@ This is the most important thing on this page.
  - C) Framing the sale before the objection comes
  - D) Setting up a proposal document
 
+ **Why:** Pre-framing is specifically about buying credibility runway before you have a track record — you let the prospect form a positive expectation of your future value, not evidence of past results. A describes an agenda-setting tactic (previewing a meeting), not a trust-building technique. C conflates pre-framing with objection handling. D is an admin task with no connection to the concept.
+
 2. **Who should NOT be on your Week 1 reconnection list?**
  - A) Old classmates you haven't spoken to in 2 years
  - B) Former colleagues
  - C) Your closest 3 friends ✓
  - D) Cousins you see once a year
+
+ **Why:** Day 5 says closest friends are "too easy" for Week 1 — they already accept you and give you no practice at the slightly uncomfortable reconnection. The goal is the middle tier: socially valid but not yet emotionally complicated. Old classmates (A), former colleagues (B), and annual-contact cousins (D) are all explicitly named as ideal middle-tier contacts.
 
 3. **The moral compass test for any recommendation:**
  - A) Is the commission competitive?
@@ -132,11 +136,15 @@ This is the most important thing on this page.
  - C) Could you explain it to the client's children 10 years from now without flinching? ✓
  - D) Is it the newest product?
 
+ **Why:** Day 5 gives this exact test verbatim and calls it "the most important thing on this page." It forces a long-horizon, client-first perspective on every sale. A and B are commission- and target-driven criteria — precisely the money-motivated behaviour Day 5 warns against. D (newest product) has no bearing on fit; it reflects product push rather than client need.
+
 4. **You're reconnecting with a cousin you see once a year. She asks why you switched careers. Using the pre-framing structure, what should your response include?**
  - A) Your commission potential and career progression path
  - B) A brief pitch about the products you now sell
  - C) Your personal why, what kind of advisor you aspire to be, and what you're doing now to earn it ✓
  - D) Social proof from your senior colleagues' track records
+
+ **Why:** The pre-framing structure has three parts in Day 5: your why (one sentence), what you aspire to be (four points max), and what you are doing now to earn that. C maps directly to all three. A focuses on self-interest, not the client's perspective. B is a pitch, which Day 5 explicitly says your reconnection message is not. D uses someone else's credibility instead of your own direction, which defeats the purpose of pre-framing.
 
 5. **Why does the Day 5 framework recommend the "middle tier" of warm contacts rather than your closest friends for Week 1 outreach?**
  - A) Closest friends are more likely to give negative feedback
@@ -144,17 +152,23 @@ This is the most important thing on this page.
  - C) Closer relationships should be reserved for later when you have more experience
  - D) Middle-tier contacts have higher purchasing power on average
 
+ **Why:** Day 5 explains that middle-tier contacts give you the best of both worlds: enough familiarity that you are not a cold stranger (socially valid), but no strong existing opinions about whether you would be "good at sales" (not emotionally complicated). A is not mentioned as a reason — the concern about closest friends is ease, not negativity. C and D are not in the content; purchasing power is irrelevant at the reconnection stage.
+
 6. **An FC is new and worried they lack credibility. According to Day 5, the correct move is:**
  - A) Wait until CMFAS is passed before speaking to any prospects
  - B) Lean on the agency's brand name until personal credibility is built
  - C) Own the newness and convert it into a reason to work with you — you'll give more attention than a cruising senior ✓
  - D) Avoid mentioning how long you've been in the role
 
+ **Why:** Day 5's underdog advantage section says hiding your newness is the wrong move — owning it and converting it (you'll be one of my first clients, you'll get my full attention) is how a new FC competes. Waiting (A) leaves money and relationship-building on the table. Leaning on brand (B) sidesteps the personal credibility question rather than answering it. D is actively dishonest, and dishonesty is the opposite of the moral compass the same day teaches.
+
 7. **Which of the following would make a "why" statement most likely to hold up under pressure in Month 4?**
  - A) "I want to build financial freedom for myself through commissions."
  - B) "My manager believes I have the right personality for this."
  - C) "I watched a close family member suffer a financial setback that insurance could have prevented." ✓
  - D) "I want to prove that I can succeed in a hard career."
+
+ **Why:** Day 5 says purpose must be load-bearing — it needs to answer a question bigger than "did I hit my number this week?" A personal loss that now drives protective work for others (C) is deeply anchored and will survive rejection streaks. A (self-interest in commissions) fades when commissions are thin. B (external validation from a manager) is borrowed motivation with no roots. D (proving something) is ego-driven and collapses the moment the external audience stops watching.
 
 ---
 

@@ -181,11 +181,15 @@ Some answer: "Actually, I'm concerned about X." → gold. That's the real object
    - C) Present product benefits
    - D) Surface budget objections
 
+   **Why:** Implication questions exist specifically to make the client feel the downstream weight of an unresolved problem — not to gather facts (that's Situation), not to pitch products (that comes after SPIN), and not to probe budget (that's handled in the CFR numbers section). The emotional impact of "what happens if this goes unaddressed" is what converts an implied need into an explicit, felt need.
+
 2. **The most powerful thing about a Need-Payoff Question:**
    - A) It names the product
    - B) The client describes the benefits in their own words ✓
    - C) It gets agreement on price
    - D) It tests urgency
+
+   **Why:** When the client articulates the benefits themselves, they are buying — not being sold to. Need-Payoff questions don't name products (that's premature) or negotiate price (that's later). Urgency testing may be a side effect, but the defining power is that the client's own voice becomes the reason for acting.
 
 3. **The Colombo Close is used:**
    - A) At the very start of the meeting
@@ -193,11 +197,15 @@ Some answer: "Actually, I'm concerned about X." → gold. That's the real object
    - C) As the transition from SPIN into scheduling the next meeting + surfacing remaining objections ✓
    - D) During rapport building
 
+   **Why:** The Colombo Close bridges a completed SPIN conversation into the next meeting — it pre-frames the follow-up, uses the client's own stated goals, names their budget comfort zone, and draws out hidden objections before you walk out. Using it at the start of a meeting (A) would be premature and manipulative. Using it after the product presentation (B) misses its main value, which is surfacing objections early enough to address them.
+
 4. **A client says "I know I should save more for retirement but haven't started." You've acknowledged the problem. What's the correct next move?**
    - A) Jump straight to recommending a plan
    - B) Ask a Need-Payoff question to have them describe what acting would mean
    - C) Ask an Implication question to make them feel the consequences of not starting ✓
    - D) Summarise and close the meeting
+
+   **Why:** The client has acknowledged the problem — the sequence now calls for Implication questions to deepen the felt need before moving to solution. Jumping to a recommendation (A) skips the emotional work that makes the client receptive. Need-Payoff (B) is the step after Implication, not before — the client needs to feel the consequences first, then articulate the benefits of acting.
 
 5. **You've just asked three Implication questions in a row. The client looks uncomfortable. What should you do?**
    - A) Keep going — the discomfort is doing your work
@@ -205,17 +213,23 @@ Some answer: "Actually, I'm concerned about X." → gold. That's the real object
    - C) Pivot to a Need-Payoff question to shift the emotional tone toward the solution ✓
    - D) Stop and present the product immediately
 
+   **Why:** Three Implication questions in a row crosses into emotional manipulation — the discomfort has done its work, and the balance must shift toward hope. A Need-Payoff question reframes the emotional tone from problem to solution. Continuing Implication questions (A) risks the client feeling cornered. Reassurance (B) dilutes the work already done. Jumping immediately to a product (D) skips the critical step where the client articulates the benefits in their own words.
+
 6. **Which of these is a correctly framed Need-Payoff question?**
    - A) "Wouldn't it be great if your family was protected?"
    - B) "Have you thought about how much retirement income you need?"
    - C) "What would it mean to you to know right now that your retirement plan is fully on track?" ✓
    - D) "Are you aware that CPF alone won't be enough?"
 
+   **Why:** A correctly framed Need-Payoff question is neutral, curious, and invites the client to articulate the value of solving the problem in their own words. Option A is a leading question — it presupposes the answer and feels manipulative. Option B is a Situation-level question gathering data, not a payoff question. Option D is an Implication-style challenge, not a benefit-elicitation question.
+
 7. **A client answers your Need-Payoff question with "It would be a huge relief — my wife worries about this too." What is the most important thing to do next?**
    - A) Nod and immediately move to the product presentation
    - B) Ask another Implication question to deepen the concern
    - C) Wait for the full answer and let it sit — that sentence is the most valuable in the meeting ✓
    - D) Introduce the Colombo Close right away
+
+   **Why:** The client's Need-Payoff answer is the emotional and motivational core of the meeting — it should be heard fully and allowed to land. Rushing to a product presentation (A) wastes the moment. Going back to another Implication question (B) reverses the emotional arc — the tone has shifted to hopeful and should stay there. The Colombo Close (D) is appropriate at the end of the full SPIN arc, not immediately after a single Need-Payoff answer.
 
 ---
 

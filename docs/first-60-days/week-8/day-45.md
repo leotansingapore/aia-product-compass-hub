@@ -191,11 +191,15 @@ The best storyteller FCs sound like friends telling you about someone you both k
  - C) Prospect, Product, Pitch, Price, Proof, Purchase
  - D) Problem, Pain, Product, Plan, Price, Promise
 
+ **Why:** The 6P framework is Prospect, Problem, Pain, Promise, Proof, Purpose — in that exact order because each step sets up the next. Prospect grounds the listener in a relatable person; Problem names the gap; Pain gives it emotional weight; Promise shows a solution exists; Proof validates it with a testimonial; Purpose delivers the universal lesson. Options B, C, and D all substitute product or pitch elements that shift the story from a client's journey into a sales presentation.
+
 2. **When should you NOT use storytelling?**
  - A) When introducing an emotional concept
  - B) When the client is a C-profile (analytical, wants data) ✓
  - C) When closing
  - D) When handling objections
+
+ **Why:** C-profile clients are skeptical of anything that sounds like a pitch and prefer data, illustrations, and comparisons — a story will feel manipulative to them rather than educational. Storytelling is well suited for emotional concepts (A), closing moments when a client is on the fence (C), and objections that repeat despite facts (D), where a narrative is harder to argue against than a statistic. Matching the tool to the audience is the discipline.
 
 3. **Stories are more memorable than facts because:**
  - A) They're longer
@@ -203,11 +207,15 @@ The best storyteller FCs sound like friends telling you about someone you both k
  - C) They're funnier
  - D) They come from personal experience
 
+ **Why:** When a listener hears a story, their brain fires in language, sensory, motor, and emotional regions simultaneously — creating a richer memory trace than facts alone, which only activate language processing. This is why clients remember the Marcus story long after they have forgotten the product name. Length (A) is a weak explanation and long stories are often less memorable; humour (C) and personal origin (D) may help in specific cases but are not the neurological reason for higher recall.
+
 4. **An FC is meeting a prospect who has already dismissed CI insurance twice before. The best move is:**
  - A) Present the product features again with updated numbers
  - B) Use storytelling — a client story is harder to argue with than a repeated fact ✓
  - C) Skip CI and focus on a product the prospect hasn't rejected
  - D) Ask the prospect to explain their objection in detail
+
+ **Why:** Prospects argue with facts and numbers, but they find it much harder to dismiss a story about someone just like them facing real consequences. Repeating product features (A) has already failed twice and will likely fail a third time. Skipping CI (C) avoids the coverage gap rather than addressing it. Asking the prospect to explain their objection (D) can surface useful insight but does not overcome the emotional barrier the way a well-chosen story does.
 
 5. **In the 6P framework, the "Pain" element is:**
  - A) The product limitation the client should know about
@@ -215,17 +223,23 @@ The best storyteller FCs sound like friends telling you about someone you both k
  - C) The premium cost the client will pay
  - D) The risk rating of the product
 
+ **Why:** Pain is where the story moves from a dry case study into something emotionally felt — it is the human cost: savings drained, plans disrupted, a family caught off-guard. Without Pain, the story stays analytical and the emotional brain does not engage. Product limitations (A), premium costs (C), and risk ratings (D) are compliance and product-stage information that belong in a fact-find or proposal, not in the emotional arc of a 6P story.
+
 6. **Which of the following violates the emotional discipline rules for storytelling?**
  - A) Adapting the same story skeleton to match the client in front of you
  - B) Using a real anonymised client case
  - C) Fabricating details to make the story more dramatic ✓
  - D) Keeping the story to under 90 seconds
 
+ **Why:** Fabrication is explicitly forbidden — clients can sense fiction, and a story that is later contradicted or exposed destroys the trust the entire career model depends on. Adapting the skeleton to the client (A) is encouraged; using real anonymised cases (B) is the recommended source; and keeping stories under 90 seconds (D) is good compression discipline. Only fabrication crosses the ethical line.
+
 7. **After a well-told 6P story, the ideal client response is:**
  - A) "Can you email me the policy document?"
  - B) "I'll think about it."
  - C) "So what would that look like for me?" — transitioning into their own planning ✓
  - D) "That's a sad story — I hope they're okay."
+
+ **Why:** A well-structured 6P story is designed to prime the client to ask how the situation applies to their own life — that question is the natural transition from the story into your fact-find or recommendation. Asking for a policy document (A) skips fact-finding. "I'll think about it" (B) means the story stayed abstract and did not personalise enough. Sympathising with the story character (D) shows the client was listening but remained a spectator rather than inserting themselves into the scenario.
 
 ---
 

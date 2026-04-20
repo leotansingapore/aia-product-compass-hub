@@ -151,11 +151,15 @@ Memorise that sentence. You'll use it for the rest of your career.
  - C) Investing more when the market is high
  - D) Reducing investment when the market falls
 
+ **Why:** DCA is defined as a fixed amount invested at fixed intervals independent of what the market is doing — the consistency is the point. A lump sum at the lowest price (A) describes perfect market timing, which is the opposite of DCA's premise. Investing more when high (C) is the emotional mistake DCA is designed to prevent. Reducing in downturns (D) is another emotional error; DCA keeps the amount constant so that falling prices automatically buy more units.
+
 2. **The main advantage of DCA vs lump sum:**
  - A) Always produces higher returns
  - B) Lower capital outlay
  - C) Protects against the risk of lump-summing at a market peak, smooths volatility ✓
  - D) Eliminates all downside
+
+ **Why:** DCA's core trade-off is explicit: you give up the maximum possible return (lump-summing at the bottom) in exchange for protection against lump-summing at the top. DCA does not always beat lump sum (A) — if the market rises steadily, lump sum wins. Capital outlay is the same over time (B); DCA spreads it, it does not reduce it. DCA does not eliminate downside (D) — in a continuously falling market it still loses money, just less than lump-summing at the peak.
 
 3. **The deepest reason DCA works:**
  - A) Math
@@ -163,11 +167,15 @@ Memorise that sentence. You'll use it for the rest of your career.
  - C) Tax benefits
  - D) Compound interest
 
+ **Why:** The lesson distinguishes between DCA working mathematically and DCA working behaviourally — the deeper reason is that it automates buying through downturns (when emotions scream sell) and prevents overbought peaks (because the amount is fixed). The math (A) is real but secondary; studies show retail investors underperform not because of fees but because of behavioural errors. Tax benefits (C) are not mentioned. Compound interest (D) works alongside DCA but is a separate mechanism.
+
 4. **DCA is least useful when:**
  - A) The investment horizon is 20+ years
  - B) The investment horizon is under 2 years ✓
  - C) The market is volatile
  - D) The investor is young
+
+ **Why:** DCA needs time to smooth volatility — over a 2-year horizon there are too few periods for the averaging effect to reduce variance meaningfully, and short-term money should stay in cash or bonds. DCA is most effective at 20+ year horizons (A), not least. Volatility (C) is precisely the condition DCA is designed for; it forces buying at low prices during dips. Young investors (D) benefit most from DCA because they have the longest compounding runway.
 
 5. **The single sentence a client should take away from a DCA conversation:**
  - A) "DCA guarantees returns."
@@ -175,17 +183,23 @@ Memorise that sentence. You'll use it for the rest of your career.
  - C) "Never invest in volatile assets."
  - D) "Always invest lump sums."
 
+ **Why:** The lesson closes with the explicit instruction to memorise: "Time in the market beats timing the market — and DCA is how ordinary people get time in the market without making emotional mistakes." DCA guarantees nothing (A); it is a risk-smoothing strategy, not a guarantee. Avoiding volatile assets (C) is the opposite of the lesson's message, which is to stay invested through volatility. Always investing lump sums (D) is not mentioned and contradicts the DCA premise.
+
 6. **A DCA plan works best when the client:**
  - A) Monitors markets daily
  - B) Automates the contribution and doesn't interrupt it ✓
  - C) Pauses during downturns
  - D) Increases contributions when the market is high
 
+ **Why:** DCA's discipline is structural, not emotional — automating the contribution removes the human decision to pause, which is the exact mistake it is designed to prevent. Monitoring markets daily (A) primes the client to make emotional decisions during volatility, undermining the strategy. Pausing during downturns (C) eliminates the cheap-unit purchases that drive DCA's outperformance. Increasing contributions when high (D) reverses the DCA advantage — it means buying fewer units at elevated prices.
+
 7. **When lump-sum beats DCA, it's usually because:**
  - A) The market rose steadily over the period ✓
  - B) The client was younger
  - C) Fees were lower
  - D) The investment horizon was shorter
+
+ **Why:** In a steadily rising market, a lump sum buys at a lower average price than DCA contributions spread across rising prices — so lump sum wins. The comparison table in the lesson shows this clearly: Year-1 lump sum at $5 loses, but that is because the market fell later; in a market that only goes up, the early lump sum compounds the most. Age (B) and fees (C) affect returns but are not the condition under which lump sum structurally beats DCA. A shorter horizon (D) reduces DCA's averaging benefit but doesn't make lump sum beat it on its own.
 
 ---
 

@@ -133,11 +133,15 @@ No one in this meeting said "insurance." And yet the client just bought an insur
  - C) Income > Expenses × 12 × 20
  - D) CPF + savings = Retirement target
 
+ **Why:** Today's opening section defines freedom with exactly one formula: passive income exceeds monthly expenses. That is the moment you can quit any job without financial consequence. Net worth (A) is a snapshot, not a cash-flow measure — a $1M property with a $900K mortgage is not freedom. The lump-sum multiple formula (C) conflates accumulation math with the freedom definition. CPF plus savings (D) is a component of the plan, not the definition of the goal.
+
 2. **What's the foundation level of the Financial Freedom Pyramid?**
  - A) Short-term savings
  - B) Wealth accumulation
  - C) Risk management ✓
  - D) Wealth preservation
+
+ **Why:** The pyramid's first rule is that you cannot permanently build a level above without the level below, and Level 1 is Risk Management. Short-term savings is Level 2, wealth accumulation is Level 3, and wealth preservation is Level 4 (renamed "Wealth Legacy" at the top). An investment portfolio wiped out by an uninsured illness is worse than no portfolio — that is why protection is the floor.
 
 3. **The better way to motivate a retirement client:**
  - A) Show them a $2.7M lump-sum target
@@ -145,11 +149,15 @@ No one in this meeting said "insurance." And yet the client just bought an insur
  - C) Compare them to their peers
  - D) Run a Monte Carlo simulation
 
+ **Why:** Today's "Don't sell products, sell an income stream" rule makes this explicit. A monthly income figure ("$4,500 a month, for life, starting at 65") is concrete and liveable; $2.7M is abstract and scary. Peer comparison (C) triggers defensiveness. A Monte Carlo simulation (D) is an analytical tool, not a motivational frame for a first retirement conversation.
+
 4. **A 40-year-old client has a strong investment portfolio (Level 3) but no CI or death coverage. According to the pyramid, what should your first recommendation be?**
  - A) Add a wealth preservation vehicle to protect the portfolio
  - B) Compliment the portfolio and suggest a top-up plan
  - C) Address the Level 1 gap — CI and death coverage — before any further accumulation ✓
  - D) Open a retirement income plan to complement the investments
+
+ **Why:** The pyramid's non-negotiable rule is bottom-up: you cannot permanently build a level without the one below. A CI diagnosis can force a client to liquidate their Level 3 portfolio at the worst moment — precisely the scenario the pyramid prevents. Wealth preservation (A) is Level 4, even further above the gap. Complimenting the portfolio (B) and adding a retirement plan (D) both pile more onto an unstable foundation.
 
 5. **Mr Tan's CPF LIFE will pay $2,500/month at 65. His projected expenses are $9,000/month. What monthly gap must his insurance-based accumulation plans fill?**
  - A) $2,500/month
@@ -157,17 +165,23 @@ No one in this meeting said "insurance." And yet the client just bought an insur
  - C) $9,000/month
  - D) $11,500/month
 
+ **Why:** The gap is simply projected expenses minus CPF payout: $9,000 - $2,500 = $6,500/month. $2,500 (A) is CPF LIFE itself, not the gap. $9,000 (C) ignores CPF entirely. $11,500 (D) adds the two figures instead of subtracting — a common arithmetic error worth guarding against in client presentations.
+
 6. **Why is "passive income > monthly expenses" a more useful goal than "save $2 million"?**
  - A) It is easier to achieve in a shorter time frame
  - B) It focuses the client on building income streams, not chasing an abstract number ✓
  - C) CPF automatically provides this without additional planning
  - D) It removes the need for any insurance coverage at retirement
 
+ **Why:** The income-stream framing makes the goal concrete and actionable — the client can see how CPF, a savings plan, and rental income each contribute to closing the monthly gap. The lump sum is mathematically equivalent but psychologically intimidating and static. A passive income goal is not easier to reach (A) — it is the same destination described differently. CPF alone rarely covers full expenses (C). Insurance coverage remains necessary regardless of how the goal is framed (D).
+
 7. **A $200K-a-year doctor working 70-hour weeks with no savings is described as "less free" than a $70K teacher with a paid-off house and retirement savings. What concept does this illustrate?**
  - A) Income is irrelevant to financial planning
  - B) Property ownership is the primary driver of freedom
  - C) Optionality — freedom comes from passive income covering expenses, not from income level alone ✓
  - D) High earners are always poor planners
+
+ **Why:** Today's section on "why freedom beats more money" explains that beyond basic needs, additional income buys optionality, not happiness. The teacher has a paid-off house and retirement savings generating passive coverage; the doctor's high income is fully consumed by expenses and work dependency. Income is not irrelevant (A) — it creates capital to invest. Property (B) is one contributor but not the primary driver. High earners are not always poor planners (D) — this is an illustrative contrast, not a universal rule.
 
 ---
 

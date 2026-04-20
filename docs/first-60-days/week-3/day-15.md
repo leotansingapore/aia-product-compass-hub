@@ -125,11 +125,15 @@ Clients who can state their goal in SMART form are 10x more likely to follow the
  - C) Aggressive risk tolerance
  - D) Property ownership
 
+ **Why:** The 25-year-old example in this lesson shows that time does the heavy lifting — at 6% p.a., a 25-year-old needs only $500/month, while a 45-year-old needs $2,500+/month to reach the same target, purely because of the compounding runway. A matters but is secondary; a modest 6% return over 40 years still produces $760,000 from compounding alone. C is a misconception — the math works at moderate rates, and excessive risk can destroy the compounding effect. D may be part of a wealth strategy but is not the most important single factor for a 25-year-old starting out.
+
 2. **When should a client shift from accumulation to preservation?**
  - A) At age 55 sharp
  - B) When they hit $1M in assets
  - C) Gradually, as retirement approaches — typically 50s onwards ✓
  - D) When they receive their first CPF payout
+
+ **Why:** The transition is described as a gradual rebalancing — not a hard switch — typically beginning in the 50s as the retirement runway shortens and volatility tolerance drops. A imposes a fixed age that ignores individual circumstances; the content explicitly says there is no hard switch. B uses an asset threshold that has no basis in the content and ignores time horizon entirely. D misidentifies a CPF event as the trigger; CPF payouts begin at around age 65, by which point the shift should already have happened.
 
 3. **A single-stream income is risky because:**
  - A) It has higher tax
@@ -137,11 +141,15 @@ Clients who can state their goal in SMART form are 10x more likely to follow the
  - C) It can't be invested
  - D) It limits commission income
 
+ **Why:** The content states it plainly: "if a single-stream client loses their income, everything collapses." A client with three or more streams can absorb the loss of one; a client with only a salary has no fallback. A is false — income tax is not affected by whether income comes from one or multiple sources. C is incorrect; single-stream income (e.g., a salary) can absolutely be invested. D applies specifically to FCs and is not the general reason stated in the lesson.
+
 4. **A 25-year-old client wants $4,000/month (today's dollars) in retirement at 65. After adjusting for 2% inflation over 40 years, roughly how much will they need per month at retirement?**
  - A) $4,200/month
  - B) $6,000/month
  - C) $8,830/month ✓
  - D) $12,000/month
+
+ **Why:** $4,000 compounded at 2% inflation for 40 years equals roughly $8,830/month — this is the worked example given in the lesson. A applies almost no inflation adjustment; a 2% difference over 40 years is far more than $200/month. B underestimates the power of compounding inflation over a 40-year horizon. D overstates it — $12,000 would require a higher inflation rate than the 2% stated.
 
 5. **A 45-year-old client says they'll start investing "in a couple of years." What's the most accurate way to quantify the cost of delay?**
  - A) Tell them compounding doesn't really kick in until after 30 years anyway
@@ -149,17 +157,23 @@ Clients who can state their goal in SMART form are 10x more likely to follow the
  - C) Remind them that markets are unpredictable, so timing isn't critical
  - D) Reassure them that CPF will cover most of the gap
 
+ **Why:** The content instructs FCs to use iResource's retirement calculator to show the gap between "start now" and "start in 3 years" — it's often 20–30% of final retirement capital, which is a concrete and sobering figure. A is false; compounding is exponential and every additional year adds to the base that compounds from that point. C actively discourages urgency, which is the opposite of what the lesson teaches. D overstates CPF's adequacy — most Singaporeans under-save, and the content says so explicitly.
+
 6. **Which of the following is a SMART retirement goal?**
  - A) "I want to be financially comfortable when I stop working"
  - B) "I want enough passive income in my 60s"
  - C) "$6,000/month passive income in today's dollars, starting at age 62, adjusted for 2% inflation" ✓
  - D) "I want to retire early with a million dollars"
 
+ **Why:** C meets every SMART criterion: specific ($6,000/month), measurable (the plan can project it), achievable (based on starting today), relevant (matches a real lifestyle number), and time-bound (age 62, inflation-adjusted). A and B are vague — "comfortable" and "enough" are not measurable. D names a lump sum but has no income figure, no timeline, and no inflation adjustment, so it cannot be planned against precisely.
+
 7. **At a modest 6% annual return, a 25-year-old saving $500/month over 40 years accumulates roughly $1M. The key insight this illustrates is:**
  - A) Picking the right fund matters most
  - B) Over $760,000 comes from compounding — not from the client's own contributions ✓
  - C) High-risk investments are necessary for retirement
  - D) CPF contributions alone are sufficient for most Singaporeans
+
+ **Why:** The worked example shows the client personally contributes $240,000 ($500 x 480 months) while the remaining $760,000-plus comes from compounding — meaning more than three-quarters of the final figure is the result of time, not personal sacrifice. A overstates fund selection; the example uses a modest 6% rate, not a best-in-class fund. C is wrong — 6% is a moderate, not aggressive, return assumption. D contradicts the lesson, which states most Singaporeans under-save and cannot rely on CPF alone.
 
 ---
 

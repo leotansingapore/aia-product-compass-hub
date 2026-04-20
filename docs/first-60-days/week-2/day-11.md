@@ -136,11 +136,15 @@ You don't need to quit anything. You just need to start shifting the mix.
  - C) B
  - D) I
 
+ **Why:** S is defined as self-employed — you work for yourself, your income equals hours times rate, and income stops when you stop. A doctor in their own practice is the textbook S example: higher rate per hour than an employee, but still the sole productive unit. E requires working for someone else. B requires owning a system that others operate without you. I requires capital generating returns independently of your effort.
+
 2. **What's the mechanism that turns an FC from S into B over time?**
  - A) Hiring juniors
  - B) Making more cold calls
  - C) A renewal book that produces recurring income regardless of daily effort ✓
  - D) Selling the business
+
+ **Why:** The S-to-B transition for FCs is explicitly described as the renewal book — each serviced policy generates income every year the client keeps it, independent of that month's prospecting. Hiring juniors (A) accelerates the shift but is not the mechanism; the renewal book is. Cold calls (B) generate new income but are active, not passive. Selling the business (D) exits the career, not a quadrant transition.
 
 3. **Non-recurring revenue means:**
  - A) Monthly income
@@ -148,11 +152,15 @@ You don't need to quit anything. You just need to start shifting the mix.
  - C) Income that can be cancelled anytime
  - D) Gig-economy pay
 
+ **Why:** Today's definition is precise: non-recurring revenue means you do the work and get paid once — the payment does not repeat without new work. Monthly income (A) can be either recurring or non-recurring depending on the structure. Cancellability (C) describes a different risk attribute. Gig-economy pay (D) is typically non-recurring but the definition is about the payment structure, not the delivery model.
+
 4. **A freelance graphic designer charges $5,000 per project. She works for herself and sets her own hours. Which quadrant does she occupy?**
  - A) E — she works under client contracts
  - B) S — she is self-employed and income stops when she stops ✓
  - C) B — she owns her own business
  - D) I — design skills are an intangible asset
+
+ **Why:** Self-employment with personal delivery is the S definition. Her income equals her output — when she stops working, the income stops. Working under client contracts (A) does not make someone an employee; the key is who she works for and whether a system replaces her. Owning a business (C) requires a system running without her personal labour. Design skills are not capital generating passive returns (D).
 
 5. **An FC in Year 6 has 300 active clients, two junior associates she mentors, and a referral engine that generates 4 new leads per month without her active involvement. Which quadrant shift best describes her situation?**
  - A) Still in S — she is personally licensed and still serves clients
@@ -160,17 +168,23 @@ You don't need to quit anything. You just need to start shifting the mix.
  - C) Fully in I — passive income now exceeds active income
  - D) In E — she is effectively employed by her clients
 
+ **Why:** Today's progression table places Year 5+ FCs in a partial B position when they have associates, a content/lead-gen engine, or a referral network — all present here. She has not fully crossed into B (still personal delivery) and is certainly not in I (C), which requires capital returns exceeding active income. Retaining her licence does not keep her in S (A) if a system now generates leads without her. She is not employed by clients (D).
+
 6. **Why does school training make the E-to-B quadrant shift harder for most people?**
  - A) School teaches investment strategies that favour the I quadrant instead
  - B) School optimises students to follow instructions and defer to authority, reinforcing the E mindset ✓
  - C) School discourages savings, leaving people without capital to invest
  - D) School teaches sales skills that only work in the S quadrant
 
+ **Why:** Today's section on why most people never leave the left-hand side states this directly: "the entire education system is optimised to produce employees. You learn how to follow instructions, pass standardised tests, and defer to authority." School does not teach investment strategy at the level of quadrant I (A), nor does it explicitly discourage savings (C). School does not teach sales skills in any quadrant (D).
+
 7. **A new FC is debating whether to leave because Year 1 commissions are low. The cashflow quadrant lesson suggests the most important question to ask is:**
  - A) "Am I closing enough policies this month?"
  - B) "Is my renewal book growing in a way that will shift me from S toward B over time?" ✓
  - C) "Should I move to an IFA model to access more products?"
  - D) "Is my hourly rate competitive with my corporate peer's salary?"
+
+ **Why:** The quadrant lesson reframes the career decision from monthly commission (S thinking) to whether the recurring-revenue engine is being built (B trajectory). A renewal book growing now will pay into the future regardless of this month's production. Closing count (A) and hourly rate (D) both measure S-quadrant performance. Moving to an IFA model (C) is a product-access question that doesn't change the quadrant logic.
 
 ---
 

@@ -151,11 +151,15 @@ Start stupid small. Momentum handles the rest.
  - C) Scheduling is for top-down planners; prioritising is for bottom-up workers
  - D) The first is strategic; the second is tactical — both are fine
 
+ **Why:** The Covey reframe is that most new FCs arrive Monday and work from whatever is already on the calendar — client meetings others booked, training others scheduled — with no prospecting time carved out, realising by Wednesday the pipeline is empty. Scheduling your priorities means deciding the 3 most important outcomes first, putting them in the calendar, and defending those blocks against everything else. The two approaches are not equivalent (A), and D is wrong because "both are fine" misses the point that one approach systematically produces the wrong results.
+
 2. **MVP thinking applied to an FC's career means:**
  - A) Start with the cheapest products
  - B) Ship rough things fast, iterate from real feedback ✓
  - C) Minimum viable performance on all tasks
  - D) A staged launch plan
+
+ **Why:** MVP (Minimum Viable Product) thinking means getting something real in front of a real user — client, prospect, audience — as quickly as possible, then refining based on their actual responses rather than imagined perfection. The lesson illustrates this with proposals sent rough vs. perfected in isolation, and LinkedIn posts published this Sunday vs. drafted for two weeks. It is not about cheapest products (A), acceptable mediocrity across the board (C), or a formal staged rollout plan (D).
 
 3. **The hardest part of most productive work is:**
  - A) Finishing well
@@ -163,11 +167,15 @@ Start stupid small. Momentum handles the rest.
  - C) The first 10 minutes of starting ✓
  - D) Concentration during the middle
 
+ **Why:** The lesson cites the "resistance" insight directly — the problem is not doing the work but starting it, and once you are inside a task, flow usually carries you forward. This is why the tactical advice is to lower activation energy by scheduling something stupidly small ("dial the first number" rather than "make calls"). Finishing (A) and mid-task concentration (D) are not identified as the primary resistance point. Deciding what to work on (B) is addressed in the weekly planning ritual, not named as the daily friction point.
+
 4. **Sarah spends her Sunday evening planning next week. She has 10 things she wants to achieve. Applying today's lesson, how many should she designate as her weekly priorities?**
  - A) All 10 — ambition is good
  - B) 5, ranked by urgency
  - C) 3, specific and measurable ✓
  - D) 1 stretch goal and the rest as stretch targets
+
+ **Why:** The weekly planning ritual specifies three priorities — not ten, not five — because a short list forces genuine trade-off thinking and makes it possible to actually protect calendar blocks for each one. Ten priorities (A) is no priority at all; each item competes for attention and none gets defended. Five ranked by urgency (B) still defeats the purpose because urgency is not importance. One stretch goal (D) under-specifies the week and leaves daily execution undefined.
 
 5. **An FC rewrites their cold-call opener for the fourth time without having tested it on a real prospect. According to the MVP principle, the better action is:**
  - A) Refine one more time until it feels perfect
@@ -175,11 +183,15 @@ Start stupid small. Momentum handles the rest.
  - C) Use the current version for 20 calls and iterate based on real responses ✓
  - D) Draft two versions and A/B test them in theory
 
+ **Why:** MVP demands real-world feedback from real users — 20 actual calls will reveal far more about what works than any number of solo rewrites or theoretical comparisons. Refining again (A) is perfectionism compounding; the script will never feel perfect until it has been tested. A mentor review (B) is still vacuum-refinement rather than live feedback. Theoretical A/B testing (D) is contradicted by the principle that real user reactions, not imagined ones, should drive iteration.
+
 6. **The weekly planning ritual described includes protecting one evening per week for personal life. The primary reason given is:**
  - A) Work-life balance is a company policy
  - B) Without protected personal time, burnout hits around Month 3 ✓
  - C) Evenings are low-productivity anyway
  - D) It keeps relationships strong for referral purposes
+
+ **Why:** The lesson explicitly references Day 18's "shadow side" of 10X — grinding without recovery leads to burnout around Month 3, which ends the career before the compounding starts. One protected evening is a structural defence against that. Work-life balance is not framed as a policy (A). Low evening productivity (C) is not the argument made. And while relationships matter for referrals, that is not the reason given here (D) — the reason is sustainability of effort over 12+ months.
 
 ---
 

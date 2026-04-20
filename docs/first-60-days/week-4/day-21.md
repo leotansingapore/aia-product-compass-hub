@@ -158,11 +158,15 @@ New FCs talk when they're nervous. Top producers know silence is productive.
  - C) Charge upfront fees
  - D) Complete the onboarding before the first meeting
 
+ **Why:** The first sale opens a 20-year relationship — the real income and value come from the decades of annual reviews, claims support, and policy updates that follow. Front-loading the close respects both the meeting's purpose and the client's emotional context, which is hottest in the room. Selling aggressively and abandoning the client (A) is the opposite of the philosophy; upfront fees (C) and pre-meeting onboarding (D) are simply unrelated concepts not discussed in this framework.
+
 2. **How much time in a 60-min meeting should you spend on rapport?**
  - A) 20 minutes
  - B) 30 minutes
  - C) 5 minutes max ✓
  - D) As much as the client wants
+
+ **Why:** The 5-phase structure allocates only 5 minutes to rapport — anything more is explicitly called "procrastination disguised as building connection." The remaining 55 minutes are where problems are discovered, desire is created, and the close happens. Twenty (A) or 30 (B) minutes on rapport consume the time needed for Phases 3, 4, and 5, which is precisely the pattern that leads to "let's continue next session" and eventual ghosting. Ceding time control to the client (D) loses the structured flow that drives closing rates.
 
 3. **The correct framing in Phase 4 (Create Desire):**
  - A) Features
@@ -170,11 +174,15 @@ New FCs talk when they're nervous. Top producers know silence is productive.
  - C) Prices
  - D) Comparisons
 
+ **Why:** Phase 4 is about helping the client feel the solution, not understand the product — benefits describe what the plan does for the client's life (e.g., "$4,500/month at 65"), while features describe technical product attributes that mean little emotionally. Presenting features (A) keeps the client in analytical mode rather than desire mode. Introducing prices (C) in Phase 4 jumps the gun before desire is established, and leading with competitor comparisons (D) is not part of the 5-phase framework.
+
 4. **James asks for the close, the client goes silent, and James fills the silence with more product details. What is the most likely outcome?**
  - A) The extra information reassures the client and seals the deal
  - B) James loses momentum — speaking first after the close weakens his position ✓
  - C) The silence means the client has already decided no
  - D) The additional detail triggers a referral
+
+ **Why:** After asking for the close, the first person to speak loses — the client's silence is evaluative, not negative, and interrupting it with more information resets the decision clock and signals that James lacks conviction. The additional detail does not reassure (A); silence after a close is not a no (C); and unsolicited product dumps do not trigger referrals (D). The prescribed discipline is to count to 10 in your head and wait.
 
 5. **A prospect says they are 80% ready to proceed. Which closing technique is best suited to this situation?**
  - A) Summary close — tie all benefits together
@@ -182,17 +190,23 @@ New FCs talk when they're nervous. Top producers know silence is productive.
  - C) Small commitments first — get KYC or basic details started ✓
  - D) Option close — ask them to choose between two products
 
+ **Why:** When someone is 80% there, they need a low-friction pathway to yes — small yeses (KYC, basic details) compound into the final commitment without pressure. The summary close (A) is designed for clients who need multiple benefits tied together, not for someone already near-decided. Manufacturing urgency (B) destroys trust if there is no real time pressure. The option close (D) introduces product-choice friction for a client who has not yet chosen to proceed at all.
+
 6. **During Phase 3, a client reveals they have no idea how much retirement savings they need. What is the FC's correct next move?**
  - A) Move immediately to Phase 4 and present a savings plan
  - B) Pause after the answer, let the client sit with the gap, and ask a follow-up question ✓
  - C) Provide the number for them to reduce discomfort
  - D) Skip to Phase 5 and show the illustration
 
+ **Why:** Phase 3 is mostly questions and listening — the silence after a revelation is when the client processes the gap and often adds the most valuable emotional detail, which becomes the fuel for Phase 4. Moving to Phase 4 immediately (A) or jumping to Phase 5 (D) skips the pain-induction that makes a solution feel necessary. Providing the number (C) relieves the discomfort the FC needs the client to feel before desire for a solution can be created.
+
 7. **Why must a personal mission statement be delivered in Phase 2, before any discovery questions?**
  - A) It is a compliance requirement
  - B) It repositions the FC from "insurance salesperson" to trusted advisor before the prospect forms a negative assumption ✓
  - C) It replaces the need for rapport-building
  - D) It gives the prospect time to research the FC online
+
+ **Why:** Most prospects walk in expecting a salesperson — the mission statement reframes the FC's role in 6 seconds, before the negative assumption hardens and colours every subsequent question. Delivering it after discovery questions means the prospect has already filed the FC mentally as a product-pusher. It is not a compliance requirement (A), it does not replace rapport (C) — rapport still happens in Phase 1 — and it is not intended to prompt online research (D).
 
 ---
 

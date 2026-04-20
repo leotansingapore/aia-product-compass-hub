@@ -197,11 +197,15 @@ Within 30 min of the meeting ending:
    - C) "Let's talk about money."
    - D) "Can you bring your tax returns?"
 
+   **Why:** The transition script works because it frames the numbers as collaborative planning ("in order to plan") rather than interrogation, signals low pressure ("simple terms," "one or two basic questions"), and is delivered matter-of-fact — not apologetic. Option A is blunt and transactional, which triggers defensiveness. Option C is vague and signals nothing about purpose. Option D immediately raises the stakes and implies a level of scrutiny most clients aren't ready for.
+
 2. **How should you handle "I don't remember the exact numbers"?**
    - A) Press for exact numbers
    - B) Accept rough estimates or ranges, refine later ✓
    - C) Reschedule the whole CFR
    - D) Skip Section 3
+
+   **Why:** Rough estimates and ranges are sufficient for planning purposes at this stage — precision can be added later. Pressing for exact numbers (A) creates pressure that damages trust and may cause the client to shut down entirely. Rescheduling (C) wastes all the rapport built in Sections 1 and 2. Skipping Section 3 (D) means you have no financial data to base a real recommendation on.
 
 3. **The Colombo close right at the end of a CFR is designed to:**
    - A) Close the sale immediately
@@ -209,11 +213,15 @@ Within 30 min of the meeting ending:
    - C) Collect payment
    - D) Extend the meeting
 
+   **Why:** The Colombo close at CFR end serves two functions: it surfaces any hidden objections while you still have 5+ days to address them in the proposal, and it pre-commits the client by asking if there's any reason they wouldn't move forward. Closing the sale immediately (A) would bypass the proposal step. Payment (C) is not relevant here. Extending the meeting (D) is not a goal — a clean handoff to the next meeting is.
+
 4. **A client shares that their hospital plan is through work with a $20K per claim limit. You ask about private hospital costs and they don't know. What's the ideal follow-up?**
    - A) Tell them their coverage is fine and move on
    - B) Skip the topic — insurance is for Day 53
    - C) State the real cost range (e.g. $80–150K for major surgery) and ask "How would you feel about that gap?" — a grounded Implication question ✓
    - D) Ask if they'd like to upgrade their employer plan
+
+   **Why:** An Implication question grounded in the client's real numbers is far more powerful than a generic scary scenario — it converts an abstract risk into a personalised, felt gap. Saying coverage is fine (A) when a clear gap exists is dishonest advice. Deferring the topic (B) misses a live Implication opportunity that has already presented itself. Asking about upgrading the employer plan (D) is a product suggestion that comes after the CFR, not during it.
 
 5. **Why does the CFR transition script say "one or two basic questions" even though you'll ask many more?**
    - A) To be honest about the workload
@@ -221,17 +229,23 @@ Within 30 min of the meeting ending:
    - C) Because only two questions are mandatory in Section 3
    - D) To avoid scaring a high-C client with too much detail
 
+   **Why:** Anchoring expectations low ("one or two basic questions") reduces the perceived burden of financial disclosure before the client has mentally braced for it — once they answer the first question, momentum carries them forward. Being fully honest about the workload upfront (A) would correctly describe Section 3 but would also raise resistance unnecessarily. Only two questions being mandatory (C) is not accurate. While a high-C client may benefit from structured expectations, the technique works on all personalities.
+
 6. **You finish the CFR and the client raises an objection in response to the Colombo close. What's the correct response?**
    - A) Drop the Colombo close next time — it created a problem
    - B) Treat it as a failure and reschedule
    - C) Welcome it — you now have time before the next meeting to address the real objection in your proposal ✓
    - D) Answer it immediately and attempt to close on the spot
 
+   **Why:** An objection surfaced at CFR end is exactly what the Colombo close is designed to extract — you now have the real concern and 5+ days to address it in the proposal before the next meeting. The Colombo close didn't create a problem (A); it revealed one that was always there. An objection is useful information, not a failure (B). Attempting to close on the spot (D) without a prepared proposal skips the planning step the whole CFR process is building toward.
+
 7. **The "24-hour rule" in post-meeting discipline says:**
    - A) Wait 24 hours before expanding your notes
    - B) Meeting details are 90% fresh within 24 hours — expand notes and draft recommendations while it's hot ✓
    - C) Always schedule the follow-up meeting within 24 hours
    - D) Send a WhatsApp recap to the client within 24 hours
+
+   **Why:** Factual and emotional details from a meeting are 90% retained within 24 hours, dropping to 50% by 48 hours and to guesswork by a week — so expanding CFR notes and drafting recommendations must happen while the meeting is still hot. The rule says to work fast immediately after the meeting, not to wait (A). Scheduling the follow-up and sending a recap may be good practices, but the 24-hour rule is specifically about your own note-expansion and recommendation drafting, not client-facing actions.
 
 ---
 

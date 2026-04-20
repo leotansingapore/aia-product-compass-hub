@@ -130,11 +130,15 @@ The recurring/non-recurring frame helps clients understand why:
  - C) It requires less work
  - D) It's from larger customers
 
+ **Why:** Predictability is the premium — a buyer of a recurring-revenue business can count on that income continuing, whereas non-recurring revenue could evaporate the day the seller leaves. The content states this directly in the valuation comparison ($1M non-recurring = 1–2x; $1M recurring = 5–10x). A is false; revenue type does not change tax treatment in this context. C conflates the result of a mature book with the reason for the valuation multiple. D is not mentioned as a factor in the content.
+
 2. **What kills a renewal book fastest?**
  - A) A stock market drop
  - B) Policies cancelled, lapsed, or surrendered because of poor fit or over-selling ✓
  - C) Advisor competition
  - D) Company mergers
+
+ **Why:** The content lists four killers of renewal income — over-sold clients, poor-fit products, no service, and advisor disappearance — all of which lead to policy cancellations, lapses, or surrenders, often triggering first-year commission clawbacks as well. A is a market-risk factor but not listed as a primary killer of renewals; most insurance policies are not directly tied to equity performance. C and D are external factors not mentioned in the content as primary threats to a well-maintained book.
 
 3. **The mindset that protects long-term renewal income:**
  - A) Sell more, service less
@@ -142,11 +146,15 @@ The recurring/non-recurring frame helps clients understand why:
  - C) Focus on the biggest premiums
  - D) Avoid annual reviews (clients re-evaluate)
 
+ **Why:** The content states this explicitly as the protective mindset: "sell slightly less, service a lot more — your Year-15 income depends on it." Over-selling leads to lapses and clawbacks that undermine the entire renewal book. A is the exact opposite of the correct mindset. C prioritises premium size over fit, which is one of the listed causes of lapsed policies. D gets it backwards — annual reviews (birthday calls, life-stage updates) are specifically listed as what keeps renewals.
+
 4. **An FC has been in the industry for 10 years, consistently closing 30 policies/year with $3,000 average premium. Approximately what portion of their income now arrives from renewals regardless of new sales?**
  - A) Less than 10%
  - B) About 25%
  - C) More than half ✓
  - D) Close to 100%
+
+ **Why:** The Year-10 row in the content's model table shows first-year income of $36,000 and renewal income of $40,500 — meaning renewals already exceed new-policy income and account for more than half of the total $76,500. A and B dramatically undercount the renewal book that a decade of consistent production builds. D overstates it; at Year 10 the FC is still generating substantial new-policy income in parallel.
 
 5. **A client asks why they should put money into a CPF LIFE plan instead of taking a retirement lump sum. The best recurring/non-recurring frame is:**
  - A) CPF LIFE has better returns than lump-sum investments
@@ -154,17 +162,23 @@ The recurring/non-recurring frame helps clients understand why:
  - C) CPF LIFE is recurring income for life — it's more valuable because it cannot be outlived ✓
  - D) Lump sum payouts are taxed more heavily
 
+ **Why:** The recurring/non-recurring frame is that a payment received for life cannot be outlived — it is recurring income that pays regardless of longevity, which the content explicitly names as the reason an annuity is more valuable than a lump sum. A makes a return comparison that is not part of the frame and may not always be true. B is a practical argument but is not the recurring-vs-non-recurring framing the question asks for. D is false; CPF payouts and lump sums are generally not subject to income tax in Singapore.
+
 6. **Which of the following advisor behaviours most directly threatens renewal income?**
  - A) Doing annual reviews and suggesting policy upgrades
  - B) Recommending a lower premium than the client originally asked for
  - C) Selling a client a premium they cannot sustain in a bad year, leading to a lapse ✓
  - D) Using renewal commissions as a reason to recommend longer-tenure policies
 
+ **Why:** An over-sold client who lapses a policy eliminates all future renewal income from that policy and may trigger a first-year clawback — the most direct financial harm to the renewal book. A is explicitly listed as something that keeps renewals. B is actually protective behaviour — a premium the client can sustain reduces lapse risk. D is an ethical concern but is a secondary issue compared to the direct damage an unaffordable-premium lapse causes.
+
 7. **The subscription economy analogy (Netflix, gym, mobile plans) is useful when explaining your business model because:**
  - A) It shows clients that recurring payments are always fair value
  - B) It helps clients understand that you, like those businesses, are paid renewals for continued service — making client retention your business model ✓
  - C) It positions insurance as a consumer product
  - D) It makes the commission conversation less awkward
+
+ **Why:** The analogy works because clients already live inside a subscription economy and understand that ongoing payments sustain ongoing service — which is exactly how renewal commissions work for an FC. A overstates it; the analogy is about the model structure, not about justifying every payment as fair. C is a misuse of the analogy that trivialises the advisory relationship. D may be a side effect, but that is not the stated purpose of the analogy in the content.
 
 ---
 

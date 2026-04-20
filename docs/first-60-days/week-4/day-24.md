@@ -191,11 +191,15 @@ Most weeks will go off-script in some way. That's fine. You still moved 3–5 bi
  - C) Quadrant III (urgent + not important)
  - D) Quadrant IV (not urgent + not important)
 
+ **Why:** Quadrant II is where careers are built — prospecting, skill practice, fact-finding, coaching, and proposal writing all live here, and none of them will chase you if you skip them. The target allocation is 60% Q2 vs the typical new-FC reality of only 15%. Q1 (A) should shrink to around 15% as Q2 work prevents crises from forming. Q3 (C) should be batched to 15%, and Q4 (D) should be cut to around 10%.
+
 2. **Quadrant I tasks typically exist because:**
  - A) They're necessary for the business
  - B) Quadrant II was neglected, so Q2 issues became crises ✓
  - C) Clients demand them
  - D) They have higher payoff
+
+ **Why:** The lesson states directly that Q1 crises are usually Q2 tasks that got ignored — the lapsed policy that needed a proactive call weeks ago, the compliance issue that needed attention before the deadline. Some Q1 work is genuinely unavoidable, but the pattern of living in Q1 signals chronic Q2 neglect, not unavoidable business reality. Clients demanding urgent help (C) and higher payoff (D) do not explain the systemic cause of Q1 overload.
 
 3. **The "big rocks first" principle means:**
  - A) Do the hardest tasks first each day
@@ -203,11 +207,15 @@ Most weeks will go off-script in some way. That's fine. You still moved 3–5 bi
  - C) Schedule Q2 priorities on the calendar before anything else ✓
  - D) Rank tasks by duration
 
+ **Why:** The jar analogy shows that if you put sand and water (Q3 admin and Q4 downtime) in first, the big rocks (Q2 priorities) never fit. Scheduling the big rocks — Q2 blocks — first means everything else fits around them or simply does not fit at all. Doing the hardest task first (A) is a different heuristic (Eat the Frog) and not what is described here. Expensive clients (B) and duration ranking (D) are unrelated to the quadrant framework.
+
 4. **An FC spends most of her week chasing policy lapses, compliance deadlines, and urgent client complaints. According to the matrix, this pattern most likely indicates:**
  - A) She is highly productive and responsive
  - B) She neglected Q2 work earlier, causing Q2 issues to escalate into Q1 crises ✓
  - C) Her client base is unusually demanding
  - D) She is correctly prioritising Quadrant I
+
+ **Why:** The lesson explicitly names this as the Q1 trap — the quadrant feels like real work because it is urgent and pressured, but a pattern of living there means Q2 was consistently deprioritised until issues became crises. Responsiveness (A) is not the same as productivity; a high-performing FC minimises Q1 by doing Q2 work proactively. Blaming the client base (C) externalises what is an internal time-allocation problem. Correctly prioritising Q1 (D) misses the point that the goal is to reduce Q1, not to do it well.
 
 5. **Delivering a birthday gift to a client's office falls into which quadrant, and what is the recommended handling?**
  - A) Q1 — handle immediately
@@ -215,17 +223,23 @@ Most weeks will go off-script in some way. That's fine. You still moved 3–5 bi
  - C) Q3 — delegate or batch into a single admin block ✓
  - D) Q4 — avoid entirely
 
+ **Why:** Delivering a gift is urgent-feeling (there is a birthday) but not strategically important to the business — it does not prospect, close, or build skills, so it sits in Q3. The prescribed handling for Q3 is to delegate, automate, or batch into a late-afternoon admin block. It is not a genuine crisis (Q1), it does not belong in peak-focus time (Q2), and it should not be avoided entirely (Q4) because it still serves the client relationship.
+
 6. **A new FC has tracked his week and found the following split: Q1 30%, Q2 15%, Q3 25%, Q4 30%. Which single shift would have the highest impact on his career trajectory?**
  - A) Cutting Q1 from 30% to 15%
  - B) Eliminating Q4 entirely
  - C) Moving Q2 from 15% toward 60% by scheduling it on the calendar first ✓
  - D) Batching Q3 more tightly
 
+ **Why:** The entire framework is built around Q2 being the engine of career building — prospecting, skill development, and proposal work live here and will not happen unless explicitly scheduled. Going from 15% to 60% Q2 requires reclaiming roughly 45 percentage points, which directly addresses the root cause of low output. Cutting Q1 (A) is a symptom fix; Q1 shrinks naturally as Q2 work prevents crises. Eliminating Q4 (B) recovers 30% but without a plan to redirect it to Q2, that time often flows to Q3. Tightening Q3 (D) is a supporting move, not the primary lever.
+
 7. **In the "big rocks" analogy, what do the sand and water represent in an FC's weekly calendar?**
  - A) Non-negotiable client meetings and deep work
  - B) Q3 admin tasks and Q4 downtime, which fill whatever space remains after big rocks are placed ✓
  - C) Study time and content creation
  - D) Breaks and exercise
+
+ **Why:** In the analogy, big rocks are Q2 priorities, small rocks are Q1 crises, sand is Q3 admin, and water is Q4 downtime — all the smaller and more granular items that naturally fill whatever gaps remain after the big rocks are placed first. Non-negotiable client meetings and deep work (A) are the big rocks themselves, not sand and water. Study and content (C) are Q2 activities. Breaks and exercise (D) are part of Q2 (real rest and health) in the framework, not waste material.
 
 ---
 

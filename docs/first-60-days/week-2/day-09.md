@@ -132,11 +132,15 @@ None of these moments feel heroic on the day. Stack enough of them across a care
  - C) Something that puts money into your pocket ✓
  - D) A property or stock
 
+ **Why:** Today's 60-second rule is explicit: an asset puts money into your pocket; a liability takes money out. Ownership alone (A) is irrelevant — a car you own outright still costs you petrol, insurance, and depreciation. Dollar value (B) has nothing to do with direction of cash flow. Property and stocks (D) can be either, depending on whether they generate income — a primary home with a mortgage is mostly a liability until paid off.
+
 2. **What's the primary trap for the middle class?**
  - A) Too low an income
  - B) Acquiring liabilities they believe are assets ✓
  - C) Paying too much tax
  - D) Living in expensive cities
+
+ **Why:** The Kiyosaki quote at the core of today's lesson states this directly: "the poor and middle class acquire liabilities they think are assets." The trap is not income level (A) — the middle class often earns comfortably — it is the misclassification of cars, condos, and watches as wealth-building. Tax (C) and city costs (D) are real pressures but not the structural behavioural trap this framework identifies.
 
 3. **The defining feature of being wealthy, by this framework:**
  - A) Earning above $500K/year
@@ -144,11 +148,15 @@ None of these moments feel heroic on the day. Stack enough of them across a care
  - C) Having financial security that's independent of your job ✓
  - D) Being in the top 1% of net worth
 
+ **Why:** The framework defines wealth by cash-flow behaviour, not salary or net worth. The wealthy person's passive income covers expenses — meaning they could quit tomorrow without financial consequence. High income (A) doesn't equal wealth if it all gets spent. Property (B) is only an asset if it produces more income than it costs. Top 1% net worth (D) is an outcome, not the behavioural definition this lesson uses.
+
 4. **A client earns $18,000/month, drives a Tesla, lives in a condo, and has $10,000 in savings. By the cash-flow framework, how would you classify them?**
  - A) Wealthy — their income is very high
  - B) Middle class — comfortable income but liabilities likely exceed assets ✓
  - C) Poor — $10,000 savings is below the poverty line
  - D) Wealthy — they own a property (the condo)
+
+ **Why:** The "looking rich" section describes this exact profile: Tesla, condo, high income, minimal savings. High lifestyle signalling with minimal assets and 2 months or less of savings is the middle-class pattern, not the wealthy pattern. The wealthy are defined by passive income covering expenses, not by income level (A). $10,000 savings is not a poverty indicator (C). A condo with a mortgage is mostly a liability, not a wealth signal (D).
 
 5. **You ask a middle-class client: "If your income stopped next month, how long could your lifestyle continue?" They say "about 6 weeks." What does this reveal?**
  - A) They are on a clear path to wealth with a solid emergency fund
@@ -156,17 +164,23 @@ None of these moments feel heroic on the day. Stack enough of them across a care
  - C) 6 weeks is the recommended emergency buffer for most Singaporeans
  - D) This is a normal result — most Singaporeans keep 4–6 weeks of savings
 
+ **Why:** Six weeks is under two months of coverage, which today's content flags as characteristic of the "looking rich" profile — someone who appears comfortable but cannot absorb even a short income disruption. It is not a sign of wealth (A). The recommended buffer from tomorrow's pyramid is 3-6 months, not 6 weeks (C). Normalising 6 weeks (D) would shut down the diagnostic moment the question was designed to open.
+
 6. **Which of the following is correctly classified as an ASSET under today's definition?**
  - A) A personal car used for daily commute
  - B) A primary home with an outstanding mortgage
  - C) A rental property where rent exceeds all costs ✓
  - D) A luxury watch purchased as a "store of value"
 
+ **Why:** The asset table in today's lesson makes this explicit: a rental property where rent exceeds costs puts money into your pocket — the definition of an asset. A commuter car (A) costs petrol, insurance, and depreciation — pure liability. A primary home with a mortgage (B) is listed in today's table as "mostly liability until it's paid off." A luxury watch (D) is listed as a liability, with a narrow exception for collectibles that appreciate.
+
 7. **The quote "looking rich and being rich are two different projects" is most useful in a client conversation when:**
  - A) You want to upsell a client from term to whole-life coverage
  - B) A high-income client has minimal assets and resists acknowledging a financial gap ✓
  - C) A client asks why AIA's premiums are higher than competitors
  - D) You need to explain the difference between CI and hospitalisation coverage
+
+ **Why:** The quote is designed to create a gentle cognitive shift for high-income clients who equate their lifestyle with financial security. When someone earns well but has a weak balance sheet and resists the gap conversation, this frame distinguishes two projects they might be conflating. It has nothing to do with product comparisons (A, C) or coverage categories (D), which require different explanations entirely.
 
 ---
 

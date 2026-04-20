@@ -177,11 +177,15 @@ You don't get commission for this advice. Which is exactly why it builds **long-
  - C) 37% ✓
  - D) 50%
 
+ **Why:** For members aged 55 and below, employee contributes 20% and employer contributes 17%, totalling 37%. 25% (A) is approximately the combined rate for members in the 60–65 age band. 30% (B) corresponds to no standard CPF band. 50% (D) does not exist as a CPF contribution rate at any age.
+
 2. **The SA currently earns up to:**
  - A) 2.5% p.a.
  - B) 3.5% p.a.
  - C) 5% p.a. ✓
  - D) 7% p.a.
+
+ **Why:** The SA earns a minimum of 4% p.a. and up to 5% p.a. including the additional 1% on the first $60,000 of combined balances. 2.5% (A) is the OA floor rate, not the SA. 3.5% (B) is the OA's upper rate (minimum 2.5% plus the additional 1% on the first $60K). 7% (D) is not a rate CPF pays on any account.
 
 3. **At age 55, what happens?**
  - A) All CPF becomes accessible
@@ -189,11 +193,15 @@ You don't get commission for this advice. Which is exactly why it builds **long-
  - C) CPF LIFE starts paying out
  - D) CPF rates increase
 
+ **Why:** At 55, the RA is automatically created and funds from SA and OA transfer in up to the Retirement Sum; only the excess above FRS can be withdrawn at that point. All CPF becoming accessible (A) is incorrect — most is locked as retirement savings if the FRS is not met. CPF LIFE payouts (C) begin at 65, not 55. Contribution rates actually decrease with age (D), not increase.
+
 4. **A client earning $6,000/month (under 55) asks how much flows into CPF each month. Your quick estimate is:**
  - A) $1,200
  - B) $1,800
  - C) $2,220 ✓
  - D) $3,000
+
+ **Why:** 37% × $6,000 = $2,220. $1,200 (A) is only 20%, which is the employee portion alone — it excludes the employer's 17% contribution. $1,800 (B) is 30%, which doesn't match any standard combined rate. $3,000 (D) would imply a 50% combined rate, which exceeds CPF rules at any age.
 
 5. **A client asks whether they should use OA money to invest through CPFIS. The most accurate caution is:**
  - A) CPFIS investments are tax-inefficient and should be avoided entirely
@@ -201,17 +209,23 @@ You don't get commission for this advice. Which is exactly why it builds **long-
  - C) Most CPFIS investors underperform the OA's guaranteed floor rate; it only makes sense if the investment consistently beats OA returns plus risk ✓
  - D) CPFIS locks money until age 65 regardless of performance
 
+ **Why:** OA money already earns a guaranteed 2.5% floor; most CPFIS investors historically underperform this guaranteed rate once fees and poor market timing are factored in. Tax inefficiency (A) is not the core concern — CPF is already a tax-advantaged environment. CPFIS is available for both OA and SA (B is false). CPFIS does not lock money until 65 regardless of performance (D) — funds can be sold and returned to OA.
+
 6. **Why does recommending a CPF SA top-up — even though you earn no commission — build long-term client trust?**
  - A) It demonstrates deep technical knowledge that clients rarely expect from new FCs
  - B) It proves you are prioritising the client's best interest over your own earnings, which creates durable credibility ✓
  - C) It guarantees the client will refer others immediately
  - D) MAS regulations require advisors to mention CPF before selling any product
 
+ **Why:** When a client sees that your recommendation costs you income, they immediately understand your incentives are aligned with theirs — this is the foundation of a 20-year advisory relationship. Technical knowledge (A) contributes to credibility but is not why a zero-commission recommendation is so powerful. Referrals (C) are a downstream outcome, not a guarantee. MAS does not mandate CPF discussion as a prerequisite for product sales (D).
+
 7. **CPF LIFE's Escalating Plan is best suited for a client who:**
  - A) Wants the largest possible bequest for their children
  - B) Needs the highest payout in the first year of retirement
  - C) Is worried that a fixed monthly payout will lose real value to inflation over a long retirement ✓
  - D) Plans to withdraw all funds at age 55
+
+ **Why:** The Escalating Plan starts lower but increases 2% p.a. for life, specifically designed to preserve purchasing power over a long retirement — the only plan with a built-in inflation mechanism. The Basic plan (A) offers a larger bequest because it pays out less monthly. The Standard plan pays the highest initial monthly payout relative to the Escalating plan (B). Withdrawing all funds at 55 (D) contradicts CPF LIFE, which begins at 65 and cannot be fully withdrawn.
 
 ---
 

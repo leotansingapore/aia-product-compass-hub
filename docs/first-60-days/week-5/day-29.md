@@ -167,11 +167,15 @@ You don't guilt them. You give them the number. Let them decide.
  - C) 72 / number of years = rate needed
  - D) Double the principal = 72% compounding
 
+ **Why:** The Rule of 72 divides 72 by the annual interest rate to get the approximate years to double — so at 6%, money doubles in 12 years. Multiplying instead of dividing (A) produces a number in the hundreds, which has no useful meaning. Rearranging to find the rate needed (C) is a valid rearrangement of the formula but is not what the rule is; the rule is specifically years-to-double. D is not a mathematical statement.
+
 2. **The difference between simple and compound interest is:**
  - A) Simple is lower; compound is higher
  - B) Compound calculates interest on principal + accumulated interest; simple only on principal ✓
  - C) Simple is for loans; compound is for investments
  - D) Simple is calculated monthly; compound yearly
+
+ **Why:** The structural difference is the base on which interest is calculated — compound uses the growing total (principal plus accumulated interest), while simple always uses just the original principal. That compound typically produces a higher total (A) is a consequence, not the definition. Both simple and compound interest appear in loans and investments (C). Frequency of calculation is a separate concept — both types can be calculated monthly or yearly (D).
 
 3. **Why does starting early matter so much?**
  - A) Younger people have more income
@@ -179,11 +183,15 @@ You don't guilt them. You give them the number. Let them decide.
  - C) Insurance premiums are lower when young
  - D) Young people can take more risk
 
+ **Why:** The Alice vs Bob example shows that 10 years of early contributions (age 25–35) outperforms 30 years starting later (35–65) because those early dollars have 40 years to compound — the math is non-linear with time. Young people do not necessarily have more income (A); Alice contributes only until 35. Lower premiums when young (C) is a separate insurance pricing point, not the compounding argument. Risk tolerance (D) affects asset allocation but is not why time in matters disproportionately.
+
 4. **At 6% per year, roughly how many years does money take to double?**
  - A) 6 years
  - B) 10 years
  - C) 12 years ✓
  - D) 18 years
+
+ **Why:** 72 / 6 = 12 years. Six years (A) would require a 12% return (72/6=12 years confuses the inputs). Ten years (B) implies a 7.2% return. Eighteen years (D) corresponds to a 4% return. Memorising the table in the lesson — 6% doubles in 12 years — is one of the most used mental shortcuts in client meetings.
 
 5. **A 25-year-old contributes $500/month until 35, then stops. A 35-year-old starts at 35 and contributes $500/month until 65. Assuming the same return, who ends up with more at 65?**
  - A) The 35-year-old (more total years contributing)
@@ -191,11 +199,15 @@ You don't guilt them. You give them the number. Let them decide.
  - C) They tie
  - D) Depends on the rate
 
+ **Why:** Alice ends with ~$500K versus Bob's ~$470K despite contributing $60K versus Bob's $180K — the 10 early years compound for 40 years, outweighing 30 years of later contributions. More total contributions (A) does not overcome the compounding-time asymmetry. They do not tie (C) — Alice finishes ahead. At reasonably positive rates the result holds (D); the rate affects magnitude, but the early-start premium is consistent across typical return assumptions.
+
 6. **When a client wants to pause a long-term plan, the most useful framing is:**
  - A) Tell them they'll regret it
  - B) Calculate the cost of lost compounding and present the number without guilt ✓
  - C) Remind them of their contract obligations
  - D) Warn them about market timing
+
+ **Why:** The lesson's framing is to give the client the number — the dollar cost of stopping — so they make the decision with full information, not under pressure. Predicting regret (A) is emotional and paternalistic; it puts you in the role of judge rather than advisor. Contract obligations (C) is a compliance point, not a financial planning conversation. Market timing (D) is relevant to DCA (Day 30), not to the compounding-interruption conversation.
 
 7. **The biggest enemy of compounding is:**
  - A) Low interest rates
@@ -203,11 +215,15 @@ You don't guilt them. You give them the number. Let them decide.
  - C) Inflation
  - D) Taxes
 
+ **Why:** Compounding requires continuity — interrupting a plan resets the base and loses the accumulated growth that would have compounded forward. Low rates (A) slow compounding but don't destroy it; even at 3% a continuous plan beats a stopped one. Inflation (C) erodes real returns but does not break the mechanical compounding chain. Taxes (D) reduce net return but are not flagged in the lesson as the primary threat; the psychological trap of quitting in Years 1–2 is.
+
 8. **Compounding is described as "the 8th wonder of the world" because:**
  - A) It's rare
  - B) Its output looks magical but it's just mechanical — small inputs over long time grow non-linearly ✓
  - C) Einstein said so
  - D) Banks use it as marketing
+
+ **Why:** Compounding produces results that feel disproportionate to the inputs — $10K at 9% for 40 years becomes $314K — because the growth is non-linear, not because anything magical is happening. It is not rare (A); any savings or investment account uses it. The Einstein attribution (C) supports the quote used to open the lesson but is not the reason compounding is remarkable; the math stands independent of who said it. Banks do use it in marketing (D), but that is incidental, not why the concept is described the way it is.
 
 ---
 

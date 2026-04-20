@@ -177,11 +177,15 @@ A 10,000-follower FC with shallow relationships underperforms a 500-follower FC 
  - C) Stranger → Friend → Prospect → Client
  - D) Cold → Warm → Hot → Client
 
+ **Why:** The four-stage journey as stated is Skeptical Stranger, Curious Follower, Trusted Choice, Only Choice — each with a distinct question the prospect is asking and a distinct job for the FC. Options A, C, and D are plausible-sounding frameworks but don't match the lesson's named stages or the specific questions attached to each stage. Using the wrong framework leads to wrong tactics at each stage.
+
 2. **The correct balance of Social vs Authority content is roughly:**
  - A) 100% Authority
  - B) 50/50 ✓
  - C) 80% Social, 20% Authority
  - D) 100% Social to be likable first
+
+ **Why:** 50/50 is the starting point — too much authority and you look like a textbook with no human behind it; too much social and you look like a lifestyle blogger, not a credible advisor. 100% authority (A) produces credibility without warmth, which doesn't convert. 80% social (C) may build likeability but won't generate inbound finance questions. 100% social (D) directly undermines the trust-building that converts followers to clients.
 
 3. **LinkedIn is analogous to which physical space?**
  - A) Dance party
@@ -189,11 +193,15 @@ A 10,000-follower FC with shallow relationships underperforms a 500-follower FC 
  - C) Business conference ✓
  - D) Reality TV
 
+ **Why:** LinkedIn is described as a "business conference" — the platform for professionals where thought leadership, industry commentary, and career stories belong. A dance party is TikTok's analogy. A family living room is Facebook's analogy. Reality TV is Instagram's analogy. Posting the wrong content type for the platform's personality produces low engagement regardless of content quality.
+
 4. **A prospect in Stage 2 (Curious Follower) is primarily deciding:**
  - A) Whether to buy a product
  - B) Whether to give a referral
  - C) Whether the FC knows what they are talking about and is worth more attention ✓
  - D) Whether the FC's prices are competitive
+
+ **Why:** At Stage 2, the prospect's core question is "Does this person know what they're talking about? Is it useful?" — they're deciding whether to keep watching, not whether to buy. Buying decisions happen at Stage 3–4. Referrals come from Stage 4 (Only Choice). Price comparisons are irrelevant at the awareness stage and signal the FC is rushing the journey.
 
 5. **An FC whose ideal clients are 25–40 Singaporean professionals should prioritise which platform combination?**
  - A) TikTok + YouTube
@@ -201,17 +209,23 @@ A 10,000-follower FC with shallow relationships underperforms a 500-follower FC 
  - C) LinkedIn + Instagram ✓
  - D) Facebook + TikTok
 
+ **Why:** LinkedIn targets professionals aged 25–55 and Instagram targets young adults 20–40 — together they cover the full 25–40 professional audience. TikTok (A) skews younger (15–30) and is short-form video-dominant, not suited to professional financial content. Facebook (B, D) is primarily 35–60+ and families. The platform choice should follow the ideal client profile, not personal preference.
+
 6. **The hygiene rule about political hot takes exists because:**
  - A) MAS regulations prohibit political commentary
  - B) Taking a political position can alienate roughly half your potential market instantly ✓
  - C) LinkedIn's algorithm penalises political content
  - D) Clients only want to see finance content
 
+ **Why:** Political positions divide audiences — an FC who takes a strong public stance immediately loses segments of their potential market who hold opposing views. This is not a MAS rule (A); it's a business judgment about market access. Algorithm penalties (C) are platform-specific and not the stated reason. The rule isn't that clients only want finance content (D) — social content is encouraged — it's specifically about divisive topics that narrow your addressable market.
+
 7. **An FC has 10,000 Instagram followers but zero DM conversations last month. What does Day 40 say about this?**
  - A) They need more followers to generate DMs
  - B) They should switch platforms
  - C) Follower count is a vanity metric; conversion quality matters far more than raw numbers ✓
  - D) They should post more authority content
+
+ **Why:** The lesson directly states that a 10,000-follower FC with shallow relationships underperforms a 500-follower FC with 30 deep client relationships — follower count is a leading indicator, but conversion quality (DM to meeting to close) is what actually produces revenue. More followers (A) without better content or CTAs would just give more reach to posts that already aren't converting. Switching platforms (B) doesn't fix the underlying conversion problem. More authority content (D) alone doesn't generate DMs if posts lack CTAs inviting interaction.
 
 ---
 
