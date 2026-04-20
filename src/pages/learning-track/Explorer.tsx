@@ -296,10 +296,9 @@ export default function ExplorerTrack() {
   const phasesQuery = useLearningTrackPhases("explorer");
   const { isCompleted, setStatus } = useLearningTrackProgress(user?.id);
   const allPhases = phasesQuery.data ?? [];
-  // Learners only see FINternship Orientation — Financial Planning Basics moved to
-  // Supplementary Training, Advisory Fundamentals absorbed into First 60 Days.
-  const HIDDEN_PHASE_TITLES = ["Financial Planning Basics", "Advisory Fundamentals"];
-  const phases = allPhases.filter((p) => !HIDDEN_PHASE_TITLES.some((t) => p.title.toLowerCase() === t.toLowerCase()));
+  // Financial Planning Basics moved to Supplementary Training — hide from Explorer for everyone.
+  // Advisory Fundamentals is unpublished so learners already can't see it; admins keep access.
+  const phases = allPhases.filter((p) => p.title.toLowerCase() !== "financial planning basics");
   const lockMap = useLockMap(phases);
   const [activePhaseId, setActivePhaseId] = useState<string | null>(() => {
     if (itemId) {
