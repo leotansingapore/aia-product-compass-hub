@@ -1582,6 +1582,9 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [newVersionContent, setNewVersionContent] = useState("");
   const [editingUserVersionId, setEditingUserVersionId] = useState<string | null>(null);
   const [editUserVersionName, setEditUserVersionName] = useState("");
+  const newVersionEditorRef = useRef<MinimalRichEditorHandle>(null);
+  const inlineEditorRefA = useRef<MinimalRichEditorHandle>(null);
+  const inlineEditorRefB = useRef<MinimalRichEditorHandle>(null);
   // Read initial version tab from URL if this card is the one in the URL
   const urlVersionParam = useMemo(() => {
     // The URL may contain a slug (e.g. "warm-market-intro-8f42b1c3") — just rely on isOpenByUrl
