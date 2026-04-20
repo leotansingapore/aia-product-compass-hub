@@ -692,7 +692,13 @@ export default function ExplorerTrack() {
         const phaseItemIds = activePhase.items.filter((i) => !isModuleFolder(i)).map((i) => i.id);
         const phaseCompleted = phaseItemIds.filter((id) => isCompleted(id)).length;
         const phasePct = phaseItemIds.length > 0 ? Math.round((phaseCompleted / phaseItemIds.length) * 100) : 0;
-        const activeItem = activePhase.items.find((i) => i.id === expandedItemId) ?? activePhase.items[0];
+        // Pick the selected lesson, or the first incomplete lesson, or the first lesson (skip folders)
+        const lessons = activePhase.items.filter((i) => !isModuleFolder(i));
+        const activeItem =
+          (expandedItemId ? activePhase.items.find((i) => i.id === expandedItemId && !isModuleFolder(i)) : null) ??
+          lessons.find((i) => !isCompleted(i.id)) ??
+          lessons[0] ??
+          null;
 
         return (
           <div className="space-y-3 w-full min-w-0">
@@ -837,9 +843,10 @@ export default function ExplorerTrack() {
                   isLocked={!!phaseLock?.locked}
                   onClick={() => {
                     setActivePhaseId(phase.id);
-                    // Auto-expand the first incomplete lesson
-                    const firstIncomplete = phase.items.find((i) => !isCompleted(i.id));
-                    setExpandedItemId(firstIncomplete?.id ?? phase.items[0]?.id ?? null);
+                    // Auto-expand the first incomplete lesson (skip module folders)
+                    const phaseLessons = phase.items.filter((i) => !isModuleFolder(i));
+                    const firstIncomplete = phaseLessons.find((i) => !isCompleted(i.id));
+                    setExpandedItemId(firstIncomplete?.id ?? phaseLessons[0]?.id ?? null);
                   }}
                 />
               );
