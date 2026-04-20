@@ -95,7 +95,13 @@ export function useFeatureAccess() {
       if (isAdminBypass) return true;
       const allowed = permissionsByTier.get(tier);
       if (!allowed) return false;
-      return featureKeys.some((key) => allowed.has(key));
+      return featureKeys.some((key) => {
+        // Mirror hard exclusions from `can` so nav items can't leak in via
+        // stale `tier_permissions` rows.
+        if (tier === 'explorer' && key === FEATURES.BOOKMARKS) return false;
+        if (tier === 'post_rnf' && key === FEATURES.CMFAS) return false;
+        return allowed.has(key);
+      });
     },
     [permissionsByTier, tier, isAdminBypass],
   );
