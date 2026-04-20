@@ -6,6 +6,20 @@
 
 ## Pending
 
+### Relax `learning_track_activity_log` trigger so service-role batch scripts can write to `learning_track_*` tables
+
+**Problem:** The audit trigger on `learning_track_items` and `learning_track_content_blocks` inserts a row into `learning_track_activity_log` with `user_id = auth.uid()`. When the PostgREST API is called with the service-role JWT (e.g. from `scripts/clean-content-blocks.mjs`), `auth.uid()` is `NULL`, and `learning_track_activity_log.user_id` is `NOT NULL` with a FK to `auth.users.id`. Any bulk cleanup / migration script fails with an FK violation and the underlying write is rolled back.
+
+**Ask Lovable to pick one:**
+
+1. Preferred — make the audit log tolerate non-user actors:
+   - Alter `learning_track_activity_log.user_id` to nullable (drop `NOT NULL`), and keep the FK `ON DELETE SET NULL`.
+   - Update the trigger body so that when `auth.uid()` is `NULL`, it still inserts a row with `user_id = NULL` and `action_source = 'service_role'` (add `action_source text` if not already present, default `'user'`).
+2. Alternative — early-exit the trigger when there is no authenticated user:
+   - Wrap the trigger body in `IF auth.uid() IS NULL THEN RETURN NEW; END IF;`. This preserves current behaviour for UI writes but silently skips audit rows for service-role writes. Acceptable only if we're OK not auditing bulk scripts.
+
+**Why now:** Admin-UI edits are already audited correctly via Tiptap (paste-aware) — the trigger works there because `auth.uid()` is set. The remaining need is to unblock one-shot cleanup/migration scripts (e.g. deduping Google-Docs paste artefacts across ~dozens of existing rows) without the UI workflow. After this change, `node --env-file=.env.local scripts/clean-content-blocks.mjs --apply` will complete cleanly.
+
 ### Curriculum edits: delete Pre-RNF Phase 1, optionally relabel remaining phases, drop stale permission rows
 
 - In `learning_track_phases`, delete the Pre-RNF "Phase 1 — Industry Understanding" row (and any `learning_track_items` / `learning_track_content_blocks` that FK to it). Cascade via existing FKs if present; otherwise delete children first. After deletion, close the gap in `order_index` for remaining Pre-RNF phases.
