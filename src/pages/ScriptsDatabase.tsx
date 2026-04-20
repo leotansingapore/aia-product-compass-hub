@@ -1396,6 +1396,7 @@ function MobileVersionSelector({
         <div className="space-y-2">
           <div className="border rounded-lg overflow-hidden">
             <MinimalRichEditor
+              ref={editorRef}
               value={editContent}
               onChange={setEditContent}
               onSave={saveEdit}
