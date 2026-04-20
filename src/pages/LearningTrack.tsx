@@ -32,7 +32,6 @@ export default function LearningTrack() {
   const showExplorerTab = isAdminBypass || can(FEATURES.EXPLORER_TRACK);
   const showPreRnfTab = isAdminBypass || can(FEATURES.PRE_RNF_TRACK);
   const showPostRnfTab = isAdminBypass || can(FEATURES.POST_RNF_TRACK);
-  const showResourcesTab = isAdminBypass || can(FEATURES.PRE_RNF_TRACK);
   const location = useLocation();
 
   useEffect(() => {
@@ -70,9 +69,6 @@ export default function LearningTrack() {
               )}
               {showPostRnfTab && (
                 <NavLink to="/learning-track/post-rnf" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>Post-RNF Training</NavLink>
-              )}
-              {showResourcesTab && (
-                <NavLink to="/learning-track/resources" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>Resources</NavLink>
               )}
               <NavLink to="/learning-track/first-60-days" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>First 60 Days</NavLink>
               <NavLink to="/learning-track/admin" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>Admin</NavLink>
@@ -136,7 +132,7 @@ export default function LearningTrack() {
                         isActive && isCurrent && "ring-primary/50",
                       )}>
                         {isDone ? (
-                          <CheckCircle2 className="h-4.5 w-4.5 text-green-600" />
+                          <CheckCircle2 className="h-5 w-5 text-green-600" />
                         ) : isLocked ? (
                           <Lock className="h-3.5 w-3.5 text-muted-foreground" />
                         ) : (
@@ -161,30 +157,17 @@ export default function LearningTrack() {
             </div>
 
             {/* Secondary links */}
-            {(showResourcesTab || can(FEATURES.EXPLORER_TRACK)) && (
+            {can(FEATURES.EXPLORER_TRACK) && (
               <div className="flex items-center justify-center gap-4 mt-2 pt-2 border-t border-border/40">
-                {can(FEATURES.EXPLORER_TRACK) && (
-                  <NavLink
-                    to="/learning-track/first-60-days"
-                    className={({ isActive }) => cn(
-                      "text-[11px] font-medium transition-colors",
-                      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground",
-                    )}
-                  >
-                    First 60 Days
-                  </NavLink>
-                )}
-                {showResourcesTab && (
-                  <NavLink
-                    to="/learning-track/resources"
-                    className={({ isActive }) => cn(
-                      "text-[11px] font-medium transition-colors",
-                      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground",
-                    )}
-                  >
-                    Resources
-                  </NavLink>
-                )}
+                <NavLink
+                  to="/learning-track/first-60-days"
+                  className={({ isActive }) => cn(
+                    "text-[11px] font-medium transition-colors",
+                    isActive ? "text-primary" : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  First 60 Days
+                </NavLink>
               </div>
             )}
           </div>

@@ -28,8 +28,16 @@ export default function PostRnfTrack() {
 
   if (phasesQuery.error) {
     return (
-      <div className="rounded border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive">
+      <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive">
         Failed to load Post-RNF training track.
+      </div>
+    );
+  }
+
+  if (!isAdmin && phases.length === 0) {
+    return (
+      <div className="rounded-xl border border-dashed bg-muted/20 p-10 text-center text-sm text-muted-foreground">
+        No Post-RNF modules published yet. Check back soon.
       </div>
     );
   }

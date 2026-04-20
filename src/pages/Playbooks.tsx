@@ -53,7 +53,7 @@ function PlaybookCard({
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-start gap-2 min-w-0 flex-1">
             {isFav && <Star className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5 fill-primary" />}
-            <CardTitle className="text-sm sm:text-base leading-snug">{pb.title}</CardTitle>
+            <CardTitle className="text-sm sm:text-base leading-snug line-clamp-2 break-words">{pb.title}</CardTitle>
           </div>
           {/* Actions menu */}
           <DropdownMenu>

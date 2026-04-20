@@ -83,6 +83,8 @@ export function useFeatureAccess() {
       // Hard exclusions overriding any stale `tier_permissions` rows.
       // Explorer-tier learners don't get Bookmarks.
       if (tier === 'explorer' && featureKey === FEATURES.BOOKMARKS) return false;
+      // Post-RNF consultants have already passed CMFAS — hide the exam module.
+      if (tier === 'post_rnf' && featureKey === FEATURES.CMFAS) return false;
       return permissionsByTier.get(tier)?.has(featureKey) ?? false;
     },
     [permissionsByTier, tier, isAdminBypass],

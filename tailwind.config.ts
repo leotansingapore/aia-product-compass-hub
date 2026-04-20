@@ -39,6 +39,7 @@ export default {
     			heading: '0.02em'
     		},
     		screens: {
+    			'xs': '475px',
     			'3xl': '1700px',
     			'lg-admin': '1314px'
     		},

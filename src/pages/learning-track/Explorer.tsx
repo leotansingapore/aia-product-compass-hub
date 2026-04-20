@@ -95,19 +95,20 @@ function LearnerSidebar({
           type="button"
           onClick={() => onSelectLesson(item.id)}
           disabled={!!itemLock?.locked}
+          title={item.title}
           className={cn(
             "flex-1 min-w-0 text-left pl-1.5 pr-3 py-2",
             itemLock?.locked && "cursor-not-allowed",
           )}
         >
-          <span className="truncate block">{item.title}</span>
+          <span className="line-clamp-2 leading-snug">{item.title}</span>
         </button>
       </div>
     );
   };
 
   return (
-    <div className="w-64 xl:w-72 border-r bg-muted/30 overflow-y-auto shrink-0 flex flex-col">
+    <div className="w-56 lg:w-64 xl:w-72 border-r bg-muted/30 overflow-y-auto shrink-0 flex flex-col">
       <div className="px-3 py-3 border-b">
         <h3 className="text-sm font-semibold truncate">{phase.title}</h3>
       </div>

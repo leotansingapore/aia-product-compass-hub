@@ -213,7 +213,7 @@ export default function ProductDetail() {
           productName={product.title}
         />
 
-        <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
 
           {/* Training Videos Section */}
           <ProtectedSection sectionId="product_videos">

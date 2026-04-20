@@ -76,7 +76,7 @@ function FlashCard({
       <div className={cn(
         "rounded-2xl border bg-card shadow-sm overflow-hidden transition-all hover:shadow-md relative",
         isKnown && quizMode && "opacity-60",
-      )} style={{ height: `${PANEL_HEIGHT}px` }}>
+      )} style={{ minHeight: `${PANEL_HEIGHT}px` }}>
 
 
         {/* Panels — absolute positioned so width always = card width */}
