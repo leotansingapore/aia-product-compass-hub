@@ -162,7 +162,7 @@ export default function LearningTrack() {
             </div>
 
             {/* Secondary links */}
-            {can(FEATURES.EXPLORER_TRACK) && (
+            {can(FEATURES.PRE_RNF_TRACK) && (
               <div className="flex items-center justify-center mt-3 pt-3 border-t border-border/40">
                 <NavLink
                   to="/learning-track/first-60-days"
