@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import DOMPurify from "dompurify";
 
 type Props = {
   code: string;
@@ -90,26 +89,20 @@ export function MermaidDiagram({ code }: Props) {
           securityLevel: "loose",
           themeVariables: isDark ? DARK_THEME_VARS : LIGHT_THEME_VARS,
           flowchart: {
-            htmlLabels: false,
+            htmlLabels: true,
             curve: "basis",
             padding: 16,
             nodeSpacing: 50,
             rankSpacing: 60,
             useMaxWidth: true,
-            wrappingWidth: 180,
           },
           sequence: { useMaxWidth: true },
           gantt: { useMaxWidth: true },
         });
         const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
         const { svg: rendered } = await mermaid.render(id, code);
-        const clean = DOMPurify.sanitize(rendered, {
-          USE_PROFILES: { html: true, svg: true, svgFilters: true },
-          ADD_TAGS: ["foreignObject"],
-          ADD_ATTR: ["requiredExtensions"],
-        });
         if (!cancelled) {
-          setSvg(clean);
+          setSvg(rendered);
           setError(null);
         }
       } catch (e) {
