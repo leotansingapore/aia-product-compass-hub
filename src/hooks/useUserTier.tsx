@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from '@/hooks/use-toast';
+import { useViewMode } from '@/components/admin/AdminViewSwitcher';
 import { DEFAULT_TIER, normalizeTier, TIER_META, type TierLevel } from '@/lib/tiers';
 
 /** React Query key — invalidate when any tier changes. */
@@ -20,6 +21,7 @@ export function userTierQueryKey(userId: string | undefined) {
 export function useUserTier() {
   const { user } = useAuth();
   const queryClient = useQueryClient();
+  const { viewAsTier } = useViewMode();
 
   const query = useQuery({
     queryKey: userTierQueryKey(user?.id),
@@ -85,8 +87,10 @@ export function useUserTier() {
     };
   }, [user?.id, queryClient]);
 
+  const effectiveTier: TierLevel = viewAsTier ?? query.data ?? DEFAULT_TIER;
+
   return {
-    tier: query.data ?? DEFAULT_TIER,
+    tier: effectiveTier,
     isLoading: query.isLoading,
     error: query.error,
     refetch: () => queryClient.invalidateQueries({ queryKey: userTierQueryKey(user?.id) }),

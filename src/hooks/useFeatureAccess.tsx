@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useUserTier } from '@/hooks/useUserTier';
 import { usePermissions } from '@/hooks/usePermissions';
+import { useViewMode } from '@/components/admin/AdminViewSwitcher';
 import { TIER_FEATURE_MATRIX, type FeatureKey, type TierLevel } from '@/lib/tiers';
 
 export const tierPermissionsQueryKey = ['tier-permissions'] as const;
@@ -33,7 +34,10 @@ interface TierPermissionRow {
 export function useFeatureAccess() {
   const { tier } = useUserTier();
   const { hasRole, isMasterAdmin, loading: permissionsLoading } = usePermissions();
-  const isAdminBypass = isMasterAdmin() || hasRole('admin');
+  const { viewAsTier } = useViewMode();
+  // Admin bypass is suppressed while impersonating a tier so gating reflects
+  // what a real user with that tier would see.
+  const isAdminBypass = (isMasterAdmin() || hasRole('admin')) && viewAsTier === null;
 
   const { data: rows } = useQuery<TierPermissionRow[]>({
     queryKey: tierPermissionsQueryKey,
