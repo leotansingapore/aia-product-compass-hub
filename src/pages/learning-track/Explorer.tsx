@@ -14,7 +14,7 @@ import { LessonContentPanel } from "@/components/learning-track/LessonContentPan
 import { AdminTrackView } from "@/components/learning-track/AdminTrackView";
 import { RequestUpgradeButton } from "@/components/tier/RequestUpgradeButton";
 import { TierBadge } from "@/components/tier/TierBadge";
-import { groupItemsIntoModules } from "@/lib/learning-track/moduleGrouping";
+import { groupItemsIntoModules, isModuleFolder } from "@/lib/learning-track/moduleGrouping";
 import { cn } from "@/lib/utils";
 import type { LearningTrackPhase } from "@/types/learning-track";
 
