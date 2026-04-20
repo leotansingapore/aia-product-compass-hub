@@ -20,15 +20,14 @@ tags: [first-60-days, week-10]
 | 59 | [[day-59\|Proposal Writing + Closing Techniques]] | 5-part template, 5 closing techniques, graceful exits |
 | 60 | [[day-60\|Claims Handling + Graduation]] | Minor + major claims, 60-day review, the 3-year arc |
 
-## What you should have completed by Sunday
+## What you should have learnt by now
 
-- [ ] Memorised the 7 product categories from memory
-- [ ] Opened iPos and iResource; navigated to each category
-- [ ] Drafted a full proposal (5-part structure) for a Week 9 practice client
-- [ ] Practised the 5 closing techniques aloud
-- [ ] Completed the 60-day self-assessment on Day 60
-- [ ] Written your commitment for Day 61 onwards
-- [ ] Shared the 60-day reflection with your mentor
+- The **7 AIA product categories** and when each one is the right fit — ILP, Whole Life, Endowment, Universal Life, Term, CI, A&H/Disability Income.
+- How **Investment-Linked Plans** actually work: premium allocation, the **3 right and 3 wrong** client profiles, and what honest disclosure sounds like.
+- The **5 Policy Summary checks** — riders, exclusions, structure, gaps, snapshot — so you can review any existing policy with confidence.
+- The **5-part proposal template** and the **5 closing techniques**, including when a graceful exit beats a close.
+- How **claims handling** works for both minor and major claims, and why it's the moment the career earns its reputation.
+- Where you stand after 60 days, and what a realistic **Day 61–1,095** arc looks like from here.
 
 ## The single line to remember from Week 10
 

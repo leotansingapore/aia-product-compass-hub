@@ -20,15 +20,14 @@ tags: [first-60-days, week-9]
 | 53 | [[day-53\|CST: The Risks Angle]] | 5-min reframe of insurance as the foundation for everything else |
 | 54 | [[day-54\|Concept Selling]] | 3 worked concepts (property alt, bank alt, insurance as asset) + building your own library |
 
-## What you should have completed by Sunday
+## What you should have learnt by now
 
-- [ ] Written your own 8 Implication + 6 Need-Payoff questions for a specific client profile
-- [ ] Practised the Colombo Close aloud 5×
-- [ ] Built a 12-question Section 1 / Section 2 of the CFR for your ICP
-- [ ] Drafted a 5–7 min Wealth Angle CST using your own voice
-- [ ] Drafted a 5–7 min Risks Angle CST using your own voice
-- [ ] Adapted one concept sell (property, bank, or insurance-as-asset) to your ICP
-- [ ] Run at least one full SPIN practice session with a peer or mentor
+- How **Implication** and **Need-Payoff** questions work in SPIN — the moment a client stops being sold to and starts selling themselves.
+- The **3-section CFR structure** (Situation + priorities → Problem development → Financial numbers) end to end.
+- The **6 data categories** inside the numbers section, and how the **Colombo close** lands the meeting.
+- The **Wealth angle CST** — reframing wealth-building as freedom-building in 5 minutes.
+- The **Risks angle CST** — reframing insurance as the foundation that makes everything else possible.
+- **Concept selling** vs product selling — and what it takes to start building your own library of 3 concepts.
 
 ## The single line to remember from Week 9
 

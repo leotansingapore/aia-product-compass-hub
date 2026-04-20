@@ -20,15 +20,14 @@ tags: [first-60-days, week-2]
 | 11 | [[day-11\|The Cashflow Quadrant]] | E / S / B / I — and why this career crosses quadrants |
 | 12 | [[day-12\|The Financial Freedom Pyramid]] | The 5-level diagnostic you'll use in every meeting |
 
-## What you should have completed by Sunday
+## What you should have learnt by now
 
-- [ ] Memorised your 60-second AIA positioning
-- [ ] Opened iSmart, iPos, or iResource at least once
-- [ ] Drawn the Financial Freedom Pyramid from memory
-- [ ] Calculated your own net worth
-- [ ] Calculated your own freedom number (monthly expenses at 65, inflation-adjusted)
-- [ ] Identified which cashflow quadrant your income comes from today
-- [ ] Practised diagnosing one friend or family member's pyramid gaps (silently)
+- The **four segments** of the insurance industry and how AIA is positioned inside them.
+- Why **class is a cashflow behaviour**, not a salary figure — and how that changes the conversation with a client.
+- The **freedom formula** and what the **freedom number** actually represents for an individual or household.
+- How to map any household onto the **5-level Financial Freedom Pyramid** (Security → Freedom → Wealth).
+- The **Cashflow Quadrant** (E/S/B/I) and why this career forces a crossing from left side to right side.
+- The real product you're selling: **freedom**, not insurance.
 
 ## The single line to remember from Week 2
 

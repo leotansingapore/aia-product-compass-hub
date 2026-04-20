@@ -20,15 +20,14 @@ tags: [first-60-days, week-4]
 | 23 | [[day-23\|Feel-Good Productivity]] | 3 energisers, 3 unblockers, 3 sustainers — so you last 12 months |
 | 24 | [[day-24\|The Time Management Matrix]] | The 4 quadrants, "big rocks first," moving time to Q2 |
 
-## What you should have completed by Sunday
+## What you should have learnt by now
 
-- [ ] Identified your peak focus hour and blocked it daily for next week
-- [ ] Tracked your time for at least 3 days and classified into quadrants
-- [ ] Set a weekly rejection quota (50 no's baseline)
-- [ ] Drafted your one-sentence mission statement and practised it aloud
-- [ ] Installed ONE of: two-minute rule, one-touch rule, or 10-minute rule
-- [ ] Booked a recurring Sunday 30-min review slot on your calendar
-- [ ] Named your top 3 Q4 time-wasters and removed/blocked them
+- Why today's income was decided **30–60 days ago**, and what that means for how you treat prospecting.
+- The **3 daily activities** that move results — and why counting rejections matters more than counting yeses.
+- The **5-phase sales meeting** from first greeting to close, and the role of a mission statement inside it.
+- The **time management matrix** — all four quadrants, and why Q2 is where careers are built.
+- The productivity micro-rules: **2-minute, one-touch, 10-minute** — what each protects against.
+- How to pick **energisers, unblockers, sustainers** so you last a full 12 months, not a sprint.
 
 ## The single line to remember from Week 4
 

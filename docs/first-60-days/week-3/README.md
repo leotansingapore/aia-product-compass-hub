@@ -20,14 +20,14 @@ tags: [first-60-days, week-3]
 | 17 | [[day-17\|Assets vs Liabilities]] | The one-sentence test, real net worth, the looking-rich problem |
 | 18 | [[day-18\|The 10X Rule]] | Massive goals + massive action, the shadow side, 60-day sprints |
 
-## What you should have completed by Sunday
+## What you should have learnt by now
 
-- [ ] Filled in the Job A / Job B table for yourself
-- [ ] Practised the Bank A / Bank B script on a real (non-client) person
-- [ ] Written your SMART retirement goal (specific monthly amount, target age, inflation-adjusted)
-- [ ] Calculated your real net worth (pseudo-assets stripped out)
-- [ ] Listed every recurring-revenue stream you have, in and out
-- [ ] Picked ONE current goal and 10X'ed it on paper
+- The **Job A vs Job B** frame — why insured income is the real coverage, not just income while well.
+- The **opportunity cost** hidden inside "safe" bank savings, and how to surface it in a 30-second script.
+- The wealth-building mechanics: **multiple streams**, **accumulation vs preservation**, and the math of starting early.
+- The difference between **recurring and non-recurring revenue** — and why it shapes your career economics too.
+- The **one-sentence asset/liability test** and what "real net worth" looks like once pseudo-assets are stripped out.
+- What **10X** actually means: massive goals paired with massive action, and why it protects you from average effort.
 
 ## The single line to remember from Week 3
 

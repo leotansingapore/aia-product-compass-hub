@@ -20,15 +20,14 @@ tags: [first-60-days, week-8]
 | 47 | [[day-47\|SPIN: The Framework]] | Implied → explicit need, 4 question types, consultative selling |
 | 48 | [[day-48\|Situation & Problem Questions]] | 20 question templates, the permission move, note discipline |
 
-## What you should have completed by Sunday
+## What you should have learnt by now
 
-- [ ] Memorised the 10 objection responses (reflex handling)
-- [ ] Drafted your 30-second AIDA elevator pitch; said it aloud to at least 3 people
-- [ ] Written one 6P story using a real client example (from mentor)
-- [ ] Classified yourself + 5 people you know on DISC
-- [ ] Written 10 Situation + 10 Problem questions specific to your ideal client
-- [ ] Practised the first half of SPIN (Situation + Problem) on a willing friend
-- [ ] Scheduled one "by the way" call this week — natural social context + career reveal
+- The **6-part Telephone Technique** and the **AIDA elevator pitch** — what each move does and the order it happens in.
+- The difference between **reflex and real** objections, and a calibrated response for the 10 most common ones.
+- The **6P storytelling method** and how compression makes a good story actually usable in a meeting.
+- How to **identify DISC profiles** in the first 60 seconds — and adjust tone, pace, and detail accordingly.
+- The **SPIN framework** as a whole, and why moving from implied to explicit need is the heart of consultative selling.
+- How **Situation** and **Problem** questions set up the rest of the meeting — with the permission move and proper note discipline.
 
 ## The single line to remember from Week 8
 

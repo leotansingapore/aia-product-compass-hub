@@ -20,16 +20,14 @@ tags: [first-60-days, week-1]
 | 5 | [[day-05\|Purpose-Driven Life — Your Real Why]] | Elevator pitch, pre-framing, the moral compass |
 | 6 | [[day-06\|Forming Habits That Compound]] | 1% thinking, systems > goals, habit loop, identity-based habits |
 
-## What you should have completed by Sunday
+## What you should have learnt by now
 
-- [ ] Skool account registered, orientation module read
-- [ ] Telegram group joined
-- [ ] Onboarding call booked (or attended)
-- [ ] Thursday 8pm training slot blocked in calendar
-- [ ] First draft of your elevator pitch (Why, What-End, What-Now)
-- [ ] Reconnection list of 10 people (the slightly-uncomfortable tier)
-- [ ] One new habit and one bad habit mapped to the 4 laws
-- [ ] A weekly tracker set up (even just a notebook) for reps
+- Why this career is **skill acquisition, not a job** — and why that framing decides who survives Year 1.
+- The **three financial buckets** every household needs, and the **three risk strategies** (avoid / retain / transfer) that apply to each.
+- The **four assurances** of this career: autonomy, development, security, fulfilment.
+- How a **growth mindset** responds differently from a fixed mindset to rejection, plateaus, and feedback.
+- What your own **Why** sounds like in one sentence — and why it has to be true before it's useful.
+- How **identity-based habits** compound in a way that goal-based habits don't.
 
 ## The single line to remember from Week 1
 

@@ -20,15 +20,14 @@ tags: [first-60-days, week-6]
 | 35 | [[day-35\|Inflation: The Silent Wealth Killer]] | Nominal vs real returns, category-specific inflation, the "keeping it safe" reframe |
 | 36 | [[day-36\|TVM & Investment Practice Problems]] | 10 worked problems + timed speed test |
 
-## What you should have completed by Sunday
+## What you should have learnt by now
 
-- [ ] Logged into your own CPF statement; know your balances
-- [ ] Projected your own SA to age 65 using Rule of 72
-- [ ] Solved the 10 practice problems in Day 36, timed under 15 min
-- [ ] Built 3 of your own TVM scenarios using real client demographics
-- [ ] Memorised Rule of 72 doubling times for 2/3/4/6/8% rates (quiz yourself)
-- [ ] Practised the "keeping it safe" inflation response aloud
-- [ ] Identified which of the 10 TVM problem types you find hardest
+- How to calculate **present value** and apply it to retirement, education, and legacy goals.
+- The **Rule of 72** as a shortcut for doubling time, inflation, and education-cost math.
+- The **four CPF accounts**, contribution rates, the ages 55 and 65 milestones, and how **CPF LIFE** works.
+- The **5 investment product categories** and how to match each to a client's risk profile — not the other way around.
+- The difference between **nominal and real returns**, and why category-specific inflation quietly destroys cash savings.
+- Why the client line "I'm keeping it safe in the bank" is usually the **riskiest** position over 10+ years.
 
 ## The single line to remember from Week 6
 

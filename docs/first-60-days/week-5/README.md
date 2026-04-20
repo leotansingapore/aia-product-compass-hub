@@ -20,15 +20,14 @@ tags: [first-60-days, week-5]
 | 29 | [[day-29\|Compounding: The 8th Wonder]] | Simple vs compound; Rule of 72; early-start premium |
 | 30 | [[day-30\|Dollar Cost Averaging]] | DCA worked example; vs lump sum; the behavioural advantage |
 
-## What you should have completed by Sunday
+## What you should have learnt by now
 
-- [ ] Booked Monday, Thursday, and district-builder commitments in your recurring calendar
-- [ ] Built a weekly scorecard (Activities × Skills × Knowledge table) — started tracking
-- [ ] Written your daily 10X numbers (outreaches, content, role-plays)
-- [ ] Declared your MAD-day minimum (the floor you hit on terrible days)
-- [ ] Installed a financial calculator app and solved the Susan/Nancy examples
-- [ ] Memorised the Rule of 72 (30 sec quiz)
-- [ ] Practised the "time in the market beats timing the market" line aloud
+- The **weekly team rhythms** (Monday meeting, Thursday training, district builder) and how your personal rhythm plugs in.
+- How to translate **10X** from a slogan into specific daily numbers, plus how to recover from misses with **MAD days**.
+- The **Activity × Skills × Knowledge = FYC** scorecard, and the weekly ratios that predict your first-year result.
+- The **5 TVM variables** (n, i, PV, PMT, FV), sign conventions, and which variable solves which client question.
+- **Compounding** vs simple interest — and the **Rule of 72** as a 10-second mental model.
+- Why **DCA** beats timing for most clients, and how to explain it without using jargon.
 
 ## The single line to remember from Week 5
 

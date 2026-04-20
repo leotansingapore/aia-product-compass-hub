@@ -20,16 +20,14 @@ tags: [first-60-days, week-7]
 | 41 | [[day-41\|Digital Influence: Content & Engagement]] | Weekly content system, 4 post formats, DM → first meeting conversion |
 | 42 | [[day-42\|Digital Influence: Lead-Gen Playbook]] | 3-channel funnel (Posts/Stories/DMs), 4 content pillars, 30-day push |
 
-## What you should have completed by Sunday
+## What you should have learnt by now
 
-- [ ] Built your Project 100 spreadsheet (minimum 80 names, A/B/C tagged)
-- [ ] Called at least 10 people from the A-list
-- [ ] Memorised the ABCD Four Promises
-- [ ] Memorised the Market Survey script
-- [ ] Chosen your primary social media platform (1 platform, not 5)
-- [ ] Audited and fixed your profile (photo, bio, cover, connections)
-- [ ] Reconnected with 20 warm-market people via DM
-- [ ] Published your first authority-style post
+- The **6-step Financial Planning Process** and what **Client Lifetime Value** means for how you run first meetings.
+- The **Market Survey** script, the **ABCD Four Promises**, and how to handle resistance without pitching.
+- How to build a **Project 100** list — with A/B/C priority tiers and the 100 → 8–15 conversion funnel.
+- The **4-stage Social Media Journey**, so you know which stage you're at and what content fits it.
+- A **two-prong content strategy** — authority posts plus trust-building stories — and why both are needed.
+- The **3-channel lead-gen funnel** (Posts / Stories / DMs) and the **4 content pillars** that feed it.
 
 ## The single line to remember from Week 7
 
