@@ -14,6 +14,12 @@ interface TrackLearnerViewProps {
   isCompleted: (itemId: string) => boolean;
   lockMap: LockMap;
   expandedItemId?: string;
+  /**
+   * When true, suppress the default "Module N" badge shown on cards that are
+   * neither locked, in-progress, nor completed. Used by the Pre-RNF
+   * Assignments view where the card title already carries "Assignment N".
+   */
+  hideIdleBadge?: boolean;
 }
 
 /**
@@ -21,7 +27,7 @@ interface TrackLearnerViewProps {
  * Shows phase cards in a grid, clicking one opens sidebar + content panel.
  * Same pattern as Explorer's learner view.
  */
-export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId: initialItemId }: TrackLearnerViewProps) {
+export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId: initialItemId, hideIdleBadge = false }: TrackLearnerViewProps) {
   const [activePhaseId, setActivePhaseId] = useState<string | null>(() => {
     if (initialItemId) {
       const p = phases.find((ph) => ph.items.some((i) => i.id === initialItemId));
@@ -149,19 +155,23 @@ export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId:
             >
               <CardHeader className="p-4 pb-0 sm:p-5 sm:pb-0 space-y-3">
                 <div className="flex items-start justify-between gap-3">
-                  <Badge
-                    variant="secondary"
-                    className={cn(
-                      "px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white",
-                      allDone
-                        ? "bg-gradient-to-r from-green-500 to-emerald-600"
-                        : inProgress
-                          ? "bg-gradient-to-r from-blue-500 to-blue-600"
-                          : "bg-gradient-to-r from-amber-500 to-amber-600",
-                    )}
-                  >
-                    {isLocked ? "Locked" : allDone ? "Completed" : inProgress ? "In Progress" : `Module ${idx + 1}`}
-                  </Badge>
+                  {isLocked || allDone || inProgress || !hideIdleBadge ? (
+                    <Badge
+                      variant="secondary"
+                      className={cn(
+                        "px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white",
+                        allDone
+                          ? "bg-gradient-to-r from-green-500 to-emerald-600"
+                          : inProgress
+                            ? "bg-gradient-to-r from-blue-500 to-blue-600"
+                            : "bg-gradient-to-r from-amber-500 to-amber-600",
+                      )}
+                    >
+                      {isLocked ? "Locked" : allDone ? "Completed" : inProgress ? "In Progress" : `Module ${idx + 1}`}
+                    </Badge>
+                  ) : (
+                    <span aria-hidden />
+                  )}
                   {isLocked ? (
                     <Lock className="h-4 w-4 text-muted-foreground shrink-0" />
                   ) : allDone ? (

@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import { GraduationCap, Loader2, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
@@ -79,9 +78,6 @@ export default function PreRnfTrack() {
     );
   }
 
-  // Papers-takers land on First 60 Days by default. If they deep-link to a
-  // specific assignment item (`/learning-track/pre-rnf/:itemId`), jump
-  // straight to the Assignments view so the linked lesson opens.
   return <PreRnfLearnerView phases={phases} isCompleted={isCompleted} lockMap={lockMap} itemId={itemId} />;
 }
 
@@ -96,7 +92,18 @@ function PreRnfLearnerView({
   lockMap: ReturnType<typeof useLockMap>;
   itemId: string | undefined;
 }) {
-  const [view, setView] = useState<PreRnfView>(itemId ? "assignments" : "first60");
+  // Tab state is driven by the URL so each view is linkable / shareable:
+  //   /learning-track/pre-rnf/first-60-days  → First 60 Days (default)
+  //   /learning-track/pre-rnf/assignments    → Assignments grid
+  //   /learning-track/pre-rnf/assignments/:itemId → Assignments, item expanded
+  const { pathname } = useLocation();
+  const view: PreRnfView = pathname.includes("/assignments") ? "assignments" : "first60";
+
+  const tabClass = (isActive: boolean) =>
+    cn(
+      "rounded-full px-4 py-1.5 transition-colors",
+      isActive ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+    );
 
   return (
     <div className="space-y-4" data-testid="pre-rnf-page">
@@ -121,30 +128,22 @@ function PreRnfLearnerView({
           aria-label="Pre-RNF training sections"
           className="inline-flex rounded-full border bg-muted/50 p-1 text-xs font-semibold"
         >
-          <button
-            type="button"
+          <NavLink
             role="tab"
+            to="/learning-track/pre-rnf/first-60-days"
             aria-selected={view === "first60"}
-            onClick={() => setView("first60")}
-            className={cn(
-              "rounded-full px-4 py-1.5 transition-colors",
-              view === "first60" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
-            )}
+            className={tabClass(view === "first60")}
           >
             First 60 Days
-          </button>
-          <button
-            type="button"
+          </NavLink>
+          <NavLink
             role="tab"
+            to="/learning-track/pre-rnf/assignments"
             aria-selected={view === "assignments"}
-            onClick={() => setView("assignments")}
-            className={cn(
-              "rounded-full px-4 py-1.5 transition-colors",
-              view === "assignments" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
-            )}
+            className={tabClass(view === "assignments")}
           >
             Assignments
-          </button>
+          </NavLink>
         </div>
       </div>
 
@@ -156,6 +155,7 @@ function PreRnfLearnerView({
           isCompleted={isCompleted}
           lockMap={lockMap}
           expandedItemId={itemId}
+          hideIdleBadge
         />
       )}
     </div>
