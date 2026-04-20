@@ -38,6 +38,24 @@ Job B pays less when well — but pays *in every scenario that matters.*
 
 Which one do you take?
 
+```mermaid
+flowchart LR
+    subgraph A["Job A"]
+        A1["Well<br/>$100,000"]
+        A2["Sick / Injured<br/>$0"]
+        A3["Dead<br/>$0"]
+        A4["Hospitalised<br/>$0"]
+        A5["Retirement<br/>$0"]
+    end
+    subgraph B["Job B"]
+        B1["Well<br/>$85,000"]
+        B2["Sick / Injured<br/>$66,000"]
+        B3["Dead<br/>$500,000"]
+        B4["Hospitalised<br/>Full coverage"]
+        B5["Retirement<br/>$50,000/yr"]
+    end
+```
+
 ## 2. Why this matters — what you're really selling
 
 Most people — including most of your future clients — evaluate a job offer using only the first column. Annual salary. Maybe bonus.
@@ -85,6 +103,19 @@ Use this checklist in any fact-finding meeting. Map the client's actual coverage
 A Job A client with gaps in 4+ rows is one bad week away from a catastrophe they can't fix retroactively.
 
 ## 5. How to use this in a meeting
+
+```mermaid
+flowchart TD
+    S1["Draw 2-row table<br/>Job A vs Job B"]
+    S2["Fill columns with<br/>client's real data"]
+    S3["Leave blank columns blank<br/>do NOT estimate"]
+    S4["Pause - let client look"]
+    S5["Ask: which column<br/>worries you most?"]
+    S6["Listen - that IS<br/>your needs analysis"]
+    S1 --> S2 --> S3 --> S4 --> S5 --> S6
+```
+
+
 
 The Job A / Job B table is a great visual tool. You can draw it on a piece of paper in 30 seconds.
 

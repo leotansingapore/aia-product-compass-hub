@@ -45,6 +45,14 @@ Most new FCs struggle with content for one reason: **they try to write posts on 
 
 **60–75 minutes per week for 1 quality post.** That's all. Don't try to do more until this is reliable.
 
+```mermaid
+flowchart LR
+    A["Sunday · 30 min<br/>Ideation — pick 1 topic"]
+    B["Tuesday · 30 min<br/>Draft — write, don't edit"]
+    C["Thursday · 15 min<br/>Edit, add CTA, publish"]
+    A --> B --> C --> A
+```
+
 ## 2. What to post about — the idea mine
 
 If you're out of ideas, you're not looking in the right places.
@@ -142,7 +150,7 @@ Posting is only half of digital influence. The other half is **engaging with oth
 
 **Most new FCs completely skip this.** They post and disappear. That's why their posts plateau.
 
-## 6. The DM → first meeting conversion
+## 6. The DM to first meeting conversion
 
 Content produces DMs. DMs should produce first meetings. Here's the bridge.
 
@@ -162,6 +170,17 @@ Content produces DMs. DMs should produce first meetings. Here's the bridge.
 > "Happy to help! Let me set up a 30-min consultation — here's my calendar link: [link]. Looking forward to it!"
 
 The first invites a conversation. The second demands a meeting on information asymmetry. Conversion rate: **first wins 5×.**
+
+```mermaid
+flowchart TD
+    A["DM arrives<br/>reply within 24 hrs"]
+    B["Answer briefly<br/>show value"]
+    C["Ask genuine<br/>follow-up question"]
+    D["2-4 messages<br/>back and forth"]
+    E["Transition to<br/>15-min call"]
+    F["First meeting<br/>booked"]
+    A --> B --> C --> D --> E --> F
+```
 
 ### The transition to a call
 

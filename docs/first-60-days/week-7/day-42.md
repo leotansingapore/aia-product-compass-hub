@@ -48,6 +48,16 @@ Every social platform (especially Instagram) has three content layers. Each has 
 
 **The trap:** most new FCs post (Layer 1) and ignore stories and DMs. Layer 1 alone produces low returns. The three layers **multiply** each other.
 
+```mermaid
+flowchart TD
+    P["Posts<br/>Top of funnel · 1-2/week"]
+    S["Stories<br/>Middle of funnel · 1-5/day"]
+    D["DMs · Inbox<br/>Bottom of funnel · daily"]
+    P -->|"Reach, saves, follows<br/>new people discover you"| S
+    S -->|"Trust builds<br/>replies + story views"| D
+    D -->|"Meetings booked<br/>closes from DM-origin"| CLOSE["Sale"]
+```
+
 ## 2. Content centred around — the 4 pillars
 
 Your content, regardless of format, should centre on one of these four pillars.
@@ -75,6 +85,20 @@ Your content, regardless of format, should centre on one of these four pillars.
 - A specific client segment you serve.
 - Examples: fresh graduates, families, single parents, retirees, teachers, SME owners.
 - **Why it works:** prospects in that segment self-select. Competition narrows.
+
+```mermaid
+flowchart LR
+    SC["Social content"]
+    AC["Authority content"]
+    I["Interest<br/>Hobbies, passions"]
+    ID["Identity<br/>Life stage, role"]
+    T["Topic<br/>CPF, CI, investments"]
+    M["Market<br/>Grads, families, SMEs"]
+    SC --> I
+    SC --> ID
+    AC --> T
+    AC --> M
+```
 
 **The strongest FC brand combines 1–2 pillars.** Example:
 - "I'm a mum of two (identity) who helps other Singapore mums plan for their kids' education (market + topic)."
@@ -159,6 +183,15 @@ If your digital lead-gen is flat, run a **30-day push.** This is a structured ex
 - Reply to every DM within 24 hours.
 - Book 3–5 first meetings from digital-origin conversations.
 - Do a post-mortem: what posts worked? What didn't? What DMs converted? What didn't?
+
+```mermaid
+flowchart LR
+    W1["Week 1 · Setup<br/>Clean profile, pick pillar"]
+    W2["Week 2 · Production<br/>3 posts + engage daily"]
+    W3["Week 3 · Amplification<br/>Double down, warm outreach"]
+    W4["Week 4 · Conversion<br/>Reply DMs, book 3-5 meetings"]
+    W1 --> W2 --> W3 --> W4
+```
 
 **Target outcomes after one 30-day push:**
 - 5–10 new inbound DMs from prospects.

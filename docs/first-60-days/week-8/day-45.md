@@ -102,6 +102,18 @@ The lesson — the moral of the story.
 6. PURPOSE "Don't wait until you need it..." [the universal lesson]
 ```
 
+```mermaid
+flowchart TD
+    P1["1. Prospect<br/>Relatable person - age, job, family"]
+    P2["2. Problem<br/>The gap or mistake they made"]
+    P3["3. Pain<br/>Emotional cost - savings drained, plans disrupted"]
+    P4["4. Promise<br/>Your solution exists and works"]
+    P5["5. Proof<br/>Their words - testimonial style"]
+    P6["6. Purpose<br/>The universal lesson"]
+    P1 --> P2 --> P3 --> P4 --> P5 --> P6
+    P6 --> CTA["Client asks: what would<br/>that look like for me?"]
+```
+
 **The payoff:** after the story, the client is primed to ask "so what would that look like for me?" — which is precisely the transition you want.
 
 ## 5. Where to use storytelling

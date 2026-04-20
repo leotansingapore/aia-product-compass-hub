@@ -39,6 +39,15 @@ By the end of today you should be able to:
 
 ## 2. Investing vs Speculation — the critical distinction
 
+```mermaid
+flowchart LR
+    A["Client's money"] --> B{"Intent + horizon?"}
+    B -->|"Long · fundamentals<br/>5+ years"| C["Investing<br/>compounding · ownership"]
+    B -->|"Short · timing<br/>days to months"| D["Speculation<br/>exciting · volatile"]
+    C --> E["Expected positive return<br/>over decades"]
+    D --> F["Most speculators<br/>lose money"]
+```
+
 | | **Investing** | **Speculation** |
 |---|---|---|
 | Time horizon | Long (5+ years typical) | Short (days to months) |
@@ -131,6 +140,14 @@ By the end of today you should be able to:
 > **An investment that is guaranteed, offers extremely high returns, and has a short time horizon — does not exist.**
 
 There is always a trade-off between **safety, return, and liquidity.** You can get two out of three — never all three.
+
+```mermaid
+flowchart TD
+    A["Pick any 2 of 3"] --> B["Safety + Liquidity<br/>Fixed deposits · CPF OA"]
+    A --> C["Safety + Return<br/>Gov bonds · CPF SA"]
+    A --> D["Return + Liquidity<br/>ETFs · equities"]
+    B & C & D --> E["All 3 = scam or<br/>misrepresentation"]
+```
 
 | Safety | Return | Liquidity | Example |
 |---|---|---|---|

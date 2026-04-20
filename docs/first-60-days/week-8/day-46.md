@@ -42,6 +42,17 @@ The four primary styles:
 | **S** | Steadiness | "The Peacekeeper" | Relationships, stability |
 | **C** | Conscientiousness | "The Analyst" | Accuracy, data, standards |
 
+```mermaid
+quadrantChart
+    title DISC Profiles
+    x-axis People --> Task
+    y-axis Reserved --> Outgoing
+    quadrant-1 "D - Dominant<br/>Results · Control"
+    quadrant-2 "I - Influential<br/>Recognition · Fun"
+    quadrant-3 "S - Steady<br/>Relationships · Stability"
+    quadrant-4 "C - Conscientious<br/>Accuracy · Data"
+```
+
 **Rule:** DISC is **descriptive, not prescriptive.** It describes patterns you're likely to see. It doesn't define the person.
 
 ## 2. D — Dominance ("The Winner")

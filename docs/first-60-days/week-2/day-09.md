@@ -50,6 +50,16 @@ Forget income brackets. The three classes are behavioural.
 
 **The key insight:** some people earning $15K/month are poor (by behaviour). Some earning $6K/month are on a clear path to wealth (by behaviour). Your job isn't to judge income — it's to read the pattern.
 
+```mermaid
+flowchart TD
+    P["Poor<br/>Income barely covers expenses<br/>Gap closed by borrowing"]
+    M["Middle Class<br/>Income comfortable - lifestyle expands<br/>Liabilities mistaken for assets"]
+    W["Wealthy<br/>Passive income covers expenses<br/>Financial security is job-independent"]
+
+    P -->|"Build knowledge + skills + income"| M
+    M -->|"Redirect lifestyle growth to assets"| W
+```
+
 ## 2. Why the middle class is the hardest to help
 
 The poor know they have a problem. The wealthy don't have the problem anymore. The middle class **has the illusion of not having a problem** — and that's why they're stuck.
@@ -88,6 +98,13 @@ That's the whole rule.
 | CPF funds compounding | **Asset** |
 
 **Net worth = What you own − What you owe.**
+
+```mermaid
+flowchart LR
+    Q["Does it put money INTO<br/>your pocket?"]
+    Q -->|"Yes"| A["ASSET<br/>Rental property - dividends<br/>CPF - cash-value insurance"]
+    Q -->|"No"| L["LIABILITY<br/>Car - primary home with mortgage<br/>Luxury watch - second car"]
+```
 
 Run the calculation on yourself tonight. Most people are surprised.
 

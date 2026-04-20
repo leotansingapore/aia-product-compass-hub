@@ -90,6 +90,13 @@ These are battle-tested and work.
 
 Same structure, 10 variations. Memorise. Internalise. Naturalise.
 
+```mermaid
+flowchart LR
+    A["Objection heard"] --> B["Acknowledge<br/>Don't argue"]
+    B --> C["Reframe<br/>Show the meeting still matters"]
+    C --> D["Return to the ask<br/>Would you be free...?"]
+```
+
 ## 3. The psychology of rejection
 
 Most new FCs quit prospecting in Month 1–2 because **rejection feels personal.**
@@ -133,6 +140,17 @@ For these, use a **6-touch follow-up sequence** over 12 weeks:
 - **Week 6:** Another value-add. Maybe a quick question they'd find interesting.
 - **Week 8:** Light ask — "Would it be useful to grab 15 minutes this month?"
 - **Week 12:** Final soft ask. If still no → move to quarterly touch or archive.
+
+```mermaid
+flowchart TD
+    W0["Week 0 · Initial call<br/>Reflex no - offer to reconnect"]
+    W2["Week 2 · Value-add<br/>Article, tip - no ask"]
+    W4["Week 4 · Check-in<br/>Trigger event, no agenda"]
+    W6["Week 6 · Value-add<br/>Question they find useful"]
+    W8["Week 8 · Light ask<br/>15 minutes this month?"]
+    W12["Week 12 · Final soft ask<br/>Still no - quarterly touch or archive"]
+    W0 --> W2 --> W4 --> W6 --> W8 --> W12
+```
 
 **Why this works:**
 - You stay memorable without being pushy.

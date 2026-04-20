@@ -159,6 +159,25 @@ The FCs who make it to Year 5, Year 10, Year 20 aren't the hardest-working. They
 
 Feel-Good Productivity isn't about being happy at work all the time. It's about **not ruining yourself in pursuit of short-term output.** That distinction compounds.
 
+---
+
+```mermaid
+flowchart TD
+    EN["ENERGISERS<br/>generate energy while working"] --> PL["Play<br/>make it a game"]
+    EN --> PW["Power<br/>build competence daily"]
+    EN --> PE["People<br/>work alongside others"]
+    UB["UNBLOCKERS<br/>when work still isn't happening"] --> PR["Procrastination<br/>name the emotion, start tiny"]
+    UB --> PA["Paralysis<br/>write the exact next action"]
+    UB --> PF["Perfectionism<br/>ship at 80%, revise on feedback"]
+    SU["SUSTAINERS<br/>prevent burnout over 12+ months"] --> CO["Conserve<br/>A/B/C every task"]
+    SU --> RE["Recharge<br/>real rest - sleep + walks"]
+    SU --> AL["Align<br/>daily work to deeper purpose"]
+    style EN fill:#1e3a5f,color:#fff
+    style UB fill:#5c1a1a,color:#fff
+    style SU fill:#1a5c3a,color:#fff
+```
+
+---
 
 ## Quick quiz
 

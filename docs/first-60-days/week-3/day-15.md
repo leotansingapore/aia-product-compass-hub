@@ -39,6 +39,21 @@ If **one stream is cut off**, a wealthy client's lifestyle isn't affected. If a 
 
 **Your job with clients:** build at least three streams. Most start with one (salary) and never add a second.
 
+```mermaid
+flowchart TD
+    W["Wealth = Diversified income streams"]
+    C["CPF<br/>mandatory, compounding"]
+    P["Property<br/>rental income generating"]
+    I["Investments<br/>stocks, bonds, ETFs"]
+    IA["Insurance accumulation<br/>endowment, ILP, retirement"]
+    B["Business / self-employment<br/>renewals, ventures"]
+    W --> C
+    W --> P
+    W --> I
+    W --> IA
+    W --> B
+```
+
 ## 2. Wealth Accumulation vs Wealth Preservation
 
 Two very different phases of financial life. The mindset flips somewhere between age 50–60 for most clients.
@@ -58,6 +73,22 @@ The **transition** is not a hard switch — it's a gradual rebalancing. A 55-yea
 **The costly mistake:** clients who stay in accumulation mode too long. A 50% drop 2 years before retirement can push retirement back 5–10 years. Preservation exists to prevent that.
 
 ## 3. The 25-year-old example — why starting early matters
+
+```mermaid
+flowchart LR
+    subgraph E["Start at 25 · 40-yr runway"]
+        E1["$500/month<br/>personal outlay $240K"]
+        E2["~$760K from compounding<br/>Total: ~$1M"]
+    end
+    subgraph L["Start at 45 · 20-yr runway"]
+        L1["$2,500+/month<br/>5x the monthly cost"]
+        L2["Less compounding runway<br/>Harder to catch up"]
+    end
+    E1 --> E2
+    L1 --> L2
+```
+
+
 
 Here's the concrete arithmetic that every new FC should have memorised.
 

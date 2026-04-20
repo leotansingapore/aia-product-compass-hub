@@ -34,6 +34,19 @@ Today you put the 10X Rule on the calendar in a way that makes drift visible and
 
 ## 2. Identify the 3 activities that genuinely deserve 10X
 
+```mermaid
+flowchart TD
+    A["All activities"] --> B{"Volume drives<br/>skill + results?"}
+    B -- Yes --> C["10X these"]
+    B -- No --> D["Don't 10X"]
+    C --> C1["Outreach touches"]
+    C --> C2["Public content"]
+    C --> C3["Role-plays / skill reps"]
+    D --> D1["Client meetings"]
+    D --> D2["Proposal writing"]
+    D --> D3["Product study<br/>Admin / CRM"]
+```
+
 Not everything should be 10X'ed. It would be exhausting and counterproductive. The honest list:
 
 **Deserves 10X (because volume produces skill + results):**
@@ -76,6 +89,18 @@ Then translate to **per day**:
 Now the "10X spirit" is living in your calendar as specific numbers.
 
 ## 4. The minimum activity day (MAD)
+
+```mermaid
+flowchart TD
+    A["Start of day<br/>Declare day type"] --> B{"Which type?"}
+    B -- "Full day" --> C["Full targets<br/>20 outreach · draft/post · 1 rep"]
+    B -- "Partial day" --> D["Half targets<br/>10 outreach · half-draft"]
+    B -- "MAD day" --> E["Bare minimum<br/>5 outreach · skip content"]
+    B -- "Off day (sick/holiday)" --> F["Zero - deliberate<br/>Not ambiguous drift"]
+    E --> G["Streak protected"]
+    C --> G
+    D --> G
+```
 
 You will have bad days. Sick days. Days with emergencies. Days when you just don't feel it.
 

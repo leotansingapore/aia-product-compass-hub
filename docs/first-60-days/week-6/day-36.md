@@ -205,6 +205,15 @@ By the end of today you should be able to:
 
 ## Problem 9 — Closing the Gap
 
+```mermaid
+flowchart TD
+    A["Step 1: Project existing CPF<br/>PV=$100K · n=25 · i=4%"] --> B["CPF at 65<br/>~$267K"]
+    C["Target at 65<br/>$800K"] --> D["Gap = $800K - $267K<br/>= $533K"]
+    B --> D
+    D --> E["Step 2: Solve for PMT<br/>FV=$533K · n=25 · i=5% · BGN"]
+    E --> F["Additional savings needed<br/>~$1,050 / month outside CPF"]
+```
+
 **Client has $100K in CPF at 40. Target at 65: $800K total. Assume 4% growth on CPF alone. What additional monthly savings (at 5%) are needed to close the gap?**
 
 <details><summary>Solution</summary>
@@ -260,6 +269,19 @@ By the end of today you should be able to:
 ## 3. Common error patterns
 
 Watch for these — they account for 80% of mistakes:
+
+```mermaid
+flowchart TD
+    A["Before pressing Compute"] --> B{"PMT sign correct?<br/>outflow = negative"}
+    B -->|"No"| C["Fix sign · retry"]
+    B -->|"Yes"| D{"PMT monthly?"}
+    D -->|"Yes"| E["Set n = months<br/>i = annual / 12"]
+    D -->|"No (annual)"| F["n = years · i = annual"]
+    E & F --> G{"Insurance payment?"}
+    G -->|"Yes"| H["BGN mode"]
+    G -->|"No (loan)"| I["END mode"]
+    H & I --> J["Compute"]
+```
 
 | Error | How to catch it |
 |---|---|

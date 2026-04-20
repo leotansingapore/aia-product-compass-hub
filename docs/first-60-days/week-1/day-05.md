@@ -35,6 +35,16 @@ In those moments, three things can keep you in the chair:
 
 A purpose-driven FC keeps showing up because the work answers a question bigger than "did I hit my number this week?"
 
+```mermaid
+flowchart TD
+    A["Discipline<br/>Short-term - runs out"] --> D["Showing up"]
+    B["Financial pressure<br/>Negative - collapses in bad months"] --> D
+    C["Purpose<br/>Long-term - compounds"] --> D
+    style C fill:#1a3a2a
+    style A fill:#3a2a1a
+    style B fill:#3a2a1a
+```
+
 **The reframe:** You are not selling insurance. You are building a life around meaningful work that value-adds to the people around you — especially those who matter to you most.
 
 If that sentence feels like marketing, you haven't yet decided it's true.
@@ -50,6 +60,13 @@ The fix is called **pre-framing.** Pre-framing lets your prospect anticipate the
 1. **Why** (your purpose — 1 sentence)
 2. **What (End)** — the kind of advisor you aspire to be (4 points max)
 3. **What (Now)** — the concrete actions you're taking to get there (4 points max)
+
+```mermaid
+flowchart TD
+    A["Why<br/>Your personal reason for being here"] --> B["What you aspire to be<br/>The advisor you are building toward"]
+    B --> C["What you are doing now<br/>Concrete actions that prove it"]
+    C --> D["Prospect understands:<br/>direction + investment in self"]
+```
 
 ### Worked example
 

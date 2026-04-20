@@ -155,6 +155,24 @@ Start before you feel ready. Publish before it's polished. Send before you've re
 
 **Velocity matters more than polish** in Year 1. Polish comes from reps. Reps come from velocity.
 
+---
+
+```mermaid
+flowchart LR
+    A["Morning Revenue Block<br/>8:30-10:00am"] --> B["Mid-morning Meeting Block<br/>10:00am-12:30pm"]
+    B --> C["Lunch / Break<br/>12:30-1:30pm"]
+    C --> D["Late Afternoon Admin Block<br/>1:30-3:30pm"]
+    D --> E["End of Day Learning Block<br/>3:30-5:00pm"]
+    style A fill:#1a5c3a,color:#fff
+    style B fill:#1e3a5f,color:#fff
+    style C fill:#3d3d3d,color:#fff
+    style D fill:#5c3a1a,color:#fff
+    style E fill:#3a1a5c,color:#fff
+```
+
+*Each block = one task type. Context-switch tax (~20 min) paid once, not four times.*
+
+---
 
 ## Quick quiz
 

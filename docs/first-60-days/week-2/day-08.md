@@ -66,6 +66,18 @@ Here is the single most important chart a new FC must internalise.
 
 **The honest framing:** if you evaluate this career on Year 1 income, you will quit. If you evaluate it on Year 5+, you will stay.
 
+```mermaid
+flowchart LR
+    Y1["Year 1<br/>Below corporate peer"]
+    Y2["Year 2-3<br/>Crossover point"]
+    Y3["Year 3+<br/>Skill compounding begins"]
+    Y5["Year 5+<br/>Renewal book widens gap"]
+
+    Y1 --> Y2 --> Y3 --> Y5
+
+    C["Corporate peer<br/>Flat trajectory"]
+```
+
 ## 3. Why income guarantees exist — and what they really are
 
 A common question from recruits: "what if I'm not earning enough in Year 1?"
@@ -95,6 +107,17 @@ Most new FCs obsess about **effort** (hours worked, calls made). The ones who br
 | **Review cadence** | Sunday 30-min review of the week's reps + next week's plan |
 
 You can work 60 hours a week with poor infrastructure and stay broke. You can work 35 hours a week with good infrastructure and outperform them.
+
+```mermaid
+flowchart TD
+    I["Infrastructure"]
+    I --> CRM["CRM discipline<br/>Note every meeting within 24h"]
+    I --> CON["Content system<br/>One post per week, repeatable"]
+    I --> REF["Referral workflow<br/>Ask within 60 days of close"]
+    I --> STU["Study rhythm<br/>Fixed weekly product + SPIN time"]
+    I --> MEN["Mentor access<br/>Weekly 1-1 with agenda"]
+    I --> REV["Review cadence<br/>Sunday 30-min week review"]
+```
 
 ## 5. Impact is the part no one talks about
 

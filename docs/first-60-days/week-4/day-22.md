@@ -142,6 +142,24 @@ So the tactical move: **lower the activation energy.**
 
 Start stupid small. Momentum handles the rest.
 
+---
+
+```mermaid
+flowchart LR
+    A["Sunday 30-min<br/>planning ritual"] --> B["Review last week<br/>activity + pipeline"]
+    B --> C["Pick 3 priorities<br/>specific + measurable"]
+    C --> D["Block calendar first<br/>peak hours defended"]
+    D --> E["Protect one evening<br/>non-negotiable rest"]
+    E --> F["Monday: start with<br/>first Q2 block"]
+    style A fill:#2d2d2d,color:#fff
+    style C fill:#1e3a5f,color:#fff
+    style D fill:#1a5c3a,color:#fff
+    style E fill:#5c3a1a,color:#fff
+```
+
+*30 minutes on Sunday protects 168 hours of the coming week.*
+
+---
 
 ## Quick quiz
 

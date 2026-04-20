@@ -123,11 +123,11 @@ These exist precisely so you don't have to improvise credibility. Build them onc
 
 ```mermaid
 flowchart TD
-    P[Financial Planning<br/>presentation] --> Q1[Find out their<br/>current coverage]
-    Q1 --> Q2[Learn why planning<br/>matters to them]
-    Q2 --> O1[Outcome 1<br/>Take action if they<br/>haven't planned yet]
-    Q2 --> O2[Outcome 2<br/>Review and restructure<br/>existing portfolio]
-    Q2 --> O3[Outcome 3<br/>No immediate need —<br/>collect feedback + referrals]
+    P["Financial Planning<br/>presentation"] --> Q1["Find out their<br/>current coverage"]
+    Q1 --> Q2["Learn why planning<br/>matters to them"]
+    Q2 --> O1["Outcome 1<br/>Take action if not yet planned"]
+    Q2 --> O2["Outcome 2<br/>Review and restructure portfolio"]
+    Q2 --> O3["Outcome 3<br/>No need now, collect referrals"]
 ```
 
 There is **no fourth outcome**. Even the "no immediate need" case is still productive — the referral ask is the way this industry's top performers compound. A meeting that ends with 5 names in your notebook is a meeting that paid for itself.

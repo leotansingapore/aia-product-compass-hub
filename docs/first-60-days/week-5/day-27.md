@@ -27,6 +27,17 @@ By the end of today you should be able to:
 
 **Activities × Skills × Knowledge = FYC (First-Year Commission)**
 
+```mermaid
+flowchart LR
+    A["Activities<br/>outreach · meetings<br/>content · referrals"] --> FYC["FYC"]
+    B["Skills<br/>close rate · apt ratio<br/>avg premium"] --> FYC
+    C["Knowledge<br/>products · CPF · tax<br/>case studies"] --> FYC
+    FYC --> D{"Weakest link?"}
+    D -- "Low activity" --> E["Do more - see Day 26"]
+    D -- "Low skill" --> F["More reps + mentor feedback"]
+    D -- "Low knowledge" --> G["30-60 min/day study block"]
+```
+
 This is the most important formula in the career.
 
 The multiplication matters. It's not **additive** — it's **multiplicative.** Which means:
@@ -76,6 +87,14 @@ Tracked as:
 **If this is your weakest link:** you sound uncertain in meetings. Clients feel it. Block 30–60 min/day for structured study.
 
 ## 3. The "FYC × 4 in first 90 days" benchmark
+
+```mermaid
+flowchart LR
+    A["First 90 days<br/>e.g. $30K FYC"] --> B["Year 1<br/>foundation"]
+    B --> C["Year 2-3<br/>skills compound"]
+    C --> D["Year 4<br/>~4x = $120K"]
+    A -- "sets the trajectory" --> D
+```
 
 A specific target worth internalising:
 

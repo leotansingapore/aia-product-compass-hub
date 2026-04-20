@@ -68,6 +68,21 @@ Write the numbers on paper as you go. Don't type into a calculator. The physical
 
 Most clients will ask, unprompted, "so what kind of instrument is that?" — and *that* is when you describe the category (not a specific product), and offer to do a proper review.
 
+```mermaid
+flowchart LR
+    subgraph BA["Bank A · 0.05% p.a."]
+        BA1["Year 1 - $3,000 saved<br/>Interest: $1.50"]
+        BA2["Year 25 - $75,000 saved<br/>Total interest: ~$1,000"]
+    end
+    subgraph BB["Bank B · Long-term instrument"]
+        BB1["Year 1 - $3,000 saved<br/>Returns: ~$0"]
+        BB2["Year 2 onwards<br/>~$1,000/yr returns"]
+        BB3["Year 25 total returns<br/>~$24,000"]
+    end
+    BA1 --> BA2
+    BB1 --> BB2 --> BB3
+```
+
 ## 3. Why this works
 
 **Three reasons:**
@@ -77,6 +92,22 @@ Most clients will ask, unprompted, "so what kind of instrument is that?" — and
 3. **It uses their own money as the example.** $3,000 a year is a number most Singaporeans can relate to. The numbers are small enough to feel concrete and large enough to matter.
 
 ## 4. The trap — do not pitch here
+
+```mermaid
+flowchart TD
+    Story["Run Bank A vs Bank B story"]
+    Wait["Pause - wait for client<br/>to ask about the instrument"]
+    WrongPath["Pitch a product now"]
+    RightPath["Transition to fact-finding<br/>understand goals + timeline"]
+    Recommend["Recommend a product<br/>that actually fits"]
+    Story --> Wait
+    Wait -->|"wrong move"| WrongPath
+    Wait -->|"right move"| RightPath --> Recommend
+    style WrongPath fill:#7f1d1d,color:#fca5a5
+    style RightPath fill:#14532d,color:#86efac
+```
+
+
 
 The most common new-FC mistake: running this story, then immediately pitching an endowment or ILP as "the solution."
 

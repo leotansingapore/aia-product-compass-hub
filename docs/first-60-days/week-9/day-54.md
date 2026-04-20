@@ -39,6 +39,17 @@ By the end of today you should be able to:
 
 **The shift:** you're not selling a product. You're selling a **way of thinking about money** that the product happens to solve.
 
+```mermaid
+flowchart LR
+    A["Product selling<br/>Here is a plan"] --> B["Client evaluates features<br/>Premium, return, payout"]
+    B --> C["Feature comparer<br/>Shops competitors"]
+    C --> D["Close rate ~15-25%"]
+
+    E["Concept selling<br/>Here is an idea"] --> F["Client evaluates the concept<br/>Does this make sense?"]
+    F --> G["Concept owner<br/>Explains it to spouse"]
+    G --> H["Close rate ~35-50%"]
+```
+
 ## 2. Why concept selling works
 
 1. **Clients remember concepts.** They forget product names.
@@ -151,6 +162,19 @@ By the end of today you should be able to:
 The three concepts above are the most common. But your real toolkit is broader. Every client walks in with a life stage and a concern — your job is to have a planning angle for every one of them.
 
 Keep this table open when you're preparing for a meeting. The right concept is usually the one that matches their current life moment.
+
+```mermaid
+flowchart TD
+    HUB["Client life moment<br/>= Right concept"] --> S1["1. Basic Financial Planning<br/>Any first meeting"]
+    HUB --> S2["2. Wedding Budgeting<br/>Engaged / married"]
+    HUB --> S3["3. Home Budgeting BTO<br/>Buying first property"]
+    HUB --> S4["4. Baby Planning<br/>Pregnant / new parent"]
+    HUB --> S5["5. Wealth Building CPF<br/>Working adult"]
+    HUB --> S6["6. Tax Savings<br/>Taxable income"]
+    HUB --> S7["7. Investments<br/>Savings earning nothing"]
+    HUB --> S8["8. One Retirement<br/>Mid-career check-in"]
+    HUB --> S9["9. GoalsMapper<br/>Wants full picture"]
+```
 
 | # | Solution | Client trigger | What you cover |
 |---|---|---|---|

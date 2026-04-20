@@ -100,6 +100,16 @@ Not everyone on your list of 100 will become a prospect. That's expected.
 
 **Don't be discouraged by the drop-off.** It's the normal shape. The point of the 100 is to get *enough at the top* so the 8–15 at the bottom actually materialise.
 
+```mermaid
+flowchart TD
+    A["100 names<br/>Project 100 list"]
+    B["60-70 reached<br/>phone or message back"]
+    C["30-40 market surveys<br/>agree to conversation"]
+    D["20 fact-finds<br/>real meeting booked"]
+    E["8-15 closes<br/>become clients"]
+    A --> B --> C --> D --> E
+```
+
 ## 5. The natural market profile check
 
 Not all warm-market contacts are equally valuable. Use this quick scoring to prioritise.
@@ -130,6 +140,16 @@ You build the list in Week 1. By Week 10, you've contacted everyone. What now?
 - **Reactivated quarterly.** People who said "not now" 6 months ago may be ready today.
 
 **After Year 1**, your Project 100 evolves into a continuous prospect pipeline of 200–500+ names across warm, referred, and cold tiers.
+
+```mermaid
+flowchart LR
+    A["Add 5 names<br/>weekly"]
+    B["Re-sort priorities<br/>monthly"]
+    C["Reactivate 'not now'<br/>contacts quarterly"]
+    D["Archive closed<br/>to Active Clients"]
+    A --> B --> C --> A
+    B --> D
+```
 
 ## 7. A note on digital-first prospect lists
 

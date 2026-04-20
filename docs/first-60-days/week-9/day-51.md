@@ -67,6 +67,16 @@ Deliver this calmly. Not apologetic. Not aggressive. Matter-of-fact.
 
 ## 4. The 6 categories of financial data
 
+```mermaid
+flowchart LR
+    A["Section 3<br/>Financial Data"] --> B["1. Income<br/>Salary + bonus + stability"]
+    A --> C["2. Expenses<br/>Essential + lifestyle + annual"]
+    A --> D["3. Assets<br/>Cash, CPF, property, investments"]
+    A --> E["4. Liabilities<br/>Mortgage, loans, credit cards"]
+    A --> F["5. Existing cover<br/>Life, CI, hospital, disability"]
+    A --> G["6. Budget capacity<br/>Offer ranges, not open question"]
+```
+
 ### 1. Income
 - Gross monthly income.
 - Bonus / variable component (typical annual bonus).
@@ -177,6 +187,16 @@ If the answer is "no, no reason" → you're 90% closed before the next meeting.
 If the answer raises an objection → **gold.** You now have 5 days to address it in the proposal.
 
 ## 8. Post-meeting discipline
+
+```mermaid
+flowchart TD
+    A["Meeting ends"] --> B["Within 30 min<br/>Expand CFR notes from keywords"]
+    B --> C["Log in CRM<br/>Date, concerns, priorities, next meeting"]
+    C --> D["Draft 3 recommendation ideas<br/>from top priorities"]
+    D --> E["Schedule follow-up<br/>Don't let momentum fade"]
+    E --> F["Prepare proposal materials<br/>Illustrations, concept decks"]
+    F --> G["24-hour rule<br/>90% fresh - act now"]
+```
 
 Within 30 min of the meeting ending:
 

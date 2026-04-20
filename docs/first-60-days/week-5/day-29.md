@@ -69,6 +69,16 @@ Read that last row carefully. **$10,000 compounded at 9% over 40 years = $314,00
 
 ## 3. The Rule of 72 — the advisor's shortcut
 
+```mermaid
+flowchart LR
+    A["72 / rate = years to double"]
+    A --> B["2% - 36 yrs"]
+    A --> C["4% - 18 yrs"]
+    A --> D["6% - 12 yrs"]
+    A --> E["8% - 9 yrs"]
+    A --> F["12% - 6 yrs"]
+```
+
 You'll need to project compound growth in client meetings *without* a calculator. Use the Rule of 72:
 
 > **Years to double = 72 / interest rate**
@@ -90,6 +100,16 @@ You'll need to project compound growth in client meetings *without* a calculator
 **This shortcut is one of the most used pieces of arithmetic you'll ever do in client meetings.** Memorise it today.
 
 ## 4. The early-start premium
+
+```mermaid
+flowchart LR
+    subgraph Alice ["Alice - starts age 25"]
+        A1["Age 25-35<br/>$500/mo, $60K in"] --> A2["Age 35-65<br/>just compounds"] --> A3["Age 65<br/>~$500K"]
+    end
+    subgraph Bob ["Bob - starts age 35"]
+        B1["Age 35-65<br/>$500/mo, $180K in"] --> B2["Age 65<br/>~$470K"]
+    end
+```
 
 Compounding rewards time more than anything else.
 

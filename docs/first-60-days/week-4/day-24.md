@@ -182,6 +182,43 @@ Combining Day 22's weekly planning ritual with the matrix:
 
 Most weeks will go off-script in some way. That's fine. You still moved 3–5 big rocks — which most FCs never do in a week.
 
+---
+
+```mermaid
+quadrantChart
+    title Covey Time Management Matrix
+    x-axis Not Urgent --> Urgent
+    y-axis Not Important --> Important
+    quadrant-1 "Q1 - Crisis · Minimise"
+    quadrant-2 "Q2 - Focus · 60% target"
+    quadrant-3 "Q4 - Waste · Avoid"
+    quadrant-4 "Q3 - Distraction · Delegate"
+```
+
+---
+
+```mermaid
+flowchart LR
+    subgraph NOW["Typical new FC"]
+        N1["Q1: 30%"]
+        N2["Q2: 15%"]
+        N3["Q3: 25%"]
+        N4["Q4: 30%"]
+    end
+    subgraph TARGET["Target allocation"]
+        T1["Q1: 15%"]
+        T2["Q2: 60%"]
+        T3["Q3: 15%"]
+        T4["Q4: 10%"]
+    end
+    NOW -->|"shift"| TARGET
+    style N2 fill:#5c1a1a,color:#fff
+    style T2 fill:#1a5c3a,color:#fff
+```
+
+*The entire career shift is moving Q2 from 15% to 60%.*
+
+---
 
 ## Quick quiz
 

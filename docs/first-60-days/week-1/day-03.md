@@ -24,6 +24,15 @@ By the end of today you should be able to:
 
 ---
 
+```mermaid
+flowchart TD
+    A["Autonomy &amp; Work-Life Balance<br/>You set your hours, income, and clients"]
+    B["Personal Development<br/>6 capabilities most jobs never build"]
+    C["Job Security<br/>Passive income through renewal commissions"]
+    D["Job Fulfillment<br/>The reason people stay 20+ years"]
+    A --> B --> C --> D
+```
+
 ## 1. Autonomy & Work-Life Balance
 
 "No one on their deathbed ever said *I wish I had spent more time at the office*."
@@ -76,6 +85,13 @@ Over time, your renewal book gets large enough that it can cover:
 
 **You are financially free when your passive income exceeds your expenses.**
 
+```mermaid
+flowchart LR
+    A["Active sales only<br/>Year 1 to 3"] --> B["Renewals cover<br/>some expenses<br/>Year 4 to 6"]
+    B --> C["Financially independent<br/>Renewals cover all expenses"]
+    C --> D["Financially free<br/>Renewals exceed expenses"]
+```
+
 Most FCs underestimate how quickly this compounds. A modest book after 5–7 years of consistent production can throw off enough renewal income to remove the pressure of needing to sell.
 
 ## 4. Job Fulfillment (The One That Keeps You)
@@ -104,6 +120,13 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
 - A consistent FC is often 2–4× their starting year, with significant passive income on top.
 
 **The lesson:** evaluate this career on a 5-year horizon, not a 1-year horizon. If you're making a 1-year decision, you're probably going to make the wrong one.
+
+```mermaid
+flowchart LR
+    A["Year 1<br/>FC lower, peer fixed"] --> B["Year 5<br/>FC 2-4x + passive income"]
+    style A fill:#4a1a1a
+    style B fill:#1a3a1a
+```
 
 
 ## Quick quiz

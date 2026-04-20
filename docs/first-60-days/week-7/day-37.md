@@ -28,24 +28,15 @@ By the end of today you should be able to:
 
 Every client relationship, from first meeting to 20 years later, follows the same 6 steps:
 
-```
- 1. Establish / Define (The Approach — first meeting)
- Client–Planner Relationship
- ↓
- 2. Gather Data
- (Including Goals, Fact Find, SPIN)
- ↓
- 3. Analyse & Evaluate Financial Status
- (Needs analysis, gap identification)
- ↓
- 4. Develop and Present Recommendation
- (Proposal, AIA Financial Health Check)
- ↓
- 5. Implement Recommendation
- (Underwriting, submission, delivery)
- ↓
- 6. Annual Review
- (Ongoing service — this is where the relationship lives)
+```mermaid
+flowchart TD
+    A["1. Establish / Define<br/>The Approach — first meeting"]
+    B["2. Gather Data<br/>Goals, Fact Find, SPIN"]
+    C["3. Analyse & Evaluate<br/>Needs analysis, gap identification"]
+    D["4. Develop and Present<br/>Proposal, Financial Health Check"]
+    E["5. Implement<br/>Underwriting, submission, delivery"]
+    F["6. Annual Review<br/>Ongoing service — relationship lives here"]
+    A --> B --> C --> D --> E --> F --> A
 ```
 
 **The trap most new FCs fall into:** treating the Approach as "selling." It's not. The Approach is establishing the *relationship* — the permission and trust to do Steps 2–6.
@@ -89,6 +80,15 @@ Here's the math that should govern how you treat every first meeting.
 
 **Different scale entirely.**
 
+```mermaid
+flowchart LR
+    A["Year 1 commission<br/>~$1,000"]
+    B["CLV multiplier<br/>20-30x"]
+    C["Lifetime value<br/>~$25,000 per client"]
+    D["300 clients<br/>$7.5M total book"]
+    A --> B --> C --> D
+```
+
 **The implication:** what feels like a "small" first sale is the start of a relationship that can produce 20–30× the initial amount. A $1,000 first-year commission is a $25,000 lifetime commitment — if you service it properly.
 
 **How this changes behaviour:**
@@ -119,6 +119,16 @@ You won't use the same Approach script for everyone. There are three types of fi
 - **Approach angle:** "I saw your post/comment about ___. I help people in that situation. Would a 20-min call be useful?"
 
 **Most new FCs focus exclusively on Type A** (warm) in Month 1. That's fine for Month 1. By Month 6, you need at least one of Type B or C running to sustain a pipeline — because your warm market is finite.
+
+```mermaid
+flowchart LR
+    A["Type A · Warm<br/>Friends, family, ex-colleagues"]
+    B["Type B · Referred<br/>Introduced by existing client"]
+    C["Type C · Cold<br/>Digital, events, outreach"]
+    A -->|"Easy to meet<br/>harder to close"| M["First Meeting"]
+    B -->|"Hardest to get<br/>easiest to close"| M
+    C -->|"Scalable<br/>trust-building first"| M
+```
 
 ## 5. The honest limits of your warm market
 

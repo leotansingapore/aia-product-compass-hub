@@ -117,6 +117,15 @@ Most objections are not rejections — they're **reflexes**. Don't take them per
 
 Before starting the Financial Health Review (first real meeting), open with these four statements. They set the emotional tone and protect the relationship.
 
+```mermaid
+flowchart LR
+    A["A · Assurance<br/>Not here to sell"]
+    B["B · Best Interest<br/>Plan as if it were mine"]
+    C["C · Confidentiality<br/>Strictest confidence"]
+    D["D · Full Disclosure<br/>Share freely for best advice"]
+    A --> B --> C --> D --> E["Honest fact-find<br/>begins"]
+```
+
 ### A — Assurance / Promise
 > "This meeting is not to sell you anything. I'm here to find out more about you and your goals. If we should proceed with proposing any solution, it's because I had shared something that was of value to you and that you felt comfortable with me."
 
@@ -156,6 +165,17 @@ Most new FCs follow this arc:
 - **Months 4–6:** ~60% natural market, 30% referred.
 - **Months 7–12:** ~30% natural, 50% referred, 20% cold/digital.
 - **Year 2+:** ~10% natural (exhausted), 70%+ referred, 20% cold/digital.
+
+```mermaid
+flowchart TD
+    A["Warm market contact"]
+    B["Market survey<br/>30+ completed"]
+    C["Meeting booked<br/>ABCD promises open"]
+    D["Client closes"]
+    E["Referral ask<br/>end of every meeting"]
+    F["Referred prospect<br/>3-5x higher close rate"]
+    A --> B --> C --> D --> E --> F --> C
+```
 
 If you're in Month 8 and still 90% natural market, **something is wrong.** Either your referral asks aren't happening, or your service quality isn't producing referrals.
 

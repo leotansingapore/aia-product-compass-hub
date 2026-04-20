@@ -56,6 +56,16 @@ If you can't run these calculations, you can't have meaningful client conversati
 
 Every TVM problem has 5 variables. You solve for 1 when you know the other 4.
 
+```mermaid
+flowchart TD
+    N["n · periods"] --> SOLVE["Solve for<br/>the unknown 1"]
+    I["i · rate/period"] --> SOLVE
+    PV["PV · value today"] --> SOLVE
+    PMT["PMT · regular payment<br/>negative = money out"] --> SOLVE
+    FV["FV · future value<br/>positive = money in"] --> SOLVE
+    SOLVE --> R["Answer"]
+```
+
 | Variable | What it means | Typical unit |
 |---|---|---|
 | **n** | Number of periods (years, months) | Integer |
@@ -71,6 +81,21 @@ Every TVM problem has 5 variables. You solve for 1 when you know the other 4.
 Getting signs wrong is the #1 cause of TVM errors. Treat it strictly.
 
 ## 4. Financial calculators — the tool
+
+```mermaid
+flowchart LR
+    A["Know 4 variables"] --> B{"Which to solve?"}
+    B -- "What rate am I getting?" --> C["Solve for i"]
+    B -- "How much to save monthly?" --> D["Solve for PMT"]
+    B -- "What lump sum do I need now?" --> E["Solve for PV"]
+    B -- "What will this grow to?" --> F["Solve for FV"]
+    B -- "How many years to goal?" --> G["Solve for n"]
+    C --> H["BGN or END mode?"]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+```
 
 You need one. The standard options for Singapore FCs:
 

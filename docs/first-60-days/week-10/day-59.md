@@ -38,6 +38,16 @@ The proposal **translates all of that into a plan.** If you've done the work, wr
 
 ## 2. The 5-part proposal template
 
+```mermaid
+flowchart TD
+    P1["1. Goals<br/>Their words · their numbers"]
+    P2["2. Current situation<br/>Coverage snapshot · gaps named"]
+    P3["3. The plan<br/>Category first · then product"]
+    P4["4. Illustrations<br/>Guaranteed + non-guaranteed"]
+    P5["5. Next steps<br/>Full plan or phased option"]
+    P1 --> P2 --> P3 --> P4 --> P5
+```
+
 ### 1. Your goals (1 page)
 Restate, in their language, what they told you they want.
 
@@ -161,7 +171,18 @@ Most new FCs break silence by volunteering more information, discounts, or fallb
 
 **The discipline:** after asking "shall we proceed?" — count to 30 in your head. Do not speak first.
 
-**"He who breaks silence first is the most eager to make a deal."** Let the client speak first. Their first word tells you what they actually think.
+**"He who breaks silence first is the most eager to make a deal."** Let the client speak first. Their first word tells you what you actually think.
+
+```mermaid
+flowchart TD
+    A["Ask for the close<br/>Shall we proceed?"]
+    A --> B["Client is silent"]
+    B --> C{"FC breaks silence?"}
+    C -->|"Yes - adds options"| D["Rewards hesitation<br/>More confusion · likely no"]
+    C -->|"No - counts to 30"| E["Client speaks first"]
+    E --> F["Yes · specific objection<br/>or real no"]
+    F --> G["Handle what you hear<br/>not what you fear"]
+```
 
 ### Technique 5: Summary Close
 **When:** multi-benefit plan, client needs to see everything tied together.

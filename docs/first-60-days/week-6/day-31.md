@@ -39,6 +39,12 @@ Time Value of Money problems run in two directions:
 
 Most retirement and education planning runs **backward.** Clients know the target (retirement income, college tuition), and need to know **what to do today.**
 
+```mermaid
+flowchart LR
+    A["PV (today)"] -->|"× (1+i)^n<br/>Forward"| B["FV (future)"]
+    B -->|"÷ (1+i)^n<br/>Discounting"| A
+```
+
 ## 2. Present Value — worked example
 
 **Scenario:**
@@ -126,6 +132,15 @@ This is **instant credibility.** You're not guessing. You're showing him the mat
 ## 6. The multiple-goal client
 
 Real clients don't have one goal. They have three or four:
+
+```mermaid
+flowchart TD
+    A["Client's monthly capacity<br/>$3,000 / month"] --> B["Retirement $1M<br/>$1,518 / mo"]
+    A --> C["Education $200K<br/>$1,150 / mo"]
+    A --> D["House downpayment $150K<br/>$2,322 / mo"]
+    A --> E["Medical fund $80K<br/>$550 / mo"]
+    B & C & D & E --> F["Total needed: $5,540 / mo<br/>Gap = $2,540 / mo"]
+```
 
 | Goal | FV | Years away | Discount rate | PV / monthly PMT |
 |---|---:|---:|---:|---|

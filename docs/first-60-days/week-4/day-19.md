@@ -151,6 +151,41 @@ Common starting points:
 
 Doesn't matter which one. What matters: **it happens even on terrible days**. The days you don't feel like it are precisely when it matters most — because that's when everyone else stops, and you stop catching up to them.
 
+---
+
+```mermaid
+flowchart LR
+    A["Prospecting touch<br/>Day 0"] --> B["First conversation<br/>+1-2 weeks"]
+    B --> C["Fact-find meeting<br/>+1-2 weeks"]
+    C --> D["Proposal / presentation<br/>+1-2 weeks"]
+    D --> E["Close<br/>same meeting or follow-up"]
+    E --> F["Underwriting<br/>+2-6 weeks"]
+    F --> G["Commission paid<br/>next month"]
+    style A fill:#1e3a5f,color:#fff
+    style G fill:#1a5c3a,color:#fff
+```
+
+*Total: 30-90 days from first touch to commission. Today's prospecting = next quarter's income.*
+
+---
+
+```mermaid
+flowchart TD
+    A["All Prospecting Activity"] --> B["A · Getting Leads<br/>fill the pipeline"]
+    A --> C["B · Making Calls<br/>names to conversations"]
+    A --> D["C · Meeting People<br/>conversations to appointments"]
+    B --> E["Warm market · Referrals<br/>Digital · Lead lists"]
+    C --> F["Cold calls · WhatsApp<br/>Networking · Follow-up"]
+    D --> G["First meeting · Fact-find<br/>Proposal / close"]
+    style A fill:#2d2d2d,color:#fff
+    style B fill:#1e3a5f,color:#fff
+    style C fill:#1e3a5f,color:#fff
+    style D fill:#1e3a5f,color:#fff
+```
+
+*Run all three buckets every day - not sequentially.*
+
+---
 
 ## Quick quiz
 

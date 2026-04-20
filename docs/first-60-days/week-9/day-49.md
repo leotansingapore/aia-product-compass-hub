@@ -40,6 +40,15 @@ Neutral → Slight unease → Real concern → Explicit need → Hopeful → Dec
 Situation  Problem     Implication      Implication   Need-Payoff  Close
 ```
 
+```mermaid
+flowchart LR
+    A["Situation<br/>Neutral"] --> B["Problem<br/>Slight unease"]
+    B --> C["Implication<br/>Real concern"]
+    C --> D["Implication<br/>Felt need"]
+    D --> E["Need-Payoff<br/>Hopeful"]
+    E --> F["Close<br/>Decisive"]
+```
+
 Done well, the client does most of the emotional work. You're not pushing — you're asking questions they've never been asked.
 
 ## 2. Implication Questions — the purpose
@@ -154,6 +163,19 @@ Neutral, curious, respectful.
 Rushing SPIN kills the emotional work. A proper SPIN conversation takes **45–60 minutes.** If you're doing it in 15, you're doing Situation-only + a pitch. That's not SPIN.
 
 ## 8. The Colombo Close — the transition out
+
+```mermaid
+flowchart TD
+    A["SPIN arc complete<br/>Need-Payoff answered"] --> B["Colombo Close<br/>Name goals + budget"]
+    B --> C{"Client response"}
+    C --> D["No reason why not<br/>= Disguised yes"]
+    C --> E["Needs spouse check<br/>= Real info to handle"]
+    C --> F["Raises objection X<br/>= Gold - address now"]
+    D --> G["Schedule next meeting<br/>90% pre-closed"]
+    E --> G
+    F --> H["Resolve before leaving"]
+    H --> G
+```
 
 At the end of a SPIN conversation, use this classic close to bridge into recommendation:
 

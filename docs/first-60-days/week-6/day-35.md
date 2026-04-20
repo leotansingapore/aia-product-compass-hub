@@ -64,6 +64,14 @@ This is the single most important distinction in investment education.
 **Nominal return:** the actual % growth of your money.
 **Real return:** the growth *after* subtracting inflation. This is what actually matters for your purchasing power.
 
+```mermaid
+flowchart LR
+    A["Nominal return<br/>e.g. 6%"] --> B["Minus inflation<br/>e.g. 2%"]
+    B --> C["Real return<br/>~4% (simplified)<br/>3.92% (actual)"]
+    D["Bank account<br/>0.5% nominal"] --> E["Minus inflation<br/>2%"]
+    E --> F["Real return<br/>-1.5% per year<br/>purchasing power lost"]
+```
+
 ### Simplified formula
 
 > **Real return ≈ Nominal return − Inflation rate**
@@ -103,6 +111,14 @@ No statement ever shows this. But it's real.
 ## 5. The hierarchy of "inflation beaters"
 
 Different assets beat inflation at different rates:
+
+```mermaid
+flowchart BT
+    A["Cash · Savings<br/>Real: negative"] --> B["Fixed deposits · CPF OA<br/>Real: 0 to 1.5%"]
+    B --> C["Gov bonds · CPF SA<br/>Real: 0 to 2%"]
+    C --> D["Corporate bonds · real estate<br/>Real: 2 to 5%"]
+    D --> E["Diversified equity (long-term)<br/>Real: 4 to 6%"]
+```
 
 | Asset | Typical long-term return | Real return (vs 2% inflation) |
 |---|---|---|

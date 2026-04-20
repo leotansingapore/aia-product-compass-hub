@@ -67,6 +67,18 @@ A standard CFR has three sections. Today covers the first two; Day 51 covers the
 
 **Total time:** 60–90 min for a good CFR. Don't rush.
 
+```mermaid
+flowchart TD
+    A["Section 1<br/>Situation + Priorities"] --> B["Rank goals 1-N<br/>in client's own voice"]
+    B --> C["Section 2<br/>Problem Development"]
+    C --> D["3-5 problem questions<br/>per priority goal"]
+    D --> E{"Real gap<br/>acknowledged?"}
+    E -- No --> D
+    E -- Yes --> F["Implication questions<br/>deepen felt need"]
+    F --> G["Section 3<br/>Financial Numbers"]
+    G --> H["Colombo close<br/>schedule next meeting"]
+```
+
 ## 3. Section 1 — Situation Questions (the easy start)
 
 The first part of the CFR is **very general questions.** Deliberately so. The purpose is to:
@@ -125,6 +137,15 @@ After open conversation, you'll have 3–6 goals mentioned. Now you **rank them.
 3. When presenting recommendations, you can match solutions to their #1 priority first — not yours.
 
 **Rule:** always start Problem Questions with their **#1 priority.** That's where the emotional engagement is highest.
+
+```mermaid
+flowchart LR
+    A["Goals mentioned<br/>in passing (3-6)"] --> B["Summarise list<br/>aloud to client"]
+    B --> C["Client ranks #1"]
+    C --> D["Client ranks #2"]
+    D --> E["Client ranks #3+"]
+    E --> F["Lead Problem Qs<br/>from #1 downward"]
+```
 
 ## 5. Section 2 — Problem Development
 

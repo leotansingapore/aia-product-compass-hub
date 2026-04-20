@@ -36,6 +36,17 @@ When a client says "I need insurance," your first job is clarification. Which ki
 
 **The pattern:** the first three are **protection** (bad things happening). The fourth is **accumulation** (good things taking time).
 
+```mermaid
+flowchart LR
+    D["Death / TPD<br/>10x annual income"]
+    CI["Critical Illness<br/>5x Major + 2x Early CI"]
+    H["Hospitalisation<br/>Maximum limit by tier"]
+    S["Savings / Investments<br/>Retirement income target"]
+
+    D & CI & H --> P["Protection<br/>(bad events)"]
+    S --> A["Accumulation<br/>(good things take time)"]
+```
+
 A financially prepared person has all four. Most clients walk in with **one or two at best** — usually hospitalisation (because their employer offers it) and some savings. Your job is to map out what's missing without turning the meeting into a pitch.
 
 ## 2. AIA Singapore — the 60-second positioning
@@ -67,6 +78,13 @@ AIA's systems are genuinely ahead of most of the industry. Learn where each tool
 - **Workflow:** complete financial review → illustrate plan → client signs → straight-through submission.
 
 **Rule:** never walk into a client meeting without iPos ready. Never leave home without iSmart on your phone. Everything else — memos, campaign updates, product collateral — pushes to you through these two.
+
+```mermaid
+flowchart TD
+    Q["Need to reach a client or share info?"]
+    Q -->|"Out of office - share campaign / collateral"| IS["iSmart (phone)<br/>Send link via WhatsApp/Telegram"]
+    Q -->|"At client home - run appointment"| IP["iPos / iMO (iPad)<br/>FNA - Illustrate - Sign - Submit"]
+```
 
 ## 4. Where AIA sits in the Singapore market
 

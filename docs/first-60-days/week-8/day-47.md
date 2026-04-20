@@ -92,6 +92,18 @@ Every purchase decision is a scale weighing two things:
 
 Here's the flow — from discovery to decision. All 4 question types, in order.
 
+```mermaid
+flowchart TD
+    S["Situation Questions<br/>Uncover facts and background"]
+    P["Problem Questions<br/>Surface difficulties and gaps"]
+    I["Implication Questions<br/>Make the client feel the weight"]
+    N["Need-Payoff Questions<br/>Client articulates the benefit themselves"]
+    BUY["Client decides to buy"]
+    S --> P --> I --> N --> BUY
+    style I fill:#4a1a1a,color:#fff
+    style N fill:#1a3a1a,color:#fff
+```
+
 ### 1. Situation Questions
 **Purpose:** Uncover facts and background about the buyer's situation and lifestyle.
 

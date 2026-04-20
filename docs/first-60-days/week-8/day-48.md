@@ -35,6 +35,19 @@ Purpose: understand Purpose: help client feel
 (facts + gaps) the weight of the gap
 ```
 
+```mermaid
+flowchart LR
+    subgraph Exploration["First Half - Exploration"]
+        S["Situation<br/>What is"]
+        P["Problem<br/>What is not quite right"]
+    end
+    subgraph Intensification["Second Half - Intensification"]
+        I["Implication<br/>Why it matters"]
+        N["Need-Payoff<br/>What life looks like solved"]
+    end
+    S --> P --> I --> N
+```
+
 **Today:** the first half. Get this right and the second half (tomorrow's Day 49) does the heavy lifting.
 
 ## 2. Situation Questions — the setup
@@ -80,6 +93,15 @@ Good Situation questions are **open-ended** and **specific to planning categorie
 **Rule:** ask these casually. They're conversation, not checklist. Let the client's answers shape your follow-up questions.
 
 ### The FORM mnemonic — the 4-letter shortcut
+
+```mermaid
+flowchart LR
+    F["F - Family<br/>Who are you planning for?"]
+    O["O - Occupation<br/>Income, coverage, career stage"]
+    R["R - Recreation<br/>Lifestyle, retirement dreams"]
+    M["M - Money<br/>Current savings approach"]
+    F --> O --> R --> M
+```
 
 When nerves spike and the 10 questions feel like too much, fall back to **FORM**. It covers 80% of what you need in any first meeting:
 

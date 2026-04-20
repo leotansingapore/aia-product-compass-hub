@@ -40,6 +40,17 @@ People who make it in a skill-based career are almost always people with strong 
 
 These three are non-negotiable. Install them now, so they're already running by the time you're licensed and in front of prospects.
 
+```mermaid
+flowchart LR
+    A["Sunday<br/>30-min review"] --> B["Mon-Fri<br/>Daily opening<br/>15 min"]
+    B --> C["Friday<br/>10-min wrap"]
+    C --> A
+
+    A1["Look back<br/>Set 3 priorities<br/>Calendar-block"] --- A
+    B1["Review priorities<br/>Pick #1 task<br/>Decide what NOT to do"] --- B
+    C1["Log wins<br/>Clear open loops<br/>Notes for Monday-you"] --- C
+```
+
 ### Sunday — the 30-minute review
 **When:** any 30-minute window on Sunday evening.
 
@@ -69,6 +80,13 @@ These three are non-negotiable. Install them now, so they're already running by 
 **The signal you did it right:** the weekend starts without an open loop buzzing in your head.
 
 ## 3. The learning rhythm — for the next 55 days
+
+```mermaid
+flowchart TD
+    A["Every day<br/>15 min · current lesson"] --> B["Sunday<br/>Re-skim week's 6 lessons"]
+    B --> C["Weekly<br/>1 practice rep in real life"]
+    C --> D["8 weeks = 56 lessons<br/>8 integrations · 8 reps"]
+```
 
 On top of the three rituals above, during this 60-day program your week also has a **learning rhythm**. Don't skip this part — the advisors who finish strong are the ones who studied consistently, not those who crammed.
 

@@ -61,6 +61,20 @@ Robert Kiyosaki's framework, stripped to its bones:
 
 **The compounding truth:** most wealth is built in the right-hand column. Most paycheques come from the left.
 
+```mermaid
+quadrantChart
+    x-axis "Active income (trade time)" --> "Passive income (money works)"
+    y-axis "Works for others" --> "Works for self / owns system"
+    quadrant-1 "B - Business owner"
+    quadrant-2 "I - Investor"
+    quadrant-3 "E - Employee"
+    quadrant-4 "S - Self-employed"
+    Employee: [0.15, 0.15]
+    Self-employed: [0.25, 0.75]
+    Business owner: [0.75, 0.85]
+    Investor: [0.85, 0.25]
+```
+
 ## 2. Where this career lives
 
 Many new FCs think of themselves as **S** — self-employed, trading hours for commission. That's a Year-1 reality, not a destination.
@@ -126,6 +140,16 @@ The goal isn't to hate your E income. It's to **stop it from being 100% of your 
 Every policy you sell well is a vote for your future B. Every dollar invested from that commission is a vote for your future I.
 
 You don't need to quit anything. You just need to start shifting the mix.
+
+```mermaid
+flowchart LR
+    NOW["Today<br/>100% E or S"]
+    Y5["Year 5<br/>60% S - 30% B - 10% I"]
+    Y20["Year 20<br/>30% S - 40% B - 30% I"]
+
+    NOW -->|"Build renewal book"| Y5
+    Y5 -->|"Scale team + invest commissions"| Y20
+```
 
 
 ## Quick quiz

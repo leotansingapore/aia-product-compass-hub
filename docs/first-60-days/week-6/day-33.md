@@ -31,6 +31,15 @@ For a new FC: CPF is the **bedrock of almost every retirement conversation.** Ne
 
 ## 2. The 4 accounts
 
+```mermaid
+flowchart TD
+    A["Monthly salary"] --> B["CPF contributions<br/>37% under-55"]
+    B --> C["Ordinary Account (OA)<br/>2.5-3.5% · housing / insurance"]
+    B --> D["Special Account (SA)<br/>4-5% · retirement investments"]
+    B --> E["MediSave Account (MA)<br/>4-5% · hospitalisation"]
+    C & D --> F["At age 55: Retirement Account (RA)<br/>funds CPF LIFE payouts"]
+```
+
 | Account | Used for | Current interest rate |
 |---|---|---|
 | **Ordinary Account (OA)** | Housing, insurance, investment, children's education | Up to **3.5% p.a.** (min 2.5%) |
@@ -76,6 +85,18 @@ Most clients have no idea they're "saving" ~$2,000/month through CPF. When you s
 2. They often immediately ask, "is what I'm saving enough?" — which is your opening.
 
 ## 4. The CPF timeline — key ages
+
+```mermaid
+flowchart LR
+    A["Working years<br/>OA · SA · MA building up"] --> B["Age 55<br/>RA created"]
+    B --> C{"Exceed FRS?"}
+    C -->|"Yes"| D["Withdraw excess above FRS<br/>above BRS/FRS/ERS tier"]
+    C -->|"No"| E["Most funds locked<br/>min $5K withdrawal only"]
+    D & E --> F["Age 65<br/>CPF LIFE begins"]
+    F --> G["Basic: higher bequest<br/>lower payout"]
+    F --> H["Standard: default<br/>moderate payout"]
+    F --> I["Escalating: +2%/yr<br/>inflation protection"]
+```
 
 ### Age 55 — the first decision point
 

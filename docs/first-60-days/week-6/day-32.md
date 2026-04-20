@@ -58,6 +58,12 @@ The last column shows how many **doublings** fit in 40 years, which roughly maps
 
 **Quick cross-check with the calculator:** $50,000 × (1.04)^30 ≈ **$162,170.** Close enough for a conversation.
 
+```mermaid
+flowchart LR
+    A["Age 35<br/>$50,000"] -->|"18 yrs · 4%"| B["Age 53<br/>~$100,000<br/>(1 doubling)"]
+    B -->|"12 more yrs<br/>(partial)"| C["Age 65<br/>~$162,000<br/>(1.67 doublings)"]
+```
+
 ### The insight for the client
 
 You can make this calculation in your head during a meeting. Most clients have never seen their CPF SA projected forward. The number makes the balance feel real — and a $50K balance becoming $160K+ becomes a reason to **top up.**
@@ -115,6 +121,13 @@ A $500K sum assured feels massive today. In 30 years, with inflation, it's buyin
 ## 6. The "cost of waiting" — gently
 
 The Rule of 72 is the single most powerful tool for showing a client the cost of delaying an investment decision — without guilt-tripping them.
+
+```mermaid
+flowchart TD
+    A["Start now at 30<br/>6% · 35 yrs to 65"] --> B["Full retirement pot<br/>100%"]
+    C["Wait until 35<br/>6% · 30 yrs to 65"] --> D["~75% of full pot<br/>25% permanently lost"]
+    B & D --> E["Same monthly contribution<br/>same rate · different start"]
+```
 
 **Client, 30, says: "I'll start investing in 5 years when I'm more settled."**
 

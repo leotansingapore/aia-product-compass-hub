@@ -34,6 +34,17 @@ Don't memorise categories. Memorise the test:
 
 That's it. Apply it to anything.
 
+```mermaid
+flowchart LR
+    Test["Does it put money<br/>INTO your pocket?"]
+    Asset["ASSET<br/>Rental property, CPF,<br/>dividend stocks, renewal book"]
+    Liability["LIABILITY<br/>Car, primary home mortgage,<br/>luxury goods, credit card"]
+    Test -->|"Yes"| Asset
+    Test -->|"No - money flows OUT"| Liability
+    style Asset fill:#14532d,color:#86efac
+    style Liability fill:#7f1d1d,color:#fca5a5
+```
+
 ## 2. The classification most people get wrong
 
 | What people call it | Reality | Why |
@@ -78,6 +89,29 @@ Net worth = **Assets − Liabilities.** Simple. But honest.
 Subtract honestly. The result is your **true net worth.** Most people's is much smaller than their lifestyle suggests.
 
 ## 4. The looking-rich problem, revisited
+
+```mermaid
+flowchart TD
+    subgraph PA["Person A - looks wealthier"]
+        PA1["$1.1M condo - $900K mortgage<br/>= $200K equity"]
+        PA2["Tesla on car loan<br/>= ~$0 net"]
+        PA3["Watch collection<br/>= ~$15-20K resale"]
+        PA4["CPF $150K + ILP $30K"]
+        PA5["Real net worth: ~$300-350K"]
+    end
+    subgraph PB["Person B - IS wealthier"]
+        PB1["$800K HDB paid off<br/>= $800K"]
+        PB2["Used car, no loan"]
+        PB3["CPF $200K + investments $250K<br/>+ retirement plan $80K"]
+        PB4["Real net worth: ~$1.3M"]
+    end
+    PA1 --> PA5
+    PB1 --> PB4
+    style PA5 fill:#7f1d1d,color:#fca5a5
+    style PB4 fill:#14532d,color:#86efac
+```
+
+
 
 Day 9 introduced this; today we sharpen it.
 

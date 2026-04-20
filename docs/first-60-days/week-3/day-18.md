@@ -32,6 +32,16 @@ From Grant Cardone's book of the same name, stripped to mechanics:
 
 This is not a motivational slogan. It's a planning discipline with specific rules.
 
+```mermaid
+flowchart TD
+    P1["1 - Set massive goals<br/>10x your target"]
+    P2["2 - Take massive action<br/>10x your activity"]
+    P3["3 - Never reduce the target<br/>increase action instead"]
+    P4["4 - Expect failures<br/>failure is feedback, not a stop sign"]
+    P5["5 - Overcome fear with action<br/>move your way out, not think your way out"]
+    P1 --> P2 --> P3 --> P4 --> P5
+```
+
 ## 2. The 5 principles
 
 ### Principle 1 — Set massive goals
@@ -94,6 +104,23 @@ Most people need to know *how* they'll do something before they commit to doing 
 The learning happens in the doing. The plan refines itself as you move.
 
 ## 4. Where 10X thinking actually fails
+
+```mermaid
+flowchart LR
+    subgraph Works["10X works for (inputs you control)"]
+        W1["Activity volume<br/>calls, outreach, content"]
+        W2["Study volume<br/>products, objections, skills"]
+        W3["Preparation intensity<br/>role-plays, scripts"]
+        W4["Fear thresholds<br/>difficult conversations"]
+    end
+    subgraph Fails["10X does NOT work for"]
+        F1["Client buying decisions<br/>you don't control these"]
+        F2["Skill acquisition speed<br/>some skills need reps over time"]
+        F3["Relationships<br/>these need time, not 10x effort"]
+    end
+```
+
+
 
 The 10X Rule works for **behaviour**, not for **results you don't control.** It falls apart when misapplied.
 

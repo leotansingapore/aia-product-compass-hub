@@ -33,6 +33,17 @@ Every client faces three categories of risk that require insurance:
 
 Each category maps to specific AIA product types.
 
+```mermaid
+flowchart TD
+    A["3 Types of Risk"]
+    A --> B["Death<br/>Family loses income"]
+    A --> C["Living disability / illness<br/>Can't earn, still alive"]
+    A --> D["Medical expense<br/>Bills to pay"]
+    B --> B1["Term · Whole Life"]
+    C --> C1["CI rider · Disability Income"]
+    D --> D1["Integrated Shield<br/>+ Rider"]
+```
+
 ## 2. Term Insurance — the affordability workhorse
 
 **What it is:** pure protection, no cash value, fixed term (e.g., 20 or 30 years).
@@ -187,6 +198,16 @@ Layer 2: Whole Life (permanent baseline)        — lifelong protection + cash v
 Layer 3: Integrated Shield + Rider              — hospital bills covered
 Layer 4: Disability Income                      — income continues if you can't work
 Layer 5: Specific riders (accident, multi-pay CI) — for specific exposures
+```
+
+```mermaid
+flowchart BT
+    L5["Layer 5 · Specific riders<br/>Accident · Multi-pay CI"]
+    L4["Layer 4 · Disability Income<br/>Income if unable to work"]
+    L3["Layer 3 · Shield + Rider<br/>Hospital bills covered"]
+    L2["Layer 2 · Whole Life + CI<br/>Permanent cover + cash value"]
+    L1["Layer 1 · Term<br/>Max cover · low cost · time-bound"]
+    L1 --> L2 --> L3 --> L4 --> L5
 ```
 
 **Total coverage can reach 20–30× annual income, with CI + hospital + disability all covered.** Client cost: typically $500–$1,500/month for a family breadwinner.

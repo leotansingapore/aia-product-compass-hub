@@ -85,6 +85,17 @@ Every financial plan should be built bottom-up, not top-down. This is the order.
 
 Your job as an advisor: diagnose which level your client is *actually* on — not the level their lifestyle pretends they're on — then build up from there.
 
+```mermaid
+flowchart BT
+    L1["Level 1 - Risk Management<br/>Foundation - protection first"]
+    L2["Level 2 - Short-Term Savings<br/>3 to 6 months expenses"]
+    L3["Level 3 - Wealth Accumulation<br/>Grow through investing"]
+    L4["Level 4 - Wealth Preservation<br/>Keep what you have built"]
+    L5["Level 5 - Wealth Legacy<br/>Give - inherit - distribute"]
+
+    L1 --> L2 --> L3 --> L4 --> L5
+```
+
 ## 4. Calculating a "freedom number"
 
 A concrete example. Meet a hypothetical client — Mr Tan, 35 years old.
@@ -109,6 +120,16 @@ A concrete example. Meet a hypothetical client — Mr Tan, 35 years old.
 - **Gap to fill with insurance-based accumulation plans** — usually $3,000–6,000/month.
 
 This framing — "you don't need $2.7M, you need an income stream of ~$9K/month" — is often more motivating for clients than a scary lump sum number.
+
+```mermaid
+flowchart LR
+    EXP["Monthly need at 65<br/>~$9,050/month"]
+    CPF["CPF LIFE<br/>$2,000 - 3,500/month"]
+    REN["Rental / dividends<br/>variable"]
+    INS["Insurance accumulation plans<br/>gap to fill $3,000 - 6,000/month"]
+
+    CPF & REN & INS --> EXP
+```
 
 ### The rule
 

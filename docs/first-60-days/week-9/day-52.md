@@ -37,6 +37,12 @@ Fact-finding (SPIN + CFR)
 Recommendation (products)
 ```
 
+```mermaid
+flowchart TD
+    A["Fact-finding<br/>SPIN + CFR"] --> B["CST<br/>Reframe the concept"]
+    B --> C["Recommendation<br/>Products as tools"]
+```
+
 The purpose: **change how the client thinks about a topic** before you recommend solutions. A client who sees wealth-building as "being responsible" buys reluctantly. A client who sees it as "buying freedom" buys enthusiastically.
 
 ## 2. The Wealth Angle — the core reframe
@@ -93,6 +99,14 @@ Show them the two levers.
 > 2. **Right-size expenses** — distinguish real needs from lifestyle inflation.
 >
 > Most people focus only on the first. The best advisors help clients do both — without moralising about how they spend."
+
+```mermaid
+flowchart LR
+    A["Freedom gap<br/>Expenses - Passive income"] --> B["Lever 1<br/>Grow passive income"]
+    A --> C["Lever 2<br/>Right-size expenses"]
+    B --> D["Freedom<br/>Passive income covers expenses"]
+    C --> D
+```
 
 ### 5. The transition (30 sec)
 Move to recommendation.
