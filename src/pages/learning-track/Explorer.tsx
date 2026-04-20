@@ -184,33 +184,15 @@ function ModuleCompleteOverlay({
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           {hasNext && (
-            <div className="relative">
-              {/* Countdown ring around button */}
-              <svg
-                className="absolute -inset-1 w-[calc(100%+8px)] h-[calc(100%+8px)] -rotate-90 pointer-events-none"
-                viewBox="0 0 120 44"
-                fill="none"
-                preserveAspectRatio="none"
-              >
-                <rect
-                  x="1" y="1" width="118" height="42" rx="8"
-                  stroke="hsl(var(--primary) / 0.15)"
-                  strokeWidth="2"
-                  fill="none"
-                />
-                <rect
-                  x="1" y="1" width="118" height="42" rx="8"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth="2.5"
-                  fill="none"
-                  strokeDasharray="320"
-                  strokeDashoffset={320 - (320 * progress) / 100}
-                  className="transition-all duration-1000 ease-linear"
-                />
-              </svg>
+            <div
+              className="relative rounded-lg p-[2.5px]"
+              style={{
+                background: `conic-gradient(hsl(var(--primary)) ${progress}%, hsl(var(--primary) / 0.15) ${progress}%)`,
+              }}
+            >
               <Button
                 onClick={() => { fired.current = true; onGoNext(); }}
-                className="gap-2 relative z-10"
+                className="gap-2 relative z-10 rounded-[5.5px]"
               >
                 Go to next module
                 <span className="text-xs opacity-70 tabular-nums">{remaining}s</span>
