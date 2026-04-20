@@ -21,7 +21,7 @@ const ROLEPLAY_TAB_LINK_CLASS =
 const ROLEPLAY_TAB_ACTIVE_CLASS = "border-white text-white";
 
 export default function Roleplay() {
-  const { scenarios, selectedScenario, handleStartRoleplay } = useRoleplay();
+  const { scenarios, selectedScenario, handleStartRoleplay, handleBackToSelection } = useRoleplay();
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get('tab') || 'roleplay';
 
@@ -48,7 +48,7 @@ export default function Roleplay() {
         <div className="mx-auto px-4 sm:px-6 py-4 sm:py-8 md:pb-10 animate-fade-in">
           <button
             type="button"
-            onClick={() => setSelectedScenario(null)}
+            onClick={handleBackToSelection}
             className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
