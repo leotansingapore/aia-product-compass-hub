@@ -154,9 +154,9 @@ export default function First60DaysDay() {
           }}
         />
 
-        <div className="relative grid gap-6 p-6 sm:p-8 md:grid-cols-[auto_1fr_auto] md:items-center md:gap-10">
-          {/* Left: massive day numeral */}
-          <div className="flex items-start gap-4">
+        <div className="relative grid gap-6 p-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
+          {/* Left: day numeral + completion ring inline */}
+          <div className="flex items-center gap-5">
             <div className="relative">
               <div className="font-serif text-[clamp(4.5rem,11vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
                 {String(day.dayNumber).padStart(2, "0")}
@@ -165,11 +165,29 @@ export default function First60DaysDay() {
                 <Sparkles className="h-2.5 w-2.5" /> Day
               </span>
             </div>
+            <div className="hidden flex-col items-center gap-1.5 sm:flex">
+              <div
+                className="relative grid h-16 w-16 place-items-center rounded-full"
+                style={{
+                  background: `conic-gradient(hsl(var(--primary)) ${progressPct * 3.6}deg, hsl(var(--muted)) 0deg)`,
+                }}
+                aria-label={`${progressPct} percent complete`}
+                role="img"
+              >
+                <div className="grid h-[54px] w-[54px] place-items-center rounded-full bg-card">
+                  <span className="font-serif text-base font-semibold tabular-nums text-foreground">
+                    {progressPct}
+                    <span className="text-[10px] text-muted-foreground">%</span>
+                  </span>
+                </div>
+              </div>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                Completion
+              </span>
+            </div>
           </div>
 
-          <div className="hidden h-28 w-px bg-gradient-to-b from-transparent via-border to-transparent md:block" />
-
-          {/* Middle: metadata + title */}
+          {/* Right: metadata + title */}
           <div className="space-y-3">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               <span className="text-primary">Week {day.week}</span>
