@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -20,7 +20,9 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
 import { detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
-import { getDay, getAllDays, WEEK_META } from "@/features/first-60-days/content";
+import { loadDay, WEEK_META } from "@/features/first-60-days/content";
+import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
+import type { Day } from "@/features/first-60-days/types";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 import { useFirst60DaysDayMeta } from "@/hooks/first-60-days/useFirst60DaysDayMeta";
 import { DayQuiz } from "@/components/first-60-days/DayQuiz";
@@ -56,9 +58,29 @@ export default function First60DaysDay() {
   const dayNumber = Number(raw);
   const navigate = useNavigate();
 
-  const day = useMemo(() => getDay(dayNumber), [dayNumber]);
+  const [day, setDay] = useState<Day | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
   const { isUnlocked, isDayComplete, isQuizPassed, isReflectionSubmitted, markRead } =
     useFirst60DaysProgress();
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setDay(undefined);
+    loadDay(dayNumber)
+      .then((d) => {
+        if (!cancelled) {
+          setDay(d);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [dayNumber]);
   const dayMetaQuery = useFirst60DaysDayMeta(dayNumber);
   const dayMeta = dayMetaQuery.data;
   const unlocked = isUnlocked(dayNumber);
@@ -70,7 +92,17 @@ export default function First60DaysDay() {
     if (day && unlocked) markRead(dayNumber);
   }, [day, dayNumber, unlocked, markRead]);
 
-  if (!day) {
+  if (loading || !day) {
+    if (loading) {
+      return (
+        <div className="mx-auto max-w-5xl space-y-6">
+          <div className="h-4 w-40 animate-pulse rounded bg-muted" />
+          <div className="h-48 animate-pulse rounded-2xl bg-muted/50" />
+          <div className="h-10 w-full animate-pulse rounded-xl bg-muted/40" />
+          <div className="h-64 animate-pulse rounded-2xl bg-muted/30" />
+        </div>
+      );
+    }
     return (
       <div className="py-12 text-center">
         <p className="text-sm text-muted-foreground">Day not found.</p>
@@ -100,10 +132,9 @@ export default function First60DaysDay() {
     );
   }
 
-  const allDays = getAllDays();
-  const idx = allDays.findIndex((d) => d.dayNumber === dayNumber);
-  const prev = idx > 0 ? allDays[idx - 1] : undefined;
-  const next = idx >= 0 && idx < allDays.length - 1 ? allDays[idx + 1] : undefined;
+  const idx = DAY_SUMMARIES.findIndex((d) => d.dayNumber === dayNumber);
+  const prev = idx > 0 ? DAY_SUMMARIES[idx - 1] : undefined;
+  const next = idx >= 0 && idx < DAY_SUMMARIES.length - 1 ? DAY_SUMMARIES[idx + 1] : undefined;
   const nextUnlocked = next ? isDayComplete(dayNumber) : false;
   const weekMeta = WEEK_META[day.week];
 

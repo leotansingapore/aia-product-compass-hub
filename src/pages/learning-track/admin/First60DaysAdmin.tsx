@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
-import { getAllDays } from "@/features/first-60-days/content";
+import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 import {
   useAllFirst60DaysDayMeta,
   type DayMeta,
@@ -19,7 +19,7 @@ import First60DaysSubmissions from "./First60DaysSubmissions";
 type RowPatch = Partial<Omit<DayMeta, "day_number">>;
 
 export default function First60DaysAdmin() {
-  const days = useMemo(() => getAllDays(), []);
+  const days = DAY_SUMMARIES;
   const metaQuery = useAllFirst60DaysDayMeta();
   const qc = useQueryClient();
 

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Loader2, ChevronDown, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -14,7 +14,9 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { getAllDays, getDay } from "@/features/first-60-days/content";
+import { loadDay } from "@/features/first-60-days/content";
+import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
+import type { Day } from "@/features/first-60-days/types";
 
 type ProgressRow = {
   user_id: string;
@@ -89,7 +91,24 @@ export default function First60DaysSubmissions() {
   const [submittedOnly, setSubmittedOnly] = useState<string>("all");
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
-  const dayOptions = useMemo(() => getAllDays().map((d) => d.dayNumber), []);
+  useEffect(() => {
+    const openDays = new Set<number>();
+    for (const [key, isOpen] of Object.entries(expanded)) {
+      if (!isOpen) continue;
+      const n = Number(key.split("-").pop());
+      if (n && loadedDays[n] === undefined) openDays.add(n);
+    }
+    openDays.forEach((n) => {
+      loadDay(n).then((d) => setLoadedDays((prev) => ({ ...prev, [n]: d })));
+    });
+  }, [expanded, loadedDays]);
+
+  const dayOptions = useMemo(() => DAY_SUMMARIES.map((d) => d.dayNumber), []);
+  const daySummaryMap = useMemo(
+    () => new Map(DAY_SUMMARIES.map((d) => [d.dayNumber, d])),
+    [],
+  );
+  const [loadedDays, setLoadedDays] = useState<Record<number, Day | undefined>>({});
 
   const filtered = useMemo(() => {
     const all = query.data ?? [];
@@ -189,7 +208,8 @@ export default function First60DaysSubmissions() {
               {rows.map((row) => {
                 const rowKey = `${row.user_id}-${row.day_number}`;
                 const isOpen = Boolean(expanded[rowKey]);
-                const dayInfo = getDay(row.day_number);
+                const summary = daySummaryMap.get(row.day_number);
+                const dayInfo = loadedDays[row.day_number];
                 const answers = answersToRecord(row.reflection_answers);
                 const isSubmitted = Boolean(row.reflection_submitted_at);
                 return (
@@ -218,8 +238,8 @@ export default function First60DaysSubmissions() {
                       </td>
                       <td className="px-3 py-2">
                         <div className="font-medium">Day {row.day_number}</div>
-                        {dayInfo && (
-                          <div className="text-xs text-muted-foreground">{dayInfo.title}</div>
+                        {summary && (
+                          <div className="text-xs text-muted-foreground">{summary.title}</div>
                         )}
                       </td>
                       <td className="px-3 py-2 text-muted-foreground">
@@ -242,7 +262,11 @@ export default function First60DaysSubmissions() {
                     {isOpen && (
                       <tr className="bg-muted/30">
                         <td colSpan={5} className="px-6 py-4">
-                          {dayInfo && dayInfo.reflection.length > 0 ? (
+                          {!dayInfo ? (
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                              <Loader2 className="h-3 w-3 animate-spin" /> Loading prompts…
+                            </div>
+                          ) : dayInfo.reflection.length > 0 ? (
                             <div className="space-y-3">
                               {dayInfo.reflection.map((prompt) => {
                                 const a = answers[String(prompt.index)] ?? "";

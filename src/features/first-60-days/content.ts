@@ -1,13 +1,26 @@
 import type { Day, Week } from "./types";
 import { parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "./parse";
+import { DAY_SUMMARIES, TOTAL_DAYS, type DaySummary } from "./summaries";
 
-const rawFiles = import.meta.glob("/docs/first-60-days/week-*/day-*.md", {
+// Lazy per-day raw loaders. Each day becomes its own chunk — only the day being
+// viewed is downloaded. The hub and navigation use the lightweight DAY_SUMMARIES.
+const rawLoaders = import.meta.glob<string>("/docs/first-60-days/week-*/day-*.md", {
   query: "?raw",
   import: "default",
-  eager: true,
-}) as Record<string, string>;
+});
 
-const PATH_RE = /\/docs\/first-60-days\/(week-\d+)\/(day-\d+)\.md$/;
+const PATH_RE = /\/docs\/first-60-days\/week-\d+\/day-(\d+)\.md$/;
+
+const loaderByDay: Record<number, () => Promise<string>> = {};
+for (const [path, loader] of Object.entries(rawLoaders)) {
+  const m = path.match(PATH_RE);
+  if (!m) continue;
+  loaderByDay[Number(m[1])] = loader as () => Promise<string>;
+}
+
+const dayCache = new Map<number, Day>();
+
+export { TOTAL_DAYS };
 
 export const WEEK_META: Record<number, { title: string; tagline: string }> = {
   1: { title: "Foundation & Identity Shift", tagline: "The career is skill acquisition, not a job." },
@@ -22,49 +35,57 @@ export const WEEK_META: Record<number, { title: string; tagline: string }> = {
   10: { title: "Product Mastery & Graduation", tagline: "Products, proposals, closes, claims, graduation." },
 };
 
-function buildDays(): Day[] {
-  const days: Day[] = [];
-  for (const [absPath, raw] of Object.entries(rawFiles)) {
-    const pathMatch = absPath.match(PATH_RE);
-    if (!pathMatch) continue;
-    const relPath = `${pathMatch[1]}/${pathMatch[2]}.md`;
-    const { frontmatter, body } = parseFrontmatter(raw);
-    const dayNumber = frontmatter.day;
-    const week = frontmatter.week;
-    const dayInWeek = ((dayNumber - 1) % 6) + 1;
-    const quiz = parseQuiz(body);
-    const reflection = parseReflection(body);
-    days.push({
-      dayNumber,
-      week,
-      dayInWeek,
-      title: frontmatter.title,
-      path: relPath,
-      frontmatter,
-      markdown: stripAppendix(body),
-      quiz,
-      reflection,
-    });
-  }
-  days.sort((a, b) => a.dayNumber - b.dayNumber);
-  return days;
+export function getDaySummaries(): DaySummary[] {
+  return DAY_SUMMARIES;
 }
 
-const ALL_DAYS: Day[] = buildDays();
-
-export function getAllDays(): Day[] {
-  return ALL_DAYS;
+export function getDaySummary(dayNumber: number): DaySummary | undefined {
+  return DAY_SUMMARIES.find((d) => d.dayNumber === dayNumber);
 }
 
-export function getDay(dayNumber: number): Day | undefined {
-  return ALL_DAYS.find((d) => d.dayNumber === dayNumber);
+export async function loadDay(dayNumber: number): Promise<Day | undefined> {
+  const cached = dayCache.get(dayNumber);
+  if (cached) return cached;
+  const loader = loaderByDay[dayNumber];
+  if (!loader) return undefined;
+  const raw = await loader();
+  const { frontmatter, body } = parseFrontmatter(raw);
+  const day: Day = {
+    dayNumber: frontmatter.day,
+    week: frontmatter.week,
+    dayInWeek: ((frontmatter.day - 1) % 6) + 1,
+    title: frontmatter.title,
+    path: `week-${frontmatter.week}/day-${String(frontmatter.day).padStart(2, "0")}.md`,
+    frontmatter,
+    markdown: stripAppendix(body),
+    quiz: parseQuiz(body),
+    reflection: parseReflection(body),
+  };
+  dayCache.set(dayNumber, day);
+  return day;
 }
 
 export function getWeek(weekNumber: number): Week | undefined {
   const meta = WEEK_META[weekNumber];
   if (!meta) return undefined;
-  const days = ALL_DAYS.filter((d) => d.week === weekNumber);
-  return { weekNumber, title: meta.title, tagline: meta.tagline, days };
+  const weekDays = DAY_SUMMARIES.filter((d) => d.week === weekNumber).map((s) => ({
+    dayNumber: s.dayNumber,
+    week: s.week,
+    dayInWeek: s.dayInWeek,
+    title: s.title,
+    path: `week-${s.week}/day-${String(s.dayNumber).padStart(2, "0")}.md`,
+    frontmatter: {
+      week: s.week,
+      day: s.dayNumber,
+      title: s.title,
+      tags: [],
+      duration_minutes: s.duration,
+    },
+    markdown: "",
+    quiz: [],
+    reflection: [],
+  }));
+  return { weekNumber, title: meta.title, tagline: meta.tagline, days: weekDays };
 }
 
 export function getAllWeeks(): Week[] {
@@ -74,5 +95,3 @@ export function getAllWeeks(): Week[] {
     .map((n) => getWeek(n)!)
     .filter(Boolean);
 }
-
-export const TOTAL_DAYS = ALL_DAYS.length;
