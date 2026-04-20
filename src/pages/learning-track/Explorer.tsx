@@ -156,6 +156,7 @@ function ModuleCompleteOverlay({
   const [remaining, setRemaining] = useState(COUNTDOWN_SECONDS);
   const fired = useRef(false);
 
+  // Text countdown only — the border animation is pure CSS (60fps)
   useEffect(() => {
     if (!hasNext) return;
     const id = setInterval(() => {
@@ -171,8 +172,6 @@ function ModuleCompleteOverlay({
     return () => clearInterval(id);
   }, [hasNext, onGoNext]);
 
-  const progress = hasNext ? ((COUNTDOWN_SECONDS - remaining) / COUNTDOWN_SECONDS) * 100 : 0;
-
   return (
     <div className="space-y-6 max-w-3xl mx-auto" data-testid="explorer-page">
       <div className="rounded-2xl border bg-gradient-to-br from-green-50 via-background to-emerald-50/50 dark:from-green-950/20 dark:via-background dark:to-emerald-950/20 p-8 sm:p-12 text-center">
@@ -185,14 +184,12 @@ function ModuleCompleteOverlay({
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           {hasNext && (
             <div
-              className="relative rounded-lg p-[2.5px]"
-              style={{
-                background: `conic-gradient(hsl(var(--primary)) ${progress}%, hsl(var(--primary) / 0.15) ${progress}%)`,
-              }}
+              className="countdown-border rounded-[10px] p-[3px]"
+              style={{ "--countdown-duration": `${COUNTDOWN_SECONDS}s` } as React.CSSProperties}
             >
               <Button
                 onClick={() => { fired.current = true; onGoNext(); }}
-                className="gap-2 relative z-10 rounded-[5.5px]"
+                className="gap-2 rounded-[7px]"
               >
                 Go to next module
                 <span className="text-xs opacity-70 tabular-nums">{remaining}s</span>

@@ -548,4 +548,25 @@
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--muted-foreground) / 0.4);
   }
+
+  /* ===== Module-complete countdown border ===== */
+  @property --countdown-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes countdown-sweep {
+    from { --countdown-angle: 0deg; }
+    to   { --countdown-angle: 360deg; }
+  }
+
+  .countdown-border {
+    background: conic-gradient(
+      from 0deg,
+      hsl(var(--primary)) var(--countdown-angle),
+      hsl(var(--primary) / 0.12) var(--countdown-angle)
+    );
+    animation: countdown-sweep var(--countdown-duration, 5s) linear forwards;
+  }
 }
