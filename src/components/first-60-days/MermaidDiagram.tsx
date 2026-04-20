@@ -90,12 +90,13 @@ export function MermaidDiagram({ code }: Props) {
           securityLevel: "loose",
           themeVariables: isDark ? DARK_THEME_VARS : LIGHT_THEME_VARS,
           flowchart: {
-            htmlLabels: true,
+            htmlLabels: false,
             curve: "basis",
             padding: 16,
             nodeSpacing: 50,
             rankSpacing: 60,
             useMaxWidth: true,
+            wrappingWidth: 180,
           },
           sequence: { useMaxWidth: true },
           gantt: { useMaxWidth: true },
@@ -104,6 +105,8 @@ export function MermaidDiagram({ code }: Props) {
         const { svg: rendered } = await mermaid.render(id, code);
         const clean = DOMPurify.sanitize(rendered, {
           USE_PROFILES: { html: true, svg: true, svgFilters: true },
+          ADD_TAGS: ["foreignObject"],
+          ADD_ATTR: ["requiredExtensions"],
         });
         if (!cancelled) {
           setSvg(clean);
