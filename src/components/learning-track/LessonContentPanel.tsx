@@ -5,6 +5,8 @@ import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrac
 import { ContentBlockEditor } from "./ContentBlockEditor";
 import { RelatedResources } from "./RelatedResources";
 import { SubmissionPanel } from "./SubmissionPanel";
+import { isModuleFolder } from "@/lib/learning-track/moduleGrouping";
+import { Folder } from "lucide-react";
 import type { LearningTrackItem, ItemStatus } from "@/types/learning-track";
 import type { LockResult } from "@/lib/learning-track/unlock";
 import { cn } from "@/lib/utils";
@@ -42,6 +44,21 @@ export function LessonContentPanel({ item, lockResult, onComplete }: LessonConte
           {lockResult?.reason === "phase"
             ? "Complete the previous module first."
             : `Complete first: ${lockResult?.missingTitles.join(", ")}`}
+        </p>
+      </div>
+    );
+  }
+
+  // Module folders are organizational only — no "Mark as complete" button, no lesson content.
+  if (isModuleFolder(item)) {
+    return (
+      <div className="p-6 sm:p-8 text-center">
+        <div className="mx-auto w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-3">
+          <Folder className="h-6 w-6 text-muted-foreground" />
+        </div>
+        <h3 className="font-semibold mb-1">{item.title}</h3>
+        <p className="text-sm text-muted-foreground max-w-xs mx-auto">
+          Select a lesson from the sidebar to begin.
         </p>
       </div>
     );
