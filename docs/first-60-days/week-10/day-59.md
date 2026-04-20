@@ -40,11 +40,11 @@ The proposal **translates all of that into a plan.** If you've done the work, wr
 
 ```mermaid
 flowchart TD
-    P1["1. Goals<br/>Their words · their numbers"]
-    P2["2. Current situation<br/>Coverage snapshot · gaps named"]
-    P3["3. The plan<br/>Category first · then product"]
-    P4["4. Illustrations<br/>Guaranteed + non-guaranteed"]
-    P5["5. Next steps<br/>Full plan or phased option"]
+    P1["1 · Goals<br/>Their words · their numbers"]
+    P2["2 · Current situation<br/>Coverage snapshot · gaps named"]
+    P3["3 · The plan<br/>Category first · then product"]
+    P4["4 · Illustrations<br/>Guaranteed + non-guaranteed"]
+    P5["5 · Next steps<br/>Full plan or phased option"]
     P1 --> P2 --> P3 --> P4 --> P5
 ```
 

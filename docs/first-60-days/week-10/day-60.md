@@ -239,9 +239,9 @@ Your service calendar isn't optional. These touchpoints should be recurring in y
 
 ```mermaid
 flowchart LR
-    J[Dec–Jan<br/>CNY greeting<br/>Year-end card<br/>Diary delivery<br/>Renewal pending memo] --> M[Mar–May<br/>Birthday treats<br/>Policy-summary refresh<br/>Post-appt summaries]
-    M --> J2[Jun–Aug<br/>Mid-year review<br/>Referral asks<br/>Closing + thank-you gifts]
-    J2 --> S[Sep–Nov<br/>Mooncake delivery<br/>Diary order request<br/>Hospitalisation hampers<br/>Renewal pending memo]
+    J["Dec to Jan<br/>CNY + year-end + renewals"] --> M["Mar to May<br/>Birthdays + policy refresh"]
+    M --> J2["Jun to Aug<br/>Mid-year review + referrals"]
+    J2 --> S["Sep to Nov<br/>Mooncake + hampers + renewals"]
     S --> J
 ```
 

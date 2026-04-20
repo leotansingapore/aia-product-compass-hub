@@ -30,12 +30,12 @@ Every client relationship, from first meeting to 20 years later, follows the sam
 
 ```mermaid
 flowchart TD
-    A["1. Establish / Define<br/>The Approach — first meeting"]
-    B["2. Gather Data<br/>Goals, Fact Find, SPIN"]
-    C["3. Analyse & Evaluate<br/>Needs analysis, gap identification"]
-    D["4. Develop and Present<br/>Proposal, Financial Health Check"]
-    E["5. Implement<br/>Underwriting, submission, delivery"]
-    F["6. Annual Review<br/>Ongoing service — relationship lives here"]
+    A["1 · Establish / Define<br/>The Approach — first meeting"]
+    B["2 · Gather Data<br/>Goals, Fact Find, SPIN"]
+    C["3 · Analyse & Evaluate<br/>Needs analysis, gap identification"]
+    D["4 · Develop and Present<br/>Proposal, Financial Health Check"]
+    E["5 · Implement<br/>Underwriting, submission, delivery"]
+    F["6 · Annual Review<br/>Ongoing service — relationship lives here"]
     A --> B --> C --> D --> E --> F --> A
 ```
 

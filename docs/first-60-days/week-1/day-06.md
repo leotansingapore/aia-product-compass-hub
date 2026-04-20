@@ -77,9 +77,9 @@ James Clear's framework gives you a mechanical way to install any habit or kill 
 
 ```mermaid
 flowchart LR
-    A["1. Cue<br/>Make it obvious"] --> B["2. Craving<br/>Make it attractive"]
-    B --> C["3. Response<br/>Make it easy"]
-    C --> D["4. Reward<br/>Make it satisfying"]
+    A["1 · Cue<br/>Make it obvious"] --> B["2 · Craving<br/>Make it attractive"]
+    B --> C["3 · Response<br/>Make it easy"]
+    C --> D["4 · Reward<br/>Make it satisfying"]
     D -->|reinforces the cue| A
 ```
 

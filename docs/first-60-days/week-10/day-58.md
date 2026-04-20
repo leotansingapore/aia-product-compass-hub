@@ -64,11 +64,11 @@ Every policy comes with a summary document. Whether printed or digital, the sect
 ```mermaid
 flowchart TD
     A["Policy in hand"]
-    A --> B["1. Sum Assured<br/>Still = 10x income?"]
-    B --> C["2. Riders<br/>CI · WOP · Multi-pay?"]
-    C --> D["3. Exclusions<br/>Pre-existing · activities?"]
-    D --> E["4. Beneficiary<br/>Still correct person?"]
-    E --> F["5. Payout structure<br/>Fits current life stage?"]
+    A --> B["1 · Sum Assured<br/>Still = 10x income?"]
+    B --> C["2 · Riders<br/>CI · WOP · Multi-pay?"]
+    C --> D["3 · Exclusions<br/>Pre-existing · activities?"]
+    D --> E["4 · Beneficiary<br/>Still correct person?"]
+    E --> F["5 · Payout structure<br/>Fits current life stage?"]
     F --> G["Gap report<br/>+ recommendations"]
 ```
 

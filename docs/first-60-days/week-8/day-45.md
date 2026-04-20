@@ -104,12 +104,12 @@ The lesson — the moral of the story.
 
 ```mermaid
 flowchart TD
-    P1["1. Prospect<br/>Relatable person - age, job, family"]
-    P2["2. Problem<br/>The gap or mistake they made"]
-    P3["3. Pain<br/>Emotional cost - savings drained, plans disrupted"]
-    P4["4. Promise<br/>Your solution exists and works"]
-    P5["5. Proof<br/>Their words - testimonial style"]
-    P6["6. Purpose<br/>The universal lesson"]
+    P1["1 · Prospect<br/>Relatable person - age, job, family"]
+    P2["2 · Problem<br/>The gap or mistake they made"]
+    P3["3 · Pain<br/>Emotional cost - savings drained, plans disrupted"]
+    P4["4 · Promise<br/>Your solution exists and works"]
+    P5["5 · Proof<br/>Their words - testimonial style"]
+    P6["6 · Purpose<br/>The universal lesson"]
     P1 --> P2 --> P3 --> P4 --> P5 --> P6
     P6 --> CTA["Client asks: what would<br/>that look like for me?"]
 ```

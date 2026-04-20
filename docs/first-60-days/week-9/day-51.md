@@ -69,12 +69,12 @@ Deliver this calmly. Not apologetic. Not aggressive. Matter-of-fact.
 
 ```mermaid
 flowchart LR
-    A["Section 3<br/>Financial Data"] --> B["1. Income<br/>Salary + bonus + stability"]
-    A --> C["2. Expenses<br/>Essential + lifestyle + annual"]
-    A --> D["3. Assets<br/>Cash, CPF, property, investments"]
-    A --> E["4. Liabilities<br/>Mortgage, loans, credit cards"]
-    A --> F["5. Existing cover<br/>Life, CI, hospital, disability"]
-    A --> G["6. Budget capacity<br/>Offer ranges, not open question"]
+    A["Section 3<br/>Financial Data"] --> B["1 · Income<br/>Salary + bonus + stability"]
+    A --> C["2 · Expenses<br/>Essential + lifestyle + annual"]
+    A --> D["3 · Assets<br/>Cash, CPF, property, investments"]
+    A --> E["4 · Liabilities<br/>Mortgage, loans, credit cards"]
+    A --> F["5 · Existing cover<br/>Life, CI, hospital, disability"]
+    A --> G["6 · Budget capacity<br/>Offer ranges, not open question"]
 ```
 
 ### 1. Income

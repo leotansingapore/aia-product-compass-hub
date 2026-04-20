@@ -165,15 +165,15 @@ Keep this table open when you're preparing for a meeting. The right concept is u
 
 ```mermaid
 flowchart TD
-    HUB["Client life moment<br/>= Right concept"] --> S1["1. Basic Financial Planning<br/>Any first meeting"]
-    HUB --> S2["2. Wedding Budgeting<br/>Engaged / married"]
-    HUB --> S3["3. Home Budgeting BTO<br/>Buying first property"]
-    HUB --> S4["4. Baby Planning<br/>Pregnant / new parent"]
-    HUB --> S5["5. Wealth Building CPF<br/>Working adult"]
-    HUB --> S6["6. Tax Savings<br/>Taxable income"]
-    HUB --> S7["7. Investments<br/>Savings earning nothing"]
-    HUB --> S8["8. One Retirement<br/>Mid-career check-in"]
-    HUB --> S9["9. GoalsMapper<br/>Wants full picture"]
+    HUB["Client life moment<br/>= Right concept"] --> S1["1 · Basic Financial Planning<br/>Any first meeting"]
+    HUB --> S2["2 · Wedding Budgeting<br/>Engaged / married"]
+    HUB --> S3["3 · Home Budgeting BTO<br/>Buying first property"]
+    HUB --> S4["4 · Baby Planning<br/>Pregnant / new parent"]
+    HUB --> S5["5 · Wealth Building CPF<br/>Working adult"]
+    HUB --> S6["6 · Tax Savings<br/>Taxable income"]
+    HUB --> S7["7 · Investments<br/>Savings earning nothing"]
+    HUB --> S8["8 · One Retirement<br/>Mid-career check-in"]
+    HUB --> S9["9 · GoalsMapper<br/>Wants full picture"]
 ```
 
 | # | Solution | Client trigger | What you cover |
