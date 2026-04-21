@@ -65,10 +65,7 @@ export function useFirst30DaysProgress() {
     (dayNumber: number) => {
       const p = daysMap[dayNumber];
       if (!p) return false;
-      const summary = DAY_SUMMARIES.find((d) => d.dayNumber === dayNumber);
-      const quizDone = !!p.quizPassedAt;
-      const reflDone = summary?.hasReflection ? !!p.reflectionSubmittedAt : true;
-      return quizDone && reflDone;
+      return !!p.quizPassedAt;
     },
     [daysMap],
   );
