@@ -9,7 +9,8 @@ import { PageLayout } from '@/components/layout/PageLayout';
 import { ProtectedPage } from '@/components/ProtectedPage';
 import { useQuestionBank } from '@/hooks/useQuestionBank';
 import { StudyQuiz, loadWeakQuestions } from '@/components/study/StudyQuiz';
-import { ArrowLeft, BookOpen, Brain, Target, Shield, MessageCircle, Shuffle, AlertTriangle, Loader2, Cloud, Trophy, Sparkles } from 'lucide-react';
+import { ArrowLeft, BookOpen, Brain, Target, Shield, MessageCircle, Shuffle, AlertTriangle, Loader2, Cloud, Trophy, Sparkles, Pencil } from 'lucide-react';
+import { useAdmin } from '@/hooks/useAdmin';
 import { StudyResourcesSidebar } from '@/components/study/StudyResourcesSidebar';
 import type { QuizQuestion } from '@/types/questionBank';
 import { useQuestionProgress, QUESTION_MASTERY_STREAK } from '@/hooks/useQuestionProgress';
@@ -93,6 +94,7 @@ function clearSetup(productSlug: string) {
 export function ProductStudyPage({ productSlug, productTitle, backRoute, backLabel, pageId }: ProductStudyPageProps) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { isActualAdmin } = useAdmin();
   const [quizSize, setQuizSize] = useState<QuizSize | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
   const [activeQuestions, setActiveQuestions] = useState<QuizQuestion[] | null>(null);
@@ -306,10 +308,22 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
         <div className="max-w-5xl mx-auto px-3 sm:px-6 py-4 sm:py-8 animate-fade-in">
           <div className="flex flex-col lg:flex-row gap-6">
             <div className="flex-1 min-w-0">
-              <Button variant="ghost" size="sm" onClick={() => navigate(backRoute)} className="mb-3 -ml-2">
-                <ArrowLeft className="h-4 w-4 mr-1" />
-                {backLabel}
-              </Button>
+              <div className="flex items-center justify-between mb-3 gap-2 flex-wrap">
+                <Button variant="ghost" size="sm" onClick={() => navigate(backRoute)} className="-ml-2">
+                  <ArrowLeft className="h-4 w-4 mr-1" />
+                  {backLabel}
+                </Button>
+                {isActualAdmin && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => navigate(`/admin?tab=question-bank&product=${productSlug}&bank=study`)}
+                  >
+                    <Pencil className="h-4 w-4 mr-1.5" />
+                    Edit questions
+                  </Button>
+                )}
+              </div>
 
               <div className="mb-6">
                 <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">{productTitle} — Study Bank</h1>

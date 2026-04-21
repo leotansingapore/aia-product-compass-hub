@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -22,8 +23,15 @@ import {
 } from '@/types/questionBank';
 
 export function QuestionBankManager() {
-  const [productSlug, setProductSlug] = useState<string>('pro-achiever');
-  const [bankType, setBankType] = useState<BankType>('exam');
+  const [searchParams] = useSearchParams();
+  const initialProduct = searchParams.get('product');
+  const initialBank = searchParams.get('bank');
+  const [productSlug, setProductSlug] = useState<string>(
+    initialProduct && (PRODUCT_SLUGS as readonly string[]).includes(initialProduct) ? initialProduct : 'pro-achiever'
+  );
+  const [bankType, setBankType] = useState<BankType>(
+    initialBank === 'study' || initialBank === 'exam' ? (initialBank as BankType) : 'exam'
+  );
   const [categoryFilter, setCategoryFilter] = useState<QuestionCategory | 'all'>('all');
   const [search, setSearch] = useState('');
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
