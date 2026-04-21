@@ -225,12 +225,16 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
     navigate(path);
   };
 
+  const emailFallbackName = user?.email?.split('@')[0] || 'User';
   const displayName = profile?.display_name ||
     `${profile?.first_name || ''} ${profile?.last_name || ''}`.trim() ||
-    user?.email?.split('@')[0] || 'User';
-  const initials = profile?.display_name?.charAt(0)?.toUpperCase() ||
-    profile?.first_name?.charAt(0)?.toUpperCase() ||
-    user?.email?.charAt(0)?.toUpperCase() || 'U';
+    emailFallbackName;
+  const initials = (
+    profile?.display_name?.charAt(0) ||
+    profile?.first_name?.charAt(0) ||
+    user?.email?.charAt(0) ||
+    'U'
+  ).toUpperCase();
 
   const tierComplete = tierStats.total > 0 && tierStats.done === tierStats.total;
 
