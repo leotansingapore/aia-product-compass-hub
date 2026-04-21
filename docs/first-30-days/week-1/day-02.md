@@ -26,7 +26,7 @@ Read through the [EPS scheme](https://nsgukkz32942.sg.larksuite.com/wiki/AK2jwgj
 
 [loom video](https://www.loom.com/share/a01cb43f09994861a61ca76a2068eed4)
 
-You may check the commission rate of various products — you don't need to memorise it. Just roughly have the takeaway that **your income stacks over time** due to:
+You may check the commission rate of various products [here](https://nsgukkz32942.sg.larksuite.com/wiki/AK2jwgjKgic5vzkcToSlflbQgXf) — you don't need to memorise it. Just roughly have the takeaway that **your income stacks over time** due to:
 
 - **Renewals** — recurring income from existing policies
 - **Career benefit** — bonuses as you progress
