@@ -36,9 +36,9 @@ const PRIMARY_ITEMS: MobileNavItem[] = [
     icon: GraduationCap,
     features: [FEATURES.EXPLORER_TRACK, FEATURES.PRE_RNF_TRACK, FEATURES.POST_RNF_TRACK],
   },
+  { name: "Leaderboard", href: "/leaderboard", icon: Trophy },
   { name: "Practice", href: "/question-banks", icon: Brain, features: [FEATURES.QUESTION_BANKS] },
   { name: "Exams", href: "/cmfas-exams", icon: GraduationCap, features: [FEATURES.CMFAS] },
-  { name: "Library", href: "/categories", icon: BookOpen, features: [FEATURES.PRODUCTS] },
 ];
 
 interface QuickLink {
@@ -51,9 +51,8 @@ interface QuickLink {
 }
 
 const QUICK_LINKS: QuickLink[] = [
-  { name: "Leaderboard", href: "/leaderboard", icon: Trophy, color: "text-amber-500", bg: "bg-amber-50 dark:bg-amber-950/30" },
+  { name: "Library", href: "/categories", icon: BookOpen, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-950/30", features: [FEATURES.PRODUCTS] },
   { name: "Roleplay", href: "/roleplay", icon: MessageCircle, color: "text-purple-500", bg: "bg-purple-50 dark:bg-purple-950/30", features: [FEATURES.ROLEPLAY] },
-  { name: "Exams", href: "/cmfas-exams", icon: GraduationCap, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30", features: [FEATURES.CMFAS] },
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30", features: [FEATURES.BOOKMARKS] },
   { name: "Feedback", href: FEEDBACK_HREF, icon: MessageSquarePlus, color: "text-slate-600", bg: "bg-slate-100 dark:bg-slate-900/40" },
 ];

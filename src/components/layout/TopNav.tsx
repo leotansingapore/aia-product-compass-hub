@@ -7,6 +7,7 @@ import {
   MessageCircle,
   Bookmark,
   Shield,
+  Trophy,
 } from "lucide-react";
 import { FINTERNSHIP_LOGO_NAVY } from "@/constants/branding";
 import { cn } from "@/lib/utils";
@@ -32,6 +33,7 @@ const ALL_NAV_ITEMS: NavItem[] = [
     icon: GraduationCap,
     features: [FEATURES.EXPLORER_TRACK, FEATURES.PRE_RNF_TRACK, FEATURES.POST_RNF_TRACK],
   },
+  { title: "Leaderboard", url: "/leaderboard", icon: Trophy },
   { title: "Practice", url: "/question-banks", icon: Brain, features: [FEATURES.QUESTION_BANKS] },
   { title: "Roleplay", url: "/roleplay", icon: MessageCircle, features: [FEATURES.ROLEPLAY] },
   { title: "Exams", url: "/cmfas-exams", icon: GraduationCap, features: [FEATURES.CMFAS] },
