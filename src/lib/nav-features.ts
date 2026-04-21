@@ -12,6 +12,7 @@ import { FEATURES, type FeatureKey } from '@/lib/tiers';
 export const NAV_SECTION_FEATURES: Record<string, readonly FeatureKey[]> = {
   'learning-track': [FEATURES.EXPLORER_TRACK, FEATURES.PRE_RNF_TRACK, FEATURES.POST_RNF_TRACK],
   'question-banks': [FEATURES.QUESTION_BANKS],
+  library: [FEATURES.PRODUCTS, FEATURES.QUESTION_BANKS],
   bookmarks: [FEATURES.BOOKMARKS],
   'cmfas-exams': [FEATURES.CMFAS],
   roleplay: [FEATURES.ROLEPLAY],

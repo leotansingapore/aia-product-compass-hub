@@ -154,7 +154,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
     { title: "Home", url: "/", icon: Home, dataAttr: undefined, sectionId: "home" },
     { title: "Learning Track", url: "/learning-track", icon: TrendingUp, dataAttr: undefined, sectionId: "learning-track" },
     { title: "Leaderboard", url: "/leaderboard", icon: Trophy, dataAttr: undefined, sectionId: "leaderboard" },
-    { title: "Question Banks", url: "/question-banks", icon: Brain, dataAttr: undefined, sectionId: "question-banks" },
+    { title: "Library", url: "/library", icon: BookOpen, dataAttr: undefined, sectionId: "library" },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },

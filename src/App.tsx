@@ -62,6 +62,7 @@ const ConceptCards = lazy(() => import("./pages/ConceptCards"));
 const ProductExam = lazy(() => import("./pages/ProductExam"));
 const QuestionBanks = lazy(() => import("./pages/QuestionBanks"));
 const Leaderboard = lazy(() => import("./pages/Leaderboard"));
+const Library = lazy(() => import("./pages/Library"));
 const LearningTrack = lazy(() => import("./pages/LearningTrack"));
 const LearningTrackIndex = lazy(() => import("./pages/learning-track/LearningTrackIndex"));
 const LearningTrackExplorer = lazy(() => import("./pages/learning-track/Explorer"));
@@ -150,6 +151,7 @@ const App = () => (
                     <Route path="/product/:productSlugOrId/video/:videoId" element={<RequireAuth><RequireTier feature="products"><VideoDetail /></RequireTier></RequireAuth>} />
                     <Route path="/question-banks" element={<RequireAuth><RequireTier feature="question-banks"><QuestionBanks /></RequireTier></RequireAuth>} />
                     <Route path="/leaderboard" element={<RequireAuth><Leaderboard /></RequireAuth>} />
+                    <Route path="/library" element={<RequireAuth><Library /></RequireAuth>} />
                     <Route path="/changelog" element={<RequireAuth><Changelog /></RequireAuth>} />
                     <Route path="/scripts" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
                     <Route path="/scripts/:scriptId" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
