@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, lazy, Suspense } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -112,8 +113,6 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   const nextTier = NEXT_TIER[tier];
   const tierMeta = TIER_META[tier];
 
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [changingPassword, setChangingPassword] = useState(false);
   const [tourOpen, setTourOpen] = useState(false);
@@ -125,35 +124,32 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   const [videosCompleted, setVideosCompleted] = useState(0);
   const [totalVideos, setTotalVideos] = useState(0);
 
+  // Cache profile across panel opens so the avatar/name appear instantly
+  // on every subsequent open instead of refetching from Supabase each time.
+  const { data: fetchedProfile } = useQuery<Profile | null>({
+    queryKey: ["profile-sheet-profile", user?.id],
+    enabled: !!user,
+    staleTime: 5 * 60 * 1000,
+    queryFn: async () => {
+      if (!user) return null;
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('user_id', user.id)
+        .single();
+      if (error && error.code !== 'PGRST116') return null;
+      return data ?? null;
+    },
+  });
 
-  // Fetch profile eagerly when user exists, not just when open
-  useEffect(() => {
-    if (user) fetchProfile();
-  }, [user]);
+  const [profileOverride, setProfileOverride] = useState<Profile | null>(null);
+  const profile = profileOverride ?? fetchedProfile ?? null;
 
   // Fetch stats only when panel opens (background, non-blocking)
   useEffect(() => {
     if (user && open) fetchStats();
   }, [user, open]);
 
-  const fetchProfile = async () => {
-    if (!user) return;
-    try {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('user_id', user.id)
-        .single();
-
-      if (error && error.code !== 'PGRST116') return;
-      if (data) setProfile(data);
-    } catch (error) {
-      console.error('Error fetching profile:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const fetchStats = async () => {
     if (!user) return;
