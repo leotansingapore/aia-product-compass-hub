@@ -1,7 +1,7 @@
 import finternshipLogoTransparent from "@/assets/finternship-logo-transparent.png";
 
-/** White FINternship logo — login hero, dark course headers (e.g. `BrandedPageHeader` course bar). */
-export const FINTERNSHIP_LOGO_WHITE = "/finternship-logo-white.png";
+/** Full FINternship logo for dark headers — rendered white via CSS filter. */
+export const FINTERNSHIP_LOGO_WHITE = finternshipLogoTransparent;
 
 /** Navy logo with transparent background — e.g. login form column. */
 export const FINTERNSHIP_LOGO_NAVY = finternshipLogoTransparent;

@@ -201,20 +201,13 @@ export const BrandedPageHeader = memo(function BrandedPageHeader({
             <div className="flex min-w-0 w-full flex-col gap-2 text-sm font-medium sm:flex-row sm:items-center sm:gap-2 md:gap-3 md:text-base">
               <div className="flex shrink-0 items-center gap-2">
                 {resolvedBrandLogo ? (
-                  <span
-                    className="inline-flex shrink-0 items-center gap-0"
-                    aria-label="FINternship"
-                  >
-                    <img
-                      src={resolvedBrandLogo}
-                      alt=""
-                      decoding="async"
-                      className="h-6 w-6 shrink-0 object-contain object-left sm:-mr-2 sm:h-7 sm:w-7 md:h-8 md:w-8"
-                    />
-                    <span className="-ml-0.5 hidden text-sm font-bold leading-none tracking-tight text-white/95 sm:inline sm:text-base md:text-lg">
-                      INternship
-                    </span>
-                  </span>
+                  <img
+                    src={resolvedBrandLogo}
+                    alt="FINternship"
+                    decoding="async"
+                    className="h-6 shrink-0 object-contain object-left sm:h-7 md:h-8"
+                    style={{ filter: "brightness(0) invert(1)" }}
+                  />
                 ) : (
                   <span className="shrink-0 font-semibold tracking-tight text-white/90">{brandLabel}</span>
                 )}
