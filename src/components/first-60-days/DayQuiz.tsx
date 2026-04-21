@@ -97,6 +97,7 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
           passed={passed100}
           pct={pct}
           onRetry={onReset}
+          basePath={basePath}
         />
       </div>
     );
