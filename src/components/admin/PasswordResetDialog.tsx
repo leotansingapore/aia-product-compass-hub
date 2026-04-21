@@ -93,15 +93,24 @@ export function PasswordResetDialog({ user, open, onOpenChange, onSuccess }: Pas
 
     setLoading(true);
     try {
-      const { error } = await supabase.functions.invoke('admin-change-user-password', {
-        body: { userId: user.id, newPassword: tempPassword },
+      const { data, error } = await supabase.functions.invoke('admin-change-user-password', {
+        body: { userId: user.id, newPassword: tempPassword, syncToGrowingAge: true },
       });
 
       if (error) throw error;
 
+      const ga = (data as any)?.growingAge;
+      const syncMsg = ga?.success
+        ? ' Also updated on growing-age-calculator.'
+        : ga?.skipped
+          ? ' (No matching user on growing-age-calculator.)'
+          : ga?.error
+            ? ` Growing-age sync failed: ${ga.error}`
+            : '';
+
       toast({
         title: '✅ Password Updated',
-        description: 'Temporary password has been set successfully. Make sure to share it securely with the user.',
+        description: `Temporary password set on Product Compass Hub.${syncMsg} Share it securely with the user.`,
       });
 
       onOpenChange(false);

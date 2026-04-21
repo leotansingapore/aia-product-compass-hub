@@ -9,6 +9,7 @@ const corsHeaders = {
 interface Payload {
   userId: string;
   newPassword: string;
+  syncToGrowingAge?: boolean;
 }
 
 serve(async (req) => {
@@ -21,7 +22,7 @@ serve(async (req) => {
   const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
   try {
-    const { userId, newPassword }: Payload = await req.json();
+    const { userId, newPassword, syncToGrowingAge = true }: Payload = await req.json();
     if (!userId || !newPassword || newPassword.length < 6) {
       return new Response(JSON.stringify({ error: "Invalid payload" }), {
         status: 400,
@@ -29,7 +30,6 @@ serve(async (req) => {
       });
     }
 
-    // Verify requester is admin
     const authClient = createClient(SUPABASE_URL, ANON_KEY, {
       global: { headers: { Authorization: req.headers.get("Authorization") || "" } },
     });
@@ -46,11 +46,12 @@ serve(async (req) => {
 
     const serviceClient = createClient(SUPABASE_URL, SERVICE_KEY);
 
-    // Try to update the user's password
+    let targetEmail: string | null = null;
+    let created = false;
+
     const { error: updErr } = await serviceClient.auth.admin.updateUserById(userId, { password: newPassword });
 
     if (updErr) {
-      // If user not found in auth, check profiles and create auth user first
       if (updErr.message?.includes("User not found") || updErr.status === 404) {
         console.log(`User ${userId} not found in auth, checking profiles...`);
 
@@ -67,9 +68,6 @@ serve(async (req) => {
           });
         }
 
-        console.log(`Creating auth user for ${profile.email}...`);
-
-        // Create the auth user with the given password
         const { error: createErr } = await serviceClient.auth.admin.createUser({
           email: profile.email,
           password: newPassword,
@@ -82,24 +80,63 @@ serve(async (req) => {
         });
 
         if (createErr) {
-          console.error(`Failed to create auth user: ${createErr.message}`);
           return new Response(JSON.stringify({ error: `Failed to create auth user: ${createErr.message}` }), {
             status: 400,
             headers: { "Content-Type": "application/json", ...corsHeaders },
           });
         }
 
-        console.log(`Auth user created and password set for ${profile.email}`);
-        return new Response(JSON.stringify({ success: true, created: true }), {
-          status: 200,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        });
+        targetEmail = profile.email;
+        created = true;
+      } else {
+        return new Response(JSON.stringify({ error: updErr.message }), { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } });
       }
-
-      return new Response(JSON.stringify({ error: updErr.message }), { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } });
+    } else {
+      const { data: authUser } = await serviceClient.auth.admin.getUserById(userId);
+      targetEmail = authUser?.user?.email ?? null;
     }
 
-    return new Response(JSON.stringify({ success: true }), { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } });
+    let growingAgeResult: { success: boolean; userId?: string; error?: string; skipped?: boolean } = { success: false };
+
+    if (syncToGrowingAge && targetEmail) {
+      const gaUrl = Deno.env.get("GROWING_AGE_SUPABASE_URL");
+      const gaKey = Deno.env.get("GROWING_AGE_SUPABASE_SERVICE_ROLE_KEY");
+
+      if (!gaUrl || !gaKey) {
+        growingAgeResult = { success: false, error: "GROWING_AGE_SUPABASE_* secrets not configured" };
+      } else {
+        try {
+          const gaClient = createClient(gaUrl, gaKey, {
+            auth: { autoRefreshToken: false, persistSession: false },
+          });
+
+          const { data: gaList, error: gaListErr } = await gaClient.auth.admin.listUsers();
+          if (gaListErr) throw gaListErr;
+          const existing = gaList.users.find(u => u.email?.toLowerCase() === targetEmail!.toLowerCase());
+
+          if (existing) {
+            const { error: gaUpdErr } = await gaClient.auth.admin.updateUserById(existing.id, {
+              password: newPassword,
+              email_confirm: true,
+            });
+            if (gaUpdErr) throw gaUpdErr;
+            growingAgeResult = { success: true, userId: existing.id };
+          } else {
+            growingAgeResult = { success: false, skipped: true, error: "User not found on growing-age-calculator" };
+          }
+        } catch (gaErr: any) {
+          console.error("Growing-age password sync failed:", gaErr);
+          growingAgeResult = { success: false, error: gaErr.message || String(gaErr) };
+        }
+      }
+    } else if (!syncToGrowingAge) {
+      growingAgeResult = { success: false, skipped: true };
+    }
+
+    return new Response(
+      JSON.stringify({ success: true, created, growingAge: growingAgeResult }),
+      { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
+    );
   } catch (e: any) {
     console.error("Unexpected error:", e?.message);
     return new Response(JSON.stringify({ error: e?.message || 'Unexpected error' }), {
