@@ -152,12 +152,8 @@ export function MermaidDiagram({ code }: Props) {
           backgroundSize: "32px 32px",
         }}
       />
-      <div className="absolute left-4 top-3 inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/70 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur-sm">
-        <span className="inline-block h-1 w-1 rounded-full bg-primary" />
-        Diagram
-      </div>
       <div
-        className="relative flex min-h-[160px] justify-center overflow-x-auto px-4 pb-6 pt-10 sm:px-6 sm:pt-12 [&_svg]:h-auto [&_svg]:max-w-full"
+        className="relative flex min-h-[160px] justify-center overflow-x-auto px-4 pb-6 pt-6 sm:px-6 sm:pt-8 [&_svg]:h-auto [&_svg]:max-w-full"
         dangerouslySetInnerHTML={{ __html: svg }}
       />
     </figure>

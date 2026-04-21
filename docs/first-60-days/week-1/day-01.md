@@ -120,7 +120,7 @@ The team is the product. The team is the career. When the team is strong, every 
 
 ## Our values
 
-Four, not six. Easy to memorise. Hard to live. Every day of the next 60 will bring you back to one of them.
+Four values. Easy to memorise. Hard to live. Every day of the next 60 will bring you back to one of them.
 
 ```mermaid
 flowchart TD
