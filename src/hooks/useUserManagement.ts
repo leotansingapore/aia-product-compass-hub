@@ -133,6 +133,7 @@ export function useUserManagement() {
             admin_role: adminRole,
             access_tier: accessTier,
             can_login: adminRole !== 'user',
+            show_in_leaderboard: profile.show_in_leaderboard ?? true,
           });
         }
       });
