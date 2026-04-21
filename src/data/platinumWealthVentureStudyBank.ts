@@ -3,7 +3,7 @@ export interface StudyQuestion {
   options: string[];
   correct: number;
   explanation: string;
-  category: 'product-facts' | 'sales-angles' | 'objection-handling' | 'roleplay';
+  category: 'product-facts' | 'sales-angles' | 'objection-handling' | 'roleplay' | 'suitability';
 }
 
 export const platinumWealthVentureStudyBank: StudyQuestion[] = [
