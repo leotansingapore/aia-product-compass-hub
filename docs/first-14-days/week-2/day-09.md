@@ -78,6 +78,8 @@ Let me walk through each honestly.
 
 ## 2. The 1st C — Consistency of Actions
 
+![Consistency of Actions — The Power of Showing Up Every Day](/first-14-days/images/6c-consistency.png)
+
 **What it means:** you show up and do the work, regardless of how you feel.
 
 > **Consistency beats intensity.** The bucket of water dumped at a rock does nothing. The drop landing every day wears a hole through stone. Small efforts, daily, for a long time.
@@ -108,6 +110,8 @@ Consistency is what turns the 5-year plan into a 5-year result.
 ---
 
 ## 3. The 2nd C — Constancy of Emotions
+
+![Constancy of Emotions — Controlled Peaks & Valleys](/first-14-days/images/6c-constancy.png)
 
 **What it means:** controlled peaks and valleys. You don't let a bad week tank you or a great month inflate you.
 
@@ -154,6 +158,8 @@ The single clap in an empty auditorium takes a long time. That's not a bug — i
 
 ## 4. The 3rd C — Continuous Improvement
 
+![Continuous Improvement — 1% Better Every Day](/first-14-days/images/6c-continuous-improvement.png)
+
 **What it means:** 1% better, every day.
 
 Most people plateau after learning the basics. Get comfortable. Coast. This is where growth dies.
@@ -181,6 +187,8 @@ FINternship itself is a result of this trait. Launched logo July 16, 2024. In le
 ---
 
 ## 5. The 4th C — Creativity (Resourcefulness)
+
+![Creativity — Being Resourceful When There Is Nothing](/first-14-days/images/6c-creativity.png)
 
 **What it means:** being resourceful when there is nothing.
 
@@ -263,6 +271,8 @@ The wealthy already know: you don't feel ready before the thing. You feel ready 
 ---
 
 ## 7. The 6th C — CEO Mindset
+
+![CEO Mindset — Taking Ownership & Accountability](/first-14-days/images/6c-ceo-mindset.png)
 
 **What it means:** Chief Efficiency Orchestrator. Take ownership, take accountability. No blame, no excuses, no victim.
 

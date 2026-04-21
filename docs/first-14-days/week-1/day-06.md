@@ -74,6 +74,8 @@ Numbers look similar, but the mechanism is completely different. The marketing a
 
 ## 3. Why this business has stickiness built in
 
+![Recurring vs non-recurring revenue](/first-14-days/images/recurring-revenue.png)
+
 Stickiness in FA isn't a marketing technique — it's structural.
 
 ### Product nature
