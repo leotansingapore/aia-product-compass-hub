@@ -1,4 +1,4 @@
-export type QuestionCategory = 'product-facts' | 'sales-angles' | 'objection-handling' | 'roleplay' | 'suitability';
+export type QuestionCategory = 'product-facts' | 'sales-angles' | 'objection-handling' | 'roleplay' | 'suitability' | 'compliance' | 'advisory-skills' | 'closing';
 export type BankType = 'study' | 'exam';
 
 export interface QuestionBankQuestion {
@@ -49,6 +49,9 @@ export const CATEGORY_LABELS: Record<QuestionCategory, string> = {
   'objection-handling': 'Objection Handling',
   roleplay: 'Roleplay',
   suitability: 'Suitability',
+  compliance: 'Compliance',
+  'advisory-skills': 'Advisory Skills',
+  closing: 'Closing',
 };
 
 export function dbRowToQuizQuestion(row: QuestionBankQuestion): QuizQuestion {
