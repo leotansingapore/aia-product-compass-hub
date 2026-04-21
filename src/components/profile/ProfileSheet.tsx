@@ -17,6 +17,10 @@ import { SecurityForm } from "@/components/account/SecurityForm";
 import { ProfileForm } from "@/components/account/ProfileForm";
 import { useToast } from "@/hooks/use-toast";
 import { useOnboarding } from "@/hooks/useOnboarding";
+import {
+  AnimatedOnboardingTour,
+  clearAnimatedTourSeen,
+} from "@/components/onboarding/AnimatedOnboardingTour";
 import { useUserTier } from "@/hooks/useUserTier";
 import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackPhases";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
@@ -92,6 +96,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [changingPassword, setChangingPassword] = useState(false);
+  const [tourOpen, setTourOpen] = useState(false);
   const [quizCount, setQuizCount] = useState(0);
   const [roleplayCount, setRoleplayCount] = useState(0);
   const [avgQuizScore, setAvgQuizScore] = useState<number | null>(null);
@@ -365,12 +370,18 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                   className="w-full justify-start gap-3 h-10"
                   onClick={() => {
                     onOpenChange(false);
-                    startOnboarding('basic');
+                    clearAnimatedTourSeen(user?.id);
+                    setTimeout(() => setTourOpen(true), 200);
                   }}
                 >
                   <Compass className="h-4 w-4" />
                   Platform Tour
                 </Button>
+
+                <AnimatedOnboardingTour
+                  open={tourOpen}
+                  onClose={() => setTourOpen(false)}
+                />
 
                 {isAdminUser && (
                   <Button
