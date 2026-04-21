@@ -28,9 +28,11 @@ function RankIcon({ rank }: { rank: number }) {
 export function LeaderboardRankCard({ className }: { className?: string }) {
   const { user } = useSimplifiedAuth();
   const { tier } = useUserTier();
-  const query = useLearnerLeaderboard(user?.id ?? null);
+  const scopedTier =
+    tier === "papers_taker" || tier === "post_rnf" ? tier : null;
+  const query = useLearnerLeaderboard(user?.id ?? null, scopedTier);
 
-  if (tier !== "papers_taker" && tier !== "post_rnf") return null;
+  if (!scopedTier) return null;
   if (!query.data) return null;
 
   const pool = query.data.filter((r) => r.tier === tier);

@@ -199,7 +199,9 @@ function YourRankBanner({ rows, tier }: { rows: LeaderboardRow[]; tier: TierLeve
 export default function Leaderboard() {
   const { user } = useSimplifiedAuth();
   const { tier } = useUserTier();
-  const query = useLearnerLeaderboard(user?.id ?? null);
+  const scopedTier =
+    tier === "papers_taker" || tier === "post_rnf" ? tier : null;
+  const query = useLearnerLeaderboard(user?.id ?? null, scopedTier);
 
   const rows = query.data ?? [];
 

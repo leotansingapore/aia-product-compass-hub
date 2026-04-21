@@ -27,342 +27,83 @@ export type LeaderboardRow = {
   isCurrentUser: boolean;
 };
 
-type ProfileRow = {
+type RpcRow = {
   user_id: string;
-  display_name: string | null;
+  name: string;
   email: string | null;
-  first_name: string | null;
-  last_name: string | null;
-  show_in_leaderboard?: boolean | null;
+  total_points: number | string;
+  days_active: number;
+  first_14_days: number | string;
+  first_14_reflections: number | string;
+  first_60_days: number | string;
+  first_60_reflections: number | string;
+  assignments: number | string;
+  question_bank: number | string;
+  product_quizzes: number | string;
+  videos: number | string;
+  learning_track_items: number | string;
+  learning_track_submissions: number | string;
 };
 
-type TierRow = { user_id: string; tier_level: string };
+const toNum = (v: number | string | null | undefined): number =>
+  typeof v === "number" ? v : v ? Number(v) : 0;
 
-function personLabel(p: ProfileRow | undefined, userId: string): string {
-  if (!p) return "Learner";
-  const name =
-    p.display_name?.trim() ||
-    [p.first_name, p.last_name].filter(Boolean).join(" ").trim();
-  if (name) return name;
-  // Fall back to the username portion of the email — never leak full addresses
-  // on the board, and never show raw UUID fragments as "names".
-  const emailPrefix = p.email?.split("@")[0]?.trim();
-  if (emailPrefix) return emailPrefix;
-  return "Learner";
-}
-
-/** True when the profile has a real human-readable display name or email. */
-function hasRealIdentity(p: ProfileRow | undefined): boolean {
-  if (!p) return false;
-  if (p.display_name?.trim()) return true;
-  if ((p.first_name?.trim() ?? "") + (p.last_name?.trim() ?? "")) return true;
-  if (p.email?.trim()) return true;
-  return false;
-}
-
-function addDate(set: Set<string>, iso: string | null | undefined) {
-  if (!iso) return;
-  set.add(iso.slice(0, 10));
-}
-
-async function fetchLeaderboard(currentUserId: string | null): Promise<LeaderboardRow[]> {
-  // Step 1: pull the universe of learners — tier rows first, then profiles.
-  // Anyone without a tier row is treated as 'explorer' and excluded from the
-  // two tier-scoped leaderboards automatically.
-  const [tiersRes, profilesRes] = await Promise.all([
-    supabase.from("user_access_tiers").select("user_id, tier_level").range(0, 9999),
-    supabase
-      .from("profiles")
-      .select("user_id, display_name, email, first_name, last_name, show_in_leaderboard")
-      .range(0, 9999),
-  ]);
-  if (tiersRes.error) throw tiersRes.error;
-  if (profilesRes.error) throw profilesRes.error;
-
-  const tiersByUser = new Map<string, TierLevel>();
-  for (const r of (tiersRes.data ?? []) as TierRow[]) {
-    if (r.tier_level === "papers_taker" || r.tier_level === "post_rnf") {
-      tiersByUser.set(r.user_id, r.tier_level as TierLevel);
-    } else if (r.tier_level === "level_1") {
-      tiersByUser.set(r.user_id, "papers_taker");
-    } else if (r.tier_level === "level_2") {
-      tiersByUser.set(r.user_id, "post_rnf");
-    }
-  }
-
-  const profileMap = new Map<string, ProfileRow>();
-  for (const p of (profilesRes.data ?? []) as ProfileRow[]) {
-    profileMap.set(p.user_id, p);
-  }
-
-  // Admin-managed hide: drop anyone with show_in_leaderboard === false from
-  // every tier's board. Current user still sees their own rank via the banner
-  // because they'd opt themselves out anyway, and we never force-show hidden rows.
-  for (const userId of Array.from(tiersByUser.keys())) {
-    const p = profileMap.get(userId);
-    if (p && p.show_in_leaderboard === false) tiersByUser.delete(userId);
-  }
-
-  const relevantIds = Array.from(tiersByUser.keys());
-  if (relevantIds.length === 0) return [];
-
-  // Step 2: aggregate activity in parallel. Scope every query to relevant
-  // user IDs so we're not pulling the whole org.
-  const [f14, f60, assigns, banks, quizzes, vids, ltProg, ltSubs] = await Promise.all([
-    supabase
-      .from("first_14_days_progress")
-      .select("user_id, quiz_passed_at, reflection_saved_at, updated_at")
-      .in("user_id", relevantIds)
-      .range(0, 9999),
-    supabase
-      .from("first_60_days_progress")
-      .select(
-        "user_id, day_number, quiz_passed_at, reflection_submitted_at, updated_at",
-      )
-      .in("user_id", relevantIds)
-      .range(0, 9999),
-    supabase
-      .from("assignment_submissions")
-      .select("user_id, item_id, submitted_at, created_at")
-      .eq("product_id", "first-60-days-assignments")
-      .in("user_id", relevantIds)
-      .range(0, 9999),
-    (supabase.from as any)("user_question_progress")
-      .select("user_id, mastered, last_answered_at")
-      .in("user_id", relevantIds)
-      .range(0, 9999),
-    supabase
-      .from("quiz_attempts")
-      .select("user_id, completed_at")
-      .in("user_id", relevantIds)
-      .range(0, 9999),
-    supabase
-      .from("video_progress")
-      .select("user_id, completed, completed_at, updated_at")
-      .eq("completed", true)
-      .in("user_id", relevantIds)
-      .range(0, 9999),
-    supabase
-      .from("learning_track_progress")
-      .select("user_id, status, completed_at, updated_at")
-      .eq("status", "completed")
-      .in("user_id", relevantIds)
-      .range(0, 9999),
-    supabase
-      .from("learning_track_submissions")
-      .select("user_id, review_status, submitted_at")
-      .in("user_id", relevantIds)
-      .range(0, 9999),
-  ]);
-
-  if (f14.error) throw f14.error;
-  if (f60.error) throw f60.error;
-  if (assigns.error) throw assigns.error;
-  if (banks.error) throw banks.error;
-  if (quizzes.error) throw quizzes.error;
-  if (vids.error) throw vids.error;
-  if (ltProg.error) throw ltProg.error;
-  if (ltSubs.error) throw ltSubs.error;
-
-  type Bucket = {
-    breakdown: PointBreakdown;
-    days: Set<string>;
-    seenAssignments: Set<string>;
-  };
-  const buckets = new Map<string, Bucket>();
-  const bucketFor = (userId: string): Bucket => {
-    let b = buckets.get(userId);
-    if (!b) {
-      b = {
-        breakdown: {
-          first14Days: 0,
-          first14Reflections: 0,
-          first60Days: 0,
-          first60Reflections: 0,
-          assignments: 0,
-          questionBank: 0,
-          productQuizzes: 0,
-          videos: 0,
-          learningTrackItems: 0,
-          learningTrackSubmissions: 0,
-        },
-        days: new Set(),
-        seenAssignments: new Set(),
-      };
-      buckets.set(userId, b);
-    }
-    return b;
-  };
-
-  // First 14 Days — 1pt per quiz passed, +0.5pt per reflection saved.
-  for (const r of (f14.data ?? []) as Array<{
-    user_id: string;
-    quiz_passed_at: string | null;
-    reflection_saved_at: string | null;
-    updated_at: string;
-  }>) {
-    const b = bucketFor(r.user_id);
-    if (r.quiz_passed_at) b.breakdown.first14Days += 1;
-    if (r.reflection_saved_at) b.breakdown.first14Reflections += 0.5;
-    addDate(b.days, r.quiz_passed_at);
-    addDate(b.days, r.reflection_saved_at);
-    addDate(b.days, r.updated_at);
-  }
-
-  // First 60 Days — 1pt per quiz passed, +0.5pt per reflection submitted.
-  for (const r of (f60.data ?? []) as Array<{
-    user_id: string;
-    quiz_passed_at: string | null;
-    reflection_submitted_at: string | null;
-    updated_at: string;
-  }>) {
-    const b = bucketFor(r.user_id);
-    if (r.quiz_passed_at) b.breakdown.first60Days += 1;
-    if (r.reflection_submitted_at) b.breakdown.first60Reflections += 0.5;
-    addDate(b.days, r.quiz_passed_at);
-    addDate(b.days, r.reflection_submitted_at);
-    addDate(b.days, r.updated_at);
-  }
-
-  // Assignments — 5pt per distinct item, dedup so re-submits don't inflate.
-  for (const r of (assigns.data ?? []) as Array<{
-    user_id: string;
-    item_id: string;
-    submitted_at: string | null;
-    created_at: string | null;
-  }>) {
-    const b = bucketFor(r.user_id);
-    const key = `${r.user_id}:${r.item_id}`;
-    if (!b.seenAssignments.has(key)) {
-      b.seenAssignments.add(key);
-      b.breakdown.assignments += 5;
-    }
-    addDate(b.days, r.submitted_at ?? r.created_at);
-  }
-
-  // Question bank mastery — 0.5pt per mastered question (proxy for bank passed).
-  for (const r of (banks.data ?? []) as Array<{
-    user_id: string;
-    mastered: boolean | null;
-    last_answered_at: string | null;
-  }>) {
-    if (!r.mastered) continue;
-    const b = bucketFor(r.user_id);
-    b.breakdown.questionBank += 0.5;
-    addDate(b.days, r.last_answered_at);
-  }
-
-  // Product quizzes — 1pt per attempt row (gamification already dedups per day).
-  for (const r of (quizzes.data ?? []) as Array<{
-    user_id: string;
-    completed_at: string;
-  }>) {
-    const b = bucketFor(r.user_id);
-    b.breakdown.productQuizzes += 1;
-    addDate(b.days, r.completed_at);
-  }
-
-  // Videos — 0.5pt per completion.
-  for (const r of (vids.data ?? []) as Array<{
-    user_id: string;
-    completed_at: string | null;
-    updated_at: string;
-  }>) {
-    const b = bucketFor(r.user_id);
-    b.breakdown.videos += 0.5;
-    addDate(b.days, r.completed_at ?? r.updated_at);
-  }
-
-  // Learning track items — 1pt per completed item. Covers Post-RNF curriculum
-  // and the legacy Pre-RNF "Assignment 1–4" rows that still live here.
-  for (const r of (ltProg.data ?? []) as Array<{
-    user_id: string;
-    status: string;
-    completed_at: string | null;
-    updated_at: string;
-  }>) {
-    const b = bucketFor(r.user_id);
-    b.breakdown.learningTrackItems += 1;
-    addDate(b.days, r.completed_at ?? r.updated_at);
-  }
-
-  // Learning track submissions — 3pt per submission, +2pt bonus if approved.
-  for (const r of (ltSubs.data ?? []) as Array<{
-    user_id: string;
-    review_status: string;
-    submitted_at: string | null;
-  }>) {
-    const b = bucketFor(r.user_id);
-    b.breakdown.learningTrackSubmissions += 3;
-    if (r.review_status === "approved") b.breakdown.learningTrackSubmissions += 2;
-    addDate(b.days, r.submitted_at);
-  }
-
-  // Step 3: assemble rows, sort, rank.
-  const rows: LeaderboardRow[] = [];
-  for (const userId of relevantIds) {
-    const tier = tiersByUser.get(userId)!;
-    const b = buckets.get(userId);
-    const profile = profileMap.get(userId);
-    const hasActivity = Boolean(b);
-    // Skip ghost accounts (no profile fields AND no activity) so they don't
-    // pad the leaderboard with UUID fragments and 0-pt rows.
-    if (!hasActivity && !hasRealIdentity(profile)) continue;
-    const breakdown: PointBreakdown = b?.breakdown ?? {
-      first14Days: 0,
-      first14Reflections: 0,
-      first60Days: 0,
-      first60Reflections: 0,
-      assignments: 0,
-      questionBank: 0,
-      productQuizzes: 0,
-      videos: 0,
-      learningTrackItems: 0,
-      learningTrackSubmissions: 0,
-    };
-    const totalPoints =
-      breakdown.first14Days +
-      breakdown.first14Reflections +
-      breakdown.first60Days +
-      breakdown.first60Reflections +
-      breakdown.assignments +
-      breakdown.questionBank +
-      breakdown.productQuizzes +
-      breakdown.videos +
-      breakdown.learningTrackItems +
-      breakdown.learningTrackSubmissions;
-    const daysActive = b?.days.size ?? 0;
-    rows.push({
-      userId,
-      name: personLabel(profile, userId),
-      email: profile?.email ?? null,
-      tier,
-      totalPoints: Math.round(totalPoints * 10) / 10,
-      daysActive,
-      breakdown,
-      rank: 0,
-      isCurrentUser: userId === currentUserId,
-    });
-  }
-
-  rows.sort((a, b) => {
-    if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
-    if (b.daysActive !== a.daysActive) return b.daysActive - a.daysActive;
-    return a.name.localeCompare(b.name);
+/**
+ * Pulls the leaderboard for a single tier via `get_learner_leaderboard` RPC.
+ * The RPC is SECURITY DEFINER so non-admin learners can read other users'
+ * aggregated activity without tripping RLS (which otherwise limits each user
+ * to their own profile + tier row — the reason a single learner used to see
+ * a leaderboard of one).
+ */
+async function fetchLeaderboard(
+  currentUserId: string | null,
+  tier: TierLevel,
+): Promise<LeaderboardRow[]> {
+  const { data, error } = await (supabase.rpc as any)("get_learner_leaderboard", {
+    p_tier: tier,
   });
-  rows.forEach((r, idx) => {
-    r.rank = idx + 1;
+  if (error) throw error;
+
+  const rows: LeaderboardRow[] = ((data ?? []) as RpcRow[]).map((r, idx) => {
+    const breakdown: PointBreakdown = {
+      first14Days: toNum(r.first_14_days),
+      first14Reflections: toNum(r.first_14_reflections),
+      first60Days: toNum(r.first_60_days),
+      first60Reflections: toNum(r.first_60_reflections),
+      assignments: toNum(r.assignments),
+      questionBank: toNum(r.question_bank),
+      productQuizzes: toNum(r.product_quizzes),
+      videos: toNum(r.videos),
+      learningTrackItems: toNum(r.learning_track_items),
+      learningTrackSubmissions: toNum(r.learning_track_submissions),
+    };
+    return {
+      userId: r.user_id,
+      name: r.name,
+      email: r.email,
+      tier,
+      totalPoints: toNum(r.total_points),
+      daysActive: r.days_active,
+      breakdown,
+      rank: idx + 1,
+      isCurrentUser: r.user_id === currentUserId,
+    };
   });
   return rows;
 }
 
-export function useLearnerLeaderboard(currentUserId: string | null) {
+export function useLearnerLeaderboard(
+  currentUserId: string | null,
+  tier: TierLevel | null,
+) {
+  const isScoped = tier === "papers_taker" || tier === "post_rnf";
   return useQuery({
-    queryKey: ["learner-leaderboard", currentUserId],
-    queryFn: () => fetchLeaderboard(currentUserId),
-    // The board aggregates 9 tables across every learner — expensive. Hold the
-    // result for 5 min so navigating between learning-track pages (which each
-    // render LeaderboardRankCard) doesn't re-aggregate on every visit.
+    queryKey: ["learner-leaderboard", tier, currentUserId],
+    queryFn: () => fetchLeaderboard(currentUserId, tier as TierLevel),
+    enabled: isScoped,
+    // Server-side RPC is cheap, but board only refreshes when activity lands.
+    // Hold for 5 min so learning-track pages (which mount LeaderboardRankCard
+    // on every visit) don't re-query the RPC each navigation.
     staleTime: 5 * 60_000,
     gcTime: 15 * 60_000,
     refetchOnMount: false,
