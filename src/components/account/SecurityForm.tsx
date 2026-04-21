@@ -55,19 +55,30 @@ export function SecurityForm({ onSuccess, onCancel, requireCurrent = true }: Sec
 
   const onSubmit = async (data: PasswordFormData) => {
     setLoading(true);
-    
+
     try {
-      const { error } = await supabase.auth.updateUser({
-        password: data.newPassword
+      const { data: result, error } = await supabase.functions.invoke('change-own-password', {
+        body: {
+          currentPassword: requireCurrent ? data.currentPassword : undefined,
+          newPassword: data.newPassword,
+        },
       });
 
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
+      if ((result as any)?.error) throw new Error((result as any).error);
+
+      const ga = (result as any)?.growingAge;
+      const syncMsg = ga?.success
+        ? ' Your Financial Presenters password was also updated.'
+        : ga?.skipped
+          ? ''
+          : ga?.error
+            ? ` (Financial Presenters sync failed: ${ga.error})`
+            : '';
 
       toast({
         title: "Success",
-        description: "Password updated successfully",
+        description: `Password updated.${syncMsg}`,
       });
 
       onSuccess();
