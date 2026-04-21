@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CheckCircle2, ChevronRight, Compass } from "lucide-react";
+import { CheckCircle2, ChevronRight, Compass, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,7 +9,7 @@ import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProg
 
 export default function First14Days() {
   const weeks = getAllWeeks();
-  const { completedCount, isDayComplete } = useFirst14DaysProgress();
+  const { completedCount, isDayComplete, isUnlocked } = useFirst14DaysProgress();
 
   const totalDone = completedCount();
   const totalPct = TOTAL_DAYS === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
@@ -99,24 +99,34 @@ export default function First14Days() {
                 <ul className="space-y-1.5">
                   {week.days.map((d) => {
                     const done = isDayComplete(d.dayNumber);
+                    const unlocked = isUnlocked(d.dayNumber);
                     return (
                       <li key={d.dayNumber} className="flex items-center gap-2 text-[13px]">
                         {done ? (
                           <CheckCircle2 className="h-3.5 w-3.5 text-green-600 shrink-0" />
+                        ) : !unlocked ? (
+                          <Lock className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
                         ) : (
                           <span className="h-3.5 w-3.5 rounded-full border border-muted-foreground/40 shrink-0" />
                         )}
-                        <Link
-                          to={`/learning-track/first-14-days/day/${d.dayNumber}`}
-                          className="hover:text-primary transition-colors line-clamp-1"
-                        >
-                          <span className="text-muted-foreground tabular-nums mr-2">
-                            Day {d.dayNumber}
+                        {unlocked ? (
+                          <Link
+                            to={`/learning-track/first-14-days/day/${d.dayNumber}`}
+                            className="hover:text-primary transition-colors line-clamp-1"
+                          >
+                            <span className="text-muted-foreground tabular-nums mr-2">
+                              Day {d.dayNumber}
+                            </span>
+                            <span className={cn(done && "text-muted-foreground line-through")}>
+                              {d.title}
+                            </span>
+                          </Link>
+                        ) : (
+                          <span className="line-clamp-1 text-muted-foreground/60">
+                            <span className="tabular-nums mr-2">Day {d.dayNumber}</span>
+                            <span>{d.title}</span>
                           </span>
-                          <span className={cn(done && "text-muted-foreground line-through")}>
-                            {d.title}
-                          </span>
-                        </Link>
+                        )}
                       </li>
                     );
                   })}

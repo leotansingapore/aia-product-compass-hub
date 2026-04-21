@@ -64,13 +64,21 @@ export function useFirst14DaysProgress() {
     (dayNumber: number): boolean => {
       const d = daysMap[dayNumber];
       if (!d) return false;
-      return Boolean(d.readAt || d.quizPassedAt);
+      // A day is complete when its quiz is passed. Worksheet is self-reflective
+      // and doesn't gate progression.
+      return Boolean(d.quizPassedAt);
     },
     [daysMap],
   );
 
-  // No gating — prospect-facing course is fully open.
-  const isUnlocked = useCallback((_dayNumber: number): boolean => true, []);
+  // Gated: Day 1 is always open; Day N unlocks when Day N-1's quiz is passed.
+  const isUnlocked = useCallback(
+    (dayNumber: number): boolean => {
+      if (dayNumber <= 1) return true;
+      return isDayComplete(dayNumber - 1);
+    },
+    [isDayComplete],
+  );
 
   const currentDay = useCallback((): number => {
     for (let d = 1; d <= TOTAL_DAYS; d++) if (!isDayComplete(d)) return d;

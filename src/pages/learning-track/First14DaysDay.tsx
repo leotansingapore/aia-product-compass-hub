@@ -8,6 +8,7 @@ import {
   BookOpen,
   CheckCircle2,
   ClipboardCheck,
+  Lock,
   NotebookPen,
   Sparkles,
 } from "lucide-react";
@@ -107,7 +108,7 @@ export default function First14DaysDay() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<string>("read");
   const [showStickyQuiz, setShowStickyQuiz] = useState(false);
-  const { isDayComplete, isQuizPassed, markRead, getDay } = useFirst14DaysProgress();
+  const { isDayComplete, isQuizPassed, isUnlocked, markRead, getDay } = useFirst14DaysProgress();
 
   // Reset to Read tab when navigating between days.
   useEffect(() => {
@@ -135,12 +136,13 @@ export default function First14DaysDay() {
 
   const completed = isDayComplete(dayNumber);
   const quizPassed = isQuizPassed(dayNumber);
+  const unlocked = isUnlocked(dayNumber);
   const persisted = getDay(dayNumber);
   const worksheetStarted = Boolean(persisted.reflectionSavedAt);
 
   useEffect(() => {
-    if (day) markRead(dayNumber);
-  }, [day, dayNumber, markRead]);
+    if (day && unlocked) markRead(dayNumber);
+  }, [day, dayNumber, unlocked, markRead]);
 
   // Sticky quiz CTA — only when scrolled deep, not on quiz tab, quiz not passed,
   // and the day has questions.
@@ -189,9 +191,29 @@ export default function First14DaysDay() {
     );
   }
 
+  if (!unlocked) {
+    return (
+      <Card className="mx-auto max-w-xl">
+        <CardContent className="flex flex-col items-center gap-3 p-8 text-center">
+          <Lock className="h-8 w-8 text-muted-foreground" />
+          <h2 className="text-lg font-semibold">Day {dayNumber} is locked</h2>
+          <p className="text-sm text-muted-foreground">
+            Pass the quiz on Day {dayNumber - 1} to unlock this day.
+          </p>
+          <Button asChild>
+            <Link to={`/learning-track/first-14-days/day/${dayNumber - 1}`}>
+              Go to Day {dayNumber - 1}
+            </Link>
+          </Button>
+        </CardContent>
+      </Card>
+    );
+  }
+
   const idx = DAY_SUMMARIES.findIndex((d) => d.dayNumber === dayNumber);
   const prev = idx > 0 ? DAY_SUMMARIES[idx - 1] : undefined;
   const next = idx >= 0 && idx < DAY_SUMMARIES.length - 1 ? DAY_SUMMARIES[idx + 1] : undefined;
+  const nextUnlocked = next ? isDayComplete(dayNumber) : false;
   const weekMeta = WEEK_META[day.week];
 
   const hasWorksheet = day.reflection.length > 0;
@@ -406,16 +428,35 @@ export default function First14DaysDay() {
         )}
         {next && (
           <Button
-            onClick={() => navigate(`/learning-track/first-14-days/day/${next.dayNumber}`)}
-            className="group gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
+            variant={nextUnlocked ? "default" : "secondary"}
+            disabled={!nextUnlocked}
+            aria-label={
+              nextUnlocked
+                ? `Go to Day ${next.dayNumber}`
+                : `Pass today's quiz to unlock Day ${next.dayNumber}`
+            }
+            onClick={() =>
+              nextUnlocked && navigate(`/learning-track/first-14-days/day/${next.dayNumber}`)
+            }
+            className={cn(
+              "group gap-2",
+              nextUnlocked &&
+                "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95",
+            )}
           >
-            <span className="flex flex-col items-end leading-tight">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-foreground/80">
-                Up next
-              </span>
-              <span className="text-sm font-medium">Day {next.dayNumber}</span>
-            </span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            {nextUnlocked ? (
+              <>
+                <span className="flex flex-col items-end leading-tight">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-foreground/80">
+                    Up next
+                  </span>
+                  <span className="text-sm font-medium">Day {next.dayNumber}</span>
+                </span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </>
+            ) : (
+              "Pass the quiz to unlock next"
+            )}
           </Button>
         )}
       </div>
