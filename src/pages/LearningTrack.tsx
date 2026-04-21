@@ -56,6 +56,7 @@ export default function LearningTrack() {
     : location.pathname.includes("/pre-rnf") ? "Pre-RNF Training"
     : location.pathname.includes("/post-rnf") ? "Post-RNF Training"
     : location.pathname.includes("/first-60-days") ? "First 60 Days"
+    : location.pathname.includes("/first-30-days") ? "First 30 Days"
     : location.pathname.includes("/admin") ? "Admin"
     : "Learning Track";
 
@@ -81,6 +82,7 @@ export default function LearningTrack() {
                 <NavLink to="/learning-track/post-rnf" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>Post-RNF Training</NavLink>
               )}
               <NavLink to="/learning-track/first-60-days" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>First 60 Days</NavLink>
+              <NavLink to="/learning-track/first-30-days" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>First 30 Days</NavLink>
               <NavLink to="/learning-track/admin" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>Admin</NavLink>
             </nav>
           }
