@@ -30,6 +30,8 @@ import { TierBadge } from "@/components/tier/TierBadge";
 import { isModuleFolder } from "@/lib/learning-track/moduleGrouping";
 import { TIER_META, type TierLevel } from "@/lib/tiers";
 import type { Track } from "@/types/learning-track";
+import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
+import { TOTAL_DAYS as FIRST_60_DAYS_TOTAL } from "@/features/first-60-days/content";
 
 interface Profile {
   id: string;
@@ -75,20 +77,35 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   // Tier-progress data: count completed items in the current tier's qualifying
   // track. Only fetch when the sheet is open so we don't pay for it on every
   // page load.
+  //
+  // Special case: Papers-taker's qualifying work is the First 60 Days
+  // curriculum (60 days) rather than the legacy `learning_track_phases`
+  // entries (which only hold 8 placeholder rows). We count First 60 Days
+  // completion directly via `useFirst60DaysProgress` so the bar reflects
+  // real progress.
   const tierTrack = TIER_TRACK[tier];
   const tierPhasesQuery = useLearningTrackPhases(tierTrack ?? "explorer", {
-    enabled: open && !!tierTrack,
+    enabled: open && !!tierTrack && tier !== "papers_taker",
     includeContent: false,
   });
   const { isCompleted } = useLearningTrackProgress(user?.id);
+  const {
+    completedCount: first60Completed,
+  } = useFirst60DaysProgress();
   const tierStats = useMemo(() => {
+    if (tier === "papers_taker") {
+      const done = first60Completed();
+      const total = FIRST_60_DAYS_TOTAL;
+      const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+      return { total, done, pct };
+    }
     const phases = tierPhasesQuery.data ?? [];
     const lessons = phases.flatMap((p) => p.items.filter((i) => !isModuleFolder(i)));
     const total = lessons.length;
     const done = lessons.filter((i) => isCompleted(i.id)).length;
     const pct = total > 0 ? Math.round((done / total) * 100) : 0;
     return { total, done, pct };
-  }, [tierPhasesQuery.data, isCompleted]);
+  }, [tier, first60Completed, tierPhasesQuery.data, isCompleted]);
   const nextTier = NEXT_TIER[tier];
   const tierMeta = TIER_META[tier];
 
@@ -289,7 +306,8 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                     <Progress value={tierStats.pct} className="h-2" />
                     <div className="flex items-center justify-between text-[11px] text-muted-foreground">
                       <span>
-                        {tierStats.done} / {tierStats.total} lessons
+                        {tierStats.done} / {tierStats.total}{" "}
+                        {tier === "papers_taker" ? "days" : "lessons"}
                       </span>
                       <span className="tabular-nums">{tierStats.pct}%</span>
                     </div>
