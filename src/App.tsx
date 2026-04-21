@@ -176,8 +176,8 @@ const App = () => (
                       <Route path="resources" element={<RequireTier feature="pre-rnf-track"><LearningTrackResources /></RequireTier>} />
                       <Route path="first-60-days" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60Days /></RequireTier>} />
                       <Route path="first-60-days/day/:dayNumber" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysDay /></RequireTier>} />
-                      <Route path="first-30-days" element={<RequireTier feature="post-rnf-track"><LearningTrackFirst30Days /></RequireTier>} />
-                      <Route path="first-30-days/day/:dayNumber" element={<RequireTier feature="post-rnf-track"><LearningTrackFirst30DaysDay /></RequireTier>} />
+                      <Route path="first-30-days" element={<LearningTrackFirst30Days />} />
+                      <Route path="first-30-days/day/:dayNumber" element={<LearningTrackFirst30DaysDay />} />
                       <Route path="admin" element={<ProtectedAdminPage><LearningTrackAdminLayout /></ProtectedAdminPage>}>
                         <Route index element={<Navigate to="roster" replace />} />
                         <Route path="roster" element={<LearningTrackAdminRoster />} />
