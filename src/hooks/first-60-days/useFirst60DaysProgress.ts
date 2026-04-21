@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 import { DAYS_WITH_REFLECTION } from "@/features/first-60-days/summaries";
 
 const LEGACY_KEY = "first-60-days-progress-v1";
@@ -117,10 +117,10 @@ async function migrateLegacyIfNeeded(userId: string): Promise<boolean> {
 
 export function useFirst60DaysProgress() {
   const { user } = useSimplifiedAuth();
-  const { isAdmin, isMasterAdmin } = usePermissions();
+  const { isActualAdmin } = useAdmin();
   const qc = useQueryClient();
   const userId = user?.id ?? null;
-  const adminBypass = isAdmin() || isMasterAdmin();
+  const adminBypass = isActualAdmin;
 
   const progressQuery = useQuery({
     queryKey: ["first-60-days-progress", userId],
