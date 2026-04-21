@@ -16,16 +16,16 @@ This is your daily operating playbook. These activities should run **in parallel
 
 ### Product Sales & Knowledge
 
-You need to know the various product flows on our Miro board. To deep dive into each product:
+You need to know the various product flows on our [Miro board](https://miro.com/welcomeonboard/NVNKQXhxSnhuV0t5UHgrRGcyR21LQWVLTVJMWWxNanNtVng2RlFzL2d6bEt5cnRIUWl4SDBZbTgyQWQvdmcyVkFmaE9HOUdrNG1FK1hpSmhxRWRpMWlQMmxUcEdkbUVxRWlHSlRLc2xqbGU2RXhhRmRPcnZjTzRWdVZwd2V5L0NzVXVvMm53MW9OWFg5bkJoVXZxdFhRPT0hdjE=?share_link_id=139724111530). To deep dive into each product:
 
 - Text **@productsenseibot** on Telegram — it will guide you to specific parts of the academy
 - Read through the various **product lectures and flows** on [academy.finternship.com](https://academy.finternship.com)
-- Read through the **"Product Sales"** section
+- Read through the **["Product Sales"](https://www.skool.com/finternship/classroom/7896da20?md=4e859cf75a794855a6219a97204d6686&utm_campaign=skool_link_classroom&utm_content=8fc2f6045ea549398401f3cdbcc90878)** section
 
 ### Policy Summary Knowledge
 
-1. **Inform Aira** to create a policy summary template for you in your Policy Summaries GC
-2. **Learn how to create a policy summary** from the tutorials
+1. **Inform Aira** to create a policy summary template for you in your [Policy Summaries GC](https://nsgukkz32942.sg.larksuite.com/wiki/Ngepw1tzGi79u4kEEUQlVHwagwg)
+2. **[Learn how to create a policy summary](https://nsgukkz32942.sg.larksuite.com/wiki/SyDgwo8z1iPMgukezzolxHZ2gOP)** from the tutorials
 3. **Reach out to someone** in your semi-warm/warm market (from Project 100) to create a policy summary for them
 4. **Send it to your onboarding group chat** for review — we can strategise how best to propose a portfolio
 
@@ -33,20 +33,20 @@ You need to know the various product flows on our Miro board. To deep dive into 
 
 Login and play around with these important presenters:
 
-- **APA** — AIA Pro Achiever
-- **PLP** — Pro Lifetime Protector
-- **HSG** — HealthShield Gold
-- **PWV, CPF, Retirement Funding Calculator**
-- **Total Wealth Concept**
+- **[APA](https://present.themoneybees.co/long-term-investment-illustrator)** — AIA Pro Achiever
+- **[PLP](https://present.themoneybees.co/hybrid-investment-plan)** — Pro Lifetime Protector
+- **[HSG](https://present.themoneybees.co/healthshield-gold-max-illustrator)** — HealthShield Gold
+- **[PWV](https://present.themoneybees.co/5-year-investing-plan/premium)**, **[CPF](https://present.themoneybees.co/cpf-life-estimator)**, **[Retirement Funding Calculator](https://present.themoneybees.co/retirement-funding-calculator)**
+- **[Total Wealth Concept](https://present.themoneybees.co/total-wealth-concept/twfps)**
 
 **Products you need to know:** APA, PLP, PWV, HSG, PA, GPP, UCC, SFT
 
 ### Other Decks You Need Access To
 
-- Master Zoom Copy
-- Retirement Planning Deck
-- Basic Medical Insurance (to sell HSG/PA)
-- Warm Market Deck
+- [Master Zoom Copy](https://docs.google.com/presentation/d/19J7VoxCXoEhQR6PZr5g9NozK22XDgyeV/edit#slide=id.g2fe099f37a8_0_190)
+- [Retirement Planning Deck](https://docs.google.com/presentation/d/1zJBkSwfQlWoeus1-GqG2GD9SFh5qCToG/edit?usp=sharing&ouid=117605838416133603235&rtpof=true&sd=true)
+- [Basic Medical Insurance (to sell HSG/PA)](https://docs.google.com/presentation/d/1t2d9qon3RoK6GWbK_r54-TvIGlFLYCCX/edit?slide=id.p7#slide=id.p7)
+- [Warm Market Deck](https://docs.google.com/presentation/d/1AqdqDC3SsbFAZmVR5ebS00c01Hcp_hll/edit?usp=sharing&ouid=117605838416133603235&rtpof=true&sd=true)
 
 ### Daily/Weekly Familiarity Tasks
 
