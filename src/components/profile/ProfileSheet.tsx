@@ -215,6 +215,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   const tierComplete = tierStats.total > 0 && tierStats.done === tierStats.total;
 
   return (
+    <>
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full sm:max-w-md overflow-y-auto p-0">
         <SheetHeader className="p-6 pb-4">
@@ -378,11 +379,6 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                   Platform Tour
                 </Button>
 
-                <AnimatedOnboardingTour
-                  open={tourOpen}
-                  onClose={() => setTourOpen(false)}
-                />
-
                 {isAdminUser && (
                   <Button
                     variant="ghost"
@@ -411,6 +407,11 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
         </div>
       </SheetContent>
     </Sheet>
+    <AnimatedOnboardingTour
+      open={tourOpen}
+      onClose={() => setTourOpen(false)}
+    />
+    </>
   );
 }
 
