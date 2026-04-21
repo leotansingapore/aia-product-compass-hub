@@ -65,21 +65,21 @@ Ensure you've completed reading the entire **appointment setting module** within
 
 - ✅ Purchase a **new number** and set it up on your WhatsApp Business account
 - ✅ Ideally have **another phone** so you can dial with 2 phones simultaneously (cold calling with two numbers saves time)
-- ✅ **Pin the prospecting resources** to your Lark left sidebar:
+- ✅ You have access to [the prospecting resources](https://nsgukkz32942.sg.larksuite.com/wiki/OTW3wipXSi0y8nkU5l3llk3Vgrb) and pinned to your left sidebar to have access easily
 
 ![Pinning prospecting resources](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/c5c5ab0471c549c4ac91e0709b44333523ee3b0763ab4ddc9c57aac22c6ab18d.gif)
 
 ### Daily Prospecting Activities (2–3 hours minimum)
 
 - **Cold calling** cold leads or SMA leads, or doing callbacks set by your telemarketer
-- **Warm outreach** — set at least **3–4 meetings per week** with friends to check their policies, show them GoalsMapper, or offer to help with policy summaries
+- **[Warm outreach](https://www.skool.com/finternship/classroom/8de2c1c8?md=a67c67f38da244f38ac3aca8c83cc429&utm_campaign=skool_link_classroom&utm_content=8fc2f6045ea549398401f3cdbcc90878)** — set at least **3–4 meetings per week** with friends to check their policies, show them GoalsMapper, or offer to help with policy summaries
 
 ### Getting Started
 
 - Have a call with Leo to go through scripts/texting scripts/calling scripts
 - Ask Leo for **cold leads** to call (incoming consultants have unlimited cold leads for the first 3 months)
-- Complete the SMA checklist before running any ads
-- **Track your numbers** on the activity tracker
+- Complete the [SMA checklist](https://nsgukkz32942.sg.larksuite.com/wiki/WZiRwAtHgipbzfklv0ClplaMgzb) before running any ads
+- **Track your numbers** on the [activity tracker](https://track.themoneybees.co/dashboard)
 - Facebook lead generation will start for RNF'ed consultants
 
 > **Deadline:** Complete all of the above in the next 7 days so you can kickstart prospecting even before your RNF.
@@ -88,10 +88,9 @@ Ensure you've completed reading the entire **appointment setting module** within
 
 ## 4.4 Marketing Kits (Ad Hoc)
 
-1. **Upload your pictures** to the shared folder — this ensures we can create marketing collateral and websites based on your profile (you can use AI to enhance your photo)
-2. **Open the marketing kits Lark doc** and pin it to your left sidebar for easy retrieval
-3. **Make copies of the decks**, edit in your face/branding, or ask your allocated designer to edit on Canva
-4. **Store everything properly** in the designated folder
+1. **[Upload your pictures here](https://nsgukkz32942.sg.larksuite.com/wiki/ZUWrwdapni64IckzuJ0lshSrgYf)** — this ensures we can create marketing collateral and websites based on your profile (you can use AI to enhance your photo)
+2. You can open this lark doc of the [most commonly used marketing kits](https://nsgukkz32942.sg.larksuite.com/wiki/SeSZwNfIviIf5Akg42olF9kPgnh) and place it on the left side bar on Lark so you can easily retrieve it later on.
+3. You can make a copy of some of the decks, edit in your face/branding related stuff or ask your allocated designer to edit onto Canva, and do ensure that you store it properly into [here](https://nsgukkz32942.sg.larksuite.com/wiki/N7B5wRUZViIIQrkB3v5lb5KNggd?table=tblhMtEfAB7w5Mox&view=vewfYjmACo).
 
 ---
 
