@@ -181,7 +181,7 @@ Most FINterns pass all papers in 2–4 months at full pace. Part-timers take 4�
 5. **Income Guarantee kicks in from month 4 post-licensing** — $2K (student) / $4K (full-time) minimum monthly
 6. **Start closing cases** — first ones typically close within 30–60 days
 
-After that, your journey moves into the [[../../first-60-days/INDEX|First 60 Days curriculum]] — the post-licensing 60-day module I built specifically for this phase.
+After that, your journey moves into the First 60 Days curriculum — the post-licensing 60-day module I built specifically for this phase.
 
 ---
 

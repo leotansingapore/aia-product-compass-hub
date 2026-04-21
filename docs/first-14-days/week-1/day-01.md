@@ -130,8 +130,6 @@ All I ask is your patience over the next few months as we build trust, competenc
 
 In a way, the next few months are a self-guided, self-motivated mentorship. My goal: cut your learning curve short and remove as many friction points as possible between you and being successful here.
 
-Read more → [[../../finternship-orientation/01-10m-read---module-1-welcome/03-3-why-this-program-exists|Why This Program Exists]].
-
 ---
 
 ## 6. Why caution is a strength here

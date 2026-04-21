@@ -175,7 +175,7 @@ Much of top-advisor performance is built on listening, not talking. I'm an intro
 - Don't over-sell
 - Build trust through depth, not charisma
 
-Training system provides scripts and frameworks — so you don't need to "wing it" from extroversion. See [[day-11|Day 11]] for full answer.
+Training system provides scripts and frameworks — so you don't need to "wing it" from extroversion. See Day 11 for full answer.
 
 ---
 
@@ -229,7 +229,7 @@ Using lifetime-value method:
 - **Active hours per client:** ~15 (prospecting + prep + meetings)
 - **Effective rate:** $667–$1,000/hour
 
-Excludes training/study time, which lowers effective rate in Year 1. Doesn't include admin (minimal). See [[../week-1/day-05|Day 5]] for the full breakdown.
+Excludes training/study time, which lowers effective rate in Year 1. Doesn't include admin (minimal). See Day 5 for the full breakdown.
 
 ---
 
@@ -255,7 +255,7 @@ Warm market is about **half of a complete pipeline** — not optional, but not t
 - **Warm is your 50% contribution.** Not because it's a chore, but because you *should* be offering good advice to the people closest to you. If you genuinely believe this career helps, not reaching out to friends and family is a disservice — they'll get worse advice from a stranger.
 - **My own warm network was thin** (GEP at NUS, small social circle). So my book is mostly cold. But that was a function of my starting position, not a rule. Candidates with rich warm networks should serve them.
 
-The professional version (low pressure, helping thoroughly, fine with no) strengthens relationships. Do it with pride. See [[day-10|Day 10]] for the full answer.
+The professional version (low pressure, helping thoroughly, fine with no) strengthens relationships. Do it with pride. See Day 10 for the full answer.
 
 ---
 

@@ -77,7 +77,7 @@ Hard numbers:
 - **Year 4:** $327K
 - **Fresh-grad year:** $416K
 
-See [[day-05|Day 5]] for the actual screenshots. That's what the Income dimension compounds to when you build right.
+See Day 5 for the actual screenshots. That's what the Income dimension compounds to when you build right.
 
 And the business didn't stop there. I've since built **four other companies** on top of the FA practice:
 
