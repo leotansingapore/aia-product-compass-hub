@@ -86,26 +86,25 @@ Read that again. Is that actually a loss?
 
 ## 5. This is what asymmetry looks like
 
-A normal bet:
+Side by side, the shape of a normal bet versus the bet you're being offered here:
 
+| | Upside | Downside | Worst case |
+|---|---|---|---|
+| **Normal bet** | +X | −X | You lose X |
+| **Asymmetric bet (this career)** | +100X (career of your life) | +5X (skills, network, financial literacy) | You still come out ahead |
+
+```mermaid
+xychart-beta
+    title "Payout shape: normal bet vs this career"
+    x-axis ["Bad outcome", "Expected", "Great outcome"]
+    y-axis "Payout (X)" -20 --> 120
+    bar "Normal bet" [-10, 0, 15]
+    bar "This career" [5, 25, 100]
 ```
-Upside:   +X
-Downside: -X
-Neutral:  0
-```
 
-You win, you gain X. You lose, you lose X. Expected value depends entirely on probability.
+In a normal bet, you win X or you lose X. Expected value rides entirely on probability.
 
-An asymmetric bet:
-
-```
-Upside:   +100X  (career of your life)
-Downside: +5X    ("I learnt a lot, I'm better off than when I started")
-```
-
-Both outcomes are positive. The worst case is still a net win. This is the rare kind of bet where the question isn't what are the odds, it's why would you not play.
-
-That's the risk-reversal card.
+In this one, both outcomes are positive. The worst case is still a net win — a more financially literate, more skilled, better-networked version of you. This is the rare bet where the question isn't "what are the odds," it's "why wouldn't I play."
 
 ---
 
