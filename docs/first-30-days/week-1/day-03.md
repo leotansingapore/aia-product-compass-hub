@@ -25,9 +25,9 @@ Today you'll set up all the tools you need to operate effectively. This includes
 
 ![Pinning docs to sidebar](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/53a652141ed14261a795531685f951d481a7e0b75a3a4c2290c6b957421728df.gif)
 
-Congratulations! You now can sort your documents — your left side bar can be used to continually ensure you have easy access to any of the important documents.
+> **Congratulations!** You now can sort your documents — your left side bar can be used to continually ensure you have easy access to any of the important documents.
 
-6. **Do get access to the stuff listed out [here](https://nsgukkz32942.sg.larksuite.com/wiki/Jqu5wln6eiVL7PklkgplPQc4gIe)**, you just need to ensure you have easy access to them, and we'll get back to them later on.
+**Do get access to the stuff listed out [here](https://nsgukkz32942.sg.larksuite.com/wiki/Jqu5wln6eiVL7PklkgplPQc4gIe)**, you just need to ensure you have easy access to them, and we'll get back to them later on.
 
 - **For URLs:** create a Chrome folder, to store them.
 - **For Lark bases and documents**, ensure they are pinned to your left side bar
