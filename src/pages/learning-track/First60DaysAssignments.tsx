@@ -13,6 +13,7 @@ import {
   Users,
   Video,
 } from "lucide-react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useQuery } from "@tanstack/react-query";
@@ -78,7 +79,8 @@ export default function First60DaysAssignments() {
   const { data: assignments, isLoading } = useAssignments();
   const { user } = useSimplifiedAuth();
   const { data: submissions, refetch: refetchSubmissions } = useSubmissions(user?.id);
-  const [activeSlug, setActiveSlug] = useState<string | null>(null);
+  const { itemId } = useParams<{ itemId?: string }>();
+  const navigate = useNavigate();
 
   const latestBySlug = useMemo(() => {
     const m: Record<string, Submission> = {};
@@ -96,14 +98,25 @@ export default function First60DaysAssignments() {
     );
   }
 
-  const active = activeSlug ? assignments.find((a) => a.slug === activeSlug) : null;
+  const active = itemId ? assignments.find((a) => a.slug === itemId) : null;
+
+  if (itemId && !active) {
+    // Unknown slug — bounce back to grid.
+    return (
+      <div className="max-w-3xl mx-auto rounded-xl border border-dashed bg-muted/20 p-10 text-center">
+        <p className="text-sm text-muted-foreground mb-4">Assignment not found.</p>
+        <Button variant="outline" size="sm" onClick={() => navigate("/learning-track/pre-rnf/assignments")}>
+          Back to all assignments
+        </Button>
+      </div>
+    );
+  }
 
   if (active) {
     return (
       <AssignmentDetail
         assignment={active}
         submission={latestBySlug[active.frontmatter.status_key]}
-        onBack={() => setActiveSlug(null)}
         onSubmitted={() => refetchSubmissions()}
         userId={user?.id}
       />
@@ -146,13 +159,16 @@ export default function First60DaysAssignments() {
           const Icon = ICON_MAP[a.frontmatter.icon] ?? ClipboardList;
           const submitted = !!sub;
           return (
-            <Card
+            <Link
               key={a.slug}
+              to={`/learning-track/pre-rnf/assignments/${a.slug}`}
+              className="block group"
+            >
+            <Card
               className={cn(
-                "cursor-pointer group relative overflow-hidden border transition-all hover:border-primary/40 hover:shadow-md",
+                "cursor-pointer relative overflow-hidden border transition-all hover:border-primary/40 hover:shadow-md",
                 submitted && "border-green-500/30 bg-green-500/5",
               )}
-              onClick={() => setActiveSlug(a.slug)}
             >
               <CardHeader className="p-5 pb-0 space-y-3">
                 <div className="flex items-start justify-between gap-3">
@@ -190,15 +206,20 @@ export default function First60DaysAssignments() {
                     {a.frontmatter.estimated_time}
                   </span>
                 </div>
-                <Button
-                  variant={submitted ? "outline" : "default"}
-                  className="w-full gap-2 text-sm font-semibold"
+                <div
+                  className={cn(
+                    "inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition-colors",
+                    submitted
+                      ? "border bg-background text-foreground group-hover:bg-muted"
+                      : "bg-primary text-primary-foreground group-hover:bg-primary/90",
+                  )}
                 >
                   {submitted ? "Review submission" : "Open assignment"}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                </Button>
+                </div>
               </CardContent>
             </Card>
+            </Link>
           );
         })}
       </div>
@@ -209,27 +230,24 @@ export default function First60DaysAssignments() {
 function AssignmentDetail({
   assignment,
   submission,
-  onBack,
   onSubmitted,
   userId,
 }: {
   assignment: Assignment;
   submission: Submission | undefined;
-  onBack: () => void;
   onSubmitted: () => void;
   userId: string | undefined;
 }) {
   const Icon = ICON_MAP[assignment.frontmatter.icon] ?? ClipboardList;
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      <button
-        type="button"
-        onClick={onBack}
+      <Link
+        to="/learning-track/pre-rnf/assignments"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to all assignments
-      </button>
+      </Link>
 
       <div className="rounded-2xl border bg-card overflow-hidden">
         <div className="relative p-6 sm:p-8 border-b bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
