@@ -155,13 +155,8 @@ serve(async (req) => {
       try {
         const resend = new Resend(RESEND_API_KEY);
         
-        // Render the React email template
-        const html = await renderAsync(
-          React.createElement(PasswordResetEmail, {
-            resetUrl,
-            userEmail: email,
-          })
-        );
+        const html = renderPasswordResetEmail(resetUrl, email);
+
         
         const { error: emailError } = await resend.emails.send({
           from: "FINternship <no-reply@mail.themoneybees.co>",
