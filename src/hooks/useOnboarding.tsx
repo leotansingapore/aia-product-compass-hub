@@ -1,6 +1,6 @@
 
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
-import { useAuth } from './useAuth';
+import { useSimplifiedAuth } from './useSimplifiedAuth';
 
 export interface OnboardingStep {
   id: string;
@@ -140,7 +140,7 @@ const ADVANCED_ONBOARDING_STEPS: OnboardingStep[] = [
 ];
 
 export function OnboardingProvider({ children }: { children: ReactNode }) {
-  const { user } = useAuth();
+  const { user } = useSimplifiedAuth();
   
   // Use a state to track location instead of directly calling useLocation
   const [currentPath, setCurrentPath] = useState('/');
