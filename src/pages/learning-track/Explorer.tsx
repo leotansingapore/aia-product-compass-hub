@@ -14,7 +14,9 @@ import { LessonContentPanel } from "@/components/learning-track/LessonContentPan
 import { AdminTrackView } from "@/components/learning-track/AdminTrackView";
 import { RequestUpgradeButton } from "@/components/tier/RequestUpgradeButton";
 import { useMyTierRequests } from "@/hooks/useTierRequests";
+import { useUserTier } from "@/hooks/useUserTier";
 import { TierBadge } from "@/components/tier/TierBadge";
+import type { TierLevel } from "@/lib/tiers";
 import { groupItemsIntoModules, isModuleFolder } from "@/lib/learning-track/moduleGrouping";
 import { cn } from "@/lib/utils";
 import type { LearningTrackPhase } from "@/types/learning-track";
@@ -149,6 +151,8 @@ function ModuleCompleteOverlay({
   hasNext,
   allDone,
   pendingUpgrade,
+  currentTier,
+  nextTierInfo,
   onGoNext,
   onBack,
 }: {
@@ -156,6 +160,8 @@ function ModuleCompleteOverlay({
   hasNext: boolean;
   allDone: boolean;
   pendingUpgrade: boolean;
+  currentTier: TierLevel;
+  nextTierInfo: { to: TierLevel; label: string } | null;
   onGoNext: () => void;
   onBack: () => void;
 }) {
@@ -238,9 +244,13 @@ function ModuleCompleteOverlay({
                 <Sparkles className="h-3.5 w-3.5 text-primary" />
                 <span className="text-xs font-semibold text-primary">What's next</span>
               </div>
-              <h2 className="text-lg font-bold font-serif mb-1">Upgrade to Papers-taker</h2>
+              <h2 className="text-lg font-bold font-serif mb-1">
+                {nextTierInfo ? `Upgrade to ${nextTierInfo.label}` : "You've reached the top!"}
+              </h2>
               <p className="text-xs text-muted-foreground max-w-sm mx-auto">
-                Request an upgrade to unlock advanced training, certification prep, and hands-on practice tools.
+                {nextTierInfo
+                  ? "Request an upgrade to unlock advanced training, certification prep, and hands-on practice tools."
+                  : "You're at the highest tier. Keep reviewing and sharpening your skills."}
               </p>
             </div>
 
@@ -262,7 +272,7 @@ function ModuleCompleteOverlay({
 
           {/* Section 3: CTA */}
           <div className="animate-celebrate-cta px-6 pb-8 sm:px-10 text-center space-y-3">
-            {pendingUpgrade ? (
+            {nextTierInfo && (pendingUpgrade ? (
               <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">
                 <Clock className="h-4 w-4 text-amber-600 animate-pulse" />
                 <span className="text-sm font-medium text-amber-700 dark:text-amber-400">
@@ -271,11 +281,11 @@ function ModuleCompleteOverlay({
               </div>
             ) : (
               <RequestUpgradeButton
-                fromTier="explorer"
-                toTier="papers_taker"
-                label="Request upgrade to Papers-taker"
+                fromTier={currentTier}
+                toTier={nextTierInfo.to}
+                label={`Request upgrade to ${nextTierInfo.label}`}
               />
-            )}
+            ))}
             <div>
               <Button variant="ghost" size="sm" onClick={onBack} className="text-xs text-muted-foreground/60 hover:text-muted-foreground">
                 Back to learning track
@@ -420,6 +430,13 @@ export default function ExplorerTrack() {
   const phases = allPhases.filter((p) => p.title.toLowerCase() !== "financial planning basics");
   const lockMap = useLockMap(phases);
   const { pendingRequest } = useMyTierRequests();
+  const { tier } = useUserTier();
+  const NEXT_TIER: Record<TierLevel, { to: TierLevel; label: string } | null> = {
+    explorer: { to: "papers_taker", label: "Papers-taker" },
+    papers_taker: { to: "post_rnf", label: "Post-RNF" },
+    post_rnf: null,
+  };
+  const nextTier = NEXT_TIER[tier];
 
   // URL is the source of truth: derive active phase + lesson from :itemId param.
   const expandedItemId = itemId ?? null;
@@ -580,6 +597,8 @@ export default function ExplorerTrack() {
         hasNext={!!moduleComplete.nextPhaseId}
         allDone={allExplorerComplete}
         pendingUpgrade={!!pendingRequest}
+        currentTier={tier}
+        nextTierInfo={nextTier}
         onGoNext={goToNextModule}
         onBack={goBackToTrack}
       />
@@ -653,7 +672,7 @@ export default function ExplorerTrack() {
         </div>
       )}
 
-      {/* All-done banner — compact so module cards below are visible */}
+      {/* All-done banner — tier-aware upgrade CTA */}
       {!nextItem && totalItems > 0 && !activePhaseId && (
         <div className="rounded-xl border bg-gradient-to-r from-green-50 via-background to-primary/5 dark:from-green-950/20 dark:via-background dark:to-primary/5 p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4">
           <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -662,11 +681,16 @@ export default function ExplorerTrack() {
             </div>
             <div className="min-w-0">
               <p className="text-sm font-semibold">All Explorer modules complete!</p>
-              <p className="text-xs text-muted-foreground">
-                Upgrade to <span className="font-medium text-foreground">Papers-taker</span> to unlock First 60 Days, CMFAS, Product Training & more.
-              </p>
+              {nextTier ? (
+                <p className="text-xs text-muted-foreground">
+                  Upgrade to <span className="font-medium text-foreground">{nextTier.label}</span> to unlock the next stage of your journey.
+                </p>
+              ) : (
+                <p className="text-xs text-muted-foreground">You've reached the highest tier. Well done!</p>
+              )}
             </div>
           </div>
+          {nextTier && (
           <div className="shrink-0">
             {pendingRequest ? (
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">
@@ -675,13 +699,14 @@ export default function ExplorerTrack() {
               </div>
             ) : (
               <RequestUpgradeButton
-                fromTier="explorer"
-                toTier="papers_taker"
+                fromTier={tier}
+                toTier={nextTier.to}
                 label="Request upgrade"
                 compact
               />
             )}
           </div>
+          )}
         </div>
       )}
 
@@ -854,8 +879,8 @@ export default function ExplorerTrack() {
         </>
       )}
 
-      {/* Upgrade nudge — only when still in progress (hero has the CTA when all done) */}
-      {!activePhaseId && !allExplorerComplete && (
+      {/* Upgrade nudge — only when still in progress and there's a next tier */}
+      {!activePhaseId && !allExplorerComplete && nextTier && (
         <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
           <CardContent className="p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="p-3 rounded-xl bg-primary/10 shrink-0">
@@ -864,12 +889,12 @@ export default function ExplorerTrack() {
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold mb-1">Ready to go further?</p>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Once you feel confident with the basics, request an upgrade to unlock CMFAS study, product training, and more.
+                Once you feel confident with the basics, request an upgrade to unlock the next stage.
               </p>
             </div>
             <RequestUpgradeButton
-              fromTier="explorer"
-              toTier="papers_taker"
+              fromTier={tier}
+              toTier={nextTier.to}
               className="shrink-0"
             />
           </CardContent>
