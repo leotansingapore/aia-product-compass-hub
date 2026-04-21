@@ -88,23 +88,27 @@ Read that again. Is that actually a loss?
 
 Side by side, the shape of a normal bet versus the bet you're being offered here:
 
-| | Upside | Downside | Worst case |
-|---|---|---|---|
-| **Normal bet** | +X | −X | You lose X |
-| **Asymmetric bet (this career)** | +100X (career of your life) | +5X (skills, network, financial literacy) | You still come out ahead |
-
 ```mermaid
-xychart-beta
-    title "Payout shape: normal bet vs this career"
-    x-axis ["Bad outcome", "Expected", "Great outcome"]
-    y-axis "Payout (X)" -20 --> 120
-    bar "Normal bet" [-10, 0, 15]
-    bar "This career" [5, 25, 100]
+flowchart LR
+    subgraph Normal["A normal bet"]
+        direction TB
+        N1["<b>Win</b><br/>+X"]
+        N2["<b>Lose</b><br/>−X"]
+    end
+    subgraph Asym["This career (asymmetric)"]
+        direction TB
+        A1["<b>Best case</b><br/>+100X<br/>career of your life"]
+        A2["<b>Worst case</b><br/>+5X<br/>skills · network · financial literacy"]
+    end
+    style N1 fill:#dcfce7,stroke:#15803d,color:#000
+    style N2 fill:#fee2e2,stroke:#b91c1c,color:#000
+    style A1 fill:#dcfce7,stroke:#15803d,color:#000
+    style A2 fill:#fef3c7,stroke:#ca8a04,color:#000
 ```
 
-In a normal bet, you win X or you lose X. Expected value rides entirely on probability.
+In a normal bet, you win X or you lose X, and expected value rides entirely on probability.
 
-In this one, both outcomes are positive. The worst case is still a net win — a more financially literate, more skilled, better-networked version of you. This is the rare bet where the question isn't "what are the odds," it's "why wouldn't I play."
+In this one, both outcomes are positive. The worst case is still a net win: a more financially literate, more skilled, better-networked version of you. This is the rare bet where the question isn't "what are the odds," it's "why wouldn't I play."
 
 ---
 
@@ -128,7 +132,13 @@ Neither had finance degrees. Neither had business experience. Neither had huge w
 
 There's a third scenario most people forget. It isn't "you join and succeed" or "you join and leave". It's "you don't join at all".
 
-What does that cost? First, opportunity cost. Whatever you'd have built with the skills, income and network, you simply don't have it. Then there's identity cost. You spend the next 10 years wondering. Most people are worse off sitting with "what if" than with "I tried and it wasn't for me". And the compounding cost is the biggest of the three. Skills compound for decades, so a year of delay isn't really a year. It's 10 years of compounded delay, because what you'd have learned in year 1 feeds into year 5, year 10, and year 20.
+What does that cost?
+
+**Opportunity cost.** Whatever you'd have built with the skills, income and network, you simply don't have it.
+
+**Identity cost.** You spend the next 10 years wondering. Most people are worse off sitting with "what if" than with "I tried and it wasn't for me."
+
+**Compounding cost.** This is the biggest of the three. Skills compound for decades, so a year of delay isn't really a year. It's 10 years of compounded delay, because what you'd have learned in year 1 feeds into year 5, year 10, and year 20.
 
 Doing nothing feels safe. It isn't. It has its own opportunity cost, which is invisible but real.
 
