@@ -50,15 +50,24 @@ export default function LearningTrack() {
     }
   }, [user?.id]);
 
+  // Derive current track name from route for admin header
+  const trackName = location.pathname.includes("/explorer") ? "Explorer"
+    : location.pathname.includes("/pre-rnf") ? "Pre-RNF Training"
+    : location.pathname.includes("/post-rnf") ? "Post-RNF Training"
+    : location.pathname.includes("/first-60-days") ? "First 60 Days"
+    : location.pathname.includes("/admin") ? "Admin"
+    : "Learning Track";
+
   // ---- Admin: keep tab navigation ----
   if (isAdmin) {
     return (
-      <PageLayout title="Learning Track" description="Your learning journey.">
+      <PageLayout title={`${trackName} — Learning Track`} description="Your learning journey.">
         <BrandedPageHeader
           tone="dark"
           showOnMobile
-          title="Learning Track"
-          subtitle="Your learning journey. Complete each module in order."
+          title={trackName}
+          subtitle="Learning Track"
+          brandLogoSrc={null}
           headerTabs={
             <nav className={LT_TAB_NAV_CLASS} aria-label="Learning track sections">
               {showExplorerTab && (
