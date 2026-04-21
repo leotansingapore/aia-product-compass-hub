@@ -58,13 +58,15 @@ Here's the honest picture. Most new advisors I've trained come from:
 - Willingness to learn the products deeply (anyone motivated can do this in 3–6 months)
 - Willingness to talk to strangers (harder than product knowledge)
 - Willingness to handle rejection without collapse (the real hurdle)
-- The 4 C's from Day 9
+- The 6 C's from Day 9
 
-If you have the 4 C's, product knowledge is a few months of study. If you don't have the 4 C's, 10 years of industry experience won't save you.
+If you have the 6 C's, product knowledge is a few months of study. If you don't have the 6 C's, 10 years of industry experience won't save you.
 
 ---
 
 ## 2. Proof — Gabriel Kow (ORD NSF)
+
+![Gabriel Kow — FINtern, ORD NSF](/first-14-days/images/mentee-gabriel-kow.png)
 
 Gabriel joined FINternship just after ORD. Expecting a full-time job paying $2–3K/month. No finance background. No big network. No particular extroversion.
 
@@ -74,11 +76,13 @@ His own words:
 
 **$10K in his first month.** As an ORD NSF. With our systems. That's the result.
 
-Gabriel didn't have a finance degree. He didn't have rich friends to sell to. What he had was the 4 C's and the willingness to plug into the system. That was enough.
+Gabriel didn't have a finance degree. He didn't have rich friends to sell to. What he had was the 6 C's and the willingness to plug into the system. That was enough.
 
 ---
 
 ## 3. Proof — Benjamin Gnoh (NTU Maritime Studies)
+
+![Benjamin Gnoh — FINtern, entering NTU Maritime Studies](/first-14-days/images/mentee-benjamin-gnoh.png)
 
 Benjamin was entering NTU Maritime Studies when he joined. Engineering-adjacent, not finance. No warm market to speak of.
 
@@ -163,7 +167,7 @@ Why?
 
 Areas to work on — cold outreach volume, energy management, self-promotion — are skill-gaps, not character flaws. Trainable. The things that *can't* be easily trained — deep listening, patience, genuine curiosity, not over-selling — they already have.
 
-Benjamin and Gabriel both fit this profile. Neither was a "natural salesperson." Both listened well. Both had the 4 C's. Both hit $10K/month in months, not years.
+Benjamin and Gabriel both fit this profile. Neither was a "natural salesperson." Both listened well. Both had the 6 C's. Both hit $10K/month in months, not years.
 
 ---
 
@@ -185,9 +189,9 @@ Distinguish between **introversion** (prefer fewer, deeper interactions; drained
 
 The fear of *"I don't have sales experience"* or *"I'm too introverted"* is usually a proxy for something deeper: *"I'm not sure I'm the type of person who can do this."*
 
-That's a real concern. But it's the concern Day 9's 4 C's are designed to surface — not the experience or personality concern.
+That's a real concern. But it's the concern Day 9's 6 C's are designed to surface — not the experience or personality concern.
 
-**The 4 C's (not experience, not personality type) are what predict success here.** Gabriel had them. Benjamin had them. Both hit $10K in the first 2 months. That's the receipt.
+**The 6 C's (not experience, not personality type) are what predict success here.** Gabriel had them. Benjamin had them. Both hit $10K in the first 2 months. That's the receipt.
 
 ---
 
@@ -197,7 +201,7 @@ Think through this:
 
 1. **If no finance experience is actually an advantage**, does the experience objection still hold for you?
 2. **If top advisors are disproportionately introverts-who-listen-well**, does the introversion objection still hold?
-3. **Underneath both objections, what's the real concern?** Usually something like *"I'm not sure I can handle rejection, variability, or the self-starter nature."* That's a real concern — but it's what Day 9's 4 C's already surfaced.
+3. **Underneath both objections, what's the real concern?** Usually something like *"I'm not sure I can handle rejection, variability, or the self-starter nature."* That's a real concern — but it's what Day 9's 6 C's already surfaced.
 
 ---
 
@@ -209,7 +213,7 @@ Think through this:
 - C) Irrelevant
 - D) A reason to avoid the career
 
-**Why:** Most new advisors come in without finance experience. Top producers draw roughly equally from all backgrounds. The actual drivers of success are the 4 C's and willingness to do the work. Finance experience helps marginally in product understanding — a few months of study — and hurts slightly in ingrained bad habits. Net neutral at best.
+**Why:** Most new advisors come in without finance experience. Top producers draw roughly equally from all backgrounds. The actual drivers of success are the 6 C's and willingness to do the work. Finance experience helps marginally in product understanding — a few months of study — and hurts slightly in ingrained bad habits. Net neutral at best.
 
 **Q2. Introverts tend to outperform extroverts in this career because:**
 - A) Clients dislike extroverts
@@ -221,11 +225,11 @@ Think through this:
 
 **Q3. Gabriel Kow and Benjamin Gnoh prove:**
 - A) You need a finance degree to succeed
-- B) Even NSFs and students — with no prior sales experience and no big warm market — can hit $10K/month in under 2 months if they have the 4 C's and plug into real systems ✓
+- B) Even NSFs and students — with no prior sales experience and no big warm market — can hit $10K/month in under 2 months if they have the 6 C's and plug into real systems ✓
 - C) This career only works for extroverts
 - D) Results vary wildly with no predictability
 
-**Why:** Both mentees started from profiles most candidates would consider disqualifying — ORD NSF, incoming uni student, no finance background, no rich network. Both hit $10K/month within 8 weeks. The common variables weren't experience or charisma. They were the 4 C's plus our systems. Which means the "I have no experience" objection is empirically answered.
+**Why:** Both mentees started from profiles most candidates would consider disqualifying — ORD NSF, incoming uni student, no finance background, no rich network. Both hit $10K/month within 8 weeks. The common variables weren't experience or charisma. They were the 6 C's plus our systems. Which means the "I have no experience" objection is empirically answered.
 
 ---
 
