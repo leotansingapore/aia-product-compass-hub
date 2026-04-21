@@ -5,17 +5,27 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { QuizQuestion } from "@/features/first-60-days/types";
-import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
+import { useFirst60DaysProgress, type DayProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
+
+/** Progress interface — pass to override the default First 60 Days progress hook. */
+export type QuizProgressAdapter = {
+  recordQuiz: (dayNumber: number, score: number, passed: boolean) => void;
+  isQuizPassed: (dayNumber: number) => boolean;
+  getDay: (dayNumber: number) => DayProgress | undefined;
+};
 
 type Props = {
   dayNumber: number;
   questions: QuizQuestion[];
+  /** Override progress source (e.g. First 30 Days). Defaults to First 60 Days. */
+  progress?: QuizProgressAdapter;
 };
 
 type Verdict = "pending" | "correct" | "incorrect";
 
-export function DayQuiz({ dayNumber, questions }: Props) {
-  const { recordQuiz, isQuizPassed, getDay } = useFirst60DaysProgress();
+export function DayQuiz({ dayNumber, questions, progress: externalProgress }: Props) {
+  const defaultProgress = useFirst60DaysProgress();
+  const { recordQuiz, isQuizPassed, getDay } = externalProgress ?? defaultProgress;
   const alreadyPassed = isQuizPassed(dayNumber);
   const previousAttempt = getDay(dayNumber);
 

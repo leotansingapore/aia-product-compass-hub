@@ -76,7 +76,12 @@ export default function First30DaysDay() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<string>("read");
   const [showStickyQuiz, setShowStickyQuiz] = useState(false);
-  const { isUnlocked, isDayComplete, isQuizPassed, isReflectionSubmitted, markRead, recordQuiz, saveReflection } = useFirst30DaysProgress();
+  const progress30 = useFirst30DaysProgress();
+  const { isUnlocked, isDayComplete, isQuizPassed, isReflectionSubmitted, markRead } = progress30;
+
+  // Adapters for DayQuiz/DayReflection (which default to First 60 Days progress)
+  const quizProgress = { recordQuiz: progress30.recordQuiz, isQuizPassed: progress30.isQuizPassed, getDay: progress30.getDay };
+  const reflectionProgress = { getDay: progress30.getDay, saveReflection: progress30.saveReflection, isReflectionSubmitted: progress30.isReflectionSubmitted };
 
   useEffect(() => { setActiveTab("read"); }, [dayNumber]);
 
@@ -230,6 +235,7 @@ export default function First30DaysDay() {
           <DayReflection
             dayNumber={dayNumber}
             prompts={day.reflection}
+            progress={reflectionProgress}
           />
         </TabsContent>
 
@@ -237,6 +243,7 @@ export default function First30DaysDay() {
           <DayQuiz
             dayNumber={dayNumber}
             questions={day.quiz}
+            progress={quizProgress}
           />
         </TabsContent>
       </Tabs>

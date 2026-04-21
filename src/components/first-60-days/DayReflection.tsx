@@ -8,17 +8,28 @@ import type { ReflectionPrompt } from "@/features/first-60-days/types";
 import {
   useFirst60DaysProgress,
   type ReflectionAnswers,
+  type DayProgress,
 } from "@/hooks/first-60-days/useFirst60DaysProgress";
+
+/** Progress interface — pass to override the default First 60 Days progress hook. */
+export type ReflectionProgressAdapter = {
+  getDay: (dayNumber: number) => DayProgress | undefined;
+  saveReflection: (dayNumber: number, answers: ReflectionAnswers, submit: boolean) => void;
+  isReflectionSubmitted: (dayNumber: number) => boolean;
+};
 
 type Props = {
   dayNumber: number;
   prompts: ReflectionPrompt[];
+  /** Override progress source (e.g. First 30 Days). Defaults to First 60 Days. */
+  progress?: ReflectionProgressAdapter;
 };
 
 const MIN_CHARS_PER_ANSWER = 10;
 
-export function DayReflection({ dayNumber, prompts }: Props) {
-  const { getDay, saveReflection, isReflectionSubmitted } = useFirst60DaysProgress();
+export function DayReflection({ dayNumber, prompts, progress: externalProgress }: Props) {
+  const defaultProgress = useFirst60DaysProgress();
+  const { getDay, saveReflection, isReflectionSubmitted } = externalProgress ?? defaultProgress;
   const persisted = getDay(dayNumber);
   const submitted = isReflectionSubmitted(dayNumber);
 
