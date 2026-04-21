@@ -15,6 +15,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 const FloatingFeedbackButton = lazy(() => import("@/components/FloatingFeedbackButton").then(m => ({ default: m.FloatingFeedbackButton })));
 import { useAdmin } from "@/hooks/useAdmin";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { useVersionCheck } from "@/hooks/useVersionCheck";
 import { useNavigate, useLocation } from "react-router-dom";
 
 // Safe fallback to avoid crash if AdminProvider isn't mounted (e.g., during boot/HMR)
@@ -46,6 +47,9 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   const isMobile = useIsMobile();
   const [profileOpen, setProfileOpen] = useState(false);
   const location = useLocation();
+
+  // Prompt user to refresh when a new build is deployed.
+  useVersionCheck();
 
   // Hide generic mobile top bar on script hub routes (each page uses BrandedPageHeader + hub tabs)
   const scriptsRoutes = ['/scripts', '/servicing', '/objections', '/playbooks', '/flows', '/concept-cards'];
