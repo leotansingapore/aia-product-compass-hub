@@ -128,6 +128,8 @@ const report = {
       }
     } catch {}
 
+    // Mobile capture runs in separate context below to avoid viewport-switch races.
+
     report.days.push({
       day,
       url,
@@ -139,7 +141,55 @@ const report = {
       consoleErrors: [...consoleErrors],
       networkErrors: [...networkErrors],
     });
-    console.log(`day ${day}: ${stillLoading ? "STUCK LOADING" : "ok"} | console=${consoleErrors.length} | network=${networkErrors.length} | wikilinks=${rawWikilinkHits.length}${rawWikilinkHits.length ? " " + rawWikilinkHits[0].slice(0, 60) : ""}`);
+    console.log(`day ${day}: ${stillLoading ? "STUCK LOADING" : "ok"} | console=${consoleErrors.length} | network=${networkErrors.length} | wikilinks=${rawWikilinkHits.length}`);
+  }
+
+  // --- Mobile pass: reuse desktop context's auth state ---
+  console.log("\n--- Mobile viewport pass (375x812) ---");
+  const storageState = await context.storageState();
+  const mobileContext = await browser.newContext({
+    viewport: { width: 375, height: 812 },
+    storageState,
+  });
+  const mobilePage = await mobileContext.newPage();
+  const mobilePageErrors = [];
+  mobilePage.on("pageerror", (e) => mobilePageErrors.push(e.message));
+  // Warm-up nav to mount React on the new context
+  await mobilePage.goto(`${BASE}/`, { waitUntil: "domcontentloaded" });
+  await mobilePage
+    .waitForFunction(() => {
+      const root = document.getElementById("root");
+      return root && root.children.length > 0 && root.innerText.trim().length > 50;
+    }, { timeout: 20000 })
+    .catch(() => {});
+  console.log(`Mobile session landed at: ${mobilePage.url()}`);
+  if (mobilePage.url().includes("/auth")) {
+    console.log("MOBILE AUTH FAILED — storage state didn't carry");
+    await mobileContext.close();
+  } else {
+
+  report.mobile = [];
+  for (let day = 1; day <= 14; day++) {
+    const url = `${BASE}/learning-track/first-14-days/day/${day}`;
+    // NOTE: Headless Playwright mobile-context navigation to day URLs sometimes
+    // returns an empty body — the React app shell renders but the day container
+    // never hydrates in this environment. We still capture screenshot + overflow
+    // measurement so horizontal-scroll regressions are caught.
+    await mobilePage.goto(url, { waitUntil: "networkidle" });
+    await mobilePage.waitForTimeout(3000);
+    const shot = path.join(OUT_DIR, `day-${String(day).padStart(2, "0")}-mobile.png`);
+    await mobilePage.screenshot({ path: shot, fullPage: true });
+    const bodyLen = (await mobilePage.locator("body").innerText()).length;
+    const landedAt = mobilePage.url();
+    const overflow = await mobilePage.evaluate(() => ({
+      scroll: document.documentElement.scrollWidth,
+      client: document.documentElement.clientWidth,
+      overflows: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+    }));
+    report.mobile.push({ day, screenshot: shot, bodyLen, landedAt, ...overflow });
+    console.log(`day ${day} mobile: at=${landedAt.replace(BASE, "")} scrollWidth=${overflow.scroll}px bodyChars=${bodyLen}${overflow.overflows ? " ⚠ OVERFLOW" : " ok"}`);
+  }
+  await mobileContext.close();
   }
 
   const reportPath = path.join(OUT_DIR, "report.json");
@@ -149,9 +199,18 @@ const report = {
   // Summary
   const stuck = report.days.filter((d) => d.stillLoading);
   const withErrors = report.days.filter((d) => d.consoleErrors.length > 0 || d.networkErrors.length > 0);
+  const mobileOverflowDays = (report.mobile ?? []).filter((m) => m.overflows);
+  const wikilinkDays = report.days.filter((d) => (d.rawWikilinkHits ?? []).length > 0);
   console.log(`\n=== SUMMARY ===`);
   console.log(`Days stuck loading: ${stuck.length}`);
   console.log(`Days with errors: ${withErrors.length}`);
+  console.log(`Days with raw wikilinks: ${wikilinkDays.length}`);
+  console.log(`Days with horizontal overflow at 375px: ${mobileOverflowDays.length}`);
+  if (mobileOverflowDays.length > 0) {
+    mobileOverflowDays.forEach((m) => {
+      console.log(`  Day ${m.day}: scrollWidth=${m.scroll}px (viewport=${m.client}px)`);
+    });
+  }
   if (withErrors.length > 0) {
     withErrors.forEach((d) => {
       console.log(`  Day ${d.day}:`);
