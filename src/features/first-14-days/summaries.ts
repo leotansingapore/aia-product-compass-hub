@@ -95,10 +95,10 @@ export const DAY_SUMMARIES: DaySummary[] = [
     dayNumber: 10,
     week: 2,
     dayInWeek: 3,
-    title: "\"I Don't Want to Sell to My Friends\"",
+    title: "Warm + Cold Market — Your Full Pipeline",
     duration: 15,
     bigIdea:
-      "99.9% of my 1,000+ clients were strangers when I first met them. Warm market is a starting line, not a strategy.",
+      "Other agencies make you dependent on warm market. We settle cold for you — warm is your contribution, and it's a good one. Cold is the engine. Warm is the heart. Together = full pipeline.",
   },
   {
     dayNumber: 11,

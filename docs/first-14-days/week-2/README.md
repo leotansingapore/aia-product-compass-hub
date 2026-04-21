@@ -47,8 +47,8 @@ If any one of the three is no — also valid. We'll get you to a clear answer.
 - [ ] [[day-09|Day 9 — The 6 C's — Honest Self-Assessment]]
   *Consistency of Actions, Constancy of Emotions, Continuous Improvement, Creativity, Can-do Spirit, CEO Mindset. Rate yourself honestly.*
 
-- [ ] [[day-10|Day 10 — "I Don't Want to Sell to My Friends"]]
-  *99.9% of my clients were cold-market. The perception vs reality of warm-market dependency.*
+- [ ] [[day-10|Day 10 — Warm + Cold Market: Your Full Pipeline]]
+  *We settle the cold market for you. Warm is your 50% contribution — and a good one. Pride in serving people you love, done professionally. Other agencies force warm-only; we do both.*
 
 - [ ] [[day-11|Day 11 — "I Have No Experience / I'm Too Introverted"]]
   *Gabriel Kow — ORD NSF, $10K/month in his first month. Benjamin Gnoh — NTU Maritime Studies, $10K/month in 2 months. No experience needed. Introverts win in this career.*

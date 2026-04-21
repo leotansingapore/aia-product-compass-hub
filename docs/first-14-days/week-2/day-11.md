@@ -235,6 +235,6 @@ Think through this:
 
 ## Related
 
-- Previous: [[day-10|Day 10 — "I Don't Want to Sell to My Friends"]]
+- Previous: [[day-10|Day 10 — Warm + Cold Market: Your Full Pipeline]]
 - Next: [[day-12|Day 12 — "I Don't Have Time / I Need a Big Office / I Need IFA Range"]]
 - Week 2 overview: [[README|Week 2 — The Fit Test]]

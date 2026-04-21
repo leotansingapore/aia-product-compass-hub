@@ -55,7 +55,7 @@ The 20% was roughly **20 hours/week.** Mostly weekday evenings (2-hour call wind
 
 ![My uni schedule](/first-14-days/images/leo-uni-schedule.png)
 
-Year 1 income: **$145K.** While in full-time engineering school. With no warm market (99.9% cold). On 20 hours a week.
+Year 1 income: **$145K.** While in full-time engineering school. Working 20 hours a week. My warm network was thin (GEP, small social circle at the time) so most of this came through cold systems — but that's the point: the model works with or without a rich warm network, because cold is handled for you. If you have a warm network, you're doubly positioned.
 
 It wasn't magic. It was **Parkinson's Law + efficiency.** Time expands to fill what you give it. Give yourself 40 hours, you'll use 40 hours. Give yourself 20, the work compresses. Small efforts, daily, compound faster than big bursts.
 

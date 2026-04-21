@@ -388,5 +388,5 @@ If yes — everything I've built is waiting for you. The infrastructure is ready
 ## Related
 
 - Previous: [[day-08|Day 8 — Why the Agency Matters More Than Most People Realise]]
-- Next: [[day-10|Day 10 — "I Don't Want to Sell to My Friends"]]
+- Next: [[day-10|Day 10 — Warm + Cold Market: Your Full Pipeline]]
 - Week 2 overview: [[README|Week 2 — The Fit Test]]

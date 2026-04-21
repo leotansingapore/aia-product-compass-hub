@@ -63,7 +63,7 @@ Week 1 — The Opportunity                        (Days 1–7)
 Week 2 — The Fit Test                           (Days 8–14)
 ├── Day 8  — Why the agency matters more than most people realise
 ├── Day 9  — The 6 C's — honest self-assessment
-├── Day 10 — "I don't want to sell to my friends"
+├── Day 10 — Warm + cold market: your full pipeline
 ├── Day 11 — "I have no experience / I'm too introverted"
 ├── Day 12 — "I don't have time / I need a big office / I need IFA range"
 ├── Day 13 — The FLEXI scheme + 15 rapid-fire FAQs
@@ -88,7 +88,7 @@ Week 2 — The Fit Test                           (Days 8–14)
 
 - [[week-2/day-08|Day 8 — Why the Agency Matters More Than Most People Realise]]
 - [[week-2/day-09|Day 9 — The 6 C's — Honest Self-Assessment]]
-- [[week-2/day-10|Day 10 — "I Don't Want to Sell to My Friends"]]
+- [[week-2/day-10|Day 10 — Warm + Cold Market: Your Full Pipeline]]
 - [[week-2/day-11|Day 11 — "I Have No Experience / I'm Too Introverted"]]
 - [[week-2/day-12|Day 12 — "I Don't Have Time / I Need a Big Office / I Need IFA Range"]]
 - [[week-2/day-13|Day 13 — The FLEXI Scheme + 15 Rapid-Fire FAQs]]

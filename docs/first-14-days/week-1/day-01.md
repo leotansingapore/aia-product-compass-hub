@@ -142,7 +142,7 @@ None of that is quite honest:
 
 - It's not easy. It's a real business being built from zero.
 - Income ramps over months, not weeks.
-- Warm market is a starting line, not a strategy (Day 10 goes deep on this).
+- Warm market matters and helps your first few cases — but on its own it dries up. You need a cold-market engine running in parallel (Day 10 goes deep on this).
 
 A candidate who reads for 14 days before deciding is the kind of candidate who's still in the career five years in. Agencies that want quick headcount don't like candidates like you. Agencies that want top producers — like me — actively look for you.
 

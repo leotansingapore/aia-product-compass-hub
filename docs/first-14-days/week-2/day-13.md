@@ -248,14 +248,14 @@ You start earning without any prior expense to recoup. Zero break-even period �
 
 ## Q11. Do I have to sell to friends and family?
 
-No.
+Warm market is about **half of a complete pipeline** — not optional, but not the whole plan either.
 
-- Warm market is a *useful* starting line, not required
-- 99.9% of my 1,000+ clients were cold market
-- Relying on warm market alone is unsustainable — exhausts in months
-- If you genuinely believe you can help a friend, not reaching out means someone worse will
+- **Other agencies force warm-only.** They have no cold-market system, so you're fully dependent on your network. When it runs out (3–6 months in), you run out.
+- **We settle cold for you.** Digital ads, appointment setters, funnels — that's ~50% of your pipeline, handled.
+- **Warm is your 50% contribution.** Not because it's a chore, but because you *should* be offering good advice to the people closest to you. If you genuinely believe this career helps, not reaching out to friends and family is a disservice — they'll get worse advice from a stranger.
+- **My own warm network was thin** (GEP at NUS, small social circle). So my book is mostly cold. But that was a function of my starting position, not a rule. Candidates with rich warm networks should serve them.
 
-See [[day-10|Day 10]] for the full answer.
+The professional version (low pressure, helping thoroughly, fine with no) strengthens relationships. Do it with pride. See [[day-10|Day 10]] for the full answer.
 
 ---
 

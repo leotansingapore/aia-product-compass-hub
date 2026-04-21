@@ -48,15 +48,13 @@ This is the principle I built FINternship around.
 
 First thing most agencies tell you: *"Make a list of 100 people you know."*
 
-Here's the truth: **warm market is a crutch, not a strategy.**
+Here's the truth: **warm market is half the pipeline — not the whole plan.**
 
-Yes, your friends and family may buy initially because they trust you. But what happens after that? You have maybe 50–100 real connections. Once you've approached them, you're done. Pipeline dries up, relationships get awkward, you're left wondering where the next client comes from.
+Your friends and family will buy initially because they trust you — and serving them well is meaningful work. That's genuinely valuable. But warm alone isn't a career. You have maybe 50–100 real connections. Once you've worked through them, you're done — unless there's a cold-market engine running in parallel. Day 10 covers this in depth.
 
-I learned this the hard way. In my early days I exhausted my warm market within months and had to figure out how to build a real business in the cold market — with complete strangers. That's where the real opportunity is, but most agencies will never teach you how.
+My own warm network was thin — GEP at NUS, a small adult-professional circle — so I had to build most of my book through cold systems. Most of my 1,000+ clients started as strangers. That wasn't because warm is wrong. It was because I didn't have much warm to start with. Candidates with richer networks *should* serve those people too — it's part of the job, and it's good work.
 
-**99.9% of my 1,000+ clients were strangers when I first met them.** Warm market contributed almost nothing to my book.
-
-If your agency's plan for you is *"sell to your friends and family first, then we'll figure out the rest,"* what they're really telling you is: *we don't have a real system for acquiring cold-market clients. You're on your own after month 3.*
+If your agency's plan is *"sell to your friends and family first, then we'll figure out the rest,"* what they're really telling you is: *we don't have a cold-market system. You're on your own after month 3.* A well-built agency provides the cold engine so warm stays a meaningful contribution, not a life raft.
 
 ### Lie #2: "Culture and vibes will carry you"
 
