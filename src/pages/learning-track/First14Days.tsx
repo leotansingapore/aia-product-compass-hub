@@ -7,12 +7,18 @@ import { cn } from "@/lib/utils";
 import { getAllWeeks, TOTAL_DAYS } from "@/features/first-14-days/content";
 import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProgress";
 import { useAdmin } from "@/hooks/useAdmin";
+import { useUserTier } from "@/hooks/useUserTier";
 
 export default function First14Days() {
   const weeks = getAllWeeks();
   const { completedCount, isDayComplete, isUnlocked } = useFirst14DaysProgress();
   const { isActualAdmin } = useAdmin();
-  const effectiveUnlocked = (dayNumber: number) => isActualAdmin || isUnlocked(dayNumber);
+  const { tier } = useUserTier();
+  // Explorers earn each day through the prior day's quiz. Papers-takers and
+  // Post-RNF have already committed — First 14 Days is reference material for
+  // them, not a gated path.
+  const bypassGate = isActualAdmin || tier !== "explorer";
+  const effectiveUnlocked = (dayNumber: number) => bypassGate || isUnlocked(dayNumber);
 
   const totalDone = completedCount();
   const totalPct = (TOTAL_DAYS as number) === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
