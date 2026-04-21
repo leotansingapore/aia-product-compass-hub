@@ -88,23 +88,10 @@ Read that again. Is that actually a loss?
 
 Side by side, the shape of a normal bet versus the bet you're being offered here:
 
-```mermaid
-flowchart LR
-    subgraph Normal["A normal bet"]
-        direction TB
-        N1["<b>Win</b><br/>+X"]
-        N2["<b>Lose</b><br/>−X"]
-    end
-    subgraph Asym["This career (asymmetric)"]
-        direction TB
-        A1["<b>Best case</b><br/>+100X<br/>career of your life"]
-        A2["<b>Worst case</b><br/>+5X<br/>skills · network · financial literacy"]
-    end
-    style N1 fill:#dcfce7,stroke:#15803d,color:#000
-    style N2 fill:#fee2e2,stroke:#b91c1c,color:#000
-    style A1 fill:#dcfce7,stroke:#15803d,color:#000
-    style A2 fill:#fef3c7,stroke:#ca8a04,color:#000
-```
+| | Best case | Worst case |
+|---|---|---|
+| **Normal bet** | +X | −X (you lose what you risked) |
+| **This career (asymmetric)** | +100X (career of your life) | +5X (skills, network, financial literacy) |
 
 In a normal bet, you win X or you lose X, and expected value rides entirely on probability.
 
