@@ -3,15 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { usePermissions } from "@/hooks/usePermissions";
-import { useUserTier } from "@/hooks/useUserTier";
 import { DAYS_WITH_REFLECTION } from "@/features/first-60-days/summaries";
-
-/**
- * Days that are always unlocked for Papers-taker and Post-RNF tiers —
- * they're further along in their journey and shouldn't be gated behind
- * sequential completion for the first two weeks of content.
- */
-const TIER_PREVIEW_MAX_DAY = 14;
 
 const LEGACY_KEY = "first-60-days-progress-v1";
 const MIGRATION_FLAG = "first-60-days-migration-done";
@@ -126,11 +118,9 @@ async function migrateLegacyIfNeeded(userId: string): Promise<boolean> {
 export function useFirst60DaysProgress() {
   const { user } = useSimplifiedAuth();
   const { isAdmin, isMasterAdmin } = usePermissions();
-  const { tier } = useUserTier();
   const qc = useQueryClient();
   const userId = user?.id ?? null;
   const adminBypass = isAdmin() || isMasterAdmin();
-  const tierPreviewUnlocked = tier === "papers_taker" || tier === "post_rnf";
 
   const progressQuery = useQuery({
     queryKey: ["first-60-days-progress", userId],
@@ -276,11 +266,10 @@ export function useFirst60DaysProgress() {
   const isUnlocked = useCallback(
     (dayNumber: number): boolean => {
       if (adminBypass) return true;
-      if (tierPreviewUnlocked && dayNumber <= TIER_PREVIEW_MAX_DAY) return true;
       if (dayNumber <= 1) return true;
       return isDayComplete(dayNumber - 1);
     },
-    [adminBypass, tierPreviewUnlocked, isDayComplete]
+    [adminBypass, isDayComplete]
   );
 
   const currentDay = useCallback((): number => {
