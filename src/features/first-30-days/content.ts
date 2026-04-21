@@ -27,11 +27,11 @@ const dayCache = new Map<number, Day>();
 export { TOTAL_DAYS };
 
 export const WEEK_META: Record<number, { title: string; tagline: string }> = {
-  1: { title: "Week 1 — Placeholder", tagline: "Replace with real week 1 tagline." },
-  2: { title: "Week 2 — Placeholder", tagline: "Replace with real week 2 tagline." },
-  3: { title: "Week 3 — Placeholder", tagline: "Replace with real week 3 tagline." },
-  4: { title: "Week 4 — Placeholder", tagline: "Replace with real week 4 tagline." },
-  5: { title: "Week 5 — Placeholder", tagline: "Replace with real week 5 tagline." },
+  1: { title: "Foundations & Setup", tagline: "Income structure, tools, business plan, and kickstart prospecting." },
+  2: { title: "Week 2 — Placeholder", tagline: "Content coming soon." },
+  3: { title: "Week 3 — Placeholder", tagline: "Content coming soon." },
+  4: { title: "Week 4 — Placeholder", tagline: "Content coming soon." },
+  5: { title: "Week 5 — Placeholder", tagline: "Content coming soon." },
 };
 
 export function getDaySummaries(): DaySummary[] {
