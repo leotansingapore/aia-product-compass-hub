@@ -1,9 +1,22 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.50.0";
 import { Resend } from "npm:resend@4.0.0";
-import { renderAsync } from "npm:@react-email/components@0.0.22";
-import React from "npm:react@18.3.1";
-import { PasswordResetEmail } from "./_templates/password-reset.tsx";
+
+function renderPasswordResetEmail(resetUrl: string, userEmail: string): string {
+  return `<!DOCTYPE html>
+<html><body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f5;margin:0;padding:40px 20px;">
+  <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:8px;padding:40px;">
+    <h1 style="color:#1a1a2e;font-size:24px;margin:0 0 16px;">Reset Your Password</h1>
+    <p style="color:#444;font-size:16px;line-height:1.5;">Hi,</p>
+    <p style="color:#444;font-size:16px;line-height:1.5;">We received a request to reset the password for your FINternship account (${userEmail}). Click the button below to set a new password:</p>
+    <div style="text-align:center;margin:32px 0;">
+      <a href="${resetUrl}" style="background:#1a1a2e;color:#fff;text-decoration:none;padding:14px 28px;border-radius:6px;font-weight:600;display:inline-block;">Reset Password</a>
+    </div>
+    <p style="color:#666;font-size:14px;line-height:1.5;">Or copy this link into your browser:<br/><a href="${resetUrl}" style="color:#1a1a2e;word-break:break-all;">${resetUrl}</a></p>
+    <p style="color:#999;font-size:13px;margin-top:32px;">If you didn't request this, you can safely ignore this email.</p>
+  </div>
+</body></html>`;
+}
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -142,13 +155,8 @@ serve(async (req) => {
       try {
         const resend = new Resend(RESEND_API_KEY);
         
-        // Render the React email template
-        const html = await renderAsync(
-          React.createElement(PasswordResetEmail, {
-            resetUrl,
-            userEmail: email,
-          })
-        );
+        const html = renderPasswordResetEmail(resetUrl, email);
+
         
         const { error: emailError } = await resend.emails.send({
           from: "FINternship <no-reply@mail.themoneybees.co>",
