@@ -64,7 +64,7 @@ Managing your CRM is critical for long term business success. Gone are the days 
 
 **Step 1:** Ask Leo to create your CRM if he hasn't already done so. You should be able to access this [here](https://nsgukkz32942.sg.larksuite.com/wiki/Jqu5wln6eiVL7PklkgplPQc4gIe).
 
-**Step 2:** Whilst waiting for access, please watch this intro video to Lark Base.
+**Step 2:** Whilst waiting for access, please watch this intro video to [Lark Base](https://youtu.be/KH2h4kxc_4c?si=IYOkcrm-2sM31yfj).
 
 **Step 3:** Then, watch the Loom tutorial videos [here](https://nsgukkz32942.sg.larksuite.com/wiki/Jqu5wln6eiVL7PklkgplPQc4gIe).
 
