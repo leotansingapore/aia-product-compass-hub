@@ -6,10 +6,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { cn } from "@/lib/utils";
 import { getAllWeeks, TOTAL_DAYS } from "@/features/first-14-days/content";
 import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProgress";
+import { useAdmin } from "@/hooks/useAdmin";
 
 export default function First14Days() {
   const weeks = getAllWeeks();
   const { completedCount, isDayComplete, isUnlocked } = useFirst14DaysProgress();
+  const { isActualAdmin } = useAdmin();
+  const effectiveUnlocked = (dayNumber: number) => isActualAdmin || isUnlocked(dayNumber);
 
   const totalDone = completedCount();
   const totalPct = TOTAL_DAYS === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
@@ -99,7 +102,7 @@ export default function First14Days() {
                 <ul className="space-y-1.5">
                   {week.days.map((d) => {
                     const done = isDayComplete(d.dayNumber);
-                    const unlocked = isUnlocked(d.dayNumber);
+                    const unlocked = effectiveUnlocked(d.dayNumber);
                     return (
                       <li key={d.dayNumber} className="flex items-center gap-2 text-[13px]">
                         {done ? (

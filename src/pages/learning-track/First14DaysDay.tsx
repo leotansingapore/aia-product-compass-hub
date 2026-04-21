@@ -22,6 +22,7 @@ import { loadDay, loadWeekReadme, WEEK_META } from "@/features/first-14-days/con
 import { DAY_SUMMARIES, TOTAL_DAYS } from "@/features/first-14-days/summaries";
 import type { Day } from "@/features/first-14-days/types";
 import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProgress";
+import { useAdmin } from "@/hooks/useAdmin";
 import { DayQuiz } from "@/components/first-14-days/DayQuiz";
 import { DayWorksheet } from "@/components/first-14-days/DayWorksheet";
 
@@ -109,6 +110,7 @@ export default function First14DaysDay() {
   const [activeTab, setActiveTab] = useState<string>("read");
   const [showStickyQuiz, setShowStickyQuiz] = useState(false);
   const { isDayComplete, isQuizPassed, isUnlocked, markRead, getDay } = useFirst14DaysProgress();
+  const { isActualAdmin } = useAdmin();
 
   // Reset to Read tab when navigating between days.
   useEffect(() => {
@@ -136,7 +138,7 @@ export default function First14DaysDay() {
 
   const completed = isDayComplete(dayNumber);
   const quizPassed = isQuizPassed(dayNumber);
-  const unlocked = isUnlocked(dayNumber);
+  const unlocked = isActualAdmin || isUnlocked(dayNumber);
   const persisted = getDay(dayNumber);
   const worksheetStarted = Boolean(persisted.reflectionSavedAt);
 
@@ -213,7 +215,7 @@ export default function First14DaysDay() {
   const idx = DAY_SUMMARIES.findIndex((d) => d.dayNumber === dayNumber);
   const prev = idx > 0 ? DAY_SUMMARIES[idx - 1] : undefined;
   const next = idx >= 0 && idx < DAY_SUMMARIES.length - 1 ? DAY_SUMMARIES[idx + 1] : undefined;
-  const nextUnlocked = next ? isDayComplete(dayNumber) : false;
+  const nextUnlocked = next ? isActualAdmin || isDayComplete(dayNumber) : false;
   const weekMeta = WEEK_META[day.week];
 
   const hasWorksheet = day.reflection.length > 0;
