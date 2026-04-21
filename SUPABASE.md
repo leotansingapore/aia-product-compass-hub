@@ -6,40 +6,15 @@
 
 ## Pending
 
-#### Learner Leaderboard — 2026-04-21 — **BLOCKING / URGENT**
-
-**What:** Leaderboard currently only shows the viewing user because `profiles` + `user_access_tiers` RLS limits non-admins to their own row. Non-admin learners see a leaderboard of one person (themselves). The RPC below unblocks the feature. This is urgent — ship this before other pending items.
-
-**Tables:**
-- `profiles`: Add column `show_in_leaderboard boolean NOT NULL DEFAULT true`
-
-**Functions (RPC):**
-- `get_learner_leaderboard(p_tier text)` → table(user_id uuid, name text, email text, total_points numeric, days_active int, first_14_days numeric, first_14_reflections numeric, first_60_days numeric, first_60_reflections numeric, assignments numeric, question_bank numeric, product_quizzes numeric, videos numeric, learning_track_items numeric, learning_track_submissions numeric)
-  - Purpose: Server-side aggregation of points across all learning tables for a given tier (`papers_taker` or `post_rnf`), so the client doesn't need 9 parallel queries + joins
-  - Logic: Join `user_access_tiers` → `profiles` (respect `show_in_leaderboard = true` unless caller is admin); LEFT JOIN aggregated counts from `first_14_days_progress`, `first_60_days_progress`, `assignment_submissions` (product_id = `first-60-days-assignments`, distinct item_id), `user_question_progress` (mastered = true), `quiz_attempts`, `video_progress` (completed = true), `learning_track_progress` (status = 'completed'), `learning_track_submissions`. Points formula:
-    - first_14_days = count(quiz_passed_at) × 1
-    - first_14_reflections = count(reflection_saved_at) × 0.5
-    - first_60_days = count(quiz_passed_at) × 1
-    - first_60_reflections = count(reflection_submitted_at) × 0.5
-    - assignments = count(distinct item_id) × 5
-    - question_bank = count(mastered=true) × 0.5
-    - product_quizzes = count(*) × 1
-    - videos = count(completed=true) × 0.5
-    - learning_track_items = count(status='completed') × 1
-    - learning_track_submissions = count(*) × 3 + count(review_status='approved') × 2
-  - Tiebreaker: `days_active` = count distinct DATE(updated_at / completed_at / last_answered_at / submitted_at) across all source tables per user
-  - Filter current user's own row OUT of the opt-out check (admins and the learner themselves always see their row)
-  - Ghost-account filter: skip users who have NO profile display name, first_name, last_name, OR email AND zero activity. These are abandoned/auto-provisioned shells that would otherwise show up as UUID fragments on the board.
-  - The `email` column is returned for admin filtering only; the client never renders it on the learner-facing board.
-  - SECURITY DEFINER so RLS doesn't block the joins
-
-**RLS Policies:**
-- RPC should be callable by any authenticated user (GRANT EXECUTE TO authenticated)
-- `show_in_leaderboard`: users can UPDATE their own row (already covered by the existing "users can update own profile" policy if it's FOR ALL USING `auth.uid() = user_id`)
+_No pending items._
 
 ---
 
 ## Completed (recent)
+
+### Learner Leaderboard RPC + `profiles.show_in_leaderboard` — DONE 2026-04-22
+
+Migration: `20260421164254_2e01cc25-8d6c-4916-8f0d-9cf86465173c.sql`. Lovable shipped `profiles.show_in_leaderboard boolean NOT NULL DEFAULT true` and `public.get_learner_leaderboard(p_tier text)` (SECURITY DEFINER, `GRANT EXECUTE TO authenticated`). RPC aggregates all 9 source tables server-side, respects admin/opt-out visibility, ghost-account filters, and returns one row per ranked learner with points + per-category breakdown + days_active. Client swap shipped same session: `useLearnerLeaderboard(userId, tier)` now calls the RPC once per tier instead of 10 parallel client queries — fixes the "only see yourself" RLS bug for non-admin learners and makes the leaderboard / learning-track rank card significantly faster.
 
 ### `first_14_days_progress` table created — DONE 2026-04-21
 
