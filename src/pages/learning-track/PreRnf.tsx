@@ -7,9 +7,8 @@ import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackP
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
 import { useLockMap } from "@/hooks/learning-track/useLockMap";
 import { AdminTrackView } from "@/components/learning-track/AdminTrackView";
-import { TrackLearnerView } from "@/components/learning-track/TrackLearnerView";
 import First60Days from "@/pages/learning-track/First60Days";
-import type { LearningTrackPhase } from "@/types/learning-track";
+import First60DaysAssignments from "@/pages/learning-track/First60DaysAssignments";
 
 type PreRnfView = "first60" | "assignments";
 
@@ -59,20 +58,10 @@ export default function PreRnfTrack() {
     );
   }
 
-  return <PreRnfLearnerView phases={phases} isCompleted={isCompleted} lockMap={lockMap} itemId={itemId} />;
+  return <PreRnfLearnerView />;
 }
 
-function PreRnfLearnerView({
-  phases,
-  isCompleted,
-  lockMap,
-  itemId,
-}: {
-  phases: LearningTrackPhase[];
-  isCompleted: (itemId: string) => boolean;
-  lockMap: ReturnType<typeof useLockMap>;
-  itemId: string | undefined;
-}) {
+function PreRnfLearnerView() {
   // Tab state is driven by the URL so each view is linkable / shareable:
   //   /learning-track/pre-rnf/first-60-days  → First 60 Days (default)
   //   /learning-track/pre-rnf/assignments    → Assignments grid
@@ -128,17 +117,7 @@ function PreRnfLearnerView({
         </div>
       </div>
 
-      {view === "first60" ? (
-        <First60Days />
-      ) : (
-        <TrackLearnerView
-          phases={phases}
-          isCompleted={isCompleted}
-          lockMap={lockMap}
-          expandedItemId={itemId}
-          hideIdleBadge
-        />
-      )}
+      {view === "first60" ? <First60Days /> : <First60DaysAssignments />}
     </div>
   );
 }
