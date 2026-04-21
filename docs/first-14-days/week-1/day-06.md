@@ -56,7 +56,7 @@ Even at 200+ retainers with 40 staff, the stickiness problem was brutal:
 - I'm on a treadmill, always replacing what I lost
 - Typical client LTV: $20K–$30K before churn
 
-![Scaling agency pain](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/cbcc6d2365ce40e5a7a68c958d4fd838e709e3f8ae5643a0bf505e983885b623)
+![Scaling agency pain](/first-14-days/images/four-businesses.png)
 
 Every month I was starting partially from zero. Compare that to the insurance client who:
 

@@ -53,7 +53,7 @@ Split:
 
 The 20% was roughly **20 hours/week.** Mostly weekday evenings (2-hour call window) and weekends for appointments.
 
-![My uni schedule](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/21cd67e59ea8422abefafad623f44a084fb42601d7fa427aba625193311cb7f7-md.png)
+![My uni schedule](/first-14-days/images/leo-uni-schedule.png)
 
 Year 1 income: **$145K.** While in full-time engineering school. With no warm market (99.9% cold). On 20 hours a week.
 

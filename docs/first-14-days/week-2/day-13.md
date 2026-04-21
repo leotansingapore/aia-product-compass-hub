@@ -34,7 +34,7 @@ Think about it like a football academy. Most academies make you *pay* to join. *
 
 There are three tiers, based on how many hours a week you can commit:
 
-![FLEXI scheme tiers](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/0ad99545d102437fbffc877b2c7f6d361c2a1acc6b514a23948f911b38dd1474-md.png)
+![FLEXI scheme tiers](/first-14-days/images/flexi-scheme-tiers.png)
 
 ### FLEXI 0 HRS — $1,000 (Build a firm foundation)
 

@@ -32,7 +32,7 @@ Hey. I'm Leo.
 
 Fresh out of NS, no direction. Just told — like you probably were — that good grades and a "stable first job" was the way. I had the grades. Perfect A-levels from RJC. Scholarship options abroad. NUS Engineering ahead of me. Every door was open.
 
-![Leo post-NS](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/ad4b41ad83b4462eb81fc51532c2e0c801c52a4fb21f45e0aeddde4eb3460347-md.png)
+![Leo post-NS](/first-14-days/images/leo-post-ns.png)
 
 But a question kept nagging me: **why should I wait 8 to 10 years to earn $10K a month?** What if I could start building that income *now*, as a student, without the luxury of time?
 
@@ -42,7 +42,7 @@ I was skeptical. Obviously. Same as you reading this.
 
 *Is this legit? Can I even do well? Isn't there a stigma? Isn't the market saturated?*
 
-![The skeptical moment](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/010031ffdfc543548ad93210b67bceed1e84be95fb454f59a444948efe851f4b-md.png)
+![The skeptical moment](/first-14-days/images/leo-skeptical.png)
 
 What pulled me through wasn't some pitch. It was a simple observation: **there was no risk or harm in just learning more about this career. And if it didn't work out, I could back out anytime.**
 
@@ -50,7 +50,7 @@ So I took the plunge. No system back then. No scripts, no mentors, no community.
 
 Ironically, the lack of time is what forced the system. I had maybe 2–3 hours on weekday evenings. I couldn't afford to waste a single one. That pressure compounded into a machine that earned me **$145K in my first year as a full-time uni student** — and scaled past $400K post-graduation.
 
-![My uni schedule](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/21cd67e59ea8422abefafad623f44a084fb42601d7fa427aba625193311cb7f7-md.png)
+![My uni schedule](/first-14-days/images/leo-uni-schedule.png)
 
 Today I've closed 1,002 clients, hit MDRT 5×, COT 3×, and built four other companies on top — including Singapore's #1 ranked marketing agency (50 staff), a corporate cleaning business ($15K/month profit), an outsourcing firm, and a consulting firm. Combined: 7-figure revenue.
 

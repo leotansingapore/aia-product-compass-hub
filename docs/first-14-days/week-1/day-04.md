@@ -76,7 +76,7 @@ What does winning actually look like?
 
 This is the grand prize. It's the life most 9-to-5 professionals quietly want and don't see a path to.
 
-![The skeptical moment becomes the plunge](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/010031ffdfc543548ad93210b67bceed1e84be95fb454f59a444948efe851f4b-md.png)
+![The skeptical moment becomes the plunge](/first-14-days/images/leo-skeptical.png)
 
 ---
 

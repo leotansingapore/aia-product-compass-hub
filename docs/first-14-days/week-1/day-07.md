@@ -38,7 +38,7 @@ What's rare is a role that genuinely offers all three. Most jobs that claim to e
 
 The FA career is one of the rare structures where all three are structurally present — not as marketing claims but as natural outputs of the business model.
 
-![The ideal career framing](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/a637cc41ccb840e8b469bf99c3aa152b26f1da87753a40d9b02a9d6c0acc1fc3-md.png)
+![The ideal career framing](/first-14-days/images/ideal-career-framing.png)
 
 ---
 
@@ -92,7 +92,7 @@ What independence actually looks like in practice:
 - **You pick your niche.** Young professionals. Business owners. Doctors. Engineers. Expatriates. You shape it.
 - **You decide the team shape.** Solo, small team, or growing manager — all valid paths.
 
-![Independence in practice](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/7124f98c1a834ea4b1a302769a1dde683f922df806c742d79bfad9fdff3e62af-md.png)
+![Independence in practice](/first-14-days/images/independence-practice.png)
 
 The truest version of independence is *temporal*. You can attend your child's school concert on a Wednesday afternoon because you moved your morning. That small flexibility is worth more than most candidates realise when they're still inside a 9-to-5 rhythm.
 

@@ -130,7 +130,7 @@ You've saved yourself 12 months of finding out the hard way. The skills you buil
 
 This is the entire arc from today → licensed advisor. Three phases: **Introduction → Incubation → Induction.**
 
-![Your timeline with us](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/e499549058bd44be8b18cb29d8da3f44d025bd9789704e50984837920a49d7af-md.png)
+![Your timeline with us](/first-14-days/images/timeline-with-us.png)
 
 ### Phase 1 — INTRODUCTION (Today → Week 2)
 
@@ -159,7 +159,7 @@ Most FINterns pass all papers in 2–4 months at full pace. Part-timers take 4�
 
 **Congratulations — you're now officially qualified to join as a financial advisor.**
 
-![Post-exam induction](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/2d23a245ec9741dea9b1f68eb51c7be492d788822f4040ec98a0649b212d83b9-md.png)
+![Post-exam induction](/first-14-days/images/induction-post-exam.png)
 
 **What happens:**
 
