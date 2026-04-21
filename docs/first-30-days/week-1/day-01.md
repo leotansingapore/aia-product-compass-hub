@@ -1,41 +1,35 @@
 ---
 week: 1
 day: 1
-title: "Introduction & Time Blocking"
+title: "Introduction"
 tags: [post-rnf, week-1, introduction]
 duration_minutes: 15
 ---
 
-# Introduction & Time Blocking
+# Introduction
 
-This programme is for consultants who have passed their RES5 and submitted their RNF application. It will serve to uncover the blind spots that you don't know you have over the next 30 days.
+This is for consultants who have passed their RES5 and submitted their RNF application, and will serve to uncover the blind spots that you don't know you have over the next 30 days.
 
-It covers things from your **income structure**, to the **tools you need access to** to facilitate your prospecting, and the **knowledge and skills** you need to master.
+It covers things from your income structure, to the tools you need access to to facilitate your prospecting, and the knowledge and skills you need to master.
 
----
-
-## Your Daily Schedule
-
-Start by setting aside time for yourself, and **block off at least 6 hours a day** in this order:
-
-### Hours 1–2: Income Structure + Business Planning
-
-Complete the "Income Structure" + "Business Planning" modules in the next 7 days, setting aside 2 hours per day to do so. After this is done, you can then allocate the 2 hours to something else, such as sending roleplay recordings to Leo for feedback, or additional prospecting.
-
-### Hours 3–6: Practical Modules (in parallel)
-
-- **2 hours a day** focusing on **Familiarity** — learning products, tools, and presenters
-- **2 hours a day** focusing on **Prospecting** — cold calling, warm outreach, lead generation
+Do start by setting aside a time for yourself, and **block off at least 6 hours a day** in this order.
 
 ---
 
-## By the End of This Programme You Should:
+Complete the **"Income Structure" + "Business Planning"** modules in the next 7 days, setting aside 2 hours per day to do so. After this is done, you can then allocate the 2 hours away to something else, such as sending roleplay recordings to Leo for feedback, or additional prospecting.
 
-1. **Know where to access resources** that you need to operate effectively
-2. **Be familiar with the products** to sell as a consultant
-3. **Kickstart your prospecting journey** with warm and cold leads
+In parallel, complete the **Practical Modules** by committing another 4 hours a day.
+
+- **2 hours a day** focusing on **"Familiarity"**
+- **2 hours a day** focusing on **"Prospecting"**
 
 ---
+
+By the end of this you should have:
+
+- Know where to access resources that you need to operate effectively
+- Are familiar with the products to sell as a consultant
+- Kickstart your prospecting journey
 
 ## Quick quiz
 

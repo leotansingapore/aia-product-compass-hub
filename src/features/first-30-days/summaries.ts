@@ -15,7 +15,7 @@ export interface DaySummary {
 }
 
 const WEEK_1_TITLES: Record<number, { title: string; duration: number }> = {
-  1: { title: "Introduction & Time Blocking", duration: 15 },
+  1: { title: "Introduction", duration: 15 },
   2: { title: "Income Structure", duration: 30 },
   3: { title: "Tech Stack & CRM Setup", duration: 45 },
   4: { title: "Business Plan & Vision Board", duration: 60 },
