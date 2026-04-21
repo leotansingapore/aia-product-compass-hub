@@ -97,6 +97,7 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
           passed={passed100}
           pct={pct}
           onRetry={onReset}
+          basePath={basePath}
         />
       </div>
     );
@@ -351,6 +352,7 @@ function ResultCard({
   passed,
   pct,
   onRetry,
+  basePath,
 }: {
   dayNumber: number;
   correct: number;
@@ -358,6 +360,7 @@ function ResultCard({
   passed: boolean;
   pct: number;
   onRetry: () => void;
+  basePath: string;
 }) {
   return (
     <Card

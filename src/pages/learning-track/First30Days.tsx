@@ -12,7 +12,7 @@ export default function First30Days() {
   const { completedCount, isDayComplete, isUnlocked } = useFirst30DaysProgress();
 
   const totalDone = completedCount();
-  const totalPct = TOTAL_DAYS === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
+  const totalPct = (TOTAL_DAYS as number) === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
 
   return (
     <div className="space-y-4 max-w-3xl mx-auto" data-testid="first-30-days-hub">
