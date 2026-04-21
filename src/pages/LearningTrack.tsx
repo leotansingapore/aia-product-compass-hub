@@ -181,24 +181,6 @@ export default function LearningTrack() {
               })}
             </div>
 
-            {/* Secondary links */}
-            {can(FEATURES.PRE_RNF_TRACK) && (
-              <div className="flex items-center justify-center mt-3 pt-3 border-t border-border/40">
-                <NavLink
-                  to="/learning-track/first-60-days"
-                  className={({ isActive }) => cn(
-                    "group inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold transition-all",
-                    isActive
-                      ? "border-primary/40 bg-primary/15 text-primary shadow-sm"
-                      : "border-primary/25 bg-primary/5 text-primary hover:border-primary/45 hover:bg-primary/10",
-                  )}
-                >
-                  <CalendarDays className="h-3.5 w-3.5" />
-                  First 60 Days
-                  <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                </NavLink>
-              </div>
-            )}
           </div>
         </div>
       )}
