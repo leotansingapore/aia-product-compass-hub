@@ -1,14 +1,16 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Compass, BookOpen, Briefcase, Lock, CheckCircle2, ChevronRight, CalendarDays } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useFeatureAccess } from "@/hooks/useFeatureAccess";
-import { FEATURES } from "@/lib/tiers";
+import { useUserTier } from "@/hooks/useUserTier";
+import { FEATURES, type TierLevel } from "@/lib/tiers";
 import { migrateLocalProgress } from "@/lib/learning-track/migrateLocalProgress";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { PageLayout } from "@/components/layout/PageLayout";
+import { RequestUpgradeButton } from "@/components/tier/RequestUpgradeButton";
 
 /** Admin tabs — kept for admin/master_admin only */
 const LT_TAB_NAV_CLASS =
@@ -81,9 +83,18 @@ export default function LearningTrack() {
   }
 
   // ---- Learner: journey path ----
-  // Determine which step is "current" based on the highest accessible tier
+  const { tier } = useUserTier();
   const accessibleSteps = JOURNEY_STEPS.filter((s) => can(s.feature));
   const currentTierKey = accessibleSteps.length > 0 ? accessibleSteps[accessibleSteps.length - 1].key : "explorer";
+  const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
+
+  // Next tier for upgrade — used when clicking a locked journey node
+  const NEXT_TIER: Record<string, { to: TierLevel; label: string } | null> = {
+    explorer: { to: "papers_taker", label: "Papers-taker" },
+    papers_taker: { to: "post_rnf", label: "Post-RNF" },
+    post_rnf: null,
+  };
+  const nextTier = NEXT_TIER[tier];
 
   return (
     <PageLayout title="Learning Track" description="Your learning journey.">
@@ -152,6 +163,15 @@ export default function LearningTrack() {
                         <NavLink to={step.path} className={stepClasses}>
                           {inner}
                         </NavLink>
+                      ) : nextTier ? (
+                        <button
+                          type="button"
+                          onClick={() => setUpgradeDialogOpen(true)}
+                          className={cn(stepClasses, "cursor-pointer !opacity-60 hover:!opacity-80")}
+                          title={`Upgrade to ${nextTier.label} to unlock`}
+                        >
+                          {inner}
+                        </button>
                       ) : (
                         <div aria-disabled className={stepClasses}>{inner}</div>
                       );
@@ -186,6 +206,17 @@ export default function LearningTrack() {
       <div className="mx-auto px-2 pb-10 pt-4 sm:px-4 md:px-6">
         <Outlet />
       </div>
+
+      {/* Upgrade dialog — triggered by clicking locked journey nodes */}
+      {nextTier && (
+        <RequestUpgradeButton
+          fromTier={tier}
+          toTier={nextTier.to}
+          open={upgradeDialogOpen}
+          onOpenChange={setUpgradeDialogOpen}
+          dialogOnly
+        />
+      )}
     </PageLayout>
   );
 }

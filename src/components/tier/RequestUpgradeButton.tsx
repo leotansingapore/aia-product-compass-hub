@@ -25,6 +25,12 @@ interface RequestUpgradeButtonProps {
   /** If true, render a compact inline button suitable for cards / nav bars. */
   compact?: boolean;
   className?: string;
+  /** Controlled open state — when provided, the component is externally controlled. */
+  open?: boolean;
+  /** Callback when the dialog open state changes (for controlled mode). */
+  onOpenChange?: (open: boolean) => void;
+  /** When true, hide the trigger button and only render the dialog (for programmatic open). */
+  dialogOnly?: boolean;
 }
 
 /**
@@ -38,8 +44,13 @@ export function RequestUpgradeButton({
   label = 'Request upgrade',
   compact,
   className,
+  open: controlledOpen,
+  onOpenChange,
+  dialogOnly,
 }: RequestUpgradeButtonProps) {
-  const [open, setOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = controlledOpen ?? internalOpen;
+  const setOpen = onOpenChange ?? setInternalOpen;
   const [reason, setReason] = useState('');
   const { pendingRequest, createRequest, isCreating } = useMyTierRequests();
   const hasPending = !!pendingRequest;
@@ -75,13 +86,15 @@ export function RequestUpgradeButton({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className={cn('gap-1.5', compact && 'h-8 text-xs', className)}>
-          <Sparkles className="h-4 w-4" />
-          {label}
-          <ArrowRight className="h-4 w-4" />
-        </Button>
-      </DialogTrigger>
+      {!dialogOnly && (
+        <DialogTrigger asChild>
+          <Button className={cn('gap-1.5', compact && 'h-8 text-xs', className)}>
+            <Sparkles className="h-4 w-4" />
+            {label}
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        </DialogTrigger>
+      )}
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">

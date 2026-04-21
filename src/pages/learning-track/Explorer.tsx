@@ -672,7 +672,7 @@ export default function ExplorerTrack() {
         </div>
       )}
 
-      {/* All-done banner — tier-aware upgrade CTA */}
+      {/* All-done banner — only show upgrade CTA for Explorer-tier users */}
       {!nextItem && totalItems > 0 && !activePhaseId && (
         <div className="rounded-xl border bg-gradient-to-r from-green-50 via-background to-primary/5 dark:from-green-950/20 dark:via-background dark:to-primary/5 p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4">
           <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -681,16 +681,16 @@ export default function ExplorerTrack() {
             </div>
             <div className="min-w-0">
               <p className="text-sm font-semibold">All Explorer modules complete!</p>
-              {nextTier ? (
+              {tier === "explorer" && nextTier ? (
                 <p className="text-xs text-muted-foreground">
                   Upgrade to <span className="font-medium text-foreground">{nextTier.label}</span> to unlock the next stage of your journey.
                 </p>
               ) : (
-                <p className="text-xs text-muted-foreground">You've reached the highest tier. Well done!</p>
+                <p className="text-xs text-muted-foreground">You've completed the orientation track.</p>
               )}
             </div>
           </div>
-          {nextTier && (
+          {tier === "explorer" && nextTier && (
           <div className="shrink-0">
             {pendingRequest ? (
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">

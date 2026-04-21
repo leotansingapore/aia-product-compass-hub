@@ -1,13 +1,17 @@
-import { useState, useMemo, Fragment } from "react";
-import { ChevronRight, ChevronDown, Lock, CheckCircle2, Circle, Folder, ArrowLeft } from "lucide-react";
+import { useState, useMemo, useEffect, useRef, Fragment } from "react";
+import { ChevronRight, ChevronDown, Lock, CheckCircle2, Circle, Folder, ArrowLeft, Sparkles, Clock } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { LessonContentPanel } from "./LessonContentPanel";
+import { RequestUpgradeButton } from "@/components/tier/RequestUpgradeButton";
+import { useMyTierRequests } from "@/hooks/useTierRequests";
+import { useUserTier } from "@/hooks/useUserTier";
 import { groupItemsIntoModules, isModuleFolder } from "@/lib/learning-track/moduleGrouping";
 import { cn } from "@/lib/utils";
 import type { LearningTrackPhase } from "@/types/learning-track";
 import type { LockMap } from "@/hooks/learning-track/useLockMap";
+import type { TierLevel } from "@/lib/tiers";
 
 interface TrackLearnerViewProps {
   phases: LearningTrackPhase[];
@@ -36,6 +40,90 @@ export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId:
     return null;
   });
   const [expandedItemId, setExpandedItemId] = useState<string | null>(initialItemId ?? null);
+  const [trackComplete, setTrackComplete] = useState(false);
+  const { tier } = useUserTier();
+  const { pendingRequest } = useMyTierRequests();
+
+  const NEXT_TIER: Record<TierLevel, { to: TierLevel; label: string } | null> = {
+    explorer: { to: "papers_taker", label: "Papers-taker" },
+    papers_taker: { to: "post_rnf", label: "Post-RNF" },
+    post_rnf: null,
+  };
+  const nextTier = NEXT_TIER[tier];
+
+  // All lessons across all phases
+  const allLessons = phases.flatMap((p) => p.items.filter((i) => !isModuleFolder(i)));
+  const allComplete = allLessons.length > 0 && allLessons.every((i) => isCompleted(i.id));
+
+  const handleLessonComplete = (completedItemId: string) => {
+    // Check if this was the last incomplete lesson across the entire track
+    const nowComplete = allLessons.every((i) => i.id === completedItemId || isCompleted(i.id));
+    if (nowComplete) {
+      setTrackComplete(true);
+    }
+  };
+
+  // Track completion overlay — shown when user just completed the last lesson
+  if (trackComplete) {
+    return (
+      <div className="max-w-2xl mx-auto py-4">
+        <div className="relative overflow-hidden rounded-2xl border bg-card">
+          <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-green-500/8 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-20 -left-20 w-56 h-56 rounded-full bg-primary/8 blur-3xl pointer-events-none" />
+
+          {/* Celebration */}
+          <div className="relative px-6 pt-10 pb-6 sm:px-10 sm:pt-12 text-center">
+            <div className="animate-celebrate-icon mx-auto w-20 h-20 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center mb-6 ring-4 ring-green-200/50 dark:ring-green-800/30 shadow-lg shadow-green-500/10">
+              <CheckCircle2 className="h-10 w-10 text-green-600" />
+            </div>
+            <div className="animate-celebrate-text space-y-2 mb-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Track complete</p>
+              <h1 className="text-3xl sm:text-4xl font-bold font-serif tracking-tight">Congratulations!</h1>
+              <p className="text-muted-foreground text-sm max-w-sm mx-auto leading-relaxed">
+                You've finished all modules in this track. {nextTier ? "Time to level up." : "You've reached the top!"}
+              </p>
+            </div>
+            <div className="max-w-[200px] mx-auto">
+              <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
+                <div className="animate-celebrate-progress h-full rounded-full bg-gradient-to-r from-green-500 to-emerald-400" />
+              </div>
+              <p className="text-[10px] text-green-600/80 font-medium mt-1.5">100% complete</p>
+            </div>
+          </div>
+
+          {/* Upgrade CTA */}
+          {nextTier && (
+            <>
+              <div className="mx-6 sm:mx-10 border-t border-border/50" />
+              <div className="animate-celebrate-cta px-6 py-6 sm:px-10 text-center space-y-4">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10">
+                  <Sparkles className="h-3.5 w-3.5 text-primary" />
+                  <span className="text-xs font-semibold text-primary">What's next</span>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Upgrade to <span className="font-semibold text-foreground">{nextTier.label}</span> to unlock the next stage.
+                </p>
+                {pendingRequest ? (
+                  <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">
+                    <Clock className="h-4 w-4 text-amber-600 animate-pulse" />
+                    <span className="text-sm font-medium text-amber-700 dark:text-amber-400">Upgrade requested — awaiting approval</span>
+                  </div>
+                ) : (
+                  <RequestUpgradeButton fromTier={tier} toTier={nextTier.to} label={`Request upgrade to ${nextTier.label}`} />
+                )}
+              </div>
+            </>
+          )}
+
+          <div className="px-6 pb-6 sm:px-10 text-center">
+            <Button variant="ghost" size="sm" onClick={() => { setTrackComplete(false); setActivePhaseId(null); setExpandedItemId(null); }} className="text-xs text-muted-foreground/60">
+              Back to modules
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Inside a module view
   if (activePhaseId) {
@@ -85,7 +173,7 @@ export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId:
             />
             <div className="flex-1 min-w-0 overflow-y-auto">
               {activeItem ? (
-                <LessonContentPanel item={activeItem} lockResult={lockMap?.getItemLock(activeItem.id) ?? null} />
+                <LessonContentPanel item={activeItem} lockResult={lockMap?.getItemLock(activeItem.id) ?? null} onComplete={handleLessonComplete} />
               ) : (
                 <div className="p-8 text-center text-sm text-muted-foreground">Select a lesson from the sidebar.</div>
               )}
@@ -117,7 +205,7 @@ export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId:
           {/* Mobile content */}
           {activeItem && (
             <div className="md:hidden border-t">
-              <LessonContentPanel item={activeItem} lockResult={lockMap?.getItemLock(activeItem.id) ?? null} />
+              <LessonContentPanel item={activeItem} lockResult={lockMap?.getItemLock(activeItem.id) ?? null} onComplete={handleLessonComplete} />
             </div>
           )}
         </div>
