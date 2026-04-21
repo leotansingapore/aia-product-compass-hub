@@ -80,27 +80,9 @@ export default function QuestionBanks() {
         <div className="max-w-4xl mx-auto px-3 sm:px-6 py-4 sm:py-8 animate-fade-in">
           <div className="mb-6">
             <h1 className="text-2xl sm:text-3xl font-bold mb-2">Question Banks</h1>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-muted-foreground">
               Study with practice questions or take scored exams recorded on your profile.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <div className="flex items-center gap-2 rounded-lg border bg-card px-3 py-2">
-                <BookOpen className="h-4 w-4 text-blue-500" />
-                <span className="text-sm font-medium">
-                  {isLoading ? "…" : totalStudy} Study Questions
-                </span>
-              </div>
-              <div className="flex items-center gap-2 rounded-lg border bg-card px-3 py-2">
-                <GraduationCap className="h-4 w-4 text-emerald-500" />
-                <span className="text-sm font-medium">
-                  {isLoading ? "…" : totalExam} Exam Questions
-                </span>
-              </div>
-              <div className="flex items-center gap-2 rounded-lg border bg-card px-3 py-2">
-                <Brain className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium">{products.length} Products</span>
-              </div>
-            </div>
           </div>
 
           {isLoading ? (
