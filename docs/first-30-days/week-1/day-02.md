@@ -16,7 +16,7 @@ Understanding how you earn is critical before you start selling. Today you'll le
 
 [loom video](https://www.loom.com/share/7fda52b3744d47fe8fc57a1ce78ceb63)
 
-Read through the EPS scheme, most importantly the **last page** to know your month-by-month target.
+Read through the [EPS scheme](https://nsgukkz32942.sg.larksuite.com/wiki/AK2jwgjKgic5vzkcToSlflbQgXf), most importantly the **last page** to know your month-by-month target.
 
 > **Note:** For those on EPS, your first two months have no target except to maintain at least **80% attendance** for the BTS programme.
 
