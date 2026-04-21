@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { cn } from "@/lib/utils";
 import { getAllWeeks, TOTAL_DAYS } from "@/features/first-60-days/content";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
+import { LeaderboardRankCard } from "@/components/leaderboard/LeaderboardRankCard";
 
 export default function First60Days() {
   const weeks = getAllWeeks();
@@ -24,6 +25,8 @@ export default function First60Days() {
           {totalDone} of {TOTAL_DAYS} days · {totalPct}%
         </span>
       </div>
+
+      <LeaderboardRankCard />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {weeks.map((week) => {

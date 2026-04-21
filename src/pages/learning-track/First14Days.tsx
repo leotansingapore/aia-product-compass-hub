@@ -8,6 +8,7 @@ import { getAllWeeks, TOTAL_DAYS } from "@/features/first-14-days/content";
 import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProgress";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useUserTier } from "@/hooks/useUserTier";
+import { LeaderboardRankCard } from "@/components/leaderboard/LeaderboardRankCard";
 
 export default function First14Days() {
   const weeks = getAllWeeks();
@@ -30,6 +31,8 @@ export default function First14Days() {
 
   return (
     <div className="space-y-6 max-w-3xl mx-auto" data-testid="first-14-days-hub">
+      <LeaderboardRankCard />
+
       {/* Hero */}
       <Card className="border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background">
         <CardContent className="p-6 space-y-4">

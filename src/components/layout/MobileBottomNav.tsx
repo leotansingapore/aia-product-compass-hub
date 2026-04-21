@@ -10,6 +10,7 @@ import {
   MessageCircle,
   MessageSquarePlus,
   ShieldCheck,
+  Trophy,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -50,6 +51,7 @@ interface QuickLink {
 }
 
 const QUICK_LINKS: QuickLink[] = [
+  { name: "Leaderboard", href: "/leaderboard", icon: Trophy, color: "text-amber-500", bg: "bg-amber-50 dark:bg-amber-950/30" },
   { name: "Roleplay", href: "/roleplay", icon: MessageCircle, color: "text-purple-500", bg: "bg-purple-50 dark:bg-purple-950/30", features: [FEATURES.ROLEPLAY] },
   { name: "Exams", href: "/cmfas-exams", icon: GraduationCap, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30", features: [FEATURES.CMFAS] },
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30", features: [FEATURES.BOOKMARKS] },
