@@ -1989,6 +1989,7 @@ export type Database = {
           last_name: string | null
           password_changed_at: string | null
           postcode: string | null
+          show_in_leaderboard: boolean
           streak_days: number | null
           total_xp: number | null
           updated_at: string
@@ -2010,6 +2011,7 @@ export type Database = {
           last_name?: string | null
           password_changed_at?: string | null
           postcode?: string | null
+          show_in_leaderboard?: boolean
           streak_days?: number | null
           total_xp?: number | null
           updated_at?: string
@@ -2031,6 +2033,7 @@ export type Database = {
           last_name?: string | null
           password_changed_at?: string | null
           postcode?: string | null
+          show_in_leaderboard?: boolean
           streak_days?: number | null
           total_xp?: number | null
           updated_at?: string
@@ -3092,6 +3095,24 @@ export type Database = {
           tavus_conversation_id: string
         }
         Returns: string
+      }
+      get_learner_leaderboard: {
+        Args: { p_tier: string }
+        Returns: {
+          assignments: number
+          days_active: number
+          email: string
+          first_14_days: number
+          first_14_reflections: number
+          first_60_days: number
+          first_60_reflections: number
+          name: string
+          product_quizzes: number
+          question_bank: number
+          total_points: number
+          user_id: string
+          videos: number
+        }[]
       }
       get_learning_leaderboard: {
         Args: { result_limit?: number }
