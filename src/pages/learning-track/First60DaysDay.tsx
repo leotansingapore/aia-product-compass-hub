@@ -108,8 +108,15 @@ export default function First60DaysDay() {
 
   const [day, setDay] = useState<Day | undefined>(undefined);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<string>("read");
+  const [showStickyQuiz, setShowStickyQuiz] = useState(false);
   const { isUnlocked, isDayComplete, isQuizPassed, isReflectionSubmitted, markRead } =
     useFirst60DaysProgress();
+
+  // Reset to the Read tab when navigating between days.
+  useEffect(() => {
+    setActiveTab("read");
+  }, [dayNumber]);
 
   useEffect(() => {
     let cancelled = false;
@@ -139,6 +146,33 @@ export default function First60DaysDay() {
   useEffect(() => {
     if (day && unlocked) markRead(dayNumber);
   }, [day, dayNumber, unlocked, markRead]);
+
+  // Sticky "Take the quiz" CTA appears once the learner has scrolled past
+  // ~60% of the page, while they're not already on the Quiz tab and haven't
+  // passed it yet. Days with no quiz questions skip the prompt entirely.
+  useEffect(() => {
+    if (!day || activeTab === "quiz" || quizPassed || day.quiz.length === 0) {
+      setShowStickyQuiz(false);
+      return;
+    }
+    const onScroll = () => {
+      const docEl = document.documentElement;
+      const total = docEl.scrollHeight - window.innerHeight;
+      if (total <= 0) {
+        setShowStickyQuiz(false);
+        return;
+      }
+      setShowStickyQuiz(window.scrollY / total > 0.55);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [day, activeTab, quizPassed]);
+
+  const goToQuiz = () => {
+    setActiveTab("quiz");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (loading || !day) {
     if (loading) {
@@ -313,7 +347,7 @@ export default function First60DaysDay() {
       </section>
 
       {/* Tabs */}
-      <Tabs defaultValue="read" className="w-full">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="inline-flex h-auto w-full justify-start gap-1 overflow-x-auto rounded-xl border border-border/60 bg-card/80 p-1 shadow-sm backdrop-blur">
           <TabsTrigger
             value="read"
@@ -472,6 +506,30 @@ export default function First60DaysDay() {
           </Button>
         )}
       </div>
+
+      {/* Sticky "Take the quiz" CTA — only when scrolled deep into Read /
+          Video / Reflection content, quiz still pending, and the day actually
+          has quiz questions. Sits above the mobile bottom nav. */}
+      {showStickyQuiz && (
+        <div
+          className="pointer-events-none fixed inset-x-0 bottom-16 z-30 px-3 sm:px-4 md:bottom-4"
+          aria-live="polite"
+        >
+          <div className="pointer-events-auto mx-auto max-w-3xl">
+            <div className="flex items-center gap-3 rounded-2xl border border-primary/30 bg-background/95 p-2 pl-4 shadow-elegant backdrop-blur">
+              <ClipboardCheck className="h-5 w-5 shrink-0 text-primary" />
+              <p className="flex-1 text-sm font-medium leading-snug">
+                <span className="hidden sm:inline">Ready to lock today in? </span>
+                Take the quiz to unlock Day {dayNumber + 1}.
+              </p>
+              <Button size="sm" onClick={goToQuiz} className="shrink-0 gap-1.5 bg-gradient-primary text-primary-foreground hover:opacity-95">
+                Take the quiz
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
