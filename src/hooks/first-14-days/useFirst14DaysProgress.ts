@@ -111,10 +111,10 @@ async function migrateLegacyIfNeeded(userId: string): Promise<boolean> {
 
 export function useFirst14DaysProgress() {
   const { user } = useSimplifiedAuth();
-  const { isAdmin, isMasterAdmin } = usePermissions();
+  const { isActualAdmin } = useAdmin();
   const qc = useQueryClient();
   const userId = user?.id ?? null;
-  const adminBypass = isAdmin() || isMasterAdmin();
+  const adminBypass = isActualAdmin;
 
   const progressQuery = useQuery({
     queryKey: ["first-14-days-progress", userId],
