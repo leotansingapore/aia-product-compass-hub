@@ -360,7 +360,11 @@ export function useLearnerLeaderboard(currentUserId: string | null) {
   return useQuery({
     queryKey: ["learner-leaderboard", currentUserId],
     queryFn: () => fetchLeaderboard(currentUserId),
-    staleTime: 60_000,
-    gcTime: 5 * 60_000,
+    // The board aggregates 9 tables across every learner — expensive. Hold the
+    // result for 5 min so navigating between learning-track pages (which each
+    // render LeaderboardRankCard) doesn't re-aggregate on every visit.
+    staleTime: 5 * 60_000,
+    gcTime: 15 * 60_000,
+    refetchOnMount: false,
   });
 }
