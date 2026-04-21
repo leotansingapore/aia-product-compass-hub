@@ -29,6 +29,8 @@
     - learning_track_submissions = count(*) × 3 + count(review_status='approved') × 2
   - Tiebreaker: `days_active` = count distinct DATE(updated_at / completed_at / last_answered_at / submitted_at) across all source tables per user
   - Filter current user's own row OUT of the opt-out check (admins and the learner themselves always see their row)
+  - Ghost-account filter: skip users who have NO profile display name, first_name, last_name, OR email AND zero activity. These are abandoned/auto-provisioned shells that would otherwise show up as UUID fragments on the board.
+  - The `email` column is returned for admin filtering only; the client never renders it on the learner-facing board.
   - SECURITY DEFINER so RLS doesn't block the joins
 
 **RLS Policies:**

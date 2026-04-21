@@ -38,13 +38,25 @@ type ProfileRow = {
 type TierRow = { user_id: string; tier_level: string };
 
 function personLabel(p: ProfileRow | undefined, userId: string): string {
-  if (!p) return userId.slice(0, 8);
-  return (
+  if (!p) return "Learner";
+  const name =
     p.display_name?.trim() ||
-    [p.first_name, p.last_name].filter(Boolean).join(" ").trim() ||
-    p.email ||
-    userId.slice(0, 8)
-  );
+    [p.first_name, p.last_name].filter(Boolean).join(" ").trim();
+  if (name) return name;
+  // Fall back to the username portion of the email — never leak full addresses
+  // on the board, and never show raw UUID fragments as "names".
+  const emailPrefix = p.email?.split("@")[0]?.trim();
+  if (emailPrefix) return emailPrefix;
+  return "Learner";
+}
+
+/** True when the profile has a real human-readable display name or email. */
+function hasRealIdentity(p: ProfileRow | undefined): boolean {
+  if (!p) return false;
+  if (p.display_name?.trim()) return true;
+  if ((p.first_name?.trim() ?? "") + (p.last_name?.trim() ?? "")) return true;
+  if (p.email?.trim()) return true;
+  return false;
 }
 
 function addDate(set: Set<string>, iso: string | null | undefined) {
@@ -282,6 +294,11 @@ async function fetchLeaderboard(currentUserId: string | null): Promise<Leaderboa
   for (const userId of relevantIds) {
     const tier = tiersByUser.get(userId)!;
     const b = buckets.get(userId);
+    const profile = profileMap.get(userId);
+    const hasActivity = Boolean(b);
+    // Skip ghost accounts (no profile fields AND no activity) so they don't
+    // pad the leaderboard with UUID fragments and 0-pt rows.
+    if (!hasActivity && !hasRealIdentity(profile)) continue;
     const breakdown: PointBreakdown = b?.breakdown ?? {
       first14Days: 0,
       first14Reflections: 0,
@@ -306,7 +323,6 @@ async function fetchLeaderboard(currentUserId: string | null): Promise<Leaderboa
       breakdown.learningTrackItems +
       breakdown.learningTrackSubmissions;
     const daysActive = b?.days.size ?? 0;
-    const profile = profileMap.get(userId);
     rows.push({
       userId,
       name: personLabel(profile, userId),

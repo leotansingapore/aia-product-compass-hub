@@ -119,9 +119,6 @@ function LeaderboardTable({
                       </Badge>
                     )}
                   </div>
-                  {row.email && (
-                    <div className="truncate text-xs text-muted-foreground">{row.email}</div>
-                  )}
                 </div>
                 <div className="text-right">
                   <div className="text-sm font-bold tabular-nums">
@@ -239,7 +236,7 @@ export default function Leaderboard() {
             {query.error instanceof Error ? query.error.message : "Unknown error"}
           </CardContent>
         </Card>
-      ) : (
+      ) : isActualAdmin ? (
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TierLevel)}>
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="papers_taker">{TIER_META.papers_taker.label}</TabsTrigger>
@@ -248,14 +245,12 @@ export default function Leaderboard() {
 
           <div className="mt-3 space-y-3">
             <YourRankBanner rows={rows} tier={activeTab} />
-            {isActualAdmin && (
-              <Input
-                placeholder="Filter by name or email…"
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}
-                className="max-w-sm"
-              />
-            )}
+            <Input
+              placeholder="Filter by name…"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className="max-w-sm"
+            />
 
             <TabsContent value="papers_taker" className="m-0">
               <LeaderboardTable rows={rows} tier="papers_taker" filter={filter} />
@@ -265,6 +260,21 @@ export default function Leaderboard() {
             </TabsContent>
           </div>
         </Tabs>
+      ) : tier === "papers_taker" || tier === "post_rnf" ? (
+        // Learners only see their own tier — no tab switcher.
+        <div className="space-y-3">
+          <div className="inline-flex rounded-md border bg-muted/40 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            {TIER_META[tier].label} Leaderboard
+          </div>
+          <YourRankBanner rows={rows} tier={tier} />
+          <LeaderboardTable rows={rows} tier={tier} filter="" />
+        </div>
+      ) : (
+        <Card>
+          <CardContent className="p-10 text-center text-sm text-muted-foreground">
+            The leaderboard opens once you start your Papers-taker journey.
+          </CardContent>
+        </Card>
       )}
 
       <Card className="border-dashed">
