@@ -710,6 +710,42 @@ export type Database = {
           },
         ]
       }
+      first_14_days_progress: {
+        Row: {
+          day_number: number
+          quiz_attempts: number
+          quiz_passed_at: string | null
+          quiz_score: number | null
+          read_at: string | null
+          reflection_answers: Json | null
+          reflection_saved_at: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          day_number: number
+          quiz_attempts?: number
+          quiz_passed_at?: string | null
+          quiz_score?: number | null
+          read_at?: string | null
+          reflection_answers?: Json | null
+          reflection_saved_at?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          day_number?: number
+          quiz_attempts?: number
+          quiz_passed_at?: string | null
+          quiz_score?: number | null
+          read_at?: string | null
+          reflection_answers?: Json | null
+          reflection_saved_at?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       first_60_days_day_meta: {
         Row: {
           day_number: number
