@@ -1,3 +1,12 @@
+export type AssignmentFormFieldKind = "text" | "textarea";
+
+export interface AssignmentFormField {
+  label: string;
+  kind: AssignmentFormFieldKind;
+  hint?: string;
+  rows?: number;
+}
+
 export interface AssignmentFrontmatter {
   id: string;
   order: number;
@@ -5,11 +14,12 @@ export interface AssignmentFrontmatter {
   short: string;
   icon: string;
   deliverable: string;
-  submission_type: "file" | "text" | "both";
+  submission_type: "file" | "text" | "both" | "form";
   estimated_time: string;
   weeks_covered: number[];
   related_days: number[];
   status_key: string;
+  form_fields?: AssignmentFormField[];
 }
 
 export interface Assignment {
@@ -47,7 +57,8 @@ function parseFlexYaml(yaml: string): Record<string, unknown> {
     if (rawVal === "") {
       const children: string[] = [];
       while (i + 1 < lines.length && /^\s+-\s+/.test(lines[i + 1])) {
-        children.push(lines[i + 1].replace(/^\s+-\s+/, "").trim());
+        const raw = lines[i + 1].replace(/^\s+-\s+/, "").trim();
+        children.push(raw.replace(/^["']|["']$/g, ""));
         i++;
       }
       out[key] = children;
@@ -88,6 +99,21 @@ function coerceString(raw: unknown, fallback = ""): string {
   return typeof raw === "string" ? raw : fallback;
 }
 
+function coerceFormFields(raw: unknown): AssignmentFormField[] | undefined {
+  if (!Array.isArray(raw)) return undefined;
+  const fields: AssignmentFormField[] = [];
+  for (const entry of raw) {
+    if (typeof entry !== "string") continue;
+    const parts = entry.split("|").map((p) => p.trim());
+    const [label, kindStr = "textarea", hint = "", rowsStr = ""] = parts;
+    if (!label) continue;
+    const kind: AssignmentFormFieldKind = kindStr === "text" ? "text" : "textarea";
+    const rows = rowsStr ? Math.max(2, Math.min(12, Number(rowsStr) || 0)) : undefined;
+    fields.push({ label, kind, hint: hint || undefined, rows });
+  }
+  return fields.length ? fields : undefined;
+}
+
 async function loadSlug(slug: string): Promise<Assignment | undefined> {
   const loader = loaderBySlug[slug];
   if (!loader) return undefined;
@@ -108,6 +134,7 @@ async function loadSlug(slug: string): Promise<Assignment | undefined> {
       weeks_covered: coerceList(fm.weeks_covered),
       related_days: coerceList(fm.related_days),
       status_key: coerceString(fm.status_key, slug),
+      form_fields: coerceFormFields(fm.form_fields),
     },
     markdown: body.trim(),
   };

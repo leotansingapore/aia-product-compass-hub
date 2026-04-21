@@ -36,6 +36,34 @@ The target:
 
 **Why 100?** It's the sweet spot. Under 50 is too few to sustain a pipeline. Over 200 is unmanageable and mentally exhausting. 100 is the Goldilocks number.
 
+## 1b. Market temperature — where the real market lives
+
+Before you start listing names, understand the three rings your contacts sit in. Most new FCs exhaust the **hot** ring in 6 weeks and conclude "I've run out of people" — when in reality they've never touched the largest ring.
+
+```mermaid
+flowchart TD
+    COLD["Cold<br/>Total strangers · cold sources<br/>Ads, roadshows, cold calls · law of large numbers"]
+    SEMIWARM["Semi-Warm · THE REAL MARKET<br/>Haven't spoken in years · acquaintances<br/>Secondary school friends, ex-colleagues, past interest groups, referrals<br/>Least competition, most untapped"]
+    HOT["Hot<br/>Closest to you · easiest to meet, open, close<br/>Parents, siblings, best friends<br/>Exhausts fastest and earliest"]
+    COLD --> SEMIWARM --> HOT
+    classDef cold fill:#1e3a8a,stroke:#1e3a8a,color:#fff
+    classDef semi fill:#fca5a5,stroke:#fca5a5,color:#1f2937
+    classDef hot fill:#991b1b,stroke:#991b1b,color:#fff
+    class COLD cold
+    class SEMIWARM semi
+    class HOT hot
+```
+
+| Ring | Who | Why it matters |
+|---|---|---|
+| **Hot** | Parents, siblings, best friends — the 5 to 15 people closest to you | Easiest to meet, open, and close. Burns fast. Month 1–2 territory. |
+| **Semi-Warm** | Friends, ex-colleagues, relatives you see sometimes, old classmates you message once a year | This is **where most of your career lives**. Largest ring, lowest competition, real relationship equity. |
+| **Cold** | Strangers from ads, roadshows, cold calls, referrals | Lower conversion, transactional — but infinite supply. Day 40–42 territory. |
+
+**The mistake:** most people look for names in the Hot ring only, then stall when it's depleted. The actual mining work happens in Semi-Warm — and the whole reason Project 100 is set at *100* is to force you out of Hot and into the Semi-Warm ring where the long-term pipeline lives.
+
+**Rule of thumb for your Project 100:** ≤25 Hot, ≥40 Semi-Warm, rest Cold leads or referrals.
+
 ## 2. How to build your 100
 
 Start with a blank spreadsheet. Use these 10 categories to get you to 100.

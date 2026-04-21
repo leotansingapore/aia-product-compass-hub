@@ -25,10 +25,12 @@ import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { Input } from "@/components/ui/input";
 import { assignmentMarkdownComponents } from "@/components/first-60-days/assignmentMarkdownComponents";
 import {
   loadAllAssignments,
   type Assignment,
+  type AssignmentFormField,
 } from "@/features/first-60-days/assignments";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 
@@ -329,6 +331,21 @@ function AssignmentDetail({
   );
 }
 
+function parseFormValues(submissionText: string | null | undefined): Record<string, string> {
+  if (!submissionText) return {};
+  try {
+    const parsed = JSON.parse(submissionText);
+    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+      return Object.fromEntries(
+        Object.entries(parsed).map(([k, v]) => [k, typeof v === "string" ? v : String(v ?? "")]),
+      );
+    }
+  } catch {
+    // Not JSON — probably free-text submission, ignore for form mode
+  }
+  return {};
+}
+
 function SubmissionPanel({
   assignment,
   submission,
@@ -340,7 +357,15 @@ function SubmissionPanel({
   userId: string | undefined;
   onSubmitted: () => void;
 }) {
+  const isFormMode =
+    assignment.frontmatter.submission_type === "form" &&
+    !!assignment.frontmatter.form_fields?.length;
+  const formFields = assignment.frontmatter.form_fields ?? [];
+
   const [text, setText] = useState(submission?.submission_text ?? "");
+  const [formValues, setFormValues] = useState<Record<string, string>>(() =>
+    parseFormValues(submission?.submission_text),
+  );
   const [file, setFile] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [editing, setEditing] = useState(!submission);
@@ -349,12 +374,15 @@ function SubmissionPanel({
   useEffect(() => {
     setEditing(!submission);
     setText(submission?.submission_text ?? "");
+    setFormValues(parseFormValues(submission?.submission_text));
     setFile(null);
   }, [submission?.id, assignment.slug]);
 
   const MAX_MB = 500;
 
   if (submission && !editing) {
+    const formValuesSnapshot = parseFormValues(submission.submission_text);
+    const hasFormValues = Object.keys(formValuesSnapshot).length > 0;
     return (
       <div className="rounded-2xl border border-green-500/40 bg-green-500/5 p-6 sm:p-8 space-y-4">
         <div className="flex items-center gap-3">
@@ -379,11 +407,26 @@ function SubmissionPanel({
             <span className="truncate flex-1">{submission.file_name}</span>
           </a>
         )}
-        {submission.submission_text && (
+        {isFormMode && hasFormValues ? (
+          <div className="space-y-3">
+            {formFields.map((field) => {
+              const value = formValuesSnapshot[field.label];
+              if (!value) return null;
+              return (
+                <div key={field.label} className="rounded-lg border bg-background p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
+                    {field.label}
+                  </p>
+                  <p className="text-sm whitespace-pre-wrap leading-relaxed">{value}</p>
+                </div>
+              );
+            })}
+          </div>
+        ) : submission.submission_text ? (
           <div className="rounded-lg border bg-background p-4 text-sm whitespace-pre-wrap">
             {submission.submission_text}
           </div>
-        )}
+        ) : null}
         <Button variant="outline" size="sm" onClick={() => setEditing(true)}>
           Edit & resubmit
         </Button>
@@ -407,15 +450,32 @@ function SubmissionPanel({
       toast.error("Please sign in to submit.");
       return;
     }
-    if (!file && !text.trim()) {
-      toast.error("Upload a file or paste a link / notes.");
-      return;
+
+    let payloadText: string | null = null;
+    if (isFormMode) {
+      const filled = formFields.filter((f) => (formValues[f.label] ?? "").trim().length > 0);
+      if (filled.length === 0) {
+        toast.error("Fill in at least one field before submitting.");
+        return;
+      }
+      payloadText = JSON.stringify(
+        Object.fromEntries(
+          formFields.map((f) => [f.label, (formValues[f.label] ?? "").trim()]),
+        ),
+      );
+    } else {
+      if (!file && !text.trim()) {
+        toast.error("Upload a file or paste a link / notes.");
+        return;
+      }
+      payloadText = text.trim() || null;
     }
+
     setSubmitting(true);
     try {
       let fileUrl: string | null = null;
       let fileName: string | null = null;
-      if (file) {
+      if (!isFormMode && file) {
         const ext = file.name.split(".").pop() ?? "bin";
         const path = `${userId}/${PRODUCT_ID}/${assignment.frontmatter.status_key}/${Date.now()}.${ext}`;
         const { error: upErr } = await supabase.storage
@@ -432,7 +492,7 @@ function SubmissionPanel({
         user_id: userId,
         product_id: PRODUCT_ID,
         item_id: assignment.frontmatter.status_key,
-        submission_text: text.trim() || null,
+        submission_text: payloadText,
         file_url: fileUrl,
         file_name: fileName,
       });
@@ -455,57 +515,79 @@ function SubmissionPanel({
           <Upload className="h-5 w-5" />
         </div>
         <div>
-          <h3 className="font-serif text-lg font-bold">Submit your work</h3>
+          <h3 className="font-serif text-lg font-bold">
+            {isFormMode ? "Fill in your reflection" : "Submit your work"}
+          </h3>
           <p className="text-xs text-muted-foreground">
-            Upload a file or paste a shareable link (Google Drive, Dropbox, Loom, etc.) in the notes.
+            {isFormMode
+              ? "Short, specific answers beat long general ones. Submit directly here."
+              : "Upload a file or paste a shareable link (Google Drive, Dropbox, Loom, etc.) in the notes."}
           </p>
         </div>
       </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-foreground">
-          Upload file <span className="text-muted-foreground font-normal">(optional, max {MAX_MB}MB)</span>
-        </label>
-        <input
-          ref={fileRef}
-          type="file"
-          className="hidden"
-          accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.png,.jpg,.jpeg,.mp4,.mov,.zip"
-          onChange={handleFile}
-        />
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => fileRef.current?.click()}
-          disabled={submitting}
-          className="w-full border-dashed border-2 h-20 flex flex-col items-center justify-center gap-1"
-        >
-          {file ? (
-            <span className="flex items-center gap-2 text-sm">
-              <FileText className="h-4 w-4" />
-              {file.name}
-            </span>
-          ) : (
-            <>
-              <Upload className="h-5 w-5 text-muted-foreground" />
-              <span className="text-xs text-muted-foreground">Click to upload</span>
-            </>
-          )}
-        </Button>
-      </div>
+      {isFormMode ? (
+        <div className="space-y-5">
+          {formFields.map((field) => (
+            <FormFieldRenderer
+              key={field.label}
+              field={field}
+              value={formValues[field.label] ?? ""}
+              onChange={(v) =>
+                setFormValues((prev) => ({ ...prev, [field.label]: v }))
+              }
+              disabled={submitting}
+            />
+          ))}
+        </div>
+      ) : (
+        <>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-foreground">
+              Upload file <span className="text-muted-foreground font-normal">(optional, max {MAX_MB}MB)</span>
+            </label>
+            <input
+              ref={fileRef}
+              type="file"
+              className="hidden"
+              accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.png,.jpg,.jpeg,.mp4,.mov,.zip"
+              onChange={handleFile}
+            />
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => fileRef.current?.click()}
+              disabled={submitting}
+              className="w-full border-dashed border-2 h-20 flex flex-col items-center justify-center gap-1"
+            >
+              {file ? (
+                <span className="flex items-center gap-2 text-sm">
+                  <FileText className="h-4 w-4" />
+                  {file.name}
+                </span>
+              ) : (
+                <>
+                  <Upload className="h-5 w-5 text-muted-foreground" />
+                  <span className="text-xs text-muted-foreground">Click to upload</span>
+                </>
+              )}
+            </Button>
+          </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-foreground">
-          Notes or shareable link <span className="text-muted-foreground font-normal">(optional)</span>
-        </label>
-        <Textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Paste a Loom / Google Drive / Dropbox link, and any 2-3 sentence self-review."
-          rows={4}
-          disabled={submitting}
-        />
-      </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-foreground">
+              Notes or shareable link <span className="text-muted-foreground font-normal">(optional)</span>
+            </label>
+            <Textarea
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Paste a Loom / Google Drive / Dropbox link, and any 2-3 sentence self-review."
+              rows={4}
+              disabled={submitting}
+            />
+          </div>
+        </>
+      )}
 
       <div className="flex gap-3">
         {submission && (
@@ -527,6 +609,41 @@ function SubmissionPanel({
           )}
         </Button>
       </div>
+    </div>
+  );
+}
+
+function FormFieldRenderer({
+  field,
+  value,
+  onChange,
+  disabled,
+}: {
+  field: AssignmentFormField;
+  value: string;
+  onChange: (v: string) => void;
+  disabled: boolean;
+}) {
+  return (
+    <div className="space-y-1.5">
+      <label className="text-sm font-semibold text-foreground">{field.label}</label>
+      {field.hint && (
+        <p className="text-xs text-muted-foreground">{field.hint}</p>
+      )}
+      {field.kind === "text" ? (
+        <Input
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          disabled={disabled}
+        />
+      ) : (
+        <Textarea
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          rows={field.rows ?? 4}
+          disabled={disabled}
+        />
+      )}
     </div>
   );
 }

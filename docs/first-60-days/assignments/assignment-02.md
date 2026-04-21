@@ -36,12 +36,35 @@ The playbook is yours. Don't use anyone else's exact words. Use their frameworks
 
 ## Part A — Contact list
 
-Build a spreadsheet (Google Sheets, Excel, or Numbers) with these columns, one row per person. Minimum 100 rows. Blanks are fine early but the skeleton must be there.
+> **Start here:** **[Duplicate this Project 100 Sheet](https://docs.google.com/spreadsheets/d/1Bm0WQMPWggZ7e4o_MO-yfLxJCVvVgHd1/edit?usp=sharing&ouid=117605838416133603235&rtpof=true&sd=true)** — open the link, click **File → Make a copy**, save it into your own Drive, and fill it in. The template already has the columns, priority scoring, and temperature fields set up.
+
+### Understand the market temperature first
+
+Your list is split into three concentric rings. Most new FCs only mine the **hot** ring and run out of names by Month 3. The actual goldmine is the **semi-warm** ring.
+
+```mermaid
+flowchart TD
+    COLD["Cold<br/>Total strangers · cold sources · law of large numbers<br/>(ads, roadshows, cold calls)"]
+    SEMIWARM["Semi-Warm · THE REAL MARKET<br/>Haven't spoken in years · contact once a year · acquaintances<br/>Secondary school friends, ex-colleagues, past interest groups, referrals<br/>Least competition, most untapped"]
+    HOT["Hot<br/>Closest to you · easiest to meet, open, close<br/>Parents, siblings, best friends<br/>Exhausts the fastest and earliest"]
+    COLD --> SEMIWARM --> HOT
+    classDef cold fill:#1e3a8a,stroke:#1e3a8a,color:#fff
+    classDef semi fill:#fca5a5,stroke:#fca5a5,color:#1f2937
+    classDef hot fill:#991b1b,stroke:#991b1b,color:#fff
+    class COLD cold
+    class SEMIWARM semi
+    class HOT hot
+```
+
+**Why semi-warm wins:** hot market says yes out of love and exhausts in weeks; cold market is a volume game with low conversion; semi-warm has real relationship equity AND the largest untapped pool because no one reconnects with them first.
+
+### Columns in the template
 
 | Column | What goes here |
 |---|---|
 | **Name** | Full name |
-| **Relationship** | Family / close friend / university / ex-colleague / neighbour / vendor / community / secondary |
+| **Temperature** | Hot / Semi-Warm / Cold — honest read of your current relationship |
+| **Relationship** | Family / close friend / university / ex-colleague / neighbour / vendor / community / secondary-school |
 | **Priority (A/B/C)** | A = likely meet, B = worth calling, C = keep warm only |
 | **Phone** | Mobile, if you have it |
 | **Last contact** | When you last genuinely spoke (not a LinkedIn like) |
@@ -51,7 +74,9 @@ Build a spreadsheet (Google Sheets, Excel, or Numbers) with these columns, one r
 | **Status** | Not contacted / messaged / meeting booked / met / closed / not pursuing |
 | **Next step + date** | "Call Tuesday", "lunch 15 Jan", "re-check July", etc. |
 
-**Rule: at least 30 names must be Priority A.** If you cannot find 30 A's, you haven't dug deep enough — school alumni, past colleagues, gym, church, sports clubs, wedding guest list, wife/husband's circle.
+**Rule 1: at least 30 names must be Priority A.** If you cannot find 30 A's, you haven't dug deep enough — school alumni, past colleagues, gym, church, sports clubs, wedding guest list, wife/husband's circle.
+
+**Rule 2: at least 40 of your 100 must be Semi-Warm.** This is where your long-term pipeline lives.
 
 ## Part B — The playbook
 

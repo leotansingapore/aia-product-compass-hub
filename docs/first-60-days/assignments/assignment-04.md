@@ -33,34 +33,30 @@ These map your existing frameworks onto what books typically teach. Pick a book 
 - [Day 23 — Feel-Good Productivity](../../first-60-days/week-4/day-23.md) — Energisers, Unblockers, Sustainers
 - [Day 24 — Time Management Matrix](../../first-60-days/week-4/day-24.md) — Covey's quadrants
 
-## Suggested reading list
+## The reading list — pick one
 
-Pick one. If you've already read one from this list, pick another. Not limited to these — any book where you can draw 3 practical moves counts.
+Choose one book from this list. PDF / archive links are provided where available — most are free to borrow on the Internet Archive (sign in with a free account, read in-browser or download for 14 days).
 
-### Sales & influence
-- **The Greatest Salesman in the World** — Og Mandino *(beginner-friendly, motivational)*
-- **How I Raised Myself from Failure to Success in Selling** — Frank Bettger *(timeless field wisdom, insurance-adjacent)*
-- **To Sell is Human** — Dan Pink *(modern sales psychology, evidence-based)*
-- **SPIN Selling** — Neil Rackham *(expands on Days 47–49 if you want to go deeper)*
-- **Never Split the Difference** — Chris Voss *(negotiation, objection-handling mastery)*
+### Sales, prospecting & influence
 
-### Career & identity
-- **Atomic Habits** — James Clear *(pairs beautifully with Day 6)*
-- **The 7 Habits of Highly Effective People** — Stephen Covey *(the Q2 quadrant lives here)*
-- **Deep Work** — Cal Newport *(attention as your real asset)*
-- **Feel-Good Productivity** — Ali Abdaal *(pairs with Day 23)*
-- **The 10X Rule** — Grant Cardone *(pairs with Day 18)*
+- **[The Science of Selling](https://archive.org/details/scienceofselling0000hoff)** — David Hoffeld — pairs with Days 47–49 (SPIN). Evidence-based sales psychology.
+- **[Fanatical Prospecting](https://archive.org/details/fanaticalprospec0000blou)** — Jeb Blount — pairs with Days 19, 37, 39. The argument for activity volume over cleverness.
+- **[Never Split the Difference](https://archive.org/details/neversplitdiffer0000voss)** — Chris Voss — pairs with Day 44. Objection handling at FBI-negotiator level.
+- **[How to Win Friends and Influence People](https://archive.org/details/howtowinfriendsi0000dale_s0y4)** — Dale Carnegie — pairs with Day 21. The rapport and listening fundamentals that still hold 90 years later.
+- **[Influence: The Psychology of Persuasion](https://archive.org/details/influencepsychol00cial)** — Robert Cialdini — pairs with Day 45. The six principles (reciprocity, commitment, social proof, liking, authority, scarcity).
 
-### Wealth & freedom (for your own file, and for richer client conversations)
-- **The Psychology of Money** — Morgan Housel *(brilliant for storytelling with clients)*
-- **Rich Dad Poor Dad** — Robert Kiyosaki *(the Cashflow Quadrant you already know, in full)*
-- **Die With Zero** — Bill Perkins *(forces rethinking of wealth-accumulation orthodoxy)*
-- **The Millionaire Next Door** — Thomas Stanley *(data on who actually builds wealth in professional life)*
+### Habits, mindset & long-game
 
-### Mindset & long-game
-- **Mindset** — Carol Dweck *(fixed vs growth, maps directly onto "Better than yesterday")*
-- **Man's Search for Meaning** — Viktor Frankl *(purpose beats motivation)*
-- **Shoe Dog** — Phil Knight *(what building a long-term business actually feels like)*
+- **[The Power of Habit](https://archive.org/details/CharlesDuhigg.ThePowerOfHabit_201808)** — Charles Duhigg — pairs with Day 6. The cue–routine–reward loop explained with research and real cases.
+- **[Mindset: The New Psychology of Success](https://archive.org/details/mindsetnewpsycho0000dwec_g9z4)** — Carol Dweck — pairs with "Better than yesterday". Fixed vs growth mindset.
+- **[The 7 Habits of Highly Effective People](https://archive.org/details/7habitsofhighlye00cove_0)** — Stephen Covey — pairs with Day 24. The Q2 quadrant lives here, plus the character-ethic frame.
+- **[The Common Denominator of Success](https://www.amnesta.net/mba/thecommondenominatorofsuccess-albertengray.pdf)** — Albert E.N. Gray — short read, required reading in many FC shops. 6-page 1940 speech on habit and discipline.
+
+### Performance & work ethic
+
+- **[The 10X Rule](https://ia600905.us.archive.org/12/items/10x_20191019/10X.pdf)** — Grant Cardone — pairs with Day 18. Goal-setting and activity escalation, uncomfortably direct.
+- **W1nning: The Unforgiving Race to Greatness** — Tim Grover — Michael Jordan's trainer on what separates winners from everyone else. *No free PDF — buy at Amazon / borrow from library.*
+- **[The 4-Hour Workweek](https://archive.org/details/b-The-4-Hour-Workweek)** — Tim Ferriss — pairs with Days 22, 24. Elimination, automation, and the 80/20 rule applied to work.
 
 ## The template
 
