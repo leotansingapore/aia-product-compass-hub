@@ -8,6 +8,7 @@ import {
   Bookmark,
   Shield,
 } from "lucide-react";
+import { FINTERNSHIP_LOGO_NAVY } from "@/constants/branding";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -68,10 +69,12 @@ export const TopNav = memo(function TopNav({
         to="/"
         className="flex items-center gap-2 shrink-0 mr-4 hover:opacity-80 transition-opacity"
       >
-        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-          <BookOpen className="h-4 w-4 text-primary-foreground" />
-        </div>
-        <span className="font-semibold text-sm">FINternship</span>
+        <img
+          src={FINTERNSHIP_LOGO_NAVY}
+          alt="FINternship"
+          className="h-8 w-auto object-contain"
+          decoding="async"
+        />
       </NavLink>
 
       {/* Nav links */}

@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { EyeOff, Plus, Search } from "lucide-react";
+import { EyeOff, Plus, Search, Lock, ChevronRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { useChecklistProgress } from "@/hooks/useChecklistProgress";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
@@ -231,6 +232,15 @@ export default function CMFASExams() {
     if (field === "useful_links") await updateUsefulLinks(value as UsefulLink[]);
   };
 
+  // Check if user completed the CMFAS onboarding wizard steps
+  const { isItemCompleted } = useChecklistProgress();
+  const ONBOARDING_STEPS = ['welcome', 'create-student-account', 'access-question-bank', 'understand-costs-timeline', 'register-m9-exam', 'first-practice'];
+  const onboardingComplete = ONBOARDING_STEPS.every((id) => isItemCompleted(id));
+
+  // Split products into Getting Started (onboarding) and exam modules
+  const onboardingProduct = filteredProducts.find((p) => p.id === 'onboarding');
+  const examModules = filteredProducts.filter((p) => p.id !== 'onboarding');
+
   const loading = categoriesLoading || productsLoading;
 
   if (loading) {
@@ -340,54 +350,89 @@ export default function CMFASExams() {
           )}
 
             <TabsContent value="modules" className="space-y-4 outline-none">
-              <section
-                id="cmf-modules"
-                className="space-y-5"
-                aria-labelledby="cmf-modules-heading"
-              >
-                <p className="text-sm leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
-                  Start with <strong>Getting Started</strong> to complete your essential setup, then work through each exam module. Recommended order: M9 → M9A → HI → RES5.
-                </p>
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <h2
-                    id="cmf-modules-heading"
-                    className="text-lg font-semibold tracking-tight text-foreground sm:text-xl"
+              <section id="cmf-modules" className="space-y-5" aria-labelledby="cmf-modules-heading">
+                {/* Getting Started hero — always prominent */}
+                {onboardingProduct && (
+                  <div
+                    className={`relative overflow-hidden rounded-xl border-2 ${onboardingComplete ? "border-green-200 dark:border-green-800/40 bg-green-50/50 dark:bg-green-950/10" : "border-primary/30 bg-primary/5"} p-5 sm:p-6 cursor-pointer transition-all hover:shadow-md`}
+                    onClick={() => navigate("/cmfas/module/onboarding")}
                   >
-                    Your modules
-                  </h2>
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                      <div className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${onboardingComplete ? "bg-green-100 dark:bg-green-950/40" : "bg-primary/15"}`}>
+                        {onboardingComplete ? (
+                          <CheckCircle2 className="h-6 w-6 text-green-600" />
+                        ) : (
+                          <Sparkles className="h-6 w-6 text-primary" />
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className={`text-[10px] font-semibold uppercase tracking-wider ${onboardingComplete ? "text-green-600" : "text-primary"}`}>
+                            {onboardingComplete ? "Completed" : "Start here"}
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold font-serif tracking-tight mb-1">
+                          {onboardingProduct.title || "Getting Started"}
+                        </h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {onboardingComplete
+                            ? "You've completed the setup. You can review anytime."
+                            : "Complete your essential setup before accessing exam modules. Set up your SCI account, access the question bank, and register for your first exam."}
+                        </p>
+                      </div>
+                      <Button
+                        variant={onboardingComplete ? "outline" : "default"}
+                        className="shrink-0 gap-2"
+                      >
+                        {onboardingComplete ? "Review" : "Get started"}
+                        <ChevronRight className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Exam modules header */}
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <h2 id="cmf-modules-heading" className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+                      Exam modules
+                    </h2>
+                    {!onboardingComplete && !isAdminUser && (
+                      <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
+                        <Lock className="h-3 w-3" />
+                        Complete Getting Started to unlock
+                      </p>
+                    )}
+                  </div>
                   {isAdminUser && categoryId && (
-                    <Button
-                      type="button"
-                      className="h-11 w-full shrink-0 gap-2 sm:h-10 sm:w-auto"
-                      onClick={() => setCreateModuleOpen(true)}
-                    >
-                      <Plus className="h-4 w-4" />
-                      New module
+                    <Button type="button" className="h-11 w-full shrink-0 gap-2 sm:h-10 sm:w-auto" onClick={() => setCreateModuleOpen(true)}>
+                      <Plus className="h-4 w-4" /> New module
                     </Button>
                   )}
                 </div>
+
+                {/* Search — always visible */}
                 <div className="relative">
                   <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    type="search"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search CMFAS modules..."
-                    className="pl-9"
-                    aria-label="Search CMFAS modules"
-                  />
+                  <Input type="search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search CMFAS modules..." className="pl-9" aria-label="Search CMFAS modules" />
                 </div>
 
-                <ProductsGrid
-                  products={filteredProducts}
-                  categoryName={cmfasCategory.name}
-                  onProductClick={(id) => navigate(`/cmfas/module/${id.replace(/-module$/, "")}`)}
-                  onClearFilters={() => setSearchQuery("")}
-                  onEditProduct={isAdminUser ? handleEditProduct : undefined}
-                  onDeleteProduct={isAdminUser ? handleDeleteProduct : undefined}
-                  onTogglePublish={isAdminUser ? handleTogglePublish : undefined}
-                  onNestingChange={refetchProducts}
-                />
+                {/* Exam modules — locked or unlocked */}
+                <div className={!onboardingComplete && !isAdminUser ? "opacity-50 pointer-events-none select-none" : ""}>
+                  <ProductsGrid
+                    products={examModules}
+                    categoryName={cmfasCategory.name}
+                    onProductClick={(id) => {
+                      if (!onboardingComplete && !isAdminUser) return;
+                      navigate(`/cmfas/module/${id.replace(/-module$/, "")}`);
+                    }}
+                    onClearFilters={() => setSearchQuery("")}
+                    onEditProduct={isAdminUser ? handleEditProduct : undefined}
+                    onDeleteProduct={isAdminUser ? handleDeleteProduct : undefined}
+                    onTogglePublish={isAdminUser ? handleTogglePublish : undefined}
+                    onNestingChange={refetchProducts}
+                  />
+                </div>
               </section>
             </TabsContent>
 
