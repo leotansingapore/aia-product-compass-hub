@@ -32,14 +32,11 @@ import {
   Stethoscope,
   Gift,
   Award,
-  MousePointer2,
   Pause,
 } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-type Waypoint = { x: string; y: string; click?: boolean };
 
 type Slide = {
   id: string;
@@ -50,7 +47,6 @@ type Slide = {
   bg: string;
   accent: string;
   visual: ReactNode;
-  waypoints?: Waypoint[];
 };
 
 const AUTO_ADVANCE_MS = 9000;
@@ -134,12 +130,6 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#1a1150] via-[#2a1065] to-[#4c1d95]",
         accent: "from-fuchsia-500 to-violet-500",
         visual: <WelcomeVisual />,
-        waypoints: [
-          { x: "82%", y: "46%", click: true },
-          { x: "72%", y: "30%" },
-          { x: "88%", y: "58%", click: true },
-          { x: "70%", y: "65%" },
-        ],
       },
       {
         id: "journey",
@@ -155,12 +145,6 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#022c22] via-[#064e3b] to-[#047857]",
         accent: "from-emerald-400 to-teal-400",
         visual: <JourneyVisual />,
-        waypoints: [
-          { x: "78%", y: "22%" },
-          { x: "75%", y: "28%", click: true },
-          { x: "82%", y: "50%", click: true },
-          { x: "78%", y: "78%", click: true },
-        ],
       },
       {
         id: "products",
@@ -176,13 +160,6 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#082f49] via-[#0c4a6e] to-[#0369a1]",
         accent: "from-sky-400 to-cyan-400",
         visual: <ProductsVisual />,
-        waypoints: [
-          { x: "66%", y: "38%", click: true },
-          { x: "80%", y: "38%", click: true },
-          { x: "94%", y: "38%", click: true },
-          { x: "80%", y: "65%", click: true },
-          { x: "66%", y: "65%" },
-        ],
       },
       {
         id: "cmfas",
@@ -198,12 +175,6 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#422006] via-[#713f12] to-[#a16207]",
         accent: "from-amber-400 to-yellow-400",
         visual: <CmfasVisual />,
-        waypoints: [
-          { x: "78%", y: "35%", click: true },
-          { x: "70%", y: "72%", click: true },
-          { x: "88%", y: "72%", click: true },
-          { x: "70%", y: "85%" },
-        ],
       },
       {
         id: "roleplay",
@@ -219,12 +190,6 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#4c0519] via-[#881337] to-[#be123c]",
         accent: "from-rose-400 to-pink-400",
         visual: <RoleplayVisual />,
-        waypoints: [
-          { x: "70%", y: "26%" },
-          { x: "78%", y: "45%", click: true },
-          { x: "88%", y: "58%", click: true },
-          { x: "70%", y: "82%", click: true },
-        ],
       },
       {
         id: "assistant",
@@ -240,12 +205,6 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#1e1b4b] via-[#312e81] to-[#4338ca]",
         accent: "from-indigo-400 to-blue-400",
         visual: <AssistantVisual />,
-        waypoints: [
-          { x: "72%", y: "24%" },
-          { x: "82%", y: "42%", click: true },
-          { x: "78%", y: "62%" },
-          { x: "92%", y: "82%", click: true },
-        ],
       },
       {
         id: "progress",
@@ -261,13 +220,6 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#431407] via-[#7c2d12] to-[#c2410c]",
         accent: "from-orange-400 to-red-400",
         visual: <ProgressVisual />,
-        waypoints: [
-          { x: "90%", y: "28%" },
-          { x: "78%", y: "48%", click: true },
-          { x: "68%", y: "72%", click: true },
-          { x: "82%", y: "72%", click: true },
-          { x: "94%", y: "72%", click: true },
-        ],
       },
       {
         id: "ready",
@@ -283,13 +235,6 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#022c22] via-[#064e3b] to-[#065f46]",
         accent: "from-lime-400 to-emerald-400",
         visual: <ReadyVisual />,
-        waypoints: [
-          { x: "78%", y: "50%", click: true },
-          { x: "68%", y: "32%" },
-          { x: "88%", y: "40%" },
-          { x: "70%", y: "72%" },
-          { x: "90%", y: "80%" },
-        ],
       },
     ],
     [userName]
@@ -440,8 +385,8 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
               />
 
               {/* Parallax floating text + visual */}
-              <div className="relative z-10 flex h-full flex-col px-6 md:px-16">
-                <div className="flex items-center gap-3 pt-5 md:pt-8">
+              <div className="relative z-10 flex h-full flex-col overflow-y-auto px-4 pb-32 sm:px-6 md:px-16 md:pb-0">
+                <div className="flex items-center gap-3 pt-4 sm:pt-5 md:pt-8">
                   <div
                     className={cn(
                       "flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br shadow-lg",
@@ -453,7 +398,7 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
                   </div>
                   <span
                     className={cn(
-                      "text-xs font-medium uppercase tracking-[0.2em] text-white/70",
+                      "text-[10px] font-medium uppercase tracking-[0.2em] text-white/70 sm:text-xs",
                       active && "animate-tour-rise"
                     )}
                   >
@@ -461,7 +406,7 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
                   </span>
                 </div>
 
-                <div className="flex flex-1 flex-col-reverse items-center justify-center gap-10 py-10 md:flex-row md:gap-16">
+                <div className="flex flex-1 flex-col items-start justify-center gap-6 py-6 md:flex-row md:items-center md:gap-16 md:py-10">
                   <div
                     className={cn(
                       "w-full max-w-xl transition-all duration-[900ms]",
@@ -473,10 +418,10 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
                     )}
                     style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
                   >
-                    <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+                    <h1 className="text-[clamp(1.75rem,7vw,4.5rem)] font-semibold leading-[1.05] tracking-tight lg:text-7xl">
                       {s.title}
                     </h1>
-                    <p className="mt-6 max-w-lg text-base text-white/75 md:text-lg">
+                    <p className="mt-4 max-w-lg text-sm text-white/75 sm:text-base md:mt-6 md:text-lg">
                       {s.subtitle}
                     </p>
                   </div>
@@ -497,10 +442,6 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
                 </div>
               </div>
 
-              {/* Virtual cursor — only animates on the active slide */}
-              {s.waypoints && active && (
-                <VirtualCursor waypoints={s.waypoints} slideId={s.id} />
-              )}
             </section>
           );
         })}
@@ -522,8 +463,10 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
       </div>
 
       {/* Fixed bottom controls */}
-      <div className="absolute inset-x-0 bottom-0 z-40 flex flex-col gap-4 px-6 pb-6 md:flex-row md:items-center md:justify-between md:px-12 md:pb-10">
-        <div className="flex items-center gap-2">
+      <div
+        className="absolute inset-x-0 bottom-0 z-40 flex flex-col gap-3 border-t border-white/5 bg-gradient-to-t from-black/40 to-transparent px-4 pb-[max(env(safe-area-inset-bottom),1rem)] pt-4 backdrop-blur-sm sm:px-6 md:flex-row md:items-center md:justify-between md:border-0 md:bg-none md:px-12 md:pb-10 md:pt-0 md:backdrop-blur-none"
+      >
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {slides.map((s, i) => {
             const done = i < index;
             const active = i === index;
@@ -535,33 +478,35 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
                 className={cn(
                   "h-1.5 rounded-full transition-all duration-500",
                   active
-                    ? "w-10 bg-white"
+                    ? "w-8 bg-white sm:w-10"
                     : done
-                    ? "w-6 bg-white/70"
-                    : "w-6 bg-white/20 hover:bg-white/40"
+                    ? "w-4 bg-white/70 sm:w-6"
+                    : "w-4 bg-white/20 hover:bg-white/40 sm:w-6"
                 )}
               />
             );
           })}
-          <span className="ml-3 text-xs text-white/60">
+          <span className="ml-2 text-[10px] text-white/60 sm:ml-3 sm:text-xs">
             {index + 1} / {total}
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-end gap-2 sm:gap-3">
           <Button
             variant="ghost"
+            size="sm"
             onClick={prev}
             disabled={index === 0}
             className="text-white hover:bg-white/10 hover:text-white disabled:opacity-30"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back
+            <ArrowLeft className="h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline">Back</span>
           </Button>
 
           {isLast ? (
             <>
               <Button
+                size="sm"
                 onClick={() => {
                   markAnimatedTourSeen(user?.id);
                   onClose();
@@ -569,23 +514,27 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
                 }}
                 className="border border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20"
               >
-                Open my track
+                <span className="hidden sm:inline">Open my track</span>
+                <span className="sm:hidden">My track</span>
               </Button>
               <Button
+                size="sm"
                 onClick={finish}
                 className="bg-white text-slate-900 hover:bg-white/90"
               >
-                Start exploring
-                <Rocket className="ml-2 h-4 w-4" />
+                <span className="hidden sm:inline">Start exploring</span>
+                <span className="sm:hidden">Start</span>
+                <Rocket className="ml-1.5 h-4 w-4 sm:ml-2" />
               </Button>
             </>
           ) : (
             <Button
+              size="sm"
               onClick={next}
               className="bg-white text-slate-900 hover:bg-white/90"
             >
               Next
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-1.5 h-4 w-4 sm:ml-2" />
             </Button>
           )}
         </div>
@@ -594,87 +543,6 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
   );
 
   return createPortal(content, document.body);
-}
-
-function VirtualCursor({
-  waypoints,
-  slideId,
-}: {
-  waypoints: Waypoint[];
-  slideId: string;
-}) {
-  const [step, setStep] = useState(0);
-  const [clicking, setClicking] = useState(false);
-
-  useEffect(() => {
-    setStep(0);
-    setClicking(false);
-    if (!waypoints.length) return;
-
-    let alive = true;
-    const timeouts: number[] = [];
-
-    const cycle = (i: number) => {
-      if (!alive) return;
-      setStep(i);
-      const wp = waypoints[i];
-      if (wp.click) {
-        const clickT = window.setTimeout(() => {
-          if (!alive) return;
-          setClicking(true);
-          const endT = window.setTimeout(() => {
-            if (!alive) return;
-            setClicking(false);
-          }, 350);
-          timeouts.push(endT);
-        }, 900);
-        timeouts.push(clickT);
-      }
-      const nextT = window.setTimeout(() => {
-        cycle((i + 1) % waypoints.length);
-      }, 1900);
-      timeouts.push(nextT);
-    };
-
-    const startT = window.setTimeout(() => cycle(0), 400);
-    timeouts.push(startT);
-
-    return () => {
-      alive = false;
-      timeouts.forEach((t) => window.clearTimeout(t));
-    };
-  }, [slideId, waypoints]);
-
-  const pos = waypoints[step] ?? waypoints[0];
-  if (!pos) return null;
-
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute z-30 transition-all duration-[1200ms]"
-      style={{
-        left: pos.x,
-        top: pos.y,
-        transitionTimingFunction: "cubic-bezier(0.65, 0, 0.35, 1)",
-      }}
-    >
-      <div className="relative -translate-x-2 -translate-y-1">
-        {clicking && (
-          <>
-            <div className="absolute left-0 top-0 h-8 w-8 -translate-x-3 -translate-y-3 rounded-full bg-white/40 animate-tour-pulse-ring" />
-            <div
-              className="absolute left-0 top-0 h-8 w-8 -translate-x-3 -translate-y-3 rounded-full bg-white/30 animate-tour-pulse-ring"
-              style={{ animationDelay: "0.2s" }}
-            />
-          </>
-        )}
-        <MousePointer2
-          className="h-6 w-6 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]"
-          fill="white"
-        />
-      </div>
-    </div>
-  );
 }
 
 const TOUR_KEYFRAMES = `
