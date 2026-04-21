@@ -6,34 +6,11 @@
 
 ## Pending
 
-### Fix `first_60_days_progress.user_id` FK to point at `auth.users(id)` instead of `profiles(id)`
+_(none — all prior items completed)_
 
-**Problem:** Same FK bug Lovable already fixed for `learning_track_progress` on 2026-04-16 (migration `20260416032313_...`). The current schema declares `first_60_days_progress.user_id uuid NOT NULL REFERENCES public.profiles(id)`, but the client (`src/hooks/first-60-days/useFirst60DaysProgress.ts`) writes `auth.uid()` as `user_id`. Because `profiles.id` defaults to a fresh `gen_random_uuid()` (it is *not* aligned with `auth.users.id` — only `profiles.user_id` references auth), every upsert FK-violates and PostgREST returns 409. Reads also silently return zero rows because the RLS policy `auth.uid() = user_id` can never match a `profiles.id` value either. Net effect: First-60-Days progress never persists for any user, including admins; loading any day page logs three 409s for the read/markRead/upsert sequence.
+### `first_60_days_progress.user_id` FK now points at `auth.users(id)` — DONE 2026-04-21
 
-**Fix:** Mirror the `learning_track_progress` fix.
-
-```sql
--- 1) Drop the bad FK and re-point user_id to auth.users(id).
-ALTER TABLE public.first_60_days_progress DROP CONSTRAINT IF EXISTS first_60_days_progress_user_id_fkey;
-ALTER TABLE public.first_60_days_progress
-  ADD CONSTRAINT first_60_days_progress_user_id_fkey
-  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;
-
--- 2) Existing rows (if any) reference profiles.id — they will be orphaned by
---    the FK swap. Either delete them (no real progress was ever recorded) or
---    rewrite them to the corresponding auth.users.id via profiles.user_id.
---    Recommend the rewrite so admins/test users don't appear blank:
-UPDATE public.first_60_days_progress p
-SET user_id = pr.user_id
-FROM public.profiles pr
-WHERE p.user_id = pr.id;
--- Then re-add the FK above (run this UPDATE BEFORE the ALTER above if there
--- is real data; or DELETE the rows first, run the ALTER, and accept the loss).
-```
-
-The existing RLS policies (`auth.uid() = user_id` for SELECT/INSERT/UPDATE) become correct once the column actually stores `auth.users.id`. No client changes needed — the hook already writes `auth.uid()` to `user_id`.
-
-**Verify after migration:** Sign in, visit `/learning-track/first-60-days/day/1`, reload — the three 409 errors should disappear and `first_60_days_progress` should now have a row with the auth user's UUID.
+Migration: `20260421041541_8f90f62c-ece2-434f-8482-7a86f19a85e0.sql`. Same FK bug Lovable already fixed for `learning_track_progress` (`20260416032313_...`) was repeated on `first_60_days_progress`: `user_id` referenced `profiles(id)` but the client writes `auth.uid()`. Lovable rewrote any existing rows via `UPDATE … FROM profiles WHERE p.user_id = pr.id`, dropped the `first_60_days_progress_user_id_fkey` constraint, and re-added it as `FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE`. RLS policies (`auth.uid() = user_id`) became correct without modification. Verified by re-running the day-page Playwright probe: page console errors dropped from 54 to 0, sticky-quiz CTA still passes all four assertions, and a `first_60_days_progress` row now lands keyed by the auth user's UUID.
 
 ### Pre-RNF curriculum cleanup: Phase 1 deleted, remaining phases relabelled, stale tier_permissions rows dropped — DONE 2026-04-21
 
