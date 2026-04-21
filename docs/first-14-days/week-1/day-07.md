@@ -226,10 +226,10 @@ Write this somewhere you'll re-read before Day 14.
 ## Quiz
 
 **Q1. The three I's — Income, Independence, Impact — are presented as:**
-- A) Three separate career paths
+- A) Three separate career paths, each requiring a different choice
 - B) Three dimensions that are all structurally present in this career, each in a material way ✓
 - C) Three things you'll achieve in year one
-- D) Three slogans
+- D) Three goals you rank and pick one from
 
 **Why:** The point isn't that one career delivers each — it's that this single model delivers all three substantively. Income comes from the business structure. Independence comes from the practice format. Impact comes from the product being something people genuinely need. Most careers offer one well, one weakly, and one not at all. This one delivers all three as natural outputs of how the model works.
 

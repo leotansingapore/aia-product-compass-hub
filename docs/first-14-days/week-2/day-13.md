@@ -348,13 +348,13 @@ Three questions:
 
 **Why:** The guarantee eliminates the biggest fear most candidates have — income uncertainty during ramp-up. Conditions: first 3 months excluded (normal ramp), must follow all training methods, must apply all techniques. The guarantee is only possible because our systems produce reliable outcomes. It's put-your-money-where-your-mouth-is commitment.
 
-**Q3. The single most useful FAQ for a candidate still on the fence is:**
-- A) Q6 — student advisor income
-- B) Q9 — hourly rate
-- C) Q15 — calls and meetings needed per day ✓
-- D) Q14 — scripts
+**Q3. FLEXI + Income Guarantee together make this career cash-flow positive from day one because:**
+- A) AIA pays a fixed starting salary
+- B) FLEXI pays you during the evaluation + CMFAS phase, and the guarantee kicks in from month 4 post-licensing — so there's no income gap to survive through ✓
+- C) Friends and family are guaranteed to buy policies
+- D) Commissions are paid upfront before any case closes
 
-**Why:** Q15 translates the whole business into daily behaviour. Once a candidate sees the actual call count, appointment count, and hour count — and compares to their current schedule and capability — the decision becomes operational rather than conceptual. Most yes/no hesitation collapses when you see the work is 18 hours a week of specific activities, not amorphous "work hard."
+**Why:** Two-stage coverage is the point. FLEXI handles months 0–3 (evaluation, exam study, licensing) with up to $4,200/mo plus $800/paper plus $1,000 on licensing. The Income Guarantee handles month 4 onwards with $2K (student) or $4K (full-time) minimum. Together they eliminate the one risk that kills most advisor careers before they begin — the ramp-up cash-flow gap. Every other structure (salary, upfront commissions, family-funded ramp) is either fantasy or unhealthy dependency.
 
 ---
 

@@ -274,11 +274,11 @@ If you haven't spoken to an agency yet, save this. Use it as your diagnostic whe
 
 **Q1. The most dangerous "lie" traditional agencies tell new advisors is:**
 - A) "The career is easy"
-- B) "Just sell to your friends and family" — it's a bridge to nowhere once the warm market runs out ✓
+- B) "Your warm market is enough — friends and family will carry you" — because once the list runs out at month 3–6 there's no cold-market system to fall back on ✓
 - C) "You'll be rich in year one"
 - D) "Everyone passes the licensing exam"
 
-**Why:** Warm-market guidance isn't false — it's just dangerously incomplete. It generates quick early sales, which masks the fact that no long-term client-acquisition system exists. Three months in, the advisor is out of names and out of options. Agencies that lead with this strategy are often hiding that they don't have a real cold-market system.
+**Why:** Warm market itself isn't the problem — warm is a real, valuable part of a healthy pipeline (see Day 10). The lie is *warm-only* as a complete strategy. It generates quick early sales, which masks the fact that no long-term client-acquisition system exists. Three months in, the advisor is out of names and out of options. Agencies that lead with warm-only are often hiding that they don't have a real cold-market system to complement it.
 
 **Q2. The Tripod Support System (TSS) consists of:**
 - A) Three managers per advisor
