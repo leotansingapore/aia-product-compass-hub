@@ -40,6 +40,13 @@ export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId:
     return null;
   });
   const [expandedItemId, setExpandedItemId] = useState<string | null>(initialItemId ?? null);
+  const mobileContentRef = useRef<HTMLDivElement>(null);
+  const selectMobileLesson = (id: string) => {
+    setExpandedItemId(id);
+    requestAnimationFrame(() => {
+      mobileContentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
   const [trackComplete, setTrackComplete] = useState(false);
   const { tier } = useUserTier();
   const { pendingRequest } = useMyTierRequests();
@@ -53,7 +60,6 @@ export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId:
 
   // All lessons across all phases
   const allLessons = phases.flatMap((p) => p.items.filter((i) => !isModuleFolder(i)));
-  const allComplete = allLessons.length > 0 && allLessons.every((i) => isCompleted(i.id));
 
   const handleLessonComplete = (completedItemId: string) => {
     // Check if this was the last incomplete lesson across the entire track
@@ -72,13 +78,13 @@ export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId:
           <div className="absolute -bottom-20 -left-20 w-56 h-56 rounded-full bg-primary/8 blur-3xl pointer-events-none" />
 
           {/* Celebration */}
-          <div className="relative px-6 pt-10 pb-6 sm:px-10 sm:pt-12 text-center">
-            <div className="animate-celebrate-icon mx-auto w-20 h-20 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center mb-6 ring-4 ring-green-200/50 dark:ring-green-800/30 shadow-lg shadow-green-500/10">
-              <CheckCircle2 className="h-10 w-10 text-green-600" />
+          <div className="relative px-5 pt-8 pb-5 sm:px-10 sm:pt-12 sm:pb-6 text-center">
+            <div className="animate-celebrate-icon mx-auto w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center mb-5 sm:mb-6 ring-4 ring-green-200/50 dark:ring-green-800/30 shadow-lg shadow-green-500/10">
+              <CheckCircle2 className="h-8 w-8 sm:h-10 sm:w-10 text-green-600" />
             </div>
-            <div className="animate-celebrate-text space-y-2 mb-6">
+            <div className="animate-celebrate-text space-y-2 mb-5 sm:mb-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-green-600">Track complete</p>
-              <h1 className="text-3xl sm:text-4xl font-bold font-serif tracking-tight">Congratulations!</h1>
+              <h1 className="text-2xl sm:text-4xl font-bold font-serif tracking-tight">Congratulations!</h1>
               <p className="text-muted-foreground text-sm max-w-sm mx-auto leading-relaxed">
                 You've finished all modules in this track. {nextTier ? "Time to level up." : "You've reached the top!"}
               </p>
@@ -94,8 +100,8 @@ export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId:
           {/* Upgrade CTA */}
           {nextTier && (
             <>
-              <div className="mx-6 sm:mx-10 border-t border-border/50" />
-              <div className="animate-celebrate-cta px-6 py-6 sm:px-10 text-center space-y-4">
+              <div className="mx-5 sm:mx-10 border-t border-border/50" />
+              <div className="animate-celebrate-cta px-5 py-5 sm:px-10 sm:py-6 text-center space-y-4">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10">
                   <Sparkles className="h-3.5 w-3.5 text-primary" />
                   <span className="text-xs font-semibold text-primary">What's next</span>
@@ -104,7 +110,7 @@ export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId:
                   Upgrade to <span className="font-semibold text-foreground">{nextTier.label}</span> to unlock the next stage.
                 </p>
                 {pendingRequest ? (
-                  <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">
+                  <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/30">
                     <Clock className="h-4 w-4 text-amber-600 animate-pulse" />
                     <span className="text-sm font-medium text-amber-700 dark:text-amber-400">Upgrade requested — awaiting approval</span>
                   </div>
@@ -115,7 +121,7 @@ export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId:
             </>
           )}
 
-          <div className="px-6 pb-6 sm:px-10 text-center">
+          <div className="px-5 pb-6 sm:px-10 text-center">
             <Button variant="ghost" size="sm" onClick={() => { setTrackComplete(false); setActivePhaseId(null); setExpandedItemId(null); }} className="text-xs text-muted-foreground/60">
               Back to modules
             </Button>
@@ -182,29 +188,38 @@ export function TrackLearnerView({ phases, isCompleted, lockMap, expandedItemId:
 
           {/* Mobile fallback */}
           <div className="md:hidden divide-y">
-            {lessons.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setExpandedItemId(item.id)}
-                className={cn(
-                  "w-full flex items-center gap-3 px-4 py-3 text-left text-sm transition-colors",
-                  item.id === expandedItemId ? "bg-primary/10 font-semibold" : "hover:bg-muted/50",
-                )}
-              >
-                {isCompleted(item.id) ? (
-                  <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0" />
-                ) : (
-                  <Circle className="h-4 w-4 text-muted-foreground shrink-0" />
-                )}
-                <span className="truncate">{item.title}</span>
-              </button>
-            ))}
+            {lessons.map((item) => {
+              const itemLock = lockMap?.getItemLock(item.id);
+              const locked = !!itemLock?.locked;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => !locked && selectMobileLesson(item.id)}
+                  disabled={locked}
+                  aria-label={locked ? itemLock?.missingTitles.join(", ") : undefined}
+                  className={cn(
+                    "w-full flex items-center gap-3 px-4 py-3 text-left text-sm min-h-[44px] transition-colors",
+                    item.id === expandedItemId && !locked ? "bg-primary/10 font-semibold" : "hover:bg-muted/50",
+                    locked && "opacity-60 cursor-not-allowed",
+                  )}
+                >
+                  {locked ? (
+                    <Lock className="h-4 w-4 text-muted-foreground shrink-0" />
+                  ) : isCompleted(item.id) ? (
+                    <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0" />
+                  ) : (
+                    <Circle className="h-4 w-4 text-muted-foreground shrink-0" />
+                  )}
+                  <span className="truncate">{item.title}</span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Mobile content */}
           {activeItem && (
-            <div className="md:hidden border-t">
+            <div ref={mobileContentRef} className="md:hidden border-t scroll-mt-20">
               <LessonContentPanel item={activeItem} lockResult={lockMap?.getItemLock(activeItem.id) ?? null} onComplete={handleLessonComplete} />
             </div>
           )}

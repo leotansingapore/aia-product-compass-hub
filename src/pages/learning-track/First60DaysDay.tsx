@@ -267,42 +267,42 @@ export default function First60DaysDay() {
           }}
         />
 
-        <div className="relative grid gap-6 p-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
+        <div className="relative grid gap-5 p-5 sm:gap-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
           {/* Left: day numeral + completion ring inline */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-4 sm:gap-5">
             <div className="relative">
-              <div className="font-serif text-[clamp(4.5rem,11vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
+              <div className="font-serif text-[clamp(3.75rem,14vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
                 {String(day.dayNumber).padStart(2, "0")}
               </div>
-              <span className="absolute -top-2 left-0 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-primary">
+              <span className="absolute -top-1.5 left-0 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:-top-2 sm:px-2 sm:tracking-[0.2em]">
                 <Sparkles className="h-2.5 w-2.5" /> Day
               </span>
             </div>
-            <div className="hidden flex-col items-center gap-1.5 sm:flex">
+            <div className="flex flex-col items-center gap-1 sm:gap-1.5">
               <div
-                className="relative grid h-16 w-16 place-items-center rounded-full"
+                className="relative grid h-12 w-12 place-items-center rounded-full sm:h-16 sm:w-16"
                 style={{
                   background: `conic-gradient(hsl(var(--primary)) ${progressPct * 3.6}deg, hsl(var(--muted)) 0deg)`,
                 }}
                 aria-label={`${progressPct} percent complete`}
                 role="img"
               >
-                <div className="grid h-[54px] w-[54px] place-items-center rounded-full bg-card">
-                  <span className="font-serif text-base font-semibold tabular-nums text-foreground">
+                <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-card sm:h-[54px] sm:w-[54px]">
+                  <span className="font-serif text-sm font-semibold tabular-nums text-foreground sm:text-base">
                     {progressPct}
-                    <span className="text-[10px] text-muted-foreground">%</span>
+                    <span className="text-[9px] text-muted-foreground sm:text-[10px]">%</span>
                   </span>
                 </div>
               </div>
-              <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Completion
+              <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:tracking-[0.18em]">
+                Done
               </span>
             </div>
           </div>
 
           {/* Right: metadata + title */}
-          <div className="space-y-3">
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+          <div className="space-y-2.5 sm:space-y-3">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground sm:gap-x-3 sm:text-[11px] sm:tracking-[0.18em]">
               <span className="text-primary">Week {day.week}</span>
               <span className="h-1 w-1 rounded-full bg-muted-foreground/40" />
               <span>{weekMeta?.title ?? "Foundations"}</span>
@@ -311,7 +311,7 @@ export default function First60DaysDay() {
               <span className="h-1 w-1 rounded-full bg-muted-foreground/40" />
               <span>{day.dayNumber} / 60</span>
             </div>
-            <h1 className="font-serif text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
+            <h1 className="font-serif text-[1.625rem] font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
               {day.title}
             </h1>
 
