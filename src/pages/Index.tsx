@@ -40,7 +40,7 @@ const Index = memo(() => {
   // /learning-track redirect so we only cross one Suspense boundary, not two.
   if (!isAdmin) {
     const target =
-      tier === "explorer" ? "/learning-track/explorer" : "/learning-track/pre-rnf";
+      tier === "explorer" ? "/learning-track/first-14-days" : "/learning-track/pre-rnf";
     return <Navigate to={target} replace />;
   }
 

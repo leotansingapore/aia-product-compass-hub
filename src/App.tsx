@@ -68,6 +68,8 @@ const LearningTrackPostRnf = lazy(() => import("./pages/learning-track/PostRnf")
 const LearningTrackResources = lazy(() => import("./pages/learning-track/Resources"));
 const LearningTrackFirst60Days = lazy(() => import("./pages/learning-track/First60Days"));
 const LearningTrackFirst60DaysDay = lazy(() => import("./pages/learning-track/First60DaysDay"));
+const LearningTrackFirst14Days = lazy(() => import("./pages/learning-track/First14Days"));
+const LearningTrackFirst14DaysDay = lazy(() => import("./pages/learning-track/First14DaysDay"));
 const LearningTrackAdminLayout = lazy(() => import("./pages/learning-track/admin/AdminLayout"));
 const LearningTrackAdminRoster = lazy(() => import("./pages/learning-track/admin/Roster"));
 const LearningTrackAdminHeatmap = lazy(() => import("./pages/learning-track/admin/Heatmap"));
@@ -157,8 +159,10 @@ const App = () => (
                     <Route path="/concept-cards" element={<RequireAuth><RequireTier feature="concept-cards"><ConceptCards /></RequireTier></RequireAuth>} />
                     <Route path="/learning-track" element={<RequireAuth><LearningTrack /></RequireAuth>}>
                       <Route index element={<LearningTrackIndex />} />
-                      <Route path="explorer" element={<RequireTier feature="explorer-track"><LearningTrackExplorer /></RequireTier>} />
-                      <Route path="explorer/:itemId" element={<RequireTier feature="explorer-track"><LearningTrackExplorer /></RequireTier>} />
+                      <Route path="explorer" element={<Navigate to="/learning-track/first-14-days" replace />} />
+                      <Route path="explorer/:itemId" element={<Navigate to="/learning-track/first-14-days" replace />} />
+                      <Route path="first-14-days" element={<RequireTier feature="explorer-track"><LearningTrackFirst14Days /></RequireTier>} />
+                      <Route path="first-14-days/day/:dayNumber" element={<RequireTier feature="explorer-track"><LearningTrackFirst14DaysDay /></RequireTier>} />
                       <Route path="pre-rnf" element={<Navigate to="/learning-track/pre-rnf/first-60-days" replace />} />
                       <Route path="pre-rnf/first-60-days" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
                       <Route path="pre-rnf/assignments" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />

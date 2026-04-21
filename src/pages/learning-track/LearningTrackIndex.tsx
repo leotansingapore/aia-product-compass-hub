@@ -16,7 +16,7 @@ export default function LearningTrackIndex() {
     return <Navigate to="/learning-track/pre-rnf" replace />;
   }
   if (can(FEATURES.EXPLORER_TRACK)) {
-    return <Navigate to="/learning-track/explorer" replace />;
+    return <Navigate to="/learning-track/first-14-days" replace />;
   }
   return <Navigate to="/" replace />;
 }

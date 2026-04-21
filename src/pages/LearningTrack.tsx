@@ -21,7 +21,7 @@ const LT_TAB_ACTIVE_CLASS = "border-white text-white";
 
 /** Journey path tier steps for learners */
 const JOURNEY_STEPS = [
-  { key: "explorer", label: "Explorer", desc: "Orientation", icon: Compass, path: "/learning-track/explorer", feature: FEATURES.EXPLORER_TRACK },
+  { key: "explorer", label: "Your First 14 Days", desc: "Decide the career", icon: Compass, path: "/learning-track/first-14-days", feature: FEATURES.EXPLORER_TRACK },
   { key: "papers_taker", label: "Papers-taker", desc: "Pre-RNF Training", icon: BookOpen, path: "/learning-track/pre-rnf", feature: FEATURES.PRE_RNF_TRACK },
   { key: "post_rnf", label: "Post-RNF", desc: "Licensed Consultant", icon: Briefcase, path: "/learning-track/post-rnf", feature: FEATURES.POST_RNF_TRACK },
 ] as const;
@@ -51,7 +51,8 @@ export default function LearningTrack() {
   }, [user?.id]);
 
   // Derive current track name from route for admin header
-  const trackName = location.pathname.includes("/explorer") ? "Explorer"
+  const trackName = location.pathname.includes("/first-14-days") ? "Your First 14 Days"
+    : location.pathname.includes("/explorer") ? "Your First 14 Days"
     : location.pathname.includes("/pre-rnf") ? "Pre-RNF Training"
     : location.pathname.includes("/post-rnf") ? "Post-RNF Training"
     : location.pathname.includes("/first-60-days") ? "First 60 Days"
@@ -71,7 +72,7 @@ export default function LearningTrack() {
           headerTabs={
             <nav className={LT_TAB_NAV_CLASS} aria-label="Learning track sections">
               {showExplorerTab && (
-                <NavLink to="/learning-track/explorer" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>Explorer</NavLink>
+                <NavLink to="/learning-track/first-14-days" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>Your First 14 Days</NavLink>
               )}
               {showPreRnfTab && (
                 <NavLink to="/learning-track/pre-rnf" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>Pre-RNF Training</NavLink>

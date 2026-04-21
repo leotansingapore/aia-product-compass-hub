@@ -20,7 +20,7 @@ function PhaseCard({ phase }: { phase: LearningTrackPhase }) {
   const description = phase.description?.trim() || 'Open module to get started.';
   return (
     <Link
-      to="/learning-track/explorer"
+      to="/learning-track/first-14-days"
       className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
     >
       <Card className="relative h-full border-muted transition-all group-hover:border-primary/40 group-hover:shadow-md">
@@ -69,7 +69,7 @@ function EmptyStateCard({ isAdmin }: { isAdmin: boolean }) {
         </CardDescription>
         {isAdmin && (
           <Link
-            to="/learning-track/explorer"
+            to="/learning-track/first-14-days"
             className="text-xs text-primary hover:underline inline-flex items-center gap-1 mt-2"
           >
             Add the first phase on the Explorer track <ArrowRight className="h-3 w-3" />
@@ -107,7 +107,7 @@ export default function ExplorerHome() {
           <div className="flex items-baseline justify-between mb-4">
             <h2 className="text-lg font-semibold">Start here</h2>
             <Link
-              to="/learning-track/explorer"
+              to="/learning-track/first-14-days"
               className="text-xs text-primary hover:underline inline-flex items-center gap-1"
             >
               Open Explorer track <ArrowRight className="h-3 w-3" />
