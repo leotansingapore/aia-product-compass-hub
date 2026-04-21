@@ -74,12 +74,11 @@ const LearningTrackFirst30DaysDay = lazy(() => import("./pages/learning-track/Fi
 const LearningTrackFirst14Days = lazy(() => import("./pages/learning-track/First14Days"));
 const LearningTrackFirst14DaysDay = lazy(() => import("./pages/learning-track/First14DaysDay"));
 const LearningTrackAdminLayout = lazy(() => import("./pages/learning-track/admin/AdminLayout"));
-const LearningTrackAdminRoster = lazy(() => import("./pages/learning-track/admin/Roster"));
-const LearningTrackAdminHeatmap = lazy(() => import("./pages/learning-track/admin/Heatmap"));
-const LearningTrackAdminSubmissions = lazy(() => import("./pages/learning-track/admin/Submissions"));
-const LearningTrackAdminRecruit = lazy(() => import("./pages/learning-track/admin/RecruitDetail"));
-const LearningTrackAdminActivity = lazy(() => import("./pages/learning-track/admin/Activity"));
+const LearningTrackAdminFirst14Days = lazy(() => import("./pages/learning-track/admin/AdminFirst14Days"));
 const LearningTrackAdminFirst60Days = lazy(() => import("./pages/learning-track/admin/First60DaysAdmin"));
+const LearningTrackAdminAssignments = lazy(() => import("./pages/learning-track/admin/AdminAssignments"));
+const LearningTrackAdminQuestionBanks = lazy(() => import("./pages/learning-track/admin/AdminQuestionBanks"));
+const LearningTrackAdminRoleplay = lazy(() => import("./pages/learning-track/admin/AdminRoleplay"));
 const ProAchieverStudy = lazy(() => import("./pages/ProAchieverStudy"));
 const PlatinumWealthVentureStudy = lazy(() => import("./pages/PlatinumWealthVentureStudy"));
 const HealthshieldGoldMaxStudy = lazy(() => import("./pages/HealthshieldGoldMaxStudy"));
@@ -179,13 +178,18 @@ const App = () => (
                       <Route path="first-30-days" element={<LearningTrackFirst30Days />} />
                       <Route path="first-30-days/day/:dayNumber" element={<LearningTrackFirst30DaysDay />} />
                       <Route path="admin" element={<ProtectedAdminPage><LearningTrackAdminLayout /></ProtectedAdminPage>}>
-                        <Route index element={<Navigate to="roster" replace />} />
-                        <Route path="roster" element={<LearningTrackAdminRoster />} />
-                        <Route path="heatmap" element={<LearningTrackAdminHeatmap />} />
-                        <Route path="submissions" element={<LearningTrackAdminSubmissions />} />
-                        <Route path="activity" element={<LearningTrackAdminActivity />} />
-                        <Route path="recruit/:userId" element={<LearningTrackAdminRecruit />} />
+                        <Route index element={<Navigate to="first-60-days" replace />} />
+                        <Route path="first-14-days" element={<LearningTrackAdminFirst14Days />} />
                         <Route path="first-60-days" element={<LearningTrackAdminFirst60Days />} />
+                        <Route path="assignments" element={<LearningTrackAdminAssignments />} />
+                        <Route path="question-banks" element={<LearningTrackAdminQuestionBanks />} />
+                        <Route path="roleplay" element={<LearningTrackAdminRoleplay />} />
+                        {/* Legacy redirects so old bookmarks don't 404 */}
+                        <Route path="roster" element={<Navigate to="/learning-track/admin/first-60-days" replace />} />
+                        <Route path="heatmap" element={<Navigate to="/learning-track/admin/first-60-days" replace />} />
+                        <Route path="submissions" element={<Navigate to="/learning-track/admin/assignments" replace />} />
+                        <Route path="activity" element={<Navigate to="/learning-track/admin/first-60-days" replace />} />
+                        <Route path="recruit/:userId" element={<Navigate to="/learning-track/admin/first-60-days" replace />} />
                       </Route>
                     </Route>
                     <Route path="/product/pro-achiever/study" element={<RequireAuth><RequireTier feature="question-banks"><ProAchieverStudy /></RequireTier></RequireAuth>} />
