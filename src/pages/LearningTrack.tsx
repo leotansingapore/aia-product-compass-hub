@@ -102,7 +102,24 @@ export default function LearningTrack() {
           a roadmap of future phases (Papers-taker, Post-RNF) as locked steps. */}
       {(
         <div className="border-b bg-card/50">
-          <div className="mx-auto max-w-4xl px-4 py-4 sm:px-6">
+          <div className="mx-auto max-w-4xl px-3 py-3 sm:px-6 sm:py-4">
+            {/* Mobile-only label above nodes — shows current stage so learners get context without enlarging the nodes. */}
+            {(() => {
+              const current = JOURNEY_STEPS.find((s) => s.key === currentTierKey);
+              if (!current) return null;
+              return (
+                <div className="mb-2 text-center sm:hidden">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                    Current stage
+                  </p>
+                  <p className="text-sm font-semibold text-primary">
+                    {current.label}{" "}
+                    <span className="font-normal text-muted-foreground">· {current.desc}</span>
+                  </p>
+                </div>
+              );
+            })()}
+
             {/* Horizontal journey path */}
             <div className="flex items-center justify-center gap-0">
               {JOURNEY_STEPS.map((step, idx) => {
@@ -117,7 +134,7 @@ export default function LearningTrack() {
                     {/* Connector line (not before first) */}
                     {idx > 0 && (
                       <div className={cn(
-                        "w-8 sm:w-16 h-0.5 transition-colors",
+                        "w-6 sm:w-16 h-0.5 transition-colors",
                         isDone ? "bg-green-500" : isLocked ? "bg-border border-dashed" : "bg-primary/30",
                       )} />
                     )}
@@ -126,7 +143,7 @@ export default function LearningTrack() {
                         doesn't leave `#` in history or show a focus ring. */}
                     {(() => {
                       const stepClasses = cn(
-                        "group flex items-center gap-2.5 rounded-xl px-3 py-2 transition-all",
+                        "group flex items-center gap-2.5 rounded-xl px-2.5 py-2 transition-all sm:px-3",
                         isActive && "bg-primary/10 ring-1 ring-primary/20",
                         !isActive && accessible && "hover:bg-muted/60",
                         isLocked && "cursor-not-allowed opacity-50",
@@ -134,7 +151,7 @@ export default function LearningTrack() {
                       const inner = (
                         <>
                           <div className={cn(
-                            "shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all",
+                            "shrink-0 w-11 h-11 rounded-full flex items-center justify-center transition-all sm:w-9 sm:h-9",
                             isDone && "bg-green-100 dark:bg-green-950/40",
                             isCurrent && "bg-primary/15 ring-2 ring-primary/30 ring-offset-1 ring-offset-background",
                             isLocked && "bg-muted",
@@ -143,9 +160,9 @@ export default function LearningTrack() {
                             {isDone ? (
                               <CheckCircle2 className="h-5 w-5 text-green-600" />
                             ) : isLocked ? (
-                              <Lock className="h-3.5 w-3.5 text-muted-foreground" />
+                              <Lock className="h-4 w-4 text-muted-foreground sm:h-3.5 sm:w-3.5" />
                             ) : (
-                              <step.icon className={cn("h-4 w-4", isActive ? "text-primary" : "text-muted-foreground")} />
+                              <step.icon className={cn("h-5 w-5 sm:h-4 sm:w-4", isActive ? "text-primary" : "text-muted-foreground")} />
                             )}
                           </div>
                           <div className="hidden sm:block min-w-0">
@@ -159,8 +176,9 @@ export default function LearningTrack() {
                           </div>
                         </>
                       );
+                      const ariaLabel = `${step.label} — ${step.desc}${isLocked ? " (locked)" : ""}`;
                       return accessible ? (
-                        <NavLink to={step.path} className={stepClasses}>
+                        <NavLink to={step.path} className={stepClasses} aria-label={ariaLabel}>
                           {inner}
                         </NavLink>
                       ) : nextTier ? (
@@ -169,11 +187,12 @@ export default function LearningTrack() {
                           onClick={() => setUpgradeDialogOpen(true)}
                           className={cn(stepClasses, "cursor-pointer !opacity-60 hover:!opacity-80")}
                           title={`Upgrade to ${nextTier.label} to unlock`}
+                          aria-label={ariaLabel}
                         >
                           {inner}
                         </button>
                       ) : (
-                        <div aria-disabled className={stepClasses}>{inner}</div>
+                        <div aria-disabled className={stepClasses} aria-label={ariaLabel}>{inner}</div>
                       );
                     })()}
                   </div>
