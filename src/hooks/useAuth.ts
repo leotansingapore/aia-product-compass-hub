@@ -1,9 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import { useSimpleAuthOperations } from '@/hooks/useSimpleAuthOperations';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
 
 export function useAuth() {
-  const navigate = useNavigate();
   const authOperations = useSimpleAuthOperations();
   const { user, signOut } = useSimplifiedAuth();
 
@@ -11,6 +9,5 @@ export function useAuth() {
     ...authOperations,
     user,
     signOut,
-    navigate
   };
 }
