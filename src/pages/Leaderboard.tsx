@@ -9,13 +9,9 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
-import { useAdmin } from "@/hooks/useAdmin";
 import { useUserTier } from "@/hooks/useUserTier";
 import {
   useLearnerLeaderboard,
@@ -201,15 +197,8 @@ function YourRankBanner({ rows, tier }: { rows: LeaderboardRow[]; tier: TierLeve
 
 export default function Leaderboard() {
   const { user } = useSimplifiedAuth();
-  const { isActualAdmin } = useAdmin();
   const { tier } = useUserTier();
   const query = useLearnerLeaderboard(user?.id ?? null);
-  const [filter, setFilter] = useState("");
-
-  // Default tab = user's own tier if they're on one of the two boards, else papers-taker.
-  const defaultTab: TierLevel =
-    tier === "post_rnf" ? "post_rnf" : "papers_taker";
-  const [activeTab, setActiveTab] = useState<TierLevel>(defaultTab);
 
   const rows = query.data ?? [];
 
@@ -236,32 +225,7 @@ export default function Leaderboard() {
             {query.error instanceof Error ? query.error.message : "Unknown error"}
           </CardContent>
         </Card>
-      ) : isActualAdmin ? (
-        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TierLevel)}>
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="papers_taker">{TIER_META.papers_taker.label}</TabsTrigger>
-            <TabsTrigger value="post_rnf">{TIER_META.post_rnf.label}</TabsTrigger>
-          </TabsList>
-
-          <div className="mt-3 space-y-3">
-            <YourRankBanner rows={rows} tier={activeTab} />
-            <Input
-              placeholder="Filter by name…"
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-              className="max-w-sm"
-            />
-
-            <TabsContent value="papers_taker" className="m-0">
-              <LeaderboardTable rows={rows} tier="papers_taker" filter={filter} />
-            </TabsContent>
-            <TabsContent value="post_rnf" className="m-0">
-              <LeaderboardTable rows={rows} tier="post_rnf" filter={filter} />
-            </TabsContent>
-          </div>
-        </Tabs>
       ) : tier === "papers_taker" || tier === "post_rnf" ? (
-        // Learners only see their own tier — no tab switcher.
         <div className="space-y-3">
           <div className="inline-flex rounded-md border bg-muted/40 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {TIER_META[tier].label} Leaderboard
