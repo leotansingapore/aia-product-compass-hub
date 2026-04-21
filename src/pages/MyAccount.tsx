@@ -11,12 +11,17 @@ import { ProtectedPage } from "@/components/ProtectedPage";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Settings } from "lucide-react";
+import { Settings, Sparkles } from "lucide-react";
+import {
+  AnimatedOnboardingTour,
+  clearAnimatedTourSeen,
+} from "@/components/onboarding/AnimatedOnboardingTour";
 
 export default function MyAccount() {
   const { isAdmin: isAdminUser } = useAdmin();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [tourOpen, setTourOpen] = useState(false);
 
   if (!user) {
     return (
@@ -88,6 +93,23 @@ export default function MyAccount() {
               Go to Admin Panel
             </Button>
           )}
+
+          <Button
+            variant="outline"
+            className="w-full h-12 text-sm font-semibold gap-2 border-fuchsia-500/30 bg-gradient-to-r from-fuchsia-500/5 to-violet-500/5 hover:from-fuchsia-500/10 hover:to-violet-500/10"
+            onClick={() => {
+              clearAnimatedTourSeen(user?.id);
+              setTourOpen(true);
+            }}
+          >
+            <Sparkles className="h-4 w-4 text-fuchsia-500" />
+            Replay Welcome Tour
+          </Button>
+
+          <AnimatedOnboardingTour
+            open={tourOpen}
+            onClose={() => setTourOpen(false)}
+          />
 
           <ProfileSection />
 

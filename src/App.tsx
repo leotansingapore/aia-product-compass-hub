@@ -22,6 +22,7 @@ import { RouteTracker } from "@/components/RouteTracker";
 const OnboardingTutorial = lazy(() => import("@/components/onboarding/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
 const OnboardingHelpButton = lazy(() => import("@/components/onboarding/OnboardingHelpButton").then(m => ({ default: m.OnboardingHelpButton })));
 const WelcomeModal = lazy(() => import("@/components/onboarding/WelcomeModal").then(m => ({ default: m.WelcomeModal })));
+const AnimatedOnboardingTourController = lazy(() => import("@/components/onboarding/AnimatedOnboardingTourController").then(m => ({ default: m.AnimatedOnboardingTourController })));
 const NewVersionBanner = lazy(() => import("@/components/NewVersionBanner").then(m => ({ default: m.NewVersionBanner })));
 // Eagerly loaded pages (lightweight / critical path)
 const Index = lazy(() => import("./pages/Index"));
@@ -203,6 +204,7 @@ const App = () => (
                     <OnboardingTutorial />
                     <OnboardingHelpButton />
                     <WelcomeModal />
+                    <AnimatedOnboardingTourController />
                     <NewVersionBanner />
                   </Suspense>
                   </AppLayout>
