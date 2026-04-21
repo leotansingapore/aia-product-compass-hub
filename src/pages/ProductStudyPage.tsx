@@ -52,6 +52,10 @@ const categoryIcons: Record<CategoryFilter, React.ElementType> = {
   'sales-angles': Target,
   'objection-handling': Shield,
   roleplay: MessageCircle,
+  suitability: Target,
+  compliance: Shield,
+  'advisory-skills': Brain,
+  closing: Sparkles,
 };
 
 interface ProductStudyPageProps {
