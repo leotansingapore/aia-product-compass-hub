@@ -79,6 +79,8 @@ export function AdminTrackView({
   lockMap,
   track,
 }: AdminTrackViewProps) {
+  const updatePhaseTop = useUpdatePhase();
+  const deletePhaseTop = useDeletePhase();
   const [activePhaseId, setActivePhaseId] = useState<string | null>(() => {
     if (expandedItemId) {
       const p = phases.find((ph) => ph.items.some((i) => i.id === expandedItemId));
@@ -111,9 +113,43 @@ export function AdminTrackView({
           return (
             <div
               key={phase.id}
-              className="flex h-full cursor-pointer flex-col rounded-xl border bg-card transition-all duration-300 hover:border-primary/20 hover:shadow-lg group"
+              className="relative flex h-full cursor-pointer flex-col rounded-xl border bg-card transition-all duration-300 hover:border-primary/20 hover:shadow-lg group"
               onClick={() => setActivePhaseId(phase.id)}
             >
+              {/* Kebab menu */}
+              <div className="absolute top-3 right-3 z-10">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      type="button"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-1.5 rounded-md text-muted-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+                    >
+                      <MoreHorizontal className="h-4 w-4" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-44" onClick={(e) => e.stopPropagation()}>
+                    <DropdownMenuItem onClick={() => {
+                      const newTitle = prompt("Rename track:", phase.title);
+                      if (newTitle?.trim()) updatePhaseTop.mutate({ id: phase.id, title: newTitle.trim() });
+                    }}>
+                      <FileText className="h-3.5 w-3.5 mr-2" /> Rename
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => updatePhaseTop.mutate({ id: phase.id, published_at: isPublished ? null : new Date().toISOString() })}>
+                      {isPublished ? <ArchiveRestore className="h-3.5 w-3.5 mr-2" /> : <Globe className="h-3.5 w-3.5 mr-2" />}
+                      {isPublished ? "Unpublish" : "Publish"}
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      className="text-destructive focus:text-destructive"
+                      onClick={() => { if (confirm(`Delete "${phase.title}"? This will delete all modules and lessons inside.`)) deletePhaseTop.mutate(phase.id); }}
+                    >
+                      <Trash2 className="h-3.5 w-3.5 mr-2" /> Delete
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+
               <div className="space-y-3 p-4 pb-0 sm:p-5 sm:pb-0">
                 <span className={cn(
                   "inline-flex px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white rounded-full",
@@ -122,7 +158,7 @@ export function AdminTrackView({
                   {isPublished ? "Published" : "Draft"}
                 </span>
                 <div className="space-y-1">
-                  <h3 className="line-clamp-2 text-lg font-bold font-serif leading-snug tracking-tight">{phase.title}</h3>
+                  <h3 className="line-clamp-2 text-lg font-bold font-serif leading-snug tracking-tight pr-8">{phase.title}</h3>
                   {phase.description && <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">{phase.description}</p>}
                 </div>
               </div>
