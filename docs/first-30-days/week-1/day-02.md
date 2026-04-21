@@ -37,7 +37,7 @@ You may check the commission rate of various products [here](https://nsgukkz3294
 
 ## 2.3 Challenges for New Consultants
 
-1. **Aim to hit the new incentives/challenges** as a new consultant
+1. **Aim to hit the new incentives/challenges** as a new consultant [here](https://nsgukkz32942.sg.larksuite.com/wiki/D6pHwlmiSimxaikXGKplk1pUgjd)
 2. **Think about how you will start closing your first few cases** for a good start in your first three months
 
 ---
