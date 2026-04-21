@@ -37,3 +37,7 @@ export const DAY_SUMMARIES: DaySummary[] = Array.from({ length: TOTAL_DAYS }, (_
     hasReflection: true,
   };
 });
+
+export const DAYS_WITH_REFLECTION: ReadonlySet<number> = new Set(
+  DAY_SUMMARIES.filter((d) => d.hasReflection).map((d) => d.dayNumber),
+);

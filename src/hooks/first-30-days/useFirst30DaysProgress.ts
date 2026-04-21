@@ -8,7 +8,7 @@
 import { useCallback, useMemo, useState, useEffect } from "react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { usePermissions } from "@/hooks/usePermissions";
-import { TOTAL_DAYS, DAY_SUMMARIES } from "@/features/first-30-days/summaries";
+import { TOTAL_DAYS, DAY_SUMMARIES, DAYS_WITH_REFLECTION } from "@/features/first-30-days/summaries";
 
 const STORAGE_KEY = "first-30-days-progress-v1";
 
@@ -65,7 +65,9 @@ export function useFirst30DaysProgress() {
     (dayNumber: number) => {
       const p = daysMap[dayNumber];
       if (!p) return false;
-      return !!p.quizPassedAt;
+      if (!p.quizPassedAt) return false;
+      if (DAYS_WITH_REFLECTION.has(dayNumber) && !p.reflectionSubmittedAt) return false;
+      return true;
     },
     [daysMap],
   );
