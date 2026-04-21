@@ -15,6 +15,7 @@ import {
   type DayMeta,
 } from "@/hooks/first-60-days/useFirst60DaysDayMeta";
 import First60DaysSubmissions from "./First60DaysSubmissions";
+import First60DaysProgress from "./First60DaysProgress";
 
 type RowPatch = Partial<Omit<DayMeta, "day_number">>;
 
@@ -86,11 +87,15 @@ export default function First60DaysAdmin() {
 
   return (
     <div className="space-y-3" data-testid="first-60-days-admin">
-      <Tabs defaultValue="urls">
+      <Tabs defaultValue="progress">
         <TabsList>
+          <TabsTrigger value="progress">Learner progress</TabsTrigger>
           <TabsTrigger value="urls">Day URLs</TabsTrigger>
           <TabsTrigger value="submissions">Reflection submissions</TabsTrigger>
         </TabsList>
+        <TabsContent value="progress" className="space-y-3">
+          <First60DaysProgress />
+        </TabsContent>
         <TabsContent value="urls" className="space-y-3">
       <Card>
         <CardContent className="p-4 text-sm text-muted-foreground">
