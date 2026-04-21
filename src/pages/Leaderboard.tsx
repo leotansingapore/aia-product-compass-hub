@@ -225,10 +225,7 @@ export default function Leaderboard() {
         <Card className="border-destructive/30 bg-destructive/5">
           <CardContent className="p-4 text-sm text-destructive">
             Failed to load leaderboard:{" "}
-            {(query.error as { message?: string })?.message ??
-              (typeof query.error === "string"
-                ? query.error
-                : JSON.stringify(query.error))}
+            {(query.error as { message?: string } | null)?.message ?? "Unknown error"}
           </CardContent>
         </Card>
       ) : tier === "papers_taker" || tier === "post_rnf" ? (
