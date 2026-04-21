@@ -6,53 +6,6 @@
 
 ## Pending
 
-### `platform_settings` table — admin-controlled global flags (welcome tour reset, future feature flags)
-
-**Context:** Admins need to reset the animated welcome tour for ALL users at once (e.g., after a major platform update that changes the tour content). Currently `hasSeenAnimatedTour` is purely localStorage-based, so there's no way for an admin action to affect other users' browsers. A lightweight key-value settings table lets admins bump a "tour version" that all clients respect.
-
-**Request for Lovable:** Create `platform_settings` table with public read + admin-only write, and seed it with one row for tour version.
-
-**Proposed schema:**
-
-```sql
-CREATE TABLE public.platform_settings (
-  key TEXT PRIMARY KEY,
-  value JSONB NOT NULL,
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  updated_by UUID REFERENCES auth.users(id)
-);
-
-ALTER TABLE public.platform_settings ENABLE ROW LEVEL SECURITY;
-
--- Public read (anyone signed in can read)
-CREATE POLICY "platform_settings_read" ON public.platform_settings
-  FOR SELECT USING (true);
-
--- Admin-only write
-CREATE POLICY "platform_settings_admin_write" ON public.platform_settings
-  FOR ALL USING (
-    EXISTS (
-      SELECT 1 FROM public.user_admin_roles
-      WHERE user_id = auth.uid()
-        AND role IN ('admin', 'master_admin')
-    )
-  );
-
--- Seed the animated tour reset version with current timestamp
-INSERT INTO public.platform_settings (key, value)
-VALUES ('animated_tour_reset_at', to_jsonb(now()))
-ON CONFLICT (key) DO NOTHING;
-```
-
-**Client flow:**
-1. On tour mount, client reads `platform_settings` row for `animated_tour_reset_at`
-2. Client compares with its own `animated-tour-seen-{userId}` timestamp from localStorage
-3. If global reset timestamp > local seen timestamp → treat as unseen → auto-show tour
-4. Admin UI ("Reset Welcome Tour for All Users" button in `/admin`) upserts the key with `now()`
-
-**After Lovable creates:** client code in `src/hooks/useGlobalTourReset.ts` and the admin button in `AdminDashboard.tsx` will activate automatically. Until then the client gracefully falls back to local-only behaviour.
-
----
 
 ### `first_14_days_progress` table — prospect-facing course progress needs cross-device sync
 
