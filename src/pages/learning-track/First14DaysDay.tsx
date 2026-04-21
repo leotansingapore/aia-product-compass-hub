@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -9,396 +9,442 @@ import {
   CheckCircle2,
   ClipboardCheck,
   NotebookPen,
-  RotateCcw,
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
-import { loadDay } from "@/features/first-14-days/content";
+import { loadDay, loadWeekReadme, WEEK_META } from "@/features/first-14-days/content";
 import { DAY_SUMMARIES, TOTAL_DAYS } from "@/features/first-14-days/summaries";
-import type { Day, QuizQuestion } from "@/features/first-14-days/types";
-import {
-  useFirst14DaysProgress,
-  type ReflectionAnswers,
-} from "@/hooks/first-14-days/useFirst14DaysProgress";
+import type { Day } from "@/features/first-14-days/types";
+import { useFirst14DaysProgress } from "@/hooks/first-14-days/useFirst14DaysProgress";
+import { DayQuiz } from "@/components/first-14-days/DayQuiz";
+import { DayWorksheet } from "@/components/first-14-days/DayWorksheet";
 
-// -------- Quiz component (inline) --------
+type StatusChipProps = {
+  icon: typeof BookOpen;
+  label: string;
+  done: boolean;
+  dim?: boolean;
+};
 
-type Verdict = "pending" | "correct" | "incorrect";
+function StatusChip({ icon: Icon, label, done, dim = false }: StatusChipProps) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors",
+        done
+          ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+          : dim
+          ? "border-border/60 bg-muted/40 text-muted-foreground"
+          : "border-border/80 bg-background/60 text-foreground/80",
+      )}
+    >
+      {done ? <CheckCircle2 className="h-3 w-3" /> : <Icon className="h-3 w-3" />}
+      {label}
+    </span>
+  );
+}
 
-function DayQuiz14({ dayNumber, questions }: { dayNumber: number; questions: QuizQuestion[] }) {
-  const { recordQuiz, isQuizPassed, getDay } = useFirst14DaysProgress();
-  const alreadyPassed = isQuizPassed(dayNumber);
-  const total = questions.length;
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const [selected, setSelected] = useState<string | undefined>(undefined);
-  const [verdict, setVerdict] = useState<Verdict>("pending");
-  const [correctCount, setCorrectCount] = useState(0);
-  const [finished, setFinished] = useState(false);
-
-  const q = questions[currentIdx];
-  const correctOpt = useMemo(() => q?.options.find((o) => o.correct), [q]);
-  const previousAttempt = getDay(dayNumber);
+function WeekWrapup({ weekNumber }: { weekNumber: number }) {
+  const [body, setBody] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!finished) return;
-    recordQuiz(dayNumber, correctCount, correctCount === total);
-  }, [finished, correctCount, total, dayNumber, recordQuiz]);
+    let cancelled = false;
+    loadWeekReadme(weekNumber)
+      .then((b) => {
+        if (!cancelled) {
+          setBody(b ?? null);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [weekNumber]);
 
-  if (total === 0) {
-    return (
-      <Card className="border-border/60">
-        <CardContent className="p-6 text-sm text-muted-foreground">
-          This day has no quiz — reflect on the worksheet when you&apos;re done reading.
-        </CardContent>
-      </Card>
-    );
-  }
-
-  const onReset = () => {
-    setCurrentIdx(0);
-    setSelected(undefined);
-    setVerdict("pending");
-    setCorrectCount(0);
-    setFinished(false);
-  };
-
-  const onCheck = () => {
-    if (!selected || verdict !== "pending") return;
-    const isCorrect = selected === correctOpt?.key;
-    setVerdict(isCorrect ? "correct" : "incorrect");
-    if (isCorrect) setCorrectCount((c) => c + 1);
-  };
-
-  const onAdvance = () => {
-    if (currentIdx + 1 >= total) {
-      setFinished(true);
-      return;
-    }
-    setCurrentIdx((i) => i + 1);
-    setSelected(undefined);
-    setVerdict("pending");
-  };
-
-  if (finished) {
-    const pct = Math.round((correctCount / total) * 100);
-    const passed = correctCount === total;
-    return (
-      <Card className={cn("border-border/60", passed && "border-emerald-500/40 bg-emerald-500/5")}>
-        <CardContent className="p-6 space-y-4 text-center">
-          <div className="flex justify-center">
-            {passed ? (
-              <Sparkles className="h-8 w-8 text-emerald-600" />
-            ) : (
-              <ClipboardCheck className="h-8 w-8 text-muted-foreground" />
-            )}
-          </div>
-          <div>
-            <h3 className="text-xl font-bold font-serif">
-              {passed ? "Perfect score!" : `${correctCount} of ${total} correct (${pct}%)`}
-            </h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              {passed
-                ? "You've locked in the key ideas from this day."
-                : "Review the ones you missed — the reasoning matters more than the score."}
-            </p>
-          </div>
-          <Button onClick={onReset} variant="outline" size="sm" className="gap-1.5">
-            <RotateCcw className="h-3.5 w-3.5" /> Retry
-          </Button>
-        </CardContent>
-      </Card>
-    );
-  }
+  if (loading) return null;
+  if (!body) return null;
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <span className="tabular-nums">
-          Question {currentIdx + 1} of {total}
-        </span>
-        {alreadyPassed && previousAttempt.quizScore !== undefined ? (
-          <Badge variant="outline" className="text-[10px]">
-            Previously: {previousAttempt.quizScore}/{total}
-          </Badge>
-        ) : null}
+    <section className="relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-card shadow-card">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.4]"
+        aria-hidden
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.14), transparent 55%), radial-gradient(ellipse at bottom left, hsl(var(--accent) / 0.12), transparent 55%)",
+        }}
+      />
+      <div className="relative px-5 py-5 sm:px-8 sm:py-8">
+        <div className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+          <Sparkles className="h-3 w-3" />
+          Week {weekNumber} wrap-up
+        </div>
+        <article className="prose prose-sm max-w-none dark:prose-invert prose-headings:font-serif prose-a:text-primary prose-img:rounded-lg">
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={dayMarkdownComponents}>
+            {body}
+          </ReactMarkdown>
+        </article>
       </div>
-      <Card>
-        <CardContent className="p-5 space-y-4">
-          <h3 className="font-semibold leading-snug">{q.question}</h3>
-          <div className="space-y-2">
-            {q.options.map((opt) => {
-              const isSelected = selected === opt.key;
-              const isCorrect = verdict !== "pending" && opt.correct;
-              const isWrongSelected = verdict === "incorrect" && isSelected;
-              return (
-                <button
-                  key={opt.key}
-                  type="button"
-                  disabled={verdict !== "pending"}
-                  onClick={() => setSelected(opt.key)}
-                  className={cn(
-                    "w-full text-left rounded-md border px-3 py-2 text-sm transition-colors",
-                    verdict === "pending" &&
-                      (isSelected
-                        ? "border-primary bg-primary/5"
-                        : "border-border/60 hover:border-primary/40"),
-                    isCorrect && "border-emerald-500/60 bg-emerald-500/10",
-                    isWrongSelected && "border-rose-500/60 bg-rose-500/10",
-                    verdict !== "pending" && !isCorrect && !isWrongSelected && "opacity-60",
-                  )}
-                >
-                  <span className="font-semibold mr-2">{opt.key})</span>
-                  {opt.text}
-                </button>
-              );
-            })}
-          </div>
-          {verdict !== "pending" && q.explanation ? (
-            <div
-              className={cn(
-                "rounded-md border p-3 text-sm leading-relaxed",
-                verdict === "correct"
-                  ? "border-emerald-500/40 bg-emerald-500/5 text-emerald-900 dark:text-emerald-100"
-                  : "border-rose-500/40 bg-rose-500/5 text-rose-900 dark:text-rose-100",
-              )}
-            >
-              <span className="font-semibold mr-1">Why:</span>
-              {q.explanation}
-            </div>
-          ) : null}
-          <div className="flex items-center justify-end gap-2 pt-2">
-            {verdict === "pending" ? (
-              <Button onClick={onCheck} disabled={!selected} className="gap-1.5">
-                <CheckCircle2 className="h-4 w-4" /> Check
-              </Button>
-            ) : (
-              <Button onClick={onAdvance} className="gap-1.5">
-                {currentIdx + 1 >= total ? "Finish" : "Next"}
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+    </section>
   );
 }
-
-// -------- Worksheet component (inline) --------
-
-function DayWorksheet14({ dayNumber, prompts }: { dayNumber: number; prompts: Day["reflection"] }) {
-  const { getDay, saveReflection } = useFirst14DaysProgress();
-  const existing = getDay(dayNumber).reflectionAnswers ?? {};
-  const [answers, setAnswers] = useState<ReflectionAnswers>(existing);
-  const [savedAt, setSavedAt] = useState<string | null>(null);
-
-  if (prompts.length === 0) {
-    return (
-      <Card className="border-border/60">
-        <CardContent className="p-6 text-sm text-muted-foreground">
-          No worksheet on this day.
-        </CardContent>
-      </Card>
-    );
-  }
-
-  const onSave = () => {
-    saveReflection(dayNumber, answers);
-    setSavedAt(new Date().toLocaleTimeString());
-  };
-
-  return (
-    <div className="space-y-4">
-      <p className="text-sm text-muted-foreground">
-        Write what's true for you. Only you will see this — nothing is submitted anywhere.
-      </p>
-      <div className="space-y-4">
-        {prompts.map((p) => (
-          <Card key={p.index}>
-            <CardContent className="p-4 space-y-3">
-              <div>
-                <p className="font-semibold text-sm leading-snug">
-                  <span className="text-muted-foreground mr-1.5">{p.index}.</span>
-                  {p.question}
-                </p>
-                {p.hint ? (
-                  <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">{p.hint}</p>
-                ) : null}
-              </div>
-              <Textarea
-                value={answers[String(p.index)] ?? ""}
-                onChange={(e) =>
-                  setAnswers((prev) => ({ ...prev, [String(p.index)]: e.target.value }))
-                }
-                placeholder="Your honest answer..."
-                rows={3}
-                className="text-sm"
-              />
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-      <div className="flex items-center justify-between gap-3 pt-2">
-        <span className="text-xs text-muted-foreground">
-          {savedAt ? `Saved at ${savedAt}` : "Not saved yet"}
-        </span>
-        <Button onClick={onSave} size="sm" variant="outline" className="gap-1.5">
-          <NotebookPen className="h-3.5 w-3.5" /> Save
-        </Button>
-      </div>
-    </div>
-  );
-}
-
-// -------- Main page --------
 
 export default function First14DaysDay() {
-  const { dayNumber: dayParam } = useParams();
+  const { dayNumber: raw } = useParams<{ dayNumber: string }>();
+  const dayNumber = Number(raw);
   const navigate = useNavigate();
-  const dayNumber = Number(dayParam) || 1;
-  const [day, setDay] = useState<Day | undefined>();
-  const [loading, setLoading] = useState(true);
-  const { markRead, isDayComplete, getDay } = useFirst14DaysProgress();
 
-  const summary = DAY_SUMMARIES.find((d) => d.dayNumber === dayNumber);
-  const prevDay = dayNumber > 1 ? dayNumber - 1 : null;
-  const nextDay = dayNumber < TOTAL_DAYS ? dayNumber + 1 : null;
+  const [day, setDay] = useState<Day | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<string>("read");
+  const [showStickyQuiz, setShowStickyQuiz] = useState(false);
+  const { isDayComplete, isQuizPassed, markRead, getDay } = useFirst14DaysProgress();
+
+  // Reset to Read tab when navigating between days.
+  useEffect(() => {
+    setActiveTab("read");
+  }, [dayNumber]);
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    loadDay(dayNumber).then((d) => {
-      if (cancelled) return;
-      setDay(d);
-      setLoading(false);
-    });
+    setDay(undefined);
+    loadDay(dayNumber)
+      .then((d) => {
+        if (!cancelled) {
+          setDay(d);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setLoading(false);
+      });
     return () => {
       cancelled = true;
     };
   }, [dayNumber]);
 
+  const completed = isDayComplete(dayNumber);
+  const quizPassed = isQuizPassed(dayNumber);
+  const persisted = getDay(dayNumber);
+  const worksheetStarted = Boolean(persisted.reflectionSavedAt);
+
   useEffect(() => {
     if (day) markRead(dayNumber);
   }, [day, dayNumber, markRead]);
 
+  // Sticky quiz CTA — only when scrolled deep, not on quiz tab, quiz not passed,
+  // and the day has questions.
+  useEffect(() => {
+    if (!day || activeTab === "quiz" || quizPassed || day.quiz.length === 0) {
+      setShowStickyQuiz(false);
+      return;
+    }
+    const onScroll = () => {
+      const docEl = document.documentElement;
+      const total = docEl.scrollHeight - window.innerHeight;
+      if (total <= 0) {
+        setShowStickyQuiz(false);
+        return;
+      }
+      setShowStickyQuiz(window.scrollY / total > 0.55);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [day, activeTab, quizPassed]);
+
+  const goToQuiz = () => {
+    setActiveTab("quiz");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   if (loading || !day) {
+    if (loading) {
+      return (
+        <div className="mx-auto max-w-5xl space-y-6">
+          <div className="h-4 w-40 animate-pulse rounded bg-muted" />
+          <div className="h-48 animate-pulse rounded-2xl bg-muted/50" />
+          <div className="h-10 w-full animate-pulse rounded-xl bg-muted/40" />
+          <div className="h-64 animate-pulse rounded-2xl bg-muted/30" />
+        </div>
+      );
+    }
     return (
-      <div className="max-w-3xl mx-auto py-8 text-sm text-muted-foreground">Loading...</div>
+      <div className="py-12 text-center">
+        <p className="text-sm text-muted-foreground">Day not found.</p>
+        <Button asChild variant="link" className="mt-2">
+          <Link to="/learning-track/first-14-days">Back to 14-day hub</Link>
+        </Button>
+      </div>
     );
   }
 
-  const progress = getDay(dayNumber);
-  const complete = isDayComplete(dayNumber);
+  const idx = DAY_SUMMARIES.findIndex((d) => d.dayNumber === dayNumber);
+  const prev = idx > 0 ? DAY_SUMMARIES[idx - 1] : undefined;
+  const next = idx >= 0 && idx < DAY_SUMMARIES.length - 1 ? DAY_SUMMARIES[idx + 1] : undefined;
+  const weekMeta = WEEK_META[day.week];
+
+  const hasWorksheet = day.reflection.length > 0;
+  const steps = hasWorksheet ? [true, worksheetStarted, quizPassed] : [true, quizPassed];
+  const progressSteps = steps.filter(Boolean).length;
+  const progressPct = Math.round((progressSteps / steps.length) * 100);
+
+  // Week wrap-up on Day 7 (end of Week 1) and Day 14 (end of Week 2).
+  const isLastDayOfWeek = dayNumber === 7 || dayNumber === 14;
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6" data-testid="first-14-days-day">
-      {/* Top nav */}
-      <div className="flex items-center justify-between gap-3">
-        <Button asChild variant="ghost" size="sm" className="gap-1.5 -ml-2">
-          <Link to="/learning-track/first-14-days">
-            <ArrowLeft className="h-4 w-4" /> All days
-          </Link>
-        </Button>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground tabular-nums">
-          Day {dayNumber} of {TOTAL_DAYS}
-        </div>
-      </div>
+    <div className="mx-auto max-w-5xl space-y-6" data-testid="first-14-days-day">
+      {/* Breadcrumbs */}
+      <nav
+        aria-label="Breadcrumb"
+        className="flex flex-wrap items-center gap-1.5 text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground"
+      >
+        <Link
+          to="/learning-track/first-14-days"
+          className="transition-colors hover:text-primary"
+        >
+          14-day hub
+        </Link>
+        <span className="text-muted-foreground/40">/</span>
+        <span>Week {day.week}</span>
+        <span className="text-muted-foreground/40">/</span>
+        <span className="text-foreground">Day {day.dayNumber}</span>
+      </nav>
 
-      {/* Hero */}
-      <div className="space-y-3">
-        <div className="flex items-center gap-2">
-          <Badge variant="outline" className="text-[10px] font-semibold uppercase tracking-wider">
-            Week {day.week}
-          </Badge>
-          <Badge variant="outline" className="text-[10px]">
-            ~{day.frontmatter.duration_minutes} min
-          </Badge>
-          {complete ? (
-            <Badge className="text-[10px] bg-emerald-600">
-              <CheckCircle2 className="h-3 w-3 mr-1" /> Complete
-            </Badge>
-          ) : null}
+      {/* Editorial hero */}
+      <section className="relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-card shadow-card">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.35]"
+          aria-hidden
+          style={{
+            backgroundImage:
+              "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.18), transparent 55%), radial-gradient(ellipse at bottom left, hsl(var(--accent) / 0.18), transparent 55%)",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.08] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]"
+          aria-hidden
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+
+        <div className="relative grid gap-5 p-5 sm:gap-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
+          {/* Day numeral + progress ring */}
+          <div className="flex items-center gap-4 sm:gap-5">
+            <div className="relative">
+              <div className="font-serif text-[clamp(3.75rem,14vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
+                {String(day.dayNumber).padStart(2, "0")}
+              </div>
+              <span className="absolute -top-1.5 left-0 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:-top-2 sm:px-2 sm:tracking-[0.2em]">
+                <Sparkles className="h-2.5 w-2.5" /> Day
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-1 sm:gap-1.5">
+              <div
+                className="relative grid h-12 w-12 place-items-center rounded-full sm:h-16 sm:w-16"
+                style={{
+                  background: `conic-gradient(hsl(var(--primary)) ${progressPct * 3.6}deg, hsl(var(--muted)) 0deg)`,
+                }}
+                aria-label={`${progressPct} percent complete`}
+                role="img"
+              >
+                <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-card sm:h-[54px] sm:w-[54px]">
+                  <span className="font-serif text-sm font-semibold tabular-nums text-foreground sm:text-base">
+                    {progressPct}
+                    <span className="text-[9px] text-muted-foreground sm:text-[10px]">%</span>
+                  </span>
+                </div>
+              </div>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:tracking-[0.18em]">
+                Done
+              </span>
+            </div>
+          </div>
+
+          {/* Metadata + title */}
+          <div className="space-y-2.5 sm:space-y-3">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground sm:gap-x-3 sm:text-[11px] sm:tracking-[0.18em]">
+              <span className="text-primary">Week {day.week}</span>
+              <span className="h-1 w-1 rounded-full bg-muted-foreground/40" />
+              <span>{weekMeta?.title ?? ""}</span>
+              <span className="h-1 w-1 rounded-full bg-muted-foreground/40" />
+              <span>~{day.frontmatter.duration_minutes} min</span>
+              <span className="h-1 w-1 rounded-full bg-muted-foreground/40" />
+              <span>
+                {day.dayNumber} / {TOTAL_DAYS}
+              </span>
+            </div>
+            <h1 className="font-serif text-[1.625rem] font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
+              {day.title}
+            </h1>
+
+            {day.frontmatter.big_idea && (
+              <blockquote className="border-l-4 border-primary/60 pl-4 py-1 italic text-sm text-muted-foreground leading-relaxed">
+                {day.frontmatter.big_idea}
+              </blockquote>
+            )}
+
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              {completed ? (
+                <Badge className="border-emerald-500/40 bg-emerald-500/10 text-emerald-700 hover:bg-emerald-500/15 dark:text-emerald-300">
+                  <CheckCircle2 className="mr-1 h-3 w-3" /> Day complete
+                </Badge>
+              ) : (
+                <Badge variant="outline" className="bg-background/60">
+                  In progress
+                </Badge>
+              )}
+              <StatusChip icon={BookOpen} label="Read" done={true} />
+              {hasWorksheet && (
+                <StatusChip
+                  icon={NotebookPen}
+                  label="Worksheet"
+                  done={worksheetStarted}
+                  dim={!worksheetStarted}
+                />
+              )}
+              <StatusChip
+                icon={ClipboardCheck}
+                label="Quiz"
+                done={quizPassed}
+                dim={!quizPassed}
+              />
+            </div>
+          </div>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold font-serif leading-tight tracking-tight">
-          Day {dayNumber} — {day.title}
-        </h1>
-        {day.frontmatter.big_idea ? (
-          <blockquote className="border-l-4 border-primary/60 pl-4 py-1 italic text-base text-muted-foreground leading-relaxed">
-            {day.frontmatter.big_idea}
-          </blockquote>
-        ) : (
-          summary?.bigIdea && (
-            <blockquote className="border-l-4 border-primary/60 pl-4 py-1 italic text-base text-muted-foreground leading-relaxed">
-              {summary.bigIdea}
-            </blockquote>
-          )
-        )}
-      </div>
+      </section>
 
       {/* Tabs */}
-      <Tabs defaultValue="read" className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="read" className="gap-1.5 text-xs sm:text-sm">
-            <BookOpen className="h-3.5 w-3.5" /> Read
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="inline-flex h-auto w-full justify-start gap-1 overflow-x-auto rounded-xl border border-border/60 bg-card/80 p-1 shadow-sm backdrop-blur">
+          <TabsTrigger
+            value="read"
+            className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+          >
+            <BookOpen className="h-4 w-4" />
+            Read
           </TabsTrigger>
-          <TabsTrigger value="quiz" className="gap-1.5 text-xs sm:text-sm">
-            <ClipboardCheck className="h-3.5 w-3.5" /> Quiz
-            {day.quiz.length > 0 ? (
-              <span className="ml-1 text-[10px] text-muted-foreground tabular-nums">
-                ({day.quiz.length})
+          <TabsTrigger
+            value="quiz"
+            className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+          >
+            <ClipboardCheck className="h-4 w-4" />
+            Quiz
+            {day.quiz.length > 0 && (
+              <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground">
+                {day.quiz.length}
               </span>
-            ) : null}
+            )}
           </TabsTrigger>
-          <TabsTrigger value="worksheet" className="gap-1.5 text-xs sm:text-sm">
-            <NotebookPen className="h-3.5 w-3.5" /> Worksheet
-          </TabsTrigger>
+          {hasWorksheet && (
+            <TabsTrigger
+              value="worksheet"
+              className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+            >
+              <NotebookPen className="h-4 w-4" />
+              Worksheet
+              <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground data-[state=active]:bg-primary-foreground/20 data-[state=active]:text-primary-foreground">
+                {day.reflection.length}
+              </span>
+            </TabsTrigger>
+          )}
         </TabsList>
 
-        <TabsContent value="read" className="pt-6">
-          <article className="prose prose-sm sm:prose-base dark:prose-invert max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={dayMarkdownComponents}>
-              {day.markdown}
-            </ReactMarkdown>
-          </article>
+        <TabsContent value="read" className="mt-5 animate-fade-in">
+          <Card className="border-border/60 shadow-card">
+            <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={dayMarkdownComponents}>
+                {day.markdown}
+              </ReactMarkdown>
+            </CardContent>
+          </Card>
         </TabsContent>
 
-        <TabsContent value="quiz" className="pt-6">
-          <DayQuiz14 dayNumber={dayNumber} questions={day.quiz} />
+        <TabsContent value="quiz" className="mt-5 animate-fade-in">
+          <DayQuiz dayNumber={dayNumber} questions={day.quiz} />
         </TabsContent>
 
-        <TabsContent value="worksheet" className="pt-6">
-          <DayWorksheet14 dayNumber={dayNumber} prompts={day.reflection} />
+        <TabsContent value="worksheet" className="mt-5 animate-fade-in">
+          <DayWorksheet dayNumber={dayNumber} prompts={day.reflection} />
         </TabsContent>
       </Tabs>
 
-      {/* Bottom nav */}
-      <div className="flex items-center justify-between gap-3 pt-4 border-t">
-        <Button
-          variant="outline"
-          size="sm"
-          disabled={!prevDay}
-          onClick={() => prevDay && navigate(`/learning-track/first-14-days/day/${prevDay}`)}
-          className="gap-1.5"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {prevDay ? `Day ${prevDay}` : "Start"}
-        </Button>
-        <Button
-          size="sm"
-          disabled={!nextDay}
-          onClick={() => nextDay && navigate(`/learning-track/first-14-days/day/${nextDay}`)}
-          className="gap-1.5"
-        >
-          {nextDay ? `Day ${nextDay}` : "Finish"}
-          <ArrowRight className="h-4 w-4" />
-        </Button>
+      {/* Week wrap-up on Day 7 and Day 14 */}
+      {isLastDayOfWeek && <WeekWrapup weekNumber={day.week} />}
+
+      {/* Footer nav */}
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-5">
+        {prev ? (
+          <Button
+            variant="ghost"
+            onClick={() => navigate(`/learning-track/first-14-days/day/${prev.dayNumber}`)}
+            className="group -ml-3 gap-2 text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+            <span className="flex flex-col items-start leading-tight">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
+                Previous
+              </span>
+              <span className="text-sm font-medium">Day {prev.dayNumber}</span>
+            </span>
+          </Button>
+        ) : (
+          <span />
+        )}
+        {next && (
+          <Button
+            onClick={() => navigate(`/learning-track/first-14-days/day/${next.dayNumber}`)}
+            className="group gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
+          >
+            <span className="flex flex-col items-end leading-tight">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-foreground/80">
+                Up next
+              </span>
+              <span className="text-sm font-medium">Day {next.dayNumber}</span>
+            </span>
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </Button>
+        )}
       </div>
+
+      {/* Sticky quiz CTA */}
+      {showStickyQuiz && (
+        <div
+          className="pointer-events-none fixed inset-x-0 bottom-16 z-30 px-3 sm:px-4 md:bottom-4"
+          aria-live="polite"
+        >
+          <div className="pointer-events-auto mx-auto max-w-3xl">
+            <div className="flex items-center gap-3 rounded-2xl border border-primary/30 bg-background/95 p-2 pl-4 shadow-elegant backdrop-blur">
+              <ClipboardCheck className="h-5 w-5 shrink-0 text-primary" />
+              <p className="flex-1 text-sm font-medium leading-snug">
+                <span className="hidden sm:inline">Ready to lock this one in? </span>
+                Take the quiz to check your understanding.
+              </p>
+              <Button
+                size="sm"
+                onClick={goToQuiz}
+                className="shrink-0 gap-1.5 bg-gradient-primary text-primary-foreground hover:opacity-95"
+              >
+                Take the quiz
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
