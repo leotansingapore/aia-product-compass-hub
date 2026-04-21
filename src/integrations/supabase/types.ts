@@ -791,15 +791,7 @@ export type Database = {
           user_id?: string
           video_watched_at?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "first_60_days_progress_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       flow_annotations: {
         Row: {
