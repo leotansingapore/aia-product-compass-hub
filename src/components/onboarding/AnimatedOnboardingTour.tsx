@@ -54,10 +54,18 @@ function getSeenKey(userId: string | undefined) {
   return `${STORAGE_KEY_PREFIX}${userId ?? "guest"}`;
 }
 
-export function hasSeenAnimatedTour(userId: string | undefined) {
+export function hasSeenAnimatedTour(
+  userId: string | undefined,
+  globalResetAt?: Date | null
+) {
   if (typeof window === "undefined") return true;
   try {
-    return !!localStorage.getItem(getSeenKey(userId));
+    const raw = localStorage.getItem(getSeenKey(userId));
+    if (!raw) return false;
+    const seenAt = new Date(raw);
+    if (Number.isNaN(seenAt.getTime())) return true;
+    if (globalResetAt && globalResetAt.getTime() > seenAt.getTime()) return false;
+    return true;
   } catch {
     return true;
   }

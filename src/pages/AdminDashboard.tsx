@@ -1,4 +1,5 @@
 import { AdminLayout } from '@/components/layout/AdminLayout';
+import { PlatformControls } from '@/components/admin/PlatformControls';
 import { UnifiedUserDirectory } from '@/components/admin/UnifiedUserDirectory';
 import { VideoProgressPanel } from '@/components/admin/VideoProgressPanel';
 import { QuizScoresPanel } from '@/components/admin/QuizScoresPanel';
@@ -21,6 +22,9 @@ export default function AdminDashboard() {
       title="Admin Dashboard"
       description="Unified user management dashboard for registration to activation."
     >
+      <div className="mb-4">
+        <PlatformControls />
+      </div>
       <Tabs defaultValue={initialTab}>
         <TabsList className="mb-4 sm:mb-6 w-full sm:w-auto flex-wrap h-auto gap-0 !bg-transparent !p-0 border-b border-border rounded-none justify-start">
           <TabsTrigger
