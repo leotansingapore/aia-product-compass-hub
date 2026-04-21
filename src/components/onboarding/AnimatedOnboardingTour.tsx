@@ -135,10 +135,10 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
       },
       {
         id: "products",
-        eyebrow: "AIA Product Knowledge",
+        eyebrow: "Product Knowledge",
         title: (
           <>
-            Every AIA product, <span className="text-sky-300">organised and explained</span>
+            Every product, <span className="text-sky-300">organised and explained</span>
           </>
         ),
         subtitle:
