@@ -43,7 +43,7 @@ Today you'll set up all the tools you need to operate effectively. This includes
 
 - **Key in all the tasks that you're supposed to do**, set aside 15 minutes to do a "brain scan" and just dump out everything to the task list, on an ad hoc basis and also recurring basis.
 - **You can create multiple task lists** if you want, e.g. one for school, one for personal life stuff, etc.
-- **Watch this youtube video** to understand about how you can use your task list effectively (for further learning, you can research about the Getting Things Done (GTD) method). Do have the automatic habit to key in things in your task list the moment you have an idea/need to do something.
+- **[Watch this youtube video](https://www.youtube.com/watch?v=7M6bIeVbCqA)** to understand about how you can use your task list effectively (for further learning, you can research about the Getting Things Done (GTD) method). Do have the automatic habit to key in things in your task list the moment you have an idea/need to do something.
 - **Create a task from a message like this** — have an automatic habit to create tasks for yourself whenever you see something important on Lark. Then, revisit the task later when you are "processing". Have a habit to capture constantly, then set aside one time in the day when you are in the flow state to process everything properly. Some tasks can't be done now, but the most important is to capture everything first, and sort and process them later on. This is a critical part of how I am able to work in multiple things in parallel.
 
 ![Creating tasks from messages](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/31bc18a98c214158b09a1422745c235c747b9a1927e2455eb74a5e6608393d85.gif)
