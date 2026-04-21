@@ -6,47 +6,15 @@
 
 ## Pending
 
-
-### `first_14_days_progress` table — prospect-facing course progress needs cross-device sync
-
-**Context:** The First 14 Days learning track (`/learning-track/first-14-days`) currently uses localStorage for progress via `src/hooks/first-14-days/useFirst14DaysProgress.ts`. Works per-device but loses state when prospects switch phones/laptops or clear browser data.
-
-**Request for Lovable:** Create `first_14_days_progress` table mirroring the shape of `first_60_days_progress` (minus the `slides_viewed_at` / `video_watched_at` columns — those aren't used in the 14-day curriculum).
-
-**Proposed schema:**
-
-```sql
-CREATE TABLE public.first_14_days_progress (
-  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-  day_number INTEGER NOT NULL CHECK (day_number BETWEEN 1 AND 14),
-  read_at TIMESTAMPTZ,
-  quiz_score INTEGER,
-  quiz_attempts INTEGER NOT NULL DEFAULT 0,
-  quiz_passed_at TIMESTAMPTZ,
-  reflection_answers JSONB,
-  reflection_saved_at TIMESTAMPTZ,
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  PRIMARY KEY (user_id, day_number)
-);
-```
-
-**RLS policies** (match the pattern from `first_60_days_progress`):
-
-- SELECT / INSERT / UPDATE / DELETE: `auth.uid() = user_id`
-- Admins (`user_admin_roles` lookup) can SELECT all rows for roster/heatmap visibility
-
-**Trigger:** `updated_at = NOW()` on UPDATE (same pattern as other progress tables).
-
-**Important FK note:** Point `user_id` at `auth.users(id)` directly, NOT `profiles(id)`. The prior `first_60_days_progress` bug (fixed via migration `20260421041541_...`) came from pointing at `profiles(id)` while the client writes `auth.uid()`. Avoid repeating.
-
-**Client migration** (Claude Code will handle after Lovable ships the table):
-
-1. Update `src/hooks/first-14-days/useFirst14DaysProgress.ts` to mirror `useFirst60DaysProgress.ts` — TanStack Query against Supabase, with legacy localStorage migration (read the old `first-14-days-progress-v1` key once, upsert rows, flag as migrated).
-2. Regenerate `src/integrations/supabase/types.ts` (Lovable will do this automatically).
-
-**Why this matters:** Prospects on this track are unpaid candidates evaluating the career. If they drop off because localStorage got cleared, we lose them. Cross-device persistence is the baseline experience for a 14-day reading path.
+_No pending database changes._
 
 ---
+
+## Completed (recent)
+
+### `first_14_days_progress` table created — DONE 2026-04-21
+
+Migration: `20260421085152_5cd3fca2-6c33-49c1-b118-6659c9d8e607.sql`. Lovable shipped the table with the exact schema proposed here: `user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE`, `day_number INTEGER CHECK BETWEEN 1 AND 14`, `read_at`, `quiz_score`, `quiz_attempts DEFAULT 0`, `quiz_passed_at`, `reflection_answers JSONB`, `reflection_saved_at`, `updated_at DEFAULT NOW()`, primary key on `(user_id, day_number)`. RLS: four owner-only policies (SELECT/INSERT/UPDATE/DELETE where `auth.uid() = user_id`) plus an admin SELECT policy using `has_role(auth.uid(), 'admin') OR has_role(auth.uid(), 'master_admin')`. Trigger `first_14_days_progress_set_updated_at` refreshes `updated_at` on UPDATE. Client follow-up shipped in the same session: `useFirst14DaysProgress` now TanStack-Query-backed against Supabase with legacy localStorage migration (reads old `first-14-days-progress-v1` key once, upserts rows, flips `first-14-days-migration-done` flag); `/learning-track/admin/first-14-days` swapped from the placeholder card to a real learner rollup mirroring First 60 Days (current day, quizzes passed, reflections saved, last active).
 
 ### `first_60_days_progress.user_id` FK now points at `auth.users(id)` — DONE 2026-04-21
 
