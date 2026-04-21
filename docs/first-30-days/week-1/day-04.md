@@ -14,18 +14,9 @@ Today you'll create two foundational documents: your business plan and your visi
 
 ## Creating Your Business Plan
 
-### Instructions
-
-1. **Read the business plan instructions** provided by your team
-2. **Check examples** from other consultants who have completed theirs
-3. **Create your own business plan** using the Canva template below
-4. **Upload it** to the shared folder and **send it to your onboarding group chat** for review
-
-### Resources
-
-- [Canva Business Plan Template](https://www.canva.com/design/DAGomVn0YWE/CrygJ1WYv1pNRxjCHtRjng/view?utm_content=DAGomVn0YWE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hdeafd3217e) — make a duplicate and customise
-
-> **Action required:** Create your business plan and share it with your onboarding group chat today.
+1. [Read the business plan instructions here](https://nsgukkz32942.sg.larksuite.com/wiki/JnLewrJCmi6VBSkCJsvlcysYgPe)
+2. Do [check some examples here](https://nsgukkz32942.sg.larksuite.com/drive/folder/CyXsfQiuPlRA1udutA0lpbPxggf?from=from_copylink).
+3. Please create your own business plan, and upload into the same folder above and send it to your onboarding group chat for checking. You can use [this Canva link](https://www.canva.com/design/DAG1v21ulvQ/X6CAK_MNk49-vjjsBDlFTg/edit?utm_content=DAG1v21ulvQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) as a sample and make a duplicate.
 
 ---
 
