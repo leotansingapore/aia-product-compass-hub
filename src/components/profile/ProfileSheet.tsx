@@ -207,7 +207,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   };
 
   const handleProfileUpdate = (updatedProfile: Profile) => {
-    setProfile(updatedProfile);
+    setProfileOverride(updatedProfile);
     setEditing(false);
   };
 
