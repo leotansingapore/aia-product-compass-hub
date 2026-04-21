@@ -37,7 +37,7 @@ Today you'll set up all the tools you need to operate effectively. This includes
 
 ## Create Your Task List
 
-Create your task list like this, and create these sections:
+1. Create your task list like this, and create these sections:
 
 ![Creating task list](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/9ad7bc7c16b3418fac7dc584cd15a729b5f33c4e9f5049b6954537d04c63f1f1.gif)
 
