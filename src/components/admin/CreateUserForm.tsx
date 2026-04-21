@@ -3,9 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { UserPlus, Eye, EyeOff } from "lucide-react";
+import { TIER_LEVELS, TIER_META, type TierLevel } from "@/lib/tiers";
 
 export function CreateUserForm() {
   const { toast } = useToast();
@@ -16,14 +19,13 @@ export function CreateUserForm() {
     password: '',
     firstName: '',
     lastName: '',
-    displayName: ''
+    displayName: '',
+    tier: 'papers_taker' as TierLevel,
+    syncToGrowingAge: true,
   });
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
+  const handleInputChange = (field: string, value: string | boolean) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const generatePassword = () => {
@@ -34,21 +36,14 @@ export function CreateUserForm() {
       password += charset.charAt(Math.floor(Math.random() * charset.length));
     }
     setFormData(prev => ({ ...prev, password }));
-    toast({
-      title: "Password Generated",
-      description: "A secure password has been generated for the user.",
-    });
+    toast({ title: "Password Generated", description: "A secure password has been generated." });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.email || !formData.password) {
-      toast({
-        title: "Error",
-        description: "Email and password are required",
-        variant: "destructive",
-      });
+      toast({ title: "Error", description: "Email and password are required", variant: "destructive" });
       return;
     }
 
@@ -61,33 +56,36 @@ export function CreateUserForm() {
           password: formData.password,
           firstName: formData.firstName,
           lastName: formData.lastName,
-          displayName: formData.displayName
+          displayName: formData.displayName,
+          tier: formData.tier,
+          syncToGrowingAge: formData.syncToGrowingAge,
         }
       });
 
-      if (error) {
-        throw new Error(error.message);
-      }
+      if (error) throw new Error(error.message);
+      if (data?.error) throw new Error(data.error);
 
-      if (data.error) {
-        throw new Error(data.error);
-      }
+      const syncMsg = formData.syncToGrowingAge
+        ? (data?.growingAge?.success
+          ? ' Also created on growing-age-calculator.'
+          : ` Growing-age sync failed: ${data?.growingAge?.error ?? 'unknown error'}`)
+        : '';
 
       toast({
         title: "Success",
-        description: `User account created successfully for ${formData.email}`,
+        description: `User account created for ${formData.email}.${syncMsg}`,
       });
 
-      // Reset form
       setFormData({
         email: '',
         password: '',
         firstName: '',
         lastName: '',
-        displayName: ''
+        displayName: '',
+        tier: 'papers_taker',
+        syncToGrowingAge: true,
       });
 
-      // Trigger a refresh of the user list
       window.dispatchEvent(new CustomEvent('userCreated'));
 
     } catch (error: any) {
@@ -110,7 +108,7 @@ export function CreateUserForm() {
           Create User Account
         </CardTitle>
         <CardDescription>
-          Create a new user account with email and password
+          Create a new user account with email, password, and access tier. Optionally mirrors to growing-age-calculator.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -142,7 +140,7 @@ export function CreateUserForm() {
               id="displayName"
               value={formData.displayName}
               onChange={(e) => handleInputChange('displayName', e.target.value)}
-              placeholder="Will auto-generate from first/last name if empty"
+              placeholder="Auto-generates from first/last name if empty"
             />
           </div>
 
@@ -179,18 +177,10 @@ export function CreateUserForm() {
                   onClick={() => setShowPassword(!showPassword)}
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? (
-                    <EyeOff className="h-4 w-4" />
-                  ) : (
-                    <Eye className="h-4 w-4" />
-                  )}
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </Button>
               </div>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={generatePassword}
-              >
+              <Button type="button" variant="outline" onClick={generatePassword}>
                 Generate
               </Button>
             </div>
@@ -199,12 +189,44 @@ export function CreateUserForm() {
             </p>
           </div>
 
-          <div className="flex gap-2 pt-4">
-            <Button
-              type="submit"
-              disabled={loading}
-              className="flex-1"
+          <div>
+            <Label htmlFor="tier">Access Tier *</Label>
+            <Select
+              value={formData.tier}
+              onValueChange={(value) => handleInputChange('tier', value)}
             >
+              <SelectTrigger id="tier">
+                <SelectValue placeholder="Select tier" />
+              </SelectTrigger>
+              <SelectContent>
+                {TIER_LEVELS.map((t) => (
+                  <SelectItem key={t} value={t}>
+                    {TIER_META[t].label} — {TIER_META[t].description}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="flex items-start gap-2 rounded-md border border-border/50 bg-muted/30 p-3">
+            <Checkbox
+              id="syncToGrowingAge"
+              checked={formData.syncToGrowingAge}
+              onCheckedChange={(checked) => handleInputChange('syncToGrowingAge', Boolean(checked))}
+              className="mt-0.5"
+            />
+            <div className="space-y-1">
+              <Label htmlFor="syncToGrowingAge" className="cursor-pointer">
+                Also create on growing-age-calculator
+              </Label>
+              <p className="text-xs text-muted-foreground">
+                Creates the same email/password on Financial Presenters (role: consultant, approved).
+              </p>
+            </div>
+          </div>
+
+          <div className="flex gap-2 pt-4">
+            <Button type="submit" disabled={loading} className="flex-1">
               {loading ? "Creating..." : "Create User Account"}
             </Button>
           </div>
