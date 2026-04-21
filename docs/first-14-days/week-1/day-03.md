@@ -135,7 +135,7 @@ Me personally: I used exactly these three skills to build four other companies o
 
 Combined 7-figure revenue across all four. I didn't learn business in business school. I learned it by sitting across the table from 1,000+ financial-advisory clients first.
 
-![Leo's businesses](/first-14-days/images/four-businesses.png)
+![Leo's businesses](/first-14-days/images/four-businesses.webp)
 
 ---
 

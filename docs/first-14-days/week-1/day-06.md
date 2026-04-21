@@ -56,7 +56,7 @@ Even at 200+ retainers with 40 staff, the stickiness problem was brutal:
 - I'm on a treadmill, always replacing what I lost
 - Typical client LTV: $20K–$30K before churn
 
-![Scaling agency pain](/first-14-days/images/four-businesses.png)
+![Scaling agency pain](/first-14-days/images/four-businesses.webp)
 
 Every month I was starting partially from zero. Compare that to the insurance client who:
 
@@ -74,7 +74,7 @@ Numbers look similar, but the mechanism is completely different. The marketing a
 
 ## 3. Why this business has stickiness built in
 
-![Recurring vs non-recurring revenue](/first-14-days/images/recurring-revenue.png)
+![Recurring vs non-recurring revenue](/first-14-days/images/recurring-revenue.webp)
 
 Stickiness in FA isn't a marketing technique — it's structural.
 
@@ -168,18 +168,15 @@ This is why leaving in year 2 or 3 is such a common mistake for people who joine
 
 Here's my own back-end, year by year. Just passive — renewals, Career Benefit, APF. Not including new-business commission from current year.
 
-| Year | Passive income only |
-|---|---|
-| 1 | $50,000 |
-| 2 | $68,000 |
-| 3 | $80,000 |
-| 4 | $86,000 |
-| 5 | $93,000 |
-| 6 | $101,000 |
+![Passive income by year — year 1 through year 6](/first-14-days/images/passive-income-by-year.png)
 
-By year 6, even if I did zero new business that year, the book was producing $101K on its own. That's what compounding looks like in this business.
+By year 6, even if I did zero new business that year, I'd still be earning more than $100K of passive income.
 
 And that's why, travel-wise, I've been able to go: LA (2017), Athens (2018), Berlin (2019), LA (2022), Hawaii (2023), Norway (2024). Twice a year, company-sponsored trips. The book doesn't stop while I'm away.
+
+![Los Angeles 2017](/first-14-days/images/travel-la.jpeg)
+![Athens 2018](/first-14-days/images/travel-athens.jpeg)
+![Berlin 2019](/first-14-days/images/travel-berlin.jpeg)
 
 ---
 

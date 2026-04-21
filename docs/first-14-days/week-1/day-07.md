@@ -55,7 +55,7 @@ mindmap
       Meaningful work
 ```
 
-![The ideal career framing](/first-14-days/images/ideal-career-framing.png)
+![The ideal career framing](/first-14-days/images/ideal-career-framing.webp)
 
 ---
 
@@ -81,10 +81,10 @@ See Day 5 for the actual screenshots. That's what the Income dimension compounds
 
 And the business didn't stop there. I've since built **four other companies** on top of the FA practice:
 
-![My digital marketing agency](/first-14-days/images/business-marketing-agency.png)
-![Cleaning business acquired 2023](/first-14-days/images/business-cleaning.png)
-![Outsourcing business 2024](/first-14-days/images/business-outsourcing.png)
-![Consulting firm 2024](/first-14-days/images/business-consulting.png)
+![My digital marketing agency](/first-14-days/images/business-marketing-agency.webp)
+![Cleaning business acquired 2023](/first-14-days/images/business-cleaning.webp)
+![Outsourcing business 2024](/first-14-days/images/business-outsourcing.webp)
+![Consulting firm 2024](/first-14-days/images/business-consulting.webp)
 
 Combined 7-figure revenue across all four. The FA career's income + skills + network is what made that possible.
 
@@ -109,7 +109,7 @@ What independence actually looks like in practice:
 - **You pick your niche.** Young professionals. Business owners. Doctors. Engineers. Expatriates. You shape it.
 - **You decide the team shape.** Solo, small team, or growing manager — all valid paths.
 
-![Independence in practice](/first-14-days/images/independence-practice.png)
+![Independence in practice](/first-14-days/images/independence-practice.webp)
 
 The truest version of independence is *temporal*. You can attend your child's school concert on a Wednesday afternoon because you moved your morning. That small flexibility is worth more than most candidates realise when they're still inside a 9-to-5 rhythm.
 
