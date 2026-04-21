@@ -6,9 +6,9 @@ import { chromium } from "@playwright/test";
 import fs from "fs";
 import path from "path";
 
-const BASE = "http://localhost:8080";
-const EMAIL = "admin@demo.com";
-const PASSWORD = "demo123456";
+const BASE = process.env.AUDIT_BASE_URL ?? "http://localhost:8080";
+const EMAIL = process.env.AUDIT_EMAIL ?? "tanjunsing@gmail.com";
+const PASSWORD = process.env.AUDIT_PASSWORD ?? "Leotantemppass1";
 const OUT_DIR = path.resolve("test-results/first-14-days-audit");
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -57,13 +57,23 @@ const report = {
   await page.getByPlaceholder("Enter your password").first().fill(PASSWORD);
 
   const signInButton = page
-    .getByRole("button", { name: /sign in|log in/i })
+    .getByRole("button", { name: /^sign in$/i })
     .first();
-  await signInButton.click();
-
-  await page.waitForURL(/\/learning-track|\//, { timeout: 30000 }).catch(() => {});
+  await Promise.all([
+    page.waitForURL((url) => !url.pathname.startsWith("/auth"), { timeout: 45000 }).catch(() => {}),
+    signInButton.click(),
+  ]);
   await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
   console.log(`Logged in, landed at: ${page.url()}`);
+  if (page.url().includes("/auth")) {
+    // Dump any visible error toasts so we know why
+    const bodyText = (await page.locator("body").innerText()).slice(0, 800);
+    console.log("AUTH FAILED — still on /auth");
+    console.log("body text (truncated):", bodyText);
+    await page.screenshot({ path: path.join(OUT_DIR, "debug-auth-failed.png"), fullPage: true });
+    await browser.close();
+    process.exit(2);
+  }
 
   // Go to First 14 Days hub
   await page.goto(`${BASE}/learning-track/first-14-days`, { waitUntil: "networkidle" });
