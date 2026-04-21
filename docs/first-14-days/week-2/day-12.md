@@ -20,103 +20,95 @@ tags: [first-14-days, week-2, prospect, objection, time, office, ifa, leo-voice]
 
 By the end of today you should be able to:
 
-1. **Answer** the three most common "logistical" objections honestly.
-2. **See** the pattern — these are rarely the real reason; they're placeholders.
-3. **Identify** your own real hesitation, if one still exists after 12 days.
+1. Answer the three most common "logistical" objections honestly.
+2. Spot the pattern. These are rarely the real reason. They're placeholders.
+3. Name your own real hesitation, if one still exists after 12 days.
 
 ---
 
 ## 1. "I don't have enough time"
 
-Candidates in demanding roles — corporate, NS, full-time studies, heavy parental responsibilities — raise this first.
+Candidates in demanding roles raise this first, usually corporate workers, NSFs, full-time students, or parents with young kids.
 
-The fear: *I'll have to quit my current life to do this.*
+The underlying fear is "I'll have to quit my current life to do this."
 
 ### The reality: the career accommodates a part-time ramp
 
-Financial advisory in the tied-agency model is one of the few careers where a genuine part-time ramp is structurally possible. Not because the career is easy. Because the work is **self-scheduled.**
+Financial advisory in the tied-agency model is one of the few careers where a real part-time ramp is possible. Not because the career is easy, but because the work is self-scheduled.
 
 Real examples of how this plays out:
 
-- **Full-time uni students** building six-figure practices while balancing full course loads (me: NUS Engineering on GEP — cramming 4 years into 3)
-- **Corporate professionals** ramping a side practice over 12 months before transitioning
-- **Parents** scheduling around school runs and children's routines
-- **NSFs** building during weekends and leave
+- Full-time uni students building six-figure practices while carrying full course loads (me, NUS Engineering on GEP, 4 years crammed into 3)
+- Corporate professionals ramping a side practice over 12 months before transitioning
+- Parents scheduling around school runs and children's routines
+- NSFs building during weekends and leave
 
 ### My own proof
 
-I did this during NUS Engineering on the Global Engineering Program. That program cramped a 4-year degree into 3. I was taking overloaded module counts every semester. Full-time university.
+I did this during NUS Engineering on the Global Engineering Program, which crammed a 4-year degree into 3. Overloaded module counts every semester. Full-time university, no shortcuts.
 
-Split:
-- **80%** of my time went to uni — lectures, tutorials, assignments, CFA Level 2 prep
-- **20%** went to financial advisory — prospecting, calls, appointments
+The split was roughly 80/20. Most of my time went to uni (lectures, tutorials, assignments, CFA Level 2 prep). The other 20% went to financial advisory (prospecting, calls, appointments).
 
-The 20% was roughly **20 hours/week.** Mostly weekday evenings (2-hour call window) and weekends for appointments.
+The 20% worked out to around 20 hours a week. Mostly weekday evenings in a 2-hour call window, and weekends for appointments.
 
 ![My uni schedule](/first-14-days/images/leo-uni-schedule.webp)
 
-Year 1 income: **$145K.** While in full-time engineering school. Working 20 hours a week. My warm network was thin (GEP, small social circle at the time) so most of this came through cold systems — but that's the point: the model works with or without a rich warm network, because cold is handled for you. If you have a warm network, you're doubly positioned.
+Year 1 income was $145K while I was in full-time engineering school on 20 hours a week. My warm network was thin back then (GEP, small social circle) so most of it came through cold systems. That's actually the point. The model works with or without a rich warm network, because cold is handled for you. If you do have a warm network, you're doubly positioned.
 
-It wasn't magic. It was **Parkinson's Law + efficiency.** Time expands to fill what you give it. Give yourself 40 hours, you'll use 40 hours. Give yourself 20, the work compresses. Small efforts, daily, compound faster than big bursts.
+It wasn't magic. It was Parkinson's Law plus efficiency. Time expands to fill whatever you give it. Give yourself 40 hours and you'll use 40. Give yourself 20 and the work compresses. Small efforts, daily, compound faster than big bursts.
 
 ### The honest caveat
 
-Part-time extends the timeline. A full-time advisor might reach financial stability in 6–9 months. A part-time ramper might take 12–18 months. That's a trade, not a blocker.
+Part-time extends the timeline. A full-time advisor might reach financial stability in 6 to 9 months. A part-time ramper might take 12 to 18. That's a trade, not a blocker.
 
-What *doesn't* work: "2 hours a week for a few months and see what happens." Not enough to build anything.
+What doesn't work is "2 hours a week for a few months and see what happens." Not enough to build anything.
 
-You need real hours. Just not necessarily full-time ones.
+You need real hours. They just don't have to be full-time hours.
 
 ### When to flag this as a real problem
 
-Time objection is a genuine blocker if:
+The time objection is a genuine blocker if:
 
-- Your current role is 60+ hours/week *and* emotionally draining
-- Life phase (new parent, health issue) where adding responsibility is unrealistic
-- Can't carve out 15 hours/week of genuinely flexible time
+- Your current role runs 60+ hours a week and is emotionally draining
+- You're in a life phase (new parent, health issue) where adding responsibility is unrealistic
+- You genuinely can't carve out 15 hours a week of flexible time
 
-In those cases, *"not now"* is legitimate. That's Week 14's Delay outcome. Not *"never"* — *"let's revisit in 6–12 months when conditions change."*
+In those cases, "not now" is legitimate. That's the Day 14 Delay outcome. Not "never," just "let's revisit in 6 to 12 months when conditions change."
 
 ---
 
 ## 2. "I need a big office to be successful"
 
-Common belief: big office projects credibility, so you need one.
+The belief is that a big office projects credibility, so you need one.
 
 ### Reality: office size is a vanity metric
 
-Most top-performing advisors don't work from grand offices. Common patterns:
+Most top-performing advisors don't work from grand offices. The common patterns:
 
 - Home office or small co-working space for internal work
 - Client meetings in their homes (often preferred by families)
-- Public spaces (hotel lobbies, serviced lounges, private F&B rooms)
-- Video calls for review meetings and geographically spread clients
+- Public spaces like hotel lobbies, serviced lounges, private F&B rooms
+- Video calls for review meetings and clients spread across different areas
 
-What matters to clients is **not the office:**
+What matters to clients isn't the office. It's whether the advisor is competent, trustworthy, giving sound advice, and recommending the right product for them.
 
-- Whether the advisor is competent
-- Whether the advisor is trustworthy
-- Whether the advice is sound
-- Whether the product is right for them
-
-An advisor who spends $5K/month on a prestigious office has added $60K/year of overhead the client indirectly pays for. That's money the client could save in premiums, or the advisor could invest in their own growth.
+An advisor paying $5K a month for a prestigious office has added $60K a year of overhead that clients indirectly pay for. That's money clients could save in premiums, or the advisor could reinvest into their own growth.
 
 ### The office trap
 
-Candidates who think they need a big office often think they need other status signals — luxury watches, flashy cars, expensive suits, business-class flights. Trappings. Some top producers have them because they can. Many don't — because they're unnecessary.
+Candidates who think they need a big office often think they need other status markers too, like luxury watches, flashy cars, expensive suits, business-class flights. Some top producers have them because they can afford to. Plenty don't bother, because none of it is necessary.
 
-The best advisors' edge isn't visible. It's their craft, their systems, and their relationships. Expensive to build, but not *visibly.*
+The best advisors' edge isn't visible. It's their craft, their systems, their relationships. Expensive to build, but not in a way anyone can see from the outside.
 
-A candidate who mentally anchors to status signals as prerequisites usually isn't ready — because the career at its core is a depth game, not a projection game.
+A candidate who mentally anchors to status signals as prerequisites usually isn't ready. The career at its core is a depth game, not a projection game.
 
 ### What to look at instead
 
-Wrong question: *"does this agency's office look impressive enough?"*
+The wrong question is *"does this agency's office look impressive enough?"* The right questions:
 
-Right questions:
 - Does the agency have professional meeting spaces available when needed? (Most do.)
-- Does the agency have the tools, systems, and technology to support advisor work?
-- Is the training space effective — or just nicely decorated?
+- Does it have the tools, systems and technology to support advisor work?
+- Is the training space effective, or just nicely decorated?
 
 Aesthetics are a distraction from what matters.
 
@@ -124,64 +116,57 @@ Aesthetics are a distraction from what matters.
 
 ## 3. "I need an IFA (Independent Financial Adviser) for product range"
 
-More sophisticated objection, usually from candidates who've done research. Logic: IFA sells products from many companies, tied agent sells one. So IFA = more choice = better for client.
+This is the more sophisticated objection, usually from candidates who've done their research. The logic: IFAs sell products from many companies, a tied agent sells one, so IFA means more choice which means better for the client.
 
 ### Reality: product range matters less than most candidates think
 
-**What's true:**
-- IFAs do have access to products from multiple insurers
-- In rare cases, that access matters for a specific client situation
-- A tied advisor at a single insurer doesn't have that multi-company range
+Some of that is true. IFAs do have access to products from multiple insurers. In rare cases that access matters for a specific client situation. A tied advisor at a single insurer doesn't have that multi-company range.
 
-**What's also true, and usually dominates:**
+But here's what usually dominates:
 
-- **Top 2–3 products in any category are usually very similar across the big insurers.** A client doesn't dramatically benefit from insurer B's product when insurer A's equivalent is 95% as good.
-- **Tied-agency training is typically much better than IFA training.** Big insurers invest heavily in agent development. IFA advisors are often more independent but less trained, especially in years 1–2.
-- **Tied-agency systems are typically much better.** CRMs, lead infrastructure, tech tools, compliance support — more mature at major tied agencies.
-- **Client experience is often better at a tied agency.** Claims processing, customer service, branch network, digital platforms — centralised and consistent.
-- **Career ramp is usually faster at tied.** Infrastructure, mentorship, structured training compress year 1.
+- The top 2 to 3 products in any category are very similar across the big insurers. A client doesn't dramatically benefit from insurer B's product when insurer A's equivalent is 95% as good.
+- Tied-agency training is typically much better than IFA training. Big insurers invest heavily in agent development. IFA advisors are often more independent but less trained, especially in years 1 to 2.
+- Tied-agency systems are typically much better. CRMs, lead infrastructure, tech tools, compliance support. All more mature at major tied agencies.
+- Client experience is often better at a tied agency. Claims processing, customer service, branch network, digital platforms are centralised and consistent.
+- Career ramp is usually faster at tied. Infrastructure, mentorship and structured training compress year 1.
 
-For a new advisor, tied-agency advantage in *training, systems, ramp* usually outweighs IFA advantage in *product range* by a wide margin.
+For a new advisor, the tied-agency advantage in training, systems and ramp usually outweighs the IFA advantage in product range by a wide margin.
 
 ### When IFA does make sense
 
-- **Experienced advisors** (5+ years) who already have craft and want multi-company product access for HNW clients
-- **Advisors in specific niches** where product differentiation materially matters
-- **Advisors who dislike corporate structure** and want to operate independently
+- Experienced advisors (5+ years) who already have craft and want multi-company product access for HNW clients
+- Advisors in specific niches where product differentiation genuinely matters
+- Advisors who dislike corporate structure and want to operate independently
 
-For a new advisor between a well-run tied agency and an IFA, tied agency is almost always right in years 1–3. By year 5, you can make a different choice if it fits. I built my book tied at AIA. That's not an accident.
+For a new advisor choosing between a well-run tied agency and an IFA, the tied agency is almost always right in years 1 to 3. By year 5 you can make a different choice if it fits. I built my book tied at AIA. That wasn't an accident.
 
 ---
 
 ## 4. The pattern behind all three
 
-Time, office, product range — these share a shape:
+Time, office, product range all have the same shape. They sound rational and logistical, they're easy to research, and each has a clean counter-answer.
 
-- Sound rational and logistical
-- Easy to research
-- Each has a clean counter-answer
+That's exactly what makes them placeholder objections. When you're uncertain about something big, the mind generates concrete-sounding objections as a pressure-release valve. The real hesitation is usually deeper and harder to name: fear of failure, fear of judgement, fear of irreversibility, fear of not being the type of person who can do this.
 
-That's exactly what makes them **placeholder objections.** When you're uncertain about something big, the mind generates concrete-sounding objections as a pressure-release valve. The real hesitation is usually something deeper and harder to name — fear of failure, fear of judgement, fear of irreversibility, fear of not being the type of person who can do this.
-
-The pattern isn't dishonest. It's human. Most major decisions get processed through several rounds of "surface objections" before the real one surfaces.
+The pattern isn't dishonest. It's human. Most major decisions get processed through several rounds of surface objections before the real one comes out.
 
 ---
 
 ## 5. Finding your real hesitation
 
-If you've worked through Days 1–12 and you're still not sure, try this:
+If you've worked through Days 1 to 12 and you're still not sure, try this.
 
-Write down, privately: *"I'm hesitating because…"* and keep writing until you hit something that feels *uncomfortably true.* Don't edit. First 2–3 answers will be surface. The 4th or 5th will be the real one.
+Write down privately: *"I'm hesitating because…"* and keep writing until you hit something that feels uncomfortably true. Don't edit. The first 2 or 3 answers will be surface. The 4th or 5th will be the real one.
 
 Common real hesitations:
 
-- *"I'm worried I'll disappoint people in my current life — parents, partner — if I leave a 'respectable' career."*
-- *"I'm worried I'm not actually the type of person who can do this — and I don't want to find out."*
-- *"I'm worried about the income gap during ramp-up."* (Day 13's FLEXI scheme + income guarantee addresses this.)
+- *"I'm worried I'll disappoint people in my current life (parents, partner) if I leave a 'respectable' career."*
+- *"I'm worried I'm not actually the type of person who can do this and I don't want to find out."*
+- *"I'm worried about the income gap during ramp-up."* (Day 13's FLEXI scheme and income guarantee addresses this.)
 - *"I'm worried this is a step backwards even if it's a step forwards eventually."*
 - *"I'm worried I won't have the discipline to run my own practice."*
 
-Each has a real answer — different from the logistical one. Naming the real fear is the first step to handling it.
+Each has a real answer, different from the logistical one. Naming the real fear is the first step to handling it.
 
 ---
 
@@ -189,7 +174,7 @@ Each has a real answer — different from the logistical one. Naming the real fe
 
 Two questions:
 
-1. **Of the three objections today — time, office, product range — which was closest to one you had?** Now that you've read the answer, does it still hold?
+1. **Of the three objections today (time, office, product range), which was closest to one you had?** Now that you've read the answer, does it still hold?
 2. **What's the real hesitation underneath?** Use the *"I'm hesitating because…"* drill above. Be honest.
 
 Write both down. Re-read on Day 14.

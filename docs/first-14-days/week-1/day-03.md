@@ -20,65 +20,53 @@ tags: [first-14-days, week-1, prospect, skills, transferable, leo-voice]
 
 By the end of today you should be able to:
 
-1. **Name** the three high-income skills this career builds, in the specific way they're built here (not the stereotype).
-2. **Estimate** the market value of those skills if you carried them into any other career.
-3. **Reframe** the *worst-case scenario* of joining as a win, not a loss.
+1. Name the three high-income skills this career builds, in the specific way they're built here rather than the stereotype.
+2. Estimate the market value of those skills if you carried them into any other career.
+3. Reframe the worst-case scenario of joining as a win rather than a loss.
 
 ---
 
 ## 1. Why I don't chase the money
 
-Quick context: I'm CFA Level 2, CFP certified, NUS Engineering graduate. I'm not saying *"skip the credentials and just sell."*
+Quick context: I'm CFA Level 2, CFP certified, and a NUS Engineering graduate. I'm not telling you to skip the credentials and just sell.
 
-But I'll tell you this from a decade in the industry:
+But after a decade in the industry, one pattern keeps showing up.
 
-> **80% of self-made millionaires started with sales.**
+> 80% of self-made millionaires started with sales.
 
-Not because sales is glamorous. Because sales *teaches you how humans actually decide* — and that's the single most portable skill in business.
+Not because sales is glamorous. Because sales teaches you how humans actually decide, and that's the single most portable skill in business.
 
-> **"Leadership starts with influence, and influence starts with sales."**
+> "Leadership starts with influence, and influence starts with sales."
 
-Every founder, CEO, negotiator, politician, manager, and investor I've met is a salesperson wearing a different job title. They're selling vision to investors, products to customers, missions to teams. The sooner you master it, the sooner the rest compounds.
+Every founder, CEO, negotiator, politician, manager and investor I've met is a salesperson wearing a different job title. They're selling vision to investors, products to customers, missions to teams. The sooner you master it, the sooner everything else compounds.
 
-So — don't chase the money. **Master the skills that make money chase you.**
-
-This career is the fastest incubator for three of those skills.
+So don't chase the money. Master the skills that make money chase you. This career is the fastest incubator for three of them.
 
 ---
 
-## 2. Skill #1 — Sales & Influence (not what you think)
+## 2. Skill #1 — Sales and influence (not what you think)
 
-Ask the average person what "sales" means and they'll imagine someone pushing a product on a reluctant stranger.
+Ask the average person what "sales" means and they picture someone pushing a product on a reluctant stranger.
 
-That's not what this craft is. Real sales, done well, is applied human psychology:
+That's not what this craft is. Real sales, done well, is applied human psychology. You learn what drives people to decide: cash-flow pressures, family context, fears. You learn to communicate value clearly so the right choice becomes obvious to the client rather than something argued into them. You build conviction through story, because why lands before what. And you learn to attract opportunities through positioning, content and reputation, instead of chasing them.
 
-- **Understanding what drives people to decide** — cash-flow pressures, family context, fears
-- **Communicating value clearly** — so the right choice is obvious to the client, not argued into them
-- **Building conviction through story** — *why* lands before *what*
-- **Attracting opportunities**, not chasing them — through positioning, content, reputation
+Most agencies teach product-push selling. On my team we teach consultative, heart-led selling, with the mindset that the salesperson isn't the product pusher, you are the product.
 
-Most agencies teach *product-push* selling. At my team we teach **consultative, heart-led selling** — and the mentality that the salesperson is not the product pusher; *you are the product*.
-
-The difference compounds over 5 years. Advisors who learn real consultative selling are still in the career. Advisors who learned to push products are gone.
+The difference compounds over five years. Advisors who learn real consultative selling are still in the career. Advisors who learned to push products are gone.
 
 ---
 
-## 3. Skill #2 — Communication & trust-building
+## 3. Skill #2 — Communication and trust-building
 
-Here's a surprising thing: **being a great talker is not what makes a top advisor successful.** Most of the best advisors I know are introverts. Some, like me, had a stammer growing up. Several went through Toastmasters as adults.
+Something that surprises most candidates: being a great talker is not what makes a top advisor successful. Most of the best advisors I know are introverts. Some, like me, had a stammer growing up. Several went through Toastmasters as adults.
 
-What actually matters is **listening.**
+What actually matters is listening.
 
-Clients don't want someone who talks at them. They want someone who *understands* them. The top advisors I've trained are all trained to:
+Clients don't want someone who talks at them. They want someone who understands them. The top advisors I've trained are all trained to ask questions that uncover what the client actually cares about, reflect back what they've heard so the client feels understood, sit in silence long enough for the real concern to surface, and build trust fast enough that the client shares financial details most people won't even tell their spouse.
 
-- Ask questions that uncover what the client actually cares about
-- Reflect back what they've heard, so the client feels understood
-- Sit in silence long enough for the real concern to surface
-- Build trust fast enough that the client shares financial information most people won't even tell their spouse
+It's the same skillset that makes someone an excellent negotiator, a brilliant manager, a great board member, a trusted confidant. Hard to learn from a book. You learn it by sitting across from hundreds of people over years.
 
-This is the same skillset that makes someone an excellent negotiator, a brilliant manager, a great board member, a trusted confidant. It's hard to learn from a book. You learn it by sitting across from hundreds of people over years.
-
-Carry this skill into tech, law, medicine, founding — and you are materially better at it than someone who never trained it.
+Carry this into tech, law, medicine, or founding a company, and you'll be materially better at it than someone who never trained it.
 
 ---
 
@@ -86,32 +74,23 @@ Carry this skill into tech, law, medicine, founding — and you are materially b
 
 This one might be the most valuable of all.
 
-Think about what you *weren't* taught in school:
-
-- How to structure cash flow
-- How to build an emergency buffer
-- How compounding actually works over 30 years
-- What insurance is for and when it's a waste of money
-- How to read a policy, a fund fact sheet, a retirement plan
-- When to pay down debt and when to invest
-- How to protect dependants if something happens to you
-- How tax-advantaged savings schemes work
+Think about what you weren't taught in school. How to structure cash flow. How to build an emergency buffer. How compounding actually works over 30 years. What insurance is for and when it's a waste of money. How to read a policy, a fund fact sheet, a retirement plan. When to pay down debt and when to invest. How to protect dependants if something happens to you. How tax-advantaged savings schemes work.
 
 Most adults learn these lessons through painful, expensive mistakes. Some never learn them at all.
 
-You don't just learn financial planning here. **You get paid to learn it.** And when you're surrounded by a community of financially literate advisors, your own money decisions start compounding quietly in the background.
+In this career you don't just learn financial planning. You get paid to learn it. And when you're surrounded by a community of financially literate advisors, your own money decisions start compounding quietly in the background.
 
-After three years in this career — even if you left — you would be the financial-literate one in your family, your friend group, and most corporate meetings you'd ever sit in. That alone prevents a lifetime of avoidable mistakes.
+Three years in, even if you'd left the career, you'd be the financially literate one in your family, your friend group and most corporate meetings you sit in. That alone prevents a lifetime of avoidable mistakes.
 
-> *"Earning ability beats saving and investing early on."*
+> "Earning ability beats saving and investing early on."
 
-Even Warren Buffett at 20% returns can't move a $10K portfolio meaningfully. Build the high-income skill first. The investing math only starts to matter once you've scaled the income. This career builds the income engine first.
+Even Warren Buffett at 20% returns can't move a $10K portfolio meaningfully. Build the high-income skill first. The investing math only starts to matter once you've scaled the income, and this career builds the income engine first.
 
 ---
 
 ## 5. The three skills stacked = the modern entrepreneur
 
-The three compound:
+The three of them compound together.
 
 ```mermaid
 flowchart LR
@@ -124,53 +103,37 @@ flowchart LR
     C --> D
 ```
 
-Every successful founder has some version of all three. Many had to learn them slowly and expensively. In this career they're built in parallel, paid, with feedback, from day one.
+Every successful founder has some version of all three. Many had to learn them slowly and expensively. In this career they get built in parallel, paid, with feedback from day one.
 
-Me personally: I used exactly these three skills to build four other companies on top of the FA business:
+I used exactly these three skills to build four other companies on top of the FA business. The digital marketing agency is now #1 on Google for "Digital Marketing Agency" in Singapore, with 50 full-time staff. The corporate cleaning business I bought over in 2023 runs at more than $15K a month profit. The outsourcing business and the consulting firm both launched in 2024.
 
-- **Digital marketing agency** — now #1 on Google for "Digital Marketing Agency" in Singapore, 50 full-time staff
-- **Corporate cleaning business** — bought over in 2023, $15K+/month profit
-- **Outsourcing business** — started 2024
-- **Consulting firm** — started 2024
-
-Combined 7-figure revenue across all four. I didn't learn business in business school. I learned it by sitting across the table from 1,000+ financial-advisory clients first.
+Combined revenue across all four is seven figures. I didn't learn business in business school. I learned it by sitting across the table from more than a thousand financial-advisory clients first.
 
 ![Leo's businesses](/first-14-days/images/four-businesses.webp)
 
 ---
 
-## 6. The asymmetry — why this matters for the "worst case"
+## 6. Why this matters for the worst case
 
-Here's the reframe. Imagine you join, stick with it for 12–18 months, and then decide *this isn't my forever career.*
+Here's the reframe. Imagine you join, stick with it for 12 to 18 months, and then decide this isn't your forever career.
 
-What do you walk away with?
+What do you walk away with? A working financial plan for yourself that would have taken years to build otherwise. Sales, listening and negotiation skills that transfer directly into any industry. A network of real clients and mentors. A year of client-facing reps that most corporate jobs will never give you. And battle-tested self-discipline.
 
-- A working financial plan for yourself that would have taken years to build otherwise
-- Sales, listening and negotiation skills directly transferable to any industry
-- A network of real clients and mentors
-- A year of client-facing reps that most corporate jobs will never give you
-- Battle-tested self-discipline
+What do you not walk away with? No debt. No failed franchise fee. No non-compete ruining your next move. No years of your life spent running a high-stress business with nothing to show for it.
 
-What do you *not* walk away with?
-
-- Debt
-- A failed franchise fee
-- A non-compete ruining your next move
-- Years of your life spent running a high-stress business with nothing to show
-
-That's the asymmetry. Even the "bad" version of the story is a win. That's why Day 4 is about this exact idea — the risk-reversal card — in more depth.
+Even the bad version of the story is a win. Day 4 goes deeper on this exact idea, the risk-reversal card.
 
 ---
 
 ## Worksheet — what would it be worth?
 
-Answer honestly, one line each:
+Answer honestly, one line each.
 
-1. If you became *measurably* better at reading people and building trust, what would that be worth in your current or next career?
-2. If you were fluent in personal finance for life, what's the dollar value of *not* making the big mistakes (bad insurance, bad investments, under-saving for retirement)?
-3. If you learned to sell your ideas — to investors, to a team, to future customers — what would that unlock?
+1. If you became measurably better at reading people and building trust, what would that be worth in your current or next career?
+2. If you were fluent in personal finance for life, what's the dollar value of not making the big mistakes (bad insurance, bad investments, under-saving for retirement)?
+3. If you learned to sell your ideas to investors, to a team, to future customers, what would that unlock?
 
-The point isn't to justify joining. The point is to honestly price what you'd walk away with. That number is your *floor*. Whatever happens above it is upside.
+The point isn't to justify joining. It's to honestly price what you'd walk away with. That number is your floor. Whatever happens above it is upside.
 
 ---
 

@@ -21,27 +21,27 @@ tags: [first-14-days, week-1, prospect, stickiness, scalability, compounding, le
 
 By the end of today you should be able to:
 
-1. **Define** stickiness and explain why it's the single biggest driver of lifetime value.
-2. **Explain** why this business scales like software, not like a service.
-3. **Predict** how an advisor's year 5 looks materially different from their year 1 because of compounding.
+1. Define stickiness and explain why it's the biggest single driver of lifetime value.
+2. Explain why this business scales like software, not like a service.
+3. Predict why an advisor's year 5 looks nothing like their year 1, purely because of compounding.
 
 ---
 
 ## 1. Stickiness — why clients stay
 
-Look at the most successful consumer companies you interact with: Apple, Netflix, Adobe, Starbucks. What they share isn't a single great product — it's **stickiness.**
+Look at the most successful consumer companies you interact with. Apple, Netflix, Adobe, Starbucks. What they share isn't a single great product. It's stickiness.
 
-- **Apple:** phone → iCloud subscriptions → upgrade every 2–3 years
-- **Netflix & Adobe:** recurring subscription, cancel-anytime but most don't
-- **Starbucks:** one coffee → daily ritual → decades of $5 purchases
+- Apple: phone, then iCloud subscriptions, then an upgrade every 2–3 years
+- Netflix and Adobe: recurring subscription, cancel-anytime, most people don't
+- Starbucks: one coffee becomes a daily ritual becomes decades of $5 purchases
 
-To Starbucks, you're not a $5 customer. You're the sum of every coffee you'll buy over the next decade. Once they think of customers this way, the economics change:
+To Starbucks, you're not a $5 customer. You're the sum of every coffee you'll buy over the next decade. Once they see customers that way, the economics change:
 
-- Spending $200 marketing to acquire a customer worth $5,000 is obvious
+- Spending $200 on marketing to acquire a customer worth $5,000 is obvious
 - Paying for a $50/year loyalty program is obvious
-- Investing heavily in product improvement is obvious
+- Heavy investment in product improvement is obvious
 
-**Stickiness drives lifetime value. Lifetime value drives everything else.**
+Stickiness drives lifetime value. Lifetime value drives everything else.
 
 ---
 
@@ -51,24 +51,24 @@ I learned this the hard way running my digital marketing agency.
 
 Even at 200+ retainers with 40 staff, the stickiness problem was brutal:
 
-- Clients sign a 6–12 month contract
-- Most drop off within a year as cheaper freelancers win on price
-- I'm on a treadmill, always replacing what I lost
-- Typical client LTV: $20K–$30K before churn
+- Clients sign a 6 to 12 month contract
+- Most drop off within a year because cheaper freelancers win on price
+- I'm on a treadmill, always replacing what I just lost
+- Typical client LTV: $20K to $30K before churn
 
 ![Scaling agency pain](/first-14-days/images/four-businesses.webp)
 
 Every month I was starting partially from zero. Compare that to the insurance client who:
 
-- Buys a policy intended to last decades
+- Buys a policy meant to last decades
 - Stays because switching costs are high (medical underwriting, age-related premium increases)
 - Comes back for new needs as life happens (marriage, baby, home, promotion)
-- Refers family and friends once trust is established
-- Average LTV: **~$10,000 per client over the full relationship**
+- Refers family and friends once trust is there
+- Average LTV: around $10,000 per client over the full relationship
 
-Numbers look similar, but the mechanism is completely different. The marketing agency fights churn every month. The FA plants an orchard.
+The numbers look similar but the mechanism is completely different. The marketing agency fights churn every month. The FA plants an orchard.
 
-**I still run the agency — but the FA business is the one I keep pointing young entrepreneurs toward. Structurally easier to build and sustain.**
+I still run the agency, but the FA business is the one I keep pointing young entrepreneurs toward. It's structurally easier to build and sustain.
 
 ---
 
@@ -76,29 +76,29 @@ Numbers look similar, but the mechanism is completely different. The marketing a
 
 ![Recurring vs non-recurring revenue](/first-14-days/images/recurring-revenue.webp)
 
-Stickiness in FA isn't a marketing technique — it's structural.
+Stickiness in FA isn't a marketing technique. It comes from the product itself.
 
 ### Product nature
-Insurance is the definition of a multi-decade product. A 25-year endowment isn't cancelled for a "better offer." A critical-illness policy gets more expensive to replace every year you age and every new diagnosis you pick up. Retirement plans need to last 30+ years by design.
+Insurance is the definition of a multi-decade product. A 25-year endowment doesn't get cancelled for a "better offer." A critical-illness policy gets more expensive to replace every year you age and every diagnosis you pick up. Retirement plans are designed to last 30+ years.
 
 ### Life-event cross-sell
-As a client goes through life — marriage, children, home purchase, promotion, parents aging, health scares, job changes — each event creates new financial needs. Every one is a natural moment to come back to their advisor. Not from sales pressure. From genuine need.
+As a client goes through life (marriage, children, home purchase, promotion, parents aging, health scares, job changes) each event creates new financial needs. Every one is a natural moment to come back to their advisor. Not from sales pressure, from genuine need.
 
 ### Trust carryover
-The trust required to share financial details with an advisor is hard-won. Once built, clients don't want to rebuild it with someone else. Switching cost that works in your favour.
+The trust required to share financial details with an advisor is hard-won. Once it's built, clients don't want to rebuild it with someone else. That's a switching cost working in your favour.
 
 ### Claims moments
-Counterintuitively, claims events (hospitalisation, critical illness, accident) are among the stickiest moments. A client whose claim I handled well in their worst week has never left for a better-priced competitor. Ever.
+Counterintuitively, claims events (hospitalisation, critical illness, accident) are some of the stickiest moments. A client whose claim I handled well in their worst week has never left for a better-priced competitor. Ever.
 
-Together, these make the FA client base one of the stickiest of any business model. You don't engineer it. You just don't mess it up.
+Put these together and the FA client base is one of the stickiest of any business model. You don't engineer it. You just don't mess it up.
 
 ---
 
 ## 4. Scalability — growing without the grind
 
-The second superpower is scalability. Common mistake: people think scalability means *handling more customers.*
+The second superpower is scalability. Common mistake: people think scalability means handling more customers.
 
-It doesn't. **Scalability means handling more customers without the complexity growing proportionally.**
+It doesn't. Scalability means handling more customers without the complexity growing proportionally.
 
 ### Why most businesses hit a ceiling
 
@@ -106,25 +106,25 @@ The interior designer from Day 5:
 
 - Max 5 projects at once
 - 50 post-sale hours each
-- Double sales → double project management
-- To serve 50 clients at once → hire 10 people → manage + train + pay them
+- Double the sales, you double the project management
+- To serve 50 clients at once you'd need to hire 10 people, then manage, train and pay them
 
-The more successful he is, the more complex the business becomes. Revenue up, margins compress. Eventually he's running a small company, not a business. **Service business trap.**
+The more successful he is, the more complex the business gets. Revenue goes up, margins compress. Eventually he's running a small company, not a business. That's the service business trap.
 
 ### Why FA scales like software
 
-Adding my 200th client didn't add proportional complexity. Here's what actually happens:
+Adding my 200th client didn't add proportional complexity. Here's what actually happens behind the scenes:
 
-- **Underwriters** process the application — I don't
-- **Fund managers** grow the money — I don't
-- **Claims team** pays out — I don't
-- **Admin team** handles paperwork — I don't
-- **Customer service** fields routine questions — I don't
-- **Product team** designs new offerings for me to sell
+- Underwriters process the application, I don't
+- Fund managers grow the money, I don't
+- Claims team pays out, I don't
+- Admin team handles paperwork, I don't
+- Customer service fields routine questions, I don't
+- Product team designs new offerings for me to sell
 
-I have a 200-person team. I don't hire, pay, or manage them. **AIA does.**
+I effectively have a 200-person team. I don't hire, pay, or manage any of them. AIA does.
 
-This is why a single advisor with 1,000+ clients can run with just 1–2 part-time admin helpers. Infrastructure is already there. It's software-as-a-service economics wearing an insurance label.
+That's why a single advisor with 1,000+ clients can run with just 1 or 2 part-time admin helpers. The infrastructure is already there. It's software-as-a-service economics wearing an insurance label.
 
 ```mermaid
 flowchart LR
@@ -146,33 +146,33 @@ Your headcount never grows. Your client base does.
 
 ## 5. Compounding — why year 5 looks nothing like year 1
 
-Stickiness + scalability compound. This is what produces the absurd-looking incomes in year 5–10 that new advisors can't believe.
+Stickiness and scalability compound together. That's what produces the absurd-looking incomes in year 5 to 10 that new advisors can't quite believe.
 
-Sketch — not a promise, just the structural logic:
+Rough sketch, not a promise, just the logic:
 
-**Year 1** — Add 20 clients. Work hard on each. All new relationships.
+**Year 1.** Add 20 clients. Work hard on each. Every relationship is new.
 
-**Year 2** — Add 30 more (now 50 total). Year 1 clients generating renewals + starting to cross-sell. A few refer. Less work per client, higher income.
+**Year 2.** Add 30 more (50 total). Year 1 clients start generating renewals and cross-sells. A few refer. Less work per client, higher income.
 
-**Year 3** — Add 40 more (now 90 total). Year 1 clients deepening, year 2 cross-selling, year 3 new. Renewals + referrals layering. Income materially higher than year 1 while *hours haven't grown.*
+**Year 3.** Add 40 more (90 total). Year 1 clients are deepening, year 2 are cross-selling, year 3 are new. Renewals and referrals start layering. Income is materially higher than year 1 while hours haven't grown.
 
-**Year 5** — 200+ clients. Half your income is renewals, cross-sells, referrals from your own base. New-business time focused on referrals, not cold prospecting. Income: "good" → "excellent."
+**Year 5.** 200+ clients. Half your income is renewals, cross-sells and referrals from your own base. New-business time goes into referrals rather than cold prospecting. Income goes from "good" to "excellent."
 
-**Year 10** — Book runs largely on its own trajectory. Time freed for top-value work — HNW cases, senior mentoring, strategic. Income at this point looks nothing like a corporate salary.
+**Year 10.** The book largely runs on its own trajectory. You can free time for the top-value work: HNW cases, senior mentoring, strategic projects. Income at this point looks nothing like a corporate salary.
 
-This is why leaving in year 2 or 3 is such a common mistake for people who joined for the right reasons. **The payoff curve is backloaded.** First 12–24 months are the investment. Years 3+ are where it starts paying out at a rate that doesn't look remotely like a 9-to-5.
+This is why leaving in year 2 or 3 is such a common mistake for people who joined for the right reasons. The payoff curve is backloaded. The first 12 to 24 months are the investment. Year 3 onwards is where it starts paying out at a rate that doesn't look remotely like a 9-to-5.
 
 ---
 
 ## 6. Real example — my own back-end
 
-Here's my own back-end, year by year. Just passive — renewals, Career Benefit, APF. Not including new-business commission from current year.
+Here's my own back-end, year by year. Just passive income: renewals, Career Benefit, APF. Not including new-business commission from the current year.
 
 ![Passive income by year — year 1 through year 6](/first-14-days/images/passive-income-by-year.png)
 
 By year 6, even if I did zero new business that year, I'd still be earning more than $100K of passive income.
 
-And that's why, travel-wise, I've been able to go: LA (2017), Athens (2018), Berlin (2019), LA (2022), Hawaii (2023), Norway (2024). Twice a year, company-sponsored trips. The book doesn't stop while I'm away.
+Travel-wise, that's why I've been able to go to LA (2017), Athens (2018), Berlin (2019), LA again (2022), Hawaii (2023), Norway (2024). Twice a year, company-sponsored trips. The book doesn't stop while I'm away.
 
 ![Los Angeles 2017](/first-14-days/images/travel-la.jpeg)
 ![Athens 2018](/first-14-days/images/travel-athens.jpeg)
@@ -184,21 +184,21 @@ And that's why, travel-wise, I've been able to go: LA (2017), Athens (2018), Ber
 
 Three takeaways:
 
-1. **The model gets easier over time, not harder.** First year is the hardest. Every year after gets materially easier — opposite of most jobs.
-2. **Clients are assets, not transactions.** Each one is a decade-long relationship producing compound value. Behave accordingly.
-3. **Your goal in year 1 is to reach year 3.** Year 1 is about surviving long enough for compounding to begin. That's why Day 9's six traits matter so much — they predict who reaches year 3.
+1. The model gets easier over time, not harder. Year 1 is the hardest, every year after gets materially easier. That's the opposite of most jobs.
+2. Clients are assets, not transactions. Each one is a decade-long relationship producing compound value, so behave accordingly.
+3. Your only goal in year 1 is to reach year 3. Year 1 is about surviving long enough for compounding to kick in. That's why the six traits in Day 9 matter so much, they predict who reaches year 3.
 
 ---
 
 ## Worksheet — map your own compounding curve
 
-Imagine you started this career next week. Write one sentence each:
+Imagine you started this career next week. Write one sentence for each.
 
-1. What would your year 1 look like, realistically? Assume hard work and honest effort.
+1. What would your year 1 look like, realistically, assuming hard work and honest effort?
 2. What would your year 3 look like, if year 1 and year 2 went reasonably well?
-3. What would your year 10 look like, if you stayed and compounded?
+3. What would your year 10 look like, if you stayed and let compounding do its work?
 
-The difference between year 1 and year 10 isn't about effort — effort is the same. It's about compounding. Make sure your picture reflects that.
+The difference between year 1 and year 10 isn't about effort. Effort is roughly the same. It's about compounding. Make sure your picture reflects that.
 
 ---
 
