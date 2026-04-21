@@ -223,7 +223,7 @@ export function QuestionBankManager() {
 
           {/* Category filter pills */}
           <div className="flex flex-wrap gap-2">
-            {(['all', 'product-facts', 'sales-angles', 'objection-handling', 'roleplay'] as const).map((cat) => {
+            {(['all', ...(Object.keys(CATEGORY_LABELS) as QuestionCategory[])] as const).map((cat) => {
               const count = categoryCounts[cat] || 0;
               const label = cat === 'all' ? 'All' : CATEGORY_LABELS[cat];
               return (

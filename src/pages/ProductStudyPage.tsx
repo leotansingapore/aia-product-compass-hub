@@ -12,7 +12,8 @@ import { StudyQuiz, loadWeakQuestions } from '@/components/study/StudyQuiz';
 import { ArrowLeft, BookOpen, Brain, Target, Shield, MessageCircle, Shuffle, AlertTriangle, Loader2, Cloud, Trophy, Sparkles, Pencil } from 'lucide-react';
 import { useAdmin } from '@/hooks/useAdmin';
 import { StudyResourcesSidebar } from '@/components/study/StudyResourcesSidebar';
-import type { QuizQuestion } from '@/types/questionBank';
+import type { QuizQuestion, QuestionCategory } from '@/types/questionBank';
+import { CATEGORY_LABELS } from '@/types/questionBank';
 import { useQuestionProgress, QUESTION_MASTERY_STREAK } from '@/hooks/useQuestionProgress';
 import type { StudyMode } from '@/components/study/StudyModePicker';
 type QuizSize = 25 | 50 | 100;
@@ -29,7 +30,7 @@ function uniqueQuizPresets(poolLength: number): Array<{ preset: QuizSize; actual
   }
   return out;
 }
-type CategoryFilter = 'all' | 'product-facts' | 'sales-angles' | 'objection-handling' | 'roleplay';
+type CategoryFilter = 'all' | QuestionCategory;
 
 function shuffleArray<T>(arr: T[]): T[] {
   const shuffled = [...arr];
@@ -42,10 +43,7 @@ function shuffleArray<T>(arr: T[]): T[] {
 
 const categoryLabels: Record<CategoryFilter, string> = {
   all: 'All Categories',
-  'product-facts': 'Product Facts',
-  'sales-angles': 'Sales Angles',
-  'objection-handling': 'Objection Handling',
-  roleplay: 'Roleplay Scenarios',
+  ...CATEGORY_LABELS,
 };
 
 const categoryIcons: Record<CategoryFilter, React.ElementType> = {
@@ -54,6 +52,10 @@ const categoryIcons: Record<CategoryFilter, React.ElementType> = {
   'sales-angles': Target,
   'objection-handling': Shield,
   roleplay: MessageCircle,
+  suitability: Target,
+  compliance: Shield,
+  'advisory-skills': Brain,
+  closing: Sparkles,
 };
 
 interface ProductStudyPageProps {
@@ -427,7 +429,7 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                         onChange={(e) => setCategoryFilter(e.target.value as CategoryFilter)}
                         className="w-full rounded-md border border-input bg-background pl-3 pr-8 py-2 text-sm min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring"
                       >
-                        {(['all', 'product-facts', 'sales-angles', 'objection-handling', 'roleplay'] as const).map((cat) => {
+                        {(['all', ...(Object.keys(CATEGORY_LABELS) as QuestionCategory[])] as CategoryFilter[]).map((cat) => {
                           const count =
                             cat === 'all'
                               ? sessionPreview
