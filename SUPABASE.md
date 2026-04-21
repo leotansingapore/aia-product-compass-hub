@@ -6,7 +6,46 @@
 
 ## Pending
 
-_No pending items._
+#### Fix `get_learner_leaderboard` ambiguous column — 2026-04-22 — **BLOCKING**
+
+**What:** Calling the RPC returns HTTP 400 with Postgres error `42702`:
+
+```
+{"code":"42702","message":"column reference \"user_id\" is ambiguous","details":"It could refer to either a PL/pgSQL variable or a table column."}
+```
+
+**Why:** The function is declared `RETURNS TABLE (user_id uuid, name text, ...)`. Those TABLE column names become in-scope variables inside the function body. CTEs such as `f14`, `f60`, `asg`, `qb`, `pq`, `vid`, `lti`, `lts`, and `days` all contain bare `user_id` references in their `SELECT` and `GROUP BY` clauses (e.g. `SELECT user_id, COUNT(*) FROM first_14_days_progress GROUP BY user_id`) — those are now ambiguous against the return-table variable.
+
+**Fix:** Add `#variable_conflict use_column` directive at the top of the function body. That tells plpgsql to prefer the column reference when a bare name matches both a variable and a column — which is what every one of those CTEs wants.
+
+```sql
+CREATE OR REPLACE FUNCTION public.get_learner_leaderboard(p_tier text)
+RETURNS TABLE (user_id uuid, name text, email text, ...)
+LANGUAGE plpgsql
+STABLE
+SECURITY DEFINER
+SET search_path = public
+AS $$
+#variable_conflict use_column
+DECLARE
+  v_caller uuid := auth.uid();
+  ...
+BEGIN
+  ...
+END;
+$$;
+```
+
+No other change needed — the query body is correct, just this directive.
+
+**Verify after deploy:**
+```bash
+curl -X POST "$SUPABASE_URL/rest/v1/rpc/get_learner_leaderboard" \
+  -H "apikey: $ANON_KEY" -H "Authorization: Bearer $ANON_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"p_tier":"papers_taker"}'
+```
+Should return HTTP 200 with an array of rows.
 
 ---
 
