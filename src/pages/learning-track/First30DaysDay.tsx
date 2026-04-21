@@ -244,6 +244,7 @@ export default function First30DaysDay() {
             dayNumber={dayNumber}
             questions={day.quiz}
             progress={quizProgress}
+            basePath="/learning-track/first-30-days"
           />
         </TabsContent>
       </Tabs>

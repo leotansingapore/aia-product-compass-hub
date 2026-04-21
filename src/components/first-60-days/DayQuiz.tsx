@@ -19,11 +19,13 @@ type Props = {
   questions: QuizQuestion[];
   /** Override progress source (e.g. First 30 Days). Defaults to First 60 Days. */
   progress?: QuizProgressAdapter;
+  /** Base path for day links. Defaults to "/learning-track/first-60-days". */
+  basePath?: string;
 };
 
 type Verdict = "pending" | "correct" | "incorrect";
 
-export function DayQuiz({ dayNumber, questions, progress: externalProgress }: Props) {
+export function DayQuiz({ dayNumber, questions, progress: externalProgress, basePath = "/learning-track/first-60-days" }: Props) {
   const defaultProgress = useFirst60DaysProgress();
   const { recordQuiz, isQuizPassed, getDay } = externalProgress ?? defaultProgress;
   const alreadyPassed = isQuizPassed(dayNumber);
@@ -427,7 +429,7 @@ function ResultCard({
           </Button>
           {passed && dayNumber < 60 && (
             <Button asChild className="gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95">
-              <Link to={`/learning-track/first-60-days/day/${dayNumber + 1}`}>
+              <Link to={`${basePath}/day/${dayNumber + 1}`}>
                 Day {dayNumber + 1}
                 <ArrowRight className="h-4 w-4" />
               </Link>
