@@ -13,32 +13,13 @@ import type { LearningTrackPhase } from "@/types/learning-track";
 
 type PreRnfView = "first60" | "assignments";
 
-/**
- * Rewrite raw phase titles for the Pre-RNF learner view:
- *   "Phase 1 — Industry Understanding" is dropped (curriculum-deleted).
- *   "Phase 2 — ..." is relabelled to "Assignment 1 — ..." (and so on).
- * Admins see the raw titles via AdminTrackView so they can edit them.
- */
-function reshapePreRnfPhasesForLearner(phases: LearningTrackPhase[]): LearningTrackPhase[] {
-  return phases
-    .filter((p) => !/^phase\s*1\b/i.test(p.title.trim()))
-    .map((p, idx) => {
-      const stripped = p.title.replace(/^phase\s*\d+\s*[—-]\s*/i, "").trim();
-      const rewritten = stripped.length > 0 && stripped !== p.title
-        ? `Assignment ${idx + 1} — ${stripped}`
-        : p.title;
-      return { ...p, title: rewritten };
-    });
-}
-
 export default function PreRnfTrack() {
   const { itemId } = useParams<{ itemId?: string }>();
   const { user } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
   const phasesQuery = useLearningTrackPhases("pre_rnf", { includeContent: isAdmin });
   const { isCompleted } = useLearningTrackProgress(user?.id);
-  const rawPhases = phasesQuery.data ?? [];
-  const phases = isAdmin ? rawPhases : reshapePreRnfPhasesForLearner(rawPhases);
+  const phases = phasesQuery.data ?? [];
   const lockMap = useLockMap(phases);
 
   if (phasesQuery.isLoading) {

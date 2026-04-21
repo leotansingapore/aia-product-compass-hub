@@ -992,33 +992,36 @@ export type Database = {
       learning_track_activity_log: {
         Row: {
           action: string
+          action_source: string
           created_at: string
           diff: Json | null
           entity_id: string
           entity_type: string
           id: string
           track: string | null
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           action: string
+          action_source?: string
           created_at?: string
           diff?: Json | null
           entity_id: string
           entity_type: string
           id?: string
           track?: string | null
-          user_id: string
+          user_id?: string | null
         }
         Update: {
           action?: string
+          action_source?: string
           created_at?: string
           diff?: Json | null
           entity_id?: string
           entity_type?: string
           id?: string
           track?: string | null
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: []
       }
