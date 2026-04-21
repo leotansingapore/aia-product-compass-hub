@@ -49,6 +49,7 @@ export default function PostRnfTrack() {
           isCompleted={isCompleted}
           expandedItemId={itemId}
           lockMap={lockMap}
+          track="post_rnf"
         />
       </div>
     );

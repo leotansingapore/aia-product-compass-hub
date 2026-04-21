@@ -47,6 +47,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { AdminLessonEditor } from "./AdminLessonEditor";
+import { AddPhaseButton } from "./AddPhaseButton";
 import type { LearningTrackPhase, LearningTrackItem, Track } from "@/types/learning-track";
 import type { LockMap } from "@/hooks/learning-track/useLockMap";
 import { cn } from "@/lib/utils";
@@ -68,6 +69,7 @@ interface AdminTrackViewProps {
   isCompleted: (itemId: string) => boolean;
   expandedItemId?: string;
   lockMap?: LockMap;
+  track?: Track;
 }
 
 export function AdminTrackView({
@@ -75,6 +77,7 @@ export function AdminTrackView({
   isCompleted,
   expandedItemId,
   lockMap,
+  track,
 }: AdminTrackViewProps) {
   const [activePhaseId, setActivePhaseId] = useState<string | null>(() => {
     if (expandedItemId) {
@@ -99,42 +102,45 @@ export function AdminTrackView({
 
   // ---- Course card list ----
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {phases.map((phase) => {
-        const lessonCount = phase.items.filter((i) => !isModuleFolder(i)).length;
-        const moduleCount = phase.items.filter(isModuleFolder).length;
-        const isPublished = !!phase.published_at;
-        return (
-          <div
-            key={phase.id}
-            className="flex h-full cursor-pointer flex-col rounded-xl border bg-card transition-all duration-300 hover:border-primary/20 hover:shadow-lg group"
-            onClick={() => setActivePhaseId(phase.id)}
-          >
-            <div className="space-y-3 p-4 pb-0 sm:p-5 sm:pb-0">
-              <span className={cn(
-                "inline-flex px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white rounded-full",
-                isPublished ? "bg-gradient-to-r from-green-500 to-emerald-600" : "bg-gradient-to-r from-amber-500 to-amber-600",
-              )}>
-                {isPublished ? "Published" : "Draft"}
-              </span>
-              <div className="space-y-1">
-                <h3 className="line-clamp-2 text-lg font-bold font-serif leading-snug tracking-tight">{phase.title}</h3>
-                {phase.description && <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">{phase.description}</p>}
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {phases.map((phase) => {
+          const lessonCount = phase.items.filter((i) => !isModuleFolder(i)).length;
+          const moduleCount = phase.items.filter(isModuleFolder).length;
+          const isPublished = !!phase.published_at;
+          return (
+            <div
+              key={phase.id}
+              className="flex h-full cursor-pointer flex-col rounded-xl border bg-card transition-all duration-300 hover:border-primary/20 hover:shadow-lg group"
+              onClick={() => setActivePhaseId(phase.id)}
+            >
+              <div className="space-y-3 p-4 pb-0 sm:p-5 sm:pb-0">
+                <span className={cn(
+                  "inline-flex px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white rounded-full",
+                  isPublished ? "bg-gradient-to-r from-green-500 to-emerald-600" : "bg-gradient-to-r from-amber-500 to-amber-600",
+                )}>
+                  {isPublished ? "Published" : "Draft"}
+                </span>
+                <div className="space-y-1">
+                  <h3 className="line-clamp-2 text-lg font-bold font-serif leading-snug tracking-tight">{phase.title}</h3>
+                  {phase.description && <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">{phase.description}</p>}
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col gap-3 p-4 pt-3 sm:p-5 sm:pt-4">
+                <div className="flex flex-1 flex-col border-t border-border/60 pt-3">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                    {moduleCount} {moduleCount === 1 ? "module" : "modules"} · {lessonCount} {lessonCount === 1 ? "lesson" : "lessons"}
+                  </p>
+                </div>
+                <button className="mt-auto h-10 w-full gap-2 text-sm font-semibold inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                  Open track <ChevronRight className="h-4 w-4 shrink-0 opacity-90" />
+                </button>
               </div>
             </div>
-            <div className="flex flex-1 flex-col gap-3 p-4 pt-3 sm:p-5 sm:pt-4">
-              <div className="flex flex-1 flex-col border-t border-border/60 pt-3">
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                  {moduleCount} {moduleCount === 1 ? "module" : "modules"} · {lessonCount} {lessonCount === 1 ? "lesson" : "lessons"}
-                </p>
-              </div>
-              <button className="mt-auto h-10 w-full gap-2 text-sm font-semibold inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
-                Open track <ChevronRight className="h-4 w-4 shrink-0 opacity-90" />
-              </button>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
+      {track && <AddPhaseButton track={track} currentPhaseCount={phases.length} />}
     </div>
   );
 }

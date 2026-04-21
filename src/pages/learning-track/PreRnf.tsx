@@ -53,6 +53,7 @@ export default function PreRnfTrack() {
           isCompleted={isCompleted}
           expandedItemId={itemId}
           lockMap={lockMap}
+          track="pre_rnf"
         />
       </div>
     );

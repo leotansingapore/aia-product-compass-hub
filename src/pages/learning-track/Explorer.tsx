@@ -574,6 +574,7 @@ export default function ExplorerTrack() {
           isCompleted={isCompleted}
           expandedItemId={itemId}
           lockMap={lockMap}
+          track="explorer"
         />
       </div>
     );
