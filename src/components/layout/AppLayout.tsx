@@ -1,16 +1,14 @@
-import React, { ReactNode, useEffect, memo, useRef, useState, useCallback, lazy, Suspense } from "react";
+import React, { ReactNode, useEffect, memo, useState, lazy, Suspense } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { SidebarProvider, SidebarInset, useSidebar } from "@/components/ui/sidebar";
-import { AppSidebar } from "./AppSidebar";
 import { TopNav } from "./TopNav";
 import { MobileBottomNav } from "./MobileBottomNav";
 import { MobileHeader } from "./MobileHeader";
 import { Button } from "@/components/ui/button";
-import { LogIn, User } from "lucide-react";
-import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
-import { ThemeToggle } from "@/components/ThemeToggle";
-// WelcomeModal, OnboardingTutorial, OnboardingHelpButton are rendered once at
-// the App.tsx root (inside OnboardingProvider) — don't re-render them here.
+import { LogIn } from "lucide-react";
+// The entire admin desktop layout (SidebarProvider, AppSidebar, ResizeHandle,
+// shadcn sidebar primitives) is code-split into its own chunk — learners never
+// download any of it.
+const AdminDesktopLayout = lazy(() => import("./AdminDesktopLayout"));
 const FloatingFeedbackButton = lazy(() => import("@/components/FloatingFeedbackButton").then(m => ({ default: m.FloatingFeedbackButton })));
 // ProfileSheet is only shown when the user opens the avatar menu; lazy-load so
 // its learning-track queries and sub-forms don't bloat the initial bundle.
@@ -172,35 +170,18 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
 
   // Desktop Layout for authenticated users
   // Admins / master admins always get the sidebar; learners get the top nav
-  const useSidebarLayout = isAdmin;
-
-  if (useSidebarLayout) {
+  if (isAdmin) {
     return (
-      <SidebarProvider defaultOpen={sidebarDefaultOpen}>
-        <div className="min-h-screen flex w-full">
-          <AppSidebar onProfileClick={() => setProfileOpen(true)} />
-          <ResizeHandle />
-
-          <SidebarInset className="flex-1 min-w-0 flex flex-col">
-            <header className="sticky top-0 z-30 flex h-12 items-center justify-end gap-2 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
-              <ThemeToggle />
-              <button
-                onClick={() => setProfileOpen(true)}
-                className="rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                aria-label="My Profile"
-              >
-                <AvatarWithProgress
-                  size={32}
-                  initials={user?.email?.charAt(0).toUpperCase() || 'U'}
-                />
-              </button>
-            </header>
-
-            <main className="flex-1 page-transition">
-              {children}
-            </main>
-          </SidebarInset>
-        </div>
+      <>
+        <Suspense fallback={<div className="min-h-screen" aria-hidden />}>
+          <AdminDesktopLayout
+            sidebarDefaultOpen={sidebarDefaultOpen}
+            userInitials={user?.email?.charAt(0).toUpperCase() || "U"}
+            onProfileClick={() => setProfileOpen(true)}
+          >
+            {children}
+          </AdminDesktopLayout>
+        </Suspense>
 
         <Suspense fallback={null}>
           <FloatingFeedbackButton />
@@ -210,7 +191,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
             <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
           </Suspense>
         )}
-      </SidebarProvider>
+      </>
     );
   }
 
@@ -227,99 +208,10 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         <FloatingFeedbackButton />
       </Suspense>
       {profileOpen && (
-        <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
+        <Suspense fallback={null}>
+          <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
+        </Suspense>
       )}
-    </div>
-  );
-});
-
-/** Drag handle that sits on the right edge of the sidebar */
-const ResizeHandle = memo(function ResizeHandle() {
-  const isDragging = useRef(false);
-  const hasDragged = useRef(false);
-  const [active, setActive] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const { state, toggleSidebar, open, setOpen } = useSidebar();
-  // Use a ref so the mousemove closure always reads the latest value
-  const stateRef = useRef(state);
-  useEffect(() => { stateRef.current = state; }, [state]);
-
-  const onMouseDown = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    hasDragged.current = false;
-    isDragging.current = true;
-    setActive(true);
-    document.body.style.cursor = "col-resize";
-    document.body.style.userSelect = "none";
-
-    const onMouseMove = (ev: MouseEvent) => {
-      if (!isDragging.current) return;
-      hasDragged.current = true;
-      const collapsed = stateRef.current === "collapsed";
-      const x = ev.clientX;
-
-      if (collapsed) {
-        // Only expand once dragged far enough right
-        if (x > 160) {
-          setOpen(true);
-          const clamped = Math.min(480, Math.max(180, x));
-          document.documentElement.style.setProperty("--sidebar-width", `${clamped}px`);
-        }
-        return;
-      }
-
-      // Collapse when dragged too far left
-      if (x < 140) {
-        setOpen(false);
-        return;
-      }
-
-      const clamped = Math.min(480, Math.max(180, x));
-      document.documentElement.style.setProperty("--sidebar-width", `${clamped}px`);
-    };
-
-    const onMouseUp = () => {
-      isDragging.current = false;
-      setActive(false);
-      document.body.style.cursor = "";
-      document.body.style.userSelect = "";
-      const w = document.documentElement.style.getPropertyValue("--sidebar-width");
-      if (w) localStorage.setItem("sidebar-width", w);
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
-    };
-
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-  }, [setOpen]);
-
-  // Click (no drag) toggles expand/collapse
-  const onClick = useCallback(() => {
-    if (!hasDragged.current) toggleSidebar();
-  }, [toggleSidebar]);
-
-  const isCollapsed = state === "collapsed";
-
-  return (
-    <div
-      onMouseDown={onMouseDown}
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      title={isCollapsed ? "Click or drag right to expand" : "Drag to resize · Click to collapse"}
-      className={`
-        relative z-20 flex items-center justify-center
-        shrink-0 select-none transition-colors duration-150
-        w-2 cursor-col-resize
-        ${active ? "bg-primary/20" : hovered ? "bg-primary/10" : "bg-transparent"}
-      `}
-    >
-      <div className={`
-        absolute rounded-full transition-all duration-200
-        ${active ? "w-1 h-12 bg-primary" :
-          hovered ? "w-1 h-10 bg-primary/60" :
-          "w-px h-8 bg-border"}
-      `} />
     </div>
   );
 });

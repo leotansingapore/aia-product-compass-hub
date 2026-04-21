@@ -20,6 +20,8 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    // Target evergreen browsers — shaves dozens of KB of legacy transforms/polyfills.
+    target: 'es2020',
     assetsInlineLimit: 2048,
     reportCompressedSize: false,
     rollupOptions: {
