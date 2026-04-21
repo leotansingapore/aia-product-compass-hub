@@ -226,26 +226,26 @@ Write this somewhere you'll re-read before Day 14.
 ## Quiz
 
 **Q1. The three I's — Income, Independence, Impact — are presented as:**
-- A) Three separate career paths, each requiring a different choice
-- B) Three dimensions that are all structurally present in this career, each in a material way ✓
-- C) Three things you'll achieve in year one
-- D) Three goals you rank and pick one from
+- A) Three separate career paths, each needing its own choice
+- B) Three dimensions all structurally present in this single career ✓
+- C) Three milestones you hit in year one
+- D) Three goals you rank and commit to only one
 
-**Why:** The point isn't that one career delivers each — it's that this single model delivers all three substantively. Income comes from the business structure. Independence comes from the practice format. Impact comes from the product being something people genuinely need. Most careers offer one well, one weakly, and one not at all. This one delivers all three as natural outputs of how the model works.
+**Why:** The point isn't that one career delivers each — it's that this single model delivers all three substantively. Income comes from the business structure, independence from the practice format, impact from the product being something people genuinely need. Most careers offer one well, one weakly, and one not at all. This one delivers all three as natural outputs of the model.
 
 **Q2. Knowing which I pulls you hardest matters because:**
-- A) You'll be asked at interview
-- B) It shapes how you'd build the practice and predicts your likely failure mode ✓
+- A) You'll be asked about it at the interview
+- B) It shapes how you'd build the practice and predicts your failure mode ✓
 - C) Only one of the three is actually achievable
-- D) It decides how much you'll be paid
+- D) It determines how much commission you earn
 
-**Why:** An income-dominated advisor builds differently from an impact-dominated advisor — different pace, different types of clients, different team structure, different risks. Knowing your dominant pull lets you build a practice aligned with it, and lets mentors support you on your likely weak side. Unnamed pulls lead to misalignment; named ones are constructive.
+**Why:** An income-dominated advisor builds differently from an impact-dominated advisor — different pace, different client types, different team structure, different risks. Naming your dominant pull lets you build aligned, and lets mentors support you on your likely weak side. Unnamed pulls lead to misalignment; named ones are constructive.
 
 **Q3. The right outcome from Week 1 is:**
 - A) An enthusiastic yes to joining
-- B) A clear read — yes, no, or maybe-but-which-agency — on the business *model*, separate from the agency and fit questions that come in Week 2 ✓
-- C) A full CV ready for recruitment
-- D) A meeting booked with an advisor
+- B) A clear read on the business *model*, separate from agency and fit ✓
+- C) A polished CV ready for recruitment
+- D) A booked meeting with a senior advisor
 
 **Why:** Week 1 is intentionally about the *structure* of the business. Week 2 is about *fit* — agency choice and personal traits. Keeping the two separate is what makes the decision honest. A candidate who says yes to the model but no to Week 2's fit still has a legitimate yes — they just need a different agency or a personal shift. Collapsing the two questions is how bad hires happen.
 

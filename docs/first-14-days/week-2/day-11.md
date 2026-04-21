@@ -207,29 +207,29 @@ Think through this:
 
 ## Quiz
 
-**Q1. Having no finance experience when joining is:**
+**Q1. Joining with no finance experience is, in practice:**
 - A) A major liability that takes years to overcome
-- B) An advantage — faster to learn correct habits, no jargon to unlearn, plainer client communication ✓
-- C) Irrelevant
+- B) A mild advantage — no jargon or bad habits to unlearn ✓
+- C) Entirely irrelevant to outcomes
 - D) A reason to avoid the career
 
-**Why:** Most new advisors come in without finance experience. Top producers draw roughly equally from all backgrounds. The actual drivers of success are the 6 C's and willingness to do the work. Finance experience helps marginally in product understanding — a few months of study — and hurts slightly in ingrained bad habits. Net neutral at best.
+**Why:** Most new advisors come in without finance experience, and top producers draw roughly equally from all backgrounds. The actual drivers of success are the 6 C's and willingness to do the work. Finance experience helps marginally in product understanding — a few months of study — and hurts slightly in ingrained bad habits. Net neutral at best; often slightly negative.
 
-**Q2. Introverts tend to outperform extroverts in this career because:**
-- A) Clients dislike extroverts
-- B) Introverts ask more questions, listen longer, handle silence better, and don't over-sell ✓
-- C) Introverts work longer hours
-- D) Introverts are more disciplined
+**Q2. Introverts tend to do well in this career because:**
+- A) Clients actively dislike extroverted advisors
+- B) They ask more, listen longer, and hold silence ✓
+- C) They work longer hours than extroverts
+- D) They are inherently more disciplined
 
-**Why:** The top advisor's craft is built on listening, not talking. The most valuable moments in a client conversation are the silent ones that let the real answer surface. Introverts are naturally comfortable in those moments; extroverts often aren't. The introvert's built-in preference — ask first, talk less, notice more — maps closely to what the job rewards.
+**Why:** The top advisor's craft is built on listening, not talking. The most valuable moments in a client conversation are the silent ones that let the real answer surface. Introverts are naturally comfortable there; extroverts often aren't. Ask-first, talk-less, notice-more maps closely to what the job actually rewards.
 
-**Q3. Gabriel Kow and Benjamin Gnoh prove:**
-- A) You need a finance degree to succeed
-- B) Even NSFs and students — with no prior sales experience and no big warm market — can hit $10K/month in under 2 months if they have the 6 C's and plug into real systems ✓
-- C) This career only works for extroverts
-- D) Results vary wildly with no predictability
+**Q3. Gabriel Kow's and Benjamin Gnoh's results show that:**
+- A) You need a finance degree to produce those numbers
+- B) NSFs and students can hit $10K/month with the 6 C's and real systems ✓
+- C) This career only works for natural extroverts
+- D) Early-advisor results are mostly random
 
-**Why:** Both mentees started from profiles most candidates would consider disqualifying — ORD NSF, incoming uni student, no finance background, no rich network. Both hit $10K/month within 8 weeks. The common variables weren't experience or charisma. They were the 6 C's plus our systems. Which means the "I have no experience" objection is empirically answered.
+**Why:** Both mentees started from profiles most candidates would consider disqualifying — ORD NSF, incoming uni student, no finance background, no rich network. Both hit $10K/month within 8 weeks. The common variables weren't experience or charisma. They were the 6 C's plus our systems. The "I have no experience" objection is empirically answered.
 
 ---
 

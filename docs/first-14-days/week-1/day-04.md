@@ -181,29 +181,29 @@ Answer three questions:
 
 ## Quiz
 
-**Q1. An *asymmetric bet* is one where:**
-- A) The odds of winning are higher than 50%
-- B) The upside and downside are equal in magnitude
-- C) The upside is large and the downside is small — ideally even a mild positive ✓
-- D) The decision is irreversible
+**Q1. An *asymmetric bet* is defined by:**
+- A) Odds of winning above 50%
+- B) Upside and downside of equal magnitude
+- C) Large upside paired with a small, survivable downside ✓
+- D) A decision that cannot be reversed
 
-**Why:** The defining feature is the *shape* of the outcomes, not the probability. A good asymmetric bet has an enormous upside and a survivable — sometimes even positive — downside. That's why they're prized: expected value is high almost regardless of win probability.
+**Why:** The defining feature is the *shape* of outcomes, not the probability. A good asymmetric bet has an enormous upside and a survivable — sometimes even positive — downside. That's why they're prized: expected value is high almost regardless of win probability.
 
-**Q2. The realistic "worst case" of trying the FA career and leaving after 18 months is:**
+**Q2. The realistic worst case of trying this career and leaving after 18 months is:**
 - A) Significant debt and a ruined CV
-- B) Skills, network, financial literacy and personal growth you keep for life — with no debt or lock-in ✓
-- C) A bad reputation with your friends and family
-- D) Locked out of other industries
+- B) Portable skills, network and financial literacy, with no debt or lock-in ✓
+- C) A damaged reputation with friends and family
+- D) Being locked out of other industries
 
-**Why:** There's no franchise fee, no non-compete, no multi-year lock-in. What you *do* build — sales capability, listening skills, personal financial literacy, a network, discipline — is portable. The worst case of *trying and leaving* is a materially better starting position than not trying at all. That's the risk-reversal.
+**Why:** There is no franchise fee, no non-compete, no multi-year lock-in. What you *do* build — sales capability, listening skills, personal financial literacy, a network, discipline — is portable. The worst case of *trying and leaving* is a materially better starting position than not trying at all. That's the risk-reversal.
 
-**Q3. The "hidden risk" most people miss when evaluating this decision is:**
+**Q3. The hidden risk most people miss in this decision is:**
 - A) Changes in tax law
-- B) Market downturns
-- C) The opportunity cost of *not* trying — identity cost, skill cost, a decade of compounded *what-ifs* ✓
-- D) Competition from other advisors
+- B) A market downturn hitting commissions
+- C) The opportunity cost of not trying — a decade of compounded what-ifs ✓
+- D) Rising competition from other advisors
 
-**Why:** The visible risks of joining — income variability, lifestyle change — are easy to see and therefore easy to over-weight. The invisible risk of *not joining* — the career, skills, and network you'd have built, compounded over 10 years — doesn't show up anywhere, so it gets discounted to zero. In long-horizon decisions, this hidden cost usually dominates.
+**Why:** The visible risks of joining — income variability, lifestyle change — are easy to see and therefore over-weighted. The invisible risk of *not joining* — the career, skills, and network you'd have built, compounded over 10 years — doesn't show up anywhere, so it gets discounted to zero. In long-horizon decisions, this hidden cost usually dominates.
 
 ---
 

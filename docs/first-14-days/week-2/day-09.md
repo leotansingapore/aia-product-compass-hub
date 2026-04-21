@@ -392,27 +392,27 @@ If yes — everything I've built is waiting for you. The infrastructure is ready
 
 ## Quiz
 
-**Q1. The 6 C's that predict year-one survival better than any qualification are:**
+**Q1. The 6 C's that predict year-one survival better than any CV item are:**
 - A) Intelligence, likability, connections, charisma, confidence, credentials
-- B) Consistency of Actions, Constancy of Emotions, Continuous Improvement, Creativity, Can-do Spirit, CEO Mindset ✓
-- C) Sales experience, finance degree, extroversion, confidence, composure, credentials
-- D) Network size, family money, age, education, energy, effort
+- B) Consistency, Constancy, Continuous Improvement, Creativity, Can-do Spirit, CEO Mindset ✓
+- C) Sales experience, finance degree, extroversion, composure, confidence, credentials
+- D) Network, family money, age, education, energy, effort
 
 **Why:** Qualifications can be gained on the job. Character traits set the ceiling for how quickly skills layer on. The 6 C's together explain most of the difference between advisors who make it and advisors who leave in year one. Agencies that screen for CV instead of character produce predictable attrition.
 
-**Q2. The CEO Mindset principle *"you can be successful or a victim, not both"* means:**
+**Q2. The CEO Mindset line *"you can be successful or a victim, not both"* means:**
 - A) Successful people never face hardship
-- B) Blaming feels like relief but forfeits the power to change; ownership is what unlocks growth ✓
-- C) Being a victim is a strategy
+- B) Blame forfeits the power to change; ownership unlocks growth ✓
+- C) Playing victim is a valid strategy
 - D) Successful people don't care about others
 
 **Why:** The claim isn't that successful people avoid hardship. It's that *victim* and *successful* are incompatible states. Victim mindset gives you an excuse to stay stuck; ownership gives you the power to move. You can't hold both at once. Choose ownership, even when the "fault" is partly external.
 
-**Q3. If your honest self-assessment scores you 2/5 on one trait, the right response is:**
-- A) Ignore it and assume you'll grow into it
-- B) Quit considering the career
-- C) Be honest that this is a real liability — evaluate whether the trait is teachable for *you*, and consider whether *now* or *later* is the right time ✓
-- D) Overcompensate in the other traits
+**Q3. If your honest self-assessment scores 2/5 on one trait, the right response is:**
+- A) Ignore it — you'll grow into it on the job
+- B) Quit considering the career entirely
+- C) Treat it as a real liability, evaluate teachability and timing ✓
+- D) Overcompensate by leaning on your other traits
 
 **Why:** A 2/5 is diagnostic, not a judgment. Some traits (Can-do, Continuous Improvement) can be built in 3–6 months. Others (deep Consistency, CEO Mindset, Constancy of Emotions) take longer and require real self-work. Honest response: evaluate teachability and timing. Joining while knowingly weak — without a plan — is the year-one dropout pattern.
 

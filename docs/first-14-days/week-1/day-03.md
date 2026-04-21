@@ -176,29 +176,29 @@ The point isn't to justify joining. The point is to honestly price what you'd wa
 
 ## Quiz
 
-**Q1. The real definition of "sales" in this career is:**
+**Q1. The working definition of "sales" top advisors actually use is:**
 - A) Persuading people to buy things they don't need
-- B) Understanding human decision-making and communicating value so the right choice is obvious ✓
-- C) Pushy cold-calling
-- D) Closing at all costs
+- B) Understanding decisions well enough to make the right choice obvious ✓
+- C) Closing every lead that comes in
+- D) Building strong rapport so price stops mattering
 
-**Why:** The stereotype describes bad salespeople. Real sales — the kind top advisors practice — is applied human psychology: understanding drivers, communicating value, building conviction through story. It's also the exact skill set every founder, CEO and negotiator relies on. Framed properly, it's one of the most transferable, high-leverage skills in any career.
+**Why:** The stereotype describes bad salespeople. Real sales — the kind top advisors practice — is applied human psychology: understanding drivers, communicating value, building conviction through story. It's the exact skill set every founder, CEO and negotiator relies on. Rapport-and-price framing (D) is superficial; real sales works on decision clarity, not charm.
 
-**Q2. Top advisors are disproportionately:**
-- A) Extroverted natural salespeople
-- B) Good *listeners*, often introverts, who build trust through asking rather than telling ✓
-- C) Ex-athletes
-- D) Financially well-off from the start
+**Q2. Top advisors are disproportionately drawn from people who are:**
+- A) Extroverted and naturally persuasive
+- B) Good listeners, often introverts, who earn trust by asking ✓
+- C) Former athletes or competitive performers
+- D) Already financially successful before they start
 
-**Why:** The surprising pattern across top advisors is that listening beats talking. What clients want is to be understood, not sold to. This favours people who can ask good questions, sit in silence, and reflect back what they've heard — skills introverts often possess more naturally. The myth that sales favours extroverts is one of the main reasons introverts underrate themselves for this career.
+**Why:** The surprising pattern across top advisors is that listening beats talking. Clients want to be understood, not sold to — which favours people who ask good questions, hold silence, and reflect back what they've heard. That's often introverts. The myth that sales favours extroverts is one of the main reasons introverts wrongly rule themselves out.
 
-**Q3. "Don't chase the money. Master the skills that make money chase you" means:**
-- A) Money isn't important
-- B) Early in your career, the return on high-income skills — sales, communication, financial IQ — dwarfs the return on saving and investing a small portfolio ✓
-- C) Investing is a scam
-- D) Only rich people should learn about money
+**Q3. "Don't chase the money — master the skills that make money chase you" means:**
+- A) Money doesn't matter early on
+- B) Early-career returns on high-income skills dwarf returns on investing a small portfolio ✓
+- C) Investing is a scam for ordinary earners
+- D) Only rich people should bother learning about money
 
-**Why:** At low portfolio sizes, even a 20% investment return produces negligible absolute dollars. What actually changes your financial trajectory is *earning ability* — which compounds through high-income skills. Build the skills first, earn aggressively, *then* the investing math starts to matter. The order is non-obvious but decisive.
+**Why:** At low portfolio sizes, even a 20% investment return produces negligible absolute dollars. What actually changes your financial trajectory is *earning ability*, which compounds through high-income skills. Build the skills first, earn aggressively, *then* the investing math starts to matter. The order is non-obvious but decisive.
 
 ---
 

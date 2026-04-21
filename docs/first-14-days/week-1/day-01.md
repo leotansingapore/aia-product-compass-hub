@@ -162,29 +162,29 @@ Save this somewhere you'll re-read on Day 14. The gap between *that picture* and
 
 ## Quiz
 
-**Q1. The most accurate reason most people read a page like this is:**
-- A) Their current job is bad
-- B) They see that *safe* doesn't get them to the life they want in 10 years ✓
-- C) They want to escape responsibility
-- D) Someone in their family was an advisor
+**Q1. What actually drives a cautious-but-curious person to explore this career is:**
+- A) Their current job has become unbearable
+- B) A gap between their current trajectory and where they want to be in 10 years ✓
+- C) A sudden desire to escape adult responsibilities
+- D) A friend in the industry pushing them to join
 
-**Why:** Unhappy people rarely take action — they just stay unhappy. What produces serious exploration is the realisation that a current *trajectory* doesn't reach a desired *destination*. It's a planning instinct, not fragility. That's why *cautious but curious* is the exact profile this program is built for.
+**Why:** Unhappy people rarely take action — they just stay unhappy. What produces serious exploration is the gap between *trajectory* and *destination*, not day-to-day dissatisfaction. It's a planning instinct, not fragility. That's the exact profile this program is built for.
 
-**Q2. In this framing, the enemy isn't the 9-to-5 — it's:**
+**Q2. In this framing, the real friction with a 9-to-5 is not the job itself but:**
 - A) The boss
 - B) The hours
 - C) The ceiling ✓
-- D) The office politics
+- D) The commute
 
 **Why:** A 9-to-5 is a legitimate choice for many people. It becomes a bad fit when ambition, skills, or desired lifestyle exceed what the role can ever grow into. That's structural, not a complaint. The ceiling — not the day-to-day — is what drives this decision.
 
-**Q3. What this 14-day course is designed to produce is:**
-- A) An enthusiastic yes
-- B) A signature on a recruitment form
-- C) An honest decision — Commit, Delay, Keep Exploring, or No ✓
-- D) A sales pitch
+**Q3. The intended output of this 14-day course is:**
+- A) An enthusiastic yes, every time
+- B) A signed recruitment form by Day 14
+- C) An honest decision — yes, delay, keep exploring, or no ✓
+- D) A booked meeting with a senior advisor
 
-**Why:** A course that can only produce *yes* is a sales funnel. A real evaluation produces any of four legitimate outcomes. An honest *no* is a success — it saves everyone a year. That's the bar we're holding.
+**Why:** A course that can only produce *yes* is a sales funnel. A real evaluation produces any of four legitimate outcomes, and an honest *no* is a success — it saves everyone a year. Measure the course by whether it helped you decide honestly, not by whether it pushed any specific answer.
 
 ---
 
