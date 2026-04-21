@@ -141,6 +141,15 @@ export const markdownComponents: Components = {
 
   // Images with metadata support (width, alignment, crop from alt text)
   img: ({ src, alt }: any) => {
+    // Historical DB content references .png paths under /scripts/, /first-14-days/,
+    // and /first-60-days/. Those originals were batch-converted to WebP (up to ~90%
+    // smaller). Rewrite on the fly so the browser actually fetches .webp.
+    const webpSrc =
+      typeof src === "string" &&
+      /^\/(scripts|first-14-days|first-60-days)\/.+\.png$/i.test(src)
+        ? src.replace(/\.png$/i, ".webp")
+        : src;
+
     let realAlt = alt || '';
     let width: string | undefined;
     let alignment = 'center';
@@ -177,7 +186,7 @@ export const markdownComponents: Components = {
           }}
         >
           <img
-            src={src}
+            src={webpSrc}
             alt={realAlt}
             loading="lazy"
             className={hasCrop ? 'absolute' : 'block w-full rounded-md'}
