@@ -3106,6 +3106,8 @@ export type Database = {
           first_14_reflections: number
           first_60_days: number
           first_60_reflections: number
+          learning_track_items: number
+          learning_track_submissions: number
           name: string
           product_quizzes: number
           question_bank: number
