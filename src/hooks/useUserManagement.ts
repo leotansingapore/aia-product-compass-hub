@@ -19,6 +19,7 @@ export interface UnifiedUser {
   approval_request_id?: string;
   last_login?: string;
   can_login: boolean;
+  show_in_leaderboard: boolean;
 }
 
 interface FilterState {
@@ -52,7 +53,7 @@ export function useUserManagement() {
           .order('requested_at', { ascending: false }),
         supabase
           .from('profiles')
-          .select('user_id, email, display_name, first_name, last_name, avatar_url, created_at'),
+          .select('user_id, email, display_name, first_name, last_name, avatar_url, created_at, show_in_leaderboard'),
         supabase
           .from('user_admin_roles')
           .select('user_id, admin_role'),
@@ -107,6 +108,7 @@ export function useUserManagement() {
           access_tier: accessTier,
           approval_request_id: request.id,
           can_login: existingProfile && adminRole !== 'user',
+          show_in_leaderboard: existingProfile?.show_in_leaderboard ?? true,
         });
       });
 

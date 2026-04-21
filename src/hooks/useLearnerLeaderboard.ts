@@ -33,6 +33,7 @@ type ProfileRow = {
   email: string | null;
   first_name: string | null;
   last_name: string | null;
+  show_in_leaderboard?: boolean | null;
 };
 
 type TierRow = { user_id: string; tier_level: string };
@@ -72,7 +73,7 @@ async function fetchLeaderboard(currentUserId: string | null): Promise<Leaderboa
     supabase.from("user_access_tiers").select("user_id, tier_level").range(0, 9999),
     supabase
       .from("profiles")
-      .select("user_id, display_name, email, first_name, last_name")
+      .select("user_id, display_name, email, first_name, last_name, show_in_leaderboard")
       .range(0, 9999),
   ]);
   if (tiersRes.error) throw tiersRes.error;
@@ -89,13 +90,21 @@ async function fetchLeaderboard(currentUserId: string | null): Promise<Leaderboa
     }
   }
 
-  const relevantIds = Array.from(tiersByUser.keys());
-  if (relevantIds.length === 0) return [];
-
   const profileMap = new Map<string, ProfileRow>();
   for (const p of (profilesRes.data ?? []) as ProfileRow[]) {
     profileMap.set(p.user_id, p);
   }
+
+  // Admin-managed hide: drop anyone with show_in_leaderboard === false from
+  // every tier's board. Current user still sees their own rank via the banner
+  // because they'd opt themselves out anyway, and we never force-show hidden rows.
+  for (const userId of Array.from(tiersByUser.keys())) {
+    const p = profileMap.get(userId);
+    if (p && p.show_in_leaderboard === false) tiersByUser.delete(userId);
+  }
+
+  const relevantIds = Array.from(tiersByUser.keys());
+  if (relevantIds.length === 0) return [];
 
   // Step 2: aggregate activity in parallel. Scope every query to relevant
   // user IDs so we're not pulling the whole org.

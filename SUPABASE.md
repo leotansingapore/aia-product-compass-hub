@@ -6,9 +6,9 @@
 
 ## Pending
 
-#### Learner Leaderboard — 2026-04-21
+#### Learner Leaderboard — 2026-04-21 — **BLOCKING / URGENT**
 
-**What:** Ships today as a client-side aggregation (one route, two tier-scoped tabs). These two changes make it faster + respect user privacy.
+**What:** Leaderboard currently only shows the viewing user because `profiles` + `user_access_tiers` RLS limits non-admins to their own row. Non-admin learners see a leaderboard of one person (themselves). The RPC below unblocks the feature. This is urgent — ship this before other pending items.
 
 **Tables:**
 - `profiles`: Add column `show_in_leaderboard boolean NOT NULL DEFAULT true`

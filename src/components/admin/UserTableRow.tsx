@@ -29,6 +29,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import { TierBadge } from '@/components/tier/TierBadge';
 import { TierControl } from '@/components/admin/TierControl';
+import { LeaderboardVisibilityToggle } from '@/components/admin/LeaderboardVisibilityToggle';
 
 interface UserTableRowProps {
   user: UnifiedUser;
@@ -234,6 +235,13 @@ export const UserTableRow = memo(function UserTableRow({
       {/* Actions */}
       <TableCell className="text-right">
         <div className="flex items-center justify-end gap-1">
+          {user.profile && (
+            <LeaderboardVisibilityToggle
+              userId={user.id}
+              showInLeaderboard={user.show_in_leaderboard}
+              onChange={() => onUpdate()}
+            />
+          )}
           {/* Quick Actions for Pending Users */}
           {user.status === 'pending_approval' && (
             <div className="flex gap-1">

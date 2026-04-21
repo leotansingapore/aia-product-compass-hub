@@ -19,6 +19,7 @@ import {
   type PointBreakdown,
 } from "@/hooks/useLearnerLeaderboard";
 import { TIER_META, type TierLevel } from "@/lib/tiers";
+import { HallOfFamePodium } from "@/components/leaderboard/HallOfFamePodium";
 
 const RANK_GOLD = "#C4A24D";
 const RANK_SILVER = "#A8A8A8";
@@ -226,13 +227,21 @@ export default function Leaderboard() {
           </CardContent>
         </Card>
       ) : tier === "papers_taker" || tier === "post_rnf" ? (
-        <div className="space-y-3">
-          <div className="inline-flex rounded-md border bg-muted/40 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            {TIER_META[tier].label} Leaderboard
-          </div>
-          <YourRankBanner rows={rows} tier={tier} />
-          <LeaderboardTable rows={rows} tier={tier} filter="" />
-        </div>
+        (() => {
+          const tierRows = rows
+            .filter((r) => r.tier === tier)
+            .map((r, i) => ({ ...r, rank: i + 1 }));
+          return (
+            <div className="space-y-3">
+              <div className="inline-flex rounded-md border bg-muted/40 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                {TIER_META[tier].label} Leaderboard
+              </div>
+              <HallOfFamePodium rows={tierRows} />
+              <YourRankBanner rows={rows} tier={tier} />
+              <LeaderboardTable rows={rows} tier={tier} filter="" />
+            </div>
+          );
+        })()
       ) : (
         <Card>
           <CardContent className="p-10 text-center text-sm text-muted-foreground">
