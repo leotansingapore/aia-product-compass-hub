@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useAuth } from "@/hooks/useAuth";
@@ -12,10 +12,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Settings, Sparkles } from "lucide-react";
-import {
-  AnimatedOnboardingTour,
-  clearAnimatedTourSeen,
-} from "@/components/onboarding/AnimatedOnboardingTour";
+import { clearAnimatedTourSeen } from "@/components/onboarding/tourStorage";
+
+const AnimatedOnboardingTour = lazy(() =>
+  import("@/components/onboarding/AnimatedOnboardingTour").then(m => ({
+    default: m.AnimatedOnboardingTour,
+  }))
+);
 
 export default function MyAccount() {
   const { isAdmin: isAdminUser } = useAdmin();
@@ -106,10 +109,14 @@ export default function MyAccount() {
             Replay Welcome Tour
           </Button>
 
-          <AnimatedOnboardingTour
-            open={tourOpen}
-            onClose={() => setTourOpen(false)}
-          />
+          {tourOpen && (
+            <Suspense fallback={null}>
+              <AnimatedOnboardingTour
+                open={tourOpen}
+                onClose={() => setTourOpen(false)}
+              />
+            </Suspense>
+          )}
 
           <ProfileSection />
 

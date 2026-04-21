@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -17,10 +17,13 @@ import { SecurityForm } from "@/components/account/SecurityForm";
 import { ProfileForm } from "@/components/account/ProfileForm";
 import { useToast } from "@/hooks/use-toast";
 import { useOnboarding } from "@/hooks/useOnboarding";
-import {
-  AnimatedOnboardingTour,
-  clearAnimatedTourSeen,
-} from "@/components/onboarding/AnimatedOnboardingTour";
+import { clearAnimatedTourSeen } from "@/components/onboarding/tourStorage";
+// Lazy — only loads when the user actually clicks "Platform Tour".
+const AnimatedOnboardingTour = lazy(() =>
+  import("@/components/onboarding/AnimatedOnboardingTour").then(m => ({
+    default: m.AnimatedOnboardingTour,
+  }))
+);
 import { useUserTier } from "@/hooks/useUserTier";
 import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackPhases";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
@@ -425,10 +428,14 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
         </div>
       </SheetContent>
     </Sheet>
-    <AnimatedOnboardingTour
-      open={tourOpen}
-      onClose={() => setTourOpen(false)}
-    />
+    {tourOpen && (
+      <Suspense fallback={null}>
+        <AnimatedOnboardingTour
+          open={tourOpen}
+          onClose={() => setTourOpen(false)}
+        />
+      </Suspense>
+    )}
     </>
   );
 }

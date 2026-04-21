@@ -8,11 +8,13 @@ import { MobileHeader } from "./MobileHeader";
 import { Button } from "@/components/ui/button";
 import { LogIn, User } from "lucide-react";
 import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
-import { ProfileSheet } from "@/components/profile/ProfileSheet";
 import { ThemeToggle } from "@/components/ThemeToggle";
 // WelcomeModal, OnboardingTutorial, OnboardingHelpButton are rendered once at
 // the App.tsx root (inside OnboardingProvider) — don't re-render them here.
 const FloatingFeedbackButton = lazy(() => import("@/components/FloatingFeedbackButton").then(m => ({ default: m.FloatingFeedbackButton })));
+// ProfileSheet is only shown when the user opens the avatar menu; lazy-load so
+// its learning-track queries and sub-forms don't bloat the initial bundle.
+const ProfileSheet = lazy(() => import("@/components/profile/ProfileSheet").then(m => ({ default: m.ProfileSheet })));
 import { useAdmin } from "@/hooks/useAdmin";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useVersionCheck } from "@/hooks/useVersionCheck";
@@ -160,7 +162,9 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
           <FloatingFeedbackButton />
         </Suspense>
         {profileOpen && (
-          <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
+          <Suspense fallback={null}>
+            <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
+          </Suspense>
         )}
       </div>
     );
@@ -202,7 +206,9 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
           <FloatingFeedbackButton />
         </Suspense>
         {profileOpen && (
-          <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
+          <Suspense fallback={null}>
+            <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
+          </Suspense>
         )}
       </SidebarProvider>
     );

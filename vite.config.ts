@@ -20,32 +20,27 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    assetsInlineLimit: 2048,
+    reportCompressedSize: false,
     rollupOptions: {
       output: {
         assetFileNames: 'assets/[name]-[hash][extname]',
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
+        // Intentionally minimal manualChunks. Pinning heavy libs like @tiptap,
+        // mermaid, cytoscape, katex, emoji-picker-react, or html2canvas as
+        // shared vendor chunks makes Vite's modulepreload include them on every
+        // page load even when only one route needs them. Letting Rollup split
+        // per-route keeps the hot path lean.
         manualChunks: {
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-query': ['@tanstack/react-query'],
           'vendor-supabase': ['@supabase/supabase-js'],
-          'vendor-tiptap': [
-            '@tiptap/react',
-            '@tiptap/starter-kit',
-            '@tiptap/extension-link',
-            '@tiptap/extension-placeholder',
-            '@tiptap/extension-table',
-            '@tiptap/extension-table-row',
-            '@tiptap/extension-table-cell',
-            '@tiptap/extension-table-header',
-          ],
           'vendor-dnd': [
             '@dnd-kit/core',
             '@dnd-kit/sortable',
             '@dnd-kit/utilities',
           ],
-          // react-markdown + recharts intentionally NOT pinned — letting Rollup
-          // split them per-route keeps pages that don't use them lean.
         },
       },
     },
