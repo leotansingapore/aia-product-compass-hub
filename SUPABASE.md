@@ -6,14 +6,11 @@
 
 ## Pending
 
-### Curriculum edits: delete Pre-RNF Phase 1, optionally relabel remaining phases, drop stale permission rows
+_(none — all prior items completed)_
 
-- In `learning_track_phases`, delete the Pre-RNF "Phase 1 — Industry Understanding" row (and any `learning_track_items` / `learning_track_content_blocks` that FK to it). Cascade via existing FKs if present; otherwise delete children first. After deletion, close the gap in `order_index` for remaining Pre-RNF phases.
-- Optional (preferred): rename remaining Pre-RNF phase titles from `Phase N — <topic>` to `Assignment N — <topic>` so raw DB titles match what learners see. The client currently rewrites these at render time; removing that rewrite once the DB is updated will clean up `src/pages/learning-track/PreRnf.tsx::reshapePreRnfPhasesForLearner`.
-- In `tier_permissions`, delete the following now-stale rows so the DB matches `TIER_FEATURE_MATRIX`:
-  - `(tier_level='post_rnf', resource_id='cmfas')` — Post-RNF no longer sees CMFAS.
-  - `(tier_level='papers_taker', resource_id='roleplay')` — Papers-taker no longer sees Roleplay.
-  - Keep `(tier_level='papers_taker', resource_id='cmfas')` — papers-takers still reach `/cmfas-exams` from inside the Pre-RNF learning track, just not from the global nav (hidden client-side in `useFeatureAccess.canAny`).
+### Pre-RNF curriculum cleanup: Phase 1 deleted, remaining phases relabelled, stale tier_permissions rows dropped — DONE 2026-04-21
+
+Migration: `20260421015037_630171e7-8e34-4cf1-8d2d-6504dce52500.sql`. Deleted the Pre-RNF `learning_track_phases` row id `89b1bc1e-a416-402d-a860-23d09938b8d2` ("Phase 1 — Industry Understanding") along with its child `learning_track_items` and `learning_track_content_blocks` (children deleted first defensively even though FKs cascade). Repacked `order_index` for remaining Pre-RNF phases starting at 1 — used a +1000 offset on the first UPDATE to dodge the unique `(track, order_index)` index, then subtracted 1000 on the second UPDATE. Same WITH-statement renamed each surviving phase from `Phase N — <topic>` to `Assignment N — <topic>` (1-based, post-repack). In `tier_permissions`, deleted `(post_rnf, cmfas)` and `(papers_taker, roleplay)`; kept `(papers_taker, cmfas)` so papers-takers still have route access to `/cmfas-exams` (the nav entry is hidden client-side in `useFeatureAccess.canAny`). Client follow-up shipped: `reshapePreRnfPhasesForLearner` removed from `src/pages/learning-track/PreRnf.tsx` since the DB now serves the right titles directly.
 
 ### `learning_track_activity_log` trigger relaxed for service-role writes — DONE 2026-04-21
 
