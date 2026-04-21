@@ -41,7 +41,7 @@ Quick recap before you decide.
 
 **Week 2 — The Fit Test:**
 - Day 8 — Why the agency matters (TSS, 6-Tier Pyramid, right people × right systems)
-- Day 9 — The 4 C's (Creative, Consistent, Continually improving, Can-do)
+- Day 9 — The 6 C's (Consistency of Actions, Constancy of Emotions, Continuous Improvement, Creativity, Can-do Spirit, CEO Mindset)
 - Day 10 — Warm market objection (99.9% of my book was cold)
 - Day 11 — Experience/introvert objection (Gabriel, Benjamin receipts)
 - Day 12 — Time/office/IFA objections
@@ -85,7 +85,7 @@ Real reasons might include:
 - Current role too demanding to ramp a side practice right now
 - Family or health situation needs full focus
 - Financial buffer insufficient to handle 3-6 months ramp variability
-- You identified a weak 4 C (Day 9) to work on first
+- You identified a weak C out of the 6 C's (Day 9) to work on first
 - You want to build a specific skill in current role before transitioning
 
 **What Delay looks like:**
@@ -318,7 +318,7 @@ What you have now that you didn't have 14 days ago:
 
 - A clear read on whether FA is a structural fit for how you want to live
 - Specific criteria to evaluate any agency, not just mine
-- An honest self-assessment against the 4 C's
+- An honest self-assessment against the 6 C's
 - A handled answer for every common objection
 - Full visibility into the FLEXI scheme, income guarantee, and your timeline with us
 - A decision — Commit, Delay, Keep Exploring, or No — you can defend to yourself

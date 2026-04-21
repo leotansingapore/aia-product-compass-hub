@@ -221,7 +221,7 @@ The most important questions aren't about what I can do for you. They're about w
 - Will you form the routines that create lasting success?
 - Are you willing to learn to delegate and automate as you grow?
 
-That's Day 9. The 4 C's I screen every candidate for.
+That's Day 9. The 6 C's I screen every candidate for.
 
 **The racetrack is built. The question is: are you ready to drive?**
 
@@ -272,5 +272,5 @@ If you haven't spoken to an agency yet, save this. Use it as your diagnostic whe
 ## Related
 
 - Previous: [[../week-1/day-07|Day 7 — The Three I's: Income, Independence, Impact]]
-- Next: [[day-09|Day 9 — The 4 C's — Honest Self-Assessment]]
+- Next: [[day-09|Day 9 — The 6 C's — Honest Self-Assessment]]
 - Week 2 overview: [[README|Week 2 — The Fit Test]]

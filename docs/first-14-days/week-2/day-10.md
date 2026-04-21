@@ -217,6 +217,6 @@ Think honestly:
 
 ## Related
 
-- Previous: [[day-09|Day 9 — The 4 C's — Honest Self-Assessment]]
+- Previous: [[day-09|Day 9 — The 6 C's — Honest Self-Assessment]]
 - Next: [[day-11|Day 11 — "I Have No Experience / I'm Too Introverted"]]
 - Week 2 overview: [[README|Week 2 — The Fit Test]]

@@ -135,7 +135,7 @@ To make this concrete — two people I've personally mentored through FINternshi
 
 > *"I had everything to gain, and nothing to lose joining as a student. Within less than 2 months I was already earning $10K per month."*
 
-Neither had finance degrees. Neither had "business experience." Neither had huge warm markets. They had the same four traits we screen for (Day 9 covers these), plugged into our systems, and the math worked out exactly as the risk-reversal card predicts.
+Neither had finance degrees. Neither had "business experience." Neither had huge warm markets. They had the same traits we screen for (Day 9 covers these), plugged into our systems, and the math worked out exactly as the risk-reversal card predicts.
 
 ---
 

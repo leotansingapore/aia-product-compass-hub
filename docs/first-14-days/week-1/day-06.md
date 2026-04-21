@@ -187,7 +187,7 @@ Three takeaways:
 
 1. **The model gets easier over time, not harder.** First year is the hardest. Every year after gets materially easier — opposite of most jobs.
 2. **Clients are assets, not transactions.** Each one is a decade-long relationship producing compound value. Behave accordingly.
-3. **Your goal in year 1 is to reach year 3.** Year 1 is about surviving long enough for compounding to begin. That's why Day 9's four traits matter so much — they predict who reaches year 3.
+3. **Your goal in year 1 is to reach year 3.** Year 1 is about surviving long enough for compounding to begin. That's why Day 9's six traits matter so much — they predict who reaches year 3.
 
 ---
 
