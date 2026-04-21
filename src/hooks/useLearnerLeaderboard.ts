@@ -62,7 +62,14 @@ async function fetchLeaderboard(
   const { data, error } = await (supabase.rpc as any)("get_learner_leaderboard", {
     p_tier: tier,
   });
-  if (error) throw error;
+  if (error) {
+    console.error("get_learner_leaderboard failed", error);
+    const msg =
+      (error as { message?: string })?.message ??
+      (error as { details?: string })?.details ??
+      JSON.stringify(error);
+    throw new Error(`get_learner_leaderboard: ${msg}`);
+  }
 
   const rows: LeaderboardRow[] = ((data ?? []) as RpcRow[]).map((r, idx) => {
     const breakdown: PointBreakdown = {
