@@ -78,6 +78,8 @@ This is the tier most serious candidates take. 20 hours/week is the same commitm
 
 This is the one most candidates can't believe the first time they hear it.
 
+![Income Guarantee — $2,000/$4,000 per month for the first full year](/first-14-days/images/income-guarantee.jpeg)
+
 > **We personally guarantee an average of $2,000 ($4,000 for full-time) in income per month for the first full year** as a student advisor or full-time advisor.
 
 Conditions:

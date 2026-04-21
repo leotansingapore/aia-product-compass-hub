@@ -52,7 +52,24 @@ Hard numbers:
 - **Mid-career consultants** (3–5 years in): $150K–$250K
 - **Top-tier (MDRT × 5, COT × 3 like me):** multiple hundreds of thousands → seven figures annually after 5–10 years
 
-![Income benchmarks](https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/63efa31ae7e34201bfb394bdbaf504d3a2064a0668c64b03b8b1a30184144f73-md.png)
+**My own progression** — real income statements, year by year, as a full-time NUS Engineering student:
+
+- **Year 1:** $145K
+- **Year 2:** $251K
+- **Year 3:** $297K
+- **Year 4:** $327K
+- **Fresh-grad year:** $416K
+
+See [[day-05|Day 5]] for the actual screenshots. That's what the Income dimension compounds to when you build right.
+
+And the business didn't stop there. I've since built **four other companies** on top of the FA practice:
+
+![My digital marketing agency](/first-14-days/images/business-marketing-agency.png)
+![Cleaning business acquired 2023](/first-14-days/images/business-cleaning.png)
+![Outsourcing business 2024](/first-14-days/images/business-outsourcing.png)
+![Consulting firm 2024](/first-14-days/images/business-consulting.png)
+
+Combined 7-figure revenue across all four. The FA career's income + skills + network is what made that possible.
 
 Two honest observations:
 
@@ -87,6 +104,10 @@ The truest version of independence is *temporal*. You can attend your child's sc
 - 2022 Los Angeles
 - 2023 Hawaii
 - 2024 Norway
+
+![Los Angeles 2017](/first-14-days/images/travel-la.jpeg)
+![Athens 2018](/first-14-days/images/travel-athens.jpeg)
+![Berlin 2019](/first-14-days/images/travel-berlin.jpeg)
 
 Not a flex. A demonstration of what "built right" looks like — the book keeps running whether I'm in Singapore or Norway.
 

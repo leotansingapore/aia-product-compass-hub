@@ -83,22 +83,37 @@ This isn't a promise. It's a structural outcome of a business where the company 
 
 ---
 
-## 4. My own passive-income progression — a real example
+## 4. My own income progression — real screenshots, year by year
 
-Here's my actual income growth from my FA book, year by year (just the passive/recurring portion — renewals, career benefit, APF):
+Here's what the $667/hour math produces in practice. These are my **actual income statements** from the AIA system, year by year, as a full-time NUS Engineering student moonlighting in financial advisory. Not projections — screenshots of the actual numbers.
 
-| Year | Passive income |
-|---|---|
-| 1 | $50,000 |
-| 2 | $68,000 |
-| 3 | $80,000 |
-| 4 | $86,000 |
-| 5 | $93,000 |
-| 6 | $101,000 |
+### Year 1 — $145K (Uni Y1)
 
-That's the **book running on its own** — before adding any new-business commission from the current year. New business stacks on top of this.
+![Y1 income: $145K as a Uni Y1 full-time engineering student](/first-14-days/images/income-y1-145k.png)
 
-This is the compound math. Year 1 you sell 20 cases. Year 2 those 20 cases pay renewals + you sell 30 more. Year 3, renewals from years 1–2 + cross-sells + year 3 new business. By year 6, you're operating with 6 years of stacked back-end income.
+### Year 2 — $251K (Uni Y2)
+
+![Y2 income: $251K as a Uni Y2 full-time engineering student](/first-14-days/images/income-y2-251k.png)
+
+### Year 3 — $297K (Uni Y3)
+
+![Y3 income: $297K as a Uni Y3 full-time engineering student](/first-14-days/images/income-y3-297k.png)
+
+### Year 4 — $327K (Uni Y4)
+
+![Y4 income: $327K as a Uni Y4 student](/first-14-days/images/income-y4-327k.png)
+
+### Fresh-grad year — $416K
+
+![Fresh grad: $416K income](/first-14-days/images/income-fresh-grad-416k.png)
+
+### What the progression proves
+
+Year 1 to fresh-grad year: **$145K → $416K** — nearly 3×, while I was still a full-time student juggling overloaded engineering modules on the Global Engineering Program.
+
+I'm showing you these for one reason: **every prospect asks "is it really possible?"** Now you don't have to wonder. This is what the compounding math actually looks like when you plug into a real system and work it for 4–5 years.
+
+The $40 vs $667 ratio isn't theoretical. It's what produces the above.
 
 ---
 
