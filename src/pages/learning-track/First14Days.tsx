@@ -15,7 +15,7 @@ export default function First14Days() {
   const effectiveUnlocked = (dayNumber: number) => isActualAdmin || isUnlocked(dayNumber);
 
   const totalDone = completedCount();
-  const totalPct = TOTAL_DAYS === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
+  const totalPct = (TOTAL_DAYS as number) === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
 
   const firstIncomplete = (() => {
     for (let d = 1; d <= TOTAL_DAYS; d++) if (!isDayComplete(d)) return d;
