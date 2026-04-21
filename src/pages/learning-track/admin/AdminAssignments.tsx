@@ -22,7 +22,7 @@ type SubmissionRow = {
 };
 
 type ProfileRow = {
-  id: string;
+  user_id: string;
   display_name: string | null;
   email: string | null;
   first_name: string | null;
@@ -66,12 +66,12 @@ async function fetchAll(): Promise<{
   if (userIds.length === 0) return { rows, profiles: new Map(), assignments };
   const { data: profiles, error: profErr } = await supabase
     .from("profiles")
-    .select("id, display_name, email, first_name, last_name")
-    .in("id", userIds);
+    .select("user_id, display_name, email, first_name, last_name")
+    .in("user_id", userIds);
   if (profErr) throw profErr;
   return {
     rows,
-    profiles: new Map((profiles ?? []).map((p: ProfileRow) => [p.id, p])),
+    profiles: new Map((profiles ?? []).map((p: ProfileRow) => [p.user_id, p])),
     assignments,
   };
 }

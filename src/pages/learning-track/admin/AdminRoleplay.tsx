@@ -31,7 +31,7 @@ type FeedbackRow = {
 };
 
 type ProfileRow = {
-  id: string;
+  user_id: string;
   display_name: string | null;
   email: string | null;
   first_name: string | null;
@@ -90,13 +90,13 @@ async function fetchAll(): Promise<{
   if (userIds.length === 0) return { sessions, feedback, profiles: new Map() };
   const profilesRes = await supabase
     .from("profiles")
-    .select("id, display_name, email, first_name, last_name")
-    .in("id", userIds);
+    .select("user_id, display_name, email, first_name, last_name")
+    .in("user_id", userIds);
   if (profilesRes.error) throw profilesRes.error;
   return {
     sessions,
     feedback,
-    profiles: new Map((profilesRes.data ?? []).map((p: ProfileRow) => [p.id, p])),
+    profiles: new Map((profilesRes.data ?? []).map((p: ProfileRow) => [p.user_id, p])),
   };
 }
 

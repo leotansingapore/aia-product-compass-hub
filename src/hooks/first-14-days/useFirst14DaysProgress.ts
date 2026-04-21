@@ -1,7 +1,12 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { usePermissions } from "@/hooks/usePermissions";
 import { TOTAL_DAYS } from "@/features/first-14-days/summaries";
 
-const STORAGE_KEY = "first-14-days-progress-v1";
+const LEGACY_KEY = "first-14-days-progress-v1";
+const MIGRATION_FLAG = "first-14-days-migration-done";
 
 export type ReflectionAnswers = Record<string, string>;
 
@@ -14,41 +19,204 @@ export type DayProgress = {
   reflectionSavedAt?: string;
 };
 
-type Snapshot = {
-  startedAt?: string;
-  days: Record<number, DayProgress>;
+type Row = {
+  user_id: string;
+  day_number: number;
+  read_at: string | null;
+  quiz_score: number | null;
+  quiz_attempts: number;
+  quiz_passed_at: string | null;
+  reflection_answers: unknown;
+  reflection_saved_at: string | null;
+  updated_at: string;
 };
 
-function loadSnapshot(): Snapshot {
-  if (typeof window === "undefined") return { days: {} };
-  const raw = window.localStorage.getItem(STORAGE_KEY);
-  if (!raw) return { days: {} };
+function coerceAnswers(raw: unknown): ReflectionAnswers | undefined {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return undefined;
+  const out: ReflectionAnswers = {};
+  for (const [k, v] of Object.entries(raw as Record<string, unknown>)) {
+    if (typeof v === "string") out[k] = v;
+  }
+  return Object.keys(out).length > 0 ? out : undefined;
+}
+
+function rowToDayProgress(row: Row): DayProgress {
+  return {
+    readAt: row.read_at ?? undefined,
+    quizPassedAt: row.quiz_passed_at ?? undefined,
+    quizScore: row.quiz_score ?? undefined,
+    quizAttempts: row.quiz_attempts,
+    reflectionAnswers: coerceAnswers(row.reflection_answers),
+    reflectionSavedAt: row.reflection_saved_at ?? undefined,
+  };
+}
+
+async function fetchProgress(userId: string): Promise<Record<number, DayProgress>> {
+  const { data, error } = await supabase
+    .from("first_14_days_progress")
+    .select("*")
+    .eq("user_id", userId)
+    .range(0, 99);
+  if (error) throw error;
+  const out: Record<number, DayProgress> = {};
+  for (const row of (data ?? []) as Row[]) {
+    out[row.day_number] = rowToDayProgress(row);
+  }
+  return out;
+}
+
+type LegacyShape = {
+  startedAt?: string;
+  days?: Record<number, DayProgress>;
+};
+
+async function migrateLegacyIfNeeded(userId: string): Promise<boolean> {
+  if (typeof window === "undefined") return false;
+  if (localStorage.getItem(MIGRATION_FLAG) === "1") return false;
+  const raw = localStorage.getItem(LEGACY_KEY);
+  if (!raw) {
+    localStorage.setItem(MIGRATION_FLAG, "1");
+    return false;
+  }
   try {
-    const parsed = JSON.parse(raw) as Snapshot;
-    if (!parsed || typeof parsed !== "object" || !parsed.days) return { days: {} };
-    return parsed;
-  } catch {
-    return { days: {} };
+    const parsed = JSON.parse(raw) as LegacyShape;
+    const days = parsed.days ?? {};
+    const rows = Object.entries(days)
+      .filter(([, p]) => p && (p.readAt || p.quizPassedAt || p.quizScore !== undefined || p.reflectionAnswers))
+      .map(([dayStr, p]) => ({
+        user_id: userId,
+        day_number: Number(dayStr),
+        read_at: p.readAt ?? null,
+        quiz_score: p.quizScore ?? null,
+        quiz_attempts: p.quizAttempts ?? 0,
+        quiz_passed_at: p.quizPassedAt ?? null,
+        reflection_answers: p.reflectionAnswers ?? null,
+        reflection_saved_at: p.reflectionSavedAt ?? null,
+      }));
+    if (rows.length > 0) {
+      const { error } = await supabase
+        .from("first_14_days_progress")
+        .upsert(rows, { onConflict: "user_id,day_number" });
+      if (error) throw error;
+    }
+    localStorage.removeItem(LEGACY_KEY);
+    localStorage.setItem(MIGRATION_FLAG, "1");
+    return true;
+  } catch (err) {
+    console.warn("First 14 Days legacy migration failed; will skip future attempts:", err);
+    localStorage.setItem(MIGRATION_FLAG, "1");
+    return false;
   }
 }
 
-function saveSnapshot(snapshot: Snapshot) {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
-}
-
-/**
- * Progress hook for Your First 14 Days — prospect-facing course.
- * Stored in localStorage (no unlock gating, no submission — self-paced).
- */
 export function useFirst14DaysProgress() {
-  const [snapshot, setSnapshot] = useState<Snapshot>(() => loadSnapshot());
+  const { user } = useSimplifiedAuth();
+  const { isAdmin, isMasterAdmin } = usePermissions();
+  const qc = useQueryClient();
+  const userId = user?.id ?? null;
+  const adminBypass = isAdmin() || isMasterAdmin();
+
+  const progressQuery = useQuery({
+    queryKey: ["first-14-days-progress", userId],
+    queryFn: () => (userId ? fetchProgress(userId) : Promise.resolve({} as Record<number, DayProgress>)),
+    enabled: Boolean(userId),
+    staleTime: 30_000,
+  });
 
   useEffect(() => {
-    saveSnapshot(snapshot);
-  }, [snapshot]);
+    if (!userId) return;
+    migrateLegacyIfNeeded(userId).then((didMigrate) => {
+      if (didMigrate) qc.invalidateQueries({ queryKey: ["first-14-days-progress", userId] });
+    });
+  }, [userId, qc]);
 
-  const daysMap = snapshot.days ?? {};
+  const daysMap = progressQuery.data ?? {};
+
+  const upsertMutation = useMutation({
+    mutationFn: async (input: {
+      dayNumber: number;
+      patch: Partial<{
+        read_at: string | null;
+        quiz_score: number | null;
+        quiz_attempts: number;
+        quiz_passed_at: string | null;
+        reflection_answers: ReflectionAnswers | null;
+        reflection_saved_at: string | null;
+      }>;
+    }) => {
+      if (!userId) throw new Error("Not signed in");
+      const existing = daysMap[input.dayNumber] ?? {};
+      const row = {
+        user_id: userId,
+        day_number: input.dayNumber,
+        read_at: input.patch.read_at !== undefined ? input.patch.read_at : existing.readAt ?? null,
+        quiz_score:
+          input.patch.quiz_score !== undefined ? input.patch.quiz_score : existing.quizScore ?? null,
+        quiz_attempts:
+          input.patch.quiz_attempts !== undefined
+            ? input.patch.quiz_attempts
+            : existing.quizAttempts ?? 0,
+        quiz_passed_at:
+          input.patch.quiz_passed_at !== undefined
+            ? input.patch.quiz_passed_at
+            : existing.quizPassedAt ?? null,
+        reflection_answers:
+          input.patch.reflection_answers !== undefined
+            ? input.patch.reflection_answers
+            : existing.reflectionAnswers ?? null,
+        reflection_saved_at:
+          input.patch.reflection_saved_at !== undefined
+            ? input.patch.reflection_saved_at
+            : existing.reflectionSavedAt ?? null,
+      };
+      const { error } = await supabase
+        .from("first_14_days_progress")
+        .upsert(row, { onConflict: "user_id,day_number" });
+      if (error) throw error;
+    },
+    onMutate: async (input) => {
+      await qc.cancelQueries({ queryKey: ["first-14-days-progress", userId] });
+      const prev = qc.getQueryData<Record<number, DayProgress>>(["first-14-days-progress", userId]);
+      qc.setQueryData<Record<number, DayProgress>>(["first-14-days-progress", userId], (old) => {
+        const base = old ?? {};
+        const existing = base[input.dayNumber] ?? {};
+        const patched: DayProgress = {
+          readAt:
+            input.patch.read_at !== undefined
+              ? input.patch.read_at ?? undefined
+              : existing.readAt,
+          quizPassedAt:
+            input.patch.quiz_passed_at !== undefined
+              ? input.patch.quiz_passed_at ?? undefined
+              : existing.quizPassedAt,
+          quizScore:
+            input.patch.quiz_score !== undefined
+              ? input.patch.quiz_score ?? undefined
+              : existing.quizScore,
+          quizAttempts:
+            input.patch.quiz_attempts !== undefined
+              ? input.patch.quiz_attempts
+              : existing.quizAttempts,
+          reflectionAnswers:
+            input.patch.reflection_answers !== undefined
+              ? input.patch.reflection_answers ?? undefined
+              : existing.reflectionAnswers,
+          reflectionSavedAt:
+            input.patch.reflection_saved_at !== undefined
+              ? input.patch.reflection_saved_at ?? undefined
+              : existing.reflectionSavedAt,
+        };
+        return { ...base, [input.dayNumber]: patched };
+      });
+      return { prev };
+    },
+    onError: (_err, _input, ctx) => {
+      if (ctx?.prev) qc.setQueryData(["first-14-days-progress", userId], ctx.prev);
+    },
+    onSettled: () => {
+      qc.invalidateQueries({ queryKey: ["first-14-days-progress", userId] });
+    },
+  });
 
   const getDay = useCallback(
     (dayNumber: number): DayProgress => daysMap[dayNumber] ?? {},
@@ -64,20 +232,18 @@ export function useFirst14DaysProgress() {
     (dayNumber: number): boolean => {
       const d = daysMap[dayNumber];
       if (!d) return false;
-      // A day is complete when its quiz is passed. Worksheet is self-reflective
-      // and doesn't gate progression.
       return Boolean(d.quizPassedAt);
     },
     [daysMap],
   );
 
-  // Gated: Day 1 is always open; Day N unlocks when Day N-1's quiz is passed.
   const isUnlocked = useCallback(
     (dayNumber: number): boolean => {
+      if (adminBypass) return true;
       if (dayNumber <= 1) return true;
       return isDayComplete(dayNumber - 1);
     },
-    [isDayComplete],
+    [adminBypass, isDayComplete],
   );
 
   const currentDay = useCallback((): number => {
@@ -91,62 +257,63 @@ export function useFirst14DaysProgress() {
     return n;
   }, [isDayComplete]);
 
-  const updateDay = useCallback(
-    (dayNumber: number, patch: Partial<DayProgress>) => {
-      setSnapshot((prev) => {
-        const prevDays = prev.days ?? {};
-        const existing = prevDays[dayNumber] ?? {};
-        return {
-          startedAt: prev.startedAt ?? new Date().toISOString(),
-          days: {
-            ...prevDays,
-            [dayNumber]: { ...existing, ...patch },
-          },
-        };
-      });
-    },
-    [],
-  );
-
   const markRead = useCallback(
     (dayNumber: number) => {
+      if (!userId) return;
       if (daysMap[dayNumber]?.readAt) return;
-      updateDay(dayNumber, { readAt: new Date().toISOString() });
+      upsertMutation.mutate({
+        dayNumber,
+        patch: { read_at: new Date().toISOString() },
+      });
     },
-    [daysMap, updateDay],
+    [userId, daysMap, upsertMutation],
   );
 
   const recordQuiz = useCallback(
     (dayNumber: number, score: number, passed: boolean) => {
+      if (!userId) return;
       const existing = daysMap[dayNumber] ?? {};
-      updateDay(dayNumber, {
-        quizScore: score,
-        quizAttempts: (existing.quizAttempts ?? 0) + 1,
-        quizPassedAt: passed ? existing.quizPassedAt ?? new Date().toISOString() : existing.quizPassedAt,
+      upsertMutation.mutate({
+        dayNumber,
+        patch: {
+          quiz_score: score,
+          quiz_attempts: (existing.quizAttempts ?? 0) + 1,
+          quiz_passed_at: passed ? existing.quizPassedAt ?? new Date().toISOString() : existing.quizPassedAt ?? null,
+        },
       });
     },
-    [daysMap, updateDay],
+    [userId, daysMap, upsertMutation],
   );
 
   const saveReflection = useCallback(
     (dayNumber: number, answers: ReflectionAnswers) => {
-      updateDay(dayNumber, {
-        reflectionAnswers: answers,
-        reflectionSavedAt: new Date().toISOString(),
+      if (!userId) return;
+      upsertMutation.mutate({
+        dayNumber,
+        patch: {
+          reflection_answers: answers,
+          reflection_saved_at: new Date().toISOString(),
+        },
       });
     },
-    [updateDay],
+    [userId, upsertMutation],
   );
 
-  const reset = useCallback(() => {
-    setSnapshot({ days: {} });
-  }, []);
+  const reset = useCallback(async () => {
+    if (!userId) return;
+    const { error } = await supabase
+      .from("first_14_days_progress")
+      .delete()
+      .eq("user_id", userId);
+    if (error) throw error;
+    qc.invalidateQueries({ queryKey: ["first-14-days-progress", userId] });
+  }, [userId, qc]);
 
   const progress = useMemo(() => ({ days: daysMap }), [daysMap]);
 
   return {
     progress,
-    isLoading: false,
+    isLoading: progressQuery.isLoading,
     getDay,
     isQuizPassed,
     isDayComplete,

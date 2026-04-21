@@ -27,7 +27,7 @@ type ProgressRow = {
 };
 
 type ProfileRow = {
-  id: string;
+  user_id: string;
   display_name: string | null;
   email: string | null;
   first_name: string | null;
@@ -71,11 +71,11 @@ async function fetchSubmissions(): Promise<Enriched[]> {
 
   const { data: profiles, error: profErr } = await supabase
     .from("profiles")
-    .select("id, display_name, email, first_name, last_name")
-    .in("id", userIds);
+    .select("user_id, display_name, email, first_name, last_name")
+    .in("user_id", userIds);
   if (profErr) throw profErr;
 
-  const profileMap = new Map((profiles ?? []).map((p: ProfileRow) => [p.id, p]));
+  const profileMap = new Map((profiles ?? []).map((p: ProfileRow) => [p.user_id, p]));
   return rows.map((r) => ({ ...r, profile: profileMap.get(r.user_id) }));
 }
 
