@@ -32,10 +32,14 @@ import {
   Stethoscope,
   Gift,
   Award,
+  MousePointer2,
+  Pause,
 } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+type Waypoint = { x: string; y: string; click?: boolean };
 
 type Slide = {
   id: string;
@@ -46,7 +50,10 @@ type Slide = {
   bg: string;
   accent: string;
   visual: ReactNode;
+  waypoints?: Waypoint[];
 };
+
+const AUTO_ADVANCE_MS = 9000;
 
 const STORAGE_KEY_PREFIX = "animated-tour-seen-";
 
@@ -100,6 +107,8 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
+  const [paused, setPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const userName = useMemo(() => {
     const raw = user?.email?.split("@")[0] ?? "there";
@@ -125,6 +134,12 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#1a1150] via-[#2a1065] to-[#4c1d95]",
         accent: "from-fuchsia-500 to-violet-500",
         visual: <WelcomeVisual />,
+        waypoints: [
+          { x: "82%", y: "46%", click: true },
+          { x: "72%", y: "30%" },
+          { x: "88%", y: "58%", click: true },
+          { x: "70%", y: "65%" },
+        ],
       },
       {
         id: "journey",
@@ -140,6 +155,12 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#022c22] via-[#064e3b] to-[#047857]",
         accent: "from-emerald-400 to-teal-400",
         visual: <JourneyVisual />,
+        waypoints: [
+          { x: "78%", y: "22%" },
+          { x: "75%", y: "28%", click: true },
+          { x: "82%", y: "50%", click: true },
+          { x: "78%", y: "78%", click: true },
+        ],
       },
       {
         id: "products",
@@ -155,6 +176,13 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#082f49] via-[#0c4a6e] to-[#0369a1]",
         accent: "from-sky-400 to-cyan-400",
         visual: <ProductsVisual />,
+        waypoints: [
+          { x: "66%", y: "38%", click: true },
+          { x: "80%", y: "38%", click: true },
+          { x: "94%", y: "38%", click: true },
+          { x: "80%", y: "65%", click: true },
+          { x: "66%", y: "65%" },
+        ],
       },
       {
         id: "cmfas",
@@ -170,6 +198,12 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#422006] via-[#713f12] to-[#a16207]",
         accent: "from-amber-400 to-yellow-400",
         visual: <CmfasVisual />,
+        waypoints: [
+          { x: "78%", y: "35%", click: true },
+          { x: "70%", y: "72%", click: true },
+          { x: "88%", y: "72%", click: true },
+          { x: "70%", y: "85%" },
+        ],
       },
       {
         id: "roleplay",
@@ -185,6 +219,12 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#4c0519] via-[#881337] to-[#be123c]",
         accent: "from-rose-400 to-pink-400",
         visual: <RoleplayVisual />,
+        waypoints: [
+          { x: "70%", y: "26%" },
+          { x: "78%", y: "45%", click: true },
+          { x: "88%", y: "58%", click: true },
+          { x: "70%", y: "82%", click: true },
+        ],
       },
       {
         id: "assistant",
@@ -200,6 +240,12 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#1e1b4b] via-[#312e81] to-[#4338ca]",
         accent: "from-indigo-400 to-blue-400",
         visual: <AssistantVisual />,
+        waypoints: [
+          { x: "72%", y: "24%" },
+          { x: "82%", y: "42%", click: true },
+          { x: "78%", y: "62%" },
+          { x: "92%", y: "82%", click: true },
+        ],
       },
       {
         id: "progress",
@@ -215,6 +261,13 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#431407] via-[#7c2d12] to-[#c2410c]",
         accent: "from-orange-400 to-red-400",
         visual: <ProgressVisual />,
+        waypoints: [
+          { x: "90%", y: "28%" },
+          { x: "78%", y: "48%", click: true },
+          { x: "68%", y: "72%", click: true },
+          { x: "82%", y: "72%", click: true },
+          { x: "94%", y: "72%", click: true },
+        ],
       },
       {
         id: "ready",
@@ -230,6 +283,13 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
         bg: "from-[#022c22] via-[#064e3b] to-[#065f46]",
         accent: "from-lime-400 to-emerald-400",
         visual: <ReadyVisual />,
+        waypoints: [
+          { x: "78%", y: "50%", click: true },
+          { x: "68%", y: "32%" },
+          { x: "88%", y: "40%" },
+          { x: "70%", y: "72%" },
+          { x: "90%", y: "80%" },
+        ],
       },
     ],
     [userName]
@@ -287,6 +347,26 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    setProgress(0);
+    if (paused || isLast) return;
+    const startedAt = performance.now();
+    let raf = 0;
+    const tick = () => {
+      const elapsed = performance.now() - startedAt;
+      const pct = Math.min(1, elapsed / AUTO_ADVANCE_MS);
+      setProgress(pct);
+      if (pct >= 1) {
+        next();
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [open, index, paused, isLast, next]);
+
   if (!open) return null;
 
   const content = (
@@ -294,162 +374,307 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
       role="dialog"
       aria-modal="true"
       aria-label="Animated onboarding tour"
-      className="fixed inset-0 z-[9999] flex items-stretch justify-stretch text-white"
+      className="fixed inset-0 z-[9999] overflow-hidden text-white"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
       <style>{TOUR_KEYFRAMES}</style>
 
-      <div
-        key={slide.id}
-        className={cn(
-          "relative flex flex-1 flex-col overflow-hidden bg-gradient-to-br",
-          slide.bg
-        )}
-      >
-        <div className="absolute inset-0 opacity-60" aria-hidden>
-          <div className="absolute -top-40 -left-40 h-[42rem] w-[42rem] rounded-full bg-white/10 blur-3xl animate-tour-blob" />
-          <div
-            className="absolute -bottom-40 -right-40 h-[38rem] w-[38rem] rounded-full bg-white/10 blur-3xl animate-tour-blob-slow"
-            style={{ animationDelay: "1.5s" }}
-          />
-          <div
-            className="absolute top-1/3 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-white/5 blur-3xl animate-tour-blob"
-            style={{ animationDelay: "0.7s" }}
-          />
-        </div>
-
+      {/* Top auto-advance progress bar */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-50 h-1 bg-white/5">
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.07]"
-          aria-hidden
+          className="h-full bg-gradient-to-r from-white/80 to-white transition-[width]"
           style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-            backgroundSize: "24px 24px",
+            width: `${progress * 100}%`,
+            transitionDuration: progress === 0 ? "0ms" : "120ms",
           }}
         />
+      </div>
 
-        <div className="relative z-10 flex items-center justify-between px-6 pt-5 md:px-12 md:pt-8">
-          <div className="flex items-center gap-3">
-            <div
+      {/* Horizontal camera track containing all slides */}
+      <div
+        className="flex h-full transition-transform duration-[1100ms] will-change-transform motion-reduce:duration-300"
+        style={{
+          width: `${total * 100}%`,
+          transform: `translate3d(-${(index * 100) / total}%, 0, 0)`,
+          transitionTimingFunction: "cubic-bezier(0.77, 0, 0.175, 1)",
+        }}
+      >
+        {slides.map((s, i) => {
+          const active = i === index;
+          return (
+            <section
+              key={s.id}
+              aria-hidden={!active}
+              style={{ width: `${100 / total}%` }}
               className={cn(
-                "flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br shadow-lg",
-                slide.accent
+                "relative h-full shrink-0 overflow-hidden bg-gradient-to-br",
+                s.bg
               )}
             >
-              <slide.icon className="h-5 w-5 text-white" />
-            </div>
-            <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/70">
-              {slide.eyebrow}
-            </span>
-          </div>
-          <button
-            onClick={finish}
-            className="group flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-white/80 backdrop-blur transition hover:border-white/30 hover:bg-white/10 hover:text-white"
-          >
-            <span className="hidden sm:inline">Skip tour</span>
-            <X className="h-3.5 w-3.5" />
-          </button>
-        </div>
-
-        <div className="relative z-10 flex flex-1 flex-col-reverse items-center justify-center gap-10 px-6 py-10 md:flex-row md:gap-16 md:px-16">
-          <div
-            key={`text-${slide.id}`}
-            className={cn(
-              "w-full max-w-xl",
-              direction === 1 ? "animate-tour-in-left" : "animate-tour-in-right"
-            )}
-          >
-            <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-              {slide.title}
-            </h1>
-            <p className="mt-6 max-w-lg text-base text-white/75 md:text-lg">
-              {slide.subtitle}
-            </p>
-          </div>
-
-          <div
-            key={`visual-${slide.id}`}
-            className={cn(
-              "w-full max-w-xl",
-              direction === 1 ? "animate-tour-in-right" : "animate-tour-in-left"
-            )}
-          >
-            {slide.visual}
-          </div>
-        </div>
-
-        <div className="relative z-10 flex flex-col gap-4 px-6 pb-6 md:flex-row md:items-center md:justify-between md:px-12 md:pb-10">
-          <div className="flex items-center gap-2">
-            {slides.map((s, i) => {
-              const done = i < index;
-              const active = i === index;
-              return (
-                <button
-                  key={s.id}
-                  onClick={() => jump(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                  className={cn(
-                    "h-1.5 rounded-full transition-all duration-500",
-                    active
-                      ? "w-10 bg-white"
-                      : done
-                      ? "w-6 bg-white/70"
-                      : "w-6 bg-white/20 hover:bg-white/40"
-                  )}
+              {/* Ambient blobs */}
+              <div className="absolute inset-0 opacity-60" aria-hidden>
+                <div
+                  className="absolute -top-40 -left-40 h-[42rem] w-[42rem] rounded-full bg-white/10 blur-3xl animate-tour-blob"
+                  style={{ animationDelay: `${i * 0.4}s` }}
                 />
-              );
-            })}
-            <span className="ml-3 text-xs text-white/60">
-              {index + 1} / {total}
-            </span>
-          </div>
+                <div
+                  className="absolute -bottom-40 -right-40 h-[38rem] w-[38rem] rounded-full bg-white/10 blur-3xl animate-tour-blob-slow"
+                  style={{ animationDelay: `${1.5 + i * 0.3}s` }}
+                />
+                <div
+                  className="absolute top-1/3 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-white/5 blur-3xl animate-tour-blob"
+                  style={{ animationDelay: `${0.7 + i * 0.3}s` }}
+                />
+              </div>
 
-          <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              onClick={prev}
-              disabled={index === 0}
-              className="text-white hover:bg-white/10 hover:text-white disabled:opacity-30"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back
-            </Button>
+              {/* Dot grid */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-[0.07]"
+                aria-hidden
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+                  backgroundSize: "24px 24px",
+                }}
+              />
 
-            {isLast ? (
-              <>
-                <Button
-                  onClick={() => {
-                    markAnimatedTourSeen(user?.id);
-                    onClose();
-                    navigate("/learning-track");
-                  }}
-                  className="border border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20"
-                >
-                  Open my track
-                </Button>
-                <Button
-                  onClick={finish}
-                  className="bg-white text-slate-900 hover:bg-white/90"
-                >
-                  Start exploring
-                  <Rocket className="ml-2 h-4 w-4" />
-                </Button>
-              </>
-            ) : (
+              {/* Parallax floating text + visual */}
+              <div className="relative z-10 flex h-full flex-col px-6 md:px-16">
+                <div className="flex items-center gap-3 pt-5 md:pt-8">
+                  <div
+                    className={cn(
+                      "flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br shadow-lg",
+                      s.accent,
+                      active && "animate-tour-rise"
+                    )}
+                  >
+                    <s.icon className="h-5 w-5 text-white" />
+                  </div>
+                  <span
+                    className={cn(
+                      "text-xs font-medium uppercase tracking-[0.2em] text-white/70",
+                      active && "animate-tour-rise"
+                    )}
+                  >
+                    {s.eyebrow}
+                  </span>
+                </div>
+
+                <div className="flex flex-1 flex-col-reverse items-center justify-center gap-10 py-10 md:flex-row md:gap-16">
+                  <div
+                    className={cn(
+                      "w-full max-w-xl transition-all duration-[900ms]",
+                      active
+                        ? "translate-x-0 opacity-100 blur-0"
+                        : direction === 1
+                        ? "-translate-x-6 opacity-0 blur-sm"
+                        : "translate-x-6 opacity-0 blur-sm"
+                    )}
+                    style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
+                  >
+                    <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+                      {s.title}
+                    </h1>
+                    <p className="mt-6 max-w-lg text-base text-white/75 md:text-lg">
+                      {s.subtitle}
+                    </p>
+                  </div>
+
+                  <div
+                    className={cn(
+                      "relative w-full max-w-xl transition-all duration-[900ms]",
+                      active
+                        ? "translate-x-0 scale-100 opacity-100 blur-0"
+                        : direction === 1
+                        ? "translate-x-8 scale-95 opacity-0 blur-sm"
+                        : "-translate-x-8 scale-95 opacity-0 blur-sm"
+                    )}
+                    style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
+                  >
+                    {s.visual}
+                  </div>
+                </div>
+              </div>
+
+              {/* Virtual cursor — only animates on the active slide */}
+              {s.waypoints && active && (
+                <VirtualCursor waypoints={s.waypoints} slideId={s.id} />
+              )}
+            </section>
+          );
+        })}
+      </div>
+
+      {/* Fixed top-right skip */}
+      <div className="absolute right-6 top-5 z-40 md:right-12 md:top-6">
+        <button
+          onClick={finish}
+          className="group flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium text-white/90 backdrop-blur transition hover:border-white/40 hover:bg-white/20"
+        >
+          {paused ? (
+            <Pause className="h-3.5 w-3.5" />
+          ) : (
+            <span className="hidden sm:inline">Skip tour</span>
+          )}
+          <X className="h-3.5 w-3.5" />
+        </button>
+      </div>
+
+      {/* Fixed bottom controls */}
+      <div className="absolute inset-x-0 bottom-0 z-40 flex flex-col gap-4 px-6 pb-6 md:flex-row md:items-center md:justify-between md:px-12 md:pb-10">
+        <div className="flex items-center gap-2">
+          {slides.map((s, i) => {
+            const done = i < index;
+            const active = i === index;
+            return (
+              <button
+                key={s.id}
+                onClick={() => jump(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={cn(
+                  "h-1.5 rounded-full transition-all duration-500",
+                  active
+                    ? "w-10 bg-white"
+                    : done
+                    ? "w-6 bg-white/70"
+                    : "w-6 bg-white/20 hover:bg-white/40"
+                )}
+              />
+            );
+          })}
+          <span className="ml-3 text-xs text-white/60">
+            {index + 1} / {total}
+          </span>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <Button
+            variant="ghost"
+            onClick={prev}
+            disabled={index === 0}
+            className="text-white hover:bg-white/10 hover:text-white disabled:opacity-30"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back
+          </Button>
+
+          {isLast ? (
+            <>
               <Button
-                onClick={next}
+                onClick={() => {
+                  markAnimatedTourSeen(user?.id);
+                  onClose();
+                  navigate("/learning-track");
+                }}
+                className="border border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20"
+              >
+                Open my track
+              </Button>
+              <Button
+                onClick={finish}
                 className="bg-white text-slate-900 hover:bg-white/90"
               >
-                Next
-                <ArrowRight className="ml-2 h-4 w-4" />
+                Start exploring
+                <Rocket className="ml-2 h-4 w-4" />
               </Button>
-            )}
-          </div>
+            </>
+          ) : (
+            <Button
+              onClick={next}
+              className="bg-white text-slate-900 hover:bg-white/90"
+            >
+              Next
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          )}
         </div>
       </div>
     </div>
   );
 
   return createPortal(content, document.body);
+}
+
+function VirtualCursor({
+  waypoints,
+  slideId,
+}: {
+  waypoints: Waypoint[];
+  slideId: string;
+}) {
+  const [step, setStep] = useState(0);
+  const [clicking, setClicking] = useState(false);
+
+  useEffect(() => {
+    setStep(0);
+    setClicking(false);
+    if (!waypoints.length) return;
+
+    let alive = true;
+    const timeouts: number[] = [];
+
+    const cycle = (i: number) => {
+      if (!alive) return;
+      setStep(i);
+      const wp = waypoints[i];
+      if (wp.click) {
+        const clickT = window.setTimeout(() => {
+          if (!alive) return;
+          setClicking(true);
+          const endT = window.setTimeout(() => {
+            if (!alive) return;
+            setClicking(false);
+          }, 350);
+          timeouts.push(endT);
+        }, 900);
+        timeouts.push(clickT);
+      }
+      const nextT = window.setTimeout(() => {
+        cycle((i + 1) % waypoints.length);
+      }, 1900);
+      timeouts.push(nextT);
+    };
+
+    const startT = window.setTimeout(() => cycle(0), 400);
+    timeouts.push(startT);
+
+    return () => {
+      alive = false;
+      timeouts.forEach((t) => window.clearTimeout(t));
+    };
+  }, [slideId, waypoints]);
+
+  const pos = waypoints[step] ?? waypoints[0];
+  if (!pos) return null;
+
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute z-30 transition-all duration-[1200ms]"
+      style={{
+        left: pos.x,
+        top: pos.y,
+        transitionTimingFunction: "cubic-bezier(0.65, 0, 0.35, 1)",
+      }}
+    >
+      <div className="relative -translate-x-2 -translate-y-1">
+        {clicking && (
+          <>
+            <div className="absolute left-0 top-0 h-8 w-8 -translate-x-3 -translate-y-3 rounded-full bg-white/40 animate-tour-pulse-ring" />
+            <div
+              className="absolute left-0 top-0 h-8 w-8 -translate-x-3 -translate-y-3 rounded-full bg-white/30 animate-tour-pulse-ring"
+              style={{ animationDelay: "0.2s" }}
+            />
+          </>
+        )}
+        <MousePointer2
+          className="h-6 w-6 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]"
+          fill="white"
+        />
+      </div>
+    </div>
+  );
 }
 
 const TOUR_KEYFRAMES = `

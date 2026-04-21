@@ -370,9 +370,9 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                   variant="ghost"
                   className="w-full justify-start gap-3 h-10"
                   onClick={() => {
-                    onOpenChange(false);
                     clearAnimatedTourSeen(user?.id);
-                    setTimeout(() => setTourOpen(true), 200);
+                    setTourOpen(true);
+                    onOpenChange(false);
                   }}
                 >
                   <Compass className="h-4 w-4" />
