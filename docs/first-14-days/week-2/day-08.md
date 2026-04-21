@@ -133,14 +133,15 @@ Plus — the foundation under all three: **proper training + value-adding + 1-1 
 
 Here's the honest framing of why agency choice matters so much.
 
-```
-                        WRONG PEOPLE      RIGHT PEOPLE
-                       ┌──────────────┬─────────────────┐
-   RIGHT SYSTEMS       │   struggles  │    SUCCESS      │
-                       │   (no grit)  │    (compounds)  │
-                       ├──────────────┼─────────────────┤
-   WRONG SYSTEMS       │   total fail │    burns out    │
-                       └──────────────┴─────────────────┘
+```mermaid
+quadrantChart
+    title Right People × Right Systems
+    x-axis Wrong Systems --> Right Systems
+    y-axis Wrong People --> Right People
+    quadrant-1 Compound Growth
+    quadrant-2 Capable Burn-Out
+    quadrant-3 Total Failure
+    quadrant-4 No Discipline
 ```
 
 - **Wrong people, wrong systems** — total fail, fast

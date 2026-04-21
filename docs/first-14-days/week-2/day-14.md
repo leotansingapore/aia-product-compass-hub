@@ -63,6 +63,14 @@ Model yes. Agency yes. You're a fit. You're ready to take the next concrete step
 
 I'm not looking for mass hires. The 100-earner mission requires actually picking the right 100. So here's the structured process you'd go through:
 
+```mermaid
+flowchart LR
+    A["1 · Initial Briefing<br/>30 min — two-way overview"] --> B["2 · Character Test<br/>6 C's alignment"]
+    B --> C["3 · 1-1 Round<br/>4Rs framework"]
+    C --> D["4 · HR Round<br/>FLEXI tier + CMFAS plan"]
+    D --> E["5 · Final Interview<br/>Sign offer · commit both sides"]
+```
+
 1. **Initial Briefing** — 30 min. I walk through the full program, answer your questions, understand your context. This is the replacement for a "sales call" — it's a two-way conversation.
 2. **Character Test** — values-alignment check. Short structured conversation + self-assessment against the 6 C's (Day 9). Most of this happens naturally through the first two calls.
 3. **1-1 Round** — deeper conversation on your strengths, weaknesses, current situation, and what you actually want out of the next 12 months. I use the **4Rs framework** here: Role title, role responsibilities, role mission, role results — we align on all four before moving forward.

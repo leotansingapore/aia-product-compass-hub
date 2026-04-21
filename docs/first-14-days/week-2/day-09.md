@@ -42,6 +42,29 @@ All of those correlate weakly. Some are even negatively correlated (sales experi
 
 What *does* predict success, reliably: **the 6 C's.**
 
+```mermaid
+mindmap
+  root((The 6 C's))
+    Consistency of Actions
+      Show up daily
+      Marathon not sprint
+    Constancy of Emotions
+      Even-keel
+      Survive setbacks
+    Continuous Improvement
+      1% better daily
+      Seek feedback
+    Creativity
+      Resourceful
+      Figure it out
+    Can-Do Spirit
+      Action beats analysis
+      Bias to execute
+    CEO Mindset
+      Extreme ownership
+      No blame no victim
+```
+
 1. **Consistency of Actions** — you show up whether you feel like it or not
 2. **Constancy of Emotions** — you don't let highs or lows derail you
 3. **Continuous Improvement** — you seek feedback and compound 1% daily
